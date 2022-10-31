@@ -525,8 +525,8 @@ module TencentCloud
         # <li>UDP：UDP协议。</li>
         # @type Proto: String
         # @param Port: 端口，支持格式：
-        # 单个端口，如：80。
-        # 端口段，如：81-82。表示81，82两个端口。
+        # <li>单个端口，如：80。</li>
+        # <li>端口段，如：81-82。表示81，82两个端口。</li>
         # 注意：一条规则最多可填写20个端口。
         # @type Port: Array
         # @param OriginType: 源站类型，取值有：
@@ -534,11 +534,8 @@ module TencentCloud
         # <li>origins：源站组。</li>
         # @type OriginType: String
         # @param OriginValue: 源站信息：
-        # 当OriginType=custom时，表示一个或多个源站，如：
-        # OriginValue=["8.8.8.8:80","9.9.9.9:80"]
-        # OriginValue=["test.com:80"]；
-        # 当OriginType=origins时，要求有且仅有一个元素，表示源站组ID，如：
-        # OriginValue=["origin-537f5b41-162a-11ed-abaa-525400c5da15"]。
+        # <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
+        # <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
         # @type OriginValue: Array
         # @param RuleId: 规则ID。
         # @type RuleId: String
@@ -559,10 +556,14 @@ module TencentCloud
         # <li>true：开启；</li>
         # <li>false：关闭。</li>默认值：false。
         # @type SessionPersist: Boolean
+        # @param OriginPort: 源站端口，支持格式：
+        # <li>单端口，如：80。</li>
+        # <li>端口段：81-82，表示81，82两个端口。</li>
+        # @type OriginPort: String
 
-        attr_accessor :Proto, :Port, :OriginType, :OriginValue, :RuleId, :Status, :ForwardClientIp, :SessionPersist
+        attr_accessor :Proto, :Port, :OriginType, :OriginValue, :RuleId, :Status, :ForwardClientIp, :SessionPersist, :OriginPort
         
-        def initialize(proto=nil, port=nil, origintype=nil, originvalue=nil, ruleid=nil, status=nil, forwardclientip=nil, sessionpersist=nil)
+        def initialize(proto=nil, port=nil, origintype=nil, originvalue=nil, ruleid=nil, status=nil, forwardclientip=nil, sessionpersist=nil, originport=nil)
           @Proto = proto
           @Port = port
           @OriginType = origintype
@@ -571,6 +572,7 @@ module TencentCloud
           @Status = status
           @ForwardClientIp = forwardclientip
           @SessionPersist = sessionpersist
+          @OriginPort = originport
         end
 
         def deserialize(params)
@@ -582,6 +584,7 @@ module TencentCloud
           @Status = params['Status']
           @ForwardClientIp = params['ForwardClientIp']
           @SessionPersist = params['SessionPersist']
+          @OriginPort = params['OriginPort']
         end
       end
 
@@ -1477,20 +1480,17 @@ module TencentCloud
         # <li>TCP：TCP协议；</li>
         # <li>UDP：UDP协议。</li>
         # @type Proto: String
-        # @param Port: 源站类型，取值有：
+        # @param Port: 端口，支持格式：
+        # <li>80：80端口；</li>
+        # <li>81-90：81至90端口。</li>
+        # @type Port: Array
+        # @param OriginType: 源站类型，取值有：
         # <li>custom：手动添加；</li>
         # <li>origins：源站组。</li>
-        # @type Port: Array
-        # @param OriginType: 源站类型，取值：
-        # custom：手动添加
-        # origins：源站组
         # @type OriginType: String
         # @param OriginValue: 源站信息：
-        # 当OriginType=custom时，表示一个或多个源站，如：
-        # OriginValue=["8.8.8.8:80","9.9.9.9:80"]
-        # OriginValue=["test.com:80"]；
-        # 当OriginType=origins时，要求有且仅有一个元素，表示源站组ID，如：
-        # OriginValue=["origin-537f5b41-162a-11ed-abaa-525400c5da15"]。
+        # <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
+        # <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
         # @type OriginValue: Array
         # @param ForwardClientIp: 传递客户端IP，取值有：
         # <li>TOA：TOA（仅Proto=TCP时可选）；</li>
@@ -1502,10 +1502,14 @@ module TencentCloud
         # <li>true：开启；</li>
         # <li>false：关闭。</li>默认值：false。
         # @type SessionPersist: Boolean
+        # @param OriginPort: 源站端口，支持格式：
+        # <li>单端口：80；</li>
+        # <li>端口段：81-90，81至90端口。</li>
+        # @type OriginPort: String
 
-        attr_accessor :ZoneId, :ProxyId, :Proto, :Port, :OriginType, :OriginValue, :ForwardClientIp, :SessionPersist
+        attr_accessor :ZoneId, :ProxyId, :Proto, :Port, :OriginType, :OriginValue, :ForwardClientIp, :SessionPersist, :OriginPort
         
-        def initialize(zoneid=nil, proxyid=nil, proto=nil, port=nil, origintype=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil)
+        def initialize(zoneid=nil, proxyid=nil, proto=nil, port=nil, origintype=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, originport=nil)
           @ZoneId = zoneid
           @ProxyId = proxyid
           @Proto = proto
@@ -1514,6 +1518,7 @@ module TencentCloud
           @OriginValue = originvalue
           @ForwardClientIp = forwardclientip
           @SessionPersist = sessionpersist
+          @OriginPort = originport
         end
 
         def deserialize(params)
@@ -1525,6 +1530,7 @@ module TencentCloud
           @OriginValue = params['OriginValue']
           @ForwardClientIp = params['ForwardClientIp']
           @SessionPersist = params['SessionPersist']
+          @OriginPort = params['OriginPort']
         end
       end
 
@@ -9950,19 +9956,17 @@ module TencentCloud
         # <li>origins：源站组。</li>不填保持原有值。
         # @type OriginType: String
         # @param Port: 端口，支持格式：
-        # 80：80端口
-        # 81-90：81至90端口。不填保持原有值。
+        # <li>80：80端口；</li>
+        # <li>81-90：81至90端口。</li>
         # @type Port: Array
         # @param Proto: 协议，取值有：
         # <li>TCP：TCP协议；</li>
         # <li>UDP：UDP协议。</li>不填保持原有值。
         # @type Proto: String
         # @param OriginValue: 源站信息：
-        # 当OriginType=custom时，表示一个或多个源站，如：
-        # OriginValue=["8.8.8.8:80","9.9.9.9:80"]
-        # OriginValue=["test.com:80"]；
-        # 当OriginType=origins时，要求有且仅有一个元素，表示源站组ID，如：
-        # OriginValue=["origin-537f5b41-162a-11ed-abaa-525400c5da15"]。
+        # <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
+        # <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
+
         # 不填保持原有值。
         # @type OriginValue: Array
         # @param ForwardClientIp: 传递客户端IP，取值有：
@@ -9973,12 +9977,16 @@ module TencentCloud
         # @type ForwardClientIp: String
         # @param SessionPersist: 是否开启会话保持，取值有：
         # <li>true：开启；</li>
-        # <li>false：关闭。</li>不填保持原有值。
+        # <li>false：关闭。</li>不填为false。
         # @type SessionPersist: Boolean
+        # @param OriginPort: 源站端口，支持格式：
+        # <li>单端口：80；</li>
+        # <li>端口段：81-90，81至90端口。</li>
+        # @type OriginPort: String
 
-        attr_accessor :ZoneId, :ProxyId, :RuleId, :OriginType, :Port, :Proto, :OriginValue, :ForwardClientIp, :SessionPersist
+        attr_accessor :ZoneId, :ProxyId, :RuleId, :OriginType, :Port, :Proto, :OriginValue, :ForwardClientIp, :SessionPersist, :OriginPort
         
-        def initialize(zoneid=nil, proxyid=nil, ruleid=nil, origintype=nil, port=nil, proto=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil)
+        def initialize(zoneid=nil, proxyid=nil, ruleid=nil, origintype=nil, port=nil, proto=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, originport=nil)
           @ZoneId = zoneid
           @ProxyId = proxyid
           @RuleId = ruleid
@@ -9988,6 +9996,7 @@ module TencentCloud
           @OriginValue = originvalue
           @ForwardClientIp = forwardclientip
           @SessionPersist = sessionpersist
+          @OriginPort = originport
         end
 
         def deserialize(params)
@@ -10000,6 +10009,7 @@ module TencentCloud
           @OriginValue = params['OriginValue']
           @ForwardClientIp = params['ForwardClientIp']
           @SessionPersist = params['SessionPersist']
+          @OriginPort = params['OriginPort']
         end
       end
 

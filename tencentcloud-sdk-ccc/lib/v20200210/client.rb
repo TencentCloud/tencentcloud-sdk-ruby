@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建话机账号
+
+        # @param request: Request instance for CreateExtension.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateExtensionRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateExtensionResponse`
+        def CreateExtension(request)
+          body = send_request('CreateExtension', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExtensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 SDK 登录 Token。
 
         # @param request: Request instance for CreateSDKLoginToken.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateUserSigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除话机账号
+
+        # @param request: Request instance for DeleteExtension.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DeleteExtensionRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DeleteExtensionResponse`
+        def DeleteExtension(request)
+          body = send_request('DeleteExtension', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExtensionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -327,6 +375,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeChatMessagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取话机信息
+
+        # @param request: Request instance for DescribeExtension.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeExtensionRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeExtensionResponse`
+        def DescribeExtension(request)
+          body = send_request('DescribeExtension', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询话机列表信息
+
+        # @param request: Request instance for DescribeExtensions.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeExtensionsRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeExtensionsResponse`
+        def DescribeExtensions(request)
+          body = send_request('DescribeExtensions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtensionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改话机账号(绑定技能组、绑定坐席账号)
+
+        # @param request: Request instance for ModifyExtension.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ModifyExtensionRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ModifyExtensionResponse`
+        def ModifyExtension(request)
+          body = send_request('ModifyExtension', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyExtensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改客服账号
 
         # @param request: Request instance for ModifyStaff.
@@ -591,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyStaffResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置话机注册密码
+
+        # @param request: Request instance for ResetExtensionPassword.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ResetExtensionPasswordRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ResetExtensionPasswordResponse`
+        def ResetExtensionPassword(request)
+          body = send_request('ResetExtensionPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetExtensionPasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

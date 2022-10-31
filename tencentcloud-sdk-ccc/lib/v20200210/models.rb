@@ -427,6 +427,46 @@ module TencentCloud
         end
       end
 
+      # CreateExtension请求参数结构体
+      class CreateExtensionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+        # @param ExtensionName: 分机名称
+        # @type ExtensionName: String
+
+        attr_accessor :SdkAppId, :ExtensionId, :ExtensionName
+        
+        def initialize(sdkappid=nil, extensionid=nil, extensionname=nil)
+          @SdkAppId = sdkappid
+          @ExtensionId = extensionid
+          @ExtensionName = extensionname
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ExtensionId = params['ExtensionId']
+          @ExtensionName = params['ExtensionName']
+        end
+      end
+
+      # CreateExtension返回参数结构体
+      class CreateExtensionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSDKLoginToken请求参数结构体
       class CreateSDKLoginTokenRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -574,6 +614,42 @@ module TencentCloud
 
         def deserialize(params)
           @UserSig = params['UserSig']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteExtension请求参数结构体
+      class DeleteExtensionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+
+        attr_accessor :SdkAppId, :ExtensionId
+        
+        def initialize(sdkappid=nil, extensionid=nil)
+          @SdkAppId = sdkappid
+          @ExtensionId = extensionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ExtensionId = params['ExtensionId']
+        end
+      end
+
+      # DeleteExtension返回参数结构体
+      class DeleteExtensionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -949,6 +1025,129 @@ module TencentCloud
               messagebody_tmp = MessageBody.new
               messagebody_tmp.deserialize(i)
               @Messages << messagebody_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtension请求参数结构体
+      class DescribeExtensionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+
+        attr_accessor :SdkAppId, :ExtensionId
+        
+        def initialize(sdkappid=nil, extensionid=nil)
+          @SdkAppId = sdkappid
+          @ExtensionId = extensionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ExtensionId = params['ExtensionId']
+        end
+      end
+
+      # DescribeExtension返回参数结构体
+      class DescribeExtensionResponse < TencentCloud::Common::AbstractModel
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+        # @param ExtensionDomain: 域名
+        # @type ExtensionDomain: String
+        # @param Password: 注册密码
+        # @type Password: String
+        # @param OutboundProxy: 代理服务器地址
+        # @type OutboundProxy: String
+        # @param Transport: 传输协议
+        # @type Transport: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExtensionId, :ExtensionDomain, :Password, :OutboundProxy, :Transport, :RequestId
+        
+        def initialize(extensionid=nil, extensiondomain=nil, password=nil, outboundproxy=nil, transport=nil, requestid=nil)
+          @ExtensionId = extensionid
+          @ExtensionDomain = extensiondomain
+          @Password = password
+          @OutboundProxy = outboundproxy
+          @Transport = transport
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExtensionId = params['ExtensionId']
+          @ExtensionDomain = params['ExtensionDomain']
+          @Password = params['Password']
+          @OutboundProxy = params['OutboundProxy']
+          @Transport = params['Transport']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtensions请求参数结构体
+      class DescribeExtensionsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param PageNumber: 分页页号（从0开始）
+        # @type PageNumber: Integer
+        # @param ExtensionIds: 筛选分机号列表
+        # @type ExtensionIds: Array
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param FuzzingKeyWord: 模糊查询字段（模糊查询分机号、分机名称、坐席邮箱、坐席名称）
+        # @type FuzzingKeyWord: String
+        # @param IsNeedStatus: 是否需要返回话机当前状态
+        # @type IsNeedStatus: Boolean
+
+        attr_accessor :SdkAppId, :PageNumber, :ExtensionIds, :PageSize, :FuzzingKeyWord, :IsNeedStatus
+        
+        def initialize(sdkappid=nil, pagenumber=nil, extensionids=nil, pagesize=nil, fuzzingkeyword=nil, isneedstatus=nil)
+          @SdkAppId = sdkappid
+          @PageNumber = pagenumber
+          @ExtensionIds = extensionids
+          @PageSize = pagesize
+          @FuzzingKeyWord = fuzzingkeyword
+          @IsNeedStatus = isneedstatus
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageNumber = params['PageNumber']
+          @ExtensionIds = params['ExtensionIds']
+          @PageSize = params['PageSize']
+          @FuzzingKeyWord = params['FuzzingKeyWord']
+          @IsNeedStatus = params['IsNeedStatus']
+        end
+      end
+
+      # DescribeExtensions返回参数结构体
+      class DescribeExtensionsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 查询总数
+        # @type Total: Integer
+        # @param ExtensionList: 话机信息列表
+        # @type ExtensionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ExtensionList, :RequestId
+        
+        def initialize(total=nil, extensionlist=nil, requestid=nil)
+          @Total = total
+          @ExtensionList = extensionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['ExtensionList'].nil?
+            @ExtensionList = []
+            params['ExtensionList'].each do |i|
+              extensioninfo_tmp = ExtensionInfo.new
+              extensioninfo_tmp.deserialize(i)
+              @ExtensionList << extensioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1567,6 +1766,62 @@ module TencentCloud
         end
       end
 
+      # 话机信息
+      class ExtensionInfo < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param FullExtensionId: 分机全名
+        # @type FullExtensionId: String
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+        # @param SkillGroupId: 所属技能组列表
+        # @type SkillGroupId: String
+        # @param ExtensionName: 分机名称
+        # @type ExtensionName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param ModifyTime: 最后修改时间
+        # @type ModifyTime: Integer
+        # @param Status: 话机状态(0 离线、100 空闲、200忙碌）
+        # @type Status: Integer
+        # @param Register: 是否注册
+        # @type Register: Boolean
+        # @param Relation: 绑定坐席邮箱
+        # @type Relation: String
+        # @param RelationName: 绑定坐席名称
+        # @type RelationName: String
+
+        attr_accessor :SdkAppId, :FullExtensionId, :ExtensionId, :SkillGroupId, :ExtensionName, :CreateTime, :ModifyTime, :Status, :Register, :Relation, :RelationName
+        
+        def initialize(sdkappid=nil, fullextensionid=nil, extensionid=nil, skillgroupid=nil, extensionname=nil, createtime=nil, modifytime=nil, status=nil, register=nil, relation=nil, relationname=nil)
+          @SdkAppId = sdkappid
+          @FullExtensionId = fullextensionid
+          @ExtensionId = extensionid
+          @SkillGroupId = skillgroupid
+          @ExtensionName = extensionname
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Status = status
+          @Register = register
+          @Relation = relation
+          @RelationName = relationname
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @FullExtensionId = params['FullExtensionId']
+          @ExtensionId = params['ExtensionId']
+          @SkillGroupId = params['SkillGroupId']
+          @ExtensionName = params['ExtensionName']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Status = params['Status']
+          @Register = params['Register']
+          @Relation = params['Relation']
+          @RelationName = params['RelationName']
+        end
+      end
+
       # 文本会话服务记录信息
       class IMCdrInfo < TencentCloud::Common::AbstractModel
         # @param Id: 服务记录ID
@@ -1700,6 +1955,54 @@ module TencentCloud
               @Messages << message_tmp
             end
           end
+        end
+      end
+
+      # ModifyExtension请求参数结构体
+      class ModifyExtensionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+        # @param ExtensionName: 分机名称
+        # @type ExtensionName: String
+        # @param SkillGroupIds: 所属技能组列表
+        # @type SkillGroupIds: Array
+        # @param Relation: 绑定坐席邮箱账号
+        # @type Relation: String
+
+        attr_accessor :SdkAppId, :ExtensionId, :ExtensionName, :SkillGroupIds, :Relation
+        
+        def initialize(sdkappid=nil, extensionid=nil, extensionname=nil, skillgroupids=nil, relation=nil)
+          @SdkAppId = sdkappid
+          @ExtensionId = extensionid
+          @ExtensionName = extensionname
+          @SkillGroupIds = skillgroupids
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ExtensionId = params['ExtensionId']
+          @ExtensionName = params['ExtensionName']
+          @SkillGroupIds = params['SkillGroupIds']
+          @Relation = params['Relation']
+        end
+      end
+
+      # ModifyExtension返回参数结构体
+      class ModifyExtensionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1972,6 +2275,46 @@ module TencentCloud
           @BuyTime = params['BuyTime']
           @EndTime = params['EndTime']
           @State = params['State']
+        end
+      end
+
+      # ResetExtensionPassword请求参数结构体
+      class ResetExtensionPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param ExtensionId: 分机号
+        # @type ExtensionId: String
+
+        attr_accessor :SdkAppId, :ExtensionId
+        
+        def initialize(sdkappid=nil, extensionid=nil)
+          @SdkAppId = sdkappid
+          @ExtensionId = extensionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ExtensionId = params['ExtensionId']
+        end
+      end
+
+      # ResetExtensionPassword返回参数结构体
+      class ResetExtensionPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param Password: 重置后密码
+        # @type Password: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Password, :RequestId
+        
+        def initialize(password=nil, requestid=nil)
+          @Password = password
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Password = params['Password']
+          @RequestId = params['RequestId']
         end
       end
 

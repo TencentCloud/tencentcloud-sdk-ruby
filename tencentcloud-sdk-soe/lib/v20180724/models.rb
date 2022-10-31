@@ -74,10 +74,12 @@ module TencentCloud
         # 1：[音素结构](https://cloud.tencent.com/document/product/884/33698)文本
         # 2：音素注册模式（提工单注册需要使用音素的单词）。
         # @type TextMode: Integer
+        # @param Keyword: 主题词和关键词
+        # @type Keyword: String
 
-        attr_accessor :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :IsLongLifeSession, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :TextMode
+        attr_accessor :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :IsLongLifeSession, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :TextMode, :Keyword
         
-        def initialize(sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, islonglifesession=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, textmode=nil)
+        def initialize(sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, islonglifesession=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, textmode=nil, keyword=nil)
           @SessionId = sessionid
           @RefText = reftext
           @WorkMode = workmode
@@ -90,6 +92,7 @@ module TencentCloud
           @ServerType = servertype
           @IsAsync = isasync
           @TextMode = textmode
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -105,6 +108,7 @@ module TencentCloud
           @ServerType = params['ServerType']
           @IsAsync = params['IsAsync']
           @TextMode = params['TextMode']
+          @Keyword = params['Keyword']
         end
       end
 
@@ -360,16 +364,28 @@ module TencentCloud
         # @type PronCompletion: Float
         # @param SuggestedScore: 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracyfloat）* 完整度（PronCompletionfloat）*（2 - 完整度（PronCompletionfloat）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         # @type SuggestedScore: Float
+        # @param RefTextId: 匹配候选文本的序号，在句子多分支、情景对 话、段落模式下表示匹配到的文本序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefTextId: Integer
+        # @param KeyWordHits: 主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordHits: Array
+        # @param UnKeyWordHits: 负向主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnKeyWordHits: Array
 
-        attr_accessor :SentenceId, :Words, :PronAccuracy, :PronFluency, :PronCompletion, :SuggestedScore
+        attr_accessor :SentenceId, :Words, :PronAccuracy, :PronFluency, :PronCompletion, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits
         
-        def initialize(sentenceid=nil, words=nil, pronaccuracy=nil, pronfluency=nil, proncompletion=nil, suggestedscore=nil)
+        def initialize(sentenceid=nil, words=nil, pronaccuracy=nil, pronfluency=nil, proncompletion=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil)
           @SentenceId = sentenceid
           @Words = words
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency
           @PronCompletion = proncompletion
           @SuggestedScore = suggestedscore
+          @RefTextId = reftextid
+          @KeyWordHits = keywordhits
+          @UnKeyWordHits = unkeywordhits
         end
 
         def deserialize(params)
@@ -386,6 +402,9 @@ module TencentCloud
           @PronFluency = params['PronFluency']
           @PronCompletion = params['PronCompletion']
           @SuggestedScore = params['SuggestedScore']
+          @RefTextId = params['RefTextId']
+          @KeyWordHits = params['KeyWordHits']
+          @UnKeyWordHits = params['UnKeyWordHits']
         end
       end
 
@@ -464,12 +483,21 @@ module TencentCloud
         # @type Status: String
         # @param SuggestedScore: 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracy）× 完整度（PronCompletion）×（2 - 完整度（PronCompletion）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         # @type SuggestedScore: Float
+        # @param RefTextId: 匹配候选文本的序号，在句子多分支、情景对 话、段落模式下表示匹配到的文本序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefTextId: Integer
+        # @param KeyWordHits: 主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordHits: Array
+        # @param UnKeyWordHits: 负向主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnKeyWordHits: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RequestId
+        attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         
-        def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, requestid=nil)
+        def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency
           @PronCompletion = proncompletion
@@ -479,6 +507,9 @@ module TencentCloud
           @SentenceInfoSet = sentenceinfoset
           @Status = status
           @SuggestedScore = suggestedscore
+          @RefTextId = reftextid
+          @KeyWordHits = keywordhits
+          @UnKeyWordHits = unkeywordhits
           @RequestId = requestid
         end
 
@@ -506,6 +537,9 @@ module TencentCloud
           end
           @Status = params['Status']
           @SuggestedScore = params['SuggestedScore']
+          @RefTextId = params['RefTextId']
+          @KeyWordHits = params['KeyWordHits']
+          @UnKeyWordHits = params['UnKeyWordHits']
           @RequestId = params['RequestId']
         end
       end
@@ -584,10 +618,12 @@ module TencentCloud
         # 1：[音素结构](https://cloud.tencent.com/document/product/884/33698)文本
         # 2：音素注册模式（提工单注册需要使用音素的单词）。
         # @type TextMode: Integer
+        # @param Keyword: 主题词和关键词
+        # @type Keyword: String
 
-        attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode
+        attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword
         
-        def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil)
+        def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil)
           @SeqId = seqid
           @IsEnd = isend
           @VoiceFileType = voicefiletype
@@ -605,6 +641,7 @@ module TencentCloud
           @IsAsync = isasync
           @IsQuery = isquery
           @TextMode = textmode
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -625,6 +662,7 @@ module TencentCloud
           @IsAsync = params['IsAsync']
           @IsQuery = params['IsQuery']
           @TextMode = params['TextMode']
+          @Keyword = params['Keyword']
         end
       end
 
@@ -648,12 +686,21 @@ module TencentCloud
         # @type Status: String
         # @param SuggestedScore: 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracy）× 完整度（PronCompletion）×（2 - 完整度（PronCompletion）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         # @type SuggestedScore: Float
+        # @param RefTextId: 匹配候选文本的序号，在句子多分支、情景对 话、段落模式下表示匹配到的文本序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefTextId: Integer
+        # @param KeyWordHits: 主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordHits: Array
+        # @param UnKeyWordHits: 负向主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnKeyWordHits: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RequestId
+        attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         
-        def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, requestid=nil)
+        def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency
           @PronCompletion = proncompletion
@@ -663,6 +710,9 @@ module TencentCloud
           @SentenceInfoSet = sentenceinfoset
           @Status = status
           @SuggestedScore = suggestedscore
+          @RefTextId = reftextid
+          @KeyWordHits = keywordhits
+          @UnKeyWordHits = unkeywordhits
           @RequestId = requestid
         end
 
@@ -690,6 +740,9 @@ module TencentCloud
           end
           @Status = params['Status']
           @SuggestedScore = params['SuggestedScore']
+          @RefTextId = params['RefTextId']
+          @KeyWordHits = params['KeyWordHits']
+          @UnKeyWordHits = params['UnKeyWordHits']
           @RequestId = params['RequestId']
         end
       end
@@ -712,10 +765,13 @@ module TencentCloud
         # @type PhoneInfos: Array
         # @param ReferenceWord: 参考词，目前为保留字段。
         # @type ReferenceWord: String
+        # @param KeywordTag: 主题词命中标志，0表示没命中，1表示命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeywordTag: Integer
 
-        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :PronFluency, :Word, :MatchTag, :PhoneInfos, :ReferenceWord
+        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :PronFluency, :Word, :MatchTag, :PhoneInfos, :ReferenceWord, :KeywordTag
         
-        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, pronfluency=nil, word=nil, matchtag=nil, phoneinfos=nil, referenceword=nil)
+        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, pronfluency=nil, word=nil, matchtag=nil, phoneinfos=nil, referenceword=nil, keywordtag=nil)
           @MemBeginTime = membegintime
           @MemEndTime = memendtime
           @PronAccuracy = pronaccuracy
@@ -724,6 +780,7 @@ module TencentCloud
           @MatchTag = matchtag
           @PhoneInfos = phoneinfos
           @ReferenceWord = referenceword
+          @KeywordTag = keywordtag
         end
 
         def deserialize(params)
@@ -742,6 +799,7 @@ module TencentCloud
             end
           end
           @ReferenceWord = params['ReferenceWord']
+          @KeywordTag = params['KeywordTag']
         end
       end
 

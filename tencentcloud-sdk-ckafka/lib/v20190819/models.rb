@@ -9329,6 +9329,23 @@ module TencentCloud
         end
       end
 
+      # Url解析
+      class UrlDecodeParam < TencentCloud::Common::AbstractModel
+        # @param CharsetName: 编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CharsetName: String
+
+        attr_accessor :CharsetName
+        
+        def initialize(charsetname=nil)
+          @CharsetName = charsetname
+        end
+
+        def deserialize(params)
+          @CharsetName = params['CharsetName']
+        end
+      end
+
       # 用户实体
       class User < TencentCloud::Common::AbstractModel
         # @param UserId: 用户id
@@ -9413,10 +9430,13 @@ module TencentCloud
         # @param JsonPathReplace: JsonPath替换，TYPE=JSON_PATH_REPLACE时必传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonPathReplace: :class:`Tencentcloud::Ckafka.v20190819.models.JsonPathReplaceParam`
+        # @param UrlDecode: Url解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlDecode: :class:`Tencentcloud::Ckafka.v20190819.models.UrlDecodeParam`
 
-        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result, :JsonPathReplace
+        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result, :JsonPathReplace, :UrlDecode
         
-        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil, jsonpathreplace=nil)
+        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil, jsonpathreplace=nil, urldecode=nil)
           @Type = type
           @Replace = replace
           @Substr = substr
@@ -9426,6 +9446,7 @@ module TencentCloud
           @KV = kv
           @Result = result
           @JsonPathReplace = jsonpathreplace
+          @UrlDecode = urldecode
         end
 
         def deserialize(params)
@@ -9458,6 +9479,10 @@ module TencentCloud
           unless params['JsonPathReplace'].nil?
             @JsonPathReplace = JsonPathReplaceParam.new
             @JsonPathReplace.deserialize(params['JsonPathReplace'])
+          end
+          unless params['UrlDecode'].nil?
+            @UrlDecode = UrlDecodeParam.new
+            @UrlDecode.deserialize(params['UrlDecode'])
           end
         end
       end
