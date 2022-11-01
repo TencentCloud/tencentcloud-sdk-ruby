@@ -4526,6 +4526,124 @@ module TencentCloud
         end
       end
 
+      # DescribeRabbitMQNodeList请求参数结构体
+      class DescribeRabbitMQNodeListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 不适用，默认参数
+        # @type InstanceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 一页限制
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRabbitMQNodeList返回参数结构体
+      class DescribeRabbitMQNodeListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群列表数量
+        # @type TotalCount: Integer
+        # @param NodeList: 集群列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodeList, :RequestId
+        
+        def initialize(totalcount=nil, nodelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodeList = nodelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              rabbitmqprivatenode_tmp = RabbitMQPrivateNode.new
+              rabbitmqprivatenode_tmp.deserialize(i)
+              @NodeList << rabbitmqprivatenode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRabbitMQVipInstances请求参数结构体
+      class DescribeRabbitMQVipInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询条件过滤器
+        # @type Filters: Array
+        # @param Limit: 查询数目上限，默认20
+        # @type Limit: Integer
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Limit, :Offset
+        
+        def initialize(filters=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRabbitMQVipInstances返回参数结构体
+      class DescribeRabbitMQVipInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 未分页的总数目
+        # @type TotalCount: Integer
+        # @param Instances: 实例信息列表
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Instances, :RequestId
+        
+        def initialize(totalcount=nil, instances=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              rabbitmqvipinstance_tmp = RabbitMQVipInstance.new
+              rabbitmqvipinstance_tmp.deserialize(i)
+              @Instances << rabbitmqvipinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQCluster请求参数结构体
       class DescribeRocketMQClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6410,6 +6528,93 @@ module TencentCloud
           @AverageMsgSize = params['AverageMsgSize']
           @ConnectedSince = params['ConnectedSince']
           @Partition = params['Partition']
+        end
+      end
+
+      # RabbitMQ节点信息
+      class RabbitMQPrivateNode < TencentCloud::Common::AbstractModel
+        # @param NodeName: 节点名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+
+        attr_accessor :NodeName
+        
+        def initialize(nodename=nil)
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # RabbitMQ专享实例信息
+      class RabbitMQVipInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceVersion: 实例版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: String
+        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # @type Status: Integer
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param ConfigDisplay: 实例配置规格名称
+        # @type ConfigDisplay: String
+        # @param MaxTps: 峰值TPS
+        # @type MaxTps: Integer
+        # @param MaxBandWidth: 峰值带宽，Mbps为单位
+        # @type MaxBandWidth: Integer
+        # @param MaxStorage: 存储容量，GB为单位
+        # @type MaxStorage: Integer
+        # @param ExpireTime: 实例到期时间，毫秒为单位
+        # @type ExpireTime: Integer
+        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @type AutoRenewFlag: Integer
+        # @param PayMode: 0-后付费，1-预付费
+        # @type PayMode: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param SpecName: 实例配置ID
+        # @type SpecName: String
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName
+        
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceVersion = instanceversion
+          @Status = status
+          @NodeCount = nodecount
+          @ConfigDisplay = configdisplay
+          @MaxTps = maxtps
+          @MaxBandWidth = maxbandwidth
+          @MaxStorage = maxstorage
+          @ExpireTime = expiretime
+          @AutoRenewFlag = autorenewflag
+          @PayMode = paymode
+          @Remark = remark
+          @SpecName = specname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceVersion = params['InstanceVersion']
+          @Status = params['Status']
+          @NodeCount = params['NodeCount']
+          @ConfigDisplay = params['ConfigDisplay']
+          @MaxTps = params['MaxTps']
+          @MaxBandWidth = params['MaxBandWidth']
+          @MaxStorage = params['MaxStorage']
+          @ExpireTime = params['ExpireTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @PayMode = params['PayMode']
+          @Remark = params['Remark']
+          @SpecName = params['SpecName']
         end
       end
 

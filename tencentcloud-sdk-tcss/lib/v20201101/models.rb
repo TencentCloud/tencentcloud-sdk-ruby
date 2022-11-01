@@ -11232,18 +11232,25 @@ module TencentCloud
         # @type UnhandledFileCnt: Integer
         # @param UnhandledVirusEventCnt: 未处理木马事件
         # @type UnhandledVirusEventCnt: Integer
+        # @param UnhandledMaliciousConnectionEventCnt: 未处理恶意外连事件
+        # @type UnhandledMaliciousConnectionEventCnt: Integer
+        # @param UnhandledK8sApiEventCnt: 未处理k8sApi事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnhandledK8sApiEventCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UnhandledEscapeCnt, :UnhandledReverseShellCnt, :UnhandledRiskSyscallCnt, :UnhandledAbnormalProcessCnt, :UnhandledFileCnt, :UnhandledVirusEventCnt, :RequestId
+        attr_accessor :UnhandledEscapeCnt, :UnhandledReverseShellCnt, :UnhandledRiskSyscallCnt, :UnhandledAbnormalProcessCnt, :UnhandledFileCnt, :UnhandledVirusEventCnt, :UnhandledMaliciousConnectionEventCnt, :UnhandledK8sApiEventCnt, :RequestId
         
-        def initialize(unhandledescapecnt=nil, unhandledreverseshellcnt=nil, unhandledrisksyscallcnt=nil, unhandledabnormalprocesscnt=nil, unhandledfilecnt=nil, unhandledviruseventcnt=nil, requestid=nil)
+        def initialize(unhandledescapecnt=nil, unhandledreverseshellcnt=nil, unhandledrisksyscallcnt=nil, unhandledabnormalprocesscnt=nil, unhandledfilecnt=nil, unhandledviruseventcnt=nil, unhandledmaliciousconnectioneventcnt=nil, unhandledk8sapieventcnt=nil, requestid=nil)
           @UnhandledEscapeCnt = unhandledescapecnt
           @UnhandledReverseShellCnt = unhandledreverseshellcnt
           @UnhandledRiskSyscallCnt = unhandledrisksyscallcnt
           @UnhandledAbnormalProcessCnt = unhandledabnormalprocesscnt
           @UnhandledFileCnt = unhandledfilecnt
           @UnhandledVirusEventCnt = unhandledviruseventcnt
+          @UnhandledMaliciousConnectionEventCnt = unhandledmaliciousconnectioneventcnt
+          @UnhandledK8sApiEventCnt = unhandledk8sapieventcnt
           @RequestId = requestid
         end
 
@@ -11254,6 +11261,8 @@ module TencentCloud
           @UnhandledAbnormalProcessCnt = params['UnhandledAbnormalProcessCnt']
           @UnhandledFileCnt = params['UnhandledFileCnt']
           @UnhandledVirusEventCnt = params['UnhandledVirusEventCnt']
+          @UnhandledMaliciousConnectionEventCnt = params['UnhandledMaliciousConnectionEventCnt']
+          @UnhandledK8sApiEventCnt = params['UnhandledK8sApiEventCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -21999,6 +22008,26 @@ module TencentCloud
         end
       end
 
+      # 漏洞防御插件 rasp信息
+      class RaspInfo < TencentCloud::Common::AbstractModel
+        # @param Name: rasp名称
+        # @type Name: String
+        # @param Value: rasp  描述
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 地域信息
       class RegionInfo < TencentCloud::Common::AbstractModel
         # @param Region: 地域标识
@@ -23234,6 +23263,8 @@ module TencentCloud
         # ET_RISK_SYSCALL:高危系统调用
         # ET_ABNORMAL_PROCESS: 异常进程
         # ET_ACCESS_CONTROL 文件篡改
+        # ET_VIRUS 木马事件
+        # ET_MALICIOUS_CONNECTION 恶意外连事件
         # @type EventType: String
 
         attr_accessor :EventSet, :EventType
@@ -24699,10 +24730,13 @@ module TencentCloud
         # @param JNDIUrl: 接口Url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JNDIUrl: String
+        # @param RaspDetail: rasp detail
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RaspDetail: Array
 
-        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :SourcePort, :EventID, :HostName, :HostIP, :PublicIP, :PodName, :Description, :OfficialSolution, :NetworkPayload, :PID, :MainClass, :StackTrace, :ServerAccount, :ServerPort, :ServerExe, :ServerArg, :QUUID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :JNDIUrl
+        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :SourcePort, :EventID, :HostName, :HostIP, :PublicIP, :PodName, :Description, :OfficialSolution, :NetworkPayload, :PID, :MainClass, :StackTrace, :ServerAccount, :ServerPort, :ServerExe, :ServerArg, :QUUID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :JNDIUrl, :RaspDetail
         
-        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, sourceport=nil, eventid=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, officialsolution=nil, networkpayload=nil, pid=nil, mainclass=nil, stacktrace=nil, serveraccount=nil, serverport=nil, serverexe=nil, serverarg=nil, quuid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, jndiurl=nil)
+        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, sourceport=nil, eventid=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, officialsolution=nil, networkpayload=nil, pid=nil, mainclass=nil, stacktrace=nil, serveraccount=nil, serverport=nil, serverexe=nil, serverarg=nil, quuid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, jndiurl=nil, raspdetail=nil)
           @CVEID = cveid
           @VulName = vulname
           @PocID = pocid
@@ -24737,6 +24771,7 @@ module TencentCloud
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
           @ContainerStatus = containerstatus
           @JNDIUrl = jndiurl
+          @RaspDetail = raspdetail
         end
 
         def deserialize(params)
@@ -24774,6 +24809,14 @@ module TencentCloud
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @ContainerStatus = params['ContainerStatus']
           @JNDIUrl = params['JNDIUrl']
+          unless params['RaspDetail'].nil?
+            @RaspDetail = []
+            params['RaspDetail'].each do |i|
+              raspinfo_tmp = RaspInfo.new
+              raspinfo_tmp.deserialize(i)
+              @RaspDetail << raspinfo_tmp
+            end
+          end
         end
       end
 

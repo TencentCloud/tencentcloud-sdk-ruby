@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为集群删除手动备份，无法删除自动备份
+
+        # @param request: Request instance for DeleteBackup.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteBackupRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteBackupResponse`
+        def DeleteBackup(request)
+          body = send_request('DeleteBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 账号所有权限
 
         # @param request: Request instance for DescribeAccountAllGrantPrivileges.

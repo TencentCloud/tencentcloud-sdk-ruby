@@ -1829,6 +1829,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
+
+        # @param request: Request instance for DescribePendingRiskInfo.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribePendingRiskInfoRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribePendingRiskInfoResponse`
+        def DescribePendingRiskInfo(request)
+          body = send_request('DescribePendingRiskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePendingRiskInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
 
         # @param request: Request instance for DisassociateDDoSEipAddress.

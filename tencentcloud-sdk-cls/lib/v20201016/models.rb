@@ -3912,20 +3912,24 @@ module TencentCloud
         # @type LogsetName: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param AssumerName: 云产品标识，日志集由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssumerName: String
         # @param Tags: 日志集绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param TopicCount: 日志集下日志主题的数目
         # @type TopicCount: Integer
-        # @param RoleName: 若AssumerUin非空，则表示创建该日志集的服务方角色
+        # @param RoleName: 若AssumerName非空，则表示创建该日志集的服务方角色
         # @type RoleName: String
 
-        attr_accessor :LogsetId, :LogsetName, :CreateTime, :Tags, :TopicCount, :RoleName
+        attr_accessor :LogsetId, :LogsetName, :CreateTime, :AssumerName, :Tags, :TopicCount, :RoleName
         
-        def initialize(logsetid=nil, logsetname=nil, createtime=nil, tags=nil, topiccount=nil, rolename=nil)
+        def initialize(logsetid=nil, logsetname=nil, createtime=nil, assumername=nil, tags=nil, topiccount=nil, rolename=nil)
           @LogsetId = logsetid
           @LogsetName = logsetname
           @CreateTime = createtime
+          @AssumerName = assumername
           @Tags = tags
           @TopicCount = topiccount
           @RoleName = rolename
@@ -3935,6 +3939,7 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @CreateTime = params['CreateTime']
+          @AssumerName = params['AssumerName']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -5526,6 +5531,9 @@ module TencentCloud
         # @type PartitionCount: Integer
         # @param Index: 是否开启索引
         # @type Index: Boolean
+        # @param AssumerName: 云产品标识，日志主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssumerName: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param Status: 日主主题是否开启采集
@@ -5545,15 +5553,22 @@ module TencentCloud
         # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
+        # @param SubAssumerName: 云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAssumerName: String
+        # @param Describes: 日志主题描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describes: String
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes
         
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
           @PartitionCount = partitioncount
           @Index = index
+          @AssumerName = assumername
           @CreateTime = createtime
           @Status = status
           @Tags = tags
@@ -5561,6 +5576,8 @@ module TencentCloud
           @MaxSplitPartitions = maxsplitpartitions
           @StorageType = storagetype
           @Period = period
+          @SubAssumerName = subassumername
+          @Describes = describes
         end
 
         def deserialize(params)
@@ -5569,6 +5586,7 @@ module TencentCloud
           @TopicName = params['TopicName']
           @PartitionCount = params['PartitionCount']
           @Index = params['Index']
+          @AssumerName = params['AssumerName']
           @CreateTime = params['CreateTime']
           @Status = params['Status']
           unless params['Tags'].nil?
@@ -5583,6 +5601,8 @@ module TencentCloud
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @StorageType = params['StorageType']
           @Period = params['Period']
+          @SubAssumerName = params['SubAssumerName']
+          @Describes = params['Describes']
         end
       end
 

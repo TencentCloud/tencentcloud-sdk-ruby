@@ -5420,6 +5420,53 @@ module TencentCloud
         end
       end
 
+      # DescribePendingRiskInfo请求参数结构体
+      class DescribePendingRiskInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePendingRiskInfo返回参数结构体
+      class DescribePendingRiskInfoResponse < TencentCloud::Common::AbstractModel
+        # @param IsPaidUsr: 是否为付费用户
+        # @type IsPaidUsr: Boolean
+        # @param AttackingCount: 攻击中的资源数量
+        # @type AttackingCount: Integer
+        # @param BlockingCount: 封堵中的资源数量
+        # @type BlockingCount: Integer
+        # @param ExpiredCount: 已过期的资源数量
+        # @type ExpiredCount: Integer
+        # @param Total: 所有待处理风险事件总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsPaidUsr, :AttackingCount, :BlockingCount, :ExpiredCount, :Total, :RequestId
+        
+        def initialize(ispaidusr=nil, attackingcount=nil, blockingcount=nil, expiredcount=nil, total=nil, requestid=nil)
+          @IsPaidUsr = ispaidusr
+          @AttackingCount = attackingcount
+          @BlockingCount = blockingcount
+          @ExpiredCount = expiredcount
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsPaidUsr = params['IsPaidUsr']
+          @AttackingCount = params['AttackingCount']
+          @BlockingCount = params['BlockingCount']
+          @ExpiredCount = params['ExpiredCount']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateDDoSEipAddress请求参数结构体
       class DisassociateDDoSEipAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。

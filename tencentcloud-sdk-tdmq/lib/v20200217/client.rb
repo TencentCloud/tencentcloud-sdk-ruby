@@ -1565,6 +1565,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # RabbitMQ专享版查询节点列表
+
+        # @param request: Request instance for DescribeRabbitMQNodeList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQNodeListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQNodeListResponse`
+        def DescribeRabbitMQNodeList(request)
+          body = send_request('DescribeRabbitMQNodeList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQNodeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户已购的RabbitMQ专享实例列表
+
+        # @param request: Request instance for DescribeRabbitMQVipInstances.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVipInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVipInstancesResponse`
+        def DescribeRabbitMQVipInstances(request)
+          body = send_request('DescribeRabbitMQVipInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQVipInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取单个RocketMQ集群信息
 
         # @param request: Request instance for DescribeRocketMQCluster.

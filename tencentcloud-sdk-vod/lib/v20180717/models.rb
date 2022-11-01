@@ -4033,15 +4033,20 @@ module TencentCloud
         # @type SourceMediaStartTime: Float
         # @param Duration: 音频片段的时长，单位为秒。默认和素材本身长度一致，表示截取全部素材。
         # @type Duration: Float
+        # @param TargetDuration: 音频片段目标时长，单位为秒。
+        # <li>当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；</li>
+        # <li>当 TargetDuration 取大于0的值时，将对音频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。</li>
+        # @type TargetDuration: Float
         # @param AudioOperations: 对音频片段进行的操作，如音量调节等。
         # @type AudioOperations: Array
 
-        attr_accessor :SourceMedia, :SourceMediaStartTime, :Duration, :AudioOperations
+        attr_accessor :SourceMedia, :SourceMediaStartTime, :Duration, :TargetDuration, :AudioOperations
         
-        def initialize(sourcemedia=nil, sourcemediastarttime=nil, duration=nil, audiooperations=nil)
+        def initialize(sourcemedia=nil, sourcemediastarttime=nil, duration=nil, targetduration=nil, audiooperations=nil)
           @SourceMedia = sourcemedia
           @SourceMediaStartTime = sourcemediastarttime
           @Duration = duration
+          @TargetDuration = targetduration
           @AudioOperations = audiooperations
         end
 
@@ -4049,6 +4054,7 @@ module TencentCloud
           @SourceMedia = params['SourceMedia']
           @SourceMediaStartTime = params['SourceMediaStartTime']
           @Duration = params['Duration']
+          @TargetDuration = params['TargetDuration']
           unless params['AudioOperations'].nil?
             @AudioOperations = []
             params['AudioOperations'].each do |i|
@@ -21455,6 +21461,10 @@ module TencentCloud
         # @type SourceMediaStartTime: Float
         # @param Duration: 视频片段时长，单位为秒。默认取视频素材本身长度，表示截取全部素材。如果源文件是图片，Duration需要大于0。
         # @type Duration: Float
+        # @param TargetDuration: 视频片段目标时长，单位为秒。
+        # <li>当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；</li>
+        # <li>当 TargetDuration 取大于0的值时，将对视频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。</li>
+        # @type TargetDuration: Float
         # @param CoordinateOrigin: 视频原点位置，取值有：
         # <li>Center：坐标原点为中心位置，如画布中心。</li>
         # 默认值 ：Center。
@@ -21483,49 +21493,51 @@ module TencentCloud
         # <li>当 Width 为空，Height 非空，则 Width 按比例缩放</li>
         # <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
         # @type Height: String
-        # @param ImageOperations: 对图像进行的操作，如图像旋转等。
-        # @type ImageOperations: Array
         # @param AudioOperations: 对音频进行操作，如静音等。
         # @type AudioOperations: Array
+        # @param ImageOperations: 对图像进行的操作，如图像旋转等。
+        # @type ImageOperations: Array
 
-        attr_accessor :SourceMedia, :SourceMediaStartTime, :Duration, :CoordinateOrigin, :XPos, :YPos, :Width, :Height, :ImageOperations, :AudioOperations
+        attr_accessor :SourceMedia, :SourceMediaStartTime, :Duration, :TargetDuration, :CoordinateOrigin, :XPos, :YPos, :Width, :Height, :AudioOperations, :ImageOperations
         
-        def initialize(sourcemedia=nil, sourcemediastarttime=nil, duration=nil, coordinateorigin=nil, xpos=nil, ypos=nil, width=nil, height=nil, imageoperations=nil, audiooperations=nil)
+        def initialize(sourcemedia=nil, sourcemediastarttime=nil, duration=nil, targetduration=nil, coordinateorigin=nil, xpos=nil, ypos=nil, width=nil, height=nil, audiooperations=nil, imageoperations=nil)
           @SourceMedia = sourcemedia
           @SourceMediaStartTime = sourcemediastarttime
           @Duration = duration
+          @TargetDuration = targetduration
           @CoordinateOrigin = coordinateorigin
           @XPos = xpos
           @YPos = ypos
           @Width = width
           @Height = height
-          @ImageOperations = imageoperations
           @AudioOperations = audiooperations
+          @ImageOperations = imageoperations
         end
 
         def deserialize(params)
           @SourceMedia = params['SourceMedia']
           @SourceMediaStartTime = params['SourceMediaStartTime']
           @Duration = params['Duration']
+          @TargetDuration = params['TargetDuration']
           @CoordinateOrigin = params['CoordinateOrigin']
           @XPos = params['XPos']
           @YPos = params['YPos']
           @Width = params['Width']
           @Height = params['Height']
-          unless params['ImageOperations'].nil?
-            @ImageOperations = []
-            params['ImageOperations'].each do |i|
-              imagetransform_tmp = ImageTransform.new
-              imagetransform_tmp.deserialize(i)
-              @ImageOperations << imagetransform_tmp
-            end
-          end
           unless params['AudioOperations'].nil?
             @AudioOperations = []
             params['AudioOperations'].each do |i|
               audiotransform_tmp = AudioTransform.new
               audiotransform_tmp.deserialize(i)
               @AudioOperations << audiotransform_tmp
+            end
+          end
+          unless params['ImageOperations'].nil?
+            @ImageOperations = []
+            params['ImageOperations'].each do |i|
+              imagetransform_tmp = ImageTransform.new
+              imagetransform_tmp.deserialize(i)
+              @ImageOperations << imagetransform_tmp
             end
           end
         end

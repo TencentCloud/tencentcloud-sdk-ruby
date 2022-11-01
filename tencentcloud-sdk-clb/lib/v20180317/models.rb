@@ -512,6 +512,34 @@ module TencentCloud
       end
 
       # 证书信息
+      class CertInfo < TencentCloud::Common::AbstractModel
+        # @param CertId: 证书 ID，如果不填写此项则必须上传证书内容，包括CertName, CertContent，若为服务端证书必须包含CertKey。
+        # @type CertId: String
+        # @param CertName: 上传证书的名称，如果没有 CertId，则此项必传。
+        # @type CertName: String
+        # @param CertContent: 上传证书的公钥，如果没有 CertId，则此项必传。
+        # @type CertContent: String
+        # @param CertKey: 上传服务端证书的私钥，如果没有 CertId，则此项必传。
+        # @type CertKey: String
+
+        attr_accessor :CertId, :CertName, :CertContent, :CertKey
+        
+        def initialize(certid=nil, certname=nil, certcontent=nil, certkey=nil)
+          @CertId = certid
+          @CertName = certname
+          @CertContent = certcontent
+          @CertKey = certkey
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @CertName = params['CertName']
+          @CertContent = params['CertContent']
+          @CertKey = params['CertKey']
+        end
+      end
+
+      # 证书信息
       class CertificateInput < TencentCloud::Common::AbstractModel
         # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证
         # @type SSLMode: String
@@ -1208,7 +1236,7 @@ module TencentCloud
         # @type ListenerNames: Array
         # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Certificate: 证书相关信息，此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。
+        # @param Certificate: 证书相关信息，此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。此参数和MultiCertInfo不能同时传入。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。此参数仅适用于TCP/UDP监听器。
         # @type SessionExpireTime: Integer
@@ -1227,10 +1255,12 @@ module TencentCloud
         # @type EndPort: Integer
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
         # @type DeregisterTargetRst: Boolean
+        # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
+        # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo
         
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1245,6 +1275,7 @@ module TencentCloud
           @KeepaliveEnable = keepaliveenable
           @EndPort = endport
           @DeregisterTargetRst = deregistertargetrst
+          @MultiCertInfo = multicertinfo
         end
 
         def deserialize(params)
@@ -1268,6 +1299,10 @@ module TencentCloud
           @KeepaliveEnable = params['KeepaliveEnable']
           @EndPort = params['EndPort']
           @DeregisterTargetRst = params['DeregisterTargetRst']
+          unless params['MultiCertInfo'].nil?
+            @MultiCertInfo = MultiCertInfo.new
+            @MultiCertInfo.deserialize(params['MultiCertInfo'])
+          end
         end
       end
 
@@ -5201,7 +5236,7 @@ module TencentCloud
         # @type Domain: String
         # @param NewDomain: 要修改的新域名。NewDomain和NewDomains只能传一个。
         # @type NewDomain: String
-        # @param Certificate: 域名相关的证书信息，注意，仅对启用SNI的监听器适用。
+        # @param Certificate: 域名相关的证书信息，注意，仅对启用SNI的监听器适用，不可和MultiCertInfo 同时传入。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param Http2: 是否开启Http2，注意，只有HTTPS域名才能开启Http2。
         # @type Http2: Boolean
@@ -5211,10 +5246,12 @@ module TencentCloud
         # @type NewDefaultServerDomain: String
         # @param NewDomains: 要修改的新域名列表。NewDomain和NewDomains只能传一个。
         # @type NewDomains: Array
+        # @param MultiCertInfo: 域名相关的证书信息，注意，仅对启用SNI的监听器适用；支持同时传入多本算法类型不同的服务器证书，不可和MultiCertInfo 同时传入。
+        # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
 
-        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :NewDefaultServerDomain, :NewDomains
+        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :NewDefaultServerDomain, :NewDomains, :MultiCertInfo
         
-        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, newdefaultserverdomain=nil, newdomains=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, newdefaultserverdomain=nil, newdomains=nil, multicertinfo=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @Domain = domain
@@ -5224,6 +5261,7 @@ module TencentCloud
           @DefaultServer = defaultserver
           @NewDefaultServerDomain = newdefaultserverdomain
           @NewDomains = newdomains
+          @MultiCertInfo = multicertinfo
         end
 
         def deserialize(params)
@@ -5239,6 +5277,10 @@ module TencentCloud
           @DefaultServer = params['DefaultServer']
           @NewDefaultServerDomain = params['NewDefaultServerDomain']
           @NewDomains = params['NewDomains']
+          unless params['MultiCertInfo'].nil?
+            @MultiCertInfo = MultiCertInfo.new
+            @MultiCertInfo.deserialize(params['MultiCertInfo'])
+          end
         end
       end
 
@@ -5314,7 +5356,7 @@ module TencentCloud
         # @type SessionExpireTime: Integer
         # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Certificate: 证书相关信息，此参数仅适用于HTTPS/TCP_SSL监听器。
+        # @param Certificate: 证书相关信息，此参数仅适用于HTTPS/TCP_SSL监听器；此参数和MultiCertInfo不能同时传入。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param Scheduler: 监听器转发的方式。可选值：WRR、LEAST_CONN
         # 分别表示按权重轮询、最小连接数， 默认为 WRR。
@@ -5329,10 +5371,12 @@ module TencentCloud
         # @type DeregisterTargetRst: Boolean
         # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # @type SessionType: String
+        # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
+        # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -5345,6 +5389,7 @@ module TencentCloud
           @KeepaliveEnable = keepaliveenable
           @DeregisterTargetRst = deregistertargetrst
           @SessionType = sessiontype
+          @MultiCertInfo = multicertinfo
         end
 
         def deserialize(params)
@@ -5366,6 +5411,10 @@ module TencentCloud
           @KeepaliveEnable = params['KeepaliveEnable']
           @DeregisterTargetRst = params['DeregisterTargetRst']
           @SessionType = params['SessionType']
+          unless params['MultiCertInfo'].nil?
+            @MultiCertInfo = MultiCertInfo.new
+            @MultiCertInfo.deserialize(params['MultiCertInfo'])
+          end
         end
       end
 
@@ -5851,6 +5900,33 @@ module TencentCloud
         end
       end
 
+      # CLB监听器或规则绑定的多证书信息
+      class MultiCertInfo < TencentCloud::Common::AbstractModel
+        # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证
+        # @type SSLMode: String
+        # @param CertList: 监听器或规则证书列表，单双向认证，多本服务端证书算法类型不能重复;若SSLMode为双向认证，证书列表必须包含一本ca证书。
+        # @type CertList: Array
+
+        attr_accessor :SSLMode, :CertList
+        
+        def initialize(sslmode=nil, certlist=nil)
+          @SSLMode = sslmode
+          @CertList = certlist
+        end
+
+        def deserialize(params)
+          @SSLMode = params['SSLMode']
+          unless params['CertList'].nil?
+            @CertList = []
+            params['CertList'].each do |i|
+              certinfo_tmp = CertInfo.new
+              certinfo_tmp.deserialize(i)
+              @CertList << certinfo_tmp
+            end
+          end
+        end
+      end
+
       # 描述配额信息，所有配额均指当前地域下的配额。
       class Quota < TencentCloud::Common::AbstractModel
         # @param QuotaId: 配额名称，取值范围：
@@ -6249,7 +6325,7 @@ module TencentCloud
         # @type SessionExpireTime: Integer
         # @param HealthCheck: 健康检查信息。详情请参见：[健康检查](https://cloud.tencent.com/document/product/214/6097)
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Certificate: 证书信息
+        # @param Certificate: 证书信息；此参数和MultiCertInfo不能同时传入。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param Scheduler: 规则的请求转发方式，可选值：WRR、LEAST_CONN、IP_HASH
         # 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
@@ -6270,10 +6346,12 @@ module TencentCloud
         # @type Quic: Boolean
         # @param Domains: 转发规则的域名列表。每个域名的长度限制为：1~80。Domain和Domains只需要传一个，单域名规则传Domain，多域名规则传Domains。
         # @type Domains: Array
+        # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数和Certificate不能同时传入。
+        # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
 
-        attr_accessor :Url, :Domain, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic, :Domains
+        attr_accessor :Url, :Domain, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic, :Domains, :MultiCertInfo
         
-        def initialize(url=nil, domain=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil, domains=nil)
+        def initialize(url=nil, domain=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil, domains=nil, multicertinfo=nil)
           @Url = url
           @Domain = domain
           @SessionExpireTime = sessionexpiretime
@@ -6288,6 +6366,7 @@ module TencentCloud
           @TrpcFunc = trpcfunc
           @Quic = quic
           @Domains = domains
+          @MultiCertInfo = multicertinfo
         end
 
         def deserialize(params)
@@ -6311,6 +6390,10 @@ module TencentCloud
           @TrpcFunc = params['TrpcFunc']
           @Quic = params['Quic']
           @Domains = params['Domains']
+          unless params['MultiCertInfo'].nil?
+            @MultiCertInfo = MultiCertInfo.new
+            @MultiCertInfo.deserialize(params['MultiCertInfo'])
+          end
         end
       end
 

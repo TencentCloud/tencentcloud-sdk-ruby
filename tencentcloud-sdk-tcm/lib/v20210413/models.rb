@@ -1048,6 +1048,45 @@ module TencentCloud
         end
       end
 
+      # LinkPrometheus请求参数结构体
+      class LinkPrometheusRequest < TencentCloud::Common::AbstractModel
+        # @param MeshID: 网格ID
+        # @type MeshID: String
+        # @param Prometheus: 配置
+        # @type Prometheus: :class:`Tencentcloud::Tcm.v20210413.models.PrometheusConfig`
+
+        attr_accessor :MeshID, :Prometheus
+        
+        def initialize(meshid=nil, prometheus=nil)
+          @MeshID = meshid
+          @Prometheus = prometheus
+        end
+
+        def deserialize(params)
+          @MeshID = params['MeshID']
+          unless params['Prometheus'].nil?
+            @Prometheus = PrometheusConfig.new
+            @Prometheus.deserialize(params['Prometheus'])
+          end
+        end
+      end
+
+      # LinkPrometheus返回参数结构体
+      class LinkPrometheusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 负载均衡配置
       class LoadBalancer < TencentCloud::Common::AbstractModel
         # @param LoadBalancerType: 负载均衡实例的网络类型：
@@ -1824,6 +1863,38 @@ module TencentCloud
 
       # UnlinkCluster返回参数结构体
       class UnlinkClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnlinkPrometheus请求参数结构体
+      class UnlinkPrometheusRequest < TencentCloud::Common::AbstractModel
+        # @param MeshID: 网格ID
+        # @type MeshID: String
+
+        attr_accessor :MeshID
+        
+        def initialize(meshid=nil)
+          @MeshID = meshid
+        end
+
+        def deserialize(params)
+          @MeshID = params['MeshID']
+        end
+      end
+
+      # UnlinkPrometheus返回参数结构体
+      class UnlinkPrometheusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -2075,7 +2075,7 @@ module TencentCloud
         # @type SecurityService: :class:`Tencentcloud::Batch.v20170312.models.RunSecurityServiceEnabled`
         # @param MonitorService: 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         # @type MonitorService: :class:`Tencentcloud::Batch.v20170312.models.RunMonitorServiceEnabled`
-        # @param AutomationService: 开启云自动化助手服务。若不指定该参数，则默认不开启云自动化助手服务。
+        # @param AutomationService: 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
         # @type AutomationService: :class:`Tencentcloud::Batch.v20170312.models.RunAutomationServiceEnabled`
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService

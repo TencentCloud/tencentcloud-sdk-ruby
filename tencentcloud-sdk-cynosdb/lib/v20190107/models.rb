@@ -1910,6 +1910,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBackup请求参数结构体
+      class DeleteBackupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SnapshotIdList: 备份文件ID
+        # @type SnapshotIdList: Array
+
+        attr_accessor :ClusterId, :SnapshotIdList
+        
+        def initialize(clusterid=nil, snapshotidlist=nil)
+          @ClusterId = clusterid
+          @SnapshotIdList = snapshotidlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SnapshotIdList = params['SnapshotIdList']
+        end
+      end
+
+      # DeleteBackup返回参数结构体
+      class DeleteBackupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAccountAllGrantPrivileges请求参数结构体
       class DescribeAccountAllGrantPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
