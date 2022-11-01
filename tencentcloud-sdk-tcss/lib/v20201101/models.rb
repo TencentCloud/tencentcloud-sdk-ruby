@@ -4695,6 +4695,79 @@ module TencentCloud
         end
       end
 
+      # CreateRiskDnsEventExportJob请求参数结构体
+      class CreateRiskDnsEventExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>EventStatus- String - 是否必填：否 - 事件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_ADD_WHITE：已加白</li>
+        # <li>ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED </li>
+        # <li>ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING</li>
+        # <li>EventType - String -是否必填: 否 -  事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP</li>
+        # <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
+        # <li>RiskDns- string - 是否必填：否 - 恶意域名。</li>
+        # <li>RiskIP- string - 是否必填：否 - 恶意IP。</li>
+        # <li>ContainerName- string - 是否必填：否 - 容器名称。</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID。</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # <li>HostName- string - 是否必填：否 - 主机名称。</li>
+        # <li>HostIP- string - 是否必填：否 - 内网IP。</li>
+        # <li>PublicIP- string - 是否必填：否 - 外网IP。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，最大值为100000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：事件数量：EventCount
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateRiskDnsEventExportJob返回参数结构体
+      class CreateRiskDnsEventExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSearchTemplate请求参数结构体
       class CreateSearchTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SearchTemplate: 搜索模板

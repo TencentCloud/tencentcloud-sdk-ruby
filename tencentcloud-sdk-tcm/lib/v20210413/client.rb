@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 Tracing 配置
+
+        # @param request: Request instance for ModifyTracingConfig.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::ModifyTracingConfigRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::ModifyTracingConfigResponse`
+        def ModifyTracingConfig(request)
+          body = send_request('ModifyTracingConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTracingConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解关联集群
 
         # @param request: Request instance for UnlinkCluster.

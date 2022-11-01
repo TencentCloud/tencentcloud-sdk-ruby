@@ -598,10 +598,12 @@ module TencentCloud
         # @type LogPath: String
         # @param FilePattern: 收集文件名模式，当 InputType=container_file 时生效
         # @type FilePattern: String
+        # @param ExtractRule: 导出规则
+        # @type ExtractRule: :class:`Tencentcloud::Tem.v20210701.models.LogConfigExtractRule`
 
-        attr_accessor :EnvironmentId, :Name, :InputType, :ApplicationId, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern
+        attr_accessor :EnvironmentId, :Name, :InputType, :ApplicationId, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern, :ExtractRule
         
-        def initialize(environmentid=nil, name=nil, inputtype=nil, applicationid=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil)
+        def initialize(environmentid=nil, name=nil, inputtype=nil, applicationid=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil, extractrule=nil)
           @EnvironmentId = environmentid
           @Name = name
           @InputType = inputtype
@@ -612,6 +614,7 @@ module TencentCloud
           @BeginningRegex = beginningregex
           @LogPath = logpath
           @FilePattern = filepattern
+          @ExtractRule = extractrule
         end
 
         def deserialize(params)
@@ -625,6 +628,10 @@ module TencentCloud
           @BeginningRegex = params['BeginningRegex']
           @LogPath = params['LogPath']
           @FilePattern = params['FilePattern']
+          unless params['ExtractRule'].nil?
+            @ExtractRule = LogConfigExtractRule.new
+            @ExtractRule.deserialize(params['ExtractRule'])
+          end
         end
       end
 
@@ -3100,9 +3107,9 @@ module TencentCloud
         # @param TopicId: 日志主题 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
-        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；
+        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；  fullregex_log 为单行正则； multiline_fullregex_log 为多行正则； json_log 为 json；
         # @type LogType: String
-        # @param BeginningRegex: 首行正则表达式，当LogType=multiline_log 时生效
+        # @param BeginningRegex: 首行正则表达式，当 LogType 为多行全文、多行正则时生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginningRegex: String
         # @param LogPath: 收集文件目录，当 InputType=container_file 时生效
@@ -3123,10 +3130,13 @@ module TencentCloud
         # @param ApplicationName: 应用名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
+        # @param ExtractRule: 导出规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractRule: :class:`Tencentcloud::Tem.v20210701.models.LogConfigExtractRule`
 
-        attr_accessor :Name, :InputType, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern, :CreateDate, :ModifyDate, :ApplicationId, :ApplicationName
+        attr_accessor :Name, :InputType, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern, :CreateDate, :ModifyDate, :ApplicationId, :ApplicationName, :ExtractRule
         
-        def initialize(name=nil, inputtype=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil, createdate=nil, modifydate=nil, applicationid=nil, applicationname=nil)
+        def initialize(name=nil, inputtype=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil, createdate=nil, modifydate=nil, applicationid=nil, applicationname=nil, extractrule=nil)
           @Name = name
           @InputType = inputtype
           @LogsetId = logsetid
@@ -3139,6 +3149,7 @@ module TencentCloud
           @ModifyDate = modifydate
           @ApplicationId = applicationid
           @ApplicationName = applicationname
+          @ExtractRule = extractrule
         end
 
         def deserialize(params)
@@ -3154,6 +3165,67 @@ module TencentCloud
           @ModifyDate = params['ModifyDate']
           @ApplicationId = params['ApplicationId']
           @ApplicationName = params['ApplicationName']
+          unless params['ExtractRule'].nil?
+            @ExtractRule = LogConfigExtractRule.new
+            @ExtractRule.deserialize(params['ExtractRule'])
+          end
+        end
+      end
+
+      # 日志采集的导出规则配置
+      class LogConfigExtractRule < TencentCloud::Common::AbstractModel
+        # @param BeginningRegex: 首行正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginningRegex: String
+        # @param Keys: 提取结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+        # @param FilterKeys: 过滤键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterKeys: Array
+        # @param FilterRegex: 过滤值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterRegex: Array
+        # @param LogRegex: 日志正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogRegex: String
+        # @param TimeKey: 时间字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeKey: String
+        # @param TimeFormat: 时间格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFormat: String
+        # @param UnMatchUpload: 是否上传解析失败日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnMatchUpload: String
+        # @param UnMatchedKey: 解析失败日志的键名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnMatchedKey: String
+
+        attr_accessor :BeginningRegex, :Keys, :FilterKeys, :FilterRegex, :LogRegex, :TimeKey, :TimeFormat, :UnMatchUpload, :UnMatchedKey
+        
+        def initialize(beginningregex=nil, keys=nil, filterkeys=nil, filterregex=nil, logregex=nil, timekey=nil, timeformat=nil, unmatchupload=nil, unmatchedkey=nil)
+          @BeginningRegex = beginningregex
+          @Keys = keys
+          @FilterKeys = filterkeys
+          @FilterRegex = filterregex
+          @LogRegex = logregex
+          @TimeKey = timekey
+          @TimeFormat = timeformat
+          @UnMatchUpload = unmatchupload
+          @UnMatchedKey = unmatchedkey
+        end
+
+        def deserialize(params)
+          @BeginningRegex = params['BeginningRegex']
+          @Keys = params['Keys']
+          @FilterKeys = params['FilterKeys']
+          @FilterRegex = params['FilterRegex']
+          @LogRegex = params['LogRegex']
+          @TimeKey = params['TimeKey']
+          @TimeFormat = params['TimeFormat']
+          @UnMatchUpload = params['UnMatchUpload']
+          @UnMatchedKey = params['UnMatchedKey']
         end
       end
 

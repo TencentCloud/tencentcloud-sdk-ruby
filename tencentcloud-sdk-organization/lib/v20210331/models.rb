@@ -126,10 +126,12 @@ module TencentCloud
         # @type PayUin: String
         # @param IdentityRoleID: 管理身份
         # @type IdentityRoleID: Array
+        # @param AuthRelationId: 主体关系ID
+        # @type AuthRelationId: Integer
 
-        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID
+        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID, :AuthRelationId
         
-        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil, payuin=nil, identityroleid=nil)
+        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil, payuin=nil, identityroleid=nil, authrelationid=nil)
           @Name = name
           @PolicyType = policytype
           @PermissionIds = permissionids
@@ -139,6 +141,7 @@ module TencentCloud
           @RecordId = recordid
           @PayUin = payuin
           @IdentityRoleID = identityroleid
+          @AuthRelationId = authrelationid
         end
 
         def deserialize(params)
@@ -151,6 +154,7 @@ module TencentCloud
           @RecordId = params['RecordId']
           @PayUin = params['PayUin']
           @IdentityRoleID = params['IdentityRoleID']
+          @AuthRelationId = params['AuthRelationId']
         end
       end
 

@@ -1238,6 +1238,66 @@ module TencentCloud
         end
       end
 
+      # GetTicketStatistics请求参数结构体
+      class GetTicketStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码appid
+        # @type CaptchaAppId: String
+        # @param StartTimeStr: 开始时间字符串
+        # @type StartTimeStr: String
+        # @param EndTimeStr: 结束时间字符串
+        # @type EndTimeStr: String
+        # @param Dimension: 查询粒度
+        # @type Dimension: String
+
+        attr_accessor :CaptchaAppId, :StartTimeStr, :EndTimeStr, :Dimension
+        
+        def initialize(captchaappid=nil, starttimestr=nil, endtimestr=nil, dimension=nil)
+          @CaptchaAppId = captchaappid
+          @StartTimeStr = starttimestr
+          @EndTimeStr = endtimestr
+          @Dimension = dimension
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @StartTimeStr = params['StartTimeStr']
+          @EndTimeStr = params['EndTimeStr']
+          @Dimension = params['Dimension']
+        end
+      end
+
+      # GetTicketStatistics返回参数结构体
+      class GetTicketStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询后数据块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
+        # @param CaptchaCode: 验证码返回码
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 验证码返回信息
+        # @type CaptchaMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
+        
+        def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
+          @Data = data
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CaptchaStatisticObj.new
+            @Data.deserialize(params['Data'])
+          end
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTotalTicketStatistics请求参数结构体
       class GetTotalTicketStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param StartTimeStr: 开始时间

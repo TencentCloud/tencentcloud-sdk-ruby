@@ -1483,6 +1483,60 @@ module TencentCloud
         end
       end
 
+      # ModifyTracingConfig请求参数结构体
+      class ModifyTracingConfigRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: mesh名字
+        # @type MeshId: String
+        # @param Enable: 是否启用调用跟踪
+        # @type Enable: Boolean
+        # @param APM: 腾讯云 APM 服务相关参数
+        # @type APM: :class:`Tencentcloud::Tcm.v20210413.models.APM`
+        # @param Sampling: 调用跟踪采样值
+        # @type Sampling: Float
+        # @param Zipkin: 调用追踪Zipkin相关配置
+        # @type Zipkin: :class:`Tencentcloud::Tcm.v20210413.models.TracingZipkin`
+
+        attr_accessor :MeshId, :Enable, :APM, :Sampling, :Zipkin
+        
+        def initialize(meshid=nil, enable=nil, apm=nil, sampling=nil, zipkin=nil)
+          @MeshId = meshid
+          @Enable = enable
+          @APM = apm
+          @Sampling = sampling
+          @Zipkin = zipkin
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          @Enable = params['Enable']
+          unless params['APM'].nil?
+            @APM = APM.new
+            @APM.deserialize(params['APM'])
+          end
+          @Sampling = params['Sampling']
+          unless params['Zipkin'].nil?
+            @Zipkin = TracingZipkin.new
+            @Zipkin.deserialize(params['Zipkin'])
+          end
+        end
+      end
+
+      # ModifyTracingConfig返回参数结构体
+      class ModifyTracingConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PodsMetricSource 定义了如何根据特定指标进行扩缩容
       class PodsMetricSource < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名

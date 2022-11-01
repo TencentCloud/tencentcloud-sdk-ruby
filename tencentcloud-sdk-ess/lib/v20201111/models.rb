@@ -65,10 +65,12 @@ module TencentCloud
         # @type ApproverSource: String
         # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一，非企微场景不使用此字段
         # @type CustomApproverTag: String
+        # @param ApproverOption: 签署人个性化能力值
+        # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption
         
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -83,6 +85,7 @@ module TencentCloud
           @UserId = userid
           @ApproverSource = approversource
           @CustomApproverTag = customapprovertag
+          @ApproverOption = approveroption
         end
 
         def deserialize(params)
@@ -107,6 +110,10 @@ module TencentCloud
           @UserId = params['UserId']
           @ApproverSource = params['ApproverSource']
           @CustomApproverTag = params['CustomApproverTag']
+          unless params['ApproverOption'].nil?
+            @ApproverOption = ApproverOption.new
+            @ApproverOption.deserialize(params['ApproverOption'])
+          end
         end
       end
 
@@ -472,7 +479,7 @@ module TencentCloud
 
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 资源类型 取值范围doc,docx,html之一
+        # @param ResourceType: 资源类型 取值范围doc,docx,html,excel之一
         # @type ResourceType: String
         # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String
@@ -707,12 +714,14 @@ module TencentCloud
 
         # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
+        # @param UserData: 用户自定义字段，回调的时候会进行透传，长度需要小于20480
+        # @type UserData: String
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -726,6 +735,7 @@ module TencentCloud
           @Unordered = unordered
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
+          @UserData = userdata
           @Agent = agent
         end
 
@@ -767,6 +777,7 @@ module TencentCloud
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
+          @UserData = params['UserData']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -863,7 +874,7 @@ module TencentCloud
         # @param DeadLine: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         # @type DeadLine: Integer
-        # @param UserData: 用户自定义字段(需进行base64 encode),回调的时候会进行透传, 长度需要小于20480
+        # @param UserData: 用户自定义字段，回调的时候会进行透传，长度需要小于20480
         # @type UserData: String
         # @param FlowDescription: 签署流程描述,最大长度1000个字符
         # @type FlowDescription: String
@@ -2876,9 +2887,9 @@ module TencentCloud
 
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessType: 文件对应业务类型，用于区分文件存储路径：
-        # 1. TEMPLATE - 模板； 文件类型：.pdf .doc .docx .html
-        # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.jpg/.png
+        # @param BusinessType: 文件对应业务类型
+        # 1. TEMPLATE - 模板； 文件类型：.pdf/.doc/.docx/.html
+        # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html
         # 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
         # @type BusinessType: String
         # @param Caller: 调用方信息

@@ -1994,6 +1994,46 @@ module TencentCloud
         end
       end
 
+      # ModifyCertificatesExpiringNotificationSwitch请求参数结构体
+      class ModifyCertificatesExpiringNotificationSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 证书ID列表。最多50个
+        # @type CertificateIds: Array
+        # @param SwitchStatus: 0:不忽略通知。1:忽略通知
+        # @type SwitchStatus: Integer
+
+        attr_accessor :CertificateIds, :SwitchStatus
+        
+        def initialize(certificateids=nil, switchstatus=nil)
+          @CertificateIds = certificateids
+          @SwitchStatus = switchstatus
+        end
+
+        def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @SwitchStatus = params['SwitchStatus']
+        end
+      end
+
+      # ModifyCertificatesExpiringNotificationSwitch返回参数结构体
+      class ModifyCertificatesExpiringNotificationSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 证书ID列表
+        # @type CertificateIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateIds, :RequestId
+        
+        def initialize(certificateids=nil, requestid=nil)
+          @CertificateIds = certificateids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 证书操作日志。
       class OperationLog < TencentCloud::Common::AbstractModel
         # @param Action: 操作证书动作。

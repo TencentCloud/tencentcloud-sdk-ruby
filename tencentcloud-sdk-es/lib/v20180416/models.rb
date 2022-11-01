@@ -1790,16 +1790,20 @@ module TencentCloud
         # @param FrozenMinAge: frozen阶段转入时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenMinAge: String
+        # @param ColdAction: /
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdAction: String
 
-        attr_accessor :WarmEnable, :WarmMinAge, :ColdEnable, :ColdMinAge, :FrozenEnable, :FrozenMinAge
+        attr_accessor :WarmEnable, :WarmMinAge, :ColdEnable, :ColdMinAge, :FrozenEnable, :FrozenMinAge, :ColdAction
         
-        def initialize(warmenable=nil, warmminage=nil, coldenable=nil, coldminage=nil, frozenenable=nil, frozenminage=nil)
+        def initialize(warmenable=nil, warmminage=nil, coldenable=nil, coldminage=nil, frozenenable=nil, frozenminage=nil, coldaction=nil)
           @WarmEnable = warmenable
           @WarmMinAge = warmminage
           @ColdEnable = coldenable
           @ColdMinAge = coldminage
           @FrozenEnable = frozenenable
           @FrozenMinAge = frozenminage
+          @ColdAction = coldaction
         end
 
         def deserialize(params)
@@ -1809,6 +1813,7 @@ module TencentCloud
           @ColdMinAge = params['ColdMinAge']
           @FrozenEnable = params['FrozenEnable']
           @FrozenMinAge = params['FrozenMinAge']
+          @ColdAction = params['ColdAction']
         end
       end
 

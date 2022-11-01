@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改忽略证书到期通知。打开或关闭证书到期通知。
+
+        # @param request: Request instance for ModifyCertificatesExpiringNotificationSwitch.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::ModifyCertificatesExpiringNotificationSwitchRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::ModifyCertificatesExpiringNotificationSwitchResponse`
+        def ModifyCertificatesExpiringNotificationSwitch(request)
+          body = send_request('ModifyCertificatesExpiringNotificationSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCertificatesExpiringNotificationSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
 
         # @param request: Request instance for ReplaceCertificate.

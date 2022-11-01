@@ -1039,6 +1039,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建恶意请求事件导出任务
+
+        # @param request: Request instance for CreateRiskDnsEventExportJob.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateRiskDnsEventExportJobRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateRiskDnsEventExportJobResponse`
+        def CreateRiskDnsEventExportJob(request)
+          body = send_request('CreateRiskDnsEventExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRiskDnsEventExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加检索模板
 
         # @param request: Request instance for CreateSearchTemplate.

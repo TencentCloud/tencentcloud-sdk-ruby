@@ -2885,12 +2885,21 @@ module TencentCloud
 
       # DescribeInstanceAllNamespaces请求参数结构体
       class DescribeInstanceAllNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页个数
+        # @type Limit: Integer
+        # @param Offset: 起始偏移位置
+        # @type Offset: Integer
 
+        attr_accessor :Limit, :Offset
         
-        def initialize()
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 

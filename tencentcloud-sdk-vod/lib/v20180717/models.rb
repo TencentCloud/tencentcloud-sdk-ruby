@@ -12664,8 +12664,9 @@ module TencentCloud
       # 指定删除点播视频时的删除内容
       class MediaDeleteItem < TencentCloud::Common::AbstractModel
         # @param Type: 所指定的删除部分。如果未填写该字段则参数无效。可选值有：
-        # <li>OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）。</li>
-        # <li>TranscodeFiles（删除转码文件）。</li>
+        # <li>OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）；</li>
+        # <li>TranscodeFiles（删除转码文件）；</li>
+        # <li>AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；</li>
         # <li>WechatPublishFiles（删除微信发布文件）。</li>
         # @type Type: String
         # @param Definition: 删除由Type参数指定的种类下的视频模板号，模板定义参见[转码模板](https://cloud.tencent.com/document/product/266/33478#.3Cspan-id-.3D-.22zm.22-.3E.3C.2Fspan.3E.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
@@ -18866,9 +18867,6 @@ module TencentCloud
         # @param StreamIds: 推流直播码集合。匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # @type StreamIds: Array
-        # @param Vids: 直播录制文件的唯一标识。匹配集合中的任意元素。
-        # <li>数组长度限制：10。</li>
-        # @type Vids: Array
         # @param CreateTime: 匹配创建时间在此时间段内的文件。
         # <li>包含所指定的头尾时间点。</li>
         # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
@@ -18923,9 +18921,6 @@ module TencentCloud
         # @param StreamId: （不推荐：应使用 StreamIds 替代）
         # 推流直播码。
         # @type StreamId: String
-        # @param Vid: （不推荐：应使用 Vids 替代）
-        # 直播录制文件的唯一标识。
-        # @type Vid: String
         # @param StartTime: （不推荐：应使用 CreateTime 替代）
         # 创建时间的开始时间。
         # <li>大于等于开始时间。</li>
@@ -18938,10 +18933,14 @@ module TencentCloud
         # <li>当 CreateTime.Before 也存在时，将优先使用 CreateTime.Before。</li>
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
+        # @param Vids: 该字段已无效。
+        # @type Vids: Array
+        # @param Vid: 该字段已无效。
+        # @type Vid: String
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
         
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -18952,7 +18951,6 @@ module TencentCloud
           @Categories = categories
           @SourceTypes = sourcetypes
           @StreamIds = streamids
-          @Vids = vids
           @CreateTime = createtime
           @ExpireTime = expiretime
           @Sort = sort
@@ -18966,9 +18964,10 @@ module TencentCloud
           @Text = text
           @SourceType = sourcetype
           @StreamId = streamid
-          @Vid = vid
           @StartTime = starttime
           @EndTime = endtime
+          @Vids = vids
+          @Vid = vid
         end
 
         def deserialize(params)
@@ -18982,7 +18981,6 @@ module TencentCloud
           @Categories = params['Categories']
           @SourceTypes = params['SourceTypes']
           @StreamIds = params['StreamIds']
-          @Vids = params['Vids']
           unless params['CreateTime'].nil?
             @CreateTime = TimeRange.new
             @CreateTime.deserialize(params['CreateTime'])
@@ -19005,9 +19003,10 @@ module TencentCloud
           @Text = params['Text']
           @SourceType = params['SourceType']
           @StreamId = params['StreamId']
-          @Vid = params['Vid']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Vids = params['Vids']
+          @Vid = params['Vid']
         end
       end
 
