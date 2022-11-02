@@ -959,14 +959,17 @@ module TencentCloud
         # @type PackageId: String
         # @param Override: 如果当前设备已开启云存套餐，Override=1会使用新套餐覆盖原有套餐。不传此参数则默认为0。
         # @type Override: Integer
+        # @param PackageQueue: 套餐列表顺序：PackageQueue=front会立即使用新购买的套餐，新购套餐结束后，列表中下一个未过期的套餐继续生效；PackageQueue=end会等设备当前所有已购买套餐过期后才会生效新购套餐。与Override参数不能同时使用。
+        # @type PackageQueue: String
 
-        attr_accessor :ProductId, :DeviceName, :PackageId, :Override
+        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue
         
-        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil)
+        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil)
           @ProductId = productid
           @DeviceName = devicename
           @PackageId = packageid
           @Override = override
+          @PackageQueue = packagequeue
         end
 
         def deserialize(params)
@@ -974,6 +977,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @PackageId = params['PackageId']
           @Override = params['Override']
+          @PackageQueue = params['PackageQueue']
         end
       end
 

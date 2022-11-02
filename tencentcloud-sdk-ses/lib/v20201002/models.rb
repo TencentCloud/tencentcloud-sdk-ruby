@@ -754,14 +754,17 @@ module TencentCloud
         # @type TemplateContent: :class:`Tencentcloud::Ses.v20201002.models.TemplateContent`
         # @param TemplateStatus: 模板状态 0-审核通过 1-待审核 2-审核拒绝
         # @type TemplateStatus: Integer
+        # @param TemplateName: 模板名称
+        # @type TemplateName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TemplateContent, :TemplateStatus, :RequestId
+        attr_accessor :TemplateContent, :TemplateStatus, :TemplateName, :RequestId
         
-        def initialize(templatecontent=nil, templatestatus=nil, requestid=nil)
+        def initialize(templatecontent=nil, templatestatus=nil, templatename=nil, requestid=nil)
           @TemplateContent = templatecontent
           @TemplateStatus = templatestatus
+          @TemplateName = templatename
           @RequestId = requestid
         end
 
@@ -771,6 +774,7 @@ module TencentCloud
             @TemplateContent.deserialize(params['TemplateContent'])
           end
           @TemplateStatus = params['TemplateStatus']
+          @TemplateName = params['TemplateName']
           @RequestId = params['RequestId']
         end
       end

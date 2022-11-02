@@ -453,6 +453,75 @@ module TencentCloud
         end
       end
 
+      # CreateCorporationOrder请求参数结构体
+      class CreateCorporationOrderRequest < TencentCloud::Common::AbstractModel
+        # @param CorpName: 企业名称
+        # @type CorpName: String
+        # @param Owner: 所有者ID
+        # @type Owner: String
+        # @param CodeQuota: 溯源码额度
+        # @type CodeQuota: Integer
+        # @param ExpireTime: 额度过期时间
+        # @type ExpireTime: String
+        # @param Amount: 金额
+        # @type Amount: Integer
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param ContactPerson: 联系人
+        # @type ContactPerson: String
+        # @param ContactNumber: 联系电话
+        # @type ContactNumber: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :CorpName, :Owner, :CodeQuota, :ExpireTime, :Amount, :CorpId, :ContactPerson, :ContactNumber, :Remark
+        
+        def initialize(corpname=nil, owner=nil, codequota=nil, expiretime=nil, amount=nil, corpid=nil, contactperson=nil, contactnumber=nil, remark=nil)
+          @CorpName = corpname
+          @Owner = owner
+          @CodeQuota = codequota
+          @ExpireTime = expiretime
+          @Amount = amount
+          @CorpId = corpid
+          @ContactPerson = contactperson
+          @ContactNumber = contactnumber
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @CorpName = params['CorpName']
+          @Owner = params['Owner']
+          @CodeQuota = params['CodeQuota']
+          @ExpireTime = params['ExpireTime']
+          @Amount = params['Amount']
+          @CorpId = params['CorpId']
+          @ContactPerson = params['ContactPerson']
+          @ContactNumber = params['ContactNumber']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateCorporationOrder返回参数结构体
+      class CreateCorporationOrderResponse < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CorpId, :RequestId
+        
+        def initialize(corpid=nil, requestid=nil)
+          @CorpId = corpid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomPack请求参数结构体
       class CreateCustomPackRequest < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户ID

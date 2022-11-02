@@ -4896,7 +4896,7 @@ module TencentCloud
       class ScheduledAction < TencentCloud::Common::AbstractModel
         # @param ScheduleStop: 是否要定时停止服务，true or false。true 则 ScheduleStopTime 必填， false 则 ScheduleStopTime 不生效
         # @type ScheduleStop: Boolean
-        # @param ScheduleStopTime: 要执行定时停止的时间，格式：“2022-01-26 19:46:22”
+        # @param ScheduleStopTime: 要执行定时停止的时间，格式：“2022-01-26T19:46:22+08:00”
         # @type ScheduleStopTime: String
 
         attr_accessor :ScheduleStop, :ScheduleStopTime

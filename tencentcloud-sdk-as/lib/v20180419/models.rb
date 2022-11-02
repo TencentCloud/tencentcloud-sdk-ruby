@@ -2440,18 +2440,21 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent。
+      # 描述了实例的增强服务启用情况与其设置，如云安全，云监控，自动化助手等实例 Agent。
       class EnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 开启云安全服务。若不指定该参数，则默认开启云安全服务。
         # @type SecurityService: :class:`Tencentcloud::As.v20180419.models.RunSecurityServiceEnabled`
         # @param MonitorService: 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         # @type MonitorService: :class:`Tencentcloud::As.v20180419.models.RunMonitorServiceEnabled`
+        # @param AutomationService: 开启自动化助手服务。若不指定该参数，则默认逻辑与CVM保持一致。注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutomationService: Array
 
-        attr_accessor :SecurityService, :MonitorService
+        attr_accessor :SecurityService, :MonitorService, :AutomationService
         
-        def initialize(securityservice=nil, monitorservice=nil)
+        def initialize(securityservice=nil, monitorservice=nil, automationservice=nil)
           @SecurityService = securityservice
           @MonitorService = monitorservice
+          @AutomationService = automationservice
         end
 
         def deserialize(params)
@@ -2462,6 +2465,14 @@ module TencentCloud
           unless params['MonitorService'].nil?
             @MonitorService = RunMonitorServiceEnabled.new
             @MonitorService.deserialize(params['MonitorService'])
+          end
+          unless params['AutomationService'].nil?
+            @AutomationService = []
+            params['AutomationService'].each do |i|
+              runautomationserviceenabled_tmp = RunAutomationServiceEnabled.new
+              runautomationserviceenabled_tmp.deserialize(i)
+              @AutomationService << runautomationserviceenabled_tmp
+            end
           end
         end
       end
@@ -4044,6 +4055,23 @@ module TencentCloud
         def deserialize(params)
           @ActivityId = params['ActivityId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了 “自动化助手” 服务相关的信息
+      class RunAutomationServiceEnabled < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启[自动化助手](https://cloud.tencent.com/document/product/1340)服务。取值范围：<br><li>TRUE：表示开启自动化助手服务<br><li>FALSE：表示不开启自动化助手服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+        
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 

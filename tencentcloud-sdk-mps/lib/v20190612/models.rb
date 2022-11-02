@@ -1021,6 +1021,7 @@ module TencentCloud
         # <li>OcrWordsRecognition：文本关键词识别，</li>
         # <li>AsrFullTextRecognition：语音全文识别，</li>
         # <li>OcrFullTextRecognition：文本全文识别。</li>
+        # <li>TransTextRecognition：语音翻译。</li>
         # @type Type: String
         # @param FaceTask: 人脸识别结果，当 Type 为
         #  FaceRecognition 时有效。
@@ -1042,16 +1043,21 @@ module TencentCloud
         #  OcrFullTextRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrFullTextTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskOcrFullTextResult`
+        # @param TransTextTask: 翻译结果，当 Type 为
+        #  TransTextRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResult`
 
-        attr_accessor :Type, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :OcrWordsTask, :OcrFullTextTask
+        attr_accessor :Type, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :OcrWordsTask, :OcrFullTextTask, :TransTextTask
         
-        def initialize(type=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, ocrwordstask=nil, ocrfulltexttask=nil)
+        def initialize(type=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, ocrwordstask=nil, ocrfulltexttask=nil, transtexttask=nil)
           @Type = type
           @FaceTask = facetask
           @AsrWordsTask = asrwordstask
           @AsrFullTextTask = asrfulltexttask
           @OcrWordsTask = ocrwordstask
           @OcrFullTextTask = ocrfulltexttask
+          @TransTextTask = transtexttask
         end
 
         def deserialize(params)
@@ -1075,6 +1081,10 @@ module TencentCloud
           unless params['OcrFullTextTask'].nil?
             @OcrFullTextTask = AiRecognitionTaskOcrFullTextResult.new
             @OcrFullTextTask.deserialize(params['OcrFullTextTask'])
+          end
+          unless params['TransTextTask'].nil?
+            @TransTextTask = AiRecognitionTaskTransTextResult.new
+            @TransTextTask.deserialize(params['TransTextTask'])
           end
         end
       end
@@ -1818,6 +1828,131 @@ module TencentCloud
           @EndTimeOffset = params['EndTimeOffset']
           @Confidence = params['Confidence']
           @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
+      # 翻译结果。
+      class AiRecognitionTaskTransTextResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 翻译任务输入信息。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResultInput`
+        # @param Output: 翻译任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResultOutput`
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiRecognitionTaskTransTextResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiRecognitionTaskTransTextResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 翻译的输入。
+      class AiRecognitionTaskTransTextResultInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 翻译模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+        
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 翻译结果。
+      class AiRecognitionTaskTransTextResultOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: 翻译片段列表。
+        # @type SegmentSet: Array
+        # @param SubtitlePath: 字幕文件地址。
+        # @type SubtitlePath: String
+        # @param OutputStorage: 字幕文件存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
+        
+        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
+          @SegmentSet = segmentset
+          @SubtitlePath = subtitlepath
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              airecognitiontasktranstextsegmentitem_tmp = AiRecognitionTaskTransTextSegmentItem.new
+              airecognitiontasktranstextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << airecognitiontasktranstextsegmentitem_tmp
+            end
+          end
+          @SubtitlePath = params['SubtitlePath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 翻译片段。
+      class AiRecognitionTaskTransTextSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param Trans: 翻译文本。
+        # @type Trans: String
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans
+        
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, trans=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Text = text
+          @Trans = trans
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Text = params['Text']
+          @Trans = params['Trans']
         end
       end
 
@@ -3976,10 +4111,12 @@ module TencentCloud
         # @type FillType: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param Format: 图片格式，取值为 jpg、png、webp。默认为 jpg。
+        # @type Format: String
 
-        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :Name, :Width, :Height, :ResolutionAdaptive, :FillType, :Comment
+        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :Name, :Width, :Height, :ResolutionAdaptive, :FillType, :Comment, :Format
         
-        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, filltype=nil, comment=nil)
+        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, filltype=nil, comment=nil, format=nil)
           @SampleType = sampletype
           @SampleInterval = sampleinterval
           @RowCount = rowcount
@@ -3990,6 +4127,7 @@ module TencentCloud
           @ResolutionAdaptive = resolutionadaptive
           @FillType = filltype
           @Comment = comment
+          @Format = format
         end
 
         def deserialize(params)
@@ -4003,6 +4141,7 @@ module TencentCloud
           @ResolutionAdaptive = params['ResolutionAdaptive']
           @FillType = params['FillType']
           @Comment = params['Comment']
+          @Format = params['Format']
         end
       end
 
@@ -4129,7 +4268,7 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值为 jpg 和 png。默认为 jpg。
+        # @param Format: 图片格式，取值为 jpg、png、webp。默认为 jpg。
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -4211,7 +4350,7 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值可以为 jpg 和 png。默认为 jpg。
+        # @param Format: 图片格式，取值可以为 jpg、png、webp。默认为 jpg。
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -6773,10 +6912,12 @@ module TencentCloud
         # @type FillType: String
         # @param Comment: 模板描述信息。
         # @type Comment: String
+        # @param Format: 图片格式。
+        # @type Format: String
 
-        attr_accessor :Definition, :Type, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :CreateTime, :UpdateTime, :FillType, :Comment
+        attr_accessor :Definition, :Type, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :CreateTime, :UpdateTime, :FillType, :Comment, :Format
         
-        def initialize(definition=nil, type=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, createtime=nil, updatetime=nil, filltype=nil, comment=nil)
+        def initialize(definition=nil, type=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, createtime=nil, updatetime=nil, filltype=nil, comment=nil, format=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -6791,6 +6932,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FillType = filltype
           @Comment = comment
+          @Format = format
         end
 
         def deserialize(params)
@@ -6808,6 +6950,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
           @Comment = params['Comment']
+          @Format = params['Format']
         end
       end
 
@@ -6951,6 +7094,7 @@ module TencentCloud
         # <li>OcrWordsRecognition：文本关键词识别，</li>
         # <li>AsrFullTextRecognition：语音全文识别，</li>
         # <li>OcrFullTextRecognition：文本全文识别。</li>
+        # <li>TransTextRecognition：语音翻译。</li>
         # @type Type: String
         # @param FaceRecognitionResultSet: 人脸识别结果，当 Type 为
         # FaceRecognition 时有效。
@@ -6967,16 +7111,19 @@ module TencentCloud
         # @param OcrFullTextRecognitionResultSet: 文本全文识别结果，当 Type 为
         # OcrFullTextRecognition 时有效。
         # @type OcrFullTextRecognitionResultSet: Array
+        # @param TransTextRecognitionResultSet: 翻译结果，当Type 为 TransTextRecognition 时有效。
+        # @type TransTextRecognitionResultSet: Array
 
-        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet
+        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet, :TransTextRecognitionResultSet
         
-        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil)
+        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil, transtextrecognitionresultset=nil)
           @Type = type
           @FaceRecognitionResultSet = facerecognitionresultset
           @AsrWordsRecognitionResultSet = asrwordsrecognitionresultset
           @OcrWordsRecognitionResultSet = ocrwordsrecognitionresultset
           @AsrFullTextRecognitionResultSet = asrfulltextrecognitionresultset
           @OcrFullTextRecognitionResultSet = ocrfulltextrecognitionresultset
+          @TransTextRecognitionResultSet = transtextrecognitionresultset
         end
 
         def deserialize(params)
@@ -7019,6 +7166,14 @@ module TencentCloud
               livestreamocrfulltextrecognitionresult_tmp = LiveStreamOcrFullTextRecognitionResult.new
               livestreamocrfulltextrecognitionresult_tmp.deserialize(i)
               @OcrFullTextRecognitionResultSet << livestreamocrfulltextrecognitionresult_tmp
+            end
+          end
+          unless params['TransTextRecognitionResultSet'].nil?
+            @TransTextRecognitionResultSet = []
+            params['TransTextRecognitionResultSet'].each do |i|
+              livestreamtranstextrecognitionresult_tmp = LiveStreamTransTextRecognitionResult.new
+              livestreamtranstextrecognitionresult_tmp.deserialize(i)
+              @TransTextRecognitionResultSet << livestreamtranstextrecognitionresult_tmp
             end
           end
         end
@@ -7551,6 +7706,38 @@ module TencentCloud
           @TopicName = params['TopicName']
           @NotifyType = params['NotifyType']
           @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # 直播实时翻译结果
+      class LiveStreamTransTextRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param StartPtsTime: 翻译片段起始的 PTS 时间，单位：秒。
+        # @type StartPtsTime: Float
+        # @param EndPtsTime: 翻译片段终止的 PTS 时间，单位：秒。
+        # @type EndPtsTime: Float
+        # @param Confidence: 翻译片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param Trans: 翻译文本。
+        # @type Trans: String
+
+        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :Trans
+        
+        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, trans=nil)
+          @Text = text
+          @StartPtsTime = startptstime
+          @EndPtsTime = endptstime
+          @Confidence = confidence
+          @Trans = trans
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @StartPtsTime = params['StartPtsTime']
+          @EndPtsTime = params['EndPtsTime']
+          @Confidence = params['Confidence']
+          @Trans = params['Trans']
         end
       end
 
@@ -9225,10 +9412,12 @@ module TencentCloud
         # @type FillType: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param Format: 图片格式，取值可以为 jpg、png、webp。
+        # @type Format: String
 
-        attr_accessor :Definition, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :FillType, :Comment
+        attr_accessor :Definition, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :FillType, :Comment, :Format
         
-        def initialize(definition=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, filltype=nil, comment=nil)
+        def initialize(definition=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, filltype=nil, comment=nil, format=nil)
           @Definition = definition
           @Name = name
           @Width = width
@@ -9240,6 +9429,7 @@ module TencentCloud
           @ColumnCount = columncount
           @FillType = filltype
           @Comment = comment
+          @Format = format
         end
 
         def deserialize(params)
@@ -9254,6 +9444,7 @@ module TencentCloud
           @ColumnCount = params['ColumnCount']
           @FillType = params['FillType']
           @Comment = params['Comment']
+          @Format = params['Format']
         end
       end
 
@@ -9386,7 +9577,7 @@ module TencentCloud
         # <li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li>
         # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
-        # @param Format: 图片格式，取值为 jpg 和 png。
+        # @param Format: 图片格式，取值为 jpg、png、webp。
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -9468,7 +9659,7 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值可以为 jpg 和 png。
+        # @param Format: 图片格式，取值可以为 jpg、png、webp。
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -9929,16 +10120,19 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfoForUpdate`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
+        # @param SubtitleTemplate: 字幕流配置参数。
+        # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate
         
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subtitletemplate=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @SubtitleTemplate = subtitletemplate
         end
 
         def deserialize(params)
@@ -9956,6 +10150,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfigForUpdate.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['SubtitleTemplate'].nil?
+            @SubtitleTemplate = SubtitleTemplate.new
+            @SubtitleTemplate.deserialize(params['SubtitleTemplate'])
           end
         end
       end
@@ -10691,8 +10889,11 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
         # @param ScheduleId: 编排ID。
-        # 注意1：对于OutputStorage、OutputDir，如果编排任务里没有配置，将采用请求里对应参数。
-        # 注意2：对于TaskNotifyConfig，如果编排任务里没有配置，将采用请求里对应的参数。
+        # 注意1：对于OutputStorage、OutputDir参数：
+        # <li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li>
+        # <li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若创建任务接口（ProcessMedia）有输出，将覆盖原有编排的默认输出。</li>
+        # 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessMedia）有设置，将覆盖原有编排的默认回调。
+
         # 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
         # @type ScheduleId: Integer
 
@@ -11711,6 +11912,17 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
+        end
+      end
+
+      # 字幕流配置参数。
+      class SubtitleTemplate < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

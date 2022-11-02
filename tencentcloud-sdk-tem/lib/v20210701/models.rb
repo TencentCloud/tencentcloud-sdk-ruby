@@ -590,7 +590,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: 日志主题 ID
         # @type TopicId: String
-        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；
+        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；json_log 为 json格式；fullregex_log 为单行正则；multiline_fullregex_log 为多行正则
         # @type LogType: String
         # @param BeginningRegex: 首行正则表达式，当LogType=multiline_log 时生效
         # @type BeginningRegex: String

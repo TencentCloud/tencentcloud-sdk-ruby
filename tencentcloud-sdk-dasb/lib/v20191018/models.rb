@@ -953,10 +953,12 @@ module TencentCloud
         # @type Kind: Integer
         # @param DepartmentId: 所属部门ID
         # @type DepartmentId: String
+        # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
+        # @type TagFilters: Array
 
-        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind, :DepartmentId
+        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind, :DepartmentId, :TagFilters
         
-        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil)
+        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil, tagfilters=nil)
           @Id = id
           @Bound = bound
           @Name = name
@@ -964,6 +966,7 @@ module TencentCloud
           @Limit = limit
           @Kind = kind
           @DepartmentId = departmentid
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -974,6 +977,14 @@ module TencentCloud
           @Limit = params['Limit']
           @Kind = params['Kind']
           @DepartmentId = params['DepartmentId']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -1095,10 +1106,12 @@ module TencentCloud
         # @type KindSet: Array
         # @param DepartmentId: 过滤条件，可按照部门ID进行过滤
         # @type DepartmentId: String
+        # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
+        # @type TagFilters: Array
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId, :TagFilters
         
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil, tagfilters=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -1110,6 +1123,7 @@ module TencentCloud
           @ResourceIdSet = resourceidset
           @KindSet = kindset
           @DepartmentId = departmentid
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -1124,6 +1138,14 @@ module TencentCloud
           @ResourceIdSet = params['ResourceIdSet']
           @KindSet = params['KindSet']
           @DepartmentId = params['DepartmentId']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -1859,6 +1881,26 @@ module TencentCloud
           @ExtendPoints = params['ExtendPoints']
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
+        end
+      end
+
+      # 资产标签
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 以订单方式新建企业信息/配额信息
+
+        # @param request: Request instance for CreateCorporationOrder.
+        # @type request: :class:`Tencentcloud::trp::V20210515::CreateCorporationOrderRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::CreateCorporationOrderResponse`
+        def CreateCorporationOrder(request)
+          body = send_request('CreateCorporationOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCorporationOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成自定义码包
 
         # @param request: Request instance for CreateCustomPack.

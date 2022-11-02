@@ -1432,58 +1432,6 @@ module TencentCloud
         end
       end
 
-      # ModifyRoomInfo请求参数结构体
-      class ModifyRoomInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
-        # @type SdkAppId: Integer
-        # @param RoomId: 房间id
-        # @type RoomId: Integer
-        # @param OperationType: 301 启动推流
-        # 302 停止推流
-        # 303 重置RTMP连接
-        # @type OperationType: Integer
-
-        attr_accessor :SdkAppId, :RoomId, :OperationType
-        
-        def initialize(sdkappid=nil, roomid=nil, operationtype=nil)
-          @SdkAppId = sdkappid
-          @RoomId = roomid
-          @OperationType = operationtype
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @RoomId = params['RoomId']
-          @OperationType = params['OperationType']
-        end
-      end
-
-      # ModifyRoomInfo返回参数结构体
-      class ModifyRoomInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作结果, 0成功, 非0失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: Integer
-        # @param ErrMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ErrMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :ErrMsg, :RequestId
-        
-        def initialize(result=nil, errmsg=nil, requestid=nil)
-          @Result = result
-          @ErrMsg = errmsg
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @ErrMsg = params['ErrMsg']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyUserMicStatus请求参数结构体
       class ModifyUserMicStatusRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID
