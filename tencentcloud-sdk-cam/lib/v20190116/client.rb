@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为CAM用户创建访问密钥
+
+        # @param request: Request instance for CreateAccessKey.
+        # @type request: :class:`Tencentcloud::cam::V20190116::CreateAccessKeyRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::CreateAccessKeyResponse`
+        def CreateAccessKey(request)
+          body = send_request('CreateAccessKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户组
 
         # @param request: Request instance for CreateGroup.
@@ -375,6 +399,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateUserSAMLConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为CAM用户删除访问密钥。
+        # 此接口属于高风险操作，删除密钥后不可恢复，腾讯云将永久拒绝此密钥的所有请求，请谨慎使用。
+
+        # @param request: Request instance for DeleteAccessKey.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DeleteAccessKeyRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DeleteAccessKeyResponse`
+        def DeleteAccessKey(request)
+          body = send_request('DeleteAccessKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccessKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1767,6 +1816,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UntagRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为CAM用户更新访问密钥
+
+        # @param request: Request instance for UpdateAccessKey.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdateAccessKeyRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdateAccessKeyResponse`
+        def UpdateAccessKey(request)
+          body = send_request('UpdateAccessKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAccessKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -829,7 +829,7 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 访问权限名称，模糊查询，最长64字符
         # @type Name: String
-        # @param Offset: 分页偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20，最大500
         # @type Limit: Integer
@@ -945,7 +945,7 @@ module TencentCloud
         # @type Bound: Boolean
         # @param Name: 资产名或资产IP，模糊查询
         # @type Name: String
-        # @param Offset: 分页偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数，默认20, 最大500
         # @type Limit: Integer
@@ -1025,7 +1025,7 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 资产组名，最长64个字符，模糊查询
         # @type Name: String
-        # @param Offset: 分页偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，缺省20，最大500
         # @type Limit: Integer
@@ -1094,7 +1094,7 @@ module TencentCloud
         # @type ApCodeSet: Array
         # @param Kind: 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type Kind: Integer
-        # @param Offset: 分页，偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20
         # @type Limit: Integer
@@ -1239,7 +1239,7 @@ module TencentCloud
         # @type Bound: Boolean
         # @param Name: 用户名或用户姓名，最长64个字符，模糊查询
         # @type Name: String
-        # @param Offset: 分页偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20, 最大500
         # @type Limit: Integer
@@ -1304,7 +1304,7 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 用户组名，模糊查询,长度：0-64字符
         # @type Name: String
-        # @param Offset: 分页偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，缺省20，最大500
         # @type Limit: Integer
@@ -1367,7 +1367,7 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 模糊查询，IdSet、UserName、Phone为空时才生效，对用户名和姓名进行模糊查询
         # @type Name: String
-        # @param Offset: 分页，偏移位置
+        # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20, 最大500
         # @type Limit: Integer

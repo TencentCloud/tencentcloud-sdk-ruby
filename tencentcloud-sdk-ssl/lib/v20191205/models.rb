@@ -1231,7 +1231,7 @@ module TencentCloud
       class DescribeCertificatesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
-        # @param Limit: 每页数量，默认20。
+        # @param Limit: 每页数量，默认20。最大1000
         # @type Limit: Integer
         # @param SearchKey: 搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
         # @type SearchKey: String

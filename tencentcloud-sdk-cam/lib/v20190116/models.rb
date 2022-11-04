@@ -41,6 +41,34 @@ module TencentCloud
         end
       end
 
+      # 访问密钥
+      class AccessKeyDetail < TencentCloud::Common::AbstractModel
+        # @param AccessKeyId: 访问密钥标识
+        # @type AccessKeyId: String
+        # @param SecretAccessKey: 访问密钥（密钥仅创建时可见，请妥善保存）
+        # @type SecretAccessKey: String
+        # @param Status: 密钥状态，激活（Active）或未激活（Inactive）
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :AccessKeyId, :SecretAccessKey, :Status, :CreateTime
+        
+        def initialize(accesskeyid=nil, secretaccesskey=nil, status=nil, createtime=nil)
+          @AccessKeyId = accesskeyid
+          @SecretAccessKey = secretaccesskey
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @AccessKeyId = params['AccessKeyId']
+          @SecretAccessKey = params['SecretAccessKey']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # AddUser请求参数结构体
       class AddUserRequest < TencentCloud::Common::AbstractModel
         # @param Name: 子用户用户名
@@ -543,6 +571,46 @@ module TencentCloud
         end
       end
 
+      # CreateAccessKey请求参数结构体
+      class CreateAccessKeyRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 指定用户Uin，不填默认为当前用户创建访问密钥
+        # @type TargetUin: Integer
+
+        attr_accessor :TargetUin
+        
+        def initialize(targetuin=nil)
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # CreateAccessKey返回参数结构体
+      class CreateAccessKeyResponse < TencentCloud::Common::AbstractModel
+        # @param AccessKey: 访问密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: :class:`Tencentcloud::Cam.v20190116.models.AccessKeyDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessKey, :RequestId
+        
+        def initialize(accesskey=nil, requestid=nil)
+          @AccessKey = accesskey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccessKey'].nil?
+            @AccessKey = AccessKeyDetail.new
+            @AccessKey.deserialize(params['AccessKey'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGroup请求参数结构体
       class CreateGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupName: 用户组名
@@ -966,6 +1034,42 @@ module TencentCloud
 
       # CreateUserSAMLConfig返回参数结构体
       class CreateUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAccessKey请求参数结构体
+      class DeleteAccessKeyRequest < TencentCloud::Common::AbstractModel
+        # @param AccessKeyId: 指定需要删除的AccessKeyId
+        # @type AccessKeyId: String
+        # @param TargetUin: 指定用户Uin，不填默认为当前用户删除访问密钥
+        # @type TargetUin: Integer
+
+        attr_accessor :AccessKeyId, :TargetUin
+        
+        def initialize(accesskeyid=nil, targetuin=nil)
+          @AccessKeyId = accesskeyid
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @AccessKeyId = params['AccessKeyId']
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # DeleteAccessKey返回参数结构体
+      class DeleteAccessKeyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4424,6 +4528,46 @@ module TencentCloud
 
       # UntagRole返回参数结构体
       class UntagRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAccessKey请求参数结构体
+      class UpdateAccessKeyRequest < TencentCloud::Common::AbstractModel
+        # @param AccessKeyId: 指定需要更新的AccessKeyId
+        # @type AccessKeyId: String
+        # @param Status: 密钥状态，激活（Active）或未激活（Inactive）
+        # @type Status: String
+        # @param TargetUin: 指定用户Uin，不填默认为当前用户更新访问密钥
+        # @type TargetUin: Integer
+
+        attr_accessor :AccessKeyId, :Status, :TargetUin
+        
+        def initialize(accesskeyid=nil, status=nil, targetuin=nil)
+          @AccessKeyId = accesskeyid
+          @Status = status
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @AccessKeyId = params['AccessKeyId']
+          @Status = params['Status']
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # UpdateAccessKey返回参数结构体
+      class UpdateAccessKeyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

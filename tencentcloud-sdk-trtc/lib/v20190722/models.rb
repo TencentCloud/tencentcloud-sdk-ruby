@@ -1025,6 +1025,218 @@ module TencentCloud
         end
       end
 
+      # DescribeTRTCMarketQualityMetricData请求参数结构体
+      class DescribeTRTCMarketQualityMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: String
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # @type EndTime: String
+        # @param Period: 返回数据的粒度，支持设为以下值：
+        # d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。
+        # h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。
+        # @type Period: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeTRTCMarketQualityMetricData返回参数结构体
+      class DescribeTRTCMarketQualityMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: TRTC监控数据出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TRTCDataResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCMarketScaleMetricData请求参数结构体
+      class DescribeTRTCMarketScaleMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId
+        # @type SdkAppId: String
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # @type EndTime: String
+        # @param Period: 返回数据的粒度，支持设为以下值：
+        # d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。
+        # h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。
+        # @type Period: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeTRTCMarketScaleMetricData返回参数结构体
+      class DescribeTRTCMarketScaleMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: TRTC监控数据出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TRTCDataResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCRealTimeQualityMetricData请求参数结构体
+      class DescribeTRTCRealTimeQualityMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: String
+        # @param StartTime: 开始时间，unix时间戳，单位：秒（查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，unix时间戳，单位：秒
+        # @type EndTime: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeTRTCRealTimeQualityMetricData返回参数结构体
+      class DescribeTRTCRealTimeQualityMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: TRTC监控数据出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TRTCDataResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCRealTimeScaleMetricData请求参数结构体
+      class DescribeTRTCRealTimeScaleMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: String
+        # @param StartTime: 开始时间，unix时间戳，单位：秒（查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，unix时间戳，单位：秒
+        # @type EndTime: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeTRTCRealTimeScaleMetricData返回参数结构体
+      class DescribeTRTCRealTimeScaleMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: TRTC监控数据出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TRTCDataResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrtcMcuTranscodeTime请求参数结构体
       class DescribeTrtcMcuTranscodeTimeRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
@@ -2405,6 +2617,28 @@ module TencentCloud
         end
       end
 
+      # SeriesInfo类型
+      class SeriesInfo < TencentCloud::Common::AbstractModel
+        # @param Columns: 数据列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param Values: 数据值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Columns, :Values
+        
+        def initialize(columns=nil, values=nil)
+          @Columns = columns
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Columns = params['Columns']
+          @Values = params['Values']
+        end
+      end
+
       # 画中画模板中有效，代表小画面的布局参数
       class SmallVideoLayoutParams < TencentCloud::Common::AbstractModel
         # @param UserId: 代表小画面对应的用户ID。
@@ -2725,6 +2959,40 @@ module TencentCloud
           @UnSubscribeAudioUserIds = params['UnSubscribeAudioUserIds']
           @SubscribeVideoUserIds = params['SubscribeVideoUserIds']
           @UnSubscribeVideoUserIds = params['UnSubscribeVideoUserIds']
+        end
+      end
+
+      # TRTC数据大盘/实时监控 API接口数据出参
+      class TRTCDataResp < TencentCloud::Common::AbstractModel
+        # @param StatementID: StatementID值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatementID: Integer
+        # @param Series: Series数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Series: Array
+        # @param Total: Total值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+
+        attr_accessor :StatementID, :Series, :Total
+        
+        def initialize(statementid=nil, series=nil, total=nil)
+          @StatementID = statementid
+          @Series = series
+          @Total = total
+        end
+
+        def deserialize(params)
+          @StatementID = params['StatementID']
+          unless params['Series'].nil?
+            @Series = []
+            params['Series'].each do |i|
+              seriesinfo_tmp = SeriesInfo.new
+              seriesinfo_tmp.deserialize(i)
+              @Series << seriesinfo_tmp
+            end
+          end
+          @Total = params['Total']
         end
       end
 

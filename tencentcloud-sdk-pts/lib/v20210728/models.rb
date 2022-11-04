@@ -2809,10 +2809,13 @@ module TencentCloud
         # @param SubAccountUin: 用户子账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
+        # @param AppId: 用户账号的 App ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
 
-        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId, :AppID, :Uin, :SubAccountUin
+        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId, :AppID, :Uin, :SubAccountUin, :AppId
         
-        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil, createdat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil)
+        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil, createdat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil, appid=nil)
           @FileId = fileid
           @Kind = kind
           @Name = name
@@ -2832,6 +2835,7 @@ module TencentCloud
           @AppID = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @AppId = appid
         end
 
         def deserialize(params)
@@ -2868,6 +2872,7 @@ module TencentCloud
           @AppID = params['AppID']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @AppId = params['AppId']
         end
       end
 
@@ -4394,10 +4399,13 @@ module TencentCloud
         # @param LoadWeight: 脚本权重，范围 1-100
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadWeight: Integer
+        # @param FileId: 文件 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileId: String
 
-        attr_accessor :Name, :Size, :Type, :UpdatedAt, :EncodedContent, :EncodedHttpArchive, :LoadWeight
+        attr_accessor :Name, :Size, :Type, :UpdatedAt, :EncodedContent, :EncodedHttpArchive, :LoadWeight, :FileId
         
-        def initialize(name=nil, size=nil, type=nil, updatedat=nil, encodedcontent=nil, encodedhttparchive=nil, loadweight=nil)
+        def initialize(name=nil, size=nil, type=nil, updatedat=nil, encodedcontent=nil, encodedhttparchive=nil, loadweight=nil, fileid=nil)
           @Name = name
           @Size = size
           @Type = type
@@ -4405,6 +4413,7 @@ module TencentCloud
           @EncodedContent = encodedcontent
           @EncodedHttpArchive = encodedhttparchive
           @LoadWeight = loadweight
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -4415,6 +4424,7 @@ module TencentCloud
           @EncodedContent = params['EncodedContent']
           @EncodedHttpArchive = params['EncodedHttpArchive']
           @LoadWeight = params['LoadWeight']
+          @FileId = params['FileId']
         end
       end
 

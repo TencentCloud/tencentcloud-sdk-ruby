@@ -1017,6 +1017,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
+
+        # @param request: Request instance for IsolateDedicatedDBInstance.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::IsolateDedicatedDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::IsolateDedicatedDBInstanceResponse`
+        def IsolateDedicatedDBInstance(request)
+          body = send_request('IsolateDedicatedDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateDedicatedDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 隔离后付费实例
 
         # @param request: Request instance for IsolateHourDBInstance.

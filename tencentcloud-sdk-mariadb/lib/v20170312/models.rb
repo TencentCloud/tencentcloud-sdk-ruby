@@ -3104,6 +3104,38 @@ module TencentCloud
         end
       end
 
+      # IsolateDedicatedDBInstance请求参数结构体
+      class IsolateDedicatedDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 Id，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # IsolateDedicatedDBInstance返回参数结构体
+      class IsolateDedicatedDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # IsolateHourDBInstance请求参数结构体
       class IsolateHourDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表
@@ -4694,19 +4726,23 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param ZoneName: 可用区中文名
         # @type ZoneName: String
+        # @param OnSale: 是否在售
+        # @type OnSale: Boolean
 
-        attr_accessor :Zone, :ZoneId, :ZoneName
+        attr_accessor :Zone, :ZoneId, :ZoneName, :OnSale
         
-        def initialize(zone=nil, zoneid=nil, zonename=nil)
+        def initialize(zone=nil, zoneid=nil, zonename=nil, onsale=nil)
           @Zone = zone
           @ZoneId = zoneid
           @ZoneName = zonename
+          @OnSale = onsale
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
+          @OnSale = params['OnSale']
         end
       end
 

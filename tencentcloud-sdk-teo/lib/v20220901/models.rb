@@ -350,6 +350,53 @@ module TencentCloud
         end
       end
 
+      # 别称域名信息。
+      class AliasDomain < TencentCloud::Common::AbstractModel
+        # @param AliasName: 别称域名名称。
+        # @type AliasName: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TargetName: 目标域名名称。
+        # @type TargetName: String
+        # @param Status: 别称域名状态，取值有：
+        # <li> active：已生效； </li>
+        # <li> pending：部署中；</li>
+        # <li> conflict：被找回。 </li>
+        # <li> stop：已停用；</li>
+        # @type Status: String
+        # @param ForbidMode: 封禁模式，取值有：
+        # <li> 0：未封禁； </li>
+        # <li> 11：合规封禁；</li>
+        # <li> 14：未备案封禁。</li>
+        # @type ForbidMode: Integer
+        # @param CreatedOn: 别称域名创建时间。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 别称域名修改时间。
+        # @type ModifiedOn: String
+
+        attr_accessor :AliasName, :ZoneId, :TargetName, :Status, :ForbidMode, :CreatedOn, :ModifiedOn
+        
+        def initialize(aliasname=nil, zoneid=nil, targetname=nil, status=nil, forbidmode=nil, createdon=nil, modifiedon=nil)
+          @AliasName = aliasname
+          @ZoneId = zoneid
+          @TargetName = targetname
+          @Status = status
+          @ForbidMode = forbidmode
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+        end
+
+        def deserialize(params)
+          @AliasName = params['AliasName']
+          @ZoneId = params['ZoneId']
+          @TargetName = params['TargetName']
+          @Status = params['Status']
+          @ForbidMode = params['ForbidMode']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+        end
+      end
+
       # 应用代理实例
       class ApplicationProxy < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -1266,6 +1313,57 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Algorithms = params['Algorithms']
+        end
+      end
+
+      # CreateAliasDomain请求参数结构体
+      class CreateAliasDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param AliasName: 别称域名名称。
+        # @type AliasName: String
+        # @param TargetName: 目标域名名称。
+        # @type TargetName: String
+        # @param CertType: 证书配置，取值有：
+        # <li> none：不配置；</li>
+        # <li> hosting：SSL托管证书；</li>
+        # <li> apply：申请免费证书。</li>默认取值为 none。
+        # @type CertType: String
+        # @param CertId: 当 CertType 取值为 hosting 时需填入相应证书 ID。
+        # @type CertId: Array
+
+        attr_accessor :ZoneId, :AliasName, :TargetName, :CertType, :CertId
+        
+        def initialize(zoneid=nil, aliasname=nil, targetname=nil, certtype=nil, certid=nil)
+          @ZoneId = zoneid
+          @AliasName = aliasname
+          @TargetName = targetname
+          @CertType = certtype
+          @CertId = certid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @AliasName = params['AliasName']
+          @TargetName = params['TargetName']
+          @CertType = params['CertType']
+          @CertId = params['CertId']
+        end
+      end
+
+      # CreateAliasDomain返回参数结构体
+      class CreateAliasDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3144,6 +3242,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAliasDomain请求参数结构体
+      class DeleteAliasDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param AliasNames: 待删除别称域名名称。如果为空，则不执行删除操作。
+        # @type AliasNames: Array
+
+        attr_accessor :ZoneId, :AliasNames
+        
+        def initialize(zoneid=nil, aliasnames=nil)
+          @ZoneId = zoneid
+          @AliasNames = aliasnames
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @AliasNames = params['AliasNames']
+        end
+      end
+
+      # DeleteAliasDomain返回参数结构体
+      class DeleteAliasDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApplicationProxy请求参数结构体
       class DeleteApplicationProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -3479,6 +3613,73 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @EntityList = params['EntityList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAliasDomains请求参数结构体
+      class DescribeAliasDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # <li>target-name<br>   按照【<strong>目标域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-name<br>   按照【<strong>别称域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为alias-name。
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+        
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAliasDomains返回参数结构体
+      class DescribeAliasDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的别称域名个数。
+        # @type TotalCount: Integer
+        # @param AliasDomains: 别称域名详细信息列表。
+        # @type AliasDomains: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AliasDomains, :RequestId
+        
+        def initialize(totalcount=nil, aliasdomains=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AliasDomains = aliasdomains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AliasDomains'].nil?
+            @AliasDomains = []
+            params['AliasDomains'].each do |i|
+              aliasdomain_tmp = AliasDomain.new
+              aliasdomain_tmp.deserialize(i)
+              @AliasDomains << aliasdomain_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9547,6 +9748,99 @@ module TencentCloud
 
       # ModifyAlarmDefaultThreshold返回参数结构体
       class ModifyAlarmDefaultThresholdResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAliasDomain请求参数结构体
+      class ModifyAliasDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param AliasName: 别称域名名称。
+        # @type AliasName: String
+        # @param TargetName: 目标域名名称。
+        # @type TargetName: String
+        # @param CertType: 证书配置，取值有：
+        # <li> none：不配置；</li>
+        # <li> hosting：SSL托管证书；</li>
+        # <li> apply：申请免费证书。</li>不填写保持原有配置。
+        # @type CertType: String
+        # @param CertId: 当 CertType 取值为 hosting 时填入相应证书 ID。
+        # @type CertId: Array
+
+        attr_accessor :ZoneId, :AliasName, :TargetName, :CertType, :CertId
+        
+        def initialize(zoneid=nil, aliasname=nil, targetname=nil, certtype=nil, certid=nil)
+          @ZoneId = zoneid
+          @AliasName = aliasname
+          @TargetName = targetname
+          @CertType = certtype
+          @CertId = certid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @AliasName = params['AliasName']
+          @TargetName = params['TargetName']
+          @CertType = params['CertType']
+          @CertId = params['CertId']
+        end
+      end
+
+      # ModifyAliasDomain返回参数结构体
+      class ModifyAliasDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAliasDomainStatus请求参数结构体
+      class ModifyAliasDomainStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Paused: 别称域名状态，取值有：
+        # <li> false：开启别称域名；</li>
+        # <li> true：关闭别称域名。</li>
+        # @type Paused: Boolean
+        # @param AliasNames: 待修改状态的别称域名名称。如果为空，则不执行修改状态操作。
+        # @type AliasNames: Array
+
+        attr_accessor :ZoneId, :Paused, :AliasNames
+        
+        def initialize(zoneid=nil, paused=nil, aliasnames=nil)
+          @ZoneId = zoneid
+          @Paused = paused
+          @AliasNames = aliasnames
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Paused = params['Paused']
+          @AliasNames = params['AliasNames']
+        end
+      end
+
+      # ModifyAliasDomainStatus返回参数结构体
+      class ModifyAliasDomainStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

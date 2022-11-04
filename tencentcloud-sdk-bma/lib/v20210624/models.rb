@@ -1272,15 +1272,18 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param MonitorStatus: 监测状态
         # @type MonitorStatus: Integer
+        # @param ExportURL: 导出地址
+        # @type ExportURL: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Torts, :TotalCount, :MonitorStatus, :RequestId
+        attr_accessor :Torts, :TotalCount, :MonitorStatus, :ExportURL, :RequestId
         
-        def initialize(torts=nil, totalcount=nil, monitorstatus=nil, requestid=nil)
+        def initialize(torts=nil, totalcount=nil, monitorstatus=nil, exporturl=nil, requestid=nil)
           @Torts = torts
           @TotalCount = totalcount
           @MonitorStatus = monitorstatus
+          @ExportURL = exporturl
           @RequestId = requestid
         end
 
@@ -1295,6 +1298,7 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @MonitorStatus = params['MonitorStatus']
+          @ExportURL = params['ExportURL']
           @RequestId = params['RequestId']
         end
       end
@@ -1336,14 +1340,17 @@ module TencentCloud
         # @type Monitors: Array
         # @param TotalCount: 记录总条数
         # @type TotalCount: Integer
+        # @param ExportURL: 导出地址
+        # @type ExportURL: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Monitors, :TotalCount, :RequestId
+        attr_accessor :Monitors, :TotalCount, :ExportURL, :RequestId
         
-        def initialize(monitors=nil, totalcount=nil, requestid=nil)
+        def initialize(monitors=nil, totalcount=nil, exporturl=nil, requestid=nil)
           @Monitors = monitors
           @TotalCount = totalcount
+          @ExportURL = exporturl
           @RequestId = requestid
         end
 
@@ -1357,6 +1364,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @ExportURL = params['ExportURL']
           @RequestId = params['RequestId']
         end
       end
@@ -1409,12 +1417,14 @@ module TencentCloud
         # @type ObtainDuration: String
         # @param ObtainName: 取证名称
         # @type ObtainName: String
+        # @param DepositPdfCert: 取证公证信息
+        # @type DepositPdfCert: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WorkName, :TortURL, :ObtainTime, :ObtainType, :ObtainNum, :DepositFile, :DepositCert, :WorkType, :WorkCategory, :TortId, :TortNum, :ObtainStatus, :ObtainNote, :ObtainDuration, :ObtainName, :RequestId
+        attr_accessor :WorkName, :TortURL, :ObtainTime, :ObtainType, :ObtainNum, :DepositFile, :DepositCert, :WorkType, :WorkCategory, :TortId, :TortNum, :ObtainStatus, :ObtainNote, :ObtainDuration, :ObtainName, :DepositPdfCert, :RequestId
         
-        def initialize(workname=nil, torturl=nil, obtaintime=nil, obtaintype=nil, obtainnum=nil, depositfile=nil, depositcert=nil, worktype=nil, workcategory=nil, tortid=nil, tortnum=nil, obtainstatus=nil, obtainnote=nil, obtainduration=nil, obtainname=nil, requestid=nil)
+        def initialize(workname=nil, torturl=nil, obtaintime=nil, obtaintype=nil, obtainnum=nil, depositfile=nil, depositcert=nil, worktype=nil, workcategory=nil, tortid=nil, tortnum=nil, obtainstatus=nil, obtainnote=nil, obtainduration=nil, obtainname=nil, depositpdfcert=nil, requestid=nil)
           @WorkName = workname
           @TortURL = torturl
           @ObtainTime = obtaintime
@@ -1430,6 +1440,7 @@ module TencentCloud
           @ObtainNote = obtainnote
           @ObtainDuration = obtainduration
           @ObtainName = obtainname
+          @DepositPdfCert = depositpdfcert
           @RequestId = requestid
         end
 
@@ -1449,6 +1460,7 @@ module TencentCloud
           @ObtainNote = params['ObtainNote']
           @ObtainDuration = params['ObtainDuration']
           @ObtainName = params['ObtainName']
+          @DepositPdfCert = params['DepositPdfCert']
           @RequestId = params['RequestId']
         end
       end
@@ -1970,10 +1982,18 @@ module TencentCloud
         # @type InsertTime: String
         # @param MonitorNote: 监测状态说明
         # @type MonitorNote: String
+        # @param WorkCategoryAll: 作品类型全部展示
+        # @type WorkCategoryAll: String
+        # @param EvidenceStatus: 存证状态
+        # @type EvidenceStatus: Integer
+        # @param EvidenceNote: 存证状态说明
+        # @type EvidenceNote: String
+        # @param TortSiteNum: 侵权站点数量
+        # @type TortSiteNum: Integer
 
-        attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote
+        attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote, :WorkCategoryAll, :EvidenceStatus, :EvidenceNote, :TortSiteNum
         
-        def initialize(workid=nil, workname=nil, worktype=nil, tortplatnum=nil, torturlnum=nil, monitortime=nil, monitorstatus=nil, workcategory=nil, inserttime=nil, monitornote=nil)
+        def initialize(workid=nil, workname=nil, worktype=nil, tortplatnum=nil, torturlnum=nil, monitortime=nil, monitorstatus=nil, workcategory=nil, inserttime=nil, monitornote=nil, workcategoryall=nil, evidencestatus=nil, evidencenote=nil, tortsitenum=nil)
           @WorkId = workid
           @WorkName = workname
           @WorkType = worktype
@@ -1984,6 +2004,10 @@ module TencentCloud
           @WorkCategory = workcategory
           @InsertTime = inserttime
           @MonitorNote = monitornote
+          @WorkCategoryAll = workcategoryall
+          @EvidenceStatus = evidencestatus
+          @EvidenceNote = evidencenote
+          @TortSiteNum = tortsitenum
         end
 
         def deserialize(params)
@@ -1997,6 +2021,10 @@ module TencentCloud
           @WorkCategory = params['WorkCategory']
           @InsertTime = params['InsertTime']
           @MonitorNote = params['MonitorNote']
+          @WorkCategoryAll = params['WorkCategoryAll']
+          @EvidenceStatus = params['EvidenceStatus']
+          @EvidenceNote = params['EvidenceNote']
+          @TortSiteNum = params['TortSiteNum']
         end
       end
 
@@ -2052,10 +2080,12 @@ module TencentCloud
         # @type IsProducer: Integer
         # @param IsOverseas: 是否境外网址
         # @type IsOverseas: Integer
+        # @param IPLoc: ip地理位置
+        # @type IPLoc: String
 
-        attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas
+        attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas, :IPLoc
         
-        def initialize(tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, pubtime=nil, author=nil, detecttime=nil, obtainstatus=nil, rightstatus=nil, blockstatus=nil, tortnum=nil, obtainnote=nil, worktitle=nil, tortsite=nil, icp=nil, rightnote=nil, obtaintype=nil, blocknote=nil, workid=nil, workname=nil, authstatus=nil, commstatus=nil, evidencestatus=nil, isproducer=nil, isoverseas=nil)
+        def initialize(tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, pubtime=nil, author=nil, detecttime=nil, obtainstatus=nil, rightstatus=nil, blockstatus=nil, tortnum=nil, obtainnote=nil, worktitle=nil, tortsite=nil, icp=nil, rightnote=nil, obtaintype=nil, blocknote=nil, workid=nil, workname=nil, authstatus=nil, commstatus=nil, evidencestatus=nil, isproducer=nil, isoverseas=nil, iploc=nil)
           @TortId = tortid
           @TortTitle = torttitle
           @TortPlat = tortplat
@@ -2081,6 +2111,7 @@ module TencentCloud
           @EvidenceStatus = evidencestatus
           @IsProducer = isproducer
           @IsOverseas = isoverseas
+          @IPLoc = iploc
         end
 
         def deserialize(params)
@@ -2109,6 +2140,7 @@ module TencentCloud
           @EvidenceStatus = params['EvidenceStatus']
           @IsProducer = params['IsProducer']
           @IsOverseas = params['IsOverseas']
+          @IPLoc = params['IPLoc']
         end
       end
 

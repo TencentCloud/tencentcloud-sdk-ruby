@@ -718,10 +718,15 @@ module TencentCloud
         # @type UserData: String
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ApproverVerifyType: 签署人校验方式
+        # VerifyCheck: 人脸识别（默认）
+        # MobileCheck：手机号验证
+        # 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
+        # @type ApproverVerifyType: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -737,6 +742,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @UserData = userdata
           @Agent = agent
+          @ApproverVerifyType = approververifytype
         end
 
         def deserialize(params)
@@ -782,6 +788,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ApproverVerifyType = params['ApproverVerifyType']
         end
       end
 
@@ -1400,20 +1407,18 @@ module TencentCloud
 
       # DescribeFileUrls请求参数结构体
       class DescribeFileUrlsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，UserId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param BusinessType: 文件对应的业务类型，目前支持：
+        # - 流程 "FLOW"，如需下载合同文件请选择此项
         # - 模板 "TEMPLATE"
         # - 文档 "DOCUMENT"
         # - 印章  “SEAL”
-        # - 流程 "FLOW"
         # @type BusinessType: String
-        # @param BusinessIds: 业务编号的数组，如模板编号、文档编号、印章编号
+        # @param BusinessIds: 业务编号的数组，如流程编号、模板编号、文档编号、印章编号。如需下载合同文件请传入FlowId
         # 最大支持20个资源
         # @type BusinessIds: Array
-        # @param Operator: 操作者信息
-        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用相关信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FileName: 下载后的文件命名，只有fileType为zip的时候生效
+        # @param FileName: 下载后的文件命名，只有FileType为zip的时候生效
         # @type FileName: String
         # @param FileType: 文件类型，"JPG", "PDF","ZIP"等
         # @type FileType: String
@@ -1423,45 +1428,47 @@ module TencentCloud
         # @type Limit: Integer
         # @param UrlTtl: 下载url过期时间，单位秒。0: 按默认值5分钟，允许范围：1s~24x60x60s(1天)
         # @type UrlTtl: Integer
-        # @param Scene: 暂不开放
-        # @type Scene: String
         # @param CcToken: 暂不开放
         # @type CcToken: String
+        # @param Scene: 暂不开放
+        # @type Scene: String
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :BusinessType, :BusinessIds, :Operator, :Agent, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :Scene, :CcToken
+        attr_accessor :Operator, :BusinessType, :BusinessIds, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :CcToken, :Scene, :Agent
         
-        def initialize(businesstype=nil, businessids=nil, operator=nil, agent=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, scene=nil, cctoken=nil)
+        def initialize(operator=nil, businesstype=nil, businessids=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, cctoken=nil, scene=nil, agent=nil)
+          @Operator = operator
           @BusinessType = businesstype
           @BusinessIds = businessids
-          @Operator = operator
-          @Agent = agent
           @FileName = filename
           @FileType = filetype
           @Offset = offset
           @Limit = limit
           @UrlTtl = urlttl
-          @Scene = scene
           @CcToken = cctoken
+          @Scene = scene
+          @Agent = agent
         end
 
         def deserialize(params)
-          @BusinessType = params['BusinessType']
-          @BusinessIds = params['BusinessIds']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
+          @BusinessType = params['BusinessType']
+          @BusinessIds = params['BusinessIds']
           @FileName = params['FileName']
           @FileType = params['FileType']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @UrlTtl = params['UrlTtl']
-          @Scene = params['Scene']
           @CcToken = params['CcToken']
+          @Scene = params['Scene']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
