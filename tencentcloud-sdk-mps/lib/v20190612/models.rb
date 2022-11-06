@@ -4165,6 +4165,414 @@ module TencentCloud
         end
       end
 
+      # 创建输入的配置信息。
+      class CreateInput < TencentCloud::Common::AbstractModel
+        # @param InputName: 输入名称，可填大小写、数字和下划线，长度为[1, 32]。
+        # @type InputName: String
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
+        # @type Protocol: String
+        # @param Description: 输入描述，长度为[0, 255]。
+        # @type Description: String
+        # @param AllowIpList: 输入的IP白名单，格式为CIDR。
+        # @type AllowIpList: Array
+        # @param SRTSettings: 输入的SRT配置信息。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputSRTSettings`
+        # @param RTPSettings: 输入的RTP配置信息。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTPSettings`
+        # @param FailOver: 输入的主备开关，可选[OPEN|CLOSE]，默认为CLOSE。
+        # @type FailOver: String
+        # @param RTMPPullSettings: 输入的RTMP_PULL配置信息。
+        # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTMPPullSettings`
+        # @param RTSPPullSettings: 输入的RTSP_PULL配置信息。
+        # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
+
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+          @InputName = inputname
+          @Protocol = protocol
+          @Description = description
+          @AllowIpList = allowiplist
+          @SRTSettings = srtsettings
+          @RTPSettings = rtpsettings
+          @FailOver = failover
+          @RTMPPullSettings = rtmppullsettings
+          @RTSPPullSettings = rtsppullsettings
+        end
+
+        def deserialize(params)
+          @InputName = params['InputName']
+          @Protocol = params['Protocol']
+          @Description = params['Description']
+          @AllowIpList = params['AllowIpList']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = CreateInputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = CreateInputRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          @FailOver = params['FailOver']
+          unless params['RTMPPullSettings'].nil?
+            @RTMPPullSettings = CreateInputRTMPPullSettings.new
+            @RTMPPullSettings.deserialize(params['RTMPPullSettings'])
+          end
+          unless params['RTSPPullSettings'].nil?
+            @RTSPPullSettings = CreateInputRTSPPullSettings.new
+            @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+        end
+      end
+
+      # 创建的输入RTMP拉流的配置信息。
+      class CreateInputRTMPPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: RTMP源站的源站地址，有且只能有一个。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              rtmppullsourceaddress_tmp = RTMPPullSourceAddress.new
+              rtmppullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << rtmppullsourceaddress_tmp
+            end
+          end
+        end
+      end
+
+      # 创建输入的RTP配置信息。
+      class CreateInputRTPSettings < TencentCloud::Common::AbstractModel
+        # @param FEC: 默认为“none”，可选值['none']。
+        # @type FEC: String
+        # @param IdleTimeout: 空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。
+        # @type IdleTimeout: Integer
+
+        attr_accessor :FEC, :IdleTimeout
+        
+        def initialize(fec=nil, idletimeout=nil)
+          @FEC = fec
+          @IdleTimeout = idletimeout
+        end
+
+        def deserialize(params)
+          @FEC = params['FEC']
+          @IdleTimeout = params['IdleTimeout']
+        end
+      end
+
+      # 创建的输入RTSP拉流的配置信息。
+      class CreateInputRTSPPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: RTSP源站的源站地址，有且只能有一个。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              rtsppullsourceaddress_tmp = RTSPPullSourceAddress.new
+              rtsppullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << rtsppullsourceaddress_tmp
+            end
+          end
+        end
+      end
+
+      # 创建的输入SRT的配置信息。
+      class CreateInputSRTSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: SRT模式，可选[LISTENER|CALLER]，默认为LISTENER。
+        # @type Mode: String
+        # @param StreamId: 流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
+        # @type StreamId: String
+        # @param Latency: 延迟，默认0，单位ms，范围为[0, 3000]。
+        # @type Latency: Integer
+        # @param RecvLatency: 接收延迟，默认120，单位ms，范围为[0, 3000]。
+        # @type RecvLatency: Integer
+        # @param PeerLatency: 对端延迟，默认0，单位ms，范围为[0, 3000]。
+        # @type PeerLatency: Integer
+        # @param PeerIdleTimeout: 对端超时时间，默认5000，单位ms，范围为[1000, 10000]。
+        # @type PeerIdleTimeout: Integer
+        # @param Passphrase: 解密密钥，默认为空，表示不加密。只可填ascii码值，长度为[10, 79]。
+        # @type Passphrase: String
+        # @param PbKeyLen: 密钥长度，默认为0，可选[0|16|24|32]。
+        # @type PbKeyLen: Integer
+        # @param SourceAddresses: SRT对端地址，当Mode为CALLER时必填，且只能填1组。
+        # @type SourceAddresses: Array
+
+        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses
+        
+        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil)
+          @Mode = mode
+          @StreamId = streamid
+          @Latency = latency
+          @RecvLatency = recvlatency
+          @PeerLatency = peerlatency
+          @PeerIdleTimeout = peeridletimeout
+          @Passphrase = passphrase
+          @PbKeyLen = pbkeylen
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @StreamId = params['StreamId']
+          @Latency = params['Latency']
+          @RecvLatency = params['RecvLatency']
+          @PeerLatency = params['PeerLatency']
+          @PeerIdleTimeout = params['PeerIdleTimeout']
+          @Passphrase = params['Passphrase']
+          @PbKeyLen = params['PbKeyLen']
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              srtsourceaddressreq_tmp = SRTSourceAddressReq.new
+              srtsourceaddressreq_tmp.deserialize(i)
+              @SourceAddresses << srtsourceaddressreq_tmp
+            end
+          end
+        end
+      end
+
+      # 创建输出的配置信息。
+      class CreateOutputInfo < TencentCloud::Common::AbstractModel
+        # @param OutputName: 输出的名称。
+        # @type OutputName: String
+        # @param Description: 输出描述。
+        # @type Description: String
+        # @param Protocol: 输出协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
+        # @type Protocol: String
+        # @param OutputRegion: 输出地区。
+        # @type OutputRegion: String
+        # @param SRTSettings: 输出的SRT的配置。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
+        # @param RTMPSettings: 输出的RTMP的配置。
+        # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRTMPSettings`
+        # @param RTPSettings: 输出的RTP的配置。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputInfoRTPSettings`
+        # @param AllowIpList: IP白名单列表，格式为CIDR，如0.0.0.0/0。
+        # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
+        # @type AllowIpList: Array
+
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList
+        
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil)
+          @OutputName = outputname
+          @Description = description
+          @Protocol = protocol
+          @OutputRegion = outputregion
+          @SRTSettings = srtsettings
+          @RTMPSettings = rtmpsettings
+          @RTPSettings = rtpsettings
+          @AllowIpList = allowiplist
+        end
+
+        def deserialize(params)
+          @OutputName = params['OutputName']
+          @Description = params['Description']
+          @Protocol = params['Protocol']
+          @OutputRegion = params['OutputRegion']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = CreateOutputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTMPSettings'].nil?
+            @RTMPSettings = CreateOutputRTMPSettings.new
+            @RTMPSettings.deserialize(params['RTMPSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = CreateOutputInfoRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          @AllowIpList = params['AllowIpList']
+        end
+      end
+
+      # 创建媒体传输流的输出的RTP配置。
+      class CreateOutputInfoRTPSettings < TencentCloud::Common::AbstractModel
+        # @param Destinations: 转推的目标地址，可填1~2个。
+        # @type Destinations: Array
+        # @param FEC: 只能填none。
+        # @type FEC: String
+        # @param IdleTimeout: 空闲超时时间，单位ms。
+        # @type IdleTimeout: Integer
+
+        attr_accessor :Destinations, :FEC, :IdleTimeout
+        
+        def initialize(destinations=nil, fec=nil, idletimeout=nil)
+          @Destinations = destinations
+          @FEC = fec
+          @IdleTimeout = idletimeout
+        end
+
+        def deserialize(params)
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              createoutputrtpsettingsdestinations_tmp = CreateOutputRTPSettingsDestinations.new
+              createoutputrtpsettingsdestinations_tmp.deserialize(i)
+              @Destinations << createoutputrtpsettingsdestinations_tmp
+            end
+          end
+          @FEC = params['FEC']
+          @IdleTimeout = params['IdleTimeout']
+        end
+      end
+
+      # 创建媒体传输流的输出的RTMP配置。
+      class CreateOutputRTMPSettings < TencentCloud::Common::AbstractModel
+        # @param Destinations: 转推的目标地址，可填1~2个。
+        # @type Destinations: Array
+        # @param ChunkSize: RTMP的Chunk大小，范围为[4096, 40960]。
+        # @type ChunkSize: Integer
+
+        attr_accessor :Destinations, :ChunkSize
+        
+        def initialize(destinations=nil, chunksize=nil)
+          @Destinations = destinations
+          @ChunkSize = chunksize
+        end
+
+        def deserialize(params)
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              createoutputrtmpsettingsdestinations_tmp = CreateOutputRtmpSettingsDestinations.new
+              createoutputrtmpsettingsdestinations_tmp.deserialize(i)
+              @Destinations << createoutputrtmpsettingsdestinations_tmp
+            end
+          end
+          @ChunkSize = params['ChunkSize']
+        end
+      end
+
+      # 创建媒体传输流的输出的RTP的目标地址。
+      class CreateOutputRTPSettingsDestinations < TencentCloud::Common::AbstractModel
+        # @param Ip: 转推的目标IP。
+        # @type Ip: String
+        # @param Port: 转推的目标端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
+      # 创建媒体传输流的输出的RTMP的目标地址。
+      class CreateOutputRtmpSettingsDestinations < TencentCloud::Common::AbstractModel
+        # @param Url: 转推的URL，格式如：rtmp://domain/live。
+        # @type Url: String
+        # @param StreamKey: 转推的StreamKey，格式如：stream?key=value。
+        # @type StreamKey: String
+
+        attr_accessor :Url, :StreamKey
+        
+        def initialize(url=nil, streamkey=nil)
+          @Url = url
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 创建媒体传输流的输出的SRT配置。
+      class CreateOutputSRTSettings < TencentCloud::Common::AbstractModel
+        # @param Destinations: 转推的目标地址，当Mode为CALLER时必填，且只能填1组。
+        # @type Destinations: Array
+        # @param StreamId: 转推SRT的流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
+        # @type StreamId: String
+        # @param Latency: 转推SRT的总延迟，默认0，单位ms，范围为[0, 3000]。
+        # @type Latency: Integer
+        # @param RecvLatency: 转推SRT的接收延迟，默认120，单位ms，范围为[0, 3000]。
+        # @type RecvLatency: Integer
+        # @param PeerLatency: 转推SRT的对端延迟，默认0，单位ms，范围为[0, 3000]。
+        # @type PeerLatency: Integer
+        # @param PeerIdleTimeout: 转推SRT的对端空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。
+        # @type PeerIdleTimeout: Integer
+        # @param Passphrase: 转推SRT的加密密钥，默认为空，表示不加密。只可填ascii码值，长度为[10, 79]。
+        # @type Passphrase: String
+        # @param PbKeyLen: 转推SRT的密钥长度，默认为0，可选[0|16|24|32]。
+        # @type PbKeyLen: Integer
+        # @param Mode: SRT模式，可选[LISTENER|CALLER]，默认为CALLER。
+        # @type Mode: String
+
+        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode
+        
+        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil)
+          @Destinations = destinations
+          @StreamId = streamid
+          @Latency = latency
+          @RecvLatency = recvlatency
+          @PeerLatency = peerlatency
+          @PeerIdleTimeout = peeridletimeout
+          @Passphrase = passphrase
+          @PbKeyLen = pbkeylen
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              createoutputsrtsettingsdestinations_tmp = CreateOutputSRTSettingsDestinations.new
+              createoutputsrtsettingsdestinations_tmp.deserialize(i)
+              @Destinations << createoutputsrtsettingsdestinations_tmp
+            end
+          end
+          @StreamId = params['StreamId']
+          @Latency = params['Latency']
+          @RecvLatency = params['RecvLatency']
+          @PeerLatency = params['PeerLatency']
+          @PeerIdleTimeout = params['PeerIdleTimeout']
+          @Passphrase = params['Passphrase']
+          @PbKeyLen = params['PbKeyLen']
+          @Mode = params['Mode']
+        end
+      end
+
+      # 创建媒体传输流的输出SRT的目标地址。
+      class CreateOutputSRTSettingsDestinations < TencentCloud::Common::AbstractModel
+        # @param Ip: 输出的IP。
+        # @type Ip: String
+        # @param Port: 输出的端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
       # CreatePersonSample请求参数结构体
       class CreatePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 素材名称，长度限制：20 个字符。
@@ -4401,6 +4809,106 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamLinkFlow请求参数结构体
+      class CreateStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowName: 流名称。
+        # @type FlowName: String
+        # @param MaxBandwidth: 最大带宽，单位bps，可选[10000000, 20000000, 50000000]。
+        # @type MaxBandwidth: Integer
+        # @param InputGroup: 流的输入组。
+        # @type InputGroup: Array
+
+        attr_accessor :FlowName, :MaxBandwidth, :InputGroup
+        
+        def initialize(flowname=nil, maxbandwidth=nil, inputgroup=nil)
+          @FlowName = flowname
+          @MaxBandwidth = maxbandwidth
+          @InputGroup = inputgroup
+        end
+
+        def deserialize(params)
+          @FlowName = params['FlowName']
+          @MaxBandwidth = params['MaxBandwidth']
+          unless params['InputGroup'].nil?
+            @InputGroup = []
+            params['InputGroup'].each do |i|
+              createinput_tmp = CreateInput.new
+              createinput_tmp.deserialize(i)
+              @InputGroup << createinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateStreamLinkFlow返回参数结构体
+      class CreateStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 创建的Flow信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeFlow`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeFlow.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamLinkOutputInfo请求参数结构体
+      class CreateStreamLinkOutputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流Id。
+        # @type FlowId: String
+        # @param Output: 传输流的Output配置。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputInfo`
+
+        attr_accessor :FlowId, :Output
+        
+        def initialize(flowid=nil, output=nil)
+          @FlowId = flowid
+          @Output = output
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Output'].nil?
+            @Output = CreateOutputInfo.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # CreateStreamLinkOutputInfo返回参数结构体
+      class CreateStreamLinkOutputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 创建后的Output信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutput`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeOutput.new
+            @Info.deserialize(params['Info'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5018,6 +5526,74 @@ module TencentCloud
         end
       end
 
+      # DeleteStreamLinkFlow请求参数结构体
+      class DeleteStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流Id。
+        # @type FlowId: String
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DeleteStreamLinkFlow返回参数结构体
+      class DeleteStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamLinkOutput请求参数结构体
+      class DeleteStreamLinkOutputRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param OutputId: 输出Id。
+        # @type OutputId: String
+
+        attr_accessor :FlowId, :OutputId
+        
+        def initialize(flowid=nil, outputid=nil)
+          @FlowId = flowid
+          @OutputId = outputid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @OutputId = params['OutputId']
+        end
+      end
+
+      # DeleteStreamLinkOutput返回参数结构体
+      class DeleteStreamLinkOutputResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTranscodeTemplate请求参数结构体
       class DeleteTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 转码模板唯一标识。
@@ -5451,6 +6027,57 @@ module TencentCloud
         end
       end
 
+      # 查询Flow的配置信息。
+      class DescribeFlow < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param FlowName: 流名称。
+        # @type FlowName: String
+        # @param State: 流状态，目前有IDLE/RUNNING。
+        # @type State: String
+        # @param MaxBandwidth: 最大带宽值。
+        # @type MaxBandwidth: Integer
+        # @param InputGroup: 输入组。
+        # @type InputGroup: Array
+        # @param OutputGroup: 输出组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputGroup: Array
+
+        attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup
+        
+        def initialize(flowid=nil, flowname=nil, state=nil, maxbandwidth=nil, inputgroup=nil, outputgroup=nil)
+          @FlowId = flowid
+          @FlowName = flowname
+          @State = state
+          @MaxBandwidth = maxbandwidth
+          @InputGroup = inputgroup
+          @OutputGroup = outputgroup
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @FlowName = params['FlowName']
+          @State = params['State']
+          @MaxBandwidth = params['MaxBandwidth']
+          unless params['InputGroup'].nil?
+            @InputGroup = []
+            params['InputGroup'].each do |i|
+              describeinput_tmp = DescribeInput.new
+              describeinput_tmp.deserialize(i)
+              @InputGroup << describeinput_tmp
+            end
+          end
+          unless params['OutputGroup'].nil?
+            @OutputGroup = []
+            params['OutputGroup'].each do |i|
+              describeoutput_tmp = DescribeOutput.new
+              describeoutput_tmp.deserialize(i)
+              @OutputGroup << describeoutput_tmp
+            end
+          end
+        end
+      end
+
       # DescribeImageSpriteTemplates请求参数结构体
       class DescribeImageSpriteTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 雪碧图模板唯一标识过滤条件，数组长度限制：100。
@@ -5512,6 +6139,243 @@ module TencentCloud
         end
       end
 
+      # 查询输入配置信息。
+      class DescribeInput < TencentCloud::Common::AbstractModel
+        # @param InputId: 输入Id。
+        # @type InputId: String
+        # @param InputName: 输入名称。
+        # @type InputName: String
+        # @param Description: 输入描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Protocol: 输入协议。
+        # @type Protocol: String
+        # @param InputAddressList: 输入地址列表。
+        # @type InputAddressList: Array
+        # @param AllowIpList: 输入IP白名单列表。
+        # @type AllowIpList: Array
+        # @param SRTSettings: 输入的SRT配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputSRTSettings`
+        # @param RTPSettings: 输入的RTP配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTPSettings`
+        # @param InputRegion: 输入的地区。
+        # @type InputRegion: String
+        # @param RTMPSettings: 输入的RTMP配置信息。
+        # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTMPSettings`
+        # @param FailOver: 输入的主备开关。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailOver: String
+        # @param RTMPPullSettings: 输入的RTMP_PULL配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTMPPullSettings`
+        # @param RTSPPullSettings: 输入的RTSP_PULL配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTSPPullSettings`
+
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+          @InputId = inputid
+          @InputName = inputname
+          @Description = description
+          @Protocol = protocol
+          @InputAddressList = inputaddresslist
+          @AllowIpList = allowiplist
+          @SRTSettings = srtsettings
+          @RTPSettings = rtpsettings
+          @InputRegion = inputregion
+          @RTMPSettings = rtmpsettings
+          @FailOver = failover
+          @RTMPPullSettings = rtmppullsettings
+          @RTSPPullSettings = rtsppullsettings
+        end
+
+        def deserialize(params)
+          @InputId = params['InputId']
+          @InputName = params['InputName']
+          @Description = params['Description']
+          @Protocol = params['Protocol']
+          unless params['InputAddressList'].nil?
+            @InputAddressList = []
+            params['InputAddressList'].each do |i|
+              inputaddress_tmp = InputAddress.new
+              inputaddress_tmp.deserialize(i)
+              @InputAddressList << inputaddress_tmp
+            end
+          end
+          @AllowIpList = params['AllowIpList']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = DescribeInputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = DescribeInputRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          @InputRegion = params['InputRegion']
+          unless params['RTMPSettings'].nil?
+            @RTMPSettings = DescribeInputRTMPSettings.new
+            @RTMPSettings.deserialize(params['RTMPSettings'])
+          end
+          @FailOver = params['FailOver']
+          unless params['RTMPPullSettings'].nil?
+            @RTMPPullSettings = DescribeInputRTMPPullSettings.new
+            @RTMPPullSettings.deserialize(params['RTMPPullSettings'])
+          end
+          unless params['RTSPPullSettings'].nil?
+            @RTSPPullSettings = DescribeInputRTSPPullSettings.new
+            @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+        end
+      end
+
+      # 查询输入的RTMP配置信息。
+      class DescribeInputRTMPPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: RTMP源站地址信息。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              describertmppullsourceaddress_tmp = DescribeRTMPPullSourceAddress.new
+              describertmppullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << describertmppullsourceaddress_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输入的RTMP配置信息。
+      class DescribeInputRTMPSettings < TencentCloud::Common::AbstractModel
+        # @param AppName: RTMP的推流路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param StreamKey: RTMP的推流StreamKey。
+        # RTMP的推流地址拼接规则为：rtmp://Ip:1935/AppName/StreamKey
+        # @type StreamKey: String
+
+        attr_accessor :AppName, :StreamKey
+        
+        def initialize(appname=nil, streamkey=nil)
+          @AppName = appname
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 查询输入的RTP配置信息。
+      class DescribeInputRTPSettings < TencentCloud::Common::AbstractModel
+        # @param FEC: 是否FEC。
+        # @type FEC: String
+        # @param IdleTimeout: 空闲超时时间。
+        # @type IdleTimeout: Integer
+
+        attr_accessor :FEC, :IdleTimeout
+        
+        def initialize(fec=nil, idletimeout=nil)
+          @FEC = fec
+          @IdleTimeout = idletimeout
+        end
+
+        def deserialize(params)
+          @FEC = params['FEC']
+          @IdleTimeout = params['IdleTimeout']
+        end
+      end
+
+      # 查询输入的RTSP配置信息。
+      class DescribeInputRTSPPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: RTSP源站地址信息。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              describertsppullsourceaddress_tmp = DescribeRTSPPullSourceAddress.new
+              describertsppullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << describertsppullsourceaddress_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输入的SRT配置信息。
+      class DescribeInputSRTSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: SRT模式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param StreamId: 流Id。
+        # @type StreamId: String
+        # @param Latency: 延迟。
+        # @type Latency: Integer
+        # @param RecvLatency: 接收延迟。
+        # @type RecvLatency: Integer
+        # @param PeerLatency: 对端延迟。
+        # @type PeerLatency: Integer
+        # @param PeerIdleTimeout: 对端空闲超时时间。
+        # @type PeerIdleTimeout: Integer
+        # @param Passphrase: 解密密钥。
+        # @type Passphrase: String
+        # @param PbKeyLen: 密钥长度。
+        # @type PbKeyLen: Integer
+        # @param SourceAddresses: SRT对端地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceAddresses: Array
+
+        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses
+        
+        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil)
+          @Mode = mode
+          @StreamId = streamid
+          @Latency = latency
+          @RecvLatency = recvlatency
+          @PeerLatency = peerlatency
+          @PeerIdleTimeout = peeridletimeout
+          @Passphrase = passphrase
+          @PbKeyLen = pbkeylen
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @StreamId = params['StreamId']
+          @Latency = params['Latency']
+          @RecvLatency = params['RecvLatency']
+          @PeerLatency = params['PeerLatency']
+          @PeerIdleTimeout = params['PeerIdleTimeout']
+          @Passphrase = params['Passphrase']
+          @PbKeyLen = params['PbKeyLen']
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              srtsourceaddressresp_tmp = SRTSourceAddressResp.new
+              srtsourceaddressresp_tmp.deserialize(i)
+              @SourceAddresses << srtsourceaddressresp_tmp
+            end
+          end
+        end
+      end
+
       # DescribeMediaMetaData请求参数结构体
       class DescribeMediaMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param InputInfo: 需要获取元信息的文件输入信息。
@@ -5551,6 +6415,329 @@ module TencentCloud
             @MetaData.deserialize(params['MetaData'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询输出的配置信息。
+      class DescribeOutput < TencentCloud::Common::AbstractModel
+        # @param OutputId: 输出Id。
+        # @type OutputId: String
+        # @param OutputName: 输出名称。
+        # @type OutputName: String
+        # @param OutputType: 输出类型。
+        # @type OutputType: String
+        # @param Description: 输出描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Protocol: 输出协议。
+        # @type Protocol: String
+        # @param OutputAddressList: 输出的出口地址信息列表。
+        # @type OutputAddressList: Array
+        # @param OutputRegion: 输出的地区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputRegion: String
+        # @param SRTSettings: 输出的SRT配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputSRTSettings`
+        # @param RTPSettings: 输出的RTP配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTPSettings`
+        # @param RTMPSettings: 输出的RTMP配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTMPSettings`
+        # @param RTMPPullSettings: 输出的RTMP拉流配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTMPPullSettings`
+        # @param AllowIpList: CIDR白名单列表。
+        # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowIpList: Array
+        # @param RTSPPullSettings: 输出的RTSP拉流配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTSPPullSettings`
+
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings
+        
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil)
+          @OutputId = outputid
+          @OutputName = outputname
+          @OutputType = outputtype
+          @Description = description
+          @Protocol = protocol
+          @OutputAddressList = outputaddresslist
+          @OutputRegion = outputregion
+          @SRTSettings = srtsettings
+          @RTPSettings = rtpsettings
+          @RTMPSettings = rtmpsettings
+          @RTMPPullSettings = rtmppullsettings
+          @AllowIpList = allowiplist
+          @RTSPPullSettings = rtsppullsettings
+        end
+
+        def deserialize(params)
+          @OutputId = params['OutputId']
+          @OutputName = params['OutputName']
+          @OutputType = params['OutputType']
+          @Description = params['Description']
+          @Protocol = params['Protocol']
+          unless params['OutputAddressList'].nil?
+            @OutputAddressList = []
+            params['OutputAddressList'].each do |i|
+              outputaddress_tmp = OutputAddress.new
+              outputaddress_tmp.deserialize(i)
+              @OutputAddressList << outputaddress_tmp
+            end
+          end
+          @OutputRegion = params['OutputRegion']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = DescribeOutputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = DescribeOutputRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          unless params['RTMPSettings'].nil?
+            @RTMPSettings = DescribeOutputRTMPSettings.new
+            @RTMPSettings.deserialize(params['RTMPSettings'])
+          end
+          unless params['RTMPPullSettings'].nil?
+            @RTMPPullSettings = DescribeOutputRTMPPullSettings.new
+            @RTMPPullSettings.deserialize(params['RTMPPullSettings'])
+          end
+          @AllowIpList = params['AllowIpList']
+          unless params['RTSPPullSettings'].nil?
+            @RTSPPullSettings = DescribeOutputRTSPPullSettings.new
+            @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+        end
+      end
+
+      # 查询输出的RTMP拉流URL信息。
+      class DescribeOutputRTMPPullServerUrl < TencentCloud::Common::AbstractModel
+        # @param TcUrl: RTMP拉流地址的tcUrl。
+        # @type TcUrl: String
+        # @param StreamKey: RTMP拉流地址的流key。
+        # @type StreamKey: String
+
+        attr_accessor :TcUrl, :StreamKey
+        
+        def initialize(tcurl=nil, streamkey=nil)
+          @TcUrl = tcurl
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @TcUrl = params['TcUrl']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 查询输出的RTMP拉流配置信息。
+      class DescribeOutputRTMPPullSettings < TencentCloud::Common::AbstractModel
+        # @param ServerUrls: 拉流地址列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerUrls: Array
+
+        attr_accessor :ServerUrls
+        
+        def initialize(serverurls=nil)
+          @ServerUrls = serverurls
+        end
+
+        def deserialize(params)
+          unless params['ServerUrls'].nil?
+            @ServerUrls = []
+            params['ServerUrls'].each do |i|
+              describeoutputrtmppullserverurl_tmp = DescribeOutputRTMPPullServerUrl.new
+              describeoutputrtmppullserverurl_tmp.deserialize(i)
+              @ServerUrls << describeoutputrtmppullserverurl_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输出的RTMP配置信息。
+      class DescribeOutputRTMPSettings < TencentCloud::Common::AbstractModel
+        # @param IdleTimeout: 空闲超时时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdleTimeout: Integer
+        # @param ChunkSize: Chunk大小。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChunkSize: Integer
+        # @param Destinations: 转推RTMP的目标地址信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destinations: Array
+
+        attr_accessor :IdleTimeout, :ChunkSize, :Destinations
+        
+        def initialize(idletimeout=nil, chunksize=nil, destinations=nil)
+          @IdleTimeout = idletimeout
+          @ChunkSize = chunksize
+          @Destinations = destinations
+        end
+
+        def deserialize(params)
+          @IdleTimeout = params['IdleTimeout']
+          @ChunkSize = params['ChunkSize']
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              rtmpaddressdestination_tmp = RTMPAddressDestination.new
+              rtmpaddressdestination_tmp.deserialize(i)
+              @Destinations << rtmpaddressdestination_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输出的RTP配置信息。
+      class DescribeOutputRTPSettings < TencentCloud::Common::AbstractModel
+        # @param Destinations: 转推RTP的目标地址信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destinations: Array
+        # @param FEC: 是否FEC。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FEC: String
+        # @param IdleTimeout: 空闲超时时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdleTimeout: Integer
+
+        attr_accessor :Destinations, :FEC, :IdleTimeout
+        
+        def initialize(destinations=nil, fec=nil, idletimeout=nil)
+          @Destinations = destinations
+          @FEC = fec
+          @IdleTimeout = idletimeout
+        end
+
+        def deserialize(params)
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              rtpaddressdestination_tmp = RTPAddressDestination.new
+              rtpaddressdestination_tmp.deserialize(i)
+              @Destinations << rtpaddressdestination_tmp
+            end
+          end
+          @FEC = params['FEC']
+          @IdleTimeout = params['IdleTimeout']
+        end
+      end
+
+      # 查询输出的RTSP拉流URL信息。
+      class DescribeOutputRTSPPullServerUrl < TencentCloud::Common::AbstractModel
+        # @param Url: RTSP拉流地址的Url。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # 查询输出的RTSP拉流配置信息。
+      class DescribeOutputRTSPPullSettings < TencentCloud::Common::AbstractModel
+        # @param ServerUrls: RTSP拉流地址列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerUrls: Array
+
+        attr_accessor :ServerUrls
+        
+        def initialize(serverurls=nil)
+          @ServerUrls = serverurls
+        end
+
+        def deserialize(params)
+          unless params['ServerUrls'].nil?
+            @ServerUrls = []
+            params['ServerUrls'].each do |i|
+              describeoutputrtsppullserverurl_tmp = DescribeOutputRTSPPullServerUrl.new
+              describeoutputrtsppullserverurl_tmp.deserialize(i)
+              @ServerUrls << describeoutputrtsppullserverurl_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输出的SRT配置信息。
+      class DescribeOutputSRTSettings < TencentCloud::Common::AbstractModel
+        # @param Destinations: 转推的目标的地址信息列表，SRT模式为CALLER时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destinations: Array
+        # @param StreamId: 流Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamId: String
+        # @param Latency: 延迟。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Latency: Integer
+        # @param RecvLatency: 接收延迟。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecvLatency: Integer
+        # @param PeerLatency: 对端延迟。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeerLatency: Integer
+        # @param PeerIdleTimeout: 对端空闲超时时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeerIdleTimeout: Integer
+        # @param Passphrase: 加密密钥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Passphrase: String
+        # @param PbKeyLen: 加密密钥长度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PbKeyLen: Integer
+        # @param Mode: SRT模式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param SourceAddresses: 服务器监听地址，SRT模式为LISTENER时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceAddresses: Array
+
+        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode, :SourceAddresses
+        
+        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil, sourceaddresses=nil)
+          @Destinations = destinations
+          @StreamId = streamid
+          @Latency = latency
+          @RecvLatency = recvlatency
+          @PeerLatency = peerlatency
+          @PeerIdleTimeout = peeridletimeout
+          @Passphrase = passphrase
+          @PbKeyLen = pbkeylen
+          @Mode = mode
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              srtaddressdestination_tmp = SRTAddressDestination.new
+              srtaddressdestination_tmp.deserialize(i)
+              @Destinations << srtaddressdestination_tmp
+            end
+          end
+          @StreamId = params['StreamId']
+          @Latency = params['Latency']
+          @RecvLatency = params['RecvLatency']
+          @PeerLatency = params['PeerLatency']
+          @PeerIdleTimeout = params['PeerIdleTimeout']
+          @Passphrase = params['Passphrase']
+          @PbKeyLen = params['PbKeyLen']
+          @Mode = params['Mode']
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              outputsrtsourceaddressresp_tmp = OutputSRTSourceAddressResp.new
+              outputsrtsourceaddressresp_tmp.deserialize(i)
+              @SourceAddresses << outputsrtsourceaddressresp_tmp
+            end
+          end
         end
       end
 
@@ -5623,6 +6810,45 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询输入的RTMP配置信息。
+      class DescribeRTMPPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param TcUrl: RTMP源站的TcUrl地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcUrl: String
+        # @param StreamKey: RTMP源站的StreamKey。
+        # RTMP源站地址拼接规则为：$TcUrl/$StreamKey。
+        # @type StreamKey: String
+
+        attr_accessor :TcUrl, :StreamKey
+        
+        def initialize(tcurl=nil, streamkey=nil)
+          @TcUrl = tcurl
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @TcUrl = params['TcUrl']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 查询输入的RTSP配置信息。
+      class DescribeRTSPPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param Url: RTSP源站的Url地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 
@@ -5743,6 +6969,524 @@ module TencentCloud
               snapshotbytimeoffsettemplate_tmp.deserialize(i)
               @SnapshotByTimeOffsetTemplateSet << snapshotbytimeoffsettemplate_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkActivateState请求参数结构体
+      class DescribeStreamLinkActivateStateRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStreamLinkActivateState返回参数结构体
+      class DescribeStreamLinkActivateStateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 用户已激活为0，否则为非0。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlowLogs请求参数结构体
+      class DescribeStreamLinkFlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流Id。
+        # @type FlowId: String
+        # @param StartTime: 统计的开始时间，默认为前一小时，最多支持查询近7天。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type StartTime: String
+        # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type EndTime: String
+        # @param Type: 输入或输出类型，可选[input|output]。
+        # @type Type: Array
+        # @param Pipeline: 主通道或备通道，可选[0|1]。
+        # @type Pipeline: Array
+        # @param PageSize: 每页大小，默认100，范围为[1, 1000]。
+        # @type PageSize: Integer
+        # @param SortType: 按Timestamp升序或降序排序，默认降序，可选[desc|asc]。
+        # @type SortType: String
+        # @param PageNum: 页码，默认1，范围为[1, 1000]。
+        # @type PageNum: Integer
+
+        attr_accessor :FlowId, :StartTime, :EndTime, :Type, :Pipeline, :PageSize, :SortType, :PageNum
+        
+        def initialize(flowid=nil, starttime=nil, endtime=nil, type=nil, pipeline=nil, pagesize=nil, sorttype=nil, pagenum=nil)
+          @FlowId = flowid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Pipeline = pipeline
+          @PageSize = pagesize
+          @SortType = sorttype
+          @PageNum = pagenum
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Pipeline = params['Pipeline']
+          @PageSize = params['PageSize']
+          @SortType = params['SortType']
+          @PageNum = params['PageNum']
+        end
+      end
+
+      # DescribeStreamLinkFlowLogs返回参数结构体
+      class DescribeStreamLinkFlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 日志信息列表。
+        # @type Infos: Array
+        # @param PageNum: 当前页码。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+        
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              flowloginfo_tmp = FlowLogInfo.new
+              flowloginfo_tmp.deserialize(i)
+              @Infos << flowloginfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlowMediaStatistics请求参数结构体
+      class DescribeStreamLinkFlowMediaStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流ID。
+        # @type FlowId: String
+        # @param Type: 输入或输出类型，可选[input|output]。
+        # @type Type: String
+        # @param InputOutputId: 输入或输出Id。
+        # @type InputOutputId: String
+        # @param Pipeline: 主通道或备通道，可选[0|1]。
+        # @type Pipeline: String
+        # @param Period: 查询间隔，可选[5s|1min|5min|15min]。
+        # @type Period: String
+        # @param StartTime: 统计的开始时间，默认为前一小时，最多支持查询近7天。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type StartTime: String
+        # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type EndTime: String
+
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime
+        
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil)
+          @FlowId = flowid
+          @Type = type
+          @InputOutputId = inputoutputid
+          @Pipeline = pipeline
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @Type = params['Type']
+          @InputOutputId = params['InputOutputId']
+          @Pipeline = params['Pipeline']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeStreamLinkFlowMediaStatistics返回参数结构体
+      class DescribeStreamLinkFlowMediaStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 传输流的媒体数据列表。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+        
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              flowmediainfo_tmp = FlowMediaInfo.new
+              flowmediainfo_tmp.deserialize(i)
+              @Infos << flowmediainfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlowRealtimeStatus请求参数结构体
+      class DescribeStreamLinkFlowRealtimeStatusRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流ID。
+        # @type FlowId: String
+        # @param InputIds: 输入id数组，如果输入输出数组都为空，则代表全量查询。
+        # @type InputIds: Array
+        # @param OutputIds: 输出id数组，如果输入输出数组都为空，则代表全量查询。
+        # @type OutputIds: Array
+
+        attr_accessor :FlowId, :InputIds, :OutputIds
+        
+        def initialize(flowid=nil, inputids=nil, outputids=nil)
+          @FlowId = flowid
+          @InputIds = inputids
+          @OutputIds = outputids
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @InputIds = params['InputIds']
+          @OutputIds = params['OutputIds']
+        end
+      end
+
+      # DescribeStreamLinkFlowRealtimeStatus返回参数结构体
+      class DescribeStreamLinkFlowRealtimeStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 查询时间，单位s。
+        # @type Timestamp: Integer
+        # @param Datas: 实时数据信息列表。
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Timestamp, :Datas, :RequestId
+        
+        def initialize(timestamp=nil, datas=nil, requestid=nil)
+          @Timestamp = timestamp
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              flowrealtimestatusitem_tmp = FlowRealtimeStatusItem.new
+              flowrealtimestatusitem_tmp.deserialize(i)
+              @Datas << flowrealtimestatusitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlow请求参数结构体
+      class DescribeStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeStreamLinkFlow返回参数结构体
+      class DescribeStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 流的配置信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeFlow`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeFlow.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlowSRTStatistics请求参数结构体
+      class DescribeStreamLinkFlowSRTStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流ID。
+        # @type FlowId: String
+        # @param Type: 输入或输出类型，可选[input|output]。
+        # @type Type: String
+        # @param InputOutputId: 输入或输出Id。
+        # @type InputOutputId: String
+        # @param Pipeline: 主通道或备通道，可选[0|1]。
+        # @type Pipeline: String
+        # @param StartTime: 统计的开始时间，默认为前一小时，最多支持查询近7天。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type StartTime: String
+        # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type EndTime: String
+        # @param Period: 查询间隔，可选[5s|1min|5min|15min]。
+        # @type Period: String
+
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :StartTime, :EndTime, :Period
+        
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, starttime=nil, endtime=nil, period=nil)
+          @FlowId = flowid
+          @Type = type
+          @InputOutputId = inputoutputid
+          @Pipeline = pipeline
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @Type = params['Type']
+          @InputOutputId = params['InputOutputId']
+          @Pipeline = params['Pipeline']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeStreamLinkFlowSRTStatistics返回参数结构体
+      class DescribeStreamLinkFlowSRTStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 传输流的SRT质量数据列表。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+        
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              flowsrtinfo_tmp = FlowSRTInfo.new
+              flowsrtinfo_tmp.deserialize(i)
+              @Infos << flowsrtinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlowStatistics请求参数结构体
+      class DescribeStreamLinkFlowStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 传输流ID。
+        # @type FlowId: String
+        # @param Type: 输入或输出类型，可选[input|output]。
+        # @type Type: String
+        # @param InputOutputId: 输入或输出Id。
+        # @type InputOutputId: String
+        # @param Pipeline: 主通道或备通道，可选[0|1]。
+        # @type Pipeline: String
+        # @param Period: 查询间隔，可选[5s|1min|5min|15min]。
+        # @type Period: String
+        # @param StartTime: 统计的开始时间，默认为前一小时，最多支持查询近7天。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type StartTime: String
+        # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
+        # UTC时间，如'2020-01-01T12:00:00Z'。
+        # @type EndTime: String
+
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime
+        
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil)
+          @FlowId = flowid
+          @Type = type
+          @InputOutputId = inputoutputid
+          @Pipeline = pipeline
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @Type = params['Type']
+          @InputOutputId = params['InputOutputId']
+          @Pipeline = params['Pipeline']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeStreamLinkFlowStatistics返回参数结构体
+      class DescribeStreamLinkFlowStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 传输流的媒体数据列表。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+        
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              flowstatisticsarray_tmp = FlowStatisticsArray.new
+              flowstatisticsarray_tmp.deserialize(i)
+              @Infos << flowstatisticsarray_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkFlows请求参数结构体
+      class DescribeStreamLinkFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 当前页数，默认1。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，默认10。
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+        
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamLinkFlows返回参数结构体
+      class DescribeStreamLinkFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 流的配置信息列表。
+        # @type Infos: Array
+        # @param PageNum: 当前页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+        
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              describeflow_tmp = DescribeFlow.new
+              describeflow_tmp.deserialize(i)
+              @Infos << describeflow_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkRegions请求参数结构体
+      class DescribeStreamLinkRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStreamLinkRegions返回参数结构体
+      class DescribeStreamLinkRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 媒体传输地区信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.StreamLinkRegionInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = StreamLinkRegionInfo.new
+            @Info.deserialize(params['Info'])
           end
           @RequestId = params['RequestId']
         end
@@ -6671,6 +8415,508 @@ module TencentCloud
         end
       end
 
+      # 流的音频数据。
+      class FlowAudio < TencentCloud::Common::AbstractModel
+        # @param Fps: 帧率。
+        # @type Fps: Integer
+        # @param Rate: 码率，单位是bps。
+        # @type Rate: Integer
+        # @param Pid: 音频Pid。
+        # @type Pid: Integer
+
+        attr_accessor :Fps, :Rate, :Pid
+        
+        def initialize(fps=nil, rate=nil, pid=nil)
+          @Fps = fps
+          @Rate = rate
+          @Pid = pid
+        end
+
+        def deserialize(params)
+          @Fps = params['Fps']
+          @Rate = params['Rate']
+          @Pid = params['Pid']
+        end
+      end
+
+      # 传输流日志信息。
+      class FlowLogInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳，单位为秒。
+        # @type Timestamp: Integer
+        # @param Type: 输入输出类型（input/output）。
+        # @type Type: String
+        # @param InputOutputId: 输入或输出Id。
+        # @type InputOutputId: String
+        # @param Protocol: 协议。
+        # @type Protocol: String
+        # @param EventCode: 事件代码。
+        # @type EventCode: String
+        # @param EventMessage: 事件信息。
+        # @type EventMessage: String
+        # @param RemoteIp: 对端IP。
+        # @type RemoteIp: String
+        # @param RemotePort: 对端端口。
+        # @type RemotePort: String
+        # @param Pipeline: 主备通道，0为主通道，1为备通道。
+        # @type Pipeline: String
+        # @param InputOutputName: 输入或输出的名称。
+        # @type InputOutputName: String
+
+        attr_accessor :Timestamp, :Type, :InputOutputId, :Protocol, :EventCode, :EventMessage, :RemoteIp, :RemotePort, :Pipeline, :InputOutputName
+        
+        def initialize(timestamp=nil, type=nil, inputoutputid=nil, protocol=nil, eventcode=nil, eventmessage=nil, remoteip=nil, remoteport=nil, pipeline=nil, inputoutputname=nil)
+          @Timestamp = timestamp
+          @Type = type
+          @InputOutputId = inputoutputid
+          @Protocol = protocol
+          @EventCode = eventcode
+          @EventMessage = eventmessage
+          @RemoteIp = remoteip
+          @RemotePort = remoteport
+          @Pipeline = pipeline
+          @InputOutputName = inputoutputname
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Type = params['Type']
+          @InputOutputId = params['InputOutputId']
+          @Protocol = params['Protocol']
+          @EventCode = params['EventCode']
+          @EventMessage = params['EventMessage']
+          @RemoteIp = params['RemoteIp']
+          @RemotePort = params['RemotePort']
+          @Pipeline = params['Pipeline']
+          @InputOutputName = params['InputOutputName']
+        end
+      end
+
+      # 传输流媒体的音频数据。
+      class FlowMediaAudio < TencentCloud::Common::AbstractModel
+        # @param Fps: 帧率。
+        # @type Fps: Integer
+        # @param Rate: 码率，单位是bps。
+        # @type Rate: Integer
+        # @param Pid: 音频Pid。
+        # @type Pid: Integer
+        # @param SessionId: 标志同一次推流。
+        # @type SessionId: String
+
+        attr_accessor :Fps, :Rate, :Pid, :SessionId
+        
+        def initialize(fps=nil, rate=nil, pid=nil, sessionid=nil)
+          @Fps = fps
+          @Rate = rate
+          @Pid = pid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @Fps = params['Fps']
+          @Rate = params['Rate']
+          @Pid = params['Pid']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # 传输流的媒体数据。
+      class FlowMediaInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳，单位是秒。
+        # @type Timestamp: Integer
+        # @param Network: 总带宽。
+        # @type Network: Integer
+        # @param Video: 传输流的视频数据。
+        # @type Video: Array
+        # @param Audio: 传输流的音频数据。
+        # @type Audio: Array
+        # @param SessionId: 标志同一次推流。
+        # @type SessionId: String
+        # @param ClientIp: 客户端IP。
+        # @type ClientIp: String
+
+        attr_accessor :Timestamp, :Network, :Video, :Audio, :SessionId, :ClientIp
+        
+        def initialize(timestamp=nil, network=nil, video=nil, audio=nil, sessionid=nil, clientip=nil)
+          @Timestamp = timestamp
+          @Network = network
+          @Video = video
+          @Audio = audio
+          @SessionId = sessionid
+          @ClientIp = clientip
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Network = params['Network']
+          unless params['Video'].nil?
+            @Video = []
+            params['Video'].each do |i|
+              flowmediavideo_tmp = FlowMediaVideo.new
+              flowmediavideo_tmp.deserialize(i)
+              @Video << flowmediavideo_tmp
+            end
+          end
+          unless params['Audio'].nil?
+            @Audio = []
+            params['Audio'].each do |i|
+              flowmediaaudio_tmp = FlowMediaAudio.new
+              flowmediaaudio_tmp.deserialize(i)
+              @Audio << flowmediaaudio_tmp
+            end
+          end
+          @SessionId = params['SessionId']
+          @ClientIp = params['ClientIp']
+        end
+      end
+
+      # 传输流媒体的视频数据。
+      class FlowMediaVideo < TencentCloud::Common::AbstractModel
+        # @param Fps: 帧率。
+        # @type Fps: Integer
+        # @param Rate: 码率，单位是bps。
+        # @type Rate: Integer
+        # @param Pid: 视频Pid。
+        # @type Pid: Integer
+        # @param SessionId: 标志同一次推流。
+        # @type SessionId: String
+
+        attr_accessor :Fps, :Rate, :Pid, :SessionId
+        
+        def initialize(fps=nil, rate=nil, pid=nil, sessionid=nil)
+          @Fps = fps
+          @Rate = rate
+          @Pid = pid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @Fps = params['Fps']
+          @Rate = params['Rate']
+          @Pid = params['Pid']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # 实时流状态查询的通用状态信息。
+      class FlowRealtimeStatusCommon < TencentCloud::Common::AbstractModel
+        # @param State: 当前连接状态，Connected|Waiting|Idle。
+        # @type State: String
+        # @param Mode: 连接模式，Listener|Caller。
+        # @type Mode: String
+        # @param ConnectedTime: 已连接时长，单位为ms。
+        # @type ConnectedTime: Integer
+        # @param Bitrate: 实时码率，单位为bps。
+        # @type Bitrate: Integer
+        # @param Reconnections: 重试次数。
+        # @type Reconnections: Integer
+
+        attr_accessor :State, :Mode, :ConnectedTime, :Bitrate, :Reconnections
+        
+        def initialize(state=nil, mode=nil, connectedtime=nil, bitrate=nil, reconnections=nil)
+          @State = state
+          @Mode = mode
+          @ConnectedTime = connectedtime
+          @Bitrate = bitrate
+          @Reconnections = reconnections
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          @Mode = params['Mode']
+          @ConnectedTime = params['ConnectedTime']
+          @Bitrate = params['Bitrate']
+          @Reconnections = params['Reconnections']
+        end
+      end
+
+      # 流状态实时查询接口的流状态信息
+      class FlowRealtimeStatusItem < TencentCloud::Common::AbstractModel
+        # @param Type: 类型，Input|Output。
+        # @type Type: String
+        # @param InputId: 输入Id，如果Type为Input，此字段不为空。
+        # @type InputId: String
+        # @param OutputId: 输出Id，如果Type为Output，此字段不为空。
+        # @type OutputId: String
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param Protocol: 协议， SRT | RTMP。
+        # @type Protocol: String
+        # @param CommonStatus: 共同状态信息。
+        # @type CommonStatus: :class:`Tencentcloud::Mps.v20190612.models.FlowRealtimeStatusCommon`
+        # @param SRTStatus: 如果是SRT协议则有此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SRTStatus: :class:`Tencentcloud::Mps.v20190612.models.FlowRealtimeStatusSRT`
+        # @param RTMPStatus: 如果是RTMP协议则有此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTMPStatus: :class:`Tencentcloud::Mps.v20190612.models.FlowRealtimeStatusRTMP`
+        # @param ConnectServerIP: 服务器IP。
+        # @type ConnectServerIP: String
+        # @param RTPStatus: 如果是RTP协议则有此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTPStatus: :class:`Tencentcloud::Mps.v20190612.models.FlowRealtimeStatusRTP`
+
+        attr_accessor :Type, :InputId, :OutputId, :FlowId, :Protocol, :CommonStatus, :SRTStatus, :RTMPStatus, :ConnectServerIP, :RTPStatus
+        
+        def initialize(type=nil, inputid=nil, outputid=nil, flowid=nil, protocol=nil, commonstatus=nil, srtstatus=nil, rtmpstatus=nil, connectserverip=nil, rtpstatus=nil)
+          @Type = type
+          @InputId = inputid
+          @OutputId = outputid
+          @FlowId = flowid
+          @Protocol = protocol
+          @CommonStatus = commonstatus
+          @SRTStatus = srtstatus
+          @RTMPStatus = rtmpstatus
+          @ConnectServerIP = connectserverip
+          @RTPStatus = rtpstatus
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @InputId = params['InputId']
+          @OutputId = params['OutputId']
+          @FlowId = params['FlowId']
+          @Protocol = params['Protocol']
+          unless params['CommonStatus'].nil?
+            @CommonStatus = FlowRealtimeStatusCommon.new
+            @CommonStatus.deserialize(params['CommonStatus'])
+          end
+          unless params['SRTStatus'].nil?
+            @SRTStatus = FlowRealtimeStatusSRT.new
+            @SRTStatus.deserialize(params['SRTStatus'])
+          end
+          unless params['RTMPStatus'].nil?
+            @RTMPStatus = FlowRealtimeStatusRTMP.new
+            @RTMPStatus.deserialize(params['RTMPStatus'])
+          end
+          @ConnectServerIP = params['ConnectServerIP']
+          unless params['RTPStatus'].nil?
+            @RTPStatus = FlowRealtimeStatusRTP.new
+            @RTPStatus.deserialize(params['RTPStatus'])
+          end
+        end
+      end
+
+      # 流状态实时查询接口的RTMP信息。
+      class FlowRealtimeStatusRTMP < TencentCloud::Common::AbstractModel
+        # @param VideoFPS: 视频帧率。
+        # @type VideoFPS: Integer
+        # @param AudioFPS: 音频帧率。
+        # @type AudioFPS: Integer
+
+        attr_accessor :VideoFPS, :AudioFPS
+        
+        def initialize(videofps=nil, audiofps=nil)
+          @VideoFPS = videofps
+          @AudioFPS = audiofps
+        end
+
+        def deserialize(params)
+          @VideoFPS = params['VideoFPS']
+          @AudioFPS = params['AudioFPS']
+        end
+      end
+
+      # 流状态实时查询接口的RTP流状态信息
+      class FlowRealtimeStatusRTP < TencentCloud::Common::AbstractModel
+        # @param Packets: 传输的包个数
+        # @type Packets: Integer
+
+        attr_accessor :Packets
+        
+        def initialize(packets=nil)
+          @Packets = packets
+        end
+
+        def deserialize(params)
+          @Packets = params['Packets']
+        end
+      end
+
+      # 流状态实时查询接口的SRT信息。
+      class FlowRealtimeStatusSRT < TencentCloud::Common::AbstractModel
+        # @param Latency: 延迟，单位为ms。
+        # @type Latency: Integer
+        # @param RTT: RTT，单位为ms。
+        # @type RTT: Integer
+        # @param Packets: 实时发包数或者收包数。
+        # @type Packets: Integer
+        # @param PacketLossRate: 丢包率。
+        # @type PacketLossRate: Float
+        # @param RetransmitRate: 重传率。
+        # @type RetransmitRate: Float
+        # @param DroppedPackets: 实时丢包数。
+        # @type DroppedPackets: Integer
+        # @param Encryption: 是否加密，On|Off。
+        # @type Encryption: String
+
+        attr_accessor :Latency, :RTT, :Packets, :PacketLossRate, :RetransmitRate, :DroppedPackets, :Encryption
+        
+        def initialize(latency=nil, rtt=nil, packets=nil, packetlossrate=nil, retransmitrate=nil, droppedpackets=nil, encryption=nil)
+          @Latency = latency
+          @RTT = rtt
+          @Packets = packets
+          @PacketLossRate = packetlossrate
+          @RetransmitRate = retransmitrate
+          @DroppedPackets = droppedpackets
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @Latency = params['Latency']
+          @RTT = params['RTT']
+          @Packets = params['Packets']
+          @PacketLossRate = params['PacketLossRate']
+          @RetransmitRate = params['RetransmitRate']
+          @DroppedPackets = params['DroppedPackets']
+          @Encryption = params['Encryption']
+        end
+      end
+
+      # 传输流的SRT质量数据。
+      class FlowSRTInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳，单位是秒。
+        # @type Timestamp: Integer
+        # @param SendPacketLossRate: 发送丢包率。
+        # @type SendPacketLossRate: Integer
+        # @param SendRetransmissionRate: 发送重传率。
+        # @type SendRetransmissionRate: Integer
+        # @param RecvPacketLossRate: 接收丢包率。
+        # @type RecvPacketLossRate: Integer
+        # @param RecvRetransmissionRate: 接收重传率。
+        # @type RecvRetransmissionRate: Integer
+        # @param RTT: 与对端的RTT时延。
+        # @type RTT: Integer
+        # @param SessionId: 标志同一次推流。
+        # @type SessionId: String
+        # @param SendPacketDropNumber: 发送弃包数。
+        # @type SendPacketDropNumber: Integer
+        # @param RecvPacketDropNumber: 接收弃包数。
+        # @type RecvPacketDropNumber: Integer
+
+        attr_accessor :Timestamp, :SendPacketLossRate, :SendRetransmissionRate, :RecvPacketLossRate, :RecvRetransmissionRate, :RTT, :SessionId, :SendPacketDropNumber, :RecvPacketDropNumber
+        
+        def initialize(timestamp=nil, sendpacketlossrate=nil, sendretransmissionrate=nil, recvpacketlossrate=nil, recvretransmissionrate=nil, rtt=nil, sessionid=nil, sendpacketdropnumber=nil, recvpacketdropnumber=nil)
+          @Timestamp = timestamp
+          @SendPacketLossRate = sendpacketlossrate
+          @SendRetransmissionRate = sendretransmissionrate
+          @RecvPacketLossRate = recvpacketlossrate
+          @RecvRetransmissionRate = recvretransmissionrate
+          @RTT = rtt
+          @SessionId = sessionid
+          @SendPacketDropNumber = sendpacketdropnumber
+          @RecvPacketDropNumber = recvpacketdropnumber
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @SendPacketLossRate = params['SendPacketLossRate']
+          @SendRetransmissionRate = params['SendRetransmissionRate']
+          @RecvPacketLossRate = params['RecvPacketLossRate']
+          @RecvRetransmissionRate = params['RecvRetransmissionRate']
+          @RTT = params['RTT']
+          @SessionId = params['SessionId']
+          @SendPacketDropNumber = params['SendPacketDropNumber']
+          @RecvPacketDropNumber = params['RecvPacketDropNumber']
+        end
+      end
+
+      # 流的统计数据。
+      class FlowStatistics < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话Id。
+        # @type SessionId: String
+        # @param ClientIp: 对端IP。
+        # @type ClientIp: String
+        # @param Network: 总带宽。
+        # @type Network: Integer
+        # @param Video: 视频数据。
+        # @type Video: Array
+        # @param Audio: 音频数据。
+        # @type Audio: Array
+
+        attr_accessor :SessionId, :ClientIp, :Network, :Video, :Audio
+        
+        def initialize(sessionid=nil, clientip=nil, network=nil, video=nil, audio=nil)
+          @SessionId = sessionid
+          @ClientIp = clientip
+          @Network = network
+          @Video = video
+          @Audio = audio
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @ClientIp = params['ClientIp']
+          @Network = params['Network']
+          unless params['Video'].nil?
+            @Video = []
+            params['Video'].each do |i|
+              flowvideo_tmp = FlowVideo.new
+              flowvideo_tmp.deserialize(i)
+              @Video << flowvideo_tmp
+            end
+          end
+          unless params['Audio'].nil?
+            @Audio = []
+            params['Audio'].each do |i|
+              flowaudio_tmp = FlowAudio.new
+              flowaudio_tmp.deserialize(i)
+              @Audio << flowaudio_tmp
+            end
+          end
+        end
+      end
+
+      # 流的统计数据列表。
+      class FlowStatisticsArray < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳。
+        # @type Timestamp: Integer
+        # @param FlowStatistics: 每个会话的统计数据。
+        # @type FlowStatistics: Array
+
+        attr_accessor :Timestamp, :FlowStatistics
+        
+        def initialize(timestamp=nil, flowstatistics=nil)
+          @Timestamp = timestamp
+          @FlowStatistics = flowstatistics
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          unless params['FlowStatistics'].nil?
+            @FlowStatistics = []
+            params['FlowStatistics'].each do |i|
+              flowstatistics_tmp = FlowStatistics.new
+              flowstatistics_tmp.deserialize(i)
+              @FlowStatistics << flowstatistics_tmp
+            end
+          end
+        end
+      end
+
+      # 流的视频数据。
+      class FlowVideo < TencentCloud::Common::AbstractModel
+        # @param Fps: 帧率。
+        # @type Fps: Integer
+        # @param Rate: 码率，单位是bps。
+        # @type Rate: Integer
+        # @param Pid: 音频Pid。
+        # @type Pid: Integer
+
+        attr_accessor :Fps, :Rate, :Pid
+        
+        def initialize(fps=nil, rate=nil, pid=nil)
+          @Fps = fps
+          @Rate = rate
+          @Pid = pid
+        end
+
+        def deserialize(params)
+          @Fps = params['Fps']
+          @Rate = params['Rate']
+          @Pid = params['Pid']
+        end
+      end
+
       # 插帧帧率配置
       class FrameRateConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -7060,6 +9306,26 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+        end
+      end
+
+      # 输入地址信息。
+      class InputAddress < TencentCloud::Common::AbstractModel
+        # @param Ip: 输入地址的IP。
+        # @type Ip: String
+        # @param Port: 输入地址的端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 
@@ -9464,6 +11730,127 @@ module TencentCloud
         end
       end
 
+      # 修改输入信息的参数。
+      class ModifyInput < TencentCloud::Common::AbstractModel
+        # @param InputId: 输入Id。
+        # @type InputId: String
+        # @param InputName: 输入名称。
+        # @type InputName: String
+        # @param Description: 输入描述。
+        # @type Description: String
+        # @param AllowIpList: 允许的推流的IP，CIDR格式。
+        # @type AllowIpList: Array
+        # @param SRTSettings: SRT的配置信息。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputSRTSettings`
+        # @param RTPSettings: RTP的配置信息。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTPSettings`
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP]。
+        # 当输出包含RTP时，输入只能是RTP。
+        # 当输出包含RTMP时，输入可以是SRT/RTMP。
+        # 当输出包含SRT时，输入只能是SRT。
+        # @type Protocol: String
+        # @param FailOver: 输入的主备开关，可选[OPEN|CLOSE]。
+        # @type FailOver: String
+        # @param RTMPPullSettings: RTMP_PULL的配置信息。
+        # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTMPPullSettings`
+        # @param RTSPPullSettings: RTSP_PULL的配置信息。
+        # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
+
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+          @InputId = inputid
+          @InputName = inputname
+          @Description = description
+          @AllowIpList = allowiplist
+          @SRTSettings = srtsettings
+          @RTPSettings = rtpsettings
+          @Protocol = protocol
+          @FailOver = failover
+          @RTMPPullSettings = rtmppullsettings
+          @RTSPPullSettings = rtsppullsettings
+        end
+
+        def deserialize(params)
+          @InputId = params['InputId']
+          @InputName = params['InputName']
+          @Description = params['Description']
+          @AllowIpList = params['AllowIpList']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = CreateInputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = CreateInputRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          @Protocol = params['Protocol']
+          @FailOver = params['FailOver']
+          unless params['RTMPPullSettings'].nil?
+            @RTMPPullSettings = CreateInputRTMPPullSettings.new
+            @RTMPPullSettings.deserialize(params['RTMPPullSettings'])
+          end
+          unless params['RTSPPullSettings'].nil?
+            @RTSPPullSettings = CreateInputRTSPPullSettings.new
+            @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+        end
+      end
+
+      # 修改Output配置。
+      class ModifyOutputInfo < TencentCloud::Common::AbstractModel
+        # @param OutputId: 需要修改的Output的Id。
+        # @type OutputId: String
+        # @param OutputName: 输出的名称。
+        # @type OutputName: String
+        # @param Description: 输出的描述。
+        # @type Description: String
+        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP。
+        # @type Protocol: String
+        # @param SRTSettings: 转推SRT的配置。
+        # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
+        # @param RTPSettings: 转推RTP的配置。
+        # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputInfoRTPSettings`
+        # @param RTMPSettings: 转推RTMP的配置。
+        # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRTMPSettings`
+        # @param AllowIpList: IP白名单列表，格式为CIDR，如0.0.0.0/0。
+        # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
+        # @type AllowIpList: Array
+
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList
+        
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil)
+          @OutputId = outputid
+          @OutputName = outputname
+          @Description = description
+          @Protocol = protocol
+          @SRTSettings = srtsettings
+          @RTPSettings = rtpsettings
+          @RTMPSettings = rtmpsettings
+          @AllowIpList = allowiplist
+        end
+
+        def deserialize(params)
+          @OutputId = params['OutputId']
+          @OutputName = params['OutputName']
+          @Description = params['Description']
+          @Protocol = params['Protocol']
+          unless params['SRTSettings'].nil?
+            @SRTSettings = CreateOutputSRTSettings.new
+            @SRTSettings.deserialize(params['SRTSettings'])
+          end
+          unless params['RTPSettings'].nil?
+            @RTPSettings = CreateOutputInfoRTPSettings.new
+            @RTPSettings.deserialize(params['RTPSettings'])
+          end
+          unless params['RTMPSettings'].nil?
+            @RTMPSettings = CreateOutputRTMPSettings.new
+            @RTMPSettings.deserialize(params['RTMPSettings'])
+          end
+          @AllowIpList = params['AllowIpList']
+        end
+      end
+
       # ModifyPersonSample请求参数结构体
       class ModifyPersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
@@ -9708,6 +12095,134 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamLinkFlow请求参数结构体
+      class ModifyStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param FlowName: 需要修改的流名称。
+        # @type FlowName: String
+
+        attr_accessor :FlowId, :FlowName
+        
+        def initialize(flowid=nil, flowname=nil)
+          @FlowId = flowid
+          @FlowName = flowname
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @FlowName = params['FlowName']
+        end
+      end
+
+      # ModifyStreamLinkFlow返回参数结构体
+      class ModifyStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamLinkInput请求参数结构体
+      class ModifyStreamLinkInputRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param Input: 需要修改的Input信息。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.ModifyInput`
+
+        attr_accessor :FlowId, :Input
+        
+        def initialize(flowid=nil, input=nil)
+          @FlowId = flowid
+          @Input = input
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Input'].nil?
+            @Input = ModifyInput.new
+            @Input.deserialize(params['Input'])
+          end
+        end
+      end
+
+      # ModifyStreamLinkInput返回参数结构体
+      class ModifyStreamLinkInputResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 修改后的Input信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeInput`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeInput.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamLinkOutputInfo请求参数结构体
+      class ModifyStreamLinkOutputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param Output: 需要修改的Output配置。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.ModifyOutputInfo`
+
+        attr_accessor :FlowId, :Output
+        
+        def initialize(flowid=nil, output=nil)
+          @FlowId = flowid
+          @Output = output
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Output'].nil?
+            @Output = ModifyOutputInfo.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # ModifyStreamLinkOutputInfo返回参数结构体
+      class ModifyStreamLinkOutputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 修改后的Output配置。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutput`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeOutput.new
+            @Info.deserialize(params['Info'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10099,6 +12614,42 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @LabelSet = params['LabelSet']
+        end
+      end
+
+      # 输出的出口的地址。
+      class OutputAddress < TencentCloud::Common::AbstractModel
+        # @param Ip: 出口IP。
+        # @type Ip: String
+
+        attr_accessor :Ip
+        
+        def initialize(ip=nil)
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+        end
+      end
+
+      # SRT输出的监听地址。
+      class OutputSRTSourceAddressResp < TencentCloud::Common::AbstractModel
+        # @param Ip: 监听IP。
+        # @type Ip: String
+        # @param Port: 监听端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 
@@ -11129,6 +13680,82 @@ module TencentCloud
         end
       end
 
+      # RTMP转推的目标地址信息。
+      class RTMPAddressDestination < TencentCloud::Common::AbstractModel
+        # @param Url: 转推RTMP的目标Url，格式如'rtmp://domain/live'。
+        # @type Url: String
+        # @param StreamKey: 转推RTMP的目标StreamKey，格式如'steamid?key=value'。
+        # @type StreamKey: String
+
+        attr_accessor :Url, :StreamKey
+        
+        def initialize(url=nil, streamkey=nil)
+          @Url = url
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 创建的输入RTMP拉流源站配置信息。
+      class RTMPPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param TcUrl: RTMP源站的TcUrl地址。
+        # @type TcUrl: String
+        # @param StreamKey: RTMP源站的StreamKey信息。
+        # @type StreamKey: String
+
+        attr_accessor :TcUrl, :StreamKey
+        
+        def initialize(tcurl=nil, streamkey=nil)
+          @TcUrl = tcurl
+          @StreamKey = streamkey
+        end
+
+        def deserialize(params)
+          @TcUrl = params['TcUrl']
+          @StreamKey = params['StreamKey']
+        end
+      end
+
+      # 转推的RTP目标地址信息。
+      class RTPAddressDestination < TencentCloud::Common::AbstractModel
+        # @param Ip: 转推的目标地址的IP。
+        # @type Ip: String
+        # @param Port: 转推的目标地址的端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
+      # 创建的输入RTSP拉流源站配置信息。
+      class RTSPPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param Url: RTSP源站的Url地址。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
       # 图片水印模板输入参数
       class RawImageWatermarkInput < TencentCloud::Common::AbstractModel
         # @param ImageContent: 水印图片的输入内容。支持 jpeg、png 图片格式。
@@ -11317,6 +13944,22 @@ module TencentCloud
         end
       end
 
+      # 地区信息。
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 地区名称。
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
       # ResetWorkflow请求参数结构体
       class ResetWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 工作流 ID。
@@ -11407,6 +14050,66 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 转推的目标地址信息。
+      class SRTAddressDestination < TencentCloud::Common::AbstractModel
+        # @param Ip: 目标地址的IP。
+        # @type Ip: String
+        # @param Port: 目标地址的端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
+      # SRT输入源地址。
+      class SRTSourceAddressReq < TencentCloud::Common::AbstractModel
+        # @param Ip: 对端IP。
+        # @type Ip: String
+        # @param Port: 对端端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
+      # SRT输入源地址。
+      class SRTSourceAddressResp < TencentCloud::Common::AbstractModel
+        # @param Ip: 对端IP。
+        # @type Ip: String
+        # @param Port: 对端端口。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+        
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 
@@ -11912,6 +14615,93 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
+        end
+      end
+
+      # StartStreamLinkFlow请求参数结构体
+      class StartStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # StartStreamLinkFlow返回参数结构体
+      class StartStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopStreamLinkFlow请求参数结构体
+      class StopStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # StopStreamLinkFlow返回参数结构体
+      class StopStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 媒体传输的地区信息。
+      class StreamLinkRegionInfo < TencentCloud::Common::AbstractModel
+        # @param Regions: 媒体直传输的地区信息列表。
+        # @type Regions: Array
+
+        attr_accessor :Regions
+        
+        def initialize(regions=nil)
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          unless params['Regions'].nil?
+            @Regions = []
+            params['Regions'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @Regions << regioninfo_tmp
+            end
+          end
         end
       end
 

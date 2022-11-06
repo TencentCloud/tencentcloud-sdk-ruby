@@ -12715,10 +12715,17 @@ module TencentCloud
         # @type Description: String
         # @param Domain: 子域名。
         # @type Domain: String
+        # @param BotLabel: Bot标签，取值有:
+        # <li>evil_bot：恶意Bot；</li>
+        # <li>suspect_bot：疑似Bot；</li>
+        # <li>good_bot：正常Bot；</li>
+        # <li>normal：正常请求；</li>
+        # <li>none：未分类。</li>
+        # @type BotLabel: String
 
-        attr_accessor :RuleId, :RuleTypeName, :Action, :HitTime, :RequestNum, :Description, :Domain
+        attr_accessor :RuleId, :RuleTypeName, :Action, :HitTime, :RequestNum, :Description, :Domain, :BotLabel
         
-        def initialize(ruleid=nil, ruletypename=nil, action=nil, hittime=nil, requestnum=nil, description=nil, domain=nil)
+        def initialize(ruleid=nil, ruletypename=nil, action=nil, hittime=nil, requestnum=nil, description=nil, domain=nil, botlabel=nil)
           @RuleId = ruleid
           @RuleTypeName = ruletypename
           @Action = action
@@ -12726,6 +12733,7 @@ module TencentCloud
           @RequestNum = requestnum
           @Description = description
           @Domain = domain
+          @BotLabel = botlabel
         end
 
         def deserialize(params)
@@ -12736,12 +12744,13 @@ module TencentCloud
           @RequestNum = params['RequestNum']
           @Description = params['Description']
           @Domain = params['Domain']
+          @BotLabel = params['BotLabel']
         end
       end
 
       # 安全规则（cc/waf/bot）相关信息
       class SecRuleRelatedInfo < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID列表（99999为无效id）。
+        # @param RuleId: 规则ID。
         # @type RuleId: Integer
         # @param Action: 执行动作（处置方式），取值有：
         # <li>trans ：通过 ；</li>
@@ -12765,16 +12774,20 @@ module TencentCloud
         # @type Description: String
         # @param RuleTypeName: 规则类型名称。
         # @type RuleTypeName: String
+        # @param AttackContent: 攻击内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackContent: String
 
-        attr_accessor :RuleId, :Action, :RiskLevel, :RuleLevel, :Description, :RuleTypeName
+        attr_accessor :RuleId, :Action, :RiskLevel, :RuleLevel, :Description, :RuleTypeName, :AttackContent
         
-        def initialize(ruleid=nil, action=nil, risklevel=nil, rulelevel=nil, description=nil, ruletypename=nil)
+        def initialize(ruleid=nil, action=nil, risklevel=nil, rulelevel=nil, description=nil, ruletypename=nil, attackcontent=nil)
           @RuleId = ruleid
           @Action = action
           @RiskLevel = risklevel
           @RuleLevel = rulelevel
           @Description = description
           @RuleTypeName = ruletypename
+          @AttackContent = attackcontent
         end
 
         def deserialize(params)
@@ -12784,6 +12797,7 @@ module TencentCloud
           @RuleLevel = params['RuleLevel']
           @Description = params['Description']
           @RuleTypeName = params['RuleTypeName']
+          @AttackContent = params['AttackContent']
         end
       end
 

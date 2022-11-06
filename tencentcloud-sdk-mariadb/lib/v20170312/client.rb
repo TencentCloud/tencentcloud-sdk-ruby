@@ -1017,6 +1017,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
+
+        # @param request: Request instance for IsolateDBInstance.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::IsolateDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::IsolateDBInstanceResponse`
+        def IsolateDBInstance(request)
+          body = send_request('IsolateDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
 
         # @param request: Request instance for IsolateDedicatedDBInstance.

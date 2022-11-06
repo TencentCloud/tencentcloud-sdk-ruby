@@ -13121,18 +13121,21 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
+        # @param Progress: 转自适应码流任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
         # @param Input: 对视频转自适应码流任务的输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AdaptiveDynamicStreamingTaskInput`
         # @param Output: 对视频转自适应码流任务的输出。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AdaptiveDynamicStreamingInfoItem`
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Progress, :Input, :Output
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
+          @Progress = progress
           @Input = input
           @Output = output
         end
@@ -13142,6 +13145,7 @@ module TencentCloud
           @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
+          @Progress = params['Progress']
           unless params['Input'].nil?
             @Input = AdaptiveDynamicStreamingTaskInput.new
             @Input.deserialize(params['Input'])

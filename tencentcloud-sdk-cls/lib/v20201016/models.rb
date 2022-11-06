@@ -17,6 +17,46 @@
 module TencentCloud
   module Cls
     module V20201016
+      # AddMachineGroupInfo请求参数结构体
+      class AddMachineGroupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 机器组ID
+        # @type GroupId: String
+        # @param MachineGroupType: 机器组类型
+        # 目前type支持 ip 和 label
+        # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
+
+        attr_accessor :GroupId, :MachineGroupType
+        
+        def initialize(groupid=nil, machinegrouptype=nil)
+          @GroupId = groupid
+          @MachineGroupType = machinegrouptype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['MachineGroupType'].nil?
+            @MachineGroupType = MachineGroupTypeInfo.new
+            @MachineGroupType.deserialize(params['MachineGroupType'])
+          end
+        end
+      end
+
+      # AddMachineGroupInfo返回参数结构体
+      class AddMachineGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 告警多维分析一些配置信息
       class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -1968,6 +2008,46 @@ module TencentCloud
 
       # DeleteLogset返回参数结构体
       class DeleteLogsetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMachineGroupInfo请求参数结构体
+      class DeleteMachineGroupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 机器组ID
+        # @type GroupId: String
+        # @param MachineGroupType: 机器组类型
+        # 目前type支持 ip 和 label
+        # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
+
+        attr_accessor :GroupId, :MachineGroupType
+        
+        def initialize(groupid=nil, machinegrouptype=nil)
+          @GroupId = groupid
+          @MachineGroupType = machinegrouptype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['MachineGroupType'].nil?
+            @MachineGroupType = MachineGroupTypeInfo.new
+            @MachineGroupType.deserialize(params['MachineGroupType'])
+          end
+        end
+      end
+
+      # DeleteMachineGroupInfo返回参数结构体
+      class DeleteMachineGroupInfoResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

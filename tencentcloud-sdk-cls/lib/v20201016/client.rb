@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 用于添加机器组信息
+
+        # @param request: Request instance for AddMachineGroupInfo.
+        # @type request: :class:`Tencentcloud::cls::V20201016::AddMachineGroupInfoRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::AddMachineGroupInfoResponse`
+        def AddMachineGroupInfo(request)
+          body = send_request('AddMachineGroupInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddMachineGroupInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 应用采集配置到指定机器组
 
         # @param request: Request instance for ApplyConfigToMachineGroup.
@@ -567,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除机器组信息
+
+        # @param request: Request instance for DeleteMachineGroupInfo.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteMachineGroupInfoRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteMachineGroupInfoResponse`
+        def DeleteMachineGroupInfo(request)
+          body = send_request('DeleteMachineGroupInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMachineGroupInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -634,15 +634,18 @@ module TencentCloud
         # @type UsePublicDomain: Boolean
         # @param RegionName: 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
         # @type RegionName: String
+        # @param RegionId: 请求的地域ID，用于实例复制地域
+        # @type RegionId: Integer
 
-        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain, :RegionName
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain, :RegionName, :RegionId
         
-        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil, regionname=nil)
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil, regionname=nil, regionid=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @EniLBIp = enilbip
           @UsePublicDomain = usepublicdomain
           @RegionName = regionname
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -651,6 +654,7 @@ module TencentCloud
           @EniLBIp = params['EniLBIp']
           @UsePublicDomain = params['UsePublicDomain']
           @RegionName = params['RegionName']
+          @RegionId = params['RegionId']
         end
       end
 

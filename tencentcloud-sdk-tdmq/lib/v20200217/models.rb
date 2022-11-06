@@ -1052,10 +1052,13 @@ module TencentCloud
         # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param BrokerType: 0表示pulsar，1表示rocketmq
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerType: Integer
 
-        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status
+        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :BrokerType
         
-        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil)
+        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, brokertype=nil)
           @TopicId = topicid
           @TopicName = topicname
           @MsgRetentionSeconds = msgretentionseconds
@@ -1071,6 +1074,7 @@ module TencentCloud
           @TenantId = tenantid
           @NamespaceName = namespacename
           @Status = status
+          @BrokerType = brokertype
         end
 
         def deserialize(params)
@@ -1096,6 +1100,7 @@ module TencentCloud
           @TenantId = params['TenantId']
           @NamespaceName = params['NamespaceName']
           @Status = params['Status']
+          @BrokerType = params['BrokerType']
         end
       end
 

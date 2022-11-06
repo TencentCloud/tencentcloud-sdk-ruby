@@ -245,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建媒体传输的传输流配置。
+
+        # @param request: Request instance for CreateStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkFlowResponse`
+        def CreateStreamLinkFlow(request)
+          body = send_request('CreateStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建媒体传输流的输出信息。
+
+        # @param request: Request instance for CreateStreamLinkOutputInfo.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkOutputInfoRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkOutputInfoResponse`
+        def CreateStreamLinkOutputInfo(request)
+          body = send_request('CreateStreamLinkOutputInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamLinkOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义转码模板，数量上限：1000。
 
         # @param request: Request instance for CreateTranscodeTemplate.
@@ -556,6 +604,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSnapshotByTimeOffsetTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除媒体传输的传输流配置。
+
+        # @param request: Request instance for DeleteStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkFlowResponse`
+        def DeleteStreamLinkFlow(request)
+          body = send_request('DeleteStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除媒体传输流的输出配置。
+
+        # @param request: Request instance for DeleteStreamLinkOutput.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkOutputRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkOutputResponse`
+        def DeleteStreamLinkOutput(request)
+          body = send_request('DeleteStreamLinkOutput', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamLinkOutputResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -892,6 +988,222 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSnapshotByTimeOffsetTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输开通状态。
+
+        # @param request: Request instance for DescribeStreamLinkActivateState.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkActivateStateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkActivateStateResponse`
+        def DescribeStreamLinkActivateState(request)
+          body = send_request('DescribeStreamLinkActivateState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkActivateStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体输入流的配置信息。
+
+        # @param request: Request instance for DescribeStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowResponse`
+        def DescribeStreamLinkFlow(request)
+          body = send_request('DescribeStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输流的日志信息。
+
+        # @param request: Request instance for DescribeStreamLinkFlowLogs.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowLogsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowLogsResponse`
+        def DescribeStreamLinkFlowLogs(request)
+          body = send_request('DescribeStreamLinkFlowLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输流的媒体质量数据。
+
+        # @param request: Request instance for DescribeStreamLinkFlowMediaStatistics.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowMediaStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowMediaStatisticsResponse`
+        def DescribeStreamLinkFlowMediaStatistics(request)
+          body = send_request('DescribeStreamLinkFlowMediaStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowMediaStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实时查询流的当前状态
+
+        # @param request: Request instance for DescribeStreamLinkFlowRealtimeStatus.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowRealtimeStatusRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowRealtimeStatusResponse`
+        def DescribeStreamLinkFlowRealtimeStatus(request)
+          body = send_request('DescribeStreamLinkFlowRealtimeStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowRealtimeStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输流的SRT质量数据。
+
+        # @param request: Request instance for DescribeStreamLinkFlowSRTStatistics.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowSRTStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowSRTStatisticsResponse`
+        def DescribeStreamLinkFlowSRTStatistics(request)
+          body = send_request('DescribeStreamLinkFlowSRTStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowSRTStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输流的媒体质量数据。
+
+        # @param request: Request instance for DescribeStreamLinkFlowStatistics.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowStatisticsResponse`
+        def DescribeStreamLinkFlowStatistics(request)
+          body = send_request('DescribeStreamLinkFlowStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量查询媒体输入流的配置信息。
+
+        # @param request: Request instance for DescribeStreamLinkFlows.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkFlowsResponse`
+        def DescribeStreamLinkFlows(request)
+          body = send_request('DescribeStreamLinkFlows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体传输所有地区。
+
+        # @param request: Request instance for DescribeStreamLinkRegions.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkRegionsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkRegionsResponse`
+        def DescribeStreamLinkRegions(request)
+          body = send_request('DescribeStreamLinkRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkRegionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1394,6 +1706,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改媒体传输的传输流配置信息。
+
+        # @param request: Request instance for ModifyStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkFlowResponse`
+        def ModifyStreamLinkFlow(request)
+          body = send_request('ModifyStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体传输流的输入信息。
+
+        # @param request: Request instance for ModifyStreamLinkInput.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkInputRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkInputResponse`
+        def ModifyStreamLinkInput(request)
+          body = send_request('ModifyStreamLinkInput', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamLinkInputResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体传输流的输出配置。
+
+        # @param request: Request instance for ModifyStreamLinkOutputInfo.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkOutputInfoRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkOutputInfoResponse`
+        def ModifyStreamLinkOutputInfo(request)
+          body = send_request('ModifyStreamLinkOutputInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamLinkOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户自定义转码模板信息。
 
         # @param request: Request instance for ModifyTranscodeTemplate.
@@ -1612,6 +1996,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启动媒体传输流。
+
+        # @param request: Request instance for StartStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::StartStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::StartStreamLinkFlowResponse`
+        def StartStreamLinkFlow(request)
+          body = send_request('StartStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止媒体传输流。
+
+        # @param request: Request instance for StopStreamLinkFlow.
+        # @type request: :class:`Tencentcloud::mps::V20190612::StopStreamLinkFlowRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::StopStreamLinkFlowResponse`
+        def StopStreamLinkFlow(request)
+          body = send_request('StopStreamLinkFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopStreamLinkFlowResponse.new
             model.deserialize(response['Response'])
             model
           else

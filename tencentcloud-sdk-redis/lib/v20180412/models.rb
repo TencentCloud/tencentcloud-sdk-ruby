@@ -5432,20 +5432,25 @@ module TencentCloud
         end
       end
 
-      # Proxy节点信息
+      # Proxy节点信息。
       class ProxyNodes < TencentCloud::Common::AbstractModel
-        # @param NodeId: 节点ID
+        # @param NodeId: 节点 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: String
+        # @param ZoneId: 可用区 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
 
-        attr_accessor :NodeId
+        attr_accessor :NodeId, :ZoneId
         
-        def initialize(nodeid=nil)
+        def initialize(nodeid=nil, zoneid=nil)
           @NodeId = nodeid
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
+          @ZoneId = params['ZoneId']
         end
       end
 
