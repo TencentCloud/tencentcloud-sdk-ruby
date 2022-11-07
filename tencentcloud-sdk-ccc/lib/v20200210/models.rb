@@ -1855,10 +1855,13 @@ module TencentCloud
         # @param SkillGroupName: 技能组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupName: String
+        # @param Satisfaction: 满意度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Satisfaction: :class:`Tencentcloud::Ccc.v20200210.models.IMSatisfaction`
 
-        attr_accessor :Id, :Duration, :EndStatus, :Nickname, :Type, :StaffId, :Timestamp, :SessionId, :SkillGroupId, :SkillGroupName
+        attr_accessor :Id, :Duration, :EndStatus, :Nickname, :Type, :StaffId, :Timestamp, :SessionId, :SkillGroupId, :SkillGroupName, :Satisfaction
         
-        def initialize(id=nil, duration=nil, endstatus=nil, nickname=nil, type=nil, staffid=nil, timestamp=nil, sessionid=nil, skillgroupid=nil, skillgroupname=nil)
+        def initialize(id=nil, duration=nil, endstatus=nil, nickname=nil, type=nil, staffid=nil, timestamp=nil, sessionid=nil, skillgroupid=nil, skillgroupname=nil, satisfaction=nil)
           @Id = id
           @Duration = duration
           @EndStatus = endstatus
@@ -1869,6 +1872,7 @@ module TencentCloud
           @SessionId = sessionid
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
+          @Satisfaction = satisfaction
         end
 
         def deserialize(params)
@@ -1882,6 +1886,32 @@ module TencentCloud
           @SessionId = params['SessionId']
           @SkillGroupId = params['SkillGroupId']
           @SkillGroupName = params['SkillGroupName']
+          unless params['Satisfaction'].nil?
+            @Satisfaction = IMSatisfaction.new
+            @Satisfaction.deserialize(params['Satisfaction'])
+          end
+        end
+      end
+
+      # IM满意度
+      class IMSatisfaction < TencentCloud::Common::AbstractModel
+        # @param Id: 满意度值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Label: 满意度标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+
+        attr_accessor :Id, :Label
+        
+        def initialize(id=nil, label=nil)
+          @Id = id
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Label = params['Label']
         end
       end
 

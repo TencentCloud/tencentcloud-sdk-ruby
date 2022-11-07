@@ -19809,24 +19809,29 @@ module TencentCloud
 
       # 存储地域信息
       class StorageRegionInfo < TencentCloud::Common::AbstractModel
-        # @param Region: 存储地域
+        # @param Region: 存储地域。
         # @type Region: String
-        # @param Description: 存储地域描述信息
+        # @param Description: 存储地域描述信息。
         # @type Description: String
         # @param Status: 状态，是否开通，取值有：
         # <li>opened：已经开通。</li>
         # <li>unopened：未开通。</li>
         # @type Status: String
-        # @param IsDefault: 是否默认的存储地域，true：是；false：否
+        # @param IsDefault: 是否默认的存储地域，true：是；false：否。
         # @type IsDefault: Boolean
+        # @param Area: 存储区域，取值有：
+        # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
+        # <li>Outside Chinese Mainland：中国境外。</li>
+        # @type Area: String
 
-        attr_accessor :Region, :Description, :Status, :IsDefault
+        attr_accessor :Region, :Description, :Status, :IsDefault, :Area
         
-        def initialize(region=nil, description=nil, status=nil, isdefault=nil)
+        def initialize(region=nil, description=nil, status=nil, isdefault=nil, area=nil)
           @Region = region
           @Description = description
           @Status = status
           @IsDefault = isdefault
+          @Area = area
         end
 
         def deserialize(params)
@@ -19834,6 +19839,7 @@ module TencentCloud
           @Description = params['Description']
           @Status = params['Status']
           @IsDefault = params['IsDefault']
+          @Area = params['Area']
         end
       end
 

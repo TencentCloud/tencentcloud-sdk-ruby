@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询文件系统快照d定期策略列表信息
+        # 查询文件系统快照定期策略列表信息
 
         # @param request: Request instance for DescribeAutoSnapshotPolicies.
         # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeAutoSnapshotPoliciesRequest`

@@ -520,6 +520,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询企业印章的列表，需要操作者具有查询印章权限
+        # 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
+
+        # @param request: Request instance for DescribeOrganizationSeals.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationSealsRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationSealsResponse`
+        def DescribeOrganizationSeals(request)
+          body = send_request('DescribeOrganizationSeals', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationSealsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过AuthCode查询用户是否实名
 
         # @param request: Request instance for DescribeThirdPartyAuthCode.

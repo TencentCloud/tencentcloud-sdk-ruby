@@ -165,6 +165,22 @@ module TencentCloud
         end
       end
 
+      # 授权用户
+      class AuthorizedUser < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户id
+        # @type UserId: String
+
+        attr_accessor :UserId
+        
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+        end
+      end
+
       # 此结构体 (Caller) 用于描述调用方属性。
       class Caller < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用号
@@ -1774,6 +1790,72 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationSeals请求参数结构体
+      class DescribeOrganizationSealsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Limit: 返回最大数量，最大为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0，最大为20000
+        # @type Offset: Integer
+        # @param InfoType: 查询信息类型，为0时不返回授权用户，为1时返回
+        # @type InfoType: Integer
+        # @param SealId: 印章id（没有输入返回所有）
+        # @type SealId: String
+
+        attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId
+        
+        def initialize(operator=nil, limit=nil, offset=nil, infotype=nil, sealid=nil)
+          @Operator = operator
+          @Limit = limit
+          @Offset = offset
+          @InfoType = infotype
+          @SealId = sealid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @InfoType = params['InfoType']
+          @SealId = params['SealId']
+        end
+      end
+
+      # DescribeOrganizationSeals返回参数结构体
+      class DescribeOrganizationSealsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 在设置了SealId时返回0或1，没有设置时返回公司的总印章数量，可能比返回的印章数组数量多
+        # @type TotalCount: Integer
+        # @param Seals: 查询到的印章结果数组
+        # @type Seals: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Seals, :RequestId
+        
+        def initialize(totalcount=nil, seals=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Seals = seals
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Seals'].nil?
+            @Seals = []
+            params['Seals'].each do |i|
+              occupiedseal_tmp = OccupiedSeal.new
+              occupiedseal_tmp.deserialize(i)
+              @Seals << occupiedseal_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeThirdPartyAuthCode请求参数结构体
       class DescribeThirdPartyAuthCodeRequest < TencentCloud::Common::AbstractModel
         # @param AuthCode: 电子签小程序跳转客户小程序时携带的授权查看码
@@ -2351,6 +2433,71 @@ module TencentCloud
           @TaskMessage = params['TaskMessage']
           @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 持有的电子印章信息
+      class OccupiedSeal < TencentCloud::Common::AbstractModel
+        # @param SealId: 电子印章编号
+        # @type SealId: String
+        # @param SealName: 电子印章名称
+        # @type SealName: String
+        # @param CreateOn: 电子印章授权时间戳
+        # @type CreateOn: Integer
+        # @param Creator: 电子印章授权人
+        # @type Creator: String
+        # @param SealPolicyId: 电子印章策略Id
+        # @type SealPolicyId: String
+        # @param SealStatus: 印章状态，有以下六种：CHECKING（审核中）SUCCESS（已启用）FAIL（审核拒绝）CHECKING-SADM（待超管审核）DISABLE（已停用）STOPPED（已终止）
+        # @type SealStatus: String
+        # @param FailReason: 审核失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param Url: 印章图片url，5分钟内有效
+        # @type Url: String
+        # @param SealType: 印章类型
+        # @type SealType: String
+        # @param IsAllTime: 用印申请是否为永久授权
+        # @type IsAllTime: Boolean
+        # @param AuthorizedUsers: 授权人列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizedUsers: Array
+
+        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers
+        
+        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil)
+          @SealId = sealid
+          @SealName = sealname
+          @CreateOn = createon
+          @Creator = creator
+          @SealPolicyId = sealpolicyid
+          @SealStatus = sealstatus
+          @FailReason = failreason
+          @Url = url
+          @SealType = sealtype
+          @IsAllTime = isalltime
+          @AuthorizedUsers = authorizedusers
+        end
+
+        def deserialize(params)
+          @SealId = params['SealId']
+          @SealName = params['SealName']
+          @CreateOn = params['CreateOn']
+          @Creator = params['Creator']
+          @SealPolicyId = params['SealPolicyId']
+          @SealStatus = params['SealStatus']
+          @FailReason = params['FailReason']
+          @Url = params['Url']
+          @SealType = params['SealType']
+          @IsAllTime = params['IsAllTime']
+          unless params['AuthorizedUsers'].nil?
+            @AuthorizedUsers = []
+            params['AuthorizedUsers'].each do |i|
+              authorizeduser_tmp = AuthorizedUser.new
+              authorizeduser_tmp.deserialize(i)
+              @AuthorizedUsers << authorizeduser_tmp
+            end
+          end
         end
       end
 

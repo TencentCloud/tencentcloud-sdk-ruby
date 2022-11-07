@@ -5742,27 +5742,31 @@ module TencentCloud
 
       # RenewInstance请求参数结构体
       class RenewInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 购买时长，单位：月
+        # @param Period: 购买时长，单位：月。
         # @type Period: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
+        # @param ModifyPayMode: 标识是否修改计费模式。<ul><li>当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 <b>prepaid</b>。</li><li>当前实例计费模式为包年包月方式，可不设置该参数。</li></ul>
+        # @type ModifyPayMode: String
 
-        attr_accessor :Period, :InstanceId
+        attr_accessor :Period, :InstanceId, :ModifyPayMode
         
-        def initialize(period=nil, instanceid=nil)
+        def initialize(period=nil, instanceid=nil, modifypaymode=nil)
           @Period = period
           @InstanceId = instanceid
+          @ModifyPayMode = modifypaymode
         end
 
         def deserialize(params)
           @Period = params['Period']
           @InstanceId = params['InstanceId']
+          @ModifyPayMode = params['ModifyPayMode']
         end
       end
 
       # RenewInstance返回参数结构体
       class RenewInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DealId: 交易ID
+        # @param DealId: 交易ID。
         # @type DealId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

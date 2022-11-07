@@ -2779,10 +2779,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Digest: 指定镜像 Digest 进行查找
         # @type Digest: String
+        # @param ExactMatch: 指定是否为精准匹配，true为精准匹配，不填为模糊匹配
+        # @type ExactMatch: Boolean
 
-        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ImageVersion, :Limit, :Offset, :Digest
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ImageVersion, :Limit, :Offset, :Digest, :ExactMatch
         
-        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, imageversion=nil, limit=nil, offset=nil, digest=nil)
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, imageversion=nil, limit=nil, offset=nil, digest=nil, exactmatch=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @RepositoryName = repositoryname
@@ -2790,6 +2792,7 @@ module TencentCloud
           @Limit = limit
           @Offset = offset
           @Digest = digest
+          @ExactMatch = exactmatch
         end
 
         def deserialize(params)
@@ -2800,6 +2803,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Digest = params['Digest']
+          @ExactMatch = params['ExactMatch']
         end
       end
 

@@ -4645,6 +4645,42 @@ module TencentCloud
         end
       end
 
+      # TerminateDedicatedDBInstance请求参数结构体
+      class TerminateDedicatedDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 Id，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # TerminateDedicatedDBInstance返回参数结构体
+      class TerminateDedicatedDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程Id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeDBInstance请求参数结构体
       class UpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。

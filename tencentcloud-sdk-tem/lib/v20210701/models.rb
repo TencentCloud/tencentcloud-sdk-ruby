@@ -4926,10 +4926,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param HasAuthority: 资源是否有权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAuthority: Boolean
 
-        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags
+        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags, :HasAuthority
         
-        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil, appid=nil, uin=nil, subaccountuin=nil, clusterid=nil, tags=nil)
+        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil, appid=nil, uin=nil, subaccountuin=nil, clusterid=nil, tags=nil, hasauthority=nil)
           @EnvironmentId = environmentid
           @Channel = channel
           @EnvironmentName = environmentname
@@ -4952,6 +4955,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @ClusterId = clusterid
           @Tags = tags
+          @HasAuthority = hasauthority
         end
 
         def deserialize(params)
@@ -4984,6 +4988,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @HasAuthority = params['HasAuthority']
         end
       end
 
@@ -5040,10 +5045,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param HasAuthority: 是否有资源权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAuthority: Boolean
 
-        attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing, :Tags
+        attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing, :Tags, :HasAuthority
         
-        def initialize(applicationid=nil, applicationname=nil, description=nil, environmentid=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, repotype=nil, instanceid=nil, reponame=nil, codinglanguage=nil, deploymode=nil, environmentname=nil, activeversions=nil, enabletracing=nil, tags=nil)
+        def initialize(applicationid=nil, applicationname=nil, description=nil, environmentid=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, repotype=nil, instanceid=nil, reponame=nil, codinglanguage=nil, deploymode=nil, environmentname=nil, activeversions=nil, enabletracing=nil, tags=nil, hasauthority=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @Description = description
@@ -5061,6 +5069,7 @@ module TencentCloud
           @ActiveVersions = activeversions
           @EnableTracing = enabletracing
           @Tags = tags
+          @HasAuthority = hasauthority
         end
 
         def deserialize(params)
@@ -5095,6 +5104,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @HasAuthority = params['HasAuthority']
         end
       end
 

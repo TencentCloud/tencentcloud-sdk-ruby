@@ -8513,7 +8513,8 @@ module TencentCloud
         # @type TaskId: String
         # @param SourceType: 拉流源的类型：
         # PullLivePushLive -直播，
-        # PullVodPushLive -点播。
+        # PullVodPushLive -点播，
+        # PullPicPushLive -图片。
         # @type SourceType: String
         # @param SourceUrls: 拉流源url列表。
         # SourceType为直播（PullLiveToLive）只可以填1个，
@@ -8612,10 +8613,15 @@ module TencentCloud
         # @param WatermarkList: 水印信息列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WatermarkList: Array
+        # @param VodLocalMode: 点播源是否启用本地推流模式，默认0，不启用。
+        # 0 - 不启用。
+        # 1 - 启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VodLocalMode: Integer
 
-        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList
+        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
         
-        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
+        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
           @TaskId = taskid
           @SourceType = sourcetype
           @SourceUrls = sourceurls
@@ -8642,6 +8648,7 @@ module TencentCloud
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
           @WatermarkList = watermarklist
+          @VodLocalMode = vodlocalmode
         end
 
         def deserialize(params)
@@ -8681,6 +8688,7 @@ module TencentCloud
               @WatermarkList << pullpushwatermarkinfo_tmp
             end
           end
+          @VodLocalMode = params['VodLocalMode']
         end
       end
 
@@ -8844,10 +8852,13 @@ module TencentCloud
         # @type Bandwidth: Float
         # @param Flux: 流量，单位MB。
         # @type Flux: Float
+        # @param ServerIp: 推流服务端 IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerIp: String
 
-        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux
+        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux, :ServerIp
         
-        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil, bandwidth=nil, flux=nil)
+        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil, bandwidth=nil, flux=nil, serverip=nil)
           @Time = time
           @PushDomain = pushdomain
           @AppName = appname
@@ -8870,6 +8881,7 @@ module TencentCloud
           @StreamParam = streamparam
           @Bandwidth = bandwidth
           @Flux = flux
+          @ServerIp = serverip
         end
 
         def deserialize(params)
@@ -8895,6 +8907,7 @@ module TencentCloud
           @StreamParam = params['StreamParam']
           @Bandwidth = params['Bandwidth']
           @Flux = params['Flux']
+          @ServerIp = params['ServerIp']
         end
       end
 

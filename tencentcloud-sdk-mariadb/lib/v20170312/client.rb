@@ -1581,6 +1581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（IsolateDedicatedDBInstance）用于销毁已隔离的独享云数据库实例。
+
+        # @param request: Request instance for TerminateDedicatedDBInstance.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::TerminateDedicatedDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::TerminateDedicatedDBInstanceResponse`
+        def TerminateDedicatedDBInstance(request)
+          body = send_request('TerminateDedicatedDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateDedicatedDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(UpgradeDBInstance)用于扩容云数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
 
         # @param request: Request instance for UpgradeDBInstance.
