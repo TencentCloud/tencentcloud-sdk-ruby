@@ -1661,7 +1661,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安全防护配置详情
+        # 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
 
         # @param request: Request instance for DescribeSecurityPolicy.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSecurityPolicyRequest`
@@ -2813,7 +2813,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改Web&Bot安全配置
+        # 修改Web&Bot安全配置。
 
         # @param request: Request instance for ModifySecurityPolicy.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifySecurityPolicyRequest`

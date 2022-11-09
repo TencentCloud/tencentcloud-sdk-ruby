@@ -1217,6 +1217,57 @@ module TencentCloud
         end
       end
 
+      # DetectPet请求参数结构体
+      class DetectPetRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 图片大小的限制为4M，图片像素的限制为4k。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片经过base64编码的内容。与ImageUrl同时存在时优先使用ImageUrl字段。
+        # 图片大小的限制为4M，图片像素的限制为4k。
+        # **注意：图片需要base64编码，并且要去掉编码头部。**
+        # @type ImageBase64: String
+
+        attr_accessor :ImageUrl, :ImageBase64
+        
+        def initialize(imageurl=nil, imagebase64=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # DetectPet返回参数结构体
+      class DetectPetResponse < TencentCloud::Common::AbstractModel
+        # @param Pets: 识别出图片中的宠物信息列表。
+        # @type Pets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Pets, :RequestId
+        
+        def initialize(pets=nil, requestid=nil)
+          @Pets = pets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Pets'].nil?
+            @Pets = []
+            params['Pets'].each do |i|
+              pet_tmp = Pet.new
+              pet_tmp.deserialize(i)
+              @Pets << pet_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetectProductBeta请求参数结构体
       class DetectProductBetaRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片限制：内测版仅支持jpg、jpeg，图片大小不超过1M，分辨率在25万到100万之间。
@@ -1635,6 +1686,33 @@ module TencentCloud
               box_tmp.deserialize(i)
               @AllBox << box_tmp
             end
+          end
+        end
+      end
+
+      # 宠物具体信息
+      class Pet < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的宠物类型（猫或者狗，暂不支持识别猫狗品种）。
+        # @type Name: String
+        # @param Score: 识别服务给识别目标打出的置信度，范围在0-100之间。值越高，表示目标为相应结果的可能性越高。
+        # @type Score: Integer
+        # @param Location: 识别目标在图片中的坐标。
+        # @type Location: :class:`Tencentcloud::Tiia.v20190529.models.Rect`
+
+        attr_accessor :Name, :Score, :Location
+        
+        def initialize(name=nil, score=nil, location=nil)
+          @Name = name
+          @Score = score
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Score = params['Score']
+          unless params['Location'].nil?
+            @Location = Rect.new
+            @Location.deserialize(params['Location'])
           end
         end
       end

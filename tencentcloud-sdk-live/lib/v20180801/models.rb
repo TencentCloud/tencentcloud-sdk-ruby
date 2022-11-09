@@ -1085,6 +1085,7 @@ module TencentCloud
         # @param SourceType: 拉流源的类型：
         # PullLivePushLive -直播，
         # PullVodPushLive -点播。
+        # PullPicPushLive -图片。
         # @type SourceType: String
         # @param SourceUrls: 拉流源 url 列表。
         # SourceType 为直播（PullLivePushLive）只可以填1个，
@@ -1185,10 +1186,15 @@ module TencentCloud
         # 2. 水印图片 URL 请使用合法外网可访问地址。
         # 3. 支持的水印图片格式：png，jpg，gif 等。
         # @type WatermarkList: Array
+        # @param VodLocalMode: 点播源是否启用本地推流模式，默认0，不启用。
+        # 0 - 不启用。
+        # 1 - 启用。
+        # 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
+        # @type VodLocalMode: Integer
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
         
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1208,6 +1214,7 @@ module TencentCloud
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
           @WatermarkList = watermarklist
+          @VodLocalMode = vodlocalmode
         end
 
         def deserialize(params)
@@ -1237,6 +1244,7 @@ module TencentCloud
               @WatermarkList << pullpushwatermarkinfo_tmp
             end
           end
+          @VodLocalMode = params['VodLocalMode']
         end
       end
 
@@ -7593,8 +7601,9 @@ module TencentCloud
         # PullVodPushLive -点播。
         # 注意：
         # 1. 仅当主源类型为直播源时，备源才会生效。
-        # 2. 主直播源拉流中断时，自动使用备源进行拉流。
-        # 3. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+        # 2. 将该参数置为空，则可将任务去除备源信息。
+        # 3. 主直播源拉流中断时，自动使用备源进行拉流。
+        # 4. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
         # @type BackupSourceType: String
         # @param BackupSourceUrl: 备源 URL。
         # 只允许填一个备源 URL
@@ -7609,10 +7618,15 @@ module TencentCloud
         # 6. 清除水印时，需携带该水印列表参数，内容为空数组。
         # 7. 暂不支持动图水印。
         # @type WatermarkList: Array
+        # @param VodLocalMode: 点播源是否启用本地推流模式，默认0，不启用。
+        # 0 - 不启用。
+        # 1 - 启用。
+        # 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
+        # @type VodLocalMode: Integer
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
         
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -7629,6 +7643,7 @@ module TencentCloud
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
           @WatermarkList = watermarklist
+          @VodLocalMode = vodlocalmode
         end
 
         def deserialize(params)
@@ -7655,6 +7670,7 @@ module TencentCloud
               @WatermarkList << pullpushwatermarkinfo_tmp
             end
           end
+          @VodLocalMode = params['VodLocalMode']
         end
       end
 

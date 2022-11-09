@@ -1265,6 +1265,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 展示API上已绑定的插件列表。
+
+        # @param request: Request instance for DescribePluginsByApi.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribePluginsByApiRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribePluginsByApiResponse`
+        def DescribePluginsByApi(request)
+          body = send_request('DescribePluginsByApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePluginsByApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
 
         # @param request: Request instance for DescribeService.

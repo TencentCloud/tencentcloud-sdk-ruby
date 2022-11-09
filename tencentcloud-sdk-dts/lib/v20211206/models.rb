@@ -1267,10 +1267,10 @@ module TencentCloud
 
       # 数据同步中的ddl同步处理
       class DdlOption < TencentCloud::Common::AbstractModel
-        # @param DdlObject: ddl类型，如database,table,view等
+        # @param DdlObject: ddl类型，如Database,Table,View,Index等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlObject: String
-        # @param DdlValue: ddl具体值，如Create,Drop等
+        # @param DdlValue: ddl具体值，对于Database可取值[Create,Drop,Alter]<br>对于Table可取值[Create,Drop,Alter,Truncate,Rename]<br/>对于View可取值[Create,Drop]<br/>对于Index可取值[Create,Drop]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlValue: Array
 

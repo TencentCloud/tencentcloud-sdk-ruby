@@ -3428,14 +3428,17 @@ module TencentCloud
         # <li>6：立体声</li>
         # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # @type AudioChannel: Integer
+        # @param StreamSelects: 指定输出要保留的音频轨道。默认是全部保留源的。
+        # @type StreamSelects: Array
 
-        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel
+        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel, :StreamSelects
         
-        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil)
+        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil, streamselects=nil)
           @Codec = codec
           @Bitrate = bitrate
           @SampleRate = samplerate
           @AudioChannel = audiochannel
+          @StreamSelects = streamselects
         end
 
         def deserialize(params)
@@ -3443,6 +3446,7 @@ module TencentCloud
           @Bitrate = params['Bitrate']
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
+          @StreamSelects = params['StreamSelects']
         end
       end
 
@@ -14707,12 +14711,45 @@ module TencentCloud
 
       # 字幕流配置参数。
       class SubtitleTemplate < TencentCloud::Common::AbstractModel
+        # @param Path: 要压制到视频中的字幕文件地址。
+        # @type Path: String
+        # @param StreamIndex: 指定要压制到视频中的字幕轨道，如果有指定Path，则Path 优先级更高。Path 和 StreamIndex 至少指定一个。
+        # @type StreamIndex: Integer
+        # @param FontType: 字体类型，
+        # <li>hei.ttf：黑体</li>
+        # <li>song.ttf：宋体</li>
+        # <li>simkai.ttf：楷体</li>
+        # <li>arial.ttf：仅支持英文</li>
+        # 默认hei.ttf
+        # @type FontType: String
+        # @param FontSize: 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
+        # @type FontSize: String
+        # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）
+        # @type FontColor: String
+        # @param FontAlpha: 文字透明度，取值范围：(0, 1]
+        # <li>0：完全透明</li>
+        # <li>1：完全不透明</li>
+        # 默认值：1。
+        # @type FontAlpha: Float
 
+        attr_accessor :Path, :StreamIndex, :FontType, :FontSize, :FontColor, :FontAlpha
         
-        def initialize()
+        def initialize(path=nil, streamindex=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil)
+          @Path = path
+          @StreamIndex = streamindex
+          @FontType = fonttype
+          @FontSize = fontsize
+          @FontColor = fontcolor
+          @FontAlpha = fontalpha
         end
 
         def deserialize(params)
+          @Path = params['Path']
+          @StreamIndex = params['StreamIndex']
+          @FontType = params['FontType']
+          @FontSize = params['FontSize']
+          @FontColor = params['FontColor']
+          @FontAlpha = params['FontAlpha']
         end
       end
 

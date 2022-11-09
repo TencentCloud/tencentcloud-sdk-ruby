@@ -1113,6 +1113,42 @@ module TencentCloud
         end
       end
 
+      # UpdateProbeTaskAttributes请求参数结构体
+      class UpdateProbeTaskAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param Name: 任务名
+        # @type Name: String
+
+        attr_accessor :TaskId, :Name
+        
+        def initialize(taskid=nil, name=nil)
+          @TaskId = taskid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+        end
+      end
+
+      # UpdateProbeTaskAttributes返回参数结构体
+      class UpdateProbeTaskAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateProbeTaskConfigurationList请求参数结构体
       class UpdateProbeTaskConfigurationListRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务 ID

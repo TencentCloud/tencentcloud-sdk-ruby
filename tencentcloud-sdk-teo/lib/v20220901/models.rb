@@ -2126,9 +2126,10 @@ module TencentCloud
         # <li>purge_url：URL；</li>
         # <li>purge_prefix：前缀；</li>
         # <li>purge_host：Hostname；</li>
-        # <li>purge_all：全部缓存。</li>
+        # <li>purge_all：全部缓存；</li>
+        # <li>purge_cache_tag：cache-tag刷新。</li>
         # @type Type: String
-        # @param Targets: 要刷新的资源列表，每个元素格式依据Type而定：
+        # @param Targets: 要清除缓存的资源列表，每个元素格式依据Type而定：
         # 1) Type = purge_host 时：
         # 形如：www.example.com 或 foo.bar.example.com。
         # 2) Type = purge_prefix 时：
@@ -2137,6 +2138,8 @@ module TencentCloud
         # 形如：https://www.example.com/example.jpg。
         # 4）Type = purge_all 时：
         # Targets可为空，不需要填写。
+        # 5）Type = purge_cache_tag 时：
+        # 形如：tag1。
         # @type Targets: Array
         # @param EncodeUrl: 若有编码转换，仅清除编码转换后匹配的资源。
         # 若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
@@ -4255,36 +4258,40 @@ module TencentCloud
 
       # DescribeBotManagedRules请求参数结构体
       class DescribeBotManagedRulesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
-        # @type ZoneId: String
-        # @param Entity: 子域名。
-        # @type Entity: String
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
+        # @param ZoneId: 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
+        # @type ZoneId: String
+        # @param Entity: 子域名/应用名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
+        # @type Entity: String
         # @param RuleType: 规则类型，取值有：
         # <li> idcid；</li>
         # <li>sipbot；</li>
         # <li>uabot。</li>传空或不传，即全部类型。
         # @type RuleType: String
+        # @param TemplateId: 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity, :Offset, :Limit, :RuleType
+        attr_accessor :Offset, :Limit, :ZoneId, :Entity, :RuleType, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil, offset=nil, limit=nil, ruletype=nil)
-          @ZoneId = zoneid
-          @Entity = entity
+        def initialize(offset=nil, limit=nil, zoneid=nil, entity=nil, ruletype=nil, templateid=nil)
           @Offset = offset
           @Limit = limit
+          @ZoneId = zoneid
+          @Entity = entity
           @RuleType = ruletype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @Entity = params['Entity']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
           @RuleType = params['RuleType']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -6030,7 +6037,7 @@ module TencentCloud
 
       # DescribePurgeTasks请求参数结构体
       class DescribePurgeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: 字段已废弃，请使用Filters中的zone-id。
         # @type ZoneId: String
         # @param StartTime: 查询起始时间。
         # @type StartTime: String
@@ -6040,8 +6047,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查限制数目，默认值：20，最大值：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname</li>
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-xxx，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤，domains形如：www.qq.com<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname<br>   purge_cache_tag：CacheTag</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -6249,22 +6255,25 @@ module TencentCloud
 
       # DescribeSecurityGroupManagedRules请求参数结构体
       class DescribeSecurityGroupManagedRulesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
+        # @param ZoneId: 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type ZoneId: String
-        # @param Entity: 子域名/应用名。
+        # @param Entity: 子域名/应用名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type Entity: String
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
+        # @param TemplateId: 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity, :Offset, :Limit
+        attr_accessor :ZoneId, :Entity, :Offset, :Limit, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil, offset=nil, limit=nil)
+        def initialize(zoneid=nil, entity=nil, offset=nil, limit=nil, templateid=nil)
           @ZoneId = zoneid
           @Entity = entity
           @Offset = offset
           @Limit = limit
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -6272,6 +6281,7 @@ module TencentCloud
           @Entity = params['Entity']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -6404,19 +6414,23 @@ module TencentCloud
       class DescribeSecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点Id。
         # @type ZoneId: String
-        # @param Entity: 子域名/应用名。
+        # @param Entity: 子域名/应用名。当使用Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type Entity: String
+        # @param TemplateId: 模板策略id。当使用模板Id时可不填Entity，否则必须填写Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity
+        attr_accessor :ZoneId, :Entity, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil)
+        def initialize(zoneid=nil, entity=nil, templateid=nil)
           @ZoneId = zoneid
           @Entity = entity
+          @TemplateId = templateid
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Entity = params['Entity']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -6446,21 +6460,25 @@ module TencentCloud
 
       # DescribeSecurityPortraitRules请求参数结构体
       class DescribeSecurityPortraitRulesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
+        # @param ZoneId: 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type ZoneId: String
-        # @param Entity: 子域名/应用名。
+        # @param Entity: 子域名/应用名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type Entity: String
+        # @param TemplateId: 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity
+        attr_accessor :ZoneId, :Entity, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil)
+        def initialize(zoneid=nil, entity=nil, templateid=nil)
           @ZoneId = zoneid
           @Entity = entity
+          @TemplateId = templateid
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Entity = params['Entity']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -8895,7 +8913,7 @@ module TencentCloud
       class FailReason < TencentCloud::Common::AbstractModel
         # @param Reason: 失败原因。
         # @type Reason: String
-        # @param Targets: 处理失败的资源列表，该列表元素来源于输入参数中的Targets，因此格式和入参中的Targets保持一致。
+        # @param Targets: 处理失败的资源列表。
         # @type Targets: Array
 
         attr_accessor :Reason, :Targets
@@ -9348,15 +9366,21 @@ module TencentCloud
         # @type RuleID: Integer
         # @param UpdateTime: 更新时间。仅出参使用。
         # @type UpdateTime: String
+        # @param Status: 规则启用状态，当返回为null时，为启用。取值有：
+        # <li> on：启用；</li>
+        # <li> off：未启用。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :Action, :MatchFrom, :MatchContent, :RuleID, :UpdateTime
+        attr_accessor :Action, :MatchFrom, :MatchContent, :RuleID, :UpdateTime, :Status
         
-        def initialize(action=nil, matchfrom=nil, matchcontent=nil, ruleid=nil, updatetime=nil)
+        def initialize(action=nil, matchfrom=nil, matchcontent=nil, ruleid=nil, updatetime=nil, status=nil)
           @Action = action
           @MatchFrom = matchfrom
           @MatchContent = matchcontent
           @RuleID = ruleid
           @UpdateTime = updatetime
+          @Status = status
         end
 
         def deserialize(params)
@@ -9365,6 +9389,7 @@ module TencentCloud
           @MatchContent = params['MatchContent']
           @RuleID = params['RuleID']
           @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
         end
       end
 
@@ -10754,26 +10779,30 @@ module TencentCloud
       class ModifySecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点Id。
         # @type ZoneId: String
-        # @param Entity: 子域名/应用名。
-        # @type Entity: String
         # @param SecurityConfig: 安全配置。
         # @type SecurityConfig: :class:`Tencentcloud::Teo.v20220901.models.SecurityConfig`
+        # @param Entity: 子域名/应用名。当使用Entity时可不填写TemplateId，否则必须填写TemplateId。
+        # @type Entity: String
+        # @param TemplateId: 模板策略id。当使用模板Id时可不填Entity，否则必须填写Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity, :SecurityConfig
+        attr_accessor :ZoneId, :SecurityConfig, :Entity, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil, securityconfig=nil)
+        def initialize(zoneid=nil, securityconfig=nil, entity=nil, templateid=nil)
           @ZoneId = zoneid
-          @Entity = entity
           @SecurityConfig = securityconfig
+          @Entity = entity
+          @TemplateId = templateid
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
-          @Entity = params['Entity']
           unless params['SecurityConfig'].nil?
             @SecurityConfig = SecurityConfig.new
             @SecurityConfig.deserialize(params['SecurityConfig'])
           end
+          @Entity = params['Entity']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -10795,9 +10824,9 @@ module TencentCloud
 
       # ModifySecurityWafGroupPolicy请求参数结构体
       class ModifySecurityWafGroupPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
+        # @param ZoneId: 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type ZoneId: String
-        # @param Entity: 子域名。
+        # @param Entity: 子域名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type Entity: String
         # @param Switch: 总开关，取值有：
         # <li>on：开启；</li>
@@ -10820,10 +10849,12 @@ module TencentCloud
         # @type AiRule: :class:`Tencentcloud::Teo.v20220901.models.AiRule`
         # @param WafGroups: 托管规则等级组。不填默认为上次的配置。
         # @type WafGroups: Array
+        # @param TemplateId: 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity, :Switch, :Level, :Mode, :WafRules, :AiRule, :WafGroups
+        attr_accessor :ZoneId, :Entity, :Switch, :Level, :Mode, :WafRules, :AiRule, :WafGroups, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil, switch=nil, level=nil, mode=nil, wafrules=nil, airule=nil, wafgroups=nil)
+        def initialize(zoneid=nil, entity=nil, switch=nil, level=nil, mode=nil, wafrules=nil, airule=nil, wafgroups=nil, templateid=nil)
           @ZoneId = zoneid
           @Entity = entity
           @Switch = switch
@@ -10832,6 +10863,7 @@ module TencentCloud
           @WafRules = wafrules
           @AiRule = airule
           @WafGroups = wafgroups
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -10856,6 +10888,7 @@ module TencentCloud
               @WafGroups << wafgroup_tmp
             end
           end
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -11703,11 +11736,12 @@ module TencentCloud
         # @type Daily: Integer
         # @param DailyAvailable: 每日剩余的可提交配额。
         # @type DailyAvailable: Integer
-        # @param Type: 配额类型，取值有：
-        # <li> purge_prefix：前缀；</li>
-        # <li> purge_url：URL；</li>
-        # <li> purge_host：Hostname；</li>
-        # <li> purge_all：全部缓存内容。</li>
+        # @param Type: 刷新预热缓存类型，取值有：
+        # <li> purge_prefix：按前缀刷新；</li>
+        # <li> purge_url：按URL刷新；</li>
+        # <li> purge_host：按Hostname刷新；</li>
+        # <li> purge_all：刷新全部缓存内容；</li>
+        # <li> purge_cache_tag：按CacheTag刷新；</li><li> prefetch_url：按URL预热。</li>
         # @type Type: String
 
         attr_accessor :Batch, :Daily, :DailyAvailable, :Type
@@ -11936,8 +11970,7 @@ module TencentCloud
         # @type PunishTimeUnit: String
         # @param RuleStatus: 规则状态，取值有：
         # <li>on：生效；</li>
-        # <li>off：不生效。</li>
-        # <li>hour：小时。</li>默认on生效。
+        # <li>off：不生效。</li>默认on生效。
         # @type RuleStatus: String
         # @param AclConditions: 规则详情。
         # @type AclConditions: Array
@@ -11947,17 +11980,21 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: Integer
         # @param FreqFields: 过滤词，取值有：
-        # <li>host：域名；</li>
         # <li>sip：客户端ip。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreqFields: Array
         # @param UpdateTime: 更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FreqScope: 统计范围，字段为null时，代表source_to_eo。取值有：
+        # <li>source_to_eo：（响应）源站到EdgeOne。</li>
+        # <li>client_to_eo：（请求）客户端到EdgeOne；</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreqScope: Array
 
-        attr_accessor :Threshold, :Period, :RuleName, :Action, :PunishTime, :PunishTimeUnit, :RuleStatus, :AclConditions, :RulePriority, :RuleID, :FreqFields, :UpdateTime
+        attr_accessor :Threshold, :Period, :RuleName, :Action, :PunishTime, :PunishTimeUnit, :RuleStatus, :AclConditions, :RulePriority, :RuleID, :FreqFields, :UpdateTime, :FreqScope
         
-        def initialize(threshold=nil, period=nil, rulename=nil, action=nil, punishtime=nil, punishtimeunit=nil, rulestatus=nil, aclconditions=nil, rulepriority=nil, ruleid=nil, freqfields=nil, updatetime=nil)
+        def initialize(threshold=nil, period=nil, rulename=nil, action=nil, punishtime=nil, punishtimeunit=nil, rulestatus=nil, aclconditions=nil, rulepriority=nil, ruleid=nil, freqfields=nil, updatetime=nil, freqscope=nil)
           @Threshold = threshold
           @Period = period
           @RuleName = rulename
@@ -11970,6 +12007,7 @@ module TencentCloud
           @RuleID = ruleid
           @FreqFields = freqfields
           @UpdateTime = updatetime
+          @FreqScope = freqscope
         end
 
         def deserialize(params)
@@ -11992,6 +12030,7 @@ module TencentCloud
           @RuleID = params['RuleID']
           @FreqFields = params['FreqFields']
           @UpdateTime = params['UpdateTime']
+          @FreqScope = params['FreqScope']
         end
       end
 
@@ -12827,10 +12866,13 @@ module TencentCloud
         # @param DropPageConfig: 自定义拦截页面配置。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropPageConfig: :class:`Tencentcloud::Teo.v20220901.models.DropPageConfig`
+        # @param TemplateConfig: 模板配置。此处仅出参数使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateConfig: :class:`Tencentcloud::Teo.v20220901.models.TemplateConfig`
 
-        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig
+        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig
         
-        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil)
+        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil, templateconfig=nil)
           @WafConfig = wafconfig
           @RateLimitConfig = ratelimitconfig
           @AclConfig = aclconfig
@@ -12839,6 +12881,7 @@ module TencentCloud
           @IpTableConfig = iptableconfig
           @ExceptConfig = exceptconfig
           @DropPageConfig = droppageconfig
+          @TemplateConfig = templateconfig
         end
 
         def deserialize(params)
@@ -12873,6 +12916,10 @@ module TencentCloud
           unless params['DropPageConfig'].nil?
             @DropPageConfig = DropPageConfig.new
             @DropPageConfig.deserialize(params['DropPageConfig'])
+          end
+          unless params['TemplateConfig'].nil?
+            @TemplateConfig = TemplateConfig.new
+            @TemplateConfig.deserialize(params['TemplateConfig'])
           end
         end
       end
@@ -13644,6 +13691,26 @@ module TencentCloud
           @Type = params['Type']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 安全模板配置
+      class TemplateConfig < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID。
+        # @type TemplateId: String
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+
+        attr_accessor :TemplateId, :TemplateName
+        
+        def initialize(templateid=nil, templatename=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
         end
       end
 

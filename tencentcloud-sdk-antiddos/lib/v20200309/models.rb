@@ -6590,19 +6590,39 @@ module TencentCloud
         # @type Id: String
         # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         # @type Business: String
+        # @param OtherThresholdFlag: 配置其他阈值标志位，1表示配置其他阈值
+        # @type OtherThresholdFlag: Integer
+        # @param SynFloodThreshold: SYN FLOOD流量阈值
+        # @type SynFloodThreshold: Integer
+        # @param SynFloodPktThreshold: SYN FLOOD包量阈值
+        # @type SynFloodPktThreshold: Integer
+        # @param UdpFloodThreshold: UDP FLOOD流量阈值
+        # @type UdpFloodThreshold: Integer
+        # @param UdpFloodPktThreshold: UDP FLOOD包量阈值
+        # @type UdpFloodPktThreshold: Integer
 
-        attr_accessor :Threshold, :Id, :Business
+        attr_accessor :Threshold, :Id, :Business, :OtherThresholdFlag, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold
         
-        def initialize(threshold=nil, id=nil, business=nil)
+        def initialize(threshold=nil, id=nil, business=nil, otherthresholdflag=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil)
           @Threshold = threshold
           @Id = id
           @Business = business
+          @OtherThresholdFlag = otherthresholdflag
+          @SynFloodThreshold = synfloodthreshold
+          @SynFloodPktThreshold = synfloodpktthreshold
+          @UdpFloodThreshold = udpfloodthreshold
+          @UdpFloodPktThreshold = udpfloodpktthreshold
         end
 
         def deserialize(params)
           @Threshold = params['Threshold']
           @Id = params['Id']
           @Business = params['Business']
+          @OtherThresholdFlag = params['OtherThresholdFlag']
+          @SynFloodThreshold = params['SynFloodThreshold']
+          @SynFloodPktThreshold = params['SynFloodPktThreshold']
+          @UdpFloodThreshold = params['UdpFloodThreshold']
+          @UdpFloodPktThreshold = params['UdpFloodPktThreshold']
         end
       end
 
@@ -7085,10 +7105,12 @@ module TencentCloud
         # @type IsNot2: Integer
         # @param Id: 特征过滤配置添加成功后自动生成的规则ID，当添加新特征过滤配置时，此字段不用填写；
         # @type Id: String
+        # @param PktLenGT: 大于报文长度，取值1+
+        # @type PktLenGT: Integer
 
-        attr_accessor :Protocol, :SportStart, :SportEnd, :DportStart, :DportEnd, :PktlenMin, :PktlenMax, :Action, :MatchBegin, :MatchType, :Str, :Depth, :Offset, :IsNot, :MatchLogic, :MatchBegin2, :MatchType2, :Str2, :Depth2, :Offset2, :IsNot2, :Id
+        attr_accessor :Protocol, :SportStart, :SportEnd, :DportStart, :DportEnd, :PktlenMin, :PktlenMax, :Action, :MatchBegin, :MatchType, :Str, :Depth, :Offset, :IsNot, :MatchLogic, :MatchBegin2, :MatchType2, :Str2, :Depth2, :Offset2, :IsNot2, :Id, :PktLenGT
         
-        def initialize(protocol=nil, sportstart=nil, sportend=nil, dportstart=nil, dportend=nil, pktlenmin=nil, pktlenmax=nil, action=nil, matchbegin=nil, matchtype=nil, str=nil, depth=nil, offset=nil, isnot=nil, matchlogic=nil, matchbegin2=nil, matchtype2=nil, str2=nil, depth2=nil, offset2=nil, isnot2=nil, id=nil)
+        def initialize(protocol=nil, sportstart=nil, sportend=nil, dportstart=nil, dportend=nil, pktlenmin=nil, pktlenmax=nil, action=nil, matchbegin=nil, matchtype=nil, str=nil, depth=nil, offset=nil, isnot=nil, matchlogic=nil, matchbegin2=nil, matchtype2=nil, str2=nil, depth2=nil, offset2=nil, isnot2=nil, id=nil, pktlengt=nil)
           @Protocol = protocol
           @SportStart = sportstart
           @SportEnd = sportend
@@ -7111,6 +7133,7 @@ module TencentCloud
           @Offset2 = offset2
           @IsNot2 = isnot2
           @Id = id
+          @PktLenGT = pktlengt
         end
 
         def deserialize(params)
@@ -7136,6 +7159,7 @@ module TencentCloud
           @Offset2 = params['Offset2']
           @IsNot2 = params['IsNot2']
           @Id = params['Id']
+          @PktLenGT = params['PktLenGT']
         end
       end
 
@@ -7219,10 +7243,22 @@ module TencentCloud
         # @type InstanceDetailList: Array
         # @param ListenerCcThresholdList: 域名与协议纬度的防护阈值
         # @type ListenerCcThresholdList: Array
+        # @param SynFloodThreshold: SYN FLOOD流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SynFloodThreshold: Integer
+        # @param SynFloodPktThreshold: SYN FLOOD包量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SynFloodPktThreshold: Integer
+        # @param UdpFloodThreshold: UDP FLOOD流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpFloodThreshold: Integer
+        # @param UdpFloodPktThreshold: UDP FLOOD包量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpFloodPktThreshold: Integer
 
-        attr_accessor :DDoSLevel, :DDoSThreshold, :DDoSAI, :CCEnable, :CCThreshold, :InstanceDetailList, :ListenerCcThresholdList
+        attr_accessor :DDoSLevel, :DDoSThreshold, :DDoSAI, :CCEnable, :CCThreshold, :InstanceDetailList, :ListenerCcThresholdList, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold
         
-        def initialize(ddoslevel=nil, ddosthreshold=nil, ddosai=nil, ccenable=nil, ccthreshold=nil, instancedetaillist=nil, listenerccthresholdlist=nil)
+        def initialize(ddoslevel=nil, ddosthreshold=nil, ddosai=nil, ccenable=nil, ccthreshold=nil, instancedetaillist=nil, listenerccthresholdlist=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil)
           @DDoSLevel = ddoslevel
           @DDoSThreshold = ddosthreshold
           @DDoSAI = ddosai
@@ -7230,6 +7266,10 @@ module TencentCloud
           @CCThreshold = ccthreshold
           @InstanceDetailList = instancedetaillist
           @ListenerCcThresholdList = listenerccthresholdlist
+          @SynFloodThreshold = synfloodthreshold
+          @SynFloodPktThreshold = synfloodpktthreshold
+          @UdpFloodThreshold = udpfloodthreshold
+          @UdpFloodPktThreshold = udpfloodpktthreshold
         end
 
         def deserialize(params)
@@ -7254,6 +7294,10 @@ module TencentCloud
               @ListenerCcThresholdList << listenerccthreholdconfig_tmp
             end
           end
+          @SynFloodThreshold = params['SynFloodThreshold']
+          @SynFloodPktThreshold = params['SynFloodPktThreshold']
+          @UdpFloodThreshold = params['UdpFloodThreshold']
+          @UdpFloodPktThreshold = params['UdpFloodPktThreshold']
         end
       end
 
@@ -7269,15 +7313,21 @@ module TencentCloud
         # @type DropOther: Integer
         # @param CheckExceptNullConnect: 异常空连接防护，取值[0(防护关)，1(防护开)]
         # @type CheckExceptNullConnect: Integer
+        # @param PingOfDeath: ping of death防护，取值[0(防护关)，1(防护开)]
+        # @type PingOfDeath: Integer
+        # @param TearDrop: tear drop防护，取值[0(防护关)，1(防护开)]
+        # @type TearDrop: Integer
 
-        attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :CheckExceptNullConnect
+        attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :CheckExceptNullConnect, :PingOfDeath, :TearDrop
         
-        def initialize(droptcp=nil, dropudp=nil, dropicmp=nil, dropother=nil, checkexceptnullconnect=nil)
+        def initialize(droptcp=nil, dropudp=nil, dropicmp=nil, dropother=nil, checkexceptnullconnect=nil, pingofdeath=nil, teardrop=nil)
           @DropTcp = droptcp
           @DropUdp = dropudp
           @DropIcmp = dropicmp
           @DropOther = dropother
           @CheckExceptNullConnect = checkexceptnullconnect
+          @PingOfDeath = pingofdeath
+          @TearDrop = teardrop
         end
 
         def deserialize(params)
@@ -7286,6 +7336,8 @@ module TencentCloud
           @DropIcmp = params['DropIcmp']
           @DropOther = params['DropOther']
           @CheckExceptNullConnect = params['CheckExceptNullConnect']
+          @PingOfDeath = params['PingOfDeath']
+          @TearDrop = params['TearDrop']
         end
       end
 
