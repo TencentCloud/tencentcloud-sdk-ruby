@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 批量创建模型加速任务
+
+        # @param request: Request instance for CreateBatchModelAccTasks.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateBatchModelAccTasksRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateBatchModelAccTasksResponse`
+        def CreateBatchModelAccTasks(request)
+          body = send_request('CreateBatchModelAccTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBatchModelAccTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建跑批任务
 
         # @param request: Request instance for CreateBatchTask.
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 保存优化模型
+
+        # @param request: Request instance for CreateOptimizedModel.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateOptimizedModelRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateOptimizedModelResponse`
+        def CreateOptimizedModel(request)
+          body = send_request('CreateOptimizedModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOptimizedModelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -183,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDatasetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除模型加速任务
+
+        # @param request: Request instance for DeleteModelAccelerateTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteModelAccelerateTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteModelAccelerateTaskResponse`
+        def DeleteModelAccelerateTask(request)
+          body = send_request('DeleteModelAccelerateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteModelAccelerateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +701,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询模型加速引擎版本列表
+
+        # @param request: Request instance for DescribeModelAccEngineVersions.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelAccEngineVersionsRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelAccEngineVersionsResponse`
+        def DescribeModelAccEngineVersions(request)
+          body = send_request('DescribeModelAccEngineVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelAccEngineVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询模型优化任务详情
+
+        # @param request: Request instance for DescribeModelAccelerateTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTaskResponse`
+        def DescribeModelAccelerateTask(request)
+          body = send_request('DescribeModelAccelerateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelAccelerateTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询模型加速任务列表
+
+        # @param request: Request instance for DescribeModelAccelerateTasks.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTasksRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTasksResponse`
+        def DescribeModelAccelerateTasks(request)
+          body = send_request('DescribeModelAccelerateTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelAccelerateTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询单个服务
 
         # @param request: Request instance for DescribeModelService.
@@ -1037,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启模型加速任务
+
+        # @param request: Request instance for RestartModelAccelerateTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::RestartModelAccelerateTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::RestartModelAccelerateTaskResponse`
+        def RestartModelAccelerateTask(request)
+          body = send_request('RestartModelAccelerateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartModelAccelerateTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启动模型训练任务
 
         # @param request: Request instance for StartTrainingTask.
@@ -1071,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopBatchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止模型加速任务
+
+        # @param request: Request instance for StopModelAccelerateTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::StopModelAccelerateTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::StopModelAccelerateTaskResponse`
+        def StopModelAccelerateTask(request)
+          body = send_request('StopModelAccelerateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopModelAccelerateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

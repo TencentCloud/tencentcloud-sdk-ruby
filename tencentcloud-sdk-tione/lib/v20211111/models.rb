@@ -89,6 +89,57 @@ module TencentCloud
         end
       end
 
+      # 批量模型加速任务
+      class BatchModelAccTask < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ModelVersion: 模型版本
+        # @type ModelVersion: String
+        # @param ModelSource: 模型来源(JOB/COS)
+        # @type ModelSource: String
+        # @param ModelFormat: 模型格式(TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/MMDETECTION/ONNX/HUGGING_FACE)
+        # @type ModelFormat: String
+        # @param TensorInfos: 模型Tensor信息
+        # @type TensorInfos: Array
+        # @param AccEngineVersion: 加速引擎版本
+        # @type AccEngineVersion: String
+        # @param ModelInputPath: 模型输入cos路径
+        # @type ModelInputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param ModelSignature: SavedModel保存时配置的签名
+        # @type ModelSignature: String
+
+        attr_accessor :ModelId, :ModelVersion, :ModelSource, :ModelFormat, :TensorInfos, :AccEngineVersion, :ModelInputPath, :ModelName, :ModelSignature
+        
+        def initialize(modelid=nil, modelversion=nil, modelsource=nil, modelformat=nil, tensorinfos=nil, accengineversion=nil, modelinputpath=nil, modelname=nil, modelsignature=nil)
+          @ModelId = modelid
+          @ModelVersion = modelversion
+          @ModelSource = modelsource
+          @ModelFormat = modelformat
+          @TensorInfos = tensorinfos
+          @AccEngineVersion = accengineversion
+          @ModelInputPath = modelinputpath
+          @ModelName = modelname
+          @ModelSignature = modelsignature
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelVersion = params['ModelVersion']
+          @ModelSource = params['ModelSource']
+          @ModelFormat = params['ModelFormat']
+          @TensorInfos = params['TensorInfos']
+          @AccEngineVersion = params['AccEngineVersion']
+          unless params['ModelInputPath'].nil?
+            @ModelInputPath = CosPathInfo.new
+            @ModelInputPath.deserialize(params['ModelInputPath'])
+          end
+          @ModelName = params['ModelName']
+          @ModelSignature = params['ModelSignature']
+        end
+      end
+
       # 跑批任务详情
       class BatchTaskDetail < TencentCloud::Common::AbstractModel
         # @param BatchTaskId: 跑批任务ID
@@ -477,6 +528,87 @@ module TencentCloud
           @Bucket = params['Bucket']
           @Region = params['Region']
           @Paths = params['Paths']
+        end
+      end
+
+      # CreateBatchModelAccTasks请求参数结构体
+      class CreateBatchModelAccTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskName: 模型加速任务名称
+        # @type ModelAccTaskName: String
+        # @param BatchModelAccTasks: 批量模型加速任务
+        # @type BatchModelAccTasks: Array
+        # @param ModelOutputPath: 模型加速保存路径
+        # @type ModelOutputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param OptimizationLevel: 优化级别(NO_LOSS/FP16)，默认FP16
+        # @type OptimizationLevel: String
+        # @param GPUType: GPU卡类型(T4/V100)，默认T4
+        # @type GPUType: String
+        # @param HyperParameter: 专业参数设置
+        # @type HyperParameter: :class:`Tencentcloud::Tione.v20211111.models.HyperParameter`
+
+        attr_accessor :ModelAccTaskName, :BatchModelAccTasks, :ModelOutputPath, :Tags, :OptimizationLevel, :GPUType, :HyperParameter
+        
+        def initialize(modelacctaskname=nil, batchmodelacctasks=nil, modeloutputpath=nil, tags=nil, optimizationlevel=nil, gputype=nil, hyperparameter=nil)
+          @ModelAccTaskName = modelacctaskname
+          @BatchModelAccTasks = batchmodelacctasks
+          @ModelOutputPath = modeloutputpath
+          @Tags = tags
+          @OptimizationLevel = optimizationlevel
+          @GPUType = gputype
+          @HyperParameter = hyperparameter
+        end
+
+        def deserialize(params)
+          @ModelAccTaskName = params['ModelAccTaskName']
+          unless params['BatchModelAccTasks'].nil?
+            @BatchModelAccTasks = []
+            params['BatchModelAccTasks'].each do |i|
+              batchmodelacctask_tmp = BatchModelAccTask.new
+              batchmodelacctask_tmp.deserialize(i)
+              @BatchModelAccTasks << batchmodelacctask_tmp
+            end
+          end
+          unless params['ModelOutputPath'].nil?
+            @ModelOutputPath = CosPathInfo.new
+            @ModelOutputPath.deserialize(params['ModelOutputPath'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @OptimizationLevel = params['OptimizationLevel']
+          @GPUType = params['GPUType']
+          unless params['HyperParameter'].nil?
+            @HyperParameter = HyperParameter.new
+            @HyperParameter.deserialize(params['HyperParameter'])
+          end
+        end
+      end
+
+      # CreateBatchModelAccTasks返回参数结构体
+      class CreateBatchModelAccTasksResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskIds: 模型优化任务ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccTaskIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAccTaskIds, :RequestId
+        
+        def initialize(modelacctaskids=nil, requestid=nil)
+          @ModelAccTaskIds = modelacctaskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelAccTaskIds = params['ModelAccTaskIds']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -938,6 +1070,59 @@ module TencentCloud
             @Service = Service.new
             @Service.deserialize(params['Service'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOptimizedModel请求参数结构体
+      class CreateOptimizedModelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # @type ModelAccTaskId: String
+        # @param Tags: 标签
+        # @type Tags: Array
+
+        attr_accessor :ModelAccTaskId, :Tags
+        
+        def initialize(modelacctaskid=nil, tags=nil)
+          @ModelAccTaskId = modelacctaskid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateOptimizedModel返回参数结构体
+      class CreateOptimizedModelResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelVersionId: 模型版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersionId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ModelVersionId, :RequestId
+        
+        def initialize(modelid=nil, modelversionid=nil, requestid=nil)
+          @ModelId = modelid
+          @ModelVersionId = modelversionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelVersionId = params['ModelVersionId']
           @RequestId = params['RequestId']
         end
       end
@@ -1834,6 +2019,38 @@ module TencentCloud
 
         def deserialize(params)
           @DatasetId = params['DatasetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteModelAccelerateTask请求参数结构体
+      class DeleteModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # @type ModelAccTaskId: String
+
+        attr_accessor :ModelAccTaskId
+        
+        def initialize(modelacctaskid=nil)
+          @ModelAccTaskId = modelacctaskid
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+        end
+      end
+
+      # DeleteModelAccelerateTask返回参数结构体
+      class DeleteModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2889,6 +3106,184 @@ module TencentCloud
         end
       end
 
+      # DescribeModelAccEngineVersions请求参数结构体
+      class DescribeModelAccEngineVersionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeModelAccEngineVersions返回参数结构体
+      class DescribeModelAccEngineVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAccEngineVersions: 模型加速版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccEngineVersions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAccEngineVersions, :RequestId
+        
+        def initialize(modelaccengineversions=nil, requestid=nil)
+          @ModelAccEngineVersions = modelaccengineversions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAccEngineVersions'].nil?
+            @ModelAccEngineVersions = []
+            params['ModelAccEngineVersions'].each do |i|
+              modelaccengineversion_tmp = ModelAccEngineVersion.new
+              modelaccengineversion_tmp.deserialize(i)
+              @ModelAccEngineVersions << modelaccengineversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelAccelerateTask请求参数结构体
+      class DescribeModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # @type ModelAccTaskId: String
+
+        attr_accessor :ModelAccTaskId
+        
+        def initialize(modelacctaskid=nil)
+          @ModelAccTaskId = modelacctaskid
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+        end
+      end
+
+      # DescribeModelAccelerateTask返回参数结构体
+      class DescribeModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAccelerateTask: 模型加速任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccelerateTask: :class:`Tencentcloud::Tione.v20211111.models.ModelAccelerateTask`
+        # @param ModelAccRuntimeInSecond: 模型加速时长，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccRuntimeInSecond: Integer
+        # @param ModelAccStartTime: 模型加速任务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccStartTime: String
+        # @param ModelAccEndTime: 模型加速任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccEndTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAccelerateTask, :ModelAccRuntimeInSecond, :ModelAccStartTime, :ModelAccEndTime, :RequestId
+        
+        def initialize(modelacceleratetask=nil, modelaccruntimeinsecond=nil, modelaccstarttime=nil, modelaccendtime=nil, requestid=nil)
+          @ModelAccelerateTask = modelacceleratetask
+          @ModelAccRuntimeInSecond = modelaccruntimeinsecond
+          @ModelAccStartTime = modelaccstarttime
+          @ModelAccEndTime = modelaccendtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAccelerateTask'].nil?
+            @ModelAccelerateTask = ModelAccelerateTask.new
+            @ModelAccelerateTask.deserialize(params['ModelAccelerateTask'])
+          end
+          @ModelAccRuntimeInSecond = params['ModelAccRuntimeInSecond']
+          @ModelAccStartTime = params['ModelAccStartTime']
+          @ModelAccEndTime = params['ModelAccEndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelAccelerateTasks请求参数结构体
+      class DescribeModelAccelerateTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤器
+        # ModelAccTaskName 任务名称
+        # @type Filters: Array
+        # @param OrderField: 排序字段，默认CreateTime
+        # @type OrderField: String
+        # @param Order: 排序方式：ASC/DESC，默认DESC
+        # @type Order: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认20
+        # @type Limit: Integer
+        # @param TagFilters: 标签过滤
+        # @type TagFilters: Array
+
+        attr_accessor :Filters, :OrderField, :Order, :Offset, :Limit, :TagFilters
+        
+        def initialize(filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, tagfilters=nil)
+          @Filters = filters
+          @OrderField = orderfield
+          @Order = order
+          @Offset = offset
+          @Limit = limit
+          @TagFilters = tagfilters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeModelAccelerateTasks返回参数结构体
+      class DescribeModelAccelerateTasksResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAccelerateTasks: 模型加速任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccelerateTasks: Array
+        # @param TotalCount: 任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAccelerateTasks, :TotalCount, :RequestId
+        
+        def initialize(modelacceleratetasks=nil, totalcount=nil, requestid=nil)
+          @ModelAccelerateTasks = modelacceleratetasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAccelerateTasks'].nil?
+            @ModelAccelerateTasks = []
+            params['ModelAccelerateTasks'].each do |i|
+              modelacceleratetask_tmp = ModelAccelerateTask.new
+              modelacceleratetask_tmp.deserialize(i)
+              @ModelAccelerateTasks << modelacceleratetask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeModelServiceCallInfo请求参数结构体
       class DescribeModelServiceCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -3763,6 +4158,28 @@ module TencentCloud
         end
       end
 
+      # 引擎版本
+      class EngineVersion < TencentCloud::Common::AbstractModel
+        # @param Version: 引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Image: 运行镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Image: String
+
+        attr_accessor :Version, :Image
+        
+        def initialize(version=nil, image=nil)
+          @Version = version
+          @Image = image
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Image = params['Image']
+        end
+      end
+
       # 环境变量
       class EnvVar < TencentCloud::Common::AbstractModel
         # @param Name: 环境变量key
@@ -4094,6 +4511,53 @@ module TencentCloud
         end
       end
 
+      # 模型专业参数
+      class HyperParameter < TencentCloud::Common::AbstractModel
+        # @param MaxNNZ: 最大nnz数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxNNZ: String
+        # @param SlotNum: slot数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlotNum: String
+        # @param CpuCachePercentage: gpu cache 使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuCachePercentage: String
+        # @param GpuCachePercentage: cpu cache 使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuCachePercentage: String
+        # @param EnableDistributed: 是否开启分布式模式(true/false)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDistributed: String
+        # @param MinBlockSizePt: TORCH_SCRIPT、MMDETECTION、DETECTRON2、HUGGINGFACE格式在进行优化时切分子图的最小算子数目，一般无需进行改动，默认为3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinBlockSizePt: String
+        # @param MinBlockSizeTf: FROZEN_GRAPH、SAVED_MODEL格式在进行优化时切分子图的最小算子数目，一般无需进行改动，默认为10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinBlockSizeTf: String
+
+        attr_accessor :MaxNNZ, :SlotNum, :CpuCachePercentage, :GpuCachePercentage, :EnableDistributed, :MinBlockSizePt, :MinBlockSizeTf
+        
+        def initialize(maxnnz=nil, slotnum=nil, cpucachepercentage=nil, gpucachepercentage=nil, enabledistributed=nil, minblocksizept=nil, minblocksizetf=nil)
+          @MaxNNZ = maxnnz
+          @SlotNum = slotnum
+          @CpuCachePercentage = cpucachepercentage
+          @GpuCachePercentage = gpucachepercentage
+          @EnableDistributed = enabledistributed
+          @MinBlockSizePt = minblocksizept
+          @MinBlockSizeTf = minblocksizetf
+        end
+
+        def deserialize(params)
+          @MaxNNZ = params['MaxNNZ']
+          @SlotNum = params['SlotNum']
+          @CpuCachePercentage = params['CpuCachePercentage']
+          @GpuCachePercentage = params['GpuCachePercentage']
+          @EnableDistributed = params['EnableDistributed']
+          @MinBlockSizePt = params['MinBlockSizePt']
+          @MinBlockSizeTf = params['MinBlockSizeTf']
+        end
+      end
+
       # 镜像描述信息
       class ImageInfo < TencentCloud::Common::AbstractModel
         # @param ImageType: 镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像
@@ -4406,6 +4870,205 @@ module TencentCloud
         end
       end
 
+      # 模型加速引擎版本
+      class ModelAccEngineVersion < TencentCloud::Common::AbstractModel
+        # @param ModelFormat: 模型格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelFormat: String
+        # @param EngineVersions: 引擎版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineVersions: Array
+
+        attr_accessor :ModelFormat, :EngineVersions
+        
+        def initialize(modelformat=nil, engineversions=nil)
+          @ModelFormat = modelformat
+          @EngineVersions = engineversions
+        end
+
+        def deserialize(params)
+          @ModelFormat = params['ModelFormat']
+          unless params['EngineVersions'].nil?
+            @EngineVersions = []
+            params['EngineVersions'].each do |i|
+              engineversion_tmp = EngineVersion.new
+              engineversion_tmp.deserialize(i)
+              @EngineVersions << engineversion_tmp
+            end
+          end
+        end
+      end
+
+      # 模型加速任务
+      class ModelAccelerateTask < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccTaskId: String
+        # @param ModelAccTaskName: 模型加速任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccTaskName: String
+        # @param ModelId: 模型ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelName: 模型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelSource: 模型来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelSource: String
+        # @param OptimizationLevel: 优化级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptimizationLevel: String
+        # @param TaskStatus: 任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+        # @param ModelInputNum: input节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInputNum: Integer
+        # @param ModelInputInfos: input节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInputInfos: Array
+        # @param GPUType: GPU型号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUType: String
+        # @param ChargeType: 计费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param Speedup: 加速比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Speedup: String
+        # @param ModelInputPath: 模型输入cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param ModelOutputPath: 模型输出cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelOutputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param AlgorithmFramework: 算法框架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgorithmFramework: String
+        # @param WaitNumber: 排队个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitNumber: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param TaskProgress: 任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskProgress: Integer
+        # @param ModelFormat: 模型格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelFormat: String
+        # @param TensorInfos: 模型Tensor信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TensorInfos: Array
+        # @param HyperParameter: 模型专业参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HyperParameter: :class:`Tencentcloud::Tione.v20211111.models.HyperParameter`
+        # @param AccEngineVersion: 加速引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccEngineVersion: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param IsSaved: 优化模型是否已保存到模型仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSaved: Boolean
+        # @param ModelSignature: SAVED_MODEL保存时配置的签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelSignature: String
+
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature
+        
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil)
+          @ModelAccTaskId = modelacctaskid
+          @ModelAccTaskName = modelacctaskname
+          @ModelId = modelid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelSource = modelsource
+          @OptimizationLevel = optimizationlevel
+          @TaskStatus = taskstatus
+          @ModelInputNum = modelinputnum
+          @ModelInputInfos = modelinputinfos
+          @GPUType = gputype
+          @ChargeType = chargetype
+          @Speedup = speedup
+          @ModelInputPath = modelinputpath
+          @ModelOutputPath = modeloutputpath
+          @ErrorMsg = errormsg
+          @AlgorithmFramework = algorithmframework
+          @WaitNumber = waitnumber
+          @CreateTime = createtime
+          @TaskProgress = taskprogress
+          @ModelFormat = modelformat
+          @TensorInfos = tensorinfos
+          @HyperParameter = hyperparameter
+          @AccEngineVersion = accengineversion
+          @Tags = tags
+          @IsSaved = issaved
+          @ModelSignature = modelsignature
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+          @ModelAccTaskName = params['ModelAccTaskName']
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelSource = params['ModelSource']
+          @OptimizationLevel = params['OptimizationLevel']
+          @TaskStatus = params['TaskStatus']
+          @ModelInputNum = params['ModelInputNum']
+          unless params['ModelInputInfos'].nil?
+            @ModelInputInfos = []
+            params['ModelInputInfos'].each do |i|
+              modelinputinfo_tmp = ModelInputInfo.new
+              modelinputinfo_tmp.deserialize(i)
+              @ModelInputInfos << modelinputinfo_tmp
+            end
+          end
+          @GPUType = params['GPUType']
+          @ChargeType = params['ChargeType']
+          @Speedup = params['Speedup']
+          unless params['ModelInputPath'].nil?
+            @ModelInputPath = CosPathInfo.new
+            @ModelInputPath.deserialize(params['ModelInputPath'])
+          end
+          unless params['ModelOutputPath'].nil?
+            @ModelOutputPath = CosPathInfo.new
+            @ModelOutputPath.deserialize(params['ModelOutputPath'])
+          end
+          @ErrorMsg = params['ErrorMsg']
+          @AlgorithmFramework = params['AlgorithmFramework']
+          @WaitNumber = params['WaitNumber']
+          @CreateTime = params['CreateTime']
+          @TaskProgress = params['TaskProgress']
+          @ModelFormat = params['ModelFormat']
+          @TensorInfos = params['TensorInfos']
+          unless params['HyperParameter'].nil?
+            @HyperParameter = HyperParameter.new
+            @HyperParameter.deserialize(params['HyperParameter'])
+          end
+          @AccEngineVersion = params['AccEngineVersion']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @IsSaved = params['IsSaved']
+          @ModelSignature = params['ModelSignature']
+        end
+      end
+
       # 模型描述信息
       class ModelInfo < TencentCloud::Common::AbstractModel
         # @param ModelVersionId: 模型版本id, DescribeTrainingModelVersion查询模型接口时的id
@@ -4453,6 +5116,30 @@ module TencentCloud
           end
           @AlgorithmFramework = params['AlgorithmFramework']
           @ModelType = params['ModelType']
+        end
+      end
+
+      # 模型输入信息
+      class ModelInputInfo < TencentCloud::Common::AbstractModel
+        # @param ModelInputType: input数据类型
+        # FIXED：固定
+        # RANGE：浮动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInputType: String
+        # @param ModelInputDimension: input数据尺寸
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInputDimension: Array
+
+        attr_accessor :ModelInputType, :ModelInputDimension
+        
+        def initialize(modelinputtype=nil, modelinputdimension=nil)
+          @ModelInputType = modelinputtype
+          @ModelInputDimension = modelinputdimension
+        end
+
+        def deserialize(params)
+          @ModelInputType = params['ModelInputType']
+          @ModelInputDimension = params['ModelInputDimension']
         end
       end
 
@@ -4844,6 +5531,133 @@ module TencentCloud
               @RealGpuDetailSet << gpudetail_tmp
             end
           end
+        end
+      end
+
+      # RestartModelAccelerateTask请求参数结构体
+      class RestartModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # @type ModelAccTaskId: String
+        # @param ModelAccTaskName: 模型加速任务名称
+        # @type ModelAccTaskName: String
+        # @param ModelSource: 模型来源（JOB/COS）
+        # @type ModelSource: String
+        # @param AlgorithmFramework: 算法框架（废弃）
+        # @type AlgorithmFramework: String
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本
+        # @type ModelVersion: String
+        # @param ModelInputPath: 模型输入cos路径
+        # @type ModelInputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param OptimizationLevel: 优化级别（NO_LOSS/FP16），默认FP16
+        # @type OptimizationLevel: String
+        # @param ModelInputNum: input节点个数（废弃）
+        # @type ModelInputNum: Integer
+        # @param ModelInputInfos: input节点信息（废弃）
+        # @type ModelInputInfos: Array
+        # @param ModelOutputPath: 模型输出cos路径
+        # @type ModelOutputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param ModelFormat: 模型格式（TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/MMDETECTION/ONNX/HUGGING_FACE）
+        # @type ModelFormat: String
+        # @param TensorInfos: 模型Tensor信息
+        # @type TensorInfos: Array
+        # @param GPUType: GPU类型（T4/V100），默认T4
+        # @type GPUType: String
+        # @param HyperParameter: 模型专业参数
+        # @type HyperParameter: :class:`Tencentcloud::Tione.v20211111.models.HyperParameter`
+        # @param AccEngineVersion: 加速引擎版本
+        # @type AccEngineVersion: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param ModelSignature: SavedModel保存时配置的签名
+        # @type ModelSignature: String
+
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelSource, :AlgorithmFramework, :ModelId, :ModelName, :ModelVersion, :ModelInputPath, :OptimizationLevel, :ModelInputNum, :ModelInputInfos, :ModelOutputPath, :ModelFormat, :TensorInfos, :GPUType, :HyperParameter, :AccEngineVersion, :Tags, :ModelSignature
+        
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelsource=nil, algorithmframework=nil, modelid=nil, modelname=nil, modelversion=nil, modelinputpath=nil, optimizationlevel=nil, modelinputnum=nil, modelinputinfos=nil, modeloutputpath=nil, modelformat=nil, tensorinfos=nil, gputype=nil, hyperparameter=nil, accengineversion=nil, tags=nil, modelsignature=nil)
+          @ModelAccTaskId = modelacctaskid
+          @ModelAccTaskName = modelacctaskname
+          @ModelSource = modelsource
+          @AlgorithmFramework = algorithmframework
+          @ModelId = modelid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelInputPath = modelinputpath
+          @OptimizationLevel = optimizationlevel
+          @ModelInputNum = modelinputnum
+          @ModelInputInfos = modelinputinfos
+          @ModelOutputPath = modeloutputpath
+          @ModelFormat = modelformat
+          @TensorInfos = tensorinfos
+          @GPUType = gputype
+          @HyperParameter = hyperparameter
+          @AccEngineVersion = accengineversion
+          @Tags = tags
+          @ModelSignature = modelsignature
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+          @ModelAccTaskName = params['ModelAccTaskName']
+          @ModelSource = params['ModelSource']
+          @AlgorithmFramework = params['AlgorithmFramework']
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          unless params['ModelInputPath'].nil?
+            @ModelInputPath = CosPathInfo.new
+            @ModelInputPath.deserialize(params['ModelInputPath'])
+          end
+          @OptimizationLevel = params['OptimizationLevel']
+          @ModelInputNum = params['ModelInputNum']
+          unless params['ModelInputInfos'].nil?
+            @ModelInputInfos = []
+            params['ModelInputInfos'].each do |i|
+              modelinputinfo_tmp = ModelInputInfo.new
+              modelinputinfo_tmp.deserialize(i)
+              @ModelInputInfos << modelinputinfo_tmp
+            end
+          end
+          unless params['ModelOutputPath'].nil?
+            @ModelOutputPath = CosPathInfo.new
+            @ModelOutputPath.deserialize(params['ModelOutputPath'])
+          end
+          @ModelFormat = params['ModelFormat']
+          @TensorInfos = params['TensorInfos']
+          @GPUType = params['GPUType']
+          unless params['HyperParameter'].nil?
+            @HyperParameter = HyperParameter.new
+            @HyperParameter.deserialize(params['HyperParameter'])
+          end
+          @AccEngineVersion = params['AccEngineVersion']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ModelSignature = params['ModelSignature']
+        end
+      end
+
+      # RestartModelAccelerateTask返回参数结构体
+      class RestartModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5666,6 +6480,48 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopModelAccelerateTask请求参数结构体
+      class StopModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # @type ModelAccTaskId: String
+
+        attr_accessor :ModelAccTaskId
+        
+        def initialize(modelacctaskid=nil)
+          @ModelAccTaskId = modelacctaskid
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+        end
+      end
+
+      # StopModelAccelerateTask返回参数结构体
+      class StopModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAccTaskId: 模型加速任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccTaskId: String
+        # @param AsyncTaskId: 异步任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncTaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAccTaskId, :AsyncTaskId, :RequestId
+        
+        def initialize(modelacctaskid=nil, asynctaskid=nil, requestid=nil)
+          @ModelAccTaskId = modelacctaskid
+          @AsyncTaskId = asynctaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelAccTaskId = params['ModelAccTaskId']
+          @AsyncTaskId = params['AsyncTaskId']
           @RequestId = params['RequestId']
         end
       end
