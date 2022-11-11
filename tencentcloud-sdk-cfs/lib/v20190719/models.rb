@@ -831,6 +831,46 @@ module TencentCloud
         end
       end
 
+      # DeleteUserQuota请求参数结构体
+      class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID
+        # @type FileSystemId: String
+        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @type UserType: String
+        # @param UserId: UID/GID信息
+        # @type UserId: String
+
+        attr_accessor :FileSystemId, :UserType, :UserId
+        
+        def initialize(filesystemid=nil, usertype=nil, userid=nil)
+          @FileSystemId = filesystemid
+          @UserType = usertype
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @UserType = params['UserType']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteUserQuota返回参数结构体
+      class DeleteUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoSnapshotPolicies请求参数结构体
       class DescribeAutoSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID
@@ -1375,6 +1415,74 @@ module TencentCloud
         end
       end
 
+      # DescribeUserQuota请求参数结构体
+      class DescribeUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID
+        # @type FileSystemId: String
+        # @param Filters: 过滤条件。
+        # <br><li>UserType - Array of String - 是否必填：否 -（过滤条件）按配额类型过滤。(Uid| Gid )
+        # <br><li>UserId - Array of String - 是否必填：否 -（过滤条件）按UID/GID过滤。
+        # @type Filters: Array
+        # @param Offset: Offset 分页码
+        # @type Offset: Integer
+        # @param Limit: Limit 页面大小
+        # @type Limit: Integer
+
+        attr_accessor :FileSystemId, :Filters, :Offset, :Limit
+        
+        def initialize(filesystemid=nil, filters=nil, offset=nil, limit=nil)
+          @FileSystemId = filesystemid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUserQuota返回参数结构体
+      class DescribeUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: UserQuota条目总数
+        # @type TotalCount: Integer
+        # @param UserQuotaInfo: UserQuota条目
+        # @type UserQuotaInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UserQuotaInfo, :RequestId
+        
+        def initialize(totalcount=nil, userquotainfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UserQuotaInfo = userquotainfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UserQuotaInfo'].nil?
+            @UserQuotaInfo = []
+            params['UserQuotaInfo'].each do |i|
+              userquota_tmp = UserQuota.new
+              userquota_tmp.deserialize(i)
+              @UserQuotaInfo << userquota_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 绑定快照策略的文件系统信息
       class FileSystemByPolicy < TencentCloud::Common::AbstractModel
         # @param CreationToken: 文件系统名称
@@ -1714,6 +1822,54 @@ module TencentCloud
           @RWPermission = params['RWPermission']
           @UserPermission = params['UserPermission']
           @Priority = params['Priority']
+        end
+      end
+
+      # SetUserQuota请求参数结构体
+      class SetUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID
+        # @type FileSystemId: String
+        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @type UserType: String
+        # @param UserId: UID/GID信息
+        # @type UserId: String
+        # @param CapacityHardLimit: 容量硬限制，单位GiB
+        # @type CapacityHardLimit: Integer
+        # @param FileHardLimit: 文件硬限制，单位个
+        # @type FileHardLimit: Integer
+
+        attr_accessor :FileSystemId, :UserType, :UserId, :CapacityHardLimit, :FileHardLimit
+        
+        def initialize(filesystemid=nil, usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil)
+          @FileSystemId = filesystemid
+          @UserType = usertype
+          @UserId = userid
+          @CapacityHardLimit = capacityhardlimit
+          @FileHardLimit = filehardlimit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @UserType = params['UserType']
+          @UserId = params['UserId']
+          @CapacityHardLimit = params['CapacityHardLimit']
+          @FileHardLimit = params['FileHardLimit']
+        end
+      end
+
+      # SetUserQuota返回参数结构体
+      class SetUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2288,6 +2444,38 @@ module TencentCloud
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文件系统配额信息
+      class UserQuota < TencentCloud::Common::AbstractModel
+        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @type UserType: String
+        # @param UserId: UID/GID信息
+        # @type UserId: String
+        # @param CapacityHardLimit: 容量硬限制，单位GiB
+        # @type CapacityHardLimit: Integer
+        # @param FileHardLimit: 文件硬限制，单位个
+        # @type FileHardLimit: Integer
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId
+        
+        def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil)
+          @UserType = usertype
+          @UserId = userid
+          @CapacityHardLimit = capacityhardlimit
+          @FileHardLimit = filehardlimit
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @UserType = params['UserType']
+          @UserId = params['UserId']
+          @CapacityHardLimit = params['CapacityHardLimit']
+          @FileHardLimit = params['FileHardLimit']
+          @FileSystemId = params['FileSystemId']
         end
       end
 

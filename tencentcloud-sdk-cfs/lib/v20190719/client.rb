@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 指定条件删除文件系统配额
+
+        # @param request: Request instance for DeleteUserQuota.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteUserQuotaResponse`
+        def DeleteUserQuota(request)
+          body = send_request('DeleteUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询文件系统快照定期策略列表信息
 
         # @param request: Request instance for DescribeAutoSnapshotPolicies.
@@ -567,6 +591,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSnapshotOperationLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文件系统配额
+
+        # @param request: Request instance for DescribeUserQuota.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeUserQuotaResponse`
+        def DescribeUserQuota(request)
+          body = send_request('DescribeUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置文件系统配额，提供UID/GID的配额设置的接口
+
+        # @param request: Request instance for SetUserQuota.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::SetUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::SetUserQuotaResponse`
+        def SetUserQuota(request)
+          body = send_request('SetUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetUserQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
