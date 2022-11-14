@@ -5939,14 +5939,17 @@ module TencentCloud
         # @param ItemCoord: 文本行在旋转纠正之后的图像中的像素
         # 坐标。
         # @type ItemCoord: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
+        # @param Row: 字段所在行号，下标从0开始，非行字段或未能识别行号的该值返回-1。
+        # @type Row: Integer
 
-        attr_accessor :Name, :Value, :Confidence, :ItemCoord
+        attr_accessor :Name, :Value, :Confidence, :ItemCoord, :Row
         
-        def initialize(name=nil, value=nil, confidence=nil, itemcoord=nil)
+        def initialize(name=nil, value=nil, confidence=nil, itemcoord=nil, row=nil)
           @Name = name
           @Value = value
           @Confidence = confidence
           @ItemCoord = itemcoord
+          @Row = row
         end
 
         def deserialize(params)
@@ -5957,6 +5960,7 @@ module TencentCloud
             @ItemCoord = ItemCoord.new
             @ItemCoord.deserialize(params['ItemCoord'])
           end
+          @Row = params['Row']
         end
       end
 

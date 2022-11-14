@@ -1716,7 +1716,7 @@ module TencentCloud
         # @type Tasks: Array
         # @param Callback: 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
         # @type Callback: String
-        # @param Lang: 语言，目前jp代表日语
+        # @param Lang: 语种，不传默认中文
         # @type Lang: String
 
         attr_accessor :BizId, :Scenes, :Live, :Tasks, :Callback, :Lang

@@ -780,6 +780,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
+        # 查询离职员工时，Key为Status，Values为["QuiteJob"]
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
@@ -1235,12 +1236,16 @@ module TencentCloud
         # @type UniformSocialCreditCode: String
         # @param MenuStatus: 是否展示左侧菜单栏 是：ENABLE（默认） 否：DISABLE
         # @type MenuStatus: String
+        # @param Endpoint: 链接跳转类型："PC"-PC控制台，“CHANNEL”-H5跳转到电子签小程序；“APP”-第三方APP或小程序跳转电子签小程序，默认为PC控制台
+        # @type Endpoint: String
+        # @param AutoJumpBackEvent: 触发自动跳转事件，仅对App类型有效，"VERIFIED":企业认证完成/员工认证完成后跳回原App/小程序
+        # @type AutoJumpBackEvent: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :Operator
         
-        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @ProxyOperatorName = proxyoperatorname
@@ -1248,6 +1253,8 @@ module TencentCloud
           @ModuleId = moduleid
           @UniformSocialCreditCode = uniformsocialcreditcode
           @MenuStatus = menustatus
+          @Endpoint = endpoint
+          @AutoJumpBackEvent = autojumpbackevent
           @Operator = operator
         end
 
@@ -1262,6 +1269,8 @@ module TencentCloud
           @ModuleId = params['ModuleId']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
           @MenuStatus = params['MenuStatus']
+          @Endpoint = params['Endpoint']
+          @AutoJumpBackEvent = params['AutoJumpBackEvent']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1271,26 +1280,33 @@ module TencentCloud
 
       # CreateConsoleLoginUrl返回参数结构体
       class CreateConsoleLoginUrlResponse < TencentCloud::Common::AbstractModel
-        # @param ConsoleUrl: 子客Web控制台url，此链接5分钟内有效，且只能访问一次。同时需要注意：
-        # 1. 此链接仅单次有效，使用后需要再次创建新的链接（部分聊天软件，如企业微信默认会对链接进行解析，此时需要使用类似“代码片段”的方式或者放到txt文件里发送链接）；
-        # 2. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
+        # @param ConsoleUrl: 子客Web控制台url注意事项：
+        # 1. 所有类型的链接在企业未认证/员工未认证完成时，只要在有效期内（一年）都可以访问
+        # 2. 若企业认证完成且员工认证完成后，重新获取pc端的链接5分钟之内有效，且只能访问一次
+        # 3. 若企业认证完成且员工认证完成后，重新获取H5/APP的链接只要在有效期内（一年）都可以访问
+        # 4. 此链接仅单次有效，使用后需要再次创建新的链接（部分聊天软件，如企业微信默认会对链接进行解析，此时需要使用类似“代码片段”的方式或者放到txt文件里发送链接）
+        # 5. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
         # @type ConsoleUrl: String
         # @param IsActivated: 渠道子客企业是否已开通腾讯电子签
         # @type IsActivated: Boolean
+        # @param ProxyOperatorIsVerified: 当前经办人是否已认证（false:未认证 true:已认证）
+        # @type ProxyOperatorIsVerified: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ConsoleUrl, :IsActivated, :RequestId
+        attr_accessor :ConsoleUrl, :IsActivated, :ProxyOperatorIsVerified, :RequestId
         
-        def initialize(consoleurl=nil, isactivated=nil, requestid=nil)
+        def initialize(consoleurl=nil, isactivated=nil, proxyoperatorisverified=nil, requestid=nil)
           @ConsoleUrl = consoleurl
           @IsActivated = isactivated
+          @ProxyOperatorIsVerified = proxyoperatorisverified
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ConsoleUrl = params['ConsoleUrl']
           @IsActivated = params['IsActivated']
+          @ProxyOperatorIsVerified = params['ProxyOperatorIsVerified']
           @RequestId = params['RequestId']
         end
       end
@@ -1301,19 +1317,22 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowInfos: 多个合同（签署流程）信息，最多支持20个
         # @type FlowInfos: Array
-        # @param NeedPreview: 是否为预览模式；默认为false，即非预览模式，此时发起合同并返回FlowIds；若为预览模式，不会发起合同，会返回PreviewUrls（此Url返回的是PDF文件流 ）；
+        # @param NeedPreview: 是否为预览模式；默认为false，即非预览模式，此时发起合同并返回FlowIds；若为预览模式，不会发起合同，会返回PreviewUrls；
         # 预览链接有效期300秒；
         # 同时，如果预览的文件中指定了动态表格控件，需要进行异步合成；此时此接口返回的是合成前的文档预览链接，而合成完成后的文档预览链接会通过：回调通知的方式、或使用返回的TaskInfo中的TaskId通过ChannelGetTaskResultApi接口查询；
         # @type NeedPreview: Boolean
+        # @param PreviewType: 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
+        # @type PreviewType: Integer
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowInfos, :NeedPreview, :Operator
+        attr_accessor :Agent, :FlowInfos, :NeedPreview, :PreviewType, :Operator
         
-        def initialize(agent=nil, flowinfos=nil, needpreview=nil, operator=nil)
+        def initialize(agent=nil, flowinfos=nil, needpreview=nil, previewtype=nil, operator=nil)
           @Agent = agent
           @FlowInfos = flowinfos
           @NeedPreview = needpreview
+          @PreviewType = previewtype
           @Operator = operator
         end
 
@@ -1331,6 +1350,7 @@ module TencentCloud
             end
           end
           @NeedPreview = params['NeedPreview']
+          @PreviewType = params['PreviewType']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1728,10 +1748,12 @@ module TencentCloud
         # @type TemplateName: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param WithPreviewUrl: 是否获取模板预览链接
+        # @type WithPreviewUrl: Boolean
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
@@ -1740,6 +1762,7 @@ module TencentCloud
           @QueryAllComponents = queryallcomponents
           @TemplateName = templatename
           @Operator = operator
+          @WithPreviewUrl = withpreviewurl
         end
 
         def deserialize(params)
@@ -1757,6 +1780,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @WithPreviewUrl = params['WithPreviewUrl']
         end
       end
 
@@ -1995,12 +2019,12 @@ module TencentCloud
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
-        # @param IdCardType: 经办人身份证件类型
+        # @param IdCardType: 签署人身份证件类型
         # 1.ID_CARD 居民身份证
         # 2.HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证
         # 3.HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # @type IdCardType: String
-        # @param IdCardNumber: 经办人证件号
+        # @param IdCardNumber: 签署人证件号
         # @type IdCardNumber: String
         # @param Mobile: 签署人手机号，脱敏显示。大陆手机号为11位，暂不支持海外手机号。
         # @type Mobile: String
@@ -3227,16 +3251,19 @@ module TencentCloud
         # @type BusinessLicense: String
         # @param UniformSocialCreditCode: 渠道侧合作企业统一社会信用代码，最大长度200个字符
         # @type UniformSocialCreditCode: String
+        # @param ProxyLegalName: 渠道侧合作企业法人/负责人姓名
+        # @type ProxyLegalName: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :ProxyLegalName, :Operator
         
-        def initialize(agent=nil, proxyorganizationname=nil, businesslicense=nil, uniformsocialcreditcode=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, businesslicense=nil, uniformsocialcreditcode=nil, proxylegalname=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @BusinessLicense = businesslicense
           @UniformSocialCreditCode = uniformsocialcreditcode
+          @ProxyLegalName = proxylegalname
           @Operator = operator
         end
 
@@ -3248,6 +3275,7 @@ module TencentCloud
           @ProxyOrganizationName = params['ProxyOrganizationName']
           @BusinessLicense = params['BusinessLicense']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @ProxyLegalName = params['ProxyLegalName']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -3315,10 +3343,13 @@ module TencentCloud
         # @type Creator: String
         # @param CreatedOn: 模板创建的时间戳（精确到秒）
         # @type CreatedOn: Integer
+        # @param PreviewUrl: 模板的预览链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Recipients, :TemplateType, :IsPromoter, :Creator, :CreatedOn
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Recipients, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, recipients=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, recipients=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -3329,6 +3360,7 @@ module TencentCloud
           @IsPromoter = ispromoter
           @Creator = creator
           @CreatedOn = createdon
+          @PreviewUrl = previewurl
         end
 
         def deserialize(params)
@@ -3363,6 +3395,7 @@ module TencentCloud
           @IsPromoter = params['IsPromoter']
           @Creator = params['Creator']
           @CreatedOn = params['CreatedOn']
+          @PreviewUrl = params['PreviewUrl']
         end
       end
 

@@ -4533,7 +4533,7 @@ module TencentCloud
 
       # DescribeRabbitMQNodeList请求参数结构体
       class DescribeRabbitMQNodeListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 不适用，默认参数
+        # @param InstanceId: rabbitmq集群ID
         # @type InstanceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
@@ -6971,10 +6971,16 @@ module TencentCloud
         # @param SupportNamespaceEndpoint: 是否支持命名空间接入点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportNamespaceEndpoint: Boolean
+        # @param Vpcs: VPC信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vpcs: Array
+        # @param IsVip: 是否为专享实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsVip: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -6983,6 +6989,8 @@ module TencentCloud
           @PublicEndPoint = publicendpoint
           @VpcEndPoint = vpcendpoint
           @SupportNamespaceEndpoint = supportnamespaceendpoint
+          @Vpcs = vpcs
+          @IsVip = isvip
         end
 
         def deserialize(params)
@@ -6994,6 +7002,15 @@ module TencentCloud
           @PublicEndPoint = params['PublicEndPoint']
           @VpcEndPoint = params['VpcEndPoint']
           @SupportNamespaceEndpoint = params['SupportNamespaceEndpoint']
+          unless params['Vpcs'].nil?
+            @Vpcs = []
+            params['Vpcs'].each do |i|
+              vpcconfig_tmp = VpcConfig.new
+              vpcconfig_tmp.deserialize(i)
+              @Vpcs << vpcconfig_tmp
+            end
+          end
+          @IsVip = params['IsVip']
         end
       end
 
@@ -7907,6 +7924,26 @@ module TencentCloud
           @Ip = params['Ip']
           @Port = params['Port']
           @Remark = params['Remark']
+        end
+      end
+
+      # VPC配置信息
+      class VpcConfig < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的id
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+        
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 

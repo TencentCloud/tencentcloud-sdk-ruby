@@ -1456,7 +1456,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（IsolateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
+        # 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
 
         # @param request: Request instance for TerminateDedicatedDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::TerminateDedicatedDBInstanceRequest`

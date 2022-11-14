@@ -109,28 +109,28 @@ module TencentCloud
 
       # 定时任务
       class ActionTimer < TencentCloud::Common::AbstractModel
-        # @param Externals: 扩展数据
-        # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
         # @param TimerAction: 定时器名称，目前仅支持销毁一个值：TerminateInstances。
         # @type TimerAction: String
         # @param ActionTime: 执行时间，格式形如：2018-5-29 11:26:40,执行时间必须大于当前时间5分钟。
         # @type ActionTime: String
+        # @param Externals: 扩展数据
+        # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
 
-        attr_accessor :Externals, :TimerAction, :ActionTime
+        attr_accessor :TimerAction, :ActionTime, :Externals
         
-        def initialize(externals=nil, timeraction=nil, actiontime=nil)
-          @Externals = externals
+        def initialize(timeraction=nil, actiontime=nil, externals=nil)
           @TimerAction = timeraction
           @ActionTime = actiontime
+          @Externals = externals
         end
 
         def deserialize(params)
+          @TimerAction = params['TimerAction']
+          @ActionTime = params['ActionTime']
           unless params['Externals'].nil?
             @Externals = Externals.new
             @Externals.deserialize(params['Externals'])
           end
-          @TimerAction = params['TimerAction']
-          @ActionTime = params['ActionTime']
         end
       end
 

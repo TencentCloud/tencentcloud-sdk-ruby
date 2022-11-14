@@ -5682,10 +5682,16 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
+        # @param Format: 图片格式，取值：
+        # <li> jpg：jpg 格式；</li>
+        # <li> png：png 格式；</li>
+        # <li> webp：webp 格式。</li>
+        # 默认值：jpg。
+        # @type Format: String
 
-        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :SubAppId, :Name, :Comment, :FillType, :Width, :Height, :ResolutionAdaptive
+        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :SubAppId, :Name, :Comment, :FillType, :Width, :Height, :ResolutionAdaptive, :Format
         
-        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, subappid=nil, name=nil, comment=nil, filltype=nil, width=nil, height=nil, resolutionadaptive=nil)
+        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, subappid=nil, name=nil, comment=nil, filltype=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil)
           @SampleType = sampletype
           @SampleInterval = sampleinterval
           @RowCount = rowcount
@@ -5697,6 +5703,7 @@ module TencentCloud
           @Width = width
           @Height = height
           @ResolutionAdaptive = resolutionadaptive
+          @Format = format
         end
 
         def deserialize(params)
@@ -5711,6 +5718,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @ResolutionAdaptive = params['ResolutionAdaptive']
+          @Format = params['Format']
         end
       end
 
@@ -11621,10 +11629,12 @@ module TencentCloud
         # @type FillType: String
         # @param Comment: 模板描述信息。
         # @type Comment: String
+        # @param Format: 图片格式。
+        # @type Format: String
 
-        attr_accessor :Definition, :Type, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :CreateTime, :UpdateTime, :FillType, :Comment
+        attr_accessor :Definition, :Type, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :CreateTime, :UpdateTime, :FillType, :Comment, :Format
         
-        def initialize(definition=nil, type=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, createtime=nil, updatetime=nil, filltype=nil, comment=nil)
+        def initialize(definition=nil, type=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, createtime=nil, updatetime=nil, filltype=nil, comment=nil, format=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -11639,6 +11649,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FillType = filltype
           @Comment = comment
+          @Format = format
         end
 
         def deserialize(params)
@@ -11656,6 +11667,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
           @Comment = params['Comment']
+          @Format = params['Format']
         end
       end
 
@@ -14773,10 +14785,15 @@ module TencentCloud
         # @type FillType: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param Format: 图片格式，取值：
+        # <li> jpg：jpg 格式；</li>
+        # <li> png：png 格式；</li>
+        # <li> webp：webp 格式。</li>
+        # @type Format: String
 
-        attr_accessor :Definition, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :FillType, :Comment
+        attr_accessor :Definition, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :RowCount, :ColumnCount, :FillType, :Comment, :Format
         
-        def initialize(definition=nil, subappid=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, filltype=nil, comment=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, filltype=nil, comment=nil, format=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -14789,6 +14806,7 @@ module TencentCloud
           @ColumnCount = columncount
           @FillType = filltype
           @Comment = comment
+          @Format = format
         end
 
         def deserialize(params)
@@ -14804,6 +14822,7 @@ module TencentCloud
           @ColumnCount = params['ColumnCount']
           @FillType = params['FillType']
           @Comment = params['Comment']
+          @Format = params['Format']
         end
       end
 

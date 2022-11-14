@@ -2964,13 +2964,13 @@ module TencentCloud
 
       # TRTC数据大盘/实时监控 API接口数据出参
       class TRTCDataResp < TencentCloud::Common::AbstractModel
-        # @param StatementID: StatementID值
+        # @param StatementID: StatementID值，监控仪表盘下固定为0。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatementID: Integer
-        # @param Series: Series数据
+        # @param Series: 查询结果数据，以Columns-Values形式返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Series: Array
-        # @param Total: Total值
+        # @param Total: Total值，监控仪表盘功能下固定为1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
 

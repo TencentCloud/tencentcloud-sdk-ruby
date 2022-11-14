@@ -573,22 +573,25 @@ module TencentCloud
         # @param NeedPreview: 是否需要生成预览文件 默认不生成；
         # 预览链接有效期300秒；
         # @type NeedPreview: Boolean
-        # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
-        # @type ClientToken: String
+        # @param PreviewType: 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
+        # @type PreviewType: Integer
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
+        # @type ClientToken: String
 
-        attr_accessor :Operator, :FlowId, :TemplateId, :FileNames, :FormFields, :NeedPreview, :ClientToken, :Agent
+        attr_accessor :Operator, :FlowId, :TemplateId, :FileNames, :FormFields, :NeedPreview, :PreviewType, :Agent, :ClientToken
         
-        def initialize(operator=nil, flowid=nil, templateid=nil, filenames=nil, formfields=nil, needpreview=nil, clienttoken=nil, agent=nil)
+        def initialize(operator=nil, flowid=nil, templateid=nil, filenames=nil, formfields=nil, needpreview=nil, previewtype=nil, agent=nil, clienttoken=nil)
           @Operator = operator
           @FlowId = flowid
           @TemplateId = templateid
           @FileNames = filenames
           @FormFields = formfields
           @NeedPreview = needpreview
-          @ClientToken = clienttoken
+          @PreviewType = previewtype
           @Agent = agent
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -608,11 +611,12 @@ module TencentCloud
             end
           end
           @NeedPreview = params['NeedPreview']
-          @ClientToken = params['ClientToken']
+          @PreviewType = params['PreviewType']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -713,8 +717,8 @@ module TencentCloud
 
         # 注：如果使用“预览模式”，出参会返回合同预览链接 PreviewUrl，不会正式发起合同，且出参不会返回签署流程编号 FlowId；如果使用“非预览”，则会正常返回签署流程编号 FlowId，不会生成合同预览链接 PreviewUrl。
         # @type NeedPreview: Boolean
-        # @param FlowDescription: 签署流程描述,最大长度1000个字符
-        # @type FlowDescription: String
+        # @param PreviewType: 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
+        # @type PreviewType: Integer
         # @param Deadline: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         # @type Deadline: Integer
@@ -739,10 +743,12 @@ module TencentCloud
         # MobileCheck：手机号验证
         # 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
+        # @param FlowDescription: 签署流程描述,最大长度1000个字符
+        # @type FlowDescription: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType, :FlowDescription
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil, flowdescription=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -751,7 +757,7 @@ module TencentCloud
           @Components = components
           @CcInfos = ccinfos
           @NeedPreview = needpreview
-          @FlowDescription = flowdescription
+          @PreviewType = previewtype
           @Deadline = deadline
           @Unordered = unordered
           @CustomShowMap = customshowmap
@@ -759,6 +765,7 @@ module TencentCloud
           @UserData = userdata
           @Agent = agent
           @ApproverVerifyType = approververifytype
+          @FlowDescription = flowdescription
         end
 
         def deserialize(params)
@@ -794,7 +801,7 @@ module TencentCloud
             end
           end
           @NeedPreview = params['NeedPreview']
-          @FlowDescription = params['FlowDescription']
+          @PreviewType = params['PreviewType']
           @Deadline = params['Deadline']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
@@ -805,6 +812,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ApproverVerifyType = params['ApproverVerifyType']
+          @FlowDescription = params['FlowDescription']
         end
       end
 

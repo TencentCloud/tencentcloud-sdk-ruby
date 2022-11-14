@@ -3334,7 +3334,7 @@ module TencentCloud
 
       # DescribeModelServiceGroup请求参数结构体
       class DescribeModelServiceGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceGroupId: 无
+        # @param ServiceGroupId: 服务组ID
         # @type ServiceGroupId: String
 
         attr_accessor :ServiceGroupId

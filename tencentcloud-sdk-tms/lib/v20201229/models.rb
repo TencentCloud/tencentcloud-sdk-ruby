@@ -42,10 +42,13 @@ module TencentCloud
         # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param Tags: 该字段用于返回当前一级标签（Label）下的关键词、子标签及分数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel
+        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags
         
-        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil)
+        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil)
           @Label = label
           @Suggestion = suggestion
           @Keywords = keywords
@@ -54,6 +57,7 @@ module TencentCloud
           @LibId = libid
           @LibName = libname
           @SubLabel = sublabel
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -65,6 +69,14 @@ module TencentCloud
           @LibId = params['LibId']
           @LibName = params['LibName']
           @SubLabel = params['SubLabel']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -127,6 +139,33 @@ module TencentCloud
         def deserialize(params)
           @Label = params['Label']
           @Level = params['Level']
+        end
+      end
+
+      # 该字段用于返回审核结果明细字段的标签及分数
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Keyword: 该字段用于返回命中的关键词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keyword: String
+        # @param SubLabel: 该字段用于返回子标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
+        # @param Score: 该字段用于返回子标签对应的分数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+
+        attr_accessor :Keyword, :SubLabel, :Score
+        
+        def initialize(keyword=nil, sublabel=nil, score=nil)
+          @Keyword = keyword
+          @SubLabel = sublabel
+          @Score = score
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+          @SubLabel = params['SubLabel']
+          @Score = params['Score']
         end
       end
 
