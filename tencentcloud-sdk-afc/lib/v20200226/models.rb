@@ -552,6 +552,100 @@ module TencentCloud
         end
       end
 
+      # 天御信鸽取数平台接口入参
+      class TransportGeneralInterfaceInput < TencentCloud::Common::AbstractModel
+        # @param InterfaceName: 公证处请求接口名
+        # @type InterfaceName: String
+        # @param NotarizationInput: 公证处业务详情二层入参
+        # @type NotarizationInput: String
+        # @param NotarizationSign: 业务二层详情入参的哈希签名
+        # @type NotarizationSign: String
+
+        attr_accessor :InterfaceName, :NotarizationInput, :NotarizationSign
+        
+        def initialize(interfacename=nil, notarizationinput=nil, notarizationsign=nil)
+          @InterfaceName = interfacename
+          @NotarizationInput = notarizationinput
+          @NotarizationSign = notarizationsign
+        end
+
+        def deserialize(params)
+          @InterfaceName = params['InterfaceName']
+          @NotarizationInput = params['NotarizationInput']
+          @NotarizationSign = params['NotarizationSign']
+        end
+      end
+
+      # 天御信鸽取数平台接口出参
+      class TransportGeneralInterfaceOutput < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Message: 回包信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param NotarizationData: 公证处业务回包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotarizationData: String
+
+        attr_accessor :Code, :Message, :NotarizationData
+        
+        def initialize(code=nil, message=nil, notarizationdata=nil)
+          @Code = code
+          @Message = message
+          @NotarizationData = notarizationdata
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @NotarizationData = params['NotarizationData']
+        end
+      end
+
+      # TransportGeneralInterface请求参数结构体
+      class TransportGeneralInterfaceRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Afc.v20200226.models.TransportGeneralInterfaceInput`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = TransportGeneralInterfaceInput.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # TransportGeneralInterface返回参数结构体
+      class TransportGeneralInterfaceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Afc.v20200226.models.TransportGeneralInterfaceOutput`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TransportGeneralInterfaceOutput.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end
