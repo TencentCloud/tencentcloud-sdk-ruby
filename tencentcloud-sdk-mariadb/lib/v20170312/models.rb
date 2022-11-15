@@ -2547,10 +2547,14 @@ module TencentCloud
         # @type Count: Integer
         # @param Paymode: 付费类型。postpaid：按量付费   prepaid：预付费
         # @type Paymode: String
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :Zone, :NodeCount, :Memory, :Storage, :Period, :Count, :Paymode
+        attr_accessor :Zone, :NodeCount, :Memory, :Storage, :Period, :Count, :Paymode, :AmountUnit
         
-        def initialize(zone=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, paymode=nil)
+        def initialize(zone=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, paymode=nil, amountunit=nil)
           @Zone = zone
           @NodeCount = nodecount
           @Memory = memory
@@ -2558,6 +2562,7 @@ module TencentCloud
           @Period = period
           @Count = count
           @Paymode = paymode
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
@@ -2568,14 +2573,19 @@ module TencentCloud
           @Period = params['Period']
           @Count = params['Count']
           @Paymode = params['Paymode']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribePrice返回参数结构体
       class DescribePriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2652,25 +2662,35 @@ module TencentCloud
         # @type InstanceId: String
         # @param Period: 续费时长，单位：月。不传则默认为1个月。
         # @type Period: Integer
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :InstanceId, :Period
+        attr_accessor :InstanceId, :Period, :AmountUnit
         
-        def initialize(instanceid=nil, period=nil)
+        def initialize(instanceid=nil, period=nil, amountunit=nil)
           @InstanceId = instanceid
           @Period = period
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Period = params['Period']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribeRenewalPrice返回参数结构体
       class DescribeRenewalPriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2740,14 +2760,19 @@ module TencentCloud
         # @type Storage: Integer
         # @param NodeCount: 新节点数，传0表示节点数不变
         # @type NodeCount: Integer
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :InstanceId, :Memory, :Storage, :NodeCount
+        attr_accessor :InstanceId, :Memory, :Storage, :NodeCount, :AmountUnit
         
-        def initialize(instanceid=nil, memory=nil, storage=nil, nodecount=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, nodecount=nil, amountunit=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @NodeCount = nodecount
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
@@ -2755,14 +2780,19 @@ module TencentCloud
           @Memory = params['Memory']
           @Storage = params['Storage']
           @NodeCount = params['NodeCount']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribeUpgradePrice返回参数结构体
       class DescribeUpgradePriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param Formula: 变配明细计算公式
         # @type Formula: String

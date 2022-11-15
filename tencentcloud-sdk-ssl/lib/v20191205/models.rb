@@ -1253,10 +1253,12 @@ module TencentCloud
         # @type FilterSource: String
         # @param IsSM: 是否筛选国密证书。1:筛选  0:不筛选
         # @type IsSM: Integer
+        # @param FilterExpiring: 筛选证书是否即将过期，传1是筛选，0不筛选
+        # @type FilterExpiring: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring
         
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -1269,6 +1271,7 @@ module TencentCloud
           @Renew = renew
           @FilterSource = filtersource
           @IsSM = issm
+          @FilterExpiring = filterexpiring
         end
 
         def deserialize(params)
@@ -1284,6 +1287,7 @@ module TencentCloud
           @Renew = params['Renew']
           @FilterSource = params['FilterSource']
           @IsSM = params['IsSM']
+          @FilterExpiring = params['FilterExpiring']
         end
       end
 

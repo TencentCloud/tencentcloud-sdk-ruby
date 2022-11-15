@@ -8079,15 +8079,19 @@ module TencentCloud
       class DisableClusterAuditRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param DeleteLogSetAndTopic: 取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除
+        # @type DeleteLogSetAndTopic: Boolean
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :DeleteLogSetAndTopic
         
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, deletelogsetandtopic=nil)
           @ClusterId = clusterid
+          @DeleteLogSetAndTopic = deletelogsetandtopic
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @DeleteLogSetAndTopic = params['DeleteLogSetAndTopic']
         end
       end
 
@@ -8143,15 +8147,19 @@ module TencentCloud
       class DisableEventPersistenceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param DeleteLogSetAndTopic: 取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除
+        # @type DeleteLogSetAndTopic: Boolean
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :DeleteLogSetAndTopic
         
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, deletelogsetandtopic=nil)
           @ClusterId = clusterid
+          @DeleteLogSetAndTopic = deletelogsetandtopic
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @DeleteLogSetAndTopic = params['DeleteLogSetAndTopic']
         end
       end
 

@@ -366,6 +366,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单个saas域名详情
+
+        # @param request: Request instance for DescribeDomainDetailsSaas.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainDetailsSaasRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeDomainDetailsSaasResponse`
+        def DescribeDomainDetailsSaas(request)
+          body = send_request('DescribeDomainDetailsSaas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainDetailsSaasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名的规则白名单
 
 

@@ -521,12 +521,15 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Staffs: 客服信息，个数不超过 10
         # @type Staffs: Array
+        # @param SendPassword: 是否发送密码邮件，默认true
+        # @type SendPassword: Boolean
 
-        attr_accessor :SdkAppId, :Staffs
+        attr_accessor :SdkAppId, :Staffs, :SendPassword
         
-        def initialize(sdkappid=nil, staffs=nil)
+        def initialize(sdkappid=nil, staffs=nil, sendpassword=nil)
           @SdkAppId = sdkappid
           @Staffs = staffs
+          @SendPassword = sendpassword
         end
 
         def deserialize(params)
@@ -539,6 +542,7 @@ module TencentCloud
               @Staffs << seatuserinfo_tmp
             end
           end
+          @SendPassword = params['SendPassword']
         end
       end
 

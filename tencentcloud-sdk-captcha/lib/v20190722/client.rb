@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询单个验证的统计数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
+        # 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
 
         # @param request: Request instance for GetTicketStatistics.
         # @type request: :class:`Tencentcloud::captcha::V20190722::GetTicketStatisticsRequest`
@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询所有验证的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
+        # 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
 
         # @param request: Request instance for GetTotalTicketStatistics.
         # @type request: :class:`Tencentcloud::captcha::V20190722::GetTotalTicketStatisticsRequest`

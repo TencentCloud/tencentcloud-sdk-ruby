@@ -3044,16 +3044,24 @@ module TencentCloud
         # @param DatasourceType: 数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: Integer
+        # @param OriginDatabaseName: 数据库原始名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDatabaseName: String
+        # @param OriginSchemaName: schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginSchemaName: String
 
-        attr_accessor :DatasourceName, :DatasourceId, :DatabaseName, :DatabaseId, :InstanceId, :DatasourceType
+        attr_accessor :DatasourceName, :DatasourceId, :DatabaseName, :DatabaseId, :InstanceId, :DatasourceType, :OriginDatabaseName, :OriginSchemaName
         
-        def initialize(datasourcename=nil, datasourceid=nil, databasename=nil, databaseid=nil, instanceid=nil, datasourcetype=nil)
+        def initialize(datasourcename=nil, datasourceid=nil, databasename=nil, databaseid=nil, instanceid=nil, datasourcetype=nil, origindatabasename=nil, originschemaname=nil)
           @DatasourceName = datasourcename
           @DatasourceId = datasourceid
           @DatabaseName = databasename
           @DatabaseId = databaseid
           @InstanceId = instanceid
           @DatasourceType = datasourcetype
+          @OriginDatabaseName = origindatabasename
+          @OriginSchemaName = originschemaname
         end
 
         def deserialize(params)
@@ -3063,6 +3071,8 @@ module TencentCloud
           @DatabaseId = params['DatabaseId']
           @InstanceId = params['InstanceId']
           @DatasourceType = params['DatasourceType']
+          @OriginDatabaseName = params['OriginDatabaseName']
+          @OriginSchemaName = params['OriginSchemaName']
         end
       end
 
@@ -3896,17 +3906,21 @@ module TencentCloud
         # @type ProjectId: String
         # @param DatasourceId: 数据源id
         # @type DatasourceId: String
+        # @param DsTypes: 数据源类型
+        # @type DsTypes: Array
 
-        attr_accessor :ProjectId, :DatasourceId
+        attr_accessor :ProjectId, :DatasourceId, :DsTypes
         
-        def initialize(projectid=nil, datasourceid=nil)
+        def initialize(projectid=nil, datasourceid=nil, dstypes=nil)
           @ProjectId = projectid
           @DatasourceId = datasourceid
+          @DsTypes = dstypes
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
+          @DsTypes = params['DsTypes']
         end
       end
 
@@ -6708,17 +6722,21 @@ module TencentCloud
         # @type ProjectId: String
         # @param DatasourceId: 数据来源Id
         # @type DatasourceId: String
+        # @param DsTypes: 数据源类型
+        # @type DsTypes: Array
 
-        attr_accessor :ProjectId, :DatasourceId
+        attr_accessor :ProjectId, :DatasourceId, :DsTypes
         
-        def initialize(projectid=nil, datasourceid=nil)
+        def initialize(projectid=nil, datasourceid=nil, dstypes=nil)
           @ProjectId = projectid
           @DatasourceId = datasourceid
+          @DsTypes = dstypes
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
+          @DsTypes = params['DsTypes']
         end
       end
 
@@ -7764,19 +7782,23 @@ module TencentCloud
         # @type SourceObjectType: Integer
         # @param ProjectId: 项目Id
         # @type ProjectId: String
+        # @param SourceEngineTypes: 源端对应的引擎类型
+        # @type SourceEngineTypes: Array
 
-        attr_accessor :Type, :SourceObjectType, :ProjectId
+        attr_accessor :Type, :SourceObjectType, :ProjectId, :SourceEngineTypes
         
-        def initialize(type=nil, sourceobjecttype=nil, projectid=nil)
+        def initialize(type=nil, sourceobjecttype=nil, projectid=nil, sourceenginetypes=nil)
           @Type = type
           @SourceObjectType = sourceobjecttype
           @ProjectId = projectid
+          @SourceEngineTypes = sourceenginetypes
         end
 
         def deserialize(params)
           @Type = params['Type']
           @SourceObjectType = params['SourceObjectType']
           @ProjectId = params['ProjectId']
+          @SourceEngineTypes = params['SourceEngineTypes']
         end
       end
 

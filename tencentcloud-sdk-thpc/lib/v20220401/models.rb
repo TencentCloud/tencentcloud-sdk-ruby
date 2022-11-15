@@ -251,6 +251,73 @@ module TencentCloud
         end
       end
 
+      # 符合条件的集群活动信息。
+      class ClusterActivity < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param ActivityId: 集群活动ID。
+        # @type ActivityId: String
+        # @param ActivityType: 集群活动类型。
+        # @type ActivityType: String
+        # @param ActivityStatus: 集群活动状态。取值范围：<br><li>PENDING：等待运行<br><li>RUNNING：运行中<br><li>SUCCESSFUL：活动成功<br><li>PARTIALLY_SUCCESSFUL：活动部分成功<br><li>FAILED：活动失败
+        # @type ActivityStatus: String
+        # @param ActivityStatusCode: 集群活动状态码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivityStatusCode: String
+        # @param ResultDetail: 集群活动结果详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultDetail: String
+        # @param Cause: 集群活动起因。
+        # @type Cause: String
+        # @param Description: 集群活动描述。
+        # @type Description: String
+        # @param RelatedNodeActivitySet: 集群活动相关节点活动集合。
+        # @type RelatedNodeActivitySet: Array
+        # @param StartTime: 集群活动开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 集群活动结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
+        
+        def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil)
+          @ClusterId = clusterid
+          @ActivityId = activityid
+          @ActivityType = activitytype
+          @ActivityStatus = activitystatus
+          @ActivityStatusCode = activitystatuscode
+          @ResultDetail = resultdetail
+          @Cause = cause
+          @Description = description
+          @RelatedNodeActivitySet = relatednodeactivityset
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ActivityId = params['ActivityId']
+          @ActivityType = params['ActivityType']
+          @ActivityStatus = params['ActivityStatus']
+          @ActivityStatusCode = params['ActivityStatusCode']
+          @ResultDetail = params['ResultDetail']
+          @Cause = params['Cause']
+          @Description = params['Description']
+          unless params['RelatedNodeActivitySet'].nil?
+            @RelatedNodeActivitySet = []
+            params['RelatedNodeActivitySet'].each do |i|
+              nodeactivity_tmp = NodeActivity.new
+              nodeactivity_tmp.deserialize(i)
+              @RelatedNodeActivitySet << nodeactivity_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 集群概览信息。
       class ClusterOverview < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -645,6 +712,61 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterActivities请求参数结构体
+      class DescribeClusterActivitiesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。通过该参数指定需要查询活动历史记录的集群。
+        # @type ClusterId: String
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :Offset, :Limit
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusterActivities返回参数结构体
+      class DescribeClusterActivitiesResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterActivitySet: 集群活动历史记录列表。
+        # @type ClusterActivitySet: Array
+        # @param TotalCount: 集群活动历史记录数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterActivitySet, :TotalCount, :RequestId
+        
+        def initialize(clusteractivityset=nil, totalcount=nil, requestid=nil)
+          @ClusterActivitySet = clusteractivityset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterActivitySet'].nil?
+            @ClusterActivitySet = []
+            params['ClusterActivitySet'].each do |i|
+              clusteractivity_tmp = ClusterActivity.new
+              clusteractivity_tmp.deserialize(i)
+              @ClusterActivitySet << clusteractivity_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
         # @param ClusterIds: 集群ID列表。通过该参数可以指定需要查询信息的集群列表。<br>如果您不指定该参数，则返回Limit数量以内的集群信息。
@@ -990,6 +1112,37 @@ module TencentCloud
 
         def deserialize(params)
           @NodeId = params['NodeId']
+        end
+      end
+
+      # 节点活动信息。
+      class NodeActivity < TencentCloud::Common::AbstractModel
+        # @param NodeInstanceId: 节点活动所在的实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInstanceId: String
+        # @param NodeActivityStatus: 节点活动状态。取值范围：<br><li>RUNNING：运行中<br><li>SUCCESSFUL：活动成功<br><li>FAILED：活动失败
+        # @type NodeActivityStatus: String
+        # @param NodeActivityStatusCode: 节点活动状态码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeActivityStatusCode: String
+        # @param NodeActivityStatusReason: 节点活动状态原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeActivityStatusReason: String
+
+        attr_accessor :NodeInstanceId, :NodeActivityStatus, :NodeActivityStatusCode, :NodeActivityStatusReason
+        
+        def initialize(nodeinstanceid=nil, nodeactivitystatus=nil, nodeactivitystatuscode=nil, nodeactivitystatusreason=nil)
+          @NodeInstanceId = nodeinstanceid
+          @NodeActivityStatus = nodeactivitystatus
+          @NodeActivityStatusCode = nodeactivitystatuscode
+          @NodeActivityStatusReason = nodeactivitystatusreason
+        end
+
+        def deserialize(params)
+          @NodeInstanceId = params['NodeInstanceId']
+          @NodeActivityStatus = params['NodeActivityStatus']
+          @NodeActivityStatusCode = params['NodeActivityStatusCode']
+          @NodeActivityStatusReason = params['NodeActivityStatusReason']
         end
       end
 

@@ -1157,20 +1157,25 @@ module TencentCloud
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
+        # @param ISP: 运营商名称。
+        # 取值范围为["移动","联通","电信",""]
+        # @type ISP: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :Description, :RequestId
+        attr_accessor :Result, :Description, :ISP, :RequestId
         
-        def initialize(result=nil, description=nil, requestid=nil)
+        def initialize(result=nil, description=nil, isp=nil, requestid=nil)
           @Result = result
           @Description = description
+          @ISP = isp
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
           @Description = params['Description']
+          @ISP = params['ISP']
           @RequestId = params['RequestId']
         end
       end
@@ -1767,7 +1772,7 @@ module TencentCloud
         # @type CompareLib: String
         # @param IdCard: CompareLib为商业库时必传。
         # @type IdCard: String
-        # @param Name: CompareLib为商业库库时必传。
+        # @param Name: CompareLib为商业库时必传。
         # @type Name: String
         # @param ImageBase64: CompareLib为上传照片比对时必传，Base64后图片最大8MB。
         # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
@@ -1779,10 +1784,12 @@ module TencentCloud
         # @param UseCos: 默认为false，设置该参数为true后，核身过程中的视频图片将会存储在人脸核身控制台授权cos的bucket中，拉取结果时会返回对应资源完整cos地址。开通地址见https://console.cloud.tencent.com/faceid/cos
         # 【注意】选择该参数为true后将不返回base64数据，请根据接入情况谨慎修改。
         # @type UseCos: Boolean
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos
+        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption
         
-        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil)
+        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil)
           @CompareLib = comparelib
           @IdCard = idcard
           @Name = name
@@ -1790,6 +1797,7 @@ module TencentCloud
           @Meta = meta
           @Extra = extra
           @UseCos = usecos
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1800,6 +1808,10 @@ module TencentCloud
           @Meta = params['Meta']
           @Extra = params['Extra']
           @UseCos = params['UseCos']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 

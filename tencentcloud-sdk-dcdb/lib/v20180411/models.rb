@@ -2017,10 +2017,14 @@ module TencentCloud
         # @type ShardCount: Integer
         # @param Paymode: 付费类型。postpaid：按量付费   prepaid：预付费
         # @type Paymode: String
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :Zone, :Count, :Period, :ShardNodeCount, :ShardMemory, :ShardStorage, :ShardCount, :Paymode
+        attr_accessor :Zone, :Count, :Period, :ShardNodeCount, :ShardMemory, :ShardStorage, :ShardCount, :Paymode, :AmountUnit
         
-        def initialize(zone=nil, count=nil, period=nil, shardnodecount=nil, shardmemory=nil, shardstorage=nil, shardcount=nil, paymode=nil)
+        def initialize(zone=nil, count=nil, period=nil, shardnodecount=nil, shardmemory=nil, shardstorage=nil, shardcount=nil, paymode=nil, amountunit=nil)
           @Zone = zone
           @Count = count
           @Period = period
@@ -2029,6 +2033,7 @@ module TencentCloud
           @ShardStorage = shardstorage
           @ShardCount = shardcount
           @Paymode = paymode
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
@@ -2040,14 +2045,19 @@ module TencentCloud
           @ShardStorage = params['ShardStorage']
           @ShardCount = params['ShardCount']
           @Paymode = params['Paymode']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribeDCDBPrice返回参数结构体
       class DescribeDCDBPriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2073,25 +2083,35 @@ module TencentCloud
         # @type InstanceId: String
         # @param Period: 续费时长，单位：月。不传则默认为1个月。
         # @type Period: Integer
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :InstanceId, :Period
+        attr_accessor :InstanceId, :Period, :AmountUnit
         
-        def initialize(instanceid=nil, period=nil)
+        def initialize(instanceid=nil, period=nil, amountunit=nil)
           @InstanceId = instanceid
           @Period = period
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Period = params['Period']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribeDCDBRenewalPrice返回参数结构体
       class DescribeDCDBRenewalPriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2236,15 +2256,20 @@ module TencentCloud
         # @type ExpandShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.ExpandShardConfig`
         # @param SplitShardConfig: 切分分片配置，当UpgradeType为SPLIT时生效。
         # @type SplitShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.SplitShardConfig`
+        # @param AmountUnit: 价格金额单位，不传默认单位为分，取值：
+        # * pent：分
+        # * microPent：微分
+        # @type AmountUnit: String
 
-        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig
+        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AmountUnit
         
-        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil)
+        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, amountunit=nil)
           @InstanceId = instanceid
           @UpgradeType = upgradetype
           @AddShardConfig = addshardconfig
           @ExpandShardConfig = expandshardconfig
           @SplitShardConfig = splitshardconfig
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
@@ -2262,14 +2287,19 @@ module TencentCloud
             @SplitShardConfig = SplitShardConfig.new
             @SplitShardConfig.deserialize(params['SplitShardConfig'])
           end
+          @AmountUnit = params['AmountUnit']
         end
       end
 
       # DescribeDCDBUpgradePrice返回参数结构体
       class DescribeDCDBUpgradePriceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原价，单位：分
+        # @param OriginalPrice: 原价
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站为人民币，国际站为美元
         # @type OriginalPrice: Integer
-        # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
+        # @param Price: 实际价格，受折扣等影响，可能和原价不同
+        # * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
+        # * 币种：国内站人民币，国际站美元
         # @type Price: Integer
         # @param Formula: 变配明细计算公式
         # @type Formula: String
@@ -3062,19 +3092,23 @@ module TencentCloud
         # @type ShardMemory: Integer
         # @param ShardStorage: 分片存储大小，单位 GB
         # @type ShardStorage: Integer
+        # @param ShardNodeCount: 分片节点数
+        # @type ShardNodeCount: Integer
 
-        attr_accessor :ShardInstanceIds, :ShardMemory, :ShardStorage
+        attr_accessor :ShardInstanceIds, :ShardMemory, :ShardStorage, :ShardNodeCount
         
-        def initialize(shardinstanceids=nil, shardmemory=nil, shardstorage=nil)
+        def initialize(shardinstanceids=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil)
           @ShardInstanceIds = shardinstanceids
           @ShardMemory = shardmemory
           @ShardStorage = shardstorage
+          @ShardNodeCount = shardnodecount
         end
 
         def deserialize(params)
           @ShardInstanceIds = params['ShardInstanceIds']
           @ShardMemory = params['ShardMemory']
           @ShardStorage = params['ShardStorage']
+          @ShardNodeCount = params['ShardNodeCount']
         end
       end
 

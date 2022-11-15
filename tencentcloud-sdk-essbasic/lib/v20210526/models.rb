@@ -3505,15 +3505,19 @@ module TencentCloud
         # @param Cancel: 撤回数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cancel: Integer
+        # @param FlowChannel: 消耗渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowChannel: String
 
-        attr_accessor :ProxyOrganizationOpenId, :ProxyOrganizationName, :Date, :Usage, :Cancel
+        attr_accessor :ProxyOrganizationOpenId, :ProxyOrganizationName, :Date, :Usage, :Cancel, :FlowChannel
         
-        def initialize(proxyorganizationopenid=nil, proxyorganizationname=nil, date=nil, usage=nil, cancel=nil)
+        def initialize(proxyorganizationopenid=nil, proxyorganizationname=nil, date=nil, usage=nil, cancel=nil, flowchannel=nil)
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOrganizationName = proxyorganizationname
           @Date = date
           @Usage = usage
           @Cancel = cancel
+          @FlowChannel = flowchannel
         end
 
         def deserialize(params)
@@ -3522,6 +3526,7 @@ module TencentCloud
           @Date = params['Date']
           @Usage = params['Usage']
           @Cancel = params['Cancel']
+          @FlowChannel = params['FlowChannel']
         end
       end
 

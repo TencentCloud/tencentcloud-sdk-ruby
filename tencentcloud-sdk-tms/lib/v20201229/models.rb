@@ -235,12 +235,15 @@ module TencentCloud
         # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param ContextText: 该字段用于返回上下文关联文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextText: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :RequestId
+        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :RequestId
         
-        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, requestid=nil)
+        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, requestid=nil)
           @BizType = biztype
           @Label = label
           @Suggestion = suggestion
@@ -251,6 +254,7 @@ module TencentCloud
           @Extra = extra
           @DataId = dataid
           @SubLabel = sublabel
+          @ContextText = contexttext
           @RequestId = requestid
         end
 
@@ -279,6 +283,7 @@ module TencentCloud
           @Extra = params['Extra']
           @DataId = params['DataId']
           @SubLabel = params['SubLabel']
+          @ContextText = params['ContextText']
           @RequestId = params['RequestId']
         end
       end

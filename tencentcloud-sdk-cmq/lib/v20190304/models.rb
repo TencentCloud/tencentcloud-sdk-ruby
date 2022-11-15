@@ -727,21 +727,21 @@ module TencentCloud
 
       # 过滤参数
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤参数的名字
-        # @type Name: String
         # @param Values: 数值
         # @type Values: Array
+        # @param Name: 过滤参数的名字
+        # @type Name: String
 
-        attr_accessor :Name, :Values
+        attr_accessor :Values, :Name
         
-        def initialize(name=nil, values=nil)
-          @Name = name
+        def initialize(values=nil, name=nil)
           @Values = values
+          @Name = name
         end
 
         def deserialize(params)
-          @Name = params['Name']
           @Values = params['Values']
+          @Name = params['Name']
         end
       end
 

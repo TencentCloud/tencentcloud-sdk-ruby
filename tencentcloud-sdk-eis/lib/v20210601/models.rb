@@ -19,26 +19,31 @@ module TencentCloud
     module V20210601
       # 运行时精简信息
       class AbstractRuntimeMC < TencentCloud::Common::AbstractModel
-        # @param RuntimeId: 运行时id
+        # @param RuntimeId: 环境id
         # @type RuntimeId: Integer
-        # @param DisplayName: 运行时名称，用户输入，同一uin内唯一
+        # @param DisplayName: 环境名称，用户输入，同一uin内唯一
         # @type DisplayName: String
-        # @param Type: 运行时类型：0: sandbox, 1:shared, 2:private
+        # @param Type: 环境类型：0: sandbox, 1:shared, 2:private
         # @type Type: Integer
-        # @param Zone: 运行时所在地域，tianjin，beijiing，guangzhou等
+        # @param Zone: 环境所在地域，tianjin，beijiing，guangzhou等
         # @type Zone: String
-        # @param Area: 运行时所在地域，tianjin，beijiing，guangzhou等（同Zone）
+        # @param Area: 环境所在地域，tianjin，beijiing，guangzhou等（同Zone）
         # @type Area: String
-        # @param Addr: 运行时应用listener地址后缀
+        # @param Addr: 环境应用listener地址后缀
         # @type Addr: String
-        # @param Status: 运行时状态
+        # @param Status: 环境状态
         # @type Status: Integer
-        # @param ExpiredAt: 运行时过期时间
+        # @param ExpiredAt: 环境过期时间
         # @type ExpiredAt: Integer
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # @type RuntimeClass: Integer
+        # @param Deployed: 是否已在当前环境发布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deployed: Boolean
 
-        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr, :Status, :ExpiredAt
+        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr, :Status, :ExpiredAt, :RuntimeClass, :Deployed
         
-        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil, status=nil, expiredat=nil)
+        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil, status=nil, expiredat=nil, runtimeclass=nil, deployed=nil)
           @RuntimeId = runtimeid
           @DisplayName = displayname
           @Type = type
@@ -47,6 +52,8 @@ module TencentCloud
           @Addr = addr
           @Status = status
           @ExpiredAt = expiredat
+          @RuntimeClass = runtimeclass
+          @Deployed = deployed
         end
 
         def deserialize(params)
@@ -58,26 +65,32 @@ module TencentCloud
           @Addr = params['Addr']
           @Status = params['Status']
           @ExpiredAt = params['ExpiredAt']
+          @RuntimeClass = params['RuntimeClass']
+          @Deployed = params['Deployed']
         end
       end
 
       # GetRuntimeMC请求参数结构体
       class GetRuntimeMCRequest < TencentCloud::Common::AbstractModel
-        # @param RuntimeId: 运行时id
+        # @param RuntimeId: 环境id
         # @type RuntimeId: Integer
-        # @param Zone: 运行时地域
+        # @param Zone: 环境地域
         # @type Zone: String
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # @type RuntimeClass: Integer
 
-        attr_accessor :RuntimeId, :Zone
+        attr_accessor :RuntimeId, :Zone, :RuntimeClass
         
-        def initialize(runtimeid=nil, zone=nil)
+        def initialize(runtimeid=nil, zone=nil, runtimeclass=nil)
           @RuntimeId = runtimeid
           @Zone = zone
+          @RuntimeClass = runtimeclass
         end
 
         def deserialize(params)
           @RuntimeId = params['RuntimeId']
           @Zone = params['Zone']
+          @RuntimeClass = params['RuntimeClass']
         end
       end
 
@@ -118,16 +131,19 @@ module TencentCloud
         # @type RateType: Boolean
         # @param Interval: 采样粒度：60(s), 300(s), 3600(s), 86400(s)
         # @type Interval: Integer
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # @type RuntimeClass: Integer
 
-        attr_accessor :RuntimeId, :StartTime, :EndTime, :MetricType, :RateType, :Interval
+        attr_accessor :RuntimeId, :StartTime, :EndTime, :MetricType, :RateType, :Interval, :RuntimeClass
         
-        def initialize(runtimeid=nil, starttime=nil, endtime=nil, metrictype=nil, ratetype=nil, interval=nil)
+        def initialize(runtimeid=nil, starttime=nil, endtime=nil, metrictype=nil, ratetype=nil, interval=nil, runtimeclass=nil)
           @RuntimeId = runtimeid
           @StartTime = starttime
           @EndTime = endtime
           @MetricType = metrictype
           @RateType = ratetype
           @Interval = interval
+          @RuntimeClass = runtimeclass
         end
 
         def deserialize(params)
@@ -137,6 +153,7 @@ module TencentCloud
           @MetricType = params['MetricType']
           @RateType = params['RateType']
           @Interval = params['Interval']
+          @RuntimeClass = params['RuntimeClass']
         end
       end
 
@@ -293,12 +310,17 @@ module TencentCloud
 
       # ListRuntimesMC请求参数结构体
       class ListRuntimesMCRequest < TencentCloud::Common::AbstractModel
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # @type RuntimeClass: Integer
 
+        attr_accessor :RuntimeClass
         
-        def initialize()
+        def initialize(runtimeclass=nil)
+          @RuntimeClass = runtimeclass
         end
 
         def deserialize(params)
+          @RuntimeClass = params['RuntimeClass']
         end
       end
 
@@ -375,10 +397,12 @@ module TencentCloud
         # @type UpdatedAt: Integer
         # @param ProjectType: 应用类型：0:NormalApp普通应用 1:TemplateApp模板应用 2:LightApp轻应用 3:MicroConnTemplate微连接模板 4:MicroConnApp微连接应用
         # @type ProjectType: Integer
+        # @param ProjectVersion: 应用版本：0:旧版 1:3.0新控制台
+        # @type ProjectVersion: Integer
 
-        attr_accessor :GroupId, :GroupName, :ProjectId, :ProjectName, :InstanceId, :InstanceVersion, :InstanceCreatedAt, :Status, :CreatedAt, :UpdatedAt, :ProjectType
+        attr_accessor :GroupId, :GroupName, :ProjectId, :ProjectName, :InstanceId, :InstanceVersion, :InstanceCreatedAt, :Status, :CreatedAt, :UpdatedAt, :ProjectType, :ProjectVersion
         
-        def initialize(groupid=nil, groupname=nil, projectid=nil, projectname=nil, instanceid=nil, instanceversion=nil, instancecreatedat=nil, status=nil, createdat=nil, updatedat=nil, projecttype=nil)
+        def initialize(groupid=nil, groupname=nil, projectid=nil, projectname=nil, instanceid=nil, instanceversion=nil, instancecreatedat=nil, status=nil, createdat=nil, updatedat=nil, projecttype=nil, projectversion=nil)
           @GroupId = groupid
           @GroupName = groupname
           @ProjectId = projectid
@@ -390,6 +414,7 @@ module TencentCloud
           @CreatedAt = createdat
           @UpdatedAt = updatedat
           @ProjectType = projecttype
+          @ProjectVersion = projectversion
         end
 
         def deserialize(params)
@@ -404,30 +429,71 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @ProjectType = params['ProjectType']
+          @ProjectVersion = params['ProjectVersion']
+        end
+      end
+
+      # 运行环境扩展组件
+      class RuntimeExtensionMC < TencentCloud::Common::AbstractModel
+        # @param Type: 扩展组件类型：0:cdc
+        # @type Type: Integer
+        # @param Size: 部署规格vcore数
+        # @type Size: Float
+        # @param Replica: 副本数
+        # @type Replica: Integer
+        # @param Name: 扩展组件名称
+        # @type Name: String
+        # @param Status: 状态 1:未启用 2:已启用
+        # @type Status: Integer
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: Integer
+        # @param UpdatedAt: 修改时间
+        # @type UpdatedAt: Integer
+
+        attr_accessor :Type, :Size, :Replica, :Name, :Status, :CreatedAt, :UpdatedAt
+        
+        def initialize(type=nil, size=nil, replica=nil, name=nil, status=nil, createdat=nil, updatedat=nil)
+          @Type = type
+          @Size = size
+          @Replica = replica
+          @Name = name
+          @Status = status
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Size = params['Size']
+          @Replica = params['Replica']
+          @Name = params['Name']
+          @Status = params['Status']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
         end
       end
 
       # 运行时详细信息
       class RuntimeMC < TencentCloud::Common::AbstractModel
-        # @param RuntimeId: 运行时id
+        # @param RuntimeId: 环境id
         # @type RuntimeId: Integer
         # @param Uin: 主账号uin
         # @type Uin: String
-        # @param DisplayName: 运行时名称，用户输入，同一uin内唯一
+        # @param DisplayName: 环境名称，用户输入，同一uin内唯一
         # @type DisplayName: String
-        # @param Zone: 运行时所在地域，tianjin，beijiing，guangzhou等
+        # @param Zone: 环境所在地域，tianjin，beijiing，guangzhou等
         # @type Zone: String
-        # @param Type: 运行时类型：0: sandbox, 1:shared, 2:private
+        # @param Type: 环境类型：0: sandbox, 1:shared, 2:private 3: trial
         # @type Type: Integer
         # @param Status: 运行时状态：1:running, 2:deleting, 3:creating, 4:scaling, 5:unavailable, 6:deleted, 7:errored
         # @type Status: Integer
-        # @param CreatedAt: 运行时创建时间
+        # @param CreatedAt: 环境创建时间
         # @type CreatedAt: Integer
-        # @param UpdatedAt: 运行时更新时间
+        # @param UpdatedAt: 环境更新时间
         # @type UpdatedAt: Integer
-        # @param WorkerSize: 运行时资源配置，worker总配额，0:0vCore0G, 1:1vCore2G, 2:2vCore4G, 4:4vCore8G, 8:8vCore16G, 12:12vCore24G, 16:16vCore32G, 100:unlimited
+        # @param WorkerSize: 环境资源配置，worker总配额，0:0vCore0G, 1:1vCore2G, 2:2vCore4G, 4:4vCore8G, 8:8vCore16G, 12:12vCore24G, 16:16vCore32G, 100:unlimited
         # @type WorkerSize: Integer
-        # @param WorkerReplica: 运行时资源配置，worker副本数
+        # @param WorkerReplica: 环境资源配置，worker副本数
         # @type WorkerReplica: Integer
         # @param RunningInstanceCount: 正在运行的应用实例数量
         # @type RunningInstanceCount: Integer
@@ -439,10 +505,10 @@ module TencentCloud
         # @type MemoryUsed: Float
         # @param MemoryLimit: 内存上限 MB
         # @type MemoryLimit: Float
-        # @param ExpiredAt: 运行时过期时间
+        # @param ExpiredAt: 环境过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredAt: Integer
-        # @param ChargeType: 收费类型：0:缺省，1:通过订单页自助下单(支持续费/升配等操作)
+        # @param ChargeType: 收费类型：0:缺省，1:自助下单页购买(支持续费/升配等操作)，2:代销下单页购买
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: Integer
         # @param ResourceLimitType: 资源限制类型：0:无限制，1:有限制
@@ -451,10 +517,25 @@ module TencentCloud
         # @param AutoRenewal: 是否开启自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewal: Boolean
+        # @param WorkerExtensions: 扩展组件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkerExtensions: Array
+        # @param RuntimeType: 环境类型：0: sandbox, 1:shared, 2:private 3: trial
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeType: Integer
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeClass: Integer
+        # @param BandwidthOutUsed: 已使用出带宽 Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthOutUsed: Float
+        # @param BandwidthOutLimit: 出带宽上限 Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthOutLimit: Float
 
-        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount, :CpuUsed, :CpuLimit, :MemoryUsed, :MemoryLimit, :ExpiredAt, :ChargeType, :ResourceLimitType, :AutoRenewal
+        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount, :CpuUsed, :CpuLimit, :MemoryUsed, :MemoryLimit, :ExpiredAt, :ChargeType, :ResourceLimitType, :AutoRenewal, :WorkerExtensions, :RuntimeType, :RuntimeClass, :BandwidthOutUsed, :BandwidthOutLimit
         
-        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil, cpuused=nil, cpulimit=nil, memoryused=nil, memorylimit=nil, expiredat=nil, chargetype=nil, resourcelimittype=nil, autorenewal=nil)
+        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil, cpuused=nil, cpulimit=nil, memoryused=nil, memorylimit=nil, expiredat=nil, chargetype=nil, resourcelimittype=nil, autorenewal=nil, workerextensions=nil, runtimetype=nil, runtimeclass=nil, bandwidthoutused=nil, bandwidthoutlimit=nil)
           @RuntimeId = runtimeid
           @Uin = uin
           @DisplayName = displayname
@@ -474,6 +555,11 @@ module TencentCloud
           @ChargeType = chargetype
           @ResourceLimitType = resourcelimittype
           @AutoRenewal = autorenewal
+          @WorkerExtensions = workerextensions
+          @RuntimeType = runtimetype
+          @RuntimeClass = runtimeclass
+          @BandwidthOutUsed = bandwidthoutused
+          @BandwidthOutLimit = bandwidthoutlimit
         end
 
         def deserialize(params)
@@ -496,6 +582,18 @@ module TencentCloud
           @ChargeType = params['ChargeType']
           @ResourceLimitType = params['ResourceLimitType']
           @AutoRenewal = params['AutoRenewal']
+          unless params['WorkerExtensions'].nil?
+            @WorkerExtensions = []
+            params['WorkerExtensions'].each do |i|
+              runtimeextensionmc_tmp = RuntimeExtensionMC.new
+              runtimeextensionmc_tmp.deserialize(i)
+              @WorkerExtensions << runtimeextensionmc_tmp
+            end
+          end
+          @RuntimeType = params['RuntimeType']
+          @RuntimeClass = params['RuntimeClass']
+          @BandwidthOutUsed = params['BandwidthOutUsed']
+          @BandwidthOutLimit = params['BandwidthOutLimit']
         end
       end
 

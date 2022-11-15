@@ -1305,6 +1305,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainDetailsSaas请求参数结构体
+      class DescribeDomainDetailsSaasRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :Domain, :DomainId, :InstanceId
+        
+        def initialize(domain=nil, domainid=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDomainDetailsSaas返回参数结构体
+      class DescribeDomainDetailsSaasResponse < TencentCloud::Common::AbstractModel
+        # @param DomainsPartInfo: 域名详情
+        # @type DomainsPartInfo: :class:`Tencentcloud::Waf.v20180125.models.DomainsPartInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainsPartInfo, :RequestId
+        
+        def initialize(domainspartinfo=nil, requestid=nil)
+          @DomainsPartInfo = domainspartinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainsPartInfo'].nil?
+            @DomainsPartInfo = DomainsPartInfo.new
+            @DomainsPartInfo.deserialize(params['DomainsPartInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainWhiteRules请求参数结构体
       class DescribeDomainWhiteRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要查询的域名
@@ -1374,9 +1421,9 @@ module TencentCloud
 
       # DescribeDomains请求参数结构体
       class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移
+        # @param Offset: 数据偏移量，从1开始。
         # @type Offset: Integer
-        # @param Limit: 容量
+        # @param Limit: 返回域名的数量
         # @type Limit: Integer
         # @param Filters: 过滤数组
         # @type Filters: Array
@@ -1905,12 +1952,123 @@ module TencentCloud
 
       # 域名的详细信息
       class DomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Cname: cname地址
+        # @type Cname: String
+        # @param Edition: 实例类型
+        # @type Edition: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param ClsStatus: 日志包
+        # @type ClsStatus: Integer
+        # @param FlowMode: clb模式
+        # @type FlowMode: Integer
+        # @param Status: waf开关
+        # @type Status: Integer
+        # @param Mode: 防御模式
+        # @type Mode: Integer
+        # @param Engine: AI防御模式
+        # @type Engine: Integer
+        # @param CCList: CC列表
+        # @type CCList: Array
+        # @param RsList: 回源ip
+        # @type RsList: Array
+        # @param Ports: 服务端口配置
+        # @type Ports: Array
+        # @param LoadBalancerSet: 负载均衡器
+        # @type LoadBalancerSet: Array
+        # @param AppId: 用户id
+        # @type AppId: Integer
+        # @param State: clb状态
+        # @type State: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Ipv6Status: 0关闭 1开启
+        # @type Ipv6Status: Integer
+        # @param BotStatus: 0关闭 1开启
+        # @type BotStatus: Integer
+        # @param Level: 版本信息
+        # @type Level: Integer
+        # @param PostCLSStatus: 是否开启投递CLS功能
+        # @type PostCLSStatus: Integer
+        # @param PostCKafkaStatus: 是否开启投递CKafka功能
+        # @type PostCKafkaStatus: Integer
 
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus
         
-        def initialize()
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+          @Cname = cname
+          @Edition = edition
+          @Region = region
+          @InstanceName = instancename
+          @ClsStatus = clsstatus
+          @FlowMode = flowmode
+          @Status = status
+          @Mode = mode
+          @Engine = engine
+          @CCList = cclist
+          @RsList = rslist
+          @Ports = ports
+          @LoadBalancerSet = loadbalancerset
+          @AppId = appid
+          @State = state
+          @CreateTime = createtime
+          @Ipv6Status = ipv6status
+          @BotStatus = botstatus
+          @Level = level
+          @PostCLSStatus = postclsstatus
+          @PostCKafkaStatus = postckafkastatus
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+          @Cname = params['Cname']
+          @Edition = params['Edition']
+          @Region = params['Region']
+          @InstanceName = params['InstanceName']
+          @ClsStatus = params['ClsStatus']
+          @FlowMode = params['FlowMode']
+          @Status = params['Status']
+          @Mode = params['Mode']
+          @Engine = params['Engine']
+          @CCList = params['CCList']
+          @RsList = params['RsList']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portinfo_tmp = PortInfo.new
+              portinfo_tmp.deserialize(i)
+              @Ports << portinfo_tmp
+            end
+          end
+          unless params['LoadBalancerSet'].nil?
+            @LoadBalancerSet = []
+            params['LoadBalancerSet'].each do |i|
+              loadbalancerpackagenew_tmp = LoadBalancerPackageNew.new
+              loadbalancerpackagenew_tmp.deserialize(i)
+              @LoadBalancerSet << loadbalancerpackagenew_tmp
+            end
+          end
+          @AppId = params['AppId']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @Ipv6Status = params['Ipv6Status']
+          @BotStatus = params['BotStatus']
+          @Level = params['Level']
+          @PostCLSStatus = params['PostCLSStatus']
+          @PostCKafkaStatus = params['PostCKafkaStatus']
         end
       end
 
@@ -1943,6 +2101,121 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @Count = params['Count']
           @Region = params['Region']
+        end
+      end
+
+      # saas域名详情
+      class DomainsPartInfo < TencentCloud::Common::AbstractModel
+        # @param HttpsRewrite: 是否开启httpRewrite
+        # @type HttpsRewrite: Integer
+        # @param HttpsUpstreamPort: https回源端口
+        # @type HttpsUpstreamPort: String
+        # @param IsCdn: 是否是cdn
+        # @type IsCdn: Integer
+        # @param IsGray: 是否开启gray
+        # @type IsGray: Integer
+        # @param IsHttp2: 是否是http2
+        # @type IsHttp2: Integer
+        # @param IsWebsocket: 是否开启websocket
+        # @type IsWebsocket: Integer
+        # @param LoadBalance: 负载均衡
+        # @type LoadBalance: Integer
+        # @param Mode: 防御模式
+        # @type Mode: Integer
+        # @param PrivateKey: 私钥
+        # @type PrivateKey: String
+        # @param SSLId: ssl id
+        # @type SSLId: String
+        # @param UpstreamDomain: 回源域名
+        # @type UpstreamDomain: String
+        # @param UpstreamType: 回源类型
+        # @type UpstreamType: Integer
+        # @param SrcList: 回源ip
+        # @type SrcList: Array
+        # @param Ports: 服务端口配置
+        # @type Ports: Array
+        # @param CertType: 证书类型
+        # @type CertType: Integer
+        # @param UpstreamScheme: 回源方式
+        # @type UpstreamScheme: String
+        # @param Cls: 日志包
+        # @type Cls: Integer
+        # @param Cname: 一级cname
+        # @type Cname: String
+        # @param IsKeepAlive: 是否长连接
+        # @type IsKeepAlive: Integer
+        # @param ActiveCheck: 是否开启主动健康检测，1表示开启，0表示不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveCheck: Integer
+        # @param TLSVersion: TLS版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSVersion: Integer
+        # @param Ciphers: 加密套件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ciphers: Array
+        # @param CipherTemplate: 模版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CipherTemplate: Integer
+
+        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate
+        
+        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil)
+          @HttpsRewrite = httpsrewrite
+          @HttpsUpstreamPort = httpsupstreamport
+          @IsCdn = iscdn
+          @IsGray = isgray
+          @IsHttp2 = ishttp2
+          @IsWebsocket = iswebsocket
+          @LoadBalance = loadbalance
+          @Mode = mode
+          @PrivateKey = privatekey
+          @SSLId = sslid
+          @UpstreamDomain = upstreamdomain
+          @UpstreamType = upstreamtype
+          @SrcList = srclist
+          @Ports = ports
+          @CertType = certtype
+          @UpstreamScheme = upstreamscheme
+          @Cls = cls
+          @Cname = cname
+          @IsKeepAlive = iskeepalive
+          @ActiveCheck = activecheck
+          @TLSVersion = tlsversion
+          @Ciphers = ciphers
+          @CipherTemplate = ciphertemplate
+        end
+
+        def deserialize(params)
+          @HttpsRewrite = params['HttpsRewrite']
+          @HttpsUpstreamPort = params['HttpsUpstreamPort']
+          @IsCdn = params['IsCdn']
+          @IsGray = params['IsGray']
+          @IsHttp2 = params['IsHttp2']
+          @IsWebsocket = params['IsWebsocket']
+          @LoadBalance = params['LoadBalance']
+          @Mode = params['Mode']
+          @PrivateKey = params['PrivateKey']
+          @SSLId = params['SSLId']
+          @UpstreamDomain = params['UpstreamDomain']
+          @UpstreamType = params['UpstreamType']
+          @SrcList = params['SrcList']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portinfo_tmp = PortInfo.new
+              portinfo_tmp.deserialize(i)
+              @Ports << portinfo_tmp
+            end
+          end
+          @CertType = params['CertType']
+          @UpstreamScheme = params['UpstreamScheme']
+          @Cls = params['Cls']
+          @Cname = params['Cname']
+          @IsKeepAlive = params['IsKeepAlive']
+          @ActiveCheck = params['ActiveCheck']
+          @TLSVersion = params['TLSVersion']
+          @Ciphers = params['Ciphers']
+          @CipherTemplate = params['CipherTemplate']
         end
       end
 
@@ -2428,6 +2701,17 @@ module TencentCloud
         end
       end
 
+      # 负载均衡算法
+      class LoadBalancerPackageNew < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # ModifyAccessPeriod请求参数结构体
       class ModifyAccessPeriodRequest < TencentCloud::Common::AbstractModel
         # @param Period: 访问日志保存期限，范围为[1, 30]
@@ -2703,6 +2987,17 @@ module TencentCloud
             @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 防护域名端口配置信息
+      class PortInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

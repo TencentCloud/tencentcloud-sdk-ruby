@@ -272,7 +272,7 @@ module TencentCloud
         # @type DBs: Array
         # @param Strategy: 备份策略（0-实例备份；1-多库备份）
         # @type Strategy: Integer
-        # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份
+        # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份；2-定期备份
         # @type BackupWay: Integer
         # @param BackupName: 备份任务名称，可自定义
         # @type BackupName: String
@@ -2872,7 +2872,7 @@ module TencentCloud
         # @type BackupName: String
         # @param Strategy: 按照备份策略筛选，0-实例备份，1-多库备份，不填则不筛选此项
         # @type Strategy: Integer
-        # @param BackupWay: 按照备份方式筛选，0-后台自动定时备份，1-用户手动临时备份，不填则不筛选此项
+        # @param BackupWay: 按照备份方式筛选，0-后台自动定时备份，1-用户手动临时备份，2-定期备份，不填则不筛选此项
         # @type BackupWay: Integer
         # @param BackupId: 按照备份ID筛选，不填则不筛选此项
         # @type BackupId: Integer
@@ -5600,10 +5600,20 @@ module TencentCloud
         # @type BackupCycle: Array
         # @param BackupSaveDays: 数据(日志)备份保留时间，取值[3-1830]天，默认7天
         # @type BackupSaveDays: Integer
+        # @param RegularBackupEnable: 定期备份状态 enable-开启，disable-关闭，默认关闭
+        # @type RegularBackupEnable: String
+        # @param RegularBackupSaveDays: 定期备份保留天数 [90 - 3650]天，默认365天
+        # @type RegularBackupSaveDays: Integer
+        # @param RegularBackupStrategy: 定期备份策略 years-每年，quarters-每季度，months-每月，默认months
+        # @type RegularBackupStrategy: String
+        # @param RegularBackupCounts: 定期备份保留个数，默认1个
+        # @type RegularBackupCounts: Integer
+        # @param RegularBackupStartTime: 定期备份开始日期，格式-YYYY-MM-DD 默认当前日期
+        # @type RegularBackupStartTime: String
 
-        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay, :BackupModel, :BackupCycle, :BackupSaveDays
+        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay, :BackupModel, :BackupCycle, :BackupSaveDays, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime
         
-        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil, backupmodel=nil, backupcycle=nil, backupsavedays=nil)
+        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil, backupmodel=nil, backupcycle=nil, backupsavedays=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil)
           @InstanceId = instanceid
           @BackupType = backuptype
           @BackupTime = backuptime
@@ -5611,6 +5621,11 @@ module TencentCloud
           @BackupModel = backupmodel
           @BackupCycle = backupcycle
           @BackupSaveDays = backupsavedays
+          @RegularBackupEnable = regularbackupenable
+          @RegularBackupSaveDays = regularbackupsavedays
+          @RegularBackupStrategy = regularbackupstrategy
+          @RegularBackupCounts = regularbackupcounts
+          @RegularBackupStartTime = regularbackupstarttime
         end
 
         def deserialize(params)
@@ -5621,6 +5636,11 @@ module TencentCloud
           @BackupModel = params['BackupModel']
           @BackupCycle = params['BackupCycle']
           @BackupSaveDays = params['BackupSaveDays']
+          @RegularBackupEnable = params['RegularBackupEnable']
+          @RegularBackupSaveDays = params['RegularBackupSaveDays']
+          @RegularBackupStrategy = params['RegularBackupStrategy']
+          @RegularBackupCounts = params['RegularBackupCounts']
+          @RegularBackupStartTime = params['RegularBackupStartTime']
         end
       end
 

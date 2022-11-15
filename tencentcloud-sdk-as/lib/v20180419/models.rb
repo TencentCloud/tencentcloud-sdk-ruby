@@ -2440,7 +2440,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent。
+      # 描述了实例的增强服务启用情况与其设置，如云安全，云监控，自动化助手等实例 Agent。
       class EnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 开启云安全服务。若不指定该参数，则默认开启云安全服务。
         # @type SecurityService: :class:`Tencentcloud::As.v20180419.models.RunSecurityServiceEnabled`
@@ -2448,13 +2448,16 @@ module TencentCloud
         # @type MonitorService: :class:`Tencentcloud::As.v20180419.models.RunMonitorServiceEnabled`
         # @param AutomationService: 该参数已废弃，查询时会返回空值，请勿使用。
         # @type AutomationService: Array
+        # @param AutomationToolsService: 开启自动化助手服务。若不指定该参数，则默认逻辑与CVM保持一致。注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutomationToolsService: :class:`Tencentcloud::As.v20180419.models.RunAutomationServiceEnabled`
 
-        attr_accessor :SecurityService, :MonitorService, :AutomationService
+        attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         
-        def initialize(securityservice=nil, monitorservice=nil, automationservice=nil)
+        def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
           @MonitorService = monitorservice
           @AutomationService = automationservice
+          @AutomationToolsService = automationtoolsservice
         end
 
         def deserialize(params)
@@ -2473,6 +2476,10 @@ module TencentCloud
               runautomationserviceenabled_tmp.deserialize(i)
               @AutomationService << runautomationserviceenabled_tmp
             end
+          end
+          unless params['AutomationToolsService'].nil?
+            @AutomationToolsService = RunAutomationServiceEnabled.new
+            @AutomationToolsService.deserialize(params['AutomationToolsService'])
           end
         end
       end

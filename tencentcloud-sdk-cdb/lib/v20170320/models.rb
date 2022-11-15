@@ -9310,15 +9310,19 @@ module TencentCloud
       class ReloadBalanceProxyNodeRequest < TencentCloud::Common::AbstractModel
         # @param ProxyGroupId: 代理组ID
         # @type ProxyGroupId: String
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
 
-        attr_accessor :ProxyGroupId
+        attr_accessor :ProxyGroupId, :ProxyAddressId
         
-        def initialize(proxygroupid=nil)
+        def initialize(proxygroupid=nil, proxyaddressid=nil)
           @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
         end
 
         def deserialize(params)
           @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
         end
       end
 
