@@ -634,14 +634,17 @@ module TencentCloud
         # @param ReviewMessage: 审核原因
         # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
         # @type ReviewMessage: String
+        # @param RecipientId: 签署节点审核时需要指定
+        # @type RecipientId: String
 
-        attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage
+        attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage, :RecipientId
         
-        def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil)
+        def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, recipientid=nil)
           @Agent = agent
           @FlowId = flowid
           @ReviewType = reviewtype
           @ReviewMessage = reviewmessage
+          @RecipientId = recipientid
         end
 
         def deserialize(params)
@@ -652,6 +655,7 @@ module TencentCloud
           @FlowId = params['FlowId']
           @ReviewType = params['ReviewType']
           @ReviewMessage = params['ReviewMessage']
+          @RecipientId = params['RecipientId']
         end
       end
 
@@ -1104,7 +1108,8 @@ module TencentCloud
         # DYNAMIC_TABLE - 动态表格控件；
         # ATTACHMENT - 附件控件；
         # SELECTOR - 选择器控件；
-        # DATE - 日期控件；默认是格式化为xxxx年xx月xx日
+        # DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+        # DISTRICT - 省市区行政区划控件；
 
         # 如果是SignComponent控件类型，则可选的字段为
         # SIGN_SEAL - 签署印章控件；
@@ -1141,12 +1146,27 @@ module TencentCloud
         # @param ComponentPosY: 参数控件Y位置，单位px
         # @type ComponentPosY: Float
         # @param ComponentExtra: 参数控件样式，json格式表述
+
         # 不同类型的控件会有部分非通用参数
+
         # TEXT/MULTI_LINE_TEXT控件可以指定
         # 1 Font：目前只支持黑体、宋体
         # 2 FontSize： 范围12-72
         # 3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
         # 例如：{"FontSize":12}
+
+        # ComponentType为FILL_IMAGE时，支持以下参数：
+        # NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+        # FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+        # ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+        # {“ComponentTypeLimit”: [“xxx”]}
+        # xxx可以为：
+        # HANDWRITE – 手写签名
+        # BORDERLESS_ESIGN – 自动生成无边框腾讯体
+        # OCR_ESIGN -- AI智能识别手写签名
+        # ESIGN -- 个人印章类型
+        # 如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
         # @type ComponentExtra: String
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
         # TEXT - 文本内容
@@ -1171,10 +1191,16 @@ module TencentCloud
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
+        # @param KeywordPage: 指定关键字页码
+        # @type KeywordPage: Integer
+        # @param RelativeLocation: 关键字位置模式
+        # @type RelativeLocation: String
+        # @param KeywordIndexes: 关键字索引
+        # @type KeywordIndexes: Array
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :KeywordPage, :RelativeLocation, :KeywordIndexes
         
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
@@ -1194,6 +1220,9 @@ module TencentCloud
           @ComponentDescription = componentdescription
           @OffsetX = offsetx
           @OffsetY = offsety
+          @KeywordPage = keywordpage
+          @RelativeLocation = relativelocation
+          @KeywordIndexes = keywordindexes
         end
 
         def deserialize(params)
@@ -1216,6 +1245,9 @@ module TencentCloud
           @ComponentDescription = params['ComponentDescription']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+          @KeywordPage = params['KeywordPage']
+          @RelativeLocation = params['RelativeLocation']
+          @KeywordIndexes = params['KeywordIndexes']
         end
       end
 

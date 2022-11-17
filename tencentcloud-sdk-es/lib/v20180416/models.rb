@@ -1242,10 +1242,12 @@ module TencentCloud
         # @type OrderByType: Integer
         # @param VpcIds: VpcId 筛选项
         # @type VpcIds: Array
+        # @param TagList: 标签信息列表
+        # @type TagList: Array
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :VpcIds
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :VpcIds, :TagList
         
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, vpcids=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, vpcids=nil, taglist=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -1254,6 +1256,7 @@ module TencentCloud
           @OrderByKey = orderbykey
           @OrderByType = orderbytype
           @VpcIds = vpcids
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -1265,6 +1268,14 @@ module TencentCloud
           @OrderByKey = params['OrderByKey']
           @OrderByType = params['OrderByType']
           @VpcIds = params['VpcIds']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -2542,10 +2553,19 @@ module TencentCloud
         # @param OperationDuration: 可维护时间段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
+        # @param CpuNum: CPU数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuNum: Integer
+        # @param TagList: 实例标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param MemSize: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration, :CpuNum, :TagList, :MemSize
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil, cpunum=nil, taglist=nil, memsize=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -2572,6 +2592,9 @@ module TencentCloud
           @YMLConfig = ymlconfig
           @ExtendedFiles = extendedfiles
           @OperationDuration = operationduration
+          @CpuNum = cpunum
+          @TagList = taglist
+          @MemSize = memsize
         end
 
         def deserialize(params)
@@ -2618,6 +2641,16 @@ module TencentCloud
             @OperationDuration = OperationDuration.new
             @OperationDuration.deserialize(params['OperationDuration'])
           end
+          @CpuNum = params['CpuNum']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+          @MemSize = params['MemSize']
         end
       end
 
@@ -3254,19 +3287,27 @@ module TencentCloud
         # @type NodeNames: Array
         # @param ForceRestart: 是否强制重启
         # @type ForceRestart: Boolean
+        # @param RestartMode: 可选重启模式"in-place","blue-green"，分别表示重启，蓝绿重启；默认值为"in-place"
+        # @type RestartMode: String
+        # @param IsOffline: 节点状态，在蓝绿模式中使用；离线节点蓝绿有风险
+        # @type IsOffline: Boolean
 
-        attr_accessor :InstanceId, :NodeNames, :ForceRestart
+        attr_accessor :InstanceId, :NodeNames, :ForceRestart, :RestartMode, :IsOffline
         
-        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil)
+        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil, restartmode=nil, isoffline=nil)
           @InstanceId = instanceid
           @NodeNames = nodenames
           @ForceRestart = forcerestart
+          @RestartMode = restartmode
+          @IsOffline = isoffline
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @NodeNames = params['NodeNames']
           @ForceRestart = params['ForceRestart']
+          @RestartMode = params['RestartMode']
+          @IsOffline = params['IsOffline']
         end
       end
 

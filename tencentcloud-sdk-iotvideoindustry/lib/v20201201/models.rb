@@ -2943,7 +2943,7 @@ module TencentCloud
       class DescribeLiveStreamRequest < TencentCloud::Common::AbstractModel
         # @param LiveChannelId: 频道ID
         # @type LiveChannelId: String
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: 过期时间 秒级unix时间戳
         # @type ExpireTime: Integer
 
         attr_accessor :LiveChannelId, :ExpireTime

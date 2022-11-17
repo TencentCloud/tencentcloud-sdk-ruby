@@ -123,6 +123,46 @@ module TencentCloud
         end
       end
 
+      # CancelOrganizationMemberAuthAccount请求参数结构体
+      class CancelOrganizationMemberAuthAccountRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param OrgSubAccountUin: 组织子账号Uin。
+        # @type OrgSubAccountUin: Integer
+
+        attr_accessor :MemberUin, :PolicyId, :OrgSubAccountUin
+        
+        def initialize(memberuin=nil, policyid=nil, orgsubaccountuin=nil)
+          @MemberUin = memberuin
+          @PolicyId = policyid
+          @OrgSubAccountUin = orgsubaccountuin
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @PolicyId = params['PolicyId']
+          @OrgSubAccountUin = params['OrgSubAccountUin']
+        end
+      end
+
+      # CancelOrganizationMemberAuthAccount返回参数结构体
+      class CancelOrganizationMemberAuthAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationMemberPolicy请求参数结构体
       class CreateOrganizationMemberPolicyRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -358,6 +398,67 @@ module TencentCloud
               @Items << authnode_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationMemberAuthAccounts请求参数结构体
+      class DescribeOrganizationMemberAuthAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 限制数目。
+        # @type Limit: Integer
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+
+        attr_accessor :Offset, :Limit, :MemberUin, :PolicyId
+        
+        def initialize(offset=nil, limit=nil, memberuin=nil, policyid=nil)
+          @Offset = offset
+          @Limit = limit
+          @MemberUin = memberuin
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @MemberUin = params['MemberUin']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DescribeOrganizationMemberAuthAccounts返回参数结构体
+      class DescribeOrganizationMemberAuthAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: 总数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :RequestId
+        
+        def initialize(items=nil, total=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgmemberauthaccount_tmp = OrgMemberAuthAccount.new
+              orgmemberauthaccount_tmp.deserialize(i)
+              @Items << orgmemberauthaccount_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1019,6 +1120,63 @@ module TencentCloud
           end
           @BindStatus = params['BindStatus']
           @PermissionStatus = params['PermissionStatus']
+        end
+      end
+
+      # 成员和子账号的授权关系
+      class OrgMemberAuthAccount < TencentCloud::Common::AbstractModel
+        # @param OrgSubAccountUin: 组织子账号Uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgSubAccountUin: Integer
+        # @param PolicyId: 策略ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param IdentityId: 身份ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityId: Integer
+        # @param IdentityRoleName: 身份角色名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityRoleName: String
+        # @param IdentityRoleAliasName: 身份角色别名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityRoleAliasName: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param OrgSubAccountName: 子账号名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgSubAccountName: String
+
+        attr_accessor :OrgSubAccountUin, :PolicyId, :PolicyName, :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :CreateTime, :UpdateTime, :OrgSubAccountName
+        
+        def initialize(orgsubaccountuin=nil, policyid=nil, policyname=nil, identityid=nil, identityrolename=nil, identityrolealiasname=nil, createtime=nil, updatetime=nil, orgsubaccountname=nil)
+          @OrgSubAccountUin = orgsubaccountuin
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @IdentityId = identityid
+          @IdentityRoleName = identityrolename
+          @IdentityRoleAliasName = identityrolealiasname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @OrgSubAccountName = orgsubaccountname
+        end
+
+        def deserialize(params)
+          @OrgSubAccountUin = params['OrgSubAccountUin']
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @IdentityId = params['IdentityId']
+          @IdentityRoleName = params['IdentityRoleName']
+          @IdentityRoleAliasName = params['IdentityRoleAliasName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @OrgSubAccountName = params['OrgSubAccountName']
         end
       end
 

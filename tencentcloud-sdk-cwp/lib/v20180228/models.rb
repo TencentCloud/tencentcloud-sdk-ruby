@@ -8628,6 +8628,69 @@ module TencentCloud
         end
       end
 
+      # DescribeClientException请求参数结构体
+      class DescribeClientExceptionRequest < TencentCloud::Common::AbstractModel
+        # @param ExceptionType: 客户端异常类型 1:客户端离线，2:客户端卸载
+        # @type ExceptionType: Integer
+        # @param Offset: 分页的偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，不为0，最大值100
+        # @type Limit: Integer
+        # @param StartTime: 起始时间 `2006-01-02 15:04:05` 格式
+        # @type StartTime: String
+        # @param EndTime: 结束时间 `2006-01-02 15:04:05` 格式
+        # @type EndTime: String
+
+        attr_accessor :ExceptionType, :Offset, :Limit, :StartTime, :EndTime
+        
+        def initialize(exceptiontype=nil, offset=nil, limit=nil, starttime=nil, endtime=nil)
+          @ExceptionType = exceptiontype
+          @Offset = offset
+          @Limit = limit
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ExceptionType = params['ExceptionType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeClientException返回参数结构体
+      class DescribeClientExceptionResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 事件总数量
+        # @type TotalCount: Integer
+        # @param Records: 事件详情
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Records, :RequestId
+        
+        def initialize(totalcount=nil, records=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              recordinfo_tmp = RecordInfo.new
+              recordinfo_tmp.deserialize(i)
+              @Records << recordinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeComponentStatistics请求参数结构体
       class DescribeComponentStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。
@@ -18078,6 +18141,42 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Num = params['Num']
+        end
+      end
+
+      # 客户端异常信息结构
+      class RecordInfo < TencentCloud::Common::AbstractModel
+        # @param HostIP: 主机ip
+        # @type HostIP: String
+        # @param InstanceID: 主机实例id
+        # @type InstanceID: String
+        # @param OfflineTime: 客户端离线时间
+        # @type OfflineTime: String
+        # @param UninstallTime: 客户端卸载时间
+        # @type UninstallTime: String
+        # @param UninstallCmd: 客户端卸载调用链
+        # @type UninstallCmd: String
+        # @param Uuid: 客户端uuid
+        # @type Uuid: String
+
+        attr_accessor :HostIP, :InstanceID, :OfflineTime, :UninstallTime, :UninstallCmd, :Uuid
+        
+        def initialize(hostip=nil, instanceid=nil, offlinetime=nil, uninstalltime=nil, uninstallcmd=nil, uuid=nil)
+          @HostIP = hostip
+          @InstanceID = instanceid
+          @OfflineTime = offlinetime
+          @UninstallTime = uninstalltime
+          @UninstallCmd = uninstallcmd
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @HostIP = params['HostIP']
+          @InstanceID = params['InstanceID']
+          @OfflineTime = params['OfflineTime']
+          @UninstallTime = params['UninstallTime']
+          @UninstallCmd = params['UninstallCmd']
+          @Uuid = params['Uuid']
         end
       end
 

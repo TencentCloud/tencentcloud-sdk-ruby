@@ -331,7 +331,8 @@ module TencentCloud
         # DYNAMIC_TABLE - 动态表格控件；
         # ATTACHMENT - 附件控件；
         # SELECTOR - 选择器控件；
-        # DATE - 日期控件；默认是格式化为xxxx年xx月xx日
+        # DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+        # DISTRICT - 省市区行政区划控件；
 
         # 如果是SignComponent控件类型，则可选的字段为
         # SIGN_SEAL - 签署印章控件；
@@ -362,6 +363,12 @@ module TencentCloud
         # @param ComponentRequired: 是否必选，默认为false
         # @type ComponentRequired: Boolean
         # @param ComponentExtra: 扩展参数：
+        # 为JSON格式。
+
+        # ComponentType为FILL_IMAGE时，支持以下参数：
+        # NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+        # FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
         # ComponentType为SIGN_SIGNATURE类型可以控制签署方式
         # {“ComponentTypeLimit”: [“xxx”]}
         # xxx可以为：
@@ -396,10 +403,18 @@ module TencentCloud
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
+        # @param KeywordOrder: 指定关键字排序规则
+        # @type KeywordOrder: String
+        # @param KeywordPage: 指定关键字页码
+        # @type KeywordPage: Integer
+        # @param RelativeLocation: 关键字位置模式
+        # @type RelativeLocation: String
+        # @param KeywordIndexes: 关键字索引
+        # @type KeywordIndexes: Array
 
-        attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize, :OffsetX, :OffsetY
+        attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize, :OffsetX, :OffsetY, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes
         
-        def initialize(componenttype=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, componentid=nil, componentname=nil, componentrequired=nil, componentextra=nil, componentrecipientid=nil, componentvalue=nil, isformtype=nil, generatemode=nil, componentdatefontsize=nil, offsetx=nil, offsety=nil)
+        def initialize(componenttype=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, componentid=nil, componentname=nil, componentrequired=nil, componentextra=nil, componentrecipientid=nil, componentvalue=nil, isformtype=nil, generatemode=nil, componentdatefontsize=nil, offsetx=nil, offsety=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
           @ComponentType = componenttype
           @ComponentWidth = componentwidth
           @ComponentHeight = componentheight
@@ -418,6 +433,10 @@ module TencentCloud
           @ComponentDateFontSize = componentdatefontsize
           @OffsetX = offsetx
           @OffsetY = offsety
+          @KeywordOrder = keywordorder
+          @KeywordPage = keywordpage
+          @RelativeLocation = relativelocation
+          @KeywordIndexes = keywordindexes
         end
 
         def deserialize(params)
@@ -439,6 +458,10 @@ module TencentCloud
           @ComponentDateFontSize = params['ComponentDateFontSize']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+          @KeywordOrder = params['KeywordOrder']
+          @KeywordPage = params['KeywordPage']
+          @RelativeLocation = params['RelativeLocation']
+          @KeywordIndexes = params['KeywordIndexes']
         end
       end
 
@@ -870,20 +893,32 @@ module TencentCloud
 
       # CreateFlowEvidenceReport返回参数结构体
       class CreateFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
-        # @param ReportUrl: 出证报告 URL（有效期5分钟）
+        # @param ReportId: 出证报告 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportId: String
+        # @param ReportUrl: 废除，字段无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
+        # @param Status: 执行中：EvidenceStatusExecuting
+        # 成功：EvidenceStatusSuccess
+        # 失败：EvidenceStatusFailed
+        # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReportUrl, :RequestId
+        attr_accessor :ReportId, :ReportUrl, :Status, :RequestId
         
-        def initialize(reporturl=nil, requestid=nil)
+        def initialize(reportid=nil, reporturl=nil, status=nil, requestid=nil)
+          @ReportId = reportid
           @ReportUrl = reporturl
+          @Status = status
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ReportId = params['ReportId']
           @ReportUrl = params['ReportUrl']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

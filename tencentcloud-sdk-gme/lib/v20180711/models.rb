@@ -476,17 +476,21 @@ module TencentCloud
         # @type BizId: Integer
         # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
         # @type TextUrl: String
+        # @param ModelName: 模型名称，名称长度不超过36，默认为BizId。
+        # @type ModelName: String
 
-        attr_accessor :BizId, :TextUrl
+        attr_accessor :BizId, :TextUrl, :ModelName
         
-        def initialize(bizid=nil, texturl=nil)
+        def initialize(bizid=nil, texturl=nil, modelname=nil)
           @BizId = bizid
           @TextUrl = texturl
+          @ModelName = modelname
         end
 
         def deserialize(params)
           @BizId = params['BizId']
           @TextUrl = params['TextUrl']
+          @ModelName = params['ModelName']
         end
       end
 
@@ -556,21 +560,33 @@ module TencentCloud
         # @type BizId: Integer
         # @param ModelId: 模型ID
         # @type ModelId: String
-        # @param ModelState: 模型状态，-1下线状态，1上线状态, 0训练中, -2训练失败
+        # @param ModelState: 模型状态，-1下线状态，1上线状态, 0训练中, -2训练失败, 3上线中, 4下线中
         # @type ModelState: Integer
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
+        # @type TextUrl: String
+        # @param UpdateTime: 更新时间，11位时间戳
+        # @type UpdateTime: Integer
 
-        attr_accessor :BizId, :ModelId, :ModelState
+        attr_accessor :BizId, :ModelId, :ModelState, :ModelName, :TextUrl, :UpdateTime
         
-        def initialize(bizid=nil, modelid=nil, modelstate=nil)
+        def initialize(bizid=nil, modelid=nil, modelstate=nil, modelname=nil, texturl=nil, updatetime=nil)
           @BizId = bizid
           @ModelId = modelid
           @ModelState = modelstate
+          @ModelName = modelname
+          @TextUrl = texturl
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
           @BizId = params['BizId']
           @ModelId = params['ModelId']
           @ModelState = params['ModelState']
+          @ModelName = params['ModelName']
+          @TextUrl = params['TextUrl']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -1340,7 +1356,7 @@ module TencentCloud
       class ModifyCustomizationRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
         # @type BizId: Integer
-        # @param TextUrl: 文本文件
+        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
         # @type TextUrl: String
         # @param ModelId: 要修改的模型ID
         # @type ModelId: String

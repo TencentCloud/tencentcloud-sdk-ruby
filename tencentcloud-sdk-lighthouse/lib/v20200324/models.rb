@@ -4230,6 +4230,49 @@ module TencentCloud
         end
       end
 
+      # ModifyInstancesBundle请求参数结构体
+      class ModifyInstancesBundleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为30。
+        # @type InstanceIds: Array
+        # @param BundleId: 待变更的套餐Id。可通过[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口返回值中的BundleId获取。
+        # @type BundleId: String
+        # @param AutoVoucher: 是否自动抵扣代金券。取值范围：
+        # true：表示自动抵扣代金券
+        # false：表示不自动抵扣代金券
+        # 默认取值：false。
+        # @type AutoVoucher: Boolean
+
+        attr_accessor :InstanceIds, :BundleId, :AutoVoucher
+        
+        def initialize(instanceids=nil, bundleid=nil, autovoucher=nil)
+          @InstanceIds = instanceids
+          @BundleId = bundleid
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @BundleId = params['BundleId']
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # ModifyInstancesBundle返回参数结构体
+      class ModifyInstancesBundleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstancesLoginKeyPairAttribute请求参数结构体
       class ModifyInstancesLoginKeyPairAttributeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。

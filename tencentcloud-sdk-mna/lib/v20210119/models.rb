@@ -25,42 +25,51 @@ module TencentCloud
         # @type Remark: String
         # @param DataKey: 新建设备的base64密钥字符串，非必选，如果不填写则由系统自动生成
         # @type DataKey: String
+        # @param Encrypted: 是否设置预置密钥
+        # @type Encrypted: Boolean
 
-        attr_accessor :DeviceName, :Remark, :DataKey
+        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted
         
-        def initialize(devicename=nil, remark=nil, datakey=nil)
+        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil)
           @DeviceName = devicename
           @Remark = remark
           @DataKey = datakey
+          @Encrypted = encrypted
         end
 
         def deserialize(params)
           @DeviceName = params['DeviceName']
           @Remark = params['Remark']
           @DataKey = params['DataKey']
+          @Encrypted = params['Encrypted']
         end
       end
 
       # AddDevice返回参数结构体
       class AddDeviceResponse < TencentCloud::Common::AbstractModel
-        # @param DataKey: 后台生成的base64字符串密钥
+        # @param DataKey: 经过加密算法加密后的base64格式密钥
         # @type DataKey: String
         # @param DeviceId: 设备ID
         # @type DeviceId: String
+        # @param Signature: 签名字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Signature: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataKey, :DeviceId, :RequestId
+        attr_accessor :DataKey, :DeviceId, :Signature, :RequestId
         
-        def initialize(datakey=nil, deviceid=nil, requestid=nil)
+        def initialize(datakey=nil, deviceid=nil, signature=nil, requestid=nil)
           @DataKey = datakey
           @DeviceId = deviceid
+          @Signature = signature
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DataKey = params['DataKey']
           @DeviceId = params['DeviceId']
+          @Signature = params['Signature']
           @RequestId = params['RequestId']
         end
       end

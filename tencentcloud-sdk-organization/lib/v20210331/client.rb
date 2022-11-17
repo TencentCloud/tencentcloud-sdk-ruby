@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消组织成员和子账号的授权绑定关系
+
+        # @param request: Request instance for CancelOrganizationMemberAuthAccount.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CancelOrganizationMemberAuthAccountRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CancelOrganizationMemberAuthAccountResponse`
+        def CancelOrganizationMemberAuthAccount(request)
+          body = send_request('CancelOrganizationMemberAuthAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelOrganizationMemberAuthAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建组织成员
 
         # @param request: Request instance for CreateOrganizationMember.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOrganizationAuthNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取组织成员被绑定的子账号列表
+
+        # @param request: Request instance for DescribeOrganizationMemberAuthAccounts.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberAuthAccountsRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberAuthAccountsResponse`
+        def DescribeOrganizationMemberAuthAccounts(request)
+          body = send_request('DescribeOrganizationMemberAuthAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationMemberAuthAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else

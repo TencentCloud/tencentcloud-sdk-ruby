@@ -2868,21 +2868,39 @@ module TencentCloud
         # @type MinReplicas: Integer
         # @param MaxReplicas: 最大实例数（可以不传）
         # @type MaxReplicas: Integer
-        # @param Metrics: 指标度量（CPU or MEMORY）
+        # @param Metrics: 指标度量
+        # CPU（CPU使用率，%）
+        # MEMORY（内存使用率，%）
+        # CPU_CORE_USED（CPU使用量，core）
+        # MEMORY_SIZE_USED(内存使用量，MiB)
+        # NETWORK_BANDWIDTH_RECEIVE(网络入带宽，MBps)
+        # NETWORK_BANDWIDTH_TRANSMIT(网络出带宽，MBps)
+        # NETWORK_TRAFFIC_RECEIVE(网络入流量，MiB/s)
+        # NETWORK_TRAFFIC_TRANSMIT(网络出流量，MiB/s)
+        # NETWORK_PACKETS_RECEIVE(网络入包量，Count/s)
+        # NETWORK_PACKETS_TRANSMIT(网络出包量，Count/s)
+        # FS_IOPS_WRITE(磁盘写次数，Count/s)
+        # FS_IOPS_READ(磁盘读次数，Count/s)
+        # FS_SIZE_WRITE(磁盘写大小，MiB/s)
+        # FS_SIZE_READ(磁盘读大小，MiB/s)
         # @type Metrics: String
-        # @param Threshold: 阈值（百分比）
+        # @param Threshold: 阈值（整数）
         # @type Threshold: Integer
         # @param Enabled: 是否启用
         # @type Enabled: Boolean
+        # @param DoubleThreshold: 阈值（小数，优先使用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DoubleThreshold: Float
 
-        attr_accessor :MinReplicas, :MaxReplicas, :Metrics, :Threshold, :Enabled
+        attr_accessor :MinReplicas, :MaxReplicas, :Metrics, :Threshold, :Enabled, :DoubleThreshold
         
-        def initialize(minreplicas=nil, maxreplicas=nil, metrics=nil, threshold=nil, enabled=nil)
+        def initialize(minreplicas=nil, maxreplicas=nil, metrics=nil, threshold=nil, enabled=nil, doublethreshold=nil)
           @MinReplicas = minreplicas
           @MaxReplicas = maxreplicas
           @Metrics = metrics
           @Threshold = threshold
           @Enabled = enabled
+          @DoubleThreshold = doublethreshold
         end
 
         def deserialize(params)
@@ -2891,6 +2909,7 @@ module TencentCloud
           @Metrics = params['Metrics']
           @Threshold = params['Threshold']
           @Enabled = params['Enabled']
+          @DoubleThreshold = params['DoubleThreshold']
         end
       end
 

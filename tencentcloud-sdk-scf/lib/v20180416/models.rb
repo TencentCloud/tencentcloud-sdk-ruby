@@ -493,10 +493,12 @@ module TencentCloud
         # @type ProtocolType: String
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
+        # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
+        # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig
         
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -523,6 +525,7 @@ module TencentCloud
           @TraceEnable = traceenable
           @ProtocolType = protocoltype
           @ProtocolParams = protocolparams
+          @InstanceConcurrencyConfig = instanceconcurrencyconfig
         end
 
         def deserialize(params)
@@ -586,6 +589,10 @@ module TencentCloud
           unless params['ProtocolParams'].nil?
             @ProtocolParams = ProtocolParams.new
             @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
+          unless params['InstanceConcurrencyConfig'].nil?
+            @InstanceConcurrencyConfig = InstanceConcurrencyConfig.new
+            @InstanceConcurrencyConfig.deserialize(params['InstanceConcurrencyConfig'])
           end
         end
       end
@@ -2194,16 +2201,20 @@ module TencentCloud
         # @param Args: 容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Args: String
+        # @param ContainerImageAccelerate: 镜像加速开关，默认False
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerImageAccelerate: Boolean
 
-        attr_accessor :ImageType, :ImageUri, :RegistryId, :EntryPoint, :Command, :Args
+        attr_accessor :ImageType, :ImageUri, :RegistryId, :EntryPoint, :Command, :Args, :ContainerImageAccelerate
         
-        def initialize(imagetype=nil, imageuri=nil, registryid=nil, entrypoint=nil, command=nil, args=nil)
+        def initialize(imagetype=nil, imageuri=nil, registryid=nil, entrypoint=nil, command=nil, args=nil, containerimageaccelerate=nil)
           @ImageType = imagetype
           @ImageUri = imageuri
           @RegistryId = registryid
           @EntryPoint = entrypoint
           @Command = command
           @Args = args
+          @ContainerImageAccelerate = containerimageaccelerate
         end
 
         def deserialize(params)
@@ -2213,6 +2224,29 @@ module TencentCloud
           @EntryPoint = params['EntryPoint']
           @Command = params['Command']
           @Args = params['Args']
+          @ContainerImageAccelerate = params['ContainerImageAccelerate']
+        end
+      end
+
+      # 多并发执行配置描述
+      class InstanceConcurrencyConfig < TencentCloud::Common::AbstractModel
+        # @param DynamicEnabled: 是否开启智能动态并发。'FALSE'时是静态并发。''时取消多并发配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicEnabled: String
+        # @param MaxConcurrency: 单实例并发数最大值。取值范围 [1,100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrency: Integer
+
+        attr_accessor :DynamicEnabled, :MaxConcurrency
+        
+        def initialize(dynamicenabled=nil, maxconcurrency=nil)
+          @DynamicEnabled = dynamicenabled
+          @MaxConcurrency = maxconcurrency
+        end
+
+        def deserialize(params)
+          @DynamicEnabled = params['DynamicEnabled']
+          @MaxConcurrency = params['MaxConcurrency']
         end
       end
 
@@ -4171,10 +4205,12 @@ module TencentCloud
         # @type InitTimeout: Integer
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
+        # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
+        # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams, :InstanceConcurrencyConfig
         
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -4195,6 +4231,7 @@ module TencentCloud
           @CfsConfig = cfsconfig
           @InitTimeout = inittimeout
           @ProtocolParams = protocolparams
+          @InstanceConcurrencyConfig = instanceconcurrencyconfig
         end
 
         def deserialize(params)
@@ -4242,6 +4279,10 @@ module TencentCloud
           unless params['ProtocolParams'].nil?
             @ProtocolParams = ProtocolParams.new
             @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
+          unless params['InstanceConcurrencyConfig'].nil?
+            @InstanceConcurrencyConfig = InstanceConcurrencyConfig.new
+            @InstanceConcurrencyConfig.deserialize(params['InstanceConcurrencyConfig'])
           end
         end
       end

@@ -627,6 +627,42 @@ module TencentCloud
         end
       end
 
+      # BindZoneToPlan请求参数结构体
+      class BindZoneToPlanRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 未绑定套餐的站点ID。
+        # @type ZoneId: String
+        # @param PlanId: 待绑定的目标套餐ID。
+        # @type PlanId: String
+
+        attr_accessor :ZoneId, :PlanId
+        
+        def initialize(zoneid=nil, planid=nil)
+          @ZoneId = zoneid
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # BindZoneToPlan返回参数结构体
+      class BindZoneToPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全Bot配置
       class BotConfig < TencentCloud::Common::AbstractModel
         # @param Switch: bot开关，取值有：
@@ -2418,15 +2454,18 @@ module TencentCloud
         # <li> true：允许重复接入；</li>
         # <li> false：不允许重复接入。</li>不填写使用默认值false。
         # @type AllowDuplicates: Boolean
+        # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
+        # @type AliasZoneName: String
 
-        attr_accessor :ZoneName, :Type, :JumpStart, :Tags, :AllowDuplicates
+        attr_accessor :ZoneName, :Type, :JumpStart, :Tags, :AllowDuplicates, :AliasZoneName
         
-        def initialize(zonename=nil, type=nil, jumpstart=nil, tags=nil, allowduplicates=nil)
+        def initialize(zonename=nil, type=nil, jumpstart=nil, tags=nil, allowduplicates=nil, aliaszonename=nil)
           @ZoneName = zonename
           @Type = type
           @JumpStart = jumpstart
           @Tags = tags
           @AllowDuplicates = allowduplicates
+          @AliasZoneName = aliaszonename
         end
 
         def deserialize(params)
@@ -2442,6 +2481,7 @@ module TencentCloud
             end
           end
           @AllowDuplicates = params['AllowDuplicates']
+          @AliasZoneName = params['AliasZoneName']
         end
       end
 
@@ -8126,13 +8166,27 @@ module TencentCloud
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
         # @type Filters: Array
+        # @param Order: 排序字段，取值有：
+        # <li> type：接入类型；</li>
+        # <li> area：加速区域；</li>
+        # <li> create-time：创建时间；</li>
+        # <li> zone-name：站点名称；</li>
+        # <li> use-time：最近使用时间；</li>
+        # <li> active-status：生效状态。</li>不填写使用默认值create-time。
+        # @type Order: String
+        # @param Direction: 排序方向，取值有：
+        # <li> asc：从小到大排序；</li>
+        # <li> desc：从大到小排序。</li>不填写使用默认值desc。
+        # @type Direction: String
 
-        attr_accessor :Offset, :Limit, :Filters
+        attr_accessor :Offset, :Limit, :Filters, :Order, :Direction
         
-        def initialize(offset=nil, limit=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, order=nil, direction=nil)
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @Order = order
+          @Direction = direction
         end
 
         def deserialize(params)
@@ -8146,6 +8200,8 @@ module TencentCloud
               @Filters << advancedfilter_tmp
             end
           end
+          @Order = params['Order']
+          @Direction = params['Direction']
         end
       end
 
@@ -10960,13 +11016,16 @@ module TencentCloud
         # @type Type: String
         # @param VanityNameServers: 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。
         # @type VanityNameServers: :class:`Tencentcloud::Teo.v20220901.models.VanityNameServers`
+        # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
+        # @type AliasZoneName: String
 
-        attr_accessor :ZoneId, :Type, :VanityNameServers
+        attr_accessor :ZoneId, :Type, :VanityNameServers, :AliasZoneName
         
-        def initialize(zoneid=nil, type=nil, vanitynameservers=nil)
+        def initialize(zoneid=nil, type=nil, vanitynameservers=nil, aliaszonename=nil)
           @ZoneId = zoneid
           @Type = type
           @VanityNameServers = vanitynameservers
+          @AliasZoneName = aliaszonename
         end
 
         def deserialize(params)
@@ -10976,6 +11035,7 @@ module TencentCloud
             @VanityNameServers = VanityNameServers.new
             @VanityNameServers.deserialize(params['VanityNameServers'])
           end
+          @AliasZoneName = params['AliasZoneName']
         end
       end
 
@@ -14368,10 +14428,18 @@ module TencentCloud
         # @param VanityNameServersIps: 用户自定义 NS IP 信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VanityNameServersIps: Array
+        # @param ActiveStatus: 展示状态，取值有：
+        # <li> active：已启用；</li>
+        # <li> inactive：未生效；</li>
+        # <li> paused：已停用。</li>
+        # @type ActiveStatus: String
+        # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasZoneName: String
 
-        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps
+        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName
         
-        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil)
+        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @OriginalNameServers = originalnameservers
@@ -14388,6 +14456,8 @@ module TencentCloud
           @Area = area
           @VanityNameServers = vanitynameservers
           @VanityNameServersIps = vanitynameserversips
+          @ActiveStatus = activestatus
+          @AliasZoneName = aliaszonename
         end
 
         def deserialize(params)
@@ -14431,6 +14501,8 @@ module TencentCloud
               @VanityNameServersIps << vanitynameserversips_tmp
             end
           end
+          @ActiveStatus = params['ActiveStatus']
+          @AliasZoneName = params['AliasZoneName']
         end
       end
 
