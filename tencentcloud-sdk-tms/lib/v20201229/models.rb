@@ -315,10 +315,16 @@ module TencentCloud
         # @type HeadUrl: String
         # @param Desc: 该字段表示业务用户的简介信息，支持汉字、英文及特殊符号，长度不超过5000个汉字字符。
         # @type Desc: String
+        # @param RoomId: 该字段表示业务群聊场景时的房间ID。
+        # @type RoomId: String
+        # @param ReceiverId: 该字段表示消息接受者ID
+        # @type ReceiverId: String
+        # @param SendTime: 消息生成时间，精确到毫秒
+        # @type SendTime: Integer
 
-        attr_accessor :UserId, :Nickname, :AccountType, :Gender, :Age, :Level, :Phone, :HeadUrl, :Desc
+        attr_accessor :UserId, :Nickname, :AccountType, :Gender, :Age, :Level, :Phone, :HeadUrl, :Desc, :RoomId, :ReceiverId, :SendTime
         
-        def initialize(userid=nil, nickname=nil, accounttype=nil, gender=nil, age=nil, level=nil, phone=nil, headurl=nil, desc=nil)
+        def initialize(userid=nil, nickname=nil, accounttype=nil, gender=nil, age=nil, level=nil, phone=nil, headurl=nil, desc=nil, roomid=nil, receiverid=nil, sendtime=nil)
           @UserId = userid
           @Nickname = nickname
           @AccountType = accounttype
@@ -328,6 +334,9 @@ module TencentCloud
           @Phone = phone
           @HeadUrl = headurl
           @Desc = desc
+          @RoomId = roomid
+          @ReceiverId = receiverid
+          @SendTime = sendtime
         end
 
         def deserialize(params)
@@ -340,6 +349,9 @@ module TencentCloud
           @Phone = params['Phone']
           @HeadUrl = params['HeadUrl']
           @Desc = params['Desc']
+          @RoomId = params['RoomId']
+          @ReceiverId = params['ReceiverId']
+          @SendTime = params['SendTime']
         end
       end
 

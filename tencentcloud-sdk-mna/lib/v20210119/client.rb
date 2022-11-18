@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口设置和更新预置密钥
+
+        # @param request: Request instance for CreateEncryptedKey.
+        # @type request: :class:`Tencentcloud::mna::V20210119::CreateEncryptedKeyRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::CreateEncryptedKeyResponse`
+        def CreateEncryptedKey(request)
+          body = send_request('CreateEncryptedKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEncryptedKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 移动网络发起Qos加速过程
 
         # @param request: Request instance for CreateQos.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetFlowStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取公钥用于验签
+
+        # @param request: Request instance for GetPublicKey.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetPublicKeyRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetPublicKeyResponse`
+        def GetPublicKey(request)
+          body = send_request('GetPublicKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPublicKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

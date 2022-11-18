@@ -3198,10 +3198,16 @@ module TencentCloud
         # @param NotificationHooks: 通知事件回调
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotificationHooks: Array
+        # @param NetworkReceiveRate: 每秒接收字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkReceiveRate: Float
+        # @param NetworkSendRate: 每秒发送字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkSendRate: Float
 
-        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks
+        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks, :NetworkReceiveRate, :NetworkSendRate
         
-        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil, type=nil, domainnameconfig=nil, debug=nil, abortreason=nil, createdat=nil, projectid=nil, notificationhooks=nil)
+        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil, type=nil, domainnameconfig=nil, debug=nil, abortreason=nil, createdat=nil, projectid=nil, notificationhooks=nil, networkreceiverate=nil, networksendrate=nil)
           @JobId = jobid
           @ScenarioId = scenarioid
           @Load = load
@@ -3240,6 +3246,8 @@ module TencentCloud
           @CreatedAt = createdat
           @ProjectId = projectid
           @NotificationHooks = notificationhooks
+          @NetworkReceiveRate = networkreceiverate
+          @NetworkSendRate = networksendrate
         end
 
         def deserialize(params)
@@ -3339,6 +3347,8 @@ module TencentCloud
               @NotificationHooks << notificationhook_tmp
             end
           end
+          @NetworkReceiveRate = params['NetworkReceiveRate']
+          @NetworkSendRate = params['NetworkSendRate']
         end
       end
 

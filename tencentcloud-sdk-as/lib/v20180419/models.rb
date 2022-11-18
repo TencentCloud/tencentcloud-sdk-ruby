@@ -915,10 +915,12 @@ module TencentCloud
         # @param HpcClusterId: 高性能计算集群ID。<br>
         # 注意：此字段默认为空。
         # @type HpcClusterId: String
+        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible
         
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -942,6 +944,7 @@ module TencentCloud
           @InstanceChargePrepaid = instancechargeprepaid
           @DiskTypePolicy = disktypepolicy
           @HpcClusterId = hpcclusterid
+          @IPv6InternetAccessible = ipv6internetaccessible
         end
 
         def deserialize(params)
@@ -1013,6 +1016,10 @@ module TencentCloud
           end
           @DiskTypePolicy = params['DiskTypePolicy']
           @HpcClusterId = params['HpcClusterId']
+          unless params['IPv6InternetAccessible'].nil?
+            @IPv6InternetAccessible = IPv6InternetAccessible.new
+            @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
+          end
         end
       end
 
@@ -2649,6 +2656,35 @@ module TencentCloud
         end
       end
 
+      # 描述了启动配置创建实例的IPv6地址公网可访问性，声明了IPv6地址公网使用计费模式，最大带宽等
+      class IPv6InternetAccessible < TencentCloud::Common::AbstractModel
+        # @param InternetChargeType: 网络计费模式。取值包括TRAFFIC_POSTPAID_BY_HOUR、BANDWIDTH_PACKAGE，默认取值为TRAFFIC_POSTPAID_BY_HOUR。查看当前账户类型可参考[账户类型说明](https://cloud.tencent.com/document/product/1199/49090#judge)。
+        # <br><li> IPv6对标准账户类型支持TRAFFIC_POSTPAID_BY_HOUR。
+        # <br><li> IPv6对传统账户类型支持BANDWIDTH_PACKAGE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetChargeType: String
+        # @param InternetMaxBandwidthOut: 公网出带宽上限，单位：Mbps。<br>默认值：0Mbps，此时不为IPv6分配公网带宽。不同机型、可用区、计费模式的带宽上限范围不一致，具体限制详见[公网带宽上限](https://cloud.tencent.com/document/product/213/12523)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param BandwidthPackageId: 带宽包ID。可通过[DescribeBandwidthPackages](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthPackageId: String
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :BandwidthPackageId
+        
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, bandwidthpackageid=nil)
+          @InternetChargeType = internetchargetype
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @BandwidthPackageId = bandwidthpackageid
+        end
+
+        def deserialize(params)
+          @InternetChargeType = params['InternetChargeType']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @BandwidthPackageId = params['BandwidthPackageId']
+        end
+      end
+
       # 实例信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -2959,10 +2995,12 @@ module TencentCloud
         # @param HpcClusterId: 高性能计算集群ID。<br>
         # 注意：此字段默认为空。
         # @type HpcClusterId: String
+        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。
+        # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible
         
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -2992,6 +3030,7 @@ module TencentCloud
           @InstanceChargePrepaid = instancechargeprepaid
           @DiskTypePolicy = disktypepolicy
           @HpcClusterId = hpcclusterid
+          @IPv6InternetAccessible = ipv6internetaccessible
         end
 
         def deserialize(params)
@@ -3076,6 +3115,10 @@ module TencentCloud
           end
           @DiskTypePolicy = params['DiskTypePolicy']
           @HpcClusterId = params['HpcClusterId']
+          unless params['IPv6InternetAccessible'].nil?
+            @IPv6InternetAccessible = IPv6InternetAccessible.new
+            @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
+          end
         end
       end
 
@@ -3553,10 +3596,12 @@ module TencentCloud
         # @param HpcClusterId: 高性能计算集群ID。<br>
         # 注意：此字段默认为空。
         # @type HpcClusterId: String
+        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3576,6 +3621,7 @@ module TencentCloud
           @EnhancedService = enhancedservice
           @CamRoleName = camrolename
           @HpcClusterId = hpcclusterid
+          @IPv6InternetAccessible = ipv6internetaccessible
         end
 
         def deserialize(params)
@@ -3626,6 +3672,10 @@ module TencentCloud
           end
           @CamRoleName = params['CamRoleName']
           @HpcClusterId = params['HpcClusterId']
+          unless params['IPv6InternetAccessible'].nil?
+            @IPv6InternetAccessible = IPv6InternetAccessible.new
+            @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
+          end
         end
       end
 
@@ -4634,10 +4684,12 @@ module TencentCloud
         # <br><li>ORIGINAL：使用设置的云盘类型
         # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
         # @type DiskTypePolicy: String
+        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :IPv6InternetAccessible
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, launchconfigurationname=nil, datadisks=nil, enhancedservice=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypescheckpolicy=nil, internetaccessible=nil, loginsettings=nil, projectid=nil, securitygroupids=nil, systemdisk=nil, userdata=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, launchconfigurationname=nil, datadisks=nil, enhancedservice=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypescheckpolicy=nil, internetaccessible=nil, loginsettings=nil, projectid=nil, securitygroupids=nil, systemdisk=nil, userdata=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, ipv6internetaccessible=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -4659,6 +4711,7 @@ module TencentCloud
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
           @DiskTypePolicy = disktypepolicy
+          @IPv6InternetAccessible = ipv6internetaccessible
         end
 
         def deserialize(params)
@@ -4721,6 +4774,10 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @DiskTypePolicy = params['DiskTypePolicy']
+          unless params['IPv6InternetAccessible'].nil?
+            @IPv6InternetAccessible = IPv6InternetAccessible.new
+            @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
+          end
         end
       end
 

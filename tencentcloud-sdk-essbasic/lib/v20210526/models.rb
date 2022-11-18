@@ -3375,7 +3375,7 @@ module TencentCloud
         # @type Creator: String
         # @param CreatedOn: 模板创建的时间戳（精确到秒）
         # @type CreatedOn: Integer
-        # @param PreviewUrl: 模板的预览链接
+        # @param PreviewUrl: 模板的H5预览链接,可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
 

@@ -10301,6 +10301,10 @@ module TencentCloud
       class UpdateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
+        # @param Kind: 类型
+        # @type Kind: String
+        # @param Content: 配置内容
+        # @type Content: String
         # @param KubeType: Kubernetes 集群类型，取值如下：
         # <li> 1= 容器集群(TKE) </li>
         # <li> 2=弹性集群<EKS> </li>
@@ -10308,27 +10312,23 @@ module TencentCloud
         # @type KubeType: Integer
         # @param ClusterId: 集群 ID
         # @type ClusterId: String
-        # @param Kind: 类型
-        # @type Kind: String
-        # @param Content: 配置内容
-        # @type Content: String
 
-        attr_accessor :InstanceId, :KubeType, :ClusterId, :Kind, :Content
+        attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId
         
-        def initialize(instanceid=nil, kubetype=nil, clusterid=nil, kind=nil, content=nil)
+        def initialize(instanceid=nil, kind=nil, content=nil, kubetype=nil, clusterid=nil)
           @InstanceId = instanceid
-          @KubeType = kubetype
-          @ClusterId = clusterid
           @Kind = kind
           @Content = content
+          @KubeType = kubetype
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @KubeType = params['KubeType']
-          @ClusterId = params['ClusterId']
           @Kind = params['Kind']
           @Content = params['Content']
+          @KubeType = params['KubeType']
+          @ClusterId = params['ClusterId']
         end
       end
 

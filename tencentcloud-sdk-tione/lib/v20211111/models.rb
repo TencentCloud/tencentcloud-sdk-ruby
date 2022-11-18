@@ -5143,6 +5143,59 @@ module TencentCloud
         end
       end
 
+      # ModifyModelServicePartialConfig请求参数结构体
+      class ModifyModelServicePartialConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 在线推理服务Id，需已存在
+        # @type ServiceId: String
+        # @param ScheduledAction: 更新后服务不重启，定时停止的配置
+        # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
+        # @param ServiceLimit: 更新后服务不重启，服务对应限流限频配置
+        # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
+
+        attr_accessor :ServiceId, :ScheduledAction, :ServiceLimit
+        
+        def initialize(serviceid=nil, scheduledaction=nil, servicelimit=nil)
+          @ServiceId = serviceid
+          @ScheduledAction = scheduledaction
+          @ServiceLimit = servicelimit
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          unless params['ScheduledAction'].nil?
+            @ScheduledAction = ScheduledAction.new
+            @ScheduledAction.deserialize(params['ScheduledAction'])
+          end
+          unless params['ServiceLimit'].nil?
+            @ServiceLimit = ServiceLimit.new
+            @ServiceLimit.deserialize(params['ServiceLimit'])
+          end
+        end
+      end
+
+      # ModifyModelServicePartialConfig返回参数结构体
+      class ModifyModelServicePartialConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Service: 被修改后的服务配置
+        # @type Service: :class:`Tencentcloud::Tione.v20211111.models.Service`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Service, :RequestId
+        
+        def initialize(service=nil, requestid=nil)
+          @Service = service
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = Service.new
+            @Service.deserialize(params['Service'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyServiceGroupWeights请求参数结构体
       class ModifyServiceGroupWeightsRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id

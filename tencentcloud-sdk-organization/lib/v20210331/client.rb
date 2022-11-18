@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 取消组织成员和子账号的授权绑定关系
+        # 取消组织成员和组织管理员子账号的授权关系
 
         # @param request: Request instance for CancelOrganizationMemberAuthAccount.
         # @type request: :class:`Tencentcloud::organization::V20210331::CancelOrganizationMemberAuthAccountRequest`
@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取组织成员被绑定的子账号列表
+        # 获取组织成员被绑定授权关系的子账号列表
 
         # @param request: Request instance for DescribeOrganizationMemberAuthAccounts.
         # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberAuthAccountsRequest`

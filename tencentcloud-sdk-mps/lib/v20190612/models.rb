@@ -4189,10 +4189,12 @@ module TencentCloud
         # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTMPPullSettings`
         # @param RTSPPullSettings: 输入的RTSP_PULL配置信息。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
+        # @param HLSPullSettings: 输入的HLS_PULL配置信息。
+        # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
         
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -4202,6 +4204,7 @@ module TencentCloud
           @FailOver = failover
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
+          @HLSPullSettings = hlspullsettings
         end
 
         def deserialize(params)
@@ -4225,6 +4228,33 @@ module TencentCloud
           unless params['RTSPPullSettings'].nil?
             @RTSPPullSettings = CreateInputRTSPPullSettings.new
             @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+          unless params['HLSPullSettings'].nil?
+            @HLSPullSettings = CreateInputHLSPullSettings.new
+            @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+        end
+      end
+
+      # 创建的输入HLS拉流的配置信息。
+      class CreateInputHLSPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: HLS源站的源站地址，有且只能有一个。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              hlspullsourceaddress_tmp = HLSPullSourceAddress.new
+              hlspullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << hlspullsourceaddress_tmp
+            end
           end
         end
       end
@@ -6082,6 +6112,23 @@ module TencentCloud
         end
       end
 
+      # 查询输入的HLS配置信息。
+      class DescribeHLSPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param Url: HLS源站的Url地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
       # DescribeImageSpriteTemplates请求参数结构体
       class DescribeImageSpriteTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 雪碧图模板唯一标识过滤条件，数组长度限制：100。
@@ -6177,10 +6224,13 @@ module TencentCloud
         # @param RTSPPullSettings: 输入的RTSP_PULL配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTSPPullSettings`
+        # @param HLSPullSettings: 输入的HLS_PULL配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputHLSPullSettings`
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
         
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -6194,6 +6244,7 @@ module TencentCloud
           @FailOver = failover
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
+          @HLSPullSettings = hlspullsettings
         end
 
         def deserialize(params)
@@ -6231,6 +6282,33 @@ module TencentCloud
           unless params['RTSPPullSettings'].nil?
             @RTSPPullSettings = DescribeInputRTSPPullSettings.new
             @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+          unless params['HLSPullSettings'].nil?
+            @HLSPullSettings = DescribeInputHLSPullSettings.new
+            @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+        end
+      end
+
+      # 查询输入的HLS配置信息。
+      class DescribeInputHLSPullSettings < TencentCloud::Common::AbstractModel
+        # @param SourceAddresses: HLS源站地址信息。
+        # @type SourceAddresses: Array
+
+        attr_accessor :SourceAddresses
+        
+        def initialize(sourceaddresses=nil)
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              describehlspullsourceaddress_tmp = DescribeHLSPullSourceAddress.new
+              describehlspullsourceaddress_tmp.deserialize(i)
+              @SourceAddresses << describehlspullsourceaddress_tmp
+            end
           end
         end
       end
@@ -6459,10 +6537,13 @@ module TencentCloud
         # @param RTSPPullSettings: 输出的RTSP拉流配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTSPPullSettings`
+        # @param HLSPullSettings: 输出的HLS拉流配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputHLSPullSettings`
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings
         
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -6476,6 +6557,7 @@ module TencentCloud
           @RTMPPullSettings = rtmppullsettings
           @AllowIpList = allowiplist
           @RTSPPullSettings = rtsppullsettings
+          @HLSPullSettings = hlspullsettings
         end
 
         def deserialize(params)
@@ -6513,6 +6595,50 @@ module TencentCloud
           unless params['RTSPPullSettings'].nil?
             @RTSPPullSettings = DescribeOutputRTSPPullSettings.new
             @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+          unless params['HLSPullSettings'].nil?
+            @HLSPullSettings = DescribeOutputHLSPullSettings.new
+            @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+        end
+      end
+
+      # 查询输出的HLS拉流URL信息。
+      class DescribeOutputHLSPullServerUrl < TencentCloud::Common::AbstractModel
+        # @param Url: HLS拉流地址的Url。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # 查询输出的HLS拉流配置信息。
+      class DescribeOutputHLSPullSettings < TencentCloud::Common::AbstractModel
+        # @param ServerUrls: HLS拉流地址列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerUrls: Array
+
+        attr_accessor :ServerUrls
+        
+        def initialize(serverurls=nil)
+          @ServerUrls = serverurls
+        end
+
+        def deserialize(params)
+          unless params['ServerUrls'].nil?
+            @ServerUrls = []
+            params['ServerUrls'].each do |i|
+              describeoutputhlspullserverurl_tmp = DescribeOutputHLSPullServerUrl.new
+              describeoutputhlspullserverurl_tmp.deserialize(i)
+              @ServerUrls << describeoutputhlspullserverurl_tmp
+            end
           end
         end
       end
@@ -8980,6 +9106,22 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 创建的输入HLS拉流源站配置信息。
+      class HLSPullSourceAddress < TencentCloud::Common::AbstractModel
+        # @param Url: HLS源站的Url地址。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 
@@ -11759,10 +11901,12 @@ module TencentCloud
         # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTMPPullSettings`
         # @param RTSPPullSettings: RTSP_PULL的配置信息。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
+        # @param HLSPullSettings: HLS_PULL的配置信息。
+        # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
         
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -11773,6 +11917,7 @@ module TencentCloud
           @FailOver = failover
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
+          @HLSPullSettings = hlspullsettings
         end
 
         def deserialize(params)
@@ -11797,6 +11942,10 @@ module TencentCloud
           unless params['RTSPPullSettings'].nil?
             @RTSPPullSettings = CreateInputRTSPPullSettings.new
             @RTSPPullSettings.deserialize(params['RTSPPullSettings'])
+          end
+          unless params['HLSPullSettings'].nil?
+            @HLSPullSettings = CreateInputHLSPullSettings.new
+            @HLSPullSettings.deserialize(params['HLSPullSettings'])
           end
         end
       end

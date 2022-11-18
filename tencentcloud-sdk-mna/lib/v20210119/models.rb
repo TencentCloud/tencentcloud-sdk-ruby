@@ -127,6 +127,37 @@ module TencentCloud
         end
       end
 
+      # CreateEncryptedKey请求参数结构体
+      class CreateEncryptedKeyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateEncryptedKey返回参数结构体
+      class CreateEncryptedKeyResponse < TencentCloud::Common::AbstractModel
+        # @param EncryptedKey: 预置密钥
+        # @type EncryptedKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EncryptedKey, :RequestId
+        
+        def initialize(encryptedkey=nil, requestid=nil)
+          @EncryptedKey = encryptedkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EncryptedKey = params['EncryptedKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateQos请求参数结构体
       class CreateQosRequest < TencentCloud::Common::AbstractModel
         # @param SrcAddressInfo: 加速业务源地址信息，SrcIpv6和（SrcIpv4+SrcPublicIpv4）二选一，目前Ipv6不可用，全部填写以Ipv4参数为准。
@@ -759,6 +790,37 @@ module TencentCloud
           @MaxValue = params['MaxValue']
           @AvgValue = params['AvgValue']
           @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetPublicKey请求参数结构体
+      class GetPublicKeyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetPublicKey返回参数结构体
+      class GetPublicKeyResponse < TencentCloud::Common::AbstractModel
+        # @param PublicKey: 非对称公钥
+        # @type PublicKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PublicKey, :RequestId
+        
+        def initialize(publickey=nil, requestid=nil)
+          @PublicKey = publickey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PublicKey = params['PublicKey']
           @RequestId = params['RequestId']
         end
       end

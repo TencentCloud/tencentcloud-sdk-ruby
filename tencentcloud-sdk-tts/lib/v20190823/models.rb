@@ -244,10 +244,12 @@ module TencentCloud
         # @type Codec: String
         # @param EnableSubtitle: 是否开启时间戳功能，默认为false。
         # @type EnableSubtitle: Boolean
+        # @param SegmentRate: 断句敏感度，默认值为:0，取值范围:[0,1,2]，值越大则敏感度越低，更易断句，此参数建议不要随意调整，可能会影响合成效果。
+        # @type SegmentRate: Integer
 
-        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle
+        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate
         
-        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil)
+        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil, segmentrate=nil)
           @Text = text
           @SessionId = sessionid
           @Volume = volume
@@ -259,6 +261,7 @@ module TencentCloud
           @SampleRate = samplerate
           @Codec = codec
           @EnableSubtitle = enablesubtitle
+          @SegmentRate = segmentrate
         end
 
         def deserialize(params)
@@ -273,6 +276,7 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @Codec = params['Codec']
           @EnableSubtitle = params['EnableSubtitle']
+          @SegmentRate = params['SegmentRate']
         end
       end
 
