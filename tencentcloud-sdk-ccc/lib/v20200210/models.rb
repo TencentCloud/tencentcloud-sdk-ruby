@@ -17,6 +17,34 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # 生效运营商白名单号码
+      class ActiveCarrierPrivilegeNumber < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例Id
+        # @type SdkAppId: Integer
+        # @param Caller: 主叫号码
+        # @type Caller: String
+        # @param Callee: 被叫号码
+        # @type Callee: String
+        # @param CreateTime: 生效unix时间戳(秒)
+        # @type CreateTime: Integer
+
+        attr_accessor :SdkAppId, :Caller, :Callee, :CreateTime
+        
+        def initialize(sdkappid=nil, caller=nil, callee=nil, createtime=nil)
+          @SdkAppId = sdkappid
+          @Caller = caller
+          @Callee = callee
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Caller = params['Caller']
+          @Callee = params['Callee']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 外呼任务被叫信息
       class AutoCalloutTaskCalleeInfo < TencentCloud::Common::AbstractModel
         # @param Callee: 被叫号码
@@ -243,6 +271,51 @@ module TencentCloud
         end
       end
 
+      # 运营商白名单号码申请单
+      class CarrierPrivilegeNumberApplicant < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例Id
+        # @type SdkAppId: Integer
+        # @param ApplicantId: 申请单Id
+        # @type ApplicantId: Integer
+        # @param Callers: 主叫号码列表
+        # @type Callers: Array
+        # @param Callees: 被叫号码列表
+        # @type Callees: Array
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param State: 审批状态:1 待审核、2 通过、3 拒绝
+        # @type State: Integer
+        # @param CreateTime: 创建时间，unix时间戳(秒)
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，unix时间戳(秒)
+        # @type UpdateTime: Integer
+
+        attr_accessor :SdkAppId, :ApplicantId, :Callers, :Callees, :Description, :State, :CreateTime, :UpdateTime
+        
+        def initialize(sdkappid=nil, applicantid=nil, callers=nil, callees=nil, description=nil, state=nil, createtime=nil, updatetime=nil)
+          @SdkAppId = sdkappid
+          @ApplicantId = applicantid
+          @Callers = callers
+          @Callees = callees
+          @Description = description
+          @State = state
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @ApplicantId = params['ApplicantId']
+          @Callers = params['Callers']
+          @Callees = params['Callees']
+          @Description = params['Description']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # CreateAutoCalloutTask请求参数结构体
       class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -423,6 +496,54 @@ module TencentCloud
 
         def deserialize(params)
           @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCarrierPrivilegeNumberApplicant请求参数结构体
+      class CreateCarrierPrivilegeNumberApplicantRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callers: 主叫号码，必须为实例中存在的号码，格式为0086xxxx（暂时只支持国内号码）
+        # @type Callers: Array
+        # @param Callees: 被叫号码，必须为实例中坐席绑定的手机号码，格式为0086xxxx（暂时只支持国内号码）
+        # @type Callees: Array
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :SdkAppId, :Callers, :Callees, :Description
+        
+        def initialize(sdkappid=nil, callers=nil, callees=nil, description=nil)
+          @SdkAppId = sdkappid
+          @Callers = callers
+          @Callees = callees
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callers = params['Callers']
+          @Callees = params['Callees']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateCarrierPrivilegeNumberApplicant返回参数结构体
+      class CreateCarrierPrivilegeNumberApplicantResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicantId: 申请单Id
+        # @type ApplicantId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicantId, :RequestId
+        
+        def initialize(applicantid=nil, requestid=nil)
+          @ApplicantId = applicantid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicantId = params['ApplicantId']
           @RequestId = params['RequestId']
         end
       end
@@ -699,6 +820,76 @@ module TencentCloud
         end
       end
 
+      # DescribeActiveCarrierPrivilegeNumber请求参数结构体
+      class DescribeActiveCarrierPrivilegeNumberRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例Id
+        # @type SdkAppId: Integer
+        # @param PageNumber: 默认0
+        # @type PageNumber: Integer
+        # @param PageSize: 默认10，最大100
+        # @type PageSize: Integer
+        # @param Filters: 筛选条件 Name支持PhoneNumber(按号码模糊查找)
+        # @type Filters: Array
+
+        attr_accessor :SdkAppId, :PageNumber, :PageSize, :Filters
+        
+        def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil, filters=nil)
+          @SdkAppId = sdkappid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeActiveCarrierPrivilegeNumber返回参数结构体
+      class DescribeActiveCarrierPrivilegeNumberResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param ActiveCarrierPrivilegeNumbers: 生效列表
+        # @type ActiveCarrierPrivilegeNumbers: Array
+        # @param PendingApplicantIds: 待审核单号
+        # @type PendingApplicantIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ActiveCarrierPrivilegeNumbers, :PendingApplicantIds, :RequestId
+        
+        def initialize(totalcount=nil, activecarrierprivilegenumbers=nil, pendingapplicantids=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ActiveCarrierPrivilegeNumbers = activecarrierprivilegenumbers
+          @PendingApplicantIds = pendingapplicantids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ActiveCarrierPrivilegeNumbers'].nil?
+            @ActiveCarrierPrivilegeNumbers = []
+            params['ActiveCarrierPrivilegeNumbers'].each do |i|
+              activecarrierprivilegenumber_tmp = ActiveCarrierPrivilegeNumber.new
+              activecarrierprivilegenumber_tmp.deserialize(i)
+              @ActiveCarrierPrivilegeNumbers << activecarrierprivilegenumber_tmp
+            end
+          end
+          @PendingApplicantIds = params['PendingApplicantIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoCalloutTask请求参数结构体
       class DescribeAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -957,6 +1148,72 @@ module TencentCloud
               callinskillgroupmetrics_tmp = CallInSkillGroupMetrics.new
               callinskillgroupmetrics_tmp.deserialize(i)
               @SkillGroupMetrics << callinskillgroupmetrics_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCarrierPrivilegeNumberApplicants请求参数结构体
+      class DescribeCarrierPrivilegeNumberApplicantsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例Id
+        # @type SdkAppId: Integer
+        # @param PageNumber: 默认0，从0开始
+        # @type PageNumber: Integer
+        # @param PageSize: 默认10，最大100
+        # @type PageSize: Integer
+        # @param Filters: 筛选条件,Name支持ApplicantId,PhoneNumber(按号码模糊查找)
+        # @type Filters: Array
+
+        attr_accessor :SdkAppId, :PageNumber, :PageSize, :Filters
+        
+        def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil, filters=nil)
+          @SdkAppId = sdkappid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCarrierPrivilegeNumberApplicants返回参数结构体
+      class DescribeCarrierPrivilegeNumberApplicantsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 筛选出的总申请单数量
+        # @type TotalCount: Integer
+        # @param Applicants: 申请单列表
+        # @type Applicants: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Applicants, :RequestId
+        
+        def initialize(totalcount=nil, applicants=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Applicants = applicants
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Applicants'].nil?
+            @Applicants = []
+            params['Applicants'].each do |i|
+              carrierprivilegenumberapplicant_tmp = CarrierPrivilegeNumberApplicant.new
+              carrierprivilegenumberapplicant_tmp.deserialize(i)
+              @Applicants << carrierprivilegenumberapplicant_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1823,6 +2080,28 @@ module TencentCloud
           @Register = params['Register']
           @Relation = params['Relation']
           @RelationName = params['RelationName']
+        end
+      end
+
+      # 筛选条件
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 筛选字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: 筛选条件值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 

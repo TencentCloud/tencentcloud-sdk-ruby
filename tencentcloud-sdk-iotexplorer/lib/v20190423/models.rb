@@ -1750,6 +1750,78 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceLocationSolve请求参数结构体
+      class DescribeDeviceLocationSolveRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param LocationType: 定位解析类型，wifi或GNSSNavigation
+        # @type LocationType: String
+        # @param GNSSNavigation: LoRaEdge卫星导航电文
+        # @type GNSSNavigation: String
+        # @param WiFiInfo: wifi信息
+        # @type WiFiInfo: Array
+
+        attr_accessor :ProductId, :DeviceName, :LocationType, :GNSSNavigation, :WiFiInfo
+        
+        def initialize(productid=nil, devicename=nil, locationtype=nil, gnssnavigation=nil, wifiinfo=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @LocationType = locationtype
+          @GNSSNavigation = gnssnavigation
+          @WiFiInfo = wifiinfo
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @LocationType = params['LocationType']
+          @GNSSNavigation = params['GNSSNavigation']
+          unless params['WiFiInfo'].nil?
+            @WiFiInfo = []
+            params['WiFiInfo'].each do |i|
+              wifiinfo_tmp = WifiInfo.new
+              wifiinfo_tmp.deserialize(i)
+              @WiFiInfo << wifiinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeviceLocationSolve返回参数结构体
+      class DescribeDeviceLocationSolveResponse < TencentCloud::Common::AbstractModel
+        # @param Longitude: 经度
+        # @type Longitude: Float
+        # @param Latitude: 维度
+        # @type Latitude: Float
+        # @param LocationType: 类型
+        # @type LocationType: String
+        # @param Accuracy: 误差精度预估，单位为米
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Accuracy: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Longitude, :Latitude, :LocationType, :Accuracy, :RequestId
+        
+        def initialize(longitude=nil, latitude=nil, locationtype=nil, accuracy=nil, requestid=nil)
+          @Longitude = longitude
+          @Latitude = latitude
+          @LocationType = locationtype
+          @Accuracy = accuracy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Longitude = params['Longitude']
+          @Latitude = params['Latitude']
+          @LocationType = params['LocationType']
+          @Accuracy = params['Accuracy']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDevicePositionList请求参数结构体
       class DescribeDevicePositionListRequest < TencentCloud::Common::AbstractModel
         # @param ProductIdList: 产品标识列表
@@ -5965,6 +6037,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # wifi定位信息
+      class WifiInfo < TencentCloud::Common::AbstractModel
+        # @param MAC: mac地址
+        # @type MAC: String
+        # @param RSSI: 信号强度
+        # @type RSSI: Integer
+
+        attr_accessor :MAC, :RSSI
+        
+        def initialize(mac=nil, rssi=nil)
+          @MAC = mac
+          @RSSI = rssi
+        end
+
+        def deserialize(params)
+          @MAC = params['MAC']
+          @RSSI = params['RSSI']
         end
       end
 

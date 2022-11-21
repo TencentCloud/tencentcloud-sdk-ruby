@@ -372,6 +372,53 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateBoundFlows请求参数结构体
+      class ChannelCreateBoundFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用信息
+        # 此接口Agent.AppId、Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowIds: 领取的合同id列表
+        # @type FlowIds: Array
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :FlowIds, :Operator
+        
+        def initialize(agent=nil, flowids=nil, operator=nil)
+          @Agent = agent
+          @FlowIds = flowids
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowIds = params['FlowIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelCreateBoundFlows返回参数结构体
+      class ChannelCreateBoundFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateConvertTaskApi请求参数结构体
       class ChannelCreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -2270,8 +2317,8 @@ module TencentCloud
       # 此结构体 (FlowInfo) 用于描述签署流程信息。
 
       # 【动态表格传参说明】
-      # 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充动态表格（支持内容的单元格合并）
-      # 输入示例
+      # 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充动态表格（支持内容的单元格合并）
+      # 输入示例1：
 
       # ```
       # {
@@ -2316,6 +2363,53 @@ module TencentCloud
 
       # ```
 
+      # 输入示例2（表格表头宽度比例配置）：
+
+      # ```
+      # {
+      #     "headers":[
+      #         {
+      #             "content":"head1",
+      #             "widthPercent": 30
+      #         },
+      #         {
+      #             "content":"head2",
+      #             "widthPercent": 30
+      #         },
+      #         {
+      #             "content":"head3",
+      #             "widthPercent": 40
+      #         }
+      #     ],
+      #     "rowCount":3,
+      #     "body":{
+      #         "cells":[
+      #             {
+      #                 "rowStart":1,
+      #                 "rowEnd":1,
+      #                 "columnStart":1,
+      #                 "columnEnd":1,
+      #                 "content":"123"
+      #             },
+      #             {
+      #                 "rowStart":2,
+      #                 "rowEnd":3,
+      #                 "columnStart":1,
+      #                 "columnEnd":2,
+      #                 "content":"456"
+      #             },
+      #             {
+      #                 "rowStart":3,
+      #                 "rowEnd":3,
+      #                 "columnStart":3,
+      #                 "columnEnd":3,
+      #                 "content":"789"
+      #             }
+      #         ]
+      #     }
+      # }
+
+      # ```
       # 表格参数说明
 
       # | 名称                | 类型    | 描述                                              |
@@ -2327,6 +2421,12 @@ module TencentCloud
       # | cells.N.columnStart | Integer | 单元格坐标：列起始index                           |
       # | cells.N.columnEnd   | Integer | 单元格坐标：列结束index                           |
       # | cells.N.content     | String  | 单元格内容，字数不超过100                         |
+
+      # 表格参数headers说明
+      # | 名称                | 类型    | 描述                                              |
+      # | ------------------- | ------- | ------------------------------------------------- |
+      # | widthPercent   | Integer | 表头单元格列占总表头的比例，例如1：30表示 此列占表头的30%，不填写时列宽度平均拆分；例如2：总2列，某一列填写40，剩余列可以为空，按照60计算。；例如3：总3列，某一列填写30，剩余2列可以为空，分别为(100-30)/2=35                    |
+      # | content    | String  | 表头单元格内容，字数不超过100                         |
       class FlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowName: 合同名字，最大长度200个字符
         # @type FlowName: String

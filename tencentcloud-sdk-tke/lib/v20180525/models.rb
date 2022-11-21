@@ -10800,6 +10800,12 @@ module TencentCloud
         # @type OsName: String
         # @param OsCustomizeType: 镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         # @type OsCustomizeType: String
+        # @param GPUArgs: GPU驱动版本，CUDA版本，cuDNN版本以及是否启用MIG特性
+        # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
+        # @param UserScript: base64编码后的自定义脚本
+        # @type UserScript: String
+        # @param IgnoreExistedNode: 更新label和taint时忽略存量节点
+        # @type IgnoreExistedNode: Boolean
         # @param ExtraArgs: 节点自定义参数
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
         # @param Tags: 资源标签
@@ -10808,10 +10814,12 @@ module TencentCloud
         # @type Unschedulable: Integer
         # @param DeletionProtection: 删除保护开关
         # @type DeletionProtection: Boolean
+        # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
+        # @type DockerGraphPath: String
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath
         
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, gpuargs=nil, userscript=nil, ignoreexistednode=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil, dockergraphpath=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -10822,10 +10830,14 @@ module TencentCloud
           @EnableAutoscale = enableautoscale
           @OsName = osname
           @OsCustomizeType = oscustomizetype
+          @GPUArgs = gpuargs
+          @UserScript = userscript
+          @IgnoreExistedNode = ignoreexistednode
           @ExtraArgs = extraargs
           @Tags = tags
           @Unschedulable = unschedulable
           @DeletionProtection = deletionprotection
+          @DockerGraphPath = dockergraphpath
         end
 
         def deserialize(params)
@@ -10853,6 +10865,12 @@ module TencentCloud
           @EnableAutoscale = params['EnableAutoscale']
           @OsName = params['OsName']
           @OsCustomizeType = params['OsCustomizeType']
+          unless params['GPUArgs'].nil?
+            @GPUArgs = GPUArgs.new
+            @GPUArgs.deserialize(params['GPUArgs'])
+          end
+          @UserScript = params['UserScript']
+          @IgnoreExistedNode = params['IgnoreExistedNode']
           unless params['ExtraArgs'].nil?
             @ExtraArgs = InstanceExtraArgs.new
             @ExtraArgs.deserialize(params['ExtraArgs'])
@@ -10867,6 +10885,7 @@ module TencentCloud
           end
           @Unschedulable = params['Unschedulable']
           @DeletionProtection = params['DeletionProtection']
+          @DockerGraphPath = params['DockerGraphPath']
         end
       end
 

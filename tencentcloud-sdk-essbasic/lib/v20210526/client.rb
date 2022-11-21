@@ -135,6 +135,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateConsoleLoginUrl）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取
+
+        # @param request: Request instance for ChannelCreateBoundFlows.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateBoundFlowsRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateBoundFlowsResponse`
+        def ChannelCreateBoundFlows(request)
+          body = send_request('ChannelCreateBoundFlows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateBoundFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 渠道创建文件转换任务
 
         # @param request: Request instance for ChannelCreateConvertTaskApi.

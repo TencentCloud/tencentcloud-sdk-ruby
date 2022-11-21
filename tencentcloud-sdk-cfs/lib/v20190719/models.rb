@@ -763,15 +763,19 @@ module TencentCloud
       class DeleteCfsSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 文件系统快照id
         # @type SnapshotId: String
+        # @param SnapshotIds: 需要删除的文件文件系统快照ID 列表，快照ID，跟ID列表至少填一项
+        # @type SnapshotIds: Array
 
-        attr_accessor :SnapshotId
+        attr_accessor :SnapshotId, :SnapshotIds
         
-        def initialize(snapshotid=nil)
+        def initialize(snapshotid=nil, snapshotids=nil)
           @SnapshotId = snapshotid
+          @SnapshotIds = snapshotids
         end
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
+          @SnapshotIds = params['SnapshotIds']
         end
       end
 
