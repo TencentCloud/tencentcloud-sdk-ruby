@@ -13659,19 +13659,27 @@ module TencentCloud
         # @type Name: String
         # @param SecurityGroups: 安全组id
         # @type SecurityGroups: Array
+        # @param Os: 系统
+        # @type Os: String
+        # @param Arch: 硬件架构
+        # @type Arch: String
 
-        attr_accessor :SubnetId, :Name, :SecurityGroups
+        attr_accessor :SubnetId, :Name, :SecurityGroups, :Os, :Arch
         
-        def initialize(subnetid=nil, name=nil, securitygroups=nil)
+        def initialize(subnetid=nil, name=nil, securitygroups=nil, os=nil, arch=nil)
           @SubnetId = subnetid
           @Name = name
           @SecurityGroups = securitygroups
+          @Os = os
+          @Arch = arch
         end
 
         def deserialize(params)
           @SubnetId = params['SubnetId']
           @Name = params['Name']
           @SecurityGroups = params['SecurityGroups']
+          @Os = params['Os']
+          @Arch = params['Arch']
         end
       end
 

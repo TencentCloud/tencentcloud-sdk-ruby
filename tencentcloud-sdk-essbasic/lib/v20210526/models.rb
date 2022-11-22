@@ -519,10 +519,12 @@ module TencentCloud
         # MobileCheck：手机号验证
         # 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
+        # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
+        # @type SignBeanTag: Integer
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :Operator, :ApproverVerifyType
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :Operator, :ApproverVerifyType, :SignBeanTag
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, operator=nil, approververifytype=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, operator=nil, approververifytype=nil, signbeantag=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -538,6 +540,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @Operator = operator
           @ApproverVerifyType = approververifytype
+          @SignBeanTag = signbeantag
         end
 
         def deserialize(params)
@@ -576,6 +579,7 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @ApproverVerifyType = params['ApproverVerifyType']
+          @SignBeanTag = params['SignBeanTag']
         end
       end
 
@@ -1238,6 +1242,9 @@ module TencentCloud
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
+        # @param ChannelComponentId: 渠道控件ID。
+        # 如果不为空，属于渠道预设控件；
+        # @type ChannelComponentId: String
         # @param KeywordPage: 指定关键字页码
         # @type KeywordPage: Integer
         # @param RelativeLocation: 关键字位置模式
@@ -1245,9 +1252,9 @@ module TencentCloud
         # @param KeywordIndexes: 关键字索引
         # @type KeywordIndexes: Array
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :KeywordPage, :RelativeLocation, :KeywordIndexes
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordPage, :RelativeLocation, :KeywordIndexes
         
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
@@ -1267,6 +1274,7 @@ module TencentCloud
           @ComponentDescription = componentdescription
           @OffsetX = offsetx
           @OffsetY = offsety
+          @ChannelComponentId = channelcomponentid
           @KeywordPage = keywordpage
           @RelativeLocation = relativelocation
           @KeywordIndexes = keywordindexes
@@ -1292,6 +1300,7 @@ module TencentCloud
           @ComponentDescription = params['ComponentDescription']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+          @ChannelComponentId = params['ChannelComponentId']
           @KeywordPage = params['KeywordPage']
           @RelativeLocation = params['RelativeLocation']
           @KeywordIndexes = params['KeywordIndexes']
@@ -2113,6 +2122,7 @@ module TencentCloud
         # 默认为false，即签署人位于同一个渠道应用号下；
         # @type NotChannelOrganization: Boolean
         # @param OpenId: 用户侧第三方id，最大长度64个字符
+        # 当签署方为同一渠道下的员工时，该字段若不指定，则发起【待领取】的流程
         # @type OpenId: String
         # @param OrganizationOpenId: 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符；
         # @type OrganizationOpenId: String
@@ -2423,6 +2433,7 @@ module TencentCloud
       # | cells.N.content     | String  | 单元格内容，字数不超过100                         |
 
       # 表格参数headers说明
+
       # | 名称                | 类型    | 描述                                              |
       # | ------------------- | ------- | ------------------------------------------------- |
       # | widthPercent   | Integer | 表头单元格列占总表头的比例，例如1：30表示 此列占表头的30%，不填写时列宽度平均拆分；例如2：总2列，某一列填写40，剩余列可以为空，按照60计算。；例如3：总3列，某一列填写30，剩余2列可以为空，分别为(100-30)/2=35                    |
@@ -3478,10 +3489,13 @@ module TencentCloud
         # @param PreviewUrl: 模板的H5预览链接,可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
+        # @param ChannelTemplateId: 渠道模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelTemplateId: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Recipients, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Recipients, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :ChannelTemplateId
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, recipients=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, recipients=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, channeltemplateid=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -3493,6 +3507,7 @@ module TencentCloud
           @Creator = creator
           @CreatedOn = createdon
           @PreviewUrl = previewurl
+          @ChannelTemplateId = channeltemplateid
         end
 
         def deserialize(params)
@@ -3528,6 +3543,7 @@ module TencentCloud
           @Creator = params['Creator']
           @CreatedOn = params['CreatedOn']
           @PreviewUrl = params['PreviewUrl']
+          @ChannelTemplateId = params['ChannelTemplateId']
         end
       end
 

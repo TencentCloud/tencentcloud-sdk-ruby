@@ -768,10 +768,12 @@ module TencentCloud
         # @type ApproverVerifyType: String
         # @param FlowDescription: 签署流程描述,最大长度1000个字符
         # @type FlowDescription: String
+        # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
+        # @type SignBeanTag: Integer
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType, :FlowDescription
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType, :FlowDescription, :SignBeanTag
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil, flowdescription=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -789,6 +791,7 @@ module TencentCloud
           @Agent = agent
           @ApproverVerifyType = approververifytype
           @FlowDescription = flowdescription
+          @SignBeanTag = signbeantag
         end
 
         def deserialize(params)
@@ -836,6 +839,7 @@ module TencentCloud
           end
           @ApproverVerifyType = params['ApproverVerifyType']
           @FlowDescription = params['FlowDescription']
+          @SignBeanTag = params['SignBeanTag']
         end
       end
 

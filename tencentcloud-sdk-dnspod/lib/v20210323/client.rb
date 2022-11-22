@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 回滚前检查单条记录
+
+        # @param request: Request instance for CheckRecordSnapshotRollback.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CheckRecordSnapshotRollbackRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CheckRecordSnapshotRollbackResponse`
+        def CheckRecordSnapshotRollback(request)
+          body = send_request('CheckRecordSnapshotRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckRecordSnapshotRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 快照回滚前检查
+
+        # @param request: Request instance for CheckSnapshotRollback.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CheckSnapshotRollbackRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CheckSnapshotRollbackResponse`
+        def CheckSnapshotRollback(request)
+          body = send_request('CheckSnapshotRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckSnapshotRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DNSPod商品下单
 
         # @param request: Request instance for CreateDeal.
@@ -197,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建快照
+
+        # @param request: Request instance for CreateSnapshot.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateSnapshotResponse`
+        def CreateSnapshot(request)
+          body = send_request('CreateSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除域名
 
         # @param request: Request instance for DeleteDomain.
@@ -279,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteShareDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除快照
+
+        # @param request: Request instance for DeleteSnapshot.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DeleteSnapshotResponse`
+        def DeleteSnapshot(request)
+          body = send_request('DeleteSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询解析记录重新回滚的结果
+
+        # @param request: Request instance for DescribeRecordSnapshotRollbackResult.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordSnapshotRollbackResultRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordSnapshotRollbackResultResponse`
+        def DescribeRecordSnapshotRollbackResult(request)
+          body = send_request('DescribeRecordSnapshotRollbackResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordSnapshotRollbackResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取等级允许的记录类型
 
         # @param request: Request instance for DescribeRecordType.
@@ -591,6 +711,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询解析快照配置
+
+        # @param request: Request instance for DescribeSnapshotConfig.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotConfigResponse`
+        def DescribeSnapshotConfig(request)
+          body = send_request('DescribeSnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询快照列表
+
+        # @param request: Request instance for DescribeSnapshotList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotListResponse`
+        def DescribeSnapshotList(request)
+          body = send_request('DescribeSnapshotList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询快照回滚结果
+
+        # @param request: Request instance for DescribeSnapshotRollbackResult.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotRollbackResultRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotRollbackResultResponse`
+        def DescribeSnapshotRollbackResult(request)
+          body = send_request('DescribeSnapshotRollbackResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotRollbackResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询最近一次回滚
+
+        # @param request: Request instance for DescribeSnapshotRollbackTask.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotRollbackTaskRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeSnapshotRollbackTaskResponse`
+        def DescribeSnapshotRollbackTask(request)
+          body = send_request('DescribeSnapshotRollbackTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotRollbackTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -639,6 +855,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 下载快照
+
+        # @param request: Request instance for DownloadSnapshot.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DownloadSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DownloadSnapshotResponse`
+        def DownloadSnapshot(request)
+          body = send_request('DownloadSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -917,6 +1157,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改快照配置
+
+        # @param request: Request instance for ModifySnapshotConfig.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifySnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifySnapshotConfigResponse`
+        def ModifySnapshotConfig(request)
+          body = send_request('ModifySnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySnapshotConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 暂停子域名的解析记录
 
         # @param request: Request instance for ModifySubdomainStatus.
@@ -975,6 +1239,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PayOrderWithBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重新回滚指定解析记录快照
+
+        # @param request: Request instance for RollbackRecordSnapshot.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::RollbackRecordSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::RollbackRecordSnapshotResponse`
+        def RollbackRecordSnapshot(request)
+          body = send_request('RollbackRecordSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackRecordSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 回滚快照
+
+        # @param request: Request instance for RollbackSnapshot.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::RollbackSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::RollbackSnapshotResponse`
+        def RollbackSnapshot(request)
+          body = send_request('RollbackSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else

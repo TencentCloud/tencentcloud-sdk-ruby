@@ -14532,17 +14532,21 @@ module TencentCloud
         # @type NetworkInterfaceIds: Array
         # @param QosLevel: 服务质量，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
         # @type QosLevel: String
+        # @param DirectSendMaxPort: DirectSend端口范围最大值。
+        # @type DirectSendMaxPort: Integer
 
-        attr_accessor :NetworkInterfaceIds, :QosLevel
+        attr_accessor :NetworkInterfaceIds, :QosLevel, :DirectSendMaxPort
         
-        def initialize(networkinterfaceids=nil, qoslevel=nil)
+        def initialize(networkinterfaceids=nil, qoslevel=nil, directsendmaxport=nil)
           @NetworkInterfaceIds = networkinterfaceids
           @QosLevel = qoslevel
+          @DirectSendMaxPort = directsendmaxport
         end
 
         def deserialize(params)
           @NetworkInterfaceIds = params['NetworkInterfaceIds']
           @QosLevel = params['QosLevel']
+          @DirectSendMaxPort = params['DirectSendMaxPort']
         end
       end
 

@@ -1973,7 +1973,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级实例
+        # 变更实例配置
 
         # @param request: Request instance for UpgradeInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeInstanceRequest`

@@ -379,18 +379,22 @@ module TencentCloud
       class CreateWhitelistResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 消息
         # @type Msg: String
+        # @param ID: 白名单ID
+        # @type ID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Msg, :RequestId
+        attr_accessor :Msg, :ID, :RequestId
         
-        def initialize(msg=nil, requestid=nil)
+        def initialize(msg=nil, id=nil, requestid=nil)
           @Msg = msg
+          @ID = id
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Msg = params['Msg']
+          @ID = params['ID']
           @RequestId = params['RequestId']
         end
       end

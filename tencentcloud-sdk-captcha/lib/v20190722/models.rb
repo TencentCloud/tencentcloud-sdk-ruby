@@ -1240,7 +1240,7 @@ module TencentCloud
 
       # GetTicketStatistics请求参数结构体
       class GetTicketStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param CaptchaAppId: 验证码appid
+        # @param CaptchaAppId: 验证码AppId
         # @type CaptchaAppId: String
         # @param StartTimeStr: 开始时间字符串
         # @type StartTimeStr: String

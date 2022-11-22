@@ -141,6 +141,136 @@ module TencentCloud
         end
       end
 
+      # CheckRecordSnapshotRollback请求参数结构体
+      class CheckRecordSnapshotRollbackRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照 ID
+        # @type SnapshotId: String
+        # @param Record: 解析记录信息
+        # @type Record: :class:`Tencentcloud::Dnspod.v20210323.models.SnapshotRecord`
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :Record, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, record=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @Record = record
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          unless params['Record'].nil?
+            @Record = SnapshotRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CheckRecordSnapshotRollback返回参数结构体
+      class CheckRecordSnapshotRollbackResponse < TencentCloud::Common::AbstractModel
+        # @param Reason: 错误原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Reason, :RequestId
+        
+        def initialize(reason=nil, requestid=nil)
+          @Reason = reason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckSnapshotRollback请求参数结构体
+      class CheckSnapshotRollbackRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照记录 ID
+        # @type SnapshotId: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CheckSnapshotRollback返回参数结构体
+      class CheckSnapshotRollbackResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照记录 ID
+        # @type SnapshotId: String
+        # @param CostMinutes: 回滚时长（分钟）
+        # @type CostMinutes: Integer
+        # @param Domain: 快照所属域名
+        # @type Domain: String
+        # @param Total: 解析记录总数
+        # @type Total: Integer
+        # @param Timeout: 值为 1，表示超时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+        # @param Failed: 检查失败数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Failed: Integer
+        # @param FailedRecordList: 失败记录信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedRecordList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotId, :CostMinutes, :Domain, :Total, :Timeout, :Failed, :FailedRecordList, :RequestId
+        
+        def initialize(snapshotid=nil, costminutes=nil, domain=nil, total=nil, timeout=nil, failed=nil, failedrecordlist=nil, requestid=nil)
+          @SnapshotId = snapshotid
+          @CostMinutes = costminutes
+          @Domain = domain
+          @Total = total
+          @Timeout = timeout
+          @Failed = failed
+          @FailedRecordList = failedrecordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @CostMinutes = params['CostMinutes']
+          @Domain = params['Domain']
+          @Total = params['Total']
+          @Timeout = params['Timeout']
+          @Failed = params['Failed']
+          unless params['FailedRecordList'].nil?
+            @FailedRecordList = []
+            params['FailedRecordList'].each do |i|
+              snapshotrecord_tmp = SnapshotRecord.new
+              snapshotrecord_tmp.deserialize(i)
+              @FailedRecordList << snapshotrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDeal请求参数结构体
       class CreateDealRequest < TencentCloud::Common::AbstractModel
         # @param DealType: 询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）
@@ -770,6 +900,42 @@ module TencentCloud
         end
       end
 
+      # CreateSnapshot请求参数结构体
+      class CreateSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateSnapshot返回参数结构体
+      class CreateSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 子订单号列表
       class Deals < TencentCloud::Common::AbstractModel
         # @param DealId: 子订单ID
@@ -932,6 +1098,46 @@ module TencentCloud
 
       # DeleteShareDomain返回参数结构体
       class DeleteShareDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSnapshot请求参数结构体
+      class DeleteSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照记录 ID
+        # @type SnapshotId: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DeleteSnapshot返回参数结构体
+      class DeleteSnapshotResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1698,6 +1904,101 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordSnapshotRollbackResult请求参数结构体
+      class DescribeRecordSnapshotRollbackResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param JobId: 回滚任务 ID
+        # @type JobId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :JobId, :DomainId
+        
+        def initialize(domain=nil, jobid=nil, domainid=nil)
+          @Domain = domain
+          @JobId = jobid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @JobId = params['JobId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeRecordSnapshotRollbackResult返回参数结构体
+      class DescribeRecordSnapshotRollbackResultResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 回滚任务 ID
+        # @type JobId: Integer
+        # @param Status: 回滚状态
+        # @type Status: String
+        # @param FailedRecordList: 失败的记录信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedRecordList: Array
+        # @param Domain: 所属域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Progress: 回滚进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param LeftMinutes: 回滚剩余时间（单位：分钟）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeftMinutes: Integer
+        # @param Total: 总记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Failed: 失败记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Failed: Integer
+        # @param Success: 成功记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: Integer
+        # @param CosUrl: 快照下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :Status, :FailedRecordList, :Domain, :Progress, :LeftMinutes, :Total, :Failed, :Success, :CosUrl, :RequestId
+        
+        def initialize(jobid=nil, status=nil, failedrecordlist=nil, domain=nil, progress=nil, leftminutes=nil, total=nil, failed=nil, success=nil, cosurl=nil, requestid=nil)
+          @JobId = jobid
+          @Status = status
+          @FailedRecordList = failedrecordlist
+          @Domain = domain
+          @Progress = progress
+          @LeftMinutes = leftminutes
+          @Total = total
+          @Failed = failed
+          @Success = success
+          @CosUrl = cosurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Status = params['Status']
+          unless params['FailedRecordList'].nil?
+            @FailedRecordList = []
+            params['FailedRecordList'].each do |i|
+              snapshotrecord_tmp = SnapshotRecord.new
+              snapshotrecord_tmp.deserialize(i)
+              @FailedRecordList << snapshotrecord_tmp
+            end
+          end
+          @Domain = params['Domain']
+          @Progress = params['Progress']
+          @LeftMinutes = params['LeftMinutes']
+          @Total = params['Total']
+          @Failed = params['Failed']
+          @Success = params['Success']
+          @CosUrl = params['CosUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordType请求参数结构体
       class DescribeRecordTypeRequest < TencentCloud::Common::AbstractModel
         # @param DomainGrade: 域名等级。
@@ -1732,6 +2033,259 @@ module TencentCloud
 
         def deserialize(params)
           @TypeList = params['TypeList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotConfig请求参数结构体
+      class DescribeSnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeSnapshotConfig返回参数结构体
+      class DescribeSnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotConfig: 解析快照配置
+        # @type SnapshotConfig: :class:`Tencentcloud::Dnspod.v20210323.models.SnapshotConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotConfig, :RequestId
+        
+        def initialize(snapshotconfig=nil, requestid=nil)
+          @SnapshotConfig = snapshotconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotConfig'].nil?
+            @SnapshotConfig = SnapshotConfig.new
+            @SnapshotConfig.deserialize(params['SnapshotConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotList请求参数结构体
+      class DescribeSnapshotListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeSnapshotList返回参数结构体
+      class DescribeSnapshotListResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 分页信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.SnapshotPageInfo`
+        # @param SnapshotList: 快照列表
+        # @type SnapshotList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :SnapshotList, :RequestId
+        
+        def initialize(info=nil, snapshotlist=nil, requestid=nil)
+          @Info = info
+          @SnapshotList = snapshotlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SnapshotPageInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['SnapshotList'].nil?
+            @SnapshotList = []
+            params['SnapshotList'].each do |i|
+              snapshotinfo_tmp = SnapshotInfo.new
+              snapshotinfo_tmp.deserialize(i)
+              @SnapshotList << snapshotinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotRollbackResult请求参数结构体
+      class DescribeSnapshotRollbackResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TaskId: 快照回滚任务 ID
+        # @type TaskId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :TaskId, :DomainId
+        
+        def initialize(domain=nil, taskid=nil, domainid=nil)
+          @Domain = domain
+          @TaskId = taskid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TaskId = params['TaskId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeSnapshotRollbackResult返回参数结构体
+      class DescribeSnapshotRollbackResultResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 快照所属域名
+        # @type Domain: String
+        # @param LeftMinutes: 回滚剩余时间（分钟）
+        # @type LeftMinutes: Integer
+        # @param Progress: 回滚进度百分比
+        # @type Progress: Integer
+        # @param SnapshotId: 快照 ID
+        # @type SnapshotId: String
+        # @param Status: 回滚状态
+        # @type Status: String
+        # @param TaskId: 快照回滚任务 ID
+        # @type TaskId: Integer
+        # @param Success: 成功数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: Integer
+        # @param Failed: 失败数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Failed: Integer
+        # @param Total: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param FailedRecordList: 失败详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedRecordList: Array
+        # @param CosUrl: 快照的下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :LeftMinutes, :Progress, :SnapshotId, :Status, :TaskId, :Success, :Failed, :Total, :FailedRecordList, :CosUrl, :RequestId
+        
+        def initialize(domain=nil, leftminutes=nil, progress=nil, snapshotid=nil, status=nil, taskid=nil, success=nil, failed=nil, total=nil, failedrecordlist=nil, cosurl=nil, requestid=nil)
+          @Domain = domain
+          @LeftMinutes = leftminutes
+          @Progress = progress
+          @SnapshotId = snapshotid
+          @Status = status
+          @TaskId = taskid
+          @Success = success
+          @Failed = failed
+          @Total = total
+          @FailedRecordList = failedrecordlist
+          @CosUrl = cosurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @LeftMinutes = params['LeftMinutes']
+          @Progress = params['Progress']
+          @SnapshotId = params['SnapshotId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @Success = params['Success']
+          @Failed = params['Failed']
+          @Total = params['Total']
+          unless params['FailedRecordList'].nil?
+            @FailedRecordList = []
+            params['FailedRecordList'].each do |i|
+              snapshotrecord_tmp = SnapshotRecord.new
+              snapshotrecord_tmp.deserialize(i)
+              @FailedRecordList << snapshotrecord_tmp
+            end
+          end
+          @CosUrl = params['CosUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotRollbackTask请求参数结构体
+      class DescribeSnapshotRollbackTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeSnapshotRollbackTask返回参数结构体
+      class DescribeSnapshotRollbackTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 快照所属域名
+        # @type Domain: String
+        # @param SnapshotId: 快照 ID
+        # @type SnapshotId: String
+        # @param Status: 回滚状态
+        # @type Status: String
+        # @param TaskId: 快照回滚任务 ID
+        # @type TaskId: Integer
+        # @param RecordCount: 总数量
+        # @type RecordCount: Integer
+        # @param CreatedOn: 开始回滚时间
+        # @type CreatedOn: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :SnapshotId, :Status, :TaskId, :RecordCount, :CreatedOn, :RequestId
+        
+        def initialize(domain=nil, snapshotid=nil, status=nil, taskid=nil, recordcount=nil, createdon=nil, requestid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @Status = status
+          @TaskId = taskid
+          @RecordCount = recordcount
+          @CreatedOn = createdon
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @RecordCount = params['RecordCount']
+          @CreatedOn = params['CreatedOn']
           @RequestId = params['RequestId']
         end
       end
@@ -2274,6 +2828,50 @@ module TencentCloud
           @ShareTo = params['ShareTo']
           @Mode = params['Mode']
           @Status = params['Status']
+        end
+      end
+
+      # DownloadSnapshot请求参数结构体
+      class DownloadSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照记录 ID
+        # @type SnapshotId: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DownloadSnapshot返回参数结构体
+      class DownloadSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param CosUrl: 快照下载链接
+        # @type CosUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosUrl, :RequestId
+        
+        def initialize(cosurl=nil, requestid=nil)
+          @CosUrl = cosurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CosUrl = params['CosUrl']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2977,6 +3575,46 @@ module TencentCloud
         end
       end
 
+      # ModifySnapshotConfig请求参数结构体
+      class ModifySnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Period: 备件间隔：空字符串-不备份，half_hour-每半小时，hourly-每小时，daily-每天，monthly-每月
+        # @type Period: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :Period, :DomainId
+        
+        def initialize(domain=nil, period=nil, domainid=nil)
+          @Domain = domain
+          @Period = period
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Period = params['Period']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifySnapshotConfig返回参数结构体
+      class ModifySnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySubdomainStatus请求参数结构体
       class ModifySubdomainStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3289,6 +3927,242 @@ module TencentCloud
           @MonitorStatus = params['MonitorStatus']
           @Remark = params['Remark']
           @TTL = params['TTL']
+          @MX = params['MX']
+        end
+      end
+
+      # RollbackRecordSnapshot请求参数结构体
+      class RollbackRecordSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照 ID
+        # @type SnapshotId: String
+        # @param RecordList: 解析记录信息
+        # @type RecordList: Array
+        # @param TaskId: 之前的快照回滚任务 ID
+        # @type TaskId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :RecordList, :TaskId, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, recordlist=nil, taskid=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @RecordList = recordlist
+          @TaskId = taskid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              snapshotrecord_tmp = SnapshotRecord.new
+              snapshotrecord_tmp.deserialize(i)
+              @RecordList << snapshotrecord_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # RollbackRecordSnapshot返回参数结构体
+      class RollbackRecordSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 回滚任务 ID
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollbackSnapshot请求参数结构体
+      class RollbackSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SnapshotId: 快照记录 ID
+        # @type SnapshotId: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :SnapshotId, :DomainId
+        
+        def initialize(domain=nil, snapshotid=nil, domainid=nil)
+          @Domain = domain
+          @SnapshotId = snapshotid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SnapshotId = params['SnapshotId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # RollbackSnapshot返回参数结构体
+      class RollbackSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 回滚任务 ID，用来查询回滚状态
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名解析快照配置
+      class SnapshotConfig < TencentCloud::Common::AbstractModel
+        # @param Config: 配置类型：空字符串-不备份，half_hour-每半小时，hourly-每小时，daily-每天，monthly-每月
+        # @type Config: String
+        # @param CreatedOn: 添加时间
+        # @type CreatedOn: String
+        # @param DomainId: 所属域名 ID
+        # @type DomainId: String
+        # @param Id: 配置 ID
+        # @type Id: String
+        # @param SnapshotCount: 快照数量
+        # @type SnapshotCount: Integer
+        # @param Status: 状态：enable-启用，disable-禁用
+        # @type Status: String
+        # @param UpdatedOn: 更新时间
+        # @type UpdatedOn: String
+
+        attr_accessor :Config, :CreatedOn, :DomainId, :Id, :SnapshotCount, :Status, :UpdatedOn
+        
+        def initialize(config=nil, createdon=nil, domainid=nil, id=nil, snapshotcount=nil, status=nil, updatedon=nil)
+          @Config = config
+          @CreatedOn = createdon
+          @DomainId = domainid
+          @Id = id
+          @SnapshotCount = snapshotcount
+          @Status = status
+          @UpdatedOn = updatedon
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          @CreatedOn = params['CreatedOn']
+          @DomainId = params['DomainId']
+          @Id = params['Id']
+          @SnapshotCount = params['SnapshotCount']
+          @Status = params['Status']
+          @UpdatedOn = params['UpdatedOn']
+        end
+      end
+
+      # 快照信息
+      class SnapshotInfo < TencentCloud::Common::AbstractModel
+        # @param CosUrl: 快照的对象存储地址
+        # @type CosUrl: String
+        # @param CreatedOn: 添加时间
+        # @type CreatedOn: String
+        # @param Domain: 所属域名
+        # @type Domain: String
+        # @param Id: 快照记录 ID
+        # @type Id: String
+        # @param RecordCount: 域名解析记录数
+        # @type RecordCount: String
+        # @param Status: 状态：normal-正常，create-备份中
+        # @type Status: String
+
+        attr_accessor :CosUrl, :CreatedOn, :Domain, :Id, :RecordCount, :Status
+        
+        def initialize(cosurl=nil, createdon=nil, domain=nil, id=nil, recordcount=nil, status=nil)
+          @CosUrl = cosurl
+          @CreatedOn = createdon
+          @Domain = domain
+          @Id = id
+          @RecordCount = recordcount
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CosUrl = params['CosUrl']
+          @CreatedOn = params['CreatedOn']
+          @Domain = params['Domain']
+          @Id = params['Id']
+          @RecordCount = params['RecordCount']
+          @Status = params['Status']
+        end
+      end
+
+      # 快照列表分页信息
+      class SnapshotPageInfo < TencentCloud::Common::AbstractModel
+        # @param Total: 快照总数
+        # @type Total: Integer
+
+        attr_accessor :Total
+        
+        def initialize(total=nil)
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+        end
+      end
+
+      # 快照解析记录
+      class SnapshotRecord < TencentCloud::Common::AbstractModel
+        # @param SubDomain: 子域名
+        # @type SubDomain: String
+        # @param RecordType: 记录类型
+        # @type RecordType: String
+        # @param RecordLine: 解析线路
+        # @type RecordLine: String
+        # @param Value: 解析值
+        # @type Value: String
+        # @param TTL: TTL(秒)
+        # @type TTL: String
+        # @param RecordId: 解析记录 ID
+        # @type RecordId: String
+        # @param MX: MX优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MX: String
+
+        attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :RecordId, :MX
+        
+        def initialize(subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, recordid=nil, mx=nil)
+          @SubDomain = subdomain
+          @RecordType = recordtype
+          @RecordLine = recordline
+          @Value = value
+          @TTL = ttl
+          @RecordId = recordid
+          @MX = mx
+        end
+
+        def deserialize(params)
+          @SubDomain = params['SubDomain']
+          @RecordType = params['RecordType']
+          @RecordLine = params['RecordLine']
+          @Value = params['Value']
+          @TTL = params['TTL']
+          @RecordId = params['RecordId']
           @MX = params['MX']
         end
       end

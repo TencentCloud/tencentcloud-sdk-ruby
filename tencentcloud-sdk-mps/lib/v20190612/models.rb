@@ -4191,10 +4191,12 @@ module TencentCloud
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
         # @param HLSPullSettings: 输入的HLS_PULL配置信息。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
+        # @param ResilientStream: 延播平滑吐流配置信息。
+        # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
         
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -4205,6 +4207,7 @@ module TencentCloud
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
+          @ResilientStream = resilientstream
         end
 
         def deserialize(params)
@@ -4232,6 +4235,10 @@ module TencentCloud
           unless params['HLSPullSettings'].nil?
             @HLSPullSettings = CreateInputHLSPullSettings.new
             @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+          unless params['ResilientStream'].nil?
+            @ResilientStream = ResilientStreamConf.new
+            @ResilientStream.deserialize(params['ResilientStream'])
           end
         end
       end
@@ -6227,10 +6234,13 @@ module TencentCloud
         # @param HLSPullSettings: 输入的HLS_PULL配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputHLSPullSettings`
+        # @param ResilientStream: 延播平滑吐流配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
         
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -6245,6 +6255,7 @@ module TencentCloud
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
+          @ResilientStream = resilientstream
         end
 
         def deserialize(params)
@@ -6286,6 +6297,10 @@ module TencentCloud
           unless params['HLSPullSettings'].nil?
             @HLSPullSettings = DescribeInputHLSPullSettings.new
             @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+          unless params['ResilientStream'].nil?
+            @ResilientStream = ResilientStreamConf.new
+            @ResilientStream.deserialize(params['ResilientStream'])
           end
         end
       end
@@ -11903,10 +11918,12 @@ module TencentCloud
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTSPPullSettings`
         # @param HLSPullSettings: HLS_PULL的配置信息。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
+        # @param ResilientStream: 延播平滑吐流配置信息。
+        # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
         
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -11918,6 +11935,7 @@ module TencentCloud
           @RTMPPullSettings = rtmppullsettings
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
+          @ResilientStream = resilientstream
         end
 
         def deserialize(params)
@@ -11946,6 +11964,10 @@ module TencentCloud
           unless params['HLSPullSettings'].nil?
             @HLSPullSettings = CreateInputHLSPullSettings.new
             @HLSPullSettings.deserialize(params['HLSPullSettings'])
+          end
+          unless params['ResilientStream'].nil?
+            @ResilientStream = ResilientStreamConf.new
+            @ResilientStream.deserialize(params['ResilientStream'])
           end
         end
       end
@@ -14203,6 +14225,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 延播平滑吐流配置。
+      class ResilientStreamConf < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启延播平滑吐流，true开启，false不开启，默认不开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param BufferTime: 延播时间，单位秒，目前支持的范围为10~300秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BufferTime: Integer
+
+        attr_accessor :Enable, :BufferTime
+        
+        def initialize(enable=nil, buffertime=nil)
+          @Enable = enable
+          @BufferTime = buffertime
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @BufferTime = params['BufferTime']
         end
       end
 
