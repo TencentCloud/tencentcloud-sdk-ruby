@@ -824,6 +824,50 @@ module TencentCloud
         end
       end
 
+      # CreateRecordGroup请求参数结构体
+      class CreateRecordGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :GroupName, :DomainId
+        
+        def initialize(domain=nil, groupname=nil, domainid=nil)
+          @Domain = domain
+          @GroupName = groupname
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @GroupName = params['GroupName']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateRecordGroup返回参数结构体
+      class CreateRecordGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 新增的分组 ID
+        # @type GroupId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+        
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRecord请求参数结构体
       class CreateRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1018,6 +1062,46 @@ module TencentCloud
 
       # DeleteDomain返回参数结构体
       class DeleteDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRecordGroup请求参数结构体
+      class DeleteRecordGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param GroupId: 分组 ID
+        # @type GroupId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :GroupId, :DomainId
+        
+        def initialize(domain=nil, groupid=nil, domainid=nil)
+          @Domain = domain
+          @GroupId = groupid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @GroupId = params['GroupId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DeleteRecordGroup返回参数结构体
+      class DeleteRecordGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1695,6 +1779,61 @@ module TencentCloud
             end
           end
           @Owner = params['Owner']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordGroupList请求参数结构体
+      class DescribeRecordGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+        # @param Offset: 分页开始位置
+        # @type Offset: Integer
+        # @param Limit: 分页每页数
+        # @type Limit: Integer
+
+        attr_accessor :Domain, :DomainId, :Offset, :Limit
+        
+        def initialize(domain=nil, domainid=nil, offset=nil, limit=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRecordGroupList返回参数结构体
+      class DescribeRecordGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param GroupList: 分组列表
+        # @type GroupList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupList, :RequestId
+        
+        def initialize(grouplist=nil, requestid=nil)
+          @GroupList = grouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              recordgroupinfo_tmp = RecordGroupInfo.new
+              recordgroupinfo_tmp.deserialize(i)
+              @GroupList << recordgroupinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3403,6 +3542,54 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordGroup请求参数结构体
+      class ModifyRecordGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+        # @param GroupId: 要修改的分组 ID
+        # @type GroupId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :GroupName, :GroupId, :DomainId
+        
+        def initialize(domain=nil, groupname=nil, groupid=nil, domainid=nil)
+          @Domain = domain
+          @GroupName = groupname
+          @GroupId = groupid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @GroupName = params['GroupName']
+          @GroupId = params['GroupId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyRecordGroup返回参数结构体
+      class ModifyRecordGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 修改的分组 ID
+        # @type GroupId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+        
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRecordRemark请求参数结构体
       class ModifyRecordRemarkRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3571,6 +3758,50 @@ module TencentCloud
 
         def deserialize(params)
           @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRecordToGroup请求参数结构体
+      class ModifyRecordToGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param GroupId: 分组 ID
+        # @type GroupId: Integer
+        # @param RecordId: 记录 ID，多个 ID 用竖线“|”分割
+        # @type RecordId: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :GroupId, :RecordId, :DomainId
+        
+        def initialize(domain=nil, groupid=nil, recordid=nil, domainid=nil)
+          @Domain = domain
+          @GroupId = groupid
+          @RecordId = recordid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @GroupId = params['GroupId']
+          @RecordId = params['RecordId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyRecordToGroup返回参数结构体
+      class ModifyRecordToGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3788,6 +4019,30 @@ module TencentCloud
           @SubdomainCount = params['SubdomainCount']
           @ListCount = params['ListCount']
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 解析记录分组信息
+      class RecordGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组 ID
+        # @type GroupId: Integer
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+        # @param GroupType: 分组类型：system-系统；user-用户
+        # @type GroupType: String
+
+        attr_accessor :GroupId, :GroupName, :GroupType
+        
+        def initialize(groupid=nil, groupname=nil, grouptype=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupType = grouptype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
         end
       end
 

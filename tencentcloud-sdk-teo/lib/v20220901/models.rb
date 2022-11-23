@@ -603,30 +603,6 @@ module TencentCloud
         end
       end
 
-      # Dns数据曲线过滤参数
-      class BillingDataFilter < TencentCloud::Common::AbstractModel
-        # @param Type: 参数名称，取值范围：
-        # zone：站点名
-        # host：域名
-        # proxy: 四层实例
-        # plan: 套餐
-        # @type Type: String
-        # @param Value: 参数值
-        # @type Value: String
-
-        attr_accessor :Type, :Value
-        
-        def initialize(type=nil, value=nil)
-          @Type = type
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          @Value = params['Value']
-        end
-      end
-
       # BindZoneToPlan请求参数结构体
       class BindZoneToPlanRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 未绑定套餐的站点ID。
@@ -3828,97 +3804,6 @@ module TencentCloud
               @PlanInfo << planinfo_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBillingData请求参数结构体
-      class DescribeBillingDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间。
-        # @type StartTime: String
-        # @param EndTime: 结束时间。
-        # @type EndTime: String
-        # @param Interval: 时间粒度, 支持指定以下几种粒度：
-        # <ul>
-        # <li>min：1分钟粒度；</li>
-        # <li>5min：5分钟粒度；</li>
-        # <li>hour：1小时粒度；</li>
-        # <li>day：天粒度；</li>
-        # </ul>
-        # @type Interval: String
-        # @param MetricName: 指标名,支持:
-        # <ul>
-        # <li>acc_flux: 内容加速流量用量；</li>
-        # <li>quic_request: QUIC 请求数用量；</li>
-        # <li>sec_flux: 安全流量用量；</li>
-        # <li>sec_request_clean: 安全干净流量请求数；</li>
-        # </ul>
-        # @type MetricName: String
-        # @param Filters: 筛选条件. 支持:
-        # <ul>
-        # <li>zone: 站点级数据；</li>
-        # <li>plan: 套餐级数据；</li>
-        # <li>service: l4 / l7分别筛选四七层数据；</li>
-        # <li>tagKey: 标签Key；</li>
-        # <li>tagValue: 标签Value。</li>
-        # </ul>
-        # @type Filters: Array
-
-        attr_accessor :StartTime, :EndTime, :Interval, :MetricName, :Filters
-        
-        def initialize(starttime=nil, endtime=nil, interval=nil, metricname=nil, filters=nil)
-          @StartTime = starttime
-          @EndTime = endtime
-          @Interval = interval
-          @MetricName = metricname
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Interval = params['Interval']
-          @MetricName = params['MetricName']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              billingdatafilter_tmp = BillingDataFilter.new
-              billingdatafilter_tmp.deserialize(i)
-              @Filters << billingdatafilter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeBillingData返回参数结构体
-      class DescribeBillingDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 统计曲线数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param Interval: 时间粒度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Interval: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :Interval, :RequestId
-        
-        def initialize(data=nil, interval=nil, requestid=nil)
-          @Data = data
-          @Interval = interval
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              dnsdata_tmp = DnsData.new
-              dnsdata_tmp.deserialize(i)
-              @Data << dnsdata_tmp
-            end
-          end
-          @Interval = params['Interval']
           @RequestId = params['RequestId']
         end
       end

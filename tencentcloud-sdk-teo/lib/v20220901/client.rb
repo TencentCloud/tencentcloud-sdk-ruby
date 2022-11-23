@@ -845,30 +845,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取计费数据。
-
-        # @param request: Request instance for DescribeBillingData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeBillingDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeBillingDataResponse`
-        def DescribeBillingData(request)
-          body = send_request('DescribeBillingData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBillingDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
 
         # @param request: Request instance for DescribeBotClientIpList.

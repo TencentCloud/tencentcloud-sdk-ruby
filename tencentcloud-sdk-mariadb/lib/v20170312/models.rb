@@ -1222,6 +1222,59 @@ module TencentCloud
         end
       end
 
+      # dcn 配置情况
+      class DCNReplicaConfig < TencentCloud::Common::AbstractModel
+        # @param RoReplicationMode: DCN 运行状态，START为正常运行，STOP为暂停
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoReplicationMode: String
+        # @param DelayReplicationType: 延迟复制的类型，DEFAULT为正常，DUE_TIME为指定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayReplicationType: String
+        # @param DueTime: 延迟复制的指定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DueTime: String
+        # @param ReplicationDelay: 延迟复制时的延迟秒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationDelay: Integer
+
+        attr_accessor :RoReplicationMode, :DelayReplicationType, :DueTime, :ReplicationDelay
+        
+        def initialize(roreplicationmode=nil, delayreplicationtype=nil, duetime=nil, replicationdelay=nil)
+          @RoReplicationMode = roreplicationmode
+          @DelayReplicationType = delayreplicationtype
+          @DueTime = duetime
+          @ReplicationDelay = replicationdelay
+        end
+
+        def deserialize(params)
+          @RoReplicationMode = params['RoReplicationMode']
+          @DelayReplicationType = params['DelayReplicationType']
+          @DueTime = params['DueTime']
+          @ReplicationDelay = params['ReplicationDelay']
+        end
+      end
+
+      # DCN的状态信息
+      class DCNReplicaStatus < TencentCloud::Common::AbstractModel
+        # @param Status: DCN 的运行状态，START为正常运行，STOP为暂停，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Delay: 当前延迟情况，取备实例的 master 节点的 delay 值
+        # @type Delay: Integer
+
+        attr_accessor :Status, :Delay
+        
+        def initialize(status=nil, delay=nil)
+          @Status = status
+          @Delay = delay
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Delay = params['Delay']
+        end
+      end
+
       # 数据库信息
       class Database < TencentCloud::Common::AbstractModel
         # @param DbName: 数据库名称
@@ -1360,10 +1413,18 @@ module TencentCloud
         # @type PeriodEndTime: String
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
         # @type InstanceType: Integer
+        # @param ReplicaConfig: DCN复制的配置信息；对于主实例，此字段为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaConfig: :class:`Tencentcloud::Mariadb.v20170312.models.DCNReplicaConfig`
+        # @param ReplicaStatus: DCN复制的状态；对于主实例，此字段为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaStatus: :class:`Tencentcloud::Mariadb.v20170312.models.DCNReplicaStatus`
+        # @param EncryptStatus: 是否开启了 kms
+        # @type EncryptStatus: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType, :ReplicaConfig, :ReplicaStatus, :EncryptStatus
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil, replicaconfig=nil, replicastatus=nil, encryptstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1382,6 +1443,9 @@ module TencentCloud
           @CreateTime = createtime
           @PeriodEndTime = periodendtime
           @InstanceType = instancetype
+          @ReplicaConfig = replicaconfig
+          @ReplicaStatus = replicastatus
+          @EncryptStatus = encryptstatus
         end
 
         def deserialize(params)
@@ -1403,6 +1467,15 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @PeriodEndTime = params['PeriodEndTime']
           @InstanceType = params['InstanceType']
+          unless params['ReplicaConfig'].nil?
+            @ReplicaConfig = DCNReplicaConfig.new
+            @ReplicaConfig.deserialize(params['ReplicaConfig'])
+          end
+          unless params['ReplicaStatus'].nil?
+            @ReplicaStatus = DCNReplicaStatus.new
+            @ReplicaStatus.deserialize(params['ReplicaStatus'])
+          end
+          @EncryptStatus = params['EncryptStatus']
         end
       end
 
@@ -1416,7 +1489,7 @@ module TencentCloud
         # @type Count: Integer
         # @param FlowId: 关联的流程 Id，可用于查询流程执行状态
         # @type FlowId: Integer
-        # @param InstanceIds: 只有创建实例的订单会填充该字段，表示该订单创建的实例的 ID。
+        # @param InstanceIds: 只有创建实例且已完成发货的订单会填充该字段，表示该订单创建的实例的 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param PayMode: 付费模式，0后付费/1预付费

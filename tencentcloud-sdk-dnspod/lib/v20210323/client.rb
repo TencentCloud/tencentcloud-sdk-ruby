@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加记录分组
+
+        # @param request: Request instance for CreateRecordGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateRecordGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateRecordGroupResponse`
+        def CreateRecordGroup(request)
+          body = send_request('CreateRecordGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRecordGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建快照
 
         # @param request: Request instance for CreateSnapshot.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除记录分组
+
+        # @param request: Request instance for DeleteRecordGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteRecordGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DeleteRecordGroupResponse`
+        def DeleteRecordGroup(request)
+          body = send_request('DeleteRecordGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecordGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -615,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询解析记录分组列表
+
+        # @param request: Request instance for DescribeRecordGroupList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordGroupListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordGroupListResponse`
+        def DescribeRecordGroupList(request)
+          body = send_request('DescribeRecordGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordGroupListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1109,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改记录分组
+
+        # @param request: Request instance for ModifyRecordGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordGroupResponse`
+        def ModifyRecordGroup(request)
+          body = send_request('ModifyRecordGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置记录备注
 
         # @param request: Request instance for ModifyRecordRemark.
@@ -1143,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRecordStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将记录添加到分组
+
+        # @param request: Request instance for ModifyRecordToGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordToGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordToGroupResponse`
+        def ModifyRecordToGroup(request)
+          body = send_request('ModifyRecordToGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordToGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

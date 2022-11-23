@@ -645,28 +645,28 @@ module TencentCloud
 
       # SendSmsCode请求参数结构体
       class SendSmsCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Purpose: 验证码目的，当前仅支持换绑超级管理员账号，固定填写 BindSuperAdmin。
+        # @param Purpose: 验证码目的，当前支持换绑超级管理员账号， BindSuperAdmin；体验版企业升级，ChannelUpdateVerify等
         # @type Purpose: String
-        # @param InstanceId: 官方云盘实例 ID
-        # @type InstanceId: String
         # @param PhoneNumber: 将作为超级管理员账号的手机号码
         # @type PhoneNumber: String
+        # @param InstanceId: 官方云盘实例 ID
+        # @type InstanceId: String
         # @param CountryCode: 将作为超级管理员账号的手机号码的国家代码。默认为 +86。
         # @type CountryCode: String
 
-        attr_accessor :Purpose, :InstanceId, :PhoneNumber, :CountryCode
+        attr_accessor :Purpose, :PhoneNumber, :InstanceId, :CountryCode
         
-        def initialize(purpose=nil, instanceid=nil, phonenumber=nil, countrycode=nil)
+        def initialize(purpose=nil, phonenumber=nil, instanceid=nil, countrycode=nil)
           @Purpose = purpose
-          @InstanceId = instanceid
           @PhoneNumber = phonenumber
+          @InstanceId = instanceid
           @CountryCode = countrycode
         end
 
         def deserialize(params)
           @Purpose = params['Purpose']
-          @InstanceId = params['InstanceId']
           @PhoneNumber = params['PhoneNumber']
+          @InstanceId = params['InstanceId']
           @CountryCode = params['CountryCode']
         end
       end
@@ -743,32 +743,32 @@ module TencentCloud
 
       # VerifySmsCode请求参数结构体
       class VerifySmsCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Purpose: 验证码目的，当前仅支持换绑超级管理员账号，固定填写 BindSuperAdmin。
+        # @param Purpose: 验证码目的，当前支持换绑超级管理员账号，BindSuperAdmin；体验版企业升级验证ChannelUpdateVerify，等
         # @type Purpose: String
-        # @param InstanceId: 官方云盘实例 ID
-        # @type InstanceId: String
         # @param PhoneNumber: 将作为超级管理员账号的手机号码
         # @type PhoneNumber: String
         # @param Code: 短信验证码
         # @type Code: String
+        # @param InstanceId: 官方云盘实例 ID
+        # @type InstanceId: String
         # @param CountryCode: 将作为超级管理员账号的手机号码的国家代码。默认为 +86。
         # @type CountryCode: String
 
-        attr_accessor :Purpose, :InstanceId, :PhoneNumber, :Code, :CountryCode
+        attr_accessor :Purpose, :PhoneNumber, :Code, :InstanceId, :CountryCode
         
-        def initialize(purpose=nil, instanceid=nil, phonenumber=nil, code=nil, countrycode=nil)
+        def initialize(purpose=nil, phonenumber=nil, code=nil, instanceid=nil, countrycode=nil)
           @Purpose = purpose
-          @InstanceId = instanceid
           @PhoneNumber = phonenumber
           @Code = code
+          @InstanceId = instanceid
           @CountryCode = countrycode
         end
 
         def deserialize(params)
           @Purpose = params['Purpose']
-          @InstanceId = params['InstanceId']
           @PhoneNumber = params['PhoneNumber']
           @Code = params['Code']
+          @InstanceId = params['InstanceId']
           @CountryCode = params['CountryCode']
         end
       end

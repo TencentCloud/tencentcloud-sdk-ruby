@@ -180,6 +180,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建高性能计算集群
+
+        # @param request: Request instance for CreateHpcCluster.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::CreateHpcClusterRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::CreateHpcClusterResponse`
+        def CreateHpcCluster(request)
+          body = send_request('CreateHpcCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHpcClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
 
         # @param request: Request instance for CreateImage.
@@ -295,6 +319,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDisasterRecoverGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除改集群。
+
+        # @param request: Request instance for DeleteHpcClusters.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DeleteHpcClustersRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DeleteHpcClustersResponse`
+        def DeleteHpcClusters(request)
+          body = send_request('DeleteHpcClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHpcClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -545,6 +593,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHostsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询高性能集群信息
+
+        # @param request: Request instance for DescribeHpcClusters.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeHpcClustersRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeHpcClustersResponse`
+        def DescribeHpcClusters(request)
+          body = send_request('DescribeHpcClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHpcClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1550,6 +1622,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyHostsAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改高性能计算集群属性。
+
+        # @param request: Request instance for ModifyHpcClusterAttribute.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ModifyHpcClusterAttributeRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ModifyHpcClusterAttributeResponse`
+        def ModifyHpcClusterAttribute(request)
+          body = send_request('ModifyHpcClusterAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHpcClusterAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -753,10 +753,12 @@ module TencentCloud
         # @type PidTag: String
         # @param Pid: 计费ID
         # @type Pid: Integer
+        # @param InstanceId: 独享集群实例Id
+        # @type InstanceId: String
 
-        attr_accessor :HostId, :HostName, :Zone, :Status, :AssignStatus, :HostType, :DbNum, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :CpuRatio, :MemoryRatio, :DiskRatio, :MachineName, :MachineType, :PidTag, :Pid
+        attr_accessor :HostId, :HostName, :Zone, :Status, :AssignStatus, :HostType, :DbNum, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :CpuRatio, :MemoryRatio, :DiskRatio, :MachineName, :MachineType, :PidTag, :Pid, :InstanceId
         
-        def initialize(hostid=nil, hostname=nil, zone=nil, status=nil, assignstatus=nil, hosttype=nil, dbnum=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, cpuratio=nil, memoryratio=nil, diskratio=nil, machinename=nil, machinetype=nil, pidtag=nil, pid=nil)
+        def initialize(hostid=nil, hostname=nil, zone=nil, status=nil, assignstatus=nil, hosttype=nil, dbnum=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, cpuratio=nil, memoryratio=nil, diskratio=nil, machinename=nil, machinetype=nil, pidtag=nil, pid=nil, instanceid=nil)
           @HostId = hostid
           @HostName = hostname
           @Zone = zone
@@ -780,6 +782,7 @@ module TencentCloud
           @MachineType = machinetype
           @PidTag = pidtag
           @Pid = pid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -806,6 +809,7 @@ module TencentCloud
           @MachineType = params['MachineType']
           @PidTag = params['PidTag']
           @Pid = params['Pid']
+          @InstanceId = params['InstanceId']
         end
       end
 

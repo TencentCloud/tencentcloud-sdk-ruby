@@ -1133,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于更新模型服务
+
+        # @param request: Request instance for ModifyModelService.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceResponse`
+        def ModifyModelService(request)
+          body = send_request('ModifyModelService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
 
         # @param request: Request instance for ModifyModelServicePartialConfig.

@@ -155,7 +155,7 @@ module TencentCloud
       class DescribeTaskStrategyRisksRequest < TencentCloud::Common::AbstractModel
         # @param StrategyId: 评估项ID
         # @type StrategyId: Integer
-        # @param Limit: 限制数量,默认100
+        # @param Limit: 返回数量,默认值为100,最大值为200
         # @type Limit: Integer
         # @param Offset: 偏移量,默认0
         # @type Offset: Integer

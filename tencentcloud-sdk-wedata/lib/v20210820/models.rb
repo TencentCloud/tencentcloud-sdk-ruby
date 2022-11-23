@@ -2404,6 +2404,51 @@ module TencentCloud
         end
       end
 
+      # CreateResourcePath请求参数结构体
+      class CreateResourcePathRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 文件夹名称，如 aaa
+        # @type Name: String
+        # @param FilePath: 文件夹所属父目录，请注意，根目录为 /datastudio/resource
+        # @type FilePath: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+
+        attr_accessor :Name, :FilePath, :ProjectId
+        
+        def initialize(name=nil, filepath=nil, projectid=nil)
+          @Name = name
+          @FilePath = filepath
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @FilePath = params['FilePath']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # CreateResourcePath返回参数结构体
+      class CreateResourcePathResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 新建成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRule请求参数结构体
       class CreateRuleRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -9766,10 +9811,12 @@ module TencentCloud
         # @type SinkType: String
         # @param SchemaName: schema名称
         # @type SchemaName: String
+        # @param SourceFieldInfoList: 上游节点的字段信息
+        # @type SourceFieldInfoList: Array
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList
         
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -9779,6 +9826,7 @@ module TencentCloud
           @TableName = tablename
           @SinkType = sinktype
           @SchemaName = schemaname
+          @SourceFieldInfoList = sourcefieldinfolist
         end
 
         def deserialize(params)
@@ -9791,6 +9839,14 @@ module TencentCloud
           @TableName = params['TableName']
           @SinkType = params['SinkType']
           @SchemaName = params['SchemaName']
+          unless params['SourceFieldInfoList'].nil?
+            @SourceFieldInfoList = []
+            params['SourceFieldInfoList'].each do |i|
+              sourcefieldinfo_tmp = SourceFieldInfo.new
+              sourcefieldinfo_tmp.deserialize(i)
+              @SourceFieldInfoList << sourcefieldinfo_tmp
+            end
+          end
         end
       end
 
@@ -10633,15 +10689,19 @@ module TencentCloud
         # @param Properties: schema拓展属性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
+        # @param Alias: schema别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
 
-        attr_accessor :Id, :Name, :Type, :Value, :Properties
+        attr_accessor :Id, :Name, :Type, :Value, :Properties, :Alias
         
-        def initialize(id=nil, name=nil, type=nil, value=nil, properties=nil)
+        def initialize(id=nil, name=nil, type=nil, value=nil, properties=nil, _alias=nil)
           @Id = id
           @Name = name
           @Type = type
           @Value = value
           @Properties = properties
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -10657,6 +10717,7 @@ module TencentCloud
               @Properties << recordfield_tmp
             end
           end
+          @Alias = params['Alias']
         end
       end
 
@@ -15407,6 +15468,30 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # 上游节点字段信息
+      class SourceFieldInfo < TencentCloud::Common::AbstractModel
+        # @param FieldName: 字段名称
+        # @type FieldName: String
+        # @param FieldType: 字段类型
+        # @type FieldType: String
+        # @param Alias: 字段别名
+        # @type Alias: String
+
+        attr_accessor :FieldName, :FieldType, :Alias
+        
+        def initialize(fieldname=nil, fieldtype=nil, _alias=nil)
+          @FieldName = fieldname
+          @FieldType = fieldtype
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
+          @FieldType = params['FieldType']
+          @Alias = params['Alias']
         end
       end
 

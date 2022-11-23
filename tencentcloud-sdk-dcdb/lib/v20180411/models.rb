@@ -1265,10 +1265,12 @@ module TencentCloud
         # @type PeriodEndTime: String
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
         # @type InstanceType: Integer
+        # @param EncryptStatus: 是否开启了 kms
+        # @type EncryptStatus: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType, :EncryptStatus
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil, encryptstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1287,6 +1289,7 @@ module TencentCloud
           @CreateTime = createtime
           @PeriodEndTime = periodendtime
           @InstanceType = instancetype
+          @EncryptStatus = encryptstatus
         end
 
         def deserialize(params)
@@ -1308,6 +1311,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @PeriodEndTime = params['PeriodEndTime']
           @InstanceType = params['InstanceType']
+          @EncryptStatus = params['EncryptStatus']
         end
       end
 
@@ -1321,7 +1325,7 @@ module TencentCloud
         # @type Count: Integer
         # @param FlowId: 关联的流程 Id，可用于查询流程执行状态
         # @type FlowId: Integer
-        # @param InstanceIds: 只有创建实例的订单会填充该字段，表示该订单创建的实例的 ID。
+        # @param InstanceIds: 只有创建实例且已完成发货的订单会填充该字段，表示该订单创建的实例的 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param PayMode: 付费模式，0后付费/1预付费

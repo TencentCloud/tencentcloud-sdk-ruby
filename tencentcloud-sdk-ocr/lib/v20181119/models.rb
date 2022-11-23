@@ -3629,17 +3629,21 @@ module TencentCloud
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段name对应的字符串结果。
         # @type Value: String
+        # @param Row: 字段所在行，下标从0开始，非行字段或未能识别行号的返回-1
+        # @type Row: Integer
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Row
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
+          @Row = row
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          @Row = params['Row']
         end
       end
 

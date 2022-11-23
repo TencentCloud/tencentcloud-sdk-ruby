@@ -6600,10 +6600,22 @@ module TencentCloud
         # @type UdpFloodThreshold: Integer
         # @param UdpFloodPktThreshold: UDP FLOOD包量阈值
         # @type UdpFloodPktThreshold: Integer
+        # @param AckFloodThreshold: ACK FLOOD流量阈值
+        # @type AckFloodThreshold: Integer
+        # @param AckFloodPktThreshold: ACK FLOOD包量阈值
+        # @type AckFloodPktThreshold: Integer
+        # @param SynAckFloodThreshold: SYNACK FLOOD流量阈值
+        # @type SynAckFloodThreshold: Integer
+        # @param SynAckFloodPktThreshold: SYNACK FLOOD包量阈值
+        # @type SynAckFloodPktThreshold: Integer
+        # @param RstFloodThreshold: RST FLOOD流量阈值
+        # @type RstFloodThreshold: Integer
+        # @param RstFloodPktThreshold: RST FLOOD包量阈值
+        # @type RstFloodPktThreshold: Integer
 
-        attr_accessor :Threshold, :Id, :Business, :OtherThresholdFlag, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold
+        attr_accessor :Threshold, :Id, :Business, :OtherThresholdFlag, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold, :AckFloodThreshold, :AckFloodPktThreshold, :SynAckFloodThreshold, :SynAckFloodPktThreshold, :RstFloodThreshold, :RstFloodPktThreshold
         
-        def initialize(threshold=nil, id=nil, business=nil, otherthresholdflag=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil)
+        def initialize(threshold=nil, id=nil, business=nil, otherthresholdflag=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil, ackfloodthreshold=nil, ackfloodpktthreshold=nil, synackfloodthreshold=nil, synackfloodpktthreshold=nil, rstfloodthreshold=nil, rstfloodpktthreshold=nil)
           @Threshold = threshold
           @Id = id
           @Business = business
@@ -6612,6 +6624,12 @@ module TencentCloud
           @SynFloodPktThreshold = synfloodpktthreshold
           @UdpFloodThreshold = udpfloodthreshold
           @UdpFloodPktThreshold = udpfloodpktthreshold
+          @AckFloodThreshold = ackfloodthreshold
+          @AckFloodPktThreshold = ackfloodpktthreshold
+          @SynAckFloodThreshold = synackfloodthreshold
+          @SynAckFloodPktThreshold = synackfloodpktthreshold
+          @RstFloodThreshold = rstfloodthreshold
+          @RstFloodPktThreshold = rstfloodpktthreshold
         end
 
         def deserialize(params)
@@ -6623,6 +6641,12 @@ module TencentCloud
           @SynFloodPktThreshold = params['SynFloodPktThreshold']
           @UdpFloodThreshold = params['UdpFloodThreshold']
           @UdpFloodPktThreshold = params['UdpFloodPktThreshold']
+          @AckFloodThreshold = params['AckFloodThreshold']
+          @AckFloodPktThreshold = params['AckFloodPktThreshold']
+          @SynAckFloodThreshold = params['SynAckFloodThreshold']
+          @SynAckFloodPktThreshold = params['SynAckFloodPktThreshold']
+          @RstFloodThreshold = params['RstFloodThreshold']
+          @RstFloodPktThreshold = params['RstFloodPktThreshold']
         end
       end
 
@@ -7255,10 +7279,28 @@ module TencentCloud
         # @param UdpFloodPktThreshold: UDP FLOOD包量阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UdpFloodPktThreshold: Integer
+        # @param AckFloodThreshold: ACK FLOOD流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AckFloodThreshold: Integer
+        # @param AckFloodPktThreshold: ACK FLOOD包量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AckFloodPktThreshold: Integer
+        # @param SynAckFloodThreshold: SYNACK FLOOD流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SynAckFloodThreshold: Integer
+        # @param SynAckFloodPktThreshold: SYNACK FLOOD包量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SynAckFloodPktThreshold: Integer
+        # @param RstFloodThreshold: RST FLOOD流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RstFloodThreshold: Integer
+        # @param RstFloodPktThreshold: RST FLOOD包量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RstFloodPktThreshold: Integer
 
-        attr_accessor :DDoSLevel, :DDoSThreshold, :DDoSAI, :CCEnable, :CCThreshold, :InstanceDetailList, :ListenerCcThresholdList, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold
+        attr_accessor :DDoSLevel, :DDoSThreshold, :DDoSAI, :CCEnable, :CCThreshold, :InstanceDetailList, :ListenerCcThresholdList, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold, :AckFloodThreshold, :AckFloodPktThreshold, :SynAckFloodThreshold, :SynAckFloodPktThreshold, :RstFloodThreshold, :RstFloodPktThreshold
         
-        def initialize(ddoslevel=nil, ddosthreshold=nil, ddosai=nil, ccenable=nil, ccthreshold=nil, instancedetaillist=nil, listenerccthresholdlist=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil)
+        def initialize(ddoslevel=nil, ddosthreshold=nil, ddosai=nil, ccenable=nil, ccthreshold=nil, instancedetaillist=nil, listenerccthresholdlist=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil, ackfloodthreshold=nil, ackfloodpktthreshold=nil, synackfloodthreshold=nil, synackfloodpktthreshold=nil, rstfloodthreshold=nil, rstfloodpktthreshold=nil)
           @DDoSLevel = ddoslevel
           @DDoSThreshold = ddosthreshold
           @DDoSAI = ddosai
@@ -7270,6 +7312,12 @@ module TencentCloud
           @SynFloodPktThreshold = synfloodpktthreshold
           @UdpFloodThreshold = udpfloodthreshold
           @UdpFloodPktThreshold = udpfloodpktthreshold
+          @AckFloodThreshold = ackfloodthreshold
+          @AckFloodPktThreshold = ackfloodpktthreshold
+          @SynAckFloodThreshold = synackfloodthreshold
+          @SynAckFloodPktThreshold = synackfloodpktthreshold
+          @RstFloodThreshold = rstfloodthreshold
+          @RstFloodPktThreshold = rstfloodpktthreshold
         end
 
         def deserialize(params)
@@ -7298,6 +7346,12 @@ module TencentCloud
           @SynFloodPktThreshold = params['SynFloodPktThreshold']
           @UdpFloodThreshold = params['UdpFloodThreshold']
           @UdpFloodPktThreshold = params['UdpFloodPktThreshold']
+          @AckFloodThreshold = params['AckFloodThreshold']
+          @AckFloodPktThreshold = params['AckFloodPktThreshold']
+          @SynAckFloodThreshold = params['SynAckFloodThreshold']
+          @SynAckFloodPktThreshold = params['SynAckFloodPktThreshold']
+          @RstFloodThreshold = params['RstFloodThreshold']
+          @RstFloodPktThreshold = params['RstFloodPktThreshold']
         end
       end
 

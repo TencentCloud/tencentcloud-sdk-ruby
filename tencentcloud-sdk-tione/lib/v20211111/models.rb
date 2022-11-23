@@ -1314,7 +1314,7 @@ module TencentCloud
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param StartCmdInfo: 启动命令信息，默认为sh start.sh
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
-        # @param DataConfigs: 数据配置
+        # @param DataConfigs: 数据配置，依赖DataSource字段
         # @type DataConfigs: Array
         # @param VpcId: VPC Id
         # @type VpcId: String
@@ -5196,6 +5196,183 @@ module TencentCloud
         end
       end
 
+      # ModifyModelService请求参数结构体
+      class ModifyModelServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务id
+        # @type ServiceId: String
+        # @param ModelInfo: 模型信息，需要挂载模型时填写
+        # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
+        # @param ImageInfo: 镜像信息，配置服务运行所需的镜像地址等信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param Env: 环境变量，可选参数，用于配置容器中的环境变量
+        # @type Env: Array
+        # @param Resources: 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
+        # @type Resources: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
+        # @param InstanceType: 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
+        # TI.S.MEDIUM.POST	2C4G
+        # TI.S.LARGE.POST	4C8G
+        # TI.S.2XLARGE16.POST	8C16G
+        # TI.S.2XLARGE32.POST	8C32G
+        # TI.S.4XLARGE32.POST	16C32G
+        # TI.S.4XLARGE64.POST	16C64G
+        # TI.S.6XLARGE48.POST	24C48G
+        # TI.S.6XLARGE96.POST	24C96G
+        # TI.S.8XLARGE64.POST	32C64G
+        # TI.S.8XLARGE128.POST 32C128G
+        # TI.GN7.LARGE20.POST	4C20G T4*1/4
+        # TI.GN7.2XLARGE40.POST	10C40G T4*1/2
+        # TI.GN7.2XLARGE32.POST	8C32G T4*1
+        # TI.GN7.5XLARGE80.POST	20C80G T4*1
+        # TI.GN7.8XLARGE128.POST	32C128G T4*1
+        # TI.GN7.10XLARGE160.POST	40C160G T4*2
+        # TI.GN7.20XLARGE320.POST	80C320G T4*4
+        # @type InstanceType: String
+        # @param ScaleMode: 扩缩容类型 支持：自动 - "AUTO", 手动 - "MANUAL"
+        # @type ScaleMode: String
+        # @param Replicas: 实例数量, 不同计费模式和调节模式下对应关系如下
+        # PREPAID 和 POSTPAID_BY_HOUR:
+        # 手动调节模式下对应 实例数量
+        # 自动调节模式下对应 基于时间的默认策略的实例数量
+        # HYBRID_PAID:
+        # 后付费实例手动调节模式下对应 实例数量
+        # 后付费实例自动调节模式下对应 时间策略的默认策略的实例数量
+        # @type Replicas: Integer
+        # @param HorizontalPodAutoscaler: 自动伸缩信息
+        # @type HorizontalPodAutoscaler: :class:`Tencentcloud::Tione.v20211111.models.HorizontalPodAutoscaler`
+        # @param LogEnable: 是否开启日志投递，开启后需填写配置投递到指定cls
+        # @type LogEnable: Boolean
+        # @param LogConfig: 日志配置，需要投递服务日志到指定cls时填写
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param ServiceAction: 特殊更新行为： "STOP": 停止, "RESUME": 重启, "SCALE": 扩缩容, 存在这些特殊更新行为时，会忽略其他更新字段
+        # @type ServiceAction: String
+        # @param ServiceDescription: 服务的描述
+        # @type ServiceDescription: String
+        # @param ScaleStrategy: 自动伸缩策略
+        # @type ScaleStrategy: String
+        # @param CronScaleJobs: 自动伸缩策略配置 HPA : 通过HPA进行弹性伸缩 CRON 通过定时任务进行伸缩
+        # @type CronScaleJobs: Array
+        # @param HybridBillingPrepaidReplicas: 计费模式[HYBRID_PAID]时生效, 用于标识混合计费模式下的预付费实例数, 若不填则默认为1
+        # @type HybridBillingPrepaidReplicas: Integer
+        # @param ModelHotUpdateEnable: 是否开启模型的热更新。默认不开启
+        # @type ModelHotUpdateEnable: Boolean
+        # @param ScheduledAction: 定时停止配置
+        # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
+        # @param ServiceLimit: 服务限速限流相关配置
+        # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
+        # @param VolumeMount: 挂载配置，目前只支持CFS
+        # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
+
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount
+        
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil)
+          @ServiceId = serviceid
+          @ModelInfo = modelinfo
+          @ImageInfo = imageinfo
+          @Env = env
+          @Resources = resources
+          @InstanceType = instancetype
+          @ScaleMode = scalemode
+          @Replicas = replicas
+          @HorizontalPodAutoscaler = horizontalpodautoscaler
+          @LogEnable = logenable
+          @LogConfig = logconfig
+          @ServiceAction = serviceaction
+          @ServiceDescription = servicedescription
+          @ScaleStrategy = scalestrategy
+          @CronScaleJobs = cronscalejobs
+          @HybridBillingPrepaidReplicas = hybridbillingprepaidreplicas
+          @ModelHotUpdateEnable = modelhotupdateenable
+          @ScheduledAction = scheduledaction
+          @ServiceLimit = servicelimit
+          @VolumeMount = volumemount
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          unless params['ModelInfo'].nil?
+            @ModelInfo = ModelInfo.new
+            @ModelInfo.deserialize(params['ModelInfo'])
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['Env'].nil?
+            @Env = []
+            params['Env'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Env << envvar_tmp
+            end
+          end
+          unless params['Resources'].nil?
+            @Resources = ResourceInfo.new
+            @Resources.deserialize(params['Resources'])
+          end
+          @InstanceType = params['InstanceType']
+          @ScaleMode = params['ScaleMode']
+          @Replicas = params['Replicas']
+          unless params['HorizontalPodAutoscaler'].nil?
+            @HorizontalPodAutoscaler = HorizontalPodAutoscaler.new
+            @HorizontalPodAutoscaler.deserialize(params['HorizontalPodAutoscaler'])
+          end
+          @LogEnable = params['LogEnable']
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @ServiceAction = params['ServiceAction']
+          @ServiceDescription = params['ServiceDescription']
+          @ScaleStrategy = params['ScaleStrategy']
+          unless params['CronScaleJobs'].nil?
+            @CronScaleJobs = []
+            params['CronScaleJobs'].each do |i|
+              cronscalejob_tmp = CronScaleJob.new
+              cronscalejob_tmp.deserialize(i)
+              @CronScaleJobs << cronscalejob_tmp
+            end
+          end
+          @HybridBillingPrepaidReplicas = params['HybridBillingPrepaidReplicas']
+          @ModelHotUpdateEnable = params['ModelHotUpdateEnable']
+          unless params['ScheduledAction'].nil?
+            @ScheduledAction = ScheduledAction.new
+            @ScheduledAction.deserialize(params['ScheduledAction'])
+          end
+          unless params['ServiceLimit'].nil?
+            @ServiceLimit = ServiceLimit.new
+            @ServiceLimit.deserialize(params['ServiceLimit'])
+          end
+          unless params['VolumeMount'].nil?
+            @VolumeMount = VolumeMount.new
+            @VolumeMount.deserialize(params['VolumeMount'])
+          end
+        end
+      end
+
+      # ModifyModelService返回参数结构体
+      class ModifyModelServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Service: 生成的模型服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: :class:`Tencentcloud::Tione.v20211111.models.Service`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Service, :RequestId
+        
+        def initialize(service=nil, requestid=nil)
+          @Service = service
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = Service.new
+            @Service.deserialize(params['Service'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyServiceGroupWeights请求参数结构体
       class ModifyServiceGroupWeightsRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -7134,7 +7311,7 @@ module TencentCloud
         # @type SubUin: String
         # @param Region: 地域
         # @type Region: String
-        # @param FrameworkName: 训练框架名称，eg：SPARK、TENSORFLOW、PYTORCH、LIGHT
+        # @param FrameworkName: 训练框架名称，eg：SPARK、PYSARK、TENSORFLOW、PYTORCH
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkName: String
         # @param FrameworkVersion: 训练框架版本
@@ -7221,7 +7398,7 @@ module TencentCloud
         # @param Message: 任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Status: 任务状态
+        # @param Status: 任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
         # @type Status: String
 
         attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status
@@ -7372,7 +7549,7 @@ module TencentCloud
         # @param TrainingMode: 训练模式eg：PS_WORKER、DDP、MPI、HOROVOD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainingMode: String
-        # @param Status: 任务状态
+        # @param Status: 任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
         # @type Status: String
         # @param RuntimeInSeconds: 运行时长
         # 注意：此字段可能返回 null，表示取不到有效值。

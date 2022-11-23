@@ -3157,12 +3157,57 @@ module TencentCloud
 
       # DescribeParamTemplates请求参数结构体
       class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param EngineVersions: 数据库引擎版本号
+        # @type EngineVersions: Array
+        # @param TemplateNames: 模版名称
+        # @type TemplateNames: Array
+        # @param TemplateIds: 模版ID
+        # @type TemplateIds: Array
+        # @param DbModes: 数据库类型，可选值：NORMAL，SERVERLESS
+        # @type DbModes: Array
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制条数
+        # @type Limit: Integer
+        # @param Products: 查询的模板对应的产品类型
+        # @type Products: Array
+        # @param TemplateTypes: 模版类型
+        # @type TemplateTypes: Array
+        # @param EngineTypes: 版本类型
+        # @type EngineTypes: Array
+        # @param OrderBy: 返回结果的排序字段
+        # @type OrderBy: String
+        # @param OrderDirection: 排序方式（asc、desc）
+        # @type OrderDirection: String
 
+        attr_accessor :EngineVersions, :TemplateNames, :TemplateIds, :DbModes, :Offset, :Limit, :Products, :TemplateTypes, :EngineTypes, :OrderBy, :OrderDirection
         
-        def initialize()
+        def initialize(engineversions=nil, templatenames=nil, templateids=nil, dbmodes=nil, offset=nil, limit=nil, products=nil, templatetypes=nil, enginetypes=nil, orderby=nil, orderdirection=nil)
+          @EngineVersions = engineversions
+          @TemplateNames = templatenames
+          @TemplateIds = templateids
+          @DbModes = dbmodes
+          @Offset = offset
+          @Limit = limit
+          @Products = products
+          @TemplateTypes = templatetypes
+          @EngineTypes = enginetypes
+          @OrderBy = orderby
+          @OrderDirection = orderdirection
         end
 
         def deserialize(params)
+          @EngineVersions = params['EngineVersions']
+          @TemplateNames = params['TemplateNames']
+          @TemplateIds = params['TemplateIds']
+          @DbModes = params['DbModes']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Products = params['Products']
+          @TemplateTypes = params['TemplateTypes']
+          @EngineTypes = params['EngineTypes']
+          @OrderBy = params['OrderBy']
+          @OrderDirection = params['OrderDirection']
         end
       end
 
@@ -4612,14 +4657,21 @@ module TencentCloud
         # @type TemplateDescription: String
         # @param EngineVersion: 引擎版本
         # @type EngineVersion: String
+        # @param DbMode: 数据库类型，可选值：NORMAL，SERVERLESS
+        # @type DbMode: String
+        # @param ParamInfoSet: 参数模板详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamInfoSet: Array
 
-        attr_accessor :Id, :TemplateName, :TemplateDescription, :EngineVersion
+        attr_accessor :Id, :TemplateName, :TemplateDescription, :EngineVersion, :DbMode, :ParamInfoSet
         
-        def initialize(id=nil, templatename=nil, templatedescription=nil, engineversion=nil)
+        def initialize(id=nil, templatename=nil, templatedescription=nil, engineversion=nil, dbmode=nil, paraminfoset=nil)
           @Id = id
           @TemplateName = templatename
           @TemplateDescription = templatedescription
           @EngineVersion = engineversion
+          @DbMode = dbmode
+          @ParamInfoSet = paraminfoset
         end
 
         def deserialize(params)
@@ -4627,6 +4679,15 @@ module TencentCloud
           @TemplateName = params['TemplateName']
           @TemplateDescription = params['TemplateDescription']
           @EngineVersion = params['EngineVersion']
+          @DbMode = params['DbMode']
+          unless params['ParamInfoSet'].nil?
+            @ParamInfoSet = []
+            params['ParamInfoSet'].each do |i|
+              templateparaminfo_tmp = TemplateParamInfo.new
+              templateparaminfo_tmp.deserialize(i)
+              @ParamInfoSet << templateparaminfo_tmp
+            end
+          end
         end
       end
 
@@ -4886,11 +4947,11 @@ module TencentCloud
         # @type RollbackId: Integer
         # @param ExpectTime: 期望回档时间
         # @type ExpectTime: String
-        # @param ExpectTimeThresh: 期望阈值
+        # @param ExpectTimeThresh: 期望阈值（已废弃）
         # @type ExpectTimeThresh: Integer
         # @param RollbackDatabases: 回档数据库列表
         # @type RollbackDatabases: Array
-        # @param RollbackTables: 回档数据库表
+        # @param RollbackTables: 回档数据库表列表
         # @type RollbackTables: Array
 
         attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables
@@ -5276,6 +5337,57 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 参数模板详情
+      class TemplateParamInfo < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param Default: 默认值
+        # @type Default: String
+        # @param EnumValue: 参数类型为enum时可选的值类型集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+        # @param Max: 参数类型为float/integer时的最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Max: String
+        # @param Min: 参数类型为float/integer时的最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Min: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param NeedReboot: 是否需要重启
+        # @type NeedReboot: Integer
+        # @param Description: 参数描述
+        # @type Description: String
+        # @param ParamType: 参数类型，integer/float/string/enum
+        # @type ParamType: String
+
+        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :Description, :ParamType
+        
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, description=nil, paramtype=nil)
+          @CurrentValue = currentvalue
+          @Default = default
+          @EnumValue = enumvalue
+          @Max = max
+          @Min = min
+          @ParamName = paramname
+          @NeedReboot = needreboot
+          @Description = description
+          @ParamType = paramtype
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @Default = params['Default']
+          @EnumValue = params['EnumValue']
+          @Max = params['Max']
+          @Min = params['Min']
+          @ParamName = params['ParamName']
+          @NeedReboot = params['NeedReboot']
+          @Description = params['Description']
+          @ParamType = params['ParamType']
         end
       end
 

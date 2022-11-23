@@ -635,6 +635,58 @@ module TencentCloud
         end
       end
 
+      # CreateHpcCluster请求参数结构体
+      class CreateHpcClusterRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区。
+        # @type Zone: String
+        # @param Name: 高性能计算集群名称。
+        # @type Name: String
+        # @param Remark: 高性能计算集群备注。
+        # @type Remark: String
+
+        attr_accessor :Zone, :Name, :Remark
+        
+        def initialize(zone=nil, name=nil, remark=nil)
+          @Zone = zone
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateHpcCluster返回参数结构体
+      class CreateHpcClusterResponse < TencentCloud::Common::AbstractModel
+        # @param HpcClusterSet: 高性能计算集群信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HpcClusterSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HpcClusterSet, :RequestId
+        
+        def initialize(hpcclusterset=nil, requestid=nil)
+          @HpcClusterSet = hpcclusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HpcClusterSet'].nil?
+            @HpcClusterSet = []
+            params['HpcClusterSet'].each do |i|
+              hpcclusterinfo_tmp = HpcClusterInfo.new
+              hpcclusterinfo_tmp.deserialize(i)
+              @HpcClusterSet << hpcclusterinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImage请求参数结构体
       class CreateImageRequest < TencentCloud::Common::AbstractModel
         # @param ImageName: 镜像名称
@@ -1245,6 +1297,38 @@ module TencentCloud
         end
       end
 
+      # DeleteHpcClusters请求参数结构体
+      class DeleteHpcClustersRequest < TencentCloud::Common::AbstractModel
+        # @param HpcClusterIds: 高性能计算集群ID列表。
+        # @type HpcClusterIds: Array
+
+        attr_accessor :HpcClusterIds
+        
+        def initialize(hpcclusterids=nil)
+          @HpcClusterIds = hpcclusterids
+        end
+
+        def deserialize(params)
+          @HpcClusterIds = params['HpcClusterIds']
+        end
+      end
+
+      # DeleteHpcClusters返回参数结构体
+      class DeleteHpcClustersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteImages请求参数结构体
       class DeleteImagesRequest < TencentCloud::Common::AbstractModel
         # @param ImageIds: 准备删除的镜像Id列表
@@ -1732,6 +1816,69 @@ module TencentCloud
               @HostSet << hostitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHpcClusters请求参数结构体
+      class DescribeHpcClustersRequest < TencentCloud::Common::AbstractModel
+        # @param HpcClusterIds: 高性能计算集群ID数组。
+        # @type HpcClusterIds: Array
+        # @param Name: 高性能计算集群名称。
+        # @type Name: String
+        # @param Zone: 可用区。
+        # @type Zone: String
+        # @param Offset: 偏移量, 默认值0。
+        # @type Offset: Integer
+        # @param Limit: 本次请求量, 默认值20。
+        # @type Limit: Integer
+
+        attr_accessor :HpcClusterIds, :Name, :Zone, :Offset, :Limit
+        
+        def initialize(hpcclusterids=nil, name=nil, zone=nil, offset=nil, limit=nil)
+          @HpcClusterIds = hpcclusterids
+          @Name = name
+          @Zone = zone
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @HpcClusterIds = params['HpcClusterIds']
+          @Name = params['Name']
+          @Zone = params['Zone']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHpcClusters返回参数结构体
+      class DescribeHpcClustersResponse < TencentCloud::Common::AbstractModel
+        # @param HpcClusterSet: 高性能计算集群信息。
+        # @type HpcClusterSet: Array
+        # @param TotalCount: 高性能计算集群总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HpcClusterSet, :TotalCount, :RequestId
+        
+        def initialize(hpcclusterset=nil, totalcount=nil, requestid=nil)
+          @HpcClusterSet = hpcclusterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HpcClusterSet'].nil?
+            @HpcClusterSet = []
+            params['HpcClusterSet'].each do |i|
+              hpcclusterinfo_tmp = HpcClusterInfo.new
+              hpcclusterinfo_tmp.deserialize(i)
+              @HpcClusterSet << hpcclusterinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3461,6 +3608,54 @@ module TencentCloud
           @DiskType = params['DiskType']
           @GpuTotal = params['GpuTotal']
           @GpuAvailable = params['GpuAvailable']
+        end
+      end
+
+      # 高性能计算集群
+      class HpcClusterInfo < TencentCloud::Common::AbstractModel
+        # @param HpcClusterId: 高性能计算集群ID
+        # @type HpcClusterId: String
+        # @param Name: 高性能计算集群名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Remark: 高性能计算集群备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CvmQuotaTotal: 集群下设备容量
+        # @type CvmQuotaTotal: Integer
+        # @param Zone: 集群所在可用区
+        # @type Zone: String
+        # @param CurrentNum: 集群当前已有设备量
+        # @type CurrentNum: Integer
+        # @param CreateTime: 集群创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param InstanceIds: 集群内实例ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIds: Array
+
+        attr_accessor :HpcClusterId, :Name, :Remark, :CvmQuotaTotal, :Zone, :CurrentNum, :CreateTime, :InstanceIds
+        
+        def initialize(hpcclusterid=nil, name=nil, remark=nil, cvmquotatotal=nil, zone=nil, currentnum=nil, createtime=nil, instanceids=nil)
+          @HpcClusterId = hpcclusterid
+          @Name = name
+          @Remark = remark
+          @CvmQuotaTotal = cvmquotatotal
+          @Zone = zone
+          @CurrentNum = currentnum
+          @CreateTime = createtime
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @HpcClusterId = params['HpcClusterId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @CvmQuotaTotal = params['CvmQuotaTotal']
+          @Zone = params['Zone']
+          @CurrentNum = params['CurrentNum']
+          @CreateTime = params['CreateTime']
+          @InstanceIds = params['InstanceIds']
         end
       end
 
@@ -5513,6 +5708,46 @@ module TencentCloud
 
       # ModifyHostsAttribute返回参数结构体
       class ModifyHostsAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHpcClusterAttribute请求参数结构体
+      class ModifyHpcClusterAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param HpcClusterId: 高性能计算集群ID。
+        # @type HpcClusterId: String
+        # @param Name: 高性能计算集群新名称。
+        # @type Name: String
+        # @param Remark: 高性能计算集群新备注。
+        # @type Remark: String
+
+        attr_accessor :HpcClusterId, :Name, :Remark
+        
+        def initialize(hpcclusterid=nil, name=nil, remark=nil)
+          @HpcClusterId = hpcclusterid
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @HpcClusterId = params['HpcClusterId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyHpcClusterAttribute返回参数结构体
+      class ModifyHpcClusterAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
