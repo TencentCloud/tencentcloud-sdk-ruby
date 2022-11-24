@@ -1369,10 +1369,13 @@ module TencentCloud
         # @param SubnetId: 子网ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
+        # @param ProtocolType: 连接数据库的协议类型，当前支持：postgresql、mssql（MSSQL兼容语法）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolType: String
 
-        attr_accessor :Address, :Ip, :Port, :NetType, :Status, :VpcId, :SubnetId
+        attr_accessor :Address, :Ip, :Port, :NetType, :Status, :VpcId, :SubnetId, :ProtocolType
         
-        def initialize(address=nil, ip=nil, port=nil, nettype=nil, status=nil, vpcid=nil, subnetid=nil)
+        def initialize(address=nil, ip=nil, port=nil, nettype=nil, status=nil, vpcid=nil, subnetid=nil, protocoltype=nil)
           @Address = address
           @Ip = ip
           @Port = port
@@ -1380,6 +1383,7 @@ module TencentCloud
           @Status = status
           @VpcId = vpcid
           @SubnetId = subnetid
+          @ProtocolType = protocoltype
         end
 
         def deserialize(params)
@@ -1390,6 +1394,7 @@ module TencentCloud
           @Status = params['Status']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @ProtocolType = params['ProtocolType']
         end
       end
 

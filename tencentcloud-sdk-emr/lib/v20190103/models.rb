@@ -2502,16 +2502,19 @@ module TencentCloud
         # @param Currency: 货币种类。取值范围：
         # <li>CNY：表示人民币。</li>
         # @type Currency: String
+        # @param ResourceIdList: 批量变配资源ID列表
+        # @type ResourceIdList: Array
 
-        attr_accessor :TimeUnit, :TimeSpan, :UpdateSpec, :PayMode, :Placement, :Currency
+        attr_accessor :TimeUnit, :TimeSpan, :UpdateSpec, :PayMode, :Placement, :Currency, :ResourceIdList
         
-        def initialize(timeunit=nil, timespan=nil, updatespec=nil, paymode=nil, placement=nil, currency=nil)
+        def initialize(timeunit=nil, timespan=nil, updatespec=nil, paymode=nil, placement=nil, currency=nil, resourceidlist=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @UpdateSpec = updatespec
           @PayMode = paymode
           @Placement = placement
           @Currency = currency
+          @ResourceIdList = resourceidlist
         end
 
         def deserialize(params)
@@ -2527,6 +2530,7 @@ module TencentCloud
             @Placement.deserialize(params['Placement'])
           end
           @Currency = params['Currency']
+          @ResourceIdList = params['ResourceIdList']
         end
       end
 
@@ -2546,16 +2550,20 @@ module TencentCloud
         # @param TimeSpan: 变配的时长。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
+        # @param PriceDetail: 价格详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :RequestId
         
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
+          @PriceDetail = pricedetail
           @RequestId = requestid
         end
 
@@ -2564,6 +2572,14 @@ module TencentCloud
           @DiscountCost = params['DiscountCost']
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          unless params['PriceDetail'].nil?
+            @PriceDetail = []
+            params['PriceDetail'].each do |i|
+              pricedetail_tmp = PriceDetail.new
+              pricedetail_tmp.deserialize(i)
+              @PriceDetail << pricedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2851,20 +2867,25 @@ module TencentCloud
         # @param ErrorMsg: 校验错误信息，如果不为空，则说明校验失败，配置没有成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
+        # @param Data: 返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsDraft, :ErrorMsg, :RequestId
+        attr_accessor :IsDraft, :ErrorMsg, :Data, :RequestId
         
-        def initialize(isdraft=nil, errormsg=nil, requestid=nil)
+        def initialize(isdraft=nil, errormsg=nil, data=nil, requestid=nil)
           @IsDraft = isdraft
           @ErrorMsg = errormsg
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IsDraft = params['IsDraft']
           @ErrorMsg = params['ErrorMsg']
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -3204,10 +3225,16 @@ module TencentCloud
         # @param ServiceClient: 服务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceClient: String
+        # @param DisableApiTermination: 该实例是否开启实例保护，true为开启 false为关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableApiTermination: Boolean
+        # @param TradeVersion: 0表示老计费，1表示新计费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeVersion: Integer
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion
         
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -3256,6 +3283,8 @@ module TencentCloud
           @IsFederation = isfederation
           @DeviceName = devicename
           @ServiceClient = serviceclient
+          @DisableApiTermination = disableapitermination
+          @TradeVersion = tradeversion
         end
 
         def deserialize(params)
@@ -3327,6 +3356,8 @@ module TencentCloud
           @IsFederation = params['IsFederation']
           @DeviceName = params['DeviceName']
           @ServiceClient = params['ServiceClient']
+          @DisableApiTermination = params['DisableApiTermination']
+          @TradeVersion = params['TradeVersion']
         end
       end
 
@@ -3416,21 +3447,21 @@ module TencentCloud
 
       # 描述集群实例位置信息
       class Placement < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 DescribeProject 的返回值中的 projectId 字段来获取。填0为默认项目。
-        # @type ProjectId: Integer
-        # @param Zone: 实例所属的可用区，例如ap-guangzhou-1。该参数也可以通过调用 DescribeZones 的返回值中的Zone字段来获取。
+        # @param Zone: 实例所属的可用区，例如ap-guangzhou-1。该参数也可以通过调用[DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用[DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :ProjectId, :Zone
+        attr_accessor :Zone, :ProjectId
         
-        def initialize(projectid=nil, zone=nil)
-          @ProjectId = projectid
+        def initialize(zone=nil, projectid=nil)
           @Zone = zone
+          @ProjectId = projectid
         end
 
         def deserialize(params)
-          @ProjectId = params['ProjectId']
           @Zone = params['Zone']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -3798,6 +3829,34 @@ module TencentCloud
           @CosSecretId = params['CosSecretId']
           @CosSecretKey = params['CosSecretKey']
           @AppId = params['AppId']
+        end
+      end
+
+      # 价格详情
+      class PriceDetail < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 节点ID
+        # @type ResourceId: String
+        # @param Formula: 价格计算公式
+        # @type Formula: String
+        # @param OriginalCost: 原价
+        # @type OriginalCost: Float
+        # @param DiscountCost: 折扣价
+        # @type DiscountCost: Float
+
+        attr_accessor :ResourceId, :Formula, :OriginalCost, :DiscountCost
+        
+        def initialize(resourceid=nil, formula=nil, originalcost=nil, discountcost=nil)
+          @ResourceId = resourceid
+          @Formula = formula
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Formula = params['Formula']
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
         end
       end
 

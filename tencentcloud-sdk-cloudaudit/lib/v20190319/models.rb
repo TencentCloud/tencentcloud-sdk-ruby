@@ -203,27 +203,63 @@ module TencentCloud
 
       # CreateAuditTrack请求参数结构体
       class CreateAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @type Name: String
+        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @type ActionType: String
+        # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）
+        # @type ResourceType: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：["*"]；指定ResourceType时，支持全部接口：["*"]；支持部分接口：["cos", "cls"]，接口列表上限10个）
+        # @type EventNames: Array
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @type TrackForAllMembers: Integer
 
+        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
         
-        def initialize()
+        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, trackforallmembers=nil)
+          @Name = name
+          @ActionType = actiontype
+          @ResourceType = resourcetype
+          @Status = status
+          @EventNames = eventnames
+          @Storage = storage
+          @TrackForAllMembers = trackforallmembers
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @ActionType = params['ActionType']
+          @ResourceType = params['ResourceType']
+          @Status = params['Status']
+          @EventNames = params['EventNames']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          @TrackForAllMembers = params['TrackForAllMembers']
         end
       end
 
       # CreateAuditTrack返回参数结构体
       class CreateAuditTrackResponse < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TrackId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(trackid=nil, requestid=nil)
+          @TrackId = trackid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TrackId = params['TrackId']
           @RequestId = params['RequestId']
         end
       end
@@ -266,12 +302,17 @@ module TencentCloud
 
       # DeleteAuditTrack请求参数结构体
       class DeleteAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
 
+        attr_accessor :TrackId
         
-        def initialize()
+        def initialize(trackid=nil)
+          @TrackId = trackid
         end
 
         def deserialize(params)
+          @TrackId = params['TrackId']
         end
       end
 
@@ -375,29 +416,121 @@ module TencentCloud
         end
       end
 
-      # DescribeAuditTracks请求参数结构体
-      class DescribeAuditTracksRequest < TencentCloud::Common::AbstractModel
+      # DescribeAuditTrack请求参数结构体
+      class DescribeAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
 
+        attr_accessor :TrackId
         
-        def initialize()
+        def initialize(trackid=nil)
+          @TrackId = trackid
         end
 
         def deserialize(params)
+          @TrackId = params['TrackId']
+        end
+      end
+
+      # DescribeAuditTrack返回参数结构体
+      class DescribeAuditTrackResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 跟踪集名称
+        # @type Name: String
+        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @type ActionType: String
+        # @param ResourceType: 跟踪事件所属产品（如：cos，全部：*）
+        # @type ResourceType: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param EventNames: 跟踪事件接口名列表（全部：[*]）
+        # @type EventNames: Array
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param CreateTime: 跟踪集创建时间
+        # @type CreateTime: String
+        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackForAllMembers: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackForAllMembers, :RequestId
+        
+        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackforallmembers=nil, requestid=nil)
+          @Name = name
+          @ActionType = actiontype
+          @ResourceType = resourcetype
+          @Status = status
+          @EventNames = eventnames
+          @Storage = storage
+          @CreateTime = createtime
+          @TrackForAllMembers = trackforallmembers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ActionType = params['ActionType']
+          @ResourceType = params['ResourceType']
+          @Status = params['Status']
+          @EventNames = params['EventNames']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          @CreateTime = params['CreateTime']
+          @TrackForAllMembers = params['TrackForAllMembers']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditTracks请求参数结构体
+      class DescribeAuditTracksRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数目
+        # @type PageSize: Integer
+
+        attr_accessor :PageNumber, :PageSize
+        
+        def initialize(pagenumber=nil, pagesize=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
       # DescribeAuditTracks返回参数结构体
       class DescribeAuditTracksResponse < TencentCloud::Common::AbstractModel
+        # @param Tracks: 跟踪集列表
+        # @type Tracks: Array
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Tracks, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(tracks=nil, totalcount=nil, requestid=nil)
+          @Tracks = tracks
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Tracks'].nil?
+            @Tracks = []
+            params['Tracks'].each do |i|
+              tracks_tmp = Tracks.new
+              tracks_tmp.deserialize(i)
+              @Tracks << tracks_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -950,12 +1083,48 @@ module TencentCloud
 
       # ModifyAuditTrack请求参数结构体
       class ModifyAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
+        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @type Name: String
+        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @type ActionType: String
+        # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）
+        # @type ResourceType: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：["*"]；指定ResourceType时，支持全部接口：["*"]；支持部分接口：["cos", "cls"]，接口列表上限10个）
+        # @type EventNames: Array
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @type TrackForAllMembers: Integer
 
+        attr_accessor :TrackId, :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
         
-        def initialize()
+        def initialize(trackid=nil, name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, trackforallmembers=nil)
+          @TrackId = trackid
+          @Name = name
+          @ActionType = actiontype
+          @ResourceType = resourcetype
+          @Status = status
+          @EventNames = eventnames
+          @Storage = storage
+          @TrackForAllMembers = trackforallmembers
         end
 
         def deserialize(params)
+          @TrackId = params['TrackId']
+          @Name = params['Name']
+          @ActionType = params['ActionType']
+          @ResourceType = params['ResourceType']
+          @Status = params['Status']
+          @EventNames = params['EventNames']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          @TrackForAllMembers = params['TrackForAllMembers']
         end
       end
 
@@ -1065,6 +1234,81 @@ module TencentCloud
         def deserialize(params)
           @IsSuccess = params['IsSuccess']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 跟踪集存储信息
+      class Storage < TencentCloud::Common::AbstractModel
+        # @param StorageType: 存储类型（目前支持 cos、cls）
+        # @type StorageType: String
+        # @param StorageRegion: 存储所在地域
+        # @type StorageRegion: String
+        # @param StorageName: 存储名称(cos：存储名称为用户自定义的存储桶名称，不包含"-APPID"，仅支持小写字母、数字以及中划线"-"的组合，不能超过50字符，且不支持中划线"-"开头或结尾； cls：存储名称为日志主题id，字符长度为1-50个字符)
+        # @type StorageName: String
+        # @param StoragePrefix: 存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符
+        # @type StoragePrefix: String
+
+        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix
+        
+        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil)
+          @StorageType = storagetype
+          @StorageRegion = storageregion
+          @StorageName = storagename
+          @StoragePrefix = storageprefix
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          @StorageRegion = params['StorageRegion']
+          @StorageName = params['StorageName']
+          @StoragePrefix = params['StoragePrefix']
+        end
+      end
+
+      # 跟踪集列表
+      class Tracks < TencentCloud::Common::AbstractModel
+        # @param Name: 跟踪集名称
+        # @type Name: String
+        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @type ActionType: String
+        # @param ResourceType: 跟踪事件所属产品（如：cos，全部：*）
+        # @type ResourceType: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param EventNames: 跟踪事件接口名列表（全部：[*]）
+        # @type EventNames: Array
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param CreateTime: 跟踪集创建时间
+        # @type CreateTime: String
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
+
+        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackId
+        
+        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackid=nil)
+          @Name = name
+          @ActionType = actiontype
+          @ResourceType = resourcetype
+          @Status = status
+          @EventNames = eventnames
+          @Storage = storage
+          @CreateTime = createtime
+          @TrackId = trackid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ActionType = params['ActionType']
+          @ResourceType = params['ResourceType']
+          @Status = params['Status']
+          @EventNames = params['EventNames']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          @CreateTime = params['CreateTime']
+          @TrackId = params['TrackId']
         end
       end
 

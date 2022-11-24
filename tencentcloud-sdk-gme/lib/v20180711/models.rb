@@ -264,6 +264,49 @@ module TencentCloud
         end
       end
 
+      # 获取应用列表返回
+      class ApplicationList < TencentCloud::Common::AbstractModel
+        # @param ServiceConf: 服务开关状态
+        # @type ServiceConf: :class:`Tencentcloud::Gme.v20180711.models.ServiceStatus`
+        # @param BizId: 应用ID(AppID)
+        # @type BizId: Integer
+        # @param AppName: 应用名称
+        # @type AppName: String
+        # @param ProjectId: 项目ID，默认为0
+        # @type ProjectId: Integer
+        # @param AppStatus: 应用状态，返回0表示正常，1表示关闭，2表示欠费停服，3表示欠费回收
+        # @type AppStatus: Integer
+        # @param CreateTime: 创建时间，Unix时间戳格式
+        # @type CreateTime: Integer
+        # @param AppType: 应用类型，无需关注此数值
+        # @type AppType: Integer
+
+        attr_accessor :ServiceConf, :BizId, :AppName, :ProjectId, :AppStatus, :CreateTime, :AppType
+        
+        def initialize(serviceconf=nil, bizid=nil, appname=nil, projectid=nil, appstatus=nil, createtime=nil, apptype=nil)
+          @ServiceConf = serviceconf
+          @BizId = bizid
+          @AppName = appname
+          @ProjectId = projectid
+          @AppStatus = appstatus
+          @CreateTime = createtime
+          @AppType = apptype
+        end
+
+        def deserialize(params)
+          unless params['ServiceConf'].nil?
+            @ServiceConf = ServiceStatus.new
+            @ServiceConf.deserialize(params['ServiceConf'])
+          end
+          @BizId = params['BizId']
+          @AppName = params['AppName']
+          @ProjectId = params['ProjectId']
+          @AppStatus = params['AppStatus']
+          @CreateTime = params['CreateTime']
+          @AppType = params['AppType']
+        end
+      end
+
       # 录音转文本用量统计数据
       class AudioTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
@@ -917,6 +960,87 @@ module TencentCloud
         end
       end
 
+      # DescribeApplicationList请求参数结构体
+      class DescribeApplicationListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID，0表示默认项目，-1表示所有项目，如果需要查找具体项目下的应用列表，请填入具体项目ID，项目ID在项目管理中查看 https://console.cloud.tencent.com/project
+        # @type ProjectId: Integer
+        # @param PageNo: 页码ID，0表示第一页，以此后推。默认填0
+        # @type PageNo: Integer
+        # @param PageSize: 每页展示应用数量。默认填200
+        # @type PageSize: Integer
+        # @param SearchText: 所查找应用名称的关键字，支持模糊匹配查找。空串表示查询所有应用
+        # @type SearchText: String
+        # @param TagSet: 标签列表
+        # @type TagSet: Array
+        # @param Filters: 查找过滤关键字列表
+        # @type Filters: Array
+
+        attr_accessor :ProjectId, :PageNo, :PageSize, :SearchText, :TagSet, :Filters
+        
+        def initialize(projectid=nil, pageno=nil, pagesize=nil, searchtext=nil, tagset=nil, filters=nil)
+          @ProjectId = projectid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @SearchText = searchtext
+          @TagSet = tagset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @SearchText = params['SearchText']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApplicationList返回参数结构体
+      class DescribeApplicationListResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationList: 获取应用列表返回
+        # @type ApplicationList: Array
+        # @param Total: 应用总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationList, :Total, :RequestId
+        
+        def initialize(applicationlist=nil, total=nil, requestid=nil)
+          @ApplicationList = applicationlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplicationList'].nil?
+            @ApplicationList = []
+            params['ApplicationList'].each do |i|
+              applicationlist_tmp = ApplicationList.new
+              applicationlist_tmp.deserialize(i)
+              @ApplicationList << applicationlist_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRealtimeScanConfig请求参数结构体
       class DescribeRealtimeScanConfigRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID
@@ -1222,6 +1346,26 @@ module TencentCloud
           end
           @Duration = params['Duration']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查找过滤
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 要过滤的字段名, 比如"AppName"
+        # @type Name: String
+        # @param Values: 多个关键字
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -1811,6 +1955,58 @@ module TencentCloud
         end
       end
 
+      # 服务开关状态
+      class ServiceStatus < TencentCloud::Common::AbstractModel
+        # @param RealTimeSpeech: 实时语音服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTimeSpeech: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+        # @param VoiceMessage: 语音消息服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceMessage: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+        # @param Porn: 语音内容安全服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Porn: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+        # @param Live: 语音录制服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Live: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+        # @param RealTimeAsr: 语音转文本服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTimeAsr: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+
+        attr_accessor :RealTimeSpeech, :VoiceMessage, :Porn, :Live, :RealTimeAsr
+        
+        def initialize(realtimespeech=nil, voicemessage=nil, porn=nil, live=nil, realtimeasr=nil)
+          @RealTimeSpeech = realtimespeech
+          @VoiceMessage = voicemessage
+          @Porn = porn
+          @Live = live
+          @RealTimeAsr = realtimeasr
+        end
+
+        def deserialize(params)
+          unless params['RealTimeSpeech'].nil?
+            @RealTimeSpeech = StatusInfo.new
+            @RealTimeSpeech.deserialize(params['RealTimeSpeech'])
+          end
+          unless params['VoiceMessage'].nil?
+            @VoiceMessage = StatusInfo.new
+            @VoiceMessage.deserialize(params['VoiceMessage'])
+          end
+          unless params['Porn'].nil?
+            @Porn = StatusInfo.new
+            @Porn.deserialize(params['Porn'])
+          end
+          unless params['Live'].nil?
+            @Live = StatusInfo.new
+            @Live.deserialize(params['Live'])
+          end
+          unless params['RealTimeAsr'].nil?
+            @RealTimeAsr = StatusInfo.new
+            @RealTimeAsr.deserialize(params['RealTimeAsr'])
+          end
+        end
+      end
+
       # 用量数据单元
       class StatisticsItem < TencentCloud::Common::AbstractModel
         # @param StatDate: 日期，格式为年-月-日，如2018-07-13
@@ -1828,6 +2024,22 @@ module TencentCloud
         def deserialize(params)
           @StatDate = params['StatDate']
           @Data = params['Data']
+        end
+      end
+
+      # 服务开关状态
+      class StatusInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 服务开关状态， 0-正常，1-关闭
+        # @type Status: Integer
+
+        attr_accessor :Status
+        
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 

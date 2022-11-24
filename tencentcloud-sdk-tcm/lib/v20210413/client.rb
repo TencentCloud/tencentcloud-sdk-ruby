@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取AccessLog配置
+
+        # @param request: Request instance for DescribeAccessLogConfig.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::DescribeAccessLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::DescribeAccessLogConfigResponse`
+        def DescribeAccessLogConfig(request)
+          body = send_request('DescribeAccessLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询网格详情
 
         # @param request: Request instance for DescribeMesh.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = LinkPrometheusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改访问日志配置
+
+        # @param request: Request instance for ModifyAccessLogConfig.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::ModifyAccessLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::ModifyAccessLogConfigResponse`
+        def ModifyAccessLogConfig(request)
+          body = send_request('ModifyAccessLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccessLogConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

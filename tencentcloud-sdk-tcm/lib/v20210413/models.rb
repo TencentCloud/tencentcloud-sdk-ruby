@@ -521,6 +521,63 @@ module TencentCloud
         end
       end
 
+      # DescribeAccessLogConfig请求参数结构体
+      class DescribeAccessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: mesh名字
+        # @type MeshId: String
+
+        attr_accessor :MeshId
+        
+        def initialize(meshid=nil)
+          @MeshId = meshid
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+        end
+      end
+
+      # DescribeAccessLogConfig返回参数结构体
+      class DescribeAccessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param File: 访问日志输出路径。默认 /dev/stdout
+        # @type File: String
+        # @param Format: 访问日志的格式。
+        # @type Format: String
+        # @param Encoding: 访问日志输出编码。默认 “TEXT”。除此之外还有“JSON”
+        # @type Encoding: String
+        # @param SelectedRange: 选中的范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectedRange: :class:`Tencentcloud::Tcm.v20210413.models.SelectedRange`
+        # @param Template: 采用的模板，可取值为"istio, trace，默认为istio
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Template: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :File, :Format, :Encoding, :SelectedRange, :Template, :RequestId
+        
+        def initialize(file=nil, format=nil, encoding=nil, selectedrange=nil, template=nil, requestid=nil)
+          @File = file
+          @Format = format
+          @Encoding = encoding
+          @SelectedRange = selectedrange
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @File = params['File']
+          @Format = params['Format']
+          @Encoding = params['Encoding']
+          unless params['SelectedRange'].nil?
+            @SelectedRange = SelectedRange.new
+            @SelectedRange.deserialize(params['SelectedRange'])
+          end
+          @Template = params['Template']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMeshList请求参数结构体
       class DescribeMeshListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件
@@ -1426,6 +1483,80 @@ module TencentCloud
             @Resource = ResourceMetricSource.new
             @Resource.deserialize(params['Resource'])
           end
+        end
+      end
+
+      # ModifyAccessLogConfig请求参数结构体
+      class ModifyAccessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: mesh ID
+        # @type MeshId: String
+        # @param SelectedRange: 选中的范围
+        # @type SelectedRange: :class:`Tencentcloud::Tcm.v20210413.models.SelectedRange`
+        # @param Template: 采用的模板，可选值：istio（默认）、trace、custom
+        # @type Template: String
+        # @param Enable: 是否启用
+        # @type Enable: Boolean
+        # @param CLS: 腾讯云日志服务相关参数
+        # @type CLS: :class:`Tencentcloud::Tcm.v20210413.models.CLS`
+        # @param Encoding: 编码格式，可选值：TEXT、JSON
+        # @type Encoding: String
+        # @param Format: 日志格式
+        # @type Format: String
+        # @param EnableStdout: 是否启用标准输出
+        # @type EnableStdout: Boolean
+        # @param EnableServer: 是否启动GRPC第三方服务器
+        # @type EnableServer: Boolean
+        # @param Address: GRPC第三方服务器地址
+        # @type Address: String
+
+        attr_accessor :MeshId, :SelectedRange, :Template, :Enable, :CLS, :Encoding, :Format, :EnableStdout, :EnableServer, :Address
+        
+        def initialize(meshid=nil, selectedrange=nil, template=nil, enable=nil, cls=nil, encoding=nil, format=nil, enablestdout=nil, enableserver=nil, address=nil)
+          @MeshId = meshid
+          @SelectedRange = selectedrange
+          @Template = template
+          @Enable = enable
+          @CLS = cls
+          @Encoding = encoding
+          @Format = format
+          @EnableStdout = enablestdout
+          @EnableServer = enableserver
+          @Address = address
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          unless params['SelectedRange'].nil?
+            @SelectedRange = SelectedRange.new
+            @SelectedRange.deserialize(params['SelectedRange'])
+          end
+          @Template = params['Template']
+          @Enable = params['Enable']
+          unless params['CLS'].nil?
+            @CLS = CLS.new
+            @CLS.deserialize(params['CLS'])
+          end
+          @Encoding = params['Encoding']
+          @Format = params['Format']
+          @EnableStdout = params['EnableStdout']
+          @EnableServer = params['EnableServer']
+          @Address = params['Address']
+        end
+      end
+
+      # ModifyAccessLogConfig返回参数结构体
+      class ModifyAccessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

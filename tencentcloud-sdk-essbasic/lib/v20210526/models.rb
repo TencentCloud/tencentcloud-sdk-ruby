@@ -1245,11 +1245,11 @@ module TencentCloud
         # @param ChannelComponentId: 渠道控件ID。
         # 如果不为空，属于渠道预设控件；
         # @type ChannelComponentId: String
-        # @param KeywordPage: 指定关键字页码
+        # @param KeywordPage: 指定关键字页码，可选参数，指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
         # @type KeywordPage: Integer
-        # @param RelativeLocation: 关键字位置模式
+        # @param RelativeLocation: 关键字位置模式，Middle-居中，Below-正下方，Right-正右方，LowerRight-右上角，UpperRight-右下角。示例：如果设置Middle的关键字盖章，则印章的中心会和关键字的中心重合，如果设置Below，则印章在关键字的正下方
         # @type RelativeLocation: String
-        # @param KeywordIndexes: 关键字索引
+        # @param KeywordIndexes: 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         # @type KeywordIndexes: Array
 
         attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordPage, :RelativeLocation, :KeywordIndexes
@@ -1330,10 +1330,12 @@ module TencentCloud
         # @type AutoJumpBackEvent: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param AuthorizationTypes: 支持的授权方式,授权方式: "1" - 上传授权书认证  "2" - 法定代表人认证
+        # @type AuthorizationTypes: Array
 
-        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :Operator, :AuthorizationTypes
         
-        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, operator=nil, authorizationtypes=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @ProxyOperatorName = proxyoperatorname
@@ -1344,6 +1346,7 @@ module TencentCloud
           @Endpoint = endpoint
           @AutoJumpBackEvent = autojumpbackevent
           @Operator = operator
+          @AuthorizationTypes = authorizationtypes
         end
 
         def deserialize(params)
@@ -1363,6 +1366,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @AuthorizationTypes = params['AuthorizationTypes']
         end
       end
 

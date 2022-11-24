@@ -2156,6 +2156,17 @@ module TencentCloud
         end
       end
 
+      # 数据治理规则
+      class DataGovernPolicy < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 数据库对象
       class DatabaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 数据库名称，长度0~128，支持数字、字母下划线，不允许数字大头，统一转换为小写。
@@ -2219,10 +2230,16 @@ module TencentCloud
         # @param UserSubUin: 建库用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserSubUin: String
+        # @param GovernPolicy: 数据治理配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
+        # @param DatabaseId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
 
-        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime, :Location, :UserAlias, :UserSubUin
+        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime, :Location, :UserAlias, :UserSubUin, :GovernPolicy, :DatabaseId
         
-        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil, location=nil, useralias=nil, usersubuin=nil)
+        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil, location=nil, useralias=nil, usersubuin=nil, governpolicy=nil, databaseid=nil)
           @DatabaseName = databasename
           @Comment = comment
           @Properties = properties
@@ -2231,6 +2248,8 @@ module TencentCloud
           @Location = location
           @UserAlias = useralias
           @UserSubUin = usersubuin
+          @GovernPolicy = governpolicy
+          @DatabaseId = databaseid
         end
 
         def deserialize(params)
@@ -2249,6 +2268,11 @@ module TencentCloud
           @Location = params['Location']
           @UserAlias = params['UserAlias']
           @UserSubUin = params['UserSubUin']
+          unless params['GovernPolicy'].nil?
+            @GovernPolicy = DataGovernPolicy.new
+            @GovernPolicy.deserialize(params['GovernPolicy'])
+          end
+          @DatabaseId = params['DatabaseId']
         end
       end
 
@@ -5025,10 +5049,13 @@ module TencentCloud
         # @param UserSubUin: 建表用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserSubUin: String
+        # @param GovernPolicy: 数据治理配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy
         
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
@@ -5037,6 +5064,7 @@ module TencentCloud
           @TableFormat = tableformat
           @UserAlias = useralias
           @UserSubUin = usersubuin
+          @GovernPolicy = governpolicy
         end
 
         def deserialize(params)
@@ -5048,6 +5076,10 @@ module TencentCloud
           @TableFormat = params['TableFormat']
           @UserAlias = params['UserAlias']
           @UserSubUin = params['UserSubUin']
+          unless params['GovernPolicy'].nil?
+            @GovernPolicy = DataGovernPolicy.new
+            @GovernPolicy.deserialize(params['GovernPolicy'])
+          end
         end
       end
 

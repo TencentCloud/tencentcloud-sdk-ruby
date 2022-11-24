@@ -727,7 +727,7 @@ module TencentCloud
 
       # CreateMigrationService返回参数结构体
       class CreateMigrationServiceResponse < TencentCloud::Common::AbstractModel
-        # @param JobIds: 下单成功随机生成的迁移服务id列表，形如：dts-c1f6rs21
+        # @param JobIds: 下单成功随机生成的迁移任务id列表，形如：dts-c1f6rs21
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4051,7 +4051,7 @@ module TencentCloud
         end
       end
 
-      # 表图对象集合，当 TableMode 为 partial 时，此项需要填写
+      # 表对象集合，当 TableMode 为 partial 时，此项需要填写
       class TableItem < TencentCloud::Common::AbstractModel
         # @param TableName: 迁移的表名
         # 注意：此字段可能返回 null，表示取不到有效值。

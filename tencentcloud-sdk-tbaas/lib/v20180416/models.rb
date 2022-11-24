@@ -17,6 +17,54 @@
 module TencentCloud
   module Tbaas
     module V20180416
+      # ApplyChainMakerBatchUserCert请求参数结构体
+      class ApplyChainMakerBatchUserCertRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param SignUserCsrList: 证书标识和证书请求文件，可参考TBaaS证书生成相关文档生成证书请求文件
+        # @type SignUserCsrList: Array
+
+        attr_accessor :ClusterId, :SignUserCsrList
+        
+        def initialize(clusterid=nil, signusercsrlist=nil)
+          @ClusterId = clusterid
+          @SignUserCsrList = signusercsrlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SignUserCsrList'].nil?
+            @SignUserCsrList = []
+            params['SignUserCsrList'].each do |i|
+              signcertcsr_tmp = SignCertCsr.new
+              signcertcsr_tmp.deserialize(i)
+              @SignUserCsrList << signcertcsr_tmp
+            end
+          end
+        end
+      end
+
+      # ApplyChainMakerBatchUserCert返回参数结构体
+      class ApplyChainMakerBatchUserCertResponse < TencentCloud::Common::AbstractModel
+        # @param SignUserCrtList: 成功生成的用户证书的base64编码字符串列表，与SignUserCsrList一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignUserCrtList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignUserCrtList, :RequestId
+        
+        def initialize(signusercrtlist=nil, requestid=nil)
+          @SignUserCrtList = signusercrtlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignUserCrtList = params['SignUserCrtList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyUserCert请求参数结构体
       class ApplyUserCertRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：cert_mng
@@ -2553,6 +2601,26 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于申请用户签名证书的结构体
+      class SignCertCsr < TencentCloud::Common::AbstractModel
+        # @param CertMark: 用户签名证书的标识，会存在于用户申请的证书中
+        # @type CertMark: String
+        # @param SignCsrContent: 用户申请签名证书所需要的证书请求文件的base64编码
+        # @type SignCsrContent: String
+
+        attr_accessor :CertMark, :SignCsrContent
+        
+        def initialize(certmark=nil, signcsrcontent=nil)
+          @CertMark = certmark
+          @SignCsrContent = signcsrcontent
+        end
+
+        def deserialize(params)
+          @CertMark = params['CertMark']
+          @SignCsrContent = params['SignCsrContent']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 批量申请长安链用户签名证书
+
+        # @param request: Request instance for ApplyChainMakerBatchUserCert.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::ApplyChainMakerBatchUserCertRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::ApplyChainMakerBatchUserCertResponse`
+        def ApplyChainMakerBatchUserCert(request)
+          body = send_request('ApplyChainMakerBatchUserCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyChainMakerBatchUserCertResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 申请用户证书
 
         # @param request: Request instance for ApplyUserCert.

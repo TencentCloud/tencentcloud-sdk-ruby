@@ -4270,32 +4270,41 @@ module TencentCloud
 
       # CreateHostExportJob请求参数结构体
       class CreateHostExportJobRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Filters: 需要返回的数量，默认为10，最大值为10000
+        # @param Filters: 过滤条件。
+        # <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
+        # <li>HostName - String - 是否必填：否 - 主机名筛选</li>
+        # <li>Group- String - 是否必填：否 - 主机群组搜索</li>
+        # <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
+        # <li>HostID- string - 是否必填：否 - 主机id搜索</li>
+        # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
+        # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li>
+        # <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
+        # <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
+        # <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
         # @type Filters: Array
         # @param Limit: 偏移量，默认为0。
         # @type Limit: Integer
-        # @param Offset: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # @param Offset: 需要返回的数量，默认为10，最大值为10000
         # @type Offset: Integer
         # @param By: 排序字段
         # @type By: String
         # @param Order: 升序降序,asc desc
         # @type Order: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ExportField, :Filters, :Limit, :Offset, :By, :Order
+        attr_accessor :Filters, :Limit, :Offset, :By, :Order, :ExportField
         
-        def initialize(exportfield=nil, filters=nil, limit=nil, offset=nil, by=nil, order=nil)
-          @ExportField = exportfield
+        def initialize(filters=nil, limit=nil, offset=nil, by=nil, order=nil, exportfield=nil)
           @Filters = filters
           @Limit = limit
           @Offset = offset
           @By = by
           @Order = order
+          @ExportField = exportfield
         end
 
         def deserialize(params)
-          @ExportField = params['ExportField']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4308,6 +4317,7 @@ module TencentCloud
           @Offset = params['Offset']
           @By = params['By']
           @Order = params['Order']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -7649,12 +7659,16 @@ module TencentCloud
         # @type InstanceID: String
         # @param RegionID: 地域ID
         # @type RegionID: Integer
+        # @param Project: 所属项目
+        # @type Project: :class:`Tencentcloud::Tcss.v20201101.models.ProjectInfo`
+        # @param Tags: 标签
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :InstanceID, :RegionID, :RequestId
+        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :InstanceID, :RegionID, :Project, :Tags, :RequestId
         
-        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, instanceid=nil, regionid=nil, requestid=nil)
+        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, requestid=nil)
           @UUID = uuid
           @UpdateTime = updatetime
           @HostName = hostname
@@ -7679,6 +7693,8 @@ module TencentCloud
           @PublicIp = publicip
           @InstanceID = instanceid
           @RegionID = regionid
+          @Project = project
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -7707,6 +7723,18 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @InstanceID = params['InstanceID']
           @RegionID = params['RegionID']
+          unless params['Project'].nil?
+            @Project = ProjectInfo.new
+            @Project.deserialize(params['Project'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7726,6 +7754,8 @@ module TencentCloud
         # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
         # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li>
         # <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
+        # <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
+        # <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -18901,10 +18931,16 @@ module TencentCloud
         # @type InstanceID: String
         # @param RegionID: 地域ID
         # @type RegionID: Integer
+        # @param Project: 所属项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Project: :class:`Tencentcloud::Tcss.v20201101.models.ProjectInfo`
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags
         
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -18920,6 +18956,8 @@ module TencentCloud
           @Uuid = uuid
           @InstanceID = instanceid
           @RegionID = regionid
+          @Project = project
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -18938,6 +18976,18 @@ module TencentCloud
           @Uuid = params['Uuid']
           @InstanceID = params['InstanceID']
           @RegionID = params['RegionID']
+          unless params['Project'].nil?
+            @Project = ProjectInfo.new
+            @Project.deserialize(params['Project'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -22053,6 +22103,26 @@ module TencentCloud
         end
       end
 
+      # 主机所属项目
+      class ProjectInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param ProjectID: 项目ID
+        # @type ProjectID: Integer
+
+        attr_accessor :ProjectName, :ProjectID
+        
+        def initialize(projectname=nil, projectid=nil)
+          @ProjectName = projectname
+          @ProjectID = projectid
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          @ProjectID = params['ProjectID']
+        end
+      end
+
       # 促销活动内容
       class PromotionActivityContent < TencentCloud::Common::AbstractModel
         # @param MonthNum: 月数
@@ -23700,6 +23770,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 主机标签信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

@@ -78,7 +78,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询硬件节点信息
+        # 查询集群节点信息
 
         # @param request: Request instance for DescribeClusterNodes.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeClusterNodesRequest`
@@ -439,7 +439,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改yarn资源调度的资源配置
+        # 修改YARN资源调度的资源配置
 
         # @param request: Request instance for ModifyResourceScheduleConfig.
         # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceScheduleConfigRequest`
@@ -511,7 +511,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例扩容
+        # 扩容节点
 
         # @param request: Request instance for ScaleOutInstance.
         # @type request: :class:`Tencentcloud::emr::V20190103::ScaleOutInstanceRequest`
