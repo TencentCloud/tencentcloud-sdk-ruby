@@ -871,6 +871,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建k8s api异常事件导出任务
+
+        # @param request: Request instance for CreateK8sApiAbnormalEventExportJob.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalEventExportJobRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalEventExportJobResponse`
+        def CreateK8sApiAbnormalEventExportJob(request)
+          body = send_request('CreateK8sApiAbnormalEventExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateK8sApiAbnormalEventExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建k8sApi异常规则导出任务
+
+        # @param request: Request instance for CreateK8sApiAbnormalRuleExportJob.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalRuleExportJobRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalRuleExportJobResponse`
+        def CreateK8sApiAbnormalRuleExportJob(request)
+          body = send_request('CreateK8sApiAbnormalRuleExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateK8sApiAbnormalRuleExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建k8sapi异常事件规则
+
+        # @param request: Request instance for CreateK8sApiAbnormalRuleInfo.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalRuleInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalRuleInfoResponse`
+        def CreateK8sApiAbnormalRuleInfo(request)
+          body = send_request('CreateK8sApiAbnormalRuleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateK8sApiAbnormalRuleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 容器网络集群下发刷新任务
 
         # @param request: Request instance for CreateNetworkFirewallClusterRefresh.
@@ -1482,6 +1554,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIgnoreVulResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除k8sapi异常事件规则
+
+        # @param request: Request instance for DeleteK8sApiAbnormalRule.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DeleteK8sApiAbnormalRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DeleteK8sApiAbnormalRuleResponse`
+        def DeleteK8sApiAbnormalRule(request)
+          body = send_request('DeleteK8sApiAbnormalRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteK8sApiAbnormalRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2154,6 +2250,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAssetAppServiceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群列表
+
+        # @param request: Request instance for DescribeAssetClusterList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeAssetClusterListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeAssetClusterListResponse`
+        def DescribeAssetClusterList(request)
+          body = send_request('DescribeAssetClusterList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetClusterListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4122,6 +4242,174 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInspectionReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8s api 异常事件详情
+
+        # @param request: Request instance for DescribeK8sApiAbnormalEventInfo.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalEventInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalEventInfoResponse`
+        def DescribeK8sApiAbnormalEventInfo(request)
+          body = send_request('DescribeK8sApiAbnormalEventInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalEventInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8s api异常事件列表
+
+        # @param request: Request instance for DescribeK8sApiAbnormalEventList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalEventListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalEventListResponse`
+        def DescribeK8sApiAbnormalEventList(request)
+          body = send_request('DescribeK8sApiAbnormalEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8sapi异常请求规则详情
+
+        # @param request: Request instance for DescribeK8sApiAbnormalRuleInfo.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleInfoResponse`
+        def DescribeK8sApiAbnormalRuleInfo(request)
+          body = send_request('DescribeK8sApiAbnormalRuleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalRuleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8sapi异常请求规则列表
+
+        # @param request: Request instance for DescribeK8sApiAbnormalRuleList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleListResponse`
+        def DescribeK8sApiAbnormalRuleList(request)
+          body = send_request('DescribeK8sApiAbnormalRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8s api 异常规则中范围列表
+
+        # @param request: Request instance for DescribeK8sApiAbnormalRuleScopeList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleScopeListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleScopeListResponse`
+        def DescribeK8sApiAbnormalRuleScopeList(request)
+          body = send_request('DescribeK8sApiAbnormalRuleScopeList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalRuleScopeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8sapi异常事件统计
+
+        # @param request: Request instance for DescribeK8sApiAbnormalSummary.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalSummaryRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalSummaryResponse`
+        def DescribeK8sApiAbnormalSummary(request)
+          body = send_request('DescribeK8sApiAbnormalSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询k8sapi异常事件趋势
+
+        # @param request: Request instance for DescribeK8sApiAbnormalTendency.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalTendencyRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalTendencyResponse`
+        def DescribeK8sApiAbnormalTendency(request)
+          body = send_request('DescribeK8sApiAbnormalTendency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeK8sApiAbnormalTendencyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6690,6 +6978,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyImageAuthorizedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改k8sapi异常事件状态
+
+        # @param request: Request instance for ModifyK8sApiAbnormalEventStatus.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalEventStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalEventStatusResponse`
+        def ModifyK8sApiAbnormalEventStatus(request)
+          body = send_request('ModifyK8sApiAbnormalEventStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyK8sApiAbnormalEventStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改k8sapi异常规则信息
+
+        # @param request: Request instance for ModifyK8sApiAbnormalRuleInfo.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalRuleInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalRuleInfoResponse`
+        def ModifyK8sApiAbnormalRuleInfo(request)
+          body = send_request('ModifyK8sApiAbnormalRuleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyK8sApiAbnormalRuleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改k8sapi异常事件规则状态
+
+        # @param request: Request instance for ModifyK8sApiAbnormalRuleStatus.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalRuleStatusResponse`
+        def ModifyK8sApiAbnormalRuleStatus(request)
+          body = send_request('ModifyK8sApiAbnormalRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyK8sApiAbnormalRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

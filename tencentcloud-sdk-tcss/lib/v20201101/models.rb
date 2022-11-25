@@ -1617,6 +1617,43 @@ module TencentCloud
         end
       end
 
+      # 集群列表Item
+      class AssetClusterListItem < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Status: 集群状态
+        # CSR_RUNNING: 运行中
+        # CSR_EXCEPTION:异常
+        # CSR_DEL:已经删除
+        # @type Status: String
+        # @param BindRuleName: 绑定规则名称
+        # @type BindRuleName: String
+        # @param ClusterType: 集群类型:
+        # CT_TKE: TKE集群
+        # CT_USER_CREATE: 用户自建集群
+        # @type ClusterType: String
+
+        attr_accessor :ClusterID, :ClusterName, :Status, :BindRuleName, :ClusterType
+        
+        def initialize(clusterid=nil, clustername=nil, status=nil, bindrulename=nil, clustertype=nil)
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @Status = status
+          @BindRuleName = bindrulename
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @Status = params['Status']
+          @BindRuleName = params['BindRuleName']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
       # 容器安全
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
       # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -4412,6 +4449,173 @@ module TencentCloud
         end
       end
 
+      # CreateK8sApiAbnormalEventExportJob请求参数结构体
+      class CreateK8sApiAbnormalEventExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
+        # <li>MatchRules - string  - 是否必填: 否 -命中规则筛选</li>
+        # <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
+        # <li>Status - string  - 是否必填: 否 -事件状态筛选</li>
+        # <li>MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选</li>
+        # <li>ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态</li>
+        # <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
+        # <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Filters, :Order, :By, :ExportField
+        
+        def initialize(filters=nil, order=nil, by=nil, exportfield=nil)
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateK8sApiAbnormalEventExportJob返回参数结构体
+      class CreateK8sApiAbnormalEventExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateK8sApiAbnormalRuleExportJob请求参数结构体
+      class CreateK8sApiAbnormalRuleExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>RuleType - string  - 是否必填: 否 -规则类型</li>
+        # <li>Status - string  - 是否必填: 否 -状态</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: Array
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Filters, :Order, :By, :ExportField
+        
+        def initialize(filters=nil, order=nil, by=nil, exportfield=nil)
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateK8sApiAbnormalRuleExportJob返回参数结构体
+      class CreateK8sApiAbnormalRuleExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateK8sApiAbnormalRuleInfo请求参数结构体
+      class CreateK8sApiAbnormalRuleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RuleInfo: 规则详情
+        # @type RuleInfo: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleInfo`
+        # @param CopySrcRuleID: 拷贝规则ID(适用于复制规则场景)
+        # @type CopySrcRuleID: String
+        # @param EventID: 事件ID(适用于事件加白场景)
+        # @type EventID: Integer
+
+        attr_accessor :RuleInfo, :CopySrcRuleID, :EventID
+        
+        def initialize(ruleinfo=nil, copysrcruleid=nil, eventid=nil)
+          @RuleInfo = ruleinfo
+          @CopySrcRuleID = copysrcruleid
+          @EventID = eventid
+        end
+
+        def deserialize(params)
+          unless params['RuleInfo'].nil?
+            @RuleInfo = K8sApiAbnormalRuleInfo.new
+            @RuleInfo.deserialize(params['RuleInfo'])
+          end
+          @CopySrcRuleID = params['CopySrcRuleID']
+          @EventID = params['EventID']
+        end
+      end
+
+      # CreateK8sApiAbnormalRuleInfo返回参数结构体
+      class CreateK8sApiAbnormalRuleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleID, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleID = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNetworkFirewallClusterRefresh请求参数结构体
       class CreateNetworkFirewallClusterRefreshRequest < TencentCloud::Common::AbstractModel
 
@@ -5684,6 +5888,38 @@ module TencentCloud
 
       # DeleteIgnoreVul返回参数结构体
       class DeleteIgnoreVulResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteK8sApiAbnormalRule请求参数结构体
+      class DeleteK8sApiAbnormalRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIDSet: 规则ID集合
+        # @type RuleIDSet: Array
+
+        attr_accessor :RuleIDSet
+        
+        def initialize(ruleidset=nil)
+          @RuleIDSet = ruleidset
+        end
+
+        def deserialize(params)
+          @RuleIDSet = params['RuleIDSet']
+        end
+      end
+
+      # DeleteK8sApiAbnormalRule返回参数结构体
+      class DeleteK8sApiAbnormalRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7222,6 +7458,79 @@ module TencentCloud
               serviceinfo_tmp = ServiceInfo.new
               serviceinfo_tmp.deserialize(i)
               @List << serviceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetClusterList请求参数结构体
+      class DescribeAssetClusterListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
+        # <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
+        # <li>Status - string  - 是否必填: 否 -集群状态</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段。
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeAssetClusterList返回参数结构体
+      class DescribeAssetClusterListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 集群列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              assetclusterlistitem_tmp = AssetClusterListItem.new
+              assetclusterlistitem_tmp.deserialize(i)
+              @List << assetclusterlistitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -12806,6 +13115,396 @@ module TencentCloud
         def deserialize(params)
           @ReportName = params['ReportName']
           @ReportUrl = params['ReportUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalEventInfo请求参数结构体
+      class DescribeK8sApiAbnormalEventInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 事件ID
+        # @type ID: Integer
+
+        attr_accessor :ID
+        
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeK8sApiAbnormalEventInfo返回参数结构体
+      class DescribeK8sApiAbnormalEventInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 事件详情
+        # @type Info: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalEventInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = K8sApiAbnormalEventInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalEventList请求参数结构体
+      class DescribeK8sApiAbnormalEventListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
+        # <li>MatchRules - string  - 是否必填: 否 -命中规则筛选</li>
+        # <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
+        # <li>Status - string  - 是否必填: 否 -事件状态筛选</li>
+        # <li>MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选</li>
+        # <li>ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态</li>
+        # <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
+        # <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # LatestFoundTime: 最近生成时间
+        # AlarmCount: 告警数量
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeK8sApiAbnormalEventList返回参数结构体
+      class DescribeK8sApiAbnormalEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 事件列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              k8sapiabnormaleventlistitem_tmp = K8sApiAbnormalEventListItem.new
+              k8sapiabnormaleventlistitem_tmp.deserialize(i)
+              @List << k8sapiabnormaleventlistitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleInfo请求参数结构体
+      class DescribeK8sApiAbnormalRuleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+
+        attr_accessor :RuleID
+        
+        def initialize(ruleid=nil)
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleInfo返回参数结构体
+      class DescribeK8sApiAbnormalRuleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 规则详情
+        # @type Info: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = K8sApiAbnormalRuleInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleList请求参数结构体
+      class DescribeK8sApiAbnormalRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>RuleType - string  - 是否必填: 否 -规则类型</li>
+        # <li>Status - string  - 是否必填: 否 -状态</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段。
+        # <li>UpdateTime - string  - 是否必填: 否 -最后更新时间</li>
+        # <li>EffectClusterCount - string  - 是否必填: 否 -影响集群数</li>
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleList返回参数结构体
+      class DescribeK8sApiAbnormalRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 规则列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              k8sapiabnormalrulelistitem_tmp = K8sApiAbnormalRuleListItem.new
+              k8sapiabnormalrulelistitem_tmp.deserialize(i)
+              @List << k8sapiabnormalrulelistitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleScopeList请求参数结构体
+      class DescribeK8sApiAbnormalRuleScopeListRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Filters: 过滤条件。
+        # <li>Action - string -是否必填: 否 - 执行动作</li>
+        # <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
+        # @type Filters: Array
+
+        attr_accessor :RuleID, :Offset, :Limit, :Filters
+        
+        def initialize(ruleid=nil, offset=nil, limit=nil, filters=nil)
+          @RuleID = ruleid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeK8sApiAbnormalRuleScopeList返回参数结构体
+      class DescribeK8sApiAbnormalRuleScopeListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              k8sapiabnormalrulescopeinfo_tmp = K8sApiAbnormalRuleScopeInfo.new
+              k8sapiabnormalrulescopeinfo_tmp.deserialize(i)
+              @List << k8sapiabnormalrulescopeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalSummary请求参数结构体
+      class DescribeK8sApiAbnormalSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeK8sApiAbnormalSummary返回参数结构体
+      class DescribeK8sApiAbnormalSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param UnhandleEventCount: 待处理事件个数
+        # @type UnhandleEventCount: Integer
+        # @param UnhandleHighLevelEventCount: 待处理高危事件个数
+        # @type UnhandleHighLevelEventCount: Integer
+        # @param UnhandleMediumLevelEventCount: 待处理中危事件个数
+        # @type UnhandleMediumLevelEventCount: Integer
+        # @param UnhandleLowLevelEventCount: 待处理低危事件个数
+        # @type UnhandleLowLevelEventCount: Integer
+        # @param UnhandleNoticeLevelEventCount: 待处理提示级别事件个数
+        # @type UnhandleNoticeLevelEventCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnhandleEventCount, :UnhandleHighLevelEventCount, :UnhandleMediumLevelEventCount, :UnhandleLowLevelEventCount, :UnhandleNoticeLevelEventCount, :RequestId
+        
+        def initialize(unhandleeventcount=nil, unhandlehighleveleventcount=nil, unhandlemediumleveleventcount=nil, unhandlelowleveleventcount=nil, unhandlenoticeleveleventcount=nil, requestid=nil)
+          @UnhandleEventCount = unhandleeventcount
+          @UnhandleHighLevelEventCount = unhandlehighleveleventcount
+          @UnhandleMediumLevelEventCount = unhandlemediumleveleventcount
+          @UnhandleLowLevelEventCount = unhandlelowleveleventcount
+          @UnhandleNoticeLevelEventCount = unhandlenoticeleveleventcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UnhandleEventCount = params['UnhandleEventCount']
+          @UnhandleHighLevelEventCount = params['UnhandleHighLevelEventCount']
+          @UnhandleMediumLevelEventCount = params['UnhandleMediumLevelEventCount']
+          @UnhandleLowLevelEventCount = params['UnhandleLowLevelEventCount']
+          @UnhandleNoticeLevelEventCount = params['UnhandleNoticeLevelEventCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeK8sApiAbnormalTendency请求参数结构体
+      class DescribeK8sApiAbnormalTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param TendencyPeriod: 趋势周期(默认为7天)
+        # @type TendencyPeriod: Integer
+
+        attr_accessor :TendencyPeriod
+        
+        def initialize(tendencyperiod=nil)
+          @TendencyPeriod = tendencyperiod
+        end
+
+        def deserialize(params)
+          @TendencyPeriod = params['TendencyPeriod']
+        end
+      end
+
+      # DescribeK8sApiAbnormalTendency返回参数结构体
+      class DescribeK8sApiAbnormalTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param List: 趋势列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              k8sapiabnormaltendencyitem_tmp = K8sApiAbnormalTendencyItem.new
+              k8sapiabnormaltendencyitem_tmp.deserialize(i)
+              @List << k8sapiabnormaltendencyitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -20023,6 +20722,375 @@ module TencentCloud
         end
       end
 
+      # k8sApi异常事件详情
+      class K8sApiAbnormalEventInfo < TencentCloud::Common::AbstractModel
+        # @param MatchRuleName: 命中规则名称
+        # @type MatchRuleName: String
+        # @param MatchRuleType: 命中规则类型
+        # @type MatchRuleType: String
+        # @param RiskLevel: 告警等级
+        # @type RiskLevel: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterRunningStatus: 集群运行状态
+        # @type ClusterRunningStatus: String
+        # @param FirstCreateTime: 初次生成时间
+        # @type FirstCreateTime: String
+        # @param LastCreateTime: 最近一次生成时间
+        # @type LastCreateTime: String
+        # @param AlarmCount: 告警数量
+        # @type AlarmCount: Integer
+        # @param Status: 状态
+        # "EVENT_UNDEAL":未处理
+        # "EVENT_DEALED": 已处理
+        # "EVENT_IGNORE": 忽略
+        # "EVENT_DEL": 删除
+        # "EVENT_ADD_WHITE": 加白
+        # @type Status: String
+        # @param ClusterMasterIP: 集群masterIP
+        # @type ClusterMasterIP: String
+        # @param K8sVersion: k8s版本
+        # @type K8sVersion: String
+        # @param RunningComponent: 运行时组件
+        # @type RunningComponent: Array
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Suggestion: 建议
+        # @type Suggestion: String
+        # @param Info: 请求信息
+        # @type Info: String
+        # @param MatchRuleID: 规则ID
+        # @type MatchRuleID: String
+        # @param HighLightFields: 高亮字段数组
+        # @type HighLightFields: Array
+        # @param MatchRule: 命中规则
+        # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleScopeInfo`
+
+        attr_accessor :MatchRuleName, :MatchRuleType, :RiskLevel, :ClusterID, :ClusterName, :ClusterRunningStatus, :FirstCreateTime, :LastCreateTime, :AlarmCount, :Status, :ClusterMasterIP, :K8sVersion, :RunningComponent, :Desc, :Suggestion, :Info, :MatchRuleID, :HighLightFields, :MatchRule
+        
+        def initialize(matchrulename=nil, matchruletype=nil, risklevel=nil, clusterid=nil, clustername=nil, clusterrunningstatus=nil, firstcreatetime=nil, lastcreatetime=nil, alarmcount=nil, status=nil, clustermasterip=nil, k8sversion=nil, runningcomponent=nil, desc=nil, suggestion=nil, info=nil, matchruleid=nil, highlightfields=nil, matchrule=nil)
+          @MatchRuleName = matchrulename
+          @MatchRuleType = matchruletype
+          @RiskLevel = risklevel
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @ClusterRunningStatus = clusterrunningstatus
+          @FirstCreateTime = firstcreatetime
+          @LastCreateTime = lastcreatetime
+          @AlarmCount = alarmcount
+          @Status = status
+          @ClusterMasterIP = clustermasterip
+          @K8sVersion = k8sversion
+          @RunningComponent = runningcomponent
+          @Desc = desc
+          @Suggestion = suggestion
+          @Info = info
+          @MatchRuleID = matchruleid
+          @HighLightFields = highlightfields
+          @MatchRule = matchrule
+        end
+
+        def deserialize(params)
+          @MatchRuleName = params['MatchRuleName']
+          @MatchRuleType = params['MatchRuleType']
+          @RiskLevel = params['RiskLevel']
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @ClusterRunningStatus = params['ClusterRunningStatus']
+          @FirstCreateTime = params['FirstCreateTime']
+          @LastCreateTime = params['LastCreateTime']
+          @AlarmCount = params['AlarmCount']
+          @Status = params['Status']
+          @ClusterMasterIP = params['ClusterMasterIP']
+          @K8sVersion = params['K8sVersion']
+          @RunningComponent = params['RunningComponent']
+          @Desc = params['Desc']
+          @Suggestion = params['Suggestion']
+          @Info = params['Info']
+          @MatchRuleID = params['MatchRuleID']
+          @HighLightFields = params['HighLightFields']
+          unless params['MatchRule'].nil?
+            @MatchRule = K8sApiAbnormalRuleScopeInfo.new
+            @MatchRule.deserialize(params['MatchRule'])
+          end
+        end
+      end
+
+      # k8sapi异常事件列表Item
+      class K8sApiAbnormalEventListItem < TencentCloud::Common::AbstractModel
+        # @param ID: 事件ID
+        # @type ID: Integer
+        # @param MatchRuleType: 命中规则类型
+        # @type MatchRuleType: String
+        # @param RiskLevel: 威胁等级
+        # @type RiskLevel: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterRunningStatus: 集群运行状态
+        # @type ClusterRunningStatus: String
+        # @param FirstCreateTime: 初次生成时间
+        # @type FirstCreateTime: String
+        # @param LastCreateTime: 最近一次生成时间
+        # @type LastCreateTime: String
+        # @param AlarmCount: 告警数量
+        # @type AlarmCount: Integer
+        # @param Status: 状态
+        # @type Status: String
+        # @param RuleType: 规则类型
+        # @type RuleType: String
+        # @param Desc: 描述信息
+        # @type Desc: String
+        # @param Suggestion: 解决方案
+        # @type Suggestion: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param MatchRule: 命中规则
+        # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleScopeInfo`
+
+        attr_accessor :ID, :MatchRuleType, :RiskLevel, :ClusterID, :ClusterName, :ClusterRunningStatus, :FirstCreateTime, :LastCreateTime, :AlarmCount, :Status, :RuleType, :Desc, :Suggestion, :RuleName, :MatchRule
+        
+        def initialize(id=nil, matchruletype=nil, risklevel=nil, clusterid=nil, clustername=nil, clusterrunningstatus=nil, firstcreatetime=nil, lastcreatetime=nil, alarmcount=nil, status=nil, ruletype=nil, desc=nil, suggestion=nil, rulename=nil, matchrule=nil)
+          @ID = id
+          @MatchRuleType = matchruletype
+          @RiskLevel = risklevel
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @ClusterRunningStatus = clusterrunningstatus
+          @FirstCreateTime = firstcreatetime
+          @LastCreateTime = lastcreatetime
+          @AlarmCount = alarmcount
+          @Status = status
+          @RuleType = ruletype
+          @Desc = desc
+          @Suggestion = suggestion
+          @RuleName = rulename
+          @MatchRule = matchrule
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @MatchRuleType = params['MatchRuleType']
+          @RiskLevel = params['RiskLevel']
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @ClusterRunningStatus = params['ClusterRunningStatus']
+          @FirstCreateTime = params['FirstCreateTime']
+          @LastCreateTime = params['LastCreateTime']
+          @AlarmCount = params['AlarmCount']
+          @Status = params['Status']
+          @RuleType = params['RuleType']
+          @Desc = params['Desc']
+          @Suggestion = params['Suggestion']
+          @RuleName = params['RuleName']
+          unless params['MatchRule'].nil?
+            @MatchRule = K8sApiAbnormalRuleScopeInfo.new
+            @MatchRule.deserialize(params['MatchRule'])
+          end
+        end
+      end
+
+      # k8a api 异常请求规则详情
+      class K8sApiAbnormalRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Status: 状态
+        # @type Status: Boolean
+        # @param RuleInfoList: 规则信息列表
+        # @type RuleInfoList: Array
+        # @param EffectClusterIDSet: 生效集群IDSet
+        # @type EffectClusterIDSet: Array
+        # @param RuleType: 规则类型
+        # RT_SYSTEM 系统规则
+        # RT_USER 用户自定义
+        # @type RuleType: String
+        # @param EffectAllCluster: 是否所有集群生效
+        # @type EffectAllCluster: Boolean
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+
+        attr_accessor :RuleName, :Status, :RuleInfoList, :EffectClusterIDSet, :RuleType, :EffectAllCluster, :RuleID
+        
+        def initialize(rulename=nil, status=nil, ruleinfolist=nil, effectclusteridset=nil, ruletype=nil, effectallcluster=nil, ruleid=nil)
+          @RuleName = rulename
+          @Status = status
+          @RuleInfoList = ruleinfolist
+          @EffectClusterIDSet = effectclusteridset
+          @RuleType = ruletype
+          @EffectAllCluster = effectallcluster
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          unless params['RuleInfoList'].nil?
+            @RuleInfoList = []
+            params['RuleInfoList'].each do |i|
+              k8sapiabnormalrulescopeinfo_tmp = K8sApiAbnormalRuleScopeInfo.new
+              k8sapiabnormalrulescopeinfo_tmp.deserialize(i)
+              @RuleInfoList << k8sapiabnormalrulescopeinfo_tmp
+            end
+          end
+          @EffectClusterIDSet = params['EffectClusterIDSet']
+          @RuleType = params['RuleType']
+          @EffectAllCluster = params['EffectAllCluster']
+          @RuleID = params['RuleID']
+        end
+      end
+
+      # k8s api 异常请求规则列表Item
+      class K8sApiAbnormalRuleListItem < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleType: 规则类型
+        # RT_SYSTEM 系统规则
+        # RT_USER 用户自定义
+        # @type RuleType: String
+        # @param EffectClusterCount: 受影响集群总数
+        # @type EffectClusterCount: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param OprUin: 编辑账号
+        # @type OprUin: String
+        # @param Status: 状态
+        # @type Status: Boolean
+
+        attr_accessor :RuleID, :RuleName, :RuleType, :EffectClusterCount, :UpdateTime, :OprUin, :Status
+        
+        def initialize(ruleid=nil, rulename=nil, ruletype=nil, effectclustercount=nil, updatetime=nil, opruin=nil, status=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @RuleType = ruletype
+          @EffectClusterCount = effectclustercount
+          @UpdateTime = updatetime
+          @OprUin = opruin
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @EffectClusterCount = params['EffectClusterCount']
+          @UpdateTime = params['UpdateTime']
+          @OprUin = params['OprUin']
+          @Status = params['Status']
+        end
+      end
+
+      # k8s api 异常事件规则配置范围
+      class K8sApiAbnormalRuleScopeInfo < TencentCloud::Common::AbstractModel
+        # @param Scope: 范围
+        # 系统事件:
+        # ANONYMOUS_ACCESS: 匿名访问
+        # ABNORMAL_UA_REQ: 异常UA请求
+        # ANONYMOUS_ABNORMAL_PERMISSION: 匿名用户权限异动
+        # GET_CREDENTIALS: 凭据信息获取
+        # MOUNT_SENSITIVE_PATH: 敏感路径挂载
+        # COMMAND_RUN: 命令执行
+        # PRIVILEGE_CONTAINER: 特权容器
+        # EXCEPTION_CRONTAB_TASK: 异常定时任务
+        # STATICS_POD: 静态pod创建
+        # ABNORMAL_CREATE_POD: 异常pod创建
+        # USER_DEFINED: 用户自定义
+        # @type Scope: String
+        # @param Action: 动作(RULE_MODE_ALERT: 告警 RULE_MODE_RELEASE:放行)
+        # @type Action: String
+        # @param RiskLevel: 威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param Status: 开关状态(true:开 false:关) 适用于系统规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param IsDelete: 是否被删除 适用于自定义规则入参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDelete: Boolean
+
+        attr_accessor :Scope, :Action, :RiskLevel, :Status, :IsDelete
+        
+        def initialize(scope=nil, action=nil, risklevel=nil, status=nil, isdelete=nil)
+          @Scope = scope
+          @Action = action
+          @RiskLevel = risklevel
+          @Status = status
+          @IsDelete = isdelete
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @Action = params['Action']
+          @RiskLevel = params['RiskLevel']
+          @Status = params['Status']
+          @IsDelete = params['IsDelete']
+        end
+      end
+
+      # k8sapi异常请求趋势Item
+      class K8sApiAbnormalTendencyItem < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param ExceptionUARequestCount: 异常UA请求事件数
+        # @type ExceptionUARequestCount: Integer
+        # @param AnonymousUserRightCount: 匿名用户权限事件数
+        # @type AnonymousUserRightCount: Integer
+        # @param CredentialInformationObtainCount: 凭据信息获取事件数
+        # @type CredentialInformationObtainCount: Integer
+        # @param SensitiveDataMountCount: 敏感数据挂载事件数
+        # @type SensitiveDataMountCount: Integer
+        # @param CmdExecCount: 命令执行事件数
+        # @type CmdExecCount: Integer
+        # @param AbnormalScheduledTaskCount: 异常定时任务事件数
+        # @type AbnormalScheduledTaskCount: Integer
+        # @param StaticsPodCreateCount: 静态Pod创建数
+        # @type StaticsPodCreateCount: Integer
+        # @param DoubtfulContainerCreateCount: 可疑容器创建数
+        # @type DoubtfulContainerCreateCount: Integer
+        # @param UserDefinedRuleCount: 自定义规则事件数
+        # @type UserDefinedRuleCount: Integer
+        # @param AnonymousAccessCount: 匿名访问事件数
+        # @type AnonymousAccessCount: Integer
+        # @param PrivilegeContainerCount: 特权容器事件数
+        # @type PrivilegeContainerCount: Integer
+
+        attr_accessor :Date, :ExceptionUARequestCount, :AnonymousUserRightCount, :CredentialInformationObtainCount, :SensitiveDataMountCount, :CmdExecCount, :AbnormalScheduledTaskCount, :StaticsPodCreateCount, :DoubtfulContainerCreateCount, :UserDefinedRuleCount, :AnonymousAccessCount, :PrivilegeContainerCount
+        
+        def initialize(date=nil, exceptionuarequestcount=nil, anonymoususerrightcount=nil, credentialinformationobtaincount=nil, sensitivedatamountcount=nil, cmdexeccount=nil, abnormalscheduledtaskcount=nil, staticspodcreatecount=nil, doubtfulcontainercreatecount=nil, userdefinedrulecount=nil, anonymousaccesscount=nil, privilegecontainercount=nil)
+          @Date = date
+          @ExceptionUARequestCount = exceptionuarequestcount
+          @AnonymousUserRightCount = anonymoususerrightcount
+          @CredentialInformationObtainCount = credentialinformationobtaincount
+          @SensitiveDataMountCount = sensitivedatamountcount
+          @CmdExecCount = cmdexeccount
+          @AbnormalScheduledTaskCount = abnormalscheduledtaskcount
+          @StaticsPodCreateCount = staticspodcreatecount
+          @DoubtfulContainerCreateCount = doubtfulcontainercreatecount
+          @UserDefinedRuleCount = userdefinedrulecount
+          @AnonymousAccessCount = anonymousaccesscount
+          @PrivilegeContainerCount = privilegecontainercount
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @ExceptionUARequestCount = params['ExceptionUARequestCount']
+          @AnonymousUserRightCount = params['AnonymousUserRightCount']
+          @CredentialInformationObtainCount = params['CredentialInformationObtainCount']
+          @SensitiveDataMountCount = params['SensitiveDataMountCount']
+          @CmdExecCount = params['CmdExecCount']
+          @AbnormalScheduledTaskCount = params['AbnormalScheduledTaskCount']
+          @StaticsPodCreateCount = params['StaticsPodCreateCount']
+          @DoubtfulContainerCreateCount = params['DoubtfulContainerCreateCount']
+          @UserDefinedRuleCount = params['UserDefinedRuleCount']
+          @AnonymousAccessCount = params['AnonymousAccessCount']
+          @PrivilegeContainerCount = params['PrivilegeContainerCount']
+        end
+      end
+
       # ModifyAbnormalProcessRuleStatus请求参数结构体
       class ModifyAbnormalProcessRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param RuleIdSet: 策略的ids
@@ -20723,6 +21791,117 @@ module TencentCloud
 
       # ModifyImageAuthorized返回参数结构体
       class ModifyImageAuthorizedResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyK8sApiAbnormalEventStatus请求参数结构体
+      class ModifyK8sApiAbnormalEventStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EventIDSet: 事件ID集合
+        # @type EventIDSet: Array
+        # @param Status: 状态
+        # @type Status: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :EventIDSet, :Status, :Remark
+        
+        def initialize(eventidset=nil, status=nil, remark=nil)
+          @EventIDSet = eventidset
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @EventIDSet = params['EventIDSet']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyK8sApiAbnormalEventStatus返回参数结构体
+      class ModifyK8sApiAbnormalEventStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyK8sApiAbnormalRuleInfo请求参数结构体
+      class ModifyK8sApiAbnormalRuleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RuleInfo: 规则详情
+        # @type RuleInfo: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleInfo`
+
+        attr_accessor :RuleInfo
+        
+        def initialize(ruleinfo=nil)
+          @RuleInfo = ruleinfo
+        end
+
+        def deserialize(params)
+          unless params['RuleInfo'].nil?
+            @RuleInfo = K8sApiAbnormalRuleInfo.new
+            @RuleInfo.deserialize(params['RuleInfo'])
+          end
+        end
+      end
+
+      # ModifyK8sApiAbnormalRuleInfo返回参数结构体
+      class ModifyK8sApiAbnormalRuleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyK8sApiAbnormalRuleStatus请求参数结构体
+      class ModifyK8sApiAbnormalRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+        # @param Status: 状态(ture:开 false:关)
+        # @type Status: Boolean
+
+        attr_accessor :RuleID, :Status
+        
+        def initialize(ruleid=nil, status=nil)
+          @RuleID = ruleid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyK8sApiAbnormalRuleStatus返回参数结构体
+      class ModifyK8sApiAbnormalRuleStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

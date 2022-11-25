@@ -725,7 +725,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取某个域名下的解析记录
+        # 获取某个域名下的解析记录列表
 
         # @param request: Request instance for DescribeRecordList.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordListRequest`
@@ -1167,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRecordBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改记录可选字段
+
+        # @param request: Request instance for ModifyRecordFields.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordFieldsRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordFieldsResponse`
+        def ModifyRecordFields(request)
+          body = send_request('ModifyRecordFields', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordFieldsResponse.new
             model.deserialize(response['Response'])
             model
           else

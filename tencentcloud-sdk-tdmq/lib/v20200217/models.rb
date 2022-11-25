@@ -6977,10 +6977,13 @@ module TencentCloud
         # @param IsVip: 是否为专享实例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVip: Boolean
+        # @param RocketMQFlag: Rocketmq集群标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RocketMQFlag: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -6991,6 +6994,7 @@ module TencentCloud
           @SupportNamespaceEndpoint = supportnamespaceendpoint
           @Vpcs = vpcs
           @IsVip = isvip
+          @RocketMQFlag = rocketmqflag
         end
 
         def deserialize(params)
@@ -7011,6 +7015,7 @@ module TencentCloud
             end
           end
           @IsVip = params['IsVip']
+          @RocketMQFlag = params['RocketMQFlag']
         end
       end
 

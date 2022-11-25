@@ -494,7 +494,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 查询子网列表
         # @type SubnetId: String
-        # @param Password: 实例密码，不设置该参数则默认密码规则为 实例ID+"@"+主账户uin。举例实例id为cmgo-higv73ed，uin为100000001，则默认密码为"cmgo-higv73ed@100000001"。密码必须是8-16位字符，且至少包含字母、数字和字符 !@#%^*() 中的两种
+        # @param Password: 实例密码，不设置该参数则默认密码规则为 实例ID+"@"+主账户uin。举例实例id为cmgo-higv73ed，uin为100000001，则默认密码为"cmgo-higv73ed@100000001"。 自定义密码格式为8-32个字符长度，至少包含字母、数字和字符（!@#%^*()_）中的两种
         # @type Password: String
         # @param Tags: 实例标签信息
         # @type Tags: Array
@@ -520,10 +520,16 @@ module TencentCloud
         # @type MongosMemory: Integer
         # @param MongosNodeNum: mongos 数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：为了保障高可用，最低需要购买3个mongos，上限为32个
         # @type MongosNodeNum: Integer
+        # @param ReadonlyNodeNum: 只读节点数量，最大不超过7个
+        # @type ReadonlyNodeNum: Integer
+        # @param ReadonlyNodeAvailabilityZoneList: 只读节点部署可用区
+        # @type ReadonlyNodeAvailabilityZoneList: Array
+        # @param HiddenZone: Hidden节点所在的可用区，跨可用区实例必传
+        # @type HiddenZone: String
 
-        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum
+        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone
         
-        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil)
+        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil)
           @NodeNum = nodenum
           @Memory = memory
           @Volume = volume
@@ -550,6 +556,9 @@ module TencentCloud
           @MongosCpu = mongoscpu
           @MongosMemory = mongosmemory
           @MongosNodeNum = mongosnodenum
+          @ReadonlyNodeNum = readonlynodenum
+          @ReadonlyNodeAvailabilityZoneList = readonlynodeavailabilityzonelist
+          @HiddenZone = hiddenzone
         end
 
         def deserialize(params)
@@ -586,6 +595,9 @@ module TencentCloud
           @MongosCpu = params['MongosCpu']
           @MongosMemory = params['MongosMemory']
           @MongosNodeNum = params['MongosNodeNum']
+          @ReadonlyNodeNum = params['ReadonlyNodeNum']
+          @ReadonlyNodeAvailabilityZoneList = params['ReadonlyNodeAvailabilityZoneList']
+          @HiddenZone = params['HiddenZone']
         end
       end
 

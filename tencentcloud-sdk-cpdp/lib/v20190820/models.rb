@@ -4051,10 +4051,18 @@ module TencentCloud
         # @param PaymentMethod: 支付方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PaymentMethod: String
+        # @param TotalPlatformIncome: 平台应收金额
+        # 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPlatformIncome: Integer
+        # @param TotalMchIncome: 商户应收金额
+        # 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalMchIncome: Integer
 
-        attr_accessor :AppId, :OutTradeNo, :SubOrderList, :TransactionId, :UserId, :Channel, :ProductId, :Metadata, :CurrencyType, :Amt, :OrderState, :OrderTime, :PayTime, :CallBackTime, :ChannelExternalOrderId, :ChannelOrderId, :RefundFlag, :CashAmt, :CouponAmt, :ProductName, :SettleInfo, :AttachmentInfoList, :ChannelExternalUserInfoList, :ExternalReturnPromptGroupList, :SceneInfo, :SubAppId, :PayScene, :PaymentMethod
+        attr_accessor :AppId, :OutTradeNo, :SubOrderList, :TransactionId, :UserId, :Channel, :ProductId, :Metadata, :CurrencyType, :Amt, :OrderState, :OrderTime, :PayTime, :CallBackTime, :ChannelExternalOrderId, :ChannelOrderId, :RefundFlag, :CashAmt, :CouponAmt, :ProductName, :SettleInfo, :AttachmentInfoList, :ChannelExternalUserInfoList, :ExternalReturnPromptGroupList, :SceneInfo, :SubAppId, :PayScene, :PaymentMethod, :TotalPlatformIncome, :TotalMchIncome
         
-        def initialize(appid=nil, outtradeno=nil, suborderlist=nil, transactionid=nil, userid=nil, channel=nil, productid=nil, metadata=nil, currencytype=nil, amt=nil, orderstate=nil, ordertime=nil, paytime=nil, callbacktime=nil, channelexternalorderid=nil, channelorderid=nil, refundflag=nil, cashamt=nil, couponamt=nil, productname=nil, settleinfo=nil, attachmentinfolist=nil, channelexternaluserinfolist=nil, externalreturnpromptgrouplist=nil, sceneinfo=nil, subappid=nil, payscene=nil, paymentmethod=nil)
+        def initialize(appid=nil, outtradeno=nil, suborderlist=nil, transactionid=nil, userid=nil, channel=nil, productid=nil, metadata=nil, currencytype=nil, amt=nil, orderstate=nil, ordertime=nil, paytime=nil, callbacktime=nil, channelexternalorderid=nil, channelorderid=nil, refundflag=nil, cashamt=nil, couponamt=nil, productname=nil, settleinfo=nil, attachmentinfolist=nil, channelexternaluserinfolist=nil, externalreturnpromptgrouplist=nil, sceneinfo=nil, subappid=nil, payscene=nil, paymentmethod=nil, totalplatformincome=nil, totalmchincome=nil)
           @AppId = appid
           @OutTradeNo = outtradeno
           @SubOrderList = suborderlist
@@ -4083,6 +4091,8 @@ module TencentCloud
           @SubAppId = subappid
           @PayScene = payscene
           @PaymentMethod = paymentmethod
+          @TotalPlatformIncome = totalplatformincome
+          @TotalMchIncome = totalmchincome
         end
 
         def deserialize(params)
@@ -4145,6 +4155,8 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @PayScene = params['PayScene']
           @PaymentMethod = params['PaymentMethod']
+          @TotalPlatformIncome = params['TotalPlatformIncome']
+          @TotalMchIncome = params['TotalMchIncome']
         end
       end
 

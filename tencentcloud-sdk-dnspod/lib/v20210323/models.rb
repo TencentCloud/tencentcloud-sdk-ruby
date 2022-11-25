@@ -366,7 +366,7 @@ module TencentCloud
         # @type DomainAlias: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain
+        # @param DomainId: 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :DomainAlias, :Domain, :DomainId
@@ -604,7 +604,7 @@ module TencentCloud
       class CreateDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param GroupId: 域名分组ID
+        # @param GroupId: 域名分组ID。可以通过接口DescribeDomainGroupList查看当前域名分组信息
         # @type GroupId: Integer
         # @param IsMark: 是否星标域名，”yes”、”no” 分别代表是和否。
         # @type IsMark: String
@@ -1002,11 +1002,11 @@ module TencentCloud
 
       # DeleteDomainAlias请求参数结构体
       class DeleteDomainAliasRequest < TencentCloud::Common::AbstractModel
-        # @param DomainAliasId: 域名别名ID
+        # @param DomainAliasId: 域名别名ID。可以通过接口DescribeDomainAliasList查到所有的域名别名列表以及对应的ID
         # @type DomainAliasId: Integer
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain
+        # @param DomainId: 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :DomainAliasId, :Domain, :DomainId
@@ -1044,7 +1044,7 @@ module TencentCloud
       class DeleteDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainId
@@ -1120,9 +1120,9 @@ module TencentCloud
       class DeleteRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param RecordId: 记录 ID 。
+        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :RecordId, :DomainId
@@ -1162,7 +1162,7 @@ module TencentCloud
         # @type Domain: String
         # @param Account: 域名共享的账号
         # @type Account: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :Account, :DomainId
@@ -1296,7 +1296,7 @@ module TencentCloud
 
       # DescribeBatchTask请求参数结构体
       class DescribeBatchTaskRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
+        # @param JobId: 任务ID。操作批量接口时会返回JobId
         # @type JobId: Integer
 
         attr_accessor :JobId
@@ -1361,7 +1361,7 @@ module TencentCloud
       class DescribeDomainAliasListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名ID,域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain
+        # @param DomainId: 域名ID,域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainId
@@ -1414,7 +1414,7 @@ module TencentCloud
         # @type EndDate: String
         # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
         # @type DnsFormat: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId
@@ -1589,7 +1589,7 @@ module TencentCloud
       class DescribeDomainLogListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param Offset: 记录开始的偏移，第一条记录为 0，依次类推，默认为0
         # @type Offset: Integer
@@ -1646,7 +1646,7 @@ module TencentCloud
       class DescribeDomainPurviewRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainId
@@ -1693,7 +1693,7 @@ module TencentCloud
       class DescribeDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainId
@@ -1736,7 +1736,7 @@ module TencentCloud
       class DescribeDomainShareInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainId
@@ -1846,7 +1846,7 @@ module TencentCloud
         # + 旧套餐：D_FREE、D_PLUS、D_EXTRA、D_EXPERT、D_ULTRA 分别对应免费套餐、个人豪华、企业1、企业2、企业3。
         # + 新套餐：DP_FREE、DP_PLUS、DP_EXTRA、DP_EXPERT、DP_ULTRA 分别对应新免费、个人专业版、企业创业版、企业标准版、企业旗舰版。
         # @type DomainGrade: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :DomainGrade, :DomainId
@@ -1906,17 +1906,17 @@ module TencentCloud
       class DescribeRecordListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 要获取的解析记录所属的域名
         # @type Domain: String
-        # @param DomainId: 要获取的解析记录所属的域名Id，如果传了DomainId，系统将会忽略Domain参数
+        # @param DomainId: 要获取的解析记录所属的域名Id，如果传了DomainId，系统将会忽略Domain参数。 可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param Subdomain: 解析记录的主机头，如果传了此参数，则只会返回此主机头对应的解析记录
         # @type Subdomain: String
         # @param RecordType: 获取某种类型的解析记录，如 A，CNAME，NS，AAAA，显性URL，隐性URL，CAA，SPF等
         # @type RecordType: String
-        # @param RecordLine: 获取某条线路名称的解析记录
+        # @param RecordLine: 获取某条线路名称的解析记录。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
         # @type RecordLine: String
-        # @param RecordLineId: 获取某个线路Id对应的解析记录，如果传RecordLineId，系统会忽略RecordLine参数
+        # @param RecordLineId: 获取某个线路Id对应的解析记录，如果传RecordLineId，系统会忽略RecordLine参数。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
         # @type RecordLineId: String
-        # @param GroupId: 获取某个分组下的解析记录时，传这个分组Id
+        # @param GroupId: 获取某个分组下的解析记录时，传这个分组Id。
         # @type GroupId: Integer
         # @param Keyword: 通过关键字搜索解析记录，当前支持搜索主机头和记录值
         # @type Keyword: String
@@ -2002,7 +2002,7 @@ module TencentCloud
         # @type Domain: String
         # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。DomainId是域名的资源ID，可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :RecordId, :DomainId
@@ -2441,7 +2441,7 @@ module TencentCloud
         # @type Subdomain: String
         # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
         # @type DnsFormat: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :StartDate, :EndDate, :Subdomain, :DnsFormat, :DomainId
@@ -3042,6 +3042,27 @@ module TencentCloud
         end
       end
 
+      # 键值对
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 线路分组信息
       class LineGroupInfo < TencentCloud::Common::AbstractModel
         # @param LineId: 线路分组ID
@@ -3120,7 +3141,7 @@ module TencentCloud
         # @type Domain: String
         # @param LockDays: 域名要锁定的天数，最多可锁定的天数可以通过获取域名权限接口获取。
         # @type LockDays: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :LockDays, :DomainId
@@ -3167,7 +3188,7 @@ module TencentCloud
         # @type Domain: String
         # @param Account: 域名需要转入的账号，支持Uin或者邮箱格式
         # @type Account: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :Account, :DomainId
@@ -3205,7 +3226,7 @@ module TencentCloud
       class ModifyDomainRemarkRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param Remark: 域名备注，删除备注请提交空内容。
         # @type Remark: String
@@ -3247,7 +3268,7 @@ module TencentCloud
         # @type Domain: String
         # @param Status: 域名状态，”enable” 、”disable” 分别代表启用和暂停
         # @type Status: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :Status, :DomainId
@@ -3287,7 +3308,7 @@ module TencentCloud
         # @type Domain: String
         # @param LockCode: 域名解锁码，锁定的时候会返回。
         # @type LockCode: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :LockCode, :DomainId
@@ -3325,13 +3346,13 @@ module TencentCloud
       class ModifyDynamicDNSRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param RecordId: 记录ID。
+        # @param RecordId: 记录ID。 可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
         # @param RecordLine: 记录线路，通过 API 记录线路获得，中文，比如：默认。
         # @type RecordLine: String
         # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
         # @type Value: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
         # @type SubDomain: String
@@ -3387,7 +3408,7 @@ module TencentCloud
 
       # ModifyPackageAutoRenew请求参数结构体
       class ModifyPackageAutoRenewRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: 资源ID。可以在控制台查看所有的资源
         # @type ResourceId: String
         # @param Status: enable 开启自动续费；disable 关闭自动续费
         # @type Status: String
@@ -3481,7 +3502,7 @@ module TencentCloud
 
       # ModifyRecordBatch请求参数结构体
       class ModifyRecordBatchRequest < TencentCloud::Common::AbstractModel
-        # @param RecordIdList: 记录ID数组
+        # @param RecordIdList: 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordIdList: Array
         # @param Change: 要修改的字段，可选值为 [“sub_domain”、”record_type”、”area”、”value”、”mx”、”ttl”、”status”] 中的某一个。
         # @type Change: String
@@ -3542,6 +3563,61 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordFields请求参数结构体
+      class ModifyRecordFieldsRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RecordId: 记录 ID 。
+        # @type RecordId: Integer
+        # @param FieldList: 要修改的记录属性和值，支持：sub_domain，record_line，record_line_id，record_type，value，ttl，status，mx，weight
+        # @type FieldList: Array
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :RecordId, :FieldList, :DomainId
+        
+        def initialize(domain=nil, recordid=nil, fieldlist=nil, domainid=nil)
+          @Domain = domain
+          @RecordId = recordid
+          @FieldList = fieldlist
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RecordId = params['RecordId']
+          unless params['FieldList'].nil?
+            @FieldList = []
+            params['FieldList'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @FieldList << keyvalue_tmp
+            end
+          end
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyRecordFields返回参数结构体
+      class ModifyRecordFieldsResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录ID
+        # @type RecordId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordId, :RequestId
+        
+        def initialize(recordid=nil, requestid=nil)
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRecordGroup请求参数结构体
       class ModifyRecordGroupRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3594,9 +3670,9 @@ module TencentCloud
       class ModifyRecordRemarkRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param RecordId: 记录 ID 。
+        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param Remark: 解析记录备注，删除备注请提交空内容。
         # @type Remark: String
@@ -3644,9 +3720,9 @@ module TencentCloud
         # @type RecordLine: String
         # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
         # @type Value: String
-        # @param RecordId: 记录 ID 。
+        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
         # @type SubDomain: String
@@ -3718,11 +3794,11 @@ module TencentCloud
       class ModifyRecordStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param RecordId: 记录 ID 。
+        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         # @type RecordId: Integer
         # @param Status: 记录的状态。取值范围为 ENABLE 和 DISABLE。如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         # @type Status: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
 
         attr_accessor :Domain, :RecordId, :Status, :DomainId
@@ -3854,7 +3930,7 @@ module TencentCloud
         # @type RecordType: String
         # @param Status: 记录状态。允许的值为disable。
         # @type Status: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
         # @type SubDomain: String
@@ -3896,7 +3972,7 @@ module TencentCloud
 
       # ModifyVasAutoRenewStatus请求参数结构体
       class ModifyVasAutoRenewStatusRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: 资源ID。可以从控制台查看所有的资源
         # @type ResourceId: String
         # @param Status: enable 开启自动续费；disable 关闭自动续费
         # @type Status: String
@@ -3934,7 +4010,7 @@ module TencentCloud
       class PayOrderWithBalanceRequest < TencentCloud::Common::AbstractModel
         # @param BigDealIdList: 需要支付的大订单号数组
         # @type BigDealIdList: Array
-        # @param VoucherIdList: 代金券ID数组
+        # @param VoucherIdList: 代金券ID数组。可以从控制台查到拥有的代金券
         # @type VoucherIdList: Array
 
         attr_accessor :BigDealIdList, :VoucherIdList
