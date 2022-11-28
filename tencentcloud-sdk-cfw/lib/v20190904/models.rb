@@ -2991,7 +2991,7 @@ module TencentCloud
 
       # ModifyBlockIgnoreList请求参数结构体
       class ModifyBlockIgnoreListRequest < TencentCloud::Common::AbstractModel
-        # @param RuleType: 1拦截列表 2 忽略列表
+        # @param RuleType: 1封禁列表 2 放通列表
         # @type RuleType: Integer
         # @param IOC: IP、Domain二选一，不能同时为空
         # @type IOC: Array
@@ -2999,7 +2999,7 @@ module TencentCloud
         # @type IocAction: String
         # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填
         # @type StartTime: String
-        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填
+        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填，必须大于当前时间且大于StartTime
         # @type EndTime: String
 
         attr_accessor :RuleType, :IOC, :IocAction, :StartTime, :EndTime

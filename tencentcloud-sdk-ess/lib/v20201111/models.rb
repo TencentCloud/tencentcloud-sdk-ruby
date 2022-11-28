@@ -519,7 +519,7 @@ module TencentCloud
 
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 资源类型 取值范围doc,docx,html,excel之一
+        # @param ResourceType: 资源类型 取值范围doc,docx,html,xls,xlsx之一
         # @type ResourceType: String
         # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String
@@ -1247,6 +1247,81 @@ module TencentCloud
         end
       end
 
+      # CreatePrepareFlow请求参数结构体
+      class CreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ResourceId: 资源Id,通过上传uploadfile接口获得
+        # @type ResourceId: String
+        # @param FlowName: 合同名称
+        # @type FlowName: String
+        # @param Unordered: 是否顺序签署(true:无序签,false:顺序签)
+        # @type Unordered: Boolean
+        # @param Deadline: 签署流程的签署截止时间。
+        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        # @type Deadline: Integer
+        # @param UserFlowTypeId: 用户自定义合同类型
+        # @type UserFlowTypeId: String
+        # @param Approvers: 签署流程参与者信息，最大限制50方
+        # @type Approvers: Array
+        # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
+        # @type IntelligentStatus: String
+
+        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus
+        
+        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil)
+          @Operator = operator
+          @ResourceId = resourceid
+          @FlowName = flowname
+          @Unordered = unordered
+          @Deadline = deadline
+          @UserFlowTypeId = userflowtypeid
+          @Approvers = approvers
+          @IntelligentStatus = intelligentstatus
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ResourceId = params['ResourceId']
+          @FlowName = params['FlowName']
+          @Unordered = params['Unordered']
+          @Deadline = params['Deadline']
+          @UserFlowTypeId = params['UserFlowTypeId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              flowcreateapprover_tmp = FlowCreateApprover.new
+              flowcreateapprover_tmp.deserialize(i)
+              @Approvers << flowcreateapprover_tmp
+            end
+          end
+          @IntelligentStatus = params['IntelligentStatus']
+        end
+      end
+
+      # CreatePrepareFlow返回参数结构体
+      class CreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 快速发起预览链接
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+        
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSchemeUrl请求参数结构体
       class CreateSchemeUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -1620,6 +1695,56 @@ module TencentCloud
               @FlowBriefs << flowbrief_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlowEvidenceReport请求参数结构体
+      class DescribeFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ReportId: 出证报告编号
+        # @type ReportId: String
+
+        attr_accessor :Operator, :ReportId
+        
+        def initialize(operator=nil, reportid=nil)
+          @Operator = operator
+          @ReportId = reportid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ReportId = params['ReportId']
+        end
+      end
+
+      # DescribeFlowEvidenceReport返回参数结构体
+      class DescribeFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
+        # @param ReportUrl: 报告 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportUrl: String
+        # @param Status: 执行中：EvidenceStatusExecuting
+        # 成功：EvidenceStatusSuccess
+        # 失败：EvidenceStatusFailed
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportUrl, :Status, :RequestId
+        
+        def initialize(reporturl=nil, status=nil, requestid=nil)
+          @ReportUrl = reporturl
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReportUrl = params['ReportUrl']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

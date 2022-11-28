@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询备份Rdb下载地址
+        # 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
 
         # @param request: Request instance for DescribeBackupUrl.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeBackupUrlRequest`

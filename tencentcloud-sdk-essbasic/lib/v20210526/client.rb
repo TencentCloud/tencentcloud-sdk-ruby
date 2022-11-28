@@ -380,6 +380,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建出证报告，返回报告 ID
+
+        # @param request: Request instance for CreateChannelFlowEvidenceReport.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportResponse`
+        def CreateChannelFlowEvidenceReport(request)
+          body = send_request('CreateChannelFlowEvidenceReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChannelFlowEvidenceReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConsoleLoginUrl）用于创建渠道子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
         # 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
         # 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
@@ -483,6 +507,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSignUrlsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询出证报告，返回报告 URL。
+
+        # @param request: Request instance for DescribeChannelFlowEvidenceReport.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelFlowEvidenceReportRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelFlowEvidenceReportResponse`
+        def DescribeChannelFlowEvidenceReport(request)
+          body = send_request('DescribeChannelFlowEvidenceReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelFlowEvidenceReportResponse.new
             model.deserialize(response['Response'])
             model
           else
