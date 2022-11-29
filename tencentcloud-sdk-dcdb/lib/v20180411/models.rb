@@ -17,6 +17,26 @@
 module TencentCloud
   module Dcdb
     module V20180411
+      # 数据库账号信息
+      class Account < TencentCloud::Common::AbstractModel
+        # @param User: 账户的名称
+        # @type User: String
+        # @param Host: 账户的域名
+        # @type Host: String
+
+        attr_accessor :User, :Host
+        
+        def initialize(user=nil, host=nil)
+          @User = user
+          @Host = host
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @Host = params['Host']
+        end
+      end
+
       # ActiveHourDCDBInstance请求参数结构体
       class ActiveHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 待升级的实例ID列表。形如：["dcdbt-ow728lmc"]，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -274,6 +294,34 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 列权限信息
+      class ColumnPrivilege < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param Table: 数据库表名
+        # @type Table: String
+        # @param Column: 数据库列名
+        # @type Column: String
+        # @param Privileges: 权限信息
+        # @type Privileges: Array
+
+        attr_accessor :Database, :Table, :Column, :Privileges
+        
+        def initialize(database=nil, table=nil, column=nil, privileges=nil)
+          @Database = database
+          @Table = table
+          @Column = column
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          @Table = params['Table']
+          @Column = params['Column']
+          @Privileges = params['Privileges']
         end
       end
 
@@ -1176,6 +1224,26 @@ module TencentCloud
 
         def deserialize(params)
           @Func = params['Func']
+        end
+      end
+
+      # 数据库权限
+      class DatabasePrivilege < TencentCloud::Common::AbstractModel
+        # @param Privileges: 权限信息
+        # @type Privileges: Array
+        # @param Database: 数据库名
+        # @type Database: String
+
+        attr_accessor :Privileges, :Database
+        
+        def initialize(privileges=nil, database=nil)
+          @Privileges = privileges
+          @Database = database
+        end
+
+        def deserialize(params)
+          @Privileges = params['Privileges']
+          @Database = params['Database']
         end
       end
 
@@ -3454,6 +3522,106 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountPrivileges请求参数结构体
+      class ModifyAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsql-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param Accounts: 数据库的账号，包括用户名和域名。
+        # @type Accounts: Array
+        # @param GlobalPrivileges: 全局权限。其中，GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
+        # 注意，不传该参数表示保留现有权限，如需清除，该字段传空数组。
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
+        # 注意，不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组。
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 数据库中表的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
+        # 注意，不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组。
+        # @type TablePrivileges: Array
+        # @param ColumnPrivileges: 数据库表中列的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
+        # 注意，不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组。
+        # @type ColumnPrivileges: Array
+        # @param ViewPrivileges: 数据库视图的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
+        # 注意，不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组。
+        # @type ViewPrivileges: Array
+
+        attr_accessor :InstanceId, :Accounts, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges, :ViewPrivileges
+        
+        def initialize(instanceid=nil, accounts=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, columnprivileges=nil, viewprivileges=nil)
+          @InstanceId = instanceid
+          @Accounts = accounts
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+          @ColumnPrivileges = columnprivileges
+          @ViewPrivileges = viewprivileges
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              account_tmp = Account.new
+              account_tmp.deserialize(i)
+              @Accounts << account_tmp
+            end
+          end
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivilege_tmp = DatabasePrivilege.new
+              databaseprivilege_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivilege_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivilege_tmp = TablePrivilege.new
+              tableprivilege_tmp.deserialize(i)
+              @TablePrivileges << tableprivilege_tmp
+            end
+          end
+          unless params['ColumnPrivileges'].nil?
+            @ColumnPrivileges = []
+            params['ColumnPrivileges'].each do |i|
+              columnprivilege_tmp = ColumnPrivilege.new
+              columnprivilege_tmp.deserialize(i)
+              @ColumnPrivileges << columnprivilege_tmp
+            end
+          end
+          unless params['ViewPrivileges'].nil?
+            @ViewPrivileges = []
+            params['ViewPrivileges'].each do |i|
+              viewprivileges_tmp = ViewPrivileges.new
+              viewprivileges_tmp.deserialize(i)
+              @ViewPrivileges << viewprivileges_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAccountPrivileges返回参数结构体
+      class ModifyAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如tdsql-hdaprz0v
@@ -4661,6 +4829,30 @@ module TencentCloud
         end
       end
 
+      # 数据库表权限
+      class TablePrivilege < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param Table: 数据库表名
+        # @type Table: String
+        # @param Privileges: 权限信息
+        # @type Privileges: Array
+
+        attr_accessor :Database, :Table, :Privileges
+        
+        def initialize(database=nil, table=nil, privileges=nil)
+          @Database = database
+          @Table = table
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          @Table = params['Table']
+          @Privileges = params['Privileges']
+        end
+      end
+
       # TerminateDedicatedDBInstance请求参数结构体
       class TerminateDedicatedDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 Id，形如：dcdbt-ow728lmc。
@@ -4827,6 +5019,30 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @RegionId = params['RegionId']
+        end
+      end
+
+      # 视图权限信息
+      class ViewPrivileges < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param View: 数据库视图名
+        # @type View: String
+        # @param Privileges: 权限信息
+        # @type Privileges: Array
+
+        attr_accessor :Database, :View, :Privileges
+        
+        def initialize(database=nil, view=nil, privileges=nil)
+          @Database = database
+          @View = view
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          @View = params['View']
+          @Privileges = params['Privileges']
         end
       end
 

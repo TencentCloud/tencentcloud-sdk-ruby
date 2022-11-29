@@ -827,6 +827,85 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateReleaseFlow请求参数结构体
+      class ChannelCreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
+        # @param NeedRelievedFlowId: 待解除的流程编号（即原流程的编号）
+        # @type NeedRelievedFlowId: String
+        # @param ReliveInfo: 解除协议内容
+        # @type ReliveInfo: :class:`Tencentcloud::Essbasic.v20210526.models.RelieveInfo`
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ReleasedApprovers: 非必须，解除协议的本企业签署人列表，默认使用原流程的签署人列表；当解除协议的签署人与原流程的签署人不能相同时（比如原流程签署人离职了），需要指定本企业的其他签署人来替换原流程中的原签署人，注意需要指明ApproverNumber来代表需要替换哪一个签署人，解除协议的签署人数量不能多于原流程的签署人数量
+        # @type ReleasedApprovers: Array
+        # @param CallbackUrl: 签署完回调url，最大长度1000个字符
+        # @type CallbackUrl: String
+        # @param Organization: 机构信息
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 用户信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :NeedRelievedFlowId, :ReliveInfo, :Agent, :ReleasedApprovers, :CallbackUrl, :Organization, :Operator
+        
+        def initialize(needrelievedflowid=nil, reliveinfo=nil, agent=nil, releasedapprovers=nil, callbackurl=nil, organization=nil, operator=nil)
+          @NeedRelievedFlowId = needrelievedflowid
+          @ReliveInfo = reliveinfo
+          @Agent = agent
+          @ReleasedApprovers = releasedapprovers
+          @CallbackUrl = callbackurl
+          @Organization = organization
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @NeedRelievedFlowId = params['NeedRelievedFlowId']
+          unless params['ReliveInfo'].nil?
+            @ReliveInfo = RelieveInfo.new
+            @ReliveInfo.deserialize(params['ReliveInfo'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['ReleasedApprovers'].nil?
+            @ReleasedApprovers = []
+            params['ReleasedApprovers'].each do |i|
+              releasedapprover_tmp = ReleasedApprover.new
+              releasedapprover_tmp.deserialize(i)
+              @ReleasedApprovers << releasedapprover_tmp
+            end
+          end
+          @CallbackUrl = params['CallbackUrl']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelCreateReleaseFlow返回参数结构体
+      class ChannelCreateReleaseFlowResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 解除协议流程编号
+        # @type FlowId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDescribeEmployees请求参数结构体
       class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回最大数量，最大为20
@@ -923,7 +1002,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
-        # @param InfoType: 查询信息类型，为0时不返回授权用户，为1时返回
+        # @param InfoType: 查询信息类型，为1时返回授权用户，为其他值时不返回
         # @type InfoType: Integer
         # @param SealId: 印章id（没有输入返回所有）
         # @type SealId: String
@@ -3163,6 +3242,98 @@ module TencentCloud
           @SignType = params['SignType']
           @RoutingOrder = params['RoutingOrder']
           @IsPromoter = params['IsPromoter']
+        end
+      end
+
+      # 解除协议的签署人，如不指定，默认使用待解除流程（即原流程）中的签署人。
+      # 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该签署人。
+
+      # 如果需要指定B端（机构身份类型）签署人，其中ReleasedApprover需要传递的参数如下：
+      # ApproverNumber, OrganizationName, ApproverType必传。
+      # 对于其他身份标识
+      # - 渠道子客企业指定经办人：OpenId必传，OrganizationOpenId必传；
+      # - 非渠道合作企业：Name、Mobile必传。
+      class ReleasedApprover < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 企业签署方工商营业执照上的企业名称，签署方为非发起方企业场景下必传，最大长度64个字符
+        # @type OrganizationName: String
+        # @param ApproverNumber: 签署人在原流程中的签署人列表中的顺序序号（从0开始，按顺序依次递增），如果不清楚原流程中的签署人列表，可以通过DescribeFlows接口查看
+        # @type ApproverNumber: Integer
+        # @param ApproverType: 签署人类型，目前仅支持
+        # ORGANIZATION-企业
+        # @type ApproverType: String
+        # @param Name: 签署人姓名，最大长度50个字符
+        # @type Name: String
+        # @param IdCardType: 签署人身份证件类型
+        # 1.ID_CARD 居民身份证
+        # 2.HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证
+        # 3.HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        # @type IdCardType: String
+        # @param IdCardNumber: 签署人证件号
+        # @type IdCardNumber: String
+        # @param Mobile: 签署人手机号，脱敏显示。大陆手机号为11位，暂不支持海外手机号
+        # @type Mobile: String
+        # @param OrganizationOpenId: 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传，最大长度64个字符
+        # @type OrganizationOpenId: String
+        # @param OpenId: 用户侧第三方id，最大长度64个字符
+        # 当签署方为同一渠道下的员工时，该字必传
+        # @type OpenId: String
+
+        attr_accessor :OrganizationName, :ApproverNumber, :ApproverType, :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationOpenId, :OpenId
+        
+        def initialize(organizationname=nil, approvernumber=nil, approvertype=nil, name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationopenid=nil, openid=nil)
+          @OrganizationName = organizationname
+          @ApproverNumber = approvernumber
+          @ApproverType = approvertype
+          @Name = name
+          @IdCardType = idcardtype
+          @IdCardNumber = idcardnumber
+          @Mobile = mobile
+          @OrganizationOpenId = organizationopenid
+          @OpenId = openid
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          @ApproverNumber = params['ApproverNumber']
+          @ApproverType = params['ApproverType']
+          @Name = params['Name']
+          @IdCardType = params['IdCardType']
+          @IdCardNumber = params['IdCardNumber']
+          @Mobile = params['Mobile']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OpenId = params['OpenId']
+        end
+      end
+
+      # 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。
+      class RelieveInfo < TencentCloud::Common::AbstractModel
+        # @param Reason: 解除理由，最大支持200个字
+        # @type Reason: String
+        # @param RemainInForceItem: 解除后仍然有效的条款，保留条款，最大支持200个字
+        # @type RemainInForceItem: String
+        # @param OriginalExpenseSettlement: 原合同事项处理-费用结算，最大支持200个字
+        # @type OriginalExpenseSettlement: String
+        # @param OriginalOtherSettlement: 原合同事项处理-其他事项，最大支持200个字
+        # @type OriginalOtherSettlement: String
+        # @param OtherDeals: 其他约定，最大支持200个字
+        # @type OtherDeals: String
+
+        attr_accessor :Reason, :RemainInForceItem, :OriginalExpenseSettlement, :OriginalOtherSettlement, :OtherDeals
+        
+        def initialize(reason=nil, remaininforceitem=nil, originalexpensesettlement=nil, originalothersettlement=nil, otherdeals=nil)
+          @Reason = reason
+          @RemainInForceItem = remaininforceitem
+          @OriginalExpenseSettlement = originalexpensesettlement
+          @OriginalOtherSettlement = originalothersettlement
+          @OtherDeals = otherdeals
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+          @RemainInForceItem = params['RemainInForceItem']
+          @OriginalExpenseSettlement = params['OriginalExpenseSettlement']
+          @OriginalOtherSettlement = params['OriginalOtherSettlement']
+          @OtherDeals = params['OtherDeals']
         end
       end
 

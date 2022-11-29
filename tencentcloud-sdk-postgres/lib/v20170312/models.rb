@@ -3282,9 +3282,9 @@ module TencentCloud
 
       # InquiryPriceRenewDBInstance返回参数结构体
       class InquiryPriceRenewDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 总费用，打折前的。比如24650表示246.5元
+        # @param OriginalPrice: 刊例价，单位为分。如24650表示246.5元
         # @type OriginalPrice: Integer
-        # @param Price: 实际需要付款金额。比如24650表示246.5元
+        # @param Price: 折后实际付款金额，单位为分。如24650表示246.5元
         # @type Price: Integer
         # @param Currency: 币种。例如，CNY：人民币。
         # @type Currency: String
@@ -4104,7 +4104,7 @@ module TencentCloud
         # 当参数类型为enum（枚举类型）、mutil_enum（多枚举类型）时，参数的取值范围由返回值中的EnumValue确定。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamValueType: String
-        # @param Unit: 参数值 单位。参数没有单位是，该字段返回空
+        # @param Unit: 参数值 单位。参数没有单位时，该字段返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param DefaultValue: 参数默认值。以字符串形式返回
@@ -4113,12 +4113,12 @@ module TencentCloud
         # @param CurrentValue: 参数当前运行值。以字符串形式返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentValue: String
-        # @param EnumValue: 枚举类型参数，取值范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnumValue: Array
         # @param Max: 数值类型（integer、real）参数，取值下界
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: Float
+        # @param EnumValue: 枚举类型参数，取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
         # @param Min: 数值类型（integer、real）参数，取值上界
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: Float
@@ -4146,18 +4146,27 @@ module TencentCloud
         # @param LastModifyTime: 参数最后一次修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: String
+        # @param StandbyRelated: 参数存在主备制约，0：无主备制约关系，1:备机参数值需比主机大，2:主机参数值需比备机大
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandbyRelated: Integer
+        # @param VersionRelationSet: 参数版本关联信息，存储具体内核版本下的具体参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionRelationSet: Array
+        # @param SpecRelationSet: 参数规格关联信息，存储具体规格下具体的参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecRelationSet: Array
 
-        attr_accessor :ID, :Name, :ParamValueType, :Unit, :DefaultValue, :CurrentValue, :EnumValue, :Max, :Min, :ParamDescriptionCH, :ParamDescriptionEN, :NeedReboot, :ClassificationCN, :ClassificationEN, :SpecRelated, :Advanced, :LastModifyTime
+        attr_accessor :ID, :Name, :ParamValueType, :Unit, :DefaultValue, :CurrentValue, :Max, :EnumValue, :Min, :ParamDescriptionCH, :ParamDescriptionEN, :NeedReboot, :ClassificationCN, :ClassificationEN, :SpecRelated, :Advanced, :LastModifyTime, :StandbyRelated, :VersionRelationSet, :SpecRelationSet
         
-        def initialize(id=nil, name=nil, paramvaluetype=nil, unit=nil, defaultvalue=nil, currentvalue=nil, enumvalue=nil, max=nil, min=nil, paramdescriptionch=nil, paramdescriptionen=nil, needreboot=nil, classificationcn=nil, classificationen=nil, specrelated=nil, advanced=nil, lastmodifytime=nil)
+        def initialize(id=nil, name=nil, paramvaluetype=nil, unit=nil, defaultvalue=nil, currentvalue=nil, max=nil, enumvalue=nil, min=nil, paramdescriptionch=nil, paramdescriptionen=nil, needreboot=nil, classificationcn=nil, classificationen=nil, specrelated=nil, advanced=nil, lastmodifytime=nil, standbyrelated=nil, versionrelationset=nil, specrelationset=nil)
           @ID = id
           @Name = name
           @ParamValueType = paramvaluetype
           @Unit = unit
           @DefaultValue = defaultvalue
           @CurrentValue = currentvalue
-          @EnumValue = enumvalue
           @Max = max
+          @EnumValue = enumvalue
           @Min = min
           @ParamDescriptionCH = paramdescriptionch
           @ParamDescriptionEN = paramdescriptionen
@@ -4167,6 +4176,9 @@ module TencentCloud
           @SpecRelated = specrelated
           @Advanced = advanced
           @LastModifyTime = lastmodifytime
+          @StandbyRelated = standbyrelated
+          @VersionRelationSet = versionrelationset
+          @SpecRelationSet = specrelationset
         end
 
         def deserialize(params)
@@ -4176,8 +4188,8 @@ module TencentCloud
           @Unit = params['Unit']
           @DefaultValue = params['DefaultValue']
           @CurrentValue = params['CurrentValue']
-          @EnumValue = params['EnumValue']
           @Max = params['Max']
+          @EnumValue = params['EnumValue']
           @Min = params['Min']
           @ParamDescriptionCH = params['ParamDescriptionCH']
           @ParamDescriptionEN = params['ParamDescriptionEN']
@@ -4187,6 +4199,117 @@ module TencentCloud
           @SpecRelated = params['SpecRelated']
           @Advanced = params['Advanced']
           @LastModifyTime = params['LastModifyTime']
+          @StandbyRelated = params['StandbyRelated']
+          unless params['VersionRelationSet'].nil?
+            @VersionRelationSet = []
+            params['VersionRelationSet'].each do |i|
+              paramversionrelation_tmp = ParamVersionRelation.new
+              paramversionrelation_tmp.deserialize(i)
+              @VersionRelationSet << paramversionrelation_tmp
+            end
+          end
+          unless params['SpecRelationSet'].nil?
+            @SpecRelationSet = []
+            params['SpecRelationSet'].each do |i|
+              paramspecrelation_tmp = ParamSpecRelation.new
+              paramspecrelation_tmp.deserialize(i)
+              @SpecRelationSet << paramspecrelation_tmp
+            end
+          end
+        end
+      end
+
+      # 描述各规格下的参数信息
+      class ParamSpecRelation < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Memory: 参数信息所属规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: String
+        # @param Value: 参数在该规格下的默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Unit: 参数值单位。参数没有单位时，该字段返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Max: 数值类型（integer、real）参数，取值上界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Max: Float
+        # @param Min: 数值类型（integer、real）参数，取值下界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Min: Float
+        # @param EnumValue: 枚举类型参数，取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+
+        attr_accessor :Name, :Memory, :Value, :Unit, :Max, :Min, :EnumValue
+        
+        def initialize(name=nil, memory=nil, value=nil, unit=nil, max=nil, min=nil, enumvalue=nil)
+          @Name = name
+          @Memory = memory
+          @Value = value
+          @Unit = unit
+          @Max = max
+          @Min = min
+          @EnumValue = enumvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Memory = params['Memory']
+          @Value = params['Value']
+          @Unit = params['Unit']
+          @Max = params['Max']
+          @Min = params['Min']
+          @EnumValue = params['EnumValue']
+        end
+      end
+
+      # 描述各版本下的参数信息
+      class ParamVersionRelation < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DBKernelVersion: 参数信息所属内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBKernelVersion: String
+        # @param Value: 参数在该版本该规格下的默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Unit: 参数值单位。参数没有单位时，该字段返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Max: 数值类型（integer、real）参数，取值上界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Max: Float
+        # @param Min: 数值类型（integer、real）参数，取值下界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Min: Float
+        # @param EnumValue: 枚举类型参数，取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+
+        attr_accessor :Name, :DBKernelVersion, :Value, :Unit, :Max, :Min, :EnumValue
+        
+        def initialize(name=nil, dbkernelversion=nil, value=nil, unit=nil, max=nil, min=nil, enumvalue=nil)
+          @Name = name
+          @DBKernelVersion = dbkernelversion
+          @Value = value
+          @Unit = unit
+          @Max = max
+          @Min = min
+          @EnumValue = enumvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DBKernelVersion = params['DBKernelVersion']
+          @Value = params['Value']
+          @Unit = params['Unit']
+          @Max = params['Max']
+          @Min = params['Min']
+          @EnumValue = params['EnumValue']
         end
       end
 

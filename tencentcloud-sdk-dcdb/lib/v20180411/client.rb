@@ -1138,6 +1138,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+
+        # **注意**
+        # - 系统保留库："mysql"，只开放["SELECT"]权限
+        # - 只读账号授予读写权限会报错
+        # - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
+
+        # @param request: Request instance for ModifyAccountPrivileges.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyAccountPrivilegesResponse`
+        def ModifyAccountPrivileges(request)
+          body = send_request('ModifyAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceName）用于修改实例名字
 
         # @param request: Request instance for ModifyDBInstanceName.

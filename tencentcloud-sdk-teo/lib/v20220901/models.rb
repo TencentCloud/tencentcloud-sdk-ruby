@@ -2320,9 +2320,9 @@ module TencentCloud
 
       # CreateSecurityDropPage请求参数结构体
       class CreateSecurityDropPageRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
+        # @param ZoneId: 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type ZoneId: String
-        # @param Entity: 站点子域名。
+        # @param Entity: 子域名/应用名。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
         # @type Entity: String
         # @param Name: 自定义页面的文件名。
         # @type Name: String
@@ -2336,16 +2336,19 @@ module TencentCloud
         # <li> waf ：托管规则模块；</li>
         # <li> rate：自定义规则模块。</li>
         # @type Module: String
+        # @param TemplateId: 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :Entity, :Name, :Content, :Type, :Module
+        attr_accessor :ZoneId, :Entity, :Name, :Content, :Type, :Module, :TemplateId
         
-        def initialize(zoneid=nil, entity=nil, name=nil, content=nil, type=nil, _module=nil)
+        def initialize(zoneid=nil, entity=nil, name=nil, content=nil, type=nil, _module=nil, templateid=nil)
           @ZoneId = zoneid
           @Entity = entity
           @Name = name
           @Content = content
           @Type = type
           @Module = _module
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -2355,6 +2358,7 @@ module TencentCloud
           @Content = params['Content']
           @Type = params['Type']
           @Module = params['Module']
+          @TemplateId = params['TemplateId']
         end
       end
 

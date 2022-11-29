@@ -7716,6 +7716,26 @@ module TencentCloud
         end
       end
 
+      # 同步镜像信息
+      class SyncImage < TencentCloud::Common::AbstractModel
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
+        # @param Region: 地域
+        # @type Region: String
+
+        attr_accessor :ImageId, :Region
+        
+        def initialize(imageid=nil, region=nil)
+          @ImageId = imageid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @Region = params['Region']
+        end
+      end
+
       # SyncImages请求参数结构体
       class SyncImagesRequest < TencentCloud::Common::AbstractModel
         # @param ImageIds: 镜像ID列表 ，镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。<br><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。<br>镜像ID必须满足限制：<br><li>镜像ID对应的镜像状态必须为`NORMAL`。<br>镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
@@ -7726,14 +7746,17 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param ImageName: 目标镜像名称。
         # @type ImageName: String
+        # @param ImageSetRequired: 是否需要返回目的地域的镜像ID。
+        # @type ImageSetRequired: Boolean
 
-        attr_accessor :ImageIds, :DestinationRegions, :DryRun, :ImageName
+        attr_accessor :ImageIds, :DestinationRegions, :DryRun, :ImageName, :ImageSetRequired
         
-        def initialize(imageids=nil, destinationregions=nil, dryrun=nil, imagename=nil)
+        def initialize(imageids=nil, destinationregions=nil, dryrun=nil, imagename=nil, imagesetrequired=nil)
           @ImageIds = imageids
           @DestinationRegions = destinationregions
           @DryRun = dryrun
           @ImageName = imagename
+          @ImageSetRequired = imagesetrequired
         end
 
         def deserialize(params)
@@ -7741,21 +7764,33 @@ module TencentCloud
           @DestinationRegions = params['DestinationRegions']
           @DryRun = params['DryRun']
           @ImageName = params['ImageName']
+          @ImageSetRequired = params['ImageSetRequired']
         end
       end
 
       # SyncImages返回参数结构体
       class SyncImagesResponse < TencentCloud::Common::AbstractModel
+        # @param ImageSet: 目的地域的镜像ID信息。
+        # @type ImageSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ImageSet, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(imageset=nil, requestid=nil)
+          @ImageSet = imageset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['ImageSet'].nil?
+            @ImageSet = []
+            params['ImageSet'].each do |i|
+              syncimage_tmp = SyncImage.new
+              syncimage_tmp.deserialize(i)
+              @ImageSet << syncimage_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

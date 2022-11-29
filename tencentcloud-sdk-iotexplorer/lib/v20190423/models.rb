@@ -2803,10 +2803,13 @@ module TencentCloud
         # @param DeviceType: 设备类型（设备、子设备、网关）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
+        # @param IsLora: 是否是 lora 设备
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLora: Boolean
 
-        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :CreateUserId, :CreatorNickName, :EnableState, :ProductId, :ProductName, :DeviceType
+        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :CreateUserId, :CreatorNickName, :EnableState, :ProductId, :ProductName, :DeviceType, :IsLora
         
-        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, createuserid=nil, creatornickname=nil, enablestate=nil, productid=nil, productname=nil, devicetype=nil)
+        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, createuserid=nil, creatornickname=nil, enablestate=nil, productid=nil, productname=nil, devicetype=nil, islora=nil)
           @DeviceName = devicename
           @Status = status
           @DevicePsk = devicepsk
@@ -2827,6 +2830,7 @@ module TencentCloud
           @ProductId = productid
           @ProductName = productname
           @DeviceType = devicetype
+          @IsLora = islora
         end
 
         def deserialize(params)
@@ -2850,6 +2854,7 @@ module TencentCloud
           @ProductId = params['ProductId']
           @ProductName = params['ProductName']
           @DeviceType = params['DeviceType']
+          @IsLora = params['IsLora']
         end
       end
 

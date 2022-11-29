@@ -549,19 +549,34 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectedRange: :class:`Tencentcloud::Tcm.v20210413.models.SelectedRange`
         # @param Template: 采用的模板，可取值为"istio, trace，默认为istio
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: String
+        # @param CLS: 腾讯云日志服务相关参数
+        # @type CLS: :class:`Tencentcloud::Tcm.v20210413.models.CLS`
+        # @param Address: GRPC第三方服务器地址
+        # @type Address: String
+        # @param EnableServer: 是否启用GRPC第三方服务器
+        # @type EnableServer: Boolean
+        # @param EnableStdout: 是否启用标准输出
+        # @type EnableStdout: Boolean
+        # @param Enable: 是否启用访问日志采集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :File, :Format, :Encoding, :SelectedRange, :Template, :RequestId
+        attr_accessor :File, :Format, :Encoding, :SelectedRange, :Template, :CLS, :Address, :EnableServer, :EnableStdout, :Enable, :RequestId
         
-        def initialize(file=nil, format=nil, encoding=nil, selectedrange=nil, template=nil, requestid=nil)
+        def initialize(file=nil, format=nil, encoding=nil, selectedrange=nil, template=nil, cls=nil, address=nil, enableserver=nil, enablestdout=nil, enable=nil, requestid=nil)
           @File = file
           @Format = format
           @Encoding = encoding
           @SelectedRange = selectedrange
           @Template = template
+          @CLS = cls
+          @Address = address
+          @EnableServer = enableserver
+          @EnableStdout = enablestdout
+          @Enable = enable
           @RequestId = requestid
         end
 
@@ -574,6 +589,14 @@ module TencentCloud
             @SelectedRange.deserialize(params['SelectedRange'])
           end
           @Template = params['Template']
+          unless params['CLS'].nil?
+            @CLS = CLS.new
+            @CLS.deserialize(params['CLS'])
+          end
+          @Address = params['Address']
+          @EnableServer = params['EnableServer']
+          @EnableStdout = params['EnableStdout']
+          @Enable = params['Enable']
           @RequestId = params['RequestId']
         end
       end

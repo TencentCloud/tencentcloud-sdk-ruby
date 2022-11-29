@@ -7827,69 +7827,6 @@ module TencentCloud
         end
       end
 
-      # ModifyCDBProxy请求参数结构体
-      class ModifyCDBProxyRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 数据库代理组唯一ID
-        # @type ProxyGroupId: String
-        # @param IsKickout: 是否开始延迟剔除，默认false，取值："true" | "false"
-        # @type IsKickout: Boolean
-        # @param MinCount: 最少保留数，最小为0，最大为实例数量
-        # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除的阈值；如果IsKickOut="true", 该字段必填
-        # @type MaxDelay: Integer
-        # @param WeightMode: 读写权重分配模式；系统自动分配："system"， 自定义："custom"
-        # @type WeightMode: String
-        # @param RoWeightValues: 实例只读权重
-        # @type RoWeightValues: :class:`Tencentcloud::Cdb.v20170320.models.RoWeight`
-        # @param FailOver: 是否开启故障转移，代理出现故障后，连接地址将路由到主实例，默认false，取值："true" | "false"
-        # @type FailOver: Boolean
-        # @param AutoAddRo: 是否自动添加只读实例，默认false，取值："true" | "false"
-        # @type AutoAddRo: Boolean
-
-        attr_accessor :ProxyGroupId, :IsKickout, :MinCount, :MaxDelay, :WeightMode, :RoWeightValues, :FailOver, :AutoAddRo
-        
-        def initialize(proxygroupid=nil, iskickout=nil, mincount=nil, maxdelay=nil, weightmode=nil, roweightvalues=nil, failover=nil, autoaddro=nil)
-          @ProxyGroupId = proxygroupid
-          @IsKickout = iskickout
-          @MinCount = mincount
-          @MaxDelay = maxdelay
-          @WeightMode = weightmode
-          @RoWeightValues = roweightvalues
-          @FailOver = failover
-          @AutoAddRo = autoaddro
-        end
-
-        def deserialize(params)
-          @ProxyGroupId = params['ProxyGroupId']
-          @IsKickout = params['IsKickout']
-          @MinCount = params['MinCount']
-          @MaxDelay = params['MaxDelay']
-          @WeightMode = params['WeightMode']
-          unless params['RoWeightValues'].nil?
-            @RoWeightValues = RoWeight.new
-            @RoWeightValues.deserialize(params['RoWeightValues'])
-          end
-          @FailOver = params['FailOver']
-          @AutoAddRo = params['AutoAddRo']
-        end
-      end
-
-      # ModifyCDBProxy返回参数结构体
-      class ModifyCDBProxyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyCDBProxyVipVPort请求参数结构体
       class ModifyCDBProxyVipVPortRequest < TencentCloud::Common::AbstractModel
         # @param ProxyGroupId: 代理组ID
@@ -9747,17 +9684,6 @@ module TencentCloud
           @RoVpcId = params['RoVpcId']
           @RoVport = params['RoVport']
           @RoVip = params['RoVip']
-        end
-      end
-
-      # 实例权重
-      class RoWeight < TencentCloud::Common::AbstractModel
-
-        
-        def initialize()
-        end
-
-        def deserialize(params)
         end
       end
 

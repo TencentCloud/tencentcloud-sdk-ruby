@@ -4538,15 +4538,18 @@ module TencentCloud
         # @type Segment: Boolean
         # @param ShowIpv6: 是否查询节点 IPV6 信息。
         # @type ShowIpv6: Boolean
+        # @param AbbreviationIpv6: 是否对IPV6进行缩写。
+        # @type AbbreviationIpv6: Boolean
 
-        attr_accessor :Domain, :Layer, :Area, :Segment, :ShowIpv6
+        attr_accessor :Domain, :Layer, :Area, :Segment, :ShowIpv6, :AbbreviationIpv6
         
-        def initialize(domain=nil, layer=nil, area=nil, segment=nil, showipv6=nil)
+        def initialize(domain=nil, layer=nil, area=nil, segment=nil, showipv6=nil, abbreviationipv6=nil)
           @Domain = domain
           @Layer = layer
           @Area = area
           @Segment = segment
           @ShowIpv6 = showipv6
+          @AbbreviationIpv6 = abbreviationipv6
         end
 
         def deserialize(params)
@@ -4555,6 +4558,7 @@ module TencentCloud
           @Area = params['Area']
           @Segment = params['Segment']
           @ShowIpv6 = params['ShowIpv6']
+          @AbbreviationIpv6 = params['AbbreviationIpv6']
         end
       end
 
@@ -9666,7 +9670,7 @@ module TencentCloud
         end
       end
 
-      # 跨国回源优化配置，默认为关闭状态（功能灰度中，尚未全量）
+      # 跨国回源优化配置，默认为关闭状态 (已下线)
       class OriginPullOptimization < TencentCloud::Common::AbstractModel
         # @param Switch: 跨国回源优化配置开关
         # on：开启
@@ -9696,7 +9700,7 @@ module TencentCloud
         # @param ConnectTimeout: 回源建连超时时间，单位为秒，要求5~60之间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectTimeout: Integer
-        # @param ReceiveTimeout: 回源接收超时时间，单位为秒，要求10 ~ 60之间
+        # @param ReceiveTimeout: 回源接收超时时间，单位为秒，要求10 ~ 300之间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveTimeout: Integer
 
@@ -12885,7 +12889,7 @@ module TencentCloud
         # @type VideoSeek: :class:`Tencentcloud::Cdn.v20180606.models.VideoSeek`
         # @param Cache: 缓存过期时间配置
         # @type Cache: :class:`Tencentcloud::Cdn.v20180606.models.Cache`
-        # @param OriginPullOptimization: 跨国链路优化配置
+        # @param OriginPullOptimization: 跨国链路优化配置（已下线）
         # @type OriginPullOptimization: :class:`Tencentcloud::Cdn.v20180606.models.OriginPullOptimization`
         # @param Https: Https 加速配置
         # @type Https: :class:`Tencentcloud::Cdn.v20180606.models.Https`

@@ -7723,10 +7723,12 @@ module TencentCloud
         # @type Status: String
         # @param StatefulSetCondition: 工作负载的状况信息
         # @type StatefulSetCondition: Array
+        # @param Conditions: 工作负载历史的状况信息
+        # @type Conditions: Array
 
-        attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition
+        attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions
         
-        def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil)
+        def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil)
           @Replicas = replicas
           @UpdatedReplicas = updatedreplicas
           @ReadyReplicas = readyreplicas
@@ -7734,6 +7736,7 @@ module TencentCloud
           @UnavailableReplicas = unavailablereplicas
           @Status = status
           @StatefulSetCondition = statefulsetcondition
+          @Conditions = conditions
         end
 
         def deserialize(params)
@@ -7749,6 +7752,14 @@ module TencentCloud
               statefulsetcondition_tmp = StatefulSetCondition.new
               statefulsetcondition_tmp.deserialize(i)
               @StatefulSetCondition << statefulsetcondition_tmp
+            end
+          end
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              statefulsetcondition_tmp = StatefulSetCondition.new
+              statefulsetcondition_tmp.deserialize(i)
+              @Conditions << statefulsetcondition_tmp
             end
           end
         end

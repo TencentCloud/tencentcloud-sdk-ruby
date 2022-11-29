@@ -681,10 +681,12 @@ module TencentCloud
         # @type IntentionVerifyText: String
         # @param IntentionQuestions: 意愿核身（问答模式）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持一个播报文本+回答文本。
         # @type IntentionQuestions: Array
+        # @param Config: RuleId相关配置
+        # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.RuleIdConfig`
 
-        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions
+        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions, :Config
         
-        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil)
+        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil, config=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
           @IdCard = idcard
@@ -695,6 +697,7 @@ module TencentCloud
           @Encryption = encryption
           @IntentionVerifyText = intentionverifytext
           @IntentionQuestions = intentionquestions
+          @Config = config
         end
 
         def deserialize(params)
@@ -717,6 +720,10 @@ module TencentCloud
               intentionquestion_tmp.deserialize(i)
               @IntentionQuestions << intentionquestion_tmp
             end
+          end
+          unless params['Config'].nil?
+            @Config = RuleIdConfig.new
+            @Config.deserialize(params['Config'])
           end
         end
       end
@@ -3238,6 +3245,22 @@ module TencentCloud
           @Description = params['Description']
           @Isp = params['Isp']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RuleId相关配置
+      class RuleIdConfig < TencentCloud::Common::AbstractModel
+        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
+        # @type IntentionRecognition: Boolean
+
+        attr_accessor :IntentionRecognition
+        
+        def initialize(intentionrecognition=nil)
+          @IntentionRecognition = intentionrecognition
+        end
+
+        def deserialize(params)
+          @IntentionRecognition = params['IntentionRecognition']
         end
       end
 
