@@ -1793,7 +1793,7 @@ module TencentCloud
       class DescribeDeviceLocationSolveResponse < TencentCloud::Common::AbstractModel
         # @param Longitude: 经度
         # @type Longitude: Float
-        # @param Latitude: 维度
+        # @param Latitude: 纬度
         # @type Latitude: Float
         # @param LocationType: 类型
         # @type LocationType: String

@@ -3479,7 +3479,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机ip等
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP等
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
@@ -3487,7 +3487,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param HostIds: 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         # @type HostIds: Array
-        # @param HostIps: 指定母机ip生产子机
+        # @param HostIps: 指定母机IP生产子机
         # @type HostIps: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String

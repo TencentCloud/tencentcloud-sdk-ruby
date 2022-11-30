@@ -748,7 +748,7 @@ module TencentCloud
 
       # CreateSyncJob请求参数结构体
       class CreateSyncJobRequest < TencentCloud::Common::AbstractModel
-        # @param PayMode: 支付类型，PrePay：包年包月  PostPay：按时按量
+        # @param PayMode: 付款类型, 如：PrePay(表示包年包月)、PostPay(表示按时按量)
         # @type PayMode: String
         # @param SrcDatabaseType: 源端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
         # @type SrcDatabaseType: String
@@ -760,15 +760,15 @@ module TencentCloud
         # @type DstRegion: String
         # @param Specification: 同步任务规格，Standard:标准版
         # @type Specification: String
-        # @param Tags: 无
+        # @param Tags: 标签信息
         # @type Tags: Array
-        # @param Count: 同步任务数量
+        # @param Count: 一次购买的同步任务数量，取值范围为[1, 10]，默认为1
         # @type Count: Integer
-        # @param AutoRenew: 自动续费标识
+        # @param AutoRenew: 自动续费标识，当PayMode值为PrePay则此项配置有意义，取值为：1（表示自动续费）、0（不自动续费，默认为此值）
         # @type AutoRenew: Integer
-        # @param InstanceClass: 同步链路规格
+        # @param InstanceClass: 同步链路规格，如micro,small,medium,large，默认为medium
         # @type InstanceClass: String
-        # @param JobName: 同步链路名称
+        # @param JobName: 同步任务名称
         # @type JobName: String
         # @param ExistedJobId: 创建类似任务的现有任务Id
         # @type ExistedJobId: String

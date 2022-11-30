@@ -370,6 +370,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+
+        # @param request: Request instance for DescribeAllScenes.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeAllScenesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeAllScenesResponse`
+        def DescribeAllScenes(request)
+          body = send_request('DescribeAllScenes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllScenesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
 
         # @param request: Request instance for DescribeBlueprintInstances.
@@ -949,6 +973,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeResetInstanceBlueprintsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeScenes)用于查看使用场景列表。
+
+        # @param request: Request instance for DescribeScenes.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeScenesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeScenesResponse`
+        def DescribeScenes(request)
+          body = send_request('DescribeScenes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScenesResponse.new
             model.deserialize(response['Response'])
             model
           else

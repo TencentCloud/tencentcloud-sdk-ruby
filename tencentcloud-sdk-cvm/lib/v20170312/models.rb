@@ -703,7 +703,7 @@ module TencentCloud
 
         # 关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
         # @type Sysprep: String
-        # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
+        # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘ID
         # @type DataDiskIds: Array
         # @param SnapshotIds: 基于快照创建镜像，指定快照ID，必须包含一个系统盘快照。不可与InstanceId同时传入。
         # @type SnapshotIds: Array
@@ -3496,7 +3496,7 @@ module TencentCloud
       class HostItem < TencentCloud::Common::AbstractModel
         # @param Placement: 专用宿主机实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
-        # @param HostId: 专用宿主机实例id
+        # @param HostId: 专用宿主机实例ID
         # @type HostId: String
         # @param HostType: 专用宿主机实例类型
         # @type HostType: String
@@ -3514,7 +3514,7 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param HostState: 专用宿主机实例状态
         # @type HostState: String
-        # @param HostIp: 专用宿主机实例ip
+        # @param HostIp: 专用宿主机实例IP
         # @type HostIp: String
         # @param HostResource: 专用宿主机实例资源信息
         # @type HostResource: :class:`Tencentcloud::Cvm.v20170312.models.HostResource`
@@ -3565,9 +3565,9 @@ module TencentCloud
 
       # 专用宿主机实例的资源信息
       class HostResource < TencentCloud::Common::AbstractModel
-        # @param CpuTotal: 专用宿主机实例总cpu核数
+        # @param CpuTotal: 专用宿主机实例总CPU核数
         # @type CpuTotal: Integer
-        # @param CpuAvailable: 专用宿主机实例可用cpu核数
+        # @param CpuAvailable: 专用宿主机实例可用CPU核数
         # @type CpuAvailable: Integer
         # @param MemTotal: 专用宿主机实例总内存大小（单位为:GiB）
         # @type MemTotal: Float
@@ -3764,12 +3764,12 @@ module TencentCloud
         end
       end
 
-      # 支持的操作系统类型，根据windows和Linux分类。
+      # 支持的操作系统类型，根据Windows和Linux分类。
       class ImageOsList < TencentCloud::Common::AbstractModel
-        # @param Windows: 支持的windows操作系统。
+        # @param Windows: 支持的Windows操作系统。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Windows: Array
-        # @param Linux: 支持的linux操作系统
+        # @param Linux: 支持的Linux操作系统
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Linux: Array
 
@@ -5368,7 +5368,7 @@ module TencentCloud
         # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserData: String
-        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @param DisasterRecoverGroupIds: 置放群组ID，仅支持指定一个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoverGroupIds: Array
         # @param ActionTimer: 定时任务。通过该参数可以为实例指定定时任务，目前仅支持定时销毁。
@@ -6245,7 +6245,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机ip等
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP等
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
@@ -6253,7 +6253,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param HostIds: 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         # @type HostIds: Array
-        # @param HostIps: 指定母机ip生产子机
+        # @param HostIps: 指定母机IP生产子机
         # @type HostIps: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String
@@ -6779,8 +6779,8 @@ module TencentCloud
         # @param Duration: 预留实例计费【有效期】即预留实例计费购买时长。形如：31536000。
         # 计量单位：秒
         # @type Duration: Integer
-        # @param ProductDescription: 预留实例计费的平台描述（即操作系统）。形如：linux。
-        # 返回项： linux 。
+        # @param ProductDescription: 预留实例计费的平台描述（即操作系统）。形如：Linux。
+        # 返回项： Linux 。
         # @type ProductDescription: String
 
         attr_accessor :OfferingType, :FixedPrice, :UsagePrice, :ReservedInstancesOfferingId, :Zone, :Duration, :ProductDescription

@@ -19,15 +19,15 @@ module TencentCloud
     module V20210526
       # 应用相关信息
       class Agent < TencentCloud::Common::AbstractModel
-        # @param AppId: 腾讯电子签颁发给渠道的应用ID，32位字符串
+        # @param AppId: 应用的唯一标识。不同的业务系统可以采用不同的AppId，不同AppId下的数据是隔离的。可以由控制台开发者中心-应用集成自主生成。
         # @type AppId: String
-        # @param ProxyOrganizationOpenId: 渠道/平台合作企业的企业ID，最大64位字符串
+        # @param ProxyOrganizationOpenId: 渠道平台自定义，对于渠道子客企业的唯一标识。一个渠道子客企业主体与子客企业ProxyOrganizationOpenId是一一对应的，不可更改，不可重复使用。（例如，可以使用企业名称的hash值，或者社会统一信用代码的hash值，或者随机hash值，需要渠道平台保存），最大64位字符串
         # @type ProxyOrganizationOpenId: String
-        # @param ProxyOperator: 渠道/平台合作企业经办人（操作员）
+        # @param ProxyOperator: 渠道子客企业中的员工/经办人，通过渠道平台进入电子签完成实名、且被赋予相关权限后，可以参与到企业资源的管理或签署流程中。
         # @type ProxyOperator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param ProxyAppId: 腾讯电子签颁发给渠道侧合作企业的应用ID
+        # @param ProxyAppId: 在子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
         # @type ProxyAppId: String
-        # @param ProxyOrganizationId: 内部参数，腾讯电子签颁发给渠道侧合作企业的企业ID，不需要传
+        # @param ProxyOrganizationId: 内部参数，暂未开放使用
         # @type ProxyOrganizationId: String
 
         attr_accessor :AppId, :ProxyOrganizationOpenId, :ProxyOperator, :ProxyAppId, :ProxyOrganizationId
@@ -379,7 +379,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 领取的合同id列表
         # @type FlowIds: Array
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
@@ -829,13 +829,13 @@ module TencentCloud
 
       # ChannelCreateReleaseFlow请求参数结构体
       class ChannelCreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param NeedRelievedFlowId: 待解除的流程编号（即原流程的编号）
         # @type NeedRelievedFlowId: String
         # @param ReliveInfo: 解除协议内容
         # @type ReliveInfo: :class:`Tencentcloud::Essbasic.v20210526.models.RelieveInfo`
-        # @param Agent: 应用相关信息
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param ReleasedApprovers: 非必须，解除协议的本企业签署人列表，默认使用原流程的签署人列表；当解除协议的签署人与原流程的签署人不能相同时（比如原流程签署人离职了），需要指定本企业的其他签署人来替换原流程中的原签署人，注意需要指明ApproverNumber来代表需要替换哪一个签署人，解除协议的签署人数量不能多于原流程的签署人数量
+        # @param ReleasedApprovers: 非必须，解除协议的本企业签署人列表，默认使用原流程的签署人列表；当解除协议的签署人与原流程的签署人不能相同时（例如原流程签署人离职了），需要指定本企业的其他签署人来替换原流程中的原签署人，注意需要指明ApproverNumber来代表需要替换哪一个签署人，解除协议的签署人数量不能多于原流程的签署人数量
         # @type ReleasedApprovers: Array
         # @param CallbackUrl: 签署完回调url，最大长度1000个字符
         # @type CallbackUrl: String
@@ -844,12 +844,12 @@ module TencentCloud
         # @param Operator: 用户信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :NeedRelievedFlowId, :ReliveInfo, :Agent, :ReleasedApprovers, :CallbackUrl, :Organization, :Operator
+        attr_accessor :Agent, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :CallbackUrl, :Organization, :Operator
         
-        def initialize(needrelievedflowid=nil, reliveinfo=nil, agent=nil, releasedapprovers=nil, callbackurl=nil, organization=nil, operator=nil)
+        def initialize(agent=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil, callbackurl=nil, organization=nil, operator=nil)
+          @Agent = agent
           @NeedRelievedFlowId = needrelievedflowid
           @ReliveInfo = reliveinfo
-          @Agent = agent
           @ReleasedApprovers = releasedapprovers
           @CallbackUrl = callbackurl
           @Organization = organization
@@ -857,14 +857,14 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           @NeedRelievedFlowId = params['NeedRelievedFlowId']
           unless params['ReliveInfo'].nil?
             @ReliveInfo = RelieveInfo.new
             @ReliveInfo.deserialize(params['ReliveInfo'])
-          end
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
           end
           unless params['ReleasedApprovers'].nil?
             @ReleasedApprovers = []
@@ -1640,9 +1640,9 @@ module TencentCloud
       class CreateSealByImageRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param SealName: 印章名称，最大长度不超过30字符
+        # @param SealName: 印章名称，最大长度不超过50字符
         # @type SealName: String
-        # @param SealImage: 印章图片base64
+        # @param SealImage: 印章图片base64，大小不超过10M（原始图片不超过7.6M）
         # @type SealImage: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -2040,10 +2040,12 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param WithPreviewUrl: 是否获取模板预览链接
         # @type WithPreviewUrl: Boolean
+        # @param WithPdfUrl: 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
+        # @type WithPdfUrl: Boolean
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl, :WithPdfUrl
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil, withpdfurl=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
@@ -2053,6 +2055,7 @@ module TencentCloud
           @TemplateName = templatename
           @Operator = operator
           @WithPreviewUrl = withpreviewurl
+          @WithPdfUrl = withpdfurl
         end
 
         def deserialize(params)
@@ -2071,6 +2074,7 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @WithPreviewUrl = params['WithPreviewUrl']
+          @WithPdfUrl = params['WithPdfUrl']
         end
       end
 
@@ -3164,7 +3168,7 @@ module TencentCloud
 
       # 合作企业经办人列表信息
       class ProxyOrganizationOperator < TencentCloud::Common::AbstractModel
-        # @param Id: 经办人ID（渠道颁发），最大长度64个字符
+        # @param Id: 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（比如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
         # @type Id: String
         # @param Name: 经办人姓名，最大长度50个字符
         # @type Name: String
@@ -3768,10 +3772,10 @@ module TencentCloud
         # @type Description: String
         # @param Components: 模板控件信息结构
         # @type Components: Array
-        # @param SignComponents: 签署区模板信息结构
-        # @type SignComponents: Array
         # @param Recipients: 模板中的流程参与人信息
         # @type Recipients: Array
+        # @param SignComponents: 签署区模板信息结构
+        # @type SignComponents: Array
         # @param TemplateType: 模板类型：1-静默签；3-普通模板
         # @type TemplateType: Integer
         # @param IsPromoter: 是否是发起人 ,已弃用
@@ -3784,24 +3788,27 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param ChannelTemplateId: 渠道模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelTemplateId: String
+        # @param PdfUrl: 渠道版-模板PDF文件链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PdfUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Recipients, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :ChannelTemplateId
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :ChannelTemplateId, :PdfUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, recipients=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, channeltemplateid=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, channeltemplateid=nil, pdfurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
           @Components = components
-          @SignComponents = signcomponents
           @Recipients = recipients
+          @SignComponents = signcomponents
           @TemplateType = templatetype
           @IsPromoter = ispromoter
           @Creator = creator
           @CreatedOn = createdon
           @PreviewUrl = previewurl
           @ChannelTemplateId = channeltemplateid
+          @PdfUrl = pdfurl
         end
 
         def deserialize(params)
@@ -3816,14 +3823,6 @@ module TencentCloud
               @Components << component_tmp
             end
           end
-          unless params['SignComponents'].nil?
-            @SignComponents = []
-            params['SignComponents'].each do |i|
-              component_tmp = Component.new
-              component_tmp.deserialize(i)
-              @SignComponents << component_tmp
-            end
-          end
           unless params['Recipients'].nil?
             @Recipients = []
             params['Recipients'].each do |i|
@@ -3832,12 +3831,21 @@ module TencentCloud
               @Recipients << recipient_tmp
             end
           end
+          unless params['SignComponents'].nil?
+            @SignComponents = []
+            params['SignComponents'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @SignComponents << component_tmp
+            end
+          end
           @TemplateType = params['TemplateType']
           @IsPromoter = params['IsPromoter']
           @Creator = params['Creator']
           @CreatedOn = params['CreatedOn']
           @PreviewUrl = params['PreviewUrl']
           @ChannelTemplateId = params['ChannelTemplateId']
+          @PdfUrl = params['PdfUrl']
         end
       end
 
@@ -3974,15 +3982,15 @@ module TencentCloud
 
       # 接口调用者信息
       class UserInfo < TencentCloud::Common::AbstractModel
-        # @param OpenId: 用户在渠道的编号，最大64位字符串
+        # @param OpenId: 渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
         # @type OpenId: String
-        # @param Channel: 用户的来源渠道
+        # @param Channel: 内部参数，暂未开放使用
         # @type Channel: String
-        # @param CustomUserId: 自定义用户编号
+        # @param CustomUserId: 内部参数，暂未开放使用
         # @type CustomUserId: String
-        # @param ClientIp: 用户真实IP
+        # @param ClientIp: 内部参数，暂未开放使用
         # @type ClientIp: String
-        # @param ProxyIp: 用户代理IP
+        # @param ProxyIp: 内部参数，暂未开放使用
         # @type ProxyIp: String
 
         attr_accessor :OpenId, :Channel, :CustomUserId, :ClientIp, :ProxyIp

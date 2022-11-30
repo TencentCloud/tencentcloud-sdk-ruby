@@ -950,6 +950,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAllScenes请求参数结构体
+      class DescribeAllScenesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneIds: 使用场景ID列表。
+        # @type SceneIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :SceneIds, :Offset, :Limit
+        
+        def initialize(sceneids=nil, offset=nil, limit=nil)
+          @SceneIds = sceneids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SceneIds = params['SceneIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAllScenes返回参数结构体
+      class DescribeAllScenesResponse < TencentCloud::Common::AbstractModel
+        # @param SceneInfoSet: 使用场景详细信息列表。
+        # @type SceneInfoSet: Array
+        # @param TotalCount: 使用场景详细信息总数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SceneInfoSet, :TotalCount, :RequestId
+        
+        def initialize(sceneinfoset=nil, totalcount=nil, requestid=nil)
+          @SceneInfoSet = sceneinfoset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SceneInfoSet'].nil?
+            @SceneInfoSet = []
+            params['SceneInfoSet'].each do |i|
+              sceneinfo_tmp = SceneInfo.new
+              sceneinfo_tmp.deserialize(i)
+              @SceneInfoSet << sceneinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBlueprintInstances请求参数结构体
       class DescribeBlueprintInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表，当前最多支持 1 个。
@@ -2351,6 +2406,61 @@ module TencentCloud
               @ResetInstanceBlueprintSet << resetinstanceblueprint_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScenes请求参数结构体
+      class DescribeScenesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneIds: 使用场景ID列表。
+        # @type SceneIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :SceneIds, :Offset, :Limit
+        
+        def initialize(sceneids=nil, offset=nil, limit=nil)
+          @SceneIds = sceneids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SceneIds = params['SceneIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeScenes返回参数结构体
+      class DescribeScenesResponse < TencentCloud::Common::AbstractModel
+        # @param SceneSet: 使用场景列表。
+        # @type SceneSet: Array
+        # @param TotalCount: 使用场景总数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SceneSet, :TotalCount, :RequestId
+        
+        def initialize(sceneset=nil, totalcount=nil, requestid=nil)
+          @SceneSet = sceneset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SceneSet'].nil?
+            @SceneSet = []
+            params['SceneSet'].each do |i|
+              scene_tmp = Scene.new
+              scene_tmp.deserialize(i)
+              @SceneSet << scene_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4715,6 +4825,54 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 使用场景信息
+      class Scene < TencentCloud::Common::AbstractModel
+        # @param SceneId: 使用场景Id
+        # @type SceneId: String
+        # @param DisplayName: 使用场景展示名称
+        # @type DisplayName: String
+        # @param Description: 使用场景描述
+        # @type Description: String
+
+        attr_accessor :SceneId, :DisplayName, :Description
+        
+        def initialize(sceneid=nil, displayname=nil, description=nil)
+          @SceneId = sceneid
+          @DisplayName = displayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+        end
+      end
+
+      # 使用场景详细信息
+      class SceneInfo < TencentCloud::Common::AbstractModel
+        # @param SceneId: 使用场景Id。
+        # @type SceneId: String
+        # @param DisplayName: 使用场景展示名称。
+        # @type DisplayName: String
+        # @param Description: 使用场景描述信息。
+        # @type Description: String
+
+        attr_accessor :SceneId, :DisplayName, :Description
+        
+        def initialize(sceneid=nil, displayname=nil, description=nil)
+          @SceneId = sceneid
+          @DisplayName = displayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
         end
       end
 

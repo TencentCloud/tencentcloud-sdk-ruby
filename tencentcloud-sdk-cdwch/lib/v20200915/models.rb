@@ -286,6 +286,112 @@ module TencentCloud
         end
       end
 
+      # DescribeSpec请求参数结构体
+      class DescribeSpecRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 地域信息，例如"ap-guangzhou-1"
+        # @type Zone: String
+        # @param PayMode: 计费类型，PREPAID 包年包月，POSTPAID_BY_HOUR 按量计费
+        # @type PayMode: String
+        # @param IsElastic: 是否弹性ck
+        # @type IsElastic: Boolean
+
+        attr_accessor :Zone, :PayMode, :IsElastic
+        
+        def initialize(zone=nil, paymode=nil, iselastic=nil)
+          @Zone = zone
+          @PayMode = paymode
+          @IsElastic = iselastic
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @PayMode = params['PayMode']
+          @IsElastic = params['IsElastic']
+        end
+      end
+
+      # DescribeSpec返回参数结构体
+      class DescribeSpecResponse < TencentCloud::Common::AbstractModel
+        # @param CommonSpec: zookeeper节点规格描述
+        # @type CommonSpec: Array
+        # @param DataSpec: 数据节点规格描述
+        # @type DataSpec: Array
+        # @param AttachCBSSpec: 云盘列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachCBSSpec: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CommonSpec, :DataSpec, :AttachCBSSpec, :RequestId
+        
+        def initialize(commonspec=nil, dataspec=nil, attachcbsspec=nil, requestid=nil)
+          @CommonSpec = commonspec
+          @DataSpec = dataspec
+          @AttachCBSSpec = attachcbsspec
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CommonSpec'].nil?
+            @CommonSpec = []
+            params['CommonSpec'].each do |i|
+              resourcespec_tmp = ResourceSpec.new
+              resourcespec_tmp.deserialize(i)
+              @CommonSpec << resourcespec_tmp
+            end
+          end
+          unless params['DataSpec'].nil?
+            @DataSpec = []
+            params['DataSpec'].each do |i|
+              resourcespec_tmp = ResourceSpec.new
+              resourcespec_tmp.deserialize(i)
+              @DataSpec << resourcespec_tmp
+            end
+          end
+          unless params['AttachCBSSpec'].nil?
+            @AttachCBSSpec = []
+            params['AttachCBSSpec'].each do |i|
+              diskspec_tmp = DiskSpec.new
+              diskspec_tmp.deserialize(i)
+              @AttachCBSSpec << diskspec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 磁盘规格描述
+      class DiskSpec < TencentCloud::Common::AbstractModel
+        # @param DiskType: 磁盘类型，例如“CLOUD_SSD", "LOCAL_SSD"等
+        # @type DiskType: String
+        # @param DiskDesc: 磁盘类型说明，例如"云SSD", "本地SSD"等
+        # @type DiskDesc: String
+        # @param MinDiskSize: 磁盘最小规格大小，单位G
+        # @type MinDiskSize: Integer
+        # @param MaxDiskSize: 磁盘最大规格大小，单位G
+        # @type MaxDiskSize: Integer
+        # @param DiskCount: 磁盘数目
+        # @type DiskCount: Integer
+
+        attr_accessor :DiskType, :DiskDesc, :MinDiskSize, :MaxDiskSize, :DiskCount
+        
+        def initialize(disktype=nil, diskdesc=nil, mindisksize=nil, maxdisksize=nil, diskcount=nil)
+          @DiskType = disktype
+          @DiskDesc = diskdesc
+          @MinDiskSize = mindisksize
+          @MaxDiskSize = maxdisksize
+          @DiskCount = diskcount
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskDesc = params['DiskDesc']
+          @MinDiskSize = params['MinDiskSize']
+          @MaxDiskSize = params['MaxDiskSize']
+          @DiskCount = params['DiskCount']
+        end
+      end
+
       # ModifyClusterConfigs请求参数结构体
       class ModifyClusterConfigsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID，例如cdwch-xxxx
@@ -405,6 +511,72 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源规格描述信息
+      class ResourceSpec < TencentCloud::Common::AbstractModel
+        # @param Name: 规格名称，例如“SCH1"
+        # @type Name: String
+        # @param Cpu: cpu核数
+        # @type Cpu: Integer
+        # @param Mem: 内存大小，单位G
+        # @type Mem: Integer
+        # @param Type: 分类标记，STANDARD/BIGDATA/HIGHIO分别表示标准型/大数据型/高IO
+        # @type Type: String
+        # @param SystemDisk: 系统盘描述信息
+        # @type SystemDisk: :class:`Tencentcloud::Cdwch.v20200915.models.DiskSpec`
+        # @param DataDisk: 数据盘描述信息
+        # @type DataDisk: :class:`Tencentcloud::Cdwch.v20200915.models.DiskSpec`
+        # @param MaxNodeSize: 最大节点数目限制
+        # @type MaxNodeSize: Integer
+        # @param Available: 是否可用，false代表售罄
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Available: Boolean
+        # @param ComputeSpecDesc: 规格描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeSpecDesc: String
+        # @param DisplayName: 规格名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param InstanceQuota: 库存数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceQuota: Integer
+
+        attr_accessor :Name, :Cpu, :Mem, :Type, :SystemDisk, :DataDisk, :MaxNodeSize, :Available, :ComputeSpecDesc, :DisplayName, :InstanceQuota
+        
+        def initialize(name=nil, cpu=nil, mem=nil, type=nil, systemdisk=nil, datadisk=nil, maxnodesize=nil, available=nil, computespecdesc=nil, displayname=nil, instancequota=nil)
+          @Name = name
+          @Cpu = cpu
+          @Mem = mem
+          @Type = type
+          @SystemDisk = systemdisk
+          @DataDisk = datadisk
+          @MaxNodeSize = maxnodesize
+          @Available = available
+          @ComputeSpecDesc = computespecdesc
+          @DisplayName = displayname
+          @InstanceQuota = instancequota
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @Type = params['Type']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = DiskSpec.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisk'].nil?
+            @DataDisk = DiskSpec.new
+            @DataDisk.deserialize(params['DataDisk'])
+          end
+          @MaxNodeSize = params['MaxNodeSize']
+          @Available = params['Available']
+          @ComputeSpecDesc = params['ComputeSpecDesc']
+          @DisplayName = params['DisplayName']
+          @InstanceQuota = params['InstanceQuota']
         end
       end
 
