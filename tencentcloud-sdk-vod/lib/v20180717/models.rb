@@ -18521,6 +18521,9 @@ module TencentCloud
         # @type FileId: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
+        # @param Definition: 音视频审核模板 ID，默认值为 10。取值范围：
+        # <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
+        # @type Definition: Integer
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         # @type TasksPriority: Integer
         # @param SessionContext: 来源上下文，用于透传用户请求信息，音视频审核完成回调将返回该字段值，最长 1000 个字符。
@@ -18530,11 +18533,12 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :FileId, :SubAppId, :TasksPriority, :SessionContext, :SessionId, :ExtInfo
+        attr_accessor :FileId, :SubAppId, :Definition, :TasksPriority, :SessionContext, :SessionId, :ExtInfo
         
-        def initialize(fileid=nil, subappid=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
+        def initialize(fileid=nil, subappid=nil, definition=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FileId = fileid
           @SubAppId = subappid
+          @Definition = definition
           @TasksPriority = taskspriority
           @SessionContext = sessioncontext
           @SessionId = sessionid
@@ -18544,6 +18548,7 @@ module TencentCloud
         def deserialize(params)
           @FileId = params['FileId']
           @SubAppId = params['SubAppId']
+          @Definition = params['Definition']
           @TasksPriority = params['TasksPriority']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
@@ -18585,33 +18590,15 @@ module TencentCloud
         # @type Suggestion: String
         # @param Label: 嫌疑片段最可能的违规的标签，取值范围：
         # <li>Porn：色情；</li>
-        # <li>Terrorism：暴恐；</li>
-        # <li>Political：令人不适宜的信息。</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Ad：广告；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂；</li>
+        # <li>Moan：娇喘。</li>
         # @type Label: String
-        # @param SubLabel: 当 Form 为 Image 或 Voice 时有效，表示当前标签（Label）下的二级标签。
-        # 当 Form 为 Image 且 Label 为 Porn 时，取值范围：
-        # <li>porn：色情；</li>
-        # <li>vulgar：低俗。</li>
-
-        # 当 Form 为 Image 且 Label 为 Terrorism 时，取值范围：
-        # <li>guns：武器枪支；</li>
-        # <li>bloody：血腥画面；</li>
-        # <li>banners：暴恐旗帜；</li>
-        # <li> scenario：暴恐画面；</li>
-        # <li>explosion：爆炸火灾。</li>
-
-        # 当 Form 为 Image 且 Label 为 Political 时，取值范围：
-        # <li>violation_photo：违规图标；</li>
-        # <li>nation_politician：国家领导人；</li>
-        # <li>province_politician：省部级领导人；</li>
-        # <li>county_politician：市/县级领导人；</li>
-        # <li>sensitive_politician：敏感相关人物；</li>
-        # <li>foreign_politician：国外政治人物；</li>
-        # <li>sensitive_entertainment：敏感娱乐明星；</li>
-        # <li>sensitive_military：敏感军事人物。</li>
-
-        # 当 Form 为 Voice 且 Label 为 Porn 时，取值范围：
-        # <li>moan：娇喘。</li>
+        # @param SubLabel: 违规子标签。
         # @type SubLabel: String
         # @param Form: 嫌疑片段违禁的形式，取值范围：
         # <li>Image：画面上的人物或图标；</li>
@@ -18713,15 +18700,19 @@ module TencentCloud
       class ReviewAudioVideoTaskInput < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。
         # @type FileId: String
+        # @param Definition: 音视频审核模板 ID。
+        # @type Definition: Integer
 
-        attr_accessor :FileId
+        attr_accessor :FileId, :Definition
         
-        def initialize(fileid=nil)
+        def initialize(fileid=nil, definition=nil)
           @FileId = fileid
+          @Definition = definition
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @Definition = params['Definition']
         end
       end
 
@@ -18734,8 +18725,13 @@ module TencentCloud
         # @type Suggestion: String
         # @param Label: 当 Suggestion 为 review 或 block 时有效，表示音视频最可能的违规的标签，取值范围：
         # <li>Porn：色情；</li>
-        # <li>Terrorism：暴恐；</li>
-        # <li>Political：令人不适宜的信息。</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Ad：广告；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂；</li>
+        # <li>Moan：娇喘。</li>
         # @type Label: String
         # @param Form: 当 Suggestion 为 review 或 block 时有效，表示音视频最可能的违禁的形式，取值范围：
         # <li>Image：画面上的人物或图标；</li>
