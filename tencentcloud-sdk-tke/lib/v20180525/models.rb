@@ -1934,6 +1934,89 @@ module TencentCloud
         end
       end
 
+      # CreateClusterRelease请求参数结构体
+      class CreateClusterReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param Chart: 制品名称或从第三方repo 安装chart时，制品压缩包下载地址, 不支持重定向类型chart 地址，结尾为*.tgz
+        # @type Chart: String
+        # @param Values: 自定义参数
+        # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
+        # @param ChartFrom: 制品来源，范围：tke-market/tcr/other
+        # @type ChartFrom: String
+        # @param ChartVersion: 制品版本
+        # @type ChartVersion: String
+        # @param ChartRepoURL: 制品仓库URL地址
+        # @type ChartRepoURL: String
+        # @param Username: 制品访问用户名
+        # @type Username: String
+        # @param Password: 制品访问密码
+        # @type Password: String
+        # @param ChartNamespace: 制品命名空间
+        # @type ChartNamespace: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :Chart, :Values, :ChartFrom, :ChartVersion, :ChartRepoURL, :Username, :Password, :ChartNamespace
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, chart=nil, values=nil, chartfrom=nil, chartversion=nil, chartrepourl=nil, username=nil, password=nil, chartnamespace=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @Chart = chart
+          @Values = values
+          @ChartFrom = chartfrom
+          @ChartVersion = chartversion
+          @ChartRepoURL = chartrepourl
+          @Username = username
+          @Password = password
+          @ChartNamespace = chartnamespace
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Chart = params['Chart']
+          unless params['Values'].nil?
+            @Values = ReleaseValues.new
+            @Values.deserialize(params['Values'])
+          end
+          @ChartFrom = params['ChartFrom']
+          @ChartVersion = params['ChartVersion']
+          @ChartRepoURL = params['ChartRepoURL']
+          @Username = params['Username']
+          @Password = params['Password']
+          @ChartNamespace = params['ChartNamespace']
+        end
+      end
+
+      # CreateClusterRelease返回参数结构体
+      class CreateClusterReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = PendingRelease.new
+            @Release.deserialize(params['Release'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterCIDRSettings: 集群容器网络配置信息
@@ -11574,6 +11657,53 @@ module TencentCloud
         end
       end
 
+      # 应用市场安装的Pending应用
+      class PendingRelease < TencentCloud::Common::AbstractModel
+        # @param Condition: 应用状态详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Condition: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ID: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Status: 应用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+
+        attr_accessor :Condition, :CreatedTime, :ID, :Name, :Namespace, :Status, :UpdatedTime
+        
+        def initialize(condition=nil, createdtime=nil, id=nil, name=nil, namespace=nil, status=nil, updatedtime=nil)
+          @Condition = condition
+          @CreatedTime = createdtime
+          @ID = id
+          @Name = name
+          @Namespace = namespace
+          @Status = status
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @Condition = params['Condition']
+          @CreatedTime = params['CreatedTime']
+          @ID = params['ID']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Status = params['Status']
+          @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
       # 某机型可支持的最大 VPC-CNI 模式的 Pod 数量
       class PodLimitsByType < TencentCloud::Common::AbstractModel
         # @param TKERouteENINonStaticIP: TKE共享网卡非固定IP模式可支持的Pod数量
@@ -13075,6 +13205,26 @@ module TencentCloud
           @FeatureGates = params['FeatureGates']
           @Alias = params['Alias']
           @Remark = params['Remark']
+        end
+      end
+
+      # 应用市场自定义参数
+      class ReleaseValues < TencentCloud::Common::AbstractModel
+        # @param RawOriginal: 自定义参数原始值
+        # @type RawOriginal: String
+        # @param ValuesType: 自定义参数值类型
+        # @type ValuesType: String
+
+        attr_accessor :RawOriginal, :ValuesType
+        
+        def initialize(raworiginal=nil, valuestype=nil)
+          @RawOriginal = raworiginal
+          @ValuesType = valuestype
+        end
+
+        def deserialize(params)
+          @RawOriginal = params['RawOriginal']
+          @ValuesType = params['ValuesType']
         end
       end
 

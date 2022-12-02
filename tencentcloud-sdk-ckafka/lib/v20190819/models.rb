@@ -1709,6 +1709,69 @@ module TencentCloud
         end
       end
 
+      # CreateInstancePost请求参数结构体
+      class CreateInstancePostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @type InstanceName: String
+        # @param BandWidth: 实例带宽
+        # @type BandWidth: Integer
+        # @param VpcId: vpcId，不填默认基础网络
+        # @type VpcId: String
+        # @param SubnetId: 子网id，vpc网络需要传该参数，基础网络可以不传
+        # @type SubnetId: String
+        # @param MsgRetentionTime: 可选。实例日志的最长保留时间，单位分钟，默认为10080（7天），最大30天，不填默认0，代表不开启日志保留时间回收策略
+        # @type MsgRetentionTime: Integer
+        # @param ZoneId: 可用区
+        # @type ZoneId: Integer
+        # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id
+        # @type ClusterId: Integer
+
+        attr_accessor :InstanceName, :BandWidth, :VpcId, :SubnetId, :MsgRetentionTime, :ZoneId, :ClusterId
+        
+        def initialize(instancename=nil, bandwidth=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, zoneid=nil, clusterid=nil)
+          @InstanceName = instancename
+          @BandWidth = bandwidth
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @MsgRetentionTime = msgretentiontime
+          @ZoneId = zoneid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @BandWidth = params['BandWidth']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @MsgRetentionTime = params['MsgRetentionTime']
+          @ZoneId = params['ZoneId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # CreateInstancePost返回参数结构体
+      class CreateInstancePostResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建预付费接口返回的Data
       class CreateInstancePreData < TencentCloud::Common::AbstractModel
         # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
@@ -5982,6 +6045,364 @@ module TencentCloud
         end
       end
 
+      # InquireCkafkaPrice请求参数结构体
+      class InquireCkafkaPriceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 国内站标准版填写standards2, 专业版填写profession
+        # @type InstanceType: String
+        # @param InstanceChargeParam: 购买/续费付费类型(购买时不填的话, 默认获取购买包年包月一个月的费用)
+        # @type InstanceChargeParam: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceChargeParam`
+        # @param InstanceNum: 购买/续费时购买的实例数量(不填时, 默认为1个)
+        # @type InstanceNum: Integer
+        # @param Bandwidth: 实例内网带宽大小, 单位MB/s (购买时必填)
+        # @type Bandwidth: Integer
+        # @param InquiryDiskParam: 实例的硬盘购买类型以及大小 (购买时必填)
+        # @type InquiryDiskParam: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryDiskParam`
+        # @param MessageRetention: 实例消息保留时间大小, 单位小时 (购买时必填)
+        # @type MessageRetention: Integer
+        # @param Topic: 购买实例topic数, 单位个 (购买时必填)
+        # @type Topic: Integer
+        # @param Partition: 购买实例分区数, 单位个 (购买时必填)
+        # @type Partition: Integer
+        # @param ZoneIds: 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId
+        # @type ZoneIds: Array
+        # @param CategoryAction: 标记操作, 新购填写purchase, 续费填写renew, (不填时, 默认为purchase)
+        # @type CategoryAction: String
+        # @param BillType: 国内站购买的版本, sv_ckafka_instance_s2_1(入门型), sv_ckafka_instance_s2_2(标准版), sv_ckafka_instance_s2_3(进阶型), 如果instanceType为standards2, 但该参数为空, 则默认值为sv_ckafka_instance_s2_1
+        # @type BillType: String
+        # @param PublicNetworkParam: 公网带宽计费模式, 目前只有专业版支持公网带宽 (购买公网带宽时必填)
+        # @type PublicNetworkParam: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryPublicNetworkParam`
+        # @param InstanceId: 续费时的实例id, 续费时填写
+        # @type InstanceId: String
+
+        attr_accessor :InstanceType, :InstanceChargeParam, :InstanceNum, :Bandwidth, :InquiryDiskParam, :MessageRetention, :Topic, :Partition, :ZoneIds, :CategoryAction, :BillType, :PublicNetworkParam, :InstanceId
+        
+        def initialize(instancetype=nil, instancechargeparam=nil, instancenum=nil, bandwidth=nil, inquirydiskparam=nil, messageretention=nil, topic=nil, partition=nil, zoneids=nil, categoryaction=nil, billtype=nil, publicnetworkparam=nil, instanceid=nil)
+          @InstanceType = instancetype
+          @InstanceChargeParam = instancechargeparam
+          @InstanceNum = instancenum
+          @Bandwidth = bandwidth
+          @InquiryDiskParam = inquirydiskparam
+          @MessageRetention = messageretention
+          @Topic = topic
+          @Partition = partition
+          @ZoneIds = zoneids
+          @CategoryAction = categoryaction
+          @BillType = billtype
+          @PublicNetworkParam = publicnetworkparam
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['InstanceChargeParam'].nil?
+            @InstanceChargeParam = InstanceChargeParam.new
+            @InstanceChargeParam.deserialize(params['InstanceChargeParam'])
+          end
+          @InstanceNum = params['InstanceNum']
+          @Bandwidth = params['Bandwidth']
+          unless params['InquiryDiskParam'].nil?
+            @InquiryDiskParam = InquiryDiskParam.new
+            @InquiryDiskParam.deserialize(params['InquiryDiskParam'])
+          end
+          @MessageRetention = params['MessageRetention']
+          @Topic = params['Topic']
+          @Partition = params['Partition']
+          @ZoneIds = params['ZoneIds']
+          @CategoryAction = params['CategoryAction']
+          @BillType = params['BillType']
+          unless params['PublicNetworkParam'].nil?
+            @PublicNetworkParam = InquiryPublicNetworkParam.new
+            @PublicNetworkParam.deserialize(params['PublicNetworkParam'])
+          end
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # InquireCkafkaPrice接口询价返回值
+      class InquireCkafkaPriceResp < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 实例价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryPrice`
+        # @param PublicNetworkBandwidthPrice: 公网带宽价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetworkBandwidthPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryPrice`
+
+        attr_accessor :InstancePrice, :PublicNetworkBandwidthPrice
+        
+        def initialize(instanceprice=nil, publicnetworkbandwidthprice=nil)
+          @InstancePrice = instanceprice
+          @PublicNetworkBandwidthPrice = publicnetworkbandwidthprice
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = InquiryPrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['PublicNetworkBandwidthPrice'].nil?
+            @PublicNetworkBandwidthPrice = InquiryPrice.new
+            @PublicNetworkBandwidthPrice.deserialize(params['PublicNetworkBandwidthPrice'])
+          end
+        end
+      end
+
+      # InquireCkafkaPrice返回参数结构体
+      class InquireCkafkaPriceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 出参
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InquireCkafkaPriceResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InquireCkafkaPriceResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 询价返回参数
+      class InquiryBasePrice < TencentCloud::Common::AbstractModel
+        # @param UnitPrice: 单位原价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param UnitPriceDiscount: 折扣单位价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param OriginalPrice: 合计原价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 折扣合计价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param Discount: 折扣(单位是%)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param GoodsNum: 商品数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsNum: Integer
+        # @param Currency: 付费货币
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Currency: String
+        # @param DiskType: 硬盘专用返回参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param TimeSpan: 购买时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 购买时长单位("m"按月, "h"按小时)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param Value: 购买数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+
+        attr_accessor :UnitPrice, :UnitPriceDiscount, :OriginalPrice, :DiscountPrice, :Discount, :GoodsNum, :Currency, :DiskType, :TimeSpan, :TimeUnit, :Value
+        
+        def initialize(unitprice=nil, unitpricediscount=nil, originalprice=nil, discountprice=nil, discount=nil, goodsnum=nil, currency=nil, disktype=nil, timespan=nil, timeunit=nil, value=nil)
+          @UnitPrice = unitprice
+          @UnitPriceDiscount = unitpricediscount
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Discount = discount
+          @GoodsNum = goodsnum
+          @Currency = currency
+          @DiskType = disktype
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @Value = value
+        end
+
+        def deserialize(params)
+          @UnitPrice = params['UnitPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Discount = params['Discount']
+          @GoodsNum = params['GoodsNum']
+          @Currency = params['Currency']
+          @DiskType = params['DiskType']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @Value = params['Value']
+        end
+      end
+
+      # 详细类别的价格
+      class InquiryDetailPrice < TencentCloud::Common::AbstractModel
+        # @param BandwidthPrice: 额外内网带宽价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
+        # @param DiskPrice: 硬盘价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
+        # @param PartitionPrice: 额外分区价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
+        # @param TopicPrice: 额外Topic价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
+        # @param InstanceTypePrice: 实例套餐价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypePrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
+
+        attr_accessor :BandwidthPrice, :DiskPrice, :PartitionPrice, :TopicPrice, :InstanceTypePrice
+        
+        def initialize(bandwidthprice=nil, diskprice=nil, partitionprice=nil, topicprice=nil, instancetypeprice=nil)
+          @BandwidthPrice = bandwidthprice
+          @DiskPrice = diskprice
+          @PartitionPrice = partitionprice
+          @TopicPrice = topicprice
+          @InstanceTypePrice = instancetypeprice
+        end
+
+        def deserialize(params)
+          unless params['BandwidthPrice'].nil?
+            @BandwidthPrice = InquiryBasePrice.new
+            @BandwidthPrice.deserialize(params['BandwidthPrice'])
+          end
+          unless params['DiskPrice'].nil?
+            @DiskPrice = InquiryBasePrice.new
+            @DiskPrice.deserialize(params['DiskPrice'])
+          end
+          unless params['PartitionPrice'].nil?
+            @PartitionPrice = InquiryBasePrice.new
+            @PartitionPrice.deserialize(params['PartitionPrice'])
+          end
+          unless params['TopicPrice'].nil?
+            @TopicPrice = InquiryBasePrice.new
+            @TopicPrice.deserialize(params['TopicPrice'])
+          end
+          unless params['InstanceTypePrice'].nil?
+            @InstanceTypePrice = InquiryBasePrice.new
+            @InstanceTypePrice.deserialize(params['InstanceTypePrice'])
+          end
+        end
+      end
+
+      # 购买硬盘参数
+      class InquiryDiskParam < TencentCloud::Common::AbstractModel
+        # @param DiskType: 购买硬盘类型: SSD(SSD), CLOUD_SSD(SSD云硬盘), CLOUD_PREMIUM(高性能云硬盘), CLOUD_BASIC(云盘)
+        # @type DiskType: String
+        # @param DiskSize: 购买硬盘大小: 单位GB
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+        
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 询价返回参数
+      class InquiryPrice < TencentCloud::Common::AbstractModel
+        # @param UnitPrice: 单位原价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param UnitPriceDiscount: 折扣单位价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param OriginalPrice: 合计原价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 折扣合计价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param Discount: 折扣(单位是%)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param GoodsNum: 商品数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsNum: Integer
+        # @param Currency: 付费货币
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Currency: String
+        # @param DiskType: 硬盘专用返回参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param TimeSpan: 购买时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 购买时长单位("m"按月, "h"按小时)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param Value: 购买数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+        # @param DetailPrices: 详细类别的价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetailPrices: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryDetailPrice`
+
+        attr_accessor :UnitPrice, :UnitPriceDiscount, :OriginalPrice, :DiscountPrice, :Discount, :GoodsNum, :Currency, :DiskType, :TimeSpan, :TimeUnit, :Value, :DetailPrices
+        
+        def initialize(unitprice=nil, unitpricediscount=nil, originalprice=nil, discountprice=nil, discount=nil, goodsnum=nil, currency=nil, disktype=nil, timespan=nil, timeunit=nil, value=nil, detailprices=nil)
+          @UnitPrice = unitprice
+          @UnitPriceDiscount = unitpricediscount
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Discount = discount
+          @GoodsNum = goodsnum
+          @Currency = currency
+          @DiskType = disktype
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @Value = value
+          @DetailPrices = detailprices
+        end
+
+        def deserialize(params)
+          @UnitPrice = params['UnitPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Discount = params['Discount']
+          @GoodsNum = params['GoodsNum']
+          @Currency = params['Currency']
+          @DiskType = params['DiskType']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @Value = params['Value']
+          unless params['DetailPrices'].nil?
+            @DetailPrices = InquiryDetailPrice.new
+            @DetailPrices.deserialize(params['DetailPrices'])
+          end
+        end
+      end
+
+      # 公网带宽参数
+      class InquiryPublicNetworkParam < TencentCloud::Common::AbstractModel
+        # @param PublicNetworkChargeType: 公网计费模式: BANDWIDTH_PREPAID(包年包月), BANDWIDTH_POSTPAID_BY_HOUR(带宽按小时计费)
+        # @type PublicNetworkChargeType: String
+        # @param PublicNetworkMonthly: 公网带宽, 单位MB
+        # @type PublicNetworkMonthly: Integer
+
+        attr_accessor :PublicNetworkChargeType, :PublicNetworkMonthly
+        
+        def initialize(publicnetworkchargetype=nil, publicnetworkmonthly=nil)
+          @PublicNetworkChargeType = publicnetworkchargetype
+          @PublicNetworkMonthly = publicnetworkmonthly
+        end
+
+        def deserialize(params)
+          @PublicNetworkChargeType = params['PublicNetworkChargeType']
+          @PublicNetworkMonthly = params['PublicNetworkMonthly']
+        end
+      end
+
       # 实例对象
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -6198,6 +6619,26 @@ module TencentCloud
             @DynamicDiskConfig = DynamicDiskConfig.new
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
+        end
+      end
+
+      # 实例购买付费参数
+      class InstanceChargeParam < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: 实例付费类型: PREPAID(包年包月), POSTPAID_BY_HOUR(按量付费)
+        # @type InstanceChargeType: String
+        # @param InstanceChargePeriod: 购买时长: 包年包月时需要填写, 按量计费无需填写
+        # @type InstanceChargePeriod: Integer
+
+        attr_accessor :InstanceChargeType, :InstanceChargePeriod
+        
+        def initialize(instancechargetype=nil, instancechargeperiod=nil)
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePeriod = instancechargeperiod
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          @InstanceChargePeriod = params['InstanceChargePeriod']
         end
       end
 

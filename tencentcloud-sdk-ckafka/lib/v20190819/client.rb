@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建按量计费实例
+
+        # @param request: Request instance for CreateInstancePost.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateInstancePostRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateInstancePostResponse`
+        def CreateInstancePost(request)
+          body = send_request('CreateInstancePost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstancePostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建实例(预付费包年包月)
 
         # @param request: Request instance for CreateInstancePre.
@@ -1384,6 +1408,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = FetchMessageListByOffsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Ckafka实例购买/续费询价
+
+        # @param request: Request instance for InquireCkafkaPrice.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::InquireCkafkaPriceRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::InquireCkafkaPriceResponse`
+        def InquireCkafkaPrice(request)
+          body = send_request('InquireCkafkaPrice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquireCkafkaPriceResponse.new
             model.deserialize(response['Response'])
             model
           else
