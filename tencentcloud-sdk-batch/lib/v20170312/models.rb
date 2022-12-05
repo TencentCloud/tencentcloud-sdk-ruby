@@ -2047,16 +2047,20 @@ module TencentCloud
         # @type MaxRetryCount: Integer
         # @param DelayOnRetry: 拉取Docker镜像失败时延迟时间。单位：秒。
         # @type DelayOnRetry: Integer
+        # @param DockerRunOption: Docker命令运行参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerRunOption: String
 
-        attr_accessor :User, :Password, :Image, :Server, :MaxRetryCount, :DelayOnRetry
+        attr_accessor :User, :Password, :Image, :Server, :MaxRetryCount, :DelayOnRetry, :DockerRunOption
         
-        def initialize(user=nil, password=nil, image=nil, server=nil, maxretrycount=nil, delayonretry=nil)
+        def initialize(user=nil, password=nil, image=nil, server=nil, maxretrycount=nil, delayonretry=nil, dockerrunoption=nil)
           @User = user
           @Password = password
           @Image = image
           @Server = server
           @MaxRetryCount = maxretrycount
           @DelayOnRetry = delayonretry
+          @DockerRunOption = dockerrunoption
         end
 
         def deserialize(params)
@@ -2066,6 +2070,7 @@ module TencentCloud
           @Server = params['Server']
           @MaxRetryCount = params['MaxRetryCount']
           @DelayOnRetry = params['DelayOnRetry']
+          @DockerRunOption = params['DockerRunOption']
         end
       end
 

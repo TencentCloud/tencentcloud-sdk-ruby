@@ -1511,7 +1511,7 @@ module TencentCloud
         # @type Domain: String
         # @param Protocol: 协议类型
         # @type Protocol: String
-        # @param CcGeoIPBlockConfig: CC区域封禁配置，填写参数时配置ID请为空
+        # @param CcGeoIPBlockConfig: CC区域封禁配置
         # @type CcGeoIPBlockConfig: :class:`Tencentcloud::Antiddos.v20200309.models.CcGeoIPBlockConfig`
 
         attr_accessor :InstanceId, :IP, :Domain, :Protocol, :CcGeoIPBlockConfig
@@ -5089,9 +5089,9 @@ module TencentCloud
         # @type Dimension: String
         # @param Period: 周期，当前仅支持86400
         # @type Period: Integer
-        # @param StartTime: 起始时间
+        # @param StartTime: 统计开始时间
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 统计结束时间
         # @type EndTime: String
 
         attr_accessor :Type, :Dimension, :Period, :StartTime, :EndTime
@@ -5117,9 +5117,9 @@ module TencentCloud
       class DescribeOverviewAttackTrendResponse < TencentCloud::Common::AbstractModel
         # @param Type: 攻击类型
         # @type Type: String
-        # @param StartTime: 起始时间
+        # @param StartTime: 统计起始时间
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 统计结束时间
         # @type EndTime: String
         # @param Period: 周期
         # @type Period: Integer
@@ -5433,7 +5433,7 @@ module TencentCloud
 
       # DescribePendingRiskInfo返回参数结构体
       class DescribePendingRiskInfoResponse < TencentCloud::Common::AbstractModel
-        # @param IsPaidUsr: 是否为付费用户
+        # @param IsPaidUsr: 是否为付费用户，true：付费用户， false：普通用户
         # @type IsPaidUsr: Boolean
         # @param AttackingCount: 攻击中的资源数量
         # @type AttackingCount: Integer
@@ -6401,7 +6401,7 @@ module TencentCloud
       class ModifyDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源Id
         # @type InstanceId: String
-        # @param OldIpType: 当前黑名单类型，取值black时黑名单；取值white时白名单
+        # @param OldIpType: 当前配置的黑白名单类型，取值black时表示黑名单；取值white时表示白名单
         # @type OldIpType: String
         # @param OldIp: 当前配置的Ip段，包含ip与掩码
         # @type OldIp: :class:`Tencentcloud::Antiddos.v20200309.models.IpSegment`

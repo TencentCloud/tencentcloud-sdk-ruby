@@ -333,7 +333,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除改集群。
+        # 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
 
         # @param request: Request instance for DeleteHpcClusters.
         # @type request: :class:`Tencentcloud::cvm::V20170312::DeleteHpcClustersRequest`

@@ -1669,8 +1669,10 @@ module TencentCloud
         # @param FunctionName: 需要获取详情的函数名称
         # @type FunctionName: String
         # @param Qualifier: 函数的版本号
+        # 默认值: $LATEST
         # @type Qualifier: String
         # @param Namespace: 函数所属命名空间
+        # 默认值: default
         # @type Namespace: String
         # @param ShowCode: 是否显示代码, TRUE表示显示代码，FALSE表示不显示代码,大于1M的入口文件不会显示
         # @type ShowCode: String
@@ -4178,6 +4180,7 @@ module TencentCloud
         # @param Environment: 函数的环境变量
         # @type Environment: :class:`Tencentcloud::Scf.v20180416.models.Environment`
         # @param Namespace: 函数所属命名空间
+        # 默认值: default
         # @type Namespace: String
         # @param VpcConfig: 函数的私有网络配置
         # @type VpcConfig: :class:`Tencentcloud::Scf.v20180416.models.VpcConfig`

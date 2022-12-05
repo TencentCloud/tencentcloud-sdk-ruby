@@ -1240,14 +1240,30 @@ module TencentCloud
         # @type AmountAfterTax: String
         # @param Tax: 税金
         # @type Tax: String
+        # @param Vat: 增值税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vat: String
+        # @param IndividualIncomeTax: 个人所得税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndividualIncomeTax: String
+        # @param AdditionalTaxSum: 附加税总税额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalTaxSum: String
+        # @param AdditionalTaxItem: 附加税税项。格式为JSON格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalTaxItem: String
 
-        attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax
+        attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem
         
-        def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil)
+        def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil)
           @OrderId = orderid
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
           @Tax = tax
+          @Vat = vat
+          @IndividualIncomeTax = individualincometax
+          @AdditionalTaxSum = additionaltaxsum
+          @AdditionalTaxItem = additionaltaxitem
         end
 
         def deserialize(params)
@@ -1255,6 +1271,10 @@ module TencentCloud
           @AmountBeforeTax = params['AmountBeforeTax']
           @AmountAfterTax = params['AmountAfterTax']
           @Tax = params['Tax']
+          @Vat = params['Vat']
+          @IndividualIncomeTax = params['IndividualIncomeTax']
+          @AdditionalTaxSum = params['AdditionalTaxSum']
+          @AdditionalTaxItem = params['AdditionalTaxItem']
         end
       end
 
@@ -8783,6 +8803,9 @@ module TencentCloud
       # CreateSinglePayment请求参数结构体
       class CreateSinglePaymentRequest < TencentCloud::Common::AbstractModel
         # @param TransferType: 转账类型
+        # 1 微信企业付款
+        # 2 支付宝转账
+        # 3 平安银企直连代发转账
         # @type TransferType: Integer
         # @param OrderId: 订单流水号
         # @type OrderId: String
@@ -13944,10 +13967,22 @@ module TencentCloud
         # @param ChannelOrderId: 渠道支付订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelOrderId: String
+        # @param Vat: 增值税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vat: String
+        # @param IndividualIncomeTax: 个人所得税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndividualIncomeTax: String
+        # @param AdditionalTaxSum: 附加税总税额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalTaxSum: String
+        # @param AdditionalTaxItem: 附加税税项。格式为JSON格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalTaxItem: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -13962,6 +13997,10 @@ module TencentCloud
           @PayeeId = payeeid
           @OutUserId = outuserid
           @ChannelOrderId = channelorderid
+          @Vat = vat
+          @IndividualIncomeTax = individualincometax
+          @AdditionalTaxSum = additionaltaxsum
+          @AdditionalTaxItem = additionaltaxitem
         end
 
         def deserialize(params)
@@ -13979,6 +14018,10 @@ module TencentCloud
           @PayeeId = params['PayeeId']
           @OutUserId = params['OutUserId']
           @ChannelOrderId = params['ChannelOrderId']
+          @Vat = params['Vat']
+          @IndividualIncomeTax = params['IndividualIncomeTax']
+          @AdditionalTaxSum = params['AdditionalTaxSum']
+          @AdditionalTaxItem = params['AdditionalTaxItem']
         end
       end
 
@@ -17002,19 +17045,23 @@ module TencentCloud
         # __test__:测试环境
         # 缺省默认为生产环境
         # @type Environment: String
+        # @param SnapshotDate: 快照日期。格式yyyy-MM-dd
+        # @type SnapshotDate: String
 
-        attr_accessor :PayeeId, :IncomeType, :Environment
+        attr_accessor :PayeeId, :IncomeType, :Environment, :SnapshotDate
         
-        def initialize(payeeid=nil, incometype=nil, environment=nil)
+        def initialize(payeeid=nil, incometype=nil, environment=nil, snapshotdate=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
           @Environment = environment
+          @SnapshotDate = snapshotdate
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @IncomeType = params['IncomeType']
           @Environment = params['Environment']
+          @SnapshotDate = params['SnapshotDate']
         end
       end
 
@@ -18793,7 +18840,7 @@ module TencentCloud
         # @type BankBranchName: String
         # @param BankAbbreviation: 银行简称。
         # @type BankAbbreviation: String
-        # @param PageNumber: 页码。Index和Count必须大于等于1。
+        # @param PageNumber: 页码。Index和Count必须大于等于1。Count建议不超过100。
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
         # @param Environment: 环境类型。
         # __release__:生产环境

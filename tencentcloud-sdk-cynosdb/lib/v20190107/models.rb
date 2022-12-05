@@ -4847,6 +4847,50 @@ module TencentCloud
         end
       end
 
+      # ResetAccountPassword请求参数结构体
+      class ResetAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param AccountName: 数据库账号名
+        # @type AccountName: String
+        # @param AccountPassword: 数据库账号新密码
+        # @type AccountPassword: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Host: 主机，不填默认为"%"
+        # @type Host: String
+
+        attr_accessor :AccountName, :AccountPassword, :ClusterId, :Host
+        
+        def initialize(accountname=nil, accountpassword=nil, clusterid=nil, host=nil)
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @ClusterId = clusterid
+          @Host = host
+        end
+
+        def deserialize(params)
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @ClusterId = params['ClusterId']
+          @Host = params['Host']
+        end
+      end
+
+      # ResetAccountPassword返回参数结构体
+      class ResetAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumeServerless请求参数结构体
       class ResumeServerlessRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5098,6 +5142,112 @@ module TencentCloud
         end
       end
 
+      # SearchClusterDatabases请求参数结构体
+      class SearchClusterDatabasesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param MatchType: 是否精确搜索。
+        # 0: 模糊搜索 1:精确搜索
+        # 默认为0
+        # @type MatchType: Integer
+
+        attr_accessor :ClusterId, :Database, :MatchType
+        
+        def initialize(clusterid=nil, database=nil, matchtype=nil)
+          @ClusterId = clusterid
+          @Database = database
+          @MatchType = matchtype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Database = params['Database']
+          @MatchType = params['MatchType']
+        end
+      end
+
+      # SearchClusterDatabases返回参数结构体
+      class SearchClusterDatabasesResponse < TencentCloud::Common::AbstractModel
+        # @param Databases: 数据库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Databases: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Databases, :RequestId
+        
+        def initialize(databases=nil, requestid=nil)
+          @Databases = databases
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Databases = params['Databases']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchClusterTables请求参数结构体
+      class SearchClusterTablesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param Table: 数据表名
+        # @type Table: String
+        # @param TableType: 数据表类型：
+        # view：只返回 view，
+        # base_table： 只返回基本表，
+        # all：返回 view 和表
+        # @type TableType: String
+
+        attr_accessor :ClusterId, :Database, :Table, :TableType
+        
+        def initialize(clusterid=nil, database=nil, table=nil, tabletype=nil)
+          @ClusterId = clusterid
+          @Database = database
+          @Table = table
+          @TableType = tabletype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Database = params['Database']
+          @Table = params['Table']
+          @TableType = params['TableType']
+        end
+      end
+
+      # SearchClusterTables返回参数结构体
+      class SearchClusterTablesResponse < TencentCloud::Common::AbstractModel
+        # @param Tables: 数据表列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tables, :RequestId
+        
+        def initialize(tables=nil, requestid=nil)
+          @Tables = tables
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              databasetables_tmp = DatabaseTables.new
+              databasetables_tmp.deserialize(i)
+              @Tables << databasetables_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全组详情
       class SecurityGroup < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -5279,6 +5429,58 @@ module TencentCloud
       # SwitchClusterZone返回参数结构体
       class SwitchClusterZoneResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 异步FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SwitchProxyVpc请求参数结构体
+      class SwitchProxyVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param UniqVpcId: 字符串vpc id
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 字符串子网id
+        # @type UniqSubnetId: String
+        # @param OldIpReserveHours: 旧地址回收时间
+        # @type OldIpReserveHours: Integer
+        # @param ProxyGroupId: 数据库代理组Id
+        # @type ProxyGroupId: String
+
+        attr_accessor :ClusterId, :UniqVpcId, :UniqSubnetId, :OldIpReserveHours, :ProxyGroupId
+        
+        def initialize(clusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, oldipreservehours=nil, proxygroupid=nil)
+          @ClusterId = clusterid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @OldIpReserveHours = oldipreservehours
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @OldIpReserveHours = params['OldIpReserveHours']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # SwitchProxyVpc返回参数结构体
+      class SwitchProxyVpcResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1082,7 +1082,7 @@ module TencentCloud
         # 类型：String
         # 必选：否
 
-        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BlueprintIds 和 Filters 。
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds 和 Filters 。
         # @type Filters: Array
 
         attr_accessor :BlueprintIds, :Offset, :Limit, :Filters
@@ -3587,15 +3587,18 @@ module TencentCloud
         # @param InstancePriceDetailSet: 待续费实例价格列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePriceDetailSet: Array
+        # @param TotalPrice: 总计价格。
+        # @type TotalPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.TotalPrice`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :DataDiskPriceSet, :InstancePriceDetailSet, :RequestId
+        attr_accessor :Price, :DataDiskPriceSet, :InstancePriceDetailSet, :TotalPrice, :RequestId
         
-        def initialize(price=nil, datadiskpriceset=nil, instancepricedetailset=nil, requestid=nil)
+        def initialize(price=nil, datadiskpriceset=nil, instancepricedetailset=nil, totalprice=nil, requestid=nil)
           @Price = price
           @DataDiskPriceSet = datadiskpriceset
           @InstancePriceDetailSet = instancepricedetailset
+          @TotalPrice = totalprice
           @RequestId = requestid
         end
 
@@ -3619,6 +3622,10 @@ module TencentCloud
               instancepricedetail_tmp.deserialize(i)
               @InstancePriceDetailSet << instancepricedetail_tmp
             end
+          end
+          unless params['TotalPrice'].nil?
+            @TotalPrice = TotalPrice.new
+            @TotalPrice.deserialize(params['TotalPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -5205,6 +5212,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 总计价格信息
+      class TotalPrice < TencentCloud::Common::AbstractModel
+        # @param OriginalPrice: 原始总计价格。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 折扣总计价格。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+
+        attr_accessor :OriginalPrice, :DiscountPrice
+        
+        def initialize(originalprice=nil, discountprice=nil)
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+        end
+
+        def deserialize(params)
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
         end
       end
 

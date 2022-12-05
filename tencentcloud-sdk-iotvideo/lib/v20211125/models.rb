@@ -249,10 +249,12 @@ module TencentCloud
         # @type FileSize: Integer
         # @param DeviceNames: 需要升级的设备名称列表
         # @type DeviceNames: Array
+        # @param TimeoutInterval: 固件升级任务默认超时时间。 最小取值60秒，最大为3600秒
+        # @type TimeoutInterval: Integer
 
-        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames
+        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval
         
-        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil)
+        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
           @FirmwareOriVersion = firmwareoriversion
@@ -261,6 +263,7 @@ module TencentCloud
           @FileMd5 = filemd5
           @FileSize = filesize
           @DeviceNames = devicenames
+          @TimeoutInterval = timeoutinterval
         end
 
         def deserialize(params)
@@ -272,6 +275,7 @@ module TencentCloud
           @FileMd5 = params['FileMd5']
           @FileSize = params['FileSize']
           @DeviceNames = params['DeviceNames']
+          @TimeoutInterval = params['TimeoutInterval']
         end
       end
 
@@ -3249,12 +3253,15 @@ module TencentCloud
         # @type Createtime: Integer
         # @param ProductName: 产品名称
         # @type ProductName: String
+        # @param FwType: 固件升级模块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Version, :ProductId, :Name, :Description, :Md5sum, :Createtime, :ProductName, :RequestId
+        attr_accessor :Version, :ProductId, :Name, :Description, :Md5sum, :Createtime, :ProductName, :FwType, :RequestId
         
-        def initialize(version=nil, productid=nil, name=nil, description=nil, md5sum=nil, createtime=nil, productname=nil, requestid=nil)
+        def initialize(version=nil, productid=nil, name=nil, description=nil, md5sum=nil, createtime=nil, productname=nil, fwtype=nil, requestid=nil)
           @Version = version
           @ProductId = productid
           @Name = name
@@ -3262,6 +3269,7 @@ module TencentCloud
           @Md5sum = md5sum
           @Createtime = createtime
           @ProductName = productname
+          @FwType = fwtype
           @RequestId = requestid
         end
 
@@ -3273,6 +3281,7 @@ module TencentCloud
           @Md5sum = params['Md5sum']
           @Createtime = params['Createtime']
           @ProductName = params['ProductName']
+          @FwType = params['FwType']
           @RequestId = params['RequestId']
         end
       end
@@ -4478,10 +4487,13 @@ module TencentCloud
         # @type Description: String
         # @param ProductId: 产品ID
         # @type ProductId: String
+        # @param FwType: 固件升级模块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: String
 
-        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId
+        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType
         
-        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil)
+        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil)
           @Version = version
           @Md5sum = md5sum
           @CreateTime = createtime
@@ -4489,6 +4501,7 @@ module TencentCloud
           @Name = name
           @Description = description
           @ProductId = productid
+          @FwType = fwtype
         end
 
         def deserialize(params)
@@ -4499,6 +4512,7 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @ProductId = params['ProductId']
+          @FwType = params['FwType']
         end
       end
 
@@ -5872,16 +5886,19 @@ module TencentCloud
         # @type FirmwareName: String
         # @param FirmwareDescription: 固件描述
         # @type FirmwareDescription: String
+        # @param FwType: 固件升级模块；可选值 mcu|moudule
+        # @type FwType: String
 
-        attr_accessor :ProductID, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription
+        attr_accessor :ProductID, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription, :FwType
         
-        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil)
+        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil, fwtype=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
           @Md5sum = md5sum
           @FileSize = filesize
           @FirmwareName = firmwarename
           @FirmwareDescription = firmwaredescription
+          @FwType = fwtype
         end
 
         def deserialize(params)
@@ -5891,6 +5908,7 @@ module TencentCloud
           @FileSize = params['FileSize']
           @FirmwareName = params['FirmwareName']
           @FirmwareDescription = params['FirmwareDescription']
+          @FwType = params['FwType']
         end
       end
 

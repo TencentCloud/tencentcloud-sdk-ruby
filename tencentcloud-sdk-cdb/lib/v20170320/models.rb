@@ -584,10 +584,13 @@ module TencentCloud
         # @type CosStorageType: Integer
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
+        # @param EncryptionFlag: 备份文件是否加密， on-加密， off-未加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptionFlag: String
 
-        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId
+        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag
         
-        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil)
+        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, encryptionflag=nil)
           @Name = name
           @Size = size
           @Date = date
@@ -607,6 +610,7 @@ module TencentCloud
           @RemoteInfo = remoteinfo
           @CosStorageType = cosstoragetype
           @InstanceId = instanceid
+          @EncryptionFlag = encryptionflag
         end
 
         def deserialize(params)
@@ -636,6 +640,7 @@ module TencentCloud
           end
           @CosStorageType = params['CosStorageType']
           @InstanceId = params['InstanceId']
+          @EncryptionFlag = params['EncryptionFlag']
         end
       end
 

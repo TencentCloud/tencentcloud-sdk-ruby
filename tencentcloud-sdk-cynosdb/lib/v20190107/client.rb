@@ -1397,6 +1397,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
+
+        # @param request: Request instance for ResetAccountPassword.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ResetAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ResetAccountPasswordResponse`
+        def ResetAccountPassword(request)
+          body = send_request('ResetAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 恢复serverless集群
 
         # @param request: Request instance for ResumeServerless.
@@ -1469,6 +1493,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(SearchClusterDatabases)搜索集群database列表
+
+        # @param request: Request instance for SearchClusterDatabases.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterDatabasesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterDatabasesResponse`
+        def SearchClusterDatabases(request)
+          body = send_request('SearchClusterDatabases', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchClusterDatabasesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(SearchClusterTables)搜索集群数据表列表
+
+        # @param request: Request instance for SearchClusterTables.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterTablesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterTablesResponse`
+        def SearchClusterTables(request)
+          body = send_request('SearchClusterTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchClusterTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # SetRenewFlag设置实例的自动续费功能
 
         # @param request: Request instance for SetRenewFlag.
@@ -1503,6 +1575,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchClusterZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(SwitchProxyVpc)更换数据库代理vpc
+
+        # @param request: Request instance for SwitchProxyVpc.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::SwitchProxyVpcRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::SwitchProxyVpcResponse`
+        def SwitchProxyVpc(request)
+          body = send_request('SwitchProxyVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchProxyVpcResponse.new
             model.deserialize(response['Response'])
             model
           else

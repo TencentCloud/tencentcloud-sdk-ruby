@@ -1959,7 +1959,7 @@ module TencentCloud
 
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id
+        # @param JobId: 同步任务id，如sync-werwfs23
         # @type JobId: String
         # @param JobName: 同步任务名
         # @type JobName: String
@@ -2328,10 +2328,13 @@ module TencentCloud
         # @param TmpToken: 临时Token，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
+        # @param RoleExternalId: 外部角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleExternalId: String
 
-        attr_accessor :Region, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :AccountMode, :Account, :AccountRole, :TmpSecretId, :TmpSecretKey, :TmpToken
+        attr_accessor :Region, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :AccountMode, :Account, :AccountRole, :TmpSecretId, :TmpSecretKey, :TmpToken, :RoleExternalId
         
-        def initialize(region=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, accountmode=nil, account=nil, accountrole=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil)
+        def initialize(region=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, accountmode=nil, account=nil, accountrole=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, roleexternalid=nil)
           @Region = region
           @DbKernel = dbkernel
           @InstanceId = instanceid
@@ -2354,6 +2357,7 @@ module TencentCloud
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
           @TmpToken = tmptoken
+          @RoleExternalId = roleexternalid
         end
 
         def deserialize(params)
@@ -2379,6 +2383,7 @@ module TencentCloud
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           @TmpToken = params['TmpToken']
+          @RoleExternalId = params['RoleExternalId']
         end
       end
 
@@ -3688,14 +3693,18 @@ module TencentCloud
         # @param HelpDoc: 帮助文档
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HelpDoc: String
+        # @param SkipInfo: 当前步骤跳过信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipInfo: String
 
-        attr_accessor :Code, :Message, :Solution, :HelpDoc
+        attr_accessor :Code, :Message, :Solution, :HelpDoc, :SkipInfo
         
-        def initialize(code=nil, message=nil, solution=nil, helpdoc=nil)
+        def initialize(code=nil, message=nil, solution=nil, helpdoc=nil, skipinfo=nil)
           @Code = code
           @Message = message
           @Solution = solution
           @HelpDoc = helpdoc
+          @SkipInfo = skipinfo
         end
 
         def deserialize(params)
@@ -3703,6 +3712,7 @@ module TencentCloud
           @Message = params['Message']
           @Solution = params['Solution']
           @HelpDoc = params['HelpDoc']
+          @SkipInfo = params['SkipInfo']
         end
       end
 
@@ -3867,19 +3877,19 @@ module TencentCloud
 
       # 同步任务信息
       class SyncJobInfo < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id
+        # @param JobId: 同步任务id，如：sync-btso140
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param JobName: 同步任务名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobName: String
-        # @param PayMode: 付款方式
+        # @param PayMode: 付款方式，PostPay(按量付费)、PrePay(包年包月)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
-        # @param RunMode: 运行模式
+        # @param RunMode: 运行模式，Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunMode: String
-        # @param ExpectRunTime: 期待运行时间
+        # @param ExpectRunTime: 期待运行时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectRunTime: String
         # @param AllActions: 支持的所有操作
@@ -3897,55 +3907,67 @@ module TencentCloud
         # @param Specification: 任务规格
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: 过期时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param SrcRegion: 源端地域
+        # @param SrcRegion: 源端地域，如：ap-guangzhou等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcRegion: String
-        # @param SrcDatabaseType: 源端数据库类型
+        # @param SrcDatabaseType: 源端数据库类型，mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcDatabaseType: String
-        # @param SrcAccessType: 源端接入类型
+        # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcAccessType: String
         # @param SrcInfo: 源端信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param DstRegion: 目标端地域
+        # @param DstRegion: 目标端地域，如：ap-guangzhou等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstRegion: String
-        # @param DstDatabaseType: 目标端数据库类型
+        # @param DstDatabaseType: 目标端数据库类型，mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstDatabaseType: String
-        # @param DstAccessType: 目标端接入类型
+        # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstAccessType: String
         # @param DstInfo: 目标端信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param Status: 任务状态
+        # @param Status: 任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已停止)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param Tags: 标签相关
+        # @param Tags: 标签相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Detail: 同步任务运行步骤信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.SyncDetailInfo`
+        # @param TradeStatus: 用于计费的状态，可能取值有：Normal(正常状态)、Resizing(变配中)、Renewing(续费中)、Isolating(隔离中)、Isolated(已隔离)、Offlining(下线中)、Offlined(已下线)、NotBilled(未计费)、Recovering(解隔离)、PostPay2Prepaying(按量计费转包年包月中)、PrePay2Postpaying(包年包月转按量计费中)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeStatus: String
+        # @param InstanceClass: 同步链路规格，如micro,small,medium,large
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceClass: String
+        # @param AutoRenew: 自动续费标识，当PayMode值为PrePay则此项配置有意义，取值为：1（表示自动续费）、0（不自动续费）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenew: Integer
+        # @param OfflineTime: 下线时间，格式为 yyyy-mm-dd hh:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
 
-        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :EndTime, :Status, :Tags, :Detail
+        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :EndTime, :Status, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime
         
-        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, tags=nil, detail=nil)
+        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil)
           @JobId = jobid
           @JobName = jobname
           @PayMode = paymode
@@ -3971,6 +3993,10 @@ module TencentCloud
           @Status = status
           @Tags = tags
           @Detail = detail
+          @TradeStatus = tradestatus
+          @InstanceClass = instanceclass
+          @AutoRenew = autorenew
+          @OfflineTime = offlinetime
         end
 
         def deserialize(params)
@@ -4021,6 +4047,10 @@ module TencentCloud
             @Detail = SyncDetailInfo.new
             @Detail.deserialize(params['Detail'])
           end
+          @TradeStatus = params['TradeStatus']
+          @InstanceClass = params['InstanceClass']
+          @AutoRenew = params['AutoRenew']
+          @OfflineTime = params['OfflineTime']
         end
       end
 

@@ -6510,6 +6510,50 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusZones请求参数结构体
+      class DescribePrometheusZonesRequest < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域 ID
+        # @type RegionId: Integer
+
+        attr_accessor :RegionId
+        
+        def initialize(regionid=nil)
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # DescribePrometheusZones返回参数结构体
+      class DescribePrometheusZonesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneSet: 区域列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneSet, :RequestId
+        
+        def initialize(zoneset=nil, requestid=nil)
+          @ZoneSet = zoneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneSet'].nil?
+            @ZoneSet = []
+            params['ZoneSet'].each do |i|
+              prometheuszoneitem_tmp = PrometheusZoneItem.new
+              prometheuszoneitem_tmp.deserialize(i)
+              @ZoneSet << prometheuszoneitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordingRules请求参数结构体
       class DescribeRecordingRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -9370,6 +9414,38 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # PrometheusZoneItem 响应结构体内的地域信息
+      class PrometheusZoneItem < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ZoneId: 可用区 ID
+        # @type ZoneId: Integer
+        # @param ZoneState: 可用区状态( 0: 不可用；1: 可用)
+        # @type ZoneState: Integer
+        # @param RegionId: 地域 ID
+        # @type RegionId: Integer
+        # @param ZoneName: 可用区名（目前为中文）
+        # @type ZoneName: String
+
+        attr_accessor :Zone, :ZoneId, :ZoneState, :RegionId, :ZoneName
+        
+        def initialize(zone=nil, zoneid=nil, zonestate=nil, regionid=nil, zonename=nil)
+          @Zone = zone
+          @ZoneId = zoneid
+          @ZoneState = zonestate
+          @RegionId = regionid
+          @ZoneName = zonename
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+          @ZoneState = params['ZoneState']
+          @RegionId = params['RegionId']
+          @ZoneName = params['ZoneName']
         end
       end
 
