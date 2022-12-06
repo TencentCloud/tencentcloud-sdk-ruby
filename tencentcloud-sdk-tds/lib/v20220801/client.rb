@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询设备标识及风险（旗舰版）
+
+        # @param request: Request instance for DescribeFraudUltimate.
+        # @type request: :class:`Tencentcloud::tds::V20220801::DescribeFraudUltimateRequest`
+        # @rtype: :class:`Tencentcloud::tds::V20220801::DescribeFraudUltimateResponse`
+        def DescribeFraudUltimate(request)
+          body = send_request('DescribeFraudUltimate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFraudUltimateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询设备标识
 
         # @param request: Request instance for DescribeTrustedID.

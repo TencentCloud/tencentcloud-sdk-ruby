@@ -337,31 +337,33 @@ module TencentCloud
         # 如果是SignComponent控件类型，则可选的字段为
         # SIGN_SEAL - 签署印章控件；
         # SIGN_DATE - 签署日期控件；
-        # DATE， 日期控件，默认是格式化为xxxx年xx月xx日
         # SIGN_SIGNATURE - 用户签名控件；
         # SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
         # SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
+        # SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String
-        # @param ComponentWidth: 参数控件宽度，单位pt
-        # @type ComponentWidth: Float
+        # @param FileIndex: 控件所属文件的序号（模板中的resourceId排列序号，取值为：0-N）
+        # @type FileIndex: Integer
         # @param ComponentHeight: 参数控件高度，单位pt
         # @type ComponentHeight: Float
+        # @param ComponentWidth: 参数控件宽度，单位pt
+        # @type ComponentWidth: Float
         # @param ComponentPage: 参数控件所在页码，取值为：1-N
         # @type ComponentPage: Integer
         # @param ComponentPosX: 参数控件X位置，单位pt
         # @type ComponentPosX: Float
         # @param ComponentPosY: 参数控件Y位置，单位pt
         # @type ComponentPosY: Float
-        # @param FileIndex: 控件所属文件的序号（模板中的resourceId排列序号，取值为：0-N）
-        # @type FileIndex: Integer
         # @param ComponentId: GenerateMode==KEYWORD 指定关键字
         # @type ComponentId: String
         # @param ComponentName: GenerateMode==FIELD 指定表单域名称
         # @type ComponentName: String
         # @param ComponentRequired: 是否必选，默认为false
         # @type ComponentRequired: Boolean
+        # @param ComponentRecipientId: 控件关联的签署人ID
+        # @type ComponentRecipientId: String
         # @param ComponentExtra: 扩展参数：
         # 为JSON格式。
 
@@ -378,8 +380,8 @@ module TencentCloud
         # ESIGN -- 个人印章类型
         # 如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
         # @type ComponentExtra: String
-        # @param ComponentRecipientId: 控件关联的签署人ID
-        # @type ComponentRecipientId: String
+        # @param IsFormType: 是否是表单域类型，默认不存在
+        # @type IsFormType: Boolean
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
         # TEXT - 文本内容
         # MULTI_LINE_TEXT - 文本内容
@@ -391,18 +393,20 @@ module TencentCloud
         # SIGN_SEAL - 印章ID，于控制台查询获取
         # SIGN_PAGING_SEAL - 可以指定印章ID，于控制台查询获取
         # @type ComponentValue: String
-        # @param IsFormType: 是否是表单域类型，默认不存在
-        # @type IsFormType: Boolean
         # @param GenerateMode: NORMAL 正常模式，使用坐标制定签署控件位置
         # FIELD 表单域，需使用ComponentName指定表单域名称
         # KEYWORD 关键字，使用ComponentId指定关键字
         # @type GenerateMode: String
-        # @param ComponentDateFontSize: 日期控件类型字号
+        # @param ComponentDateFontSize: 日期签署控件的字号，默认为 12
         # @type ComponentDateFontSize: Integer
+        # @param ChannelComponentId: 渠道版控件 id 标识
+        # @type ChannelComponentId: String
         # @param OffsetX: 指定关键字时横坐标偏移量，单位pt
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
+        # @param ChannelComponentSource: //渠道子客控件来源。0-渠道指定；1-用户自定义
+        # @type ChannelComponentSource: Integer
         # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
         # 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
         # @type KeywordOrder: String
@@ -413,27 +417,29 @@ module TencentCloud
         # @param KeywordIndexes: 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例：[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         # @type KeywordIndexes: Array
 
-        attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize, :OffsetX, :OffsetY, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes
+        attr_accessor :ComponentType, :FileIndex, :ComponentHeight, :ComponentWidth, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentId, :ComponentName, :ComponentRequired, :ComponentRecipientId, :ComponentExtra, :IsFormType, :ComponentValue, :GenerateMode, :ComponentDateFontSize, :ChannelComponentId, :OffsetX, :OffsetY, :ChannelComponentSource, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes
         
-        def initialize(componenttype=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, componentid=nil, componentname=nil, componentrequired=nil, componentextra=nil, componentrecipientid=nil, componentvalue=nil, isformtype=nil, generatemode=nil, componentdatefontsize=nil, offsetx=nil, offsety=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
+        def initialize(componenttype=nil, fileindex=nil, componentheight=nil, componentwidth=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentid=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, componentextra=nil, isformtype=nil, componentvalue=nil, generatemode=nil, componentdatefontsize=nil, channelcomponentid=nil, offsetx=nil, offsety=nil, channelcomponentsource=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
           @ComponentType = componenttype
-          @ComponentWidth = componentwidth
+          @FileIndex = fileindex
           @ComponentHeight = componentheight
+          @ComponentWidth = componentwidth
           @ComponentPage = componentpage
           @ComponentPosX = componentposx
           @ComponentPosY = componentposy
-          @FileIndex = fileindex
           @ComponentId = componentid
           @ComponentName = componentname
           @ComponentRequired = componentrequired
-          @ComponentExtra = componentextra
           @ComponentRecipientId = componentrecipientid
-          @ComponentValue = componentvalue
+          @ComponentExtra = componentextra
           @IsFormType = isformtype
+          @ComponentValue = componentvalue
           @GenerateMode = generatemode
           @ComponentDateFontSize = componentdatefontsize
+          @ChannelComponentId = channelcomponentid
           @OffsetX = offsetx
           @OffsetY = offsety
+          @ChannelComponentSource = channelcomponentsource
           @KeywordOrder = keywordorder
           @KeywordPage = keywordpage
           @RelativeLocation = relativelocation
@@ -442,23 +448,25 @@ module TencentCloud
 
         def deserialize(params)
           @ComponentType = params['ComponentType']
-          @ComponentWidth = params['ComponentWidth']
+          @FileIndex = params['FileIndex']
           @ComponentHeight = params['ComponentHeight']
+          @ComponentWidth = params['ComponentWidth']
           @ComponentPage = params['ComponentPage']
           @ComponentPosX = params['ComponentPosX']
           @ComponentPosY = params['ComponentPosY']
-          @FileIndex = params['FileIndex']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
           @ComponentRequired = params['ComponentRequired']
-          @ComponentExtra = params['ComponentExtra']
           @ComponentRecipientId = params['ComponentRecipientId']
-          @ComponentValue = params['ComponentValue']
+          @ComponentExtra = params['ComponentExtra']
           @IsFormType = params['IsFormType']
+          @ComponentValue = params['ComponentValue']
           @GenerateMode = params['GenerateMode']
           @ComponentDateFontSize = params['ComponentDateFontSize']
+          @ChannelComponentId = params['ChannelComponentId']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+          @ChannelComponentSource = params['ChannelComponentSource']
           @KeywordOrder = params['KeywordOrder']
           @KeywordPage = params['KeywordPage']
           @RelativeLocation = params['RelativeLocation']

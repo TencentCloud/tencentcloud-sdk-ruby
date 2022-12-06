@@ -29,15 +29,18 @@ module TencentCloud
         # @type UpdateTime: String
         # @param Host: 主机
         # @type Host: String
+        # @param MaxUserConnections: 用户最大连接数
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :AccountName, :Description, :CreateTime, :UpdateTime, :Host
+        attr_accessor :AccountName, :Description, :CreateTime, :UpdateTime, :Host, :MaxUserConnections
         
-        def initialize(accountname=nil, description=nil, createtime=nil, updatetime=nil, host=nil)
+        def initialize(accountname=nil, description=nil, createtime=nil, updatetime=nil, host=nil, maxuserconnections=nil)
           @AccountName = accountname
           @Description = description
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Host = host
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -46,6 +49,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Host = params['Host']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 
@@ -1489,10 +1493,24 @@ module TencentCloud
         # @type StorageId: String
         # @param StoragePayMode: 存储付费类型
         # @type StoragePayMode: Integer
+        # @param PhysicalZone: 物理区
+        # @type PhysicalZone: String
+        # @param BusinessType: 商业类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessType: String
+        # @param Tasks: 任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param IsFreeze: 是否冻结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFreeze: String
+        # @param ResourceTags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -1535,6 +1553,11 @@ module TencentCloud
           @ServerlessStatus = serverlessstatus
           @StorageId = storageid
           @StoragePayMode = storagepaymode
+          @PhysicalZone = physicalzone
+          @BusinessType = businesstype
+          @Tasks = tasks
+          @IsFreeze = isfreeze
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -1580,6 +1603,25 @@ module TencentCloud
           @ServerlessStatus = params['ServerlessStatus']
           @StorageId = params['StorageId']
           @StoragePayMode = params['StoragePayMode']
+          @PhysicalZone = params['PhysicalZone']
+          @BusinessType = params['BusinessType']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @IsFreeze = params['IsFreeze']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3921,6 +3963,17 @@ module TencentCloud
         end
       end
 
+      # 参数是否可修改的详细信息
+      class ModifiableInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # ModifyAccountParams请求参数结构体
       class ModifyAccountParamsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id，不超过32个字符
@@ -4591,10 +4644,22 @@ module TencentCloud
         # @type MatchValue: String
         # @param Description: 参数描述
         # @type Description: String
+        # @param IsGlobal: 是否为全局参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsGlobal: Integer
+        # @param ModifiableInfo: 参数是否可修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
+        # @param IsFunc: 是否为函数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFunc: Boolean
+        # @param Func: 函数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Func: String
 
-        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description
+        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description, :IsGlobal, :ModifiableInfo, :IsFunc, :Func
         
-        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, paramtype=nil, matchtype=nil, matchvalue=nil, description=nil)
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, paramtype=nil, matchtype=nil, matchvalue=nil, description=nil, isglobal=nil, modifiableinfo=nil, isfunc=nil, func=nil)
           @CurrentValue = currentvalue
           @Default = default
           @EnumValue = enumvalue
@@ -4606,6 +4671,10 @@ module TencentCloud
           @MatchType = matchtype
           @MatchValue = matchvalue
           @Description = description
+          @IsGlobal = isglobal
+          @ModifiableInfo = modifiableinfo
+          @IsFunc = isfunc
+          @Func = func
         end
 
         def deserialize(params)
@@ -4620,6 +4689,13 @@ module TencentCloud
           @MatchType = params['MatchType']
           @MatchValue = params['MatchValue']
           @Description = params['Description']
+          @IsGlobal = params['IsGlobal']
+          unless params['ModifiableInfo'].nil?
+            @ModifiableInfo = ModifiableInfo.new
+            @ModifiableInfo.deserialize(params['ModifiableInfo'])
+          end
+          @IsFunc = params['IsFunc']
+          @Func = params['Func']
         end
       end
 
@@ -5456,7 +5532,7 @@ module TencentCloud
         # @type UniqSubnetId: String
         # @param OldIpReserveHours: 旧地址回收时间
         # @type OldIpReserveHours: Integer
-        # @param ProxyGroupId: 数据库代理组Id
+        # @param ProxyGroupId: 数据库代理组Id（该参数为必填项，可以通过DescribeProxies接口获得）
         # @type ProxyGroupId: String
 
         attr_accessor :ClusterId, :UniqVpcId, :UniqSubnetId, :OldIpReserveHours, :ProxyGroupId

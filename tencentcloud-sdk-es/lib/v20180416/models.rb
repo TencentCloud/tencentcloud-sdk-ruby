@@ -3711,7 +3711,7 @@ module TencentCloud
         # @type EsConfig: String
         # @param Password: 默认用户elastic的密码（8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
         # @type Password: String
-        # @param EsAcl: 访问控制列表
+        # @param EsAcl: 可视化组件（Kibana、Cerebro）的公网访问策略
         # @type EsAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
         # @param DiskSize: 已废弃请使用NodeInfoList
         # 磁盘大小（单位GB）

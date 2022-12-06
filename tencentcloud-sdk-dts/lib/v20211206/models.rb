@@ -684,7 +684,7 @@ module TencentCloud
         # @type SrcRegion: String
         # @param DstRegion: 目标实例地域，如：ap-guangzhou。注意，目标地域必须和API请求地域保持一致。
         # @type DstRegion: String
-        # @param InstanceClass: 实例规格，包括：micro、small、medium、large、xlarge、2xlarge
+        # @param InstanceClass: 实例规格，包括：small、medium、large、xlarge、2xlarge
         # @type InstanceClass: String
         # @param Count: 购买数量，范围为[1,15]，默认为1
         # @type Count: Integer
@@ -3940,12 +3940,12 @@ module TencentCloud
         # @param StartTime: 开始时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
+        # @param Status: 任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已结束)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
         # @param EndTime: 结束时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param Status: 任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已停止)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
         # @param Tags: 标签相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
@@ -3965,9 +3965,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
 
-        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :EndTime, :Status, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime
+        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime
         
-        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil)
+        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil)
           @JobId = jobid
           @JobName = jobname
           @PayMode = paymode
@@ -3989,8 +3989,8 @@ module TencentCloud
           @DstInfo = dstinfo
           @CreateTime = createtime
           @StartTime = starttime
-          @EndTime = endtime
           @Status = status
+          @EndTime = endtime
           @Tags = tags
           @Detail = detail
           @TradeStatus = tradestatus
@@ -4033,8 +4033,8 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
           @Status = params['Status']
+          @EndTime = params['EndTime']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|

@@ -17,6 +17,28 @@
 module TencentCloud
   module Apm
     module V20210622
+      # APM浮点数类型键值对
+      class APMKV < TencentCloud::Common::AbstractModel
+        # @param Key: Key值定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: Value值定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # Apm通用KV结构
       class APMKVItem < TencentCloud::Common::AbstractModel
         # @param Key: Key值定义
@@ -97,15 +119,19 @@ module TencentCloud
         # @type Unit: String
         # @param Key: 请求数
         # @type Key: String
+        # @param LastPeriodValue: 同环比上周期具体数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastPeriodValue: Array
 
-        attr_accessor :CompareVal, :CompareVals, :Value, :Unit, :Key
+        attr_accessor :CompareVal, :CompareVals, :Value, :Unit, :Key, :LastPeriodValue
         
-        def initialize(compareval=nil, comparevals=nil, value=nil, unit=nil, key=nil)
+        def initialize(compareval=nil, comparevals=nil, value=nil, unit=nil, key=nil, lastperiodvalue=nil)
           @CompareVal = compareval
           @CompareVals = comparevals
           @Value = value
           @Unit = unit
           @Key = key
+          @LastPeriodValue = lastperiodvalue
         end
 
         def deserialize(params)
@@ -121,6 +147,14 @@ module TencentCloud
           @Value = params['Value']
           @Unit = params['Unit']
           @Key = params['Key']
+          unless params['LastPeriodValue'].nil?
+            @LastPeriodValue = []
+            params['LastPeriodValue'].each do |i|
+              apmkv_tmp = APMKV.new
+              apmkv_tmp.deserialize(i)
+              @LastPeriodValue << apmkv_tmp
+            end
+          end
         end
       end
 

@@ -5089,9 +5089,9 @@ module TencentCloud
         # @type Dimension: String
         # @param Period: 周期，当前仅支持86400
         # @type Period: Integer
-        # @param StartTime: 统计开始时间
+        # @param StartTime: 防护概览攻击趋势开始时间
         # @type StartTime: String
-        # @param EndTime: 统计结束时间
+        # @param EndTime: 防护概览攻击趋势结束时间
         # @type EndTime: String
 
         attr_accessor :Type, :Dimension, :Period, :StartTime, :EndTime
@@ -5117,9 +5117,9 @@ module TencentCloud
       class DescribeOverviewAttackTrendResponse < TencentCloud::Common::AbstractModel
         # @param Type: 攻击类型
         # @type Type: String
-        # @param StartTime: 统计起始时间
+        # @param StartTime: 防护概览攻击趋势起始时间
         # @type StartTime: String
-        # @param EndTime: 统计结束时间
+        # @param EndTime: 防护概览攻击趋势结束时间
         # @type EndTime: String
         # @param Period: 周期
         # @type Period: Integer

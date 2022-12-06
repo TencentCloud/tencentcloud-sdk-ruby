@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建特殊采集配置任务
+        # 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
 
         # @param request: Request instance for CreateConfigExtra.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateConfigExtraRequest`
@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于删除特殊采集规则配置
+        # 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
 
         # @param request: Request instance for DeleteConfigExtra.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConfigExtraRequest`
@@ -725,7 +725,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取特殊采集配置
+        # 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
 
         # @param request: Request instance for DescribeConfigExtras.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConfigExtrasRequest`
@@ -1229,7 +1229,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于修改特殊采集配置任务
+        # 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
 
         # @param request: Request instance for ModifyConfigExtra.
         # @type request: :class:`Tencentcloud::cls::V20201016::ModifyConfigExtraRequest`
