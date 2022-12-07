@@ -2643,10 +2643,14 @@ module TencentCloud
         # @type Fpga: Integer
         # @param Remark: 实例备注信息。
         # @type Remark: String
+        # @param GpuCount: 实例机型映射的物理GPU卡数，单位：卡。vGPU卡型小于1，直通卡型大于等于1。vGPU是通过分片虚拟化技术，将物理GPU卡重新划分，同一块GPU卡经虚拟化分割后可分配至不同的实例使用。直通卡型会将GPU设备直接挂载给实例使用。
+        # @type GpuCount: Float
+        # @param Frequency: 实例的CPU主频信息
+        # @type Frequency: String
 
-        attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark
+        attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark, :GpuCount, :Frequency
         
-        def initialize(zone=nil, instancetype=nil, instancechargetype=nil, networkcard=nil, externals=nil, cpu=nil, memory=nil, instancefamily=nil, typename=nil, localdisktypelist=nil, status=nil, price=nil, soldoutreason=nil, instancebandwidth=nil, instancepps=nil, storageblockamount=nil, cputype=nil, gpu=nil, fpga=nil, remark=nil)
+        def initialize(zone=nil, instancetype=nil, instancechargetype=nil, networkcard=nil, externals=nil, cpu=nil, memory=nil, instancefamily=nil, typename=nil, localdisktypelist=nil, status=nil, price=nil, soldoutreason=nil, instancebandwidth=nil, instancepps=nil, storageblockamount=nil, cputype=nil, gpu=nil, fpga=nil, remark=nil, gpucount=nil, frequency=nil)
           @Zone = zone
           @InstanceType = instancetype
           @InstanceChargeType = instancechargetype
@@ -2667,6 +2671,8 @@ module TencentCloud
           @Gpu = gpu
           @Fpga = fpga
           @Remark = remark
+          @GpuCount = gpucount
+          @Frequency = frequency
         end
 
         def deserialize(params)
@@ -2703,6 +2709,8 @@ module TencentCloud
           @Gpu = params['Gpu']
           @Fpga = params['Fpga']
           @Remark = params['Remark']
+          @GpuCount = params['GpuCount']
+          @Frequency = params['Frequency']
         end
       end
 

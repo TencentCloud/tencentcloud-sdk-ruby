@@ -318,6 +318,40 @@ module TencentCloud
         end
       end
 
+      # 渠道商的子企业额度使用情况
+      class CorpQuota < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param CorpName: 企业名称
+        # @type CorpName: String
+        # @param Quota: 额度
+        # @type Quota: :class:`Tencentcloud::Trp.v20210515.models.Quota`
+        # @param UsageQuota: 额度使用量
+        # @type UsageQuota: :class:`Tencentcloud::Trp.v20210515.models.UsageQuota`
+
+        attr_accessor :CorpId, :CorpName, :Quota, :UsageQuota
+        
+        def initialize(corpid=nil, corpname=nil, quota=nil, usagequota=nil)
+          @CorpId = corpid
+          @CorpName = corpname
+          @Quota = quota
+          @UsageQuota = usagequota
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @CorpName = params['CorpName']
+          unless params['Quota'].nil?
+            @Quota = Quota.new
+            @Quota.deserialize(params['Quota'])
+          end
+          unless params['UsageQuota'].nil?
+            @UsageQuota = UsageQuota.new
+            @UsageQuota.deserialize(params['UsageQuota'])
+          end
+        end
+      end
+
       # CreateCodeBatch请求参数结构体
       class CreateCodeBatchRequest < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID
@@ -1553,6 +1587,67 @@ module TencentCloud
               @Codes << codeitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCorpQuotas请求参数结构体
+      class DescribeCorpQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: 渠道商ID，不要传
+        # @type AgentId: Integer
+        # @param PageNumber: 页数
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param Keyword: 搜索企业ID
+        # @type Keyword: String
+
+        attr_accessor :AgentId, :PageNumber, :PageSize, :Keyword
+        
+        def initialize(agentid=nil, pagenumber=nil, pagesize=nil, keyword=nil)
+          @AgentId = agentid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeCorpQuotas返回参数结构体
+      class DescribeCorpQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param CorpQuotas: 子企业额度使用情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpQuotas: Array
+        # @param Total: 记录总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CorpQuotas, :Total, :RequestId
+        
+        def initialize(corpquotas=nil, total=nil, requestid=nil)
+          @CorpQuotas = corpquotas
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CorpQuotas'].nil?
+            @CorpQuotas = []
+            params['CorpQuotas'].each do |i|
+              corpquota_tmp = CorpQuota.new
+              corpquota_tmp.deserialize(i)
+              @CorpQuotas << corpquota_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2858,6 +2953,83 @@ module TencentCloud
         end
       end
 
+      # 企业配额信息
+      class Quota < TencentCloud::Common::AbstractModel
+        # @param StartTime: 服务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 服务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param QuotaId: 配额ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaId: Integer
+        # @param CorpId: 企业ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param Services: 开通服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Services: Array
+        # @param FactoryQuota: 工厂配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FactoryQuota: Integer
+        # @param ItemQuota: 产品配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemQuota: Integer
+        # @param TrackQuota: 溯源码配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackQuota: Integer
+        # @param SaleQuota: 销售码配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SaleQuota: Integer
+        # @param ChainQuota: 上链配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChainQuota: Integer
+        # @param RiskQuota: 风控配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskQuota: Integer
+        # @param TrackType: 溯源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackType: Integer
+        # @param Version: 开通版本 basic standard enterprise
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :TrackType, :Version
+        
+        def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, tracktype=nil, version=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QuotaId = quotaid
+          @CorpId = corpid
+          @Services = services
+          @FactoryQuota = factoryquota
+          @ItemQuota = itemquota
+          @TrackQuota = trackquota
+          @SaleQuota = salequota
+          @ChainQuota = chainquota
+          @RiskQuota = riskquota
+          @TrackType = tracktype
+          @Version = version
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QuotaId = params['QuotaId']
+          @CorpId = params['CorpId']
+          @Services = params['Services']
+          @FactoryQuota = params['FactoryQuota']
+          @ItemQuota = params['ItemQuota']
+          @TrackQuota = params['TrackQuota']
+          @SaleQuota = params['SaleQuota']
+          @ChainQuota = params['ChainQuota']
+          @RiskQuota = params['RiskQuota']
+          @TrackType = params['TrackType']
+          @Version = params['Version']
+        end
+      end
+
       # 溯源码
       class TraceCode < TencentCloud::Common::AbstractModel
         # @param Code: 二维码
@@ -3072,6 +3244,58 @@ module TencentCloud
           @Values = params['Values']
           @Key = params['Key']
           @Ext = params['Ext']
+        end
+      end
+
+      # 付费信息使用量
+      class UsageQuota < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param FactoryCnt: 商户配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FactoryCnt: Integer
+        # @param ItemCnt: 商品数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemCnt: Integer
+        # @param TrackCnt: 溯源码量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackCnt: Integer
+        # @param SaleCnt: 营销码额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SaleCnt: Integer
+        # @param ChainCnt: 区块链上链次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChainCnt: Integer
+        # @param RiskCnt: 营销风控次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCnt: Integer
+        # @param UpdateTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
+        
+        def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
+          @CorpId = corpid
+          @FactoryCnt = factorycnt
+          @ItemCnt = itemcnt
+          @TrackCnt = trackcnt
+          @SaleCnt = salecnt
+          @ChainCnt = chaincnt
+          @RiskCnt = riskcnt
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @FactoryCnt = params['FactoryCnt']
+          @ItemCnt = params['ItemCnt']
+          @TrackCnt = params['TrackCnt']
+          @SaleCnt = params['SaleCnt']
+          @ChainCnt = params['ChainCnt']
+          @RiskCnt = params['RiskCnt']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

@@ -2822,7 +2822,7 @@ module TencentCloud
         # @type SkillGroupId: Integer
         # @param SkillGroupName: 技能组名称
         # @type SkillGroupName: String
-        # @param Type: 类型：IM、TEL、ALL（全媒体）
+        # @param Type: （废弃）类型：IM、TEL、ALL（全媒体）
         # @type Type: String
         # @param RoutePolicy: 会话分配策略
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2836,10 +2836,13 @@ module TencentCloud
         # @param LastModifyTimestamp: 最后修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTimestamp: Integer
+        # @param SkillGroupType: 技能组类型0-电话，1-在线，3-音频，4-视频
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupType: Integer
 
-        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp
+        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType
         
-        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil)
+        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil)
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
           @Type = type
@@ -2847,6 +2850,7 @@ module TencentCloud
           @UsingLastSeat = usinglastseat
           @MaxConcurrency = maxconcurrency
           @LastModifyTimestamp = lastmodifytimestamp
+          @SkillGroupType = skillgrouptype
         end
 
         def deserialize(params)
@@ -2857,6 +2861,7 @@ module TencentCloud
           @UsingLastSeat = params['UsingLastSeat']
           @MaxConcurrency = params['MaxConcurrency']
           @LastModifyTimestamp = params['LastModifyTimestamp']
+          @SkillGroupType = params['SkillGroupType']
         end
       end
 

@@ -154,7 +154,7 @@ module TencentCloud
       class CreateBackUpScheduleRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleId: 编辑时需要传
         # @type ScheduleId: Integer
-        # @param WeekDays: 选择的星期 逗号分隔
+        # @param WeekDays: 选择的星期 逗号分隔，例如 2 代表周二
         # @type WeekDays: String
         # @param ExecuteHour: 执行小时
         # @type ExecuteHour: Integer

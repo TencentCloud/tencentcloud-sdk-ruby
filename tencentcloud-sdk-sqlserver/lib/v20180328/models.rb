@@ -1788,10 +1788,15 @@ module TencentCloud
         # @type Collation: String
         # @param TimeZone: 系统时区，默认：China Standard Time
         # @type TimeZone: String
+        # @param IsDrZone: 是否跨AZ
+        # @type IsDrZone: Boolean
+        # @param SlaveZones: 备可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZones: :class:`Tencentcloud::Sqlserver.v20180328.models.SlaveZones`
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1842,6 +1847,8 @@ module TencentCloud
           @TgwWanVPort = tgwwanvport
           @Collation = collation
           @TimeZone = timezone
+          @IsDrZone = isdrzone
+          @SlaveZones = slavezones
         end
 
         def deserialize(params)
@@ -1902,6 +1909,11 @@ module TencentCloud
           @TgwWanVPort = params['TgwWanVPort']
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
+          @IsDrZone = params['IsDrZone']
+          unless params['SlaveZones'].nil?
+            @SlaveZones = SlaveZones.new
+            @SlaveZones.deserialize(params['SlaveZones'])
+          end
         end
       end
 
@@ -2464,19 +2476,31 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页返回，页编号，默认值为第0页
         # @type Offset: Integer
+        # @param Name: 账号名称
+        # @type Name: String
+        # @param OrderBy: createTime,updateTime,passTime" note:"排序字段，默认按照账号创建时间倒序
+        # @type OrderBy: String
+        # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
+        # @type OrderByType: String
 
-        attr_accessor :InstanceId, :Limit, :Offset
+        attr_accessor :InstanceId, :Limit, :Offset, :Name, :OrderBy, :OrderByType
         
-        def initialize(instanceid=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, limit=nil, offset=nil, name=nil, orderby=nil, orderbytype=nil)
           @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
+          @Name = name
+          @OrderBy = orderby
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Name = params['Name']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
         end
       end
 
@@ -3386,19 +3410,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页返回，页编号，默认值为第0页
         # @type Offset: Integer
+        # @param Name: 数据库名称
+        # @type Name: String
+        # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
+        # @type OrderByType: String
 
-        attr_accessor :InstanceIdSet, :Limit, :Offset
+        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType
         
-        def initialize(instanceidset=nil, limit=nil, offset=nil)
+        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil)
           @InstanceIdSet = instanceidset
           @Limit = limit
           @Offset = offset
+          @Name = name
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
           @InstanceIdSet = params['InstanceIdSet']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Name = params['Name']
+          @OrderByType = params['OrderByType']
         end
       end
 
@@ -7488,6 +7520,26 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+        end
+      end
+
+      # 备可用区信息
+      class SlaveZones < TencentCloud::Common::AbstractModel
+        # @param SlaveZone: 备可用区地域码
+        # @type SlaveZone: String
+        # @param SlaveZoneName: 备可用区
+        # @type SlaveZoneName: String
+
+        attr_accessor :SlaveZone, :SlaveZoneName
+        
+        def initialize(slavezone=nil, slavezonename=nil)
+          @SlaveZone = slavezone
+          @SlaveZoneName = slavezonename
+        end
+
+        def deserialize(params)
+          @SlaveZone = params['SlaveZone']
+          @SlaveZoneName = params['SlaveZoneName']
         end
       end
 

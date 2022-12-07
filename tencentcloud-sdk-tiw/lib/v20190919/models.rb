@@ -711,6 +711,79 @@ module TencentCloud
         end
       end
 
+      # DescribeTIWRoomDailyUsage请求参数结构体
+      class DescribeTIWRoomDailyUsageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 互动白板应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param SubProduct: 需要查询的子产品用量，支持传入以下值
+        # - sp_tiw_board: 互动白板时长，单位为分钟
+        # - sp_tiw_ric: 实时录制时长，单位分钟
+        # @type SubProduct: String
+        # @param StartTime: 开始时间，格式YYYY-MM-DD，查询结果里包括该天数据
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式YYYY-MM-DD，查询结果里包括该天数据，单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param RoomIDs: 需要查询的房间ID列表，不填默认查询全部房间
+        # @type RoomIDs: Array
+        # @param Offset: 查询偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 每次查询返回条目限制，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppId, :SubProduct, :StartTime, :EndTime, :RoomIDs, :Offset, :Limit
+        
+        def initialize(sdkappid=nil, subproduct=nil, starttime=nil, endtime=nil, roomids=nil, offset=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @SubProduct = subproduct
+          @StartTime = starttime
+          @EndTime = endtime
+          @RoomIDs = roomids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SubProduct = params['SubProduct']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RoomIDs = params['RoomIDs']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTIWRoomDailyUsage返回参数结构体
+      class DescribeTIWRoomDailyUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Usages: 指定区间指定产品的房间用量列表
+        # @type Usages: Array
+        # @param Total: 用量列表总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Usages, :Total, :RequestId
+        
+        def initialize(usages=nil, total=nil, requestid=nil)
+          @Usages = usages
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Usages'].nil?
+            @Usages = []
+            params['Usages'].each do |i|
+              roomusagedataitem_tmp = RoomUsageDataItem.new
+              roomusagedataitem_tmp.deserialize(i)
+              @Usages << roomusagedataitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTranscodeCallback请求参数结构体
       class DescribeTranscodeCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用的SdkAppId
@@ -1325,6 +1398,41 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 互动白板房间用量信息
+      class RoomUsageDataItem < TencentCloud::Common::AbstractModel
+        # @param Time: 日期，格式为YYYY-MM-DD
+        # @type Time: String
+        # @param SdkAppId: 白板应用SDKAppID
+        # @type SdkAppId: Integer
+        # @param SubProduct: 互动白板子产品，请求参数传入的一致
+        # - sp_tiw_board: 互动白板时长
+        # - sp_tiw_ric: 实时录制时长
+        # @type SubProduct: String
+        # @param Value: 用量值
+        # - 白板时长、实时录制时长单位为分钟
+        # @type Value: Float
+        # @param RoomID: 互动白板房间号
+        # @type RoomID: Integer
+
+        attr_accessor :Time, :SdkAppId, :SubProduct, :Value, :RoomID
+        
+        def initialize(time=nil, sdkappid=nil, subproduct=nil, value=nil, roomid=nil)
+          @Time = time
+          @SdkAppId = sdkappid
+          @SubProduct = subproduct
+          @Value = value
+          @RoomID = roomid
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @SdkAppId = params['SdkAppId']
+          @SubProduct = params['SubProduct']
+          @Value = params['Value']
+          @RoomID = params['RoomID']
         end
       end
 

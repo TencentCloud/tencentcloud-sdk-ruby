@@ -3477,6 +3477,120 @@ module TencentCloud
         end
       end
 
+      # CreateAbnormalProcessRulesExportJob请求参数结构体
+      class CreateAbnormalProcessRulesExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>RuleType - string  - 是否必填: 否 -规则类型</li>
+        # <li>Status - string  - 是否必填: 否 -状态</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Filters, :Order, :By, :ExportField
+        
+        def initialize(filters=nil, order=nil, by=nil, exportfield=nil)
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateAbnormalProcessRulesExportJob返回参数结构体
+      class CreateAbnormalProcessRulesExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAccessControlsRuleExportJob请求参数结构体
+      class CreateAccessControlsRuleExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>RuleType - string  - 是否必填: 否 -规则类型</li>
+        # <li>Status - string  - 是否必填: 否 -状态</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: Array
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Filters, :Order, :By, :ExportField
+        
+        def initialize(filters=nil, order=nil, by=nil, exportfield=nil)
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateAccessControlsRuleExportJob返回参数结构体
+      class CreateAccessControlsRuleExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAssetImageRegistryScanTaskOneKey请求参数结构体
       class CreateAssetImageRegistryScanTaskOneKeyRequest < TencentCloud::Common::AbstractModel
         # @param All: 是否扫描全部镜像

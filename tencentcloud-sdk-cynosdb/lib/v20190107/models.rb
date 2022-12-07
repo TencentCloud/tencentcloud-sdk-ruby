@@ -448,10 +448,14 @@ module TencentCloud
         # @type SqlTypes: Array
         # @param Sqls: SQL 语句。支持传递多个sql语句。
         # @type Sqls: Array
+        # @param SentRows: 返回行数。
+        # @type SentRows: Integer
+        # @param ThreadId: 线程ID。
+        # @type ThreadId: Array
 
-        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls
+        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls, :SentRows, :ThreadId
         
-        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil)
+        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil, sentrows=nil, threadid=nil)
           @Host = host
           @User = user
           @DBName = dbname
@@ -463,6 +467,8 @@ module TencentCloud
           @AffectRows = affectrows
           @SqlTypes = sqltypes
           @Sqls = sqls
+          @SentRows = sentrows
+          @ThreadId = threadid
         end
 
         def deserialize(params)
@@ -477,6 +483,8 @@ module TencentCloud
           @AffectRows = params['AffectRows']
           @SqlTypes = params['SqlTypes']
           @Sqls = params['Sqls']
+          @SentRows = params['SentRows']
+          @ThreadId = params['ThreadId']
         end
       end
 
@@ -657,16 +665,22 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
 
-        attr_accessor :ParamName, :CurrentValue, :UpdateValue, :Status, :CreateTime, :UpdateTime
+        attr_accessor :ParamName, :CurrentValue, :UpdateValue, :Status, :CreateTime, :UpdateTime, :ClusterId, :InstanceId
         
-        def initialize(paramname=nil, currentvalue=nil, updatevalue=nil, status=nil, createtime=nil, updatetime=nil)
+        def initialize(paramname=nil, currentvalue=nil, updatevalue=nil, status=nil, createtime=nil, updatetime=nil, clusterid=nil, instanceid=nil)
           @ParamName = paramname
           @CurrentValue = currentvalue
           @UpdateValue = updatevalue
           @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @ClusterId = clusterid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -676,6 +690,8 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -5727,10 +5743,12 @@ module TencentCloud
         # @type DbType: String
         # @param DealMode: 交易模式 0-下单并支付 1-下单
         # @type DealMode: Integer
+        # @param UpgradeMode: NormalUpgrade：普通变配，FastUpgrade：极速变配，若变配过程判断会造成闪断，变配流程会终止。
+        # @type UpgradeMode: String
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode
+        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode, :UpgradeMode
         
-        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil, upgrademode=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
@@ -5739,6 +5757,7 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @DbType = dbtype
           @DealMode = dealmode
+          @UpgradeMode = upgrademode
         end
 
         def deserialize(params)
@@ -5750,6 +5769,7 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @DbType = params['DbType']
           @DealMode = params['DealMode']
+          @UpgradeMode = params['UpgradeMode']
         end
       end
 

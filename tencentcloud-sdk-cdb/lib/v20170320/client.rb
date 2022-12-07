@@ -53,30 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 针对主实例申请创建数据库代理。
-
-        # @param request: Request instance for ApplyCDBProxy.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::ApplyCDBProxyRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::ApplyCDBProxyResponse`
-        def ApplyCDBProxy(request)
-          body = send_request('ApplyCDBProxy', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ApplyCDBProxyResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
 
         # @param request: Request instance for AssociateSecurityGroups.

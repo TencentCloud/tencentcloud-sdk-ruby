@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在应用市场中集群创建应用
+        # 在应用市场中给集群创建应用
 
         # @param request: Request instance for CreateClusterRelease.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterReleaseRequest`

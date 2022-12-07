@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询渠道商下属企业额度使用情况
+
+        # @param request: Request instance for DescribeCorpQuotas.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCorpQuotasRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCorpQuotasResponse`
+        def DescribeCorpQuotas(request)
+          body = send_request('DescribeCorpQuotas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCorpQuotasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查自定义码规则
 
         # @param request: Request instance for DescribeCustomRuleById.

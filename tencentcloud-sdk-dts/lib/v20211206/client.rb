@@ -201,7 +201,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除一致性校验任务
+        # 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
 
         # @param request: Request instance for DeleteCompareTask.
         # @type request: :class:`Tencentcloud::dts::V20211206::DeleteCompareTaskRequest`

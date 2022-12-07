@@ -491,10 +491,22 @@ module TencentCloud
         # @param GatewayInstanceId: 网关实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayInstanceId: String
+        # @param NamespaceNameKey: 命名空间参数key值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceNameKey: String
+        # @param ServiceNameKey: 微服务名参数key值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNameKey: String
+        # @param NamespaceNameKeyPosition: 命名空间参数位置，path，header或query，默认是path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceNameKeyPosition: String
+        # @param ServiceNameKeyPosition: 微服务名参数位置，path，header或query，默认是path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNameKeyPosition: String
 
-        attr_accessor :GroupId, :GroupName, :GroupContext, :AuthType, :Status, :CreatedTime, :UpdatedTime, :BindedGatewayDeployGroups, :ApiCount, :AclMode, :Description, :GroupType, :GatewayInstanceType, :GatewayInstanceId
+        attr_accessor :GroupId, :GroupName, :GroupContext, :AuthType, :Status, :CreatedTime, :UpdatedTime, :BindedGatewayDeployGroups, :ApiCount, :AclMode, :Description, :GroupType, :GatewayInstanceType, :GatewayInstanceId, :NamespaceNameKey, :ServiceNameKey, :NamespaceNameKeyPosition, :ServiceNameKeyPosition
         
-        def initialize(groupid=nil, groupname=nil, groupcontext=nil, authtype=nil, status=nil, createdtime=nil, updatedtime=nil, bindedgatewaydeploygroups=nil, apicount=nil, aclmode=nil, description=nil, grouptype=nil, gatewayinstancetype=nil, gatewayinstanceid=nil)
+        def initialize(groupid=nil, groupname=nil, groupcontext=nil, authtype=nil, status=nil, createdtime=nil, updatedtime=nil, bindedgatewaydeploygroups=nil, apicount=nil, aclmode=nil, description=nil, grouptype=nil, gatewayinstancetype=nil, gatewayinstanceid=nil, namespacenamekey=nil, servicenamekey=nil, namespacenamekeyposition=nil, servicenamekeyposition=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupContext = groupcontext
@@ -509,6 +521,10 @@ module TencentCloud
           @GroupType = grouptype
           @GatewayInstanceType = gatewayinstancetype
           @GatewayInstanceId = gatewayinstanceid
+          @NamespaceNameKey = namespacenamekey
+          @ServiceNameKey = servicenamekey
+          @NamespaceNameKeyPosition = namespacenamekeyposition
+          @ServiceNameKeyPosition = servicenamekeyposition
         end
 
         def deserialize(params)
@@ -533,6 +549,10 @@ module TencentCloud
           @GroupType = params['GroupType']
           @GatewayInstanceType = params['GatewayInstanceType']
           @GatewayInstanceId = params['GatewayInstanceId']
+          @NamespaceNameKey = params['NamespaceNameKey']
+          @ServiceNameKey = params['ServiceNameKey']
+          @NamespaceNameKeyPosition = params['NamespaceNameKeyPosition']
+          @ServiceNameKeyPosition = params['ServiceNameKeyPosition']
         end
       end
 
@@ -1998,10 +2018,16 @@ module TencentCloud
         # @param RepoType: 仓库类型 (person, tcr)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: String
+        # @param WarmupSetting: 预热配置设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
+        # @param GatewayConfig: Envoy网关服务配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayConfig: :class:`Tencentcloud::Tsf.v20180326.models.GatewayConfig`
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType, :WarmupSetting, :GatewayConfig
         
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil, warmupsetting=nil, gatewayconfig=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -2038,6 +2064,8 @@ module TencentCloud
           @VolumeMountInfos = volumemountinfos
           @KubeInjectEnable = kubeinjectenable
           @RepoType = repotype
+          @WarmupSetting = warmupsetting
+          @GatewayConfig = gatewayconfig
         end
 
         def deserialize(params)
@@ -2111,6 +2139,14 @@ module TencentCloud
           end
           @KubeInjectEnable = params['KubeInjectEnable']
           @RepoType = params['RepoType']
+          unless params['WarmupSetting'].nil?
+            @WarmupSetting = WarmupSetting.new
+            @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
+          unless params['GatewayConfig'].nil?
+            @GatewayConfig = GatewayConfig.new
+            @GatewayConfig.deserialize(params['GatewayConfig'])
+          end
         end
       end
 
@@ -2534,16 +2570,28 @@ module TencentCloud
         # @type GroupType: String
         # @param GatewayInstanceId: 网关实体ID
         # @type GatewayInstanceId: String
+        # @param NamespaceNameKey: 命名空间参数key值
+        # @type NamespaceNameKey: String
+        # @param ServiceNameKey: 微服务名参数key值
+        # @type ServiceNameKey: String
+        # @param NamespaceNameKeyPosition: 命名空间参数位置，path，header或query，默认是path
+        # @type NamespaceNameKeyPosition: String
+        # @param ServiceNameKeyPosition: 微服务名参数位置，path，header或query，默认是path
+        # @type ServiceNameKeyPosition: String
 
-        attr_accessor :GroupName, :GroupContext, :AuthType, :Description, :GroupType, :GatewayInstanceId
+        attr_accessor :GroupName, :GroupContext, :AuthType, :Description, :GroupType, :GatewayInstanceId, :NamespaceNameKey, :ServiceNameKey, :NamespaceNameKeyPosition, :ServiceNameKeyPosition
         
-        def initialize(groupname=nil, groupcontext=nil, authtype=nil, description=nil, grouptype=nil, gatewayinstanceid=nil)
+        def initialize(groupname=nil, groupcontext=nil, authtype=nil, description=nil, grouptype=nil, gatewayinstanceid=nil, namespacenamekey=nil, servicenamekey=nil, namespacenamekeyposition=nil, servicenamekeyposition=nil)
           @GroupName = groupname
           @GroupContext = groupcontext
           @AuthType = authtype
           @Description = description
           @GroupType = grouptype
           @GatewayInstanceId = gatewayinstanceid
+          @NamespaceNameKey = namespacenamekey
+          @ServiceNameKey = servicenamekey
+          @NamespaceNameKeyPosition = namespacenamekeyposition
+          @ServiceNameKeyPosition = servicenamekeyposition
         end
 
         def deserialize(params)
@@ -2553,6 +2601,10 @@ module TencentCloud
           @Description = params['Description']
           @GroupType = params['GroupType']
           @GatewayInstanceId = params['GatewayInstanceId']
+          @NamespaceNameKey = params['NamespaceNameKey']
+          @ServiceNameKey = params['ServiceNameKey']
+          @NamespaceNameKeyPosition = params['NamespaceNameKeyPosition']
+          @ServiceNameKeyPosition = params['ServiceNameKeyPosition']
         end
       end
 
@@ -5052,6 +5104,7 @@ module TencentCloud
       # DescribeApiGroup返回参数结构体
       class DescribeApiGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: API分组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ApiGroupInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6046,6 +6099,7 @@ module TencentCloud
       # DescribeContainerGroupDeployInfo返回参数结构体
       class DescribeContainerGroupDeployInfoResponse < TencentCloud::Common::AbstractModel
         # @param Result: 获取部署组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupDeploy`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10560,6 +10614,17 @@ module TencentCloud
           end
           @GatewayInstanceType = params['GatewayInstanceType']
           @GatewayInstanceId = params['GatewayInstanceId']
+        end
+      end
+
+      # TSF Envoy网关服务配置
+      class GatewayConfig < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -17447,15 +17512,27 @@ module TencentCloud
         # @type AuthType: String
         # @param GroupContext: 分组上下文
         # @type GroupContext: String
+        # @param NamespaceNameKey: 命名空间参数key值
+        # @type NamespaceNameKey: String
+        # @param ServiceNameKey: 微服务名参数key值
+        # @type ServiceNameKey: String
+        # @param NamespaceNameKeyPosition: 命名空间参数位置，path，header或query，默认是path
+        # @type NamespaceNameKeyPosition: String
+        # @param ServiceNameKeyPosition: 微服务名参数位置，path，header或query，默认是path
+        # @type ServiceNameKeyPosition: String
 
-        attr_accessor :GroupId, :GroupName, :Description, :AuthType, :GroupContext
+        attr_accessor :GroupId, :GroupName, :Description, :AuthType, :GroupContext, :NamespaceNameKey, :ServiceNameKey, :NamespaceNameKeyPosition, :ServiceNameKeyPosition
         
-        def initialize(groupid=nil, groupname=nil, description=nil, authtype=nil, groupcontext=nil)
+        def initialize(groupid=nil, groupname=nil, description=nil, authtype=nil, groupcontext=nil, namespacenamekey=nil, servicenamekey=nil, namespacenamekeyposition=nil, servicenamekeyposition=nil)
           @GroupId = groupid
           @GroupName = groupname
           @Description = description
           @AuthType = authtype
           @GroupContext = groupcontext
+          @NamespaceNameKey = namespacenamekey
+          @ServiceNameKey = servicenamekey
+          @NamespaceNameKeyPosition = namespacenamekeyposition
+          @ServiceNameKeyPosition = servicenamekeyposition
         end
 
         def deserialize(params)
@@ -17464,12 +17541,17 @@ module TencentCloud
           @Description = params['Description']
           @AuthType = params['AuthType']
           @GroupContext = params['GroupContext']
+          @NamespaceNameKey = params['NamespaceNameKey']
+          @ServiceNameKey = params['ServiceNameKey']
+          @NamespaceNameKeyPosition = params['NamespaceNameKeyPosition']
+          @ServiceNameKeyPosition = params['ServiceNameKeyPosition']
         end
       end
 
       # UpdateApiGroup返回参数结构体
       class UpdateApiGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果，true: 成功, false: 失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17963,10 +18045,13 @@ module TencentCloud
         # @param WarmupSetting: 预热属性配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
+        # @param GatewayConfig: Envoy网关配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayConfig: :class:`Tencentcloud::Tsf.v20180326.models.GatewayConfig`
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig
         
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -18004,6 +18089,7 @@ module TencentCloud
           @Alias = _alias
           @AgentProfileList = agentprofilelist
           @WarmupSetting = warmupsetting
+          @GatewayConfig = gatewayconfig
         end
 
         def deserialize(params)
@@ -18056,6 +18142,10 @@ module TencentCloud
           unless params['WarmupSetting'].nil?
             @WarmupSetting = WarmupSetting.new
             @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
+          unless params['GatewayConfig'].nil?
+            @GatewayConfig = GatewayConfig.new
+            @GatewayConfig.deserialize(params['GatewayConfig'])
           end
         end
       end

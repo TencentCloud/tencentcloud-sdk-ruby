@@ -487,6 +487,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建异常进程规则导出任务
+
+        # @param request: Request instance for CreateAbnormalProcessRulesExportJob.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateAbnormalProcessRulesExportJobRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateAbnormalProcessRulesExportJobResponse`
+        def CreateAbnormalProcessRulesExportJob(request)
+          body = send_request('CreateAbnormalProcessRulesExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAbnormalProcessRulesExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建文件篡改规则导出任务
+
+        # @param request: Request instance for CreateAccessControlsRuleExportJob.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateAccessControlsRuleExportJobRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateAccessControlsRuleExportJobResponse`
+        def CreateAccessControlsRuleExportJob(request)
+          body = send_request('CreateAccessControlsRuleExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessControlsRuleExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 镜像仓库创建镜像扫描任务
 
         # @param request: Request instance for CreateAssetImageRegistryScanTask.

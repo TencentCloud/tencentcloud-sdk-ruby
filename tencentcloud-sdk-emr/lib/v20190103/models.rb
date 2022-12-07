@@ -948,6 +948,42 @@ module TencentCloud
         end
       end
 
+      # DeleteUserManagerUserList请求参数结构体
+      class DeleteUserManagerUserListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param UserNameList: 集群用户名列表
+        # @type UserNameList: Array
+
+        attr_accessor :InstanceId, :UserNameList
+        
+        def initialize(instanceid=nil, usernamelist=nil)
+          @InstanceId = instanceid
+          @UserNameList = usernamelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserNameList = params['UserNameList']
+        end
+      end
+
+      # DeleteUserManagerUserList返回参数结构体
+      class DeleteUserManagerUserListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterNodes请求参数结构体
       class DescribeClusterNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx

@@ -6280,37 +6280,39 @@ module TencentCloud
       class TagInfo < TencentCloud::Common::AbstractModel
         # @param TagName: Tag名称
         # @type TagName: String
-        # @param TagId: 镜像Id
+        # @param TagId: 制品的 ID
         # @type TagId: String
         # @param ImageId: docker image 可以看到的id
         # @type ImageId: String
         # @param Size: 大小
         # @type Size: String
-        # @param CreationTime: 镜像的创建时间
+        # @param CreationTime: 制品的创建时间
         # @type CreationTime: String
-        # @param DurationDays: 镜像创建至今时间长度
+        # @param DurationDays: 制品创建至今时间长度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationDays: String
-        # @param Author: 镜像的作者
+        # @param Author: 标注的制品作者
         # @type Author: String
-        # @param Architecture: 次镜像建议运行的系统架构
+        # @param Architecture: 标注的制品平台
         # @type Architecture: String
-        # @param DockerVersion: 创建此镜像的docker版本
+        # @param DockerVersion: 创建制品的 Docker 版本
         # @type DockerVersion: String
-        # @param OS: 此镜像建议运行系统
+        # @param OS: 标注的制品操作系统
         # @type OS: String
-        # @param SizeByte: SizeByte
+        # @param SizeByte: 制品大小
         # @type SizeByte: Integer
-        # @param Id: Id
+        # @param Id: 序号
         # @type Id: Integer
         # @param UpdateTime: 数据更新时间
         # @type UpdateTime: String
-        # @param PushTime: 镜像更新时间
+        # @param PushTime: 制品更新时间
         # @type PushTime: String
+        # @param Kind: 制品类型
+        # @type Kind: String
 
-        attr_accessor :TagName, :TagId, :ImageId, :Size, :CreationTime, :DurationDays, :Author, :Architecture, :DockerVersion, :OS, :SizeByte, :Id, :UpdateTime, :PushTime
+        attr_accessor :TagName, :TagId, :ImageId, :Size, :CreationTime, :DurationDays, :Author, :Architecture, :DockerVersion, :OS, :SizeByte, :Id, :UpdateTime, :PushTime, :Kind
         
-        def initialize(tagname=nil, tagid=nil, imageid=nil, size=nil, creationtime=nil, durationdays=nil, author=nil, architecture=nil, dockerversion=nil, os=nil, sizebyte=nil, id=nil, updatetime=nil, pushtime=nil)
+        def initialize(tagname=nil, tagid=nil, imageid=nil, size=nil, creationtime=nil, durationdays=nil, author=nil, architecture=nil, dockerversion=nil, os=nil, sizebyte=nil, id=nil, updatetime=nil, pushtime=nil, kind=nil)
           @TagName = tagname
           @TagId = tagid
           @ImageId = imageid
@@ -6325,6 +6327,7 @@ module TencentCloud
           @Id = id
           @UpdateTime = updatetime
           @PushTime = pushtime
+          @Kind = kind
         end
 
         def deserialize(params)
@@ -6342,6 +6345,7 @@ module TencentCloud
           @Id = params['Id']
           @UpdateTime = params['UpdateTime']
           @PushTime = params['PushTime']
+          @Kind = params['Kind']
         end
       end
 

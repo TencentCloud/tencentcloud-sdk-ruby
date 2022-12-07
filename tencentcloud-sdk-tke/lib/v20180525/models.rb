@@ -1946,7 +1946,7 @@ module TencentCloud
         # @type Chart: String
         # @param Values: 自定义参数
         # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
-        # @param ChartFrom: 制品来源，范围：tke-market/tcr/other
+        # @param ChartFrom: 制品来源，范围：tke 应用市场/第三方chart
         # @type ChartFrom: String
         # @param ChartVersion: 制品版本
         # @type ChartVersion: String
@@ -1958,10 +1958,12 @@ module TencentCloud
         # @type Password: String
         # @param ChartNamespace: 制品命名空间
         # @type ChartNamespace: String
+        # @param ClusterType: 集群类型，支持传 tke, eks, tkeedge, exernal(注册集群）
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :Name, :Namespace, :Chart, :Values, :ChartFrom, :ChartVersion, :ChartRepoURL, :Username, :Password, :ChartNamespace
+        attr_accessor :ClusterId, :Name, :Namespace, :Chart, :Values, :ChartFrom, :ChartVersion, :ChartRepoURL, :Username, :Password, :ChartNamespace, :ClusterType
         
-        def initialize(clusterid=nil, name=nil, namespace=nil, chart=nil, values=nil, chartfrom=nil, chartversion=nil, chartrepourl=nil, username=nil, password=nil, chartnamespace=nil)
+        def initialize(clusterid=nil, name=nil, namespace=nil, chart=nil, values=nil, chartfrom=nil, chartversion=nil, chartrepourl=nil, username=nil, password=nil, chartnamespace=nil, clustertype=nil)
           @ClusterId = clusterid
           @Name = name
           @Namespace = namespace
@@ -1973,6 +1975,7 @@ module TencentCloud
           @Username = username
           @Password = password
           @ChartNamespace = chartnamespace
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -1990,6 +1993,7 @@ module TencentCloud
           @Username = params['Username']
           @Password = params['Password']
           @ChartNamespace = params['ChartNamespace']
+          @ClusterType = params['ClusterType']
         end
       end
 

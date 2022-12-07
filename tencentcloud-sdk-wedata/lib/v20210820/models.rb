@@ -11710,10 +11710,12 @@ module TencentCloud
         # @type DatasourceId: String
         # @param TableId: 数据表Id
         # @type TableId: String
+        # @param WebHooks: 群机器人webhook信息
+        # @type WebHooks: Array
 
-        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :ProjectId, :DatabaseId, :DatasourceId, :TableId
+        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :ProjectId, :DatabaseId, :DatasourceId, :TableId, :WebHooks
         
-        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, projectid=nil, databaseid=nil, datasourceid=nil, tableid=nil)
+        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, projectid=nil, databaseid=nil, datasourceid=nil, tableid=nil, webhooks=nil)
           @RuleGroupId = rulegroupid
           @Receivers = receivers
           @SubscribeType = subscribetype
@@ -11721,6 +11723,7 @@ module TencentCloud
           @DatabaseId = databaseid
           @DatasourceId = datasourceid
           @TableId = tableid
+          @WebHooks = webhooks
         end
 
         def deserialize(params)
@@ -11738,6 +11741,14 @@ module TencentCloud
           @DatabaseId = params['DatabaseId']
           @DatasourceId = params['DatasourceId']
           @TableId = params['TableId']
+          unless params['WebHooks'].nil?
+            @WebHooks = []
+            params['WebHooks'].each do |i|
+              subscribewebhook_tmp = SubscribeWebHook.new
+              subscribewebhook_tmp.deserialize(i)
+              @WebHooks << subscribewebhook_tmp
+            end
+          end
         end
       end
 
@@ -14672,13 +14683,17 @@ module TencentCloud
         # @param SubscribeType: 订阅方式 1.邮件email  2.短信sms
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeType: Array
+        # @param WebHooks: 群机器人配置的webhook信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebHooks: Array
 
-        attr_accessor :RuleGroupId, :Receivers, :SubscribeType
+        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :WebHooks
         
-        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil)
+        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, webhooks=nil)
           @RuleGroupId = rulegroupid
           @Receivers = receivers
           @SubscribeType = subscribetype
+          @WebHooks = webhooks
         end
 
         def deserialize(params)
@@ -14692,6 +14707,14 @@ module TencentCloud
             end
           end
           @SubscribeType = params['SubscribeType']
+          unless params['WebHooks'].nil?
+            @WebHooks = []
+            params['WebHooks'].each do |i|
+              subscribewebhook_tmp = SubscribeWebHook.new
+              subscribewebhook_tmp.deserialize(i)
+              @WebHooks << subscribewebhook_tmp
+            end
+          end
         end
       end
 
@@ -15822,6 +15845,28 @@ module TencentCloud
         def deserialize(params)
           @ReceiverUserId = params['ReceiverUserId']
           @ReceiverName = params['ReceiverName']
+        end
+      end
+
+      # 群机器人订阅配置
+      class SubscribeWebHook < TencentCloud::Common::AbstractModel
+        # @param HookType: 群机器人类型，当前支持飞书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HookType: String
+        # @param HookAddress: 群机器人webhook地址，配置方式参考https://cloud.tencent.com/document/product/1254/70736
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HookAddress: String
+
+        attr_accessor :HookType, :HookAddress
+        
+        def initialize(hooktype=nil, hookaddress=nil)
+          @HookType = hooktype
+          @HookAddress = hookaddress
+        end
+
+        def deserialize(params)
+          @HookType = params['HookType']
+          @HookAddress = params['HookAddress']
         end
       end
 

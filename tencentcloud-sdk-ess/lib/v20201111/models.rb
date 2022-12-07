@@ -1811,29 +1811,42 @@ module TencentCloud
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
-        # @type Filters: Array
-        # @param Limit: 查询个数，默认20，最大200
-        # @type Limit: Integer
-        # @param Offset: 查询偏移位置，默认0
-        # @type Offset: Integer
-        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
-        # @type ContentType: Integer
-        # @param GenerateSource: 暂未开放
-        # @type GenerateSource: Integer
+        # @param Organization: 企业组织相关信息
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Offset: 查询偏移位置，默认0
+        # @type Offset: Integer
+        # @param Limit: 查询个数，默认20，最大200
+        # @type Limit: Integer
+        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
+        # @type Filters: Array
+        # @param ApplicationId: 这个参数跟下面的IsChannel参数配合使用。
+        # IsChannel=false时，ApplicationId参数不起任何作用。
+        # IsChannel=true时，ApplicationId为空，查询所有渠道模板列表；ApplicationId不为空，查询指定渠道下的模板列表
+        # ApplicationId为空，查询渠道模板列表
+        # @type ApplicationId: String
+        # @param IsChannel: 默认为false，查询SaaS模板库列表；
+        # 为true，查询渠道模板库管理列表
+        # @type IsChannel: Boolean
+        # @param GenerateSource: 暂未开放
+        # @type GenerateSource: Integer
+        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
+        # @type ContentType: Integer
 
-        attr_accessor :Operator, :Filters, :Limit, :Offset, :ContentType, :GenerateSource, :Agent
+        attr_accessor :Operator, :Organization, :Agent, :Offset, :Limit, :Filters, :ApplicationId, :IsChannel, :GenerateSource, :ContentType
         
-        def initialize(operator=nil, filters=nil, limit=nil, offset=nil, contenttype=nil, generatesource=nil, agent=nil)
+        def initialize(operator=nil, organization=nil, agent=nil, offset=nil, limit=nil, filters=nil, applicationid=nil, ischannel=nil, generatesource=nil, contenttype=nil)
           @Operator = operator
-          @Filters = filters
-          @Limit = limit
-          @Offset = offset
-          @ContentType = contenttype
-          @GenerateSource = generatesource
+          @Organization = organization
           @Agent = agent
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @ApplicationId = applicationid
+          @IsChannel = ischannel
+          @GenerateSource = generatesource
+          @ContentType = contenttype
         end
 
         def deserialize(params)
@@ -1841,6 +1854,16 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1849,14 +1872,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @ContentType = params['ContentType']
+          @ApplicationId = params['ApplicationId']
+          @IsChannel = params['IsChannel']
           @GenerateSource = params['GenerateSource']
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
+          @ContentType = params['ContentType']
         end
       end
 
@@ -3131,10 +3150,15 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param Promoter: 发起人角色信息
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
+        # @param OrganizationId: 模板创建组织id
+        # @type OrganizationId: String
+        # @param PreviewUrl: 模板预览链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :OrganizationId, :PreviewUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, organizationid=nil, previewurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -3149,6 +3173,8 @@ module TencentCloud
           @Creator = creator
           @CreatedOn = createdon
           @Promoter = promoter
+          @OrganizationId = organizationid
+          @PreviewUrl = previewurl
         end
 
         def deserialize(params)
@@ -3197,6 +3223,8 @@ module TencentCloud
             @Promoter = Recipient.new
             @Promoter.deserialize(params['Promoter'])
           end
+          @OrganizationId = params['OrganizationId']
+          @PreviewUrl = params['PreviewUrl']
         end
       end
 
