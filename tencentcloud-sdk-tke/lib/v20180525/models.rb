@@ -399,6 +399,54 @@ module TencentCloud
         end
       end
 
+      # CancelClusterRelease请求参数结构体
+      class CancelClusterReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 应用ID
+        # @type ID: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ID, :ClusterId, :ClusterType
+        
+        def initialize(id=nil, clusterid=nil, clustertype=nil)
+          @ID = id
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # CancelClusterRelease返回参数结构体
+      class CancelClusterReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = PendingRelease.new
+            @Release.deserialize(params['Release'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # cloudrun安全特性能力
       class Capabilities < TencentCloud::Common::AbstractModel
         # @param Add: 启用安全能力项列表
@@ -5114,6 +5162,269 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterPendingReleases请求参数结构体
+      class DescribeClusterPendingReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Limit: 返回数量限制，默认20，最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Limit, :Offset, :ClusterType
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeClusterPendingReleases返回参数结构体
+      class DescribeClusterPendingReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param ReleaseSet: 正在安装中应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseSet: Array
+        # @param Limit: 每页返回数量限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Offset: 页偏移量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Total: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReleaseSet, :Limit, :Offset, :Total, :RequestId
+        
+        def initialize(releaseset=nil, limit=nil, offset=nil, total=nil, requestid=nil)
+          @ReleaseSet = releaseset
+          @Limit = limit
+          @Offset = offset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReleaseSet'].nil?
+            @ReleaseSet = []
+            params['ReleaseSet'].each do |i|
+              pendingrelease_tmp = PendingRelease.new
+              pendingrelease_tmp.deserialize(i)
+              @ReleaseSet << pendingrelease_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterReleaseDetails请求参数结构体
+      class DescribeClusterReleaseDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用所在命名空间
+        # @type Namespace: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :ClusterType
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeClusterReleaseDetails返回参数结构体
+      class DescribeClusterReleaseDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.ReleaseDetails`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = ReleaseDetails.new
+            @Release.deserialize(params['Release'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterReleaseHistory请求参数结构体
+      class DescribeClusterReleaseHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用所在命名空间
+        # @type Namespace: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :ClusterType
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeClusterReleaseHistory返回参数结构体
+      class DescribeClusterReleaseHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param ReleaseHistorySet: 已安装应用版本历史
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseHistorySet: Array
+        # @param Total: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReleaseHistorySet, :Total, :RequestId
+        
+        def initialize(releasehistoryset=nil, total=nil, requestid=nil)
+          @ReleaseHistorySet = releasehistoryset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReleaseHistorySet'].nil?
+            @ReleaseHistorySet = []
+            params['ReleaseHistorySet'].each do |i|
+              releasehistory_tmp = ReleaseHistory.new
+              releasehistory_tmp.deserialize(i)
+              @ReleaseHistorySet << releasehistory_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterReleases请求参数结构体
+      class DescribeClusterReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Limit: 每页数量限制
+        # @type Limit: Integer
+        # @param Offset: 页偏移量
+        # @type Offset: Integer
+        # @param Namespace: helm Release 安装的namespace
+        # @type Namespace: String
+        # @param ReleaseName: helm Release 的名字
+        # @type ReleaseName: String
+        # @param ChartName: helm Chart 的名字
+        # @type ChartName: String
+
+        attr_accessor :ClusterId, :Limit, :Offset, :Namespace, :ReleaseName, :ChartName
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil, namespace=nil, releasename=nil, chartname=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @Namespace = namespace
+          @ReleaseName = releasename
+          @ChartName = chartname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Namespace = params['Namespace']
+          @ReleaseName = params['ReleaseName']
+          @ChartName = params['ChartName']
+        end
+      end
+
+      # DescribeClusterReleases返回参数结构体
+      class DescribeClusterReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param Limit: 数量限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param ReleaseSet: 已安装应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseSet: Array
+        # @param Total: 已安装应用总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Limit, :Offset, :ReleaseSet, :Total, :RequestId
+        
+        def initialize(limit=nil, offset=nil, releaseset=nil, total=nil, requestid=nil)
+          @Limit = limit
+          @Offset = offset
+          @ReleaseSet = releaseset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['ReleaseSet'].nil?
+            @ReleaseSet = []
+            params['ReleaseSet'].each do |i|
+              release_tmp = Release.new
+              release_tmp.deserialize(i)
+              @ReleaseSet << release_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -13212,6 +13523,196 @@ module TencentCloud
         end
       end
 
+      # 应用市场部署的应用结构
+      class Release < TencentCloud::Common::AbstractModel
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param Revision: 应用当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+        # @param Status: 应用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ChartName: 制品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartName: String
+        # @param ChartVersion: 制品版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartVersion: String
+        # @param AppVersion: 制品应用版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppVersion: String
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+        # @param Description: 应用描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Name, :Namespace, :Revision, :Status, :ChartName, :ChartVersion, :AppVersion, :UpdatedTime, :Description
+        
+        def initialize(name=nil, namespace=nil, revision=nil, status=nil, chartname=nil, chartversion=nil, appversion=nil, updatedtime=nil, description=nil)
+          @Name = name
+          @Namespace = namespace
+          @Revision = revision
+          @Status = status
+          @ChartName = chartname
+          @ChartVersion = chartversion
+          @AppVersion = appversion
+          @UpdatedTime = updatedtime
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Revision = params['Revision']
+          @Status = params['Status']
+          @ChartName = params['ChartName']
+          @ChartVersion = params['ChartVersion']
+          @AppVersion = params['AppVersion']
+          @UpdatedTime = params['UpdatedTime']
+          @Description = params['Description']
+        end
+      end
+
+      # 应用市场的安装应用详情
+      class ReleaseDetails < TencentCloud::Common::AbstractModel
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用所在命名空间
+        # @type Namespace: String
+        # @param Version: 应用当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+        # @param Status: 应用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Description: 应用描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Notes: 应用提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Notes: String
+        # @param Config: 用户自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: String
+        # @param Manifest: 应用资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manifest: String
+        # @param ChartVersion: 应用制品版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartVersion: String
+        # @param ChartName: 应用制品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartName: String
+        # @param ChartDescription: 应用制品描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartDescription: String
+        # @param AppVersion: 应用制品app版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppVersion: String
+        # @param FirstDeployedTime: 应用首次部署时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstDeployedTime: String
+        # @param LastDeployedTime: 应用最近部署时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastDeployedTime: String
+        # @param ComputedValues: 应用参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputedValues: String
+
+        attr_accessor :Name, :Namespace, :Version, :Status, :Description, :Notes, :Config, :Manifest, :ChartVersion, :ChartName, :ChartDescription, :AppVersion, :FirstDeployedTime, :LastDeployedTime, :ComputedValues
+        
+        def initialize(name=nil, namespace=nil, version=nil, status=nil, description=nil, notes=nil, config=nil, manifest=nil, chartversion=nil, chartname=nil, chartdescription=nil, appversion=nil, firstdeployedtime=nil, lastdeployedtime=nil, computedvalues=nil)
+          @Name = name
+          @Namespace = namespace
+          @Version = version
+          @Status = status
+          @Description = description
+          @Notes = notes
+          @Config = config
+          @Manifest = manifest
+          @ChartVersion = chartversion
+          @ChartName = chartname
+          @ChartDescription = chartdescription
+          @AppVersion = appversion
+          @FirstDeployedTime = firstdeployedtime
+          @LastDeployedTime = lastdeployedtime
+          @ComputedValues = computedvalues
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Version = params['Version']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Notes = params['Notes']
+          @Config = params['Config']
+          @Manifest = params['Manifest']
+          @ChartVersion = params['ChartVersion']
+          @ChartName = params['ChartName']
+          @ChartDescription = params['ChartDescription']
+          @AppVersion = params['AppVersion']
+          @FirstDeployedTime = params['FirstDeployedTime']
+          @LastDeployedTime = params['LastDeployedTime']
+          @ComputedValues = params['ComputedValues']
+        end
+      end
+
+      # 应用市场中部署的应用版本历史
+      class ReleaseHistory < TencentCloud::Common::AbstractModel
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param Revision: 应用版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: Integer
+        # @param Status: 应用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Chart: 应用制品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Chart: String
+        # @param AppVersion: 应用制品版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppVersion: String
+        # @param UpdatedTime: 应用更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+        # @param Description: 应用描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Name, :Namespace, :Revision, :Status, :Chart, :AppVersion, :UpdatedTime, :Description
+        
+        def initialize(name=nil, namespace=nil, revision=nil, status=nil, chart=nil, appversion=nil, updatedtime=nil, description=nil)
+          @Name = name
+          @Namespace = namespace
+          @Revision = revision
+          @Status = status
+          @Chart = chart
+          @AppVersion = appversion
+          @UpdatedTime = updatedtime
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Revision = params['Revision']
+          @Status = params['Status']
+          @Chart = params['Chart']
+          @AppVersion = params['AppVersion']
+          @UpdatedTime = params['UpdatedTime']
+          @Description = params['Description']
+        end
+      end
+
       # 应用市场自定义参数
       class ReleaseValues < TencentCloud::Common::AbstractModel
         # @param RawOriginal: 自定义参数原始值
@@ -13371,6 +13872,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollbackClusterRelease请求参数结构体
+      class RollbackClusterReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param Revision: 回滚版本号
+        # @type Revision: Integer
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :Revision, :ClusterType
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, revision=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @Revision = revision
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Revision = params['Revision']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # RollbackClusterRelease返回参数结构体
+      class RollbackClusterReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = PendingRelease.new
+            @Release.deserialize(params['Release'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -14076,6 +14633,58 @@ module TencentCloud
         end
       end
 
+      # UninstallClusterRelease请求参数结构体
+      class UninstallClusterReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :ClusterType
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # UninstallClusterRelease返回参数结构体
+      class UninstallClusterReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = PendingRelease.new
+            @Release.deserialize(params['Release'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UninstallEdgeLogAgent请求参数结构体
       class UninstallEdgeLogAgentRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -14415,17 +15024,44 @@ module TencentCloud
         # @type ImageCacheId: String
         # @param ImageCacheName: 镜像缓存名称
         # @type ImageCacheName: String
+        # @param ImageRegistryCredentials: 镜像仓库凭证数组
+        # @type ImageRegistryCredentials: Array
+        # @param Images: 用于制作镜像缓存的容器镜像列表
+        # @type Images: Array
+        # @param ImageCacheSize: 镜像缓存的大小。默认为20 GiB。取值范围参考[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)中的高性能云盘类型的大小限制。
+        # @type ImageCacheSize: Integer
+        # @param RetentionDays: 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
+        # @type RetentionDays: Integer
+        # @param SecurityGroupIds: 安全组Id
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :ImageCacheId, :ImageCacheName
+        attr_accessor :ImageCacheId, :ImageCacheName, :ImageRegistryCredentials, :Images, :ImageCacheSize, :RetentionDays, :SecurityGroupIds
         
-        def initialize(imagecacheid=nil, imagecachename=nil)
+        def initialize(imagecacheid=nil, imagecachename=nil, imageregistrycredentials=nil, images=nil, imagecachesize=nil, retentiondays=nil, securitygroupids=nil)
           @ImageCacheId = imagecacheid
           @ImageCacheName = imagecachename
+          @ImageRegistryCredentials = imageregistrycredentials
+          @Images = images
+          @ImageCacheSize = imagecachesize
+          @RetentionDays = retentiondays
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
           @ImageCacheId = params['ImageCacheId']
           @ImageCacheName = params['ImageCacheName']
+          unless params['ImageRegistryCredentials'].nil?
+            @ImageRegistryCredentials = []
+            params['ImageRegistryCredentials'].each do |i|
+              imageregistrycredential_tmp = ImageRegistryCredential.new
+              imageregistrycredential_tmp.deserialize(i)
+              @ImageRegistryCredentials << imageregistrycredential_tmp
+            end
+          end
+          @Images = params['Images']
+          @ImageCacheSize = params['ImageCacheSize']
+          @RetentionDays = params['RetentionDays']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -14617,6 +15253,93 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeClusterRelease请求参数结构体
+      class UpgradeClusterReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 自定义的应用名称
+        # @type Name: String
+        # @param Namespace: 应用命名空间
+        # @type Namespace: String
+        # @param Chart: 制品名称或从第三方repo 安装chart时，制品压缩包下载地址, 不支持重定向类型chart 地址，结尾为*.tgz
+        # @type Chart: String
+        # @param Values: 自定义参数，覆盖chart 中values.yaml 中的参数
+        # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
+        # @param ChartFrom: 制品来源，范围：tke-market/tcr/other
+        # @type ChartFrom: String
+        # @param ChartVersion: 制品版本( 从第三安装时，不传这个参数）
+        # @type ChartVersion: String
+        # @param ChartRepoURL: 制品仓库URL地址
+        # @type ChartRepoURL: String
+        # @param Username: 制品访问用户名
+        # @type Username: String
+        # @param Password: 制品访问密码
+        # @type Password: String
+        # @param ChartNamespace: 制品命名空间
+        # @type ChartNamespace: String
+        # @param ClusterType: 集群类型，支持传 tke, eks, tkeedge, exernal(注册集群）
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :Name, :Namespace, :Chart, :Values, :ChartFrom, :ChartVersion, :ChartRepoURL, :Username, :Password, :ChartNamespace, :ClusterType
+        
+        def initialize(clusterid=nil, name=nil, namespace=nil, chart=nil, values=nil, chartfrom=nil, chartversion=nil, chartrepourl=nil, username=nil, password=nil, chartnamespace=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @Chart = chart
+          @Values = values
+          @ChartFrom = chartfrom
+          @ChartVersion = chartversion
+          @ChartRepoURL = chartrepourl
+          @Username = username
+          @Password = password
+          @ChartNamespace = chartnamespace
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Chart = params['Chart']
+          unless params['Values'].nil?
+            @Values = ReleaseValues.new
+            @Values.deserialize(params['Values'])
+          end
+          @ChartFrom = params['ChartFrom']
+          @ChartVersion = params['ChartVersion']
+          @ChartRepoURL = params['ChartRepoURL']
+          @Username = params['Username']
+          @Password = params['Password']
+          @ChartNamespace = params['ChartNamespace']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # UpgradeClusterRelease返回参数结构体
+      class UpgradeClusterReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Release: 应用详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Release, :RequestId
+        
+        def initialize(release=nil, requestid=nil)
+          @Release = release
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Release'].nil?
+            @Release = PendingRelease.new
+            @Release.deserialize(params['Release'])
+          end
           @RequestId = params['RequestId']
         end
       end

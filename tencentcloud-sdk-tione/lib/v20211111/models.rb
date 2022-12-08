@@ -6102,10 +6102,19 @@ module TencentCloud
         # @param ScheduledAction: 定时停止的配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
+        # @param CreateFailedReason: 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateFailedReason: String
+        # @param ResourceGroupName: 预付费服务对应的资源组名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param Tags: 服务的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :Version, :LatestVersion, :ServiceInfo, :BusinessStatus, :CreateSource, :BillingInfo, :Status, :Weight, :IngressName, :ServiceLimit, :ScheduledAction
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :Version, :LatestVersion, :ServiceInfo, :BusinessStatus, :CreateSource, :BillingInfo, :Status, :Weight, :IngressName, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :ResourceGroupName, :Tags
         
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, version=nil, latestversion=nil, serviceinfo=nil, businessstatus=nil, createsource=nil, billinginfo=nil, status=nil, weight=nil, ingressname=nil, servicelimit=nil, scheduledaction=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, version=nil, latestversion=nil, serviceinfo=nil, businessstatus=nil, createsource=nil, billinginfo=nil, status=nil, weight=nil, ingressname=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, resourcegroupname=nil, tags=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -6132,6 +6141,9 @@ module TencentCloud
           @IngressName = ingressname
           @ServiceLimit = servicelimit
           @ScheduledAction = scheduledaction
+          @CreateFailedReason = createfailedreason
+          @ResourceGroupName = resourcegroupname
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6169,6 +6181,16 @@ module TencentCloud
           unless params['ScheduledAction'].nil?
             @ScheduledAction = ScheduledAction.new
             @ScheduledAction.deserialize(params['ScheduledAction'])
+          end
+          @CreateFailedReason = params['CreateFailedReason']
+          @ResourceGroupName = params['ResourceGroupName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end

@@ -2800,7 +2800,7 @@ module TencentCloud
         # @param ProjectId: 项目 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param AppID: 用户账号的 App ID
+        # @param AppID: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: Integer
         # @param Uin: 用户主账号
@@ -3091,13 +3091,13 @@ module TencentCloud
         # @param Load: 任务的施压配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Load: :class:`Tencentcloud::Pts.v20210728.models.Load`
-        # @param Configs: deprecated
+        # @param Configs: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configs: Array
         # @param Datasets: 任务的数据集文件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Datasets: Array
-        # @param Extensions: deprecated
+        # @param Extensions: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extensions: Array
         # @param Status: 任务的运行状态, JobUnknown: 0,JobCreated:1,JobPending:2, JobPreparing:3,JobSelectClustering:4,JobCreateTasking:5,JobSyncTasking:6
@@ -3123,7 +3123,7 @@ module TencentCloud
         # @param JobOwner: 任务发起人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobOwner: String
-        # @param LoadSources: deprecated
+        # @param LoadSources: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadSources: :class:`Tencentcloud::Pts.v20210728.models.LoadSource`
         # @param Duration: 任务时长
@@ -3150,7 +3150,7 @@ module TencentCloud
         # @param ResponseTimeP90: 响应时间第90百分位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeP90: Float
-        # @param Scripts: deprecated
+        # @param Scripts: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scripts: Array
         # @param ResponseTimeMax: 最大响应时间
@@ -3204,10 +3204,13 @@ module TencentCloud
         # @param NetworkSendRate: 每秒发送字节数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkSendRate: Float
+        # @param Message: 任务状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
 
-        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks, :NetworkReceiveRate, :NetworkSendRate
+        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks, :NetworkReceiveRate, :NetworkSendRate, :Message
         
-        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil, type=nil, domainnameconfig=nil, debug=nil, abortreason=nil, createdat=nil, projectid=nil, notificationhooks=nil, networkreceiverate=nil, networksendrate=nil)
+        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil, type=nil, domainnameconfig=nil, debug=nil, abortreason=nil, createdat=nil, projectid=nil, notificationhooks=nil, networkreceiverate=nil, networksendrate=nil, message=nil)
           @JobId = jobid
           @ScenarioId = scenarioid
           @Load = load
@@ -3248,6 +3251,7 @@ module TencentCloud
           @NotificationHooks = notificationhooks
           @NetworkReceiveRate = networkreceiverate
           @NetworkSendRate = networksendrate
+          @Message = message
         end
 
         def deserialize(params)
@@ -3349,6 +3353,7 @@ module TencentCloud
           end
           @NetworkReceiveRate = params['NetworkReceiveRate']
           @NetworkSendRate = params['NetworkSendRate']
+          @Message = params['Message']
         end
       end
 

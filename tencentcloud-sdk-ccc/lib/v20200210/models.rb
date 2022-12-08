@@ -3222,10 +3222,13 @@ module TencentCloud
         # @param CustomRecordURL: 录音转存第三方COS地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRecordURL: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -3256,6 +3259,7 @@ module TencentCloud
           @IVRKeyPressedEx = ivrkeypressedex
           @AsrUrl = asrurl
           @CustomRecordURL = customrecordurl
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -3313,6 +3317,7 @@ module TencentCloud
           end
           @AsrUrl = params['AsrUrl']
           @CustomRecordURL = params['CustomRecordURL']
+          @Remark = params['Remark']
         end
       end
 

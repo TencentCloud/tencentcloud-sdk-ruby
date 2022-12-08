@@ -13977,10 +13977,13 @@ module TencentCloud
         # @param AdditionalTaxItem: 附加税税项。格式为JSON格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdditionalTaxItem: String
+        # @param FailReason: 失败原因。当Status为FAILED时，改字段为失败的原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem, :FailReason
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil, failreason=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -13999,6 +14002,7 @@ module TencentCloud
           @IndividualIncomeTax = individualincometax
           @AdditionalTaxSum = additionaltaxsum
           @AdditionalTaxItem = additionaltaxitem
+          @FailReason = failreason
         end
 
         def deserialize(params)
@@ -14020,6 +14024,7 @@ module TencentCloud
           @IndividualIncomeTax = params['IndividualIncomeTax']
           @AdditionalTaxSum = params['AdditionalTaxSum']
           @AdditionalTaxItem = params['AdditionalTaxItem']
+          @FailReason = params['FailReason']
         end
       end
 
@@ -14035,17 +14040,22 @@ module TencentCloud
         # @type Status: String
         # @param StatusDesc: 状态描述
         # @type StatusDesc: String
+        # @param FailReason: 失败原因。当Status为FAILED时，改字段为失败的原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
 
-        attr_accessor :Status, :StatusDesc
+        attr_accessor :Status, :StatusDesc, :FailReason
         
-        def initialize(status=nil, statusdesc=nil)
+        def initialize(status=nil, statusdesc=nil, failreason=nil)
           @Status = status
           @StatusDesc = statusdesc
+          @FailReason = failreason
         end
 
         def deserialize(params)
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
+          @FailReason = params['FailReason']
         end
       end
 

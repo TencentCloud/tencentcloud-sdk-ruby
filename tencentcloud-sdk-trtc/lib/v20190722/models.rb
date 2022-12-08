@@ -2402,14 +2402,18 @@ module TencentCloud
         # @type PlaceHolderMode: Integer
         # @param BackgroundImageRenderMode: 背景画面宽高比不一致的时候处理方案，与MixLayoufList定义的RenderMode一致。
         # @type BackgroundImageRenderMode: Integer
-        # @param DefaultSubBackgroundImage: 下载的url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
+        # @param DefaultSubBackgroundImage: 子画面占位图url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
         # @type DefaultSubBackgroundImage: String
         # @param WaterMarkList: 水印布局参数， 最多支持25个。
         # @type WaterMarkList: Array
+        # @param RenderMode: 模板布局下，背景画面宽高比不一致的时候处理方案。自定义布局不生效，与MixLayoufList定义的RenderMode一致。
+        # @type RenderMode: Integer
+        # @param MaxResolutionUserAlign: 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
+        # @type MaxResolutionUserAlign: Integer
 
-        attr_accessor :MixLayoutMode, :MixLayoutList, :BackGroundColor, :MaxResolutionUserId, :MediaId, :BackgroundImageUrl, :PlaceHolderMode, :BackgroundImageRenderMode, :DefaultSubBackgroundImage, :WaterMarkList
+        attr_accessor :MixLayoutMode, :MixLayoutList, :BackGroundColor, :MaxResolutionUserId, :MediaId, :BackgroundImageUrl, :PlaceHolderMode, :BackgroundImageRenderMode, :DefaultSubBackgroundImage, :WaterMarkList, :RenderMode, :MaxResolutionUserAlign
         
-        def initialize(mixlayoutmode=nil, mixlayoutlist=nil, backgroundcolor=nil, maxresolutionuserid=nil, mediaid=nil, backgroundimageurl=nil, placeholdermode=nil, backgroundimagerendermode=nil, defaultsubbackgroundimage=nil, watermarklist=nil)
+        def initialize(mixlayoutmode=nil, mixlayoutlist=nil, backgroundcolor=nil, maxresolutionuserid=nil, mediaid=nil, backgroundimageurl=nil, placeholdermode=nil, backgroundimagerendermode=nil, defaultsubbackgroundimage=nil, watermarklist=nil, rendermode=nil, maxresolutionuseralign=nil)
           @MixLayoutMode = mixlayoutmode
           @MixLayoutList = mixlayoutlist
           @BackGroundColor = backgroundcolor
@@ -2420,6 +2424,8 @@ module TencentCloud
           @BackgroundImageRenderMode = backgroundimagerendermode
           @DefaultSubBackgroundImage = defaultsubbackgroundimage
           @WaterMarkList = watermarklist
+          @RenderMode = rendermode
+          @MaxResolutionUserAlign = maxresolutionuseralign
         end
 
         def deserialize(params)
@@ -2447,6 +2453,8 @@ module TencentCloud
               @WaterMarkList << watermark_tmp
             end
           end
+          @RenderMode = params['RenderMode']
+          @MaxResolutionUserAlign = params['MaxResolutionUserAlign']
         end
       end
 
@@ -2825,20 +2833,24 @@ module TencentCloud
         # @type StreamType: Integer
         # @param SubscribeStreamUserIds: 指定订阅流白名单或者黑名单。
         # @type SubscribeStreamUserIds: :class:`Tencentcloud::Trtc.v20190722.models.SubscribeStreamUserIds`
-        # @param OutputFormat: 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4（hls录制完成后转mp4文件）。
+        # @param OutputFormat: 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。
         # @type OutputFormat: Integer
         # @param AvMerge: 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。混流录制此参数无需设置，默认音视频合并。
         # @type AvMerge: Integer
+        # @param MaxMediaFileDuration: 如果是aac或者mp4文件格式，超过长度限制后，系统会自动拆分视频文件。单位：分钟。默认为1440min（24h），取值范围为1-1440。【单文件限制最大为2G，满足文件大小 >2G 或录制时长度 > 24h任意一个条件，文件都会自动切分】
+        # Hls 格式录制此参数不生效。
+        # @type MaxMediaFileDuration: Integer
 
-        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge
+        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration
         
-        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil)
+        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil)
           @RecordMode = recordmode
           @MaxIdleTime = maxidletime
           @StreamType = streamtype
           @SubscribeStreamUserIds = subscribestreamuserids
           @OutputFormat = outputformat
           @AvMerge = avmerge
+          @MaxMediaFileDuration = maxmediafileduration
         end
 
         def deserialize(params)
@@ -2851,6 +2863,7 @@ module TencentCloud
           end
           @OutputFormat = params['OutputFormat']
           @AvMerge = params['AvMerge']
+          @MaxMediaFileDuration = params['MaxMediaFileDuration']
         end
       end
 
@@ -3697,10 +3710,12 @@ module TencentCloud
         # @type SourceContext: String
         # @param MediaType: 上传到vod平台的录制文件格式类型，0：mp4(默认), 1: hls。
         # @type MediaType: Integer
+        # @param UserDefineRecordId: 仅支持API录制上传vod，该参数表示用户可以自定义录制文件名前缀，【限制长度为64字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线和连词符】。前缀与自动生成的录制文件名之间用__UserId_u_分开。
+        # @type UserDefineRecordId: String
 
-        attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext, :MediaType
+        attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext, :MediaType, :UserDefineRecordId
         
-        def initialize(procedure=nil, expiretime=nil, storageregion=nil, classid=nil, subappid=nil, sessioncontext=nil, sourcecontext=nil, mediatype=nil)
+        def initialize(procedure=nil, expiretime=nil, storageregion=nil, classid=nil, subappid=nil, sessioncontext=nil, sourcecontext=nil, mediatype=nil, userdefinerecordid=nil)
           @Procedure = procedure
           @ExpireTime = expiretime
           @StorageRegion = storageregion
@@ -3709,6 +3724,7 @@ module TencentCloud
           @SessionContext = sessioncontext
           @SourceContext = sourcecontext
           @MediaType = mediatype
+          @UserDefineRecordId = userdefinerecordid
         end
 
         def deserialize(params)
@@ -3720,6 +3736,7 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @SourceContext = params['SourceContext']
           @MediaType = params['MediaType']
+          @UserDefineRecordId = params['UserDefineRecordId']
         end
       end
 

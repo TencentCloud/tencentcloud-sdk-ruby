@@ -2686,21 +2686,33 @@ module TencentCloud
       class DescribeClusterParamLogsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param InstanceIds: 实例ID列表，用来记录具体操作哪些实例
+        # @type InstanceIds: Array
+        # @param OrderBy: 排序字段，定义在回返结果的基于哪个字段进行排序
+        # @type OrderBy: String
+        # @param OrderByType: 定义具体的排序规则，限定为desc,asc,DESC,ASC其中之一
+        # @type OrderByType: String
         # @param Limit: 返回数量，默认为 20，取值范围为(0,100]
         # @type Limit: Integer
         # @param Offset: 记录偏移量，默认值为0，取值范围为[0,INF)
         # @type Offset: Integer
 
-        attr_accessor :ClusterId, :Limit, :Offset
+        attr_accessor :ClusterId, :InstanceIds, :OrderBy, :OrderByType, :Limit, :Offset
         
-        def initialize(clusterid=nil, limit=nil, offset=nil)
+        def initialize(clusterid=nil, instanceids=nil, orderby=nil, orderbytype=nil, limit=nil, offset=nil)
           @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @OrderBy = orderby
+          @OrderByType = orderbytype
           @Limit = limit
           @Offset = offset
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
           @Limit = params['Limit']
           @Offset = params['Offset']
         end

@@ -1072,13 +1072,16 @@ module TencentCloud
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
         # @param Type: 不填，默认为0
         # @type Type: Integer
+        # @param UserType: 用户类型，新客户传1，老客户可不传
+        # @type UserType: Integer
 
-        attr_accessor :ImageInfoList, :HandleParam, :Type
+        attr_accessor :ImageInfoList, :HandleParam, :Type, :UserType
         
-        def initialize(imageinfolist=nil, handleparam=nil, type=nil)
+        def initialize(imageinfolist=nil, handleparam=nil, type=nil, usertype=nil)
           @ImageInfoList = imageinfolist
           @HandleParam = handleparam
           @Type = type
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -1095,6 +1098,7 @@ module TencentCloud
             @HandleParam.deserialize(params['HandleParam'])
           end
           @Type = params['Type']
+          @UserType = params['UserType']
         end
       end
 
@@ -1137,14 +1141,17 @@ module TencentCloud
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为 False，则 Type 字段不能为 0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         # @type IsUsedClassify: Boolean
+        # @param UserType: 用户类型，新客户传1，老客户可不传
+        # @type UserType: Integer
 
-        attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify
+        attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify, :UserType
         
-        def initialize(imageinfolist=nil, handleparam=nil, type=nil, isusedclassify=nil)
+        def initialize(imageinfolist=nil, handleparam=nil, type=nil, isusedclassify=nil, usertype=nil)
           @ImageInfoList = imageinfolist
           @HandleParam = handleparam
           @Type = type
           @IsUsedClassify = isusedclassify
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -1162,6 +1169,7 @@ module TencentCloud
           end
           @Type = params['Type']
           @IsUsedClassify = params['IsUsedClassify']
+          @UserType = params['UserType']
         end
       end
 
@@ -2778,15 +2786,19 @@ module TencentCloud
       class TextToClassRequest < TencentCloud::Common::AbstractModel
         # @param Text: 报告文本
         # @type Text: String
+        # @param UserType: 用户类型，新客户传1，老客户可不传
+        # @type UserType: Integer
 
-        attr_accessor :Text
+        attr_accessor :Text, :UserType
         
-        def initialize(text=nil)
+        def initialize(text=nil, usertype=nil)
           @Text = text
+          @UserType = usertype
         end
 
         def deserialize(params)
           @Text = params['Text']
+          @UserType = params['UserType']
         end
       end
 
@@ -2826,19 +2838,23 @@ module TencentCloud
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为False，则Type字段不能为0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         # @type IsUsedClassify: Boolean
+        # @param UserType: 用户类型，新客户传1，老客户可不传
+        # @type UserType: Integer
 
-        attr_accessor :Text, :Type, :IsUsedClassify
+        attr_accessor :Text, :Type, :IsUsedClassify, :UserType
         
-        def initialize(text=nil, type=nil, isusedclassify=nil)
+        def initialize(text=nil, type=nil, isusedclassify=nil, usertype=nil)
           @Text = text
           @Type = type
           @IsUsedClassify = isusedclassify
+          @UserType = usertype
         end
 
         def deserialize(params)
           @Text = params['Text']
           @Type = params['Type']
           @IsUsedClassify = params['IsUsedClassify']
+          @UserType = params['UserType']
         end
       end
 
