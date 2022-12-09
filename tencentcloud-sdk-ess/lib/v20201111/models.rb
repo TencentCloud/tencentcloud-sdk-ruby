@@ -2956,10 +2956,13 @@ module TencentCloud
         # @param VerifiedOn: 员工实名时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifiedOn: Integer
+        # @param QuiteJob: 员工是否离职：0-未离职，1-离职
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuiteJob: Integer
 
-        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob
         
-        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil)
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil)
           @UserId = userid
           @DisplayName = displayname
           @Mobile = mobile
@@ -2970,6 +2973,7 @@ module TencentCloud
           @Verified = verified
           @CreatedOn = createdon
           @VerifiedOn = verifiedon
+          @QuiteJob = quitejob
         end
 
         def deserialize(params)
@@ -2993,6 +2997,7 @@ module TencentCloud
           @Verified = params['Verified']
           @CreatedOn = params['CreatedOn']
           @VerifiedOn = params['VerifiedOn']
+          @QuiteJob = params['QuiteJob']
         end
       end
 

@@ -522,10 +522,14 @@ module TencentCloud
         # @type EnableTswTraceService: Boolean
         # @param Tags: 标签
         # @type Tags: Array
+        # @param EnvType: 环境类型：test、pre、prod
+        # @type EnvType: String
+        # @param CreateRegion: 创建环境的region
+        # @type CreateRegion: String
 
-        attr_accessor :EnvironmentName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService, :Tags
+        attr_accessor :EnvironmentName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService, :Tags, :EnvType, :CreateRegion
         
-        def initialize(environmentname=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil, tags=nil)
+        def initialize(environmentname=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil, tags=nil, envtype=nil, createregion=nil)
           @EnvironmentName = environmentname
           @Vpc = vpc
           @SubnetIds = subnetids
@@ -534,6 +538,8 @@ module TencentCloud
           @SourceChannel = sourcechannel
           @EnableTswTraceService = enabletswtraceservice
           @Tags = tags
+          @EnvType = envtype
+          @CreateRegion = createregion
         end
 
         def deserialize(params)
@@ -552,6 +558,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @EnvType = params['EnvType']
+          @CreateRegion = params['CreateRegion']
         end
       end
 
@@ -1650,10 +1658,12 @@ module TencentCloud
         # @type Keyword: String
         # @param Filters: 查询过滤器
         # @type Filters: Array
+        # @param SortInfo: 排序字段
+        # @type SortInfo: :class:`Tencentcloud::Tem.v20210701.models.SortType`
 
-        attr_accessor :EnvironmentId, :Limit, :Offset, :SourceChannel, :ApplicationId, :Keyword, :Filters
+        attr_accessor :EnvironmentId, :Limit, :Offset, :SourceChannel, :ApplicationId, :Keyword, :Filters, :SortInfo
         
-        def initialize(environmentid=nil, limit=nil, offset=nil, sourcechannel=nil, applicationid=nil, keyword=nil, filters=nil)
+        def initialize(environmentid=nil, limit=nil, offset=nil, sourcechannel=nil, applicationid=nil, keyword=nil, filters=nil, sortinfo=nil)
           @EnvironmentId = environmentid
           @Limit = limit
           @Offset = offset
@@ -1661,6 +1671,7 @@ module TencentCloud
           @ApplicationId = applicationid
           @Keyword = keyword
           @Filters = filters
+          @SortInfo = sortinfo
         end
 
         def deserialize(params)
@@ -1677,6 +1688,10 @@ module TencentCloud
               queryfilter_tmp.deserialize(i)
               @Filters << queryfilter_tmp
             end
+          end
+          unless params['SortInfo'].nil?
+            @SortInfo = SortType.new
+            @SortInfo.deserialize(params['SortInfo'])
           end
         end
       end
@@ -2029,14 +2044,17 @@ module TencentCloud
         # @type SourceChannel: Integer
         # @param Filters: 查询过滤器
         # @type Filters: Array
+        # @param SortInfo: 排序字段
+        # @type SortInfo: :class:`Tencentcloud::Tem.v20210701.models.SortType`
 
-        attr_accessor :Limit, :Offset, :SourceChannel, :Filters
+        attr_accessor :Limit, :Offset, :SourceChannel, :Filters, :SortInfo
         
-        def initialize(limit=nil, offset=nil, sourcechannel=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, sourcechannel=nil, filters=nil, sortinfo=nil)
           @Limit = limit
           @Offset = offset
           @SourceChannel = sourcechannel
           @Filters = filters
+          @SortInfo = sortinfo
         end
 
         def deserialize(params)
@@ -2050,6 +2068,10 @@ module TencentCloud
               queryfilter_tmp.deserialize(i)
               @Filters << queryfilter_tmp
             end
+          end
+          unless params['SortInfo'].nil?
+            @SortInfo = SortType.new
+            @SortInfo.deserialize(params['SortInfo'])
           end
         end
       end
@@ -3591,16 +3613,19 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
+        # @param EnvType: 环境类型：test、pre、prod
+        # @type EnvType: String
 
-        attr_accessor :EnvironmentId, :EnvironmentName, :Description, :Vpc, :SubnetIds, :SourceChannel
+        attr_accessor :EnvironmentId, :EnvironmentName, :Description, :Vpc, :SubnetIds, :SourceChannel, :EnvType
         
-        def initialize(environmentid=nil, environmentname=nil, description=nil, vpc=nil, subnetids=nil, sourcechannel=nil)
+        def initialize(environmentid=nil, environmentname=nil, description=nil, vpc=nil, subnetids=nil, sourcechannel=nil, envtype=nil)
           @EnvironmentId = environmentid
           @EnvironmentName = environmentname
           @Description = description
           @Vpc = vpc
           @SubnetIds = subnetids
           @SourceChannel = sourcechannel
+          @EnvType = envtype
         end
 
         def deserialize(params)
@@ -3610,6 +3635,7 @@ module TencentCloud
           @Vpc = params['Vpc']
           @SubnetIds = params['SubnetIds']
           @SourceChannel = params['SourceChannel']
+          @EnvType = params['EnvType']
         end
       end
 
@@ -3792,10 +3818,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param EnvType: 环境类型：test、pre、prod
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvType: String
 
-        attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked, :Tags
+        attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked, :Tags, :EnvType
         
-        def initialize(environmentid=nil, namespacename=nil, region=nil, vpcid=nil, subnetids=nil, description=nil, createddate=nil, environmentname=nil, apminstanceid=nil, locked=nil, tags=nil)
+        def initialize(environmentid=nil, namespacename=nil, region=nil, vpcid=nil, subnetids=nil, description=nil, createddate=nil, environmentname=nil, apminstanceid=nil, locked=nil, tags=nil, envtype=nil)
           @EnvironmentId = environmentid
           @NamespaceName = namespacename
           @Region = region
@@ -3807,6 +3836,7 @@ module TencentCloud
           @ApmInstanceId = apminstanceid
           @Locked = locked
           @Tags = tags
+          @EnvType = envtype
         end
 
         def deserialize(params)
@@ -3828,6 +3858,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @EnvType = params['EnvType']
         end
       end
 
@@ -4640,6 +4671,26 @@ module TencentCloud
         end
       end
 
+      # 查询过滤器
+      class SortType < TencentCloud::Common::AbstractModel
+        # @param Key: 排序字段名称
+        # @type Key: String
+        # @param Type: 0：升序，1：倒序
+        # @type Type: Integer
+
+        attr_accessor :Key, :Type
+        
+        def initialize(key=nil, type=nil)
+          @Key = key
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Type = params['Type']
+        end
+      end
+
       # StopApplication请求参数结构体
       class StopApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务id
@@ -4948,10 +4999,16 @@ module TencentCloud
         # @param HasAuthority: 资源是否有权限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthority: Boolean
+        # @param EnvType: 环境类型: test、pre、prod
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvType: String
+        # @param RegionId: 地域码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
 
-        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags, :HasAuthority
+        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags, :HasAuthority, :EnvType, :RegionId
         
-        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil, appid=nil, uin=nil, subaccountuin=nil, clusterid=nil, tags=nil, hasauthority=nil)
+        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil, appid=nil, uin=nil, subaccountuin=nil, clusterid=nil, tags=nil, hasauthority=nil, envtype=nil, regionid=nil)
           @EnvironmentId = environmentid
           @Channel = channel
           @EnvironmentName = environmentname
@@ -4975,6 +5032,8 @@ module TencentCloud
           @ClusterId = clusterid
           @Tags = tags
           @HasAuthority = hasauthority
+          @EnvType = envtype
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -5008,6 +5067,8 @@ module TencentCloud
             end
           end
           @HasAuthority = params['HasAuthority']
+          @EnvType = params['EnvType']
+          @RegionId = params['RegionId']
         end
       end
 

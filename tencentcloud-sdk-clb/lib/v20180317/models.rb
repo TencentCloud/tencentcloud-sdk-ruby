@@ -587,24 +587,29 @@ module TencentCloud
       class CertificateOutput < TencentCloud::Common::AbstractModel
         # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证
         # @type SSLMode: String
-        # @param CertId: 服务端证书的 ID。
+        # @param CertId: 服务端证书的ID。
         # @type CertId: String
         # @param CertCaId: 客户端证书的 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertCaId: String
+        # @param ExtCertIds: 多本服务器证书场景扩展的服务器证书ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtCertIds: Array
 
-        attr_accessor :SSLMode, :CertId, :CertCaId
+        attr_accessor :SSLMode, :CertId, :CertCaId, :ExtCertIds
         
-        def initialize(sslmode=nil, certid=nil, certcaid=nil)
+        def initialize(sslmode=nil, certid=nil, certcaid=nil, extcertids=nil)
           @SSLMode = sslmode
           @CertId = certid
           @CertCaId = certcaid
+          @ExtCertIds = extcertids
         end
 
         def deserialize(params)
           @SSLMode = params['SSLMode']
           @CertId = params['CertId']
           @CertCaId = params['CertCaId']
+          @ExtCertIds = params['ExtCertIds']
         end
       end
 
@@ -4287,10 +4292,13 @@ module TencentCloud
         # @param AttrFlags: 监听器的属性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrFlags: Array
+        # @param TargetGroupList: 绑定的目标组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetGroupList: Array
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil, targetgrouplist=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -4310,6 +4318,7 @@ module TencentCloud
           @Toa = toa
           @DeregisterTargetRst = deregistertargetrst
           @AttrFlags = attrflags
+          @TargetGroupList = targetgrouplist
         end
 
         def deserialize(params)
@@ -4348,6 +4357,14 @@ module TencentCloud
           @Toa = params['Toa']
           @DeregisterTargetRst = params['DeregisterTargetRst']
           @AttrFlags = params['AttrFlags']
+          unless params['TargetGroupList'].nil?
+            @TargetGroupList = []
+            params['TargetGroupList'].each do |i|
+              basictargetgroupinfo_tmp = BasicTargetGroupInfo.new
+              basictargetgroupinfo_tmp.deserialize(i)
+              @TargetGroupList << basictargetgroupinfo_tmp
+            end
+          end
         end
       end
 
@@ -4915,10 +4932,19 @@ module TencentCloud
         # @param Domains: 转发规则的域名列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: String
+        # @param SlaveZone: 多可用区负载均衡实例所选备区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZone: Array
+        # @param Zones: 内网负载均衡实例所在可用区，由白名单CLB_Internal_Zone控制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: Array
+        # @param SniSwitch: 是否开启SNI特性（本参数仅对于HTTPS监听器有意义）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SniSwitch: Integer
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -4953,6 +4979,9 @@ module TencentCloud
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @TargetHealth = targethealth
           @Domains = domains
+          @SlaveZone = slavezone
+          @Zones = zones
+          @SniSwitch = sniswitch
         end
 
         def deserialize(params)
@@ -5006,6 +5035,9 @@ module TencentCloud
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @TargetHealth = params['TargetHealth']
           @Domains = params['Domains']
+          @SlaveZone = params['SlaveZone']
+          @Zones = params['Zones']
+          @SniSwitch = params['SniSwitch']
         end
       end
 
@@ -6454,10 +6486,13 @@ module TencentCloud
         # @param Domains: 转发规则的域名列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: Array
+        # @param TargetGroupList: 绑定的目标组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetGroupList: Array
 
-        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains
+        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains, :TargetGroupList
         
-        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil, targetgrouplist=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
@@ -6480,6 +6515,7 @@ module TencentCloud
           @TrpcFunc = trpcfunc
           @QuicStatus = quicstatus
           @Domains = domains
+          @TargetGroupList = targetgrouplist
         end
 
         def deserialize(params)
@@ -6517,6 +6553,14 @@ module TencentCloud
           @TrpcFunc = params['TrpcFunc']
           @QuicStatus = params['QuicStatus']
           @Domains = params['Domains']
+          unless params['TargetGroupList'].nil?
+            @TargetGroupList = []
+            params['TargetGroupList'].each do |i|
+              basictargetgroupinfo_tmp = BasicTargetGroupInfo.new
+              basictargetgroupinfo_tmp.deserialize(i)
+              @TargetGroupList << basictargetgroupinfo_tmp
+            end
+          end
         end
       end
 
@@ -7106,15 +7150,19 @@ module TencentCloud
         # @param LocalZone: 可用区是否是LocalZone可用区，如：false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalZone: Boolean
+        # @param EdgeZone: 可用区是否是EdgeZone可用区，如：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeZone: Boolean
 
-        attr_accessor :ZoneId, :Zone, :ZoneName, :ZoneRegion, :LocalZone
+        attr_accessor :ZoneId, :Zone, :ZoneName, :ZoneRegion, :LocalZone, :EdgeZone
         
-        def initialize(zoneid=nil, zone=nil, zonename=nil, zoneregion=nil, localzone=nil)
+        def initialize(zoneid=nil, zone=nil, zonename=nil, zoneregion=nil, localzone=nil, edgezone=nil)
           @ZoneId = zoneid
           @Zone = zone
           @ZoneName = zonename
           @ZoneRegion = zoneregion
           @LocalZone = localzone
+          @EdgeZone = edgezone
         end
 
         def deserialize(params)
@@ -7123,6 +7171,7 @@ module TencentCloud
           @ZoneName = params['ZoneName']
           @ZoneRegion = params['ZoneRegion']
           @LocalZone = params['LocalZone']
+          @EdgeZone = params['EdgeZone']
         end
       end
 

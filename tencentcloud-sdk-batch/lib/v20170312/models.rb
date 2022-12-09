@@ -3454,17 +3454,25 @@ module TencentCloud
         # @type SourcePath: String
         # @param DestinationPath: 目的端路径
         # @type DestinationPath: String
+        # @param OutputMappingOption: 输出映射选项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputMappingOption: :class:`Tencentcloud::Batch.v20170312.models.OutputMappingOption`
 
-        attr_accessor :SourcePath, :DestinationPath
+        attr_accessor :SourcePath, :DestinationPath, :OutputMappingOption
         
-        def initialize(sourcepath=nil, destinationpath=nil)
+        def initialize(sourcepath=nil, destinationpath=nil, outputmappingoption=nil)
           @SourcePath = sourcepath
           @DestinationPath = destinationpath
+          @OutputMappingOption = outputmappingoption
         end
 
         def deserialize(params)
           @SourcePath = params['SourcePath']
           @DestinationPath = params['DestinationPath']
+          unless params['OutputMappingOption'].nil?
+            @OutputMappingOption = OutputMappingOption.new
+            @OutputMappingOption.deserialize(params['OutputMappingOption'])
+          end
         end
       end
 
@@ -3489,6 +3497,25 @@ module TencentCloud
           @Scene = params['Scene']
           @WorkerNum = params['WorkerNum']
           @WorkerPartSize = params['WorkerPartSize']
+        end
+      end
+
+      # 输出映射选项
+      class OutputMappingOption < TencentCloud::Common::AbstractModel
+        # @param Workspace: 容器场景下,输出选项从实例映射到容器内的实例侧的工作空间。
+        # BATCH_WORKSPACE: 工作空间为BATCH在实例内定义的工作空间，BATCH侧保证作业之间的隔离。（默认）
+        # GLOBAL_WORKSPACE: 工作空间为实例操作系统空间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Workspace: String
+
+        attr_accessor :Workspace
+        
+        def initialize(workspace=nil)
+          @Workspace = workspace
+        end
+
+        def deserialize(params)
+          @Workspace = params['Workspace']
         end
       end
 

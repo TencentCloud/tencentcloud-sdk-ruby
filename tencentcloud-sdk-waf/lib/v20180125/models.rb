@@ -492,10 +492,14 @@ module TencentCloud
         # @type Ciphers: Array
         # @param CipherTemplate: 0:不支持选择：默认模版  1:通用型模版 2:安全型模版 3:自定义模版
         # @type CipherTemplate: Integer
+        # @param ProxyReadTimeout: 300s
+        # @type ProxyReadTimeout: Integer
+        # @param ProxySendTimeout: 300s
+        # @type ProxySendTimeout: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout
         
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -524,6 +528,8 @@ module TencentCloud
           @TLSVersion = tlsversion
           @Ciphers = ciphers
           @CipherTemplate = ciphertemplate
+          @ProxyReadTimeout = proxyreadtimeout
+          @ProxySendTimeout = proxysendtimeout
         end
 
         def deserialize(params)
@@ -562,6 +568,8 @@ module TencentCloud
           @TLSVersion = params['TLSVersion']
           @Ciphers = params['Ciphers']
           @CipherTemplate = params['CipherTemplate']
+          @ProxyReadTimeout = params['ProxyReadTimeout']
+          @ProxySendTimeout = params['ProxySendTimeout']
         end
       end
 
@@ -2156,10 +2164,16 @@ module TencentCloud
         # @param CipherTemplate: 模版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherTemplate: Integer
+        # @param ProxyReadTimeout: 300s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyReadTimeout: Integer
+        # @param ProxySendTimeout: 300s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxySendTimeout: Integer
 
-        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate
+        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout
         
-        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil)
+        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil)
           @HttpsRewrite = httpsrewrite
           @HttpsUpstreamPort = httpsupstreamport
           @IsCdn = iscdn
@@ -2183,6 +2197,8 @@ module TencentCloud
           @TLSVersion = tlsversion
           @Ciphers = ciphers
           @CipherTemplate = ciphertemplate
+          @ProxyReadTimeout = proxyreadtimeout
+          @ProxySendTimeout = proxysendtimeout
         end
 
         def deserialize(params)
@@ -2216,6 +2232,8 @@ module TencentCloud
           @TLSVersion = params['TLSVersion']
           @Ciphers = params['Ciphers']
           @CipherTemplate = params['CipherTemplate']
+          @ProxyReadTimeout = params['ProxyReadTimeout']
+          @ProxySendTimeout = params['ProxySendTimeout']
         end
       end
 
@@ -2502,10 +2520,16 @@ module TencentCloud
         # @param ElasticBilling: qps弹性计费上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBilling: Integer
+        # @param AttackLogPost: 攻击日志投递开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackLogPost: Integer
+        # @param MaxBandwidth: 带宽峰值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxBandwidth: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth
         
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -2529,6 +2553,8 @@ module TencentCloud
           @BotPkg = botpkg
           @BotQPS = botqps
           @ElasticBilling = elasticbilling
+          @AttackLogPost = attacklogpost
+          @MaxBandwidth = maxbandwidth
         end
 
         def deserialize(params)
@@ -2570,6 +2596,8 @@ module TencentCloud
             @BotQPS.deserialize(params['BotQPS'])
           end
           @ElasticBilling = params['ElasticBilling']
+          @AttackLogPost = params['AttackLogPost']
+          @MaxBandwidth = params['MaxBandwidth']
         end
       end
 

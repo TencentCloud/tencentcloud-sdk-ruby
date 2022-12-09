@@ -192,7 +192,7 @@ module TencentCloud
 
       # ChannelBatchCancelFlows返回参数结构体
       class ChannelBatchCancelFlowsResponse < TencentCloud::Common::AbstractModel
-        # @param FailMessages: 签署流程批量撤销失败原因，错误信息与流程Id一一对应，如果部分流程不可撤销，不会返回错误信息，只会撤销可撤销流程
+        # @param FailMessages: 签署流程批量撤销失败原因，错误信息与流程Id一一对应，成功为“”,失败则对应失败消息
         # @type FailMessages: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3522,10 +3522,12 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param VerifiedOn: 员工实名时间戳
         # @type VerifiedOn: Integer
+        # @param QuiteJob: 员工是否离职：0-未离职，1-离职
+        # @type QuiteJob: Integer
 
-        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob
         
-        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil)
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil)
           @UserId = userid
           @DisplayName = displayname
           @Mobile = mobile
@@ -3536,6 +3538,7 @@ module TencentCloud
           @Verified = verified
           @CreatedOn = createdon
           @VerifiedOn = verifiedon
+          @QuiteJob = quitejob
         end
 
         def deserialize(params)
@@ -3559,6 +3562,7 @@ module TencentCloud
           @Verified = params['Verified']
           @CreatedOn = params['CreatedOn']
           @VerifiedOn = params['VerifiedOn']
+          @QuiteJob = params['QuiteJob']
         end
       end
 

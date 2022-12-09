@@ -8373,6 +8373,81 @@ module TencentCloud
         end
       end
 
+      # 获取文件属性任务信息
+      class DescribeFileAttributesTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
+        # <li>40000：输入参数不合法，请检查输入参数；</li>
+        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
+        # <li>70000：内部服务错误，建议重试。</li>
+        # @type ErrCode: Integer
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+        # @param Output: 获取媒体文件属性任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.DescribeFileAttributesTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :FileId, :Output, :SessionId, :SessionContext
+        
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, fileid=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Progress = progress
+          @FileId = fileid
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          @FileId = params['FileId']
+          unless params['Output'].nil?
+            @Output = DescribeFileAttributesTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # 获取文件属性任务输出
+      class DescribeFileAttributesTaskOutput < TencentCloud::Common::AbstractModel
+        # @param Md5: 媒体文件的 Md5 值。
+        # @type Md5: String
+
+        attr_accessor :Md5
+        
+        def initialize(md5=nil)
+          @Md5 = md5
+        end
+
+        def deserialize(params)
+          @Md5 = params['Md5']
+        end
+      end
+
       # DescribeHeadTailTemplates请求参数结构体
       class DescribeHeadTailTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -9587,6 +9662,7 @@ module TencentCloud
         # <li>PullUpload：拉取上传媒体文件任务；</li>
         # <li>FastClipMedia：快速剪辑任务；</li>
         # <li>RemoveWatermarkTask：智能去除水印任务；</li>
+        # <li>DescribeFileAttributesTask：获取文件属性任务；</li>
         # <li> ReviewAudioVideo：音视频审核任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
@@ -9648,12 +9724,15 @@ module TencentCloud
         # @param ReduceMediaBitrateTask: 该字段已无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReduceMediaBitrateTask: :class:`Tencentcloud::Vod.v20180717.models.ReduceMediaBitrateTask`
+        # @param DescribeFileAttributesTask: 获取文件属性任务信息，仅当 TaskType 为 DescribeFileAttributes，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DescribeFileAttributesTask: :class:`Tencentcloud::Vod.v20180717.models.DescribeFileAttributesTask`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :ExtractTraceWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :ExtractTraceWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :RequestId
         
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, extracttracewatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, extracttracewatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -9675,6 +9754,7 @@ module TencentCloud
           @ExtractTraceWatermarkTask = extracttracewatermarktask
           @ReviewAudioVideoTask = reviewaudiovideotask
           @ReduceMediaBitrateTask = reducemediabitratetask
+          @DescribeFileAttributesTask = describefileattributestask
           @RequestId = requestid
         end
 
@@ -9747,6 +9827,10 @@ module TencentCloud
           unless params['ReduceMediaBitrateTask'].nil?
             @ReduceMediaBitrateTask = ReduceMediaBitrateTask.new
             @ReduceMediaBitrateTask.deserialize(params['ReduceMediaBitrateTask'])
+          end
+          unless params['DescribeFileAttributesTask'].nil?
+            @DescribeFileAttributesTask = DescribeFileAttributesTask.new
+            @DescribeFileAttributesTask.deserialize(params['DescribeFileAttributesTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -10672,6 +10756,7 @@ module TencentCloud
         # <li>FastClipMediaComplete：快速剪辑完成；</li>
         # <li>ReviewAudioVideoComplete：音视频审核完成；</li>
         # <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
+        # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -10736,10 +10821,13 @@ module TencentCloud
         # @param ReduceMediaBitrateCompleteEvent: 该字段已无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReduceMediaBitrateCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ReduceMediaBitrateTask`
+        # @param DescribeFileAttributesCompleteEvent: 获取文件属性完成事件，当事件类型为 DescribeFileAttributesComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DescribeFileAttributesCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.DescribeFileAttributesTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent
         
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -10761,6 +10849,7 @@ module TencentCloud
           @ExtractTraceWatermarkCompleteEvent = extracttracewatermarkcompleteevent
           @ReviewAudioVideoCompleteEvent = reviewaudiovideocompleteevent
           @ReduceMediaBitrateCompleteEvent = reducemediabitratecompleteevent
+          @DescribeFileAttributesCompleteEvent = describefileattributescompleteevent
         end
 
         def deserialize(params)
@@ -10841,6 +10930,10 @@ module TencentCloud
           unless params['ReduceMediaBitrateCompleteEvent'].nil?
             @ReduceMediaBitrateCompleteEvent = ReduceMediaBitrateTask.new
             @ReduceMediaBitrateCompleteEvent.deserialize(params['ReduceMediaBitrateCompleteEvent'])
+          end
+          unless params['DescribeFileAttributesCompleteEvent'].nil?
+            @DescribeFileAttributesCompleteEvent = DescribeFileAttributesTask.new
+            @DescribeFileAttributesCompleteEvent.deserialize(params['DescribeFileAttributesCompleteEvent'])
           end
         end
       end
@@ -13035,10 +13128,13 @@ module TencentCloud
         # @type VideoDuration: Float
         # @param AudioDuration: 音频时长，单位：秒。
         # @type AudioDuration: Float
+        # @param Md5: 媒体文件的 Md5 值。
+        # <li><font color=red>注意</font>：如需要获取媒体文件的 Md5，调用 DescribeFileAttributes 接口，待任务执行完成后获取。</li>
+        # @type Md5: String
 
-        attr_accessor :Size, :Container, :Bitrate, :Height, :Width, :Duration, :Rotate, :VideoStreamSet, :AudioStreamSet, :VideoDuration, :AudioDuration
+        attr_accessor :Size, :Container, :Bitrate, :Height, :Width, :Duration, :Rotate, :VideoStreamSet, :AudioStreamSet, :VideoDuration, :AudioDuration, :Md5
         
-        def initialize(size=nil, container=nil, bitrate=nil, height=nil, width=nil, duration=nil, rotate=nil, videostreamset=nil, audiostreamset=nil, videoduration=nil, audioduration=nil)
+        def initialize(size=nil, container=nil, bitrate=nil, height=nil, width=nil, duration=nil, rotate=nil, videostreamset=nil, audiostreamset=nil, videoduration=nil, audioduration=nil, md5=nil)
           @Size = size
           @Container = container
           @Bitrate = bitrate
@@ -13050,6 +13146,7 @@ module TencentCloud
           @AudioStreamSet = audiostreamset
           @VideoDuration = videoduration
           @AudioDuration = audioduration
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -13078,6 +13175,7 @@ module TencentCloud
           end
           @VideoDuration = params['VideoDuration']
           @AudioDuration = params['AudioDuration']
+          @Md5 = params['Md5']
         end
       end
 
@@ -18612,10 +18710,15 @@ module TencentCloud
         # @type Text: String
         # @param KeywordSet: 当 Form 为 OCR 或 ASR 时有效，表示嫌疑片段命中的违规关键词列表。
         # @type KeywordSet: Array
+        # @param Url: 嫌疑图片 URL （图片不会永久存储，到达
+        #  PicUrlExpireTime 时间点后图片将被删除）。
+        # @type Url: String
+        # @param PicUrlExpireTime: 嫌疑图片 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type PicUrlExpireTime: String
 
-        attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Label, :SubLabel, :Form, :AreaCoordSet, :Text, :KeywordSet
+        attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Label, :SubLabel, :Form, :AreaCoordSet, :Text, :KeywordSet, :Url, :PicUrlExpireTime
         
-        def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, label=nil, sublabel=nil, form=nil, areacoordset=nil, text=nil, keywordset=nil)
+        def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, label=nil, sublabel=nil, form=nil, areacoordset=nil, text=nil, keywordset=nil, url=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @Confidence = confidence
@@ -18626,6 +18729,8 @@ module TencentCloud
           @AreaCoordSet = areacoordset
           @Text = text
           @KeywordSet = keywordset
+          @Url = url
+          @PicUrlExpireTime = picurlexpiretime
         end
 
         def deserialize(params)
@@ -18639,6 +18744,8 @@ module TencentCloud
           @AreaCoordSet = params['AreaCoordSet']
           @Text = params['Text']
           @KeywordSet = params['KeywordSet']
+          @Url = params['Url']
+          @PicUrlExpireTime = params['PicUrlExpireTime']
         end
       end
 

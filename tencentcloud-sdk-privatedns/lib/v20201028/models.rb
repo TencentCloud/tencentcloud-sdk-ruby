@@ -1392,10 +1392,22 @@ module TencentCloud
         # @type IsCustomTld: Boolean
         # @param CnameSpeedupStatus: CNAME加速状态：开通：ENABLED, 关闭，DISABLED
         # @type CnameSpeedupStatus: String
+        # @param ForwardRuleName: 转发规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardRuleName: String
+        # @param ForwardRuleType: 转发规则类型：云上到云下，DOWN；云下到云上，UP，目前只支持DOWN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardRuleType: String
+        # @param ForwardAddress: 转发的地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardAddress: String
+        # @param EndPointName: 终端节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointName: String
 
-        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus
+        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus, :ForwardRuleName, :ForwardRuleType, :ForwardAddress, :EndPointName
         
-        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil, cnamespeedupstatus=nil)
+        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil, cnamespeedupstatus=nil, forwardrulename=nil, forwardruletype=nil, forwardaddress=nil, endpointname=nil)
           @ZoneId = zoneid
           @OwnerUin = owneruin
           @Domain = domain
@@ -1410,6 +1422,10 @@ module TencentCloud
           @AccountVpcSet = accountvpcset
           @IsCustomTld = iscustomtld
           @CnameSpeedupStatus = cnamespeedupstatus
+          @ForwardRuleName = forwardrulename
+          @ForwardRuleType = forwardruletype
+          @ForwardAddress = forwardaddress
+          @EndPointName = endpointname
         end
 
         def deserialize(params)
@@ -1448,6 +1464,10 @@ module TencentCloud
           end
           @IsCustomTld = params['IsCustomTld']
           @CnameSpeedupStatus = params['CnameSpeedupStatus']
+          @ForwardRuleName = params['ForwardRuleName']
+          @ForwardRuleType = params['ForwardRuleType']
+          @ForwardAddress = params['ForwardAddress']
+          @EndPointName = params['EndPointName']
         end
       end
 

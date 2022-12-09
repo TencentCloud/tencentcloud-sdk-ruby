@@ -292,10 +292,14 @@ module TencentCloud
         # @type PeriodRetain: String
         # @param BuyingChannel: 实例购买渠道("cdn" 等)
         # @type BuyingChannel: String
+        # @param ResourcePackageType: 预付费资源包类型(仅预付费需要)
+        # @type ResourcePackageType: Integer
+        # @param ResourcePackageNum: 预付费资源包数量(仅预付费需要)
+        # @type ResourcePackageNum: Integer
 
-        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel
+        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel, :ResourcePackageType, :ResourcePackageNum
         
-        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil)
+        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil, resourcepackagetype=nil, resourcepackagenum=nil)
           @AreaId = areaid
           @ChargeType = chargetype
           @DataRetentionDays = dataretentiondays
@@ -305,6 +309,8 @@ module TencentCloud
           @CountNum = countnum
           @PeriodRetain = periodretain
           @BuyingChannel = buyingchannel
+          @ResourcePackageType = resourcepackagetype
+          @ResourcePackageNum = resourcepackagenum
         end
 
         def deserialize(params)
@@ -324,6 +330,8 @@ module TencentCloud
           @CountNum = params['CountNum']
           @PeriodRetain = params['PeriodRetain']
           @BuyingChannel = params['BuyingChannel']
+          @ResourcePackageType = params['ResourcePackageType']
+          @ResourcePackageNum = params['ResourcePackageNum']
         end
       end
 
@@ -331,18 +339,23 @@ module TencentCloud
       class CreateTawInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
+        # @param DealName: 预付费订单 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RequestId
+        attr_accessor :InstanceId, :DealName, :RequestId
         
-        def initialize(instanceid=nil, requestid=nil)
+        def initialize(instanceid=nil, dealname=nil, requestid=nil)
           @InstanceId = instanceid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end

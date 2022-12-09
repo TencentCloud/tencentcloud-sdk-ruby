@@ -5654,13 +5654,21 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param OtherTexts: 印章其它文本内容
         # @type OtherTexts: Array
+        # @param SealShape: 印章类型，表示为:
+        # 圆形印章：0
+        # 椭圆形印章：1
+        # 方形印章：2
+        # 菱形印章：3
+        # 三角形印章：4
+        # @type SealShape: String
 
-        attr_accessor :SealBody, :Location, :OtherTexts
+        attr_accessor :SealBody, :Location, :OtherTexts, :SealShape
         
-        def initialize(sealbody=nil, location=nil, othertexts=nil)
+        def initialize(sealbody=nil, location=nil, othertexts=nil, sealshape=nil)
           @SealBody = sealbody
           @Location = location
           @OtherTexts = othertexts
+          @SealShape = sealshape
         end
 
         def deserialize(params)
@@ -5670,6 +5678,7 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @OtherTexts = params['OtherTexts']
+          @SealShape = params['SealShape']
         end
       end
 

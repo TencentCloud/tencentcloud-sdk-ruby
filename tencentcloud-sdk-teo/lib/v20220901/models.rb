@@ -48,6 +48,7 @@ module TencentCloud
         # <li>accept：请求内容类型；</li>
         # <li>method：请求方式；</li>
         # <li>header：请求头部；</li>
+        # <li>app_proto：应用层协议；</li>
         # <li>sip_proto：网络层协议。</li>
         # @type MatchFrom: String
         # @param MatchParam: 匹配字符串。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
@@ -689,31 +690,31 @@ module TencentCloud
         # @type Domain: String
         # @param RequestUri: URI。
         # @type RequestUri: String
-        # @param AttackType: 攻击类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AttackType: String
         # @param RequestMethod: 请求方法。
         # @type RequestMethod: String
         # @param AttackContent: 攻击内容。
         # @type AttackContent: String
-        # @param RiskLevel: 攻击等级。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RiskLevel: String
+        # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)。
+        # @type SipCountryCode: String
+        # @param Ua: user agent。
+        # @type Ua: String
+        # @param EventId: 攻击事件ID。
+        # @type EventId: String
         # @param RuleId: 规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)。
-        # @type SipCountryCode: String
-        # @param EventId: 请求（事件）ID。
-        # @type EventId: String
+        # @param AttackType: 攻击类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackType: String
         # @param DisposalMethod: 处置方式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisposalMethod: String
         # @param HttpLog: HTTP日志。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpLog: String
-        # @param Ua: user agent。
-        # @type Ua: String
+        # @param RiskLevel: 攻击等级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
         # @param DetectionMethod: 检出方法。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectionMethod: String
@@ -729,29 +730,33 @@ module TencentCloud
         # @param Label: Bot标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param Area: 日志所属的区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
 
-        attr_accessor :AttackTime, :AttackIp, :Domain, :RequestUri, :AttackType, :RequestMethod, :AttackContent, :RiskLevel, :RuleId, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :Ua, :DetectionMethod, :Confidence, :Maliciousness, :RuleDetailList, :Label
+        attr_accessor :AttackTime, :AttackIp, :Domain, :RequestUri, :RequestMethod, :AttackContent, :SipCountryCode, :Ua, :EventId, :RuleId, :AttackType, :DisposalMethod, :HttpLog, :RiskLevel, :DetectionMethod, :Confidence, :Maliciousness, :RuleDetailList, :Label, :Area
         
-        def initialize(attacktime=nil, attackip=nil, domain=nil, requesturi=nil, attacktype=nil, requestmethod=nil, attackcontent=nil, risklevel=nil, ruleid=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ua=nil, detectionmethod=nil, confidence=nil, maliciousness=nil, ruledetaillist=nil, label=nil)
+        def initialize(attacktime=nil, attackip=nil, domain=nil, requesturi=nil, requestmethod=nil, attackcontent=nil, sipcountrycode=nil, ua=nil, eventid=nil, ruleid=nil, attacktype=nil, disposalmethod=nil, httplog=nil, risklevel=nil, detectionmethod=nil, confidence=nil, maliciousness=nil, ruledetaillist=nil, label=nil, area=nil)
           @AttackTime = attacktime
           @AttackIp = attackip
           @Domain = domain
           @RequestUri = requesturi
-          @AttackType = attacktype
           @RequestMethod = requestmethod
           @AttackContent = attackcontent
-          @RiskLevel = risklevel
-          @RuleId = ruleid
           @SipCountryCode = sipcountrycode
+          @Ua = ua
           @EventId = eventid
+          @RuleId = ruleid
+          @AttackType = attacktype
           @DisposalMethod = disposalmethod
           @HttpLog = httplog
-          @Ua = ua
+          @RiskLevel = risklevel
           @DetectionMethod = detectionmethod
           @Confidence = confidence
           @Maliciousness = maliciousness
           @RuleDetailList = ruledetaillist
           @Label = label
+          @Area = area
         end
 
         def deserialize(params)
@@ -759,16 +764,16 @@ module TencentCloud
           @AttackIp = params['AttackIp']
           @Domain = params['Domain']
           @RequestUri = params['RequestUri']
-          @AttackType = params['AttackType']
           @RequestMethod = params['RequestMethod']
           @AttackContent = params['AttackContent']
-          @RiskLevel = params['RiskLevel']
-          @RuleId = params['RuleId']
           @SipCountryCode = params['SipCountryCode']
+          @Ua = params['Ua']
           @EventId = params['EventId']
+          @RuleId = params['RuleId']
+          @AttackType = params['AttackType']
           @DisposalMethod = params['DisposalMethod']
           @HttpLog = params['HttpLog']
-          @Ua = params['Ua']
+          @RiskLevel = params['RiskLevel']
           @DetectionMethod = params['DetectionMethod']
           @Confidence = params['Confidence']
           @Maliciousness = params['Maliciousness']
@@ -781,6 +786,7 @@ module TencentCloud
             end
           end
           @Label = params['Label']
+          @Area = params['Area']
         end
       end
 
@@ -6452,8 +6458,6 @@ module TencentCloud
 
       # DescribeSecurityRuleId请求参数结构体
       class DescribeSecurityRuleIdRequest < TencentCloud::Common::AbstractModel
-        # @param RuleIdList: 规则Id数组。
-        # @type RuleIdList: Array
         # @param RuleType: 规则类型，取值有：
         # <li>waf：web托管规则；</li>
         # <li>acl：自定义规则；</li>
@@ -6462,33 +6466,44 @@ module TencentCloud
         # @type RuleType: String
         # @param Entity: 子域名/应用名。
         # @type Entity: String
+        # @param RuleIdList: 规则Id数组。 当为空时查询 子域名或者应用名下所有规则
+        # @type RuleIdList: Array
+        # @param Domains: 子域名数组。
+        # @type Domains: Array
 
-        attr_accessor :RuleIdList, :RuleType, :Entity
+        attr_accessor :RuleType, :Entity, :RuleIdList, :Domains
         
-        def initialize(ruleidlist=nil, ruletype=nil, entity=nil)
-          @RuleIdList = ruleidlist
+        def initialize(ruletype=nil, entity=nil, ruleidlist=nil, domains=nil)
           @RuleType = ruletype
           @Entity = entity
+          @RuleIdList = ruleidlist
+          @Domains = domains
         end
 
         def deserialize(params)
-          @RuleIdList = params['RuleIdList']
           @RuleType = params['RuleType']
           @Entity = params['Entity']
+          @RuleIdList = params['RuleIdList']
+          @Domains = params['Domains']
         end
       end
 
       # DescribeSecurityRuleId返回参数结构体
       class DescribeSecurityRuleIdResponse < TencentCloud::Common::AbstractModel
-        # @param WafGroupRules: 规则列表。
+        # @param WafGroupRules: 托管规则类型的规则列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafGroupRules: Array
+        # @param SecurityRules: 自定义规则、速率限制、Bot规则的规则列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityRules: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WafGroupRules, :RequestId
+        attr_accessor :WafGroupRules, :SecurityRules, :RequestId
         
-        def initialize(wafgrouprules=nil, requestid=nil)
+        def initialize(wafgrouprules=nil, securityrules=nil, requestid=nil)
           @WafGroupRules = wafgrouprules
+          @SecurityRules = securityrules
           @RequestId = requestid
         end
 
@@ -6499,6 +6514,14 @@ module TencentCloud
               wafgrouprule_tmp = WafGroupRule.new
               wafgrouprule_tmp.deserialize(i)
               @WafGroupRules << wafgrouprule_tmp
+            end
+          end
+          unless params['SecurityRules'].nil?
+            @SecurityRules = []
+            params['SecurityRules'].each do |i|
+              securityrule_tmp = SecurityRule.new
+              securityrule_tmp.deserialize(i)
+              @SecurityRules << securityrule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9309,8 +9332,16 @@ module TencentCloud
         # <li>ip：对ip进行匹配；</li>
         # <li>area：对ip所属地区匹配。</li>
         # @type MatchFrom: String
-        # @param MatchContent: 匹配内容。
-        # @type MatchContent: String
+        # @param Operator: 规则的匹配方式，默认为空代表等于。
+        # 取值有：
+        # <li> is_emty：配置为空；</li>
+        # <li> not_exists：配置为不存在；</li>
+        # <li> include：包含；</li>
+        # <li> not_include：不包含；</li>
+        # <li> equal：等于；</li>
+        # <li> not_equal：不等于。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
         # @param RuleID: 规则id。仅出参使用。
         # @type RuleID: Integer
         # @param UpdateTime: 更新时间。仅出参使用。
@@ -9320,25 +9351,34 @@ module TencentCloud
         # <li> off：未启用。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param RuleName: 规则名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param MatchContent: 匹配内容。当 Operator为is_emty 或not_exists时，此值允许为空。
+        # @type MatchContent: String
 
-        attr_accessor :Action, :MatchFrom, :MatchContent, :RuleID, :UpdateTime, :Status
+        attr_accessor :Action, :MatchFrom, :Operator, :RuleID, :UpdateTime, :Status, :RuleName, :MatchContent
         
-        def initialize(action=nil, matchfrom=nil, matchcontent=nil, ruleid=nil, updatetime=nil, status=nil)
+        def initialize(action=nil, matchfrom=nil, operator=nil, ruleid=nil, updatetime=nil, status=nil, rulename=nil, matchcontent=nil)
           @Action = action
           @MatchFrom = matchfrom
-          @MatchContent = matchcontent
+          @Operator = operator
           @RuleID = ruleid
           @UpdateTime = updatetime
           @Status = status
+          @RuleName = rulename
+          @MatchContent = matchcontent
         end
 
         def deserialize(params)
           @Action = params['Action']
           @MatchFrom = params['MatchFrom']
-          @MatchContent = params['MatchContent']
+          @Operator = params['Operator']
           @RuleID = params['RuleID']
           @UpdateTime = params['UpdateTime']
           @Status = params['Status']
+          @RuleName = params['RuleName']
+          @MatchContent = params['MatchContent']
         end
       end
 
@@ -11774,17 +11814,21 @@ module TencentCloud
         # <li>monitor：观察；</li>
         # <li>alg：挑战。</li>
         # @type Action: String
+        # @param RuleId: 规则id，仅出参使用。
+        # @type RuleId: Integer
 
-        attr_accessor :Switch, :Action
+        attr_accessor :Switch, :Action, :RuleId
         
-        def initialize(switch=nil, action=nil)
+        def initialize(switch=nil, action=nil, ruleid=nil)
           @Switch = switch
           @Action = action
+          @RuleId = ruleid
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @Action = params['Action']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -12696,10 +12740,20 @@ module TencentCloud
 
       # 命中规则信息
       class SecHitRuleInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
         # @param RuleId: 规则ID。
         # @type RuleId: Integer
         # @param RuleTypeName: 规则类型名称。
         # @type RuleTypeName: String
+        # @param HitTime: 命中时间，采用unix秒级时间戳。
+        # @type HitTime: Integer
+        # @param RequestNum: 请求数。
+        # @type RequestNum: Integer
+        # @param Description: 规则描述。
+        # @type Description: String
+        # @param Domain: 子域名。
+        # @type Domain: String
         # @param Action: 执行动作（处置方式），取值有：
         # <li>trans ：通过 ；</li>
         # <li>alg ：算法挑战 ；</li>
@@ -12709,14 +12763,6 @@ module TencentCloud
         # <li>page ：返回指定页面 ；</li>
         # <li>monitor ：观察 。</li>
         # @type Action: String
-        # @param HitTime: 命中时间，采用unix秒级时间戳。
-        # @type HitTime: Integer
-        # @param RequestNum: 请求数。
-        # @type RequestNum: Integer
-        # @param Description: 规则描述。
-        # @type Description: String
-        # @param Domain: 子域名。
-        # @type Domain: String
         # @param BotLabel: Bot标签，取值有:
         # <li>evil_bot：恶意Bot；</li>
         # <li>suspect_bot：疑似Bot；</li>
@@ -12724,29 +12770,45 @@ module TencentCloud
         # <li>normal：正常请求；</li>
         # <li>none：未分类。</li>
         # @type BotLabel: String
+        # @param RuleEnabled: 规则是否启用。
+        # @type RuleEnabled: Boolean
+        # @param AlarmEnabled: 规则是否启用监控告警。
+        # @type AlarmEnabled: Boolean
+        # @param RuleDeleted: 规则是否存在，取值有：
+        # <li>true: 规则不存在；</li>
+        # <li>false: 规则存在。</li>
+        # @type RuleDeleted: Boolean
 
-        attr_accessor :RuleId, :RuleTypeName, :Action, :HitTime, :RequestNum, :Description, :Domain, :BotLabel
+        attr_accessor :ZoneId, :RuleId, :RuleTypeName, :HitTime, :RequestNum, :Description, :Domain, :Action, :BotLabel, :RuleEnabled, :AlarmEnabled, :RuleDeleted
         
-        def initialize(ruleid=nil, ruletypename=nil, action=nil, hittime=nil, requestnum=nil, description=nil, domain=nil, botlabel=nil)
+        def initialize(zoneid=nil, ruleid=nil, ruletypename=nil, hittime=nil, requestnum=nil, description=nil, domain=nil, action=nil, botlabel=nil, ruleenabled=nil, alarmenabled=nil, ruledeleted=nil)
+          @ZoneId = zoneid
           @RuleId = ruleid
           @RuleTypeName = ruletypename
-          @Action = action
           @HitTime = hittime
           @RequestNum = requestnum
           @Description = description
           @Domain = domain
+          @Action = action
           @BotLabel = botlabel
+          @RuleEnabled = ruleenabled
+          @AlarmEnabled = alarmenabled
+          @RuleDeleted = ruledeleted
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
           @RuleId = params['RuleId']
           @RuleTypeName = params['RuleTypeName']
-          @Action = params['Action']
           @HitTime = params['HitTime']
           @RequestNum = params['RequestNum']
           @Description = params['Description']
           @Domain = params['Domain']
+          @Action = params['Action']
           @BotLabel = params['BotLabel']
+          @RuleEnabled = params['RuleEnabled']
+          @AlarmEnabled = params['AlarmEnabled']
+          @RuleDeleted = params['RuleDeleted']
         end
       end
 
@@ -12779,10 +12841,24 @@ module TencentCloud
         # @param AttackContent: 攻击内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackContent: String
+        # @param RuleType: 规则类型，取值有：
+        # <li>waf: 托管规则；</li>
+        # <li>acl：自定义规则；</li>
+        # <li>rate：速率限制规则；</li>
+        # <li>bot：bot防护规则。</li>
+        # @type RuleType: String
+        # @param RuleEnabled: 规则是否开启。
+        # @type RuleEnabled: Boolean
+        # @param RuleDeleted: 规则是否存在，取值有：
+        # <li>true: 规则不存在；</li>
+        # <li>false: 规则存在。</li>
+        # @type RuleDeleted: Boolean
+        # @param AlarmEnabled: 规则是否启用监控告警。
+        # @type AlarmEnabled: Boolean
 
-        attr_accessor :RuleId, :Action, :RiskLevel, :RuleLevel, :Description, :RuleTypeName, :AttackContent
+        attr_accessor :RuleId, :Action, :RiskLevel, :RuleLevel, :Description, :RuleTypeName, :AttackContent, :RuleType, :RuleEnabled, :RuleDeleted, :AlarmEnabled
         
-        def initialize(ruleid=nil, action=nil, risklevel=nil, rulelevel=nil, description=nil, ruletypename=nil, attackcontent=nil)
+        def initialize(ruleid=nil, action=nil, risklevel=nil, rulelevel=nil, description=nil, ruletypename=nil, attackcontent=nil, ruletype=nil, ruleenabled=nil, ruledeleted=nil, alarmenabled=nil)
           @RuleId = ruleid
           @Action = action
           @RiskLevel = risklevel
@@ -12790,6 +12866,10 @@ module TencentCloud
           @Description = description
           @RuleTypeName = ruletypename
           @AttackContent = attackcontent
+          @RuleType = ruletype
+          @RuleEnabled = ruleenabled
+          @RuleDeleted = ruledeleted
+          @AlarmEnabled = alarmenabled
         end
 
         def deserialize(params)
@@ -12800,6 +12880,10 @@ module TencentCloud
           @Description = params['Description']
           @RuleTypeName = params['RuleTypeName']
           @AttackContent = params['AttackContent']
+          @RuleType = params['RuleType']
+          @RuleEnabled = params['RuleEnabled']
+          @RuleDeleted = params['RuleDeleted']
+          @AlarmEnabled = params['AlarmEnabled']
         end
       end
 
@@ -12910,6 +12994,62 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @Entity = params['Entity']
           @EntityType = params['EntityType']
+        end
+      end
+
+      # 托管规则详情
+      class SecurityRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id。
+        # @type RuleId: Integer
+        # @param Description: 规则描述。
+        # @type Description: String
+        # @param RuleTypeName: 规则类型名。
+        # @type RuleTypeName: String
+        # @param RuleLevelDesc: 等级描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleLevelDesc: String
+        # @param RuleTypeId: 规则类型id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTypeId: Integer
+        # @param RuleTypeDesc: 规则类型描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTypeDesc: String
+        # @param RuleTags: 规则标签。部分类型的规则不存在该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTags: Array
+        # @param Status: 状态，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>为空时对应接口Status无意义，例如仅查询规则详情时。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Entity: 子域名/应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Entity: String
+
+        attr_accessor :RuleId, :Description, :RuleTypeName, :RuleLevelDesc, :RuleTypeId, :RuleTypeDesc, :RuleTags, :Status, :Entity
+        
+        def initialize(ruleid=nil, description=nil, ruletypename=nil, ruleleveldesc=nil, ruletypeid=nil, ruletypedesc=nil, ruletags=nil, status=nil, entity=nil)
+          @RuleId = ruleid
+          @Description = description
+          @RuleTypeName = ruletypename
+          @RuleLevelDesc = ruleleveldesc
+          @RuleTypeId = ruletypeid
+          @RuleTypeDesc = ruletypedesc
+          @RuleTags = ruletags
+          @Status = status
+          @Entity = entity
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+          @RuleTypeName = params['RuleTypeName']
+          @RuleLevelDesc = params['RuleLevelDesc']
+          @RuleTypeId = params['RuleTypeId']
+          @RuleTypeDesc = params['RuleTypeDesc']
+          @RuleTags = params['RuleTags']
+          @Status = params['Status']
+          @Entity = params['Entity']
         end
       end
 
@@ -14214,10 +14354,13 @@ module TencentCloud
         # @param ReqMethod: 请求类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReqMethod: String
+        # @param Area: 日志所属区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
 
-        attr_accessor :EventId, :AttackIp, :Domain, :HttpLog, :SipCountryCode, :AttackTime, :RequestUri, :AttackContent, :RuleDetailList, :ReqMethod
+        attr_accessor :EventId, :AttackIp, :Domain, :HttpLog, :SipCountryCode, :AttackTime, :RequestUri, :AttackContent, :RuleDetailList, :ReqMethod, :Area
         
-        def initialize(eventid=nil, attackip=nil, domain=nil, httplog=nil, sipcountrycode=nil, attacktime=nil, requesturi=nil, attackcontent=nil, ruledetaillist=nil, reqmethod=nil)
+        def initialize(eventid=nil, attackip=nil, domain=nil, httplog=nil, sipcountrycode=nil, attacktime=nil, requesturi=nil, attackcontent=nil, ruledetaillist=nil, reqmethod=nil, area=nil)
           @EventId = eventid
           @AttackIp = attackip
           @Domain = domain
@@ -14228,6 +14371,7 @@ module TencentCloud
           @AttackContent = attackcontent
           @RuleDetailList = ruledetaillist
           @ReqMethod = reqmethod
+          @Area = area
         end
 
         def deserialize(params)
@@ -14248,6 +14392,7 @@ module TencentCloud
             end
           end
           @ReqMethod = params['ReqMethod']
+          @Area = params['Area']
         end
       end
 

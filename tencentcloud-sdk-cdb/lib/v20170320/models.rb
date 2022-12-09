@@ -924,7 +924,7 @@ module TencentCloud
 
       # 售卖实例类型
       class CdbSellType < TencentCloud::Common::AbstractModel
-        # @param TypeName: 售卖实例名称
+        # @param TypeName: 售卖实例名称。Z3是高可用类型对应规格中的DeviceType包含UNIVERSAL,EXCLUSIVE；CVM是基础版类型对应规格中的DeviceType是BASIC；TKE是基础型v2类型对应规格中的DeviceType是BASIC_V2。
         # @type TypeName: String
         # @param EngineVersion: 引擎版本号
         # @type EngineVersion: Array
