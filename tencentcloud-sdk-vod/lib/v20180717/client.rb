@@ -1555,6 +1555,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于异步获取文件属性。
+        # - 当前仅支持获取源文件的 Md5。
+        # - 对输入文件为 HLS 或 DASH 的情况，仅获取索引文件的属性。
+
+        # @param request: Request instance for DescribeFileAttributes.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeFileAttributesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeFileAttributesResponse`
+        def DescribeFileAttributes(request)
+          body = send_request('DescribeFileAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFileAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取片头片尾模板列表。
 
         # @param request: Request instance for DescribeHeadTailTemplates.
