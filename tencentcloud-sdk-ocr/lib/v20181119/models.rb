@@ -5714,16 +5714,24 @@ module TencentCloud
         # @type OtherTexts: Array
         # @param SealInfos: 全部印章信息
         # @type SealInfos: Array
+        # @param SealShape: 印章类型，表示为：
+        # 圆形印章：0
+        # 椭圆形印章：1
+        # 方形印章：2
+        # 菱形印章：3
+        # 三角形印章：4
+        # @type SealShape: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SealBody, :Location, :OtherTexts, :SealInfos, :RequestId
+        attr_accessor :SealBody, :Location, :OtherTexts, :SealInfos, :SealShape, :RequestId
         
-        def initialize(sealbody=nil, location=nil, othertexts=nil, sealinfos=nil, requestid=nil)
+        def initialize(sealbody=nil, location=nil, othertexts=nil, sealinfos=nil, sealshape=nil, requestid=nil)
           @SealBody = sealbody
           @Location = location
           @OtherTexts = othertexts
           @SealInfos = sealinfos
+          @SealShape = sealshape
           @RequestId = requestid
         end
 
@@ -5742,6 +5750,7 @@ module TencentCloud
               @SealInfos << sealinfo_tmp
             end
           end
+          @SealShape = params['SealShape']
           @RequestId = params['RequestId']
         end
       end

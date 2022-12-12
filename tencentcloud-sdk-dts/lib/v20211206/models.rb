@@ -3386,6 +3386,78 @@ module TencentCloud
         end
       end
 
+      # SkipCheckItem请求参数结构体
+      class SkipCheckItemRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 数据迁移任务ID
+        # @type JobId: String
+        # @param StepIds: 需要跳过校验项的步骤id，需要通过DescribeMigrationCheckJob接口返回StepInfo[i].StepId字段获取，例如：["OptimizeCheck"]
+        # @type StepIds: Array
+
+        attr_accessor :JobId, :StepIds
+        
+        def initialize(jobid=nil, stepids=nil)
+          @JobId = jobid
+          @StepIds = stepids
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StepIds = params['StepIds']
+        end
+      end
+
+      # SkipCheckItem返回参数结构体
+      class SkipCheckItemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SkipSyncCheckItem请求参数结构体
+      class SkipSyncCheckItemRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务id，如：sync-4ddgid2
+        # @type JobId: String
+        # @param StepIds: 需要跳过校验项的步骤id，需要通过`DescribeCheckSyncJobResult`接口返回StepInfos[i].StepId字段获取，例如：["OptimizeCheck"]
+        # @type StepIds: Array
+
+        attr_accessor :JobId, :StepIds
+        
+        def initialize(jobid=nil, stepids=nil)
+          @JobId = jobid
+          @StepIds = stepids
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StepIds = params['StepIds']
+        end
+      end
+
+      # SkipSyncCheckItem返回参数结构体
+      class SkipSyncCheckItemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 跳过校验的表详情
       class SkippedDetail < TencentCloud::Common::AbstractModel
         # @param TotalCount: 跳过的表数量

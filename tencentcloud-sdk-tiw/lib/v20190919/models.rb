@@ -188,10 +188,17 @@ module TencentCloud
 
         # 示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
         # @type MinScaleResolution: String
+        # @param AutoHandleUnsupportedElement: 是否对不支持元素开启自动处理的功能。默认不开启。
 
-        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority, :MinScaleResolution
+        # 在开启自动处理的情况下，会自动进行如下处理：
+        # 1. 墨迹：移除不支持的墨迹（比如使用WPS画的）
+        # 2. 自动翻页：移除PPT上所有的自动翻页设置
+        # 3. 已损坏音视频：移除PPT上对损坏音视频的引用
+        # @type AutoHandleUnsupportedElement: Boolean
+
+        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority, :MinScaleResolution, :AutoHandleUnsupportedElement
         
-        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil, minscaleresolution=nil)
+        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil, minscaleresolution=nil, autohandleunsupportedelement=nil)
           @SdkAppId = sdkappid
           @Url = url
           @IsStaticPPT = isstaticppt
@@ -201,6 +208,7 @@ module TencentCloud
           @ExtraData = extradata
           @Priority = priority
           @MinScaleResolution = minscaleresolution
+          @AutoHandleUnsupportedElement = autohandleunsupportedelement
         end
 
         def deserialize(params)
@@ -213,6 +221,7 @@ module TencentCloud
           @ExtraData = params['ExtraData']
           @Priority = params['Priority']
           @MinScaleResolution = params['MinScaleResolution']
+          @AutoHandleUnsupportedElement = params['AutoHandleUnsupportedElement']
         end
       end
 

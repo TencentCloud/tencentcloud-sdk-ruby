@@ -285,10 +285,13 @@ module TencentCloud
         # @param InstanceVersion: 资源实例版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: Integer
+        # @param ConvoyId: 重保实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConvoyId: String
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion, :ConvoyId
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil, instanceversion=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil, instanceversion=nil, convoyid=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -312,6 +315,7 @@ module TencentCloud
           @TagInfoList = taginfolist
           @AnycastOutPackRelation = anycastoutpackrelation
           @InstanceVersion = instanceversion
+          @ConvoyId = convoyid
         end
 
         def deserialize(params)
@@ -372,6 +376,7 @@ module TencentCloud
             @AnycastOutPackRelation.deserialize(params['AnycastOutPackRelation'])
           end
           @InstanceVersion = params['InstanceVersion']
+          @ConvoyId = params['ConvoyId']
         end
       end
 
@@ -4045,7 +4050,7 @@ module TencentCloud
         # @type FilterEipEipAddressStatus: Array
         # @param FilterDamDDoSStatus: 是否只获取安全加速实例。填写时，只能填写1或者0。当填写1时，表示返回安全加速实例。当填写0时，表示返回非安全加速实例。
         # @type FilterDamDDoSStatus: Integer
-        # @param FilterStatus: 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking
+        # @param FilterStatus: 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking，试用资源填trial
         # @type FilterStatus: String
         # @param FilterCname: 获取特定的实例Cname
         # @type FilterCname: String
@@ -4055,10 +4060,12 @@ module TencentCloud
         # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
         # @param FilterPackType: 按照套餐类型进行过滤
         # @type FilterPackType: Array
+        # @param FilterConvoy: 重保护航搜索
+        # @type FilterConvoy: Integer
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList, :FilterTag, :FilterPackType
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList, :FilterTag, :FilterPackType, :FilterConvoy
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil, filtertag=nil, filterpacktype=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil, filtertag=nil, filterpacktype=nil, filterconvoy=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4074,6 +4081,7 @@ module TencentCloud
           @FilterInstanceIdList = filterinstanceidlist
           @FilterTag = filtertag
           @FilterPackType = filterpacktype
+          @FilterConvoy = filterconvoy
         end
 
         def deserialize(params)
@@ -4095,6 +4103,7 @@ module TencentCloud
             @FilterTag.deserialize(params['FilterTag'])
           end
           @FilterPackType = params['FilterPackType']
+          @FilterConvoy = params['FilterConvoy']
         end
       end
 
@@ -4159,10 +4168,14 @@ module TencentCloud
         # @type FilterChannelFlag: Integer
         # @param FilterTag: 标签搜索
         # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
+        # @param FilterTrialFlag: 试用资源搜索，1: 应急防护资源；2：PLG试用资源
+        # @type FilterTrialFlag: Integer
+        # @param FilterConvoy: 重保护航搜索
+        # @type FilterConvoy: Integer
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4177,6 +4190,8 @@ module TencentCloud
           @FilterLightFlag = filterlightflag
           @FilterChannelFlag = filterchannelflag
           @FilterTag = filtertag
+          @FilterTrialFlag = filtertrialflag
+          @FilterConvoy = filterconvoy
         end
 
         def deserialize(params)
@@ -4197,6 +4212,8 @@ module TencentCloud
             @FilterTag = TagFilter.new
             @FilterTag.deserialize(params['FilterTag'])
           end
+          @FilterTrialFlag = params['FilterTrialFlag']
+          @FilterConvoy = params['FilterConvoy']
         end
       end
 

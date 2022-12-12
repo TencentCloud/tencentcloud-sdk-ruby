@@ -1682,10 +1682,13 @@ module TencentCloud
         # @param AppId: 索引所属集群APP ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
+        # @param IndexDocs: 索引文档数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexDocs: Integer
 
-        attr_accessor :IndexType, :IndexName, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId
+        attr_accessor :IndexType, :IndexName, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId, :IndexDocs
         
-        def initialize(indextype=nil, indexname=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil)
+        def initialize(indextype=nil, indexname=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil, indexdocs=nil)
           @IndexType = indextype
           @IndexName = indexname
           @IndexStatus = indexstatus
@@ -1699,6 +1702,7 @@ module TencentCloud
           @IndexOptionsField = indexoptionsfield
           @IndexSettingsField = indexsettingsfield
           @AppId = appid
+          @IndexDocs = indexdocs
         end
 
         def deserialize(params)
@@ -1731,6 +1735,7 @@ module TencentCloud
             @IndexSettingsField.deserialize(params['IndexSettingsField'])
           end
           @AppId = params['AppId']
+          @IndexDocs = params['IndexDocs']
         end
       end
 

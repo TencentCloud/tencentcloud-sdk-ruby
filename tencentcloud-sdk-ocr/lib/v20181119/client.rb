@@ -1675,6 +1675,8 @@ module TencentCloud
 
         # 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
 
+        # 默认接口请求频率限制：5次/秒。
+
         # @param request: Request instance for SealOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::SealOCRRequest`
         # @rtype: :class:`Tencentcloud::ocr::V20181119::SealOCRResponse`
