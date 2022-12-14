@@ -3159,6 +3159,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 灵云V2-平台账户余额查询
+
+        # @param request: Request instance for QueryFlexPlatformAccountBalance.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPlatformAccountBalanceRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPlatformAccountBalanceResponse`
+        def QueryFlexPlatformAccountBalance(request)
+          body = send_request('QueryFlexPlatformAccountBalance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPlatformAccountBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 灵云V2-查询结算订单列表
 
         # @param request: Request instance for QueryFlexSettlementOrderList.

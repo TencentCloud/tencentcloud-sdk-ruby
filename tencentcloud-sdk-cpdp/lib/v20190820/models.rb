@@ -14086,6 +14086,50 @@ module TencentCloud
         end
       end
 
+      # 平台账户余额信息
+      class PlatformAccountBalanceResult < TencentCloud::Common::AbstractModel
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncomeType: String
+        # @param Balance: 总余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Balance: String
+        # @param SystemFreezeBalance: 系统冻结余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemFreezeBalance: String
+        # @param ManualFreezeBalance: 人工冻结余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManualFreezeBalance: String
+        # @param PayableBalance: 可提现余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayableBalance: String
+        # @param InPayBalance: 提现中余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InPayBalance: String
+
+        attr_accessor :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :InPayBalance
+        
+        def initialize(incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, inpaybalance=nil)
+          @IncomeType = incometype
+          @Balance = balance
+          @SystemFreezeBalance = systemfreezebalance
+          @ManualFreezeBalance = manualfreezebalance
+          @PayableBalance = payablebalance
+          @InPayBalance = inpaybalance
+        end
+
+        def deserialize(params)
+          @IncomeType = params['IncomeType']
+          @Balance = params['Balance']
+          @SystemFreezeBalance = params['SystemFreezeBalance']
+          @ManualFreezeBalance = params['ManualFreezeBalance']
+          @PayableBalance = params['PayableBalance']
+          @InPayBalance = params['InPayBalance']
+        end
+      end
+
       # QueryAcctBinding请求参数结构体
       class QueryAcctBindingRequest < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -17426,6 +17470,68 @@ module TencentCloud
           @ErrMessage = params['ErrMessage']
           unless params['Result'].nil?
             @Result = PaymentOrderStatusResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPlatformAccountBalance请求参数结构体
+      class QueryFlexPlatformAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+        # @param SnapshotDate: 快照日期。格式yyyy-MM-dd
+        # @type SnapshotDate: String
+
+        attr_accessor :IncomeType, :Environment, :SnapshotDate
+        
+        def initialize(incometype=nil, environment=nil, snapshotdate=nil)
+          @IncomeType = incometype
+          @Environment = environment
+          @SnapshotDate = snapshotdate
+        end
+
+        def deserialize(params)
+          @IncomeType = params['IncomeType']
+          @Environment = params['Environment']
+          @SnapshotDate = params['SnapshotDate']
+        end
+      end
+
+      # QueryFlexPlatformAccountBalance返回参数结构体
+      class QueryFlexPlatformAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PlatformAccountBalanceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PlatformAccountBalanceResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
