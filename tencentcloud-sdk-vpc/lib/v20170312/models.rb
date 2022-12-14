@@ -11992,10 +11992,12 @@ module TencentCloud
         # @type EndPointSet: Array
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
+        # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS
+        # @type ServiceType: String
 
-        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime
+        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType
         
-        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil)
+        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil)
           @EndPointServiceId = endpointserviceid
           @VpcId = vpcid
           @ServiceOwner = serviceowner
@@ -12006,6 +12008,7 @@ module TencentCloud
           @EndPointCount = endpointcount
           @EndPointSet = endpointset
           @CreateTime = createtime
+          @ServiceType = servicetype
         end
 
         def deserialize(params)
@@ -12026,6 +12029,7 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @ServiceType = params['ServiceType']
         end
       end
 

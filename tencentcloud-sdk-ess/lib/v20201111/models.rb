@@ -3270,10 +3270,16 @@ module TencentCloud
         # @param PreviewUrl: 模板预览链接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
+        # @param TemplateVersion: 模板版本。默认为空时，全数字字符，初始版本为yyyyMMdd001。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateVersion: String
+        # @param Published: 模板是否已发布。true-已发布；false-未发布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Published: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :OrganizationId, :PreviewUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
         
-        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, organizationid=nil, previewurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -3290,6 +3296,8 @@ module TencentCloud
           @Promoter = promoter
           @OrganizationId = organizationid
           @PreviewUrl = previewurl
+          @TemplateVersion = templateversion
+          @Published = published
         end
 
         def deserialize(params)
@@ -3340,6 +3348,8 @@ module TencentCloud
           end
           @OrganizationId = params['OrganizationId']
           @PreviewUrl = params['PreviewUrl']
+          @TemplateVersion = params['TemplateVersion']
+          @Published = params['Published']
         end
       end
 

@@ -667,7 +667,7 @@ module TencentCloud
       class ModifyAppRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
-        # @param Callback: 回调地址。
+        # @param Callback: 回调地址。端口目前仅支持80、443
         # @type Callback: String
 
         attr_accessor :SdkAppId, :Callback

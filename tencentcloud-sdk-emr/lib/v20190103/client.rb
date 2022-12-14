@@ -56,6 +56,30 @@ module TencentCloud
 
         # 创建EMR集群实例
 
+        # @param request: Request instance for CreateCluster.
+        # @type request: :class:`Tencentcloud::emr::V20190103::CreateClusterRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::CreateClusterResponse`
+        def CreateCluster(request)
+          body = send_request('CreateCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建EMR集群实例
+
         # @param request: Request instance for CreateInstance.
         # @type request: :class:`Tencentcloud::emr::V20190103::CreateInstanceRequest`
         # @rtype: :class:`Tencentcloud::emr::V20190103::CreateInstanceResponse`
@@ -521,6 +545,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RunJobFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 扩容集群节点
+
+        # @param request: Request instance for ScaleOutCluster.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ScaleOutClusterRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ScaleOutClusterResponse`
+        def ScaleOutCluster(request)
+          body = send_request('ScaleOutCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleOutClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

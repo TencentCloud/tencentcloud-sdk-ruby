@@ -1458,7 +1458,7 @@ module TencentCloud
         # @type ProxyOrganizationName: String
         # @param ProxyOperatorName: 渠道子客企业经办人的姓名，最大长度50个字符
         # @type ProxyOperatorName: String
-        # @param Module: 控制台指定模块，文件/合同管理:"DOCUMENT"，模板管理:"TEMPLATE"，印章管理:"SEAL"，组织架构/人员:"OPERATOR"，空字符串："账号信息"
+        # @param Module: PC控制台指定模块，文件/合同管理:"DOCUMENT"，模板管理:"TEMPLATE"，印章管理:"SEAL"，组织架构/人员:"OPERATOR"，空字符串："账号信息"。 EndPoint为"CHANNEL"/"APP"只支持"SEAL"-印章管理
         # @type Module: String
         # @param ModuleId: 控制台指定模块Id
         # @type ModuleId: String
@@ -2336,7 +2336,7 @@ module TencentCloud
         # @param ApproverType: 签署人类型
         # PERSON-个人/自然人；
         # PERSON_AUTO_SIGN-个人自动签（定制化场景下使用）；
-        # ORGANIZATION-企业（企业签署方或模版发起时的企业静默签）；
+        # ORGANIZATION-企业（企业签署方或模板发起时的企业静默签）；
         # ENTERPRISESERVER-企业静默签（文件发起时的企业静默签字）。
         # @type ApproverType: String
         # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
@@ -3169,7 +3169,7 @@ module TencentCloud
 
       # 合作企业经办人列表信息
       class ProxyOrganizationOperator < TencentCloud::Common::AbstractModel
-        # @param Id: 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（比如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
+        # @param Id: 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
         # @type Id: String
         # @param Name: 经办人姓名，最大长度50个字符
         # @type Name: String
@@ -3792,15 +3792,24 @@ module TencentCloud
         # @param PreviewUrl: 模板的H5预览链接,可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
-        # @param ChannelTemplateId: 渠道模板ID
-        # @type ChannelTemplateId: String
         # @param PdfUrl: 渠道版-模板PDF文件链接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PdfUrl: String
+        # @param ChannelTemplateId: 关联的渠道模板ID
+        # @type ChannelTemplateId: String
+        # @param ChannelTemplateName: 关联的渠道模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelTemplateName: String
+        # @param ChannelAutoSave: 0-需要渠道子客手动领取渠道的模板(默认); 1-渠道自动设置子客模板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelAutoSave: Integer
+        # @param TemplateVersion: 模板版本，全数字字符。默认为空，初始版本为yyyyMMdd001。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateVersion: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :ChannelTemplateId, :PdfUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, channeltemplateid=nil, pdfurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -3812,8 +3821,11 @@ module TencentCloud
           @Creator = creator
           @CreatedOn = createdon
           @PreviewUrl = previewurl
-          @ChannelTemplateId = channeltemplateid
           @PdfUrl = pdfurl
+          @ChannelTemplateId = channeltemplateid
+          @ChannelTemplateName = channeltemplatename
+          @ChannelAutoSave = channelautosave
+          @TemplateVersion = templateversion
         end
 
         def deserialize(params)
@@ -3849,8 +3861,11 @@ module TencentCloud
           @Creator = params['Creator']
           @CreatedOn = params['CreatedOn']
           @PreviewUrl = params['PreviewUrl']
-          @ChannelTemplateId = params['ChannelTemplateId']
           @PdfUrl = params['PdfUrl']
+          @ChannelTemplateId = params['ChannelTemplateId']
+          @ChannelTemplateName = params['ChannelTemplateName']
+          @ChannelAutoSave = params['ChannelAutoSave']
+          @TemplateVersion = params['TemplateVersion']
         end
       end
 

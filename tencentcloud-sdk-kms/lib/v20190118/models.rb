@@ -1075,15 +1075,19 @@ module TencentCloud
       class EnableKeyRotationRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param RotateDays: 密钥轮转周期，单位天，允许范围 7 ~ 365，默认值 365。
+        # @type RotateDays: Integer
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :RotateDays
         
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, rotatedays=nil)
           @KeyId = keyid
+          @RotateDays = rotatedays
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          @RotateDays = params['RotateDays']
         end
       end
 

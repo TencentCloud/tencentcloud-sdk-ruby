@@ -70,6 +70,70 @@ module TencentCloud
         end
       end
 
+      # 资源描述
+      class AllNodeResourceSpec < TencentCloud::Common::AbstractModel
+        # @param MasterResourceSpec: 描述Master节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
+        # @param CoreResourceSpec: 描述Core节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoreResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
+        # @param TaskResourceSpec: 描述Taskr节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
+        # @param CommonResourceSpec: 描述Common节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
+        # @param MasterCount: Master节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterCount: Integer
+        # @param CoreCount: Corer节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoreCount: Integer
+        # @param TaskCount: Task节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCount: Integer
+        # @param CommonCount: Common节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonCount: Integer
+
+        attr_accessor :MasterResourceSpec, :CoreResourceSpec, :TaskResourceSpec, :CommonResourceSpec, :MasterCount, :CoreCount, :TaskCount, :CommonCount
+        
+        def initialize(masterresourcespec=nil, coreresourcespec=nil, taskresourcespec=nil, commonresourcespec=nil, mastercount=nil, corecount=nil, taskcount=nil, commoncount=nil)
+          @MasterResourceSpec = masterresourcespec
+          @CoreResourceSpec = coreresourcespec
+          @TaskResourceSpec = taskresourcespec
+          @CommonResourceSpec = commonresourcespec
+          @MasterCount = mastercount
+          @CoreCount = corecount
+          @TaskCount = taskcount
+          @CommonCount = commoncount
+        end
+
+        def deserialize(params)
+          unless params['MasterResourceSpec'].nil?
+            @MasterResourceSpec = NodeResourceSpec.new
+            @MasterResourceSpec.deserialize(params['MasterResourceSpec'])
+          end
+          unless params['CoreResourceSpec'].nil?
+            @CoreResourceSpec = NodeResourceSpec.new
+            @CoreResourceSpec.deserialize(params['CoreResourceSpec'])
+          end
+          unless params['TaskResourceSpec'].nil?
+            @TaskResourceSpec = NodeResourceSpec.new
+            @TaskResourceSpec.deserialize(params['TaskResourceSpec'])
+          end
+          unless params['CommonResourceSpec'].nil?
+            @CommonResourceSpec = NodeResourceSpec.new
+            @CommonResourceSpec.deserialize(params['CommonResourceSpec'])
+          end
+          @MasterCount = params['MasterCount']
+          @CoreCount = params['CoreCount']
+          @TaskCount = params['TaskCount']
+          @CommonCount = params['CommonCount']
+        end
+      end
+
       # yarn application 统计信息
       class ApplicationStatics < TencentCloud::Common::AbstractModel
         # @param Queue: 队列名
@@ -660,6 +724,178 @@ module TencentCloud
         end
       end
 
+      # CreateCluster请求参数结构体
+      class CreateClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ProductVersion: EMR产品版本名称如EMR-V2.3.0 表示2.3.0版本的EMR， 当前支持产品版本名称查询：[产品版本名称](https://cloud.tencent.com/document/product/589/66338)
+        # @type ProductVersion: String
+        # @param EnableSupportHAFlag: 是否开启节点高可用。取值范围：
+        # <li>true：表示开启节点高可用。</li>
+        # <li>false：表示不开启节点高可用。</li>
+        # @type EnableSupportHAFlag: Boolean
+        # @param InstanceName: 实例名称。
+        # <li>长度限制为6-36个字符。</li>
+        # <li>只允许包含中文、字母、数字、-、_。</li>
+        # @type InstanceName: String
+        # @param InstanceChargeType: 实例计费模式。取值范围：
+        # <li>PREPAID：预付费，即包年包月。</li>
+        # <li>POSTPAID_BY_HOUR：按小时后付费。</li>
+        # @type InstanceChargeType: String
+        # @param LoginSettings: 实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。
+        # <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
+        # <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
+        # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
+        # @param SceneSoftwareConfig: 集群应用场景以及支持部署组件配置
+        # @type SceneSoftwareConfig: :class:`Tencentcloud::Emr.v20190103.models.SceneSoftwareConfig`
+        # @param InstanceChargePrepaid: 即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
+        # @param SecurityGroupIds: 实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的SecurityGroupId字段来获取。
+        # @type SecurityGroupIds: Array
+        # @param ScriptBootstrapActionConfig: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
+        # @type ScriptBootstrapActionConfig: Array
+        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-751a-41b6-aad6-fae360632808
+        # @type ClientToken: String
+        # @param NeedMasterWan: 是否开启集群Master节点公网。取值范围：
+        # <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
+        # <li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
+        # @type NeedMasterWan: String
+        # @param EnableRemoteLoginFlag: 是否开启外网远程登录。（在SecurityGroupId不为空时，该参数无效）不填默认为不开启 取值范围：
+        # <li>true：表示开启</li>
+        # <li>false：表示不开启</li>
+        # @type EnableRemoteLoginFlag: Boolean
+        # @param EnableKerberosFlag: 是否开启Kerberos认证。默认不开启 取值范围：
+        # <li>true：表示开启</li>
+        # <li>false：表示不开启</li>
+        # @type EnableKerberosFlag: Boolean
+        # @param CustomConf: [自定义软件配置](https://cloud.tencent.com/document/product/589/35655?from_cn_redirect=1)
+        # @type CustomConf: String
+        # @param Tags: 标签描述列表。通过指定该参数可以同时绑定标签到相应的实例。
+        # @type Tags: Array
+        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前只支持指定一个。
+        # 该参数可以通过调用 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810)的返回值中的DisasterRecoverGroupId字段来获取。
+        # @type DisasterRecoverGroupIds: Array
+        # @param EnableCbsEncryptFlag: 是否开启集群维度CBS加密。默认不加密 取值范围：
+        # <li>true：表示加密</li>
+        # <li>false：表示不加密</li>
+        # @type EnableCbsEncryptFlag: Boolean
+        # @param MetaDBInfo: MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填
+        # 当MetaType选择EMR_EXIT_META时，填写UnifyMetaInstanceId
+        # 当MetaType选择USER_CUSTOM_META时，填写MetaDataJdbcUrl MetaDataUser MetaDataPass
+        # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaDBInfo`
+        # @param DependService: 共享组件信息
+        # @type DependService: Array
+        # @param ZoneResourceConfiguration: 节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。
+        # @type ZoneResourceConfiguration: Array
+
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration
+        
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil)
+          @ProductVersion = productversion
+          @EnableSupportHAFlag = enablesupporthaflag
+          @InstanceName = instancename
+          @InstanceChargeType = instancechargetype
+          @LoginSettings = loginsettings
+          @SceneSoftwareConfig = scenesoftwareconfig
+          @InstanceChargePrepaid = instancechargeprepaid
+          @SecurityGroupIds = securitygroupids
+          @ScriptBootstrapActionConfig = scriptbootstrapactionconfig
+          @ClientToken = clienttoken
+          @NeedMasterWan = needmasterwan
+          @EnableRemoteLoginFlag = enableremoteloginflag
+          @EnableKerberosFlag = enablekerberosflag
+          @CustomConf = customconf
+          @Tags = tags
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @EnableCbsEncryptFlag = enablecbsencryptflag
+          @MetaDBInfo = metadbinfo
+          @DependService = dependservice
+          @ZoneResourceConfiguration = zoneresourceconfiguration
+        end
+
+        def deserialize(params)
+          @ProductVersion = params['ProductVersion']
+          @EnableSupportHAFlag = params['EnableSupportHAFlag']
+          @InstanceName = params['InstanceName']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          unless params['SceneSoftwareConfig'].nil?
+            @SceneSoftwareConfig = SceneSoftwareConfig.new
+            @SceneSoftwareConfig.deserialize(params['SceneSoftwareConfig'])
+          end
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['ScriptBootstrapActionConfig'].nil?
+            @ScriptBootstrapActionConfig = []
+            params['ScriptBootstrapActionConfig'].each do |i|
+              scriptbootstrapactionconfig_tmp = ScriptBootstrapActionConfig.new
+              scriptbootstrapactionconfig_tmp.deserialize(i)
+              @ScriptBootstrapActionConfig << scriptbootstrapactionconfig_tmp
+            end
+          end
+          @ClientToken = params['ClientToken']
+          @NeedMasterWan = params['NeedMasterWan']
+          @EnableRemoteLoginFlag = params['EnableRemoteLoginFlag']
+          @EnableKerberosFlag = params['EnableKerberosFlag']
+          @CustomConf = params['CustomConf']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @EnableCbsEncryptFlag = params['EnableCbsEncryptFlag']
+          unless params['MetaDBInfo'].nil?
+            @MetaDBInfo = CustomMetaDBInfo.new
+            @MetaDBInfo.deserialize(params['MetaDBInfo'])
+          end
+          unless params['DependService'].nil?
+            @DependService = []
+            params['DependService'].each do |i|
+              dependservice_tmp = DependService.new
+              dependservice_tmp.deserialize(i)
+              @DependService << dependservice_tmp
+            end
+          end
+          unless params['ZoneResourceConfiguration'].nil?
+            @ZoneResourceConfiguration = []
+            params['ZoneResourceConfiguration'].each do |i|
+              zoneresourceconfiguration_tmp = ZoneResourceConfiguration.new
+              zoneresourceconfiguration_tmp.deserialize(i)
+              @ZoneResourceConfiguration << zoneresourceconfiguration_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCluster返回参数结构体
+      class CreateClusterResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
@@ -904,6 +1140,41 @@ module TencentCloud
         end
       end
 
+      # 用户Hive-MetaDB信息
+      class CustomMetaDBInfo < TencentCloud::Common::AbstractModel
+        # @param MetaDataJdbcUrl: 自定义MetaDB的JDBC连接，示例: jdbc:mysql://10.10.10.10:3306/dbname
+        # @type MetaDataJdbcUrl: String
+        # @param MetaDataUser: 自定义MetaDB用户名
+        # @type MetaDataUser: String
+        # @param MetaDataPass: 自定义MetaDB密码
+        # @type MetaDataPass: String
+        # @param MetaType: hive共享元数据库类型。取值范围：
+        # <li>EMR_NEW_META：表示集群默认创建</li>
+        # <li>EMR_EXIT_META：表示集群使用指定EMR-MetaDB。</li>
+        # <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        # @type MetaType: String
+        # @param UnifyMetaInstanceId: EMR-MetaDB实例
+        # @type UnifyMetaInstanceId: String
+
+        attr_accessor :MetaDataJdbcUrl, :MetaDataUser, :MetaDataPass, :MetaType, :UnifyMetaInstanceId
+        
+        def initialize(metadatajdbcurl=nil, metadatauser=nil, metadatapass=nil, metatype=nil, unifymetainstanceid=nil)
+          @MetaDataJdbcUrl = metadatajdbcurl
+          @MetaDataUser = metadatauser
+          @MetaDataPass = metadatapass
+          @MetaType = metatype
+          @UnifyMetaInstanceId = unifymetainstanceid
+        end
+
+        def deserialize(params)
+          @MetaDataJdbcUrl = params['MetaDataJdbcUrl']
+          @MetaDataUser = params['MetaDataUser']
+          @MetaDataPass = params['MetaDataPass']
+          @MetaType = params['MetaType']
+          @UnifyMetaInstanceId = params['UnifyMetaInstanceId']
+        end
+      end
+
       # 用户自建Hive-MetaDB信息
       class CustomMetaInfo < TencentCloud::Common::AbstractModel
         # @param MetaDataJdbcUrl: 自定义MetaDB的JDBC连接，请以 jdbc:mysql:// 开头
@@ -981,6 +1252,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 共用组件信息
+      class DependService < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 共用组件名
+        # @type ServiceName: String
+        # @param InstanceId: 共用组件集群
+        # @type InstanceId: String
+
+        attr_accessor :ServiceName, :InstanceId
+        
+        def initialize(servicename=nil, instanceid=nil)
+          @ServiceName = servicename
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -1685,6 +1976,48 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 节点磁盘信息
+      class DiskSpecInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 磁盘数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param DiskType: 系统盘类型 取值范围：
+        # <li>CLOUD_SSD：表示云SSD。</li>
+        # <li>CLOUD_PREMIUM：表示高效云盘。</li>
+        # <li>CLOUD_BASIC：表示云硬盘。</li>
+        # <li>LOCAL_BASIC：表示本地盘。</li>
+        # <li>LOCAL_SSD：表示本地SSD。</li>
+
+        # 数据盘类型 取值范围：
+        # <li>CLOUD_SSD：表示云SSD。</li>
+        # <li>CLOUD_PREMIUM：表示高效云盘。</li>
+        # <li>CLOUD_BASIC：表示云硬盘。</li>
+        # <li>LOCAL_BASIC：表示本地盘。</li>
+        # <li>LOCAL_SSD：表示本地SSD。</li>
+        # <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
+        # <li>CLOUD_THROUGHPUT：表示吞吐型云硬盘。</li>
+        # <li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskSize: 数据容量，单位为GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+
+        attr_accessor :Count, :DiskType, :DiskSize
+        
+        def initialize(count=nil, disktype=nil, disksize=nil)
+          @Count = count
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
         end
@@ -3392,6 +3725,71 @@ module TencentCloud
       end
 
       # 资源详情
+      class NodeResourceSpec < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 规格类型，如S2.MEDIUM8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param SystemDisk: 系统盘，系统盘个数不超过1块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDisk: Array
+        # @param Tags: 需要绑定的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param DataDisk: 云数据盘，云数据盘总个数不超过15块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisk: Array
+        # @param LocalDataDisk: 本地数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDataDisk: Array
+
+        attr_accessor :InstanceType, :SystemDisk, :Tags, :DataDisk, :LocalDataDisk
+        
+        def initialize(instancetype=nil, systemdisk=nil, tags=nil, datadisk=nil, localdatadisk=nil)
+          @InstanceType = instancetype
+          @SystemDisk = systemdisk
+          @Tags = tags
+          @DataDisk = datadisk
+          @LocalDataDisk = localdatadisk
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = []
+            params['SystemDisk'].each do |i|
+              diskspecinfo_tmp = DiskSpecInfo.new
+              diskspecinfo_tmp.deserialize(i)
+              @SystemDisk << diskspecinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['DataDisk'].nil?
+            @DataDisk = []
+            params['DataDisk'].each do |i|
+              diskspecinfo_tmp = DiskSpecInfo.new
+              diskspecinfo_tmp.deserialize(i)
+              @DataDisk << diskspecinfo_tmp
+            end
+          end
+          unless params['LocalDataDisk'].nil?
+            @LocalDataDisk = []
+            params['LocalDataDisk'].each do |i|
+              diskspecinfo_tmp = DiskSpecInfo.new
+              diskspecinfo_tmp.deserialize(i)
+              @LocalDataDisk << diskspecinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 资源详情
       class OutterResource < TencentCloud::Common::AbstractModel
         # @param Spec: 规格
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3492,6 +3890,214 @@ module TencentCloud
         def deserialize(params)
           @Zone = params['Zone']
           @ProjectId = params['ProjectId']
+        end
+      end
+
+      # POD自定义权限和自定义参数
+      class PodNewParameter < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TKE或EKS集群ID
+        # @type InstanceId: String
+        # @param Config: 自定义权限
+        # 如：
+        # {
+        #   "apiVersion": "v1",
+        #   "clusters": [
+        #     {
+        #       "cluster": {
+        #         "certificate-authority-data": "xxxxxx==",
+        #         "server": "https://xxxxx.com"
+        #       },
+        #       "name": "cls-xxxxx"
+        #     }
+        #   ],
+        #   "contexts": [
+        #     {
+        #       "context": {
+        #         "cluster": "cls-xxxxx",
+        #         "user": "100014xxxxx"
+        #       },
+        #       "name": "cls-a44yhcxxxxxxxxxx"
+        #     }
+        #   ],
+        #   "current-context": "cls-a4xxxx-context-default",
+        #   "kind": "Config",
+        #   "preferences": {},
+        #   "users": [
+        #     {
+        #       "name": "100014xxxxx",
+        #       "user": {
+        #         "client-certificate-data": "xxxxxx",
+        #         "client-key-data": "xxxxxx"
+        #       }
+        #     }
+        #   ]
+        # }
+        # @type Config: String
+        # @param Parameter: 自定义参数
+        # 如：
+        # {
+        #     "apiVersion": "apps/v1",
+        #     "kind": "Deployment",
+        #     "metadata": {
+        #       "name": "test-deployment",
+        #       "labels": {
+        #         "app": "test"
+        #       }
+        #     },
+        #     "spec": {
+        #       "replicas": 3,
+        #       "selector": {
+        #         "matchLabels": {
+        #           "app": "test-app"
+        #         }
+        #       },
+        #       "template": {
+        #         "metadata": {
+        #           "annotations": {
+        #             "your-organization.com/department-v1": "test-example-v1",
+        #             "your-organization.com/department-v2": "test-example-v2"
+        #           },
+        #           "labels": {
+        #             "app": "test-app",
+        #             "environment": "production"
+        #           }
+        #         },
+        #         "spec": {
+        #           "nodeSelector": {
+        #             "your-organization/node-test": "test-node"
+        #           },
+        #           "containers": [
+        #             {
+        #               "name": "nginx",
+        #               "image": "nginx:1.14.2",
+        #               "ports": [
+        #                 {
+        #                   "containerPort": 80
+        #                 }
+        #               ]
+        #             }
+        #           ],
+        #           "affinity": {
+        #             "nodeAffinity": {
+        #               "requiredDuringSchedulingIgnoredDuringExecution": {
+        #                 "nodeSelectorTerms": [
+        #                   {
+        #                     "matchExpressions": [
+        #                       {
+        #                         "key": "disk-type",
+        #                         "operator": "In",
+        #                         "values": [
+        #                           "ssd",
+        #                           "sas"
+        #                         ]
+        #                       },
+        #                       {
+        #                         "key": "cpu-num",
+        #                         "operator": "Gt",
+        #                         "values": [
+        #                           "6"
+        #                         ]
+        #                       }
+        #                     ]
+        #                   }
+        #                 ]
+        #               }
+        #             }
+        #           }
+        #         }
+        #       }
+        #     }
+        #   }
+        # @type Parameter: String
+
+        attr_accessor :InstanceId, :Config, :Parameter
+        
+        def initialize(instanceid=nil, config=nil, parameter=nil)
+          @InstanceId = instanceid
+          @Config = config
+          @Parameter = parameter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Config = params['Config']
+          @Parameter = params['Parameter']
+        end
+      end
+
+      # 扩容容器资源时的资源描述
+      class PodNewSpec < TencentCloud::Common::AbstractModel
+        # @param ResourceProviderIdentifier: 外部资源提供者的标识符，例如"cls-a1cd23fa"。
+        # @type ResourceProviderIdentifier: String
+        # @param ResourceProviderType: 外部资源提供者类型，例如"tke",当前仅支持"tke"。
+        # @type ResourceProviderType: String
+        # @param NodeFlag: 资源的用途，即节点类型，当前仅支持"TASK"。
+        # @type NodeFlag: String
+        # @param Cpu: CPU核数。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位为GB。
+        # @type Memory: Integer
+        # @param CpuType: Eks集群-CPU类型，当前支持"intel"和"amd"
+        # @type CpuType: String
+        # @param PodVolumes: Pod节点数据目录挂载信息。
+        # @type PodVolumes: Array
+        # @param EnableDynamicSpecFlag: 是否浮动规格，默认否
+        # <li>true：代表是</li>
+        # <li>false：代表否</li>
+        # @type EnableDynamicSpecFlag: Boolean
+        # @param DynamicPodSpec: 浮动规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicPodSpec: :class:`Tencentcloud::Emr.v20190103.models.DynamicPodSpec`
+        # @param VpcId: 代表vpc网络唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 代表vpc子网唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param PodName: pod name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+
+        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeFlag, :Cpu, :Memory, :CpuType, :PodVolumes, :EnableDynamicSpecFlag, :DynamicPodSpec, :VpcId, :SubnetId, :PodName
+        
+        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodeflag=nil, cpu=nil, memory=nil, cputype=nil, podvolumes=nil, enabledynamicspecflag=nil, dynamicpodspec=nil, vpcid=nil, subnetid=nil, podname=nil)
+          @ResourceProviderIdentifier = resourceprovideridentifier
+          @ResourceProviderType = resourceprovidertype
+          @NodeFlag = nodeflag
+          @Cpu = cpu
+          @Memory = memory
+          @CpuType = cputype
+          @PodVolumes = podvolumes
+          @EnableDynamicSpecFlag = enabledynamicspecflag
+          @DynamicPodSpec = dynamicpodspec
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @PodName = podname
+        end
+
+        def deserialize(params)
+          @ResourceProviderIdentifier = params['ResourceProviderIdentifier']
+          @ResourceProviderType = params['ResourceProviderType']
+          @NodeFlag = params['NodeFlag']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @CpuType = params['CpuType']
+          unless params['PodVolumes'].nil?
+            @PodVolumes = []
+            params['PodVolumes'].each do |i|
+              podvolume_tmp = PodVolume.new
+              podvolume_tmp.deserialize(i)
+              @PodVolumes << podvolume_tmp
+            end
+          end
+          @EnableDynamicSpecFlag = params['EnableDynamicSpecFlag']
+          unless params['DynamicPodSpec'].nil?
+            @DynamicPodSpec = DynamicPodSpec.new
+            @DynamicPodSpec.deserialize(params['DynamicPodSpec'])
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @PodName = params['PodName']
         end
       end
 
@@ -3730,6 +4336,32 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @PodName = params['PodName']
+        end
+      end
+
+      # Pod相关信息
+      class PodSpecInfo < TencentCloud::Common::AbstractModel
+        # @param PodSpec: 使用Pod资源扩容时，指定的Pod规格以及来源等信息
+        # @type PodSpec: :class:`Tencentcloud::Emr.v20190103.models.PodNewSpec`
+        # @param PodParameter: POD自定义权限和自定义参数
+        # @type PodParameter: :class:`Tencentcloud::Emr.v20190103.models.PodNewParameter`
+
+        attr_accessor :PodSpec, :PodParameter
+        
+        def initialize(podspec=nil, podparameter=nil)
+          @PodSpec = podspec
+          @PodParameter = podparameter
+        end
+
+        def deserialize(params)
+          unless params['PodSpec'].nil?
+            @PodSpec = PodNewSpec.new
+            @PodSpec.deserialize(params['PodSpec'])
+          end
+          unless params['PodParameter'].nil?
+            @PodParameter = PodNewParameter.new
+            @PodParameter.deserialize(params['PodParameter'])
+          end
         end
       end
 
@@ -4276,6 +4908,156 @@ module TencentCloud
         end
       end
 
+      # ScaleOutCluster请求参数结构体
+      class ScaleOutClusterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: 节点计费模式。取值范围：
+        # <li>PREPAID：预付费，即包年包月。</li>
+        # <li>POSTPAID_BY_HOUR：按小时后付费。</li>
+        # <li>SPOTPAID：竞价付费（仅支持TASK节点）。</li>
+        # @type InstanceChargeType: String
+        # @param InstanceId: 集群实例ID。
+        # @type InstanceId: String
+        # @param ScaleOutNodeConfig: 扩容节点类型以及数量
+        # @type ScaleOutNodeConfig: :class:`Tencentcloud::Emr.v20190103.models.ScaleOutNodeConfig`
+        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-751a-41b6-aad6-fae36063280
+        # @type ClientToken: String
+        # @param InstanceChargePrepaid: 即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
+        # @param ScriptBootstrapActionConfig: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
+        # @type ScriptBootstrapActionConfig: Array
+        # @param SoftDeployInfo: 扩容部署服务，新增节点将默认继承当前节点类型中所部署服务，部署服务含默认可选服务，该参数仅支持可选服务填写，如：存量task节点已部署HDFS、YARN、impala；使用api扩容task节不部署impala时，此参数仅填写HDFS、YARN
+        # @type SoftDeployInfo: Array
+        # @param ServiceNodeInfo: 部署进程，默认部署扩容服务的全部进程，支持修改部署进程，如：当前task节点部署服务为：HDFS、YARN、impala，默认部署服务为：DataNode,NodeManager,ImpalaServer，若用户需修改部署进程信息，此参数信息可填写：	DataNode,NodeManager,ImpalaServerCoordinator或DataNode,NodeManager,ImpalaServerExecutor
+        # @type ServiceNodeInfo: Array
+        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前只支持指定一个。
+        # 该参数可以通过调用 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810)的返回值中的DisasterRecoverGroupId字段来获取。
+        # @type DisasterRecoverGroupIds: Array
+        # @param Tags: 扩容节点绑定标签列表。
+        # @type Tags: Array
+        # @param HardwareSourceType: 扩容所选资源类型，可选范围为"host","pod"，host为普通的CVM资源，Pod为TKE集群或EKS集群提供的资源
+        # @type HardwareSourceType: String
+        # @param PodSpecInfo: Pod相关资源信息
+        # @type PodSpecInfo: :class:`Tencentcloud::Emr.v20190103.models.PodSpecInfo`
+        # @param ClickHouseClusterName: 使用clickhouse集群扩容时，选择的机器分组名称
+        # @type ClickHouseClusterName: String
+        # @param ClickHouseClusterType: 使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组
+        # @type ClickHouseClusterType: String
+        # @param YarnNodeLabel: 扩容指定 Yarn Node Label
+        # @type YarnNodeLabel: String
+        # @param EnableStartServiceFlag: 扩容后是否启动服务，默认取值否
+        # <li>true：是</li>
+        # <li>false：否</li>
+        # @type EnableStartServiceFlag: Boolean
+        # @param ResourceSpec: 规格设置
+        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
+        # @param Zone: 实例所属的可用区，例如ap-guangzhou-1。该参数也可以通过调用[DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
+        # @type Zone: String
+        # @param SubnetId: 子网，默认是集群创建时的子网
+        # @type SubnetId: String
+
+        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId
+        
+        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil)
+          @InstanceChargeType = instancechargetype
+          @InstanceId = instanceid
+          @ScaleOutNodeConfig = scaleoutnodeconfig
+          @ClientToken = clienttoken
+          @InstanceChargePrepaid = instancechargeprepaid
+          @ScriptBootstrapActionConfig = scriptbootstrapactionconfig
+          @SoftDeployInfo = softdeployinfo
+          @ServiceNodeInfo = servicenodeinfo
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @Tags = tags
+          @HardwareSourceType = hardwaresourcetype
+          @PodSpecInfo = podspecinfo
+          @ClickHouseClusterName = clickhouseclustername
+          @ClickHouseClusterType = clickhouseclustertype
+          @YarnNodeLabel = yarnnodelabel
+          @EnableStartServiceFlag = enablestartserviceflag
+          @ResourceSpec = resourcespec
+          @Zone = zone
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          @InstanceId = params['InstanceId']
+          unless params['ScaleOutNodeConfig'].nil?
+            @ScaleOutNodeConfig = ScaleOutNodeConfig.new
+            @ScaleOutNodeConfig.deserialize(params['ScaleOutNodeConfig'])
+          end
+          @ClientToken = params['ClientToken']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['ScriptBootstrapActionConfig'].nil?
+            @ScriptBootstrapActionConfig = []
+            params['ScriptBootstrapActionConfig'].each do |i|
+              scriptbootstrapactionconfig_tmp = ScriptBootstrapActionConfig.new
+              scriptbootstrapactionconfig_tmp.deserialize(i)
+              @ScriptBootstrapActionConfig << scriptbootstrapactionconfig_tmp
+            end
+          end
+          @SoftDeployInfo = params['SoftDeployInfo']
+          @ServiceNodeInfo = params['ServiceNodeInfo']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @HardwareSourceType = params['HardwareSourceType']
+          unless params['PodSpecInfo'].nil?
+            @PodSpecInfo = PodSpecInfo.new
+            @PodSpecInfo.deserialize(params['PodSpecInfo'])
+          end
+          @ClickHouseClusterName = params['ClickHouseClusterName']
+          @ClickHouseClusterType = params['ClickHouseClusterType']
+          @YarnNodeLabel = params['YarnNodeLabel']
+          @EnableStartServiceFlag = params['EnableStartServiceFlag']
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = NodeResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+          @Zone = params['Zone']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # ScaleOutCluster返回参数结构体
+      class ScaleOutClusterResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ClientToken: 客户端Token。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientToken: String
+        # @param FlowId: 扩容流程ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :ClientToken, :FlowId, :RequestId
+        
+        def initialize(instanceid=nil, clienttoken=nil, flowid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @ClientToken = clienttoken
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientToken = params['ClientToken']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScaleOutInstance请求参数结构体
       class ScaleOutInstanceRequest < TencentCloud::Common::AbstractModel
         # @param TimeUnit: 扩容的时间单位。取值范围：
@@ -4460,6 +5242,87 @@ module TencentCloud
           @FlowId = params['FlowId']
           @BillId = params['BillId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 扩容节点类型以及数量
+      class ScaleOutNodeConfig < TencentCloud::Common::AbstractModel
+        # @param NodeFlag: 扩容节点类型取值范围：
+        #   <li>MASTER</li>
+        #   <li>TASK</li>
+        #   <li>CORE</li>
+        #   <li>ROUTER</li>
+        # @type NodeFlag: String
+        # @param NodeCount: 扩容节点数量
+        # @type NodeCount: Integer
+
+        attr_accessor :NodeFlag, :NodeCount
+        
+        def initialize(nodeflag=nil, nodecount=nil)
+          @NodeFlag = nodeflag
+          @NodeCount = nodecount
+        end
+
+        def deserialize(params)
+          @NodeFlag = params['NodeFlag']
+          @NodeCount = params['NodeCount']
+        end
+      end
+
+      # 集群应用场景以及支持部署组件信息
+      class SceneSoftwareConfig < TencentCloud::Common::AbstractModel
+        # @param Software: 部署的组件列表。不同的EMR产品版本ProductVersion 对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
+        # 填写实例值：hive、flink。
+        # @type Software: Array
+        # @param SceneName: 默认Hadoop-Default,[场景查询](https://cloud.tencent.com/document/product/589/14624)场景化取值范围：
+        # Hadoop-Kudu
+        # Hadoop-Zookeeper
+        # Hadoop-Presto
+        # Hadoop-Hbase
+        # Hadoop-Default
+        # @type SceneName: String
+
+        attr_accessor :Software, :SceneName
+        
+        def initialize(software=nil, scenename=nil)
+          @Software = software
+          @SceneName = scenename
+        end
+
+        def deserialize(params)
+          @Software = params['Software']
+          @SceneName = params['SceneName']
+        end
+      end
+
+      # 添加引导操作
+      class ScriptBootstrapActionConfig < TencentCloud::Common::AbstractModel
+        # @param CosFileURI: 脚本的cos地址，参照格式：https://beijing-111111.cos.ap-beijing.myqcloud.com/data/test.sh查询cos存储桶列表：[存储桶列表](https://console.cloud.tencent.com/cos/bucket)
+        # @type CosFileURI: String
+        # @param ExecutionMoment: 引导脚步执行时机范围
+        # <li>resourceAfter：节点初始化后</li>
+        # <li>clusterAfter：集群启动后</li>
+        # <li>clusterBefore：集群启动前</li>
+        # @type ExecutionMoment: String
+        # @param Args: 执行脚本参数，参数格式请遵循标准Shell规范
+        # @type Args: Array
+        # @param CosFileName: 脚本文件名
+        # @type CosFileName: String
+
+        attr_accessor :CosFileURI, :ExecutionMoment, :Args, :CosFileName
+        
+        def initialize(cosfileuri=nil, executionmoment=nil, args=nil, cosfilename=nil)
+          @CosFileURI = cosfileuri
+          @ExecutionMoment = executionmoment
+          @Args = args
+          @CosFileName = cosfilename
+        end
+
+        def deserialize(params)
+          @CosFileURI = params['CosFileURI']
+          @ExecutionMoment = params['ExecutionMoment']
+          @Args = params['Args']
+          @CosFileName = params['CosFileName']
         end
       end
 
@@ -4861,6 +5724,70 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # VPC 参数
+      class VirtualPrivateCloud < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: Subnet ID
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+        
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 可用区配置信息
+      class ZoneResourceConfiguration < TencentCloud::Common::AbstractModel
+        # @param VirtualPrivateCloud: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPrivateCloud: :class:`Tencentcloud::Emr.v20190103.models.VirtualPrivateCloud`
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
+        # @param AllNodeResourceSpec: 所有节点资源的规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllNodeResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.AllNodeResourceSpec`
+        # @param ZoneTag: 如果是单可用区，ZoneTag可以不用填， 如果是双AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，如果是三AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，第三个可用区ZoneTag选择third-party，取值范围：
+        #   <li>master</li>
+        #   <li>standby</li>
+        #   <li>third-party</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneTag: String
+
+        attr_accessor :VirtualPrivateCloud, :Placement, :AllNodeResourceSpec, :ZoneTag
+        
+        def initialize(virtualprivatecloud=nil, placement=nil, allnoderesourcespec=nil, zonetag=nil)
+          @VirtualPrivateCloud = virtualprivatecloud
+          @Placement = placement
+          @AllNodeResourceSpec = allnoderesourcespec
+          @ZoneTag = zonetag
+        end
+
+        def deserialize(params)
+          unless params['VirtualPrivateCloud'].nil?
+            @VirtualPrivateCloud = VirtualPrivateCloud.new
+            @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['AllNodeResourceSpec'].nil?
+            @AllNodeResourceSpec = AllNodeResourceSpec.new
+            @AllNodeResourceSpec.deserialize(params['AllNodeResourceSpec'])
+          end
+          @ZoneTag = params['ZoneTag']
         end
       end
 

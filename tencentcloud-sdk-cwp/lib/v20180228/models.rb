@@ -3701,12 +3701,14 @@ module TencentCloud
         # @param AutoRenewFlag: 是否自动续费, 默认不自动续费.
         # 该参数仅包年包月生效
         # @type AutoRenewFlag: Boolean
-        # @param AutoProtectOpenConfig: 自动防护授权配置值, 不空则表示开启
+        # @param AutoProtectOpenConfig: 该字段作废
         # @type AutoProtectOpenConfig: String
+        # @param ModifyConfig: 变配参数
+        # @type ModifyConfig: :class:`Tencentcloud::Cwp.v20180228.models.OrderModifyObject`
 
-        attr_accessor :Tags, :LicenseType, :LicenseNum, :RegionId, :ProjectId, :TimeSpan, :AutoRenewFlag, :AutoProtectOpenConfig
+        attr_accessor :Tags, :LicenseType, :LicenseNum, :RegionId, :ProjectId, :TimeSpan, :AutoRenewFlag, :AutoProtectOpenConfig, :ModifyConfig
         
-        def initialize(tags=nil, licensetype=nil, licensenum=nil, regionid=nil, projectid=nil, timespan=nil, autorenewflag=nil, autoprotectopenconfig=nil)
+        def initialize(tags=nil, licensetype=nil, licensenum=nil, regionid=nil, projectid=nil, timespan=nil, autorenewflag=nil, autoprotectopenconfig=nil, modifyconfig=nil)
           @Tags = tags
           @LicenseType = licensetype
           @LicenseNum = licensenum
@@ -3715,6 +3717,7 @@ module TencentCloud
           @TimeSpan = timespan
           @AutoRenewFlag = autorenewflag
           @AutoProtectOpenConfig = autoprotectopenconfig
+          @ModifyConfig = modifyconfig
         end
 
         def deserialize(params)
@@ -3733,6 +3736,10 @@ module TencentCloud
           @TimeSpan = params['TimeSpan']
           @AutoRenewFlag = params['AutoRenewFlag']
           @AutoProtectOpenConfig = params['AutoProtectOpenConfig']
+          unless params['ModifyConfig'].nil?
+            @ModifyConfig = OrderModifyObject.new
+            @ModifyConfig.deserialize(params['ModifyConfig'])
+          end
         end
       end
 
@@ -9929,12 +9936,16 @@ module TencentCloud
         # @type CwpVersionLicenseCnt: Integer
         # @param AvailableLHLicenseCnt: 可用惠普版授权数
         # @type AvailableLHLicenseCnt: Integer
+        # @param AutoRepurchaseSwitch: 自动加购开关, true 开启, false 关闭
+        # @type AutoRepurchaseSwitch: Boolean
+        # @param AutoRepurchaseRenewSwitch: 自动加购订单是否自动续费 ,true 开启, false 关闭
+        # @type AutoRepurchaseRenewSwitch: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :RequestId
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :RequestId
         
-        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, requestid=nil)
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, requestid=nil)
           @LicenseCnt = licensecnt
           @AvailableLicenseCnt = availablelicensecnt
           @AvailableProVersionLicenseCnt = availableproversionlicensecnt
@@ -9950,6 +9961,8 @@ module TencentCloud
           @ProVersionLicenseCnt = proversionlicensecnt
           @CwpVersionLicenseCnt = cwpversionlicensecnt
           @AvailableLHLicenseCnt = availablelhlicensecnt
+          @AutoRepurchaseSwitch = autorepurchaseswitch
+          @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
           @RequestId = requestid
         end
 
@@ -9969,6 +9982,8 @@ module TencentCloud
           @ProVersionLicenseCnt = params['ProVersionLicenseCnt']
           @CwpVersionLicenseCnt = params['CwpVersionLicenseCnt']
           @AvailableLHLicenseCnt = params['AvailableLHLicenseCnt']
+          @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
+          @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -17014,15 +17029,23 @@ module TencentCloud
         # <li>CLOSE：关闭</li>
         # <li>OPEN：打开</li>
         # @type Status: String
+        # @param AutoRepurchaseSwitch: 自动加购/扩容授权开关,默认 1, 0关闭, 1开启
+        # @type AutoRepurchaseSwitch: Integer
+        # @param AutoRepurchaseRenewSwitch: 自动加购的订单是否自动续费,默认0 ,0关闭, 1开启
+        # @type AutoRepurchaseRenewSwitch: Integer
 
-        attr_accessor :Status
+        attr_accessor :Status, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch
         
-        def initialize(status=nil)
+        def initialize(status=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil)
           @Status = status
+          @AutoRepurchaseSwitch = autorepurchaseswitch
+          @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
+          @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
         end
       end
 
@@ -17645,6 +17668,30 @@ module TencentCloud
         def deserialize(params)
           @Port = params['Port']
           @MachineNum = params['MachineNum']
+        end
+      end
+
+      # 订单变配参数对象
+      class OrderModifyObject < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param NewSubProductCode: 新产品标识,这里支持PRO_VERSION 专业版,FLAGSHIP 旗舰版
+        # @type NewSubProductCode: String
+        # @param InquireNum: 扩容/缩容数,变配子产品忽略该参数
+        # @type InquireNum: Integer
+
+        attr_accessor :ResourceId, :NewSubProductCode, :InquireNum
+        
+        def initialize(resourceid=nil, newsubproductcode=nil, inquirenum=nil)
+          @ResourceId = resourceid
+          @NewSubProductCode = newsubproductcode
+          @InquireNum = inquirenum
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @NewSubProductCode = params['NewSubProductCode']
+          @InquireNum = params['InquireNum']
         end
       end
 

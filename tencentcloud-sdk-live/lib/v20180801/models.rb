@@ -434,10 +434,13 @@ module TencentCloud
         # @type PornCensorshipNotifyUrl: String
         # @param CallbackKey: 回调的鉴权 key。
         # @type CallbackKey: String
+        # @param PushExceptionNotifyUrl: 推流异常回调 URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PushExceptionNotifyUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -448,6 +451,7 @@ module TencentCloud
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
+          @PushExceptionNotifyUrl = pushexceptionnotifyurl
         end
 
         def deserialize(params)
@@ -461,6 +465,7 @@ module TencentCloud
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
+          @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
         end
       end
 
@@ -1032,10 +1037,12 @@ module TencentCloud
         # @type CallbackKey: String
         # @param StreamMixNotifyUrl: 参数已弃用。
         # @type StreamMixNotifyUrl: String
+        # @param PushExceptionNotifyUrl: 推流异常回调 URL。
+        # @type PushExceptionNotifyUrl: String
 
-        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl
+        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl
         
-        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil)
+        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil)
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
@@ -1045,6 +1052,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
           @StreamMixNotifyUrl = streammixnotifyurl
+          @PushExceptionNotifyUrl = pushexceptionnotifyurl
         end
 
         def deserialize(params)
@@ -1057,6 +1065,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
           @StreamMixNotifyUrl = params['StreamMixNotifyUrl']
+          @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
         end
       end
 
@@ -7284,10 +7293,12 @@ module TencentCloud
         # @param CallbackKey: 回调 Key，回调 URL 公用，回调签名详见事件消息通知文档。
         # [事件消息通知](/document/product/267/32744)。
         # @type CallbackKey: String
+        # @param PushExceptionNotifyUrl: 推流异常回调 URL。
+        # @type PushExceptionNotifyUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -7297,6 +7308,7 @@ module TencentCloud
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
+          @PushExceptionNotifyUrl = pushexceptionnotifyurl
         end
 
         def deserialize(params)
@@ -7309,6 +7321,7 @@ module TencentCloud
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
+          @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
         end
       end
 

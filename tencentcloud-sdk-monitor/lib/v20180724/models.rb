@@ -1013,7 +1013,7 @@ module TencentCloud
 
       # CleanGrafanaInstance请求参数结构体
       class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1663,11 +1663,11 @@ module TencentCloud
 
       # CreateGrafanaIntegration请求参数结构体
       class CreateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param Kind: 类型
+        # @param Kind: 集成类型，可在实例详情-云产品集成-集成列表查看。例如：tencent-cloud-prometheus
         # @type Kind: String
-        # @param Content: 配置
+        # @param Content: 集成配置
         # @type Content: String
 
         attr_accessor :InstanceId, :Kind, :Content
@@ -1708,9 +1708,9 @@ module TencentCloud
 
       # CreateGrafanaNotificationChannel请求参数结构体
       class CreateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param ChannelName: 渠道名
+        # @param ChannelName: 告警通道名称，例如：test
         # @type ChannelName: String
         # @param OrgId: 默认为1，已废弃，请使用 OrganizationIds
         # @type OrgId: Integer
@@ -2135,9 +2135,9 @@ module TencentCloud
 
       # CreateSSOAccount请求参数结构体
       class CreateSSOAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param UserId: 用户账号ID
+        # @param UserId: 用户账号 ID ，例如：10000000
         # @type UserId: String
         # @param Role: 权限
         # @type Role: Array
@@ -2471,9 +2471,9 @@ module TencentCloud
 
       # DeleteGrafanaIntegration请求参数结构体
       class DeleteGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
-        # @param IntegrationId: 集成 ID
+        # @param IntegrationId: 集成 ID，可在实例详情-云产品集成-集成列表查看。例如：integration-abcd1234
         # @type IntegrationId: String
 
         attr_accessor :InstanceId, :IntegrationId
@@ -2507,9 +2507,9 @@ module TencentCloud
 
       # DeleteGrafanaNotificationChannel请求参数结构体
       class DeleteGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelIDs: 通道 ID 数组
+        # @param ChannelIDs: 通道 ID 数组。例如：nchannel-abcd1234
         # @type ChannelIDs: Array
-        # @param InstanceId: 实例名
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :ChannelIDs, :InstanceId
@@ -2655,9 +2655,9 @@ module TencentCloud
 
       # DeleteSSOAccount请求参数结构体
       class DeleteSSOAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param UserId: 用户账号ID
+        # @param UserId: 用户账号 ID ，例如：10000000
         # @type UserId: String
 
         attr_accessor :InstanceId, :UserId
@@ -4207,7 +4207,7 @@ module TencentCloud
 
       # DescribeDNSConfig请求参数结构体
       class DescribeDNSConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4305,17 +4305,17 @@ module TencentCloud
 
       # DescribeGrafanaChannels请求参数结构体
       class DescribeGrafanaChannelsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 查询数量
         # @type Limit: Integer
-        # @param ChannelName: 渠道名
+        # @param ChannelName: 告警通道名称，例如：test
         # @type ChannelName: String
-        # @param ChannelIds: 渠道 ID
+        # @param ChannelIds: 告警通道 ID，例如：nchannel-abcd1234
         # @type ChannelIds: Array
-        # @param ChannelState: 状态
+        # @param ChannelState: 告警通道状态
         # @type ChannelState: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIds, :ChannelState
@@ -4404,7 +4404,7 @@ module TencentCloud
 
       # DescribeGrafanaEnvironments请求参数结构体
       class DescribeGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：Grafana 实例 ID，例如：grafana-abcdefghGrafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4444,9 +4444,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询数量
         # @type Limit: Integer
-        # @param InstanceIds: 实例 ID 数组
+        # @param InstanceIds: Grafana 实例 ID 数组
         # @type InstanceIds: Array
-        # @param InstanceName: 实例名，支持前缀模糊搜索
+        # @param InstanceName: Grafana 实例名，支持前缀模糊搜索
         # @type InstanceName: String
         # @param InstanceStatus: 查询状态
         # @type InstanceStatus: Array
@@ -4576,17 +4576,17 @@ module TencentCloud
 
       # DescribeGrafanaNotificationChannels请求参数结构体
       class DescribeGrafanaNotificationChannelsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 查询数量
         # @type Limit: Integer
-        # @param ChannelName: 渠道名
+        # @param ChannelName: 告警通道名称，例如：test
         # @type ChannelName: String
-        # @param ChannelIDs: 渠道 ID
+        # @param ChannelIDs: 告警通道 ID，例如：nchannel-abcd1234
         # @type ChannelIDs: Array
-        # @param ChannelState: 状态
+        # @param ChannelState: 告警通道状态
         # @type ChannelState: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIDs, :ChannelState
@@ -7538,7 +7538,7 @@ module TencentCloud
       class InstallPluginsRequest < TencentCloud::Common::AbstractModel
         # @param Plugins: 插件信息
         # @type Plugins: Array
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :Plugins, :InstanceId
@@ -8443,9 +8443,9 @@ module TencentCloud
 
       # ModifyGrafanaInstance请求参数结构体
       class ModifyGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: Grafana 实例名称，例如：test
         # @type InstanceName: String
 
         attr_accessor :InstanceId, :InstanceName
@@ -9619,7 +9619,7 @@ module TencentCloud
 
       # ResumeGrafanaInstance请求参数结构体
       class ResumeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -10339,7 +10339,7 @@ module TencentCloud
 
       # UpdateDNSConfig请求参数结构体
       class UpdateDNSConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
         # @param NameServers: DNS 数组
         # @type NameServers: Array
@@ -10462,7 +10462,7 @@ module TencentCloud
 
       # UpdateGrafanaEnvironments请求参数结构体
       class UpdateGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
         # @param Envs: 环境变量字符串
         # @type Envs: String
@@ -10498,11 +10498,11 @@ module TencentCloud
 
       # UpdateGrafanaIntegration请求参数结构体
       class UpdateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param IntegrationId: 集成 ID
+        # @param IntegrationId: 集成 ID，可在实例详情-云产品集成-集成列表查看。例如：integration-abcd1234
         # @type IntegrationId: String
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
-        # @param Kind: 集成类型
+        # @param Kind: 集成类型，可在实例详情-云产品集成-集成列表查看。例如：tencent-cloud-prometheus
         # @type Kind: String
         # @param Content: 集成内容
         # @type Content: String

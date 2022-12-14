@@ -785,7 +785,7 @@ module TencentCloud
         # @param ResourceName: 资源名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
-        # @param Status: 资源状态
+        # @param Status: 资源状态，1-正常，2-隔离，3-销毁
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Vip: 资源IP
@@ -800,7 +800,7 @@ module TencentCloud
         # @param Model: 资源所属HSM规格
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: String
-        # @param VsmType: 资源类型
+        # @param VsmType: 云加密机类型id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VsmType: Integer
         # @param RegionId: 地域Id

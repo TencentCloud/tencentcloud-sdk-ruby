@@ -1830,46 +1830,6 @@ module TencentCloud
         end
       end
 
-      # CreateClusterNodePoolFromExistingAsg请求参数结构体
-      class CreateClusterNodePoolFromExistingAsgRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param AutoscalingGroupId: 伸缩组ID
-        # @type AutoscalingGroupId: String
-
-        attr_accessor :ClusterId, :AutoscalingGroupId
-        
-        def initialize(clusterid=nil, autoscalinggroupid=nil)
-          @ClusterId = clusterid
-          @AutoscalingGroupId = autoscalinggroupid
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @AutoscalingGroupId = params['AutoscalingGroupId']
-        end
-      end
-
-      # CreateClusterNodePoolFromExistingAsg返回参数结构体
-      class CreateClusterNodePoolFromExistingAsgResponse < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 节点池ID
-        # @type NodePoolId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :NodePoolId, :RequestId
-        
-        def initialize(nodepoolid=nil, requestid=nil)
-          @NodePoolId = nodepoolid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @NodePoolId = params['NodePoolId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateClusterNodePool请求参数结构体
       class CreateClusterNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: cluster id
@@ -2726,10 +2686,17 @@ module TencentCloud
         # @type ImageCacheSize: Integer
         # @param RetentionDays: 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
         # @type RetentionDays: Integer
+        # @param RegistrySkipVerifyList: 指定拉取镜像仓库的镜像时不校验证书。如["harbor.example.com"]。
+        # @type RegistrySkipVerifyList: Array
+        # @param RegistryHttpEndPointList: 指定拉取镜像仓库的镜像时使用 HTTP 协议。如["harbor.example.com"]。
+        # @type RegistryHttpEndPointList: Array
+        # @param ResolveConfig: 自定义制作镜像缓存过程中容器实例的宿主机上的 DNS。如：
+        # "nameserver 4.4.4.4\nnameserver 8.8.8.8"
+        # @type ResolveConfig: String
 
-        attr_accessor :Images, :SubnetId, :VpcId, :ImageCacheName, :SecurityGroupIds, :ImageRegistryCredentials, :ExistedEipId, :AutoCreateEip, :AutoCreateEipAttribute, :ImageCacheSize, :RetentionDays
+        attr_accessor :Images, :SubnetId, :VpcId, :ImageCacheName, :SecurityGroupIds, :ImageRegistryCredentials, :ExistedEipId, :AutoCreateEip, :AutoCreateEipAttribute, :ImageCacheSize, :RetentionDays, :RegistrySkipVerifyList, :RegistryHttpEndPointList, :ResolveConfig
         
-        def initialize(images=nil, subnetid=nil, vpcid=nil, imagecachename=nil, securitygroupids=nil, imageregistrycredentials=nil, existedeipid=nil, autocreateeip=nil, autocreateeipattribute=nil, imagecachesize=nil, retentiondays=nil)
+        def initialize(images=nil, subnetid=nil, vpcid=nil, imagecachename=nil, securitygroupids=nil, imageregistrycredentials=nil, existedeipid=nil, autocreateeip=nil, autocreateeipattribute=nil, imagecachesize=nil, retentiondays=nil, registryskipverifylist=nil, registryhttpendpointlist=nil, resolveconfig=nil)
           @Images = images
           @SubnetId = subnetid
           @VpcId = vpcid
@@ -2741,6 +2708,9 @@ module TencentCloud
           @AutoCreateEipAttribute = autocreateeipattribute
           @ImageCacheSize = imagecachesize
           @RetentionDays = retentiondays
+          @RegistrySkipVerifyList = registryskipverifylist
+          @RegistryHttpEndPointList = registryhttpendpointlist
+          @ResolveConfig = resolveconfig
         end
 
         def deserialize(params)
@@ -2765,6 +2735,9 @@ module TencentCloud
           end
           @ImageCacheSize = params['ImageCacheSize']
           @RetentionDays = params['RetentionDays']
+          @RegistrySkipVerifyList = params['RegistrySkipVerifyList']
+          @RegistryHttpEndPointList = params['RegistryHttpEndPointList']
+          @ResolveConfig = params['ResolveConfig']
         end
       end
 

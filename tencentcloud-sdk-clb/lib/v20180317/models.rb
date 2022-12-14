@@ -1004,10 +1004,13 @@ module TencentCloud
         # @param ClustersVersion: 集群版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClustersVersion: String
+        # @param DisasterRecoveryType: 集群容灾类型，如SINGLE-ZONE，DISASTER-RECOVERY，MUTUAL-DISASTER-RECOVERY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisasterRecoveryType: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone, :ClustersVersion
+        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone, :ClustersVersion, :DisasterRecoveryType
         
-        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil, clustersversion=nil)
+        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil, clustersversion=nil, disasterrecoverytype=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterType = clustertype
@@ -1030,6 +1033,7 @@ module TencentCloud
           @Isp = isp
           @ClustersZone = clusterszone
           @ClustersVersion = clustersversion
+          @DisasterRecoveryType = disasterrecoverytype
         end
 
         def deserialize(params)
@@ -1058,6 +1062,7 @@ module TencentCloud
             @ClustersZone.deserialize(params['ClustersZone'])
           end
           @ClustersVersion = params['ClustersVersion']
+          @DisasterRecoveryType = params['DisasterRecoveryType']
         end
       end
 
@@ -1104,16 +1109,20 @@ module TencentCloud
         # @param Isp: 集群的Isp属性，如："BGP","CMCC","CUCC","CTCC","INTERNAL"。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Isp: String
+        # @param ClustersZone: 集群所在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClustersZone: :class:`Tencentcloud::Clb.v20180317.models.ClustersZone`
 
-        attr_accessor :ClusterId, :Vip, :LoadBalancerId, :Idle, :ClusterName, :Isp
+        attr_accessor :ClusterId, :Vip, :LoadBalancerId, :Idle, :ClusterName, :Isp, :ClustersZone
         
-        def initialize(clusterid=nil, vip=nil, loadbalancerid=nil, idle=nil, clustername=nil, isp=nil)
+        def initialize(clusterid=nil, vip=nil, loadbalancerid=nil, idle=nil, clustername=nil, isp=nil, clusterszone=nil)
           @ClusterId = clusterid
           @Vip = vip
           @LoadBalancerId = loadbalancerid
           @Idle = idle
           @ClusterName = clustername
           @Isp = isp
+          @ClustersZone = clusterszone
         end
 
         def deserialize(params)
@@ -1123,6 +1132,10 @@ module TencentCloud
           @Idle = params['Idle']
           @ClusterName = params['ClusterName']
           @Isp = params['Isp']
+          unless params['ClustersZone'].nil?
+            @ClustersZone = ClustersZone.new
+            @ClustersZone.deserialize(params['ClustersZone'])
+          end
         end
       end
 
@@ -6181,17 +6194,49 @@ module TencentCloud
         # @type Type: Array
         # @param Isp: 运营商信息，如"CMCC", "CUCC", "CTCC", "BGP", "INTERNAL"。
         # @type Isp: String
+        # @param AvailabilitySet: 可用资源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailabilitySet: Array
 
-        attr_accessor :Type, :Isp
+        attr_accessor :Type, :Isp, :AvailabilitySet
         
-        def initialize(type=nil, isp=nil)
+        def initialize(type=nil, isp=nil, availabilityset=nil)
           @Type = type
           @Isp = isp
+          @AvailabilitySet = availabilityset
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Isp = params['Isp']
+          unless params['AvailabilitySet'].nil?
+            @AvailabilitySet = []
+            params['AvailabilitySet'].each do |i|
+              resourceavailability_tmp = ResourceAvailability.new
+              resourceavailability_tmp.deserialize(i)
+              @AvailabilitySet << resourceavailability_tmp
+            end
+          end
+        end
+      end
+
+      # 资源可用性
+      class ResourceAvailability < TencentCloud::Common::AbstractModel
+        # @param Type: 运营商内具体资源信息，如"CMCC", "CUCC", "CTCC", "BGP"。
+        # @type Type: String
+        # @param Availability: 资源可用性，"Available"：可用，"Unavailable"：不可用
+        # @type Availability: String
+
+        attr_accessor :Type, :Availability
+        
+        def initialize(type=nil, availability=nil)
+          @Type = type
+          @Availability = availability
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Availability = params['Availability']
         end
       end
 
@@ -7191,16 +7236,22 @@ module TencentCloud
         # @type ZoneRegion: String
         # @param LocalZone: 可用区是否是LocalZone可用区，如：false
         # @type LocalZone: Boolean
+        # @param ZoneResourceType: 可用区资源的类型，SHARED表示共享资源，EXCLUSIVE表示独占资源。
+        # @type ZoneResourceType: String
+        # @param EdgeZone: 可用区是否是EdgeZone可用区，如：false
+        # @type EdgeZone: Boolean
 
-        attr_accessor :MasterZone, :ResourceSet, :SlaveZone, :IPVersion, :ZoneRegion, :LocalZone
+        attr_accessor :MasterZone, :ResourceSet, :SlaveZone, :IPVersion, :ZoneRegion, :LocalZone, :ZoneResourceType, :EdgeZone
         
-        def initialize(masterzone=nil, resourceset=nil, slavezone=nil, ipversion=nil, zoneregion=nil, localzone=nil)
+        def initialize(masterzone=nil, resourceset=nil, slavezone=nil, ipversion=nil, zoneregion=nil, localzone=nil, zoneresourcetype=nil, edgezone=nil)
           @MasterZone = masterzone
           @ResourceSet = resourceset
           @SlaveZone = slavezone
           @IPVersion = ipversion
           @ZoneRegion = zoneregion
           @LocalZone = localzone
+          @ZoneResourceType = zoneresourcetype
+          @EdgeZone = edgezone
         end
 
         def deserialize(params)
@@ -7217,6 +7268,8 @@ module TencentCloud
           @IPVersion = params['IPVersion']
           @ZoneRegion = params['ZoneRegion']
           @LocalZone = params['LocalZone']
+          @ZoneResourceType = params['ZoneResourceType']
+          @EdgeZone = params['EdgeZone']
         end
       end
 

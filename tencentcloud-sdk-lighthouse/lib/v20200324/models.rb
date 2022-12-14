@@ -3843,14 +3843,18 @@ module TencentCloud
         # @type Discount: Integer
         # @param DiscountPrice: 折后价。
         # @type DiscountPrice: Float
+        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Currency: String
 
-        attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice
+        attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice, :Currency
         
-        def initialize(originalbundleprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+        def initialize(originalbundleprice=nil, originalprice=nil, discount=nil, discountprice=nil, currency=nil)
           @OriginalBundlePrice = originalbundleprice
           @OriginalPrice = originalprice
           @Discount = discount
           @DiscountPrice = discountprice
+          @Currency = currency
         end
 
         def deserialize(params)
@@ -3858,6 +3862,7 @@ module TencentCloud
           @OriginalPrice = params['OriginalPrice']
           @Discount = params['Discount']
           @DiscountPrice = params['DiscountPrice']
+          @Currency = params['Currency']
         end
       end
 
@@ -3869,12 +3874,16 @@ module TencentCloud
         # @param InstancePrice: 询价信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Lighthouse.v20200324.models.InstancePrice`
+        # @param DiscountDetail: 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountDetail: Array
 
-        attr_accessor :InstanceId, :InstancePrice
+        attr_accessor :InstanceId, :InstancePrice, :DiscountDetail
         
-        def initialize(instanceid=nil, instanceprice=nil)
+        def initialize(instanceid=nil, instanceprice=nil, discountdetail=nil)
           @InstanceId = instanceid
           @InstancePrice = instanceprice
+          @DiscountDetail = discountdetail
         end
 
         def deserialize(params)
@@ -3882,6 +3891,14 @@ module TencentCloud
           unless params['InstancePrice'].nil?
             @InstancePrice = InstancePrice.new
             @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['DiscountDetail'].nil?
+            @DiscountDetail = []
+            params['DiscountDetail'].each do |i|
+              discountdetail_tmp = DiscountDetail.new
+              discountdetail_tmp.deserialize(i)
+              @DiscountDetail << discountdetail_tmp
+            end
           end
         end
       end
