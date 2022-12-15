@@ -1277,17 +1277,17 @@ module TencentCloud
         # @param Filters: 过滤条件。支持以下条件：
         # <li>snapshot-id - Array of String - 是否必填：是 - 按快照ID过滤，每个请求最多可指定10个快照ID。
         # @type Filters: Array
-        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
-        # @type BeginTime: String
         # @param EndTime: 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         # @type EndTime: String
+        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
+        # @type BeginTime: String
 
-        attr_accessor :Filters, :BeginTime, :EndTime
+        attr_accessor :Filters, :EndTime, :BeginTime
         
-        def initialize(filters=nil, begintime=nil, endtime=nil)
+        def initialize(filters=nil, endtime=nil, begintime=nil)
           @Filters = filters
-          @BeginTime = begintime
           @EndTime = endtime
+          @BeginTime = begintime
         end
 
         def deserialize(params)
@@ -1299,8 +1299,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @BeginTime = params['BeginTime']
         end
       end
 
@@ -2980,11 +2980,20 @@ module TencentCloud
         end
       end
 
-      # 快照操作日志。
+      # 快照操作日志，已废弃。
       class SnapshotOperationLog < TencentCloud::Common::AbstractModel
+        # @param OperationState: 操作的状态。取值范围：
+        # SUCCESS :表示操作成功
+        # FAILED :表示操作失败
+        # PROCESSING :表示操作中。
+        # @type OperationState: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
         # @param Operator: 操作者的UIN。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
+        # @param SnapshotId: 操作的快照ID。
+        # @type SnapshotId: String
         # @param Operation: 操作类型。取值范围：
         # SNAP_OPERATION_DELETE：删除快照
         # SNAP_OPERATION_ROLLBACK：回滚快照
@@ -2994,35 +3003,26 @@ module TencentCloud
         # ASP_OPERATION_CREATE_SNAP：由定期快照策略创建快照
         # ASP_OPERATION_DELETE_SNAP：由定期快照策略删除快照
         # @type Operation: String
-        # @param SnapshotId: 操作的快照ID。
-        # @type SnapshotId: String
-        # @param OperationState: 操作的状态。取值范围：
-        # SUCCESS :表示操作成功
-        # FAILED :表示操作失败
-        # PROCESSING :表示操作中。
-        # @type OperationState: String
-        # @param StartTime: 开始时间。
-        # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
 
-        attr_accessor :Operator, :Operation, :SnapshotId, :OperationState, :StartTime, :EndTime
+        attr_accessor :OperationState, :StartTime, :Operator, :SnapshotId, :Operation, :EndTime
         
-        def initialize(operator=nil, operation=nil, snapshotid=nil, operationstate=nil, starttime=nil, endtime=nil)
-          @Operator = operator
-          @Operation = operation
-          @SnapshotId = snapshotid
+        def initialize(operationstate=nil, starttime=nil, operator=nil, snapshotid=nil, operation=nil, endtime=nil)
           @OperationState = operationstate
           @StartTime = starttime
+          @Operator = operator
+          @SnapshotId = snapshotid
+          @Operation = operation
           @EndTime = endtime
         end
 
         def deserialize(params)
-          @Operator = params['Operator']
-          @Operation = params['Operation']
-          @SnapshotId = params['SnapshotId']
           @OperationState = params['OperationState']
           @StartTime = params['StartTime']
+          @Operator = params['Operator']
+          @SnapshotId = params['SnapshotId']
+          @Operation = params['Operation']
           @EndTime = params['EndTime']
         end
       end

@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (CreateParameterTemplate) 用于创建参数模板。
+
+        # @param request: Request instance for CreateParameterTemplate.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateParameterTemplateRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateParameterTemplateResponse`
+        def CreateParameterTemplate(request)
+          body = send_request('CreateParameterTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateParameterTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateReadOnlyDBInstance)用于创建只读实例
 
         # @param request: Request instance for CreateReadOnlyDBInstance.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBInstanceNetworkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteParameterTemplate）主要用于删除某个参数模板。
+
+        # @param request: Request instance for DeleteParameterTemplate.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteParameterTemplateRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteParameterTemplateResponse`
+        def DeleteParameterTemplate(request)
+          body = send_request('DeleteParameterTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteParameterTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+
+        # @param request: Request instance for DescribeDBInstanceSecurityGroups.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceSecurityGroupsResponse`
+        def DescribeDBInstanceSecurityGroups(request)
+          body = send_request('DescribeDBInstanceSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
 
         # @param request: Request instance for DescribeDBInstances.
@@ -677,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDefaultParameters）主要用于查询某个数据库版本和引擎支持的所有参数。
+
+        # @param request: Request instance for DescribeDefaultParameters.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDefaultParametersRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDefaultParametersResponse`
+        def DescribeDefaultParameters(request)
+          body = send_request('DescribeDefaultParameters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDefaultParametersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实例的密钥信息列表。
 
         # @param request: Request instance for DescribeEncryptionKeys.
@@ -711,6 +807,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOrdersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeParameterTemplateAttributes）用于查询某个参数模板的具体内容，包括基本信息和参数信息。
+
+        # @param request: Request instance for DescribeParameterTemplateAttributes.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeParameterTemplateAttributesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeParameterTemplateAttributesResponse`
+        def DescribeParameterTemplateAttributes(request)
+          body = send_request('DescribeParameterTemplateAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParameterTemplateAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
+
+        # @param request: Request instance for DescribeParameterTemplates.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeParameterTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeParameterTemplatesResponse`
+        def DescribeParameterTemplates(request)
+          body = send_request('DescribeParameterTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParameterTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1229,6 +1373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBInstanceSecurityGroups）用于修改实例安全组。
+
+        # @param request: Request instance for ModifyDBInstanceSecurityGroups.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSecurityGroupsResponse`
+        def ModifyDBInstanceSecurityGroups(request)
+          body = send_request('ModifyDBInstanceSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
 
         # @param request: Request instance for ModifyDBInstanceSpec.
@@ -1263,6 +1431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstancesProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+
+        # @param request: Request instance for ModifyParameterTemplate.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyParameterTemplateRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyParameterTemplateResponse`
+        def ModifyParameterTemplate(request)
+          body = send_request('ModifyParameterTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyParameterTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -4400,7 +4400,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询k8s api 异常规则中范围列表
+        # 查询k8sapi 异常规则中范围列表
 
         # @param request: Request instance for DescribeK8sApiAbnormalRuleScopeList.
         # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleScopeListRequest`

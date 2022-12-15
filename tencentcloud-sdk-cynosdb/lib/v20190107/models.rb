@@ -954,7 +954,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param AlarmPolicyIds: 告警策略Id数组
         # @type AlarmPolicyIds: Array
-        # @param ClusterParams: 参数数组
+        # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
         # @type ClusterParams: Array
         # @param DealMode: 交易模式，0-下单且支付，1-下单
         # @type DealMode: Integer
@@ -2085,34 +2085,51 @@ module TencentCloud
         # @type AccountNames: Array
         # @param DbType: 数据库类型，取值范围:
         # <li> MYSQL </li>
+        # 该参数已废用
         # @type DbType: String
+        # @param Hosts: 需要过滤的账户列表
+        # @type Hosts: Array
+        # @param Limit: 限制量
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
 
-        attr_accessor :ClusterId, :AccountNames, :DbType
+        attr_accessor :ClusterId, :AccountNames, :DbType, :Hosts, :Limit, :Offset
         
-        def initialize(clusterid=nil, accountnames=nil, dbtype=nil)
+        def initialize(clusterid=nil, accountnames=nil, dbtype=nil, hosts=nil, limit=nil, offset=nil)
           @ClusterId = clusterid
           @AccountNames = accountnames
           @DbType = dbtype
+          @Hosts = hosts
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @AccountNames = params['AccountNames']
           @DbType = params['DbType']
+          @Hosts = params['Hosts']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
       # DescribeAccounts返回参数结构体
       class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
         # @param AccountSet: 数据库账号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountSet: Array
+        # @param TotalCount: 账号总数量
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccountSet, :RequestId
+        attr_accessor :AccountSet, :TotalCount, :RequestId
         
-        def initialize(accountset=nil, requestid=nil)
+        def initialize(accountset=nil, totalcount=nil, requestid=nil)
           @AccountSet = accountset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -2125,6 +2142,7 @@ module TencentCloud
               @AccountSet << account_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2391,10 +2409,12 @@ module TencentCloud
         # @type FileNames: Array
         # @param BackupNames: 备份备注名，模糊查询
         # @type BackupNames: Array
+        # @param SnapshotIdList: 快照备份Id列表
+        # @type SnapshotIdList: Array
 
-        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames
+        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames, :SnapshotIdList
         
-        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil, snapshotidlist=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
@@ -2407,6 +2427,7 @@ module TencentCloud
           @EndTime = endtime
           @FileNames = filenames
           @BackupNames = backupnames
+          @SnapshotIdList = snapshotidlist
         end
 
         def deserialize(params)
@@ -2422,6 +2443,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @FileNames = params['FileNames']
           @BackupNames = params['BackupNames']
+          @SnapshotIdList = params['SnapshotIdList']
         end
       end
 
@@ -2754,15 +2776,19 @@ module TencentCloud
       class DescribeClusterParamsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param ParamName: 参数名字
+        # @type ParamName: String
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :ParamName
         
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, paramname=nil)
           @ClusterId = clusterid
+          @ParamName = paramname
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @ParamName = params['ParamName']
         end
       end
 
@@ -2771,6 +2797,7 @@ module TencentCloud
         # @param TotalCount: 参数个数
         # @type TotalCount: Integer
         # @param Items: 实例参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3316,15 +3343,27 @@ module TencentCloud
       class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
+        # @param Limit: 限制量
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param SearchKey: 搜索关键字
+        # @type SearchKey: String
 
-        attr_accessor :ProjectId
+        attr_accessor :ProjectId, :Limit, :Offset, :SearchKey
         
-        def initialize(projectid=nil)
+        def initialize(projectid=nil, limit=nil, offset=nil, searchkey=nil)
           @ProjectId = projectid
+          @Limit = limit
+          @Offset = offset
+          @SearchKey = searchkey
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SearchKey = params['SearchKey']
         end
       end
 
@@ -3332,13 +3371,16 @@ module TencentCloud
       class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情
         # @type Groups: Array
+        # @param Total: 总数量
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :Total, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, total=nil, requestid=nil)
           @Groups = groups
+          @Total = total
           @RequestId = requestid
         end
 
@@ -3351,6 +3393,7 @@ module TencentCloud
               @Groups << securitygroup_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -3421,8 +3464,10 @@ module TencentCloud
       # DescribeRollbackTimeRange返回参数结构体
       class DescribeRollbackTimeRangeResponse < TencentCloud::Common::AbstractModel
         # @param TimeRangeStart: 有效回归时间范围开始时间点（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeRangeStart: String
         # @param TimeRangeEnd: 有效回归时间范围结束时间点（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeRangeEnd: String
         # @param RollbackTimeRanges: 可回档时间范围
         # @type RollbackTimeRanges: Array

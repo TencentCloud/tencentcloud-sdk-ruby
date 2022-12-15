@@ -2046,15 +2046,18 @@ module TencentCloud
         # @type Filters: Array
         # @param SortInfo: 排序字段
         # @type SortInfo: :class:`Tencentcloud::Tem.v20210701.models.SortType`
+        # @param EnvironmentId: 环境id
+        # @type EnvironmentId: String
 
-        attr_accessor :Limit, :Offset, :SourceChannel, :Filters, :SortInfo
+        attr_accessor :Limit, :Offset, :SourceChannel, :Filters, :SortInfo, :EnvironmentId
         
-        def initialize(limit=nil, offset=nil, sourcechannel=nil, filters=nil, sortinfo=nil)
+        def initialize(limit=nil, offset=nil, sourcechannel=nil, filters=nil, sortinfo=nil, environmentid=nil)
           @Limit = limit
           @Offset = offset
           @SourceChannel = sourcechannel
           @Filters = filters
           @SortInfo = sortinfo
+          @EnvironmentId = environmentid
         end
 
         def deserialize(params)
@@ -2073,6 +2076,7 @@ module TencentCloud
             @SortInfo = SortType.new
             @SortInfo.deserialize(params['SortInfo'])
           end
+          @EnvironmentId = params['EnvironmentId']
         end
       end
 

@@ -21998,7 +21998,7 @@ module TencentCloud
       class ModifyK8sApiAbnormalRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param RuleID: 规则ID
         # @type RuleID: String
-        # @param Status: 状态(ture:开 false:关)
+        # @param Status: 状态(true:开 false:关)
         # @type Status: Boolean
 
         attr_accessor :RuleID, :Status

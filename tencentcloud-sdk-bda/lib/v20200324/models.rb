@@ -1439,39 +1439,46 @@ module TencentCloud
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为30分钟。
+        # @param RspImgType: 返回图像方式（base64 或 Url ) ，二选一。url有效期为30分钟。
         # @type RspImgType: String
+        # @param Scene: 适用场景类型。
 
-        attr_accessor :Image, :Url, :RspImgType
+        # 取值：GEN/GS。GEN为通用场景模式；GS为绿幕场景模式，针对绿幕场景下的人像分割效果更好。
+        # 两种模式选择一种传入，默认为GEN。
+        # @type Scene: String
+
+        attr_accessor :Image, :Url, :RspImgType, :Scene
         
-        def initialize(image=nil, url=nil, rspimgtype=nil)
+        def initialize(image=nil, url=nil, rspimgtype=nil, scene=nil)
           @Image = image
           @Url = url
           @RspImgType = rspimgtype
+          @Scene = scene
         end
 
         def deserialize(params)
           @Image = params['Image']
           @Url = params['Url']
           @RspImgType = params['RspImgType']
+          @Scene = params['Scene']
         end
       end
 
       # SegmentPortraitPic返回参数结构体
       class SegmentPortraitPicResponse < TencentCloud::Common::AbstractModel
-        # @param ResultImage: 处理后的图片 base64 数据，透明背景图
+        # @param ResultImage: 处理后的图片 base64 数据，透明背景图。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultImage: String
-        # @param ResultMask: 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）
+        # @param ResultMask: 一个通过 base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultMask: String
         # @param HasForeground: 图片是否存在前景。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasForeground: Boolean
-        # @param ResultImageUrl: 支持将处理过的图片 base64 数据，透明背景图以URL的形式返回值，URL有效期为30分钟。
+        # @param ResultImageUrl: 支持将处理过的图片 base64 数据，透明背景图以Url的形式返回值，Url有效期为30分钟。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultImageUrl: String
-        # @param ResultMaskUrl: 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。支持以URL形式的返回值；URL有效期为30分钟。
+        # @param ResultMaskUrl: 一个通过 base64 编码的文件，解码后文件由 Float 型浮点数组成。支持以Url形式的返回值；Url有效期为30分钟。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultMaskUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

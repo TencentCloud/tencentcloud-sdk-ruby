@@ -492,10 +492,13 @@ module TencentCloud
         # @param TimeSpan: 购买时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
+        # @param OrderType: 订单类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderType: String
 
-        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan
+        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType
         
-        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil)
+        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil)
           @DedicatedClusterId = dedicatedclusterid
           @DedicatedClusterTypeId = dedicatedclustertypeid
           @SupportedStorageType = supportedstoragetype
@@ -515,6 +518,7 @@ module TencentCloud
           @PayType = paytype
           @TimeUnit = timeunit
           @TimeSpan = timespan
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -544,6 +548,7 @@ module TencentCloud
           @PayType = params['PayType']
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          @OrderType = params['OrderType']
         end
       end
 

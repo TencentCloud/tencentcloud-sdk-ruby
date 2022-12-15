@@ -322,7 +322,7 @@ module TencentCloud
         # @param ScfName: scf函数名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfName: String
-        # @param SubStatus: 状态（0：待审批，1：审批通过，2：拒绝，3：scf执行失败，4：scf执行成功）
+        # @param SubStatus: 状态（0：待审批，1：审批通过，2：拒绝，3：scf执行失败，4：scf执行成功）18: 外部审批中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubStatus: Integer
         # @param ApprovedUin: 审批节点审批人
@@ -352,10 +352,22 @@ module TencentCloud
         # @param CallMethod: 外部审批类型 scf:0或null ; CKafka:1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallMethod: Integer
+        # @param DataHubId: CKafka - 接入资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataHubId: String
+        # @param TaskName: CKafka - 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param CKafkaRegion: CKafka - 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CKafkaRegion: String
+        # @param ExternalUrl: 外部审批Url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalUrl: String
 
-        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod
+        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl
         
-        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil)
+        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @NodeType = nodetype
@@ -372,6 +384,10 @@ module TencentCloud
           @ApproveMethod = approvemethod
           @ApproveType = approvetype
           @CallMethod = callmethod
+          @DataHubId = datahubid
+          @TaskName = taskname
+          @CKafkaRegion = ckafkaregion
+          @ExternalUrl = externalurl
         end
 
         def deserialize(params)
@@ -397,6 +413,10 @@ module TencentCloud
           @ApproveMethod = params['ApproveMethod']
           @ApproveType = params['ApproveType']
           @CallMethod = params['CallMethod']
+          @DataHubId = params['DataHubId']
+          @TaskName = params['TaskName']
+          @CKafkaRegion = params['CKafkaRegion']
+          @ExternalUrl = params['ExternalUrl']
         end
       end
 

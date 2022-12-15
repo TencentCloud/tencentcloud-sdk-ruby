@@ -752,6 +752,54 @@ module TencentCloud
         end
       end
 
+      # CreateParameterTemplate请求参数结构体
+      class CreateParameterTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称，长度为1～60个字符，仅支持数字,英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@
+        # @type TemplateName: String
+        # @param DBMajorVersion: 数据库大版本号，例如：11，12，13
+        # @type DBMajorVersion: String
+        # @param DBEngine: 数据库引擎，例如：postgresql，mssql_compatible
+        # @type DBEngine: String
+        # @param TemplateDescription: 参数模板描述，长度为0～60个字符，仅支持数字,英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@
+        # @type TemplateDescription: String
+
+        attr_accessor :TemplateName, :DBMajorVersion, :DBEngine, :TemplateDescription
+        
+        def initialize(templatename=nil, dbmajorversion=nil, dbengine=nil, templatedescription=nil)
+          @TemplateName = templatename
+          @DBMajorVersion = dbmajorversion
+          @DBEngine = dbengine
+          @TemplateDescription = templatedescription
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBEngine = params['DBEngine']
+          @TemplateDescription = params['TemplateDescription']
+        end
+      end
+
+      # CreateParameterTemplate返回参数结构体
+      class CreateParameterTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID，用于唯一确认参数模板
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateReadOnlyDBInstance请求参数结构体
       class CreateReadOnlyDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
@@ -1469,6 +1517,38 @@ module TencentCloud
         end
       end
 
+      # DeleteParameterTemplate请求参数结构体
+      class DeleteParameterTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID，用于唯一确认待操作的参数模板
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteParameterTemplate返回参数结构体
+      class DeleteParameterTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteReadOnlyGroupNetworkAccess请求参数结构体
       class DeleteReadOnlyGroupNetworkAccessRequest < TencentCloud::Common::AbstractModel
         # @param ReadOnlyGroupId: RO组ID，形如：pgro-4t9c6g7k。
@@ -2013,6 +2093,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceSecurityGroups请求参数结构体
+      class DescribeDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
+        # @type DBInstanceId: String
+        # @param ReadOnlyGroupId: 只读组ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果要查询只读组关联的安全组，只传ReadOnlyGroupId
+        # @type ReadOnlyGroupId: String
+
+        attr_accessor :DBInstanceId, :ReadOnlyGroupId
+        
+        def initialize(dbinstanceid=nil, readonlygroupid=nil)
+          @DBInstanceId = dbinstanceid
+          @ReadOnlyGroupId = readonlygroupid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+        end
+      end
+
+      # DescribeDBInstanceSecurityGroups返回参数结构体
+      class DescribeDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupSet: 安全组信息数组
+        # @type SecurityGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityGroupSet, :RequestId
+        
+        def initialize(securitygroupset=nil, requestid=nil)
+          @SecurityGroupSet = securitygroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SecurityGroupSet'].nil?
+            @SecurityGroupSet = []
+            params['SecurityGroupSet'].each do |i|
+              securitygroup_tmp = SecurityGroup.new
+              securitygroup_tmp.deserialize(i)
+              @SecurityGroupSet << securitygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
@@ -2258,6 +2385,58 @@ module TencentCloud
         end
       end
 
+      # DescribeDefaultParameters请求参数结构体
+      class DescribeDefaultParametersRequest < TencentCloud::Common::AbstractModel
+        # @param DBMajorVersion: 数据库版本，大版本号，例如11，12，13
+        # @type DBMajorVersion: String
+        # @param DBEngine: 数据库引擎，例如：postgresql,mssql_compatible
+        # @type DBEngine: String
+
+        attr_accessor :DBMajorVersion, :DBEngine
+        
+        def initialize(dbmajorversion=nil, dbengine=nil)
+          @DBMajorVersion = dbmajorversion
+          @DBEngine = dbengine
+        end
+
+        def deserialize(params)
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBEngine = params['DBEngine']
+        end
+      end
+
+      # DescribeDefaultParameters返回参数结构体
+      class DescribeDefaultParametersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数个数
+        # @type TotalCount: Integer
+        # @param ParamInfoSet: 参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ParamInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, paraminfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ParamInfoSet = paraminfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ParamInfoSet'].nil?
+            @ParamInfoSet = []
+            params['ParamInfoSet'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @ParamInfoSet << paraminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEncryptionKeys请求参数结构体
       class DescribeEncryptionKeysRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -2343,6 +2522,150 @@ module TencentCloud
               pgdeal_tmp = PgDeal.new
               pgdeal_tmp.deserialize(i)
               @Deals << pgdeal_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParameterTemplateAttributes请求参数结构体
+      class DescribeParameterTemplateAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeParameterTemplateAttributes返回参数结构体
+      class DescribeParameterTemplateAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param TotalCount: 参数模板包含的参数个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ParamInfoSet: 参数模板包含的参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamInfoSet: Array
+        # @param TemplateName: 参数模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param DBMajorVersion: 参数模板适用的数据库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBMajorVersion: String
+        # @param DBEngine: 参数模板适用的数据库引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBEngine: String
+        # @param TemplateDescription: 参数模板描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateDescription: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :TotalCount, :ParamInfoSet, :TemplateName, :DBMajorVersion, :DBEngine, :TemplateDescription, :RequestId
+        
+        def initialize(templateid=nil, totalcount=nil, paraminfoset=nil, templatename=nil, dbmajorversion=nil, dbengine=nil, templatedescription=nil, requestid=nil)
+          @TemplateId = templateid
+          @TotalCount = totalcount
+          @ParamInfoSet = paraminfoset
+          @TemplateName = templatename
+          @DBMajorVersion = dbmajorversion
+          @DBEngine = dbengine
+          @TemplateDescription = templatedescription
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TotalCount = params['TotalCount']
+          unless params['ParamInfoSet'].nil?
+            @ParamInfoSet = []
+            params['ParamInfoSet'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @ParamInfoSet << paraminfo_tmp
+            end
+          end
+          @TemplateName = params['TemplateName']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBEngine = params['DBEngine']
+          @TemplateDescription = params['TemplateDescription']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParameterTemplates请求参数结构体
+      class DescribeParameterTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，目前支持的过滤条件有：TemplateName, TemplateId，DBMajorVersion，DBEngine
+        # @type Filters: Array
+        # @param Limit: 每页显示数量，[0，100]，默认 20
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量
+        # @type Offset: Integer
+        # @param OrderBy: 排序指标，枚举值，支持：CreateTime，TemplateName，DBMajorVersion
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，枚举值，支持：asc（升序） ，desc（降序）
+        # @type OrderByType: String
+
+        attr_accessor :Filters, :Limit, :Offset, :OrderBy, :OrderByType
+        
+        def initialize(filters=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeParameterTemplates返回参数结构体
+      class DescribeParameterTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的参数模板总数
+        # @type TotalCount: Integer
+        # @param ParameterTemplateSet: 参数模板列表
+        # @type ParameterTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ParameterTemplateSet, :RequestId
+        
+        def initialize(totalcount=nil, parametertemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ParameterTemplateSet = parametertemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ParameterTemplateSet'].nil?
+            @ParameterTemplateSet = []
+            params['ParameterTemplateSet'].each do |i|
+              parametertemplate_tmp = ParameterTemplate.new
+              parametertemplate_tmp.deserialize(i)
+              @ParameterTemplateSet << parametertemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3662,6 +3985,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceSecurityGroups请求参数结构体
+      class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表
+        # @type SecurityGroupIdSet: Array
+        # @param DBInstanceId: 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
+        # @type DBInstanceId: String
+        # @param ReadOnlyGroupId: 只读组ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果要修改只读组关联的安全组，只传ReadOnlyGroupId
+        # @type ReadOnlyGroupId: String
+
+        attr_accessor :SecurityGroupIdSet, :DBInstanceId, :ReadOnlyGroupId
+        
+        def initialize(securitygroupidset=nil, dbinstanceid=nil, readonlygroupid=nil)
+          @SecurityGroupIdSet = securitygroupidset
+          @DBInstanceId = dbinstanceid
+          @ReadOnlyGroupId = readonlygroupid
+        end
+
+        def deserialize(params)
+          @SecurityGroupIdSet = params['SecurityGroupIdSet']
+          @DBInstanceId = params['DBInstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups返回参数结构体
+      class ModifyDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
@@ -3770,6 +4133,61 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyParameterTemplate请求参数结构体
+      class ModifyParameterTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID，用于唯一确认参数模板，不可修改
+        # @type TemplateId: String
+        # @param TemplateName: 参数模板名称，长度为1～60个字符，仅支持数字,英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@  注：若该字段为空    ，则保持原参数模板名称
+        # @type TemplateName: String
+        # @param TemplateDescription: 参数模板描述，长度为0～60个字符，仅支持数字,英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@  注：若不传入该参数，则保持原参数模板描述
+        # @type TemplateDescription: String
+        # @param ModifyParamEntrySet: 需要修改或添加的参数集合，注：同一参数不能同时出现在修改添加集合和删除集合中
+        # @type ModifyParamEntrySet: Array
+        # @param DeleteParamSet: 需要从模板中删除的参数集合，注：同一参数不能同时出现在修改添加集合和删除集合中
+        # @type DeleteParamSet: Array
+
+        attr_accessor :TemplateId, :TemplateName, :TemplateDescription, :ModifyParamEntrySet, :DeleteParamSet
+        
+        def initialize(templateid=nil, templatename=nil, templatedescription=nil, modifyparamentryset=nil, deleteparamset=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @TemplateDescription = templatedescription
+          @ModifyParamEntrySet = modifyparamentryset
+          @DeleteParamSet = deleteparamset
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @TemplateDescription = params['TemplateDescription']
+          unless params['ModifyParamEntrySet'].nil?
+            @ModifyParamEntrySet = []
+            params['ModifyParamEntrySet'].each do |i|
+              paramentry_tmp = ParamEntry.new
+              paramentry_tmp.deserialize(i)
+              @ModifyParamEntrySet << paramentry_tmp
+            end
+          end
+          @DeleteParamSet = params['DeleteParamSet']
+        end
+      end
+
+      # ModifyParameterTemplate返回参数结构体
+      class ModifyParameterTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4313,6 +4731,38 @@ module TencentCloud
         end
       end
 
+      # 参数模板的基本信息
+      class ParameterTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID
+        # @type TemplateId: String
+        # @param TemplateName: 参数模板名称
+        # @type TemplateName: String
+        # @param DBMajorVersion: 参数模板适用的数据库版本
+        # @type DBMajorVersion: String
+        # @param DBEngine: 参数模板适用的数据库引擎
+        # @type DBEngine: String
+        # @param TemplateDescription: 参数模板描述
+        # @type TemplateDescription: String
+
+        attr_accessor :TemplateId, :TemplateName, :DBMajorVersion, :DBEngine, :TemplateDescription
+        
+        def initialize(templateid=nil, templatename=nil, dbmajorversion=nil, dbengine=nil, templatedescription=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @DBMajorVersion = dbmajorversion
+          @DBEngine = dbengine
+          @TemplateDescription = templatedescription
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBEngine = params['DBEngine']
+          @TemplateDescription = params['TemplateDescription']
+        end
+      end
+
       # 订单详情
       class PgDeal < TencentCloud::Common::AbstractModel
         # @param DealName: 订单名
@@ -4346,6 +4796,38 @@ module TencentCloud
           @PayMode = params['PayMode']
           @FlowId = params['FlowId']
           @DBInstanceIdSet = params['DBInstanceIdSet']
+        end
+      end
+
+      # 安全组规则信息
+      class PolicyRule < TencentCloud::Common::AbstractModel
+        # @param Action: 策略，ACCEPT 或者 DROP
+        # @type Action: String
+        # @param CidrIp: 来源或目的 IP 或 IP 段，例如172.16.0.0/12
+        # @type CidrIp: String
+        # @param PortRange: 端口
+        # @type PortRange: String
+        # @param IpProtocol: 网络协议，支持 UDP、TCP 等
+        # @type IpProtocol: String
+        # @param Description: 规则描述
+        # @type Description: String
+
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Description
+        
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, description=nil)
+          @Action = action
+          @CidrIp = cidrip
+          @PortRange = portrange
+          @IpProtocol = ipprotocol
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @CidrIp = params['CidrIp']
+          @PortRange = params['PortRange']
+          @IpProtocol = params['IpProtocol']
+          @Description = params['Description']
         end
       end
 
@@ -4723,6 +5205,60 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组信息
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Inbound: 入站规则
+        # @type Inbound: Array
+        # @param Outbound: 出站规则
+        # @type Outbound: Array
+        # @param SecurityGroupId: 安全组ID
+        # @type SecurityGroupId: String
+        # @param SecurityGroupName: 安全组名称
+        # @type SecurityGroupName: String
+        # @param SecurityGroupDescription: 安全组备注
+        # @type SecurityGroupDescription: String
+
+        attr_accessor :ProjectId, :CreateTime, :Inbound, :Outbound, :SecurityGroupId, :SecurityGroupName, :SecurityGroupDescription
+        
+        def initialize(projectid=nil, createtime=nil, inbound=nil, outbound=nil, securitygroupid=nil, securitygroupname=nil, securitygroupdescription=nil)
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @Inbound = inbound
+          @Outbound = outbound
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupDescription = securitygroupdescription
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          unless params['Inbound'].nil?
+            @Inbound = []
+            params['Inbound'].each do |i|
+              policyrule_tmp = PolicyRule.new
+              policyrule_tmp.deserialize(i)
+              @Inbound << policyrule_tmp
+            end
+          end
+          unless params['Outbound'].nil?
+            @Outbound = []
+            params['Outbound'].each do |i|
+              policyrule_tmp = PolicyRule.new
+              policyrule_tmp.deserialize(i)
+              @Outbound << policyrule_tmp
+            end
+          end
+          @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupDescription = params['SecurityGroupDescription']
         end
       end
 

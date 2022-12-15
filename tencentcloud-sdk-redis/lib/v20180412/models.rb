@@ -2337,9 +2337,9 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 实例数量，参数默认值20，最大值为1000。
+        # @param Limit: 每页输出实例的数量，参数默认值20，最大值为1000。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍。
+        # @param Offset: 分页偏移量，取Limit整数倍。
         # @type Offset: Integer
         # @param InstanceId: 实例 ID，如：crs-6ubhgouj。
         # @type InstanceId: String
@@ -2664,7 +2664,7 @@ module TencentCloud
 
       # DescribeProductInfo返回参数结构体
       class DescribeProductInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RegionSet: 地域售卖信息
+        # @param RegionSet: 地域售卖信息。
         # @type RegionSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4082,27 +4082,27 @@ module TencentCloud
         end
       end
 
-      # 实例详细信息列表
+      # 实例详细信息列表。
       class InstanceSet < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param InstanceId: 实例Id。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param Appid: 用户的Appid。
+        # @param Appid: 用户的 AppID。
         # @type Appid: Integer
-        # @param ProjectId: 项目Id。
+        # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
-        # @param RegionId: 地域id 。1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
+        # @param RegionId: 地域 ID。<ul><li>1：广州。</li><li>4：上海。</li><li>5：中国香港。</li><li>6：多伦多。</li> <li>7：上海金融。</li> <li>8：北京。</li> <li>9：新加坡。</li> <li>11：深圳金融。</li> <li>15：美西（硅谷）。</li><li>16：成都。</li><li>17：法兰克福。</li><li>18：首尔。</li><li>19：重庆。</li><li>21：孟买。</li><li>22：美东（弗吉尼亚）。</li><li>23：曼谷。</li><li>24：莫斯科。</li><li>25：东京。</li></ul>
         # @type RegionId: Integer
-        # @param ZoneId: 区域id。
+        # @param ZoneId: 区域 ID。
         # @type ZoneId: Integer
-        # @param VpcId: vpc网络id，例如75101。
+        # @param VpcId: vpc网络 ID，例如75101。
         # @type VpcId: Integer
-        # @param SubnetId: vpc网络下子网id 如：46315。
+        # @param SubnetId: vpc网络下子网ID，如：46315。
         # @type SubnetId: Integer
         # @param Status: 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
         # @type Status: Integer
-        # @param WanIp: 实例vip。
+        # @param WanIp: 实例 VIP。
         # @type WanIp: String
         # @param Port: 实例端口号。
         # @type Port: Integer
@@ -4144,7 +4144,7 @@ module TencentCloud
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 副本数量。
         # @type RedisReplicasNum: Integer
-        # @param PriceId: 计费Id。
+        # @param PriceId: 计费 ID。
         # @type PriceId: Integer
         # @param CloseTime: 隔离时间。
         # @type CloseTime: String
@@ -4459,47 +4459,47 @@ module TencentCloud
 
       # 复制组实例
       class Instances < TencentCloud::Common::AbstractModel
-        # @param AppId: 用户AppID
+        # @param AppId: 用户AppID。
         # @type AppId: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param RegionId: 地域ID 1--广州 4--上海 5-- 香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）
+        # @param RegionId: 地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li> 5：香港。</li> <li> 6：多伦多。</li> <li> 7：上海金融。</li> <li> 8：北京。</li> <li> 9：新加坡。</li> <li> 11：深圳金融。</li> <li> 15：美西（硅谷）。</li> </ul>
         # @type RegionId: Integer
-        # @param ZoneId: 区域ID
+        # @param ZoneId: 区域 ID。
         # @type ZoneId: Integer
-        # @param RedisReplicasNum: 副本数量
+        # @param RedisReplicasNum: 副本数量。
         # @type RedisReplicasNum: Integer
-        # @param RedisShardNum: 分片数量
+        # @param RedisShardNum: 分片数量。
         # @type RedisShardNum: Integer
-        # @param RedisShardSize: 分片大小
+        # @param RedisShardSize: 分片内存大小。
         # @type RedisShardSize: Integer
         # @param DiskSize: 实例的磁盘大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
-        # @param Engine: 引擎：社区版Redis、腾讯云CKV
+        # @param Engine: 引擎：社区版Redis、腾讯云CKV。
         # @type Engine: String
-        # @param Role: 实例角色，rw可读写，r只读
+        # @param Role: 实例读写权限。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
         # @type Role: String
-        # @param Vip: 实例VIP
+        # @param Vip: 实例 VIP 地址。
         # @type Vip: String
-        # @param Vip6: 内部参数，用户可忽略
+        # @param Vip6: 内部参数，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
-        # @param VpcID: vpc网络ID 如：75101
+        # @param VpcID: VPC 网络ID，如：75101。
         # @type VpcID: Integer
-        # @param VPort: 实例端口
+        # @param VPort: 实例端口。
         # @type VPort: Integer
-        # @param Status: 实例状态：0-待初始化，1-流程中，2-运行中，-2-已隔离，-3-待删除
+        # @param Status: 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
         # @type Status: Integer
-        # @param GrocerySysId: 仓库ID
+        # @param GrocerySysId: 仓库ID。
         # @type GrocerySysId: Integer
-        # @param ProductType: 实例类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @param ProductType: 实例类型。<ul><li>1：Redis 2.8 内存版（集群架构）。</li><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li></ul>
         # @type ProductType: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 实例加入复制组的时间。
         # @type CreateTime: String
-        # @param UpdateTime: 更新实例
+        # @param UpdateTime: 复制组中实例更新的时间。
         # @type UpdateTime: String
 
         attr_accessor :AppId, :InstanceId, :InstanceName, :RegionId, :ZoneId, :RedisReplicasNum, :RedisShardNum, :RedisShardSize, :DiskSize, :Engine, :Role, :Vip, :Vip6, :VpcID, :VPort, :Status, :GrocerySysId, :ProductType, :CreateTime, :UpdateTime
