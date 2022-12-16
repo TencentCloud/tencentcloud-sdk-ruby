@@ -634,6 +634,102 @@ module TencentCloud
         end
       end
 
+      # GenerateCouplet请求参数结构体
+      class GenerateCoupletRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 生成对联的关键词。长度需>=2，当长度>2时，自动截取前两个字作为关键字。内容需为常用汉字（不含有数字、英文、韩语、日语、符号等等其他）。
+        # @type Text: String
+        # @param TargetType: 返回的文本结果为繁体还是简体。0：简体；1：繁体。默认为0。
+        # @type TargetType: Integer
+
+        attr_accessor :Text, :TargetType
+        
+        def initialize(text=nil, targettype=nil)
+          @Text = text
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # GenerateCouplet返回参数结构体
+      class GenerateCoupletResponse < TencentCloud::Common::AbstractModel
+        # @param TopScroll: 横批。
+        # @type TopScroll: String
+        # @param Content: 上联与下联。
+        # @type Content: Array
+        # @param RandomCause: 当对联随机生成时，展示随机生成原因。
+        # @type RandomCause: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopScroll, :Content, :RandomCause, :RequestId
+        
+        def initialize(topscroll=nil, content=nil, randomcause=nil, requestid=nil)
+          @TopScroll = topscroll
+          @Content = content
+          @RandomCause = randomcause
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopScroll = params['TopScroll']
+          @Content = params['Content']
+          @RandomCause = params['RandomCause']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GeneratePoetry请求参数结构体
+      class GeneratePoetryRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 生成诗词的关键词。
+        # @type Text: String
+        # @param PoetryType: 生成诗词的类型。0：藏头或藏身；1：藏头；2：藏身。默认为0。
+        # @type PoetryType: Integer
+        # @param Genre: 诗的体裁。0：五言律诗或七言律诗；5：五言律诗；7：七言律诗。默认为0。
+        # @type Genre: Integer
+
+        attr_accessor :Text, :PoetryType, :Genre
+        
+        def initialize(text=nil, poetrytype=nil, genre=nil)
+          @Text = text
+          @PoetryType = poetrytype
+          @Genre = genre
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @PoetryType = params['PoetryType']
+          @Genre = params['Genre']
+        end
+      end
+
+      # GeneratePoetry返回参数结构体
+      class GeneratePoetryResponse < TencentCloud::Common::AbstractModel
+        # @param Title: 诗题，即输入的生成诗词的关键词。
+        # @type Title: String
+        # @param Content: 诗的内容。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Title, :Content, :RequestId
+        
+        def initialize(title=nil, content=nil, requestid=nil)
+          @Title = title
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Content = params['Content']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 关键词提取结果
       class Keyword < TencentCloud::Common::AbstractModel
         # @param Score: 权重

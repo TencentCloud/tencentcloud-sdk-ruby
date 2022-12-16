@@ -2105,6 +2105,42 @@ module TencentCloud
         end
       end
 
+      # HangUpCall请求参数结构体
+      class HangUpCallRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+
+        attr_accessor :SdkAppId, :SessionId
+        
+        def initialize(sdkappid=nil, sessionid=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # HangUpCall返回参数结构体
+      class HangUpCallResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文本会话服务记录信息
       class IMCdrInfo < TencentCloud::Common::AbstractModel
         # @param Id: 服务记录ID

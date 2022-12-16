@@ -607,6 +607,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置邮箱的smtp密码。若要通过smtp发送邮件，必须为邮箱设置smtp密码。初始时，邮箱没有设置smtp密码，不能使用smtp的方式发送邮件。设置smtp密码后，可以修改密码。
+
+        # @param request: Request instance for UpdateEmailSmtpPassWord.
+        # @type request: :class:`Tencentcloud::ses::V20201002::UpdateEmailSmtpPassWordRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::UpdateEmailSmtpPassWordResponse`
+        def UpdateEmailSmtpPassWord(request)
+          body = send_request('UpdateEmailSmtpPassWord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateEmailSmtpPassWordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新邮件模板，更新后需再次审核
 
         # @param request: Request instance for UpdateEmailTemplate.

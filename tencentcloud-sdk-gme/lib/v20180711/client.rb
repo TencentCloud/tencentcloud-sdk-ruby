@@ -87,7 +87,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
+        # 用户使用该接口可以创建语音消息转文本热句模型，以供识别调用
 
         # @param request: Request instance for CreateCustomization.
         # @type request: :class:`Tencentcloud::gme::V20180711::CreateCustomizationRequest`
@@ -135,7 +135,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用户通过该接口可以删除语音消息转文本自学习模型
+        # 用户通过该接口可以删除语音消息转文本热句模型
 
         # @param request: Request instance for DeleteCustomization.
         # @type request: :class:`Tencentcloud::gme::V20180711::DeleteCustomizationRequest`
@@ -400,7 +400,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询语音消息转文本自学习模型列表
+        # 查询语音消息转文本热句模型列表
 
         # @param request: Request instance for GetCustomizationList.
         # @type request: :class:`Tencentcloud::gme::V20180711::GetCustomizationListRequest`
@@ -448,7 +448,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用户通过该接口可以更新语音消息转文本自学习模型。
+        # 用户通过该接口可以更新语音消息转文本热句模型。
 
         # @param request: Request instance for ModifyCustomization.
         # @type request: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationRequest`
@@ -472,7 +472,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+        # 通过该接口，用户可以修改语音消息转文本热句模型状态，上下线热句模型
 
         # @param request: Request instance for ModifyCustomizationState.
         # @type request: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationStateRequest`
@@ -576,7 +576,7 @@ module TencentCloud
         # <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
         # <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
         # <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-        # <li>HTTP 头参数说明：</li>
+        # <li>HTTP 请求参数（query）说明：</li>
         # <table>
         # <thread>
         # <tr>

@@ -270,6 +270,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据用户输入的命题关键词自动生成一副春联，包括上联、下联和横批。（如需开通请联系商务）
+
+        # @param request: Request instance for GenerateCouplet.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::GenerateCoupletRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::GenerateCoupletResponse`
+        def GenerateCouplet(request)
+          body = send_request('GenerateCouplet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateCoupletResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据用户输入的命题关键词自动生成一首七言律诗或五言律诗。（如需开通请联系商务）
+
+        # @param request: Request instance for GeneratePoetry.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::GeneratePoetryRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::GeneratePoetryResponse`
+        def GeneratePoetry(request)
+          body = send_request('GeneratePoetry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GeneratePoetryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
 
         # @param request: Request instance for KeywordsExtraction.

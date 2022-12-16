@@ -1706,6 +1706,42 @@ module TencentCloud
         end
       end
 
+      # UpdateEmailSmtpPassWord请求参数结构体
+      class UpdateEmailSmtpPassWordRequest < TencentCloud::Common::AbstractModel
+        # @param Password: smtp密码，长度限制64
+        # @type Password: String
+        # @param EmailAddress: 发信邮箱,长度限制128
+        # @type EmailAddress: String
+
+        attr_accessor :Password, :EmailAddress
+        
+        def initialize(password=nil, emailaddress=nil)
+          @Password = password
+          @EmailAddress = emailaddress
+        end
+
+        def deserialize(params)
+          @Password = params['Password']
+          @EmailAddress = params['EmailAddress']
+        end
+      end
+
+      # UpdateEmailSmtpPassWord返回参数结构体
+      class UpdateEmailSmtpPassWordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateEmailTemplate请求参数结构体
       class UpdateEmailTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateContent: 模板内容

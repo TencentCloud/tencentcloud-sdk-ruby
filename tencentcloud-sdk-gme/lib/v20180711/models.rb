@@ -597,7 +597,7 @@ module TencentCloud
         end
       end
 
-      # 语音消息转文本自学习模型配置
+      # 语音消息转文本热句模型配置
       class CustomizationConfigs < TencentCloud::Common::AbstractModel
         # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
         # @type BizId: Integer
@@ -635,7 +635,7 @@ module TencentCloud
 
       # DeleteCustomization请求参数结构体
       class DeleteCustomizationRequest < TencentCloud::Common::AbstractModel
-        # @param ModelId: 要删除的模型ID
+        # @param ModelId: 删除的模型ID
         # @type ModelId: String
         # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
         # @type BizId: Integer
@@ -1387,7 +1387,7 @@ module TencentCloud
 
       # GetCustomizationList返回参数结构体
       class GetCustomizationListResponse < TencentCloud::Common::AbstractModel
-        # @param CustomizationConfigs: 语音消息转文本自学习模型配置
+        # @param CustomizationConfigs: 语音消息转文本热句模型配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomizationConfigs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1502,7 +1502,7 @@ module TencentCloud
         # @type BizId: Integer
         # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
         # @type TextUrl: String
-        # @param ModelId: 要修改的模型ID
+        # @param ModelId: 修改的模型ID
         # @type ModelId: String
 
         attr_accessor :BizId, :TextUrl, :ModelId
@@ -1524,7 +1524,7 @@ module TencentCloud
       class ModifyCustomizationResponse < TencentCloud::Common::AbstractModel
         # @param ErrorCode: 返回值。0为成功，非0为失败。
         # @type ErrorCode: Integer
-        # @param ModelId: 自学习模型ID
+        # @param ModelId: 模型ID
         # @type ModelId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1546,7 +1546,7 @@ module TencentCloud
 
       # ModifyCustomizationState请求参数结构体
       class ModifyCustomizationStateRequest < TencentCloud::Common::AbstractModel
-        # @param ModelId: 自学习模型ID
+        # @param ModelId: 模型ID
         # @type ModelId: String
         # @param ToState: 想要变换的模型状态，-1代表下线，1代表上线
         # @type ToState: Integer
@@ -1570,7 +1570,7 @@ module TencentCloud
 
       # ModifyCustomizationState返回参数结构体
       class ModifyCustomizationStateResponse < TencentCloud::Common::AbstractModel
-        # @param ModelId: 自学习模型ID
+        # @param ModelId: 模型ID
         # @type ModelId: String
         # @param ErrorCode: 返回值。0为成功，非0为失败。
         # @type ErrorCode: Integer

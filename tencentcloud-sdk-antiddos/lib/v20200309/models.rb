@@ -499,10 +499,15 @@ module TencentCloud
         # @type IpCountNewFlag: Integer
         # @param VitalityVersion: 攻击封堵套餐标记
         # @type VitalityVersion: Integer
+        # @param Line: 网络线路
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Line: Integer
+        # @param ElasticServiceBandwidth: 弹性业务带宽开关
+        # @type ElasticServiceBandwidth: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -519,6 +524,8 @@ module TencentCloud
           @TagInfoList = taginfolist
           @IpCountNewFlag = ipcountnewflag
           @VitalityVersion = vitalityversion
+          @Line = line
+          @ElasticServiceBandwidth = elasticservicebandwidth
         end
 
         def deserialize(params)
@@ -567,6 +574,8 @@ module TencentCloud
           end
           @IpCountNewFlag = params['IpCountNewFlag']
           @VitalityVersion = params['VitalityVersion']
+          @Line = params['Line']
+          @ElasticServiceBandwidth = params['ElasticServiceBandwidth']
         end
       end
 
@@ -3048,7 +3057,7 @@ module TencentCloud
         # @type Statistics: String
         # @param Business: 大禹子产品代号（bgpip表示高防IP）
         # @type Business: String
-        # @param Period: 统计周期，可取值300，1800，3600，21600，86400，单位秒
+        # @param Period: 统计周期，可取值60，300，1800，3600，21600，86400，单位秒
         # @type Period: Integer
         # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
         # @type StartTime: String
@@ -7695,17 +7704,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param OpenStatus: 水印开启/关闭状态，1表示开启；0表示关闭
         # @type OpenStatus: Integer
+        # @param CloudSdkProxy: 是否开启代理，1开启则忽略IP+端口校验；0关闭则需要IP+端口校验
+        # @type CloudSdkProxy: Integer
 
-        attr_accessor :InstanceId, :OpenStatus
+        attr_accessor :InstanceId, :OpenStatus, :CloudSdkProxy
         
-        def initialize(instanceid=nil, openstatus=nil)
+        def initialize(instanceid=nil, openstatus=nil, cloudsdkproxy=nil)
           @InstanceId = instanceid
           @OpenStatus = openstatus
+          @CloudSdkProxy = cloudsdkproxy
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @OpenStatus = params['OpenStatus']
+          @CloudSdkProxy = params['CloudSdkProxy']
         end
       end
 
@@ -7783,15 +7796,19 @@ module TencentCloud
         # shortfpcheckall（精简模式）
         # ]
         # @type Verify: String
+        # @param CloudSdkProxy: 是否开启代理，1开启则忽略IP+端口校验；0关闭则需要IP+端口校验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudSdkProxy: Integer
 
-        attr_accessor :Offset, :OpenStatus, :Listeners, :Keys, :Verify
+        attr_accessor :Offset, :OpenStatus, :Listeners, :Keys, :Verify, :CloudSdkProxy
         
-        def initialize(offset=nil, openstatus=nil, listeners=nil, keys=nil, verify=nil)
+        def initialize(offset=nil, openstatus=nil, listeners=nil, keys=nil, verify=nil, cloudsdkproxy=nil)
           @Offset = offset
           @OpenStatus = openstatus
           @Listeners = listeners
           @Keys = keys
           @Verify = verify
+          @CloudSdkProxy = cloudsdkproxy
         end
 
         def deserialize(params)
@@ -7814,6 +7831,7 @@ module TencentCloud
             end
           end
           @Verify = params['Verify']
+          @CloudSdkProxy = params['CloudSdkProxy']
         end
       end
 

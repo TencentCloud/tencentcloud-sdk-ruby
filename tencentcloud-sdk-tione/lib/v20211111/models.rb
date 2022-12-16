@@ -943,10 +943,12 @@ module TencentCloud
         # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
         # @param ServiceLimit: 服务限速限流相关配置
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
+        # @param CallbackUrl: 回调地址，用于回调创建服务状态信息
+        # @type CallbackUrl: String
 
-        attr_accessor :ImageInfo, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit
+        attr_accessor :ImageInfo, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl
         
-        def initialize(imageinfo=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil)
+        def initialize(imageinfo=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil)
           @ImageInfo = imageinfo
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
@@ -973,6 +975,7 @@ module TencentCloud
           @ScheduledAction = scheduledaction
           @VolumeMount = volumemount
           @ServiceLimit = servicelimit
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -1047,6 +1050,7 @@ module TencentCloud
             @ServiceLimit = ServiceLimit.new
             @ServiceLimit.deserialize(params['ServiceLimit'])
           end
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
