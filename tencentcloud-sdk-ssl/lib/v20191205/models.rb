@@ -306,10 +306,22 @@ module TencentCloud
         # @param EncryptAlgorithm: 证书算法
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
+        # @param CAEncryptAlgorithms: 上传CA证书的加密算法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CAEncryptAlgorithms: Array
+        # @param CAEndTimes: 上传CA证书的过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CAEndTimes: Array
+        # @param CACommonNames: 上传CA证书的通用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CACommonNames: Array
+        # @param PreAuditInfo: 证书预审核信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreAuditInfo: :class:`Tencentcloud::Ssl.v20191205.models.PreAuditInfo`
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -343,6 +355,10 @@ module TencentCloud
           @IsIgnore = isignore
           @IsSM = issm
           @EncryptAlgorithm = encryptalgorithm
+          @CAEncryptAlgorithms = caencryptalgorithms
+          @CAEndTimes = caendtimes
+          @CACommonNames = cacommonnames
+          @PreAuditInfo = preauditinfo
         end
 
         def deserialize(params)
@@ -392,6 +408,13 @@ module TencentCloud
           @IsIgnore = params['IsIgnore']
           @IsSM = params['IsSM']
           @EncryptAlgorithm = params['EncryptAlgorithm']
+          @CAEncryptAlgorithms = params['CAEncryptAlgorithms']
+          @CAEndTimes = params['CAEndTimes']
+          @CACommonNames = params['CACommonNames']
+          unless params['PreAuditInfo'].nil?
+            @PreAuditInfo = PreAuditInfo.new
+            @PreAuditInfo.deserialize(params['PreAuditInfo'])
+          end
         end
       end
 
@@ -2180,6 +2203,33 @@ module TencentCloud
           @TransferStatus = params['TransferStatus']
           @ReceiverUin = params['ReceiverUin']
           @ReceiveTime = params['ReceiveTime']
+        end
+      end
+
+      # 预审核信息列表
+      class PreAuditInfo < TencentCloud::Common::AbstractModel
+        # @param TotalPeriod: 证书总年限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPeriod: Integer
+        # @param NowPeriod: 证书当前年限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NowPeriod: Integer
+        # @param ManagerId: 证书预审核管理人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagerId: String
+
+        attr_accessor :TotalPeriod, :NowPeriod, :ManagerId
+        
+        def initialize(totalperiod=nil, nowperiod=nil, managerid=nil)
+          @TotalPeriod = totalperiod
+          @NowPeriod = nowperiod
+          @ManagerId = managerid
+        end
+
+        def deserialize(params)
+          @TotalPeriod = params['TotalPeriod']
+          @NowPeriod = params['NowPeriod']
+          @ManagerId = params['ManagerId']
         end
       end
 

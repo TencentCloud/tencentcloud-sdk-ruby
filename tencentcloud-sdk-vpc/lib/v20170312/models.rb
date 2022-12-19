@@ -627,10 +627,12 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param AddressName: EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         # @type AddressName: String
+        # @param Egress: 网络出口，默认是：center_egress1
+        # @type Egress: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :Egress
         
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, egress=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -642,6 +644,7 @@ module TencentCloud
           @Tags = tags
           @BandwidthPackageId = bandwidthpackageid
           @AddressName = addressname
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -666,6 +669,7 @@ module TencentCloud
           end
           @BandwidthPackageId = params['BandwidthPackageId']
           @AddressName = params['AddressName']
+          @Egress = params['Egress']
         end
       end
 
@@ -4045,17 +4049,20 @@ module TencentCloud
         # @type AutoAcceptFlag: Boolean
         # @param ServiceInstanceId: 后端服务ID，比如lb-xxx。
         # @type ServiceInstanceId: String
-        # @param IsPassService: 是否是PassService类型。
+        # @param IsPassService: ~~是否是PassService类型。该字段已废弃，请不要使用该字段。~~
         # @type IsPassService: Boolean
+        # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS，不填默认挂载为CLB。
+        # @type ServiceType: String
 
-        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService
+        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType
         
-        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil)
+        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil)
           @VpcId = vpcid
           @EndPointServiceName = endpointservicename
           @AutoAcceptFlag = autoacceptflag
           @ServiceInstanceId = serviceinstanceid
           @IsPassService = ispassservice
+          @ServiceType = servicetype
         end
 
         def deserialize(params)
@@ -4064,6 +4071,7 @@ module TencentCloud
           @AutoAcceptFlag = params['AutoAcceptFlag']
           @ServiceInstanceId = params['ServiceInstanceId']
           @IsPassService = params['IsPassService']
+          @ServiceType = params['ServiceType']
         end
       end
 
@@ -13553,25 +13561,22 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param BandwidthPackageName: 带宽包名称
         # @type BandwidthPackageName: String
-        # @param ChargeType: 带宽包计费模式
+        # @param ChargeType: 带宽包计费模式，示例 ：
+        # 'TOP5_POSTPAID_BY_MONTH'（后付费-TOP5计费）
         # @type ChargeType: String
-        # @param MigrateOnRefund: 退款时迁移为后付费带宽包。默认值：否
-        # @type MigrateOnRefund: Boolean
 
-        attr_accessor :BandwidthPackageId, :BandwidthPackageName, :ChargeType, :MigrateOnRefund
+        attr_accessor :BandwidthPackageId, :BandwidthPackageName, :ChargeType
         
-        def initialize(bandwidthpackageid=nil, bandwidthpackagename=nil, chargetype=nil, migrateonrefund=nil)
+        def initialize(bandwidthpackageid=nil, bandwidthpackagename=nil, chargetype=nil)
           @BandwidthPackageId = bandwidthpackageid
           @BandwidthPackageName = bandwidthpackagename
           @ChargeType = chargetype
-          @MigrateOnRefund = migrateonrefund
         end
 
         def deserialize(params)
           @BandwidthPackageId = params['BandwidthPackageId']
           @BandwidthPackageName = params['BandwidthPackageName']
           @ChargeType = params['ChargeType']
-          @MigrateOnRefund = params['MigrateOnRefund']
         end
       end
 

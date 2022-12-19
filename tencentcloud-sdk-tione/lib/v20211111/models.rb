@@ -650,10 +650,12 @@ module TencentCloud
         # @type SubnetId: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param CallbackUrl: 任务执行结果回调URL，仅支持http和https。回调格式&内容详见: [TI-ONE 接口回调说明](https://cloud.tencent.com/document/product/851/84292)
+        # @type CallbackUrl: String
 
-        attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark
+        attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark, :CallbackUrl
         
-        def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil)
+        def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil, callbackurl=nil)
           @BatchTaskName = batchtaskname
           @ChargeType = chargetype
           @ResourceConfigInfo = resourceconfiginfo
@@ -672,6 +674,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @Remark = remark
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -732,6 +735,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Remark = params['Remark']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -943,7 +947,7 @@ module TencentCloud
         # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
         # @param ServiceLimit: 服务限速限流相关配置
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
-        # @param CallbackUrl: 回调地址，用于回调创建服务状态信息
+        # @param CallbackUrl: 回调地址，用于回调创建服务状态信息，回调格式&内容详情见：[TI-ONE 接口回调说明](https://cloud.tencent.com/document/product/851/84292)
         # @type CallbackUrl: String
 
         attr_accessor :ImageInfo, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl
@@ -1332,10 +1336,12 @@ module TencentCloud
         # @type Remark: String
         # @param DataSource: 数据来源，eg：DATASET、COS、CFS、HDFS
         # @type DataSource: String
+        # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
+        # @type CallbackUrl: String
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :CodePackagePath, :TrainingMode, :Output, :LogEnable, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :StartCmdInfo, :DataConfigs, :VpcId, :SubnetId, :LogConfig, :TuningParameters, :Remark, :DataSource
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :CodePackagePath, :TrainingMode, :Output, :LogEnable, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :StartCmdInfo, :DataConfigs, :VpcId, :SubnetId, :LogConfig, :TuningParameters, :Remark, :DataSource, :CallbackUrl
         
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, codepackagepath=nil, trainingmode=nil, output=nil, logenable=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, startcmdinfo=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, logconfig=nil, tuningparameters=nil, remark=nil, datasource=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, codepackagepath=nil, trainingmode=nil, output=nil, logenable=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, startcmdinfo=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, logconfig=nil, tuningparameters=nil, remark=nil, datasource=nil, callbackurl=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1357,6 +1363,7 @@ module TencentCloud
           @TuningParameters = tuningparameters
           @Remark = remark
           @DataSource = datasource
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -1417,6 +1424,7 @@ module TencentCloud
           @TuningParameters = params['TuningParameters']
           @Remark = params['Remark']
           @DataSource = params['DataSource']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -7427,10 +7435,13 @@ module TencentCloud
         # @type Message: String
         # @param Status: 任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
         # @type Status: String
+        # @param CallbackUrl: 回调地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackUrl: String
 
-        attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status
+        attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status, :CallbackUrl
         
-        def initialize(id=nil, name=nil, uin=nil, subuin=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil)
+        def initialize(id=nil, name=nil, uin=nil, subuin=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil, callbackurl=nil)
           @Id = id
           @Name = name
           @Uin = uin
@@ -7469,6 +7480,7 @@ module TencentCloud
           @ResourceGroupName = resourcegroupname
           @Message = message
           @Status = status
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -7546,6 +7558,7 @@ module TencentCloud
           @ResourceGroupName = params['ResourceGroupName']
           @Message = params['Message']
           @Status = params['Status']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -7609,10 +7622,13 @@ module TencentCloud
         # @param Tags: 标签配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param CallbackUrl: 回调地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackUrl: String
 
-        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags
+        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags, :CallbackUrl
         
-        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil)
+        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil, callbackurl=nil)
           @Id = id
           @Name = name
           @FrameworkName = frameworkname
@@ -7636,6 +7652,7 @@ module TencentCloud
           @ImageInfo = imageinfo
           @Message = message
           @Tags = tags
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -7682,6 +7699,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 

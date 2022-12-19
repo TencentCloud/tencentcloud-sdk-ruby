@@ -2463,15 +2463,23 @@ module TencentCloud
         # @type FileHardLimit: Integer
         # @param FileSystemId: 文件系统ID
         # @type FileSystemId: String
+        # @param CapacityUsed: 容量使用，单位GiB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapacityUsed: Integer
+        # @param FileUsed: 文件使用个数，单位个
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileUsed: Integer
 
-        attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId
+        attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed
         
-        def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil)
+        def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil, capacityused=nil, fileused=nil)
           @UserType = usertype
           @UserId = userid
           @CapacityHardLimit = capacityhardlimit
           @FileHardLimit = filehardlimit
           @FileSystemId = filesystemid
+          @CapacityUsed = capacityused
+          @FileUsed = fileused
         end
 
         def deserialize(params)
@@ -2480,6 +2488,8 @@ module TencentCloud
           @CapacityHardLimit = params['CapacityHardLimit']
           @FileHardLimit = params['FileHardLimit']
           @FileSystemId = params['FileSystemId']
+          @CapacityUsed = params['CapacityUsed']
+          @FileUsed = params['FileUsed']
         end
       end
 

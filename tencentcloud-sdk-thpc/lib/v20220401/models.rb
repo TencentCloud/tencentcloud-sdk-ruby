@@ -222,9 +222,9 @@ module TencentCloud
 
       # 描述CFS文件系统版本和挂载信息
       class CFSOption < TencentCloud::Common::AbstractModel
-        # @param LocalPath: 文件系统本地挂载路径
+        # @param LocalPath: 文件系统本地挂载路径。
         # @type LocalPath: String
-        # @param RemotePath: 文件系统远程挂载ip及路径
+        # @param RemotePath: 文件系统远程挂载ip及路径。
         # @type RemotePath: String
         # @param Protocol: 文件系统协议类型，默认值NFS 3.0。
         # <li>NFS 3.0。
@@ -866,11 +866,11 @@ module TencentCloud
 
       # 描述GooseFS挂载信息
       class GooseFSOption < TencentCloud::Common::AbstractModel
-        # @param LocalPath: 文件系统本地挂载路径
+        # @param LocalPath: 文件系统本地挂载路径。
         # @type LocalPath: String
-        # @param RemotePath: 文件系统远程挂载路径
+        # @param RemotePath: 文件系统远程挂载路径。
         # @type RemotePath: String
-        # @param Masters: 文件系统master的ip和端口
+        # @param Masters: 文件系统master的ip和端口。
         # @type Masters: Array
 
         attr_accessor :LocalPath, :RemotePath, :Masters
