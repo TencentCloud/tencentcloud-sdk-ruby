@@ -45,10 +45,12 @@ module TencentCloud
         # @type OldCertificateId: String
         # @param PackageId: 权益包ID，用于免费证书扩容包使用
         # @type PackageId: String
+        # @param DeleteDnsAutoRecord: 签发后是否删除自动域名验证记录， 默认为否；仅域名为DNS_AUTO验证类型支持传参
+        # @type DeleteDnsAutoRecord: Boolean
 
-        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId
+        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId, :DeleteDnsAutoRecord
         
-        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil)
+        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil, deletednsautorecord=nil)
           @DvAuthMethod = dvauthmethod
           @DomainName = domainname
           @ProjectId = projectid
@@ -62,6 +64,7 @@ module TencentCloud
           @Alias = _alias
           @OldCertificateId = oldcertificateid
           @PackageId = packageid
+          @DeleteDnsAutoRecord = deletednsautorecord
         end
 
         def deserialize(params)
@@ -78,6 +81,7 @@ module TencentCloud
           @Alias = params['Alias']
           @OldCertificateId = params['OldCertificateId']
           @PackageId = params['PackageId']
+          @DeleteDnsAutoRecord = params['DeleteDnsAutoRecord']
         end
       end
 

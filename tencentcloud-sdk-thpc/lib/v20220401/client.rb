@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 本接口（AddClusterStorageOption）用于添加集群存储选项信息。
+
+        # @param request: Request instance for AddClusterStorageOption.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::AddClusterStorageOptionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::AddClusterStorageOptionResponse`
+        def AddClusterStorageOption(request)
+          body = send_request('AddClusterStorageOption', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddClusterStorageOptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
 
         # @param request: Request instance for AddNodes.
@@ -125,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DeleteClusterStorageOption) 用于删除集群存储选项信息。
+
+        # @param request: Request instance for DeleteClusterStorageOption.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::DeleteClusterStorageOptionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::DeleteClusterStorageOptionResponse`
+        def DeleteClusterStorageOption(request)
+          body = send_request('DeleteClusterStorageOption', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterStorageOptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
 
         # @param request: Request instance for DeleteNodes.
@@ -159,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterActivitiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeClusterStorageOption) 用于查询集群存储选项信息。
+
+        # @param request: Request instance for DescribeClusterStorageOption.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::DescribeClusterStorageOptionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::DescribeClusterStorageOptionResponse`
+        def DescribeClusterStorageOption(request)
+          body = send_request('DescribeClusterStorageOption', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterStorageOptionResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -17,6 +17,45 @@
 module TencentCloud
   module Thpc
     module V20220401
+      # AddClusterStorageOption请求参数结构体
+      class AddClusterStorageOptionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param StorageOption: 集群存储选项。
+        # @type StorageOption: :class:`Tencentcloud::Thpc.v20220401.models.StorageOption`
+
+        attr_accessor :ClusterId, :StorageOption
+        
+        def initialize(clusterid=nil, storageoption=nil)
+          @ClusterId = clusterid
+          @StorageOption = storageoption
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['StorageOption'].nil?
+            @StorageOption = StorageOption.new
+            @StorageOption.deserialize(params['StorageOption'])
+          end
+        end
+      end
+
+      # AddClusterStorageOption返回参数结构体
+      class AddClusterStorageOptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddNodes请求参数结构体
       class AddNodesRequest < TencentCloud::Common::AbstractModel
         # @param Placement: 集群中实例所在的位置。
@@ -676,6 +715,42 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterStorageOption请求参数结构体
+      class DeleteClusterStorageOptionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param LocalPath: 本地挂载路径。
+        # @type LocalPath: String
+
+        attr_accessor :ClusterId, :LocalPath
+        
+        def initialize(clusterid=nil, localpath=nil)
+          @ClusterId = clusterid
+          @LocalPath = localpath
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LocalPath = params['LocalPath']
+        end
+      end
+
+      # DeleteClusterStorageOption返回参数结构体
+      class DeleteClusterStorageOptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNodes请求参数结构体
       class DeleteNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -763,6 +838,38 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterStorageOption请求参数结构体
+      class DescribeClusterStorageOptionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterStorageOption返回参数结构体
+      class DescribeClusterStorageOptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

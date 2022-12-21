@@ -6343,6 +6343,58 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusInstanceUsage请求参数结构体
+      class DescribePrometheusInstanceUsageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
+        # @type InstanceIds: Array
+        # @param StartCalcDate: 开始时间
+        # @type StartCalcDate: String
+        # @param EndCalcDate: 结束时间
+        # @type EndCalcDate: String
+
+        attr_accessor :InstanceIds, :StartCalcDate, :EndCalcDate
+        
+        def initialize(instanceids=nil, startcalcdate=nil, endcalcdate=nil)
+          @InstanceIds = instanceids
+          @StartCalcDate = startcalcdate
+          @EndCalcDate = endcalcdate
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @StartCalcDate = params['StartCalcDate']
+          @EndCalcDate = params['EndCalcDate']
+        end
+      end
+
+      # DescribePrometheusInstanceUsage返回参数结构体
+      class DescribePrometheusInstanceUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageSet: 用量列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageSet, :RequestId
+        
+        def initialize(usageset=nil, requestid=nil)
+          @UsageSet = usageset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UsageSet'].nil?
+            @UsageSet = []
+            params['UsageSet'].each do |i|
+              prometheusinstancetenantusage_tmp = PrometheusInstanceTenantUsage.new
+              prometheusinstancetenantusage_tmp.deserialize(i)
+              @UsageSet << prometheusinstancetenantusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusInstances请求参数结构体
       class DescribePrometheusInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
@@ -9053,6 +9105,43 @@ module TencentCloud
           @HasAgentManage = params['HasAgentManage']
           @HasTkeManage = params['HasTkeManage']
           @HasApiOperation = params['HasApiOperation']
+        end
+      end
+
+      # Prometheus用量信息
+      class PrometheusInstanceTenantUsage < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param CalcDate: 计费周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcDate: String
+        # @param Total: 总用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Float
+        # @param Basic: 基础指标用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Basic: Float
+        # @param Fee: 付费指标用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fee: Float
+
+        attr_accessor :InstanceId, :CalcDate, :Total, :Basic, :Fee
+        
+        def initialize(instanceid=nil, calcdate=nil, total=nil, basic=nil, fee=nil)
+          @InstanceId = instanceid
+          @CalcDate = calcdate
+          @Total = total
+          @Basic = basic
+          @Fee = fee
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CalcDate = params['CalcDate']
+          @Total = params['Total']
+          @Basic = params['Basic']
+          @Fee = params['Fee']
         end
       end
 

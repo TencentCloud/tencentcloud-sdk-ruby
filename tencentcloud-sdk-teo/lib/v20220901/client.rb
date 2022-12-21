@@ -2693,30 +2693,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改负载均衡状态
-
-        # @param request: Request instance for ModifyLoadBalancingStatus.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyLoadBalancingStatusRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyLoadBalancingStatusResponse`
-        def ModifyLoadBalancingStatus(request)
-          body = send_request('ModifyLoadBalancingStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLoadBalancingStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
 
         # @param request: Request instance for ModifyLogTopicTask.

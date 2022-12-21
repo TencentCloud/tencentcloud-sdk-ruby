@@ -1549,6 +1549,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        #  查询Prometheus按量实例用量
+
+        # @param request: Request instance for DescribePrometheusInstanceUsage.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceUsageRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceUsageResponse`
+        def DescribePrometheusInstanceUsage(request)
+          body = send_request('DescribePrometheusInstanceUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusInstanceUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
         # <ul>
         # <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>

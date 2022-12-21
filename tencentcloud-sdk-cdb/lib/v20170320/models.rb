@@ -3270,12 +3270,20 @@ module TencentCloud
         # @type EnableBinlogArchive: String
         # @param BinlogArchiveDays: 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
         # @type BinlogArchiveDays: Integer
+        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        # @type EnableBackupStandby: String
+        # @param BackupStandbyDays: 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @type BackupStandbyDays: Integer
+        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        # @type EnableBinlogStandby: String
+        # @param BinlogStandbyDays: 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @type BinlogStandbyDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :RequestId
+        attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         
-        def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, requestid=nil)
+        def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
           @StartTimeMax = starttimemax
           @BackupExpireDays = backupexpiredays
@@ -3291,6 +3299,10 @@ module TencentCloud
           @BackupArchiveDays = backuparchivedays
           @EnableBinlogArchive = enablebinlogarchive
           @BinlogArchiveDays = binlogarchivedays
+          @EnableBackupStandby = enablebackupstandby
+          @BackupStandbyDays = backupstandbydays
+          @EnableBinlogStandby = enablebinlogstandby
+          @BinlogStandbyDays = binlogstandbydays
           @RequestId = requestid
         end
 
@@ -3313,6 +3325,10 @@ module TencentCloud
           @BackupArchiveDays = params['BackupArchiveDays']
           @EnableBinlogArchive = params['EnableBinlogArchive']
           @BinlogArchiveDays = params['BinlogArchiveDays']
+          @EnableBackupStandby = params['EnableBackupStandby']
+          @BackupStandbyDays = params['BackupStandbyDays']
+          @EnableBinlogStandby = params['EnableBinlogStandby']
+          @BinlogStandbyDays = params['BinlogStandbyDays']
           @RequestId = params['RequestId']
         end
       end
@@ -3466,18 +3482,22 @@ module TencentCloud
         # @param BackupArchiveVolume: 归档备份容量，包含数据备份以及日志备份。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupArchiveVolume: Integer
+        # @param BackupStandbyVolume: 标准存储备份容量，包含数据备份以及日志备份。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStandbyVolume: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupCount, :BackupVolume, :BillingVolume, :FreeVolume, :RemoteBackupVolume, :BackupArchiveVolume, :RequestId
+        attr_accessor :BackupCount, :BackupVolume, :BillingVolume, :FreeVolume, :RemoteBackupVolume, :BackupArchiveVolume, :BackupStandbyVolume, :RequestId
         
-        def initialize(backupcount=nil, backupvolume=nil, billingvolume=nil, freevolume=nil, remotebackupvolume=nil, backuparchivevolume=nil, requestid=nil)
+        def initialize(backupcount=nil, backupvolume=nil, billingvolume=nil, freevolume=nil, remotebackupvolume=nil, backuparchivevolume=nil, backupstandbyvolume=nil, requestid=nil)
           @BackupCount = backupcount
           @BackupVolume = backupvolume
           @BillingVolume = billingvolume
           @FreeVolume = freevolume
           @RemoteBackupVolume = remotebackupvolume
           @BackupArchiveVolume = backuparchivevolume
+          @BackupStandbyVolume = backupstandbyvolume
           @RequestId = requestid
         end
 
@@ -3488,6 +3508,7 @@ module TencentCloud
           @FreeVolume = params['FreeVolume']
           @RemoteBackupVolume = params['RemoteBackupVolume']
           @BackupArchiveVolume = params['BackupArchiveVolume']
+          @BackupStandbyVolume = params['BackupStandbyVolume']
           @RequestId = params['RequestId']
         end
       end
@@ -3707,18 +3728,24 @@ module TencentCloud
         # @type BinlogArchiveVolume: Integer
         # @param BinlogArchiveCount: 归档日志备份个数。
         # @type BinlogArchiveCount: Integer
+        # @param BinlogStandbyVolume: 标准存储日志备份容量（单位为字节）。
+        # @type BinlogStandbyVolume: Integer
+        # @param BinlogStandbyCount: 标准存储日志备份个数。
+        # @type BinlogStandbyCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BinlogBackupVolume, :BinlogBackupCount, :RemoteBinlogVolume, :RemoteBinlogCount, :BinlogArchiveVolume, :BinlogArchiveCount, :RequestId
+        attr_accessor :BinlogBackupVolume, :BinlogBackupCount, :RemoteBinlogVolume, :RemoteBinlogCount, :BinlogArchiveVolume, :BinlogArchiveCount, :BinlogStandbyVolume, :BinlogStandbyCount, :RequestId
         
-        def initialize(binlogbackupvolume=nil, binlogbackupcount=nil, remotebinlogvolume=nil, remotebinlogcount=nil, binlogarchivevolume=nil, binlogarchivecount=nil, requestid=nil)
+        def initialize(binlogbackupvolume=nil, binlogbackupcount=nil, remotebinlogvolume=nil, remotebinlogcount=nil, binlogarchivevolume=nil, binlogarchivecount=nil, binlogstandbyvolume=nil, binlogstandbycount=nil, requestid=nil)
           @BinlogBackupVolume = binlogbackupvolume
           @BinlogBackupCount = binlogbackupcount
           @RemoteBinlogVolume = remotebinlogvolume
           @RemoteBinlogCount = remotebinlogcount
           @BinlogArchiveVolume = binlogarchivevolume
           @BinlogArchiveCount = binlogarchivecount
+          @BinlogStandbyVolume = binlogstandbyvolume
+          @BinlogStandbyCount = binlogstandbycount
           @RequestId = requestid
         end
 
@@ -3729,6 +3756,8 @@ module TencentCloud
           @RemoteBinlogCount = params['RemoteBinlogCount']
           @BinlogArchiveVolume = params['BinlogArchiveVolume']
           @BinlogArchiveCount = params['BinlogArchiveCount']
+          @BinlogStandbyVolume = params['BinlogStandbyVolume']
+          @BinlogStandbyCount = params['BinlogStandbyCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4685,12 +4714,16 @@ module TencentCloud
         # @type DataBackupArchiveVolume: Integer
         # @param DataBackupArchiveCount: 当前地域归档备份总个数。
         # @type DataBackupArchiveCount: Integer
+        # @param DataBackupStandbyVolume: 当前地域标准存储备份总容量。
+        # @type DataBackupStandbyVolume: Integer
+        # @param DataBackupStandbyCount: 当前地域标准存储备份总个数。
+        # @type DataBackupStandbyCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataBackupVolume, :DataBackupCount, :AutoBackupVolume, :AutoBackupCount, :ManualBackupVolume, :ManualBackupCount, :RemoteBackupVolume, :RemoteBackupCount, :DataBackupArchiveVolume, :DataBackupArchiveCount, :RequestId
+        attr_accessor :DataBackupVolume, :DataBackupCount, :AutoBackupVolume, :AutoBackupCount, :ManualBackupVolume, :ManualBackupCount, :RemoteBackupVolume, :RemoteBackupCount, :DataBackupArchiveVolume, :DataBackupArchiveCount, :DataBackupStandbyVolume, :DataBackupStandbyCount, :RequestId
         
-        def initialize(databackupvolume=nil, databackupcount=nil, autobackupvolume=nil, autobackupcount=nil, manualbackupvolume=nil, manualbackupcount=nil, remotebackupvolume=nil, remotebackupcount=nil, databackuparchivevolume=nil, databackuparchivecount=nil, requestid=nil)
+        def initialize(databackupvolume=nil, databackupcount=nil, autobackupvolume=nil, autobackupcount=nil, manualbackupvolume=nil, manualbackupcount=nil, remotebackupvolume=nil, remotebackupcount=nil, databackuparchivevolume=nil, databackuparchivecount=nil, databackupstandbyvolume=nil, databackupstandbycount=nil, requestid=nil)
           @DataBackupVolume = databackupvolume
           @DataBackupCount = databackupcount
           @AutoBackupVolume = autobackupvolume
@@ -4701,6 +4734,8 @@ module TencentCloud
           @RemoteBackupCount = remotebackupcount
           @DataBackupArchiveVolume = databackuparchivevolume
           @DataBackupArchiveCount = databackuparchivecount
+          @DataBackupStandbyVolume = databackupstandbyvolume
+          @DataBackupStandbyCount = databackupstandbycount
           @RequestId = requestid
         end
 
@@ -4715,6 +4750,8 @@ module TencentCloud
           @RemoteBackupCount = params['RemoteBackupCount']
           @DataBackupArchiveVolume = params['DataBackupArchiveVolume']
           @DataBackupArchiveCount = params['DataBackupArchiveCount']
+          @DataBackupStandbyVolume = params['DataBackupStandbyVolume']
+          @DataBackupStandbyCount = params['DataBackupStandbyCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5460,6 +5497,58 @@ module TencentCloud
             @WeightRule = Rule.new
             @WeightRule.deserialize(params['WeightRule'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRemoteBackupConfig请求参数结构体
+      class DescribeRemoteBackupConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeRemoteBackupConfig返回参数结构体
+      class DescribeRemoteBackupConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ExpireDays: 异地备份保留天时间，单位为天
+        # @type ExpireDays: Integer
+        # @param RemoteBackupSave: 异地数据备份开关，off - 关闭异地备份，on-开启异地备份
+        # @type RemoteBackupSave: String
+        # @param RemoteBinlogSave: 异地日志备份开关，off - 关闭异地备份，on-开启异地备份，只有在参数RemoteBackupSave为on时，RemoteBinlogSave参数才可设置为on
+        # @type RemoteBinlogSave: String
+        # @param RemoteRegion: 用户已设置异地备份地域列表
+        # @type RemoteRegion: Array
+        # @param RegionList: 用户可设置异地备份地域列表
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExpireDays, :RemoteBackupSave, :RemoteBinlogSave, :RemoteRegion, :RegionList, :RequestId
+        
+        def initialize(expiredays=nil, remotebackupsave=nil, remotebinlogsave=nil, remoteregion=nil, regionlist=nil, requestid=nil)
+          @ExpireDays = expiredays
+          @RemoteBackupSave = remotebackupsave
+          @RemoteBinlogSave = remotebinlogsave
+          @RemoteRegion = remoteregion
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExpireDays = params['ExpireDays']
+          @RemoteBackupSave = params['RemoteBackupSave']
+          @RemoteBinlogSave = params['RemoteBinlogSave']
+          @RemoteRegion = params['RemoteRegion']
+          @RegionList = params['RegionList']
           @RequestId = params['RequestId']
         end
       end
@@ -7560,10 +7649,18 @@ module TencentCloud
         # @type BinlogArchiveDays: Integer
         # @param EnableBinlogArchive: 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
         # @type EnableBinlogArchive: String
+        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        # @type EnableBackupStandby: String
+        # @param BackupStandbyDays: 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @type BackupStandbyDays: Integer
+        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        # @type EnableBinlogStandby: String
+        # @param BinlogStandbyDays: 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @type BinlogStandbyDays: Integer
 
-        attr_accessor :InstanceId, :ExpireDays, :StartTime, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :EnableBackupPeriodLongTermSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :BinlogArchiveDays, :EnableBinlogArchive
+        attr_accessor :InstanceId, :ExpireDays, :StartTime, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :EnableBackupPeriodLongTermSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :BinlogArchiveDays, :EnableBinlogArchive, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays
         
-        def initialize(instanceid=nil, expiredays=nil, starttime=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, enablebackupperiodlongtermsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, binlogarchivedays=nil, enablebinlogarchive=nil)
+        def initialize(instanceid=nil, expiredays=nil, starttime=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, enablebackupperiodlongtermsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, binlogarchivedays=nil, enablebinlogarchive=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil)
           @InstanceId = instanceid
           @ExpireDays = expiredays
           @StartTime = starttime
@@ -7580,6 +7677,10 @@ module TencentCloud
           @BackupArchiveDays = backuparchivedays
           @BinlogArchiveDays = binlogarchivedays
           @EnableBinlogArchive = enablebinlogarchive
+          @EnableBackupStandby = enablebackupstandby
+          @BackupStandbyDays = backupstandbydays
+          @EnableBinlogStandby = enablebinlogstandby
+          @BinlogStandbyDays = binlogstandbydays
         end
 
         def deserialize(params)
@@ -7602,6 +7703,10 @@ module TencentCloud
           @BackupArchiveDays = params['BackupArchiveDays']
           @BinlogArchiveDays = params['BinlogArchiveDays']
           @EnableBinlogArchive = params['EnableBinlogArchive']
+          @EnableBackupStandby = params['EnableBackupStandby']
+          @BackupStandbyDays = params['BackupStandbyDays']
+          @EnableBinlogStandby = params['EnableBinlogStandby']
+          @BinlogStandbyDays = params['BinlogStandbyDays']
         end
       end
 
@@ -8269,6 +8374,54 @@ module TencentCloud
 
       # ModifyParamTemplate返回参数结构体
       class ModifyParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRemoteBackupConfig请求参数结构体
+      class ModifyRemoteBackupConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param RemoteBackupSave: 异地数据备份开关，off - 关闭异地备份，on-开启异地备份
+        # @type RemoteBackupSave: String
+        # @param RemoteBinlogSave: 异地日志备份开关，off - 关闭异地备份，on-开启异地备份，只有在参数RemoteBackupSave为on时，RemoteBinlogSave参数才可设置为on
+        # @type RemoteBinlogSave: String
+        # @param RemoteRegion: 用户设置异地备份地域列表
+        # @type RemoteRegion: Array
+        # @param ExpireDays: 异地备份保留天时间，单位为天
+        # @type ExpireDays: Integer
+
+        attr_accessor :InstanceId, :RemoteBackupSave, :RemoteBinlogSave, :RemoteRegion, :ExpireDays
+        
+        def initialize(instanceid=nil, remotebackupsave=nil, remotebinlogsave=nil, remoteregion=nil, expiredays=nil)
+          @InstanceId = instanceid
+          @RemoteBackupSave = remotebackupsave
+          @RemoteBinlogSave = remotebinlogsave
+          @RemoteRegion = remoteregion
+          @ExpireDays = expiredays
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RemoteBackupSave = params['RemoteBackupSave']
+          @RemoteBinlogSave = params['RemoteBinlogSave']
+          @RemoteRegion = params['RemoteRegion']
+          @ExpireDays = params['ExpireDays']
+        end
+      end
+
+      # ModifyRemoteBackupConfig返回参数结构体
+      class ModifyRemoteBackupConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

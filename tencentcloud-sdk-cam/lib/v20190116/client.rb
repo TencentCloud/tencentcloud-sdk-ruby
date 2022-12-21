@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 添加子用户
+        # 创建子用户
 
         # @param request: Request instance for AddUser.
         # @type request: :class:`Tencentcloud::cam::V20190116::AddUserRequest`

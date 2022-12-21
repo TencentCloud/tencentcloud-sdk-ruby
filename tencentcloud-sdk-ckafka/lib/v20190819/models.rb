@@ -313,6 +313,23 @@ module TencentCloud
         end
       end
 
+      # 批量解析
+      class BatchAnalyseParam < TencentCloud::Common::AbstractModel
+        # @param Format: ONE_BY_ONE单条输出，MERGE合并输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+
+        attr_accessor :Format
+        
+        def initialize(format=nil)
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+        end
+      end
+
       # 批量发送消息内容
       class BatchContent < TencentCloud::Common::AbstractModel
         # @param Body: 发送的消息体
@@ -2479,10 +2496,13 @@ module TencentCloud
         # @param CtsdbParam: Ctsdb配置，Type为CTSDB时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtsdbParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbParam`
+        # @param ScfParam: Scf配置，Type为SCF时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScfParam: :class:`Tencentcloud::Ckafka.v20190819.models.ScfParam`
 
-        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam, :CtsdbParam
+        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam, :CtsdbParam, :ScfParam
         
-        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil, ctsdbparam=nil)
+        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil, ctsdbparam=nil, scfparam=nil)
           @Type = type
           @KafkaParam = kafkaparam
           @EventBusParam = eventbusparam
@@ -2499,6 +2519,7 @@ module TencentCloud
           @MariaDBParam = mariadbparam
           @SQLServerParam = sqlserverparam
           @CtsdbParam = ctsdbparam
+          @ScfParam = scfparam
         end
 
         def deserialize(params)
@@ -2562,6 +2583,10 @@ module TencentCloud
           unless params['CtsdbParam'].nil?
             @CtsdbParam = CtsdbParam.new
             @CtsdbParam.deserialize(params['CtsdbParam'])
+          end
+          unless params['ScfParam'].nil?
+            @ScfParam = ScfParam.new
+            @ScfParam.deserialize(params['ScfParam'])
           end
         end
       end
@@ -5340,10 +5365,12 @@ module TencentCloud
         # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
         # @param DatabasePrimaryKey: 转储到ES的消息为Database的binlog时，如果需要同步数据库操作，即增删改的操作到ES时填写数据库表主键
         # @type DatabasePrimaryKey: String
+        # @param DropDlq: 死信队列
+        # @type DropDlq: :class:`Tencentcloud::Ckafka.v20190819.models.FailureParam`
 
-        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey
+        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq
         
-        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil)
+        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil)
           @Resource = resource
           @Port = port
           @UserName = username
@@ -5360,6 +5387,7 @@ module TencentCloud
           @IndexType = indextype
           @DropCls = dropcls
           @DatabasePrimaryKey = databaseprimarykey
+          @DropDlq = dropdlq
         end
 
         def deserialize(params)
@@ -5382,6 +5410,10 @@ module TencentCloud
             @DropCls.deserialize(params['DropCls'])
           end
           @DatabasePrimaryKey = params['DatabasePrimaryKey']
+          unless params['DropDlq'].nil?
+            @DropDlq = FailureParam.new
+            @DropDlq.deserialize(params['DropDlq'])
+          end
         end
       end
 
@@ -7028,10 +7060,13 @@ module TencentCloud
         # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，填写"open"。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressionType: String
+        # @param MsgMultiple: 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgMultiple: Integer
 
-        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType
+        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple
         
-        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil)
+        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil, msgmultiple=nil)
           @SelfBuilt = selfbuilt
           @Resource = resource
           @Topic = topic
@@ -7047,6 +7082,7 @@ module TencentCloud
           @UseTableMapping = usetablemapping
           @UseAutoCreateTopic = useautocreatetopic
           @CompressionType = compressiontype
+          @MsgMultiple = msgmultiple
         end
 
         def deserialize(params)
@@ -7072,6 +7108,7 @@ module TencentCloud
           @UseTableMapping = params['UseTableMapping']
           @UseAutoCreateTopic = params['UseAutoCreateTopic']
           @CompressionType = params['CompressionType']
+          @MsgMultiple = params['MsgMultiple']
         end
       end
 
@@ -8946,6 +8983,41 @@ module TencentCloud
         end
       end
 
+      # Scf类型入参
+      class ScfParam < TencentCloud::Common::AbstractModel
+        # @param FunctionName: SCF云函数函数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionName: String
+        # @param Namespace: SCF云函数命名空间, 默认为default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Qualifier: SCF云函数版本及别名, 默认为$DEFAULT
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qualifier: String
+        # @param BatchSize: 每批最大发送消息数, 默认为1000
+        # @type BatchSize: Integer
+        # @param MaxRetries: SCF调用失败后重试次数, 默认为5
+        # @type MaxRetries: Integer
+
+        attr_accessor :FunctionName, :Namespace, :Qualifier, :BatchSize, :MaxRetries
+        
+        def initialize(functionname=nil, namespace=nil, qualifier=nil, batchsize=nil, maxretries=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+          @Qualifier = qualifier
+          @BatchSize = batchsize
+          @MaxRetries = maxretries
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
+          @BatchSize = params['BatchSize']
+          @MaxRetries = params['MaxRetries']
+        end
+      end
+
       # 数据处理——二次解析参数
       class SecondaryAnalyseParam < TencentCloud::Common::AbstractModel
         # @param Regex: 分隔符
@@ -9469,16 +9541,20 @@ module TencentCloud
         # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseAutoCreateTopic: Boolean
+        # @param MsgMultiple: 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgMultiple: Integer
 
-        attr_accessor :Resource, :OffsetType, :StartTime, :TopicId, :CompressionType, :UseAutoCreateTopic
+        attr_accessor :Resource, :OffsetType, :StartTime, :TopicId, :CompressionType, :UseAutoCreateTopic, :MsgMultiple
         
-        def initialize(resource=nil, offsettype=nil, starttime=nil, topicid=nil, compressiontype=nil, useautocreatetopic=nil)
+        def initialize(resource=nil, offsettype=nil, starttime=nil, topicid=nil, compressiontype=nil, useautocreatetopic=nil, msgmultiple=nil)
           @Resource = resource
           @OffsetType = offsettype
           @StartTime = starttime
           @TopicId = topicid
           @CompressionType = compressiontype
           @UseAutoCreateTopic = useautocreatetopic
+          @MsgMultiple = msgmultiple
         end
 
         def deserialize(params)
@@ -9488,6 +9564,7 @@ module TencentCloud
           @TopicId = params['TopicId']
           @CompressionType = params['CompressionType']
           @UseAutoCreateTopic = params['UseAutoCreateTopic']
+          @MsgMultiple = params['MsgMultiple']
         end
       end
 
@@ -9722,10 +9799,13 @@ module TencentCloud
         # @param KeepMetadata: 是否保留数据源Topic元数据信息（源Topic、Partition、Offset），默认为false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepMetadata: Boolean
+        # @param BatchAnalyse: 数组解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchAnalyse: :class:`Tencentcloud::Ckafka.v20190819.models.BatchAnalyseParam`
 
-        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam, :KeepMetadata
+        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam, :KeepMetadata, :BatchAnalyse
         
-        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil, rowparam=nil, keepmetadata=nil)
+        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil, rowparam=nil, keepmetadata=nil, batchanalyse=nil)
           @Content = content
           @FieldChain = fieldchain
           @FilterParam = filterparam
@@ -9735,6 +9815,7 @@ module TencentCloud
           @OutputFormat = outputformat
           @RowParam = rowparam
           @KeepMetadata = keepmetadata
+          @BatchAnalyse = batchanalyse
         end
 
         def deserialize(params)
@@ -9767,6 +9848,10 @@ module TencentCloud
             @RowParam.deserialize(params['RowParam'])
           end
           @KeepMetadata = params['KeepMetadata']
+          unless params['BatchAnalyse'].nil?
+            @BatchAnalyse = BatchAnalyseParam.new
+            @BatchAnalyse.deserialize(params['BatchAnalyse'])
+          end
         end
       end
 

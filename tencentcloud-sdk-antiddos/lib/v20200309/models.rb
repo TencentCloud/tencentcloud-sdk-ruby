@@ -3051,6 +3051,80 @@ module TencentCloud
         end
       end
 
+      # DescribeBizHttpStatus请求参数结构体
+      class DescribeBizHttpStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Statistics: 统计方式，仅支持sum
+        # @type Statistics: String
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param Period: 统计周期，可取值60，300，1800，3600， 21600，86400，单位秒
+        # @type Period: Integer
+        # @param StartTime: 统计开始时间。 如2020-02-01 12:04:12
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间。如2020-02-03 18:03:23
+        # @type EndTime: String
+        # @param Id: 资源Id
+        # @type Id: String
+        # @param Domain: 特定域名查询
+        # @type Domain: String
+        # @param ProtoInfo: 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
+        # @type ProtoInfo: Array
+
+        attr_accessor :Statistics, :Business, :Period, :StartTime, :EndTime, :Id, :Domain, :ProtoInfo
+        
+        def initialize(statistics=nil, business=nil, period=nil, starttime=nil, endtime=nil, id=nil, domain=nil, protoinfo=nil)
+          @Statistics = statistics
+          @Business = business
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @Id = id
+          @Domain = domain
+          @ProtoInfo = protoinfo
+        end
+
+        def deserialize(params)
+          @Statistics = params['Statistics']
+          @Business = params['Business']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Id = params['Id']
+          @Domain = params['Domain']
+          unless params['ProtoInfo'].nil?
+            @ProtoInfo = []
+            params['ProtoInfo'].each do |i|
+              protocolport_tmp = ProtocolPort.new
+              protocolport_tmp.deserialize(i)
+              @ProtoInfo << protocolport_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBizHttpStatus返回参数结构体
+      class DescribeBizHttpStatusResponse < TencentCloud::Common::AbstractModel
+        # @param HttpStatusMap: 业务流量http状态码统计数据
+        # @type HttpStatusMap: :class:`Tencentcloud::Antiddos.v20200309.models.HttpStatusMap`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HttpStatusMap, :RequestId
+        
+        def initialize(httpstatusmap=nil, requestid=nil)
+          @HttpStatusMap = httpstatusmap
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HttpStatusMap'].nil?
+            @HttpStatusMap = HttpStatusMap.new
+            @HttpStatusMap.deserialize(params['HttpStatusMap'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBizTrend请求参数结构体
       class DescribeBizTrendRequest < TencentCloud::Common::AbstractModel
         # @param Statistics: 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
@@ -5652,6 +5726,58 @@ module TencentCloud
           @FrontendPort = params['FrontendPort']
           @ForwardProtocol = params['ForwardProtocol']
           @FrontendPortEnd = params['FrontendPortEnd']
+        end
+      end
+
+      # 业务流量的http状态码聚合数据
+      class HttpStatusMap < TencentCloud::Common::AbstractModel
+        # @param SourceHttp2xx: http2xx回源状态码
+        # @type SourceHttp2xx: Array
+        # @param Http5xx: http5xx状态码
+        # @type Http5xx: Array
+        # @param SourceHttp5xx: http5xx回源状态码
+        # @type SourceHttp5xx: Array
+        # @param SourceHttp404: http404回源状态码
+        # @type SourceHttp404: Array
+        # @param Http4xx: http4xx状态码
+        # @type Http4xx: Array
+        # @param SourceHttp4xx: http4xx回源状态码
+        # @type SourceHttp4xx: Array
+        # @param Http2xx: http2xx状态码
+        # @type Http2xx: Array
+        # @param Http404: http404状态码
+        # @type Http404: Array
+        # @param SourceHttp3xx: http3xx回源状态码
+        # @type SourceHttp3xx: Array
+        # @param Http3xx: http3xx状态码
+        # @type Http3xx: Array
+
+        attr_accessor :SourceHttp2xx, :Http5xx, :SourceHttp5xx, :SourceHttp404, :Http4xx, :SourceHttp4xx, :Http2xx, :Http404, :SourceHttp3xx, :Http3xx
+        
+        def initialize(sourcehttp2xx=nil, http5xx=nil, sourcehttp5xx=nil, sourcehttp404=nil, http4xx=nil, sourcehttp4xx=nil, http2xx=nil, http404=nil, sourcehttp3xx=nil, http3xx=nil)
+          @SourceHttp2xx = sourcehttp2xx
+          @Http5xx = http5xx
+          @SourceHttp5xx = sourcehttp5xx
+          @SourceHttp404 = sourcehttp404
+          @Http4xx = http4xx
+          @SourceHttp4xx = sourcehttp4xx
+          @Http2xx = http2xx
+          @Http404 = http404
+          @SourceHttp3xx = sourcehttp3xx
+          @Http3xx = http3xx
+        end
+
+        def deserialize(params)
+          @SourceHttp2xx = params['SourceHttp2xx']
+          @Http5xx = params['Http5xx']
+          @SourceHttp5xx = params['SourceHttp5xx']
+          @SourceHttp404 = params['SourceHttp404']
+          @Http4xx = params['Http4xx']
+          @SourceHttp4xx = params['SourceHttp4xx']
+          @Http2xx = params['Http2xx']
+          @Http404 = params['Http404']
+          @SourceHttp3xx = params['SourceHttp3xx']
+          @Http3xx = params['Http3xx']
         end
       end
 

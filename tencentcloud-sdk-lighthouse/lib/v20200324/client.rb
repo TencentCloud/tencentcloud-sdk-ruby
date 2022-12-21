@@ -29,6 +29,36 @@ module TencentCloud
         end
 
 
+        # 本接口（ApplyDiskBackup）用于回滚指定云硬盘的备份点。
+        # * 仅支持回滚到原云硬盘。
+        # * 用于回滚的云硬盘备份点必须处于 NORMAL 状态。
+        #   云硬盘备份点状态可以通过 DescribeDiskBackups 接口查询。
+        # * 回滚云硬盘备份点时，云硬盘的状态必须为 UNATTACHED或ATTACHED。
+        #   云硬盘状态可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口查询。
+        # * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
+
+        # @param request: Request instance for ApplyDiskBackup.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ApplyDiskBackupRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ApplyDiskBackupResponse`
+        def ApplyDiskBackup(request)
+          body = send_request('ApplyDiskBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyDiskBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
         # <li>仅支持回滚到原系统盘。</li>
         # <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
@@ -144,6 +174,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateBlueprintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( CreateDiskBackup  ) 用于创建指定云硬盘（当前只支持数据盘）的备份点。
+
+        # @param request: Request instance for CreateDiskBackup.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateDiskBackupRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateDiskBackupResponse`
+        def CreateDiskBackup(request)
+          body = send_request('CreateDiskBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDiskBackupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -274,6 +328,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBlueprintsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteDiskBackups）用于删除云硬盘备份点。
+        # 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
+
+        # @param request: Request instance for DeleteDiskBackups.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DeleteDiskBackupsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DeleteDiskBackupsResponse`
+        def DeleteDiskBackups(request)
+          body = send_request('DeleteDiskBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDiskBackupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -500,6 +579,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCcnAttachedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
+
+        # @param request: Request instance for DescribeDiskBackups.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskBackupsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskBackupsResponse`
+        def DescribeDiskBackups(request)
+          body = send_request('DescribeDiskBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiskBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDiskBackupsDeniedActions）用于查询一个或多个云硬盘备份点的操作限制列表信息。
+
+        # @param request: Request instance for DescribeDiskBackupsDeniedActions.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskBackupsDeniedActionsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskBackupsDeniedActionsResponse`
+        def DescribeDiskBackupsDeniedActions(request)
+          body = send_request('DescribeDiskBackupsDeniedActions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiskBackupsDeniedActionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1343,6 +1470,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlueprintAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyDiskBackupsAttribute) 用于修改云硬盘备份点属性。
+
+        # @param request: Request instance for ModifyDiskBackupsAttribute.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyDiskBackupsAttributeRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyDiskBackupsAttributeResponse`
+        def ModifyDiskBackupsAttribute(request)
+          body = send_request('ModifyDiskBackupsAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDiskBackupsAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

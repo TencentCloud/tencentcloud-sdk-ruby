@@ -2731,12 +2731,68 @@ module TencentCloud
 
       # 负载均衡算法
       class LoadBalancerPackageNew < TencentCloud::Common::AbstractModel
+        # @param ListenerId: 监听id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerId: String
+        # @param ListenerName: 监听名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerName: String
+        # @param LoadBalancerId: 负载均衡id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerName: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Region: 地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Vip: 接入IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: 接入端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param Zone: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param NumericalVpcId: VPCID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumericalVpcId: Integer
+        # @param LoadBalancerType: CLB类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
 
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType
         
-        def initialize()
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil)
+          @ListenerId = listenerid
+          @ListenerName = listenername
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @Protocol = protocol
+          @Region = region
+          @Vip = vip
+          @Vport = vport
+          @Zone = zone
+          @NumericalVpcId = numericalvpcid
+          @LoadBalancerType = loadbalancertype
         end
 
         def deserialize(params)
+          @ListenerId = params['ListenerId']
+          @ListenerName = params['ListenerName']
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @Protocol = params['Protocol']
+          @Region = params['Region']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Zone = params['Zone']
+          @NumericalVpcId = params['NumericalVpcId']
+          @LoadBalancerType = params['LoadBalancerType']
         end
       end
 

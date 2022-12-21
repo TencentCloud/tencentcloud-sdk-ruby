@@ -5970,6 +5970,62 @@ module TencentCloud
         end
       end
 
+      # CreateReviewTemplate请求参数结构体
+      class CreateReviewTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Labels: 需要返回的违规标签列表，可选值为：
+        # <li>Porn：色情；</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂；</li>
+        # <li>Ad：广告；</li>
+        # <li>Moan：娇喘。</li>
+        # @type Labels: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: String
+        # @param Name: 审核模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 审核模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :Labels, :SubAppId, :Name, :Comment
+        
+        def initialize(labels=nil, subappid=nil, name=nil, comment=nil)
+          @Labels = labels
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Labels = params['Labels']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateReviewTemplate返回参数结构体
+      class CreateReviewTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+        
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSampleSnapshotTemplate请求参数结构体
       class CreateSampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SampleType: 采样截图类型，取值：
@@ -7076,6 +7132,42 @@ module TencentCloud
 
       # DeleteProcedureTemplate返回参数结构体
       class DeleteProcedureTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReviewTemplate请求参数结构体
+      class DeleteReviewTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+        
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteReviewTemplate返回参数结构体
+      class DeleteReviewTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8210,15 +8302,19 @@ module TencentCloud
       class DescribeDrmDataKeyRequest < TencentCloud::Common::AbstractModel
         # @param EdkList: 加密后的数据密钥列表，最大支持10个。
         # @type EdkList: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
 
-        attr_accessor :EdkList
+        attr_accessor :EdkList, :SubAppId
         
-        def initialize(edklist=nil)
+        def initialize(edklist=nil, subappid=nil)
           @EdkList = edklist
+          @SubAppId = subappid
         end
 
         def deserialize(params)
           @EdkList = params['EdkList']
+          @SubAppId = params['SubAppId']
         end
       end
 
@@ -8804,6 +8900,8 @@ module TencentCloud
       class DescribeMediaInfosRequest < TencentCloud::Common::AbstractModel
         # @param FileIds: 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
         # @type FileIds: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Filters: 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
         # <li>basicInfo（视频基础信息）。</li>
         # <li>metaData（视频元信息）。</li>
@@ -8815,22 +8913,22 @@ module TencentCloud
         # <li>keyFrameDescInfo（打点信息）。</li>
         # <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
         # <li>miniProgramReviewInfo（小程序审核信息）。</li>
+        # <li>subtitleInfo（字幕信息）。</li>
+        # <li>reviewInfo（审核信息）。</li>
         # @type Filters: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileIds, :Filters, :SubAppId
+        attr_accessor :FileIds, :SubAppId, :Filters
         
-        def initialize(fileids=nil, filters=nil, subappid=nil)
+        def initialize(fileids=nil, subappid=nil, filters=nil)
           @FileIds = fileids
-          @Filters = filters
           @SubAppId = subappid
+          @Filters = filters
         end
 
         def deserialize(params)
           @FileIds = params['FileIds']
-          @Filters = params['Filters']
           @SubAppId = params['SubAppId']
+          @Filters = params['Filters']
         end
       end
 
@@ -9225,6 +9323,71 @@ module TencentCloud
               statdataitem_tmp = StatDataItem.new
               statdataitem_tmp.deserialize(i)
               @Data << statdataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReviewTemplates请求参数结构体
+      class DescribeReviewTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Definitions: 审核模版唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Type: 模板类型过滤条件，可选值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :Definitions, :Type, :Offset, :Limit
+        
+        def initialize(subappid=nil, definitions=nil, type=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @Definitions = definitions
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Definitions = params['Definitions']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeReviewTemplates返回参数结构体
+      class DescribeReviewTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param ReviewTemplateSet: 审核模板详情列表。
+        # @type ReviewTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ReviewTemplateSet, :RequestId
+        
+        def initialize(totalcount=nil, reviewtemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ReviewTemplateSet = reviewtemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ReviewTemplateSet'].nil?
+            @ReviewTemplateSet = []
+            params['ReviewTemplateSet'].each do |i|
+              reviewtemplate_tmp = ReviewTemplate.new
+              reviewtemplate_tmp.deserialize(i)
+              @ReviewTemplateSet << reviewtemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11339,6 +11502,38 @@ module TencentCloud
         end
       end
 
+      # 文件审核信息。
+      class FileReviewInfo < TencentCloud::Common::AbstractModel
+        # @param MediaReviewInfo: 媒体审核信息\*。
+
+        # \* 只展示通过 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 发起的审核结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.ReviewInfo`
+        # @param CoverReviewInfo: 媒体封面审核信息\*。
+
+        # \* 只展示通过 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 发起的审核结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.ReviewInfo`
+
+        attr_accessor :MediaReviewInfo, :CoverReviewInfo
+        
+        def initialize(mediareviewinfo=nil, coverreviewinfo=nil)
+          @MediaReviewInfo = mediareviewinfo
+          @CoverReviewInfo = coverreviewinfo
+        end
+
+        def deserialize(params)
+          unless params['MediaReviewInfo'].nil?
+            @MediaReviewInfo = ReviewInfo.new
+            @MediaReviewInfo.deserialize(params['MediaReviewInfo'])
+          end
+          unless params['CoverReviewInfo'].nil?
+            @CoverReviewInfo = ReviewInfo.new
+            @CoverReviewInfo.deserialize(params['CoverReviewInfo'])
+          end
+        end
+      end
+
       # 文件上传任务信息
       class FileUploadTask < TencentCloud::Common::AbstractModel
         # @param FileId: 文件唯一 ID。
@@ -13026,10 +13221,13 @@ module TencentCloud
         # @type SubtitleInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSubtitleInfo`
         # @param FileId: 媒体文件唯一标识 ID。
         # @type FileId: String
+        # @param ReviewInfo: 审核信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.FileReviewInfo`
 
-        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId
+        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo
         
-        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil)
+        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil)
           @BasicInfo = basicinfo
           @MetaData = metadata
           @TranscodeInfo = transcodeinfo
@@ -13042,6 +13240,7 @@ module TencentCloud
           @MiniProgramReviewInfo = miniprogramreviewinfo
           @SubtitleInfo = subtitleinfo
           @FileId = fileid
+          @ReviewInfo = reviewinfo
         end
 
         def deserialize(params)
@@ -13090,6 +13289,10 @@ module TencentCloud
             @SubtitleInfo.deserialize(params['SubtitleInfo'])
           end
           @FileId = params['FileId']
+          unless params['ReviewInfo'].nil?
+            @ReviewInfo = FileReviewInfo.new
+            @ReviewInfo.deserialize(params['ReviewInfo'])
+          end
         end
       end
 
@@ -15359,6 +15562,64 @@ module TencentCloud
               @FailFaceInfoSet << aisamplefailfaceinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyReviewTemplate请求参数结构体
+      class ModifyReviewTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Name: 审核模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 审核模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param Labels: 需要返回的违规标签列表，可选值为：
+        # <li>Porn：色情；</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂；</li>
+        # <li>Ad：广告；</li>
+        # <li>Moan：娇喘。</li>
+
+        # 注意：不填表示不更新。
+        # @type Labels: Array
+
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Labels
+        
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, labels=nil)
+          @Definition = definition
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Labels = params['Labels']
+        end
+      end
+
+      # ModifyReviewTemplate返回参数结构体
+      class ModifyReviewTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -18986,6 +19247,93 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 审核信息。
+      class ReviewInfo < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模板 ID。
+        # @type Definition: Integer
+        # @param Suggestion: 审核的结果建议，取值范围：
+        # <li>pass：建议通过；</li>
+        # <li>review：建议复审；</li>
+        # <li>block：建议封禁。</li>
+        # @type Suggestion: String
+        # @param TypeSet: 审核类型，当 Suggestion 为 review 或 block 时有效，格式为：Form.Label。
+        # Form 表示违禁的形式，取值范围：
+        # <li>Image：画面上的人物或图标；</li>
+        # <li>OCR：画面上的文字；</li>
+        # <li>ASR：语音中的文字；</li>
+        # <li>Voice：声音。</li>
+        # Label 表示违禁的标签，取值范围：
+        # <li>Porn：色情；</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Ad：广告；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂；</li>
+        # <li>Moan：娇喘。</li>
+        # @type TypeSet: Array
+        # @param ReviewTime: 审核时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ReviewTime: String
+
+        attr_accessor :Definition, :Suggestion, :TypeSet, :ReviewTime
+        
+        def initialize(definition=nil, suggestion=nil, typeset=nil, reviewtime=nil)
+          @Definition = definition
+          @Suggestion = suggestion
+          @TypeSet = typeset
+          @ReviewTime = reviewtime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Suggestion = params['Suggestion']
+          @TypeSet = params['TypeSet']
+          @ReviewTime = params['ReviewTime']
+        end
+      end
+
+      # 审核模版详情
+      class ReviewTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模版唯一标签。
+        # @type Definition: Integer
+        # @param Name: 模板名称。
+        # @type Name: String
+        # @param Comment: 模板描述信息。
+        # @type Comment: String
+        # @param Type: 模板类型，可选值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param Labels: 需要返回的违规标签列表。
+        # @type Labels: Array
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Name, :Comment, :Type, :Labels, :CreateTime, :UpdateTime
+        
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, labels=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @Labels = labels
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          @Labels = params['Labels']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

@@ -94,6 +94,30 @@ module TencentCloud
         end
       end
 
+      # 集群计费相关信息
+      class Charge < TencentCloud::Common::AbstractModel
+        # @param ChargeType: 计费类型，“PREPAID” 预付费，“POSTPAID_BY_HOUR” 后付费
+        # @type ChargeType: String
+        # @param RenewFlag: PREPAID需要传递，是否自动续费，1表示自动续费开启
+        # @type RenewFlag: Integer
+        # @param TimeSpan: 预付费需要传递，计费时间长度，多少个月
+        # @type TimeSpan: Integer
+
+        attr_accessor :ChargeType, :RenewFlag, :TimeSpan
+        
+        def initialize(chargetype=nil, renewflag=nil, timespan=nil)
+          @ChargeType = chargetype
+          @RenewFlag = renewflag
+          @TimeSpan = timespan
+        end
+
+        def deserialize(params)
+          @ChargeType = params['ChargeType']
+          @RenewFlag = params['RenewFlag']
+          @TimeSpan = params['TimeSpan']
+        end
+      end
+
       # 新增或是修改ck用户
       class CkUserAlterInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例id
@@ -201,6 +225,117 @@ module TencentCloud
         end
       end
 
+      # CreateInstanceNew请求参数结构体
+      class CreateInstanceNewRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param HaFlag: 是否高可用
+        # @type HaFlag: Boolean
+        # @param UserVPCId: 私有网络
+        # @type UserVPCId: String
+        # @param UserSubnetId: 子网
+        # @type UserSubnetId: String
+        # @param ProductVersion: 版本
+        # @type ProductVersion: String
+        # @param ChargeProperties: 计费方式
+        # @type ChargeProperties: :class:`Tencentcloud::Cdwch.v20200915.models.Charge`
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param DataSpec: 数据节点
+        # @type DataSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
+        # @param Tags: 标签列表
+        # @type Tags: :class:`Tencentcloud::Cdwch.v20200915.models.Tag`
+        # @param ClsLogSetId: 日志主题ID
+        # @type ClsLogSetId: String
+        # @param CosBucketName: COS桶名称
+        # @type CosBucketName: String
+        # @param MountDiskType: 是否是裸盘挂载
+        # @type MountDiskType: Integer
+        # @param HAZk: 是否是ZK高可用
+        # @type HAZk: Boolean
+        # @param CommonSpec: ZK节点
+        # @type CommonSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
+
+        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec
+        
+        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil)
+          @Zone = zone
+          @HaFlag = haflag
+          @UserVPCId = uservpcid
+          @UserSubnetId = usersubnetid
+          @ProductVersion = productversion
+          @ChargeProperties = chargeproperties
+          @InstanceName = instancename
+          @DataSpec = dataspec
+          @Tags = tags
+          @ClsLogSetId = clslogsetid
+          @CosBucketName = cosbucketname
+          @MountDiskType = mountdisktype
+          @HAZk = hazk
+          @CommonSpec = commonspec
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @HaFlag = params['HaFlag']
+          @UserVPCId = params['UserVPCId']
+          @UserSubnetId = params['UserSubnetId']
+          @ProductVersion = params['ProductVersion']
+          unless params['ChargeProperties'].nil?
+            @ChargeProperties = Charge.new
+            @ChargeProperties.deserialize(params['ChargeProperties'])
+          end
+          @InstanceName = params['InstanceName']
+          unless params['DataSpec'].nil?
+            @DataSpec = NodeSpec.new
+            @DataSpec.deserialize(params['DataSpec'])
+          end
+          unless params['Tags'].nil?
+            @Tags = Tag.new
+            @Tags.deserialize(params['Tags'])
+          end
+          @ClsLogSetId = params['ClsLogSetId']
+          @CosBucketName = params['CosBucketName']
+          @MountDiskType = params['MountDiskType']
+          @HAZk = params['HAZk']
+          unless params['CommonSpec'].nil?
+            @CommonSpec = NodeSpec.new
+            @CommonSpec.deserialize(params['CommonSpec'])
+          end
+        end
+      end
+
+      # CreateInstanceNew返回参数结构体
+      class CreateInstanceNewResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :InstanceId, :ErrorMsg, :RequestId
+        
+        def initialize(flowid=nil, instanceid=nil, errormsg=nil, requestid=nil)
+          @FlowId = flowid
+          @InstanceId = instanceid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @InstanceId = params['InstanceId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCkSqlApis请求参数结构体
       class DescribeCkSqlApisRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -257,6 +392,45 @@ module TencentCloud
 
         def deserialize(params)
           @ReturnData = params['ReturnData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstance请求参数结构体
+      class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstance返回参数结构体
+      class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceInfo: 实例描述信息
+        # @type InstanceInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceInfo, :RequestId
+        
+        def initialize(instanceinfo=nil, requestid=nil)
+          @InstanceInfo = instanceinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -404,6 +578,184 @@ module TencentCloud
         end
       end
 
+      # 实例描述信息
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID, "cdw-xxxx" 字符串类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 集群实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Status: 状态,
+        # Init 创建中; Serving 运行中；
+        # Deleted已销毁；Deleting 销毁中；
+        # Modify 集群变更中；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Region: 地域, ap-guangzhou
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 可用区， ap-guangzhou-3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param VpcId: 私有网络名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param PayMode: 付费类型，"hour", "prepay"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param MasterSummary: 数据节点描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
+        # @param CommonSummary: zookeeper节点描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
+        # @param HA: 高可用，“true" "false"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HA: String
+        # @param AccessInfo: 访问地址，例如 "10.0.0.1:9000"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessInfo: String
+        # @param Id: 记录ID，数值型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param RegionId: regionId, 表示地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param ZoneDesc: 可用区说明，例如 "广州二区"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneDesc: String
+        # @param FlowMsg: 错误流程说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMsg: String
+        # @param StatusDesc: 状态描述，例如“运行中”等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param RenewFlag: 自动续费标记
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Boolean
+        # @param Tags: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Monitor: 监控信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Monitor: String
+        # @param HasClsTopic: 是否开通日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasClsTopic: Boolean
+        # @param ClsTopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsTopicId: String
+        # @param ClsLogSetId: 日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsLogSetId: String
+        # @param EnableXMLConfig: 是否支持xml配置管理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableXMLConfig: Integer
+        # @param RegionDesc: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionDesc: String
+        # @param Eip: 弹性网卡地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Eip: String
+        # @param CosMoveFactor: 冷热分层系数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosMoveFactor: Integer
+
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor
+        
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Status = status
+          @Version = version
+          @Region = region
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @PayMode = paymode
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @MasterSummary = mastersummary
+          @CommonSummary = commonsummary
+          @HA = ha
+          @AccessInfo = accessinfo
+          @Id = id
+          @RegionId = regionid
+          @ZoneDesc = zonedesc
+          @FlowMsg = flowmsg
+          @StatusDesc = statusdesc
+          @RenewFlag = renewflag
+          @Tags = tags
+          @Monitor = monitor
+          @HasClsTopic = hasclstopic
+          @ClsTopicId = clstopicid
+          @ClsLogSetId = clslogsetid
+          @EnableXMLConfig = enablexmlconfig
+          @RegionDesc = regiondesc
+          @Eip = eip
+          @CosMoveFactor = cosmovefactor
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @Version = params['Version']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @PayMode = params['PayMode']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          unless params['MasterSummary'].nil?
+            @MasterSummary = NodesSummary.new
+            @MasterSummary.deserialize(params['MasterSummary'])
+          end
+          unless params['CommonSummary'].nil?
+            @CommonSummary = NodesSummary.new
+            @CommonSummary.deserialize(params['CommonSummary'])
+          end
+          @HA = params['HA']
+          @AccessInfo = params['AccessInfo']
+          @Id = params['Id']
+          @RegionId = params['RegionId']
+          @ZoneDesc = params['ZoneDesc']
+          @FlowMsg = params['FlowMsg']
+          @StatusDesc = params['StatusDesc']
+          @RenewFlag = params['RenewFlag']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Monitor = params['Monitor']
+          @HasClsTopic = params['HasClsTopic']
+          @ClsTopicId = params['ClsTopicId']
+          @ClsLogSetId = params['ClsLogSetId']
+          @EnableXMLConfig = params['EnableXMLConfig']
+          @RegionDesc = params['RegionDesc']
+          @Eip = params['Eip']
+          @CosMoveFactor = params['CosMoveFactor']
+        end
+      end
+
       # ModifyClusterConfigs请求参数结构体
       class ModifyClusterConfigsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID，例如cdwch-xxxx
@@ -483,6 +835,70 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建集群时的规格
+      class NodeSpec < TencentCloud::Common::AbstractModel
+        # @param SpecName: 规格名称
+        # @type SpecName: String
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param DiskSize: 云盘大小
+        # @type DiskSize: Integer
+
+        attr_accessor :SpecName, :Count, :DiskSize
+        
+        def initialize(specname=nil, count=nil, disksize=nil)
+          @SpecName = specname
+          @Count = count
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @Count = params['Count']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 节点角色描述信息
+      class NodesSummary < TencentCloud::Common::AbstractModel
+        # @param Spec: 机型，如 S1
+        # @type Spec: String
+        # @param NodeSize: 节点数目
+        # @type NodeSize: Integer
+        # @param Core: cpu核数，单位个
+        # @type Core: Integer
+        # @param Memory: 内存大小，单位G
+        # @type Memory: Integer
+        # @param Disk: 磁盘大小，单位G
+        # @type Disk: Integer
+        # @param DiskType: 磁盘类型
+        # @type DiskType: String
+        # @param DiskDesc: 磁盘描述
+        # @type DiskDesc: String
+
+        attr_accessor :Spec, :NodeSize, :Core, :Memory, :Disk, :DiskType, :DiskDesc
+        
+        def initialize(spec=nil, nodesize=nil, core=nil, memory=nil, disk=nil, disktype=nil, diskdesc=nil)
+          @Spec = spec
+          @NodeSize = nodesize
+          @Core = core
+          @Memory = memory
+          @Disk = disk
+          @DiskType = disktype
+          @DiskDesc = diskdesc
+        end
+
+        def deserialize(params)
+          @Spec = params['Spec']
+          @NodeSize = params['NodeSize']
+          @Core = params['Core']
+          @Memory = params['Memory']
+          @Disk = params['Disk']
+          @DiskType = params['DiskType']
+          @DiskDesc = params['DiskDesc']
         end
       end
 
@@ -589,6 +1005,26 @@ module TencentCloud
           @ComputeSpecDesc = params['ComputeSpecDesc']
           @DisplayName = params['DisplayName']
           @InstanceQuota = params['InstanceQuota']
+        end
+      end
+
+      # 标签描述
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签的键
+        # @type TagKey: String
+        # @param TagValue: 标签的值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

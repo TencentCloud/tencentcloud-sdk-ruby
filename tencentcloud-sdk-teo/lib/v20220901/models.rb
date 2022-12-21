@@ -10472,48 +10472,6 @@ module TencentCloud
         end
       end
 
-      # ModifyLoadBalancingStatus请求参数结构体
-      class ModifyLoadBalancingStatusRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # @type ZoneId: String
-        # @param LoadBalancingId: 负载均衡ID。
-        # @type LoadBalancingId: String
-        # @param Status: 负载均衡状态，取值有：
-        # <li>online：启用；</li>
-        # <li>offline：停用。</li>
-        # @type Status: String
-
-        attr_accessor :ZoneId, :LoadBalancingId, :Status
-        
-        def initialize(zoneid=nil, loadbalancingid=nil, status=nil)
-          @ZoneId = zoneid
-          @LoadBalancingId = loadbalancingid
-          @Status = status
-        end
-
-        def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @LoadBalancingId = params['LoadBalancingId']
-          @Status = params['Status']
-        end
-      end
-
-      # ModifyLoadBalancingStatus返回参数结构体
-      class ModifyLoadBalancingStatusResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyLogTopicTask请求参数结构体
       class ModifyLogTopicTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。

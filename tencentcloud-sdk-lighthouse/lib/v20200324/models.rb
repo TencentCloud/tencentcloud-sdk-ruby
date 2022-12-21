@@ -17,6 +17,42 @@
 module TencentCloud
   module Lighthouse
     module V20200324
+      # ApplyDiskBackup请求参数结构体
+      class ApplyDiskBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DiskId: 云硬盘ID，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。
+        # @type DiskId: String
+        # @param DiskBackupId: 云硬盘备份点ID，可通过 DescribeDiskBackups 接口查询。
+        # @type DiskBackupId: String
+
+        attr_accessor :DiskId, :DiskBackupId
+        
+        def initialize(diskid=nil, diskbackupid=nil)
+          @DiskId = diskid
+          @DiskBackupId = diskbackupid
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @DiskBackupId = params['DiskBackupId']
+        end
+      end
+
+      # ApplyDiskBackup返回参数结构体
+      class ApplyDiskBackupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyInstanceSnapshot请求参数结构体
       class ApplyInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -525,6 +561,46 @@ module TencentCloud
         end
       end
 
+      # CreateDiskBackup请求参数结构体
+      class CreateDiskBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DiskId: 云硬盘 ID。当前只支持数据盘创建备份点。
+        # @type DiskId: String
+        # @param DiskBackupName: 云硬盘备份点名称，最大长度90。
+        # @type DiskBackupName: String
+
+        attr_accessor :DiskId, :DiskBackupName
+        
+        def initialize(diskid=nil, diskbackupname=nil)
+          @DiskId = diskid
+          @DiskBackupName = diskbackupname
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @DiskBackupName = params['DiskBackupName']
+        end
+      end
+
+      # CreateDiskBackup返回参数结构体
+      class CreateDiskBackupResponse < TencentCloud::Common::AbstractModel
+        # @param DiskBackupId: 备份点ID。
+        # @type DiskBackupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskBackupId, :RequestId
+        
+        def initialize(diskbackupid=nil, requestid=nil)
+          @DiskBackupId = diskbackupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DiskBackupId = params['DiskBackupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFirewallRules请求参数结构体
       class CreateFirewallRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -801,6 +877,38 @@ module TencentCloud
 
       # DeleteBlueprints返回参数结构体
       class DeleteBlueprintsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDiskBackups请求参数结构体
+      class DeleteDiskBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param DiskBackupIds: 云硬盘备份点ID列表，可通过 DescribeDiskBackups接口查询。
+        # @type DiskBackupIds: Array
+
+        attr_accessor :DiskBackupIds
+        
+        def initialize(diskbackupids=nil)
+          @DiskBackupIds = diskbackupids
+        end
+
+        def deserialize(params)
+          @DiskBackupIds = params['DiskBackupIds']
+        end
+      end
+
+      # DeleteDiskBackups返回参数结构体
+      class DeleteDiskBackupsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1306,6 +1414,130 @@ module TencentCloud
               ccnattachedinstance_tmp = CcnAttachedInstance.new
               ccnattachedinstance_tmp.deserialize(i)
               @CcnAttachedInstanceSet << ccnattachedinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDiskBackupsDeniedActions请求参数结构体
+      class DescribeDiskBackupsDeniedActionsRequest < TencentCloud::Common::AbstractModel
+        # @param DiskBackupIds: 云硬盘备份点 ID 列表, 可通过 DescribeDiskBackups 接口查询。
+        # @type DiskBackupIds: Array
+
+        attr_accessor :DiskBackupIds
+        
+        def initialize(diskbackupids=nil)
+          @DiskBackupIds = diskbackupids
+        end
+
+        def deserialize(params)
+          @DiskBackupIds = params['DiskBackupIds']
+        end
+      end
+
+      # DescribeDiskBackupsDeniedActions返回参数结构体
+      class DescribeDiskBackupsDeniedActionsResponse < TencentCloud::Common::AbstractModel
+        # @param DiskBackupDeniedActionSet: 云硬盘备份点操作限制列表详细信息。
+        # @type DiskBackupDeniedActionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskBackupDeniedActionSet, :RequestId
+        
+        def initialize(diskbackupdeniedactionset=nil, requestid=nil)
+          @DiskBackupDeniedActionSet = diskbackupdeniedactionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskBackupDeniedActionSet'].nil?
+            @DiskBackupDeniedActionSet = []
+            params['DiskBackupDeniedActionSet'].each do |i|
+              diskbackupdeniedactions_tmp = DiskBackupDeniedActions.new
+              diskbackupdeniedactions_tmp.deserialize(i)
+              @DiskBackupDeniedActionSet << diskbackupdeniedactions_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDiskBackups请求参数结构体
+      class DescribeDiskBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param DiskBackupIds: 要查询云硬盘备份点的ID列表。参数不支持同时指定 DiskBackupIds 和 Filters。
+        # @type DiskBackupIds: Array
+        # @param Filters: 过滤器列表。
+        # <li>disk-backup-id</li>按照【云硬盘备份点 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>disk-id</li>按照【云硬盘 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>disk-backup-state</li>按照【云硬盘备份点状态】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 取值：参考数据结构DiskBackup下的DiskBackupState取值。
+        # <li>disk-usage</li>按照【云硬盘类型】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 取值：SYSTEM_DISK或DATA_DISK
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为5。参数不支持同时指定DiskBackupIds 和 Filters。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :DiskBackupIds, :Filters, :Offset, :Limit
+        
+        def initialize(diskbackupids=nil, filters=nil, offset=nil, limit=nil)
+          @DiskBackupIds = diskbackupids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @DiskBackupIds = params['DiskBackupIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDiskBackups返回参数结构体
+      class DescribeDiskBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 云硬盘备份点的数量。
+        # @type TotalCount: Integer
+        # @param DiskBackupSet: 云硬盘备份点信息列表。
+        # @type DiskBackupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DiskBackupSet, :RequestId
+        
+        def initialize(totalcount=nil, diskbackupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DiskBackupSet = diskbackupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DiskBackupSet'].nil?
+            @DiskBackupSet = []
+            params['DiskBackupSet'].each do |i|
+              diskbackup_tmp = DiskBackup.new
+              diskbackup_tmp.deserialize(i)
+              @DiskBackupSet << diskbackup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2925,6 +3157,97 @@ module TencentCloud
         end
       end
 
+      # 描述了云硬盘备份点相关信息。
+      class DiskBackup < TencentCloud::Common::AbstractModel
+        # @param DiskBackupId: 云硬盘备份点ID。
+        # @type DiskBackupId: String
+        # @param DiskUsage: 创建此云硬盘备份点的云硬盘类型。取值：<li>DATA_DISK：数据盘</li>
+        # @type DiskUsage: String
+        # @param DiskId: 创建此云硬盘备份点的云硬盘 ID。
+        # @type DiskId: String
+        # @param DiskSize: 创建此云硬盘备份点的云硬盘大小，单位 GB。
+        # @type DiskSize: Integer
+        # @param DiskBackupName: 云硬盘备份点名称，用户自定义的云硬盘备份点别名。
+        # @type DiskBackupName: String
+        # @param DiskBackupState: 云硬盘备份点的状态。取值范围：
+        # <li>NORMAL：正常。 </li>
+        # <li>CREATING：创建中。</li>
+        # <li>ROLLBACKING：回滚中。</li>
+        # <li>DELETING：删除中。</li>
+        # @type DiskBackupState: String
+        # @param Percent: 创建或回滚云硬盘备份点进度百分比，成功后此字段取值为 100。
+        # @type Percent: Integer
+        # @param LatestOperation: 上一次操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperation: String
+        # @param LatestOperationState: 上一次操作状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationState: String
+        # @param LatestOperationRequestId: 上一次请求ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationRequestId: String
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # @type CreatedTime: String
+
+        attr_accessor :DiskBackupId, :DiskUsage, :DiskId, :DiskSize, :DiskBackupName, :DiskBackupState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime
+        
+        def initialize(diskbackupid=nil, diskusage=nil, diskid=nil, disksize=nil, diskbackupname=nil, diskbackupstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil)
+          @DiskBackupId = diskbackupid
+          @DiskUsage = diskusage
+          @DiskId = diskid
+          @DiskSize = disksize
+          @DiskBackupName = diskbackupname
+          @DiskBackupState = diskbackupstate
+          @Percent = percent
+          @LatestOperation = latestoperation
+          @LatestOperationState = latestoperationstate
+          @LatestOperationRequestId = latestoperationrequestid
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @DiskBackupId = params['DiskBackupId']
+          @DiskUsage = params['DiskUsage']
+          @DiskId = params['DiskId']
+          @DiskSize = params['DiskSize']
+          @DiskBackupName = params['DiskBackupName']
+          @DiskBackupState = params['DiskBackupState']
+          @Percent = params['Percent']
+          @LatestOperation = params['LatestOperation']
+          @LatestOperationState = params['LatestOperationState']
+          @LatestOperationRequestId = params['LatestOperationRequestId']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 云硬盘备份点操作限制列表。
+      class DiskBackupDeniedActions < TencentCloud::Common::AbstractModel
+        # @param DiskBackupId: 云硬盘备份点ID。
+        # @type DiskBackupId: String
+        # @param DeniedActions: 操作限制列表。
+        # @type DeniedActions: Array
+
+        attr_accessor :DiskBackupId, :DeniedActions
+        
+        def initialize(diskbackupid=nil, deniedactions=nil)
+          @DiskBackupId = diskbackupid
+          @DeniedActions = deniedactions
+        end
+
+        def deserialize(params)
+          @DiskBackupId = params['DiskBackupId']
+          unless params['DeniedActions'].nil?
+            @DeniedActions = []
+            params['DeniedActions'].each do |i|
+              deniedaction_tmp = DeniedAction.new
+              deniedaction_tmp.deserialize(i)
+              @DeniedActions << deniedaction_tmp
+            end
+          end
+        end
+      end
+
       # 云硬盘包年包月相关参数设置
       class DiskChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 新购周期。
@@ -4179,6 +4502,42 @@ module TencentCloud
             @Bundle.deserialize(params['Bundle'])
           end
           @NotSupportModifyMessage = params['NotSupportModifyMessage']
+        end
+      end
+
+      # ModifyDiskBackupsAttribute请求参数结构体
+      class ModifyDiskBackupsAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param DiskBackupIds: 云硬盘备份点ID列表。
+        # @type DiskBackupIds: Array
+        # @param DiskBackupName: 云硬盘备份点名称，最大长度90。
+        # @type DiskBackupName: String
+
+        attr_accessor :DiskBackupIds, :DiskBackupName
+        
+        def initialize(diskbackupids=nil, diskbackupname=nil)
+          @DiskBackupIds = diskbackupids
+          @DiskBackupName = diskbackupname
+        end
+
+        def deserialize(params)
+          @DiskBackupIds = params['DiskBackupIds']
+          @DiskBackupName = params['DiskBackupName']
+        end
+      end
+
+      # ModifyDiskBackupsAttribute返回参数结构体
+      class ModifyDiskBackupsAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -431,6 +431,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户自定义审核模板，数量上限：50。
+
+        # @param request: Request instance for CreateReviewTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateReviewTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateReviewTemplateResponse`
+        def CreateReviewTemplate(request)
+          body = send_request('CreateReviewTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义采样截图模板，数量上限：16。
 
         # @param request: Request instance for CreateSampleSnapshotTemplate.
@@ -930,6 +954,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteProcedureTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义审核模板。
+
+        # @param request: Request instance for DeleteReviewTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteReviewTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteReviewTemplateResponse`
+        def DeleteReviewTemplate(request)
+          body = send_request('DeleteReviewTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReviewTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1454,8 +1502,9 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
-        # 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
+        # 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中 [DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643) 的升级版本。
+
+        # 如果您是新接入点播加密的用户，不要使用该 API，请参考 [视频加密综述](https://cloud.tencent.com/document/product/266/45552) 使用推荐的加密方式。
 
         # @param request: Request instance for DescribeDrmDataKey.
         # @type request: :class:`Tencentcloud::vod::V20180717::DescribeDrmDataKeyRequest`
@@ -1717,6 +1766,7 @@ module TencentCloud
         #     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
         #     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
         #     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+        #     10. 审核信息（reviewInfo）：包括媒体审核及媒体封面审核信息。
         # 2. 可以指定回包只返回部分信息。
 
         # @param request: Request instance for DescribeMediaInfos.
@@ -1883,6 +1933,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReviewDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取审核模板列表
+
+        # @param request: Request instance for DescribeReviewTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeReviewTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeReviewTemplatesResponse`
+        def DescribeReviewTemplates(request)
+          body = send_request('DescribeReviewTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReviewTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2717,6 +2791,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义审核模板。
+
+        # @param request: Request instance for ModifyReviewTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyReviewTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyReviewTemplateResponse`
+        def ModifyReviewTemplate(request)
+          body = send_request('ModifyReviewTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReviewTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
