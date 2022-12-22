@@ -8954,19 +8954,24 @@ module TencentCloud
         # @param DefaultCache: 源站未返回 Cache-Control 头时, 设置缓存/不缓存
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultCache: String
+        # @param DefaultCacheStrategy: 源站未返回 Cache-Control 头时, 使用/不使用默认缓存策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultCacheStrategy: String
 
-        attr_accessor :Switch, :DefaultCacheTime, :DefaultCache
+        attr_accessor :Switch, :DefaultCacheTime, :DefaultCache, :DefaultCacheStrategy
         
-        def initialize(switch=nil, defaultcachetime=nil, defaultcache=nil)
+        def initialize(switch=nil, defaultcachetime=nil, defaultcache=nil, defaultcachestrategy=nil)
           @Switch = switch
           @DefaultCacheTime = defaultcachetime
           @DefaultCache = defaultcache
+          @DefaultCacheStrategy = defaultcachestrategy
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @DefaultCacheTime = params['DefaultCacheTime']
           @DefaultCache = params['DefaultCache']
+          @DefaultCacheStrategy = params['DefaultCacheStrategy']
         end
       end
 

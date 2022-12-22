@@ -139,19 +139,25 @@ module TencentCloud
         # @type GroupId: String
         # @param GameRegion: 游戏区域
         # @type GameRegion: String
+        # @param GameType: 游戏类型。
+        # MOBILE：手游
+        # PC：默认值，端游
+        # @type GameType: String
 
-        attr_accessor :GameId, :GroupId, :GameRegion
+        attr_accessor :GameId, :GroupId, :GameRegion, :GameType
         
-        def initialize(gameid=nil, groupid=nil, gameregion=nil)
+        def initialize(gameid=nil, groupid=nil, gameregion=nil, gametype=nil)
           @GameId = gameid
           @GroupId = groupid
           @GameRegion = gameregion
+          @GameType = gametype
         end
 
         def deserialize(params)
           @GameId = params['GameId']
           @GroupId = params['GroupId']
           @GameRegion = params['GameRegion']
+          @GameType = params['GameType']
         end
       end
 

@@ -612,15 +612,21 @@ module TencentCloud
         # @type FlowGroupName: String
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ApproverVerifyType: 签署人校验方式
+        # VerifyCheck: 人脸识别（默认）
+        # MobileCheck：手机号验证
+        # 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
+        # @type ApproverVerifyType: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :Operator
+        attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :ApproverVerifyType, :Operator
         
-        def initialize(flowfileinfos=nil, flowgroupname=nil, agent=nil, operator=nil)
+        def initialize(flowfileinfos=nil, flowgroupname=nil, agent=nil, approververifytype=nil, operator=nil)
           @FlowFileInfos = flowfileinfos
           @FlowGroupName = flowgroupname
           @Agent = agent
+          @ApproverVerifyType = approververifytype
           @Operator = operator
         end
 
@@ -638,6 +644,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ApproverVerifyType = params['ApproverVerifyType']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1325,6 +1332,9 @@ module TencentCloud
         # @param ChannelComponentId: 渠道控件ID。
         # 如果不为空，属于渠道预设控件；
         # @type ChannelComponentId: String
+        # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
+        # 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
+        # @type KeywordOrder: String
         # @param KeywordPage: 指定关键字页码，可选参数，指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
         # @type KeywordPage: Integer
         # @param RelativeLocation: 关键字位置模式，Middle-居中，Below-正下方，Right-正右方，LowerRight-右上角，UpperRight-右下角。示例：如果设置Middle的关键字盖章，则印章的中心会和关键字的中心重合，如果设置Below，则印章在关键字的正下方
@@ -1332,9 +1342,9 @@ module TencentCloud
         # @param KeywordIndexes: 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         # @type KeywordIndexes: Array
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordPage, :RelativeLocation, :KeywordIndexes
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes
         
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
@@ -1355,6 +1365,7 @@ module TencentCloud
           @OffsetX = offsetx
           @OffsetY = offsety
           @ChannelComponentId = channelcomponentid
+          @KeywordOrder = keywordorder
           @KeywordPage = keywordpage
           @RelativeLocation = relativelocation
           @KeywordIndexes = keywordindexes
@@ -1381,6 +1392,7 @@ module TencentCloud
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
           @ChannelComponentId = params['ChannelComponentId']
+          @KeywordOrder = params['KeywordOrder']
           @KeywordPage = params['KeywordPage']
           @RelativeLocation = params['RelativeLocation']
           @KeywordIndexes = params['KeywordIndexes']

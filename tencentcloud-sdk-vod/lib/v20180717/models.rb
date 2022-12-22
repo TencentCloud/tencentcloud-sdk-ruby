@@ -19203,7 +19203,8 @@ module TencentCloud
       class ReviewImageRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
         # @type FileId: String
-        # @param Definition: 图片审核模板 ID，当前固定填 10。
+        # @param Definition: 图片审核模板 ID，取值范围：
+        # <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -19226,14 +19227,19 @@ module TencentCloud
       # ReviewImage返回参数结构体
       class ReviewImageResponse < TencentCloud::Common::AbstractModel
         # @param ReviewResultSet: 图片审核任务结果。
+        # <font color=red>注意：该字段已废弃，建议使用 ReviewResult。</font>
         # @type ReviewResultSet: Array
+        # @param MediaReviewResult: 图片审核任务结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaReviewResult: :class:`Tencentcloud::Vod.v20180717.models.ReviewImageResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReviewResultSet, :RequestId
+        attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         
-        def initialize(reviewresultset=nil, requestid=nil)
+        def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
+          @MediaReviewResult = mediareviewresult
           @RequestId = requestid
         end
 
@@ -19246,7 +19252,122 @@ module TencentCloud
               @ReviewResultSet << contentreviewresult_tmp
             end
           end
+          unless params['MediaReviewResult'].nil?
+            @MediaReviewResult = ReviewImageResult.new
+            @MediaReviewResult.deserialize(params['MediaReviewResult'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图片审核结果。
+      class ReviewImageResult < TencentCloud::Common::AbstractModel
+        # @param Suggestion: 图片审核的结果建议，取值范围：
+        # <li>pass：建议通过；</li>
+        # <li>review：建议复审；</li>
+        # <li>block：建议封禁。</li>
+        # @type Suggestion: String
+        # @param Label: 当 Suggestion 为 review 或 block 时有效，表示最可能的违规的标签，取值范围：
+        # <li>Porn：色情；</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Ad：广告；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂。</li>
+        # @type Label: String
+        # @param Form: 当 Suggestion 为 review 或 block 时有效，表示最可能的违禁的形式，取值范围：
+        # <li>Image：画面上的人物或图标；</li>
+        # <li>OCR：画面上的文字。</li>
+        # @type Form: String
+        # @param SegmentSet: 有违规信息的嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 涉及违规信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 涉及违规信息的嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
+
+        attr_accessor :Suggestion, :Label, :Form, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
+        
+        def initialize(suggestion=nil, label=nil, form=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
+          @Suggestion = suggestion
+          @Label = label
+          @Form = form
+          @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
+        end
+
+        def deserialize(params)
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
+          @Form = params['Form']
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              reviewimagesegmentitem_tmp = ReviewImageSegmentItem.new
+              reviewimagesegmentitem_tmp.deserialize(i)
+              @SegmentSet << reviewimagesegmentitem_tmp
+            end
+          end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
+        end
+      end
+
+      # 图片审核片段。
+      class ReviewImageSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 嫌疑片段涉及令人反感的信息的分数。
+        # @type Confidence: Float
+        # @param Suggestion: 嫌疑片段鉴别涉及违规信息的结果建议，取值范围：
+        # <li>review：疑似违规，建议复审；</li>
+        # <li>block：确认违规，建议封禁。</li>
+        # @type Suggestion: String
+        # @param Label: 嫌疑片段最可能的违规的标签，取值范围：
+        # <li>Porn：色情；</li>
+        # <li>Terror：暴恐；</li>
+        # <li>Polity：不适宜的信息；</li>
+        # <li>Ad：广告；</li>
+        # <li>Illegal：违法；</li>
+        # <li>Religion：宗教；</li>
+        # <li>Abuse：谩骂。</li>
+        # @type Label: String
+        # @param SubLabel: 违规子标签。
+        # @type SubLabel: String
+        # @param Form: 嫌疑片段违禁的形式，取值范围：
+        # <li>Image：画面上的人物或图标；</li>
+        # <li>OCR：画面上的文字。</li>
+        # @type Form: String
+        # @param AreaCoordSet: 嫌疑人物、图标或文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # @type AreaCoordSet: Array
+        # @param Text: 当 Form 为 OCR 时有效，表示识别出来的 OCR 文本内容。
+        # @type Text: String
+        # @param KeywordSet: 当 Form 为 OCR 时有效，表示嫌疑片段命中的违规关键词列表。
+        # @type KeywordSet: Array
+
+        attr_accessor :Confidence, :Suggestion, :Label, :SubLabel, :Form, :AreaCoordSet, :Text, :KeywordSet
+        
+        def initialize(confidence=nil, suggestion=nil, label=nil, sublabel=nil, form=nil, areacoordset=nil, text=nil, keywordset=nil)
+          @Confidence = confidence
+          @Suggestion = suggestion
+          @Label = label
+          @SubLabel = sublabel
+          @Form = form
+          @AreaCoordSet = areacoordset
+          @Text = text
+          @KeywordSet = keywordset
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
+          @SubLabel = params['SubLabel']
+          @Form = params['Form']
+          @AreaCoordSet = params['AreaCoordSet']
+          @Text = params['Text']
+          @KeywordSet = params['KeywordSet']
         end
       end
 

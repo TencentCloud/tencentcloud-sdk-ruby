@@ -4221,6 +4221,38 @@ module TencentCloud
         end
       end
 
+      # StopProject请求参数结构体
+      class StopProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目 id
+        # @type ProjectId: Integer
+
+        attr_accessor :ProjectId
+        
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # StopProject返回参数结构体
+      class StopProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签key
