@@ -4177,17 +4177,22 @@ module TencentCloud
         # @param LastUsedDate: 最后访问日期(有1天延迟)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUsedDate: String
+        # @param LastSecretUsedDate: 最后密钥访问日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastSecretUsedDate: Integer
 
-        attr_accessor :SecretId, :LastUsedDate
+        attr_accessor :SecretId, :LastUsedDate, :LastSecretUsedDate
         
-        def initialize(secretid=nil, lastuseddate=nil)
+        def initialize(secretid=nil, lastuseddate=nil, lastsecretuseddate=nil)
           @SecretId = secretid
           @LastUsedDate = lastuseddate
+          @LastSecretUsedDate = lastsecretuseddate
         end
 
         def deserialize(params)
           @SecretId = params['SecretId']
           @LastUsedDate = params['LastUsedDate']
+          @LastSecretUsedDate = params['LastSecretUsedDate']
         end
       end
 

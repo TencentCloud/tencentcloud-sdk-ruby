@@ -697,7 +697,7 @@ module TencentCloud
         end
       end
 
-      # 从经验模版创建演练时需要配置的任务参数
+      # 从经验模板创建演练时需要配置的任务参数
       class TaskConfig < TencentCloud::Common::AbstractModel
         # @param TaskGroupsConfig: 动作组配置，需要保证配置个数和经验中的动作组个数一致
         # @type TaskGroupsConfig: Array

@@ -1098,6 +1098,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取项目下的日志列表（实例创建的项目下的日志列表）
+
+        # @param request: Request instance for DescribeRumLogList.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogListRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogListResponse`
+        def DescribeRumLogList(request)
+          body = send_request('DescribeRumLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取项目下的日志列表，分钟级
+
+        # @param request: Request instance for DescribeRumStatsLogList.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumStatsLogListRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumStatsLogListResponse`
+        def DescribeRumStatsLogList(request)
+          body = send_request('DescribeRumStatsLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumStatsLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取首页分数列表
 
         # @param request: Request instance for DescribeScores.

@@ -962,10 +962,12 @@ module TencentCloud
         # @type ParamTemplateId: Integer
         # @param SlaveZone: 多可用区地址
         # @type SlaveZone: String
+        # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
+        # @type InstanceInitInfos: Array
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos
         
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1006,6 +1008,7 @@ module TencentCloud
           @DealMode = dealmode
           @ParamTemplateId = paramtemplateid
           @SlaveZone = slavezone
+          @InstanceInitInfos = instanceinitinfos
         end
 
         def deserialize(params)
@@ -1063,6 +1066,14 @@ module TencentCloud
           @DealMode = params['DealMode']
           @ParamTemplateId = params['ParamTemplateId']
           @SlaveZone = params['SlaveZone']
+          unless params['InstanceInitInfos'].nil?
+            @InstanceInitInfos = []
+            params['InstanceInitInfos'].each do |i|
+              instanceinitinfo_tmp = InstanceInitInfo.new
+              instanceinitinfo_tmp.deserialize(i)
+              @InstanceInitInfos << instanceinitinfo_tmp
+            end
+          end
         end
       end
 
@@ -3882,6 +3893,34 @@ module TencentCloud
           @InstanceRealTotalPrice = params['InstanceRealTotalPrice']
           @StorageRealTotalPrice = params['StorageRealTotalPrice']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例初始化配置信息
+      class InstanceInitInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: 实例cpu
+        # @type Cpu: Integer
+        # @param Memory: 实例内存
+        # @type Memory: Integer
+        # @param InstanceType: 实例类型 rw/ro
+        # @type InstanceType: String
+        # @param InstanceCount: 实例个数,范围[1,15]
+        # @type InstanceCount: Integer
+
+        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount
+        
+        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @InstanceType = instancetype
+          @InstanceCount = instancecount
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @InstanceType = params['InstanceType']
+          @InstanceCount = params['InstanceCount']
         end
       end
 

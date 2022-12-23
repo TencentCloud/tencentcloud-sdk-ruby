@@ -9028,6 +9028,24 @@ module TencentCloud
         end
       end
 
+      # Grpc配置项
+      class Grpc < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否开启Grpc配置，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 刷新预热附带的头部信息
       class Header < TencentCloud::Common::AbstractModel
         # @param Name: HTTP头部名称。
@@ -11001,10 +11019,13 @@ module TencentCloud
         # @param ClientIpCountry: 回源时是否携带客户端IP所属地域信息的配置。
         # 不填写表示保持原有配置。
         # @type ClientIpCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIpCountry`
+        # @param Grpc: Grpc协议支持配置。
+        # 不填写表示保持原有配置。
+        # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.Grpc`
 
-        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry
+        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry, :Grpc
         
-        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil)
+        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil, grpc=nil)
           @ZoneId = zoneid
           @CacheConfig = cacheconfig
           @CacheKey = cachekey
@@ -11023,6 +11044,7 @@ module TencentCloud
           @CachePrefresh = cacheprefresh
           @Ipv6 = ipv6
           @ClientIpCountry = clientipcountry
+          @Grpc = grpc
         end
 
         def deserialize(params)
@@ -11094,6 +11116,10 @@ module TencentCloud
           unless params['ClientIpCountry'].nil?
             @ClientIpCountry = ClientIpCountry.new
             @ClientIpCountry.deserialize(params['ClientIpCountry'])
+          end
+          unless params['Grpc'].nil?
+            @Grpc = Grpc.new
+            @Grpc.deserialize(params['Grpc'])
           end
         end
       end
@@ -14566,10 +14592,13 @@ module TencentCloud
         # @param ClientIpCountry: 回源时是否携带客户端IP所属地域信息的配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIpCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIpCountry`
+        # @param Grpc: Grpc协议支持配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.Grpc`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc
         
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -14589,6 +14618,7 @@ module TencentCloud
           @Ipv6 = ipv6
           @Https = https
           @ClientIpCountry = clientipcountry
+          @Grpc = grpc
         end
 
         def deserialize(params)
@@ -14661,6 +14691,10 @@ module TencentCloud
           unless params['ClientIpCountry'].nil?
             @ClientIpCountry = ClientIpCountry.new
             @ClientIpCountry.deserialize(params['ClientIpCountry'])
+          end
+          unless params['Grpc'].nil?
+            @Grpc = Grpc.new
+            @Grpc.deserialize(params['Grpc'])
           end
         end
       end

@@ -440,50 +440,48 @@ module TencentCloud
         # @type JobId: String
         # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
         # @type SrcAccessType: String
-        # @param SrcInfo: 源端信息
-        # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
         # @type DstAccessType: String
-        # @param DstInfo: 目标端信息
-        # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param Options: 同步任务选项
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param Objects: 同步库表对象信息
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
         # @param JobName: 同步任务名称
         # @type JobName: String
+        # @param JobMode: 枚举值是 liteMode 和 fullMode ，分别对应精简模式或正常模式
+        # @type JobMode: String
         # @param RunMode: 运行模式，取值如：Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)
         # @type RunMode: String
         # @param ExpectRunTime: 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
         # @type ExpectRunTime: String
+        # @param SrcInfo: 源端信息，单节点数据库使用
+        # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param DstInfo: 目标端信息，单节点数据库使用
+        # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
+        # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :SrcAccessType, :SrcInfo, :DstAccessType, :DstInfo, :Options, :Objects, :JobName, :RunMode, :ExpectRunTime
+        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Options, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :DstInfo, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, srcaccesstype=nil, srcinfo=nil, dstaccesstype=nil, dstinfo=nil, options=nil, objects=nil, jobname=nil, runmode=nil, expectruntime=nil)
+        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, options=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, dstinfo=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @SrcAccessType = srcaccesstype
-          @SrcInfo = srcinfo
           @DstAccessType = dstaccesstype
-          @DstInfo = dstinfo
           @Options = options
           @Objects = objects
           @JobName = jobname
+          @JobMode = jobmode
           @RunMode = runmode
           @ExpectRunTime = expectruntime
+          @SrcInfo = srcinfo
+          @DstInfo = dstinfo
+          @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @SrcAccessType = params['SrcAccessType']
-          unless params['SrcInfo'].nil?
-            @SrcInfo = Endpoint.new
-            @SrcInfo.deserialize(params['SrcInfo'])
-          end
           @DstAccessType = params['DstAccessType']
-          unless params['DstInfo'].nil?
-            @DstInfo = Endpoint.new
-            @DstInfo.deserialize(params['DstInfo'])
-          end
           unless params['Options'].nil?
             @Options = Options.new
             @Options.deserialize(params['Options'])
@@ -493,8 +491,18 @@ module TencentCloud
             @Objects.deserialize(params['Objects'])
           end
           @JobName = params['JobName']
+          @JobMode = params['JobMode']
           @RunMode = params['RunMode']
           @ExpectRunTime = params['ExpectRunTime']
+          unless params['SrcInfo'].nil?
+            @SrcInfo = Endpoint.new
+            @SrcInfo.deserialize(params['SrcInfo'])
+          end
+          unless params['DstInfo'].nil?
+            @DstInfo = Endpoint.new
+            @DstInfo.deserialize(params['DstInfo'])
+          end
+          @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
       end
 
@@ -1181,10 +1189,22 @@ module TencentCloud
         # @param Procedures: ProcedureMode取值为Partial时需要填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Procedures: Array
+        # @param TriggerMode: 触发器迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerMode: String
+        # @param Triggers: 当TriggerMode为partial，指定要迁移的触发器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Triggers: Array
+        # @param EventMode: 事件迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventMode: String
+        # @param Events: 当EventMode为partial，指定要迁移的事件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
 
-        attr_accessor :DbName, :NewDbName, :DbMode, :SchemaName, :NewSchemaName, :TableMode, :Tables, :ViewMode, :Views, :FunctionMode, :Functions, :ProcedureMode, :Procedures
+        attr_accessor :DbName, :NewDbName, :DbMode, :SchemaName, :NewSchemaName, :TableMode, :Tables, :ViewMode, :Views, :FunctionMode, :Functions, :ProcedureMode, :Procedures, :TriggerMode, :Triggers, :EventMode, :Events
         
-        def initialize(dbname=nil, newdbname=nil, dbmode=nil, schemaname=nil, newschemaname=nil, tablemode=nil, tables=nil, viewmode=nil, views=nil, functionmode=nil, functions=nil, proceduremode=nil, procedures=nil)
+        def initialize(dbname=nil, newdbname=nil, dbmode=nil, schemaname=nil, newschemaname=nil, tablemode=nil, tables=nil, viewmode=nil, views=nil, functionmode=nil, functions=nil, proceduremode=nil, procedures=nil, triggermode=nil, triggers=nil, eventmode=nil, events=nil)
           @DbName = dbname
           @NewDbName = newdbname
           @DbMode = dbmode
@@ -1198,6 +1218,10 @@ module TencentCloud
           @Functions = functions
           @ProcedureMode = proceduremode
           @Procedures = procedures
+          @TriggerMode = triggermode
+          @Triggers = triggers
+          @EventMode = eventmode
+          @Events = events
         end
 
         def deserialize(params)
@@ -1228,6 +1252,10 @@ module TencentCloud
           @Functions = params['Functions']
           @ProcedureMode = params['ProcedureMode']
           @Procedures = params['Procedures']
+          @TriggerMode = params['TriggerMode']
+          @Triggers = params['Triggers']
+          @EventMode = params['EventMode']
+          @Events = params['Events']
         end
       end
 
@@ -2265,6 +2293,9 @@ module TencentCloud
         # @param Region: 地域英文名，如：ap-guangzhou
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param Role: tdsql mysql版的节点类型，枚举值为proxy、set
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
         # @param DbKernel: 数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbKernel: String
@@ -2310,15 +2341,18 @@ module TencentCloud
         # @param EngineVersion: 数据库版本，当实例为RDS实例时才有效，其他实例忽略，格式如：5.6或者5.7，默认为5.6
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
-        # @param AccountMode: 资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AccountMode: String
         # @param Account: 实例所属账号，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Account: String
+        # @param AccountMode: 资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountMode: String
         # @param AccountRole: 跨账号同步时的角色，只允许[a-zA-Z0-9\-\_]+，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountRole: String
+        # @param RoleExternalId: 外部角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleExternalId: String
         # @param TmpSecretId: 临时密钥Id，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretId: String
@@ -2328,14 +2362,15 @@ module TencentCloud
         # @param TmpToken: 临时Token，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
-        # @param RoleExternalId: 外部角色id
+        # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RoleExternalId: String
+        # @type EncryptConn: String
 
-        attr_accessor :Region, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :AccountMode, :Account, :AccountRole, :TmpSecretId, :TmpSecretKey, :TmpToken, :RoleExternalId
+        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn
         
-        def initialize(region=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, accountmode=nil, account=nil, accountrole=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, roleexternalid=nil)
+        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil)
           @Region = region
+          @Role = role
           @DbKernel = dbkernel
           @InstanceId = instanceid
           @Ip = ip
@@ -2351,17 +2386,19 @@ module TencentCloud
           @CcnId = ccnid
           @Supplier = supplier
           @EngineVersion = engineversion
-          @AccountMode = accountmode
           @Account = account
+          @AccountMode = accountmode
           @AccountRole = accountrole
+          @RoleExternalId = roleexternalid
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
           @TmpToken = tmptoken
-          @RoleExternalId = roleexternalid
+          @EncryptConn = encryptconn
         end
 
         def deserialize(params)
           @Region = params['Region']
+          @Role = params['Role']
           @DbKernel = params['DbKernel']
           @InstanceId = params['InstanceId']
           @Ip = params['Ip']
@@ -2377,13 +2414,14 @@ module TencentCloud
           @CcnId = params['CcnId']
           @Supplier = params['Supplier']
           @EngineVersion = params['EngineVersion']
-          @AccountMode = params['AccountMode']
           @Account = params['Account']
+          @AccountMode = params['AccountMode']
           @AccountRole = params['AccountRole']
+          @RoleExternalId = params['RoleExternalId']
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           @TmpToken = params['TmpToken']
-          @RoleExternalId = params['RoleExternalId']
+          @EncryptConn = params['EncryptConn']
         end
       end
 
@@ -2536,10 +2574,13 @@ module TencentCloud
         # @param Tags: 标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param AutoRetryTimeRangeMinutes: 自动重试时间段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :RunMode, :ExpectRunTime, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :TradeInfo, :Tags
+        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :RunMode, :ExpectRunTime, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :TradeInfo, :Tags, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, runmode=nil, expectruntime=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tradeinfo=nil, tags=nil)
+        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, runmode=nil, expectruntime=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tradeinfo=nil, tags=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @JobName = jobname
           @CreateTime = createtime
@@ -2557,6 +2598,7 @@ module TencentCloud
           @CompareTask = comparetask
           @TradeInfo = tradeinfo
           @Tags = tags
+          @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
         def deserialize(params)
@@ -2602,6 +2644,7 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
+          @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
       end
 
@@ -2971,10 +3014,12 @@ module TencentCloud
         # @type ExpectRunTime: String
         # @param Tags: 标签信息
         # @type Tags: Array
+        # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
+        # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :RunMode, :MigrateOption, :SrcInfo, :DstInfo, :JobName, :ExpectRunTime, :Tags
+        attr_accessor :JobId, :RunMode, :MigrateOption, :SrcInfo, :DstInfo, :JobName, :ExpectRunTime, :Tags, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, runmode=nil, migrateoption=nil, srcinfo=nil, dstinfo=nil, jobname=nil, expectruntime=nil, tags=nil)
+        def initialize(jobid=nil, runmode=nil, migrateoption=nil, srcinfo=nil, dstinfo=nil, jobname=nil, expectruntime=nil, tags=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @RunMode = runmode
           @MigrateOption = migrateoption
@@ -2983,6 +3028,7 @@ module TencentCloud
           @JobName = jobname
           @ExpectRunTime = expectruntime
           @Tags = tags
+          @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
         def deserialize(params)
@@ -3010,6 +3056,7 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
+          @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
       end
 
@@ -3040,13 +3087,17 @@ module TencentCloud
         # @param AdvancedObjects: 高级对象类型，如function、procedure，当需要同步高级对象时，初始化类型必须包含结构初始化类型，即Options.InitType字段值为Structure或Full
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedObjects: Array
+        # @param OnlineDDL: OnlineDDL类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineDDL: :class:`Tencentcloud::Dts.v20211206.models.OnlineDDL`
 
-        attr_accessor :Mode, :Databases, :AdvancedObjects
+        attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL
         
-        def initialize(mode=nil, databases=nil, advancedobjects=nil)
+        def initialize(mode=nil, databases=nil, advancedobjects=nil, onlineddl=nil)
           @Mode = mode
           @Databases = databases
           @AdvancedObjects = advancedobjects
+          @OnlineDDL = onlineddl
         end
 
         def deserialize(params)
@@ -3060,6 +3111,21 @@ module TencentCloud
             end
           end
           @AdvancedObjects = params['AdvancedObjects']
+          unless params['OnlineDDL'].nil?
+            @OnlineDDL = OnlineDDL.new
+            @OnlineDDL.deserialize(params['OnlineDDL'])
+          end
+        end
+      end
+
+      # OnlineDDL类型
+      class OnlineDDL < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -3991,7 +4057,7 @@ module TencentCloud
         # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcAccessType: String
-        # @param SrcInfo: 源端信息
+        # @param SrcInfo: 源端信息，单节点数据库使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param DstRegion: 目标端地域，如：ap-guangzhou等
@@ -4003,7 +4069,7 @@ module TencentCloud
         # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstAccessType: String
-        # @param DstInfo: 目标端信息
+        # @param DstInfo: 目标端信息，单节点数据库使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param CreateTime: 创建时间，格式为 yyyy-mm-dd hh:mm:ss
@@ -4036,10 +4102,13 @@ module TencentCloud
         # @param OfflineTime: 下线时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
+        # @param AutoRetryTimeRangeMinutes: 自动重试时间段设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime
+        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil)
+        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @JobName = jobname
           @PayMode = paymode
@@ -4069,6 +4138,7 @@ module TencentCloud
           @InstanceClass = instanceclass
           @AutoRenew = autorenew
           @OfflineTime = offlinetime
+          @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
         def deserialize(params)
@@ -4123,6 +4193,7 @@ module TencentCloud
           @InstanceClass = params['InstanceClass']
           @AutoRenew = params['AutoRenew']
           @OfflineTime = params['OfflineTime']
+          @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
       end
 

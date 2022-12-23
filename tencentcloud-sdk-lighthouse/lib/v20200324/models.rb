@@ -4898,19 +4898,30 @@ module TencentCloud
         # @type CommonDiscount: Integer
         # @param FinalDiscount: 最终折扣。
         # @type FinalDiscount: Integer
+        # @param ActivityDiscount: 活动折扣。取值为null，表示无有效值，即没有折扣。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivityDiscount: Float
+        # @param DiscountType: 折扣类型。
+        # user：用户折扣; common：官网折扣; activity：活动折扣。 取值为null，表示无有效值，即没有折扣。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountType: String
 
-        attr_accessor :UserDiscount, :CommonDiscount, :FinalDiscount
+        attr_accessor :UserDiscount, :CommonDiscount, :FinalDiscount, :ActivityDiscount, :DiscountType
         
-        def initialize(userdiscount=nil, commondiscount=nil, finaldiscount=nil)
+        def initialize(userdiscount=nil, commondiscount=nil, finaldiscount=nil, activitydiscount=nil, discounttype=nil)
           @UserDiscount = userdiscount
           @CommonDiscount = commondiscount
           @FinalDiscount = finaldiscount
+          @ActivityDiscount = activitydiscount
+          @DiscountType = discounttype
         end
 
         def deserialize(params)
           @UserDiscount = params['UserDiscount']
           @CommonDiscount = params['CommonDiscount']
           @FinalDiscount = params['FinalDiscount']
+          @ActivityDiscount = params['ActivityDiscount']
+          @DiscountType = params['DiscountType']
         end
       end
 

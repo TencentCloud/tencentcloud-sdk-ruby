@@ -851,6 +851,17 @@ module TencentCloud
         end
       end
 
+      # 主机路径挂载参数
+      class CloudBaseRunServiceVolumeHostPath < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 对标 EKS VolumeMount
       class CloudBaseRunServiceVolumeMount < TencentCloud::Common::AbstractModel
         # @param Name: Volume 名称
@@ -1300,15 +1311,19 @@ module TencentCloud
         # @param EmptyDir: emptydir数据卷详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmptyDir: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunEmptyDirVolumeSource`
+        # @param HostPath: 主机路径挂载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostPath: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunServiceVolumeHostPath`
 
-        attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume, :EmptyDir
+        attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume, :EmptyDir, :HostPath
         
-        def initialize(name=nil, nfs=nil, secretname=nil, enableemptydirvolume=nil, emptydir=nil)
+        def initialize(name=nil, nfs=nil, secretname=nil, enableemptydirvolume=nil, emptydir=nil, hostpath=nil)
           @Name = name
           @NFS = nfs
           @SecretName = secretname
           @EnableEmptyDirVolume = enableemptydirvolume
           @EmptyDir = emptydir
+          @HostPath = hostpath
         end
 
         def deserialize(params)
@@ -1322,6 +1337,10 @@ module TencentCloud
           unless params['EmptyDir'].nil?
             @EmptyDir = CloudBaseRunEmptyDirVolumeSource.new
             @EmptyDir.deserialize(params['EmptyDir'])
+          end
+          unless params['HostPath'].nil?
+            @HostPath = CloudBaseRunServiceVolumeHostPath.new
+            @HostPath.deserialize(params['HostPath'])
           end
         end
       end
@@ -3593,12 +3612,18 @@ module TencentCloud
         # @param PolicyDetail: 自动扩缩容策略组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDetail: Array
+        # @param TkeClusterInfo: Tke集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TkeClusterInfo: :class:`Tencentcloud::Tcb.v20180608.models.TkeClusterInfo`
+        # @param TkeWorkloadType: 版本工作负载类型；deployment/deamonset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TkeWorkloadType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :PolicyDetail, :RequestId
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :PolicyDetail, :TkeClusterInfo, :TkeWorkloadType, :RequestId
         
-        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, policydetail=nil, requestid=nil)
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, policydetail=nil, tkeclusterinfo=nil, tkeworkloadtype=nil, requestid=nil)
           @VersionName = versionname
           @Remark = remark
           @DockerfilePath = dockerfilepath
@@ -3636,6 +3661,8 @@ module TencentCloud
           @EntryPoint = entrypoint
           @RepoLanguage = repolanguage
           @PolicyDetail = policydetail
+          @TkeClusterInfo = tkeclusterinfo
+          @TkeWorkloadType = tkeworkloadtype
           @RequestId = requestid
         end
 
@@ -3684,6 +3711,11 @@ module TencentCloud
               @PolicyDetail << hpapolicy_tmp
             end
           end
+          unless params['TkeClusterInfo'].nil?
+            @TkeClusterInfo = TkeClusterInfo.new
+            @TkeClusterInfo.deserialize(params['TkeClusterInfo'])
+          end
+          @TkeWorkloadType = params['TkeWorkloadType']
           @RequestId = params['RequestId']
         end
       end
@@ -7378,6 +7410,33 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # tke集群信息
+      class TkeClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param VpcId: 集群的vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VersionClbSubnetId: 版本内网CLB所在子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionClbSubnetId: String
+
+        attr_accessor :ClusterId, :VpcId, :VersionClbSubnetId
+        
+        def initialize(clusterid=nil, vpcid=nil, versionclbsubnetid=nil)
+          @ClusterId = clusterid
+          @VpcId = vpcid
+          @VersionClbSubnetId = versionclbsubnetid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcId = params['VpcId']
+          @VersionClbSubnetId = params['VersionClbSubnetId']
         end
       end
 
