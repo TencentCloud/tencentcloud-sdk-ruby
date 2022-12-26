@@ -267,13 +267,17 @@ module TencentCloud
       class DescribeTaskResponse < TencentCloud::Common::AbstractModel
         # @param Task: 任务信息
         # @type Task: :class:`Tencentcloud::Cfg.v20210820.models.Task`
+        # @param ReportInfo: 任务对应的演练报告信息，null表示未导出报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportInfo: :class:`Tencentcloud::Cfg.v20210820.models.TaskReportInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Task, :RequestId
+        attr_accessor :Task, :ReportInfo, :RequestId
         
-        def initialize(task=nil, requestid=nil)
+        def initialize(task=nil, reportinfo=nil, requestid=nil)
           @Task = task
+          @ReportInfo = reportinfo
           @RequestId = requestid
         end
 
@@ -281,6 +285,10 @@ module TencentCloud
           unless params['Task'].nil?
             @Task = Task.new
             @Task.deserialize(params['Task'])
+          end
+          unless params['ReportInfo'].nil?
+            @ReportInfo = TaskReportInfo.new
+            @ReportInfo.deserialize(params['ReportInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1128,6 +1136,44 @@ module TencentCloud
           @InstancesIds = params['InstancesIds']
           @MetricChineseName = params['MetricChineseName']
           @Unit = params['Unit']
+        end
+      end
+
+      # 演练报告状态信息
+      class TaskReportInfo < TencentCloud::Common::AbstractModel
+        # @param Stage: 0--未开始，1--正在导出，2--导出成功，3--导出失败
+        # @type Stage: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ExpirationTime: 有效期截止时间
+        # @type ExpirationTime: String
+        # @param Expired: 是否有效
+        # @type Expired: Boolean
+        # @param CosUrl: 演练报告cos文件地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosUrl: String
+        # @param Log: 演练报告导出日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: String
+
+        attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log
+        
+        def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil)
+          @Stage = stage
+          @CreateTime = createtime
+          @ExpirationTime = expirationtime
+          @Expired = expired
+          @CosUrl = cosurl
+          @Log = log
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @CreateTime = params['CreateTime']
+          @ExpirationTime = params['ExpirationTime']
+          @Expired = params['Expired']
+          @CosUrl = params['CosUrl']
+          @Log = params['Log']
         end
       end
 

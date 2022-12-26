@@ -1253,6 +1253,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDistributionL4AccessData）用于查询四层连接时长的时序数据。
+
+        # @param request: Request instance for DescribeDistributionL4AccessData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDistributionL4AccessDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDistributionL4AccessDataResponse`
+        def DescribeDistributionL4AccessData(request)
+          body = send_request('DescribeDistributionL4AccessData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDistributionL4AccessDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DNS请求数统计曲线
 
         # @param request: Request instance for DescribeDnsData.
@@ -1863,6 +1887,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSpeedTestingQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeTimingL4AccessData）用于查询四层连接数的时序数据列表。
+
+        # @param request: Request instance for DescribeTimingL4AccessData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingL4AccessDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTimingL4AccessDataResponse`
+        def DescribeTimingL4AccessData(request)
+          body = send_request('DescribeTimingL4AccessData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimingL4AccessDataResponse.new
             model.deserialize(response['Response'])
             model
           else

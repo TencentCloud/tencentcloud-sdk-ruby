@@ -2970,10 +2970,10 @@ module TencentCloud
         # @param Services: 开通服务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Services: Array
-        # @param FactoryQuota: 工厂配额
+        # @param FactoryQuota: 商户配额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FactoryQuota: Integer
-        # @param ItemQuota: 产品配额
+        # @param ItemQuota: 商品配额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemQuota: Integer
         # @param TrackQuota: 溯源码配额
@@ -2991,7 +2991,7 @@ module TencentCloud
         # @param TrackType: 溯源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackType: Integer
-        # @param Version: 开通版本 basic standard enterprise
+        # @param Version: 开通版本 lite:轻量版, basic:基础版, standard:标准版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 

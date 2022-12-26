@@ -4819,12 +4819,12 @@ module TencentCloud
         # @param EndTime: 结束时间。
         # @type EndTime: String
         # @param MetricName: 查询的统计指标，取值有：
-        # <li>ddos_attackFlux_protocol：攻击总流量协议类型分布排行；</li>
-        # <li>ddos_attackPackageNum_protocol：攻击总包量协议类型分布排行；</li>
-        # <li>ddos_attackNum_attackType：攻击总次数攻击类型分布排行；</li>
-        # <li>ddos_attackNum_sregion：攻击总次数攻击源地区分布排行；</li>
-        # <li>ddos_attackFlux_sip：攻击总流量攻击源ip分布排行；</li>
-        # <li>ddos_attackFlux_sregion：攻击总流量攻击源地区分布排行。</li>
+        # <li>ddos_attackFlux_protocol：按各协议的攻击流量排行；</li>
+        # <li>ddos_attackPackageNum_protocol：按各协议的攻击包量排行；</li>
+        # <li>ddos_attackNum_attackType：按各攻击类型的攻击数量排行；</li>
+        # <li>ddos_attackNum_sregion：按攻击源地区的攻击数量排行；</li>
+        # <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
+        # <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
         # @type MetricName: String
         # @param ZoneIds: 站点ID集合，不填默认选择全部站点。
         # @type ZoneIds: Array
@@ -5165,6 +5165,95 @@ module TencentCloud
               defaultservercertinfo_tmp = DefaultServerCertInfo.new
               defaultservercertinfo_tmp.deserialize(i)
               @DefaultServerCertInfo << defaultservercertinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDistributionL4AccessData请求参数结构体
+      class DescribeDistributionL4AccessDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param MetricNames: 查询指标, 取值有：
+        # <li>l4Flow_connection_distribution：连接时长分布情况。</li>
+        # @type MetricNames: Array
+        # @param ZoneIds: 站点ID集合，不填默认选择全部站点。
+        # @type ZoneIds: Array
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min：1分钟；</li>
+        # <li>5min：5分钟；</li>
+        # <li>hour：1小时；</li>
+        # <li>day：1天;。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
+        # @type Interval: String
+        # @param QueryConditions: 过滤条件，详细的过滤条件如下：
+        # <li>ruleId<br>   按照【<strong>转发规则ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>proxyId<br>   按照【<strong>四层代理实例ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # @type QueryConditions: Array
+        # @param Area: 数据归属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
+        # @type Area: String
+
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Interval, :QueryConditions, :Area
+        
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, interval=nil, queryconditions=nil, area=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @ZoneIds = zoneids
+          @Interval = interval
+          @QueryConditions = queryconditions
+          @Area = area
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @ZoneIds = params['ZoneIds']
+          @Interval = params['Interval']
+          unless params['QueryConditions'].nil?
+            @QueryConditions = []
+            params['QueryConditions'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @QueryConditions << querycondition_tmp
+            end
+          end
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeDistributionL4AccessData返回参数结构体
+      class DescribeDistributionL4AccessDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
+        # @param TopDataRecords: 连接时长分布图。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopDataRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TopDataRecords, :RequestId
+        
+        def initialize(totalcount=nil, topdatarecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TopDataRecords = topdatarecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopDataRecords'].nil?
+            @TopDataRecords = []
+            params['TopDataRecords'].each do |i|
+              topdatarecord_tmp = TopDataRecord.new
+              topdatarecord_tmp.deserialize(i)
+              @TopDataRecords << topdatarecord_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5827,18 +5916,19 @@ module TencentCloud
         # <li>hour：1小时；</li>
         # <li>day：1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
         # @type Interval: String
-        # @param Area: 数据归属地区，取值有：
-        # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户的地域智能选择地区。
-        # @type Area: String
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # @param Filters: 过滤条件，详细的过滤条件如下：
         # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
+        # @param Area: 数据归属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
+        # @type Area: String
 
-        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :Protocol, :Interval, :Area, :Filters
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :Protocol, :Interval, :Filters, :Area
         
-        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocol=nil, interval=nil, area=nil, filters=nil)
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocol=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
@@ -5846,8 +5936,8 @@ module TencentCloud
           @Domains = domains
           @Protocol = protocol
           @Interval = interval
-          @Area = area
           @Filters = filters
+          @Area = area
         end
 
         def deserialize(params)
@@ -5858,7 +5948,6 @@ module TencentCloud
           @Domains = params['Domains']
           @Protocol = params['Protocol']
           @Interval = params['Interval']
-          @Area = params['Area']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5867,6 +5956,7 @@ module TencentCloud
               @Filters << querycondition_tmp
             end
           end
+          @Area = params['Area']
         end
       end
 
@@ -6538,12 +6628,12 @@ module TencentCloud
         # @type MetricNames: Array
         # @param ZoneIds: 查询的站点集合，不填默认查询所有站点。
         # @type ZoneIds: Array
-        # @param Filters: 筛选条件, key可选的值有：
-        # <li>country：国家/地区；</li>
-        # <li>domain：域名；</li>
-        # <li>protocol：协议类型；</li>
-        # <li>tagKey：标签Key；</li>
-        # <li>tagValue；标签Value。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>country<br>   按照【<strong>国家/地区</strong>】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。<br>   类型：String<br>   必选：否</li>
+        # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>protocol<br>   按照【<strong>HTTP协议</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   HTTP/1.0：HTTP 1.0；<br>   HTTP/1.1：HTTP 1.1；<br>   HTTP/2.0：HTTP 2.0；<br>   HTTP/3.0：HTTP 3.0；<br>   WebSocket：WebSocket。</li>
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min：1分钟；</li>
@@ -6553,7 +6643,8 @@ module TencentCloud
         # @type Interval: String
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Filters, :Interval, :Area
@@ -6735,6 +6826,95 @@ module TencentCloud
         end
       end
 
+      # DescribeTimingL4AccessData请求参数结构体
+      class DescribeTimingL4AccessDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param MetricNames: 查询指标，取值有：
+        # <li> l4Flow_connections：连接数。</li>
+        # @type MetricNames: Array
+        # @param ZoneIds: 站点ID集合，不填默认选择全部站点。
+        # @type ZoneIds: Array
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min：1分钟；</li>
+        # <li>5min：5分钟；</li>
+        # <li>hour：1小时；</li>
+        # <li>day：1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
+        # @type Interval: String
+        # @param QueryConditions: 过滤条件，详细的过滤条件如下：
+        # <li>ruleId<br>   按照【<strong>转发规则ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>proxyId<br>   按照【<strong>四层代理实例ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # @type QueryConditions: Array
+        # @param Area: 数据归属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
+        # @type Area: String
+
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Interval, :QueryConditions, :Area
+        
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, interval=nil, queryconditions=nil, area=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @ZoneIds = zoneids
+          @Interval = interval
+          @QueryConditions = queryconditions
+          @Area = area
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @ZoneIds = params['ZoneIds']
+          @Interval = params['Interval']
+          unless params['QueryConditions'].nil?
+            @QueryConditions = []
+            params['QueryConditions'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @QueryConditions << querycondition_tmp
+            end
+          end
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeTimingL4AccessData返回参数结构体
+      class DescribeTimingL4AccessDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
+        # @param TimingDataRecords: 四层连接数列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimingDataRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TimingDataRecords, :RequestId
+        
+        def initialize(totalcount=nil, timingdatarecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TimingDataRecords = timingdatarecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TimingDataRecords'].nil?
+            @TimingDataRecords = []
+            params['TimingDataRecords'].each do |i|
+              timingdatarecord_tmp = TimingDataRecord.new
+              timingdatarecord_tmp.deserialize(i)
+              @TimingDataRecords << timingdatarecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTimingL4Data请求参数结构体
       class DescribeTimingL4DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -6758,13 +6938,14 @@ module TencentCloud
         # <li>hour: 1小时 ；</li>
         # <li>day: 1天 。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
         # @type Interval: String
-        # @param Filters: 筛选条件, key可选的值有：
-        # <li>ruleId: 根据规则Id进行过滤；</li>
-        # <li>proxyId: 根据通道Id进行过滤。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>ruleId<br>   按照【<strong>转发规则ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>proxyId<br>   按照【<strong>四层代理实例ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
@@ -6850,25 +7031,28 @@ module TencentCloud
         # <li>hour: 1小时；</li>
         # <li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
         # @type Interval: String
-        # @param Filters: 筛选条件，key可选的值有：
-        # <li>country：国家/地区；</li>
-        # <li>domain：域名；</li>
-        # <li>protocol：协议类型；</li>
-        # <li>resourceType：资源类型；</li>
-        # <li>statusCode：状态码；</li>
-        # <li> browserType：浏览器类型；</li>
-        # <li>deviceType：设备类型；</li>
-        # <li>operatingSystemType：操作系统类型；</li>
-        # <li>tlsVersion：tls版本；</li>
-        # <li>url：url地址；</li>
-        # <li>referer：refer头信息；</li>
-        # <li>ipVersion：ip版本；</li>
-        # <li>tagKey：标签Key；</li>
-        # <li>tagValue：标签Value。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>country<br>   按照【<strong>国家/地区</strong>】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。<br>   类型：String<br>   必选：否</li>
+        # <li>province<br>   按照【<strong>省份</strong>】进行过滤，此参数只支持服务区域为中国大陆。<br>   类型：String<br>   必选：否</li>
+        # <li>isp<br>   按照【<strong>运营商</strong>】进行过滤，此参数只支持服务区域为中国大陆。<br>   类型：String<br>   必选：否<br>   可选项：<br>   2：中国电信；<br>   26：中国联通；<br>   1046：中国移动；<br>   3947：中国铁通；<br>   38：教育网；<br>   43：长城带宽；<br>   0：其他运营商。</li>
+        # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>url<br>   按照【<strong>URL</strong>】进行过滤，此参数最长支持30天的查询范围，如果需要过滤多个值，多个值之间使用分号间隔，URL形如：/content,。<br>   类型：String<br>   必选：否</li>
+        # <li>referer<br>   按照【<strong>Referer头信息</strong>】进行过滤, 此参数最长支持30天的查询范围，Referer形如：example.com。<br>   类型：String<br>   必选：否</li>   必选：否</li>
+        # <li>resourceType<br>   按照【<strong>资源类型</strong>】进行过滤，此参数最长支持30天的的查询范围，资源类型形如：jpg，png。<br>   类型：String<br>   必选：否</li>
+        # <li>protocol<br>   按照【<strong>HTTP协议</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   HTTP/1.0：HTTP 1.0；<br>   HTTP/1.1：HTTP 1.1；<br>   HTTP/2.0：HTTP 2.0；<br>   HTTP/3.0：HTTP 3.0；<br>   WebSocket：WebSocket。</li>
+        # <li>statusCode<br>   按照【<strong>状态码</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   1XX：1xx类型的状态码；<br>   100：100状态码；<br>   101：101状态码；<br>   102：102状态码；<br>   2XX：2xx类型的状态码；<br>   200：200状态码；<br>   201：201状态码；<br>   202：202状态码；<br>   203：203状态码；<br>   204：204状态码；<br>   100：100状态码；<br>   206：206状态码；<br>   207：207状态码；<br>   3XX：3xx类型的状态码；<br>   300：300状态码；<br>   301：301状态码；<br>   302：302状态码；<br>   303：303状态码；<br>   304：304状态码；<br>   305：305状态码；<br>   307：307状态码；<br>   4XX：4xx类型的状态码；<br>   400：400状态码；<br>   401：401状态码；<br>   402：402状态码；<br>   403：403状态码；<br>   404：404状态码；<br>   405：405状态码；<br>   406：406状态码；<br>   407：407状态码；<br>   408：408状态码；<br>   409：409状态码；<br>   410：410状态码；<br>   411：411状态码；<br>   412：412状态码；<br>   412：413状态码；<br>   414：414状态码；<br>   415：415状态码；<br>   416：416状态码；<br>   417：417状态码；<br>   422：422状态码；<br>   423：423状态码；<br>   424：424状态码；<br>   426：426状态码；<br>   451：451状态码；<br>   5XX：5xx类型的状态码；<br>   500：500状态码；<br>   501：501状态码；<br>   502：502状态码；<br>   503：503状态码；<br>   504：504状态码；<br>   505：505状态码；<br>   506：506状态码；<br>   507：507状态码；<br>   510：510状态码；<br>   514：514状态码；<br>   544：544状态码。</li>
+        # <li>browserType<br>   按照【<strong>浏览器类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   Firefox：Firefox浏览器；<br>   Chrome：Chrome浏览器；<br>   Safari：Safari浏览器；<br>   Other：其他浏览器类型；<br>   Empty：浏览器器类型为空；<br>   Bot：Bot攻击；<br>   MicrosoftEdge：MicrosoftEdge浏览器；<br>   IE：IE浏览器；<br>   Opera：Opera浏览器；<br>   QQBrowser：QQ浏览器；<br>   LBBrowser：LB浏览器；<br>   MaxthonBrowser：Maxthon浏览器；<br>   SouGouBrowser：搜狗浏览器；<br>   BIDUBrowser：BIDU浏览器；<br>   TaoBrowser：淘浏览器；<br>   UBrowser：UB浏览器。</li>
+        # <li>deviceType<br>   按照【<strong>设备类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   TV：TV设备；<br>   Tablet：Tablet设备；<br>   Mobile：Mobile设备；<br>   Desktop：Desktop设备；<br>   Other：其他设备类型；<br>   Empty：设备类型为空。</li>
+        # <li>operatingSystemType<br>   按照【<strong>操作系统类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   Linux：Linux操作系统；<br>   MacOS：MacOs操作系统；<br>   Android：Android操作系统；<br>   IOS：IOS操作系统；<br>   Windows：Windows操作系统；<br>   NetBSD：NetBSD；<br>   ChromiumOS：ChromiumOS；<br>   Bot：Bot攻击；<br>   Other：其他类型的操作系统；<br>   Empty：操作系统为空。</li>
+        # <li>tlsVersion<br>   按照【<strong>TLS版本</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   TLS1.0：TLS 1.0；<br>   TLS1.1：TLS 1.1；<br>   TLS1.2：TLS 1.2；<br>   TLS1.3：TLS 1.3。</li>
+        # <li>ipVersion<br>   按照【<strong>IP版本</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   4：Ipv4；<br>   6：Ipv6。</li>
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户的地域智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Interval, :Filters, :Area
@@ -6903,23 +7087,24 @@ module TencentCloud
 
       # DescribeTimingL7AnalysisData返回参数结构体
       class DescribeTimingL7AnalysisDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
         # @param Data: 时序流量数据列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param TotalCount: 查询结果的总条数。
-        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
         
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -6928,7 +7113,6 @@ module TencentCloud
               @Data << timingdatarecord_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6946,13 +7130,14 @@ module TencentCloud
         # @type MetricNames: Array
         # @param ZoneIds: 站点集合，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param Filters: 筛选条件，key可选的值有：
-        # <li> cacheType：缓存类型(状态)；</li>
-        # <li>domain：Host/域名；</li>
-        # <li>resourceType：资源类型；</li>
-        # <li>url：url地址；</li>
-        # <li>tagKey：标签Key；</li>
-        # <li>tagValue：标签Value。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>url<br>   按照【<strong>URL</strong>】进行过滤，此参数只支持30天的时间范围，URL形如：/content。<br>   类型：String<br>   必选：否</li>
+        # <li>resourceType<br>   按照【<strong>资源类型</strong>】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。<br>   类型：String<br>   必选：否</li>
+        # <li>cacheType<br>   按照【<strong>缓存类型</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   hit：命中缓存；<br>   dynamic：资源不可缓存；<br>   miss：未命中缓存。</li>
+        # <li>statusCode<br>   按照【<strong>状态码</strong>】进行过滤，此参数只支持30天的时间范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   1XX：1xx类型的状态码；<br>   100：100状态码；<br>   101：101状态码；<br>   102：102状态码；<br>   2XX：2xx类型的状态码；<br>   200：200状态码；<br>   201：201状态码；<br>   202：202状态码；<br>   203：203状态码；<br>   204：204状态码；<br>   100：100状态码；<br>   206：206状态码；<br>   207：207状态码；<br>   3XX：3xx类型的状态码；<br>   300：300状态码；<br>   301：301状态码；<br>   302：302状态码；<br>   303：303状态码；<br>   304：304状态码；<br>   305：305状态码；<br>   307：307状态码；<br>   4XX：4xx类型的状态码；<br>   400：400状态码；<br>   401：401状态码；<br>   402：402状态码；<br>   403：403状态码；<br>   404：404状态码；<br>   405：405状态码；<br>   406：406状态码；<br>   407：407状态码；<br>   408：408状态码；<br>   409：409状态码；<br>   410：410状态码；<br>   411：411状态码；<br>   412：412状态码；<br>   412：413状态码；<br>   414：414状态码；<br>   415：415状态码；<br>   416：416状态码；<br>   417：417状态码；<br>   422：422状态码；<br>   423：423状态码；<br>   424：424状态码；<br>   426：426状态码；<br>   451：451状态码；<br>   5XX：5xx类型的状态码；<br>   500：500状态码；<br>   501：501状态码；<br>   502：502状态码；<br>   503：503状态码；<br>   504：504状态码；<br>   505：505状态码；<br>   506：506状态码；<br>   507：507状态码；<br>   510：510状态码；<br>   514：514状态码；<br>   544：544状态码。</li>
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Interval: 查询时间粒度，可选的值有：
         # <li>min：1分钟的时间粒度；</li>
@@ -6962,7 +7147,8 @@ module TencentCloud
         # @type Interval: String
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Filters, :Interval, :Area
@@ -6997,23 +7183,24 @@ module TencentCloud
 
       # DescribeTimingL7CacheData返回参数结构体
       class DescribeTimingL7CacheDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
         # @param Data: 七层缓存分析时序类流量数据列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param TotalCount: 查询结果的总条数。
-        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
         
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -7022,7 +7209,6 @@ module TencentCloud
               @Data << timingdatarecord_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7049,21 +7235,23 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个数据，最大值为1000，不填默认默认为: 10， 表示查询前top10的数据。
         # @type Limit: Integer
-        # @param Filters: 筛选条件，key可选的值有：
-        # <li>country：国家/地区；</li>
-        # <li>domain：域名；</li>
-        # <li>protocol：协议类型；</li>
-        # <li>resourceType：资源类型；</li>
-        # <li>statusCode：状态码；</li>
-        # <li> browserType：浏览器类型；</li>
-        # <li>deviceType：设备类型；</li>
-        # <li>operatingSystemType：操作系统类型；</li>
-        # <li>tlsVersion：tls版本；</li>
-        # <li>url：url地址；</li>
-        # <li>referer：refer头信息；</li>
-        # <li>ipVersion：ip版本；</li>
-        # <li>tagKey：标签Key；</li>
-        # <li>tagValue：标签Value。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>country<br>   按照【<strong>国家/地区</strong>】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。<br>   类型：String<br>   必选：否</li>
+        # <li>province<br>   按照【<strong>省份</strong>】进行过滤，此参数只支持服务区域为中国大陆。<br>   类型：String<br>   必选：否</li>
+        # <li>isp<br>   按照【<strong>运营商</strong>】进行过滤，此参数只支持服务区域为中国大陆。<br>   类型：String<br>   必选：否<br>   可选项：<br>   2：中国电信；<br>   26：中国联通；<br>   1046：中国移动；<br>   3947：中国铁通；<br>   38：教育网；<br>   43：长城带宽；<br>   0：其他运营商。</li>
+        # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>url<br>   按照【<strong>URL</strong>】进行过滤，此参数最长支持30天的查询范围，如果需要过滤多个值，多个值之间使用分号间隔，URL形如：/content,。<br>   类型：String<br>   必选：否</li>
+        # <li>referer<br>   按照【<strong>Referer头信息</strong>】进行过滤, 此参数最长支持30天的查询范围，Referer形如：example.com。<br>   类型：String<br>   必选：否</li>   必选：否</li>
+        # <li>resourceType<br>   按照【<strong>资源类型</strong>】进行过滤，此参数最长支持30天的的查询范围，资源类型形如：jpg，png。<br>   类型：String<br>   必选：否</li>
+        # <li>protocol<br>   按照【<strong>HTTP协议</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   HTTP/1.0：HTTP 1.0；<br>   HTTP/1.1：HTTP 1.1；<br>   HTTP/2.0：HTTP 2.0；<br>   HTTP/3.0：HTTP 3.0；<br>   WebSocket：WebSocket。</li>
+        # <li>statusCode<br>   按照【<strong>状态码</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   1XX：1xx类型的状态码；<br>   100：100状态码；<br>   101：101状态码；<br>   102：102状态码；<br>   2XX：2xx类型的状态码；<br>   200：200状态码；<br>   201：201状态码；<br>   202：202状态码；<br>   203：203状态码；<br>   204：204状态码；<br>   100：100状态码；<br>   206：206状态码；<br>   207：207状态码；<br>   3XX：3xx类型的状态码；<br>   300：300状态码；<br>   301：301状态码；<br>   302：302状态码；<br>   303：303状态码；<br>   304：304状态码；<br>   305：305状态码；<br>   307：307状态码；<br>   4XX：4xx类型的状态码；<br>   400：400状态码；<br>   401：401状态码；<br>   402：402状态码；<br>   403：403状态码；<br>   404：404状态码；<br>   405：405状态码；<br>   406：406状态码；<br>   407：407状态码；<br>   408：408状态码；<br>   409：409状态码；<br>   410：410状态码；<br>   411：411状态码；<br>   412：412状态码；<br>   412：413状态码；<br>   414：414状态码；<br>   415：415状态码；<br>   416：416状态码；<br>   417：417状态码；<br>   422：422状态码；<br>   423：423状态码；<br>   424：424状态码；<br>   426：426状态码；<br>   451：451状态码；<br>   5XX：5xx类型的状态码；<br>   500：500状态码；<br>   501：501状态码；<br>   502：502状态码；<br>   503：503状态码；<br>   504：504状态码；<br>   505：505状态码；<br>   506：506状态码；<br>   507：507状态码；<br>   510：510状态码；<br>   514：514状态码；<br>   544：544状态码。</li>
+        # <li>browserType<br>   按照【<strong>浏览器类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   Firefox：Firefox浏览器；<br>   Chrome：Chrome浏览器；<br>   Safari：Safari浏览器；<br>   Other：其他浏览器类型；<br>   Empty：浏览器器类型为空；<br>   Bot：Bot攻击；<br>   MicrosoftEdge：MicrosoftEdge浏览器；<br>   IE：IE浏览器；<br>   Opera：Opera浏览器；<br>   QQBrowser：QQ浏览器；<br>   LBBrowser：LB浏览器；<br>   MaxthonBrowser：Maxthon浏览器；<br>   SouGouBrowser：搜狗浏览器；<br>   BIDUBrowser：BIDU浏览器；<br>   TaoBrowser：淘浏览器；<br>   UBrowser：UB浏览器。</li>
+        # <li>deviceType<br>   按照【<strong>设备类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   TV：TV设备；<br>   Tablet：Tablet设备；<br>   Mobile：Mobile设备；<br>   Desktop：Desktop设备；<br>   Other：其他设备类型；<br>   Empty：设备类型为空。</li>
+        # <li>operatingSystemType<br>   按照【<strong>操作系统类型</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   Linux：Linux操作系统；<br>   MacOS：MacOs操作系统；<br>   Android：Android操作系统；<br>   IOS：IOS操作系统；<br>   Windows：Windows操作系统；<br>   NetBSD：NetBSD；<br>   ChromiumOS：ChromiumOS；<br>   Bot：Bot攻击；<br>   Other：其他类型的操作系统；<br>   Empty：操作系统为空。</li>
+        # <li>tlsVersion<br>   按照【<strong>TLS版本</strong>】进行过滤，此参数最长支持30天的查询范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   TLS1.0：TLS 1.0；<br>   TLS1.1：TLS 1.1；<br>   TLS1.2：TLS 1.2；<br>   TLS1.3：TLS 1.3。</li>
+        # <li>ipVersion<br>   按照【<strong>IP版本</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   4：Ipv4；<br>   6：Ipv6。</li>
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min：1分钟；</li>
@@ -7073,7 +7261,8 @@ module TencentCloud
         # @type Interval: String
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricName, :ZoneIds, :Limit, :Filters, :Interval, :Area
@@ -7110,23 +7299,24 @@ module TencentCloud
 
       # DescribeTopL7AnalysisData返回参数结构体
       class DescribeTopL7AnalysisDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
         # @param Data: 七层流量前topN数据列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param TotalCount: 查询结果的总条数。
-        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
         
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -7135,7 +7325,6 @@ module TencentCloud
               @Data << topdatarecord_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7156,13 +7345,14 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个数据，不填默认默认为10， 表示查询前top 10的数据。
         # @type Limit: Integer
-        # @param Filters: 筛选条件，key可选的值有：
-        # <li> cacheType：缓存类型(状态)；</li>
-        # <li>domain：Host/域名；</li>
-        # <li>resourceType：资源类型；</li>
-        # <li>url：url地址；</li>
-        # <li>tagKey：标签Key；</li>
-        # <li>tagValue：标签Value。</li>
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>url<br>   按照【<strong>URL</strong>】进行过滤，此参数只支持30天的时间范围，URL形如：/content。<br>   类型：String<br>   必选：否</li>
+        # <li>resourceType<br>   按照【<strong>资源类型</strong>】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。<br>   类型：String<br>   必选：否</li>
+        # <li>cacheType<br>   按照【<strong>缓存类型</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   hit：命中缓存；<br>   dynamic：资源不可缓存；<br>   miss：未命中缓存。</li>
+        # <li>statusCode<br>   按照【<strong>状态码</strong>】进行过滤，此参数只支持30天的时间范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   1XX：1xx类型的状态码；<br>   100：100状态码；<br>   101：101状态码；<br>   102：102状态码；<br>   2XX：2xx类型的状态码；<br>   200：200状态码；<br>   201：201状态码；<br>   202：202状态码；<br>   203：203状态码；<br>   204：204状态码；<br>   100：100状态码；<br>   206：206状态码；<br>   207：207状态码；<br>   3XX：3xx类型的状态码；<br>   300：300状态码；<br>   301：301状态码；<br>   302：302状态码；<br>   303：303状态码；<br>   304：304状态码；<br>   305：305状态码；<br>   307：307状态码；<br>   4XX：4xx类型的状态码；<br>   400：400状态码；<br>   401：401状态码；<br>   402：402状态码；<br>   403：403状态码；<br>   404：404状态码；<br>   405：405状态码；<br>   406：406状态码；<br>   407：407状态码；<br>   408：408状态码；<br>   409：409状态码；<br>   410：410状态码；<br>   411：411状态码；<br>   412：412状态码；<br>   412：413状态码；<br>   414：414状态码；<br>   415：415状态码；<br>   416：416状态码；<br>   417：417状态码；<br>   422：422状态码；<br>   423：423状态码；<br>   424：424状态码；<br>   426：426状态码；<br>   451：451状态码；<br>   5XX：5xx类型的状态码；<br>   500：500状态码；<br>   501：501状态码；<br>   502：502状态码；<br>   503：503状态码；<br>   504：504状态码；<br>   505：505状态码；<br>   506：506状态码；<br>   507：507状态码；<br>   510：510状态码；<br>   514：514状态码；<br>   544：544状态码。</li>
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>
@@ -7172,7 +7362,8 @@ module TencentCloud
         # @type Interval: String
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricName, :ZoneIds, :Limit, :Filters, :Interval, :Area
@@ -7209,23 +7400,24 @@ module TencentCloud
 
       # DescribeTopL7CacheData返回参数结构体
       class DescribeTopL7CacheDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
         # @param Data: 七层缓存TopN流量数据列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param TotalCount: 查询结果的总条数。
-        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
         
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -7234,7 +7426,6 @@ module TencentCloud
               @Data << topdatarecord_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

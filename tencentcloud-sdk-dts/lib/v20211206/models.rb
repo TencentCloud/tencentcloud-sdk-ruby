@@ -1015,7 +1015,7 @@ module TencentCloud
         end
       end
 
-      # 迁移对象信息
+      # 迁移对象信息，在配置库表视图等对象信息时大小写敏感
       class DBItem < TencentCloud::Common::AbstractModel
         # @param DbName: 需要迁移或同步的库名，当ObjectMode为partial时，此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4226,7 +4226,7 @@ module TencentCloud
 
       # 表对象集合，当 TableMode 为 partial 时，此项需要填写
       class TableItem < TencentCloud::Common::AbstractModel
-        # @param TableName: 迁移的表名
+        # @param TableName: 迁移的表名，大小写敏感
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param NewTableName: 迁移后的表名，当TableEditMode为rename时此项必填
