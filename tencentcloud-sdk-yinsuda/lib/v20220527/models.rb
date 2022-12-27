@@ -17,6 +17,30 @@
 module TencentCloud
   module Yinsuda
     module V20220527
+      # AME 曲库歌曲基础信息。
+      class AMEMusicBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲 Id。
+        # @type MusicId: String
+        # @param Name: 歌曲名称。
+        # @type Name: String
+        # @param SingerSet: 歌手列表。
+        # @type SingerSet: Array
+
+        attr_accessor :MusicId, :Name, :SingerSet
+        
+        def initialize(musicid=nil, name=nil, singerset=nil)
+          @MusicId = musicid
+          @Name = name
+          @SingerSet = singerset
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @Name = params['Name']
+          @SingerSet = params['SingerSet']
+        end
+      end
+
       # BatchDescribeKTVMusicDetails请求参数结构体
       class BatchDescribeKTVMusicDetailsRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -693,12 +717,16 @@ module TencentCloud
         # @type KTVMusicBaseInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMusicBaseInfo`
         # @param MatchRule: 命中规则。
         # @type MatchRule: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMatchRule`
+        # @param AMEMusicBaseInfo: AME 歌曲基础信息，仅在使用音速达歌曲 Id 匹配 AME 曲库时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AMEMusicBaseInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.AMEMusicBaseInfo`
 
-        attr_accessor :KTVMusicBaseInfo, :MatchRule
+        attr_accessor :KTVMusicBaseInfo, :MatchRule, :AMEMusicBaseInfo
         
-        def initialize(ktvmusicbaseinfo=nil, matchrule=nil)
+        def initialize(ktvmusicbaseinfo=nil, matchrule=nil, amemusicbaseinfo=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @MatchRule = matchrule
+          @AMEMusicBaseInfo = amemusicbaseinfo
         end
 
         def deserialize(params)
@@ -710,6 +738,10 @@ module TencentCloud
             @MatchRule = KTVMatchRule.new
             @MatchRule.deserialize(params['MatchRule'])
           end
+          unless params['AMEMusicBaseInfo'].nil?
+            @AMEMusicBaseInfo = AMEMusicBaseInfo.new
+            @AMEMusicBaseInfo.deserialize(params['AMEMusicBaseInfo'])
+          end
         end
       end
 
@@ -720,12 +752,15 @@ module TencentCloud
         # @param MusicInfo: 歌曲匹配信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MusicInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMatchRuleMusicInfo`
+        # @param MusicIdToMatchAME: 音速达歌曲 Id，用于匹配 AME 曲库歌曲。
+        # @type MusicIdToMatchAME: String
 
-        attr_accessor :AMEMusicId, :MusicInfo
+        attr_accessor :AMEMusicId, :MusicInfo, :MusicIdToMatchAME
         
-        def initialize(amemusicid=nil, musicinfo=nil)
+        def initialize(amemusicid=nil, musicinfo=nil, musicidtomatchame=nil)
           @AMEMusicId = amemusicid
           @MusicInfo = musicinfo
+          @MusicIdToMatchAME = musicidtomatchame
         end
 
         def deserialize(params)
@@ -734,6 +769,7 @@ module TencentCloud
             @MusicInfo = KTVMatchRuleMusicInfo.new
             @MusicInfo.deserialize(params['MusicInfo'])
           end
+          @MusicIdToMatchAME = params['MusicIdToMatchAME']
         end
       end
 

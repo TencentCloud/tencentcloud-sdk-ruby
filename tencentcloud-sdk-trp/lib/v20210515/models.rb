@@ -192,7 +192,7 @@ module TencentCloud
         # @param Amount: 码数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: Integer
-        # @param CodeLength: 码长度
+        # @param CodeLength: 防伪码长度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeLength: Integer
         # @param CodeType: 码类型
@@ -362,7 +362,7 @@ module TencentCloud
         # @type ProductId: String
         # @param BatchType: 批次类型 0:溯源 1:营销
         # @type BatchType: Integer
-        # @param BatchId: 批次ID，系统自动生成
+        # @param BatchId: 批次ID，留空时系统自动生成
         # @type BatchId: String
         # @param Remark: 备注
         # @type Remark: String
@@ -370,10 +370,12 @@ module TencentCloud
         # @type MpTpl: String
         # @param CloneId: 克隆批次ID，同时会复制溯源信息
         # @type CloneId: String
+        # @param BatchCode: 批次编号，业务字段不判断唯一性
+        # @type BatchCode: String
 
-        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl, :CloneId
+        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl, :CloneId, :BatchCode
         
-        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil, cloneid=nil)
+        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil, cloneid=nil, batchcode=nil)
           @CorpId = corpid
           @MerchantId = merchantid
           @ProductId = productid
@@ -382,6 +384,7 @@ module TencentCloud
           @Remark = remark
           @MpTpl = mptpl
           @CloneId = cloneid
+          @BatchCode = batchcode
         end
 
         def deserialize(params)
@@ -393,6 +396,7 @@ module TencentCloud
           @Remark = params['Remark']
           @MpTpl = params['MpTpl']
           @CloneId = params['CloneId']
+          @BatchCode = params['BatchCode']
         end
       end
 
@@ -436,10 +440,12 @@ module TencentCloud
         # @type PackSpec: Array
         # @param BatchId: 批次ID，如果传了生码后会同时绑定批次，并激活码
         # @type BatchId: String
+        # @param SerialType: 是否有流水码 0:无 1:有
+        # @type SerialType: Integer
 
-        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId
+        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType
         
-        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil)
+        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil)
           @MerchantId = merchantid
           @CodeLength = codelength
           @CodeType = codetype
@@ -449,6 +455,7 @@ module TencentCloud
           @PackLevel = packlevel
           @PackSpec = packspec
           @BatchId = batchid
+          @SerialType = serialtype
         end
 
         def deserialize(params)
@@ -468,6 +475,7 @@ module TencentCloud
             end
           end
           @BatchId = params['BatchId']
+          @SerialType = params['SerialType']
         end
       end
 
@@ -580,10 +588,12 @@ module TencentCloud
         # @type CodeParts: Array
         # @param BatchId: 批次ID，如果传了生码后会同时绑定批次，并激活码
         # @type BatchId: String
+        # @param SerialType: 是否有流水码 0:无 1:有
+        # @type SerialType: Integer
 
-        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId
+        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType
         
-        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil)
+        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil)
           @MerchantId = merchantid
           @Amount = amount
           @CorpId = corpid
@@ -593,6 +603,7 @@ module TencentCloud
           @CustomId = customid
           @CodeParts = codeparts
           @BatchId = batchid
+          @SerialType = serialtype
         end
 
         def deserialize(params)
@@ -619,6 +630,7 @@ module TencentCloud
             end
           end
           @BatchId = params['BatchId']
+          @SerialType = params['SerialType']
         end
       end
 
@@ -1492,14 +1504,17 @@ module TencentCloud
         # @type Keyword: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param SerialType: 是否有流水码 0:无 1:有
+        # @type SerialType: Integer
 
-        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId
+        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType
         
-        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil)
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Keyword = keyword
           @CorpId = corpid
+          @SerialType = serialtype
         end
 
         def deserialize(params)
@@ -1507,6 +1522,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @Keyword = params['Keyword']
           @CorpId = params['CorpId']
+          @SerialType = params['SerialType']
         end
       end
 
@@ -2337,10 +2353,12 @@ module TencentCloud
         # @type ProductId: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param BatchCode: 批次编码，业务字段不判断唯一性
+        # @type BatchCode: String
 
-        attr_accessor :BatchId, :CorpId, :Status, :MpTpl, :MerchantId, :ProductId, :Remark
+        attr_accessor :BatchId, :CorpId, :Status, :MpTpl, :MerchantId, :ProductId, :Remark, :BatchCode
         
-        def initialize(batchid=nil, corpid=nil, status=nil, mptpl=nil, merchantid=nil, productid=nil, remark=nil)
+        def initialize(batchid=nil, corpid=nil, status=nil, mptpl=nil, merchantid=nil, productid=nil, remark=nil, batchcode=nil)
           @BatchId = batchid
           @CorpId = corpid
           @Status = status
@@ -2348,6 +2366,7 @@ module TencentCloud
           @MerchantId = merchantid
           @ProductId = productid
           @Remark = remark
+          @BatchCode = batchcode
         end
 
         def deserialize(params)
@@ -2358,6 +2377,7 @@ module TencentCloud
           @MerchantId = params['MerchantId']
           @ProductId = params['ProductId']
           @Remark = params['Remark']
+          @BatchCode = params['BatchCode']
         end
       end
 

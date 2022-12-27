@@ -7552,7 +7552,7 @@ module TencentCloud
         # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
         # @param RebalanceTime: 修改升配置rebalance时间
         # @type RebalanceTime: Integer
-        # @param PublicNetwork: 时间戳
+        # @param PublicNetwork: 公网带宽
         # @type PublicNetwork: Integer
         # @param DynamicDiskConfig: 动态硬盘扩容策略配置
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`

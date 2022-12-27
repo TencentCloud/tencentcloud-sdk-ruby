@@ -1914,16 +1914,22 @@ module TencentCloud
         # @type ClusterId: String
         # @param Remark: 说明信息，最长128个字符
         # @type Remark: String
+        # @param GroupType: Group类型（TCP/HTTP）
+        # @type GroupType: String
+        # @param RetryMaxTimes: Group最大重试次数
+        # @type RetryMaxTimes: Integer
 
-        attr_accessor :GroupId, :Namespaces, :ReadEnable, :BroadcastEnable, :ClusterId, :Remark
+        attr_accessor :GroupId, :Namespaces, :ReadEnable, :BroadcastEnable, :ClusterId, :Remark, :GroupType, :RetryMaxTimes
         
-        def initialize(groupid=nil, namespaces=nil, readenable=nil, broadcastenable=nil, clusterid=nil, remark=nil)
+        def initialize(groupid=nil, namespaces=nil, readenable=nil, broadcastenable=nil, clusterid=nil, remark=nil, grouptype=nil, retrymaxtimes=nil)
           @GroupId = groupid
           @Namespaces = namespaces
           @ReadEnable = readenable
           @BroadcastEnable = broadcastenable
           @ClusterId = clusterid
           @Remark = remark
+          @GroupType = grouptype
+          @RetryMaxTimes = retrymaxtimes
         end
 
         def deserialize(params)
@@ -1933,6 +1939,8 @@ module TencentCloud
           @BroadcastEnable = params['BroadcastEnable']
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
+          @GroupType = params['GroupType']
+          @RetryMaxTimes = params['RetryMaxTimes']
         end
       end
 
@@ -4802,10 +4810,12 @@ module TencentCloud
         # @type SortOrder: String
         # @param FilterOneGroup: 订阅组名称，指定此参数后将只返回该订阅组信息
         # @type FilterOneGroup: String
+        # @param Types: group类型
+        # @type Types: Array
 
-        attr_accessor :ClusterId, :NamespaceId, :Offset, :Limit, :FilterTopic, :FilterGroup, :SortedBy, :SortOrder, :FilterOneGroup
+        attr_accessor :ClusterId, :NamespaceId, :Offset, :Limit, :FilterTopic, :FilterGroup, :SortedBy, :SortOrder, :FilterOneGroup, :Types
         
-        def initialize(clusterid=nil, namespaceid=nil, offset=nil, limit=nil, filtertopic=nil, filtergroup=nil, sortedby=nil, sortorder=nil, filteronegroup=nil)
+        def initialize(clusterid=nil, namespaceid=nil, offset=nil, limit=nil, filtertopic=nil, filtergroup=nil, sortedby=nil, sortorder=nil, filteronegroup=nil, types=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @Offset = offset
@@ -4815,6 +4825,7 @@ module TencentCloud
           @SortedBy = sortedby
           @SortOrder = sortorder
           @FilterOneGroup = filteronegroup
+          @Types = types
         end
 
         def deserialize(params)
@@ -4827,6 +4838,7 @@ module TencentCloud
           @SortedBy = params['SortedBy']
           @SortOrder = params['SortOrder']
           @FilterOneGroup = params['FilterOneGroup']
+          @Types = params['Types']
         end
       end
 
@@ -6116,16 +6128,19 @@ module TencentCloud
         # @type ReadEnable: Boolean
         # @param BroadcastEnable: 是否开启广播消费
         # @type BroadcastEnable: Boolean
+        # @param RetryMaxTimes: 最大重试次数
+        # @type RetryMaxTimes: Integer
 
-        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Remark, :ReadEnable, :BroadcastEnable
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Remark, :ReadEnable, :BroadcastEnable, :RetryMaxTimes
         
-        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, remark=nil, readenable=nil, broadcastenable=nil)
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, remark=nil, readenable=nil, broadcastenable=nil, retrymaxtimes=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @GroupId = groupid
           @Remark = remark
           @ReadEnable = readenable
           @BroadcastEnable = broadcastenable
+          @RetryMaxTimes = retrymaxtimes
         end
 
         def deserialize(params)
@@ -6135,6 +6150,7 @@ module TencentCloud
           @Remark = params['Remark']
           @ReadEnable = params['ReadEnable']
           @BroadcastEnable = params['BroadcastEnable']
+          @RetryMaxTimes = params['RetryMaxTimes']
         end
       end
 
@@ -6980,10 +6996,22 @@ module TencentCloud
         # @param RocketMQFlag: Rocketmq集群标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RocketMQFlag: Boolean
+        # @param Status: 计费状态，1表示正常，2表示已停服，3表示已销毁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IsolateTime: 欠费停服时间，毫秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: Integer
+        # @param HttpPublicEndpoint: HTTP协议公网接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpPublicEndpoint: String
+        # @param HttpVpcEndpoint: HTTP协议VPC接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpVpcEndpoint: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -6995,6 +7023,10 @@ module TencentCloud
           @Vpcs = vpcs
           @IsVip = isvip
           @RocketMQFlag = rocketmqflag
+          @Status = status
+          @IsolateTime = isolatetime
+          @HttpPublicEndpoint = httppublicendpoint
+          @HttpVpcEndpoint = httpvpcendpoint
         end
 
         def deserialize(params)
@@ -7016,6 +7048,10 @@ module TencentCloud
           end
           @IsVip = params['IsVip']
           @RocketMQFlag = params['RocketMQFlag']
+          @Status = params['Status']
+          @IsolateTime = params['IsolateTime']
+          @HttpPublicEndpoint = params['HttpPublicEndpoint']
+          @HttpVpcEndpoint = params['HttpVpcEndpoint']
         end
       end
 
@@ -7078,10 +7114,16 @@ module TencentCloud
         # @type ConsumerType: String
         # @param BroadcastEnabled: 是否开启广播消费
         # @type BroadcastEnabled: Boolean
+        # @param GroupType: Group类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupType: String
+        # @param RetryMaxTimes: 重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryMaxTimes: Integer
 
-        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled
+        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes
         
-        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil)
+        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil)
           @Name = name
           @ConsumerNum = consumernum
           @TPS = tps
@@ -7095,6 +7137,8 @@ module TencentCloud
           @Remark = remark
           @ConsumerType = consumertype
           @BroadcastEnabled = broadcastenabled
+          @GroupType = grouptype
+          @RetryMaxTimes = retrymaxtimes
         end
 
         def deserialize(params)
@@ -7111,6 +7155,8 @@ module TencentCloud
           @Remark = params['Remark']
           @ConsumerType = params['ConsumerType']
           @BroadcastEnabled = params['BroadcastEnabled']
+          @GroupType = params['GroupType']
+          @RetryMaxTimes = params['RetryMaxTimes']
         end
       end
 

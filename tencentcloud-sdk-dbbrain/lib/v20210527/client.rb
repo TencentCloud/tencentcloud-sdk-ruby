@@ -605,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取当前实例会话统计详情信息。【注意】该接口仅限部分环境调用。
+
+        # @param request: Request instance for DescribeProxyProcessStatistics.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeProxyProcessStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeProxyProcessStatisticsResponse`
+        def DescribeProxyProcessStatistics(request)
+          body = send_request('DescribeProxyProcessStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxyProcessStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询 redis 执行 kill 会话任务后代理节点的执行结果，入参异步任务 ID 从接口 CreateProxySessionKillTask 调用成功后取得。当前 product 只支持：redis。
 
         # @param request: Request instance for DescribeProxySessionKillTasks.

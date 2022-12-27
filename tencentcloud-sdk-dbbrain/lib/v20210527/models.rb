@@ -1431,6 +1431,69 @@ module TencentCloud
         end
       end
 
+      # DescribeProxyProcessStatistics请求参数结构体
+      class DescribeProxyProcessStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param InstanceProxyId: 当前实例下的 ProxyID。
+        # @type InstanceProxyId: String
+        # @param Limit: 返回数量。
+        # @type Limit: Integer
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param SortBy: 按照某字断排序。支持值包括："AllConn"，"ActiveConn"，"Ip"。
+        # @type SortBy: String
+        # @param OrderDirection: 排序方向。支持值包括："DESC"，"ASC"。
+        # @type OrderDirection: String
+
+        attr_accessor :InstanceId, :InstanceProxyId, :Limit, :Product, :Offset, :SortBy, :OrderDirection
+        
+        def initialize(instanceid=nil, instanceproxyid=nil, limit=nil, product=nil, offset=nil, sortby=nil, orderdirection=nil)
+          @InstanceId = instanceid
+          @InstanceProxyId = instanceproxyid
+          @Limit = limit
+          @Product = product
+          @Offset = offset
+          @SortBy = sortby
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceProxyId = params['InstanceProxyId']
+          @Limit = params['Limit']
+          @Product = params['Product']
+          @Offset = params['Offset']
+          @SortBy = params['SortBy']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribeProxyProcessStatistics返回参数结构体
+      class DescribeProxyProcessStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param ProcessStatistics: 实时会话统计详情。
+        # @type ProcessStatistics: :class:`Tencentcloud::Dbbrain.v20210527.models.ProcessStatistic`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProcessStatistics, :RequestId
+        
+        def initialize(processstatistics=nil, requestid=nil)
+          @ProcessStatistics = processstatistics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProcessStatistics'].nil?
+            @ProcessStatistics = ProcessStatistic.new
+            @ProcessStatistics.deserialize(params['ProcessStatistics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProxySessionKillTasks请求参数结构体
       class DescribeProxySessionKillTasksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -3166,6 +3229,17 @@ module TencentCloud
           @Command = params['Command']
           @Time = params['Time']
           @Info = params['Info']
+        end
+      end
+
+      # 实时会话统计详情。
+      class ProcessStatistic < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
