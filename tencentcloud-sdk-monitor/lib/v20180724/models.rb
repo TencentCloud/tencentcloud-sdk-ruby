@@ -7533,10 +7533,10 @@ module TencentCloud
         # @type ExtraOrgIds: Array
         # @param OrgIds: 生效组织，已废弃，请使用 OrganizationIds
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OrgIds: String
+        # @type OrgIds: Array
         # @param OrganizationIds: 告警渠道的所有生效组织
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OrganizationIds: String
+        # @type OrganizationIds: Array
 
         attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt, :OrgId, :ExtraOrgIds, :OrgIds, :OrganizationIds
         

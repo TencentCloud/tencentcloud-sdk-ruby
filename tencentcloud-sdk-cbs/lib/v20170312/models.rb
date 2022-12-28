@@ -487,6 +487,46 @@ module TencentCloud
         end
       end
 
+      # CreateDiskBackup请求参数结构体
+      class CreateDiskBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DiskId: 要创建备份点的云硬盘名称。
+        # @type DiskId: String
+        # @param DiskBackupName: 云硬盘备份点名称。长度不能超过100个字符。
+        # @type DiskBackupName: String
+
+        attr_accessor :DiskId, :DiskBackupName
+        
+        def initialize(diskid=nil, diskbackupname=nil)
+          @DiskId = diskid
+          @DiskBackupName = diskbackupname
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @DiskBackupName = params['DiskBackupName']
+        end
+      end
+
+      # CreateDiskBackup返回参数结构体
+      class CreateDiskBackupResponse < TencentCloud::Common::AbstractModel
+        # @param DiskBackupId: 云硬盘备份点的ID。
+        # @type DiskBackupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskBackupId, :RequestId
+        
+        def initialize(diskbackupid=nil, requestid=nil)
+          @DiskBackupId = diskbackupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DiskBackupId = params['DiskBackupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDisks请求参数结构体
       class CreateDisksRequest < TencentCloud::Common::AbstractModel
         # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。

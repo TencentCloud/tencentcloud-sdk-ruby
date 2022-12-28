@@ -972,32 +972,32 @@ module TencentCloud
 
       # CreateFlowEvidenceReport返回参数结构体
       class CreateFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
-        # @param ReportId: 出证报告 ID
+        # @param ReportId: 出证报告 ID，用于查询出证报告DescribeFlowEvidenceReport接口时用到
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportId: String
-        # @param ReportUrl: 废除，字段无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReportUrl: String
         # @param Status: 执行中：EvidenceStatusExecuting
         # 成功：EvidenceStatusSuccess
         # 失败：EvidenceStatusFailed
         # @type Status: String
+        # @param ReportUrl: 废除，字段无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReportId, :ReportUrl, :Status, :RequestId
+        attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
         
-        def initialize(reportid=nil, reporturl=nil, status=nil, requestid=nil)
+        def initialize(reportid=nil, status=nil, reporturl=nil, requestid=nil)
           @ReportId = reportid
-          @ReportUrl = reporturl
           @Status = status
+          @ReportUrl = reporturl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ReportId = params['ReportId']
-          @ReportUrl = params['ReportUrl']
           @Status = params['Status']
+          @ReportUrl = params['ReportUrl']
           @RequestId = params['RequestId']
         end
       end

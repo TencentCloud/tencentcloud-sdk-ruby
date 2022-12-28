@@ -773,10 +773,12 @@ module TencentCloud
         # @type Plugins: Array
         # @param DomainNameConfig: 域名解析配置
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
+        # @param Owner: 创建人名
+        # @type Owner: String
 
-        attr_accessor :Name, :Type, :ProjectId, :Description, :Load, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Scripts, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig
+        attr_accessor :Name, :Type, :ProjectId, :Description, :Load, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Scripts, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :Owner
         
-        def initialize(name=nil, type=nil, projectid=nil, description=nil, load=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, scripts=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil)
+        def initialize(name=nil, type=nil, projectid=nil, description=nil, load=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, scripts=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, owner=nil)
           @Name = name
           @Type = type
           @ProjectId = projectid
@@ -794,6 +796,7 @@ module TencentCloud
           @SLAPolicy = slapolicy
           @Plugins = plugins
           @DomainNameConfig = domainnameconfig
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -858,6 +861,7 @@ module TencentCloud
             @DomainNameConfig = DomainNameConfig.new
             @DomainNameConfig.deserialize(params['DomainNameConfig'])
           end
+          @Owner = params['Owner']
         end
       end
 
@@ -2577,10 +2581,14 @@ module TencentCloud
         # @type IgnoreScript: Boolean
         # @param IgnoreDataset: 是否需要返回测试数据文件信息
         # @type IgnoreDataset: Boolean
+        # @param ScenarioType: 场景类型，如pts-http, pts-js, pts-trpc, pts-jmeter
+        # @type ScenarioType: String
+        # @param Owner: 创建人员
+        # @type Owner: String
 
-        attr_accessor :Offset, :Limit, :ProjectIds, :ScenarioIds, :ScenarioName, :ScenarioStatus, :OrderBy, :Ascend, :ScenarioRelatedJobsParams, :IgnoreScript, :IgnoreDataset
+        attr_accessor :Offset, :Limit, :ProjectIds, :ScenarioIds, :ScenarioName, :ScenarioStatus, :OrderBy, :Ascend, :ScenarioRelatedJobsParams, :IgnoreScript, :IgnoreDataset, :ScenarioType, :Owner
         
-        def initialize(offset=nil, limit=nil, projectids=nil, scenarioids=nil, scenarioname=nil, scenariostatus=nil, orderby=nil, ascend=nil, scenariorelatedjobsparams=nil, ignorescript=nil, ignoredataset=nil)
+        def initialize(offset=nil, limit=nil, projectids=nil, scenarioids=nil, scenarioname=nil, scenariostatus=nil, orderby=nil, ascend=nil, scenariorelatedjobsparams=nil, ignorescript=nil, ignoredataset=nil, scenariotype=nil, owner=nil)
           @Offset = offset
           @Limit = limit
           @ProjectIds = projectids
@@ -2592,6 +2600,8 @@ module TencentCloud
           @ScenarioRelatedJobsParams = scenariorelatedjobsparams
           @IgnoreScript = ignorescript
           @IgnoreDataset = ignoredataset
+          @ScenarioType = scenariotype
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -2609,6 +2619,8 @@ module TencentCloud
           end
           @IgnoreScript = params['IgnoreScript']
           @IgnoreDataset = params['IgnoreDataset']
+          @ScenarioType = params['ScenarioType']
+          @Owner = params['Owner']
         end
       end
 
@@ -4220,10 +4232,13 @@ module TencentCloud
         # @param NotificationHooks: 通知事件回调
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotificationHooks: Array
+        # @param Owner: 创建人员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
 
-        attr_accessor :ScenarioId, :Name, :Description, :Type, :Status, :Load, :EncodedScripts, :Configs, :Extensions, :Datasets, :SLAId, :CronId, :CreatedAt, :UpdatedAt, :ProjectId, :AppId, :Uin, :SubAccountUin, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks
+        attr_accessor :ScenarioId, :Name, :Description, :Type, :Status, :Load, :EncodedScripts, :Configs, :Extensions, :Datasets, :SLAId, :CronId, :CreatedAt, :UpdatedAt, :ProjectId, :AppId, :Uin, :SubAccountUin, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks, :Owner
         
-        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, status=nil, load=nil, encodedscripts=nil, configs=nil, extensions=nil, datasets=nil, slaid=nil, cronid=nil, createdat=nil, updatedat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil)
+        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, status=nil, load=nil, encodedscripts=nil, configs=nil, extensions=nil, datasets=nil, slaid=nil, cronid=nil, createdat=nil, updatedat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil, owner=nil)
           @ScenarioId = scenarioid
           @Name = name
           @Description = description
@@ -4249,6 +4264,7 @@ module TencentCloud
           @Plugins = plugins
           @DomainNameConfig = domainnameconfig
           @NotificationHooks = notificationhooks
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -4328,6 +4344,7 @@ module TencentCloud
               @NotificationHooks << notificationhook_tmp
             end
           end
+          @Owner = params['Owner']
         end
       end
 
@@ -4883,10 +4900,12 @@ module TencentCloud
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
         # @param NotificationHooks: WebHook请求配置
         # @type NotificationHooks: Array
+        # @param Owner: 创建人名
+        # @type Owner: String
 
-        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks
+        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks, :Owner
         
-        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil)
+        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil, owner=nil)
           @ScenarioId = scenarioid
           @Name = name
           @Description = description
@@ -4907,6 +4926,7 @@ module TencentCloud
           @Plugins = plugins
           @DomainNameConfig = domainnameconfig
           @NotificationHooks = notificationhooks
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -4981,6 +5001,7 @@ module TencentCloud
               @NotificationHooks << notification_tmp
             end
           end
+          @Owner = params['Owner']
         end
       end
 

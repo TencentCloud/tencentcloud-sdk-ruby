@@ -236,7 +236,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建出证报告，返回报告 ID。
+        # 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+        # 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeFlowEvidenceReport进行查询。
 
         # @param request: Request instance for CreateFlowEvidenceReport.
         # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowEvidenceReportRequest`

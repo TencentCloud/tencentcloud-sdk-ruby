@@ -250,6 +250,83 @@ module TencentCloud
         end
       end
 
+      # AddFlexFundingAccount请求参数结构体
+      class AddFlexFundingAccountRequest < TencentCloud::Common::AbstractModel
+        # @param FundingAccountType: 资金账户类型
+        # PINGAN_BANK:平安银行
+        # @type FundingAccountType: String
+        # @param FundingAccountName: 收款资金账户姓名
+        # @type FundingAccountName: String
+        # @param FundingAccountNo: 收款资金账户号
+        # @type FundingAccountNo: String
+        # @param PhoneNo: 收款资金账户手机号
+        # @type PhoneNo: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+        # @param BankBranchName: 开户支行名
+        # @type BankBranchName: String
+
+        attr_accessor :FundingAccountType, :FundingAccountName, :FundingAccountNo, :PhoneNo, :PayeeId, :Environment, :BankBranchName
+        
+        def initialize(fundingaccounttype=nil, fundingaccountname=nil, fundingaccountno=nil, phoneno=nil, payeeid=nil, environment=nil, bankbranchname=nil)
+          @FundingAccountType = fundingaccounttype
+          @FundingAccountName = fundingaccountname
+          @FundingAccountNo = fundingaccountno
+          @PhoneNo = phoneno
+          @PayeeId = payeeid
+          @Environment = environment
+          @BankBranchName = bankbranchname
+        end
+
+        def deserialize(params)
+          @FundingAccountType = params['FundingAccountType']
+          @FundingAccountName = params['FundingAccountName']
+          @FundingAccountNo = params['FundingAccountNo']
+          @PhoneNo = params['PhoneNo']
+          @PayeeId = params['PayeeId']
+          @Environment = params['Environment']
+          @BankBranchName = params['BankBranchName']
+        end
+      end
+
+      # AddFlexFundingAccount返回参数结构体
+      class AddFlexFundingAccountResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeFundingAccountResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayeeFundingAccountResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddFlexIdInfo请求参数结构体
       class AddFlexIdInfoRequest < TencentCloud::Common::AbstractModel
         # @param IdType: 证件类型
@@ -11777,6 +11854,84 @@ module TencentCloud
         end
       end
 
+      # ModifyFlexFundingAccount请求参数结构体
+      class ModifyFlexFundingAccountRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param FundingAccountBindSerialNo: 收款用户资金账户ID
+        # @type FundingAccountBindSerialNo: String
+        # @param FundingAccountType: 资金账户类型
+        # PINGAN_BANK:平安银行
+        # @type FundingAccountType: String
+        # @param PhoneNo: 收款资金账户手机号
+        # @type PhoneNo: String
+        # @param FundingAccountName: 收款资金账户姓名
+        # @type FundingAccountName: String
+        # @param FundingAccountNo: 收款资金账户号
+        # @type FundingAccountNo: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+        # @param BankBranchName: 开户支行名
+        # @type BankBranchName: String
+
+        attr_accessor :PayeeId, :FundingAccountBindSerialNo, :FundingAccountType, :PhoneNo, :FundingAccountName, :FundingAccountNo, :Environment, :BankBranchName
+        
+        def initialize(payeeid=nil, fundingaccountbindserialno=nil, fundingaccounttype=nil, phoneno=nil, fundingaccountname=nil, fundingaccountno=nil, environment=nil, bankbranchname=nil)
+          @PayeeId = payeeid
+          @FundingAccountBindSerialNo = fundingaccountbindserialno
+          @FundingAccountType = fundingaccounttype
+          @PhoneNo = phoneno
+          @FundingAccountName = fundingaccountname
+          @FundingAccountNo = fundingaccountno
+          @Environment = environment
+          @BankBranchName = bankbranchname
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @FundingAccountBindSerialNo = params['FundingAccountBindSerialNo']
+          @FundingAccountType = params['FundingAccountType']
+          @PhoneNo = params['PhoneNo']
+          @FundingAccountName = params['FundingAccountName']
+          @FundingAccountNo = params['FundingAccountNo']
+          @Environment = params['Environment']
+          @BankBranchName = params['BankBranchName']
+        end
+      end
+
+      # ModifyFlexFundingAccount返回参数结构体
+      class ModifyFlexFundingAccountResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFlexPayeeAccountRightStatus请求参数结构体
       class ModifyFlexPayeeAccountRightStatusRequest < TencentCloud::Common::AbstractModel
         # @param PayeeId: 收款用户ID
@@ -13818,6 +13973,22 @@ module TencentCloud
           @IdType = params['IdType']
           @IdNo = params['IdNo']
           @Name = params['Name']
+        end
+      end
+
+      # 收款用户资金账户信息
+      class PayeeFundingAccountResult < TencentCloud::Common::AbstractModel
+        # @param FundingAccountBindSerialNo: 资金账户ID
+        # @type FundingAccountBindSerialNo: String
+
+        attr_accessor :FundingAccountBindSerialNo
+        
+        def initialize(fundingaccountbindserialno=nil)
+          @FundingAccountBindSerialNo = fundingaccountbindserialno
+        end
+
+        def deserialize(params)
+          @FundingAccountBindSerialNo = params['FundingAccountBindSerialNo']
         end
       end
 
@@ -17532,6 +17703,62 @@ module TencentCloud
           @ErrMessage = params['ErrMessage']
           unless params['Result'].nil?
             @Result = PlatformAccountBalanceResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexServiceProviderAccountBalance请求参数结构体
+      class QueryFlexServiceProviderAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: 服务商ID
+        # @type ServiceProviderId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :ServiceProviderId, :Environment
+        
+        def initialize(serviceproviderid=nil, environment=nil)
+          @ServiceProviderId = serviceproviderid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryFlexServiceProviderAccountBalance返回参数结构体
+      class QueryFlexServiceProviderAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ServiceProviderAccountBalanceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = ServiceProviderAccountBalanceResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -25118,6 +25345,22 @@ module TencentCloud
           @LocaleCode = params['LocaleCode']
           @RegionCode = params['RegionCode']
           @UserClientIp = params['UserClientIp']
+        end
+      end
+
+      # 服务商账户余额返回信息
+      class ServiceProviderAccountBalanceResult < TencentCloud::Common::AbstractModel
+        # @param Balance: 服务商账户余额
+        # @type Balance: String
+
+        attr_accessor :Balance
+        
+        def initialize(balance=nil)
+          @Balance = balance
+        end
+
+        def deserialize(params)
+          @Balance = params['Balance']
         end
       end
 

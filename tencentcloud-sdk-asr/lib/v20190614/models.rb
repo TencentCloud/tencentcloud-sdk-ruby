@@ -335,12 +335,14 @@ module TencentCloud
         # @type FilterModal: Integer
         # @param EmotionalEnergy: 情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。0:不开启，1:开启
         # @type EmotionalEnergy: Integer
-        # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”、“蜜汁”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
+        # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         # @type ReinforceHotword: Integer
+        # @param SentenceMaxLength: 单标点最多字数，取值范围：[6，40]。默认为0，不开启该功能。该参数可用于字幕生成场景，控制单行字幕最大字数。
+        # @type SentenceMaxLength: Integer
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal, :EmotionalEnergy, :ReinforceHotword
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal, :EmotionalEnergy, :ReinforceHotword, :SentenceMaxLength
         
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil, emotionalenergy=nil, reinforcehotword=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil, emotionalenergy=nil, reinforcehotword=nil, sentencemaxlength=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -360,6 +362,7 @@ module TencentCloud
           @FilterModal = filtermodal
           @EmotionalEnergy = emotionalenergy
           @ReinforceHotword = reinforcehotword
+          @SentenceMaxLength = sentencemaxlength
         end
 
         def deserialize(params)
@@ -382,6 +385,7 @@ module TencentCloud
           @FilterModal = params['FilterModal']
           @EmotionalEnergy = params['EmotionalEnergy']
           @ReinforceHotword = params['ReinforceHotword']
+          @SentenceMaxLength = params['SentenceMaxLength']
         end
       end
 

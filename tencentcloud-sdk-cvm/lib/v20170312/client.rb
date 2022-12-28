@@ -1374,6 +1374,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (InquiryPriceRenewHosts) 用于续费包年包月`CDH`实例询价。
+        # * 只支持查询包年包月`CDH`实例的续费价格。
+
+        # @param request: Request instance for InquiryPriceRenewHosts.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::InquiryPriceRenewHostsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::InquiryPriceRenewHostsResponse`
+        def InquiryPriceRenewHosts(request)
+          body = send_request('InquiryPriceRenewHosts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceRenewHostsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
 
         # * 只支持查询包年包月实例的续费价格。

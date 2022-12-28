@@ -193,6 +193,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为云硬盘创建一个备份点。
+
+        # @param request: Request instance for CreateDiskBackup.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::CreateDiskBackupRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::CreateDiskBackupResponse`
+        def CreateDiskBackup(request)
+          body = send_request('CreateDiskBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDiskBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateDisks）用于创建云硬盘。
 
         # * 预付费云盘的购买会预先扣除本次云盘购买所需金额，在调用本接口前请确保账户余额充足。

@@ -322,10 +322,13 @@ module TencentCloud
         # @param PreAuditInfo: 证书预审核信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreAuditInfo: :class:`Tencentcloud::Ssl.v20191205.models.PreAuditInfo`
+        # @param AutoRenewFlag: 是否自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -363,6 +366,7 @@ module TencentCloud
           @CAEndTimes = caendtimes
           @CACommonNames = cacommonnames
           @PreAuditInfo = preauditinfo
+          @AutoRenewFlag = autorenewflag
         end
 
         def deserialize(params)
@@ -419,6 +423,7 @@ module TencentCloud
             @PreAuditInfo = PreAuditInfo.new
             @PreAuditInfo.deserialize(params['PreAuditInfo'])
           end
+          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 

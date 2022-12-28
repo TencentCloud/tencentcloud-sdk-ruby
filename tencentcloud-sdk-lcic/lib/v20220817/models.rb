@@ -174,14 +174,14 @@ module TencentCloud
         # 2 高清
         # 3 全高清
         # @type Resolution: Integer
-        # @param MaxMicNumber: 最大连麦人数（不包括老师）。取值范围[0, 17)
+        # @param MaxMicNumber: 最大连麦人数（不包括老师）。取值范围[0, 16]
         # @type MaxMicNumber: Integer
         # @param SubType: 房间子类型，可以有以下取值：
         # videodoc 文档+视频
         # video 纯视频
         # coteaching 双师
         # @type SubType: String
-        # @param TeacherId: 老师ID。
+        # @param TeacherId: 老师ID。通过[注册用户]接口获取的UserId。
         # @type TeacherId: String
         # @param AutoMic: 进入房间时是否自动连麦。可以有以下取值：
         # 0 不自动连麦（默认值）
@@ -195,7 +195,7 @@ module TencentCloud
         # 0 不禁止录制（默认值）
         # 1 禁止录制
         # @type DisableRecord: Integer
-        # @param Assistants: 助教Id列表。
+        # @param Assistants: 助教Id列表。通过[注册用户]接口获取的UserId。
         # @type Assistants: Array
         # @param RecordLayout: 录制布局。
         # @type RecordLayout: Integer

@@ -3531,6 +3531,25 @@ module TencentCloud
         end
       end
 
+      # cdh相关价格信息
+      class HostPriceInfo < TencentCloud::Common::AbstractModel
+        # @param HostPrice: 描述了cdh实例相关的价格信息
+        # @type HostPrice: :class:`Tencentcloud::Cvm.v20170312.models.ItemPrice`
+
+        attr_accessor :HostPrice
+        
+        def initialize(hostprice=nil)
+          @HostPrice = hostprice
+        end
+
+        def deserialize(params)
+          unless params['HostPrice'].nil?
+            @HostPrice = ItemPrice.new
+            @HostPrice.deserialize(params['HostPrice'])
+          end
+        end
+      end
+
       # 专用宿主机实例的资源信息
       class HostResource < TencentCloud::Common::AbstractModel
         # @param CpuTotal: 专用宿主机实例总CPU核数
@@ -4012,6 +4031,56 @@ module TencentCloud
         def deserialize(params)
           unless params['Price'].nil?
             @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceRenewHosts请求参数结构体
+      class InquiryPriceRenewHostsRequest < TencentCloud::Common::AbstractModel
+        # @param HostIds: 一个或多个待操作的`CDH`实例`ID`。可通过[`DescribeHosts`](https://cloud.tencent.com/document/api/213/16474)接口返回值中的`HostId`获取。每次请求批量实例的上限为100。
+        # @type HostIds: Array
+        # @param HostChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
+        # @type HostChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.ChargePrepaid`
+        # @param DryRun: 试运行，测试使用，不执行具体逻辑。取值范围：<br><li>TRUE：跳过执行逻辑<br><li>FALSE：执行逻辑<br><br>默认取值：FALSE。
+        # @type DryRun: Boolean
+
+        attr_accessor :HostIds, :HostChargePrepaid, :DryRun
+        
+        def initialize(hostids=nil, hostchargeprepaid=nil, dryrun=nil)
+          @HostIds = hostids
+          @HostChargePrepaid = hostchargeprepaid
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @HostIds = params['HostIds']
+          unless params['HostChargePrepaid'].nil?
+            @HostChargePrepaid = ChargePrepaid.new
+            @HostChargePrepaid.deserialize(params['HostChargePrepaid'])
+          end
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # InquiryPriceRenewHosts返回参数结构体
+      class InquiryPriceRenewHostsResponse < TencentCloud::Common::AbstractModel
+        # @param Price: CDH实例续费价格信息
+        # @type Price: :class:`Tencentcloud::Cvm.v20170312.models.HostPriceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+        
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = HostPriceInfo.new
             @Price.deserialize(params['Price'])
           end
           @RequestId = params['RequestId']

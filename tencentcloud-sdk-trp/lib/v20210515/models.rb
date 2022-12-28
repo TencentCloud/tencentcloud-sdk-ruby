@@ -2345,7 +2345,7 @@ module TencentCloud
         # @type CorpId: Integer
         # @param Status: 状态 0: 未激活 1: 已激活 -1: 已冻结
         # @type Status: Integer
-        # @param MpTpl: 模版ID，或者活动ID
+        # @param MpTpl: 模板ID，或者活动ID
         # @type MpTpl: String
         # @param MerchantId: 商户ID
         # @type MerchantId: String
@@ -2663,6 +2663,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTraceCodeUnlink请求参数结构体
+      class ModifyTraceCodeUnlinkRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次ID
+        # @type BatchId: String
+        # @param Codes: 溯源码列表
+        # @type Codes: Array
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :BatchId, :Codes, :CorpId
+        
+        def initialize(batchid=nil, codes=nil, corpid=nil)
+          @BatchId = batchid
+          @Codes = codes
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @Codes = params['Codes']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # ModifyTraceCodeUnlink返回参数结构体
+      class ModifyTraceCodeUnlinkResponse < TencentCloud::Common::AbstractModel
+        # @param UnlinkCnt: 成功解绑溯源码的数量
+        # @type UnlinkCnt: Integer
+        # @param CodeCnt: 当前批次的码数量
+        # @type CodeCnt: Integer
+        # @param BatchId: 批次ID
+        # @type BatchId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnlinkCnt, :CodeCnt, :BatchId, :RequestId
+        
+        def initialize(unlinkcnt=nil, codecnt=nil, batchid=nil, requestid=nil)
+          @UnlinkCnt = unlinkcnt
+          @CodeCnt = codecnt
+          @BatchId = batchid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UnlinkCnt = params['UnlinkCnt']
+          @CodeCnt = params['CodeCnt']
+          @BatchId = params['BatchId']
           @RequestId = params['RequestId']
         end
       end

@@ -170,19 +170,39 @@ module TencentCloud
         # @type RegionName: String
         # @param RegionState: 地域是否可用状态
         # @type RegionState: String
+        # @param RegionTypeMC: 控制台类型，api调用时默认null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionTypeMC: Integer
+        # @param LocationMC: 不同语言的地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocationMC: String
+        # @param RegionNameMC: 控制台展示的地域描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionNameMC: String
+        # @param RegionIdMC: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionIdMC: String
 
-        attr_accessor :Region, :RegionName, :RegionState
+        attr_accessor :Region, :RegionName, :RegionState, :RegionTypeMC, :LocationMC, :RegionNameMC, :RegionIdMC
         
-        def initialize(region=nil, regionname=nil, regionstate=nil)
+        def initialize(region=nil, regionname=nil, regionstate=nil, regiontypemc=nil, locationmc=nil, regionnamemc=nil, regionidmc=nil)
           @Region = region
           @RegionName = regionname
           @RegionState = regionstate
+          @RegionTypeMC = regiontypemc
+          @LocationMC = locationmc
+          @RegionNameMC = regionnamemc
+          @RegionIdMC = regionidmc
         end
 
         def deserialize(params)
           @Region = params['Region']
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
+          @RegionTypeMC = params['RegionTypeMC']
+          @LocationMC = params['LocationMC']
+          @RegionNameMC = params['RegionNameMC']
+          @RegionIdMC = params['RegionIdMC']
         end
       end
 
@@ -256,14 +276,38 @@ module TencentCloud
         # @type ZoneId: String
         # @param ZoneState: 可用区状态，包含AVAILABLE和UNAVAILABLE。AVAILABLE代表可用，UNAVAILABLE代表不可用。
         # @type ZoneState: String
+        # @param ParentZone: 父级zone
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentZone: String
+        # @param ParentZoneId: 父级可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentZoneId: String
+        # @param ParentZoneName: 父级可用区描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentZoneName: String
+        # @param ZoneType: zone类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneType: String
+        # @param MachineRoomTypeMC: 控制台类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineRoomTypeMC: String
+        # @param ZoneIdMC: 和ZoneId一样，适用于控制台调用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIdMC: String
 
-        attr_accessor :Zone, :ZoneName, :ZoneId, :ZoneState
+        attr_accessor :Zone, :ZoneName, :ZoneId, :ZoneState, :ParentZone, :ParentZoneId, :ParentZoneName, :ZoneType, :MachineRoomTypeMC, :ZoneIdMC
         
-        def initialize(zone=nil, zonename=nil, zoneid=nil, zonestate=nil)
+        def initialize(zone=nil, zonename=nil, zoneid=nil, zonestate=nil, parentzone=nil, parentzoneid=nil, parentzonename=nil, zonetype=nil, machineroomtypemc=nil, zoneidmc=nil)
           @Zone = zone
           @ZoneName = zonename
           @ZoneId = zoneid
           @ZoneState = zonestate
+          @ParentZone = parentzone
+          @ParentZoneId = parentzoneid
+          @ParentZoneName = parentzonename
+          @ZoneType = zonetype
+          @MachineRoomTypeMC = machineroomtypemc
+          @ZoneIdMC = zoneidmc
         end
 
         def deserialize(params)
@@ -271,6 +315,12 @@ module TencentCloud
           @ZoneName = params['ZoneName']
           @ZoneId = params['ZoneId']
           @ZoneState = params['ZoneState']
+          @ParentZone = params['ParentZone']
+          @ParentZoneId = params['ParentZoneId']
+          @ParentZoneName = params['ParentZoneName']
+          @ZoneType = params['ZoneType']
+          @MachineRoomTypeMC = params['MachineRoomTypeMC']
+          @ZoneIdMC = params['ZoneIdMC']
         end
       end
 

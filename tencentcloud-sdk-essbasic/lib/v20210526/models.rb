@@ -1497,32 +1497,32 @@ module TencentCloud
 
       # CreateChannelFlowEvidenceReport返回参数结构体
       class CreateChannelFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
-        # @param ReportUrl: 废除，字段无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReportUrl: String
-        # @param ReportId: 出证报告 ID
+        # @param ReportId: 出证报告 ID，用于查询出证报告接口DescribeChannelFlowEvidenceReport时用到
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportId: String
         # @param Status: 执行中：EvidenceStatusExecuting
         # 成功：EvidenceStatusSuccess
         # 失败：EvidenceStatusFailed
         # @type Status: String
+        # @param ReportUrl: 废除，字段无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReportUrl, :ReportId, :Status, :RequestId
+        attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
         
-        def initialize(reporturl=nil, reportid=nil, status=nil, requestid=nil)
-          @ReportUrl = reporturl
+        def initialize(reportid=nil, status=nil, reporturl=nil, requestid=nil)
           @ReportId = reportid
           @Status = status
+          @ReportUrl = reporturl
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @ReportUrl = params['ReportUrl']
           @ReportId = params['ReportId']
           @Status = params['Status']
+          @ReportUrl = params['ReportUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -1900,27 +1900,27 @@ module TencentCloud
 
       # DescribeChannelFlowEvidenceReport请求参数结构体
       class DescribeChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
-        # @param ReportId: 出证报告编号
-        # @type ReportId: String
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ReportId: 出证报告编号
+        # @type ReportId: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :ReportId, :Agent, :Operator
+        attr_accessor :Agent, :ReportId, :Operator
         
-        def initialize(reportid=nil, agent=nil, operator=nil)
-          @ReportId = reportid
+        def initialize(agent=nil, reportid=nil, operator=nil)
           @Agent = agent
+          @ReportId = reportid
           @Operator = operator
         end
 
         def deserialize(params)
-          @ReportId = params['ReportId']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ReportId = params['ReportId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
