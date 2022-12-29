@@ -2034,6 +2034,65 @@ module TencentCloud
         end
       end
 
+      # DeregisterFunctionTargets请求参数结构体
+      class DeregisterFunctionTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @type LoadBalancerId: String
+        # @param ListenerId: 负载均衡监听器 ID。
+        # @type ListenerId: String
+        # @param FunctionTargets: 待解绑的云函数列表。
+        # @type FunctionTargets: Array
+        # @param LocationId: 目标转发规则的 ID，当将云函数从七层转发规则上解绑时，必须输入此参数或 Domain+Url 参数。
+        # @type LocationId: String
+        # @param Domain: 目标转发规则的域名，若已经输入 LocationId 参数，则本参数不生效。
+        # @type Domain: String
+        # @param Url: 目标转发规则的 URL，若已经输入 LocationId 参数，则本参数不生效。
+        # @type Url: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :FunctionTargets, :LocationId, :Domain, :Url
+        
+        def initialize(loadbalancerid=nil, listenerid=nil, functiontargets=nil, locationid=nil, domain=nil, url=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @FunctionTargets = functiontargets
+          @LocationId = locationid
+          @Domain = domain
+          @Url = url
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          unless params['FunctionTargets'].nil?
+            @FunctionTargets = []
+            params['FunctionTargets'].each do |i|
+              functiontarget_tmp = FunctionTarget.new
+              functiontarget_tmp.deserialize(i)
+              @FunctionTargets << functiontarget_tmp
+            end
+          end
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
+        end
+      end
+
+      # DeregisterFunctionTargets返回参数结构体
+      class DeregisterFunctionTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeregisterTargetGroupInstances请求参数结构体
       class DeregisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
@@ -3968,6 +4027,59 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # SCF云函数（Serverless Cloud Function）相关信息。
+      class FunctionInfo < TencentCloud::Common::AbstractModel
+        # @param FunctionNamespace: 函数命名空间
+        # @type FunctionNamespace: String
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param FunctionQualifier: 函数的版本名称或别名
+        # @type FunctionQualifier: String
+        # @param FunctionQualifierType: 标识 FunctionQualifier 参数的类型，可取值： VERSION（版本）、ALIAS（别名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionQualifierType: String
+
+        attr_accessor :FunctionNamespace, :FunctionName, :FunctionQualifier, :FunctionQualifierType
+        
+        def initialize(functionnamespace=nil, functionname=nil, functionqualifier=nil, functionqualifiertype=nil)
+          @FunctionNamespace = functionnamespace
+          @FunctionName = functionname
+          @FunctionQualifier = functionqualifier
+          @FunctionQualifierType = functionqualifiertype
+        end
+
+        def deserialize(params)
+          @FunctionNamespace = params['FunctionNamespace']
+          @FunctionName = params['FunctionName']
+          @FunctionQualifier = params['FunctionQualifier']
+          @FunctionQualifierType = params['FunctionQualifierType']
+        end
+      end
+
+      # SCF云函数（Serverless Cloud Function）作为后端服务
+      class FunctionTarget < TencentCloud::Common::AbstractModel
+        # @param Function: 云函数相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Function: :class:`Tencentcloud::Clb.v20180317.models.FunctionInfo`
+        # @param Weight: 权重
+        # @type Weight: Integer
+
+        attr_accessor :Function, :Weight
+        
+        def initialize(function=nil, weight=nil)
+          @Function = function
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          unless params['Function'].nil?
+            @Function = FunctionInfo.new
+            @Function.deserialize(params['Function'])
+          end
+          @Weight = params['Weight']
         end
       end
 
@@ -6001,6 +6113,33 @@ module TencentCloud
           @QuotaId = params['QuotaId']
           @QuotaCurrent = params['QuotaCurrent']
           @QuotaLimit = params['QuotaLimit']
+        end
+      end
+
+      # RegisterFunctionTargets请求参数结构体
+      class RegisterFunctionTargetsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RegisterFunctionTargets返回参数结构体
+      class RegisterFunctionTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

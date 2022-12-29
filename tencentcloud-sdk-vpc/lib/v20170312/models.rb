@@ -1509,10 +1509,13 @@ module TencentCloud
         # @param RouteTableFlag: 是否开启云联网多路由表特性。False：未开启，True：开启。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableFlag: Boolean
+        # @param RouteBroadcastPolicyFlag: 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteBroadcastPolicyFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :RouteBroadcastPolicyFlag
         
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, routebroadcastpolicyflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1526,6 +1529,7 @@ module TencentCloud
           @RoutePriorityFlag = routepriorityflag
           @RouteTableCount = routetablecount
           @RouteTableFlag = routetableflag
+          @RouteBroadcastPolicyFlag = routebroadcastpolicyflag
         end
 
         def deserialize(params)
@@ -1549,6 +1553,7 @@ module TencentCloud
           @RoutePriorityFlag = params['RoutePriorityFlag']
           @RouteTableCount = params['RouteTableCount']
           @RouteTableFlag = params['RouteTableFlag']
+          @RouteBroadcastPolicyFlag = params['RouteBroadcastPolicyFlag']
         end
       end
 

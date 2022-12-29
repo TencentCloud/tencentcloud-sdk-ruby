@@ -17,6 +17,36 @@
 module TencentCloud
   module Cynosdb
     module V20190107
+      # 集群支持的功能
+      class Ability < TencentCloud::Common::AbstractModel
+        # @param IsSupportSlaveZone: 是否支持从可用区
+        # @type IsSupportSlaveZone: String
+        # @param NonsupportSlaveZoneReason: 不支持从可用区的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonsupportSlaveZoneReason: String
+        # @param IsSupportRo: 是否支持RO实例
+        # @type IsSupportRo: String
+        # @param NonsupportRoReason: 不支持RO实例的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonsupportRoReason: String
+
+        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason
+        
+        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil)
+          @IsSupportSlaveZone = issupportslavezone
+          @NonsupportSlaveZoneReason = nonsupportslavezonereason
+          @IsSupportRo = issupportro
+          @NonsupportRoReason = nonsupportroreason
+        end
+
+        def deserialize(params)
+          @IsSupportSlaveZone = params['IsSupportSlaveZone']
+          @NonsupportSlaveZoneReason = params['NonsupportSlaveZoneReason']
+          @IsSupportRo = params['IsSupportRo']
+          @NonsupportRoReason = params['NonsupportRoReason']
+        end
+      end
+
       # 数据库账号信息
       class Account < TencentCloud::Common::AbstractModel
         # @param AccountName: 数据库账号名
@@ -625,10 +655,12 @@ module TencentCloud
         # @type InstanceMemory: Integer
         # @param InstanceStorage: 硬盘
         # @type InstanceStorage: Integer
+        # @param InstanceRole: 实例角色
+        # @type InstanceRole: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole
         
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -637,6 +669,7 @@ module TencentCloud
           @InstanceCpu = instancecpu
           @InstanceMemory = instancememory
           @InstanceStorage = instancestorage
+          @InstanceRole = instancerole
         end
 
         def deserialize(params)
@@ -648,6 +681,7 @@ module TencentCloud
           @InstanceCpu = params['InstanceCpu']
           @InstanceMemory = params['InstanceMemory']
           @InstanceStorage = params['InstanceStorage']
+          @InstanceRole = params['InstanceRole']
         end
       end
 
@@ -1146,63 +1180,113 @@ module TencentCloud
         # @param InstanceNum: 实例数
         # @type InstanceNum: Integer
         # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param DbType: 引擎类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbType: String
         # @param AppId: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param StatusDesc: 集群状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param CreateTime: 集群创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param PayMode: 付费模式。0-按量计费，1-包年包月
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param PeriodEndTime: 截止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodEndTime: String
         # @param Vip: 集群读写vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 集群读写vport
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param ProjectID: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectID: Integer
         # @param VpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param CynosVersion: cynos内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CynosVersion: String
         # @param StorageLimit: 存储容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageLimit: Integer
         # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param ProcessingTask: 正在处理的任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessingTask: String
         # @param Tasks: 集群的任务数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param ResourceTags: 集群绑定的tag数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param DbMode: Db类型(NORMAL, SERVERLESS)
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
         # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
         # resume
         # pause
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerlessStatus: String
         # @param Storage: 集群预付费存储值大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: Integer
         # @param StorageId: 集群存储为预付费时的存储ID，用于预付费存储变配
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
         # @param StoragePayMode: 集群存储付费模式。0-按量计费，1-包年包月
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePayMode: Integer
         # @param MinStorageSize: 集群计算规格对应的最小存储值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinStorageSize: Integer
         # @param MaxStorageSize: 集群计算规格对应的最大存储值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorageSize: Integer
         # @param NetAddrs: 集群网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetAddrs: Array
+        # @param PhysicalZone: 物理可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalZone: String
+        # @param MasterZone: 主可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZone: String
+        # @param HasSlaveZone: 是否有从可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasSlaveZone: String
+        # @param SlaveZones: 从可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZones: Array
+        # @param BusinessType: 商业类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessType: String
+        # @param IsFreeze: 是否冻结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFreeze: String
+        # @param OrderSource: 订单来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderSource: String
+        # @param Ability: 能力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability
         
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -1237,6 +1321,14 @@ module TencentCloud
           @MinStorageSize = minstoragesize
           @MaxStorageSize = maxstoragesize
           @NetAddrs = netaddrs
+          @PhysicalZone = physicalzone
+          @MasterZone = masterzone
+          @HasSlaveZone = hasslavezone
+          @SlaveZones = slavezones
+          @BusinessType = businesstype
+          @IsFreeze = isfreeze
+          @OrderSource = ordersource
+          @Ability = ability
         end
 
         def deserialize(params)
@@ -1295,6 +1387,17 @@ module TencentCloud
               @NetAddrs << netaddr_tmp
             end
           end
+          @PhysicalZone = params['PhysicalZone']
+          @MasterZone = params['MasterZone']
+          @HasSlaveZone = params['HasSlaveZone']
+          @SlaveZones = params['SlaveZones']
+          @BusinessType = params['BusinessType']
+          @IsFreeze = params['IsFreeze']
+          @OrderSource = params['OrderSource']
+          unless params['Ability'].nil?
+            @Ability = Ability.new
+            @Ability.deserialize(params['Ability'])
+          end
         end
       end
 
@@ -1352,10 +1455,76 @@ module TencentCloud
         # pause
         # pausing
         # @type ServerlessStatus: String
+        # @param LogBin: binlog开关，可选值：ON, OFF
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogBin: String
+        # @param PitrType: pitr类型，可选值：normal, redo_pitr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PitrType: String
+        # @param PhysicalZone: 物理可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalZone: String
+        # @param StorageId: 存储Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageId: String
+        # @param Storage: 存储大小，单位为G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: Integer
+        # @param MaxStorageSize: 最大存储规格，单位为G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxStorageSize: Integer
+        # @param MinStorageSize: 最小存储规格，单位为G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinStorageSize: Integer
+        # @param StoragePayMode: 存储付费类型，1为包年包月，0为按量计费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoragePayMode: Integer
+        # @param DbMode: 数据库类型，normal，serverless
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbMode: String
+        # @param StorageLimit: 存储空间上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageLimit: Integer
+        # @param Ability: 集群支持的功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
+        # @param CynosVersion: cynos版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CynosVersion: String
+        # @param BusinessType: 商业类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessType: String
+        # @param HasSlaveZone: 是否有从可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasSlaveZone: String
+        # @param IsFreeze: 是否冻结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFreeze: String
+        # @param Tasks: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param MasterZone: 主可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZone: String
+        # @param SlaveZones: 从可用区列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZones: Array
+        # @param ProxyStatus: Proxy状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyStatus: String
+        # @param IsSkipTrade: 是否跳过交易
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSkipTrade: String
+        # @param IsOpenPasswordComplexity: 是否打开密码复杂度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpenPasswordComplexity: String
+        # @param NetworkStatus: 网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkStatus: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbVersion, :UsedStorage, :RoAddr, :InstanceSet, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :Zone, :ResourceTags, :ServerlessStatus
+        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbVersion, :UsedStorage, :RoAddr, :InstanceSet, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :Zone, :ResourceTags, :ServerlessStatus, :LogBin, :PitrType, :PhysicalZone, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :DbMode, :StorageLimit, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :ProxyStatus, :IsSkipTrade, :IsOpenPasswordComplexity, :NetworkStatus
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbversion=nil, usedstorage=nil, roaddr=nil, instanceset=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, zone=nil, resourcetags=nil, serverlessstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbversion=nil, usedstorage=nil, roaddr=nil, instanceset=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, zone=nil, resourcetags=nil, serverlessstatus=nil, logbin=nil, pitrtype=nil, physicalzone=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, dbmode=nil, storagelimit=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, proxystatus=nil, isskiptrade=nil, isopenpasswordcomplexity=nil, networkstatus=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -1380,6 +1549,28 @@ module TencentCloud
           @Zone = zone
           @ResourceTags = resourcetags
           @ServerlessStatus = serverlessstatus
+          @LogBin = logbin
+          @PitrType = pitrtype
+          @PhysicalZone = physicalzone
+          @StorageId = storageid
+          @Storage = storage
+          @MaxStorageSize = maxstoragesize
+          @MinStorageSize = minstoragesize
+          @StoragePayMode = storagepaymode
+          @DbMode = dbmode
+          @StorageLimit = storagelimit
+          @Ability = ability
+          @CynosVersion = cynosversion
+          @BusinessType = businesstype
+          @HasSlaveZone = hasslavezone
+          @IsFreeze = isfreeze
+          @Tasks = tasks
+          @MasterZone = masterzone
+          @SlaveZones = slavezones
+          @ProxyStatus = proxystatus
+          @IsSkipTrade = isskiptrade
+          @IsOpenPasswordComplexity = isopenpasswordcomplexity
+          @NetworkStatus = networkstatus
         end
 
         def deserialize(params)
@@ -1428,6 +1619,38 @@ module TencentCloud
             end
           end
           @ServerlessStatus = params['ServerlessStatus']
+          @LogBin = params['LogBin']
+          @PitrType = params['PitrType']
+          @PhysicalZone = params['PhysicalZone']
+          @StorageId = params['StorageId']
+          @Storage = params['Storage']
+          @MaxStorageSize = params['MaxStorageSize']
+          @MinStorageSize = params['MinStorageSize']
+          @StoragePayMode = params['StoragePayMode']
+          @DbMode = params['DbMode']
+          @StorageLimit = params['StorageLimit']
+          unless params['Ability'].nil?
+            @Ability = Ability.new
+            @Ability.deserialize(params['Ability'])
+          end
+          @CynosVersion = params['CynosVersion']
+          @BusinessType = params['BusinessType']
+          @HasSlaveZone = params['HasSlaveZone']
+          @IsFreeze = params['IsFreeze']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @MasterZone = params['MasterZone']
+          @SlaveZones = params['SlaveZones']
+          @ProxyStatus = params['ProxyStatus']
+          @IsSkipTrade = params['IsSkipTrade']
+          @IsOpenPasswordComplexity = params['IsOpenPasswordComplexity']
+          @NetworkStatus = params['NetworkStatus']
         end
       end
 
@@ -4564,10 +4787,16 @@ module TencentCloud
         # @param Description: 描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param WanIP: 外网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanIP: String
+        # @param WanStatus: 外网状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanStatus: String
 
-        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description
+        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description, :WanIP, :WanStatus
         
-        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, description=nil)
+        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, description=nil, wanip=nil, wanstatus=nil)
           @Vip = vip
           @Vport = vport
           @WanDomain = wandomain
@@ -4576,6 +4805,8 @@ module TencentCloud
           @UniqSubnetId = uniqsubnetid
           @UniqVpcId = uniqvpcid
           @Description = description
+          @WanIP = wanip
+          @WanStatus = wanstatus
         end
 
         def deserialize(params)
@@ -4587,27 +4818,32 @@ module TencentCloud
           @UniqSubnetId = params['UniqSubnetId']
           @UniqVpcId = params['UniqVpcId']
           @Description = params['Description']
+          @WanIP = params['WanIP']
+          @WanStatus = params['WanStatus']
         end
       end
 
-      # 新创建的账号
+      # x08新创建的账号
       class NewAccount < TencentCloud::Common::AbstractModel
-        # @param AccountName: 账户名
+        # @param AccountName: 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-16
         # @type AccountName: String
-        # @param AccountPassword: 密码
+        # @param AccountPassword: 密码，密码长度范围为8到64个字符
         # @type AccountPassword: String
         # @param Host: 主机
         # @type Host: String
         # @param Description: 描述
         # @type Description: String
+        # @param MaxUserConnections: 用户最大连接数，不能大于10240
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :AccountName, :AccountPassword, :Host, :Description
+        attr_accessor :AccountName, :AccountPassword, :Host, :Description, :MaxUserConnections
         
-        def initialize(accountname=nil, accountpassword=nil, host=nil, description=nil)
+        def initialize(accountname=nil, accountpassword=nil, host=nil, description=nil, maxuserconnections=nil)
           @AccountName = accountname
           @AccountPassword = accountpassword
           @Host = host
           @Description = description
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -4615,6 +4851,7 @@ module TencentCloud
           @AccountPassword = params['AccountPassword']
           @Host = params['Host']
           @Description = params['Description']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 

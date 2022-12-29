@@ -1109,7 +1109,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  DNS 解析套餐自动续费设置
+        # DNS 解析套餐自动续费设置
 
         # @param request: Request instance for ModifyPackageAutoRenew.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyPackageAutoRenewRequest`

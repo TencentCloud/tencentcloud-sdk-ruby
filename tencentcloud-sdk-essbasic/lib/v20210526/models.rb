@@ -2121,10 +2121,12 @@ module TencentCloud
         # @type WithPreviewUrl: Boolean
         # @param WithPdfUrl: 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
         # @type WithPdfUrl: Boolean
+        # @param ChannelTemplateId: 渠道模板ID
+        # @type ChannelTemplateId: String
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl, :WithPdfUrl
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl, :WithPdfUrl, :ChannelTemplateId
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil, withpdfurl=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil, withpdfurl=nil, channeltemplateid=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
@@ -2135,6 +2137,7 @@ module TencentCloud
           @Operator = operator
           @WithPreviewUrl = withpreviewurl
           @WithPdfUrl = withpdfurl
+          @ChannelTemplateId = channeltemplateid
         end
 
         def deserialize(params)
@@ -2154,6 +2157,7 @@ module TencentCloud
           end
           @WithPreviewUrl = params['WithPreviewUrl']
           @WithPdfUrl = params['WithPdfUrl']
+          @ChannelTemplateId = params['ChannelTemplateId']
         end
       end
 
