@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 显示集群详情
+        # 该接口（DescribeClusterDetail）显示集群详情
 
         # @param request: Request instance for DescribeClusterDetail.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDetailRequest`

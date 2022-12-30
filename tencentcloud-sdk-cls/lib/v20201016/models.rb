@@ -3829,7 +3829,7 @@ module TencentCloud
 
       # 键值或者元字段索引的字段信息
       class KeyValueInfo < TencentCloud::Common::AbstractModel
-        # @param Key: 需要配置键值或者元字段索引的字段名称，仅支持字母、数字和_-./@，且不能以_开头
+        # @param Key: 需要配置键值或者元字段索引的字段名称，仅支持字母、数字、下划线和-./@，且不能以下划线开头
 
         # 注意：
         # 1，元字段（tag）的Key无需额外添加`__TAG__.`前缀，与上传日志时对应的字段Key一致即可，腾讯云控制台展示时将自动添加`__TAG__.`前缀
@@ -5165,13 +5165,13 @@ module TencentCloud
 
       # 索引规则，FullText、KeyValue、Tag参数必须输入一个有效参数
       class RuleInfo < TencentCloud::Common::AbstractModel
-        # @param FullText: 全文索引配置
+        # @param FullText: 全文索引配置, 如果为空时代表未开启全文索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullText: :class:`Tencentcloud::Cls.v20201016.models.FullTextInfo`
-        # @param KeyValue: 键值索引配置
+        # @param KeyValue: 键值索引配置，如果为空时代表未开启键值索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValue: :class:`Tencentcloud::Cls.v20201016.models.RuleKeyValueInfo`
-        # @param Tag: 元字段索引配置
+        # @param Tag: 元字段索引配置，如果为空时代表未开启元字段索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: :class:`Tencentcloud::Cls.v20201016.models.RuleTagInfo`
 

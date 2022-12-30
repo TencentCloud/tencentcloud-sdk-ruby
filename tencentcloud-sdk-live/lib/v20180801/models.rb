@@ -383,8 +383,10 @@ module TencentCloud
       # 规则信息
       class CallBackRuleInfo < TencentCloud::Common::AbstractModel
         # @param CreateTime: 规则创建时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param UpdateTime: 规则更新时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type UpdateTime: String
         # @param TemplateId: 模板 ID。
         # @type TemplateId: Integer
@@ -583,6 +585,7 @@ module TencentCloud
         # @param Description: 描述信息。
         # @type Description: String
         # @param CreateTime: 创建时间，UTC 格式。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param HttpsCrt: 证书内容。
         # @type HttpsCrt: String
@@ -591,6 +594,7 @@ module TencentCloud
         # 1：腾讯云托管证书。
         # @type CertType: Integer
         # @param CertExpireTime: 证书过期时间，UTC 格式。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CertExpireTime: String
         # @param DomainList: 使用此证书的域名列表。
         # @type DomainList: Array
@@ -6569,6 +6573,7 @@ module TencentCloud
         # @param Description: 描述信息。
         # @type Description: String
         # @param CreateTime: 创建时间，UTC格式。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param HttpsCrt: 证书内容。
         # @type HttpsCrt: String
@@ -6577,6 +6582,7 @@ module TencentCloud
         # 1：腾讯云托管证书。
         # @type CertType: Integer
         # @param CertExpireTime: 证书过期时间，UTC格式。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CertExpireTime: String
         # @param DomainName: 使用此证书的域名名称。
         # @type DomainName: String
@@ -6668,6 +6674,7 @@ module TencentCloud
         # 1: 启用。
         # @type Status: Integer
         # @param CreateTime: 添加时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param BCName: 是否有 CName 到固定规则域名:
         # 0: 否。
@@ -6689,6 +6696,7 @@ module TencentCloud
         # @param RentTag: 失效参数，可忽略。
         # @type RentTag: Integer
         # @param RentExpireTime: 失效参数，可忽略。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type RentExpireTime: String
         # @param IsMiniProgramLive: 0: 标准直播。
         # 1: 小程序直播。
@@ -6933,8 +6941,10 @@ module TencentCloud
         # @param StreamName: 流名称。
         # @type StreamName: String
         # @param CreateTime: 创建时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param ExpireTime: 禁推过期时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type ExpireTime: String
         # @param AppName: 推流路径。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7148,12 +7158,14 @@ module TencentCloud
         # 0：已关闭。
         # @type Status: Integer
         # @param CertExpireTime: 证书过期时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CertExpireTime: String
         # @param CertId: 证书Id。
         # @type CertId: Integer
         # @param CloudCertId: 腾讯云ssl的证书Id。
         # @type CloudCertId: String
         # @param UpdateTime: 规则最后更新时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
@@ -7201,8 +7213,10 @@ module TencentCloud
         # 当为连麦包时单位为小时。
         # @type Left: Integer
         # @param BuyTime: 购买时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type BuyTime: String
         # @param ExpireTime: 过期时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type ExpireTime: String
         # @param Type: 包类型，可选值:
         # 0: 流量包。
@@ -7251,6 +7265,7 @@ module TencentCloud
         # @param LogUrl: 日志 URL。
         # @type LogUrl: String
         # @param LogTime: 日志生成时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type LogTime: String
         # @param FileSize: 文件大小。
         # @type FileSize: Integer
@@ -9293,8 +9308,10 @@ module TencentCloud
       # 规则信息。
       class RuleInfo < TencentCloud::Common::AbstractModel
         # @param CreateTime: 规则创建时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param UpdateTime: 规则更新时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type UpdateTime: String
         # @param TemplateId: 模板 ID。
         # @type TemplateId: Integer
@@ -10086,6 +10103,7 @@ module TencentCloud
         # @param Status: 当前状态。0：未使用，1:使用中。
         # @type Status: Integer
         # @param CreateTime: 添加时间。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type CreateTime: String
         # @param Width: 水印宽。
         # @type Width: Integer

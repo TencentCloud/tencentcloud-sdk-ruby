@@ -5481,6 +5481,67 @@ module TencentCloud
         end
       end
 
+      # DescribeOriginProtection请求参数结构体
+      class DescribeOriginProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: 查询的站点集合，不填默认查询所有站点。
+        # @type ZoneIds: Array
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # <li>need-update<br>   按照【<strong>站点是否需要更新源站防护IP白名单</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   true：需要更新<br>   false：无需更新<br></li>
+        # <li>plan-support<br>   按照【<strong>站点套餐是否支持源站防护</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   true：支持<br>   false：不支持<br></li>
+        # @type Filters: :class:`Tencentcloud::Teo.v20220901.models.Filter`
+        # @param Offset: 分页查询偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneIds, :Filters, :Offset, :Limit
+        
+        def initialize(zoneids=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneIds = zoneids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeOriginProtection返回参数结构体
+      class DescribeOriginProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param OriginProtectionInfo: 源站防护信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginProtectionInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginProtectionInfo, :RequestId
+        
+        def initialize(originprotectioninfo=nil, requestid=nil)
+          @OriginProtectionInfo = originprotectioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OriginProtectionInfo'].nil?
+            @OriginProtectionInfo = []
+            params['OriginProtectionInfo'].each do |i|
+              originprotectioninfo_tmp = OriginProtectionInfo.new
+              originprotectioninfo_tmp.deserialize(i)
+              @OriginProtectionInfo << originprotectioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOverviewL7Data请求参数结构体
       class DescribeOverviewL7DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -8093,6 +8154,46 @@ module TencentCloud
         end
       end
 
+      # 最新IP白名单列表相比于当前IP白名单列表的区别
+      class DiffIPWhitelist < TencentCloud::Common::AbstractModel
+        # @param LatestIPWhitelist: 最新IP白名单列表。
+        # @type LatestIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.IPWhitelist`
+        # @param AddedIPWhitelist: 最新IP白名单列表相比于当前IP白名单列表，新增部分。
+        # @type AddedIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.IPWhitelist`
+        # @param RemovedIPWhitelist: 最新IP白名单列表相比于当前IP白名单列表，删减部分。
+        # @type RemovedIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.IPWhitelist`
+        # @param NoChangeIPWhitelist: 最新IP白名单列表相比于当前IP白名单列表，不变部分。
+        # @type NoChangeIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.IPWhitelist`
+
+        attr_accessor :LatestIPWhitelist, :AddedIPWhitelist, :RemovedIPWhitelist, :NoChangeIPWhitelist
+        
+        def initialize(latestipwhitelist=nil, addedipwhitelist=nil, removedipwhitelist=nil, nochangeipwhitelist=nil)
+          @LatestIPWhitelist = latestipwhitelist
+          @AddedIPWhitelist = addedipwhitelist
+          @RemovedIPWhitelist = removedipwhitelist
+          @NoChangeIPWhitelist = nochangeipwhitelist
+        end
+
+        def deserialize(params)
+          unless params['LatestIPWhitelist'].nil?
+            @LatestIPWhitelist = IPWhitelist.new
+            @LatestIPWhitelist.deserialize(params['LatestIPWhitelist'])
+          end
+          unless params['AddedIPWhitelist'].nil?
+            @AddedIPWhitelist = IPWhitelist.new
+            @AddedIPWhitelist.deserialize(params['AddedIPWhitelist'])
+          end
+          unless params['RemovedIPWhitelist'].nil?
+            @RemovedIPWhitelist = IPWhitelist.new
+            @RemovedIPWhitelist.deserialize(params['RemovedIPWhitelist'])
+          end
+          unless params['NoChangeIPWhitelist'].nil?
+            @NoChangeIPWhitelist = IPWhitelist.new
+            @NoChangeIPWhitelist.deserialize(params['NoChangeIPWhitelist'])
+          end
+        end
+      end
+
       # 拨测分地域统计数据
       class DistrictStatistics < TencentCloud::Common::AbstractModel
         # @param Alpha2: ISO 3166-2 国家/地区简写，详情请参考[ISO 3166-2](https://zh.m.wikipedia.org/zh-hans/ISO_3166-2)。
@@ -8858,6 +8959,26 @@ module TencentCloud
             end
           end
           @ApplyType = params['ApplyType']
+        end
+      end
+
+      # 源站防护IP白名单
+      class IPWhitelist < TencentCloud::Common::AbstractModel
+        # @param IPv4: IPv4列表。
+        # @type IPv4: Array
+        # @param IPv6: IPv6列表。
+        # @type IPv6: Array
+
+        attr_accessor :IPv4, :IPv6
+        
+        def initialize(ipv4=nil, ipv6=nil)
+          @IPv4 = ipv4
+          @IPv6 = ipv6
+        end
+
+        def deserialize(params)
+          @IPv4 = params['IPv4']
+          @IPv6 = params['IPv6']
         end
       end
 
@@ -10847,6 +10968,65 @@ module TencentCloud
           end
           @UpdateTime = params['UpdateTime']
           @HostHeader = params['HostHeader']
+        end
+      end
+
+      # 源站防护信息
+      class OriginProtectionInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Hosts: 域名列表。
+        # @type Hosts: Array
+        # @param ProxyIds: 代理ID列表。
+        # @type ProxyIds: Array
+        # @param CurrentIPWhitelist: 当前版本的IP白名单。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.IPWhitelist`
+        # @param NeedUpdate: 该站点是否需要更新源站白名单，取值有：
+        # <li>true ：需要更新IP白名单 ；</li>
+        # <li>false ：无需更新IP白名单。</li>
+        # @type NeedUpdate: Boolean
+        # @param Status: 源站防护状态，取值有：
+        # <li>online ：源站防护启用中 ；</li>
+        # <li>offline ：源站防护已停用 ；</li>
+        # <li>nonactivate ：源站防护未激活，仅在从未使用过源站防护功能的站点调用中返回。</li>
+        # @type Status: String
+        # @param PlanSupport: 站点套餐是否支持源站防护，取值有：
+        # <li>true ：支持 ；</li>
+        # <li>false ：不支持。</li>
+        # @type PlanSupport: Boolean
+        # @param DiffIPWhitelist: 最新IP白名单与当前IP白名单的对比。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffIPWhitelist: :class:`Tencentcloud::Teo.v20220901.models.DiffIPWhitelist`
+
+        attr_accessor :ZoneId, :Hosts, :ProxyIds, :CurrentIPWhitelist, :NeedUpdate, :Status, :PlanSupport, :DiffIPWhitelist
+        
+        def initialize(zoneid=nil, hosts=nil, proxyids=nil, currentipwhitelist=nil, needupdate=nil, status=nil, plansupport=nil, diffipwhitelist=nil)
+          @ZoneId = zoneid
+          @Hosts = hosts
+          @ProxyIds = proxyids
+          @CurrentIPWhitelist = currentipwhitelist
+          @NeedUpdate = needupdate
+          @Status = status
+          @PlanSupport = plansupport
+          @DiffIPWhitelist = diffipwhitelist
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Hosts = params['Hosts']
+          @ProxyIds = params['ProxyIds']
+          unless params['CurrentIPWhitelist'].nil?
+            @CurrentIPWhitelist = IPWhitelist.new
+            @CurrentIPWhitelist.deserialize(params['CurrentIPWhitelist'])
+          end
+          @NeedUpdate = params['NeedUpdate']
+          @Status = params['Status']
+          @PlanSupport = params['PlanSupport']
+          unless params['DiffIPWhitelist'].nil?
+            @DiffIPWhitelist = DiffIPWhitelist.new
+            @DiffIPWhitelist.deserialize(params['DiffIPWhitelist'])
+          end
         end
       end
 
@@ -13435,6 +13615,38 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Count = params['Count']
+        end
+      end
+
+      # UpdateOriginProtectionIPWhitelist请求参数结构体
+      class UpdateOriginProtectionIPWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+        
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # UpdateOriginProtectionIPWhitelist返回参数结构体
+      class UpdateOriginProtectionIPWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

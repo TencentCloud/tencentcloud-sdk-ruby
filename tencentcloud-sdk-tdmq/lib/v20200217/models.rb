@@ -7203,6 +7203,10 @@ module TencentCloud
       class RocketMQTopic < TencentCloud::Common::AbstractModel
         # @param Name: 主题名称
         # @type Name: String
+        # @param Type: 主题的类别，为枚举类型，Normal，GlobalOrder，PartitionedOrder，Transaction，Retry及DeadLetter
+        # @type Type: String
+        # @param GroupNum: 订阅组数量
+        # @type GroupNum: Integer
         # @param Remark: 说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
@@ -7213,10 +7217,12 @@ module TencentCloud
         # @param UpdateTime: 创建时间，以毫秒为单位
         # @type UpdateTime: Integer
 
-        attr_accessor :Name, :Remark, :PartitionNum, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime
         
-        def initialize(name=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil)
           @Name = name
+          @Type = type
+          @GroupNum = groupnum
           @Remark = remark
           @PartitionNum = partitionnum
           @CreateTime = createtime
@@ -7225,6 +7231,8 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+          @Type = params['Type']
+          @GroupNum = params['GroupNum']
           @Remark = params['Remark']
           @PartitionNum = params['PartitionNum']
           @CreateTime = params['CreateTime']

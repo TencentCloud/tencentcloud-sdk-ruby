@@ -212,10 +212,14 @@ module TencentCloud
         # @type OrderSource: String
         # @param DealMode: 交易模式 0-下单并支付 1-下单
         # @type DealMode: Integer
+        # @param ParamTemplateId: 参数模版ID
+        # @type ParamTemplateId: Integer
+        # @param InstanceParams: 参数列表，ParamTemplateId 传入时InstanceParams才有效
+        # @type InstanceParams: Array
 
-        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode
+        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams
         
-        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil)
+        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Memory = memory
@@ -229,6 +233,8 @@ module TencentCloud
           @DbType = dbtype
           @OrderSource = ordersource
           @DealMode = dealmode
+          @ParamTemplateId = paramtemplateid
+          @InstanceParams = instanceparams
         end
 
         def deserialize(params)
@@ -245,6 +251,15 @@ module TencentCloud
           @DbType = params['DbType']
           @OrderSource = params['OrderSource']
           @DealMode = params['DealMode']
+          @ParamTemplateId = params['ParamTemplateId']
+          unless params['InstanceParams'].nil?
+            @InstanceParams = []
+            params['InstanceParams'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @InstanceParams << modifyparamitem_tmp
+            end
+          end
         end
       end
 
@@ -2206,19 +2221,23 @@ module TencentCloud
       class DeleteBackupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param SnapshotIdList: 备份文件ID
+        # @param SnapshotIdList: 备份文件ID，旧版本使用的字段，不推荐使用
         # @type SnapshotIdList: Array
+        # @param BackupIds: 备份文件ID，推荐使用
+        # @type BackupIds: Array
 
-        attr_accessor :ClusterId, :SnapshotIdList
+        attr_accessor :ClusterId, :SnapshotIdList, :BackupIds
         
-        def initialize(clusterid=nil, snapshotidlist=nil)
+        def initialize(clusterid=nil, snapshotidlist=nil, backupids=nil)
           @ClusterId = clusterid
           @SnapshotIdList = snapshotidlist
+          @BackupIds = backupids
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SnapshotIdList = params['SnapshotIdList']
+          @BackupIds = params['BackupIds']
         end
       end
 
@@ -4761,6 +4780,31 @@ module TencentCloud
         end
       end
 
+      # 修改的实例参数信息
+      class ModifyParamItem < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名
+        # @type ParamName: String
+        # @param CurrentValue: 参数当前值
+        # @type CurrentValue: String
+        # @param OldValue: 参数旧值（只在出参时有用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldValue: String
+
+        attr_accessor :ParamName, :CurrentValue, :OldValue
+        
+        def initialize(paramname=nil, currentvalue=nil, oldvalue=nil)
+          @ParamName = paramname
+          @CurrentValue = currentvalue
+          @OldValue = oldvalue
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @CurrentValue = params['CurrentValue']
+          @OldValue = params['OldValue']
+        end
+      end
+
       # 网络信息
       class NetAddr < TencentCloud::Common::AbstractModel
         # @param Vip: 内网ip
@@ -5422,10 +5466,12 @@ module TencentCloud
         # @type RollbackDatabases: Array
         # @param RollbackTables: 回档数据库表列表
         # @type RollbackTables: Array
+        # @param RollbackMode: 按时间点回档模式，full: 普通; db: 快速; table: 极速  （默认是普通）
+        # @type RollbackMode: String
 
-        attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables
+        attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables, :RollbackMode
         
-        def initialize(clusterid=nil, rollbackstrategy=nil, rollbackid=nil, expecttime=nil, expecttimethresh=nil, rollbackdatabases=nil, rollbacktables=nil)
+        def initialize(clusterid=nil, rollbackstrategy=nil, rollbackid=nil, expecttime=nil, expecttimethresh=nil, rollbackdatabases=nil, rollbacktables=nil, rollbackmode=nil)
           @ClusterId = clusterid
           @RollbackStrategy = rollbackstrategy
           @RollbackId = rollbackid
@@ -5433,6 +5479,7 @@ module TencentCloud
           @ExpectTimeThresh = expecttimethresh
           @RollbackDatabases = rollbackdatabases
           @RollbackTables = rollbacktables
+          @RollbackMode = rollbackmode
         end
 
         def deserialize(params)
@@ -5457,6 +5504,7 @@ module TencentCloud
               @RollbackTables << rollbacktable_tmp
             end
           end
+          @RollbackMode = params['RollbackMode']
         end
       end
 

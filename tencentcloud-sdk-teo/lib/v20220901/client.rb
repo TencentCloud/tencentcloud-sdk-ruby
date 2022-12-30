@@ -1373,6 +1373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询源站防护信息
+
+        # @param request: Request instance for DescribeOriginProtection.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeOriginProtectionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeOriginProtectionResponse`
+        def DescribeOriginProtection(request)
+          body = send_request('DescribeOriginProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOriginProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
 
         # @param request: Request instance for DescribeOverviewL7Data.
@@ -2847,6 +2871,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchLogTopicTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新源站防护IP白名单
+
+        # @param request: Request instance for UpdateOriginProtectionIPWhitelist.
+        # @type request: :class:`Tencentcloud::teo::V20220901::UpdateOriginProtectionIPWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::UpdateOriginProtectionIPWhitelistResponse`
+        def UpdateOriginProtectionIPWhitelist(request)
+          body = send_request('UpdateOriginProtectionIPWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOriginProtectionIPWhitelistResponse.new
             model.deserialize(response['Response'])
             model
           else

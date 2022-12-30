@@ -936,50 +936,6 @@ module TencentCloud
         end
       end
 
-      # CreateSecurityPolicies请求参数结构体
-      class CreateSecurityPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
-        # @type RegistryId: String
-        # @param CidrBlock: 192.168.0.0/24
-        # @type CidrBlock: String
-        # @param Description: 描述
-        # @type Description: String
-
-        attr_accessor :RegistryId, :CidrBlock, :Description
-        
-        def initialize(registryid=nil, cidrblock=nil, description=nil)
-          @RegistryId = registryid
-          @CidrBlock = cidrblock
-          @Description = description
-        end
-
-        def deserialize(params)
-          @RegistryId = params['RegistryId']
-          @CidrBlock = params['CidrBlock']
-          @Description = params['Description']
-        end
-      end
-
-      # CreateSecurityPolicies返回参数结构体
-      class CreateSecurityPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
-        # @type RegistryId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RegistryId, :RequestId
-        
-        def initialize(registryid=nil, requestid=nil)
-          @RegistryId = registryid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RegistryId = params['RegistryId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateSecurityPolicy请求参数结构体
       class CreateSecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id

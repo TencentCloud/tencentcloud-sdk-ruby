@@ -2810,6 +2810,28 @@ module TencentCloud
         end
       end
 
+      # 采集器状态统计
+      class CvmAgentStatus < TencentCloud::Common::AbstractModel
+        # @param Status: agent状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Count: 对应状态的agent总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :Status, :Count
+        
+        def initialize(status=nil, count=nil)
+          @Status = status
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Count = params['Count']
+        end
+      end
+
       # 日评分信息
       class DailyScoreInfo < TencentCloud::Common::AbstractModel
         # @param StatisticsDate: 统计日期 时间戳
@@ -4850,7 +4872,7 @@ module TencentCloud
         # @type AgentId: String
         # @param AgentName: Agent Name
         # @type AgentName: String
-        # @param AgentType: 集群类型，1：TKE Agent，2：BOSS SDK，默认：1
+        # @param AgentType: 集群类型，1：TKE Agent，2：BOSS SDK，默认：1，3：CVM，4：自建服务器 【传多个用逗号分割】
         # @type AgentType: Integer
         # @param Status: Agent状态(running运行中，initializing 操作中，failed心跳异常)
         # @type Status: String
@@ -4862,10 +4884,12 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Like: 名称搜索是否开启模糊匹配，1：开启，0：不开启（精确匹配）
         # @type Like: Integer
+        # @param AgentTypes: agent类型【多个用逗号分隔】
+        # @type AgentTypes: String
 
-        attr_accessor :ProjectId, :AgentId, :AgentName, :AgentType, :Status, :VpcId, :PageIndex, :PageSize, :Like
+        attr_accessor :ProjectId, :AgentId, :AgentName, :AgentType, :Status, :VpcId, :PageIndex, :PageSize, :Like, :AgentTypes
         
-        def initialize(projectid=nil, agentid=nil, agentname=nil, agenttype=nil, status=nil, vpcid=nil, pageindex=nil, pagesize=nil, like=nil)
+        def initialize(projectid=nil, agentid=nil, agentname=nil, agenttype=nil, status=nil, vpcid=nil, pageindex=nil, pagesize=nil, like=nil, agenttypes=nil)
           @ProjectId = projectid
           @AgentId = agentid
           @AgentName = agentname
@@ -4875,6 +4899,7 @@ module TencentCloud
           @PageIndex = pageindex
           @PageSize = pagesize
           @Like = like
+          @AgentTypes = agenttypes
         end
 
         def deserialize(params)
@@ -4887,6 +4912,7 @@ module TencentCloud
           @PageIndex = params['PageIndex']
           @PageSize = params['PageSize']
           @Like = params['Like']
+          @AgentTypes = params['AgentTypes']
         end
       end
 
@@ -10086,10 +10112,19 @@ module TencentCloud
         # @type ExecutorGroupName: String
         # @param TaskCount: 关联任务数
         # @type TaskCount: Integer
+        # @param AgentGroupId: 采集器组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentGroupId: String
+        # @param CvmAgentStatusList: agent状态统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmAgentStatusList: Array
+        # @param AgentTotal: agent数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentTotal: Integer
 
-        attr_accessor :AgentId, :AgentName, :Status, :StatusDesc, :AgentType, :Source, :VpcId, :ExecutorGroupId, :ExecutorGroupName, :TaskCount
+        attr_accessor :AgentId, :AgentName, :Status, :StatusDesc, :AgentType, :Source, :VpcId, :ExecutorGroupId, :ExecutorGroupName, :TaskCount, :AgentGroupId, :CvmAgentStatusList, :AgentTotal
         
-        def initialize(agentid=nil, agentname=nil, status=nil, statusdesc=nil, agenttype=nil, source=nil, vpcid=nil, executorgroupid=nil, executorgroupname=nil, taskcount=nil)
+        def initialize(agentid=nil, agentname=nil, status=nil, statusdesc=nil, agenttype=nil, source=nil, vpcid=nil, executorgroupid=nil, executorgroupname=nil, taskcount=nil, agentgroupid=nil, cvmagentstatuslist=nil, agenttotal=nil)
           @AgentId = agentid
           @AgentName = agentname
           @Status = status
@@ -10100,6 +10135,9 @@ module TencentCloud
           @ExecutorGroupId = executorgroupid
           @ExecutorGroupName = executorgroupname
           @TaskCount = taskcount
+          @AgentGroupId = agentgroupid
+          @CvmAgentStatusList = cvmagentstatuslist
+          @AgentTotal = agenttotal
         end
 
         def deserialize(params)
@@ -10113,6 +10151,16 @@ module TencentCloud
           @ExecutorGroupId = params['ExecutorGroupId']
           @ExecutorGroupName = params['ExecutorGroupName']
           @TaskCount = params['TaskCount']
+          @AgentGroupId = params['AgentGroupId']
+          unless params['CvmAgentStatusList'].nil?
+            @CvmAgentStatusList = []
+            params['CvmAgentStatusList'].each do |i|
+              cvmagentstatus_tmp = CvmAgentStatus.new
+              cvmagentstatus_tmp.deserialize(i)
+              @CvmAgentStatusList << cvmagentstatus_tmp
+            end
+          end
+          @AgentTotal = params['AgentTotal']
         end
       end
 

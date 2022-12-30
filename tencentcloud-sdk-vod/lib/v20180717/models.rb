@@ -5912,16 +5912,19 @@ module TencentCloud
         # @type Comment: String
         # @param MediaProcessTask: 视频处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 内容审核类型任务参数。
+        # @param AiContentReviewTask: AI 内容审核类型任务参数 \*。
+        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: AI 内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
         # @param AiRecognitionTask: AI 内容识别类型任务参数。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
+        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
 
-        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :ReviewAudioVideoTask
         
-        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
           @SubAppId = subappid
           @Comment = comment
@@ -5929,6 +5932,7 @@ module TencentCloud
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
+          @ReviewAudioVideoTask = reviewaudiovideotask
         end
 
         def deserialize(params)
@@ -5950,6 +5954,10 @@ module TencentCloud
           unless params['AiRecognitionTask'].nil?
             @AiRecognitionTask = AiRecognitionTaskInput.new
             @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
+          end
+          unless params['ReviewAudioVideoTask'].nil?
+            @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
+            @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
           end
         end
       end
@@ -9207,6 +9215,8 @@ module TencentCloud
 
       # DescribeProcedureTemplates请求参数结构体
       class DescribeProcedureTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Names: 任务流模板名字过滤条件，数组长度限制：100。
         # @type Names: Array
         # @param Type: 任务流模板类型过滤条件，可选值：
@@ -9217,25 +9227,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Names, :Type, :Offset, :Limit, :SubAppId
+        attr_accessor :SubAppId, :Names, :Type, :Offset, :Limit
         
-        def initialize(names=nil, type=nil, offset=nil, limit=nil, subappid=nil)
+        def initialize(subappid=nil, names=nil, type=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
           @Names = names
           @Type = type
           @Offset = offset
           @Limit = limit
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Names = params['Names']
           @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -17299,6 +17307,28 @@ module TencentCloud
         end
       end
 
+      # 任务流模板音视频审核输入参数类型。
+      class ProcedureReviewAudioVideoTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 审核模板。
+        # @type Definition: Integer
+        # @param ReviewContents: 审核的内容，可选值：
+        # <li>Media：原始音视频。</li>
+        # 不填或填空数组时，默认为审核 Media。
+        # @type ReviewContents: Array
+
+        attr_accessor :Definition, :ReviewContents
+        
+        def initialize(definition=nil, reviewcontents=nil)
+          @Definition = definition
+          @ReviewContents = reviewcontents
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @ReviewContents = params['ReviewContents']
+        end
+      end
+
       # 音视频处理任务信息
       class ProcedureTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 音视频处理任务 ID。
@@ -17441,7 +17471,8 @@ module TencentCloud
         # @param MediaProcessTask: 视频处理类型任务参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 智能审核类型任务参数。
+        # @param AiContentReviewTask: AI 智能审核类型任务参数 \*。
+        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
@@ -17453,14 +17484,17 @@ module TencentCloud
         # @param MiniProgramPublishTask: 微信小程序发布任务参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniProgramPublishTask: :class:`Tencentcloud::Vod.v20180717.models.WechatMiniProgramPublishTaskInput`
+        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
         # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
 
-        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :MiniProgramPublishTask, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         
-        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, miniprogrampublishtask=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -17469,6 +17503,7 @@ module TencentCloud
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
           @MiniProgramPublishTask = miniprogrampublishtask
+          @ReviewAudioVideoTask = reviewaudiovideotask
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -17496,6 +17531,10 @@ module TencentCloud
           unless params['MiniProgramPublishTask'].nil?
             @MiniProgramPublishTask = WechatMiniProgramPublishTaskInput.new
             @MiniProgramPublishTask.deserialize(params['MiniProgramPublishTask'])
+          end
+          unless params['ReviewAudioVideoTask'].nil?
+            @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
+            @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -18733,33 +18772,38 @@ module TencentCloud
       class ResetProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字
         # @type Name: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
         # @param MediaProcessTask: 视频处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 智能内容审核类型任务参数。
+        # @param AiContentReviewTask: AI 智能内容审核类型任务参数 \*。
+        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
         # @param AiRecognitionTask: AI 内容识别类型任务参数。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
+        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
 
-        attr_accessor :Name, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :SubAppId
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :ReviewAudioVideoTask
         
-        def initialize(name=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, subappid=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
+          @SubAppId = subappid
           @Comment = comment
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
-          @SubAppId = subappid
+          @ReviewAudioVideoTask = reviewaudiovideotask
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @SubAppId = params['SubAppId']
           @Comment = params['Comment']
           unless params['MediaProcessTask'].nil?
             @MediaProcessTask = MediaProcessTaskInput.new
@@ -18777,7 +18821,10 @@ module TencentCloud
             @AiRecognitionTask = AiRecognitionTaskInput.new
             @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
           end
-          @SubAppId = params['SubAppId']
+          unless params['ReviewAudioVideoTask'].nil?
+            @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
+            @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
+          end
         end
       end
 
