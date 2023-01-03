@@ -365,6 +365,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口已废弃
+
         # 本机构DID详情
 
         # @param request: Request instance for GetAgencyTDid.
@@ -1180,6 +1182,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口已废弃
 
         # 验证购买
 

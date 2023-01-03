@@ -10789,16 +10789,18 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.EditMediaTaskOutput`
         # @param MetaData: 输出视频的元信息。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
-        # @param ProcedureTaskId: 若发起视频编辑任务时指定了视频处理流程，则该字段为流程任务 ID。
+        # @param ProcedureTaskId: 任务类型为 Procedure 的任务 ID。若发起[编辑视频](https://cloud.tencent.com/document/api/266/34783)任务时指定了任务流模板(ProcedureName)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         # @type ProcedureTaskId: String
+        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID。若发起[编辑视频](https://cloud.tencent.com/document/api/266/34783)任务时指定了任务流模板(ProcedureName)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @type ReviewAudioVideoTaskId: String
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :MetaData, :ProcedureTaskId, :SessionId, :SessionContext
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :MetaData, :ProcedureTaskId, :ReviewAudioVideoTaskId, :SessionId, :SessionContext
         
-        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, metadata=nil, proceduretaskid=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, metadata=nil, proceduretaskid=nil, reviewaudiovideotaskid=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -10809,6 +10811,7 @@ module TencentCloud
           @Output = output
           @MetaData = metadata
           @ProcedureTaskId = proceduretaskid
+          @ReviewAudioVideoTaskId = reviewaudiovideotaskid
           @SessionId = sessionid
           @SessionContext = sessioncontext
         end
@@ -10833,6 +10836,7 @@ module TencentCloud
             @MetaData.deserialize(params['MetaData'])
           end
           @ProcedureTaskId = params['ProcedureTaskId']
+          @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
         end
@@ -11548,18 +11552,21 @@ module TencentCloud
         # @type FileId: String
         # @param MediaBasicInfo: 上传完成后生成的媒体文件基础信息。
         # @type MediaBasicInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaBasicInfo`
-        # @param ProcedureTaskId: 若视频上传时指定了视频处理流程，则该字段为流程任务 ID。
+        # @param ProcedureTaskId: 任务类型为 Procedure 的任务 ID。若视频[上传时指定要执行的任务(procedure)](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E5.8F.91.E8.B5.B7)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         # @type ProcedureTaskId: String
+        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID。若视频[上传时指定要执行的任务(procedure)](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E5.8F.91.E8.B5.B7)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @type ReviewAudioVideoTaskId: String
         # @param MetaData: 元信息。包括大小、时长、视频流信息、音频流信息等。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
 
-        attr_accessor :FileId, :MediaBasicInfo, :ProcedureTaskId, :MetaData
+        attr_accessor :FileId, :MediaBasicInfo, :ProcedureTaskId, :ReviewAudioVideoTaskId, :MetaData
         
-        def initialize(fileid=nil, mediabasicinfo=nil, proceduretaskid=nil, metadata=nil)
+        def initialize(fileid=nil, mediabasicinfo=nil, proceduretaskid=nil, reviewaudiovideotaskid=nil, metadata=nil)
           @FileId = fileid
           @MediaBasicInfo = mediabasicinfo
           @ProcedureTaskId = proceduretaskid
+          @ReviewAudioVideoTaskId = reviewaudiovideotaskid
           @MetaData = metadata
         end
 
@@ -11570,6 +11577,7 @@ module TencentCloud
             @MediaBasicInfo.deserialize(params['MediaBasicInfo'])
           end
           @ProcedureTaskId = params['ProcedureTaskId']
+          @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
@@ -17645,20 +17653,24 @@ module TencentCloud
 
       # ProcessMediaByProcedure返回参数结构体
       class ProcessMediaByProcedureResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: 任务类型为 Procedure 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         # @type TaskId: String
+        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @type ReviewAudioVideoTaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :ReviewAudioVideoTaskId, :RequestId
         
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, reviewaudiovideotaskid=nil, requestid=nil)
           @TaskId = taskid
+          @ReviewAudioVideoTaskId = reviewaudiovideotaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -17758,7 +17770,8 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param MediaProcessTask: 视频处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: 音视频内容审核类型任务参数。
+        # @param AiContentReviewTask: 音视频内容审核类型任务参数 \*。
+        # <font color=red>\* 不建议使用</font>，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)。
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: 音视频内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
@@ -18238,9 +18251,9 @@ module TencentCloud
         end
       end
 
-      # 视频转拉任务信息
+      # 拉取上传任务信息
       class PullUploadTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 转拉上传任务 ID。
+        # @param TaskId: 拉取上传任务 ID。
         # @type TaskId: String
         # @param Status: 任务流状态，取值：
         # <li>PROCESSING：处理中；</li>
@@ -18253,27 +18266,29 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
-        # @param FileId: 转拉上传完成后生成的视频 ID。
+        # @param FileId: 拉取上传完成后生成的视频 ID。
         # @type FileId: String
-        # @param MediaBasicInfo: 转拉完成后生成的媒体文件基础信息。
+        # @param MediaBasicInfo: 拉取上传完成后生成的媒体文件基础信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaBasicInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaBasicInfo`
         # @param MetaData: 输出视频的元信息。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
-        # @param FileUrl: 转拉上传完成后生成的播放地址。
+        # @param FileUrl: 拉取上传完成后生成的播放地址。
         # @type FileUrl: String
-        # @param ProcedureTaskId: 若转拉上传时指定了视频处理流程，则该参数为流程任务 ID。
+        # @param ProcedureTaskId: 任务类型为 Procedure 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         # @type ProcedureTaskId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @type ReviewAudioVideoTaskId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，[URL 拉取视频上传完成](https://cloud.tencent.com/document/product/266/7831)将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
-        # @param Progress: 转拉任务进度，取值范围 [0-100] 。
+        # @param Progress: 拉取上传进度，取值范围 [0-100] 。
         # @type Progress: Integer
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :MediaBasicInfo, :MetaData, :FileUrl, :ProcedureTaskId, :SessionContext, :SessionId, :Progress
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :MediaBasicInfo, :MetaData, :FileUrl, :ProcedureTaskId, :ReviewAudioVideoTaskId, :SessionContext, :SessionId, :Progress
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, mediabasicinfo=nil, metadata=nil, fileurl=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil, progress=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, mediabasicinfo=nil, metadata=nil, fileurl=nil, proceduretaskid=nil, reviewaudiovideotaskid=nil, sessioncontext=nil, sessionid=nil, progress=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -18283,6 +18298,7 @@ module TencentCloud
           @MetaData = metadata
           @FileUrl = fileurl
           @ProcedureTaskId = proceduretaskid
+          @ReviewAudioVideoTaskId = reviewaudiovideotaskid
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @Progress = progress
@@ -18304,6 +18320,7 @@ module TencentCloud
           end
           @FileUrl = params['FileUrl']
           @ProcedureTaskId = params['ProcedureTaskId']
+          @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @Progress = params['Progress']
@@ -19173,17 +19190,23 @@ module TencentCloud
         # @type FileId: String
         # @param Definition: 音视频审核模板 ID。
         # @type Definition: Integer
+        # @param ReviewContents: 审核的内容，可选值：
+        # <li>Media：原始音视频；</li>
+        # <li>Cover：封面。</li>
+        # @type ReviewContents: Array
 
-        attr_accessor :FileId, :Definition
+        attr_accessor :FileId, :Definition, :ReviewContents
         
-        def initialize(fileid=nil, definition=nil)
+        def initialize(fileid=nil, definition=nil, reviewcontents=nil)
           @FileId = fileid
           @Definition = definition
+          @ReviewContents = reviewcontents
         end
 
         def deserialize(params)
           @FileId = params['FileId']
           @Definition = params['Definition']
+          @ReviewContents = params['ReviewContents']
         end
       end
 
@@ -20496,15 +20519,18 @@ module TencentCloud
         # @param Output: 视频拆条任务输出信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.TaskOutputMediaInfo`
-        # @param ProcedureTaskId: 若发起视频拆条任务时指定了视频处理流程，则该字段为流程任务 ID。
+        # @param ProcedureTaskId: 任务类型为 Procedure 的任务 ID。若发起[视频拆条](https://cloud.tencent.com/document/api/266/51098)任务时，视频拆条任务信息列表指定了任务流模板(ProcedureName)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         # @type ProcedureTaskId: String
+        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID。若发起[视频拆条](https://cloud.tencent.com/document/api/266/51098)任务时，视频拆条任务信息列表指定了任务流模板(ProcedureName)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @type ReviewAudioVideoTaskId: String
 
-        attr_accessor :Input, :Output, :ProcedureTaskId
+        attr_accessor :Input, :Output, :ProcedureTaskId, :ReviewAudioVideoTaskId
         
-        def initialize(input=nil, output=nil, proceduretaskid=nil)
+        def initialize(input=nil, output=nil, proceduretaskid=nil, reviewaudiovideotaskid=nil)
           @Input = input
           @Output = output
           @ProcedureTaskId = proceduretaskid
+          @ReviewAudioVideoTaskId = reviewaudiovideotaskid
         end
 
         def deserialize(params)
@@ -20517,6 +20543,7 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @ProcedureTaskId = params['ProcedureTaskId']
+          @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
         end
       end
 

@@ -227,6 +227,69 @@ module TencentCloud
         end
       end
 
+      # CreateAccountUser请求参数结构体
+      class CreateAccountUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param UserName: 新账号名称。其格式要求如下：<ul><li>字符范围[1,32]。</li><li>可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“_”与短划线“-”。</li></ul>
+        # @type UserName: String
+        # @param Password: 新账号密码。密码复杂度要求如下：<ul><li>字符长度范围[8,32]。</li><li>至少包含字母、数字和特殊字符（叹号“!”、at"@"、井号“#”、百分号“%”、插入符“^”、星号“*”、小括号“()”、下划线“_”）中的两种。</li></ul>
+        # @type Password: String
+        # @param MongoUserPassword: mongouser 账号对应的密码。mongouser 为系统默认账号，即为创建实例时，设置的密码。
+        # @type MongoUserPassword: String
+        # @param UserDesc: 账号备注信息。
+        # @type UserDesc: String
+        # @param AuthRole: 账号的读写权限信息。
+        # @type AuthRole: Array
+
+        attr_accessor :InstanceId, :UserName, :Password, :MongoUserPassword, :UserDesc, :AuthRole
+        
+        def initialize(instanceid=nil, username=nil, password=nil, mongouserpassword=nil, userdesc=nil, authrole=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Password = password
+          @MongoUserPassword = mongouserpassword
+          @UserDesc = userdesc
+          @AuthRole = authrole
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @MongoUserPassword = params['MongoUserPassword']
+          @UserDesc = params['UserDesc']
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAccountUser返回参数结构体
+      class CreateAccountUserResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 创建任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBackupDBInstance请求参数结构体
       class CreateBackupDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id

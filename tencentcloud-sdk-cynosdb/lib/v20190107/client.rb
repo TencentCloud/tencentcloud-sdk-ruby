@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # TDSQL-C for MySQL实例关闭审计服务
+
+        # @param request: Request instance for CloseAuditService.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseAuditServiceRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseAuditServiceResponse`
+        def CloseAuditService(request)
+          body = send_request('CloseAuditService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseAuditServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建账号
 
         # @param request: Request instance for CreateAccounts.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建审计规则模版
+
+        # @param request: Request instance for CreateAuditRuleTemplate.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateAuditRuleTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateAuditRuleTemplateResponse`
+        def CreateAuditRuleTemplate(request)
+          body = send_request('CreateAuditRuleTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditRuleTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -231,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除审计规则模版
+
+        # @param request: Request instance for DeleteAuditRuleTemplates.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAuditRuleTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteAuditRuleTemplatesResponse`
+        def DeleteAuditRuleTemplates(request)
+          body = send_request('DeleteAuditRuleTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditRuleTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -351,6 +423,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询审计规则模版信息
+
+        # @param request: Request instance for DescribeAuditRuleTemplates.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleTemplatesResponse`
+        def DescribeAuditRuleTemplates(request)
+          body = send_request('DescribeAuditRuleTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditRuleTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例的审计规则
+
+        # @param request: Request instance for DescribeAuditRuleWithInstanceIds.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleWithInstanceIdsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleWithInstanceIdsResponse`
+        def DescribeAuditRuleWithInstanceIds(request)
+          body = send_request('DescribeAuditRuleWithInstanceIds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditRuleWithInstanceIdsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -533,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeClusterInstanceGrps）用于查询实例组
+        # 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
 
         # @param request: Request instance for DescribeClusterInstanceGrps.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterInstanceGrpsRequest`
@@ -1085,6 +1205,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改审计规则模版
+
+        # @param request: Request instance for ModifyAuditRuleTemplates.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditRuleTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditRuleTemplatesResponse`
+        def ModifyAuditRuleTemplates(request)
+          body = send_request('ModifyAuditRuleTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditRuleTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyAuditService)用于修改云数据库审计日志保存时长、审计规则等服务配置。
+
+        # @param request: Request instance for ModifyAuditService.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditServiceRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditServiceResponse`
+        def ModifyAuditService(request)
+          body = send_request('ModifyAuditService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改指定集群的备份配置
 
         # @param request: Request instance for ModifyBackupConfig.
@@ -1335,6 +1503,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OfflineInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # TDSQL-C for MySQL实例开通审计服务
+
+        # @param request: Request instance for OpenAuditService.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenAuditServiceRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::OpenAuditServiceResponse`
+        def OpenAuditService(request)
+          body = send_request('OpenAuditService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenAuditServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

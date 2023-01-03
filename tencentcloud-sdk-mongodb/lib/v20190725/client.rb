@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建实例账号。
+
+        # @param request: Request instance for CreateAccountUser.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateAccountUserRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateAccountUserResponse`
+        def CreateAccountUser(request)
+          body = send_request('CreateAccountUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccountUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 备份实例接口
 
         # @param request: Request instance for CreateBackupDBInstance.

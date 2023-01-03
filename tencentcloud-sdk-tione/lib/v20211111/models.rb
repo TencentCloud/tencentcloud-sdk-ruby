@@ -541,9 +541,9 @@ module TencentCloud
         # @type ModelOutputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param Tags: 标签
         # @type Tags: Array
-        # @param OptimizationLevel: 优化级别(NO_LOSS/FP16)，默认FP16
+        # @param OptimizationLevel: 优化级别(NO_LOSS/FP16/INT8)，默认FP16
         # @type OptimizationLevel: String
-        # @param GPUType: GPU卡类型(T4/V100)，默认T4
+        # @param GPUType: GPU卡类型(T4/V100/A10)，默认T4
         # @type GPUType: String
         # @param HyperParameter: 专业参数设置
         # @type HyperParameter: :class:`Tencentcloud::Tione.v20211111.models.HyperParameter`
@@ -1192,10 +1192,12 @@ module TencentCloud
         # @type MaxReservedModels: Integer
         # @param ModelCleanPeriod: 模型清理周期(默认值为1分钟，上限为1440，下限为1分钟，步长为1)
         # @type ModelCleanPeriod: Integer
+        # @param IsQAT: 是否QAT模型
+        # @type IsQAT: Boolean
 
-        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod
+        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod, :IsQAT
         
-        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil)
+        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil, isqat=nil)
           @ImportMethod = importmethod
           @TrainingModelCosPath = trainingmodelcospath
           @ReasoningEnvironmentSource = reasoningenvironmentsource
@@ -1221,6 +1223,7 @@ module TencentCloud
           @AutoClean = autoclean
           @MaxReservedModels = maxreservedmodels
           @ModelCleanPeriod = modelcleanperiod
+          @IsQAT = isqat
         end
 
         def deserialize(params)
@@ -1265,6 +1268,7 @@ module TencentCloud
           @AutoClean = params['AutoClean']
           @MaxReservedModels = params['MaxReservedModels']
           @ModelCleanPeriod = params['ModelCleanPeriod']
+          @IsQAT = params['IsQAT']
         end
       end
 
@@ -4994,10 +4998,13 @@ module TencentCloud
         # @param ModelSignature: SAVED_MODEL保存时配置的签名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelSignature: String
+        # @param QATModel: 是否是QAT模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QATModel: Boolean
 
-        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature, :QATModel
         
-        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil)
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil, qatmodel=nil)
           @ModelAccTaskId = modelacctaskid
           @ModelAccTaskName = modelacctaskname
           @ModelId = modelid
@@ -5025,6 +5032,7 @@ module TencentCloud
           @Tags = tags
           @IsSaved = issaved
           @ModelSignature = modelsignature
+          @QATModel = qatmodel
         end
 
         def deserialize(params)
@@ -5078,6 +5086,7 @@ module TencentCloud
           end
           @IsSaved = params['IsSaved']
           @ModelSignature = params['ModelSignature']
+          @QATModel = params['QATModel']
         end
       end
 
@@ -5794,7 +5803,7 @@ module TencentCloud
         # @type ModelVersion: String
         # @param ModelInputPath: 模型输入cos路径
         # @type ModelInputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param OptimizationLevel: 优化级别（NO_LOSS/FP16），默认FP16
+        # @param OptimizationLevel: 优化级别（NO_LOSS/FP16/INT8），默认FP16
         # @type OptimizationLevel: String
         # @param ModelInputNum: input节点个数（废弃）
         # @type ModelInputNum: Integer
@@ -5806,7 +5815,7 @@ module TencentCloud
         # @type ModelFormat: String
         # @param TensorInfos: 模型Tensor信息
         # @type TensorInfos: Array
-        # @param GPUType: GPU类型（T4/V100），默认T4
+        # @param GPUType: GPU类型（T4/V100/A10），默认T4
         # @type GPUType: String
         # @param HyperParameter: 模型专业参数
         # @type HyperParameter: :class:`Tencentcloud::Tione.v20211111.models.HyperParameter`
