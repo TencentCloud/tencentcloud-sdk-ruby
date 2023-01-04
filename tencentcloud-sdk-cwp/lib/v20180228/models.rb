@@ -86,10 +86,13 @@ module TencentCloud
         # @param IsNew: 是否新增[0:否|1:是]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNew: Integer
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineName, :MachineWanIp, :Uuid, :Quuid, :ProjectId, :Tag, :Name, :Type, :BinPath, :OsInfo, :ProcessCount, :Desc, :Version, :ConfigPath, :FirstTime, :UpdateTime, :IsNew
+        attr_accessor :MachineIp, :MachineName, :MachineWanIp, :Uuid, :Quuid, :ProjectId, :Tag, :Name, :Type, :BinPath, :OsInfo, :ProcessCount, :Desc, :Version, :ConfigPath, :FirstTime, :UpdateTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinename=nil, machinewanip=nil, uuid=nil, quuid=nil, projectid=nil, tag=nil, name=nil, type=nil, binpath=nil, osinfo=nil, processcount=nil, desc=nil, version=nil, configpath=nil, firsttime=nil, updatetime=nil, isnew=nil)
+        def initialize(machineip=nil, machinename=nil, machinewanip=nil, uuid=nil, quuid=nil, projectid=nil, tag=nil, name=nil, type=nil, binpath=nil, osinfo=nil, processcount=nil, desc=nil, version=nil, configpath=nil, firsttime=nil, updatetime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineName = machinename
           @MachineWanIp = machinewanip
@@ -108,6 +111,7 @@ module TencentCloud
           @FirstTime = firsttime
           @UpdateTime = updatetime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -136,6 +140,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @UpdateTime = params['UpdateTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -212,10 +220,13 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineWanIp: 服务器外网IP
         # @type MachineWanIp: String
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Name, :Desc, :Path, :Version, :MachineIp, :MachineName, :OsInfo, :Size, :ProcessCount, :ModuleCount, :Id, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
+        attr_accessor :Name, :Desc, :Path, :Version, :MachineIp, :MachineName, :OsInfo, :Size, :ProcessCount, :ModuleCount, :Id, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(name=nil, desc=nil, path=nil, version=nil, machineip=nil, machinename=nil, osinfo=nil, size=nil, processcount=nil, modulecount=nil, id=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
+        def initialize(name=nil, desc=nil, path=nil, version=nil, machineip=nil, machinename=nil, osinfo=nil, size=nil, processcount=nil, modulecount=nil, id=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
           @Name = name
           @Desc = desc
           @Path = path
@@ -233,6 +244,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -253,6 +265,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -389,10 +405,13 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineName: 主机名称
         # @type MachineName: String
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :Id, :UpdateTime, :FirstTime, :IsNew, :MachineName
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :Id, :UpdateTime, :FirstTime, :IsNew, :MachineName, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil, machinename=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil, machinename=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -419,6 +438,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineName = machinename
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -455,6 +475,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineName = params['MachineName']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -618,10 +642,14 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineWanIp: 服务器外网IP
         # @type MachineWanIp: String
+        # @param MachineExtraInfo:  附加信息
 
-        attr_accessor :Name, :Type, :User, :Value, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :Name, :Type, :User, :Value, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(name=nil, type=nil, user=nil, value=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
+        def initialize(name=nil, type=nil, user=nil, value=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
           @Name = name
           @Type = type
           @User = user
@@ -635,6 +663,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -651,6 +680,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -725,10 +758,14 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineWanIp: 服务器外网IP
         # @type MachineWanIp: String
+        # @param MachineExtraInfo:  附加信息
 
-        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
+        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
           @Name = name
           @Type = type
           @Status = status
@@ -743,6 +780,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -760,6 +798,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -798,10 +840,14 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineWanIp: 服务器外网IP
         # @type MachineWanIp: String
+        # @param MachineExtraInfo:  附加信息
 
-        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Id, :Md5, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Id, :Md5, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, id=nil, md5=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
+        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, id=nil, md5=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
           @Name = name
           @Type = type
           @Status = status
@@ -818,6 +864,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -837,6 +884,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -978,10 +1029,13 @@ module TencentCloud
         # @type IsNew: Integer
         # @param FirstTime: 首次采集时间
         # @type FirstTime: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime, :IsNew, :FirstTime
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime, :IsNew, :FirstTime, :MachineExtraInfo
         
-        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil, isnew=nil, firsttime=nil)
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil, isnew=nil, firsttime=nil, machineextrainfo=nil)
           @Quuid = quuid
           @Uuid = uuid
           @MachineIp = machineip
@@ -1001,6 +1055,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @IsNew = isnew
           @FirstTime = firsttime
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1030,6 +1085,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @IsNew = params['IsNew']
           @FirstTime = params['FirstTime']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1063,7 +1122,7 @@ module TencentCloud
         # @type CpuSize: Integer
         # @param CpuLoad: Cpu使用率百分比
         # @type CpuLoad: String
-        # @param ProtectLevel: 防护级别：0基础版，1专业版
+        # @param ProtectLevel: 防护级别：0基础版，1专业版，2旗舰版，3普惠版
         # @type ProtectLevel: Integer
         # @param RiskStatus: 风险状态：UNKNOW-未知，RISK-风险，SAFT-安全
         # @type RiskStatus: String
@@ -1108,10 +1167,13 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param MachineExtraInfo: 主机二外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :CpuSize, :CpuLoad, :ProtectLevel, :RiskStatus, :ProtectDays, :BuyTime, :EndTime, :CoreVersion, :OsType, :AgentVersion, :InstallTime, :BootTime, :LastLiveTime, :Producer, :SerialNumber, :NetCards, :Disks, :Status, :ProjectId, :DeviceVersion, :OfflineTime, :InstanceId, :UpdateTime
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :CpuSize, :CpuLoad, :ProtectLevel, :RiskStatus, :ProtectDays, :BuyTime, :EndTime, :CoreVersion, :OsType, :AgentVersion, :InstallTime, :BootTime, :LastLiveTime, :Producer, :SerialNumber, :NetCards, :Disks, :Status, :ProjectId, :DeviceVersion, :OfflineTime, :InstanceId, :UpdateTime, :MachineExtraInfo
         
-        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, cpusize=nil, cpuload=nil, protectlevel=nil, riskstatus=nil, protectdays=nil, buytime=nil, endtime=nil, coreversion=nil, ostype=nil, agentversion=nil, installtime=nil, boottime=nil, lastlivetime=nil, producer=nil, serialnumber=nil, netcards=nil, disks=nil, status=nil, projectid=nil, deviceversion=nil, offlinetime=nil, instanceid=nil, updatetime=nil)
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, cpusize=nil, cpuload=nil, protectlevel=nil, riskstatus=nil, protectdays=nil, buytime=nil, endtime=nil, coreversion=nil, ostype=nil, agentversion=nil, installtime=nil, boottime=nil, lastlivetime=nil, producer=nil, serialnumber=nil, netcards=nil, disks=nil, status=nil, projectid=nil, deviceversion=nil, offlinetime=nil, instanceid=nil, updatetime=nil, machineextrainfo=nil)
           @Quuid = quuid
           @Uuid = uuid
           @MachineIp = machineip
@@ -1147,6 +1209,7 @@ module TencentCloud
           @OfflineTime = offlinetime
           @InstanceId = instanceid
           @UpdateTime = updatetime
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1199,6 +1262,10 @@ module TencentCloud
           @OfflineTime = params['OfflineTime']
           @InstanceId = params['InstanceId']
           @UpdateTime = params['UpdateTime']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1269,10 +1336,13 @@ module TencentCloud
         # @type IsNew: Integer
         # @param MachineWanIp: 服务器外网IP
         # @type MachineWanIp: String
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Status, :Cycle, :Command, :User, :ConfigPath, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
+        attr_accessor :Status, :Cycle, :Command, :User, :ConfigPath, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(status=nil, cycle=nil, command=nil, user=nil, configpath=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
+        def initialize(status=nil, cycle=nil, command=nil, user=nil, configpath=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
           @Status = status
           @Cycle = cycle
           @Command = command
@@ -1287,6 +1357,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1304,6 +1375,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1363,10 +1438,13 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :ProcessName, :ProcessVersion, :ProcessPath, :Pid, :User, :StartTime, :Param, :Teletype, :Port, :GroupName, :Md5, :Ppid, :ParentProcessName, :Proto, :BindIp, :MachineName, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :ProcessName, :ProcessVersion, :ProcessPath, :Pid, :User, :StartTime, :Param, :Teletype, :Port, :GroupName, :Md5, :Ppid, :ParentProcessName, :Proto, :BindIp, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, processname=nil, processversion=nil, processpath=nil, pid=nil, user=nil, starttime=nil, param=nil, teletype=nil, port=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, proto=nil, bindip=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, processname=nil, processversion=nil, processpath=nil, pid=nil, user=nil, starttime=nil, param=nil, teletype=nil, port=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, proto=nil, bindip=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1393,6 +1471,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1429,6 +1508,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1492,10 +1575,14 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Desc, :Path, :Pid, :User, :StartTime, :Param, :Tty, :Version, :GroupName, :Md5, :Ppid, :ParentProcessName, :Status, :HasSign, :InstallByPackage, :PackageName, :MachineName, :UpdateTime, :FirstTime, :IsNew
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Desc, :Path, :Pid, :User, :StartTime, :Param, :Tty, :Version, :GroupName, :Md5, :Ppid, :ParentProcessName, :Status, :HasSign, :InstallByPackage, :PackageName, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, desc=nil, path=nil, pid=nil, user=nil, starttime=nil, param=nil, tty=nil, version=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, status=nil, hassign=nil, installbypackage=nil, packagename=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, desc=nil, path=nil, pid=nil, user=nil, starttime=nil, param=nil, tty=nil, version=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, status=nil, hassign=nil, installbypackage=nil, packagename=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1524,6 +1611,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1562,6 +1650,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1681,10 +1773,13 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LoginType, :LastLoginTime, :Name, :ProjectId, :UserType, :IsDomain, :IsSudo, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :PasswordStatus, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LoginType, :LastLoginTime, :Name, :ProjectId, :UserType, :IsDomain, :IsSudo, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :PasswordStatus, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, logintype=nil, lastlogintime=nil, name=nil, projectid=nil, usertype=nil, isdomain=nil, issudo=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, passwordstatus=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, logintype=nil, lastlogintime=nil, name=nil, projectid=nil, usertype=nil, isdomain=nil, issudo=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, passwordstatus=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @MachineName = machinename
@@ -1713,6 +1808,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -1744,6 +1840,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -1952,10 +2052,13 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :RootPath, :ServiceType, :Domain, :VirtualPath, :PluginCount, :Id, :Desc, :MachineName, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :RootPath, :ServiceType, :Domain, :VirtualPath, :PluginCount, :Id, :Desc, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, rootpath=nil, servicetype=nil, domain=nil, virtualpath=nil, plugincount=nil, id=nil, desc=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, rootpath=nil, servicetype=nil, domain=nil, virtualpath=nil, plugincount=nil, id=nil, desc=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1976,6 +2079,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2006,6 +2110,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -2071,10 +2179,13 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -2090,6 +2201,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2115,6 +2227,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -2164,10 +2280,13 @@ module TencentCloud
         # @param IsNew: 是否新增[0:否|1:是]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Uuid, :Quuid, :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Name, :Port, :Proto, :ServiceType, :PathCount, :User, :MainPath, :MainPathOwner, :Permission, :ProjectId, :Tag, :Id, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :Uuid, :Quuid, :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Name, :Port, :Proto, :ServiceType, :PathCount, :User, :MainPath, :MainPathOwner, :Permission, :ProjectId, :Tag, :Id, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(uuid=nil, quuid=nil, machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, name=nil, port=nil, proto=nil, servicetype=nil, pathcount=nil, user=nil, mainpath=nil, mainpathowner=nil, permission=nil, projectid=nil, tag=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(uuid=nil, quuid=nil, machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, name=nil, port=nil, proto=nil, servicetype=nil, pathcount=nil, user=nil, mainpath=nil, mainpathowner=nil, permission=nil, projectid=nil, tag=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @Uuid = uuid
           @Quuid = quuid
           @MachineIp = machineip
@@ -2189,6 +2308,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2220,6 +2340,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -2320,10 +2444,13 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo:  附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :BinPath, :User, :InstallPath, :ConfigPath, :ProcessCount, :Id, :MachineName, :Desc, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :BinPath, :User, :InstallPath, :ConfigPath, :ProcessCount, :Id, :MachineName, :Desc, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, binpath=nil, user=nil, installpath=nil, configpath=nil, processcount=nil, id=nil, machinename=nil, desc=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, binpath=nil, user=nil, installpath=nil, configpath=nil, processcount=nil, id=nil, machinename=nil, desc=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -2344,6 +2471,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2374,6 +2502,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -2630,10 +2762,13 @@ module TencentCloud
         # @param Uuid: 主机安全UUID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :HostId, :HostIp, :HostName, :WanIp, :DetectStatus, :PassedItemCount, :ItemCount, :NotPassedItemCount, :FirstTime, :LastTime, :Uuid
+        attr_accessor :HostId, :HostIp, :HostName, :WanIp, :DetectStatus, :PassedItemCount, :ItemCount, :NotPassedItemCount, :FirstTime, :LastTime, :Uuid, :MachineExtraInfo
         
-        def initialize(hostid=nil, hostip=nil, hostname=nil, wanip=nil, detectstatus=nil, passeditemcount=nil, itemcount=nil, notpasseditemcount=nil, firsttime=nil, lasttime=nil, uuid=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, wanip=nil, detectstatus=nil, passeditemcount=nil, itemcount=nil, notpasseditemcount=nil, firsttime=nil, lasttime=nil, uuid=nil, machineextrainfo=nil)
           @HostId = hostid
           @HostIp = hostip
           @HostName = hostname
@@ -2645,6 +2780,7 @@ module TencentCloud
           @FirstTime = firsttime
           @LastTime = lasttime
           @Uuid = uuid
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2659,6 +2795,10 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @LastTime = params['LastTime']
           @Uuid = params['Uuid']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -2805,10 +2945,13 @@ module TencentCloud
         # @param Uuid: 主机安全uuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :ItemId, :ItemName, :CategoryId, :ItemDesc, :FixMethod, :RuleName, :DetectResultDesc, :Level, :DetectStatus, :HostId, :HostName, :HostIp, :WanIp, :FirstTime, :LastTime, :CanBeFixed, :Uuid
+        attr_accessor :ItemId, :ItemName, :CategoryId, :ItemDesc, :FixMethod, :RuleName, :DetectResultDesc, :Level, :DetectStatus, :HostId, :HostName, :HostIp, :WanIp, :FirstTime, :LastTime, :CanBeFixed, :Uuid, :MachineExtraInfo
         
-        def initialize(itemid=nil, itemname=nil, categoryid=nil, itemdesc=nil, fixmethod=nil, rulename=nil, detectresultdesc=nil, level=nil, detectstatus=nil, hostid=nil, hostname=nil, hostip=nil, wanip=nil, firsttime=nil, lasttime=nil, canbefixed=nil, uuid=nil)
+        def initialize(itemid=nil, itemname=nil, categoryid=nil, itemdesc=nil, fixmethod=nil, rulename=nil, detectresultdesc=nil, level=nil, detectstatus=nil, hostid=nil, hostname=nil, hostip=nil, wanip=nil, firsttime=nil, lasttime=nil, canbefixed=nil, uuid=nil, machineextrainfo=nil)
           @ItemId = itemid
           @ItemName = itemname
           @CategoryId = categoryid
@@ -2826,6 +2969,7 @@ module TencentCloud
           @LastTime = lasttime
           @CanBeFixed = canbefixed
           @Uuid = uuid
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -2846,6 +2990,10 @@ module TencentCloud
           @LastTime = params['LastTime']
           @CanBeFixed = params['CanBeFixed']
           @Uuid = params['Uuid']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -3312,10 +3460,13 @@ module TencentCloud
         # @param DataStatus: 0：待处理，1：忽略，5：已处理，6：加入白名单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataStatus: Integer
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -3337,6 +3488,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @InstanceId = instanceid
           @DataStatus = datastatus
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -3361,6 +3513,10 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @InstanceId = params['InstanceId']
           @DataStatus = params['DataStatus']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -3971,10 +4127,13 @@ module TencentCloud
         # @type DstPort: Integer
         # @param HttpContent: 攻击内容
         # @type HttpContent: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :SrcIp, :SrcPort, :HttpMethod, :HttpCgi, :HttpParam, :VulType, :CreatedAt, :MachineIp, :MachineName, :DstIp, :DstPort, :HttpContent
+        attr_accessor :Id, :Uuid, :SrcIp, :SrcPort, :HttpMethod, :HttpCgi, :HttpParam, :VulType, :CreatedAt, :MachineIp, :MachineName, :DstIp, :DstPort, :HttpContent, :MachineExtraInfo
         
-        def initialize(id=nil, uuid=nil, srcip=nil, srcport=nil, httpmethod=nil, httpcgi=nil, httpparam=nil, vultype=nil, createdat=nil, machineip=nil, machinename=nil, dstip=nil, dstport=nil, httpcontent=nil)
+        def initialize(id=nil, uuid=nil, srcip=nil, srcport=nil, httpmethod=nil, httpcgi=nil, httpparam=nil, vultype=nil, createdat=nil, machineip=nil, machinename=nil, dstip=nil, dstport=nil, httpcontent=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @SrcIp = srcip
@@ -3989,6 +4148,7 @@ module TencentCloud
           @DstIp = dstip
           @DstPort = dstport
           @HttpContent = httpcontent
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -4006,6 +4166,10 @@ module TencentCloud
           @DstIp = params['DstIp']
           @DstPort = params['DstPort']
           @HttpContent = params['HttpContent']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -14353,10 +14517,16 @@ module TencentCloud
         # @param VulNum: 漏洞数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulNum: Integer
+        # @param CloudTags: 云标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudTags: Array
+        # @param InstanceID: 机器instance ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
 
-        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus, :LicenseOrder, :VulNum
+        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus, :LicenseOrder, :VulNum, :CloudTags, :InstanceID
         
-        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil, licenseorder=nil, vulnum=nil)
+        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil, licenseorder=nil, vulnum=nil, cloudtags=nil, instanceid=nil)
           @MachineName = machinename
           @MachinePublicIp = machinepublicip
           @MachinePrivateIp = machineprivateip
@@ -14367,6 +14537,8 @@ module TencentCloud
           @MachineStatus = machinestatus
           @LicenseOrder = licenseorder
           @VulNum = vulnum
+          @CloudTags = cloudtags
+          @InstanceID = instanceid
         end
 
         def deserialize(params)
@@ -14390,6 +14562,15 @@ module TencentCloud
             @LicenseOrder.deserialize(params['LicenseOrder'])
           end
           @VulNum = params['VulNum']
+          unless params['CloudTags'].nil?
+            @CloudTags = []
+            params['CloudTags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @CloudTags << tags_tmp
+            end
+          end
+          @InstanceID = params['InstanceID']
         end
       end
 
@@ -15997,10 +16178,13 @@ module TencentCloud
         # XTI - 威胁情报
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc, :MachineExtraInfo
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -16021,6 +16205,7 @@ module TencentCloud
           @Location = location
           @Quuid = quuid
           @Desc = desc
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -16044,6 +16229,10 @@ module TencentCloud
           @Location = params['Location']
           @Quuid = params['Quuid']
           @Desc = params['Desc']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -16185,10 +16374,13 @@ module TencentCloud
         # @type Status: Integer
         # @param Quuid: 服务器quuid
         # @type Quuid: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid
+        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid, :MachineExtraInfo
         
-        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil)
+        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil, machineextrainfo=nil)
           @Id = id
           @Alias = _alias
           @HostIp = hostip
@@ -16198,6 +16390,7 @@ module TencentCloud
           @RecentFoundTime = recentfoundtime
           @Status = status
           @Quuid = quuid
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -16210,6 +16403,10 @@ module TencentCloud
           @RecentFoundTime = params['RecentFoundTime']
           @Status = params['Status']
           @Quuid = params['Quuid']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -16233,10 +16430,13 @@ module TencentCloud
         # @type IsUnBind: Boolean
         # @param IsSwitchBind: 是否允许换绑,false 不允许换绑
         # @type IsSwitchBind: Boolean
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :MachineName, :MachineWanIp, :MachineIp, :Quuid, :Uuid, :Tags, :AgentStatus, :IsUnBind, :IsSwitchBind
+        attr_accessor :MachineName, :MachineWanIp, :MachineIp, :Quuid, :Uuid, :Tags, :AgentStatus, :IsUnBind, :IsSwitchBind, :MachineExtraInfo
         
-        def initialize(machinename=nil, machinewanip=nil, machineip=nil, quuid=nil, uuid=nil, tags=nil, agentstatus=nil, isunbind=nil, isswitchbind=nil)
+        def initialize(machinename=nil, machinewanip=nil, machineip=nil, quuid=nil, uuid=nil, tags=nil, agentstatus=nil, isunbind=nil, isswitchbind=nil, machineextrainfo=nil)
           @MachineName = machinename
           @MachineWanIp = machinewanip
           @MachineIp = machineip
@@ -16246,6 +16446,7 @@ module TencentCloud
           @AgentStatus = agentstatus
           @IsUnBind = isunbind
           @IsSwitchBind = isswitchbind
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -16258,6 +16459,10 @@ module TencentCloud
           @AgentStatus = params['AgentStatus']
           @IsUnBind = params['IsUnBind']
           @IsSwitchBind = params['IsSwitchBind']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -16631,10 +16836,18 @@ module TencentCloud
         # @param IpList: 主机ip列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpList: String
+        # @param VpcId: 所属网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList, :VpcId, :MachineExtraInfo, :InstanceId
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil, vpcid=nil, machineextrainfo=nil, instanceid=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -16662,6 +16875,9 @@ module TencentCloud
           @CloudTags = cloudtags
           @IsAddedOnTheFifteen = isaddedonthefifteen
           @IpList = iplist
+          @VpcId = vpcid
+          @MachineExtraInfo = machineextrainfo
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -16709,6 +16925,54 @@ module TencentCloud
           end
           @IsAddedOnTheFifteen = params['IsAddedOnTheFifteen']
           @IpList = params['IpList']
+          @VpcId = params['VpcId']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 服务器基础信息
+      class MachineExtraInfo < TencentCloud::Common::AbstractModel
+        # @param WanIP: 公网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanIP: String
+        # @param PrivateIP: 内网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIP: String
+        # @param NetworkType: 网络类型，1:vpc网络 2:基础网络 3:非腾讯云网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkType: Integer
+        # @param NetworkName: 网络名，vpc网络情况下会返回vpc_id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkName: String
+        # @param InstanceID: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param HostName: 主机名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+
+        attr_accessor :WanIP, :PrivateIP, :NetworkType, :NetworkName, :InstanceID, :HostName
+        
+        def initialize(wanip=nil, privateip=nil, networktype=nil, networkname=nil, instanceid=nil, hostname=nil)
+          @WanIP = wanip
+          @PrivateIP = privateip
+          @NetworkType = networktype
+          @NetworkName = networkname
+          @InstanceID = instanceid
+          @HostName = hostname
+        end
+
+        def deserialize(params)
+          @WanIP = params['WanIP']
+          @PrivateIP = params['PrivateIP']
+          @NetworkType = params['NetworkType']
+          @NetworkName = params['NetworkName']
+          @InstanceID = params['InstanceID']
+          @HostName = params['HostName']
         end
       end
 
@@ -16778,10 +17042,13 @@ module TencentCloud
         # @type Quuid: String
         # @param MD5: 木马样本md5
         # @type MD5: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists, :Quuid, :MD5
+        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists, :Quuid, :MD5, :MachineExtraInfo
         
-        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil, quuid=nil, md5=nil)
+        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil, quuid=nil, md5=nil, machineextrainfo=nil)
           @HostIp = hostip
           @Uuid = uuid
           @FilePath = filepath
@@ -16800,6 +17067,7 @@ module TencentCloud
           @FileExists = fileexists
           @Quuid = quuid
           @MD5 = md5
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -16821,6 +17089,10 @@ module TencentCloud
           @FileExists = params['FileExists']
           @Quuid = params['Quuid']
           @MD5 = params['MD5']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -16927,10 +17199,13 @@ module TencentCloud
         # @param StrFileAccessTime: 最近访问时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrFileAccessTime: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime, :MachineExtraInfo
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil, machineextrainfo=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -16960,6 +17235,7 @@ module TencentCloud
           @Uuid = uuid
           @ModifyTime = modifytime
           @StrFileAccessTime = strfileaccesstime
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -16992,6 +17268,10 @@ module TencentCloud
           @Uuid = params['Uuid']
           @ModifyTime = params['ModifyTime']
           @StrFileAccessTime = params['StrFileAccessTime']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -17781,10 +18061,13 @@ module TencentCloud
         # @type CreateTime: String
         # @param MachineName: 机器名
         # @type MachineName: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName, :MachineExtraInfo
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -17803,6 +18086,7 @@ module TencentCloud
           @Status = status
           @CreateTime = createtime
           @MachineName = machinename
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -17824,6 +18108,10 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @MachineName = params['MachineName']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -17975,10 +18263,13 @@ module TencentCloud
         # @type Progress: Integer
         # @param ExceptionMessage: 异常信息
         # @type ExceptionMessage: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :HostName, :HostIp, :MachineOs, :RelateDirNum, :ProtectStatus, :ProtectSwitch, :AutoRestoreSwitchStatus, :Quuid, :Authorization, :Exception, :Progress, :ExceptionMessage
+        attr_accessor :Id, :HostName, :HostIp, :MachineOs, :RelateDirNum, :ProtectStatus, :ProtectSwitch, :AutoRestoreSwitchStatus, :Quuid, :Authorization, :Exception, :Progress, :ExceptionMessage, :MachineExtraInfo
         
-        def initialize(id=nil, hostname=nil, hostip=nil, machineos=nil, relatedirnum=nil, protectstatus=nil, protectswitch=nil, autorestoreswitchstatus=nil, quuid=nil, authorization=nil, exception=nil, progress=nil, exceptionmessage=nil)
+        def initialize(id=nil, hostname=nil, hostip=nil, machineos=nil, relatedirnum=nil, protectstatus=nil, protectswitch=nil, autorestoreswitchstatus=nil, quuid=nil, authorization=nil, exception=nil, progress=nil, exceptionmessage=nil, machineextrainfo=nil)
           @Id = id
           @HostName = hostname
           @HostIp = hostip
@@ -17992,6 +18283,7 @@ module TencentCloud
           @Exception = exception
           @Progress = progress
           @ExceptionMessage = exceptionmessage
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -18008,6 +18300,10 @@ module TencentCloud
           @Exception = params['Exception']
           @Progress = params['Progress']
           @ExceptionMessage = params['ExceptionMessage']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -18031,10 +18327,13 @@ module TencentCloud
         # @type Id: Integer
         # @param FileType: 文件类型 0-常规文件；1-目录；2-软链
         # @type FileType: Integer
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :HostName, :HostIp, :EventDir, :EventType, :EventStatus, :CreateTime, :RestoreTime, :Id, :FileType
+        attr_accessor :HostName, :HostIp, :EventDir, :EventType, :EventStatus, :CreateTime, :RestoreTime, :Id, :FileType, :MachineExtraInfo
         
-        def initialize(hostname=nil, hostip=nil, eventdir=nil, eventtype=nil, eventstatus=nil, createtime=nil, restoretime=nil, id=nil, filetype=nil)
+        def initialize(hostname=nil, hostip=nil, eventdir=nil, eventtype=nil, eventstatus=nil, createtime=nil, restoretime=nil, id=nil, filetype=nil, machineextrainfo=nil)
           @HostName = hostname
           @HostIp = hostip
           @EventDir = eventdir
@@ -18044,6 +18343,7 @@ module TencentCloud
           @RestoreTime = restoretime
           @Id = id
           @FileType = filetype
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -18056,6 +18356,10 @@ module TencentCloud
           @RestoreTime = params['RestoreTime']
           @Id = params['Id']
           @FileType = params['FileType']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -18368,10 +18672,13 @@ module TencentCloud
         # @type ProcTree: String
         # @param DetectBy: 检测方法
         # @type DetectBy: Integer
+        # @param MachineExtraInfo:  主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -18392,6 +18699,7 @@ module TencentCloud
           @MachineName = machinename
           @ProcTree = proctree
           @DetectBy = detectby
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -18415,6 +18723,10 @@ module TencentCloud
           @MachineName = params['MachineName']
           @ProcTree = params['ProcTree']
           @DetectBy = params['DetectBy']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -18645,10 +18957,13 @@ module TencentCloud
         # @type FailType: Integer
         # @param MachineWanIp: 外网ip
         # @type MachineWanIp: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :HostIp, :HostName, :OsName, :RiskNum, :ScanBeginTime, :ScanEndTime, :Uuid, :Quuid, :Status, :Description, :Id, :FailType, :MachineWanIp
+        attr_accessor :HostIp, :HostName, :OsName, :RiskNum, :ScanBeginTime, :ScanEndTime, :Uuid, :Quuid, :Status, :Description, :Id, :FailType, :MachineWanIp, :MachineExtraInfo
         
-        def initialize(hostip=nil, hostname=nil, osname=nil, risknum=nil, scanbegintime=nil, scanendtime=nil, uuid=nil, quuid=nil, status=nil, description=nil, id=nil, failtype=nil, machinewanip=nil)
+        def initialize(hostip=nil, hostname=nil, osname=nil, risknum=nil, scanbegintime=nil, scanendtime=nil, uuid=nil, quuid=nil, status=nil, description=nil, id=nil, failtype=nil, machinewanip=nil, machineextrainfo=nil)
           @HostIp = hostip
           @HostName = hostname
           @OsName = osname
@@ -18662,6 +18977,7 @@ module TencentCloud
           @Id = id
           @FailType = failtype
           @MachineWanIp = machinewanip
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -18678,6 +18994,10 @@ module TencentCloud
           @Id = params['Id']
           @FailType = params['FailType']
           @MachineWanIp = params['MachineWanIp']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 
@@ -19843,10 +20163,16 @@ module TencentCloud
         # @param PublicIpAddresses: 外网ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddresses: String
+        # @param CloudTags: 云标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudTags: Array
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg, :FirstDiscoveryTime, :InstanceState, :PublicIpAddresses
+        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg, :FirstDiscoveryTime, :InstanceState, :PublicIpAddresses, :CloudTags, :MachineExtraInfo
         
-        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil, firstdiscoverytime=nil, instancestate=nil, publicipaddresses=nil)
+        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil, firstdiscoverytime=nil, instancestate=nil, publicipaddresses=nil, cloudtags=nil, machineextrainfo=nil)
           @EventId = eventid
           @Status = status
           @LastTime = lasttime
@@ -19863,6 +20189,8 @@ module TencentCloud
           @FirstDiscoveryTime = firstdiscoverytime
           @InstanceState = instancestate
           @PublicIpAddresses = publicipaddresses
+          @CloudTags = cloudtags
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
@@ -19882,6 +20210,18 @@ module TencentCloud
           @FirstDiscoveryTime = params['FirstDiscoveryTime']
           @InstanceState = params['InstanceState']
           @PublicIpAddresses = params['PublicIpAddresses']
+          unless params['CloudTags'].nil?
+            @CloudTags = []
+            params['CloudTags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @CloudTags << tags_tmp
+            end
+          end
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 

@@ -2008,10 +2008,13 @@ module TencentCloud
         # @type PostCLSStatus: Integer
         # @param PostCKafkaStatus: 是否开启投递CKafka功能
         # @type PostCKafkaStatus: Integer
+        # @param AlbType: 应用型负载均衡类型: clb或者apisix，默认clb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlbType: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :AlbType
         
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, albtype=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -2036,6 +2039,7 @@ module TencentCloud
           @Level = level
           @PostCLSStatus = postclsstatus
           @PostCKafkaStatus = postckafkastatus
+          @AlbType = albtype
         end
 
         def deserialize(params)
@@ -2077,6 +2081,7 @@ module TencentCloud
           @Level = params['Level']
           @PostCLSStatus = params['PostCLSStatus']
           @PostCKafkaStatus = params['PostCKafkaStatus']
+          @AlbType = params['AlbType']
         end
       end
 

@@ -2868,13 +2868,13 @@ module TencentCloud
 
       # DescribeReplicationGroup请求参数结构体
       class DescribeReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 实例列表的大小，参数默认值20
+        # @param Limit: 每页输出实例列表的大小，参数默认值20。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍
+        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。
         # @type GroupId: String
-        # @param SearchKey: 实例ID和实例名称，支持模糊查询
+        # @param SearchKey: 设置模糊查询的关键字，可以设置为实例ID或实例名称进行模糊查询。
         # @type SearchKey: String
 
         attr_accessor :Limit, :Offset, :GroupId, :SearchKey
@@ -2896,9 +2896,9 @@ module TencentCloud
 
       # DescribeReplicationGroup返回参数结构体
       class DescribeReplicationGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 复制组数
+        # @param TotalCount: 复制组数量。
         # @type TotalCount: Integer
-        # @param Groups: 复制组信息
+        # @param Groups: 复制组信息。
         # @type Groups: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4691,13 +4691,13 @@ module TencentCloud
 
       # ModifyAutoBackupConfig请求参数结构体
       class ModifyAutoBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param WeekDays: 日期 Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday，该参数暂不支持修改。
+        # @param WeekDays: 设置自动备份周期。可设置为Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。该参数暂不支持修改。
         # @type WeekDays: Array
-        # @param TimePeriod: 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
+        # @param TimePeriod: 备份时间段。可设置为每个整点。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         # @type TimePeriod: String
-        # @param AutoBackupType: 自动备份类型： 1 “定时回档”
+        # @param AutoBackupType: 自动备份类型： 1 “定时回档”。
         # @type AutoBackupType: Integer
 
         attr_accessor :InstanceId, :WeekDays, :TimePeriod, :AutoBackupType
@@ -4721,11 +4721,11 @@ module TencentCloud
       class ModifyAutoBackupConfigResponse < TencentCloud::Common::AbstractModel
         # @param AutoBackupType: 自动备份类型： 1 “定时回档”
         # @type AutoBackupType: Integer
-        # @param WeekDays: 日期Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
+        # @param WeekDays: 自动备份周期。取值为：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         # @type WeekDays: Array
-        # @param TimePeriod: 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
+        # @param TimePeriod: 自动备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         # @type TimePeriod: String
-        # @param BackupStorageDays: 全量备份文件保存天数,单位：天
+        # @param BackupStorageDays: 全量备份文件保存天数,单位：天。
         # @type BackupStorageDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

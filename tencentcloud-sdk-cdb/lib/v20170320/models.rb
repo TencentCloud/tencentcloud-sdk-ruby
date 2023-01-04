@@ -8398,7 +8398,7 @@ module TencentCloud
         # @type RemoteBinlogSave: String
         # @param RemoteRegion: 用户设置异地备份地域列表
         # @type RemoteRegion: Array
-        # @param ExpireDays: 异地备份保留天时间，单位为天
+        # @param ExpireDays: 异地备份保留时间，单位为天
         # @type ExpireDays: Integer
 
         attr_accessor :InstanceId, :RemoteBackupSave, :RemoteBinlogSave, :RemoteRegion, :ExpireDays

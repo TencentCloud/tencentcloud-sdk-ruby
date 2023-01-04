@@ -3186,6 +3186,38 @@ module TencentCloud
         end
       end
 
+      # PauseSyncJob请求参数结构体
+      class PauseSyncJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 同步任务id
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # PauseSyncJob返回参数结构体
+      class PauseSyncJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 任务步骤信息
       class ProcessProgress < TencentCloud::Common::AbstractModel
         # @param Status: 步骤的状态， 包括：notStarted(未开始)、running(运行中)、success(成功)、failed(失败)等

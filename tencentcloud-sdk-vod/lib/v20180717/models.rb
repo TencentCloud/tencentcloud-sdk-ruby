@@ -19000,7 +19000,12 @@ module TencentCloud
         # @type FileId: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
-        # @param Definition: 音视频审核模板 ID，默认值为 10。取值范围：
+        # @param ReviewContents: 审核的内容，可选值有：
+        # <li>Media：原始音视频；</li>
+        # <li>Cover：封面。</li>
+        # 不填或填空数组时，默认为审核 Media。
+        # @type ReviewContents: Array
+        # @param Definition: 审核模板 ID，默认值为 10。取值范围：
         # <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
         # @type Definition: Integer
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
@@ -19012,11 +19017,12 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :FileId, :SubAppId, :Definition, :TasksPriority, :SessionContext, :SessionId, :ExtInfo
+        attr_accessor :FileId, :SubAppId, :ReviewContents, :Definition, :TasksPriority, :SessionContext, :SessionId, :ExtInfo
         
-        def initialize(fileid=nil, subappid=nil, definition=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
+        def initialize(fileid=nil, subappid=nil, reviewcontents=nil, definition=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FileId = fileid
           @SubAppId = subappid
+          @ReviewContents = reviewcontents
           @Definition = definition
           @TasksPriority = taskspriority
           @SessionContext = sessioncontext
@@ -19027,6 +19033,7 @@ module TencentCloud
         def deserialize(params)
           @FileId = params['FileId']
           @SubAppId = params['SubAppId']
+          @ReviewContents = params['ReviewContents']
           @Definition = params['Definition']
           @TasksPriority = params['TasksPriority']
           @SessionContext = params['SessionContext']
@@ -19240,16 +19247,20 @@ module TencentCloud
         # @type SegmentSetFileUrl: String
         # @param SegmentSetFileUrlExpireTime: 涉及违规信息的嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type SegmentSetFileUrlExpireTime: String
+        # @param CoverReviewResult: 封面审核结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverReviewResult: :class:`Tencentcloud::Vod.v20180717.models.ReviewImageResult`
 
-        attr_accessor :Suggestion, :Label, :Form, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
+        attr_accessor :Suggestion, :Label, :Form, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime, :CoverReviewResult
         
-        def initialize(suggestion=nil, label=nil, form=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
+        def initialize(suggestion=nil, label=nil, form=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil, coverreviewresult=nil)
           @Suggestion = suggestion
           @Label = label
           @Form = form
           @SegmentSet = segmentset
           @SegmentSetFileUrl = segmentsetfileurl
           @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
+          @CoverReviewResult = coverreviewresult
         end
 
         def deserialize(params)
@@ -19266,6 +19277,10 @@ module TencentCloud
           end
           @SegmentSetFileUrl = params['SegmentSetFileUrl']
           @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
+          unless params['CoverReviewResult'].nil?
+            @CoverReviewResult = ReviewImageResult.new
+            @CoverReviewResult.deserialize(params['CoverReviewResult'])
+          end
         end
       end
 
@@ -19297,7 +19312,7 @@ module TencentCloud
       # ReviewImage返回参数结构体
       class ReviewImageResponse < TencentCloud::Common::AbstractModel
         # @param ReviewResultSet: 图片审核任务结果。
-        # <font color=red>注意：该字段已废弃，建议使用 ReviewResult。</font>
+        # <font color=red>注意：该字段已废弃，建议使用 MediaReviewResult。</font>
         # @type ReviewResultSet: Array
         # @param MediaReviewResult: 图片审核任务结果。
         # 注意：此字段可能返回 null，表示取不到有效值。

@@ -6287,10 +6287,13 @@ module TencentCloud
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
+        # @param HttpsBilling: https 请求计费开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -6355,6 +6358,7 @@ module TencentCloud
           @ParentHost = parenthost
           @HwPrivateAccess = hwprivateaccess
           @QnPrivateAccess = qnprivateaccess
+          @HttpsBilling = httpsbilling
         end
 
         def deserialize(params)
@@ -6576,6 +6580,10 @@ module TencentCloud
           unless params['QnPrivateAccess'].nil?
             @QnPrivateAccess = QnPrivateAccess.new
             @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
+          end
+          unless params['HttpsBilling'].nil?
+            @HttpsBilling = HttpsBilling.new
+            @HttpsBilling.deserialize(params['HttpsBilling'])
           end
         end
       end
@@ -7697,6 +7705,22 @@ module TencentCloud
         end
       end
 
+      # 支持 https 请求开关，若关闭，下发配置拦截https请求
+      class HttpsBilling < TencentCloud::Common::AbstractModel
+        # @param Switch: https请求计费开关
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       #  华为云对象存储回源鉴权
       class HwPrivateAccess < TencentCloud::Common::AbstractModel
         # @param Switch: 开关 on/off
@@ -7791,8 +7815,7 @@ module TencentCloud
         # @param FilterRules: IP 黑白名单分路径配置，白名单功能
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRules: Array
-        # @param ReturnCode: IP 黑白名单验证失败时返回的 HTTP Code
-        # 合法值: 400~499
+        # @param ReturnCode: IP 黑白名单验证失败时返回的 code（即将下线）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCode: Integer
 

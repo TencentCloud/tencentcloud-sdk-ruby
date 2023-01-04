@@ -635,6 +635,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停处于同步中的数据同步任务。
+
+        # @param request: Request instance for PauseSyncJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::PauseSyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::PauseSyncJobResponse`
+        def PauseSyncJob(request)
+          body = send_request('PauseSyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseSyncJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
 
         # @param request: Request instance for RecoverMigrateJob.

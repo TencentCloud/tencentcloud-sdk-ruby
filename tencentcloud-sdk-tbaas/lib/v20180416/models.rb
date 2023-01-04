@@ -1453,9 +1453,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
         # @type ChannelName: String
-        # @param PeerName: 执行该查询交易的节点名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @param PeerName: 执行该查询交易的节点名称，可以在通道详情中获取该通道上的节点名称及其所属组织名称
         # @type PeerName: String
-        # @param PeerGroup: 执行该查询交易的节点所属组织名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @param PeerGroup: 执行该查询交易的节点所属组织名称，可以在通道详情中获取该通道上的节点名称及其所属组织名称
         # @type PeerGroup: String
         # @param TxId: 交易ID
         # @type TxId: String

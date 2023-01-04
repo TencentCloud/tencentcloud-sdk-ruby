@@ -557,10 +557,12 @@ module TencentCloud
         # @type ZoneBak: String
         # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         # @type CrossAZone: Integer
+        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
-        attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone
+        attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :FwCidrInfo
         
-        def initialize(name=nil, width=nil, mode=nil, newmodeitems=nil, natgwlist=nil, zone=nil, zonebak=nil, crossazone=nil)
+        def initialize(name=nil, width=nil, mode=nil, newmodeitems=nil, natgwlist=nil, zone=nil, zonebak=nil, crossazone=nil, fwcidrinfo=nil)
           @Name = name
           @Width = width
           @Mode = mode
@@ -569,6 +571,7 @@ module TencentCloud
           @Zone = zone
           @ZoneBak = zonebak
           @CrossAZone = crossazone
+          @FwCidrInfo = fwcidrinfo
         end
 
         def deserialize(params)
@@ -583,6 +586,10 @@ module TencentCloud
           @Zone = params['Zone']
           @ZoneBak = params['ZoneBak']
           @CrossAZone = params['CrossAZone']
+          unless params['FwCidrInfo'].nil?
+            @FwCidrInfo = FwCidrInfo.new
+            @FwCidrInfo.deserialize(params['FwCidrInfo'])
+          end
         end
       end
 
@@ -628,10 +635,12 @@ module TencentCloud
         # @type IsCreateDomain: Integer
         # @param Domain: 如果要创建域名则必填
         # @type Domain: String
+        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
-        attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :IsCreateDomain, :Domain
+        attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :IsCreateDomain, :Domain, :FwCidrInfo
         
-        def initialize(name=nil, width=nil, mode=nil, newmodeitems=nil, natgwlist=nil, zone=nil, zonebak=nil, crossazone=nil, iscreatedomain=nil, domain=nil)
+        def initialize(name=nil, width=nil, mode=nil, newmodeitems=nil, natgwlist=nil, zone=nil, zonebak=nil, crossazone=nil, iscreatedomain=nil, domain=nil, fwcidrinfo=nil)
           @Name = name
           @Width = width
           @Mode = mode
@@ -642,6 +651,7 @@ module TencentCloud
           @CrossAZone = crossazone
           @IsCreateDomain = iscreatedomain
           @Domain = domain
+          @FwCidrInfo = fwcidrinfo
         end
 
         def deserialize(params)
@@ -658,6 +668,10 @@ module TencentCloud
           @CrossAZone = params['CrossAZone']
           @IsCreateDomain = params['IsCreateDomain']
           @Domain = params['Domain']
+          unless params['FwCidrInfo'].nil?
+            @FwCidrInfo = FwCidrInfo.new
+            @FwCidrInfo.deserialize(params['FwCidrInfo'])
+          end
         end
       end
 
@@ -2580,6 +2594,57 @@ module TencentCloud
         end
       end
 
+      # 防火墙网段信息
+      class FwCidrInfo < TencentCloud::Common::AbstractModel
+        # @param FwCidrType: 防火墙使用的网段类型，值VpcSelf/Assis/Custom分别代表自有网段优先/扩展网段优先/自定义
+        # @type FwCidrType: String
+        # @param FwCidrLst: 为每个vpc指定防火墙的网段
+        # @type FwCidrLst: Array
+        # @param ComFwCidr: 其他防火墙占用网段，一般是防火墙需要独占vpc时指定的网段
+        # @type ComFwCidr: String
+
+        attr_accessor :FwCidrType, :FwCidrLst, :ComFwCidr
+        
+        def initialize(fwcidrtype=nil, fwcidrlst=nil, comfwcidr=nil)
+          @FwCidrType = fwcidrtype
+          @FwCidrLst = fwcidrlst
+          @ComFwCidr = comfwcidr
+        end
+
+        def deserialize(params)
+          @FwCidrType = params['FwCidrType']
+          unless params['FwCidrLst'].nil?
+            @FwCidrLst = []
+            params['FwCidrLst'].each do |i|
+              fwvpccidr_tmp = FwVpcCidr.new
+              fwvpccidr_tmp.deserialize(i)
+              @FwCidrLst << fwvpccidr_tmp
+            end
+          end
+          @ComFwCidr = params['ComFwCidr']
+        end
+      end
+
+      # vpc的防火墙网段
+      class FwVpcCidr < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的id
+        # @type VpcId: String
+        # @param FwCidr: 防火墙网段，最少/24的网段
+        # @type FwCidr: String
+
+        attr_accessor :VpcId, :FwCidr
+        
+        def initialize(vpcid=nil, fwcidr=nil)
+          @VpcId = vpcid
+          @FwCidr = fwcidr
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @FwCidr = params['FwCidr']
+        end
+      end
+
       # ip防护状态
       class IPDefendStatus < TencentCloud::Common::AbstractModel
         # @param IP: ip地址
@@ -3098,14 +3163,17 @@ module TencentCloud
         # @type NatGwList: Array
         # @param VpcList: 新增模式重新接入的vpc列表，其中NatGwList和NatgwList只能传递一个。
         # @type VpcList: Array
+        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
-        attr_accessor :Mode, :CfwInstance, :NatGwList, :VpcList
+        attr_accessor :Mode, :CfwInstance, :NatGwList, :VpcList, :FwCidrInfo
         
-        def initialize(mode=nil, cfwinstance=nil, natgwlist=nil, vpclist=nil)
+        def initialize(mode=nil, cfwinstance=nil, natgwlist=nil, vpclist=nil, fwcidrinfo=nil)
           @Mode = mode
           @CfwInstance = cfwinstance
           @NatGwList = natgwlist
           @VpcList = vpclist
+          @FwCidrInfo = fwcidrinfo
         end
 
         def deserialize(params)
@@ -3113,6 +3181,10 @@ module TencentCloud
           @CfwInstance = params['CfwInstance']
           @NatGwList = params['NatGwList']
           @VpcList = params['VpcList']
+          unless params['FwCidrInfo'].nil?
+            @FwCidrInfo = FwCidrInfo.new
+            @FwCidrInfo.deserialize(params['FwCidrInfo'])
+          end
         end
       end
 

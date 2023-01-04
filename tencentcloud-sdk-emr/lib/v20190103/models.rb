@@ -2127,10 +2127,13 @@ module TencentCloud
         # @param IsHandsCluster: 是否手戳集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsHandsCluster: Boolean
+        # @param OutSideSoftInfo: 体外客户端组件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutSideSoftInfo: Array
 
-        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo
         
-        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil)
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil)
           @ClusterId = clusterid
           @StatusDesc = statusdesc
           @ClusterName = clustername
@@ -2159,6 +2162,7 @@ module TencentCloud
           @ClusterClass = clusterclass
           @IsMultiZoneCluster = ismultizonecluster
           @IsHandsCluster = ishandscluster
+          @OutSideSoftInfo = outsidesoftinfo
         end
 
         def deserialize(params)
@@ -2197,6 +2201,54 @@ module TencentCloud
           @ClusterClass = params['ClusterClass']
           @IsMultiZoneCluster = params['IsMultiZoneCluster']
           @IsHandsCluster = params['IsHandsCluster']
+          unless params['OutSideSoftInfo'].nil?
+            @OutSideSoftInfo = []
+            params['OutSideSoftInfo'].each do |i|
+              softdependinfo_tmp = SoftDependInfo.new
+              softdependinfo_tmp.deserialize(i)
+              @OutSideSoftInfo << softdependinfo_tmp
+            end
+          end
+        end
+      end
+
+      # Emr询价描述
+      class EmrPrice < TencentCloud::Common::AbstractModel
+        # @param OriginalCost: 刊例价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalCost: String
+        # @param DiscountCost: 折扣价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountCost: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param PriceSpec: 询价配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceSpec: :class:`Tencentcloud::Emr.v20190103.models.PriceResource`
+        # @param SupportSpotPaid: 是否支持竞价实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportSpotPaid: Boolean
+
+        attr_accessor :OriginalCost, :DiscountCost, :Unit, :PriceSpec, :SupportSpotPaid
+        
+        def initialize(originalcost=nil, discountcost=nil, unit=nil, pricespec=nil, supportspotpaid=nil)
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+          @Unit = unit
+          @PriceSpec = pricespec
+          @SupportSpotPaid = supportspotpaid
+        end
+
+        def deserialize(params)
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
+          @Unit = params['Unit']
+          unless params['PriceSpec'].nil?
+            @PriceSpec = PriceResource.new
+            @PriceSpec.deserialize(params['PriceSpec'])
+          end
+          @SupportSpotPaid = params['SupportSpotPaid']
         end
       end
 
@@ -2638,16 +2690,20 @@ module TencentCloud
         # @param TimeSpan: 购买实例的时长。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
+        # @param PriceList: 价格清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceList, :RequestId
         
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricelist=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
+          @PriceList = pricelist
           @RequestId = requestid
         end
 
@@ -2656,6 +2712,14 @@ module TencentCloud
           @DiscountCost = params['DiscountCost']
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          unless params['PriceList'].nil?
+            @PriceList = []
+            params['PriceList'].each do |i|
+              zonedetailpriceresult_tmp = ZoneDetailPriceResult.new
+              zonedetailpriceresult_tmp.deserialize(i)
+              @PriceList << zonedetailpriceresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2817,16 +2881,20 @@ module TencentCloud
         # @param PriceSpec: 询价的节点规格。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceSpec: :class:`Tencentcloud::Emr.v20190103.models.PriceResource`
+        # @param MultipleEmrPrice: 对应入参MultipleResources中多个规格的询价结果，其它出参返回的是第一个规格的询价结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultipleEmrPrice: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :Unit, :PriceSpec, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :Unit, :PriceSpec, :MultipleEmrPrice, :RequestId
         
-        def initialize(originalcost=nil, discountcost=nil, unit=nil, pricespec=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, unit=nil, pricespec=nil, multipleemrprice=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @Unit = unit
           @PriceSpec = pricespec
+          @MultipleEmrPrice = multipleemrprice
           @RequestId = requestid
         end
 
@@ -2837,6 +2905,14 @@ module TencentCloud
           unless params['PriceSpec'].nil?
             @PriceSpec = PriceResource.new
             @PriceSpec.deserialize(params['PriceSpec'])
+          end
+          unless params['MultipleEmrPrice'].nil?
+            @MultipleEmrPrice = []
+            params['MultipleEmrPrice'].each do |i|
+              emrprice_tmp = EmrPrice.new
+              emrprice_tmp.deserialize(i)
+              @MultipleEmrPrice << emrprice_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3441,6 +3517,34 @@ module TencentCloud
         end
       end
 
+      # 用于创建集群价格清单 节点价格详情
+      class NodeDetailPriceResult < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型 master core task common router mysql
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: String
+        # @param PartDetailPrice: 节点组成部分价格详情
+        # @type PartDetailPrice: Array
+
+        attr_accessor :NodeType, :PartDetailPrice
+        
+        def initialize(nodetype=nil, partdetailprice=nil)
+          @NodeType = nodetype
+          @PartDetailPrice = partdetailprice
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          unless params['PartDetailPrice'].nil?
+            @PartDetailPrice = []
+            params['PartDetailPrice'].each do |i|
+              partdetailpriceitem_tmp = PartDetailPriceItem.new
+              partdetailpriceitem_tmp.deserialize(i)
+              @PartDetailPrice << partdetailpriceitem_tmp
+            end
+          end
+        end
+      end
+
       # 节点硬件信息
       class NodeHardwareInfo < TencentCloud::Common::AbstractModel
         # @param AppId: 用户APPID
@@ -3843,6 +3947,48 @@ module TencentCloud
           @Cpu = params['Cpu']
           @DiskSize = params['DiskSize']
           @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 用于创建集群价格清单-节点组成部分价格
+      class PartDetailPriceItem < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 类型包括：节点->node、系统盘->rootDisk、云数据盘->dataDisk、metaDB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param Price: 单价（原价）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Float
+        # @param RealCost: 单价（折扣价）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealCost: Float
+        # @param RealTotalCost: 总价（折扣价）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTotalCost: Float
+        # @param Policy: 折扣
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: Float
+        # @param GoodsNum: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsNum: Integer
+
+        attr_accessor :InstanceType, :Price, :RealCost, :RealTotalCost, :Policy, :GoodsNum
+        
+        def initialize(instancetype=nil, price=nil, realcost=nil, realtotalcost=nil, policy=nil, goodsnum=nil)
+          @InstanceType = instancetype
+          @Price = price
+          @RealCost = realcost
+          @RealTotalCost = realtotalcost
+          @Policy = policy
+          @GoodsNum = goodsnum
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Price = params['Price']
+          @RealCost = params['RealCost']
+          @RealTotalCost = params['RealTotalCost']
+          @Policy = params['Policy']
+          @GoodsNum = params['GoodsNum']
         end
       end
 
@@ -5368,6 +5514,26 @@ module TencentCloud
         end
       end
 
+      # 体外客户端组件依赖信息
+      class SoftDependInfo < TencentCloud::Common::AbstractModel
+        # @param SoftName: 组件名称
+        # @type SoftName: String
+        # @param Required: 是否必选
+        # @type Required: Boolean
+
+        attr_accessor :SoftName, :Required
+        
+        def initialize(softname=nil, required=nil)
+          @SoftName = softname
+          @Required = required
+        end
+
+        def deserialize(params)
+          @SoftName = params['SoftName']
+          @Required = params['Required']
+        end
+      end
+
       # 执行步骤
       class Step < TencentCloud::Common::AbstractModel
         # @param Name: 执行步骤名称。
@@ -5744,6 +5910,34 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 用于创建集群价格清单 不同可用区下价格详情
+      class ZoneDetailPriceResult < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 可用区Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param NodeDetailPrice: 不同节点的价格详情
+        # @type NodeDetailPrice: Array
+
+        attr_accessor :ZoneId, :NodeDetailPrice
+        
+        def initialize(zoneid=nil, nodedetailprice=nil)
+          @ZoneId = zoneid
+          @NodeDetailPrice = nodedetailprice
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['NodeDetailPrice'].nil?
+            @NodeDetailPrice = []
+            params['NodeDetailPrice'].each do |i|
+              nodedetailpriceresult_tmp = NodeDetailPriceResult.new
+              nodedetailpriceresult_tmp.deserialize(i)
+              @NodeDetailPrice << nodedetailpriceresult_tmp
+            end
+          end
         end
       end
 

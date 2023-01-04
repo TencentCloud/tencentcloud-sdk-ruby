@@ -1157,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询复制组
+        # 本接口（DescribeReplicationGroup）查询复制组。
 
         # @param request: Request instance for DescribeReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupRequest`

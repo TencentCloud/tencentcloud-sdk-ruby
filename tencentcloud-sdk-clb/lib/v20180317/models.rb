@@ -517,9 +517,9 @@ module TencentCloud
         # @type CertId: String
         # @param CertName: 上传证书的名称，如果没有 CertId，则此项必传。
         # @type CertName: String
-        # @param CertContent: 上传证书的公钥，如果没有 CertId，则此项必传。
+        # @param CertContent: 上传证书的公钥；如果没有 CertId，则此项必传。
         # @type CertContent: String
-        # @param CertKey: 上传服务端证书的私钥，如果没有 CertId，则此项必传。
+        # @param CertKey: 上传服务端证书的私钥；如果没有 CertId，则此项必传。
         # @type CertKey: String
 
         attr_accessor :CertId, :CertName, :CertContent, :CertKey
@@ -1275,10 +1275,14 @@ module TencentCloud
         # @type DeregisterTargetRst: Boolean
         # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
+        # @param MaxConn: 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        # @type MaxConn: Integer
+        # @param MaxCps: 监听器最大新增连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        # @type MaxCps: Integer
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps
         
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1294,6 +1298,8 @@ module TencentCloud
           @EndPort = endport
           @DeregisterTargetRst = deregistertargetrst
           @MultiCertInfo = multicertinfo
+          @MaxConn = maxconn
+          @MaxCps = maxcps
         end
 
         def deserialize(params)
@@ -1321,6 +1327,8 @@ module TencentCloud
             @MultiCertInfo = MultiCertInfo.new
             @MultiCertInfo.deserialize(params['MultiCertInfo'])
           end
+          @MaxConn = params['MaxConn']
+          @MaxCps = params['MaxCps']
         end
       end
 
@@ -4420,10 +4428,16 @@ module TencentCloud
         # @param TargetGroupList: 绑定的目标组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroupList: Array
+        # @param MaxConn: 监听器最大连接数，-1表示监听器维度不限速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConn: Integer
+        # @param MaxCps: 监听器最大新增连接数，-1表示监听器维度不限速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxCps: Integer
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList, :MaxConn, :MaxCps
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil, targetgrouplist=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil, targetgrouplist=nil, maxconn=nil, maxcps=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -4444,6 +4458,8 @@ module TencentCloud
           @DeregisterTargetRst = deregistertargetrst
           @AttrFlags = attrflags
           @TargetGroupList = targetgrouplist
+          @MaxConn = maxconn
+          @MaxCps = maxcps
         end
 
         def deserialize(params)
@@ -4490,6 +4506,8 @@ module TencentCloud
               @TargetGroupList << basictargetgroupinfo_tmp
             end
           end
+          @MaxConn = params['MaxConn']
+          @MaxCps = params['MaxCps']
         end
       end
 
@@ -5530,10 +5548,14 @@ module TencentCloud
         # @type SessionType: String
         # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
+        # @param MaxConn: 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        # @type MaxConn: Integer
+        # @param MaxCps: 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        # @type MaxCps: Integer
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo, :MaxConn, :MaxCps
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil, maxconn=nil, maxcps=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -5547,6 +5569,8 @@ module TencentCloud
           @DeregisterTargetRst = deregistertargetrst
           @SessionType = sessiontype
           @MultiCertInfo = multicertinfo
+          @MaxConn = maxconn
+          @MaxCps = maxcps
         end
 
         def deserialize(params)
@@ -5572,6 +5596,8 @@ module TencentCloud
             @MultiCertInfo = MultiCertInfo.new
             @MultiCertInfo.deserialize(params['MultiCertInfo'])
           end
+          @MaxConn = params['MaxConn']
+          @MaxCps = params['MaxCps']
         end
       end
 
