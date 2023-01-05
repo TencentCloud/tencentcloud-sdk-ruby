@@ -1470,6 +1470,90 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetDetailList请求参数结构体
+      class DescribeAssetDetailListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 查询条件，可支持的查询字段：AssetUniqid,AssetName,AssetIpAll,AssetVpcid,Tag
+        # @type Filter: Array
+        # @param Sorter: 排序条件，可支持的排序字段：
+        # AssetCspmRiskNum,AssetVulNum,AssetEventNum,SsaAssetDiscoverTime
+        # @type Sorter: Array
+        # @param RiskTags: 风险标签
+        # @type RiskTags: Array
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param PageIndex: 页
+        # @type PageIndex: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :Filter, :Sorter, :RiskTags, :Tags, :PageIndex, :PageSize
+        
+        def initialize(filter=nil, sorter=nil, risktags=nil, tags=nil, pageindex=nil, pagesize=nil)
+          @Filter = filter
+          @Sorter = sorter
+          @RiskTags = risktags
+          @Tags = tags
+          @PageIndex = pageindex
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              assetqueryfilter_tmp = AssetQueryFilter.new
+              assetqueryfilter_tmp.deserialize(i)
+              @Filter << assetqueryfilter_tmp
+            end
+          end
+          unless params['Sorter'].nil?
+            @Sorter = []
+            params['Sorter'].each do |i|
+              querysort_tmp = QuerySort.new
+              querysort_tmp.deserialize(i)
+              @Sorter << querysort_tmp
+            end
+          end
+          @RiskTags = params['RiskTags']
+          @Tags = params['Tags']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeAssetDetailList返回参数结构体
+      class DescribeAssetDetailListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+        
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              assetdetail_tmp = AssetDetail.new
+              assetdetail_tmp.deserialize(i)
+              @Data << assetdetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssetDetail请求参数结构体
       class DescribeAssetDetailRequest < TencentCloud::Common::AbstractModel
         # @param Params: 查询过滤参数

@@ -79,6 +79,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 恢复一个暂停中的迁移任务。
+
+        # @param request: Request instance for ContinueMigrateJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ContinueMigrateJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ContinueMigrateJobResponse`
+        def ContinueMigrateJob(request)
+          body = send_request('ContinueMigrateJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ContinueMigrateJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复处于暂停中中的数据同步任务。
+
+        # @param request: Request instance for ContinueSyncJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ContinueSyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ContinueSyncJobResponse`
+        def ContinueSyncJob(request)
+          body = send_request('ContinueSyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ContinueSyncJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 校验同步任务，检查必要参数和周边配置。
 
         # @param request: Request instance for CreateCheckSyncJob.
@@ -621,6 +669,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMigrationJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 暂停一个迁移任务。
+
+        # @param request: Request instance for PauseMigrateJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::PauseMigrateJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::PauseMigrateJobResponse`
+        def PauseMigrateJob(request)
+          body = send_request('PauseMigrateJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseMigrateJobResponse.new
             model.deserialize(response['Response'])
             model
           else

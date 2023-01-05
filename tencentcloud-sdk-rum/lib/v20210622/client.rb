@@ -1098,6 +1098,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取项目下的日志聚合信息
+
+        # @param request: Request instance for DescribeRumGroupLog.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumGroupLogRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumGroupLogResponse`
+        def DescribeRumGroupLog(request)
+          body = send_request('DescribeRumGroupLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumGroupLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取项目下的日志列表（实例创建的项目下的日志列表）
 
         # @param request: Request instance for DescribeRumLogList.

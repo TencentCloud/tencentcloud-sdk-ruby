@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 资产条件查询
+
+        # @param request: Request instance for DescribeAssetDetailList.
+        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeAssetDetailListRequest`
+        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeAssetDetailListResponse`
+        def DescribeAssetDetailList(request)
+          body = send_request('DescribeAssetDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资产安全资产列表
 
         # @param request: Request instance for DescribeAssetList.

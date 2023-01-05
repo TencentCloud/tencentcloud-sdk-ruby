@@ -549,6 +549,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（AttachSnapshotInstances）用于快照策略关联实例。
+
+        # @param request: Request instance for AttachSnapshotInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::AttachSnapshotInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::AttachSnapshotInstancesResponse`
+        def AttachSnapshotInstances(request)
+          body = send_request('AttachSnapshotInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachSnapshotInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
         # * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
         # * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
@@ -1443,6 +1467,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateServiceTemplateGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateSnapshotPolicies）用于创建快照策略。
+
+        # @param request: Request instance for CreateSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateSnapshotPoliciesResponse`
+        def CreateSnapshotPolicies(request)
+          body = send_request('CreateSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSnapshotPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2366,6 +2414,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteServiceTemplateGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteSnapshotPolicies）用于删除快照策略。
+
+        # @param request: Request instance for DeleteSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteSnapshotPoliciesResponse`
+        def DeleteSnapshotPolicies(request)
+          body = send_request('DeleteSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSnapshotPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3952,6 +4024,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSgSnapshotFileContent）用于查询安全组快照文件内容。
+
+        # @param request: Request instance for DescribeSgSnapshotFileContent.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSgSnapshotFileContentRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSgSnapshotFileContentResponse`
+        def DescribeSgSnapshotFileContent(request)
+          body = send_request('DescribeSgSnapshotFileContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSgSnapshotFileContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
+
+        # @param request: Request instance for DescribeSnapshotAttachedInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotAttachedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotAttachedInstancesResponse`
+        def DescribeSnapshotAttachedInstances(request)
+          body = send_request('DescribeSnapshotAttachedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotAttachedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSnapshotFiles）用于查询快照文件。
+
+        # @param request: Request instance for DescribeSnapshotFiles.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotFilesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotFilesResponse`
+        def DescribeSnapshotFiles(request)
+          body = send_request('DescribeSnapshotFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSnapshotPolicies）用于查询快照策略。
+
+        # @param request: Request instance for DescribeSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSnapshotPoliciesResponse`
+        def DescribeSnapshotPolicies(request)
+          body = send_request('DescribeSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSubnets）用于查询子网列表。
 
         # @param request: Request instance for DescribeSubnets.
@@ -4565,6 +4733,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DetachSnapshotInstances）用于快照策略解关联实例。
+
+        # @param request: Request instance for DetachSnapshotInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DetachSnapshotInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DetachSnapshotInstancesResponse`
+        def DetachSnapshotInstances(request)
+          body = send_request('DetachSnapshotInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachSnapshotInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
 
         # @param request: Request instance for DisableCcnRoutes.
@@ -4647,6 +4839,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DisableSnapshotPolicies）用于停用快照策略。
+
+        # @param request: Request instance for DisableSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DisableSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DisableSnapshotPoliciesResponse`
+        def DisableSnapshotPolicies(request)
+          body = send_request('DisableSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableSnapshotPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4991,6 +5207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（EnableSnapshotPolicies）用于启用快照策略。
+
+        # @param request: Request instance for EnableSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::EnableSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::EnableSnapshotPoliciesResponse`
+        def EnableSnapshotPolicies(request)
+          body = send_request('EnableSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableSnapshotPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6214,6 +6454,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifySnapshotPolicies）用于修改快照策略。
+
+        # @param request: Request instance for ModifySnapshotPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifySnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifySnapshotPoliciesResponse`
+        def ModifySnapshotPolicies(request)
+          body = send_request('ModifySnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySnapshotPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifySubnetAttribute）用于修改子网属性。
 
         # @param request: Request instance for ModifySubnetAttribute.
@@ -6879,6 +7143,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetVpnGatewayInternetMaxBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ResumeSnapshotInstance）用于根据备份内容恢复安全组策略。
+
+        # @param request: Request instance for ResumeSnapshotInstance.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResumeSnapshotInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResumeSnapshotInstanceResponse`
+        def ResumeSnapshotInstance(request)
+          body = send_request('ResumeSnapshotInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeSnapshotInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

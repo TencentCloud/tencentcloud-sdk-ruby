@@ -1370,6 +1370,49 @@ module TencentCloud
         end
       end
 
+      # AttachSnapshotInstances请求参数结构体
+      class AttachSnapshotInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param Instances: 关联实例信息。
+        # @type Instances: Array
+
+        attr_accessor :SnapshotPolicyId, :Instances
+        
+        def initialize(snapshotpolicyid=nil, instances=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              snapshotinstance_tmp = SnapshotInstance.new
+              snapshotinstance_tmp.deserialize(i)
+              @Instances << snapshotinstance_tmp
+            end
+          end
+        end
+      end
+
+      # AttachSnapshotInstances返回参数结构体
+      class AttachSnapshotInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AuditCrossBorderCompliance请求参数结构体
       class AuditCrossBorderComplianceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceProvider: 服务商, 可选值：`UNICOM`。
@@ -1407,6 +1450,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 时间备份策略详情
+      class BackupPolicy < TencentCloud::Common::AbstractModel
+        # @param BackupDay: 备份周期时间，取值为monday, tuesday, wednesday, thursday, friday, saturday, sunday。
+        # @type BackupDay: String
+        # @param BackupTime: 备份时间点，格式：HH:mm:ss。
+        # @type BackupTime: String
+
+        attr_accessor :BackupDay, :BackupTime
+        
+        def initialize(backupday=nil, backuptime=nil)
+          @BackupDay = backupday
+          @BackupTime = backuptime
+        end
+
+        def deserialize(params)
+          @BackupDay = params['BackupDay']
+          @BackupTime = params['BackupTime']
         end
       end
 
@@ -1474,6 +1537,41 @@ module TencentCloud
 
         def deserialize(params)
           @BandwidthUsage = params['BandwidthUsage']
+        end
+      end
+
+      # 批量修改快照策略信息
+      class BatchModifySnapshotPolicy < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param SnapshotPolicyName: 快照策略名称。
+        # @type SnapshotPolicyName: String
+        # @param BackupPolicies: 备份策略。
+        # @type BackupPolicies: Array
+        # @param KeepTime: 快照保留时间，支持1～365天。
+        # @type KeepTime: Integer
+
+        attr_accessor :SnapshotPolicyId, :SnapshotPolicyName, :BackupPolicies, :KeepTime
+        
+        def initialize(snapshotpolicyid=nil, snapshotpolicyname=nil, backuppolicies=nil, keeptime=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @SnapshotPolicyName = snapshotpolicyname
+          @BackupPolicies = backuppolicies
+          @KeepTime = keeptime
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @SnapshotPolicyName = params['SnapshotPolicyName']
+          unless params['BackupPolicies'].nil?
+            @BackupPolicies = []
+            params['BackupPolicies'].each do |i|
+              backuppolicy_tmp = BackupPolicy.new
+              backuppolicy_tmp.deserialize(i)
+              @BackupPolicies << backuppolicy_tmp
+            end
+          end
+          @KeepTime = params['KeepTime']
         end
       end
 
@@ -3850,6 +3948,56 @@ module TencentCloud
         end
       end
 
+      # CreateSnapshotPolicies请求参数结构体
+      class CreateSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicies: 快照策略详情。
+        # @type SnapshotPolicies: Array
+
+        attr_accessor :SnapshotPolicies
+        
+        def initialize(snapshotpolicies=nil)
+          @SnapshotPolicies = snapshotpolicies
+        end
+
+        def deserialize(params)
+          unless params['SnapshotPolicies'].nil?
+            @SnapshotPolicies = []
+            params['SnapshotPolicies'].each do |i|
+              snapshotpolicy_tmp = SnapshotPolicy.new
+              snapshotpolicy_tmp.deserialize(i)
+              @SnapshotPolicies << snapshotpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSnapshotPolicies返回参数结构体
+      class CreateSnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicies: 快照策略。
+        # @type SnapshotPolicies: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotPolicies, :RequestId
+        
+        def initialize(snapshotpolicies=nil, requestid=nil)
+          @SnapshotPolicies = snapshotpolicies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotPolicies'].nil?
+            @SnapshotPolicies = []
+            params['SnapshotPolicies'].each do |i|
+              snapshotpolicy_tmp = SnapshotPolicy.new
+              snapshotpolicy_tmp.deserialize(i)
+              @SnapshotPolicies << snapshotpolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSubnet请求参数结构体
       class CreateSubnetRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -5749,6 +5897,38 @@ module TencentCloud
 
       # DeleteServiceTemplate返回参数结构体
       class DeleteServiceTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSnapshotPolicies请求参数结构体
+      class DeleteSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyIds: 快照策略Id。
+        # @type SnapshotPolicyIds: Array
+
+        attr_accessor :SnapshotPolicyIds
+        
+        def initialize(snapshotpolicyids=nil)
+          @SnapshotPolicyIds = snapshotpolicyids
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyIds = params['SnapshotPolicyIds']
+        end
+      end
+
+      # DeleteSnapshotPolicies返回参数结构体
+      class DeleteSnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9533,6 +9713,292 @@ module TencentCloud
         end
       end
 
+      # DescribeSgSnapshotFileContent请求参数结构体
+      class DescribeSgSnapshotFileContentRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param SnapshotFileId: 快照文件Id。
+        # @type SnapshotFileId: String
+        # @param SecurityGroupId: 安全组Id。
+        # @type SecurityGroupId: String
+
+        attr_accessor :SnapshotPolicyId, :SnapshotFileId, :SecurityGroupId
+        
+        def initialize(snapshotpolicyid=nil, snapshotfileid=nil, securitygroupid=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @SnapshotFileId = snapshotfileid
+          @SecurityGroupId = securitygroupid
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @SnapshotFileId = params['SnapshotFileId']
+          @SecurityGroupId = params['SecurityGroupId']
+        end
+      end
+
+      # DescribeSgSnapshotFileContent返回参数结构体
+      class DescribeSgSnapshotFileContentResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，即安全组Id。
+        # @type InstanceId: String
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param SnapshotFileId: 快照文件Id。
+        # @type SnapshotFileId: String
+        # @param BackupTime: 备份时间。
+        # @type BackupTime: String
+        # @param Operator: 操作者。
+        # @type Operator: String
+        # @param OriginalData: 原始数据。
+        # @type OriginalData: Array
+        # @param BackupData: 备份数据。
+        # @type BackupData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :SnapshotPolicyId, :SnapshotFileId, :BackupTime, :Operator, :OriginalData, :BackupData, :RequestId
+        
+        def initialize(instanceid=nil, snapshotpolicyid=nil, snapshotfileid=nil, backuptime=nil, operator=nil, originaldata=nil, backupdata=nil, requestid=nil)
+          @InstanceId = instanceid
+          @SnapshotPolicyId = snapshotpolicyid
+          @SnapshotFileId = snapshotfileid
+          @BackupTime = backuptime
+          @Operator = operator
+          @OriginalData = originaldata
+          @BackupData = backupdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @SnapshotFileId = params['SnapshotFileId']
+          @BackupTime = params['BackupTime']
+          @Operator = params['Operator']
+          unless params['OriginalData'].nil?
+            @OriginalData = []
+            params['OriginalData'].each do |i|
+              securitygrouppolicy_tmp = SecurityGroupPolicy.new
+              securitygrouppolicy_tmp.deserialize(i)
+              @OriginalData << securitygrouppolicy_tmp
+            end
+          end
+          unless params['BackupData'].nil?
+            @BackupData = []
+            params['BackupData'].each do |i|
+              securitygrouppolicy_tmp = SecurityGroupPolicy.new
+              securitygrouppolicy_tmp.deserialize(i)
+              @BackupData << securitygrouppolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotAttachedInstances请求参数结构体
+      class DescribeSnapshotAttachedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param Filters: 过滤条件。
+        # 支持的过滤条件如下：
+        # <li>instance-id：实例ID。</li>
+        # <li>instance-region：实例所在地域。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大为200。
+        # @type Limit: Integer
+
+        attr_accessor :SnapshotPolicyId, :Filters, :Offset, :Limit
+        
+        def initialize(snapshotpolicyid=nil, filters=nil, offset=nil, limit=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSnapshotAttachedInstances返回参数结构体
+      class DescribeSnapshotAttachedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSet: 实例列表
+        # @type InstanceSet: Array
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSet, :TotalCount, :RequestId
+        
+        def initialize(instanceset=nil, totalcount=nil, requestid=nil)
+          @InstanceSet = instanceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              snapshotinstance_tmp = SnapshotInstance.new
+              snapshotinstance_tmp.deserialize(i)
+              @InstanceSet << snapshotinstance_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotFiles请求参数结构体
+      class DescribeSnapshotFilesRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessType: 业务类型，目前支持安全组：securitygroup。
+        # @type BusinessType: String
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param StartDate: 开始日期，格式%Y-%m-%d %H:%M:%S。
+        # @type StartDate: String
+        # @param EndDate: 结束日期，格式%Y-%m-%d %H:%M:%S。
+        # @type EndDate: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大为200。
+        # @type Limit: Integer
+
+        attr_accessor :BusinessType, :InstanceId, :StartDate, :EndDate, :Offset, :Limit
+        
+        def initialize(businesstype=nil, instanceid=nil, startdate=nil, enddate=nil, offset=nil, limit=nil)
+          @BusinessType = businesstype
+          @InstanceId = instanceid
+          @StartDate = startdate
+          @EndDate = enddate
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BusinessType = params['BusinessType']
+          @InstanceId = params['InstanceId']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSnapshotFiles返回参数结构体
+      class DescribeSnapshotFilesResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotFileSet: 快照文件集合。
+        # @type SnapshotFileSet: Array
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotFileSet, :TotalCount, :RequestId
+        
+        def initialize(snapshotfileset=nil, totalcount=nil, requestid=nil)
+          @SnapshotFileSet = snapshotfileset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotFileSet'].nil?
+            @SnapshotFileSet = []
+            params['SnapshotFileSet'].each do |i|
+              snapshotfileinfo_tmp = SnapshotFileInfo.new
+              snapshotfileinfo_tmp.deserialize(i)
+              @SnapshotFileSet << snapshotfileinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotPolicies请求参数结构体
+      class DescribeSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyIds: 快照策略Id。
+        # @type SnapshotPolicyIds: Array
+        # @param Filters: 过滤条件，参数不支持同时指定SnapshotPolicyIds和Filters。
+        # <li>snapshot-policy-id - String -（过滤条件）快照策略ID。</li>
+        # <li>snapshot-policy-name - String -（过滤条件）快照策略名称。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大为200。
+        # @type Limit: Integer
+
+        attr_accessor :SnapshotPolicyIds, :Filters, :Offset, :Limit
+        
+        def initialize(snapshotpolicyids=nil, filters=nil, offset=nil, limit=nil)
+          @SnapshotPolicyIds = snapshotpolicyids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyIds = params['SnapshotPolicyIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSnapshotPolicies返回参数结构体
+      class DescribeSnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicySet: 快照策略。
+        # @type SnapshotPolicySet: Array
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotPolicySet, :TotalCount, :RequestId
+        
+        def initialize(snapshotpolicyset=nil, totalcount=nil, requestid=nil)
+          @SnapshotPolicySet = snapshotpolicyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotPolicySet'].nil?
+            @SnapshotPolicySet = []
+            params['SnapshotPolicySet'].each do |i|
+              snapshotpolicy_tmp = SnapshotPolicy.new
+              snapshotpolicy_tmp.deserialize(i)
+              @SnapshotPolicySet << snapshotpolicy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubnets请求参数结构体
       class DescribeSubnetsRequest < TencentCloud::Common::AbstractModel
         # @param SubnetIds: 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
@@ -10920,6 +11386,49 @@ module TencentCloud
         end
       end
 
+      # DetachSnapshotInstances请求参数结构体
+      class DetachSnapshotInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param Instances: 实例信息。
+        # @type Instances: Array
+
+        attr_accessor :SnapshotPolicyId, :Instances
+        
+        def initialize(snapshotpolicyid=nil, instances=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              snapshotinstance_tmp = SnapshotInstance.new
+              snapshotinstance_tmp.deserialize(i)
+              @Instances << snapshotinstance_tmp
+            end
+          end
+        end
+      end
+
+      # DetachSnapshotInstances返回参数结构体
+      class DetachSnapshotInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述 DhcpIp 信息
       class DhcpIp < TencentCloud::Common::AbstractModel
         # @param DhcpIpId: `DhcpIp`的`ID`，是`DhcpIp`的唯一标识。
@@ -11281,6 +11790,38 @@ module TencentCloud
 
       # DisableRoutes返回参数结构体
       class DisableRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableSnapshotPolicies请求参数结构体
+      class DisableSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyIds: 快照策略Id。
+        # @type SnapshotPolicyIds: Array
+
+        attr_accessor :SnapshotPolicyIds
+        
+        def initialize(snapshotpolicyids=nil)
+          @SnapshotPolicyIds = snapshotpolicyids
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyIds = params['SnapshotPolicyIds']
+        end
+      end
+
+      # DisableSnapshotPolicies返回参数结构体
+      class DisableSnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11826,6 +12367,38 @@ module TencentCloud
 
       # EnableRoutes返回参数结构体
       class EnableRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableSnapshotPolicies请求参数结构体
+      class EnableSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyIds: 快照策略Id。
+        # @type SnapshotPolicyIds: Array
+
+        attr_accessor :SnapshotPolicyIds
+        
+        def initialize(snapshotpolicyids=nil)
+          @SnapshotPolicyIds = snapshotpolicyids
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyIds = params['SnapshotPolicyIds']
+        end
+      end
+
+      # EnableSnapshotPolicies返回参数结构体
+      class EnableSnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14833,6 +15406,45 @@ module TencentCloud
         end
       end
 
+      # ModifySnapshotPolicies请求参数结构体
+      class ModifySnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPoliciesInfo: 快照策略修改信息。
+        # @type SnapshotPoliciesInfo: Array
+
+        attr_accessor :SnapshotPoliciesInfo
+        
+        def initialize(snapshotpoliciesinfo=nil)
+          @SnapshotPoliciesInfo = snapshotpoliciesinfo
+        end
+
+        def deserialize(params)
+          unless params['SnapshotPoliciesInfo'].nil?
+            @SnapshotPoliciesInfo = []
+            params['SnapshotPoliciesInfo'].each do |i|
+              batchmodifysnapshotpolicy_tmp = BatchModifySnapshotPolicy.new
+              batchmodifysnapshotpolicy_tmp.deserialize(i)
+              @SnapshotPoliciesInfo << batchmodifysnapshotpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySnapshotPolicies返回参数结构体
+      class ModifySnapshotPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySubnetAttribute请求参数结构体
       class ModifySubnetAttributeRequest < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID。形如：subnet-pxir56ns。
@@ -17211,9 +17823,49 @@ module TencentCloud
         end
       end
 
+      # ResumeSnapshotInstance请求参数结构体
+      class ResumeSnapshotInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param SnapshotFileId: 快照文件Id。
+        # @type SnapshotFileId: String
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+
+        attr_accessor :SnapshotPolicyId, :SnapshotFileId, :InstanceId
+        
+        def initialize(snapshotpolicyid=nil, snapshotfileid=nil, instanceid=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @SnapshotFileId = snapshotfileid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @SnapshotFileId = params['SnapshotFileId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ResumeSnapshotInstance返回参数结构体
+      class ResumeSnapshotInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReturnNormalAddresses请求参数结构体
       class ReturnNormalAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIps: 1
+        # @param AddressIps: EIP 的 IP 地址,示例：101.35.139.183
         # @type AddressIps: Array
 
         attr_accessor :AddressIps
@@ -17906,6 +18558,132 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 快照文件信息
+      class SnapshotFileInfo < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param SnapshotFileId: 快照文件Id。
+        # @type SnapshotFileId: String
+        # @param BackupTime: 备份时间。
+        # @type BackupTime: String
+        # @param Operator: 操作者Uin。
+        # @type Operator: String
+
+        attr_accessor :SnapshotPolicyId, :InstanceId, :SnapshotFileId, :BackupTime, :Operator
+        
+        def initialize(snapshotpolicyid=nil, instanceid=nil, snapshotfileid=nil, backuptime=nil, operator=nil)
+          @SnapshotPolicyId = snapshotpolicyid
+          @InstanceId = instanceid
+          @SnapshotFileId = snapshotfileid
+          @BackupTime = backuptime
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @InstanceId = params['InstanceId']
+          @SnapshotFileId = params['SnapshotFileId']
+          @BackupTime = params['BackupTime']
+          @Operator = params['Operator']
+        end
+      end
+
+      # 快照策略关联实例信息
+      class SnapshotInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param InstanceType: 实例类型，目前支持安全组：securitygroup。
+        # @type InstanceType: String
+        # @param InstanceRegion: 实例所在地域。
+        # @type InstanceRegion: String
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceType, :InstanceRegion, :SnapshotPolicyId, :InstanceName
+        
+        def initialize(instanceid=nil, instancetype=nil, instanceregion=nil, snapshotpolicyid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @InstanceRegion = instanceregion
+          @SnapshotPolicyId = snapshotpolicyid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          @InstanceRegion = params['InstanceRegion']
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 快照策略
+      class SnapshotPolicy < TencentCloud::Common::AbstractModel
+        # @param SnapshotPolicyName: 快照策略名称。
+        # @type SnapshotPolicyName: String
+        # @param BackupType: 备份策略类型，operate-操作备份，time-定时备份。
+        # @type BackupType: String
+        # @param KeepTime: 保留时间，支持1～365天。
+        # @type KeepTime: Integer
+        # @param CreateNewCos: 是否创建新的cos桶，默认为False。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateNewCos: Boolean
+        # @param CosRegion: cos桶所在地域。
+        # @type CosRegion: String
+        # @param CosBucket: cos桶。
+        # @type CosBucket: String
+        # @param SnapshotPolicyId: 快照策略Id。
+        # @type SnapshotPolicyId: String
+        # @param BackupPolicies: 时间备份策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupPolicies: Array
+        # @param Enable: 启用状态，True-启用，False-停用，默认为True。
+        # @type Enable: Boolean
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :SnapshotPolicyName, :BackupType, :KeepTime, :CreateNewCos, :CosRegion, :CosBucket, :SnapshotPolicyId, :BackupPolicies, :Enable, :CreateTime
+        
+        def initialize(snapshotpolicyname=nil, backuptype=nil, keeptime=nil, createnewcos=nil, cosregion=nil, cosbucket=nil, snapshotpolicyid=nil, backuppolicies=nil, enable=nil, createtime=nil)
+          @SnapshotPolicyName = snapshotpolicyname
+          @BackupType = backuptype
+          @KeepTime = keeptime
+          @CreateNewCos = createnewcos
+          @CosRegion = cosregion
+          @CosBucket = cosbucket
+          @SnapshotPolicyId = snapshotpolicyid
+          @BackupPolicies = backuppolicies
+          @Enable = enable
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @SnapshotPolicyName = params['SnapshotPolicyName']
+          @BackupType = params['BackupType']
+          @KeepTime = params['KeepTime']
+          @CreateNewCos = params['CreateNewCos']
+          @CosRegion = params['CosRegion']
+          @CosBucket = params['CosBucket']
+          @SnapshotPolicyId = params['SnapshotPolicyId']
+          unless params['BackupPolicies'].nil?
+            @BackupPolicies = []
+            params['BackupPolicies'].each do |i|
+              backuppolicy_tmp = BackupPolicy.new
+              backuppolicy_tmp.deserialize(i)
+              @BackupPolicies << backuppolicy_tmp
+            end
+          end
+          @Enable = params['Enable']
+          @CreateTime = params['CreateTime']
         end
       end
 

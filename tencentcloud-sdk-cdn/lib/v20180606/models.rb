@@ -223,10 +223,12 @@ module TencentCloud
         # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
+        # @param HttpsBilling: HTTPS服务
+        # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
-        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache, :Quic, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
+        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache, :Quic, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling
         
-        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil, quic=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
+        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil, quic=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil)
           @Domain = domain
           @ServiceType = servicetype
           @Origin = origin
@@ -265,6 +267,7 @@ module TencentCloud
           @OssPrivateAccess = ossprivateaccess
           @HwPrivateAccess = hwprivateaccess
           @QnPrivateAccess = qnprivateaccess
+          @HttpsBilling = httpsbilling
         end
 
         def deserialize(params)
@@ -411,6 +414,10 @@ module TencentCloud
           unless params['QnPrivateAccess'].nil?
             @QnPrivateAccess = QnPrivateAccess.new
             @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
+          end
+          unless params['HttpsBilling'].nil?
+            @HttpsBilling = HttpsBilling.new
+            @HttpsBilling.deserialize(params['HttpsBilling'])
           end
         end
       end
@@ -6287,7 +6294,7 @@ module TencentCloud
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
-        # @param HttpsBilling: https 请求计费开关
+        # @param HttpsBilling: HTTPS服务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
@@ -7707,7 +7714,7 @@ module TencentCloud
 
       # 支持 https 请求开关，若关闭，下发配置拦截https请求
       class HttpsBilling < TencentCloud::Common::AbstractModel
-        # @param Switch: https请求计费开关
+        # @param Switch: HTTPS服务
         # @type Switch: String
 
         attr_accessor :Switch
@@ -12978,10 +12985,12 @@ module TencentCloud
         # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
+        # @param HttpsBilling: HTTPS服务
+        # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -13029,6 +13038,7 @@ module TencentCloud
           @ShareCname = sharecname
           @HwPrivateAccess = hwprivateaccess
           @QnPrivateAccess = qnprivateaccess
+          @HttpsBilling = httpsbilling
         end
 
         def deserialize(params)
@@ -13204,6 +13214,10 @@ module TencentCloud
           unless params['QnPrivateAccess'].nil?
             @QnPrivateAccess = QnPrivateAccess.new
             @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
+          end
+          unless params['HttpsBilling'].nil?
+            @HttpsBilling = HttpsBilling.new
+            @HttpsBilling.deserialize(params['HttpsBilling'])
           end
         end
       end

@@ -2998,11 +2998,11 @@ module TencentCloud
 
       # SetAccountUserPrivilege请求参数结构体
       class SetAccountUserPrivilegeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param UserName: 账号名称
+        # @param UserName: 账号名称。
         # @type UserName: String
-        # @param AuthRole: 权限信息
+        # @param AuthRole: 权限信息。
         # @type AuthRole: Array
 
         attr_accessor :InstanceId, :UserName, :AuthRole

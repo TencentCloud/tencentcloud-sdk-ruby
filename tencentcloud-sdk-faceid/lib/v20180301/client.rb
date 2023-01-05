@@ -485,30 +485,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
-
-        # @param request: Request instance for GetRealNameAuthToken.
-        # @type request: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthTokenRequest`
-        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthTokenResponse`
-        def GetRealNameAuthToken(request)
-          body = send_request('GetRealNameAuthToken', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetRealNameAuthTokenResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
 
         # @param request: Request instance for GetWeChatBillDetails.

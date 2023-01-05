@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建实例账号。
+        # 本接口(CreateAccountUser)用于创建mongodb实例账号。
 
         # @param request: Request instance for CreateAccountUser.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateAccountUserRequest`
@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+        # 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
 
         # @param request: Request instance for DescribeAccountUsers.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeAccountUsersRequest`
@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 账户权限设置。
+        # 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
 
         # @param request: Request instance for SetAccountUserPrivilege.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::SetAccountUserPrivilegeRequest`

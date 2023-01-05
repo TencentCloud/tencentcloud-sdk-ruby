@@ -1917,54 +1917,6 @@ module TencentCloud
         end
       end
 
-      # GetRealNameAuthToken请求参数结构体
-      class GetRealNameAuthTokenRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 姓名
-        # @type Name: String
-        # @param IDCard: 身份证号
-        # @type IDCard: String
-        # @param CallbackURL: 回调地址。实名认证完成后，将会重定向到这个地址通知认证发起方。仅支持http或https协议。
-        # @type CallbackURL: String
-
-        attr_accessor :Name, :IDCard, :CallbackURL
-        
-        def initialize(name=nil, idcard=nil, callbackurl=nil)
-          @Name = name
-          @IDCard = idcard
-          @CallbackURL = callbackurl
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @IDCard = params['IDCard']
-          @CallbackURL = params['CallbackURL']
-        end
-      end
-
-      # GetRealNameAuthToken返回参数结构体
-      class GetRealNameAuthTokenResponse < TencentCloud::Common::AbstractModel
-        # @param AuthToken: 查询实名认证结果的唯一凭证
-        # @type AuthToken: String
-        # @param RedirectURL: 实名认证授权地址，认证发起方需要重定向到这个地址获取认证用户的授权，仅能在微信环境下打开。
-        # @type RedirectURL: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AuthToken, :RedirectURL, :RequestId
-        
-        def initialize(authtoken=nil, redirecturl=nil, requestid=nil)
-          @AuthToken = authtoken
-          @RedirectURL = redirecturl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AuthToken = params['AuthToken']
-          @RedirectURL = params['RedirectURL']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetWeChatBillDetails请求参数结构体
       class GetWeChatBillDetailsRequest < TencentCloud::Common::AbstractModel
         # @param Date: 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。

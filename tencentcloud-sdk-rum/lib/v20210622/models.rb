@@ -3241,6 +3241,70 @@ module TencentCloud
         end
       end
 
+      # DescribeRumGroupLog请求参数结构体
+      class DescribeRumGroupLogRequest < TencentCloud::Common::AbstractModel
+        # @param OrderBy: 排序方式  desc  asc（必填）
+        # @type OrderBy: String
+        # @param StartTime: 开始时间（必填）
+        # @type StartTime: String
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @type Limit: Integer
+        # @param Page: 页数，第几页
+        # @type Page: Integer
+        # @param Query: 查询语句，参考控制台请求参数，语句长度最大为4096（必填）
+        # @type Query: String
+        # @param EndTime: 结束时间（必填）
+        # @type EndTime: String
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+        # @param GroupField: 聚合字段
+        # @type GroupField: String
+
+        attr_accessor :OrderBy, :StartTime, :Limit, :Page, :Query, :EndTime, :ID, :GroupField
+        
+        def initialize(orderby=nil, starttime=nil, limit=nil, page=nil, query=nil, endtime=nil, id=nil, groupfield=nil)
+          @OrderBy = orderby
+          @StartTime = starttime
+          @Limit = limit
+          @Page = page
+          @Query = query
+          @EndTime = endtime
+          @ID = id
+          @GroupField = groupfield
+        end
+
+        def deserialize(params)
+          @OrderBy = params['OrderBy']
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Page = params['Page']
+          @Query = params['Query']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @GroupField = params['GroupField']
+        end
+      end
+
+      # DescribeRumGroupLog返回参数结构体
+      class DescribeRumGroupLogResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRumLogList请求参数结构体
       class DescribeRumLogListRequest < TencentCloud::Common::AbstractModel
         # @param OrderBy: 排序方式  desc  asc（必填）
