@@ -226,11 +226,11 @@ module TencentCloud
 
       # AssumeRoleWithWebIdentity返回参数结构体
       class AssumeRoleWithWebIdentityResponse < TencentCloud::Common::AbstractModel
-        # @param ExpiredTime: 临时秘钥过期时间(时间戳)
+        # @param ExpiredTime: 临时密钥过期时间(时间戳)
         # @type ExpiredTime: Integer
-        # @param Expiration: 临时秘钥过期时间
+        # @param Expiration: 临时密钥过期时间
         # @type Expiration: String
-        # @param Credentials: 临时秘钥
+        # @param Credentials: 临时密钥
         # @type Credentials: :class:`Tencentcloud::Sts.v20180813.models.Credentials`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

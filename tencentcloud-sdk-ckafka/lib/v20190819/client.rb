@@ -1254,6 +1254,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询topic 生产端连接信息
+
+        # @param request: Request instance for DescribeTopicProduceConnection.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeTopicProduceConnectionRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeTopicProduceConnectionResponse`
+        def DescribeTopicProduceConnection(request)
+          body = send_request('DescribeTopicProduceConnection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicProduceConnectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询订阅某主题消息分组信息
 
         # @param request: Request instance for DescribeTopicSubscribeGroup.

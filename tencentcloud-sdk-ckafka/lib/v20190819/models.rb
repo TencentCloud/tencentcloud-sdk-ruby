@@ -3368,6 +3368,33 @@ module TencentCloud
         end
       end
 
+      # topic链接信息
+      class DescribeConnectInfoResultDTO < TencentCloud::Common::AbstractModel
+        # @param IpAddr: ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpAddr: String
+        # @param Time: 连结时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param IsUnSupportVersion: 是否支持的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUnSupportVersion: Boolean
+
+        attr_accessor :IpAddr, :Time, :IsUnSupportVersion
+        
+        def initialize(ipaddr=nil, time=nil, isunsupportversion=nil)
+          @IpAddr = ipaddr
+          @Time = time
+          @IsUnSupportVersion = isunsupportversion
+        end
+
+        def deserialize(params)
+          @IpAddr = params['IpAddr']
+          @Time = params['Time']
+          @IsUnSupportVersion = params['IsUnSupportVersion']
+        end
+      end
+
       # 查询连接源具体数据的返参
       class DescribeConnectResource < TencentCloud::Common::AbstractModel
         # @param ResourceId: 连接源的Id
@@ -4656,6 +4683,53 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = TopicDetailResponse.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicProduceConnection请求参数结构体
+      class DescribeTopicProduceConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param TopicName: topic名称
+        # @type TopicName: String
+
+        attr_accessor :InstanceId, :TopicName
+        
+        def initialize(instanceid=nil, topicname=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # DescribeTopicProduceConnection返回参数结构体
+      class DescribeTopicProduceConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 链接信息返回结果集
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              describeconnectinforesultdto_tmp = DescribeConnectInfoResultDTO.new
+              describeconnectinforesultdto_tmp.deserialize(i)
+              @Result << describeconnectinforesultdto_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

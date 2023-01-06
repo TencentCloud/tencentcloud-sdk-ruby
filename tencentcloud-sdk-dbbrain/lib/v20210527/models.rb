@@ -1435,7 +1435,7 @@ module TencentCloud
       class DescribeProxyProcessStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param InstanceProxyId: 当前实例下的 ProxyID。
+        # @param InstanceProxyId: 该实例下需要查询的某一个 ProxyID 。
         # @type InstanceProxyId: String
         # @param Limit: 返回数量。
         # @type Limit: Integer

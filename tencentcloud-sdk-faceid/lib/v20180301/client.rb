@@ -461,30 +461,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取微信实名认证结果
-
-        # @param request: Request instance for GetRealNameAuthResult.
-        # @type request: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthResultRequest`
-        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthResultResponse`
-        def GetRealNameAuthResult(request)
-          body = send_request('GetRealNameAuthResult', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetRealNameAuthResultResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
 
         # @param request: Request instance for GetWeChatBillDetails.

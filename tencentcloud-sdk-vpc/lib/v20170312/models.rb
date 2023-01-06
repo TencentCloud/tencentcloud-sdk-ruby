@@ -1477,7 +1477,7 @@ module TencentCloud
       class BandwidthPackage < TencentCloud::Common::AbstractModel
         # @param BandwidthPackageId: 带宽包唯一标识Id
         # @type BandwidthPackageId: String
-        # @param NetworkType: 带宽包类型，包括'BGP','SINGLEISP','ANYCAST'
+        # @param NetworkType: 带宽包类型，包括'BGP','SINGLEISP','ANYCAST','SINGLEISP_CMCC','SINGLEISP_CTCC','SINGLEISP_CUCC'
         # @type NetworkType: String
         # @param ChargeType: 带宽包计费类型，包括'TOP5_POSTPAID_BY_MONTH'和'PERCENT95_POSTPAID_BY_MONTH'
         # @type ChargeType: String
@@ -1527,7 +1527,7 @@ module TencentCloud
       # 后付费共享带宽包的当前计费用量
       class BandwidthPackageBillBandwidth < TencentCloud::Common::AbstractModel
         # @param BandwidthUsage: 当前计费用量，单位为 Mbps
-        # @type BandwidthUsage: Integer
+        # @type BandwidthUsage: Float
 
         attr_accessor :BandwidthUsage
         
@@ -4129,6 +4129,60 @@ module TencentCloud
               @SubnetSet << subnet_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTrafficPackages请求参数结构体
+      class CreateTrafficPackagesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficAmount: 流量包规格。可选值:
+        # <li>10: 10GB流量，有效期一个月</li>
+        # <li>50: 50GB流量，有效期一个月</li>
+        # <li>512: 512GB流量，有效期一个月</li>
+        # <li>1024: 1TB流量，有效期一个月</li>
+        # <li>5120: 5TB流量，有效期一个月</li>
+        # <li>51200: 50TB流量，有效期一个月</li>
+        # <li>60: 60GB流量，有效期半年</li>
+        # <li>300: 300GB流量，有效期半年</li>
+        # <li>600: 600GB流量，有效期半年</li>
+        # <li>3072: 3TB流量，有效期半年</li>
+        # <li>6144: 6TB流量，有效期半年</li>
+        # <li>30720: 30TB流量，有效期半年</li>
+        # <li>61440: 60TB流量，有效期半年</li>
+        # <li>307200: 300TB流量，有效期半年</li>
+        # @type TrafficAmount: Integer
+        # @param TrafficPackageCount: 流量包数量，可选范围 1~20。
+        # @type TrafficPackageCount: Integer
+
+        attr_accessor :TrafficAmount, :TrafficPackageCount
+        
+        def initialize(trafficamount=nil, trafficpackagecount=nil)
+          @TrafficAmount = trafficamount
+          @TrafficPackageCount = trafficpackagecount
+        end
+
+        def deserialize(params)
+          @TrafficAmount = params['TrafficAmount']
+          @TrafficPackageCount = params['TrafficPackageCount']
+        end
+      end
+
+      # CreateTrafficPackages返回参数结构体
+      class CreateTrafficPackagesResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageSet: 创建的流量包ID列表。
+        # @type TrafficPackageSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficPackageSet, :RequestId
+        
+        def initialize(trafficpackageset=nil, requestid=nil)
+          @TrafficPackageSet = trafficpackageset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TrafficPackageSet = params['TrafficPackageSet']
           @RequestId = params['RequestId']
         end
       end
@@ -6844,9 +6898,9 @@ module TencentCloud
         # <li> tag-value - String - 是否必填：否 - （过滤条件）按照标签值进行过滤。</li>
         # <li> tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。tag-key使用具体的标签键进行替换。</li>
         # @type Filters: Array
-        # @param Offset: 查询带宽包偏移量
+        # @param Offset: 查询带宽包偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小结。
         # @type Offset: Integer
-        # @param Limit: 查询带宽包数量限制
+        # @param Limit: 查询带宽包返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小结。
         # @type Limit: Integer
 
         attr_accessor :BandwidthPackageIds, :Filters, :Offset, :Limit
@@ -19174,16 +19228,24 @@ module TencentCloud
 
       # TransformAddress返回参数结构体
       class TransformAddressResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
+        # @type TaskId: Integer
+        # @param AddressId: 转为弹性公网IP后的唯一ID
+        # @type AddressId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :AddressId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, addressid=nil, requestid=nil)
+          @TaskId = taskid
+          @AddressId = addressid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
+          @AddressId = params['AddressId']
           @RequestId = params['RequestId']
         end
       end

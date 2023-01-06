@@ -1226,15 +1226,15 @@ module TencentCloud
         # @type InstanceId: Integer
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param CdrId: 服务记录ID
+        # @param CdrId: 服务记录ID（废弃）
         # @type CdrId: String
-        # @param Limit: 返回记录条数 最大为100默认20
+        # @param Limit: 返回记录条数，最大为100 默认20
         # @type Limit: Integer
-        # @param Offset: 返回记录偏移 默认为0
+        # @param Offset: 返回记录偏移，默认为 0
         # @type Offset: Integer
         # @param Order: 1为从早到晚，2为从晚到早，默认为2
         # @type Order: Integer
-        # @param SessionId: 服务记录SessionID
+        # @param SessionId: 服务记录 SessionID（必填）
         # @type SessionId: String
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
@@ -1417,17 +1417,17 @@ module TencentCloud
 
       # DescribeIMCdrs请求参数结构体
       class DescribeIMCdrsRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimestamp: 起始时间
+        # @param StartTimestamp: 起始时间（必填），Unix 秒级时间戳
         # @type StartTimestamp: Integer
-        # @param EndTimestamp: 结束时间
+        # @param EndTimestamp: 结束时间（必填），Unix 秒级时间戳
         # @type EndTimestamp: Integer
         # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param Limit: 返回记录条数 最大为100默认20
+        # @param Limit: 返回记录条数，最大为100默认20
         # @type Limit: Integer
-        # @param Offset: 返回记录偏移 默认为0
+        # @param Offset: 返回记录偏移，默认为 0
         # @type Offset: Integer
         # @param Type: 1为全媒体，2为文本客服，不填则查询全部
         # @type Type: Integer

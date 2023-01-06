@@ -1824,10 +1824,12 @@ module TencentCloud
         # @type PureAudioHoldPlaceMode: Integer
         # @param WaterMarkParams: 水印参数。
         # @type WaterMarkParams: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkParams`
+        # @param RenderMode: 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。
+        # @type RenderMode: Integer
 
-        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode, :WaterMarkParams
+        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode, :WaterMarkParams, :RenderMode
         
-        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil, watermarkparams=nil)
+        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil, watermarkparams=nil, rendermode=nil)
           @Template = template
           @MainVideoUserId = mainvideouserid
           @MainVideoStreamType = mainvideostreamtype
@@ -1838,6 +1840,7 @@ module TencentCloud
           @PlaceHolderMode = placeholdermode
           @PureAudioHoldPlaceMode = pureaudioholdplacemode
           @WaterMarkParams = watermarkparams
+          @RenderMode = rendermode
         end
 
         def deserialize(params)
@@ -1864,6 +1867,7 @@ module TencentCloud
             @WaterMarkParams = WaterMarkParams.new
             @WaterMarkParams.deserialize(params['WaterMarkParams'])
           end
+          @RenderMode = params['RenderMode']
         end
       end
 

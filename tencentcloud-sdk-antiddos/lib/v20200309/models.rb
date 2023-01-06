@@ -288,10 +288,16 @@ module TencentCloud
         # @param ConvoyId: 重保实例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConvoyId: String
+        # @param ElasticBandwidth: 带宽后付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidth: Integer
+        # @param EOFlag: 是否为EO代播的ip: 1是，0不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EOFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion, :ConvoyId
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion, :ConvoyId, :ElasticBandwidth, :EOFlag
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil, instanceversion=nil, convoyid=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil, instanceversion=nil, convoyid=nil, elasticbandwidth=nil, eoflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -316,6 +322,8 @@ module TencentCloud
           @AnycastOutPackRelation = anycastoutpackrelation
           @InstanceVersion = instanceversion
           @ConvoyId = convoyid
+          @ElasticBandwidth = elasticbandwidth
+          @EOFlag = eoflag
         end
 
         def deserialize(params)
@@ -377,6 +385,8 @@ module TencentCloud
           end
           @InstanceVersion = params['InstanceVersion']
           @ConvoyId = params['ConvoyId']
+          @ElasticBandwidth = params['ElasticBandwidth']
+          @EOFlag = params['EOFlag']
         end
       end
 
@@ -7052,10 +7062,13 @@ module TencentCloud
         # @type RewriteHttps: Integer
         # @param ErrCode: 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         # @type ErrCode: Integer
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
 
-        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode
+        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
         
-        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil)
+        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil, version=nil)
           @Protocol = protocol
           @Domain = domain
           @LbType = lbtype
@@ -7082,6 +7095,7 @@ module TencentCloud
           @VirtualPort = virtualport
           @RewriteHttps = rewritehttps
           @ErrCode = errcode
+          @Version = version
         end
 
         def deserialize(params)
@@ -7118,6 +7132,7 @@ module TencentCloud
           @VirtualPort = params['VirtualPort']
           @RewriteHttps = params['RewriteHttps']
           @ErrCode = params['ErrCode']
+          @Version = params['Version']
         end
       end
 

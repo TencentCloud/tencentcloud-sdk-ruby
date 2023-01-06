@@ -6582,19 +6582,27 @@ module TencentCloud
         # @type SpecName: String
         # @param SpecAlias: 计费项显示名称
         # @type SpecAlias: String
+        # @param Available: 是否售罄
+        # @type Available: Boolean
+        # @param AvailableRegion: 当前资源售罄时，可用的区域有哪些
+        # @type AvailableRegion: Array
 
-        attr_accessor :SpecId, :SpecName, :SpecAlias
+        attr_accessor :SpecId, :SpecName, :SpecAlias, :Available, :AvailableRegion
         
-        def initialize(specid=nil, specname=nil, specalias=nil)
+        def initialize(specid=nil, specname=nil, specalias=nil, available=nil, availableregion=nil)
           @SpecId = specid
           @SpecName = specname
           @SpecAlias = specalias
+          @Available = available
+          @AvailableRegion = availableregion
         end
 
         def deserialize(params)
           @SpecId = params['SpecId']
           @SpecName = params['SpecName']
           @SpecAlias = params['SpecAlias']
+          @Available = params['Available']
+          @AvailableRegion = params['AvailableRegion']
         end
       end
 

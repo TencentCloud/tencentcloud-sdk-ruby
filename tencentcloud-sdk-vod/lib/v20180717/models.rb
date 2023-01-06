@@ -11229,6 +11229,9 @@ module TencentCloud
       class ExtractTraceWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param Url: 需要提取水印的媒体 URL。
         # @type Url: String
+        # @param FileId: 媒体文件 ID。Url 对应的原始媒体文件 ID。
+        # <li><font color=red>注意</font>：此字段必填。</li>
+        # @type FileId: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
         # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在ExtractTraceWatermarkComplete回调和任务流状态变更回调将返回该字段值，最长 1000个字符。
@@ -11240,10 +11243,11 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :Url, :SubAppId, :SessionContext, :SessionId, :TasksPriority, :ExtInfo
+        attr_accessor :Url, :FileId, :SubAppId, :SessionContext, :SessionId, :TasksPriority, :ExtInfo
         
-        def initialize(url=nil, subappid=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil, extinfo=nil)
+        def initialize(url=nil, fileid=nil, subappid=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil, extinfo=nil)
           @Url = url
+          @FileId = fileid
           @SubAppId = subappid
           @SessionContext = sessioncontext
           @SessionId = sessionid
@@ -11253,6 +11257,7 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+          @FileId = params['FileId']
           @SubAppId = params['SubAppId']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
