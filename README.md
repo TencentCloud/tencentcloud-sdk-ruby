@@ -40,8 +40,11 @@ include TencentCloud::Common
 include TencentCloud::Cvm::V20170312
 
 begin
-  cre = Credential.new('SecretId', 'SecretKey')
-  cli = Client.new(cre, 'ap-guangzhou')
+  # 为了保护密钥安全，建议将密钥设置在环境变量中或者配置文件中。
+  # 硬编码密钥到代码中有可能随代码泄露而暴露，有安全隐患，并不推荐。
+  # cred = Credential.new('SecretId', 'SecretKey')
+  cred = Credential.new(ENV["TENCENTCLOUD_SECRET_ID"], ENV["TENCENTCLOUD_SECRET_KEY"])
+  cli = Client.new(cred, 'ap-guangzhou')
   req = DescribeInstancesRequest.new(nil, nil, 0, 1)
   cli.DescribeInstances(req)
 rescue TencentCloudSDKException => e
@@ -62,8 +65,12 @@ begin
   # 导入对应产品模块的client module
   include TencentCloud::Cvm::V20170312
 
-  # 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey,此处还需注意密钥对的保密
-  cred = Credential.new('SecretId', 'SecretKey')
+  # 实例化一个认证对象，入参需要传入腾讯云账户 SecretId，SecretKey。
+  # 为了保护密钥安全，建议将密钥设置在环境变量中或者配置文件中。
+  # 硬编码密钥到代码中有可能随代码泄露而暴露，有安全隐患，并不推荐。
+  # cred = Credential.new('SecretId', 'SecretKey')
+  cred = Credential.new(ENV["TENCENTCLOUD_SECRET_ID"], ENV["TENCENTCLOUD_SECRET_KEY"])
+
   # 实例化一个http选项
   httpProfile = HttpProfile.new()
   # 如果需要指定proxy访问接口，可以按照如下方式初始化hp
