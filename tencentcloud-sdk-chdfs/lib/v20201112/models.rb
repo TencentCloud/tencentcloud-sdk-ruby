@@ -201,16 +201,28 @@ module TencentCloud
 
       # CreateAccessRules返回参数结构体
       class CreateAccessRulesResponse < TencentCloud::Common::AbstractModel
+        # @param AccessRules: 权限规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessRules: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AccessRules, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(accessrules=nil, requestid=nil)
+          @AccessRules = accessrules
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AccessRules'].nil?
+            @AccessRules = []
+            params['AccessRules'].each do |i|
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -752,17 +764,25 @@ module TencentCloud
         # @param DegradeCapacityUsed: 已使用COS低频存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DegradeCapacityUsed: Integer
+        # @param DeepArchiveCapacityUsed: 已使用COS深度归档存储容量（byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeepArchiveCapacityUsed: Integer
+        # @param IntelligentCapacityUsed: 已使用COS智能分层存储容量（byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntelligentCapacityUsed: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileSystem, :CapacityUsed, :ArchiveCapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :RequestId
+        attr_accessor :FileSystem, :CapacityUsed, :ArchiveCapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :DeepArchiveCapacityUsed, :IntelligentCapacityUsed, :RequestId
         
-        def initialize(filesystem=nil, capacityused=nil, archivecapacityused=nil, standardcapacityused=nil, degradecapacityused=nil, requestid=nil)
+        def initialize(filesystem=nil, capacityused=nil, archivecapacityused=nil, standardcapacityused=nil, degradecapacityused=nil, deeparchivecapacityused=nil, intelligentcapacityused=nil, requestid=nil)
           @FileSystem = filesystem
           @CapacityUsed = capacityused
           @ArchiveCapacityUsed = archivecapacityused
           @StandardCapacityUsed = standardcapacityused
           @DegradeCapacityUsed = degradecapacityused
+          @DeepArchiveCapacityUsed = deeparchivecapacityused
+          @IntelligentCapacityUsed = intelligentcapacityused
           @RequestId = requestid
         end
 
@@ -775,6 +795,8 @@ module TencentCloud
           @ArchiveCapacityUsed = params['ArchiveCapacityUsed']
           @StandardCapacityUsed = params['StandardCapacityUsed']
           @DegradeCapacityUsed = params['DegradeCapacityUsed']
+          @DeepArchiveCapacityUsed = params['DeepArchiveCapacityUsed']
+          @IntelligentCapacityUsed = params['IntelligentCapacityUsed']
           @RequestId = params['RequestId']
         end
       end
@@ -1540,7 +1562,7 @@ module TencentCloud
       class Transition < TencentCloud::Common::AbstractModel
         # @param Days: 触发时间（单位天）
         # @type Days: Integer
-        # @param Type: 转换类型（1：归档；2：删除；3：低频）
+        # @param Type: 转换类型（1：归档；2：删除；3：低频；4：深度归档；5：智能分层）
         # @type Type: Integer
 
         attr_accessor :Days, :Type

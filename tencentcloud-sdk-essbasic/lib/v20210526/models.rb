@@ -429,7 +429,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param ResourceId: 资源Id，通过UploadFiles获取
         # @type ResourceId: String
-        # @param Operator: 操作者信息
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`

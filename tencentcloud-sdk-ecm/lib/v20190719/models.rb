@@ -1194,10 +1194,14 @@ module TencentCloud
         # @type Tags: Array
         # @param SecurityGroups: 安全组。
         # @type SecurityGroups: Array
+        # @param AddressIPVersion: 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPv6FullChain，默认值 IPV4。说明：取值为IPv6FullChain，表示为IPv6版本。
+        # @type AddressIPVersion: String
+        # @param SubnetId: 在购买IPV6负载均衡实例的情况下，必须指定子网 ID, 此参数必填。
+        # @type SubnetId: String
 
-        attr_accessor :EcmRegion, :LoadBalancerType, :VipIsp, :LoadBalancerName, :VpcId, :Number, :InternetAccessible, :Tags, :SecurityGroups
+        attr_accessor :EcmRegion, :LoadBalancerType, :VipIsp, :LoadBalancerName, :VpcId, :Number, :InternetAccessible, :Tags, :SecurityGroups, :AddressIPVersion, :SubnetId
         
-        def initialize(ecmregion=nil, loadbalancertype=nil, vipisp=nil, loadbalancername=nil, vpcid=nil, number=nil, internetaccessible=nil, tags=nil, securitygroups=nil)
+        def initialize(ecmregion=nil, loadbalancertype=nil, vipisp=nil, loadbalancername=nil, vpcid=nil, number=nil, internetaccessible=nil, tags=nil, securitygroups=nil, addressipversion=nil, subnetid=nil)
           @EcmRegion = ecmregion
           @LoadBalancerType = loadbalancertype
           @VipIsp = vipisp
@@ -1207,6 +1211,8 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @Tags = tags
           @SecurityGroups = securitygroups
+          @AddressIPVersion = addressipversion
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -1229,6 +1235,8 @@ module TencentCloud
             end
           end
           @SecurityGroups = params['SecurityGroups']
+          @AddressIPVersion = params['AddressIPVersion']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -6492,10 +6500,13 @@ module TencentCloud
         # @param LoadBalancerPassToTarget: 后端机器是否放通来自ELB的流量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerPassToTarget: Boolean
+        # @param AddressIPv6: 负载均衡实例的IPv6地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIPv6: String
 
-        attr_accessor :Region, :Position, :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :VpcId, :Tags, :VipIsp, :NetworkAttributes, :SecureGroups, :LoadBalancerPassToTarget
+        attr_accessor :Region, :Position, :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :VpcId, :Tags, :VipIsp, :NetworkAttributes, :SecureGroups, :LoadBalancerPassToTarget, :AddressIPv6
         
-        def initialize(region=nil, position=nil, loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, vpcid=nil, tags=nil, vipisp=nil, networkattributes=nil, securegroups=nil, loadbalancerpasstotarget=nil)
+        def initialize(region=nil, position=nil, loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, vpcid=nil, tags=nil, vipisp=nil, networkattributes=nil, securegroups=nil, loadbalancerpasstotarget=nil, addressipv6=nil)
           @Region = region
           @Position = position
           @LoadBalancerId = loadbalancerid
@@ -6511,6 +6522,7 @@ module TencentCloud
           @NetworkAttributes = networkattributes
           @SecureGroups = securegroups
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
+          @AddressIPv6 = addressipv6
         end
 
         def deserialize(params)
@@ -6542,6 +6554,7 @@ module TencentCloud
           end
           @SecureGroups = params['SecureGroups']
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
+          @AddressIPv6 = params['AddressIPv6']
         end
       end
 

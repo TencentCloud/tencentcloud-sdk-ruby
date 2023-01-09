@@ -103,7 +103,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 恢复处于暂停中中的数据同步任务。
+        # 恢复处于暂停中的数据同步任务。
 
         # @param request: Request instance for ContinueSyncJob.
         # @type request: :class:`Tencentcloud::dts::V20211206::ContinueSyncJobRequest`

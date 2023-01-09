@@ -3234,12 +3234,32 @@ module TencentCloud
 
       # 实时会话统计详情。
       class ProcessStatistic < TencentCloud::Common::AbstractModel
+        # @param Items: 会话详情数组。
+        # @type Items: Array
+        # @param AllConnSum: 总连接数。
+        # @type AllConnSum: Integer
+        # @param ActiveConnSum: 总活跃连接数。
+        # @type ActiveConnSum: Integer
 
+        attr_accessor :Items, :AllConnSum, :ActiveConnSum
         
-        def initialize()
+        def initialize(items=nil, allconnsum=nil, activeconnsum=nil)
+          @Items = items
+          @AllConnSum = allconnsum
+          @ActiveConnSum = activeconnsum
         end
 
         def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sessionitem_tmp = SessionItem.new
+              sessionitem_tmp.deserialize(i)
+              @Items << sessionitem_tmp
+            end
+          end
+          @AllConnSum = params['AllConnSum']
+          @ActiveConnSum = params['ActiveConnSum']
         end
       end
 
@@ -3605,6 +3625,30 @@ module TencentCloud
           @LogEndTime = params['LogEndTime']
           @TotalSize = params['TotalSize']
           @DangerLevels = params['DangerLevels']
+        end
+      end
+
+      # 实时会话访问来源详情。
+      class SessionItem < TencentCloud::Common::AbstractModel
+        # @param Ip: 访问来源。
+        # @type Ip: String
+        # @param ActiveConn: 当前访问来源活跃连接数
+        # @type ActiveConn: String
+        # @param AllConn: 当前访问来源总连接数
+        # @type AllConn: Integer
+
+        attr_accessor :Ip, :ActiveConn, :AllConn
+        
+        def initialize(ip=nil, activeconn=nil, allconn=nil)
+          @Ip = ip
+          @ActiveConn = activeconn
+          @AllConn = allconn
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @ActiveConn = params['ActiveConn']
+          @AllConn = params['AllConn']
         end
       end
 

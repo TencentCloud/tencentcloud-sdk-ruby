@@ -6164,7 +6164,7 @@ module TencentCloud
       class DescribeContainerGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 搜索字段，模糊搜索groupName字段
         # @type SearchWord: String
-        # @param ApplicationId: 分组所属应用ID
+        # @param ApplicationId: 分组所属应用ID。必填
         # @type ApplicationId: String
         # @param OrderBy: 排序字段，默认为 createTime字段，支持id， name， createTime
         # @type OrderBy: String

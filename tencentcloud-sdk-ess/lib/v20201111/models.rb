@@ -599,7 +599,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param ResourceId: 资源Id，通过UploadFiles获取
         # @type ResourceId: String
-        # @param Operator: 操作者信息
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -3581,14 +3581,17 @@ module TencentCloud
         # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
         # ；5-文件签名格式错误
         # @type PdfVerifyResults: Array
+        # @param VerifySerialNo: 验签序列号
+        # @type VerifySerialNo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VerifyResult, :PdfVerifyResults, :RequestId
+        attr_accessor :VerifyResult, :PdfVerifyResults, :VerifySerialNo, :RequestId
         
-        def initialize(verifyresult=nil, pdfverifyresults=nil, requestid=nil)
+        def initialize(verifyresult=nil, pdfverifyresults=nil, verifyserialno=nil, requestid=nil)
           @VerifyResult = verifyresult
           @PdfVerifyResults = pdfverifyresults
+          @VerifySerialNo = verifyserialno
           @RequestId = requestid
         end
 
@@ -3602,6 +3605,7 @@ module TencentCloud
               @PdfVerifyResults << pdfverifyresult_tmp
             end
           end
+          @VerifySerialNo = params['VerifySerialNo']
           @RequestId = params['RequestId']
         end
       end

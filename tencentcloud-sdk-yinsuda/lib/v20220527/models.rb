@@ -41,6 +41,62 @@ module TencentCloud
         end
       end
 
+      # ApplyChorus请求参数结构体
+      class ApplyChorusRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param RoomId: 房间号。
+        # @type RoomId: String
+        # @param MusicId: 歌曲 Id。
+        # @type MusicId: String
+        # @param MaxChorusNum: 最大合唱人数，默认值为 8，最大值为 20。
+        # @type MaxChorusNum: Integer
+        # @param ChorusUserIds: 合唱用户标识列表。
+        # @type ChorusUserIds: Array
+
+        attr_accessor :AppName, :UserId, :RoomId, :MusicId, :MaxChorusNum, :ChorusUserIds
+        
+        def initialize(appname=nil, userid=nil, roomid=nil, musicid=nil, maxchorusnum=nil, chorususerids=nil)
+          @AppName = appname
+          @UserId = userid
+          @RoomId = roomid
+          @MusicId = musicid
+          @MaxChorusNum = maxchorusnum
+          @ChorusUserIds = chorususerids
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+          @MusicId = params['MusicId']
+          @MaxChorusNum = params['MaxChorusNum']
+          @ChorusUserIds = params['ChorusUserIds']
+        end
+      end
+
+      # ApplyChorus返回参数结构体
+      class ApplyChorusResponse < TencentCloud::Common::AbstractModel
+        # @param ChorusToken: 合唱 Token。
+        # @type ChorusToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChorusToken, :RequestId
+        
+        def initialize(chorustoken=nil, requestid=nil)
+          @ChorusToken = chorustoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChorusToken = params['ChorusToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchDescribeKTVMusicDetails请求参数结构体
       class BatchDescribeKTVMusicDetailsRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。

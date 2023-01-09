@@ -19,7 +19,7 @@ module TencentCloud
     module V20210820
       # CreateTaskFromTemplate请求参数结构体
       class CreateTaskFromTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 从经验库中查询到的经验模版ID
+        # @param TemplateId: 从经验库中查询到的经验模板ID
         # @type TemplateId: Integer
         # @param TaskConfig: 演练的配置参数
         # @type TaskConfig: :class:`Tencentcloud::Cfg.v20210820.models.TaskConfig`

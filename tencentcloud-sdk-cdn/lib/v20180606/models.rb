@@ -6294,7 +6294,7 @@ module TencentCloud
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
-        # @param HttpsBilling: HTTPS服务
+        # @param HttpsBilling: HTTPS服务，缺省时默认开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
@@ -7712,9 +7712,9 @@ module TencentCloud
         end
       end
 
-      # 支持 https 请求开关，若关闭，下发配置拦截https请求
+      # HTTPS服务，若关闭，下发配置拦截https请求，开启时会产生计费
       class HttpsBilling < TencentCloud::Common::AbstractModel
-        # @param Switch: HTTPS服务
+        # @param Switch: HTTPS服务，缺省时默认开启【会产生计费】
         # @type Switch: String
 
         attr_accessor :Switch

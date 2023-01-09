@@ -27,14 +27,17 @@ module TencentCloud
         # @type ProjectId: String
         # @param ApplicationVersionId: 应用版本ID
         # @type ApplicationVersionId: String
+        # @param ApplicationId: 应用ID。如果是独享项目，将忽略该参数，使用项目绑定的应用。如果是共享项目，使用该参数来指定应用。
+        # @type ApplicationId: String
 
-        attr_accessor :UserId, :UserIp, :ProjectId, :ApplicationVersionId
+        attr_accessor :UserId, :UserIp, :ProjectId, :ApplicationVersionId, :ApplicationId
         
-        def initialize(userid=nil, userip=nil, projectid=nil, applicationversionid=nil)
+        def initialize(userid=nil, userip=nil, projectid=nil, applicationversionid=nil, applicationid=nil)
           @UserId = userid
           @UserIp = userip
           @ProjectId = projectid
           @ApplicationVersionId = applicationversionid
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
@@ -42,6 +45,7 @@ module TencentCloud
           @UserIp = params['UserIp']
           @ProjectId = params['ProjectId']
           @ApplicationVersionId = params['ApplicationVersionId']
+          @ApplicationId = params['ApplicationId']
         end
       end
 

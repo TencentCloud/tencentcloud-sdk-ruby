@@ -2221,6 +2221,152 @@ module TencentCloud
         end
       end
 
+      # CreateClusterVirtualNodePool请求参数结构体
+      class CreateClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param SubnetIds: 子网ID列表
+        # @type SubnetIds: Array
+        # @param Labels: 虚拟节点label
+        # @type Labels: Array
+        # @param Taints: 虚拟节点taint
+        # @type Taints: Array
+        # @param VirtualNodes: 节点列表
+        # @type VirtualNodes: Array
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
+        # @param OS: 节点池操作系统：
+        # - linux（默认）
+        # - windows
+        # @type OS: String
+
+        attr_accessor :ClusterId, :Name, :SubnetIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
+        
+        def initialize(clusterid=nil, name=nil, subnetids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @SubnetIds = subnetids
+          @Labels = labels
+          @Taints = taints
+          @VirtualNodes = virtualnodes
+          @DeletionProtection = deletionprotection
+          @OS = os
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @SubnetIds = params['SubnetIds']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          unless params['VirtualNodes'].nil?
+            @VirtualNodes = []
+            params['VirtualNodes'].each do |i|
+              virtualnodespec_tmp = VirtualNodeSpec.new
+              virtualnodespec_tmp.deserialize(i)
+              @VirtualNodes << virtualnodespec_tmp
+            end
+          end
+          @DeletionProtection = params['DeletionProtection']
+          @OS = params['OS']
+        end
+      end
+
+      # CreateClusterVirtualNodePool返回参数结构体
+      class CreateClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolId, :RequestId
+        
+        def initialize(nodepoolid=nil, requestid=nil)
+          @NodePoolId = nodepoolid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateClusterVirtualNode请求参数结构体
+      class CreateClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 虚拟节点所属节点池
+        # @type NodePoolId: String
+        # @param SubnetId: 虚拟节点所属子网
+        # @type SubnetId: String
+        # @param SubnetIds: 虚拟节点子网ID列表，和参数SubnetId互斥
+        # @type SubnetIds: Array
+        # @param VirtualNodes: 虚拟节点列表
+        # @type VirtualNodes: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :SubnetId, :SubnetIds, :VirtualNodes
+        
+        def initialize(clusterid=nil, nodepoolid=nil, subnetid=nil, subnetids=nil, virtualnodes=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @SubnetId = subnetid
+          @SubnetIds = subnetids
+          @VirtualNodes = virtualnodes
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @SubnetId = params['SubnetId']
+          @SubnetIds = params['SubnetIds']
+          unless params['VirtualNodes'].nil?
+            @VirtualNodes = []
+            params['VirtualNodes'].each do |i|
+              virtualnodespec_tmp = VirtualNodeSpec.new
+              virtualnodespec_tmp.deserialize(i)
+              @VirtualNodes << virtualnodespec_tmp
+            end
+          end
+        end
+      end
+
+      # CreateClusterVirtualNode返回参数结构体
+      class CreateClusterVirtualNodeResponse < TencentCloud::Common::AbstractModel
+        # @param NodeName: 虚拟节点名称
+        # @type NodeName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeName, :RequestId
+        
+        def initialize(nodename=nil, requestid=nil)
+          @NodeName = nodename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodeName = params['NodeName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateECMInstances请求参数结构体
       class CreateECMInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterID: 集群id
@@ -3683,6 +3829,86 @@ module TencentCloud
 
       # DeleteClusterRouteTable返回参数结构体
       class DeleteClusterRouteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteClusterVirtualNodePool请求参数结构体
+      class DeleteClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolIds: 虚拟节点池ID列表
+        # @type NodePoolIds: Array
+        # @param Force: 是否强制删除，在虚拟节点上有pod的情况下，如果选择非强制删除，则删除会失败
+        # @type Force: Boolean
+
+        attr_accessor :ClusterId, :NodePoolIds, :Force
+        
+        def initialize(clusterid=nil, nodepoolids=nil, force=nil)
+          @ClusterId = clusterid
+          @NodePoolIds = nodepoolids
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolIds = params['NodePoolIds']
+          @Force = params['Force']
+        end
+      end
+
+      # DeleteClusterVirtualNodePool返回参数结构体
+      class DeleteClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteClusterVirtualNode请求参数结构体
+      class DeleteClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodeNames: 虚拟节点列表
+        # @type NodeNames: Array
+        # @param Force: 是否强制删除：如果虚拟节点上有运行中Pod，则非强制删除状态下不会进行删除
+        # @type Force: Boolean
+
+        attr_accessor :ClusterId, :NodeNames, :Force
+        
+        def initialize(clusterid=nil, nodenames=nil, force=nil)
+          @ClusterId = clusterid
+          @NodeNames = nodenames
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeNames = params['NodeNames']
+          @Force = params['Force']
+        end
+      end
+
+      # DeleteClusterVirtualNode返回参数结构体
+      class DeleteClusterVirtualNodeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5613,6 +5839,112 @@ module TencentCloud
               clusterstatus_tmp = ClusterStatus.new
               clusterstatus_tmp.deserialize(i)
               @ClusterStatusSet << clusterstatus_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterVirtualNodePools请求参数结构体
+      class DescribeClusterVirtualNodePoolsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterVirtualNodePools返回参数结构体
+      class DescribeClusterVirtualNodePoolsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 节点池总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param NodePoolSet: 虚拟节点池列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodePoolSet, :RequestId
+        
+        def initialize(totalcount=nil, nodepoolset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodePoolSet = nodepoolset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodePoolSet'].nil?
+            @NodePoolSet = []
+            params['NodePoolSet'].each do |i|
+              virtualnodepool_tmp = VirtualNodePool.new
+              virtualnodepool_tmp.deserialize(i)
+              @NodePoolSet << virtualnodepool_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterVirtualNode请求参数结构体
+      class DescribeClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param NodeNames: 节点名称
+        # @type NodeNames: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :NodeNames
+        
+        def initialize(clusterid=nil, nodepoolid=nil, nodenames=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @NodeNames = nodenames
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @NodeNames = params['NodeNames']
+        end
+      end
+
+      # DescribeClusterVirtualNode返回参数结构体
+      class DescribeClusterVirtualNodeResponse < TencentCloud::Common::AbstractModel
+        # @param Nodes: 节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+        # @param TotalCount: 节点总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Nodes, :TotalCount, :RequestId
+        
+        def initialize(nodes=nil, totalcount=nil, requestid=nil)
+          @Nodes = nodes
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              virtualnode_tmp = VirtualNode.new
+              virtualnode_tmp.deserialize(i)
+              @Nodes << virtualnode_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -8602,6 +8934,42 @@ module TencentCloud
         end
       end
 
+      # DrainClusterVirtualNode请求参数结构体
+      class DrainClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodeName: 节点名
+        # @type NodeName: String
+
+        attr_accessor :ClusterId, :NodeName
+        
+        def initialize(clusterid=nil, nodename=nil)
+          @ClusterId = clusterid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # DrainClusterVirtualNode返回参数结构体
+      class DrainClusterVirtualNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GPU驱动和CUDA的版本信息
       class DriverVersion < TencentCloud::Common::AbstractModel
         # @param Version: GPU驱动或者CUDA的版本
@@ -11262,6 +11630,72 @@ module TencentCloud
 
       # ModifyClusterNodePool返回参数结构体
       class ModifyClusterNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterVirtualNodePool请求参数结构体
+      class ModifyClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param Labels: 虚拟节点label
+        # @type Labels: Array
+        # @param Taints: 虚拟节点taint
+        # @type Taints: Array
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
+
+        attr_accessor :ClusterId, :NodePoolId, :Name, :Labels, :Taints, :DeletionProtection
+        
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, labels=nil, taints=nil, deletionprotection=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Name = name
+          @Labels = labels
+          @Taints = taints
+          @DeletionProtection = deletionprotection
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          @DeletionProtection = params['DeletionProtection']
+        end
+      end
+
+      # ModifyClusterVirtualNodePool返回参数结构体
+      class ModifyClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15378,6 +15812,108 @@ module TencentCloud
           @Name = params['Name']
           @Version = params['Version']
           @Remark = params['Remark']
+        end
+      end
+
+      # 虚拟节点
+      class VirtualNode < TencentCloud::Common::AbstractModel
+        # @param Name: 虚拟节点名称
+        # @type Name: String
+        # @param SubnetId: 虚拟节点所属子网
+        # @type SubnetId: String
+        # @param Phase: 虚拟节点状态
+        # @type Phase: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :Name, :SubnetId, :Phase, :CreatedTime
+        
+        def initialize(name=nil, subnetid=nil, phase=nil, createdtime=nil)
+          @Name = name
+          @SubnetId = subnetid
+          @Phase = phase
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SubnetId = params['SubnetId']
+          @Phase = params['Phase']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 虚拟节点池
+      class VirtualNodePool < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param SubnetIds: 子网列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param LifeState: 节点池生命周期
+        # @type LifeState: String
+        # @param Labels: 虚拟节点label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Taints: 虚拟节点taint
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Taints: Array
+
+        attr_accessor :NodePoolId, :SubnetIds, :Name, :LifeState, :Labels, :Taints
+        
+        def initialize(nodepoolid=nil, subnetids=nil, name=nil, lifestate=nil, labels=nil, taints=nil)
+          @NodePoolId = nodepoolid
+          @SubnetIds = subnetids
+          @Name = name
+          @LifeState = lifestate
+          @Labels = labels
+          @Taints = taints
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @SubnetIds = params['SubnetIds']
+          @Name = params['Name']
+          @LifeState = params['LifeState']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+        end
+      end
+
+      # 虚拟节点
+      class VirtualNodeSpec < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 节点展示名称
+        # @type DisplayName: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+
+        attr_accessor :DisplayName, :SubnetId
+        
+        def initialize(displayname=nil, subnetid=nil)
+          @DisplayName = displayname
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @SubnetId = params['SubnetId']
         end
       end
 

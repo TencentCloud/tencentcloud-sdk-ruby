@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 申请合唱相关信息，用于标记用户的演唱是在合唱场景下。
+
+        # @param request: Request instance for ApplyChorus.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::ApplyChorusRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::ApplyChorusResponse`
+        def ApplyChorus(request)
+          body = send_request('ApplyChorus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyChorusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
 
         # @param request: Request instance for BatchDescribeKTVMusicDetails.
