@@ -10560,6 +10560,30 @@ module TencentCloud
         end
       end
 
+      # 画面动态范围信息。
+      class DynamicRangeInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 画面动态范围信息。可取值：
+        # <li>SDR：Standard Dynamic Range 标准动态范围；</li>
+        # <li>HDR：High Dynamic Range 高动态范围。</li>
+        # @type Type: String
+        # @param HDRType: 高动态范围类型，当 Type 为 HDR 时有效。目前支持的可取值：
+        # <li>hdr10：表示 hdr10 标准；</li>
+        # <li>hlg：表示 hlg 标准。</li>
+        # @type HDRType: String
+
+        attr_accessor :Type, :HDRType
+        
+        def initialize(type=nil, hdrtype=nil)
+          @Type = type
+          @HDRType = hdrtype
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @HDRType = params['HDRType']
+        end
+      end
+
       # 编辑点播视频文件信息
       class EditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 视频的 ID。
@@ -14585,16 +14609,20 @@ module TencentCloud
         # @type Fps: Integer
         # @param CodecTag: 编码标签，仅当 Codec 为 hevc 时有效。
         # @type CodecTag: String
+        # @param DynamicRangeInfo: 画面动态范围信息。
+        # <li><font color=red>注意</font>：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。</li>
+        # @type DynamicRangeInfo: :class:`Tencentcloud::Vod.v20180717.models.DynamicRangeInfo`
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :CodecTag
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :CodecTag, :DynamicRangeInfo
         
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, codectag=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, codectag=nil, dynamicrangeinfo=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
           @Codec = codec
           @Fps = fps
           @CodecTag = codectag
+          @DynamicRangeInfo = dynamicrangeinfo
         end
 
         def deserialize(params)
@@ -14604,6 +14632,10 @@ module TencentCloud
           @Codec = params['Codec']
           @Fps = params['Fps']
           @CodecTag = params['CodecTag']
+          unless params['DynamicRangeInfo'].nil?
+            @DynamicRangeInfo = DynamicRangeInfo.new
+            @DynamicRangeInfo.deserialize(params['DynamicRangeInfo'])
+          end
         end
       end
 
@@ -17325,7 +17357,8 @@ module TencentCloud
         # @param Definition: 审核模板。
         # @type Definition: Integer
         # @param ReviewContents: 审核的内容，可选值：
-        # <li>Media：原始音视频。</li>
+        # <li>Media：原始音视频；</li>
+        # <li>Cover：封面。</li>
         # 不填或填空数组时，默认为审核 Media。
         # @type ReviewContents: Array
 

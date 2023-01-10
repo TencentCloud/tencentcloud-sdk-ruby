@@ -44,10 +44,19 @@ module TencentCloud
         # @param HighRiskCount: 诊断风险项数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighRiskCount: Integer
+        # @param PrivacyTextName: 隐私申明文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivacyTextName: String
+        # @param SoftwareMD5: 软件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftwareMD5: String
+        # @param PrivacyTextMD5: 隐私文本MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivacyTextMD5: String
 
-        attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount
+        attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount, :PrivacyTextName, :SoftwareMD5, :PrivacyTextMD5
         
-        def initialize(apppackage=nil, appname=nil, appversion=nil, platform=nil, reporturl=nil, reporttitle=nil, behaviorurl=nil, behaviortitle=nil, highriskcount=nil)
+        def initialize(apppackage=nil, appname=nil, appversion=nil, platform=nil, reporturl=nil, reporttitle=nil, behaviorurl=nil, behaviortitle=nil, highriskcount=nil, privacytextname=nil, softwaremd5=nil, privacytextmd5=nil)
           @AppPackage = apppackage
           @AppName = appname
           @AppVersion = appversion
@@ -57,6 +66,9 @@ module TencentCloud
           @BehaviorUrl = behaviorurl
           @BehaviorTitle = behaviortitle
           @HighRiskCount = highriskcount
+          @PrivacyTextName = privacytextname
+          @SoftwareMD5 = softwaremd5
+          @PrivacyTextMD5 = privacytextmd5
         end
 
         def deserialize(params)
@@ -69,6 +81,9 @@ module TencentCloud
           @BehaviorUrl = params['BehaviorUrl']
           @BehaviorTitle = params['BehaviorTitle']
           @HighRiskCount = params['HighRiskCount']
+          @PrivacyTextName = params['PrivacyTextName']
+          @SoftwareMD5 = params['SoftwareMD5']
+          @PrivacyTextMD5 = params['PrivacyTextMD5']
         end
       end
 
@@ -91,10 +106,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 任务完成时间(更新时间)
         # @type EndTime: String
+        # @param ContactName: 联系人信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContactName: String
 
-        attr_accessor :TaskID, :TaskType, :TaskStatus, :TaskErrMsg, :Source, :AppInfo, :StartTime, :EndTime
+        attr_accessor :TaskID, :TaskType, :TaskStatus, :TaskErrMsg, :Source, :AppInfo, :StartTime, :EndTime, :ContactName
         
-        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, taskerrmsg=nil, source=nil, appinfo=nil, starttime=nil, endtime=nil)
+        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, taskerrmsg=nil, source=nil, appinfo=nil, starttime=nil, endtime=nil, contactname=nil)
           @TaskID = taskid
           @TaskType = tasktype
           @TaskStatus = taskstatus
@@ -103,6 +121,7 @@ module TencentCloud
           @AppInfo = appinfo
           @StartTime = starttime
           @EndTime = endtime
+          @ContactName = contactname
         end
 
         def deserialize(params)
@@ -117,6 +136,7 @@ module TencentCloud
           end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @ContactName = params['ContactName']
         end
       end
 

@@ -329,10 +329,13 @@ module TencentCloud
         # @param Description: Api描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param ApiMatchType: API路径匹配类型。normal：普通API；wildcard：通配API。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiMatchType: String
 
-        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description
+        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType
         
-        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil)
+        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil)
           @ApiId = apiid
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
@@ -354,6 +357,7 @@ module TencentCloud
           @Host = host
           @ApiType = apitype
           @Description = description
+          @ApiMatchType = apimatchtype
         end
 
         def deserialize(params)
@@ -378,6 +382,7 @@ module TencentCloud
           @Host = params['Host']
           @ApiType = params['ApiType']
           @Description = params['Description']
+          @ApiMatchType = params['ApiMatchType']
         end
       end
 
@@ -4670,6 +4675,40 @@ module TencentCloud
               @Content << deliveryconfigbindgroup_tmp
             end
           end
+        end
+      end
+
+      # kafka投递的topic和path的信息
+      class DeliveryKafkaInfo < TencentCloud::Common::AbstractModel
+        # @param Topic: 投递kafka的topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Path: 采集日志的path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: Array
+        # @param LineRule: default，默认换行符分行
+        # time，按时间分行
+        # custom, 选了custom那么CustomRule就要填入具体的自定义值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineRule: String
+        # @param CustomRule: 自定义的分行值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: String
+
+        attr_accessor :Topic, :Path, :LineRule, :CustomRule
+        
+        def initialize(topic=nil, path=nil, linerule=nil, customrule=nil)
+          @Topic = topic
+          @Path = path
+          @LineRule = linerule
+          @CustomRule = customrule
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Path = params['Path']
+          @LineRule = params['LineRule']
+          @CustomRule = params['CustomRule']
         end
       end
 
@@ -12281,10 +12320,28 @@ module TencentCloud
         # @param LineRule: 换行规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineRule: String
+        # @param EnableAuth: 是否需要认证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAuth: Boolean
+        # @param Username: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param KafkaInfos: 投递的topic和path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaInfos: Array
+        # @param EnableGlobalLineRule: 是否应用单行规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableGlobalLineRule: Boolean
+        # @param CustomRule: 自定义分行规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: String
 
-        attr_accessor :ConfigId, :ConfigName, :CollectPath, :KafkaVIp, :KafkaVPort, :Topic, :LineRule
+        attr_accessor :ConfigId, :ConfigName, :CollectPath, :KafkaVIp, :KafkaVPort, :Topic, :LineRule, :EnableAuth, :Username, :Password, :KafkaInfos, :EnableGlobalLineRule, :CustomRule
         
-        def initialize(configid=nil, configname=nil, collectpath=nil, kafkavip=nil, kafkavport=nil, topic=nil, linerule=nil)
+        def initialize(configid=nil, configname=nil, collectpath=nil, kafkavip=nil, kafkavport=nil, topic=nil, linerule=nil, enableauth=nil, username=nil, password=nil, kafkainfos=nil, enablegloballinerule=nil, customrule=nil)
           @ConfigId = configid
           @ConfigName = configname
           @CollectPath = collectpath
@@ -12292,6 +12349,12 @@ module TencentCloud
           @KafkaVPort = kafkavport
           @Topic = topic
           @LineRule = linerule
+          @EnableAuth = enableauth
+          @Username = username
+          @Password = password
+          @KafkaInfos = kafkainfos
+          @EnableGlobalLineRule = enablegloballinerule
+          @CustomRule = customrule
         end
 
         def deserialize(params)
@@ -12302,6 +12365,19 @@ module TencentCloud
           @KafkaVPort = params['KafkaVPort']
           @Topic = params['Topic']
           @LineRule = params['LineRule']
+          @EnableAuth = params['EnableAuth']
+          @Username = params['Username']
+          @Password = params['Password']
+          unless params['KafkaInfos'].nil?
+            @KafkaInfos = []
+            params['KafkaInfos'].each do |i|
+              deliverykafkainfo_tmp = DeliveryKafkaInfo.new
+              deliverykafkainfo_tmp.deserialize(i)
+              @KafkaInfos << deliverykafkainfo_tmp
+            end
+          end
+          @EnableGlobalLineRule = params['EnableGlobalLineRule']
+          @CustomRule = params['CustomRule']
         end
       end
 

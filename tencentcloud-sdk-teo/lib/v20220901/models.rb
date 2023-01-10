@@ -2529,6 +2529,89 @@ module TencentCloud
         end
       end
 
+      # DescribeDDoSAttackData请求参数结构体
+      class DescribeDDoSAttackDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param MetricNames: 统计指标列表，取值有：
+        # <li>ddos_attackMaxBandwidth：攻击带宽峰值；</li>
+        # <li>ddos_attackMaxPackageRate：攻击包速率峰值 ；</li>
+        # <li>ddos_attackBandwidth：攻击带宽曲线；</li>
+        # <li>ddos_attackPackageRate：攻击包速率曲线。</li>
+        # @type MetricNames: Array
+        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @type ZoneIds: Array
+        # @param PolicyIds: DDoS策略组ID列表，不填默认选择全部策略ID。
+        # @type PolicyIds: Array
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min：1分钟；</li>
+        # <li>5min：5分钟；</li>
+        # <li>hour：1小时；</li>
+        # <li>day：1天。</li>不填将根据开始时间与结束时间的间隔自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        # @type Interval: String
+        # @param Area: 数据归属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据。</li>不填默认取值为global。
+        # @type Area: String
+
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :PolicyIds, :Interval, :Area
+        
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, policyids=nil, interval=nil, area=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @ZoneIds = zoneids
+          @PolicyIds = policyids
+          @Interval = interval
+          @Area = area
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @ZoneIds = params['ZoneIds']
+          @PolicyIds = params['PolicyIds']
+          @Interval = params['Interval']
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeDDoSAttackData返回参数结构体
+      class DescribeDDoSAttackDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
+        # @param Data: DDoS攻击数据内容列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+        
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              secentry_tmp = SecEntry.new
+              secentry_tmp.deserialize(i)
+              @Data << secentry_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDDoSAttackTopData请求参数结构体
       class DescribeDDoSAttackTopDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。

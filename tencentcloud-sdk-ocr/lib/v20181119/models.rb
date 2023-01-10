@@ -8550,6 +8550,8 @@ module TencentCloud
         # @param Type: 发票类型
         # 026:增值税电子普通发票
         # 028:增值税电子专用发票
+        # 010:电子发票（普通发票）
+        # 020:电子发票（增值税专用发票）
         # @type Type: String
         # @param InvoiceCode: 发票代码
         # @type InvoiceCode: String

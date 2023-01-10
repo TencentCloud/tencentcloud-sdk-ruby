@@ -5025,6 +5025,46 @@ module TencentCloud
         end
       end
 
+      # SuspendResumeDataEngine请求参数结构体
+      class SuspendResumeDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 虚拟集群名称
+        # @type DataEngineName: String
+        # @param Operate: 操作类型 suspend/resume
+        # @type Operate: String
+
+        attr_accessor :DataEngineName, :Operate
+        
+        def initialize(dataenginename=nil, operate=nil)
+          @DataEngineName = dataenginename
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @Operate = params['Operate']
+        end
+      end
+
+      # SuspendResumeDataEngine返回参数结构体
+      class SuspendResumeDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 虚拟集群详细信息
+        # @type DataEngineName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataEngineName, :RequestId
+        
+        def initialize(dataenginename=nil, requestid=nil)
+          @DataEngineName = dataenginename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据表配置信息
       class TableBaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 该数据表所属数据库名字

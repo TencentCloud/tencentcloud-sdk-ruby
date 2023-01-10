@@ -13499,15 +13499,18 @@ module TencentCloud
         # @type ProVersionNum: Integer
         # @param UltimateVersionNum: 旗舰版数量
         # @type UltimateVersionNum: Integer
+        # @param GeneralVersionNum: 普惠版数量
+        # @type GeneralVersionNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BasicVersionNum, :ProVersionNum, :UltimateVersionNum, :RequestId
+        attr_accessor :BasicVersionNum, :ProVersionNum, :UltimateVersionNum, :GeneralVersionNum, :RequestId
         
-        def initialize(basicversionnum=nil, proversionnum=nil, ultimateversionnum=nil, requestid=nil)
+        def initialize(basicversionnum=nil, proversionnum=nil, ultimateversionnum=nil, generalversionnum=nil, requestid=nil)
           @BasicVersionNum = basicversionnum
           @ProVersionNum = proversionnum
           @UltimateVersionNum = ultimateversionnum
+          @GeneralVersionNum = generalversionnum
           @RequestId = requestid
         end
 
@@ -13515,6 +13518,7 @@ module TencentCloud
           @BasicVersionNum = params['BasicVersionNum']
           @ProVersionNum = params['ProVersionNum']
           @UltimateVersionNum = params['UltimateVersionNum']
+          @GeneralVersionNum = params['GeneralVersionNum']
           @RequestId = params['RequestId']
         end
       end

@@ -1469,6 +1469,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于控制暂停或恢复数据引擎
+
+        # @param request: Request instance for SuspendResumeDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::SuspendResumeDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::SuspendResumeDataEngineResponse`
+        def SuspendResumeDataEngine(request)
+          body = send_request('SuspendResumeDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SuspendResumeDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑用户上的用户组
 
         # @param request: Request instance for UnbindWorkGroupsFromUser.

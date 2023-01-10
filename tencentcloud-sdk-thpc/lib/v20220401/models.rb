@@ -290,6 +290,37 @@ module TencentCloud
         end
       end
 
+      # CFS存储选项概览信息。
+      class CFSOptionOverview < TencentCloud::Common::AbstractModel
+        # @param LocalPath: 文件系统本地挂载路径。
+        # @type LocalPath: String
+        # @param RemotePath: 文件系统远程挂载ip及路径。
+        # @type RemotePath: String
+        # @param Protocol: 文件系统协议类型。
+        # <li>NFS 3.0。
+        # <li>NFS 4.0。
+        # <li>TURBO。
+        # @type Protocol: String
+        # @param StorageType: 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
+        # @type StorageType: String
+
+        attr_accessor :LocalPath, :RemotePath, :Protocol, :StorageType
+        
+        def initialize(localpath=nil, remotepath=nil, protocol=nil, storagetype=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @Protocol = protocol
+          @StorageType = storagetype
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @Protocol = params['Protocol']
+          @StorageType = params['StorageType']
+        end
+      end
+
       # 符合条件的集群活动信息。
       class ClusterActivity < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -860,16 +891,23 @@ module TencentCloud
 
       # DescribeClusterStorageOption返回参数结构体
       class DescribeClusterStorageOptionResponse < TencentCloud::Common::AbstractModel
+        # @param StorageOption: 集群存储选项信息概览。
+        # @type StorageOption: :class:`Tencentcloud::Thpc.v20220401.models.StorageOptionOverview`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :StorageOption, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(storageoption=nil, requestid=nil)
+          @StorageOption = storageoption
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['StorageOption'].nil?
+            @StorageOption = StorageOptionOverview.new
+            @StorageOption.deserialize(params['StorageOption'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -973,6 +1011,30 @@ module TencentCloud
 
       # 描述GooseFS挂载信息
       class GooseFSOption < TencentCloud::Common::AbstractModel
+        # @param LocalPath: 文件系统本地挂载路径。
+        # @type LocalPath: String
+        # @param RemotePath: 文件系统远程挂载路径。
+        # @type RemotePath: String
+        # @param Masters: 文件系统master的ip和端口。
+        # @type Masters: Array
+
+        attr_accessor :LocalPath, :RemotePath, :Masters
+        
+        def initialize(localpath=nil, remotepath=nil, masters=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @Masters = masters
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @Masters = params['Masters']
+        end
+      end
+
+      # GooseFS存储选项概览信息。
+      class GooseFSOptionOverview < TencentCloud::Common::AbstractModel
         # @param LocalPath: 文件系统本地挂载路径。
         # @type LocalPath: String
         # @param RemotePath: 文件系统远程挂载路径。
@@ -1429,6 +1491,40 @@ module TencentCloud
               goosefsoption_tmp = GooseFSOption.new
               goosefsoption_tmp.deserialize(i)
               @GooseFSOptions << goosefsoption_tmp
+            end
+          end
+        end
+      end
+
+      # 集群存储选项概览信息。
+      class StorageOptionOverview < TencentCloud::Common::AbstractModel
+        # @param CFSOptions: CFS存储选项概览信息列表。
+        # @type CFSOptions: Array
+        # @param GooseFSOptions: GooseFS存储选项概览信息列表。
+        # @type GooseFSOptions: Array
+
+        attr_accessor :CFSOptions, :GooseFSOptions
+        
+        def initialize(cfsoptions=nil, goosefsoptions=nil)
+          @CFSOptions = cfsoptions
+          @GooseFSOptions = goosefsoptions
+        end
+
+        def deserialize(params)
+          unless params['CFSOptions'].nil?
+            @CFSOptions = []
+            params['CFSOptions'].each do |i|
+              cfsoptionoverview_tmp = CFSOptionOverview.new
+              cfsoptionoverview_tmp.deserialize(i)
+              @CFSOptions << cfsoptionoverview_tmp
+            end
+          end
+          unless params['GooseFSOptions'].nil?
+            @GooseFSOptions = []
+            params['GooseFSOptions'].each do |i|
+              goosefsoptionoverview_tmp = GooseFSOptionOverview.new
+              goosefsoptionoverview_tmp.deserialize(i)
+              @GooseFSOptions << goosefsoptionoverview_tmp
             end
           end
         end
