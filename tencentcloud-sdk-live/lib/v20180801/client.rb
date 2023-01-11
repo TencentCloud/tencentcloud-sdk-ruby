@@ -1865,7 +1865,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 支持查询某天或某段时间的转码详细信息。
+        # 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
 
         # @param request: Request instance for DescribeLiveTranscodeDetailInfo.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTranscodeDetailInfoRequest`

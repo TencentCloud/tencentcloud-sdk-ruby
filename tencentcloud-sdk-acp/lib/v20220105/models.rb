@@ -337,6 +337,70 @@ module TencentCloud
         end
       end
 
+      # DescribeChannelTaskReportUrl请求参数结构体
+      class DescribeChannelTaskReportUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
+        # @type Source: Integer
+        # @param Platform: 应用平台, 0:android, 1: iOS，2:小程序
+        # @type Platform: Integer
+        # @param TaskID: 任务id
+        # @type TaskID: String
+        # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
+        # @type TaskType: Integer
+        # @param ReportType: 报告类型, 0:诊断报告, 1:堆栈报告, 2:视频证据(预留), 3:报告json结果
+        # @type ReportType: Integer
+        # @param AppMD5: 子渠道APP MD5值
+        # @type AppMD5: String
+
+        attr_accessor :Source, :Platform, :TaskID, :TaskType, :ReportType, :AppMD5
+        
+        def initialize(source=nil, platform=nil, taskid=nil, tasktype=nil, reporttype=nil, appmd5=nil)
+          @Source = source
+          @Platform = platform
+          @TaskID = taskid
+          @TaskType = tasktype
+          @ReportType = reporttype
+          @AppMD5 = appmd5
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Platform = params['Platform']
+          @TaskID = params['TaskID']
+          @TaskType = params['TaskType']
+          @ReportType = params['ReportType']
+          @AppMD5 = params['AppMD5']
+        end
+      end
+
+      # DescribeChannelTaskReportUrl返回参数结构体
+      class DescribeChannelTaskReportUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值, 0:成功, 其他值请查看“返回值”定义
+        # @type Result: Integer
+        # @param ReportUrl: 诊断报告/堆栈信息/报告json结果下载链接
+        # @type ReportUrl: String
+        # @param ReportTitle: 诊断报告/堆栈/报告json结果的名称
+        # @type ReportTitle: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ReportUrl, :ReportTitle, :RequestId
+        
+        def initialize(result=nil, reporturl=nil, reporttitle=nil, requestid=nil)
+          @Result = result
+          @ReportUrl = reporturl
+          @ReportTitle = reporttitle
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @ReportUrl = params['ReportUrl']
+          @ReportTitle = params['ReportTitle']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFileTicket请求参数结构体
       class DescribeFileTicketRequest < TencentCloud::Common::AbstractModel
         # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;

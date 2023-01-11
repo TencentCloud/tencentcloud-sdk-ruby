@@ -1039,10 +1039,13 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param CcInfos: 被抄送人的信息列表。
+        # 注: 此功能为白名单功能，若有需要，请联系电子签客服开白使用。
+        # @type CcInfos: Array
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent, :CcInfos
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil, ccinfos=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -1057,6 +1060,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @CallbackUrl = callbackurl
           @Agent = agent
+          @CcInfos = ccinfos
         end
 
         def deserialize(params)
@@ -1086,6 +1090,14 @@ module TencentCloud
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
+          end
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              ccinfo_tmp = CcInfo.new
+              ccinfo_tmp.deserialize(i)
+              @CcInfos << ccinfo_tmp
+            end
           end
         end
       end

@@ -517,16 +517,19 @@ module TencentCloud
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
         # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         # @type RegistryChargeType: Integer
+        # @param RegistryChargePrepaid: 预付费自动续费标识和购买时长
+        # @type RegistryChargePrepaid: :class:`Tencentcloud::Tcr.v20190924.models.RegistryChargePrepaid`
         # @param SyncTag: 是否同步TCR云标签至生成的COS Bucket
         # @type SyncTag: Boolean
 
-        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :SyncTag
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag
         
-        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, synctag=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
           @TagSpecification = tagspecification
           @RegistryChargeType = registrychargetype
+          @RegistryChargePrepaid = registrychargeprepaid
           @SyncTag = synctag
         end
 
@@ -538,6 +541,10 @@ module TencentCloud
             @TagSpecification.deserialize(params['TagSpecification'])
           end
           @RegistryChargeType = params['RegistryChargeType']
+          unless params['RegistryChargePrepaid'].nil?
+            @RegistryChargePrepaid = RegistryChargePrepaid.new
+            @RegistryChargePrepaid.deserialize(params['RegistryChargePrepaid'])
+          end
           @SyncTag = params['SyncTag']
         end
       end

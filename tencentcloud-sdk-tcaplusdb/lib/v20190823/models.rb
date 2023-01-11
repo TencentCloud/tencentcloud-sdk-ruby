@@ -1588,14 +1588,17 @@ module TencentCloud
         # @type TableName: String
         # @param SnapshotName: 快照名称
         # @type SnapshotName: String
+        # @param SelectedTables: 批量拉取快照的表格列表
+        # @type SelectedTables: Array
 
-        attr_accessor :ClusterId, :TableGroupId, :TableName, :SnapshotName
+        attr_accessor :ClusterId, :TableGroupId, :TableName, :SnapshotName, :SelectedTables
         
-        def initialize(clusterid=nil, tablegroupid=nil, tablename=nil, snapshotname=nil)
+        def initialize(clusterid=nil, tablegroupid=nil, tablename=nil, snapshotname=nil, selectedtables=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
           @TableName = tablename
           @SnapshotName = snapshotname
+          @SelectedTables = selectedtables
         end
 
         def deserialize(params)
@@ -1603,6 +1606,14 @@ module TencentCloud
           @TableGroupId = params['TableGroupId']
           @TableName = params['TableName']
           @SnapshotName = params['SnapshotName']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              selectedtableinfonew_tmp = SelectedTableInfoNew.new
+              selectedtableinfonew_tmp.deserialize(i)
+              @SelectedTables << selectedtableinfonew_tmp
+            end
+          end
         end
       end
 

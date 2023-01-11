@@ -818,6 +818,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAutoScalingConfiguration请求参数结构体
+      class DescribeAutoScalingConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeAutoScalingConfiguration返回参数结构体
+      class DescribeAutoScalingConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param ExpansionBusyTime: 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。
+        # @type ExpansionBusyTime: Integer
+        # @param ShrinkIdleTime: 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。
+        # @type ShrinkIdleTime: Integer
+        # @param QueueConfigs: 扩容队列配置概览列表。
+        # @type QueueConfigs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :ExpansionBusyTime, :ShrinkIdleTime, :QueueConfigs, :RequestId
+        
+        def initialize(clusterid=nil, expansionbusytime=nil, shrinkidletime=nil, queueconfigs=nil, requestid=nil)
+          @ClusterId = clusterid
+          @ExpansionBusyTime = expansionbusytime
+          @ShrinkIdleTime = shrinkidletime
+          @QueueConfigs = queueconfigs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ExpansionBusyTime = params['ExpansionBusyTime']
+          @ShrinkIdleTime = params['ShrinkIdleTime']
+          unless params['QueueConfigs'].nil?
+            @QueueConfigs = []
+            params['QueueConfigs'].each do |i|
+              queueconfigoverview_tmp = QueueConfigOverview.new
+              queueconfigoverview_tmp.deserialize(i)
+              @QueueConfigs << queueconfigoverview_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterActivities请求参数结构体
       class DescribeClusterActivitiesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。通过该参数指定需要查询活动历史记录的集群。
@@ -1005,6 +1060,85 @@ module TencentCloud
           unless params['VirtualPrivateCloud'].nil?
             @VirtualPrivateCloud = VirtualPrivateCloud.new
             @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+        end
+      end
+
+      # 扩容节点配置信息概览。
+      class ExpansionNodeConfigOverview < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 节点机型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param Placement: 扩容实例所在的位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Placement: :class:`Tencentcloud::Thpc.v20220401.models.Placement`
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20220401.models.InstanceChargePrepaid`
+        # @param VirtualPrivateCloud: 私有网络相关信息配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20220401.models.VirtualPrivateCloud`
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param InternetAccessible: 公网带宽相关信息设置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20220401.models.InternetAccessible`
+        # @param SystemDisk: 节点系统盘配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDisk: :class:`Tencentcloud::Thpc.v20220401.models.SystemDisk`
+        # @param DataDisks: 节点数据盘配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisks: Array
+
+        attr_accessor :InstanceType, :Placement, :InstanceChargeType, :InstanceChargePrepaid, :VirtualPrivateCloud, :ImageId, :InternetAccessible, :SystemDisk, :DataDisks
+        
+        def initialize(instancetype=nil, placement=nil, instancechargetype=nil, instancechargeprepaid=nil, virtualprivatecloud=nil, imageid=nil, internetaccessible=nil, systemdisk=nil, datadisks=nil)
+          @InstanceType = instancetype
+          @Placement = placement
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+          @VirtualPrivateCloud = virtualprivatecloud
+          @ImageId = imageid
+          @InternetAccessible = internetaccessible
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['VirtualPrivateCloud'].nil?
+            @VirtualPrivateCloud = VirtualPrivateCloud.new
+            @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+          @ImageId = params['ImageId']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
           end
         end
       end
@@ -1398,6 +1532,49 @@ module TencentCloud
               expansionnodeconfig_tmp = ExpansionNodeConfig.new
               expansionnodeconfig_tmp.deserialize(i)
               @ExpansionNodeConfigs << expansionnodeconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 扩容队列配置概览。
+      class QueueConfigOverview < TencentCloud::Common::AbstractModel
+        # @param QueueName: 队列名称。
+        # @type QueueName: String
+        # @param MinSize: 队列中弹性节点数量最小值。取值范围0～200。
+        # @type MinSize: Integer
+        # @param MaxSize: 队列中弹性节点数量最大值。取值范围0～200。
+        # @type MaxSize: Integer
+        # @param EnableAutoExpansion: 是否开启自动扩容。
+        # @type EnableAutoExpansion: Boolean
+        # @param EnableAutoShrink: 是否开启自动缩容。
+        # @type EnableAutoShrink: Boolean
+        # @param ExpansionNodeConfigs: 扩容节点配置信息。
+        # @type ExpansionNodeConfigs: Array
+
+        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs
+        
+        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil)
+          @QueueName = queuename
+          @MinSize = minsize
+          @MaxSize = maxsize
+          @EnableAutoExpansion = enableautoexpansion
+          @EnableAutoShrink = enableautoshrink
+          @ExpansionNodeConfigs = expansionnodeconfigs
+        end
+
+        def deserialize(params)
+          @QueueName = params['QueueName']
+          @MinSize = params['MinSize']
+          @MaxSize = params['MaxSize']
+          @EnableAutoExpansion = params['EnableAutoExpansion']
+          @EnableAutoShrink = params['EnableAutoShrink']
+          unless params['ExpansionNodeConfigs'].nil?
+            @ExpansionNodeConfigs = []
+            params['ExpansionNodeConfigs'].each do |i|
+              expansionnodeconfigoverview_tmp = ExpansionNodeConfigOverview.new
+              expansionnodeconfigoverview_tmp.deserialize(i)
+              @ExpansionNodeConfigs << expansionnodeconfigoverview_tmp
             end
           end
         end

@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取子渠道的App合规诊断任务报告url
+
+        # @param request: Request instance for DescribeChannelTaskReportUrl.
+        # @type request: :class:`Tencentcloud::acp::V20220105::DescribeChannelTaskReportUrlRequest`
+        # @rtype: :class:`Tencentcloud::acp::V20220105::DescribeChannelTaskReportUrlResponse`
+        def DescribeChannelTaskReportUrl(request)
+          body = send_request('DescribeChannelTaskReportUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelTaskReportUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取应用合规文件上传凭证，用于上传诊断文件
 
         # @param request: Request instance for DescribeFileTicket.
