@@ -1936,7 +1936,7 @@ module TencentCloud
       class InvokeChainMakerContractRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
@@ -1996,7 +1996,7 @@ module TencentCloud
       class InvokeChainMakerDemoContractRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
@@ -2195,7 +2195,7 @@ module TencentCloud
       class QueryChainMakerBlockTransactionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param BlockHeight: 区块高度
         # @type BlockHeight: Integer
@@ -2260,7 +2260,7 @@ module TencentCloud
       class QueryChainMakerContractRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
@@ -2316,7 +2316,7 @@ module TencentCloud
       class QueryChainMakerDemoBlockTransactionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param BlockHeight: 区块高度
         # @type BlockHeight: Integer
@@ -2381,7 +2381,7 @@ module TencentCloud
       class QueryChainMakerDemoContractRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
@@ -2437,7 +2437,7 @@ module TencentCloud
       class QueryChainMakerDemoTransactionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param TxID: 交易ID，通过调用合约的返回值获取
         # @type TxID: String
@@ -2485,7 +2485,7 @@ module TencentCloud
       class QueryChainMakerTransactionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
         # @type ClusterId: String
-        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @param ChainId: 业务链ID，可在网络概览页获取
         # @type ChainId: String
         # @param TxID: 交易ID，通过调用合约的返回值获取
         # @type TxID: String

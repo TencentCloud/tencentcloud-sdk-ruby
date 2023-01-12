@@ -1955,6 +1955,53 @@ module TencentCloud
         end
       end
 
+      # DescribeExtendedServiceAuthInfo请求参数结构体
+      class DescribeExtendedServiceAuthInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :Agent
+        
+        def initialize(agent=nil)
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeExtendedServiceAuthInfo返回参数结构体
+      class DescribeExtendedServiceAuthInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AuthInfo: 企业扩展服务授权信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthInfo, :RequestId
+        
+        def initialize(authinfo=nil, requestid=nil)
+          @AuthInfo = authinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuthInfo'].nil?
+            @AuthInfo = []
+            params['AuthInfo'].each do |i|
+              extentserviceauthinfo_tmp = ExtentServiceAuthInfo.new
+              extentserviceauthinfo_tmp.deserialize(i)
+              @AuthInfo << extentserviceauthinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowDetailInfo请求参数结构体
       class DescribeFlowDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -2298,6 +2345,47 @@ module TencentCloud
         def deserialize(params)
           @FileName = params['FileName']
           @FlowIdList = params['FlowIdList']
+        end
+      end
+
+      # 企业扩展服务授权信息
+      class ExtentServiceAuthInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 扩展服务类型
+        #   AUTO_SIGN             企业静默签（自动签署）
+        #   OVERSEA_SIGN          企业与港澳台居民*签署合同
+        #   MOBILE_CHECK_APPROVER 使用手机号验证签署方身份
+        #   PAGING_SEAL           骑缝章
+        #   DOWNLOAD_FLOW         授权渠道下载合同
+        # @type Type: String
+        # @param Name: 扩展服务名称
+        # @type Name: String
+        # @param Status: 服务状态
+        # ENABLE 开启
+        # DISABLE 关闭
+        # @type Status: String
+        # @param OperatorOpenId: 最近操作人openid（经办人openid）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorOpenId: String
+        # @param OperateOn: 最近操作时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateOn: Integer
+
+        attr_accessor :Type, :Name, :Status, :OperatorOpenId, :OperateOn
+        
+        def initialize(type=nil, name=nil, status=nil, operatoropenid=nil, operateon=nil)
+          @Type = type
+          @Name = name
+          @Status = status
+          @OperatorOpenId = operatoropenid
+          @OperateOn = operateon
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Status = params['Status']
+          @OperatorOpenId = params['OperatorOpenId']
+          @OperateOn = params['OperateOn']
         end
       end
 
@@ -2925,6 +3013,63 @@ module TencentCloud
 
         def deserialize(params)
           @DownLoadUrl = params['DownLoadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyExtendedService请求参数结构体
+      class ModifyExtendedServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ServiceType:   扩展服务类型
+        #   AUTO_SIGN             企业静默签（自动签署）
+        #   OVERSEA_SIGN          企业与港澳台居民*签署合同
+        #   MOBILE_CHECK_APPROVER 使用手机号验证签署方身份
+        #   PAGING_SEAL           骑缝章
+        #   DOWNLOAD_FLOW         授权渠道下载合同
+        # @type ServiceType: String
+        # @param Operate: 操作类型
+        # OPEN:开通
+        # CLOSE:关闭
+        # @type Operate: String
+
+        attr_accessor :Agent, :ServiceType, :Operate
+        
+        def initialize(agent=nil, servicetype=nil, operate=nil)
+          @Agent = agent
+          @ServiceType = servicetype
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ServiceType = params['ServiceType']
+          @Operate = params['Operate']
+        end
+      end
+
+      # ModifyExtendedService返回参数结构体
+      class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
+        # @param OperateUrl: 操作跳转链接，有效期24小时
+        # 仅当操作类型是 OPEN 且 扩展服务类型是  AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回 ，此时需要经办人(操作人)点击链接完成服务开通操作。若开通操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通服务
+
+        # 操作类型是CLOSE时，不会返回此链接，会直接关闭企业该扩展服务
+        # @type OperateUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperateUrl, :RequestId
+        
+        def initialize(operateurl=nil, requestid=nil)
+          @OperateUrl = operateurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OperateUrl = params['OperateUrl']
           @RequestId = params['RequestId']
         end
       end

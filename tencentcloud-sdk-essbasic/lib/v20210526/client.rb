@@ -571,6 +571,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+
+        # @param request: Request instance for DescribeExtendedServiceAuthInfo.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeExtendedServiceAuthInfoRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeExtendedServiceAuthInfoResponse`
+        def DescribeExtendedServiceAuthInfo(request)
+          body = send_request('DescribeExtendedServiceAuthInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtendedServiceAuthInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
 
         # @param request: Request instance for DescribeFlowDetailInfo.
@@ -680,6 +704,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetDownloadFlowUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+
+        # @param request: Request instance for ModifyExtendedService.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ModifyExtendedServiceRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ModifyExtendedServiceResponse`
+        def ModifyExtendedService(request)
+          body = send_request('ModifyExtendedService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyExtendedServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

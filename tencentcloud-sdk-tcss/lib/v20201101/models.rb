@@ -2376,10 +2376,13 @@ module TencentCloud
         # @param VerifyInfo: 检查项验证信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyInfo: String
+        # @param InstanceId: 主机实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo
+        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo, :InstanceId
         
-        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil)
+        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil, instanceid=nil)
           @CustomerAssetId = customerassetid
           @AssetName = assetname
           @AssetType = assettype
@@ -2390,6 +2393,7 @@ module TencentCloud
           @HostIP = hostip
           @ImageTag = imagetag
           @VerifyInfo = verifyinfo
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -2403,6 +2407,7 @@ module TencentCloud
           @HostIP = params['HostIP']
           @ImageTag = params['ImageTag']
           @VerifyInfo = params['VerifyInfo']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -2521,10 +2526,13 @@ module TencentCloud
         # RESULT_PASSED: 通过。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: String
+        # @param InstanceId: 主机节点的实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult
+        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult, :InstanceId
         
-        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil)
+        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil, instanceid=nil)
           @CustomerAssetId = customerassetid
           @AssetType = assettype
           @AssetName = assetname
@@ -2536,6 +2544,7 @@ module TencentCloud
           @FailedPolicyItemCount = failedpolicyitemcount
           @LastCheckTime = lastchecktime
           @CheckResult = checkresult
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -2550,6 +2559,7 @@ module TencentCloud
           @FailedPolicyItemCount = params['FailedPolicyItemCount']
           @LastCheckTime = params['LastCheckTime']
           @CheckResult = params['CheckResult']
+          @InstanceId = params['InstanceId']
         end
       end
 

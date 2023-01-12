@@ -3699,32 +3699,41 @@ module TencentCloud
         # @type JobId: String
         # @param StepIds: 需要跳过校验项的步骤id，需要通过DescribeMigrationCheckJob接口返回StepInfo[i].StepId字段获取，例如：["OptimizeCheck"]
         # @type StepIds: Array
+        # @param ForeignKeyFlag: 当出现外键依赖检查导致校验不通过时、可以通过该字段选择是否迁移外键依赖，当StepIds包含ConstraintCheck且该字段值为shield时表示不迁移外键依赖、当StepIds包含ConstraintCheck且值为migrate时表示迁移外键依赖
+        # @type ForeignKeyFlag: String
 
-        attr_accessor :JobId, :StepIds
+        attr_accessor :JobId, :StepIds, :ForeignKeyFlag
         
-        def initialize(jobid=nil, stepids=nil)
+        def initialize(jobid=nil, stepids=nil, foreignkeyflag=nil)
           @JobId = jobid
           @StepIds = stepids
+          @ForeignKeyFlag = foreignkeyflag
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @StepIds = params['StepIds']
+          @ForeignKeyFlag = params['ForeignKeyFlag']
         end
       end
 
       # SkipCheckItem返回参数结构体
       class SkipCheckItemResponse < TencentCloud::Common::AbstractModel
+        # @param Message: 跳过的提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Message, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(message=nil, requestid=nil)
+          @Message = message
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

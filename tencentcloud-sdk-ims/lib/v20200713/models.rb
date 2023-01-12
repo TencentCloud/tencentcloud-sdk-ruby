@@ -17,142 +17,6 @@
 module TencentCloud
   module Ims
     module V20200713
-      # DescribeImageStat请求参数结构体
-      class DescribeImageStatRequest < TencentCloud::Common::AbstractModel
-        # @param AuditType: 审核类型 1: 机器审核; 2: 人工审核
-        # @type AuditType: Integer
-        # @param Filters: 查询条件
-        # @type Filters: Array
-
-        attr_accessor :AuditType, :Filters
-        
-        def initialize(audittype=nil, filters=nil)
-          @AuditType = audittype
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @AuditType = params['AuditType']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filters_tmp = Filters.new
-              filters_tmp.deserialize(i)
-              @Filters << filters_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeImageStat返回参数结构体
-      class DescribeImageStatResponse < TencentCloud::Common::AbstractModel
-        # @param Overview: 识别结果统计
-        # @type Overview: :class:`Tencentcloud::Ims.v20200713.models.Overview`
-        # @param TrendCount: 识别量统计
-        # @type TrendCount: Array
-        # @param EvilCount: 违规数据分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EvilCount: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Overview, :TrendCount, :EvilCount, :RequestId
-        
-        def initialize(overview=nil, trendcount=nil, evilcount=nil, requestid=nil)
-          @Overview = overview
-          @TrendCount = trendcount
-          @EvilCount = evilcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Overview'].nil?
-            @Overview = Overview.new
-            @Overview.deserialize(params['Overview'])
-          end
-          unless params['TrendCount'].nil?
-            @TrendCount = []
-            params['TrendCount'].each do |i|
-              trendcount_tmp = TrendCount.new
-              trendcount_tmp.deserialize(i)
-              @TrendCount << trendcount_tmp
-            end
-          end
-          unless params['EvilCount'].nil?
-            @EvilCount = []
-            params['EvilCount'].each do |i|
-              evilcount_tmp = EvilCount.new
-              evilcount_tmp.deserialize(i)
-              @EvilCount << evilcount_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeImsList请求参数结构体
-      class DescribeImsListRequest < TencentCloud::Common::AbstractModel
-        # @param PageIndex: 分页 页索引
-        # @type PageIndex: Integer
-        # @param PageSize: 分页条数
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-
-        attr_accessor :PageIndex, :PageSize, :Filters
-        
-        def initialize(pageindex=nil, pagesize=nil, filters=nil)
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeImsList返回参数结构体
-      class DescribeImsListResponse < TencentCloud::Common::AbstractModel
-        # @param ImsDetailSet: 返回列表数据----非必选，该参数暂未对外开放
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImsDetailSet: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ImsDetailSet, :TotalCount, :RequestId
-        
-        def initialize(imsdetailset=nil, totalcount=nil, requestid=nil)
-          @ImsDetailSet = imsdetailset
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ImsDetailSet'].nil?
-            @ImsDetailSet = []
-            params['ImsDetailSet'].each do |i|
-              imsdetail_tmp = ImsDetail.new
-              imsdetail_tmp.deserialize(i)
-              @ImsDetailSet << imsdetail_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # Device结果
       class Device < TencentCloud::Common::AbstractModel
         # @param Ip: 发表消息设备IP
@@ -194,69 +58,6 @@ module TencentCloud
           @IDFA = params['IDFA']
           @IDFV = params['IDFV']
           @IpType = params['IpType']
-        end
-      end
-
-      # 违规数据分布
-      class EvilCount < TencentCloud::Common::AbstractModel
-        # @param EvilType: ----非必选，该参数功能暂未对外开放
-        # @type EvilType: String
-        # @param Count: 分布类型总量
-        # @type Count: Integer
-
-        attr_accessor :EvilType, :Count
-        
-        def initialize(eviltype=nil, count=nil)
-          @EvilType = eviltype
-          @Count = count
-        end
-
-        def deserialize(params)
-          @EvilType = params['EvilType']
-          @Count = params['Count']
-        end
-      end
-
-      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
-      class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤键的名称。
-        # @type Name: String
-        # @param Values: 一个或者多个过滤值。
-        # @type Values: Array
-
-        attr_accessor :Name, :Values
-        
-        def initialize(name=nil, values=nil)
-          @Name = name
-          @Values = values
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Values = params['Values']
-        end
-      end
-
-      # 图片过滤条件
-      class Filters < TencentCloud::Common::AbstractModel
-        # @param Name: 查询字段：
-        # 策略BizType
-        # 子账号SubUin
-        # 日期区间DateRange
-        # @type Name: String
-        # @param Values: 查询值
-        # @type Values: Array
-
-        attr_accessor :Name, :Values
-        
-        def initialize(name=nil, values=nil)
-          @Name = name
-          @Values = values
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Values = params['Values']
         end
       end
 
@@ -410,50 +211,6 @@ module TencentCloud
           @BizType = params['BizType']
           @Extra = params['Extra']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 机器审核详情列表数据项
-      class ImsDetail < TencentCloud::Common::AbstractModel
-        # @param Content: 文本内容
-        # @type Content: String
-        # @param DataSource: 数据方式， 0：我审，1：人审
-        # @type DataSource: Integer
-        # @param UpdateTime: 最后更新时间
-        # @type UpdateTime: String
-        # @param EvilType: ----非必选，该参数暂未对外开放
-        # @type EvilType: Integer
-        # @param ModerationTime: 机器审核时间
-        # @type ModerationTime: String
-        # @param UpdateUser: 最后更新人
-        # @type UpdateUser: String
-        # @param ContentId: 内容RequestId
-        # @type ContentId: String
-        # @param OperEvilType: 自主审核结果
-        # @type OperEvilType: Integer
-
-        attr_accessor :Content, :DataSource, :UpdateTime, :EvilType, :ModerationTime, :UpdateUser, :ContentId, :OperEvilType
-        
-        def initialize(content=nil, datasource=nil, updatetime=nil, eviltype=nil, moderationtime=nil, updateuser=nil, contentid=nil, opereviltype=nil)
-          @Content = content
-          @DataSource = datasource
-          @UpdateTime = updatetime
-          @EvilType = eviltype
-          @ModerationTime = moderationtime
-          @UpdateUser = updateuser
-          @ContentId = contentid
-          @OperEvilType = opereviltype
-        end
-
-        def deserialize(params)
-          @Content = params['Content']
-          @DataSource = params['DataSource']
-          @UpdateTime = params['UpdateTime']
-          @EvilType = params['EvilType']
-          @ModerationTime = params['ModerationTime']
-          @UpdateUser = params['UpdateUser']
-          @ContentId = params['ContentId']
-          @OperEvilType = params['OperEvilType']
         end
       end
 
@@ -666,15 +423,18 @@ module TencentCloud
         # @type Score: Integer
         # @param Location: 检测框坐标
         # @type Location: :class:`Tencentcloud::Ims.v20200713.models.Location`
+        # @param SubLabel: 二级标签名称
+        # @type SubLabel: String
 
-        attr_accessor :Id, :Name, :Value, :Score, :Location
+        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel
         
-        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil)
+        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil)
           @Id = id
           @Name = name
           @Value = value
           @Score = score
           @Location = location
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -686,6 +446,7 @@ module TencentCloud
             @Location = Location.new
             @Location.deserialize(params['Location'])
           end
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -759,10 +520,12 @@ module TencentCloud
         # @type Details: Array
         # @param Text: ocr识别出的文本结果
         # @type Text: String
+        # @param HitFlag: 是否命中结果，0 未命中 1命中
+        # @type HitFlag: Integer
 
-        attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details, :Text
+        attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details, :Text, :HitFlag
         
-        def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, details=nil, text=nil)
+        def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, details=nil, text=nil, hitflag=nil)
           @Scene = scene
           @Suggestion = suggestion
           @Label = label
@@ -770,6 +533,7 @@ module TencentCloud
           @Score = score
           @Details = details
           @Text = text
+          @HitFlag = hitflag
         end
 
         def deserialize(params)
@@ -787,6 +551,7 @@ module TencentCloud
             end
           end
           @Text = params['Text']
+          @HitFlag = params['HitFlag']
         end
       end
 
@@ -809,10 +574,12 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ims.v20200713.models.Location`
         # @param Rate: OCR文本识别置信度
         # @type Rate: Integer
+        # @param SubLabel: OCR文本命中的二级标签
+        # @type SubLabel: String
 
-        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate
+        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate, :SubLabel
         
-        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil)
+        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil, sublabel=nil)
           @Text = text
           @Label = label
           @LibId = libid
@@ -821,6 +588,7 @@ module TencentCloud
           @Score = score
           @Location = location
           @Rate = rate
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -835,107 +603,7 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @Rate = params['Rate']
-        end
-      end
-
-      # 识别结果统计
-      class Overview < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总调用量
-        # @type TotalCount: Integer
-        # @param TotalHour: 总调用时长
-        # @type TotalHour: Integer
-        # @param PassCount: 通过量
-        # @type PassCount: Integer
-        # @param PassHour: 通过时长
-        # @type PassHour: Integer
-        # @param EvilCount: 违规量
-        # @type EvilCount: Integer
-        # @param EvilHour: 违规时长
-        # @type EvilHour: Integer
-        # @param SuspectCount: 疑似违规量
-        # @type SuspectCount: Integer
-        # @param SuspectHour: 疑似违规时长
-        # @type SuspectHour: Integer
-
-        attr_accessor :TotalCount, :TotalHour, :PassCount, :PassHour, :EvilCount, :EvilHour, :SuspectCount, :SuspectHour
-        
-        def initialize(totalcount=nil, totalhour=nil, passcount=nil, passhour=nil, evilcount=nil, evilhour=nil, suspectcount=nil, suspecthour=nil)
-          @TotalCount = totalcount
-          @TotalHour = totalhour
-          @PassCount = passcount
-          @PassHour = passhour
-          @EvilCount = evilcount
-          @EvilHour = evilhour
-          @SuspectCount = suspectcount
-          @SuspectHour = suspecthour
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          @TotalHour = params['TotalHour']
-          @PassCount = params['PassCount']
-          @PassHour = params['PassHour']
-          @EvilCount = params['EvilCount']
-          @EvilHour = params['EvilHour']
-          @SuspectCount = params['SuspectCount']
-          @SuspectHour = params['SuspectHour']
-        end
-      end
-
-      # 识别量统计
-      class TrendCount < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总调用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param TotalHour: 总调用时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalHour: Integer
-        # @param PassCount: 通过量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PassCount: Integer
-        # @param PassHour: 通过时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PassHour: Integer
-        # @param EvilCount: 违规量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EvilCount: Integer
-        # @param EvilHour: 违规时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EvilHour: Integer
-        # @param SuspectCount: 疑似违规量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SuspectCount: Integer
-        # @param SuspectHour: 疑似违规时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SuspectHour: Integer
-        # @param Date: 日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Date: String
-
-        attr_accessor :TotalCount, :TotalHour, :PassCount, :PassHour, :EvilCount, :EvilHour, :SuspectCount, :SuspectHour, :Date
-        
-        def initialize(totalcount=nil, totalhour=nil, passcount=nil, passhour=nil, evilcount=nil, evilhour=nil, suspectcount=nil, suspecthour=nil, date=nil)
-          @TotalCount = totalcount
-          @TotalHour = totalhour
-          @PassCount = passcount
-          @PassHour = passhour
-          @EvilCount = evilcount
-          @EvilHour = evilhour
-          @SuspectCount = suspectcount
-          @SuspectHour = suspecthour
-          @Date = date
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          @TotalHour = params['TotalHour']
-          @PassCount = params['PassCount']
-          @PassHour = params['PassHour']
-          @EvilCount = params['EvilCount']
-          @EvilHour = params['EvilHour']
-          @SuspectCount = params['SuspectCount']
-          @SuspectHour = params['SuspectHour']
-          @Date = params['Date']
+          @SubLabel = params['SubLabel']
         end
       end
 

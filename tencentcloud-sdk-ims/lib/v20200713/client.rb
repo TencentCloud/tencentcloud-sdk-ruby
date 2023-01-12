@@ -29,54 +29,6 @@ module TencentCloud
         end
 
 
-        # 控制台识别统计
-
-        # @param request: Request instance for DescribeImageStat.
-        # @type request: :class:`Tencentcloud::ims::V20200713::DescribeImageStatRequest`
-        # @rtype: :class:`Tencentcloud::ims::V20200713::DescribeImageStatResponse`
-        def DescribeImageStat(request)
-          body = send_request('DescribeImageStat', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeImageStatResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 图片机器审核明细
-
-        # @param request: Request instance for DescribeImsList.
-        # @type request: :class:`Tencentcloud::ims::V20200713::DescribeImsListRequest`
-        # @rtype: :class:`Tencentcloud::ims::V20200713::DescribeImsListResponse`
-        def DescribeImsList(request)
-          body = send_request('DescribeImsList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeImsListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别可能令人反感、不安全或不适宜的内容，同时支持用户配置图片黑名单，打击自定义识别类型的图片。
 
         # <div class="rno-api-explorer" style="margin-bottom:20px">

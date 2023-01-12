@@ -1728,11 +1728,15 @@ module TencentCloud
         # @param Items: 比较条件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
+        # @param CycleStep: 周期性模板默认周期，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleStep: Integer
 
-        attr_accessor :Items
+        attr_accessor :Items, :CycleStep
         
-        def initialize(items=nil)
+        def initialize(items=nil, cyclestep=nil)
           @Items = items
+          @CycleStep = cyclestep
         end
 
         def deserialize(params)
@@ -1744,6 +1748,7 @@ module TencentCloud
               @Items << compareruleitem_tmp
             end
           end
+          @CycleStep = params['CycleStep']
         end
       end
 

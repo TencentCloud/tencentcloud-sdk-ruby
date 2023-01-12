@@ -1413,7 +1413,7 @@ module TencentCloud
         end
       end
 
-      # 用户进出房间信息
+      # 房间内的事件
       class InOutTimeInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 进入房间时间
         # @type StartTime: Integer
@@ -1747,19 +1747,24 @@ module TencentCloud
         # @param StrRoomId: 字符串房间id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrRoomId: String
+        # @param StrUins: 房间里用户字符串uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrUins: Array
 
-        attr_accessor :RoomId, :Uins, :StrRoomId
+        attr_accessor :RoomId, :Uins, :StrRoomId, :StrUins
         
-        def initialize(roomid=nil, uins=nil, strroomid=nil)
+        def initialize(roomid=nil, uins=nil, strroomid=nil, struins=nil)
           @RoomId = roomid
           @Uins = uins
           @StrRoomId = strroomid
+          @StrUins = struins
         end
 
         def deserialize(params)
           @RoomId = params['RoomId']
           @Uins = params['Uins']
           @StrRoomId = params['StrRoomId']
+          @StrUins = params['StrUins']
         end
       end
 

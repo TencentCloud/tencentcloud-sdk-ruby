@@ -4329,10 +4329,13 @@ module TencentCloud
         # @type RecordNum: Integer
         # @param PageDuration: Duration
         # @type PageDuration: String
+        # @param CreateTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :StaticDuration, :PagePv, :ApiFail, :ApiNum, :StaticFail, :ProjectID, :PageUv, :ApiDuration, :Score, :PageError, :StaticNum, :RecordNum, :PageDuration
+        attr_accessor :StaticDuration, :PagePv, :ApiFail, :ApiNum, :StaticFail, :ProjectID, :PageUv, :ApiDuration, :Score, :PageError, :StaticNum, :RecordNum, :PageDuration, :CreateTime
         
-        def initialize(staticduration=nil, pagepv=nil, apifail=nil, apinum=nil, staticfail=nil, projectid=nil, pageuv=nil, apiduration=nil, score=nil, pageerror=nil, staticnum=nil, recordnum=nil, pageduration=nil)
+        def initialize(staticduration=nil, pagepv=nil, apifail=nil, apinum=nil, staticfail=nil, projectid=nil, pageuv=nil, apiduration=nil, score=nil, pageerror=nil, staticnum=nil, recordnum=nil, pageduration=nil, createtime=nil)
           @StaticDuration = staticduration
           @PagePv = pagepv
           @ApiFail = apifail
@@ -4346,6 +4349,7 @@ module TencentCloud
           @StaticNum = staticnum
           @RecordNum = recordnum
           @PageDuration = pageduration
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -4362,6 +4366,7 @@ module TencentCloud
           @StaticNum = params['StaticNum']
           @RecordNum = params['RecordNum']
           @PageDuration = params['PageDuration']
+          @CreateTime = params['CreateTime']
         end
       end
 

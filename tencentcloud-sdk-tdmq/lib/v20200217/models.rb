@@ -2014,7 +2014,7 @@ module TencentCloud
         # @type Topic: String
         # @param Namespaces: 主题所在的命名空间，目前支持在单个命名空间下创建主题
         # @type Namespaces: Array
-        # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder
+        # @param Type: 主题类型，可选值为Normal, PartitionedOrder, Transaction, DelayScheduled。
         # @type Type: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String

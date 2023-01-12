@@ -3321,6 +3321,113 @@ module TencentCloud
         end
       end
 
+      # 高危命令数据(新)
+      class BashEventNew < TencentCloud::Common::AbstractModel
+        # @param Id: 数据ID
+        # @type Id: Integer
+        # @param Uuid: 云镜ID
+        # @type Uuid: String
+        # @param Quuid: 主机ID
+        # @type Quuid: String
+        # @param HostIp: 主机内网IP
+        # @type HostIp: String
+        # @param User: 执行用户名
+        # @type User: String
+        # @param Platform: 平台类型
+        # @type Platform: Integer
+        # @param BashCmd: 执行命令
+        # @type BashCmd: String
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleLevel: 规则等级：1-高 2-中 3-低
+        # @type RuleLevel: Integer
+        # @param Status: 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3 = 已忽略
+        # @type Status: Integer
+        # @param CreateTime: 发生时间
+        # @type CreateTime: String
+        # @param MachineName: 主机名
+        # @type MachineName: String
+        # @param DetectBy: 0: bash日志 1: 实时监控(雷霆版)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectBy: Integer
+        # @param Pid: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: String
+        # @param Exe: 进程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exe: String
+        # @param ModifyTime: 处理时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleCategory: Integer
+        # @param RegexBashCmd: 自动生成的正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegexBashCmd: String
+        # @param MachineType: 0:普通 1:专业版 2:旗舰版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineType: Integer
+        # @param MachineExtraInfo: 机器额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :MachineType, :MachineExtraInfo
+        
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, machinetype=nil, machineextrainfo=nil)
+          @Id = id
+          @Uuid = uuid
+          @Quuid = quuid
+          @HostIp = hostip
+          @User = user
+          @Platform = platform
+          @BashCmd = bashcmd
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleLevel = rulelevel
+          @Status = status
+          @CreateTime = createtime
+          @MachineName = machinename
+          @DetectBy = detectby
+          @Pid = pid
+          @Exe = exe
+          @ModifyTime = modifytime
+          @RuleCategory = rulecategory
+          @RegexBashCmd = regexbashcmd
+          @MachineType = machinetype
+          @MachineExtraInfo = machineextrainfo
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @HostIp = params['HostIp']
+          @User = params['User']
+          @Platform = params['Platform']
+          @BashCmd = params['BashCmd']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleLevel = params['RuleLevel']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @MachineName = params['MachineName']
+          @DetectBy = params['DetectBy']
+          @Pid = params['Pid']
+          @Exe = params['Exe']
+          @ModifyTime = params['ModifyTime']
+          @RuleCategory = params['RuleCategory']
+          @RegexBashCmd = params['RegexBashCmd']
+          @MachineType = params['MachineType']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
+        end
+      end
+
       # 高危命令规则
       class BashRule < TencentCloud::Common::AbstractModel
         # @param Id: 规则ID
@@ -8534,6 +8641,86 @@ module TencentCloud
               baselineruletopinfo_tmp = BaselineRuleTopInfo.new
               baselineruletopinfo_tmp.deserialize(i)
               @RuleTopList << baselineruletopinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBashEventsNew请求参数结构体
+      class DescribeBashEventsNewRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件。
+        # <li>HostName - String - 是否必填：否 - 主机名</li>
+        # <li>Hostip - String - 是否必填：否 - 主机内网IP</li>
+        # <li>HostIp - String - 是否必填：否 - 主机内网IP</li>
+        # <li>RuleCategory - Int - 是否必填：否 - 策略类型,全部或者单选(0:系统 1:用户)</li>
+        # <li>RuleName - String - 是否必填：否 - 策略名称</li>
+        # <li>RuleLevel - Int - 是否必填：否 - 威胁等级,可以多选</li>
+        # <li>Status - Int - 是否必填：否 - 处理状态,可多选(0:待处理 1:已处理 2:已加白  3:已忽略 4:已删除 5:已拦截)</li>
+        # <li>DetectBy - Int - 是否必填：否 - 数据来源,可多选(0:bash日志 1:实时监控)</li>
+        # <li>StartTime - String - 是否必填：否 - 开始时间</li>
+        # <li>EndTime - String - 是否必填：否 - 结束时间</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：根据请求次数排序：asc-升序/desc-降序
+        # @type Order: String
+        # @param By: 排序字段：CreateTime-发生时间。ModifyTime-处理时间
+        # @type By: String
+
+        attr_accessor :Limit, :Filters, :Offset, :Order, :By
+        
+        def initialize(limit=nil, filters=nil, offset=nil, order=nil, by=nil)
+          @Limit = limit
+          @Filters = filters
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeBashEventsNew返回参数结构体
+      class DescribeBashEventsNewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param List: 高危命令事件列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              basheventnew_tmp = BashEventNew.new
+              basheventnew_tmp.deserialize(i)
+              @List << basheventnew_tmp
             end
           end
           @RequestId = params['RequestId']

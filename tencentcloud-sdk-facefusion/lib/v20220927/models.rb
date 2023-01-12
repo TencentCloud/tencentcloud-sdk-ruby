@@ -134,9 +134,9 @@ module TencentCloud
 
       # FuseFace请求参数结构体
       class FuseFaceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 活动 ID，请在人脸融合控制台查看。
+        # @param ProjectId: 活动 ID，请在<a href="https://console.cloud.tencent.com/facefusion" target="_blank">人脸融合控制台</a>查看。
         # @type ProjectId: String
-        # @param ModelId: 素材 ID，请在人脸融合控制台查看。
+        # @param ModelId: 素材 ID，请在<a href="https://console.cloud.tencent.com/facefusion" target="_blank">人脸融合控制台</a>查看。
         # @type ModelId: String
         # @param RspImgType: 返回图像方式（url 或 base64) ，二选一。url有效期为7天。
         # @type RspImgType: String
