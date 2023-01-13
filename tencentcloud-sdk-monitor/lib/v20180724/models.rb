@@ -1019,6 +1019,33 @@ module TencentCloud
         end
       end
 
+      # CheckIsPrometheusNewUser请求参数结构体
+      class CheckIsPrometheusNewUserRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CheckIsPrometheusNewUser返回参数结构体
+      class CheckIsPrometheusNewUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CleanGrafanaInstance请求参数结构体
       class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
@@ -2048,6 +2075,42 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusRecordRuleYaml请求参数结构体
+      class CreatePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Content: yaml的内容
+        # @type Content: String
+
+        attr_accessor :InstanceId, :Content
+        
+        def initialize(instanceid=nil, content=nil)
+          @InstanceId = instanceid
+          @Content = content
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Content = params['Content']
+        end
+      end
+
+      # CreatePrometheusRecordRuleYaml返回参数结构体
+      class CreatePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusScrapeJob请求参数结构体
       class CreatePrometheusScrapeJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID，例如：prom-abcd1234
@@ -2088,6 +2151,45 @@ module TencentCloud
 
         def deserialize(params)
           @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusTemp请求参数结构体
+      class CreatePrometheusTempRequest < TencentCloud::Common::AbstractModel
+        # @param Template: 模板设置
+        # @type Template: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusTemp`
+
+        attr_accessor :Template
+        
+        def initialize(template=nil)
+          @Template = template
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = PrometheusTemp.new
+            @Template.deserialize(params['Template'])
+          end
+        end
+      end
+
+      # CreatePrometheusTemp返回参数结构体
+      class CreatePrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板Id
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
           @RequestId = params['RequestId']
         end
       end
@@ -2600,6 +2702,42 @@ module TencentCloud
         end
       end
 
+      # DeletePrometheusRecordRuleYaml请求参数结构体
+      class DeletePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Names: 聚合规则列表
+        # @type Names: Array
+
+        attr_accessor :InstanceId, :Names
+        
+        def initialize(instanceid=nil, names=nil)
+          @InstanceId = instanceid
+          @Names = names
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Names = params['Names']
+        end
+      end
+
+      # DeletePrometheusRecordRuleYaml返回参数结构体
+      class DeletePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrometheusScrapeJobs请求参数结构体
       class DeletePrometheusScrapeJobsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -2626,6 +2764,81 @@ module TencentCloud
 
       # DeletePrometheusScrapeJobs返回参数结构体
       class DeletePrometheusScrapeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTemp请求参数结构体
+      class DeletePrometheusTempRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeletePrometheusTemp返回参数结构体
+      class DeletePrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTempSync请求参数结构体
+      class DeletePrometheusTempSyncRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+        # @param Targets: 取消同步的对象列表
+        # @type Targets: Array
+
+        attr_accessor :TemplateId, :Targets
+        
+        def initialize(templateid=nil, targets=nil)
+          @TemplateId = templateid
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
+            end
+          end
+        end
+      end
+
+      # DeletePrometheusTempSync返回参数结构体
+      class DeletePrometheusTempSyncResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6302,6 +6515,44 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAgentInstances请求参数结构体
+      class DescribePrometheusAgentInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # 可以是tke, eks, edge的集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribePrometheusAgentInstances返回参数结构体
+      class DescribePrometheusAgentInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Instances: 关联该集群的实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Instances, :RequestId
+        
+        def initialize(instances=nil, requestid=nil)
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Instances = params['Instances']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusAgents请求参数结构体
       class DescribePrometheusAgentsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -6366,6 +6617,286 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAlertPolicy请求参数结构体
+      class DescribePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Filters: 过滤
+        # 支持ID，Name
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrometheusAlertPolicy返回参数结构体
+      class DescribePrometheusAlertPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param AlertRules: 告警详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertRules: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlertRules, :Total, :RequestId
+        
+        def initialize(alertrules=nil, total=nil, requestid=nil)
+          @AlertRules = alertrules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlertRules'].nil?
+            @AlertRules = []
+            params['AlertRules'].each do |i|
+              prometheusalertpolicyitem_tmp = PrometheusAlertPolicyItem.new
+              prometheusalertpolicyitem_tmp.deserialize(i)
+              @AlertRules << prometheusalertpolicyitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusConfig请求参数结构体
+      class DescribePrometheusConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :InstanceId, :ClusterId, :ClusterType
+        
+        def initialize(instanceid=nil, clusterid=nil, clustertype=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribePrometheusConfig返回参数结构体
+      class DescribePrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusInstanceDetail请求参数结构体
+      class DescribePrometheusInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribePrometheusInstanceDetail返回参数结构体
+      class DescribePrometheusInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID
+        # @type SubnetId: String
+        # @param InstanceStatus: 实例业务状态。取值范围：
+
+        # 1：正在创建
+        # 2：运行中
+        # 3：异常
+        # 4：重建中
+        # 5：销毁中
+        # 6：已停服
+        # 8：欠费停服中
+        # 9：欠费已停服
+        # @type InstanceStatus: Integer
+        # @param ChargeStatus: 计费状态
+
+        # 1：正常
+        # 2：过期
+        # 3：销毁
+        # 4：分配中
+        # 5：分配失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeStatus: Integer
+        # @param EnableGrafana: 是否开启 Grafana
+        # 0：不开启
+        # 1：开启
+        # @type EnableGrafana: Integer
+        # @param GrafanaURL: Grafana 面板 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
+        # @param InstanceChargeType: 实例计费模式。取值范围：
+
+        # 2：包年包月
+        # 3：按量
+        # @type InstanceChargeType: Integer
+        # @param SpecName: 规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+        # @param DataRetentionTime: 存储周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRetentionTime: Integer
+        # @param ExpireTime: 购买的实例过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param AutoRenewFlag: 自动续费标记
+
+        # 0：不自动续费
+        # 1：开启自动续费
+        # 2：禁止自动续费
+        # -1：无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :InstanceName, :VpcId, :SubnetId, :InstanceStatus, :ChargeStatus, :EnableGrafana, :GrafanaURL, :InstanceChargeType, :SpecName, :DataRetentionTime, :ExpireTime, :AutoRenewFlag, :RequestId
+        
+        def initialize(instanceid=nil, instancename=nil, vpcid=nil, subnetid=nil, instancestatus=nil, chargestatus=nil, enablegrafana=nil, grafanaurl=nil, instancechargetype=nil, specname=nil, dataretentiontime=nil, expiretime=nil, autorenewflag=nil, requestid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceStatus = instancestatus
+          @ChargeStatus = chargestatus
+          @EnableGrafana = enablegrafana
+          @GrafanaURL = grafanaurl
+          @InstanceChargeType = instancechargetype
+          @SpecName = specname
+          @DataRetentionTime = dataretentiontime
+          @ExpireTime = expiretime
+          @AutoRenewFlag = autorenewflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceStatus = params['InstanceStatus']
+          @ChargeStatus = params['ChargeStatus']
+          @EnableGrafana = params['EnableGrafana']
+          @GrafanaURL = params['GrafanaURL']
+          @InstanceChargeType = params['InstanceChargeType']
+          @SpecName = params['SpecName']
+          @DataRetentionTime = params['DataRetentionTime']
+          @ExpireTime = params['ExpireTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusInstanceInitStatus请求参数结构体
+      class DescribePrometheusInstanceInitStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribePrometheusInstanceInitStatus返回参数结构体
+      class DescribePrometheusInstanceInitStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 实例初始化状态，取值：
+        # uninitialized 未初始化
+        # initializing 初始化中
+        # running 初始化完成，运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Steps: 初始化任务步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Steps: Array
+        # @param EksClusterId: 实例eks集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EksClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Steps, :EksClusterId, :RequestId
+        
+        def initialize(status=nil, steps=nil, eksclusterid=nil, requestid=nil)
+          @Status = status
+          @Steps = steps
+          @EksClusterId = eksclusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              taskstepinfo_tmp = TaskStepInfo.new
+              taskstepinfo_tmp.deserialize(i)
+              @Steps << taskstepinfo_tmp
+            end
+          end
+          @EksClusterId = params['EksClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusInstanceUsage请求参数结构体
       class DescribePrometheusInstanceUsageRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
@@ -6414,6 +6945,71 @@ module TencentCloud
               @UsageSet << prometheusinstancetenantusage_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusInstancesOverview请求参数结构体
+      class DescribePrometheusInstancesOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 用于分页
+        # @type Offset: Integer
+        # @param Limit: 用于分页
+        # @type Limit: Integer
+        # @param Filters: 过滤实例，目前支持：
+        # ID: 通过实例ID来过滤
+        # Name: 通过实例名称来过滤
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrometheusInstancesOverview返回参数结构体
+      class DescribePrometheusInstancesOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Instances: 实例列表
+        # @type Instances: Array
+        # @param Total: 实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Instances, :Total, :RequestId
+        
+        def initialize(instances=nil, total=nil, requestid=nil)
+          @Instances = instances
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              prometheusinstancesoverview_tmp = PrometheusInstancesOverview.new
+              prometheusinstancesoverview_tmp.deserialize(i)
+              @Instances << prometheusinstancesoverview_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -6517,6 +7113,125 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusRecordRuleYaml请求参数结构体
+      class DescribePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Filters: 过滤，当前支持
+        # Name = Name
+        # Values = 目标名称列表
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrometheusRecordRuleYaml返回参数结构体
+      class DescribePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusRecordRules请求参数结构体
+      class DescribePrometheusRecordRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Filters: 过滤
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrometheusRecordRules返回参数结构体
+      class DescribePrometheusRecordRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 聚合规则
+        # @type Records: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :Total, :RequestId
+        
+        def initialize(records=nil, total=nil, requestid=nil)
+          @Records = records
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              prometheusrecordruleyamlitem_tmp = PrometheusRecordRuleYamlItem.new
+              prometheusrecordruleyamlitem_tmp.deserialize(i)
+              @Records << prometheusrecordruleyamlitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusScrapeJobs请求参数结构体
       class DescribePrometheusScrapeJobsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -6581,6 +7296,116 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTemp请求参数结构体
+      class DescribePrometheusTempRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 模糊过滤条件，支持
+        # Level 按模板级别过滤
+        # Name 按名称过滤
+        # Describe 按描述过滤
+        # ID 按templateId过滤
+        # @type Filters: Array
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 总数限制
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrometheusTemp返回参数结构体
+      class DescribePrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: 模板列表
+        # @type Templates: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :Total, :RequestId
+        
+        def initialize(templates=nil, total=nil, requestid=nil)
+          @Templates = templates
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Templates'].nil?
+            @Templates = []
+            params['Templates'].each do |i|
+              prometheustemp_tmp = PrometheusTemp.new
+              prometheustemp_tmp.deserialize(i)
+              @Templates << prometheustemp_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTempSync请求参数结构体
+      class DescribePrometheusTempSyncRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribePrometheusTempSync返回参数结构体
+      class DescribePrometheusTempSyncResponse < TencentCloud::Common::AbstractModel
+        # @param Targets: 同步目标详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Targets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Targets, :RequestId
+        
+        def initialize(targets=nil, requestid=nil)
+          @Targets = targets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7174,6 +7999,30 @@ module TencentCloud
         end
       end
 
+      # 查询过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤方式（=, !=, in）
+        # @type Type: String
+        # @param Key: 过滤维度名
+        # @type Key: String
+        # @param Value: 过滤值，in过滤方式用逗号分割多个值
+        # @type Value: String
+
+        attr_accessor :Type, :Key, :Value
+        
+        def initialize(type=nil, key=nil, value=nil)
+          @Type = type
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # GetMonitorData请求参数结构体
       class GetMonitorDataRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间，如QCE/CVM。各个云产品的详细命名空间说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
@@ -7759,6 +8608,17 @@ module TencentCloud
           @Category = params['Category']
           @InstanceDesc = params['InstanceDesc']
           @GrafanaDashboardURL = params['GrafanaDashboardURL']
+        end
+      end
+
+      # k8s中标签，一般以数组的方式存在
+      class Label < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -8762,6 +9622,85 @@ module TencentCloud
         end
       end
 
+      # ModifyPrometheusRecordRuleYaml请求参数结构体
+      class ModifyPrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Name: 聚合实例名称
+        # @type Name: String
+        # @param Content: 新的内容
+        # @type Content: String
+
+        attr_accessor :InstanceId, :Name, :Content
+        
+        def initialize(instanceid=nil, name=nil, content=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Content = content
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Content = params['Content']
+        end
+      end
+
+      # ModifyPrometheusRecordRuleYaml返回参数结构体
+      class ModifyPrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrometheusTemp请求参数结构体
+      class ModifyPrometheusTempRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param Template: 修改内容
+        # @type Template: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusTempModify`
+
+        attr_accessor :TemplateId, :Template
+        
+        def initialize(templateid=nil, template=nil)
+          @TemplateId = templateid
+          @Template = template
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['Template'].nil?
+            @Template = PrometheusTempModify.new
+            @Template.deserialize(params['Template'])
+          end
+        end
+      end
+
+      # ModifyPrometheusTemp返回参数结构体
+      class ModifyPrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 监控类型详细信息
       class MonitorTypeInfo < TencentCloud::Common::AbstractModel
         # @param Id: 监控类型ID
@@ -9135,6 +10074,173 @@ module TencentCloud
         end
       end
 
+      # 告警渠道使用自建alertmanager的配置
+      class PrometheusAlertManagerConfig < TencentCloud::Common::AbstractModel
+        # @param Url: alertmanager url
+        # @type Url: String
+        # @param ClusterType: alertmanager部署所在集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param ClusterId: alertmanager部署所在集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+
+        attr_accessor :Url, :ClusterType, :ClusterId
+        
+        def initialize(url=nil, clustertype=nil, clusterid=nil)
+          @Url = url
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # 托管prometheus告警策略实例
+      class PrometheusAlertPolicyItem < TencentCloud::Common::AbstractModel
+        # @param Name: 策略名称
+        # @type Name: String
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param Id: 告警策略 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param TemplateId: 如果该告警来自模板下发，则TemplateId为模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param Notification: 告警渠道，模板中使用可能返回null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Notification: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusNotificationItem`
+        # @param UpdatedAt: 最后修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param ClusterId: 如果告警策略来源于用户集群CRD资源定义，则ClusterId为所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+
+        attr_accessor :Name, :Rules, :Id, :TemplateId, :Notification, :UpdatedAt, :ClusterId
+        
+        def initialize(name=nil, rules=nil, id=nil, templateid=nil, notification=nil, updatedat=nil, clusterid=nil)
+          @Name = name
+          @Rules = rules
+          @Id = id
+          @TemplateId = templateid
+          @Notification = notification
+          @UpdatedAt = updatedat
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              prometheusalertrule_tmp = PrometheusAlertRule.new
+              prometheusalertrule_tmp.deserialize(i)
+              @Rules << prometheusalertrule_tmp
+            end
+          end
+          @Id = params['Id']
+          @TemplateId = params['TemplateId']
+          unless params['Notification'].nil?
+            @Notification = PrometheusNotificationItem.new
+            @Notification.deserialize(params['Notification'])
+          end
+          @UpdatedAt = params['UpdatedAt']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # Prometheus告警规则
+      class PrometheusAlertRule < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Rule: prometheus语句
+        # @type Rule: String
+        # @param Labels: 额外标签
+        # @type Labels: Array
+        # @param Template: 告警发送模板
+        # @type Template: String
+        # @param For: 持续时间
+        # @type For: String
+        # @param Describe: 该条规则的描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param Annotations: 参考prometheus rule中的annotations
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Annotations: Array
+        # @param RuleState: 告警规则状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleState: Integer
+
+        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe, :Annotations, :RuleState
+        
+        def initialize(name=nil, rule=nil, labels=nil, template=nil, _for=nil, describe=nil, annotations=nil, rulestate=nil)
+          @Name = name
+          @Rule = rule
+          @Labels = labels
+          @Template = template
+          @For = _for
+          @Describe = describe
+          @Annotations = annotations
+          @RuleState = rulestate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rule = params['Rule']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          @Template = params['Template']
+          @For = params['For']
+          @Describe = params['Describe']
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Annotations << label_tmp
+            end
+          end
+          @RuleState = params['RuleState']
+        end
+      end
+
+      # prometheus配置
+      class PrometheusConfigItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Config: 配置内容
+        # @type Config: String
+        # @param TemplateId: 用于出参，如果该配置来至模板，则为模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+
+        attr_accessor :Name, :Config, :TemplateId
+        
+        def initialize(name=nil, config=nil, templateid=nil)
+          @Name = name
+          @Config = config
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Config = params['Config']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
       # 实例的授权信息
       class PrometheusInstanceGrantInfo < TencentCloud::Common::AbstractModel
         # @param HasChargeOperation: 是否有计费操作权限(1=有，2=无)
@@ -9412,6 +10518,206 @@ module TencentCloud
         end
       end
 
+      # 托管prometheusV2实例概览
+      class PrometheusInstancesOverview < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param InstanceStatus: 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:销毁中； 6:已停机； 7: 已删除）
+        # @type InstanceStatus: Integer
+        # @param ChargeStatus: 计费状态（1:正常；2:过期; 3:销毁; 4:分配中; 5:分配失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeStatus: Integer
+        # @param EnableGrafana: 是否开启 Grafana（0:不开启，1:开启）
+        # @type EnableGrafana: Integer
+        # @param GrafanaURL: Grafana 面板 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
+        # @param InstanceChargeType: 实例付费类型（1:试用版；2:预付费）
+        # @type InstanceChargeType: Integer
+        # @param SpecName: 规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+        # @param DataRetentionTime: 存储周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRetentionTime: Integer
+        # @param ExpireTime: 购买的实例过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param AutoRenewFlag: 自动续费标记(0:不自动续费；1:开启自动续费；2:禁止自动续费；-1:无效)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param BoundTotal: 绑定集群总数
+        # @type BoundTotal: Integer
+        # @param BoundNormal: 绑定集群正常状态总数
+        # @type BoundNormal: Integer
+
+        attr_accessor :InstanceId, :InstanceName, :VpcId, :SubnetId, :InstanceStatus, :ChargeStatus, :EnableGrafana, :GrafanaURL, :InstanceChargeType, :SpecName, :DataRetentionTime, :ExpireTime, :AutoRenewFlag, :BoundTotal, :BoundNormal
+        
+        def initialize(instanceid=nil, instancename=nil, vpcid=nil, subnetid=nil, instancestatus=nil, chargestatus=nil, enablegrafana=nil, grafanaurl=nil, instancechargetype=nil, specname=nil, dataretentiontime=nil, expiretime=nil, autorenewflag=nil, boundtotal=nil, boundnormal=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceStatus = instancestatus
+          @ChargeStatus = chargestatus
+          @EnableGrafana = enablegrafana
+          @GrafanaURL = grafanaurl
+          @InstanceChargeType = instancechargetype
+          @SpecName = specname
+          @DataRetentionTime = dataretentiontime
+          @ExpireTime = expiretime
+          @AutoRenewFlag = autorenewflag
+          @BoundTotal = boundtotal
+          @BoundNormal = boundnormal
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceStatus = params['InstanceStatus']
+          @ChargeStatus = params['ChargeStatus']
+          @EnableGrafana = params['EnableGrafana']
+          @GrafanaURL = params['GrafanaURL']
+          @InstanceChargeType = params['InstanceChargeType']
+          @SpecName = params['SpecName']
+          @DataRetentionTime = params['DataRetentionTime']
+          @ExpireTime = params['ExpireTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @BoundTotal = params['BoundTotal']
+          @BoundNormal = params['BoundNormal']
+        end
+      end
+
+      # 告警通知渠道配置
+      class PrometheusNotificationItem < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param Type: 通道类型，默认为amp，支持以下
+        # amp
+        # webhook
+        # alertmanager
+        # @type Type: String
+        # @param WebHook: 如果Type为webhook, 则该字段为必填项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebHook: String
+        # @param AlertManager: 如果Type为alertmanager, 则该字段为必填项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertManager: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertManagerConfig`
+        # @param RepeatInterval: 收敛时间
+        # @type RepeatInterval: String
+        # @param TimeRangeStart: 生效起始时间
+        # @type TimeRangeStart: String
+        # @param TimeRangeEnd: 生效结束时间
+        # @type TimeRangeEnd: String
+        # @param NotifyWay: 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyWay: Array
+        # @param ReceiverGroups: 告警接收组（用户组）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverGroups: Array
+        # @param PhoneNotifyOrder: 电话告警顺序。
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNotifyOrder: Array
+        # @param PhoneCircleTimes: 电话告警次数。
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleTimes: Integer
+        # @param PhoneInnerInterval: 电话告警轮内间隔。单位：秒
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneInnerInterval: Integer
+        # @param PhoneCircleInterval: 电话告警轮外间隔。单位：秒
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleInterval: Integer
+        # @param PhoneArriveNotice: 电话告警触达通知
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneArriveNotice: Boolean
+
+        attr_accessor :Enabled, :Type, :WebHook, :AlertManager, :RepeatInterval, :TimeRangeStart, :TimeRangeEnd, :NotifyWay, :ReceiverGroups, :PhoneNotifyOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :PhoneArriveNotice
+        
+        def initialize(enabled=nil, type=nil, webhook=nil, alertmanager=nil, repeatinterval=nil, timerangestart=nil, timerangeend=nil, notifyway=nil, receivergroups=nil, phonenotifyorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, phonearrivenotice=nil)
+          @Enabled = enabled
+          @Type = type
+          @WebHook = webhook
+          @AlertManager = alertmanager
+          @RepeatInterval = repeatinterval
+          @TimeRangeStart = timerangestart
+          @TimeRangeEnd = timerangeend
+          @NotifyWay = notifyway
+          @ReceiverGroups = receivergroups
+          @PhoneNotifyOrder = phonenotifyorder
+          @PhoneCircleTimes = phonecircletimes
+          @PhoneInnerInterval = phoneinnerinterval
+          @PhoneCircleInterval = phonecircleinterval
+          @PhoneArriveNotice = phonearrivenotice
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Type = params['Type']
+          @WebHook = params['WebHook']
+          unless params['AlertManager'].nil?
+            @AlertManager = PrometheusAlertManagerConfig.new
+            @AlertManager.deserialize(params['AlertManager'])
+          end
+          @RepeatInterval = params['RepeatInterval']
+          @TimeRangeStart = params['TimeRangeStart']
+          @TimeRangeEnd = params['TimeRangeEnd']
+          @NotifyWay = params['NotifyWay']
+          @ReceiverGroups = params['ReceiverGroups']
+          @PhoneNotifyOrder = params['PhoneNotifyOrder']
+          @PhoneCircleTimes = params['PhoneCircleTimes']
+          @PhoneInnerInterval = params['PhoneInnerInterval']
+          @PhoneCircleInterval = params['PhoneCircleInterval']
+          @PhoneArriveNotice = params['PhoneArriveNotice']
+        end
+      end
+
+      # prometheus聚合规则实例详情，包含所属集群ID
+      class PrometheusRecordRuleYamlItem < TencentCloud::Common::AbstractModel
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param UpdateTime: 最近更新时间
+        # @type UpdateTime: String
+        # @param TemplateId: Yaml内容
+        # @type TemplateId: String
+        # @param Content: 如果该聚合规则来至模板，则TemplateId为模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param ClusterId: 该聚合规则如果来源于用户集群crd资源定义，则ClusterId为所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+
+        attr_accessor :Name, :UpdateTime, :TemplateId, :Content, :ClusterId
+        
+        def initialize(name=nil, updatetime=nil, templateid=nil, content=nil, clusterid=nil)
+          @Name = name
+          @UpdateTime = updatetime
+          @TemplateId = templateid
+          @Content = content
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @UpdateTime = params['UpdateTime']
+          @TemplateId = params['TemplateId']
+          @Content = params['Content']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
       # prometheus 报警规则 KV 参数
       class PrometheusRuleKV < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -9566,6 +10872,258 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 模板实例
+      class PrometheusTemp < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名称
+        # @type Name: String
+        # @param Level: 模板维度，支持以下类型
+        # instance 实例级别
+        # cluster 集群级别
+        # @type Level: String
+        # @param Describe: 模板描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param RecordRules: 当Level为instance时有效，
+        # 模板中的聚合规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordRules: Array
+        # @param ServiceMonitors: 当Level为cluster时有效，
+        # 模板中的ServiceMonitor规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: 当Level为cluster时有效，
+        # 模板中的PodMonitors规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodMonitors: Array
+        # @param RawJobs: 当Level为cluster时有效，
+        # 模板中的RawJobs规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawJobs: Array
+        # @param TemplateId: 模板的ID, 用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param UpdateTime: 最近更新时间，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Version: 当前版本，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param IsDefault: 是否系统提供的默认模板，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Boolean
+        # @param AlertDetailRules: 当Level为instance时有效，
+        # 模板中的告警配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertDetailRules: Array
+        # @param TargetsTotal: 关联实例数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetsTotal: Integer
+
+        attr_accessor :Name, :Level, :Describe, :RecordRules, :ServiceMonitors, :PodMonitors, :RawJobs, :TemplateId, :UpdateTime, :Version, :IsDefault, :AlertDetailRules, :TargetsTotal
+        
+        def initialize(name=nil, level=nil, describe=nil, recordrules=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, templateid=nil, updatetime=nil, version=nil, isdefault=nil, alertdetailrules=nil, targetstotal=nil)
+          @Name = name
+          @Level = level
+          @Describe = describe
+          @RecordRules = recordrules
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @TemplateId = templateid
+          @UpdateTime = updatetime
+          @Version = version
+          @IsDefault = isdefault
+          @AlertDetailRules = alertdetailrules
+          @TargetsTotal = targetstotal
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Level = params['Level']
+          @Describe = params['Describe']
+          unless params['RecordRules'].nil?
+            @RecordRules = []
+            params['RecordRules'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RecordRules << prometheusconfigitem_tmp
+            end
+          end
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          @TemplateId = params['TemplateId']
+          @UpdateTime = params['UpdateTime']
+          @Version = params['Version']
+          @IsDefault = params['IsDefault']
+          unless params['AlertDetailRules'].nil?
+            @AlertDetailRules = []
+            params['AlertDetailRules'].each do |i|
+              prometheusalertpolicyitem_tmp = PrometheusAlertPolicyItem.new
+              prometheusalertpolicyitem_tmp.deserialize(i)
+              @AlertDetailRules << prometheusalertpolicyitem_tmp
+            end
+          end
+          @TargetsTotal = params['TargetsTotal']
+        end
+      end
+
+      # 云原生Prometheus模板可修改项
+      class PrometheusTempModify < TencentCloud::Common::AbstractModel
+        # @param Name: 修改名称
+        # @type Name: String
+        # @param Describe: 修改描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param ServiceMonitors: 当Level为cluster时有效，
+        # 模板中的ServiceMonitor规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: 当Level为cluster时有效，
+        # 模板中的PodMonitors规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodMonitors: Array
+        # @param RawJobs: 当Level为cluster时有效，
+        # 模板中的RawJobs规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawJobs: Array
+        # @param RecordRules: 当Level为instance时有效，
+        # 模板中的聚合规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordRules: Array
+        # @param AlertDetailRules: 修改内容，只有当模板类型是Alert时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertDetailRules: Array
+
+        attr_accessor :Name, :Describe, :ServiceMonitors, :PodMonitors, :RawJobs, :RecordRules, :AlertDetailRules
+        
+        def initialize(name=nil, describe=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, recordrules=nil, alertdetailrules=nil)
+          @Name = name
+          @Describe = describe
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @RecordRules = recordrules
+          @AlertDetailRules = alertdetailrules
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Describe = params['Describe']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RecordRules'].nil?
+            @RecordRules = []
+            params['RecordRules'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RecordRules << prometheusconfigitem_tmp
+            end
+          end
+          unless params['AlertDetailRules'].nil?
+            @AlertDetailRules = []
+            params['AlertDetailRules'].each do |i|
+              prometheusalertpolicyitem_tmp = PrometheusAlertPolicyItem.new
+              prometheusalertpolicyitem_tmp.deserialize(i)
+              @AlertDetailRules << prometheusalertpolicyitem_tmp
+            end
+          end
+        end
+      end
+
+      # 云原生Prometheus模板同步目标
+      class PrometheusTemplateSyncTarget < TencentCloud::Common::AbstractModel
+        # @param Region: 目标所在地域
+        # @type Region: String
+        # @param InstanceId: 目标实例
+        # @type InstanceId: String
+        # @param ClusterId: 集群id，只有当采集模板的Level为cluster的时候需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param SyncTime: 最后一次同步时间， 用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncTime: String
+        # @param Version: 当前使用的模板版本，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param ClusterType: 集群类型，只有当采集模板的Level为cluster的时候需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param InstanceName: 用于出参，实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ClusterName: 用于出参，集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+
+        attr_accessor :Region, :InstanceId, :ClusterId, :SyncTime, :Version, :ClusterType, :InstanceName, :ClusterName
+        
+        def initialize(region=nil, instanceid=nil, clusterid=nil, synctime=nil, version=nil, clustertype=nil, instancename=nil, clustername=nil)
+          @Region = region
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @SyncTime = synctime
+          @Version = version
+          @ClusterType = clustertype
+          @InstanceName = instancename
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @SyncTime = params['SyncTime']
+          @Version = params['Version']
+          @ClusterType = params['ClusterType']
+          @InstanceName = params['InstanceName']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -9801,6 +11359,42 @@ module TencentCloud
         end
       end
 
+      # RunPrometheusInstance请求参数结构体
+      class RunPrometheusInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SubnetId: 子网ID，默认使用实例所用子网初始化，也可通过该参数传递新的子网ID初始化
+        # @type SubnetId: String
+
+        attr_accessor :InstanceId, :SubnetId
+        
+        def initialize(instanceid=nil, subnetid=nil)
+          @InstanceId = instanceid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # RunPrometheusInstance返回参数结构体
+      class RunPrometheusInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SendCustomAlarmMsg请求参数结构体
       class SendCustomAlarmMsgRequest < TencentCloud::Common::AbstractModel
         # @param Module: 接口模块名，当前取值monitor
@@ -9920,6 +11514,49 @@ module TencentCloud
         end
       end
 
+      # SyncPrometheusTemp请求参数结构体
+      class SyncPrometheusTempRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 实例id
+        # @type TemplateId: String
+        # @param Targets: 同步目标
+        # @type Targets: Array
+
+        attr_accessor :TemplateId, :Targets
+        
+        def initialize(templateid=nil, targets=nil)
+          @TemplateId = templateid
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
+            end
+          end
+        end
+      end
+
+      # SyncPrometheusTemp返回参数结构体
+      class SyncPrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签key
@@ -9984,6 +11621,45 @@ module TencentCloud
           @RegionId = params['RegionId']
           @BindingStatus = params['BindingStatus']
           @TagStatus = params['TagStatus']
+        end
+      end
+
+      # 任务步骤信息
+      class TaskStepInfo < TencentCloud::Common::AbstractModel
+        # @param Step: 步骤名称
+        # @type Step: String
+        # @param LifeState: 生命周期
+        # pending : 步骤未开始
+        # running: 步骤执行中
+        # success: 步骤成功完成
+        # failed: 步骤失败
+        # @type LifeState: String
+        # @param StartAt: 步骤开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param EndAt: 步骤结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndAt: String
+        # @param FailedMsg: 若步骤生命周期为failed,则此字段显示错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMsg: String
+
+        attr_accessor :Step, :LifeState, :StartAt, :EndAt, :FailedMsg
+        
+        def initialize(step=nil, lifestate=nil, startat=nil, endat=nil, failedmsg=nil)
+          @Step = step
+          @LifeState = lifestate
+          @StartAt = startat
+          @EndAt = endat
+          @FailedMsg = failedmsg
+        end
+
+        def deserialize(params)
+          @Step = params['Step']
+          @LifeState = params['LifeState']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          @FailedMsg = params['FailedMsg']
         end
       end
 

@@ -6172,15 +6172,18 @@ module TencentCloud
         # @type UnBlockTime: String
         # @param ActionType: 解封类型（user：自助解封；auto：自动解封； update：升级解封；bind：绑定高防包解封）
         # @type ActionType: String
+        # @param ProtectFlag: 高防标记，0：非高防，1：高防
+        # @type ProtectFlag: Integer
 
-        attr_accessor :Ip, :Status, :BlockTime, :UnBlockTime, :ActionType
+        attr_accessor :Ip, :Status, :BlockTime, :UnBlockTime, :ActionType, :ProtectFlag
         
-        def initialize(ip=nil, status=nil, blocktime=nil, unblocktime=nil, actiontype=nil)
+        def initialize(ip=nil, status=nil, blocktime=nil, unblocktime=nil, actiontype=nil, protectflag=nil)
           @Ip = ip
           @Status = status
           @BlockTime = blocktime
           @UnBlockTime = unblocktime
           @ActionType = actiontype
+          @ProtectFlag = protectflag
         end
 
         def deserialize(params)
@@ -6189,6 +6192,7 @@ module TencentCloud
           @BlockTime = params['BlockTime']
           @UnBlockTime = params['UnBlockTime']
           @ActionType = params['ActionType']
+          @ProtectFlag = params['ProtectFlag']
         end
       end
 

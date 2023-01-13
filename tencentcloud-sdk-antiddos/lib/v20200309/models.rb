@@ -4253,7 +4253,7 @@ module TencentCloud
         # @type FilterBoundStatus: String
         # @param FilterInstanceIdList: 实例id数组
         # @type FilterInstanceIdList: Array
-        # @param FilterEnterpriseFlag: 企业版搜索
+        # @param FilterEnterpriseFlag: 企业版搜索,  1：包含重保护航套餐下的企业版列表, 2: 不包含重保护航套餐的企业版列表
         # @type FilterEnterpriseFlag: Integer
         # @param FilterLightFlag: 轻量版搜索
         # @type FilterLightFlag: Integer
@@ -4265,10 +4265,12 @@ module TencentCloud
         # @type FilterTrialFlag: Integer
         # @param FilterConvoy: 重保护航搜索
         # @type FilterConvoy: Integer
+        # @param ExcludeAdvancedInfo: 默认false；接口传true，返回数据中不包含高级信息，高级信息包含：InstanceList[0].Usage。
+        # @type ExcludeAdvancedInfo: Boolean
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil, excludeadvancedinfo=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4285,6 +4287,7 @@ module TencentCloud
           @FilterTag = filtertag
           @FilterTrialFlag = filtertrialflag
           @FilterConvoy = filterconvoy
+          @ExcludeAdvancedInfo = excludeadvancedinfo
         end
 
         def deserialize(params)
@@ -4307,6 +4310,7 @@ module TencentCloud
           end
           @FilterTrialFlag = params['FilterTrialFlag']
           @FilterConvoy = params['FilterConvoy']
+          @ExcludeAdvancedInfo = params['ExcludeAdvancedInfo']
         end
       end
 
@@ -6131,10 +6135,12 @@ module TencentCloud
         # @type FailedThreshold: Integer
         # @param PassiveStatusCode: 被动探测判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         # @type PassiveStatusCode: Integer
+        # @param PassiveStatus: 被动探测配置状态，0： 正常，1：配置中，2：配置失败
+        # @type PassiveStatus: Integer
 
-        attr_accessor :Status, :Enable, :RuleId, :Url, :Interval, :AliveNum, :KickNum, :Method, :StatusCode, :ProtocolFlag, :PassiveEnable, :BlockInter, :FailedCountInter, :FailedThreshold, :PassiveStatusCode
+        attr_accessor :Status, :Enable, :RuleId, :Url, :Interval, :AliveNum, :KickNum, :Method, :StatusCode, :ProtocolFlag, :PassiveEnable, :BlockInter, :FailedCountInter, :FailedThreshold, :PassiveStatusCode, :PassiveStatus
         
-        def initialize(status=nil, enable=nil, ruleid=nil, url=nil, interval=nil, alivenum=nil, kicknum=nil, method=nil, statuscode=nil, protocolflag=nil, passiveenable=nil, blockinter=nil, failedcountinter=nil, failedthreshold=nil, passivestatuscode=nil)
+        def initialize(status=nil, enable=nil, ruleid=nil, url=nil, interval=nil, alivenum=nil, kicknum=nil, method=nil, statuscode=nil, protocolflag=nil, passiveenable=nil, blockinter=nil, failedcountinter=nil, failedthreshold=nil, passivestatuscode=nil, passivestatus=nil)
           @Status = status
           @Enable = enable
           @RuleId = ruleid
@@ -6150,6 +6156,7 @@ module TencentCloud
           @FailedCountInter = failedcountinter
           @FailedThreshold = failedthreshold
           @PassiveStatusCode = passivestatuscode
+          @PassiveStatus = passivestatus
         end
 
         def deserialize(params)
@@ -6168,6 +6175,7 @@ module TencentCloud
           @FailedCountInter = params['FailedCountInter']
           @FailedThreshold = params['FailedThreshold']
           @PassiveStatusCode = params['PassiveStatusCode']
+          @PassiveStatus = params['PassiveStatus']
         end
       end
 

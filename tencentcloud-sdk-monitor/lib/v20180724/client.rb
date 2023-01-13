@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 判断用户是否为云原生监控新用户，即在任何地域下均未创建过监控实例的用户
+
+        # @param request: Request instance for CheckIsPrometheusNewUser.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CheckIsPrometheusNewUserRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CheckIsPrometheusNewUserResponse`
+        def CheckIsPrometheusNewUser(request)
+          body = send_request('CheckIsPrometheusNewUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckIsPrometheusNewUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 强制销毁 Grafana 实例
 
         # @param request: Request instance for CleanGrafanaInstance.
@@ -367,6 +391,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 以Yaml的方式创建聚合规则
+
+        # @param request: Request instance for CreatePrometheusRecordRuleYaml.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreatePrometheusRecordRuleYamlRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreatePrometheusRecordRuleYamlResponse`
+        def CreatePrometheusRecordRuleYaml(request)
+          body = send_request('CreatePrometheusRecordRuleYaml', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrometheusRecordRuleYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 Prometheus 抓取任务
 
         # @param request: Request instance for CreatePrometheusScrapeJob.
@@ -377,6 +425,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePrometheusScrapeJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建一个云原生Prometheus模板
+
+        # @param request: Request instance for CreatePrometheusTemp.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreatePrometheusTempRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreatePrometheusTempResponse`
+        def CreatePrometheusTemp(request)
+          body = send_request('CreatePrometheusTemp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrometheusTempResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -657,6 +729,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除聚合实例
+
+        # @param request: Request instance for DeletePrometheusRecordRuleYaml.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusRecordRuleYamlRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusRecordRuleYamlResponse`
+        def DeletePrometheusRecordRuleYaml(request)
+          body = send_request('DeletePrometheusRecordRuleYaml', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrometheusRecordRuleYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除 Prometheus 抓取任务
 
         # @param request: Request instance for DeletePrometheusScrapeJobs.
@@ -667,6 +763,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrometheusScrapeJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除一个云原生Prometheus配置模板
+
+        # @param request: Request instance for DeletePrometheusTemp.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusTempRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusTempResponse`
+        def DeletePrometheusTemp(request)
+          body = send_request('DeletePrometheusTemp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrometheusTempResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
+
+        # @param request: Request instance for DeletePrometheusTempSync.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusTempSyncRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeletePrometheusTempSyncResponse`
+        def DeletePrometheusTempSync(request)
+          body = send_request('DeletePrometheusTempSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrometheusTempSyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1525,6 +1669,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取关联目标集群的实例列表
+
+        # @param request: Request instance for DescribePrometheusAgentInstances.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusAgentInstancesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusAgentInstancesResponse`
+        def DescribePrometheusAgentInstances(request)
+          body = send_request('DescribePrometheusAgentInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusAgentInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出 Prometheus CVM Agent
 
         # @param request: Request instance for DescribePrometheusAgents.
@@ -1535,6 +1703,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePrometheusAgentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取2.0实例告警策略列表
+
+        # @param request: Request instance for DescribePrometheusAlertPolicy.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusAlertPolicyRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusAlertPolicyResponse`
+        def DescribePrometheusAlertPolicy(request)
+          body = send_request('DescribePrometheusAlertPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusAlertPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取Prometheus配置
+
+        # @param request: Request instance for DescribePrometheusConfig.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusConfigRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusConfigResponse`
+        def DescribePrometheusConfig(request)
+          body = send_request('DescribePrometheusConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TMP实例详情
+
+        # @param request: Request instance for DescribePrometheusInstanceDetail.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceDetailResponse`
+        def DescribePrometheusInstanceDetail(request)
+          body = send_request('DescribePrometheusInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取2.0实例初始化任务状态
+
+        # @param request: Request instance for DescribePrometheusInstanceInitStatus.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceInitStatusRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceInitStatusResponse`
+        def DescribePrometheusInstanceInitStatus(request)
+          body = send_request('DescribePrometheusInstanceInitStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusInstanceInitStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1601,6 +1865,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取与云监控融合实例列表
+
+        # @param request: Request instance for DescribePrometheusInstancesOverview.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstancesOverviewRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstancesOverviewResponse`
+        def DescribePrometheusInstancesOverview(request)
+          body = send_request('DescribePrometheusInstancesOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusInstancesOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取Prometheus聚合规则yaml列表
+
+        # @param request: Request instance for DescribePrometheusRecordRuleYaml.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRuleYamlRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRuleYamlResponse`
+        def DescribePrometheusRecordRuleYaml(request)
+          body = send_request('DescribePrometheusRecordRuleYaml', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusRecordRuleYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取聚合规则列表，包含关联集群内crd资源创建的record rule
+
+        # @param request: Request instance for DescribePrometheusRecordRules.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRulesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRulesResponse`
+        def DescribePrometheusRecordRules(request)
+          body = send_request('DescribePrometheusRecordRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusRecordRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出 Prometheus 抓取任务
 
         # @param request: Request instance for DescribePrometheusScrapeJobs.
@@ -1611,6 +1947,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePrometheusScrapeJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取模板列表，默认模板将总是在最前面
+
+        # @param request: Request instance for DescribePrometheusTemp.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusTempRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusTempResponse`
+        def DescribePrometheusTemp(request)
+          body = send_request('DescribePrometheusTemp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusTempResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取模板关联实例信息，针对V2版本实例
+
+        # @param request: Request instance for DescribePrometheusTempSync.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusTempSyncRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusTempSyncResponse`
+        def DescribePrometheusTempSync(request)
+          body = send_request('DescribePrometheusTempSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusTempSyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2161,6 +2545,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过yaml的方式修改Prometheus聚合实例
+
+        # @param request: Request instance for ModifyPrometheusRecordRuleYaml.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusRecordRuleYamlRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusRecordRuleYamlResponse`
+        def ModifyPrometheusRecordRuleYaml(request)
+          body = send_request('ModifyPrometheusRecordRuleYaml', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrometheusRecordRuleYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改模板内容
+
+        # @param request: Request instance for ModifyPrometheusTemp.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusTempRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusTempResponse`
+        def ModifyPrometheusTemp(request)
+          body = send_request('ModifyPrometheusTemp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrometheusTempResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 默认接口请求频率限制：50次/秒。
         # 默认单租户指标上限：100个。
         # 单次上报最多 30 个指标/值对，请求返回错误时，请求中所有的指标/值均不会被保存。
@@ -2215,6 +2647,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 初始化TMP实例，开启集成中心时调用
+
+        # @param request: Request instance for RunPrometheusInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::RunPrometheusInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::RunPrometheusInstanceResponse`
+        def RunPrometheusInstance(request)
+          body = send_request('RunPrometheusInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunPrometheusInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 发送自定义消息告警
 
         # @param request: Request instance for SendCustomAlarmMsg.
@@ -2250,6 +2706,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetDefaultAlarmPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步模板到实例或者集群，针对V2版本实例
+
+        # @param request: Request instance for SyncPrometheusTemp.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::SyncPrometheusTempRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::SyncPrometheusTempResponse`
+        def SyncPrometheusTemp(request)
+          body = send_request('SyncPrometheusTemp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncPrometheusTempResponse.new
             model.deserialize(response['Response'])
             model
           else

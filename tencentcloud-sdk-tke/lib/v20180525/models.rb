@@ -2229,6 +2229,8 @@ module TencentCloud
         # @type Name: String
         # @param SubnetIds: 子网ID列表
         # @type SubnetIds: Array
+        # @param SecurityGroupIds: 安全组ID列表
+        # @type SecurityGroupIds: Array
         # @param Labels: 虚拟节点label
         # @type Labels: Array
         # @param Taints: 虚拟节点taint
@@ -2242,12 +2244,13 @@ module TencentCloud
         # - windows
         # @type OS: String
 
-        attr_accessor :ClusterId, :Name, :SubnetIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
+        attr_accessor :ClusterId, :Name, :SubnetIds, :SecurityGroupIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
         
-        def initialize(clusterid=nil, name=nil, subnetids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
+        def initialize(clusterid=nil, name=nil, subnetids=nil, securitygroupids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
           @ClusterId = clusterid
           @Name = name
           @SubnetIds = subnetids
+          @SecurityGroupIds = securitygroupids
           @Labels = labels
           @Taints = taints
           @VirtualNodes = virtualnodes
@@ -2259,6 +2262,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Name = params['Name']
           @SubnetIds = params['SubnetIds']
+          @SecurityGroupIds = params['SecurityGroupIds']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
@@ -15621,10 +15625,12 @@ module TencentCloud
         # @type SkipPreCheck: Boolean
         # @param MaxNotReadyPercent: 最大可容忍的不可用Pod比例
         # @type MaxNotReadyPercent: Float
+        # @param UpgradeRunTime: 是否升级节点运行时，默认false不升级
+        # @type UpgradeRunTime: Boolean
 
-        attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent
+        attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent, :UpgradeRunTime
         
-        def initialize(clusterid=nil, operation=nil, upgradetype=nil, instanceids=nil, resetparam=nil, skipprecheck=nil, maxnotreadypercent=nil)
+        def initialize(clusterid=nil, operation=nil, upgradetype=nil, instanceids=nil, resetparam=nil, skipprecheck=nil, maxnotreadypercent=nil, upgraderuntime=nil)
           @ClusterId = clusterid
           @Operation = operation
           @UpgradeType = upgradetype
@@ -15632,6 +15638,7 @@ module TencentCloud
           @ResetParam = resetparam
           @SkipPreCheck = skipprecheck
           @MaxNotReadyPercent = maxnotreadypercent
+          @UpgradeRunTime = upgraderuntime
         end
 
         def deserialize(params)
@@ -15645,6 +15652,7 @@ module TencentCloud
           end
           @SkipPreCheck = params['SkipPreCheck']
           @MaxNotReadyPercent = params['MaxNotReadyPercent']
+          @UpgradeRunTime = params['UpgradeRunTime']
         end
       end
 

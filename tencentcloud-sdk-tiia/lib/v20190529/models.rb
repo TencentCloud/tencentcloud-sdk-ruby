@@ -2355,6 +2355,50 @@ module TencentCloud
         end
       end
 
+      # UpdateImage请求参数结构体
+      class UpdateImageRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库ID。
+        # @type GroupId: String
+        # @param EntityId: 物品ID，最多支持64个字符。
+        # @type EntityId: String
+        # @param PicName: 图片名称，最多支持64个字符。
+        # @type PicName: String
+        # @param Tags: 新的自定义标签，最多不超过10个，格式为JSON。
+        # @type Tags: String
+
+        attr_accessor :GroupId, :EntityId, :PicName, :Tags
+        
+        def initialize(groupid=nil, entityid=nil, picname=nil, tags=nil)
+          @GroupId = groupid
+          @EntityId = entityid
+          @PicName = picname
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @EntityId = params['EntityId']
+          @PicName = params['PicName']
+          @Tags = params['Tags']
+        end
+      end
+
+      # UpdateImage返回参数结构体
+      class UpdateImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

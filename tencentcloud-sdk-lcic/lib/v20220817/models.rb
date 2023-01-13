@@ -315,6 +315,33 @@ module TencentCloud
         end
       end
 
+      # DescribeAppDetail请求参数结构体
+      class DescribeAppDetailRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAppDetail返回参数结构体
+      class DescribeAppDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoom请求参数结构体
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
@@ -669,19 +696,23 @@ module TencentCloud
       class ModifyAppRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
-        # @param Callback: 回调地址。端口目前仅支持80、443
+        # @param Callback: 回调地址。
         # @type Callback: String
+        # @param CallbackKey: 回调key。
+        # @type CallbackKey: String
 
-        attr_accessor :SdkAppId, :Callback
+        attr_accessor :SdkAppId, :Callback, :CallbackKey
         
-        def initialize(sdkappid=nil, callback=nil)
+        def initialize(sdkappid=nil, callback=nil, callbackkey=nil)
           @SdkAppId = sdkappid
           @Callback = callback
+          @CallbackKey = callbackkey
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
         end
       end
 

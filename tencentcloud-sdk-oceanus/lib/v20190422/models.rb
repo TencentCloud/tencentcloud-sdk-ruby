@@ -2330,10 +2330,16 @@ module TencentCloud
         # @param SerialId: 快照 serialId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialId: String
+        # @param TimeConsuming: 耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeConsuming: Integer
+        # @param PathStatus: 快照路径状态 1：可用；2：不可用；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathStatus: Integer
 
-        attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId
+        attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId, :TimeConsuming, :PathStatus
         
-        def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil)
+        def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil, timeconsuming=nil, pathstatus=nil)
           @Id = id
           @VersionId = versionid
           @Status = status
@@ -2346,6 +2352,8 @@ module TencentCloud
           @Description = description
           @Timeout = timeout
           @SerialId = serialid
+          @TimeConsuming = timeconsuming
+          @PathStatus = pathstatus
         end
 
         def deserialize(params)
@@ -2361,6 +2369,8 @@ module TencentCloud
           @Description = params['Description']
           @Timeout = params['Timeout']
           @SerialId = params['SerialId']
+          @TimeConsuming = params['TimeConsuming']
+          @PathStatus = params['PathStatus']
         end
       end
 

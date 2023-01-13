@@ -8263,6 +8263,7 @@ module TencentCloud
         # @param Area: 地域，取值有：
         # <li>mainland：国内；</li>
         # <li>overseas：海外。</li>
+        # <li>global：全球。</li>
         # @type Area: String
 
         attr_accessor :Id, :PayMode, :CreateTime, :EnableTime, :ExpireTime, :Status, :Sv, :AutoRenewFlag, :PlanId, :Area

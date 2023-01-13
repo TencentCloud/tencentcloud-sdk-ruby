@@ -789,15 +789,21 @@ module TencentCloud
       class AiAnalysisTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频内容分析模板 ID。
         # @type Definition: Integer
+        # @param ExtendedParameter: 扩展参数，其值为序列化的 json字符串。
+        # 注意：此参数为定制需求参数，需要线下对接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
         
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
