@@ -1257,10 +1257,16 @@ module TencentCloud
         # @type Saturday: String
         # @param Sunday: 周日的时间窗，格式如： 02:00-06:00
         # @type Sunday: String
+        # @param BackupPeriodStrategy: 常规备份保留策略，weekly-按周备份，monthly-按月备份，默认为weekly
+        # @type BackupPeriodStrategy: String
+        # @param Days: 如果设置为按月备份，需填入每月具体备份日期，相邻备份天数不得超过两天。例[1,4,7,9,11,14,17,19,22,25,28,30,31]
+        # @type Days: Array
+        # @param BackupPeriodTime: 月度备份时间窗，BackupPeriodStrategy为monthly时必填。格式如： 02:00-06:00
+        # @type BackupPeriodTime: String
 
-        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
+        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :BackupPeriodStrategy, :Days, :BackupPeriodTime
         
-        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil)
+        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil, backupperiodstrategy=nil, days=nil, backupperiodtime=nil)
           @Monday = monday
           @Tuesday = tuesday
           @Wednesday = wednesday
@@ -1268,6 +1274,9 @@ module TencentCloud
           @Friday = friday
           @Saturday = saturday
           @Sunday = sunday
+          @BackupPeriodStrategy = backupperiodstrategy
+          @Days = days
+          @BackupPeriodTime = backupperiodtime
         end
 
         def deserialize(params)
@@ -1278,6 +1287,9 @@ module TencentCloud
           @Friday = params['Friday']
           @Saturday = params['Saturday']
           @Sunday = params['Sunday']
+          @BackupPeriodStrategy = params['BackupPeriodStrategy']
+          @Days = params['Days']
+          @BackupPeriodTime = params['BackupPeriodTime']
         end
       end
 

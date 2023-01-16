@@ -258,6 +258,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 渠道版创建签署链接，需要联系运营人员开白后才可使用
+
+        # @param request: Request instance for ChannelCreateFlowSignUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowSignUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowSignUrlResponse`
+        def ChannelCreateFlowSignUrl(request)
+          body = send_request('ChannelCreateFlowSignUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowSignUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
         # 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
 

@@ -733,6 +733,81 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateFlowSignUrl请求参数结构体
+      class ChannelCreateFlowSignUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 流程编号
+        # @type FlowId: String
+        # @param FlowApproverInfos: 流程签署人，其中Name和Mobile必传，其他可不传，ApproverType目前只支持PERSON类型的签署人，如果不传默认为该值。还需注意签署人只能有手写签名和时间类型的签署控件，其他类型的填写控件和签署控件暂时都未支持。
+        # @type FlowApproverInfos: Array
+        # @param Operator: 用户信息，暂未开放
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Organization: 机构信息，暂未开放
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+
+        attr_accessor :Agent, :FlowId, :FlowApproverInfos, :Operator, :Organization
+        
+        def initialize(agent=nil, flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil)
+          @Agent = agent
+          @FlowId = flowid
+          @FlowApproverInfos = flowapproverinfos
+          @Operator = operator
+          @Organization = organization
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+          unless params['FlowApproverInfos'].nil?
+            @FlowApproverInfos = []
+            params['FlowApproverInfos'].each do |i|
+              flowapproverinfo_tmp = FlowApproverInfo.new
+              flowapproverinfo_tmp.deserialize(i)
+              @FlowApproverInfos << flowapproverinfo_tmp
+            end
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+        end
+      end
+
+      # ChannelCreateFlowSignUrl返回参数结构体
+      class ChannelCreateFlowSignUrlResponse < TencentCloud::Common::AbstractModel
+        # @param FlowApproverUrlInfos: 签署人签署链接信息
+        # @type FlowApproverUrlInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowApproverUrlInfos, :RequestId
+        
+        def initialize(flowapproverurlinfos=nil, requestid=nil)
+          @FlowApproverUrlInfos = flowapproverurlinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowApproverUrlInfos'].nil?
+            @FlowApproverUrlInfos = []
+            params['FlowApproverUrlInfos'].each do |i|
+              flowapproverurlinfo_tmp = FlowApproverUrlInfo.new
+              flowapproverurlinfo_tmp.deserialize(i)
+              @FlowApproverUrlInfos << flowapproverurlinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateMultiFlowSignQRCode请求参数结构体
       class ChannelCreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。
@@ -2580,6 +2655,34 @@ module TencentCloud
             @ApproverOption.deserialize(params['ApproverOption'])
           end
           @ApproverNeedSignReview = params['ApproverNeedSignReview']
+        end
+      end
+
+      # 签署人签署链接信息
+      class FlowApproverUrlInfo < TencentCloud::Common::AbstractModel
+        # @param SignUrl: 签署链接，注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # @type SignUrl: String
+        # @param Mobile: 签署人手机号
+        # @type Mobile: String
+        # @param Name: 签署人姓名
+        # @type Name: String
+        # @param ApproverType: 签署人类型 PERSON-个人
+        # @type ApproverType: String
+
+        attr_accessor :SignUrl, :Mobile, :Name, :ApproverType
+        
+        def initialize(signurl=nil, mobile=nil, name=nil, approvertype=nil)
+          @SignUrl = signurl
+          @Mobile = mobile
+          @Name = name
+          @ApproverType = approvertype
+        end
+
+        def deserialize(params)
+          @SignUrl = params['SignUrl']
+          @Mobile = params['Mobile']
+          @Name = params['Name']
+          @ApproverType = params['ApproverType']
         end
       end
 

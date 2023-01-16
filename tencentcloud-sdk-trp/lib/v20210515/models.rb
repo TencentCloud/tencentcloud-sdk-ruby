@@ -3126,10 +3126,14 @@ module TencentCloud
         # @type MerchantName: String
         # @param ProductName: 产品名称
         # @type ProductName: String
+        # @param AgentId: 渠道商ID
+        # @type AgentId: Integer
+        # @param Level: 码层级 0: 最小级, 1: 一级, 2: 二级
+        # @type Level: Integer
 
-        attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName
+        attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :AgentId, :Level
         
-        def initialize(code=nil, corpid=nil, packid=nil, batchid=nil, merchantid=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil)
+        def initialize(code=nil, corpid=nil, packid=nil, batchid=nil, merchantid=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, agentid=nil, level=nil)
           @Code = code
           @CorpId = corpid
           @PackId = packid
@@ -3141,6 +3145,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @MerchantName = merchantname
           @ProductName = productname
+          @AgentId = agentid
+          @Level = level
         end
 
         def deserialize(params)
@@ -3155,6 +3161,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @MerchantName = params['MerchantName']
           @ProductName = params['ProductName']
+          @AgentId = params['AgentId']
+          @Level = params['Level']
         end
       end
 

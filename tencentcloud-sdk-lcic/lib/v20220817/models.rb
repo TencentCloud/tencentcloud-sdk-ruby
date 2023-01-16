@@ -17,6 +17,17 @@
 module TencentCloud
   module Lcic
     module V20220817
+      # 应用配置信息
+      class AppConfig < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 应用自定义内容
       class AppCustomContent < TencentCloud::Common::AbstractModel
         # @param Scene: 场景参数，一个应用下可以设置多个不同场景。
@@ -317,27 +328,58 @@ module TencentCloud
 
       # DescribeAppDetail请求参数结构体
       class DescribeAppDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param DeveloperId: 开发商ID
+        # @type DeveloperId: String
 
+        attr_accessor :ApplicationId, :DeveloperId
         
-        def initialize()
+        def initialize(applicationid=nil, developerid=nil)
+          @ApplicationId = applicationid
+          @DeveloperId = developerid
         end
 
         def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @DeveloperId = params['DeveloperId']
         end
       end
 
       # DescribeAppDetail返回参数结构体
       class DescribeAppDetailResponse < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: SdkAppId
+        # @type SdkAppId: String
+        # @param AppConfig: 应用配置
+        # @type AppConfig: :class:`Tencentcloud::Lcic.v20220817.models.AppConfig`
+        # @param SceneConfig: 场景配置
+        # @type SceneConfig: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SdkAppId, :AppConfig, :SceneConfig, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(sdkappid=nil, appconfig=nil, sceneconfig=nil, requestid=nil)
+          @SdkAppId = sdkappid
+          @AppConfig = appconfig
+          @SceneConfig = sceneconfig
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['AppConfig'].nil?
+            @AppConfig = AppConfig.new
+            @AppConfig.deserialize(params['AppConfig'])
+          end
+          unless params['SceneConfig'].nil?
+            @SceneConfig = []
+            params['SceneConfig'].each do |i|
+              sceneitem_tmp = SceneItem.new
+              sceneitem_tmp.deserialize(i)
+              @SceneConfig << sceneitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -781,6 +823,17 @@ module TencentCloud
           @UserId = params['UserId']
           @Token = params['Token']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 场景配置
+      class SceneItem < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

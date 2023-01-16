@@ -288,6 +288,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建签署链接，需要联系运营人员开白后才可使用
+
+        # @param request: Request instance for CreateFlowSignUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowSignUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateFlowSignUrlResponse`
+        def CreateFlowSignUrl(request)
+          body = send_request('CreateFlowSignUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlowSignUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建员工
 
         # @param request: Request instance for CreateIntegrationEmployees.

@@ -788,7 +788,7 @@ module TencentCloud
       class DescribeAgeDetectTaskRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用id
         # @type BizId: Integer
-        # @param TaskId: 创建年龄语音识别任务时返回的taskid
+        # @param TaskId: [创建年龄语音识别任务](https://cloud.tencent.com/document/product/607/60620)时返回的taskid
         # @type TaskId: String
 
         attr_accessor :BizId, :TaskId
