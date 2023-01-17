@@ -99,12 +99,16 @@ module TencentCloud
         # @type Switch: String
         # @param AclUserRules: 用户自定义规则。
         # @type AclUserRules: Array
+        # @param Customizes: 托管定制规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Customizes: Array
 
-        attr_accessor :Switch, :AclUserRules
+        attr_accessor :Switch, :AclUserRules, :Customizes
         
-        def initialize(switch=nil, acluserrules=nil)
+        def initialize(switch=nil, acluserrules=nil, customizes=nil)
           @Switch = switch
           @AclUserRules = acluserrules
+          @Customizes = customizes
         end
 
         def deserialize(params)
@@ -115,6 +119,14 @@ module TencentCloud
               acluserrule_tmp = AclUserRule.new
               acluserrule_tmp.deserialize(i)
               @AclUserRules << acluserrule_tmp
+            end
+          end
+          unless params['Customizes'].nil?
+            @Customizes = []
+            params['Customizes'].each do |i|
+              acluserrule_tmp = AclUserRule.new
+              acluserrule_tmp.deserialize(i)
+              @Customizes << acluserrule_tmp
             end
           end
         end
@@ -5774,6 +5786,30 @@ module TencentCloud
         end
       end
 
+      # 慢速攻击的首段包配置。
+      class FirstPartConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param StatTime: 首段包的统计时长，单位是秒，即期望首段包的统计时长是多少，默认5秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatTime: Integer
+
+        attr_accessor :Switch, :StatTime
+        
+        def initialize(switch=nil, stattime=nil)
+          @Switch = switch
+          @StatTime = stattime
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @StatTime = params['StatTime']
+        end
+      end
+
       # 缓存遵循源站配置
       class FollowOrigin < TencentCloud::Common::AbstractModel
         # @param Switch: 遵循源站配置开关，取值有：
@@ -7928,7 +7964,7 @@ module TencentCloud
         end
       end
 
-      # RateLimit配置
+      # 速率限制规则
       class RateLimitConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 开关，取值有：
         # <li>on：开启；</li>
@@ -7942,14 +7978,18 @@ module TencentCloud
         # @param RateLimitIntelligence: 智能客户端过滤。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitIntelligence: :class:`Tencentcloud::Teo.v20220901.models.RateLimitIntelligence`
+        # @param RateLimitCustomizes: 速率限制-托管定制规则。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitCustomizes: Array
 
-        attr_accessor :Switch, :RateLimitUserRules, :RateLimitTemplate, :RateLimitIntelligence
+        attr_accessor :Switch, :RateLimitUserRules, :RateLimitTemplate, :RateLimitIntelligence, :RateLimitCustomizes
         
-        def initialize(switch=nil, ratelimituserrules=nil, ratelimittemplate=nil, ratelimitintelligence=nil)
+        def initialize(switch=nil, ratelimituserrules=nil, ratelimittemplate=nil, ratelimitintelligence=nil, ratelimitcustomizes=nil)
           @Switch = switch
           @RateLimitUserRules = ratelimituserrules
           @RateLimitTemplate = ratelimittemplate
           @RateLimitIntelligence = ratelimitintelligence
+          @RateLimitCustomizes = ratelimitcustomizes
         end
 
         def deserialize(params)
@@ -7969,6 +8009,14 @@ module TencentCloud
           unless params['RateLimitIntelligence'].nil?
             @RateLimitIntelligence = RateLimitIntelligence.new
             @RateLimitIntelligence.deserialize(params['RateLimitIntelligence'])
+          end
+          unless params['RateLimitCustomizes'].nil?
+            @RateLimitCustomizes = []
+            params['RateLimitCustomizes'].each do |i|
+              ratelimituserrule_tmp = RateLimitUserRule.new
+              ratelimituserrule_tmp.deserialize(i)
+              @RateLimitCustomizes << ratelimituserrule_tmp
+            end
           end
         end
       end
@@ -9050,10 +9098,13 @@ module TencentCloud
         # @param TemplateConfig: 模板配置。此处仅出参数使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateConfig: :class:`Tencentcloud::Teo.v20220901.models.TemplateConfig`
+        # @param SlowPostConfig: 慢速攻击配置。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlowPostConfig: :class:`Tencentcloud::Teo.v20220901.models.SlowPostConfig`
 
-        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig
+        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig, :SlowPostConfig
         
-        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil, templateconfig=nil)
+        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil, templateconfig=nil, slowpostconfig=nil)
           @WafConfig = wafconfig
           @RateLimitConfig = ratelimitconfig
           @AclConfig = aclconfig
@@ -9063,6 +9114,7 @@ module TencentCloud
           @ExceptConfig = exceptconfig
           @DropPageConfig = droppageconfig
           @TemplateConfig = templateconfig
+          @SlowPostConfig = slowpostconfig
         end
 
         def deserialize(params)
@@ -9101,6 +9153,10 @@ module TencentCloud
           unless params['TemplateConfig'].nil?
             @TemplateConfig = TemplateConfig.new
             @TemplateConfig.deserialize(params['TemplateConfig'])
+          end
+          unless params['SlowPostConfig'].nil?
+            @SlowPostConfig = SlowPostConfig.new
+            @SlowPostConfig.deserialize(params['SlowPostConfig'])
           end
         end
       end
@@ -9272,6 +9328,80 @@ module TencentCloud
           @MatchFrom = params['MatchFrom']
           @MatchContentType = params['MatchContentType']
           @MatchContent = params['MatchContent']
+        end
+      end
+
+      # 慢速攻击配置。
+      class SlowPostConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param FirstPartConfig: 首包配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstPartConfig: :class:`Tencentcloud::Teo.v20220901.models.FirstPartConfig`
+        # @param SlowRateConfig: 基础配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlowRateConfig: :class:`Tencentcloud::Teo.v20220901.models.SlowRateConfig`
+        # @param Action: 慢速攻击的处置动作，取值有：
+        # <li>monitor：观察；</li>
+        # <li>drop：拦截。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param RuleId: 本规则的Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+
+        attr_accessor :Switch, :FirstPartConfig, :SlowRateConfig, :Action, :RuleId
+        
+        def initialize(switch=nil, firstpartconfig=nil, slowrateconfig=nil, action=nil, ruleid=nil)
+          @Switch = switch
+          @FirstPartConfig = firstpartconfig
+          @SlowRateConfig = slowrateconfig
+          @Action = action
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['FirstPartConfig'].nil?
+            @FirstPartConfig = FirstPartConfig.new
+            @FirstPartConfig.deserialize(params['FirstPartConfig'])
+          end
+          unless params['SlowRateConfig'].nil?
+            @SlowRateConfig = SlowRateConfig.new
+            @SlowRateConfig.deserialize(params['SlowRateConfig'])
+          end
+          @Action = params['Action']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # 慢速攻击的基础配置。
+      class SlowRateConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Interval: 统计的间隔，单位是秒，即在首段包传输结束后，将数据传输轴按照本参数切分，每个分片独立计算慢速攻击。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param Threshold: 统计时应用的速率阈值，单位是bps，即如果本分片中的传输速率没达到本参数的值，则判定为慢速攻击，应用慢速攻击的处置方式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Integer
+
+        attr_accessor :Switch, :Interval, :Threshold
+        
+        def initialize(switch=nil, interval=nil, threshold=nil)
+          @Switch = switch
+          @Interval = interval
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Interval = params['Interval']
+          @Threshold = params['Threshold']
         end
       end
 

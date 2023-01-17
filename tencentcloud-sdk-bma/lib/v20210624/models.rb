@@ -880,10 +880,12 @@ module TencentCloud
         # @type ApplierId: String
         # @param ApplierName: 申请人姓名，用于存证和取证
         # @type ApplierName: String
+        # @param IsAutoRenew: 是否自动续期
+        # @type IsAutoRenew: String
 
-        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :SamplePublicURL, :GrantType, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName
+        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :SamplePublicURL, :GrantType, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName, :IsAutoRenew
         
-        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, samplepublicurl=nil, granttype=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil)
+        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, samplepublicurl=nil, granttype=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil, isautorenew=nil)
           @WorkName = workname
           @WorkCategory = workcategory
           @WorkType = worktype
@@ -915,6 +917,7 @@ module TencentCloud
           @MonitorEndTime = monitorendtime
           @ApplierId = applierid
           @ApplierName = appliername
+          @IsAutoRenew = isautorenew
         end
 
         def deserialize(params)
@@ -949,6 +952,7 @@ module TencentCloud
           @MonitorEndTime = params['MonitorEndTime']
           @ApplierId = params['ApplierId']
           @ApplierName = params['ApplierName']
+          @IsAutoRenew = params['IsAutoRenew']
         end
       end
 
@@ -1990,10 +1994,14 @@ module TencentCloud
         # @type EvidenceNote: String
         # @param TortSiteNum: 侵权站点数量
         # @type TortSiteNum: Integer
+        # @param MonitorEndTime: 监测截止时间
+        # @type MonitorEndTime: String
+        # @param AutoRenew: 是否自动续费
+        # @type AutoRenew: Integer
 
-        attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote, :WorkCategoryAll, :EvidenceStatus, :EvidenceNote, :TortSiteNum
+        attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote, :WorkCategoryAll, :EvidenceStatus, :EvidenceNote, :TortSiteNum, :MonitorEndTime, :AutoRenew
         
-        def initialize(workid=nil, workname=nil, worktype=nil, tortplatnum=nil, torturlnum=nil, monitortime=nil, monitorstatus=nil, workcategory=nil, inserttime=nil, monitornote=nil, workcategoryall=nil, evidencestatus=nil, evidencenote=nil, tortsitenum=nil)
+        def initialize(workid=nil, workname=nil, worktype=nil, tortplatnum=nil, torturlnum=nil, monitortime=nil, monitorstatus=nil, workcategory=nil, inserttime=nil, monitornote=nil, workcategoryall=nil, evidencestatus=nil, evidencenote=nil, tortsitenum=nil, monitorendtime=nil, autorenew=nil)
           @WorkId = workid
           @WorkName = workname
           @WorkType = worktype
@@ -2008,6 +2016,8 @@ module TencentCloud
           @EvidenceStatus = evidencestatus
           @EvidenceNote = evidencenote
           @TortSiteNum = tortsitenum
+          @MonitorEndTime = monitorendtime
+          @AutoRenew = autorenew
         end
 
         def deserialize(params)
@@ -2025,6 +2035,8 @@ module TencentCloud
           @EvidenceStatus = params['EvidenceStatus']
           @EvidenceNote = params['EvidenceNote']
           @TortSiteNum = params['TortSiteNum']
+          @MonitorEndTime = params['MonitorEndTime']
+          @AutoRenew = params['AutoRenew']
         end
       end
 

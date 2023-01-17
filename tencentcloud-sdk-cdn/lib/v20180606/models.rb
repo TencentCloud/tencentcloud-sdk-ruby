@@ -4385,6 +4385,76 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgePackTaskStatus请求参数结构体
+      class DescribeEdgePackTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Limit: 分页查询限制数目，默认为 100，最大可设置为 1000
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量，默认为 0
+        # @type Offset: Integer
+        # @param Filters: 查询条件过滤器
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :Limit, :Offset, :Filters
+        
+        def initialize(starttime=nil, endtime=nil, limit=nil, offset=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edgepacktaskfilter_tmp = EdgePackTaskFilter.new
+              edgepacktaskfilter_tmp.deserialize(i)
+              @Filters << edgepacktaskfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeEdgePackTaskStatus返回参数结构体
+      class DescribeEdgePackTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param EdgePackTaskStatusSet: 动态打包任务状态列表
+        # @type EdgePackTaskStatusSet: Array
+        # @param TotalCount: 总数，用于分页查询
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EdgePackTaskStatusSet, :TotalCount, :RequestId
+        
+        def initialize(edgepacktaskstatusset=nil, totalcount=nil, requestid=nil)
+          @EdgePackTaskStatusSet = edgepacktaskstatusset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EdgePackTaskStatusSet'].nil?
+            @EdgePackTaskStatusSet = []
+            params['EdgePackTaskStatusSet'].each do |i|
+              edgepacktaskstatus_tmp = EdgePackTaskStatus.new
+              edgepacktaskstatus_tmp.deserialize(i)
+              @EdgePackTaskStatusSet << edgepacktaskstatus_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEventLogData请求参数结构体
       class DescribeEventLogDataRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 防护类型，映射如下：
@@ -7101,6 +7171,73 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 动态打包任务过滤器
+      class EdgePackTaskFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名
+        # apk: apk名称
+        # status: 母包处理进度 done, failed, processing
+        # @type Name: String
+        # @param Value: 过滤字段值
+        # @type Value: Array
+        # @param Fuzzy: 是否启用模糊查询，仅支持过滤字段名为 apk。
+        # 模糊查询时，Value长度最大为1。
+        # @type Fuzzy: Boolean
+
+        attr_accessor :Name, :Value, :Fuzzy
+        
+        def initialize(name=nil, value=nil, fuzzy=nil)
+          @Name = name
+          @Value = value
+          @Fuzzy = fuzzy
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Fuzzy = params['Fuzzy']
+        end
+      end
+
+      # 动态打包任务状态
+      class EdgePackTaskStatus < TencentCloud::Common::AbstractModel
+        # @param Apk: APK 名称
+        # @type Apk: String
+        # @param DstDir: 输出目录
+        # @type DstDir: String
+        # @param UploadTime: 上传时间
+        # @type UploadTime: String
+        # @param Status: 任务状态
+        # created: 创建成功
+        # processing: 处理中
+        # done: 处理完成
+        # failed: 处理失败
+        # @type Status: String
+        # @param SrcDir: 上传目录
+        # @type SrcDir: Array
+        # @param StatusDesc: 失败任务状态详情
+        # @type StatusDesc: String
+
+        attr_accessor :Apk, :DstDir, :UploadTime, :Status, :SrcDir, :StatusDesc
+        
+        def initialize(apk=nil, dstdir=nil, uploadtime=nil, status=nil, srcdir=nil, statusdesc=nil)
+          @Apk = apk
+          @DstDir = dstdir
+          @UploadTime = uploadtime
+          @Status = status
+          @SrcDir = srcdir
+          @StatusDesc = statusdesc
+        end
+
+        def deserialize(params)
+          @Apk = params['Apk']
+          @DstDir = params['DstDir']
+          @UploadTime = params['UploadTime']
+          @Status = params['Status']
+          @SrcDir = params['SrcDir']
+          @StatusDesc = params['StatusDesc']
         end
       end
 

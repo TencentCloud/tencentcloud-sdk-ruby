@@ -619,6 +619,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
+
+        # @param request: Request instance for DescribeEdgePackTaskStatus.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeEdgePackTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeEdgePackTaskStatusResponse`
+        def DescribeEdgePackTaskStatus(request)
+          body = send_request('DescribeEdgePackTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgePackTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeEventLogData 用于查询事件日志统计曲线
 
         # @param request: Request instance for DescribeEventLogData.

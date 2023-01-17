@@ -1495,6 +1495,201 @@ module TencentCloud
         end
       end
 
+      # 集群详情
+      class ClusterV2 < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterDesc: 集群描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterDesc: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param VpcId: 集群所属私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param ClusterStatus: 集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: String
+        # @param ClusterCIDR: 集群CIDR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterCIDR: String
+        # @param ClusterTotalCpu: 集群总CPU，单位: 核
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterTotalCpu: Float
+        # @param ClusterTotalMem: 集群总内存，单位: G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterTotalMem: Float
+        # @param ClusterUsedCpu: 集群已使用CPU，单位: 核
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterUsedCpu: Float
+        # @param ClusterUsedMem: 集群已使用内存，单位: G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterUsedMem: Float
+        # @param InstanceCount: 集群机器实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCount: Integer
+        # @param RunInstanceCount: 集群运行中的机器实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunInstanceCount: Integer
+        # @param NormalInstanceCount: 集群正常状态的机器实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NormalInstanceCount: Integer
+        # @param DeleteFlag: 删除标记：true：可以删除；false：不可删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Boolean
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TsfRegionId: 集群所属TSF地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TsfRegionId: String
+        # @param TsfRegionName: 集群所属TSF地域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TsfRegionName: String
+        # @param TsfZoneId: 集群所属TSF可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TsfZoneId: String
+        # @param TsfZoneName: 集群所属TSF可用区名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TsfZoneName: String
+        # @param DeleteFlagReason: 集群不可删除的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlagReason: String
+        # @param SubnetId: 集群所属私有网络子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param ClusterLimitCpu: 集群剩余 cpu limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterLimitCpu: String
+        # @param ClusterLimitMem: 集群剩余 memory limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterLimitMem: String
+        # @param RunServiceInstanceCount: 运行服务实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunServiceInstanceCount: Integer
+        # @param OperationInfo: 给前端的按钮控制信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationInfo: :class:`Tencentcloud::Tsf.v20180326.models.OperationInfo`
+        # @param ClusterVersion: 容器集群版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterVersion: String
+        # @param GroupCount: 部署组总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupCount: Integer
+        # @param RunGroupCount: 运行中部署组数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunGroupCount: Integer
+        # @param StopGroupCount: 停止中部署组数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopGroupCount: Integer
+        # @param AbnormalGroupCount: 异常部署组数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbnormalGroupCount: Integer
+        # @param ClusterRemarkName: 集群备注名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterRemarkName: String
+        # @param KuberneteApiServer: api地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KuberneteApiServer: String
+        # @param KuberneteNativeType: K : kubeconfig, S : service account
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KuberneteNativeType: String
+        # @param KuberneteNativeSecret: native secret
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KuberneteNativeSecret: String
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterType, :VpcId, :ClusterStatus, :ClusterCIDR, :ClusterTotalCpu, :ClusterTotalMem, :ClusterUsedCpu, :ClusterUsedMem, :InstanceCount, :RunInstanceCount, :NormalInstanceCount, :DeleteFlag, :CreateTime, :UpdateTime, :TsfRegionId, :TsfRegionName, :TsfZoneId, :TsfZoneName, :DeleteFlagReason, :SubnetId, :ClusterLimitCpu, :ClusterLimitMem, :RunServiceInstanceCount, :OperationInfo, :ClusterVersion, :GroupCount, :RunGroupCount, :StopGroupCount, :AbnormalGroupCount, :ClusterRemarkName, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret
+        
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clustertype=nil, vpcid=nil, clusterstatus=nil, clustercidr=nil, clustertotalcpu=nil, clustertotalmem=nil, clusterusedcpu=nil, clusterusedmem=nil, instancecount=nil, runinstancecount=nil, normalinstancecount=nil, deleteflag=nil, createtime=nil, updatetime=nil, tsfregionid=nil, tsfregionname=nil, tsfzoneid=nil, tsfzonename=nil, deleteflagreason=nil, subnetid=nil, clusterlimitcpu=nil, clusterlimitmem=nil, runserviceinstancecount=nil, operationinfo=nil, clusterversion=nil, groupcount=nil, rungroupcount=nil, stopgroupcount=nil, abnormalgroupcount=nil, clusterremarkname=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterDesc = clusterdesc
+          @ClusterType = clustertype
+          @VpcId = vpcid
+          @ClusterStatus = clusterstatus
+          @ClusterCIDR = clustercidr
+          @ClusterTotalCpu = clustertotalcpu
+          @ClusterTotalMem = clustertotalmem
+          @ClusterUsedCpu = clusterusedcpu
+          @ClusterUsedMem = clusterusedmem
+          @InstanceCount = instancecount
+          @RunInstanceCount = runinstancecount
+          @NormalInstanceCount = normalinstancecount
+          @DeleteFlag = deleteflag
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TsfRegionId = tsfregionid
+          @TsfRegionName = tsfregionname
+          @TsfZoneId = tsfzoneid
+          @TsfZoneName = tsfzonename
+          @DeleteFlagReason = deleteflagreason
+          @SubnetId = subnetid
+          @ClusterLimitCpu = clusterlimitcpu
+          @ClusterLimitMem = clusterlimitmem
+          @RunServiceInstanceCount = runserviceinstancecount
+          @OperationInfo = operationinfo
+          @ClusterVersion = clusterversion
+          @GroupCount = groupcount
+          @RunGroupCount = rungroupcount
+          @StopGroupCount = stopgroupcount
+          @AbnormalGroupCount = abnormalgroupcount
+          @ClusterRemarkName = clusterremarkname
+          @KuberneteApiServer = kuberneteapiserver
+          @KuberneteNativeType = kubernetenativetype
+          @KuberneteNativeSecret = kubernetenativesecret
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterDesc = params['ClusterDesc']
+          @ClusterType = params['ClusterType']
+          @VpcId = params['VpcId']
+          @ClusterStatus = params['ClusterStatus']
+          @ClusterCIDR = params['ClusterCIDR']
+          @ClusterTotalCpu = params['ClusterTotalCpu']
+          @ClusterTotalMem = params['ClusterTotalMem']
+          @ClusterUsedCpu = params['ClusterUsedCpu']
+          @ClusterUsedMem = params['ClusterUsedMem']
+          @InstanceCount = params['InstanceCount']
+          @RunInstanceCount = params['RunInstanceCount']
+          @NormalInstanceCount = params['NormalInstanceCount']
+          @DeleteFlag = params['DeleteFlag']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TsfRegionId = params['TsfRegionId']
+          @TsfRegionName = params['TsfRegionName']
+          @TsfZoneId = params['TsfZoneId']
+          @TsfZoneName = params['TsfZoneName']
+          @DeleteFlagReason = params['DeleteFlagReason']
+          @SubnetId = params['SubnetId']
+          @ClusterLimitCpu = params['ClusterLimitCpu']
+          @ClusterLimitMem = params['ClusterLimitMem']
+          @RunServiceInstanceCount = params['RunServiceInstanceCount']
+          unless params['OperationInfo'].nil?
+            @OperationInfo = OperationInfo.new
+            @OperationInfo.deserialize(params['OperationInfo'])
+          end
+          @ClusterVersion = params['ClusterVersion']
+          @GroupCount = params['GroupCount']
+          @RunGroupCount = params['RunGroupCount']
+          @StopGroupCount = params['StopGroupCount']
+          @AbnormalGroupCount = params['AbnormalGroupCount']
+          @ClusterRemarkName = params['ClusterRemarkName']
+          @KuberneteApiServer = params['KuberneteApiServer']
+          @KuberneteNativeType = params['KuberneteNativeType']
+          @KuberneteNativeSecret = params['KuberneteNativeSecret']
+        end
+      end
+
       # 配置项
       class Config < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置项ID
@@ -1738,6 +1933,53 @@ module TencentCloud
           @LastConfigName = params['LastConfigName']
           @LastConfigVersion = params['LastConfigVersion']
           @RollbackFlag = params['RollbackFlag']
+        end
+      end
+
+      # 配置模板对象
+      class ConfigTemplate < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateId: 配置模板Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTemplateId: String
+        # @param ConfigTemplateName: 配置模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTemplateName: String
+        # @param ConfigTemplateDesc: 配置模板描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTemplateDesc: String
+        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTemplateType: String
+        # @param ConfigTemplateValue: 配置模板数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTemplateValue: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :ConfigTemplateId, :ConfigTemplateName, :ConfigTemplateDesc, :ConfigTemplateType, :ConfigTemplateValue, :CreateTime, :UpdateTime
+        
+        def initialize(configtemplateid=nil, configtemplatename=nil, configtemplatedesc=nil, configtemplatetype=nil, configtemplatevalue=nil, createtime=nil, updatetime=nil)
+          @ConfigTemplateId = configtemplateid
+          @ConfigTemplateName = configtemplatename
+          @ConfigTemplateDesc = configtemplatedesc
+          @ConfigTemplateType = configtemplatetype
+          @ConfigTemplateValue = configtemplatevalue
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ConfigTemplateId = params['ConfigTemplateId']
+          @ConfigTemplateName = params['ConfigTemplateName']
+          @ConfigTemplateDesc = params['ConfigTemplateDesc']
+          @ConfigTemplateType = params['ConfigTemplateType']
+          @ConfigTemplateValue = params['ConfigTemplateValue']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -2924,6 +3166,58 @@ module TencentCloud
         end
       end
 
+      # CreateConfigTemplate请求参数结构体
+      class CreateConfigTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateName: 配置模板名称
+        # @type ConfigTemplateName: String
+        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @type ConfigTemplateType: String
+        # @param ConfigTemplateValue: 配置模板数据
+        # @type ConfigTemplateValue: String
+        # @param ConfigTemplateDesc: 配置模板描述
+        # @type ConfigTemplateDesc: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
+
+        attr_accessor :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc, :ProgramIdList
+        
+        def initialize(configtemplatename=nil, configtemplatetype=nil, configtemplatevalue=nil, configtemplatedesc=nil, programidlist=nil)
+          @ConfigTemplateName = configtemplatename
+          @ConfigTemplateType = configtemplatetype
+          @ConfigTemplateValue = configtemplatevalue
+          @ConfigTemplateDesc = configtemplatedesc
+          @ProgramIdList = programidlist
+        end
+
+        def deserialize(params)
+          @ConfigTemplateName = params['ConfigTemplateName']
+          @ConfigTemplateType = params['ConfigTemplateType']
+          @ConfigTemplateValue = params['ConfigTemplateValue']
+          @ConfigTemplateDesc = params['ConfigTemplateDesc']
+          @ProgramIdList = params['ProgramIdList']
+        end
+      end
+
+      # CreateConfigTemplate返回参数结构体
+      class CreateConfigTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true：创建成功；false：创建失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateContainGroup请求参数结构体
       class CreateContainGroupRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 分组所属应用ID
@@ -3398,6 +3692,50 @@ module TencentCloud
         # true：操作成功。
         # false：操作失败。
         # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMicroserviceWithDetailResp请求参数结构体
+      class CreateMicroserviceWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param MicroserviceName: 微服务名称
+        # @type MicroserviceName: String
+        # @param MicroserviceDesc: 微服务描述信息
+        # @type MicroserviceDesc: String
+
+        attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc
+        
+        def initialize(namespaceid=nil, microservicename=nil, microservicedesc=nil)
+          @NamespaceId = namespaceid
+          @MicroserviceName = microservicename
+          @MicroserviceDesc = microservicedesc
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @MicroserviceName = params['MicroserviceName']
+          @MicroserviceDesc = params['MicroserviceDesc']
+        end
+      end
+
+      # CreateMicroserviceWithDetailResp返回参数结构体
+      class CreateMicroserviceWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: id
+        # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3968,6 +4306,48 @@ module TencentCloud
         end
       end
 
+      # DeleteCluster请求参数结构体
+      class DeleteClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Unbind: 是否只解绑，不删除容器集群，默认不传则删除容器集群。
+        # @type Unbind: Boolean
+
+        attr_accessor :ClusterId, :Unbind
+        
+        def initialize(clusterid=nil, unbind=nil)
+          @ClusterId = clusterid
+          @Unbind = unbind
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Unbind = params['Unbind']
+        end
+      end
+
+      # DeleteCluster返回参数结构体
+      class DeleteClusterResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除集群操作是否成功。
+        # true：操作成功。
+        # false：操作失败。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConfig请求参数结构体
       class DeleteConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置项ID
@@ -3986,6 +4366,42 @@ module TencentCloud
 
       # DeleteConfig返回参数结构体
       class DeleteConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true：删除成功；false：删除失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConfigTemplate请求参数结构体
+      class DeleteConfigTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateId: 无
+        # @type ConfigTemplateId: String
+
+        attr_accessor :ConfigTemplateId
+        
+        def initialize(configtemplateid=nil)
+          @ConfigTemplateId = configtemplateid
+        end
+
+        def deserialize(params)
+          @ConfigTemplateId = params['ConfigTemplateId']
+        end
+      end
+
+      # DeleteConfigTemplate返回参数结构体
+      class DeleteConfigTemplateResponse < TencentCloud::Common::AbstractModel
         # @param Result: true：删除成功；false：删除失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5761,6 +6177,70 @@ module TencentCloud
         end
       end
 
+      # DescribeClusters请求参数结构体
+      class DescribeClustersRequest < TencentCloud::Common::AbstractModel
+        # @param SearchWord: 搜索词
+        # @type SearchWord: String
+        # @param OrderBy: 排序字段
+        # @type OrderBy: String
+        # @param OrderType: 排序方式
+        # @type OrderType: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页个数
+        # @type Limit: Integer
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterIdList: idList
+        # @type ClusterIdList: Array
+
+        attr_accessor :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ClusterType, :ClusterIdList
+        
+        def initialize(searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, clustertype=nil, clusteridlist=nil)
+          @SearchWord = searchword
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @Offset = offset
+          @Limit = limit
+          @ClusterType = clustertype
+          @ClusterIdList = clusteridlist
+        end
+
+        def deserialize(params)
+          @SearchWord = params['SearchWord']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterType = params['ClusterType']
+          @ClusterIdList = params['ClusterIdList']
+        end
+      end
+
+      # DescribeClusters返回参数结构体
+      class DescribeClustersResponse < TencentCloud::Common::AbstractModel
+        # @param Result: Cluster分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageClusterV2`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageClusterV2.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConfigReleaseLogs请求参数结构体
       class DescribeConfigReleaseLogsRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，不传入时查询全量
@@ -5994,6 +6474,46 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigTemplate请求参数结构体
+      class DescribeConfigTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateId: 无
+        # @type ConfigTemplateId: String
+
+        attr_accessor :ConfigTemplateId
+        
+        def initialize(configtemplateid=nil)
+          @ConfigTemplateId = configtemplateid
+        end
+
+        def deserialize(params)
+          @ConfigTemplateId = params['ConfigTemplateId']
+        end
+      end
+
+      # DescribeConfigTemplate返回参数结构体
+      class DescribeConfigTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: Result
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigTemplate`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConfigTemplate.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -6517,6 +7037,74 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = UnitRule.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFileConfigReleases请求参数结构体
+      class DescribeFileConfigReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项ID
+        # @type ConfigId: String
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+
+        attr_accessor :ConfigId, :ConfigName, :GroupId, :NamespaceId, :ClusterId, :ApplicationId, :Offset, :Limit
+        
+        def initialize(configid=nil, configname=nil, groupid=nil, namespaceid=nil, clusterid=nil, applicationid=nil, offset=nil, limit=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+          @GroupId = groupid
+          @NamespaceId = namespaceid
+          @ClusterId = clusterid
+          @ApplicationId = applicationid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @GroupId = params['GroupId']
+          @NamespaceId = params['NamespaceId']
+          @ClusterId = params['ClusterId']
+          @ApplicationId = params['ApplicationId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeFileConfigReleases返回参数结构体
+      class DescribeFileConfigReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置项发布信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageFileConfigRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageFileConfigRelease.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -12983,6 +13571,116 @@ module TencentCloud
         end
       end
 
+      # ModifyApplication请求参数结构体
+      class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名称
+        # @type ApplicationName: String
+        # @param ApplicationDesc: 应用备注
+        # @type ApplicationDesc: String
+        # @param ApplicationRemarkName: 应用备注名
+        # @type ApplicationRemarkName: String
+        # @param ServiceConfigList: 服务配置信息列表
+        # @type ServiceConfigList: Array
+
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationRemarkName, :ServiceConfigList
+        
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationremarkname=nil, serviceconfiglist=nil)
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @ApplicationDesc = applicationdesc
+          @ApplicationRemarkName = applicationremarkname
+          @ServiceConfigList = serviceconfiglist
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @ApplicationDesc = params['ApplicationDesc']
+          @ApplicationRemarkName = params['ApplicationRemarkName']
+          unless params['ServiceConfigList'].nil?
+            @ServiceConfigList = []
+            params['ServiceConfigList'].each do |i|
+              serviceconfig_tmp = ServiceConfig.new
+              serviceconfig_tmp.deserialize(i)
+              @ServiceConfigList << serviceconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyApplication返回参数结构体
+      class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true/false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCluster请求参数结构体
+      class ModifyClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterDesc: 集群描述信息
+        # @type ClusterDesc: String
+        # @param ClusterRemarkName: 备注名
+        # @type ClusterRemarkName: String
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterRemarkName
+        
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clusterremarkname=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterDesc = clusterdesc
+          @ClusterRemarkName = clusterremarkname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterDesc = params['ClusterDesc']
+          @ClusterRemarkName = params['ClusterRemarkName']
+        end
+      end
+
+      # ModifyCluster返回参数结构体
+      class ModifyClusterResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 更新集群详情操作是否成功。
+        # true： 操作成功。
+        # false：操作失败。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyContainerGroup请求参数结构体
       class ModifyContainerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -13076,6 +13774,57 @@ module TencentCloud
       # ModifyContainerReplicas返回参数结构体
       class ModifyContainerReplicasResponse < TencentCloud::Common::AbstractModel
         # @param Result: 结果true：成功；false：失败；
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGroup请求参数结构体
+      class ModifyGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # @type GroupName: String
+        # @param GroupDesc: 部署组描述
+        # @type GroupDesc: String
+        # @param Alias: 部署组备注
+        # @type Alias: String
+
+        attr_accessor :GroupId, :GroupName, :GroupDesc, :Alias
+        
+        def initialize(groupid=nil, groupname=nil, groupdesc=nil, _alias=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupDesc = groupdesc
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupDesc = params['GroupDesc']
+          @Alias = params['Alias']
+        end
+      end
+
+      # ModifyGroup返回参数结构体
+      class ModifyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 更新部署组详情是否成功。
+        # true：操作成功。
+        # false：操作失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13243,6 +13992,50 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNamespace请求参数结构体
+      class ModifyNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param NamespaceName: 命名空间名称
+        # @type NamespaceName: String
+        # @param NamespaceDesc: 命名空间备注
+        # @type NamespaceDesc: String
+        # @param IsHaEnable: 是否开启高可用
+        # @type IsHaEnable: String
+
+        attr_accessor :NamespaceId, :NamespaceName, :NamespaceDesc, :IsHaEnable
+        
+        def initialize(namespaceid=nil, namespacename=nil, namespacedesc=nil, ishaenable=nil)
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @NamespaceDesc = namespacedesc
+          @IsHaEnable = ishaenable
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @NamespaceDesc = params['NamespaceDesc']
+          @IsHaEnable = params['IsHaEnable']
+        end
+      end
+
+      # ModifyNamespace返回参数结构体
+      class ModifyNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -15105,6 +15898,43 @@ module TencentCloud
         end
       end
 
+      # RevokeFileConfig请求参数结构体
+      class RevokeFileConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigReleaseId: 配置项发布ID
+        # @type ConfigReleaseId: String
+
+        attr_accessor :ConfigReleaseId
+        
+        def initialize(configreleaseid=nil)
+          @ConfigReleaseId = configreleaseid
+        end
+
+        def deserialize(params)
+          @ConfigReleaseId = params['ConfigReleaseId']
+        end
+      end
+
+      # RevokeFileConfig返回参数结构体
+      class RevokeFileConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 撤回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RollbackConfig请求参数结构体
       class RollbackConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigReleaseLogId: 配置项发布历史ID
@@ -16850,6 +17680,35 @@ module TencentCloud
         end
       end
 
+      # Tsf分页集群对象
+      class TsfPageClusterV2 < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 集群列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              clusterv2_tmp = ClusterV2.new
+              clusterv2_tmp.deserialize(i)
+              @Content << clusterv2_tmp
+            end
+          end
+        end
+      end
+
       # TsfPage<Config>
       class TsfPageConfig < TencentCloud::Common::AbstractModel
         # @param TotalCount: TsfPageConfig
@@ -17006,6 +17865,35 @@ module TencentCloud
               fileconfig_tmp = FileConfig.new
               fileconfig_tmp.deserialize(i)
               @Content << fileconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 文件配置项发布信息列表
+      class TsfPageFileConfigRelease < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              fileconfigrelease_tmp = FileConfigRelease.new
+              fileconfigrelease_tmp.deserialize(i)
+              @Content << fileconfigrelease_tmp
             end
           end
         end
@@ -17761,6 +18649,58 @@ module TencentCloud
       # UpdateApiTimeouts返回参数结构体
       class UpdateApiTimeoutsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateConfigTemplate请求参数结构体
+      class UpdateConfigTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateId: 配置模板id
+        # @type ConfigTemplateId: String
+        # @param ConfigTemplateName: 配置模板名称
+        # @type ConfigTemplateName: String
+        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @type ConfigTemplateType: String
+        # @param ConfigTemplateValue: 配置模板数据
+        # @type ConfigTemplateValue: String
+        # @param ConfigTemplateDesc: 配置模板描述
+        # @type ConfigTemplateDesc: String
+
+        attr_accessor :ConfigTemplateId, :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc
+        
+        def initialize(configtemplateid=nil, configtemplatename=nil, configtemplatetype=nil, configtemplatevalue=nil, configtemplatedesc=nil)
+          @ConfigTemplateId = configtemplateid
+          @ConfigTemplateName = configtemplatename
+          @ConfigTemplateType = configtemplatetype
+          @ConfigTemplateValue = configtemplatevalue
+          @ConfigTemplateDesc = configtemplatedesc
+        end
+
+        def deserialize(params)
+          @ConfigTemplateId = params['ConfigTemplateId']
+          @ConfigTemplateName = params['ConfigTemplateName']
+          @ConfigTemplateType = params['ConfigTemplateType']
+          @ConfigTemplateValue = params['ConfigTemplateValue']
+          @ConfigTemplateDesc = params['ConfigTemplateDesc']
+        end
+      end
+
+      # UpdateConfigTemplate返回参数结构体
+      class UpdateConfigTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 结果true：成功；false：失败；
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
