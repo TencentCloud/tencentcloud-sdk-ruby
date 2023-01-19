@@ -850,7 +850,7 @@ module TencentCloud
         # @type SnatIps: Array
         # @param ClusterIds: 公网独占集群ID或者CDCId。
         # @type ClusterIds: Array
-        # @param SlaType: 性能保障规格。
+        # @param SlaType: 性能容量型规格。
         # @type SlaType: String
         # @param ClusterTag: Stgw独占集群的标签。
         # @type ClusterTag: String
@@ -1383,18 +1383,17 @@ module TencentCloud
         # @type VipIsp: String
         # @param Tags: 购买负载均衡的同时，给负载均衡打上标签，最大支持20个标签键值对。
         # @type Tags: Array
-        # @param Vip: 指定VIP申请负载均衡。指定此参数后：
-        # <ul><li>若创建共享型集群的公网负载均衡实例，则上述的VpcId选填，若实例是IPv6类型的，则SubnetId必填；若是IPv4、IPv6 NAT64类型，则SubnetId不填。</li>
-        # <li>若创建独占型集群的公网负载均衡实例，则上述的VpcId选填，若实例是IPv6类型的，则SubnetId必填；若是IPv4、IPv6 NAT64类型，则SubnetId不填。
-        # </li></ul>
+        # @param Vip: 指定VIP申请负载均衡。此参数选填，不填写此参数时自动分配VIP。IPv4和IPv6类型支持此参数，IPv6 NAT64类型不支持。
+        # 注意：当指定VIP创建内网实例、或公网IPv6 BGP实例时，若VIP不属于指定VPC子网的网段内时，会创建失败；若VIP已被占用，也会创建失败。
         # @type Vip: String
         # @param BandwidthPackageId: 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
         # @type BandwidthPackageId: String
-        # @param ExclusiveCluster: 独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
+        # @param ExclusiveCluster: 独占型实例信息。若创建独占型的内网负载均衡实例，则此参数必填。
         # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
-        # @param SlaType: 创建性能容量型 CLB 实例。
-        # <ul><li>若需要创建性能容量型 CLB 实例，则此参数必填，且取值为：SLA，表示创建按量计费模式下的默认性能保障规格的性能容量型实例。</li>
-        # <li>若需要创建共享型 CLB 实例，则无需填写此参数。</li></ul>
+        # @param SlaType: 创建性能容量型实例。
+        # <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示创建按量计费模式下的默认规格的性能容量型实例。
+        # <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
+        # <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
         # @type SlaType: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
@@ -4780,7 +4779,7 @@ module TencentCloud
         # @param SnatIps: 开启SnatPro负载均衡后，SnatIp列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnatIps: Array
-        # @param SlaType: 性能保障规格
+        # @param SlaType: 性能容量型规格
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaType: String
         # @param IsBlock: vip是否被封堵
@@ -4810,7 +4809,7 @@ module TencentCloud
         # @param HealthLogTopicId: 负载均衡日志服务(CLS)的健康检查日志主题ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthLogTopicId: String
-        # @param ClusterIds: 集群ID.
+        # @param ClusterIds: 集群ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIds: Array
         # @param AttributeFlags: 负载均衡的属性
@@ -5722,7 +5721,7 @@ module TencentCloud
 
       # ModifyLoadBalancerSla请求参数结构体
       class ModifyLoadBalancerSlaRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerSla: 负载均衡实例信息
+        # @param LoadBalancerSla: 负载均衡实例信息。
         # @type LoadBalancerSla: Array
 
         attr_accessor :LoadBalancerSla
@@ -7025,11 +7024,13 @@ module TencentCloud
         end
       end
 
-      # 性能容量型变配参数
+      # 升级为性能容量型参数
       class SlaUpdateParam < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: lb的字符串ID
         # @type LoadBalancerId: String
-        # @param SlaType: 变更为性能容量型，固定为SLA
+        # @param SlaType: 升级为性能容量型，固定取值为SLA。SLA表示升级为默认规格的性能容量型实例。
+        # <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
+        # <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul>
         # @type SlaType: String
 
         attr_accessor :LoadBalancerId, :SlaType
@@ -7301,16 +7302,19 @@ module TencentCloud
         # @type HealthStatus: Boolean
         # @param TargetId: Target的实例ID，如 ins-12345678
         # @type TargetId: String
-        # @param HealthStatusDetial: 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
+        # @param HealthStatusDetail: 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
+        # @type HealthStatusDetail: String
+        # @param HealthStatusDetial: 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。(该参数对象即将下线，不推荐使用，请使用HealthStatusDetail获取健康详情)
         # @type HealthStatusDetial: String
 
-        attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetial
+        attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         
-        def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetial=nil)
+        def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip
           @Port = port
           @HealthStatus = healthstatus
           @TargetId = targetid
+          @HealthStatusDetail = healthstatusdetail
           @HealthStatusDetial = healthstatusdetial
         end
 
@@ -7319,6 +7323,7 @@ module TencentCloud
           @Port = params['Port']
           @HealthStatus = params['HealthStatus']
           @TargetId = params['TargetId']
+          @HealthStatusDetail = params['HealthStatusDetail']
           @HealthStatusDetial = params['HealthStatusDetial']
         end
       end

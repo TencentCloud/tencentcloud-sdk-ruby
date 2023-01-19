@@ -882,7 +882,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取项目下的日志列表（实例创建的项目下的日志列表）
+        # (已下线，请用DescribeRumLogList)
 
         # @param request: Request instance for DescribeLogList.
         # @type request: :class:`Tencentcloud::rum::V20210622::DescribeLogListRequest`

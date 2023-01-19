@@ -1181,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeTimingL7SourceData）查询七层回源分析时序数据。
+
+        # @param request: Request instance for DescribeTimingL7SourceData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7SourceDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7SourceDataResponse`
+        def DescribeTimingL7SourceData(request)
+          body = send_request('DescribeTimingL7SourceData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimingL7SourceDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
 
         # @param request: Request instance for DescribeTopL7AnalysisData.
