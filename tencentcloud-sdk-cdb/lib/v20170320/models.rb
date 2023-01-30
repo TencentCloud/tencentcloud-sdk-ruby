@@ -4011,6 +4011,74 @@ module TencentCloud
         end
       end
 
+      # DescribeDBFeatures请求参数结构体
+      class DescribeDBFeaturesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBFeatures返回参数结构体
+      class DescribeDBFeaturesResponse < TencentCloud::Common::AbstractModel
+        # @param IsSupportAudit: 是否支持数据库审计功能。
+        # @type IsSupportAudit: Boolean
+        # @param AuditNeedUpgrade: 开启审计是否需要升级内核版本。
+        # @type AuditNeedUpgrade: Boolean
+        # @param IsSupportEncryption: 是否支持数据库加密功能。
+        # @type IsSupportEncryption: Boolean
+        # @param EncryptionNeedUpgrade: 开启加密是否需要升级内核版本。
+        # @type EncryptionNeedUpgrade: Boolean
+        # @param IsRemoteRo: 是否为异地只读实例。
+        # @type IsRemoteRo: Boolean
+        # @param MasterRegion: 主实例所在地域。
+        # @type MasterRegion: String
+        # @param IsSupportUpdateSubVersion: 是否支持小版本升级。
+        # @type IsSupportUpdateSubVersion: Boolean
+        # @param CurrentSubVersion: 当前内核版本。
+        # @type CurrentSubVersion: String
+        # @param TargetSubVersion: 可供升级的内核版本。
+        # @type TargetSubVersion: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsSupportAudit, :AuditNeedUpgrade, :IsSupportEncryption, :EncryptionNeedUpgrade, :IsRemoteRo, :MasterRegion, :IsSupportUpdateSubVersion, :CurrentSubVersion, :TargetSubVersion, :RequestId
+        
+        def initialize(issupportaudit=nil, auditneedupgrade=nil, issupportencryption=nil, encryptionneedupgrade=nil, isremotero=nil, masterregion=nil, issupportupdatesubversion=nil, currentsubversion=nil, targetsubversion=nil, requestid=nil)
+          @IsSupportAudit = issupportaudit
+          @AuditNeedUpgrade = auditneedupgrade
+          @IsSupportEncryption = issupportencryption
+          @EncryptionNeedUpgrade = encryptionneedupgrade
+          @IsRemoteRo = isremotero
+          @MasterRegion = masterregion
+          @IsSupportUpdateSubVersion = issupportupdatesubversion
+          @CurrentSubVersion = currentsubversion
+          @TargetSubVersion = targetsubversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsSupportAudit = params['IsSupportAudit']
+          @AuditNeedUpgrade = params['AuditNeedUpgrade']
+          @IsSupportEncryption = params['IsSupportEncryption']
+          @EncryptionNeedUpgrade = params['EncryptionNeedUpgrade']
+          @IsRemoteRo = params['IsRemoteRo']
+          @MasterRegion = params['MasterRegion']
+          @IsSupportUpdateSubVersion = params['IsSupportUpdateSubVersion']
+          @CurrentSubVersion = params['CurrentSubVersion']
+          @TargetSubVersion = params['TargetSubVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBImportRecords请求参数结构体
       class DescribeDBImportRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。

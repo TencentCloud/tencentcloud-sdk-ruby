@@ -1533,6 +1533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（UpgradeHourDCDBInstance）用于升级后付费分布式数据库实例。
+
+        # @param request: Request instance for UpgradeHourDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::UpgradeHourDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::UpgradeHourDCDBInstanceResponse`
+        def UpgradeHourDCDBInstance(request)
+          body = send_request('UpgradeHourDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeHourDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

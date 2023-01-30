@@ -4640,7 +4640,7 @@ module TencentCloud
 
       # DescribeGrafanaEnvironments请求参数结构体
       class DescribeGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：Grafana 实例 ID，例如：grafana-abcdefghGrafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
 
         attr_accessor :InstanceId
