@@ -81,7 +81,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建项目（归属于某个团队）
+        # 创建 RUM 应用（归属于某个团队）
 
         # @param request: Request instance for CreateProject.
         # @type request: :class:`Tencentcloud::rum::V20210622::CreateProjectRequest`
@@ -153,7 +153,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Rum实例
+        # 创建 RUM 业务系统
 
         # @param request: Request instance for CreateTawInstance.
         # @type request: :class:`Tencentcloud::rum::V20210622::CreateTawInstanceRequest`
@@ -978,7 +978,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取项目上报率列表
+        # 获取应用上报抽样信息
 
         # @param request: Request instance for DescribeProjectLimits.
         # @type request: :class:`Tencentcloud::rum::V20210622::DescribeProjectLimitsRequest`
@@ -1074,7 +1074,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取项目对应sourcemap文件列表
+        # 获取应用对应sourcemap文件列表
 
         # @param request: Request instance for DescribeReleaseFiles.
         # @type request: :class:`Tencentcloud::rum::V20210622::DescribeReleaseFilesRequest`
@@ -1290,7 +1290,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例信息
+        # 修改 RUM 业务系统
 
         # @param request: Request instance for ModifyInstance.
         # @type request: :class:`Tencentcloud::rum::V20210622::ModifyInstanceRequest`
@@ -1314,7 +1314,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改 rum 项目信息
+        # 修改 RUM 应用信息
 
         # @param request: Request instance for ModifyProject.
         # @type request: :class:`Tencentcloud::rum::V20210622::ModifyProjectRequest`
@@ -1362,7 +1362,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 恢复实例
+        # 恢复 RUM 业务系统，恢复后，用户可以正常使用和上报数据
 
         # @param request: Request instance for ResumeInstance.
         # @type request: :class:`Tencentcloud::rum::V20210622::ResumeInstanceRequest`

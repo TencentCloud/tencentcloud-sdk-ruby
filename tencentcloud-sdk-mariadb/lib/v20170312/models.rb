@@ -1723,6 +1723,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDBEncryptAttributes请求参数结构体
+      class DescribeDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBEncryptAttributes返回参数结构体
+      class DescribeDBEncryptAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param EncryptStatus: 是否启用加密，1-已开启；0-未开启。
+        # @type EncryptStatus: Integer
+        # @param CipherText: DEK密钥
+        # @type CipherText: String
+        # @param ExpireDate: DEK密钥过期日期。
+        # @type ExpireDate: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EncryptStatus, :CipherText, :ExpireDate, :RequestId
+        
+        def initialize(encryptstatus=nil, ciphertext=nil, expiredate=nil, requestid=nil)
+          @EncryptStatus = encryptstatus
+          @CipherText = ciphertext
+          @ExpireDate = expiredate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EncryptStatus = params['EncryptStatus']
+          @CipherText = params['CipherText']
+          @ExpireDate = params['ExpireDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstanceSpecs请求参数结构体
       class DescribeDBInstanceSpecsRequest < TencentCloud::Common::AbstractModel
 

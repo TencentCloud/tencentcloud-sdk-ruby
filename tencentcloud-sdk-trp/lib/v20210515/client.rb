@@ -725,6 +725,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询扫码日志明细
+
+        # @param request: Request instance for DescribeScanLogs.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeScanLogsRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeScanLogsResponse`
+        def DescribeScanLogs(request)
+          body = send_request('DescribeScanLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询某个批次被扫码的统计列表，没有被扫过的不会返回
+
+        # @param request: Request instance for DescribeScanStats.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeScanStatsRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeScanStatsResponse`
+        def DescribeScanStats(request)
+          body = send_request('DescribeScanStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询临时Token，主要用于上传接口
 
         # @param request: Request instance for DescribeTmpToken.

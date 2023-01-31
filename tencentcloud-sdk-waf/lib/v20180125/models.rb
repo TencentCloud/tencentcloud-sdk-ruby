@@ -315,14 +315,16 @@ module TencentCloud
         # @type ActionType: String
         # @param Redirect: 如果动作是重定向，则表示重定向的地址；其他情况可以为空
         # @type Redirect: String
-        # @param Edition: "clb-waf"或者"sparta-waf"
+        # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
         # @param Bypass: 放行的详情
         # @type Bypass: String
+        # @param EventId: 添加规则的来源，默认为空
+        # @type EventId: String
 
-        attr_accessor :Name, :SortId, :ExpireTime, :Strategies, :Domain, :ActionType, :Redirect, :Edition, :Bypass
+        attr_accessor :Name, :SortId, :ExpireTime, :Strategies, :Domain, :ActionType, :Redirect, :Edition, :Bypass, :EventId
         
-        def initialize(name=nil, sortid=nil, expiretime=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, edition=nil, bypass=nil)
+        def initialize(name=nil, sortid=nil, expiretime=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, edition=nil, bypass=nil, eventid=nil)
           @Name = name
           @SortId = sortid
           @ExpireTime = expiretime
@@ -332,6 +334,7 @@ module TencentCloud
           @Redirect = redirect
           @Edition = edition
           @Bypass = bypass
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -351,6 +354,7 @@ module TencentCloud
           @Redirect = params['Redirect']
           @Edition = params['Edition']
           @Bypass = params['Bypass']
+          @EventId = params['EventId']
         end
       end
 
@@ -1199,7 +1203,7 @@ module TencentCloud
 
       # DescribeAccessIndex返回参数结构体
       class DescribeAccessIndexResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 是否生效
+        # @param Status: 是否生效，true表示生效，false表示未生效
         # @type Status: Boolean
         # @param Rule: 索引配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3400,7 +3404,7 @@ module TencentCloud
         # @type Domain: String
         # @param Items: ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳
         # @type Items: Array
-        # @param Edition: clb-waf或者sparta-waf
+        # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
         # @param SourceType: 是否为多域名黑白名单
         # @type SourceType: String

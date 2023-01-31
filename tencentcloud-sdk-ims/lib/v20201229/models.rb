@@ -143,12 +143,15 @@ module TencentCloud
         # @type Extra: String
         # @param FileMD5: 该字段用于返回检测对象对应的MD5校验值，以方便校验文件完整性。
         # @type FileMD5: String
+        # @param RecognitionResults: 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecognitionResults: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RequestId
+        attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RecognitionResults, :RequestId
         
-        def initialize(suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, filemd5=nil, requestid=nil)
+        def initialize(suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, filemd5=nil, recognitionresults=nil, requestid=nil)
           @Suggestion = suggestion
           @Label = label
           @SubLabel = sublabel
@@ -161,6 +164,7 @@ module TencentCloud
           @BizType = biztype
           @Extra = extra
           @FileMD5 = filemd5
+          @RecognitionResults = recognitionresults
           @RequestId = requestid
         end
 
@@ -205,6 +209,14 @@ module TencentCloud
           @BizType = params['BizType']
           @Extra = params['Extra']
           @FileMD5 = params['FileMD5']
+          unless params['RecognitionResults'].nil?
+            @RecognitionResults = []
+            params['RecognitionResults'].each do |i|
+              recognitionresult_tmp = RecognitionResult.new
+              recognitionresult_tmp.deserialize(i)
+              @RecognitionResults << recognitionresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -584,6 +596,65 @@ module TencentCloud
           end
           @Rate = params['Rate']
           @SubLabel = params['SubLabel']
+        end
+      end
+
+      # 识别类型标签结果信息
+      class RecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Label: 当前可能的取值：Scene（图片场景模型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Tags: Label对应模型下的识别标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Label, :Tags
+        
+        def initialize(label=nil, tags=nil)
+          @Label = label
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              recognitiontag_tmp = RecognitionTag.new
+              recognitiontag_tmp.deserialize(i)
+              @Tags << recognitiontag_tmp
+            end
+          end
+        end
+      end
+
+      # 识别类型标签信息
+      class RecognitionTag < TencentCloud::Common::AbstractModel
+        # @param Name: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Score: 置信分：0～100，数值越大表示置信度越高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param Location: 标签位置信息，若模型无位置信息，则可能为零值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
+
+        attr_accessor :Name, :Score, :Location
+        
+        def initialize(name=nil, score=nil, location=nil)
+          @Name = name
+          @Score = score
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Score = params['Score']
+          unless params['Location'].nil?
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
+          end
         end
       end
 

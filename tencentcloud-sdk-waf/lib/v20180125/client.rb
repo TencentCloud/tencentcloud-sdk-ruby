@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 增加自定义策略
+        # 增加访问控制（自定义策略）
 
         # @param request: Request instance for AddCustomRule.
         # @type request: :class:`Tencentcloud::waf::V20180125::AddCustomRuleRequest`
@@ -703,7 +703,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启或禁用自定义策略
+        # 开启或禁用访问控制（自定义策略）
 
         # @param request: Request instance for ModifyCustomRuleStatus.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyCustomRuleStatusRequest`

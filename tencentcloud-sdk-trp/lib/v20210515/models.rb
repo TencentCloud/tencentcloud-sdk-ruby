@@ -2040,6 +2040,124 @@ module TencentCloud
         end
       end
 
+      # DescribeScanLogs请求参数结构体
+      class DescribeScanLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Code: 码
+        # @type Code: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :Code, :CorpId
+        
+        def initialize(code=nil, corpid=nil)
+          @Code = code
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeScanLogs返回参数结构体
+      class DescribeScanLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Products: 【弃用】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Products: Array
+        # @param TotalCount: 条数
+        # @type TotalCount: Integer
+        # @param ScanLogs: 扫描记录
+        # @type ScanLogs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
+        
+        def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
+          @Products = products
+          @TotalCount = totalcount
+          @ScanLogs = scanlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Products'].nil?
+            @Products = []
+            params['Products'].each do |i|
+              scanlog_tmp = ScanLog.new
+              scanlog_tmp.deserialize(i)
+              @Products << scanlog_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['ScanLogs'].nil?
+            @ScanLogs = []
+            params['ScanLogs'].each do |i|
+              scanlog_tmp = ScanLog.new
+              scanlog_tmp.deserialize(i)
+              @ScanLogs << scanlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScanStats请求参数结构体
+      class DescribeScanStatsRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次ID
+        # @type BatchId: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param PageSize: 分页数量
+        # @type PageSize: Integer
+        # @param PageNumber: 当前分页
+        # @type PageNumber: Integer
+
+        attr_accessor :BatchId, :CorpId, :PageSize, :PageNumber
+        
+        def initialize(batchid=nil, corpid=nil, pagesize=nil, pagenumber=nil)
+          @BatchId = batchid
+          @CorpId = corpid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @CorpId = params['CorpId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeScanStats返回参数结构体
+      class DescribeScanStatsResponse < TencentCloud::Common::AbstractModel
+        # @param ScanStats: 统计记录
+        # @type ScanStats: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScanStats, :RequestId
+        
+        def initialize(scanstats=nil, requestid=nil)
+          @ScanStats = scanstats
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScanStats'].nil?
+            @ScanStats = []
+            params['ScanStats'].each do |i|
+              scanstat_tmp = ScanStat.new
+              scanstat_tmp.deserialize(i)
+              @ScanStats << scanstat_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTmpToken请求参数结构体
       class DescribeTmpTokenRequest < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID
@@ -3099,6 +3217,146 @@ module TencentCloud
           @RiskQuota = params['RiskQuota']
           @TrackType = params['TrackType']
           @Version = params['Version']
+        end
+      end
+
+      # 扫码明细
+      class ScanLog < TencentCloud::Common::AbstractModel
+        # @param LogId: 行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: Integer
+        # @param Openid: 微信openid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Openid: String
+        # @param Nickname: 微信昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nickname: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Code: 码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param CorpId: 企业ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param MerchantId: 商户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantId: String
+        # @param ProductId: 商品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: String
+        # @param Ip: ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Country: 国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param District: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type District: String
+        # @param Unionid: 微信 unionid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unionid: String
+        # @param First: 首次扫码 0:否, 1:是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type First: Integer
+        # @param BatchId: 批次ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+
+        attr_accessor :LogId, :Openid, :Nickname, :CreateTime, :Code, :CorpId, :MerchantId, :ProductId, :Ip, :Country, :Province, :City, :District, :Unionid, :First, :BatchId
+        
+        def initialize(logid=nil, openid=nil, nickname=nil, createtime=nil, code=nil, corpid=nil, merchantid=nil, productid=nil, ip=nil, country=nil, province=nil, city=nil, district=nil, unionid=nil, first=nil, batchid=nil)
+          @LogId = logid
+          @Openid = openid
+          @Nickname = nickname
+          @CreateTime = createtime
+          @Code = code
+          @CorpId = corpid
+          @MerchantId = merchantid
+          @ProductId = productid
+          @Ip = ip
+          @Country = country
+          @Province = province
+          @City = city
+          @District = district
+          @Unionid = unionid
+          @First = first
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @Openid = params['Openid']
+          @Nickname = params['Nickname']
+          @CreateTime = params['CreateTime']
+          @Code = params['Code']
+          @CorpId = params['CorpId']
+          @MerchantId = params['MerchantId']
+          @ProductId = params['ProductId']
+          @Ip = params['Ip']
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
+          @District = params['District']
+          @Unionid = params['Unionid']
+          @First = params['First']
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # 扫码统计
+      class ScanStat < TencentCloud::Common::AbstractModel
+        # @param Code: 安心码
+        # @type Code: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param BatchId: 批次ID
+        # @type BatchId: String
+        # @param Pv: 扫码次数
+        # @type Pv: Integer
+        # @param Uv: 扫码人数
+        # @type Uv: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Code, :CorpId, :MerchantId, :ProductId, :BatchId, :Pv, :Uv, :CreateTime, :UpdateTime
+        
+        def initialize(code=nil, corpid=nil, merchantid=nil, productid=nil, batchid=nil, pv=nil, uv=nil, createtime=nil, updatetime=nil)
+          @Code = code
+          @CorpId = corpid
+          @MerchantId = merchantid
+          @ProductId = productid
+          @BatchId = batchid
+          @Pv = pv
+          @Uv = uv
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @CorpId = params['CorpId']
+          @MerchantId = params['MerchantId']
+          @ProductId = params['ProductId']
+          @BatchId = params['BatchId']
+          @Pv = params['Pv']
+          @Uv = params['Uv']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
