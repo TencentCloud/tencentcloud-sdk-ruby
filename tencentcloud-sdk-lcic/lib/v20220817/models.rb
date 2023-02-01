@@ -328,7 +328,7 @@ module TencentCloud
 
       # DescribeAppDetail请求参数结构体
       class DescribeAppDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。低代码互动课堂的SdkAppId。
         # @type ApplicationId: String
         # @param DeveloperId: 开发商ID
         # @type DeveloperId: String
@@ -348,7 +348,7 @@ module TencentCloud
 
       # DescribeAppDetail返回参数结构体
       class DescribeAppDetailResponse < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: SdkAppId
+        # @param SdkAppId: SDK 对应的AppId
         # @type SdkAppId: String
         # @param AppConfig: 应用配置
         # @type AppConfig: :class:`Tencentcloud::Lcic.v20220817.models.AppConfig`

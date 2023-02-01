@@ -997,7 +997,7 @@ module TencentCloud
         # @type Domain: String
         # @param Items: 删除的ip数组
         # @type Items: Array
-        # @param DeleteAll: 删除对应的域名下的所有黑/白IP名额单
+        # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         # @type DeleteAll: Boolean
         # @param SourceType: 是否为多域名黑白名单
         # @type SourceType: String
@@ -1613,19 +1613,19 @@ module TencentCloud
         # @type Domain: String
         # @param Count: 计数标识
         # @type Count: Integer
-        # @param ActionType: 动作
+        # @param ActionType: 动作，40表示查询白名单，42表示查询黑名单
         # @type ActionType: Integer
-        # @param VtsMin: 有效时间最小时间戳
+        # @param VtsMin: 最小有效时间的时间戳
         # @type VtsMin: Integer
-        # @param VtsMax: 有效时间最大时间戳
+        # @param VtsMax: 最大有效时间的时间戳
         # @type VtsMax: Integer
-        # @param CtsMin: 创建时间最小时间戳
+        # @param CtsMin: 最小创建时间的时间戳
         # @type CtsMin: Integer
-        # @param CtsMax: 创建时间最大时间戳
+        # @param CtsMax: 最大创建时间的时间戳
         # @type CtsMax: Integer
-        # @param OffSet: 偏移
+        # @param OffSet: 分页开始条数
         # @type OffSet: Integer
-        # @param Limit: 限制
+        # @param Limit: 每页的条数
         # @type Limit: Integer
         # @param Source: 来源
         # @type Source: String

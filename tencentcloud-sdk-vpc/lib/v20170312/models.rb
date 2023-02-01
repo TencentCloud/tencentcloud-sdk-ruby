@@ -1787,6 +1787,33 @@ module TencentCloud
         end
       end
 
+      # 云联网限速实例锁对象，该对象特用于运营端使用，用于封禁实例流量。
+      class CcnFlowLock < TencentCloud::Common::AbstractModel
+        # @param CcnId: 带宽所属的云联网ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
+        # @param UserAccountID: 实例所属用户主账号ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAccountID: String
+        # @param RegionFlowControlId: 带宽实例的唯一ID。作为`UnlockCcnBandwidths`接口和`LockCcnBandwidths`接口的入参时，该字段必传。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionFlowControlId: String
+
+        attr_accessor :CcnId, :UserAccountID, :RegionFlowControlId
+        
+        def initialize(ccnid=nil, useraccountid=nil, regionflowcontrolid=nil)
+          @CcnId = ccnid
+          @UserAccountID = useraccountid
+          @RegionFlowControlId = regionflowcontrolid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @UserAccountID = params['UserAccountID']
+          @RegionFlowControlId = params['RegionFlowControlId']
+        end
+      end
+
       # 云联网（CCN）关联实例（Instance）对象。
       class CcnInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 关联实例ID。
@@ -13753,12 +13780,24 @@ module TencentCloud
 
       # LockCcnBandwidths请求参数结构体
       class LockCcnBandwidthsRequest < TencentCloud::Common::AbstractModel
+        # @param Instances: 带宽实例的唯一ID数组。
+        # @type Instances: Array
 
+        attr_accessor :Instances
         
-        def initialize()
+        def initialize(instances=nil)
+          @Instances = instances
         end
 
         def deserialize(params)
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              ccnflowlock_tmp = CcnFlowLock.new
+              ccnflowlock_tmp.deserialize(i)
+              @Instances << ccnflowlock_tmp
+            end
+          end
         end
       end
 
@@ -19421,12 +19460,24 @@ module TencentCloud
 
       # UnlockCcnBandwidths请求参数结构体
       class UnlockCcnBandwidthsRequest < TencentCloud::Common::AbstractModel
+        # @param Instances: 带宽实例对象数组。
+        # @type Instances: Array
 
+        attr_accessor :Instances
         
-        def initialize()
+        def initialize(instances=nil)
+          @Instances = instances
         end
 
         def deserialize(params)
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              ccnflowlock_tmp = CcnFlowLock.new
+              ccnflowlock_tmp.deserialize(i)
+              @Instances << ccnflowlock_tmp
+            end
+          end
         end
       end
 

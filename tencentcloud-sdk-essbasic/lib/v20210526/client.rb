@@ -231,6 +231,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 指定需要批量撤销的签署流程Id，批量催办合同
+        # 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
+        # 注意:
+        # 能撤回合同的只能是合同的发起人或者签署人
+        # 该接口需要开白后使用
+
+        # @param request: Request instance for ChannelCreateFlowReminds.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowRemindsRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowRemindsResponse`
+        def ChannelCreateFlowReminds(request)
+          body = send_request('ChannelCreateFlowReminds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowRemindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交企业签署流程审批结果
 
         # 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
@@ -595,7 +623,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+        # 查询企业扩展服务授权信息，企业经办人需要是企业超管或者法人
 
         # @param request: Request instance for DescribeExtendedServiceAuthInfo.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeExtendedServiceAuthInfoRequest`
@@ -742,7 +770,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+        # 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
 
         # @param request: Request instance for ModifyExtendedService.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ModifyExtendedServiceRequest`

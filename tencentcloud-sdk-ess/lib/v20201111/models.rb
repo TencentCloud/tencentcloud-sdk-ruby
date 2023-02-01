@@ -1002,6 +1002,56 @@ module TencentCloud
         end
       end
 
+      # CreateFlowReminds请求参数结构体
+      class CreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowIds: 需要执行撤回的签署流程id数组，最多100个
+        # @type FlowIds: Array
+
+        attr_accessor :Operator, :FlowIds
+        
+        def initialize(operator=nil, flowids=nil)
+          @Operator = operator
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # CreateFlowReminds返回参数结构体
+      class CreateFlowRemindsResponse < TencentCloud::Common::AbstractModel
+        # @param RemindFlowRecords: 签署连接过期时间字符串：年月日-时分秒
+        # @type RemindFlowRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RemindFlowRecords, :RequestId
+        
+        def initialize(remindflowrecords=nil, requestid=nil)
+          @RemindFlowRecords = remindflowrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RemindFlowRecords'].nil?
+            @RemindFlowRecords = []
+            params['RemindFlowRecords'].each do |i|
+              remindflowrecords_tmp = RemindFlowRecords.new
+              remindflowrecords_tmp.deserialize(i)
+              @RemindFlowRecords << remindflowrecords_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlow请求参数结构体
       class CreateFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -3166,6 +3216,30 @@ module TencentCloud
         def deserialize(params)
           @LegalName = params['LegalName']
           @Uscc = params['Uscc']
+        end
+      end
+
+      # 催办接口返回详细信息
+      class RemindFlowRecords < TencentCloud::Common::AbstractModel
+        # @param CanRemind: 是否能够催办
+        # @type CanRemind: Boolean
+        # @param FlowId: 合同id
+        # @type FlowId: String
+        # @param RemindMessage: 催办详情
+        # @type RemindMessage: String
+
+        attr_accessor :CanRemind, :FlowId, :RemindMessage
+        
+        def initialize(canremind=nil, flowid=nil, remindmessage=nil)
+          @CanRemind = canremind
+          @FlowId = flowid
+          @RemindMessage = remindmessage
+        end
+
+        def deserialize(params)
+          @CanRemind = params['CanRemind']
+          @FlowId = params['FlowId']
+          @RemindMessage = params['RemindMessage']
         end
       end
 

@@ -678,6 +678,56 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateFlowReminds请求参数结构体
+      class ChannelCreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
+        # @type FlowIds: Array
+
+        attr_accessor :Agent, :FlowIds
+        
+        def initialize(agent=nil, flowids=nil)
+          @Agent = agent
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # ChannelCreateFlowReminds返回参数结构体
+      class ChannelCreateFlowRemindsResponse < TencentCloud::Common::AbstractModel
+        # @param RemindFlowRecords: 合同催办详情信息
+        # @type RemindFlowRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RemindFlowRecords, :RequestId
+        
+        def initialize(remindflowrecords=nil, requestid=nil)
+          @RemindFlowRecords = remindflowrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RemindFlowRecords'].nil?
+            @RemindFlowRecords = []
+            params['RemindFlowRecords'].each do |i|
+              remindflowrecords_tmp = RemindFlowRecords.new
+              remindflowrecords_tmp.deserialize(i)
+              @RemindFlowRecords << remindflowrecords_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateFlowSignReview请求参数结构体
       class ChannelCreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -2033,6 +2083,8 @@ module TencentCloud
       # DescribeExtendedServiceAuthInfo请求参数结构体
       class DescribeExtendedServiceAuthInfoRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+
+        # 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
 
         attr_accessor :Agent
@@ -3122,7 +3174,9 @@ module TencentCloud
 
       # ModifyExtendedService请求参数结构体
       class ModifyExtendedServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+
+        # 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ServiceType:   扩展服务类型
         #   AUTO_SIGN             企业静默签（自动签署）
@@ -3157,9 +3211,10 @@ module TencentCloud
       # ModifyExtendedService返回参数结构体
       class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
         # @param OperateUrl: 操作跳转链接，有效期24小时
-        # 仅当操作类型是 OPEN 且 扩展服务类型是  AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回 ，此时需要经办人(操作人)点击链接完成服务开通操作。若开通操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通服务
+        # 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
 
-        # 操作类型是CLOSE时，不会返回此链接，会直接关闭企业该扩展服务
+        # 当操作类型是 OPEN 且 扩展服务类型是  AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回操作链接，
+        # 返回的链接需要平台方自行触达超管或法人，超管或法人点击链接完成服务开通操作。
         # @type OperateUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3669,6 +3724,30 @@ module TencentCloud
           @OriginalExpenseSettlement = params['OriginalExpenseSettlement']
           @OriginalOtherSettlement = params['OriginalOtherSettlement']
           @OtherDeals = params['OtherDeals']
+        end
+      end
+
+      # 催办接口返回详细信息
+      class RemindFlowRecords < TencentCloud::Common::AbstractModel
+        # @param CanRemind: 是否能够催办
+        # @type CanRemind: Boolean
+        # @param FlowId: 合同id
+        # @type FlowId: String
+        # @param RemindMessage: 催办详情
+        # @type RemindMessage: String
+
+        attr_accessor :CanRemind, :FlowId, :RemindMessage
+        
+        def initialize(canremind=nil, flowid=nil, remindmessage=nil)
+          @CanRemind = canremind
+          @FlowId = flowid
+          @RemindMessage = remindmessage
+        end
+
+        def deserialize(params)
+          @CanRemind = params['CanRemind']
+          @FlowId = params['FlowId']
+          @RemindMessage = params['RemindMessage']
         end
       end
 
