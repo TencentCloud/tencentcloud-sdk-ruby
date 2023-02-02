@@ -1613,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启实例
+
+        # @param request: Request instance for RestartInstance.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::RestartInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::RestartInstanceResponse`
+        def RestartInstance(request)
+          body = send_request('RestartInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 恢复serverless集群
 
         # @param request: Request instance for ResumeServerless.

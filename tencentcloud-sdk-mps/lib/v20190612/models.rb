@@ -4868,13 +4868,16 @@ module TencentCloud
         # @type MaxBandwidth: Integer
         # @param InputGroup: 流的输入组。
         # @type InputGroup: Array
+        # @param EventId: 该Flow关联的媒体传输事件ID，每个flow只能关联一个Event。
+        # @type EventId: String
 
-        attr_accessor :FlowName, :MaxBandwidth, :InputGroup
+        attr_accessor :FlowName, :MaxBandwidth, :InputGroup, :EventId
         
-        def initialize(flowname=nil, maxbandwidth=nil, inputgroup=nil)
+        def initialize(flowname=nil, maxbandwidth=nil, inputgroup=nil, eventid=nil)
           @FlowName = flowname
           @MaxBandwidth = maxbandwidth
           @InputGroup = inputgroup
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -4888,6 +4891,7 @@ module TencentCloud
               @InputGroup << createinput_tmp
             end
           end
+          @EventId = params['EventId']
         end
       end
 
@@ -6089,16 +6093,22 @@ module TencentCloud
         # @param OutputGroup: 输出组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputGroup: Array
+        # @param EventId: 该Flow关联的媒体传输事件EventId。
+        # @type EventId: String
+        # @param Region: 媒体传输输入流所属的区域，取值和InputRegion相同。
+        # @type Region: String
 
-        attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup
+        attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup, :EventId, :Region
         
-        def initialize(flowid=nil, flowname=nil, state=nil, maxbandwidth=nil, inputgroup=nil, outputgroup=nil)
+        def initialize(flowid=nil, flowname=nil, state=nil, maxbandwidth=nil, inputgroup=nil, outputgroup=nil, eventid=nil, region=nil)
           @FlowId = flowid
           @FlowName = flowname
           @State = state
           @MaxBandwidth = maxbandwidth
           @InputGroup = inputgroup
           @OutputGroup = outputgroup
+          @EventId = eventid
+          @Region = region
         end
 
         def deserialize(params)
@@ -6122,6 +6132,8 @@ module TencentCloud
               @OutputGroup << describeoutput_tmp
             end
           end
+          @EventId = params['EventId']
+          @Region = params['Region']
         end
       end
 

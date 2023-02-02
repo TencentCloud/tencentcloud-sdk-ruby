@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
+
+        # @param request: Request instance for BatchRegister.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchRegisterRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchRegisterResponse`
+        def BatchRegister(request)
+          body = send_request('BatchRegister', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchRegisterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定文档到房间
 
         # @param request: Request instance for BindDocumentToRoom.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改房间
+
+        # @param request: Request instance for ModifyRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ModifyRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ModifyRoomResponse`
+        def ModifyRoom(request)
+          body = send_request('ModifyRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoomResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -6143,12 +6143,44 @@ module TencentCloud
 
       # RegisterFunctionTargets请求参数结构体
       class RegisterFunctionTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @type LoadBalancerId: String
+        # @param ListenerId: 负载均衡监听器 ID。
+        # @type ListenerId: String
+        # @param FunctionTargets: 待绑定的云函数列表。
+        # @type FunctionTargets: Array
+        # @param LocationId: 目标转发规则的 ID，当将云函数绑定到七层转发规则时，必须输入此参数或 Domain+Url 参数。
+        # @type LocationId: String
+        # @param Domain: 目标转发规则的域名，若已经输入 LocationId 参数，则本参数不生效。
+        # @type Domain: String
+        # @param Url: 目标转发规则的 URL，若已经输入 LocationId 参数，则本参数不生效。
+        # @type Url: String
 
+        attr_accessor :LoadBalancerId, :ListenerId, :FunctionTargets, :LocationId, :Domain, :Url
         
-        def initialize()
+        def initialize(loadbalancerid=nil, listenerid=nil, functiontargets=nil, locationid=nil, domain=nil, url=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @FunctionTargets = functiontargets
+          @LocationId = locationid
+          @Domain = domain
+          @Url = url
         end
 
         def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          unless params['FunctionTargets'].nil?
+            @FunctionTargets = []
+            params['FunctionTargets'].each do |i|
+              functiontarget_tmp = FunctionTarget.new
+              functiontarget_tmp.deserialize(i)
+              @FunctionTargets << functiontarget_tmp
+            end
+          end
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
         end
       end
 

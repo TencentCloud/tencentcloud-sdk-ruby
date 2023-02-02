@@ -60,6 +60,119 @@ module TencentCloud
         end
       end
 
+      # BatchRegister请求参数结构体
+      class BatchRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param Users: 批量注册用户信息列表
+        # @type Users: Array
+
+        attr_accessor :Users
+        
+        def initialize(users=nil)
+          @Users = users
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              batchuserrequest_tmp = BatchUserRequest.new
+              batchuserrequest_tmp.deserialize(i)
+              @Users << batchuserrequest_tmp
+            end
+          end
+        end
+      end
+
+      # BatchRegister返回参数结构体
+      class BatchRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param Users: 注册成功的用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Users, :RequestId
+        
+        def initialize(users=nil, requestid=nil)
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              batchuserinfo_tmp = BatchUserInfo.new
+              batchuserinfo_tmp.deserialize(i)
+              @Users << batchuserinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量注册用户信息
+      class BatchUserInfo < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param UserId: 用户ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param OriginId: 用户在客户系统的Id。 若用户注册时该字段为空，则默认为 UserId 值一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginId: String
+
+        attr_accessor :SdkAppId, :UserId, :OriginId
+        
+        def initialize(sdkappid=nil, userid=nil, originid=nil)
+          @SdkAppId = sdkappid
+          @UserId = userid
+          @OriginId = originid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
+          @OriginId = params['OriginId']
+        end
+      end
+
+      # 用户注册请求信息
+      class BatchUserRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SdkAppId: Integer
+        # @param Name: 用户名称。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param OriginId: 用户在客户系统的Id，需要在同一应用下唯一。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginId: String
+        # @param Avatar: 用户头像。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Avatar: String
+
+        attr_accessor :SdkAppId, :Name, :OriginId, :Avatar
+        
+        def initialize(sdkappid=nil, name=nil, originid=nil, avatar=nil)
+          @SdkAppId = sdkappid
+          @Name = name
+          @OriginId = originid
+          @Avatar = avatar
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Name = params['Name']
+          @OriginId = params['OriginId']
+          @Avatar = params['Avatar']
+        end
+      end
+
       # BindDocumentToRoom请求参数结构体
       class BindDocumentToRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID。
@@ -192,7 +305,7 @@ module TencentCloud
         # video 纯视频
         # coteaching 双师
         # @type SubType: String
-        # @param TeacherId: 老师ID。通过[注册用户]接口获取的UserId。
+        # @param TeacherId: 老师ID。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有老师权限。
         # @type TeacherId: String
         # @param AutoMic: 进入课堂时是否自动连麦。可以有以下取值：
         # 0 不自动连麦（需要手动申请上麦，默认值）
@@ -207,7 +320,7 @@ module TencentCloud
         # 1 禁止录制
         # 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
         # @type DisableRecord: Integer
-        # @param Assistants: 助教Id列表。通过[注册用户]接口获取的UserId。
+        # @param Assistants: 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
         # @type Assistants: Array
         # @param RecordLayout: 录制布局。
         # @type RecordLayout: Integer
@@ -408,7 +521,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 预定的房间结束时间，unix时间戳。
         # @type EndTime: Integer
-        # @param TeacherId: 老师ID。
+        # @param TeacherId: 老师的UserId。
         # @type TeacherId: String
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
@@ -437,7 +550,7 @@ module TencentCloud
         # 1 禁止录制
         # 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
         # @type DisableRecord: Integer
-        # @param Assistants: 助教Id列表。
+        # @param Assistants: 助教UserId列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Assistants: Array
         # @param RecordUrl: 录制地址。仅在房间结束后存在。
@@ -760,6 +873,104 @@ module TencentCloud
 
       # ModifyApp返回参数结构体
       class ModifyAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRoom请求参数结构体
+      class ModifyRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param SdkAppId: 低代码互动课堂的SdkAppId
+        # @type SdkAppId: Integer
+        # @param StartTime: 预定的房间开始时间，unix时间戳。直播开始后不允许修改。
+        # @type StartTime: Integer
+        # @param EndTime: 预定的房间结束时间，unix时间戳。直播开始后不允许修改。
+        # @type EndTime: Integer
+        # @param TeacherId: 老师ID。直播开始后不允许修改。
+        # @type TeacherId: String
+        # @param Name: 房间名称。
+        # @type Name: String
+        # @param Resolution: 分辨率。可以有如下取值：
+        # 1 标清
+        # 2 高清
+        # 3 全高清
+        # 直播开始后不允许修改。
+        # @type Resolution: Integer
+        # @param MaxMicNumber: 最大连麦人数（不包括老师）。取值范围[0, 17)
+        # 直播开始后不允许修改。
+        # @type MaxMicNumber: Integer
+        # @param AutoMic: 进入房间时是否自动连麦。可以有以下取值：
+        # 0 不自动连麦（默认值）
+        # 1 自动连麦
+        # 直播开始后不允许修改。
+        # @type AutoMic: Integer
+        # @param AudioQuality: 高音质模式。可以有以下取值：
+        # 0 不开启高音质（默认值）
+        # 1 开启高音质
+        # 直播开始后不允许修改。
+        # @type AudioQuality: Integer
+        # @param SubType: 房间子类型，可以有以下取值：
+        # videodoc 文档+视频
+        # video 纯视频
+        # coteaching 双师
+        # 直播开始后不允许修改。
+        # @type SubType: String
+        # @param DisableRecord: 禁止录制。可以有以下取值：
+        # 0 不禁止录制（默认值）
+        # 1 禁止录制
+        # 直播开始后不允许修改。
+        # @type DisableRecord: Integer
+        # @param Assistants: 助教Id列表。直播开始后不允许修改。
+        # @type Assistants: Array
+
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants
+        
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil)
+          @RoomId = roomid
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @TeacherId = teacherid
+          @Name = name
+          @Resolution = resolution
+          @MaxMicNumber = maxmicnumber
+          @AutoMic = automic
+          @AudioQuality = audioquality
+          @SubType = subtype
+          @DisableRecord = disablerecord
+          @Assistants = assistants
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TeacherId = params['TeacherId']
+          @Name = params['Name']
+          @Resolution = params['Resolution']
+          @MaxMicNumber = params['MaxMicNumber']
+          @AutoMic = params['AutoMic']
+          @AudioQuality = params['AudioQuality']
+          @SubType = params['SubType']
+          @DisableRecord = params['DisableRecord']
+          @Assistants = params['Assistants']
+        end
+      end
+
+      # ModifyRoom返回参数结构体
+      class ModifyRoomResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

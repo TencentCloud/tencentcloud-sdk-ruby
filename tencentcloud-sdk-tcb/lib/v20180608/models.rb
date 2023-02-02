@@ -3829,12 +3829,21 @@ module TencentCloud
         # @param MemSize: MEM 大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Float
+        # @param PolicyDetail: 扩缩容策略详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDetail: Array
+        # @param Cpu: Cpu的Request值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Mem: Mem的Request值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :RequestId
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :PolicyDetail, :Cpu, :Mem, :RequestId
         
-        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, requestid=nil)
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, policydetail=nil, cpu=nil, mem=nil, requestid=nil)
           @VersionName = versionname
           @Remark = remark
           @DockerfilePath = dockerfilepath
@@ -3865,6 +3874,9 @@ module TencentCloud
           @ImageUrl = imageurl
           @CpuSize = cpusize
           @MemSize = memsize
+          @PolicyDetail = policydetail
+          @Cpu = cpu
+          @Mem = mem
           @RequestId = requestid
         end
 
@@ -3899,6 +3911,16 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @CpuSize = params['CpuSize']
           @MemSize = params['MemSize']
+          unless params['PolicyDetail'].nil?
+            @PolicyDetail = []
+            params['PolicyDetail'].each do |i|
+              hpapolicy_tmp = HpaPolicy.new
+              hpapolicy_tmp.deserialize(i)
+              @PolicyDetail << hpapolicy_tmp
+            end
+          end
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
           @RequestId = params['RequestId']
         end
       end
@@ -5832,16 +5854,21 @@ module TencentCloud
 
       # EstablishCloudBaseRunServer返回参数结构体
       class EstablishCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建服务是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

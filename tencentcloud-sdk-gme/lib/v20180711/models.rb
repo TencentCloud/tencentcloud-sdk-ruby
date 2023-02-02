@@ -697,27 +697,27 @@ module TencentCloud
       class DeleteRoomMemberRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 要操作的房间id
         # @type RoomId: String
-        # @param Uids: 要剔除的用户列表
-        # @type Uids: Array
         # @param DeleteType: 剔除类型 1-删除房间 2-剔除用户
         # @type DeleteType: Integer
         # @param BizId: 应用id
         # @type BizId: Integer
+        # @param Uids: 要剔除的用户列表
+        # @type Uids: Array
 
-        attr_accessor :RoomId, :Uids, :DeleteType, :BizId
+        attr_accessor :RoomId, :DeleteType, :BizId, :Uids
         
-        def initialize(roomid=nil, uids=nil, deletetype=nil, bizid=nil)
+        def initialize(roomid=nil, deletetype=nil, bizid=nil, uids=nil)
           @RoomId = roomid
-          @Uids = uids
           @DeleteType = deletetype
           @BizId = bizid
+          @Uids = uids
         end
 
         def deserialize(params)
           @RoomId = params['RoomId']
-          @Uids = params['Uids']
           @DeleteType = params['DeleteType']
           @BizId = params['BizId']
+          @Uids = params['Uids']
         end
       end
 
@@ -2206,21 +2206,26 @@ module TencentCloud
 
       # 用户麦克风状态
       class UserMicStatus < TencentCloud::Common::AbstractModel
-        # @param Uid: 客户端用于标识用户的Openid。
-        # @type Uid: Integer
         # @param EnableMic: 开麦状态。1表示关闭麦克风，2表示打开麦克风。
         # @type EnableMic: Integer
+        # @param Uid: 客户端用于标识用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
+        # @type Uid: Integer
+        # @param StrUid: 客户端用于标识字符串型用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrUid: String
 
-        attr_accessor :Uid, :EnableMic
+        attr_accessor :EnableMic, :Uid, :StrUid
         
-        def initialize(uid=nil, enablemic=nil)
-          @Uid = uid
+        def initialize(enablemic=nil, uid=nil, struid=nil)
           @EnableMic = enablemic
+          @Uid = uid
+          @StrUid = struid
         end
 
         def deserialize(params)
-          @Uid = params['Uid']
           @EnableMic = params['EnableMic']
+          @Uid = params['Uid']
+          @StrUid = params['StrUid']
         end
       end
 

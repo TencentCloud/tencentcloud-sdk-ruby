@@ -5914,6 +5914,42 @@ module TencentCloud
         end
       end
 
+      # RestartInstance请求参数结构体
+      class RestartInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # RestartInstance返回参数结构体
+      class RestartInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumeServerless请求参数结构体
       class ResumeServerlessRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

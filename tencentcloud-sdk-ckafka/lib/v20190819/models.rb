@@ -6130,12 +6130,16 @@ module TencentCloud
         # @param GroupList: GroupList
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupList: Array
+        # @param GroupCountQuota: 消费分组配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupCountQuota: Integer
 
-        attr_accessor :TotalCount, :GroupList
+        attr_accessor :TotalCount, :GroupList, :GroupCountQuota
         
-        def initialize(totalcount=nil, grouplist=nil)
+        def initialize(totalcount=nil, grouplist=nil, groupcountquota=nil)
           @TotalCount = totalcount
           @GroupList = grouplist
+          @GroupCountQuota = groupcountquota
         end
 
         def deserialize(params)
@@ -6148,6 +6152,7 @@ module TencentCloud
               @GroupList << describegroup_tmp
             end
           end
+          @GroupCountQuota = params['GroupCountQuota']
         end
       end
 
