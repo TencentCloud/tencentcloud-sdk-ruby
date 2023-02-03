@@ -392,7 +392,6 @@ module TencentCloud
 
         # 获取域名的规则白名单
 
-
         # @param request: Request instance for DescribeDomainWhiteRules.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainWhiteRulesRequest`
         # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeDomainWhiteRulesResponse`

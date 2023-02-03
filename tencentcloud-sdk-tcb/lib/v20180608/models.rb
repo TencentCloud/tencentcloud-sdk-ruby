@@ -4644,13 +4644,16 @@ module TencentCloud
       class DescribeEnvsResponse < TencentCloud::Common::AbstractModel
         # @param EnvList: 环境信息列表
         # @type EnvList: Array
+        # @param Total: 环境个数
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvList, :RequestId
+        attr_accessor :EnvList, :Total, :RequestId
         
-        def initialize(envlist=nil, requestid=nil)
+        def initialize(envlist=nil, total=nil, requestid=nil)
           @EnvList = envlist
+          @Total = total
           @RequestId = requestid
         end
 
@@ -4663,6 +4666,7 @@ module TencentCloud
               @EnvList << envinfo_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

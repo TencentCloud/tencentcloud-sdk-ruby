@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取数据流通任务实时状态，用作客户端控制
+
+        # @param request: Request instance for DescribeDataRepositoryTaskStatus.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeDataRepositoryTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeDataRepositoryTaskStatusResponse`
+        def DescribeDataRepositoryTaskStatus(request)
+          body = send_request('DescribeDataRepositoryTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataRepositoryTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -311,7 +311,7 @@ module TencentCloud
         # @type Strategies: Array
         # @param Domain: 需要添加策略的域名
         # @type Domain: String
-        # @param ActionType: 动作类型
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向
         # @type ActionType: String
         # @param Redirect: 如果动作是重定向，则表示重定向的地址；其他情况可以为空
         # @type Redirect: String
@@ -1374,7 +1374,7 @@ module TencentCloud
         # @type Page: Integer
         # @param Count: 每页展示的条数
         # @type Count: Integer
-        # @param Sort: 排序方式
+        # @param Sort: 排序方式,desc表示降序，asc表示升序
         # @type Sort: String
         # @param RuleId: 规则ID
         # @type RuleId: String
@@ -2948,11 +2948,11 @@ module TencentCloud
       class ModifyWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param AttackThreshold: 攻击次数阈值
+        # @param AttackThreshold: 触发IP封禁的攻击次数阈值，范围为2~100次
         # @type AttackThreshold: Integer
-        # @param TimeThreshold: 攻击时间阈值
+        # @param TimeThreshold: IP封禁统计时间，范围为1-60分钟
         # @type TimeThreshold: Integer
-        # @param DenyTimeThreshold: 自动封禁时间
+        # @param DenyTimeThreshold: 触发IP封禁后的封禁时间，范围为5~360分钟
         # @type DenyTimeThreshold: Integer
         # @param DefenseStatus: 自动封禁状态
         # @type DefenseStatus: Integer
@@ -3314,9 +3314,9 @@ module TencentCloud
       class SearchAccessLogResponse < TencentCloud::Common::AbstractModel
         # @param Context: 加载后续内容的Context
         # @type Context: String
-        # @param ListOver: 日志查询结果是否全部返回
+        # @param ListOver: 日志查询结果是否全部返回，其中，“true”表示结果返回，“false”表示结果为返回
         # @type ListOver: Boolean
-        # @param Analysis: 返回的是否为分析结果
+        # @param Analysis: 返回的是否为分析结果，其中，“true”表示返回分析结果，“false”表示未返回分析结果
         # @type Analysis: Boolean
         # @param ColNames: 如果Analysis为True，则返回分析结果的列名，否则为空
         # 注意：此字段可能返回 null，表示取不到有效值。

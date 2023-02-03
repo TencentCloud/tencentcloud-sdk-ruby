@@ -2381,6 +2381,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 前提调用 DescribeTimeShiftStreamList 获得请求必要参数。查询指定范围内的时移流录制详情，最大支持24小时范围查询。
+
+        # @param request: Request instance for DescribeTimeShiftRecordDetail.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeTimeShiftRecordDetailRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeTimeShiftRecordDetailResponse`
+        def DescribeTimeShiftRecordDetail(request)
+          body = send_request('DescribeTimeShiftRecordDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimeShiftRecordDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
+
+        # @param request: Request instance for DescribeTimeShiftStreamList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeTimeShiftStreamListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeTimeShiftStreamListResponse`
+        def DescribeTimeShiftStreamList(request)
+          body = send_request('DescribeTimeShiftStreamList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimeShiftStreamListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
 
         # @param request: Request instance for DescribeTopClientIpSumInfoList.

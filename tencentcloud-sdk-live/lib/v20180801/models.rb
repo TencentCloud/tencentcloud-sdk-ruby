@@ -6265,6 +6265,147 @@ module TencentCloud
         end
       end
 
+      # DescribeTimeShiftRecordDetail请求参数结构体
+      class DescribeTimeShiftRecordDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 推流域名。
+        # @type Domain: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param StartTime: 查询范围起始时间，Unix 时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 查询范围终止时间，Unix 时间戳。
+        # @type EndTime: Integer
+        # @param DomainGroup: 推流域名所属组，没有域名组或者域名组为空字符串可不填。
+        # @type DomainGroup: String
+        # @param TransCodeId: 转码模板ID，转码模板ID为0可不填。
+        # @type TransCodeId: Integer
+
+        attr_accessor :Domain, :AppName, :StreamName, :StartTime, :EndTime, :DomainGroup, :TransCodeId
+        
+        def initialize(domain=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, domaingroup=nil, transcodeid=nil)
+          @Domain = domain
+          @AppName = appname
+          @StreamName = streamname
+          @StartTime = starttime
+          @EndTime = endtime
+          @DomainGroup = domaingroup
+          @TransCodeId = transcodeid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DomainGroup = params['DomainGroup']
+          @TransCodeId = params['TransCodeId']
+        end
+      end
+
+      # DescribeTimeShiftRecordDetail返回参数结构体
+      class DescribeTimeShiftRecordDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RecordList: 时移录制会话数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordList, :RequestId
+        
+        def initialize(recordlist=nil, requestid=nil)
+          @RecordList = recordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              timeshiftrecord_tmp = TimeShiftRecord.new
+              timeshiftrecord_tmp.deserialize(i)
+              @RecordList << timeshiftrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTimeShiftStreamList请求参数结构体
+      class DescribeTimeShiftStreamListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询范围起始时间，Unix 时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 查询范围结束时间，Unix 时间戳。
+        # @type EndTime: Integer
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Domain: 推流域名。
+        # @type Domain: String
+        # @param DomainGroup: 推流域名所属域名组。
+        # @type DomainGroup: String
+        # @param PageSize: 用户指定要返回的最大结果数，取值范围[0,100]，不指定或者指定为0时，API
+        # 默认值为100。指定超过100时，API 强制使用100。指定值为负数时，接口返回错误。
+        # @type PageSize: Integer
+        # @param PageNum: 指定拉取的页码，不传时默认为1。
+        # @type PageNum: Integer
+
+        attr_accessor :StartTime, :EndTime, :StreamName, :Domain, :DomainGroup, :PageSize, :PageNum
+        
+        def initialize(starttime=nil, endtime=nil, streamname=nil, domain=nil, domaingroup=nil, pagesize=nil, pagenum=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @StreamName = streamname
+          @Domain = domain
+          @DomainGroup = domaingroup
+          @PageSize = pagesize
+          @PageNum = pagenum
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StreamName = params['StreamName']
+          @Domain = params['Domain']
+          @DomainGroup = params['DomainGroup']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+        end
+      end
+
+      # DescribeTimeShiftStreamList返回参数结构体
+      class DescribeTimeShiftStreamListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalSize: 时间段内所有的数据量。
+        # @type TotalSize: Integer
+        # @param StreamList: 流列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalSize, :StreamList, :RequestId
+        
+        def initialize(totalsize=nil, streamlist=nil, requestid=nil)
+          @TotalSize = totalsize
+          @StreamList = streamlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalSize = params['TotalSize']
+          unless params['StreamList'].nil?
+            @StreamList = []
+            params['StreamList'].each do |i|
+              timeshiftstreaminfo_tmp = TimeShiftStreamInfo.new
+              timeshiftstreaminfo_tmp.deserialize(i)
+              @StreamList << timeshiftstreaminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopClientIpSumInfoList请求参数结构体
       class DescribeTopClientIpSumInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -9846,6 +9987,81 @@ module TencentCloud
           @StoragePeriod = params['StoragePeriod']
           @Time = params['Time']
           @TotalDuration = params['TotalDuration']
+        end
+      end
+
+      # 时移录制段。
+      class TimeShiftRecord < TencentCloud::Common::AbstractModel
+        # @param Sid: 时移录制会话标识。
+        # @type Sid: String
+        # @param StartTime: 录制会话开始时间，Unix 时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 录制会话结束时间，Unix 时间戳。
+        # @type EndTime: Integer
+
+        attr_accessor :Sid, :StartTime, :EndTime
+        
+        def initialize(sid=nil, starttime=nil, endtime=nil)
+          @Sid = sid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 时移流。
+      class TimeShiftStreamInfo < TencentCloud::Common::AbstractModel
+        # @param DomainGroup: 推流域名所属组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainGroup: String
+        # @param Domain: 推流域名。
+        # @type Domain: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param StartTime: 流起始时间，Unix 时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 截止查询时流结束时间，Unix 时间戳。
+        # @type EndTime: Integer
+        # @param TransCodeId: 转码模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransCodeId: Integer
+        # @param StreamType: 流类型，取值0为原始流，1为水印流，2为转码流。
+        # @type StreamType: Integer
+        # @param Duration: 时移数据存储时长，单位秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+
+        attr_accessor :DomainGroup, :Domain, :AppName, :StreamName, :StartTime, :EndTime, :TransCodeId, :StreamType, :Duration
+        
+        def initialize(domaingroup=nil, domain=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, transcodeid=nil, streamtype=nil, duration=nil)
+          @DomainGroup = domaingroup
+          @Domain = domain
+          @AppName = appname
+          @StreamName = streamname
+          @StartTime = starttime
+          @EndTime = endtime
+          @TransCodeId = transcodeid
+          @StreamType = streamtype
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @DomainGroup = params['DomainGroup']
+          @Domain = params['Domain']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TransCodeId = params['TransCodeId']
+          @StreamType = params['StreamType']
+          @Duration = params['Duration']
         end
       end
 
