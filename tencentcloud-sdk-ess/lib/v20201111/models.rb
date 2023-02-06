@@ -17,6 +17,28 @@
 module TencentCloud
   module Ess
     module V20201111
+      # 企业超管信息
+      class Admin < TencentCloud::Common::AbstractModel
+        # @param Name: 超管名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Mobile: 超管手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mobile: String
+
+        attr_accessor :Name, :Mobile
+        
+        def initialize(name=nil, mobile=nil)
+          @Name = name
+          @Mobile = mobile
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+        end
+      end
+
       # 应用相关信息
       class Agent < TencentCloud::Common::AbstractModel
 
@@ -1006,7 +1028,7 @@ module TencentCloud
       class CreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 需要执行撤回的签署流程id数组，最多100个
+        # @param FlowIds: 需要执行催办的签署流程id数组，最多100个
         # @type FlowIds: Array
 
         attr_accessor :Operator, :FlowIds
@@ -1959,12 +1981,15 @@ module TencentCloud
         # @type FlowIds: Array
         # @param Operator: 调用方用户信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :FlowIds, :Operator
+        attr_accessor :FlowIds, :Operator, :Agent
         
-        def initialize(flowids=nil, operator=nil)
+        def initialize(flowids=nil, operator=nil, agent=nil)
           @FlowIds = flowids
           @Operator = operator
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1972,6 +1997,10 @@ module TencentCloud
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -2182,6 +2211,140 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIntegrationMainOrganizationUser请求参数结构体
+      class DescribeIntegrationMainOrganizationUserRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，userId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :Operator
+        
+        def initialize(operator=nil)
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # DescribeIntegrationMainOrganizationUser返回参数结构体
+      class DescribeIntegrationMainOrganizationUserResponse < TencentCloud::Common::AbstractModel
+        # @param IntegrationMainOrganizationUser: 主企业员工账号信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntegrationMainOrganizationUser: :class:`Tencentcloud::Ess.v20201111.models.IntegrationMainOrganizationUser`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntegrationMainOrganizationUser, :RequestId
+        
+        def initialize(integrationmainorganizationuser=nil, requestid=nil)
+          @IntegrationMainOrganizationUser = integrationmainorganizationuser
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IntegrationMainOrganizationUser'].nil?
+            @IntegrationMainOrganizationUser = IntegrationMainOrganizationUser.new
+            @IntegrationMainOrganizationUser.deserialize(params['IntegrationMainOrganizationUser'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationGroupOrganizations请求参数结构体
+      class DescribeOrganizationGroupOrganizationsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，userId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Limit: 单次查询成员企业最大返回数量
+        # @type Limit: Integer
+        # @param Offset: 页面偏移量
+        # @type Offset: Integer
+        # @param Name: 查询成员企业的企业名，模糊匹配
+        # @type Name: String
+        # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
+        # @type Status: Integer
+        # @param Export: 是否到处当前成员企业数据
+        # @type Export: Boolean
+        # @param Id: 成员企业id
+        # @type Id: String
+
+        attr_accessor :Operator, :Limit, :Offset, :Name, :Status, :Export, :Id
+        
+        def initialize(operator=nil, limit=nil, offset=nil, name=nil, status=nil, export=nil, id=nil)
+          @Operator = operator
+          @Limit = limit
+          @Offset = offset
+          @Name = name
+          @Status = status
+          @Export = export
+          @Id = id
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Export = params['Export']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeOrganizationGroupOrganizations返回参数结构体
+      class DescribeOrganizationGroupOrganizationsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 查询到的符合条件的成员企业总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param JoinedTotal: 已授权待激活的企业数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinedTotal: Integer
+        # @param ActivedTotal: 已加入的企业数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivedTotal: Integer
+        # @param ExportUrl: 导出文件的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExportUrl: String
+        # @param List: 成员企业信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :RequestId
+        
+        def initialize(total=nil, joinedtotal=nil, activedtotal=nil, exporturl=nil, list=nil, requestid=nil)
+          @Total = total
+          @JoinedTotal = joinedtotal
+          @ActivedTotal = activedtotal
+          @ExportUrl = exporturl
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @JoinedTotal = params['JoinedTotal']
+          @ActivedTotal = params['ActivedTotal']
+          @ExportUrl = params['ExportUrl']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              grouporganization_tmp = GroupOrganization.new
+              grouporganization_tmp.deserialize(i)
+              @List << grouporganization_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2971,6 +3134,108 @@ module TencentCloud
           @TaskMessage = params['TaskMessage']
           @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 成员企业信息
+      class GroupOrganization < TencentCloud::Common::AbstractModel
+        # @param Name: 成员企业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Alias: 成员企业别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
+        # @param OrganizationId: 成员企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationId: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Status: 成员企业状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IsMainOrganization: 是否为集团主企业
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMainOrganization: Boolean
+        # @param IdCardNumber: 企业社会信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdCardNumber: String
+        # @param AdminInfo: 企业超管信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminInfo: :class:`Tencentcloud::Ess.v20201111.models.Admin`
+        # @param License: 企业许可证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type License: String
+        # @param LicenseExpireTime: 企业许可证过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseExpireTime: Integer
+        # @param JoinTime: 成员企业加入集团时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinTime: Integer
+        # @param FlowEngineEnable: 是否可以使用审批流引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowEngineEnable: Boolean
+
+        attr_accessor :Name, :Alias, :OrganizationId, :UpdateTime, :Status, :IsMainOrganization, :IdCardNumber, :AdminInfo, :License, :LicenseExpireTime, :JoinTime, :FlowEngineEnable
+        
+        def initialize(name=nil, _alias=nil, organizationid=nil, updatetime=nil, status=nil, ismainorganization=nil, idcardnumber=nil, admininfo=nil, license=nil, licenseexpiretime=nil, jointime=nil, flowengineenable=nil)
+          @Name = name
+          @Alias = _alias
+          @OrganizationId = organizationid
+          @UpdateTime = updatetime
+          @Status = status
+          @IsMainOrganization = ismainorganization
+          @IdCardNumber = idcardnumber
+          @AdminInfo = admininfo
+          @License = license
+          @LicenseExpireTime = licenseexpiretime
+          @JoinTime = jointime
+          @FlowEngineEnable = flowengineenable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Alias = params['Alias']
+          @OrganizationId = params['OrganizationId']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @IsMainOrganization = params['IsMainOrganization']
+          @IdCardNumber = params['IdCardNumber']
+          unless params['AdminInfo'].nil?
+            @AdminInfo = Admin.new
+            @AdminInfo.deserialize(params['AdminInfo'])
+          end
+          @License = params['License']
+          @LicenseExpireTime = params['LicenseExpireTime']
+          @JoinTime = params['JoinTime']
+          @FlowEngineEnable = params['FlowEngineEnable']
+        end
+      end
+
+      # 主企业员工账号信息
+      class IntegrationMainOrganizationUser < TencentCloud::Common::AbstractModel
+        # @param MainOrganizationId: 主企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainOrganizationId: String
+        # @param MainUserId: 主企业员工UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainUserId: String
+        # @param UserName: 主企业员工名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :MainOrganizationId, :MainUserId, :UserName
+        
+        def initialize(mainorganizationid=nil, mainuserid=nil, username=nil)
+          @MainOrganizationId = mainorganizationid
+          @MainUserId = mainuserid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @MainOrganizationId = params['MainOrganizationId']
+          @MainUserId = params['MainUserId']
+          @UserName = params['UserName']
         end
       end
 

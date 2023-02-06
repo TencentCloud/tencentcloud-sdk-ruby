@@ -20042,17 +20042,21 @@ module TencentCloud
         # ENABLE：启用该路由
         # DISABLE：不启用该路由
         # @type Status: String
+        # @param DestinationCidrBlock: 路由CIDR
+        # @type DestinationCidrBlock: String
 
-        attr_accessor :RouteId, :Status
+        attr_accessor :RouteId, :Status, :DestinationCidrBlock
         
-        def initialize(routeid=nil, status=nil)
+        def initialize(routeid=nil, status=nil, destinationcidrblock=nil)
           @RouteId = routeid
           @Status = status
+          @DestinationCidrBlock = destinationcidrblock
         end
 
         def deserialize(params)
           @RouteId = params['RouteId']
           @Status = params['Status']
+          @DestinationCidrBlock = params['DestinationCidrBlock']
         end
       end
 

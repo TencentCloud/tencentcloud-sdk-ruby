@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateNotebookSession）用于创建notebook livy session
+
+        # @param request: Request instance for CreateNotebookSession.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateNotebookSessionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateNotebookSessionResponse`
+        def CreateNotebookSession(request)
+          body = send_request('CreateNotebookSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNotebookSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建查询结果下载任务
 
         # @param request: Request instance for CreateResultDownload.
@@ -879,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabasesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+
+        # @param request: Request instance for DescribeNotebookSession.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionResponse`
+        def DescribeNotebookSession(request)
+          body = send_request('DescribeNotebookSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotebookSessionResponse.new
             model.deserialize(response['Response'])
             model
           else

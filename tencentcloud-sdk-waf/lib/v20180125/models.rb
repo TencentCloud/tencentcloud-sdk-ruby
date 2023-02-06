@@ -593,6 +593,34 @@ module TencentCloud
         end
       end
 
+      # 攻击日志详情
+      class AttackLogInfo < TencentCloud::Common::AbstractModel
+        # @param Content: 攻击日志的详情内容
+        # @type Content: String
+        # @param FileName: CLS返回内容
+        # @type FileName: String
+        # @param Source: CLS返回内容
+        # @type Source: String
+        # @param TimeStamp: CLS返回内容
+        # @type TimeStamp: String
+
+        attr_accessor :Content, :FileName, :Source, :TimeStamp
+        
+        def initialize(content=nil, filename=nil, source=nil, timestamp=nil)
+          @Content = content
+          @FileName = filename
+          @Source = source
+          @TimeStamp = timestamp
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @FileName = params['FileName']
+          @Source = params['Source']
+          @TimeStamp = params['TimeStamp']
+        end
+      end
+
       # Waf 攻击自动封禁详情
       class AutoDenyDetail < TencentCloud::Common::AbstractModel
         # @param AttackTags: 攻击封禁类型标签
@@ -2841,6 +2869,42 @@ module TencentCloud
         end
       end
 
+      # ModifyAreaBanStatus请求参数结构体
+      class ModifyAreaBanStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 修要修改的域名
+        # @type Domain: String
+        # @param Status: 状态值，0表示关闭，1表示开启
+        # @type Status: Integer
+
+        attr_accessor :Domain, :Status
+        
+        def initialize(domain=nil, status=nil)
+          @Domain = domain
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyAreaBanStatus返回参数结构体
+      class ModifyAreaBanStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCustomRuleStatus请求参数结构体
       class ModifyCustomRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3370,6 +3434,89 @@ module TencentCloud
         end
       end
 
+      # SearchAttackLog请求参数结构体
+      class SearchAttackLogRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 查询的域名，所有域名使用all
+        # @type Domain: String
+        # @param StartTime: 查询起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Context: 查询的游标。第一次请求使用空字符串即可，后续请求使用上一次请求返回的最后一条记录的context的值即可。
+        # @type Context: String
+        # @param QueryString: Lucene语法
+        # @type QueryString: String
+        # @param Count: 查询的数量，默认10条，最多100条
+        # @type Count: Integer
+        # @param Sort: 默认为desc，可以取值desc和asc
+        # @type Sort: String
+
+        attr_accessor :Domain, :StartTime, :EndTime, :Context, :QueryString, :Count, :Sort
+        
+        def initialize(domain=nil, starttime=nil, endtime=nil, context=nil, querystring=nil, count=nil, sort=nil)
+          @Domain = domain
+          @StartTime = starttime
+          @EndTime = endtime
+          @Context = context
+          @QueryString = querystring
+          @Count = count
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Context = params['Context']
+          @QueryString = params['QueryString']
+          @Count = params['Count']
+          @Sort = params['Sort']
+        end
+      end
+
+      # SearchAttackLog返回参数结构体
+      class SearchAttackLogResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 当前返回的攻击日志条数
+        # @type Count: Integer
+        # @param Context: 翻页游标，如果没有下一页了，这个参数为空""
+        # @type Context: String
+        # @param Data: 攻击日志数组条目内容
+        # @type Data: Array
+        # @param ListOver: CLS接口返回内容
+        # @type ListOver: Boolean
+        # @param SqlFlag: CLS接口返回内容，标志是否启动新版本索引
+        # @type SqlFlag: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Context, :Data, :ListOver, :SqlFlag, :RequestId
+        
+        def initialize(count=nil, context=nil, data=nil, listover=nil, sqlflag=nil, requestid=nil)
+          @Count = count
+          @Context = context
+          @Data = data
+          @ListOver = listover
+          @SqlFlag = sqlflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Context = params['Context']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              attackloginfo_tmp = AttackLogInfo.new
+              attackloginfo_tmp.deserialize(i)
+              @Data << attackloginfo_tmp
+            end
+          end
+          @ListOver = params['ListOver']
+          @SqlFlag = params['SqlFlag']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 自定义规则的匹配条件结构体
       class Strategy < TencentCloud::Common::AbstractModel
         # @param Field: 匹配字段
@@ -3395,6 +3542,50 @@ module TencentCloud
           @CompareFunc = params['CompareFunc']
           @Content = params['Content']
           @Arg = params['Arg']
+        end
+      end
+
+      # SwitchDomainRules请求参数结构体
+      class SwitchDomainRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Ids: 规则列表
+        # @type Ids: Array
+        # @param Status: 开关状态
+        # @type Status: Integer
+        # @param Reason: 设置为观察模式原因
+        # @type Reason: Integer
+
+        attr_accessor :Domain, :Ids, :Status, :Reason
+        
+        def initialize(domain=nil, ids=nil, status=nil, reason=nil)
+          @Domain = domain
+          @Ids = ids
+          @Status = status
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Ids = params['Ids']
+          @Status = params['Status']
+          @Reason = params['Reason']
+        end
+      end
+
+      # SwitchDomainRules返回参数结构体
+      class SwitchDomainRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

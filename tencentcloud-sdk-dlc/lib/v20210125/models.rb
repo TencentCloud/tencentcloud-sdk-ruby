@@ -1079,6 +1079,110 @@ module TencentCloud
         end
       end
 
+      # CreateNotebookSession请求参数结构体
+      class CreateNotebookSessionRequest < TencentCloud::Common::AbstractModel
+        # @param Name: Session名称
+        # @type Name: String
+        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @type Kind: String
+        # @param DataEngineName: DLC Spark作业引擎名称
+        # @type DataEngineName: String
+        # @param ProgramDependentFiles: session文件地址，当前支持：cosn://和lakefs://两种路径
+        # @type ProgramDependentFiles: Array
+        # @param ProgramDependentJars: 依赖的jar程序地址，当前支持：cosn://和lakefs://两种路径
+        # @type ProgramDependentJars: Array
+        # @param ProgramDependentPython: 依赖的python程序地址，当前支持：cosn://和lakefs://两种路径
+        # @type ProgramDependentPython: Array
+        # @param ProgramArchives: 依赖的pyspark虚拟环境地址，当前支持：cosn://和lakefs://两种路径
+        # @type ProgramArchives: Array
+        # @param DriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # @type DriverSize: String
+        # @param ExecutorSize: 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # @type ExecutorSize: String
+        # @param ExecutorNumbers: 指定的Executor数量，默认为1
+        # @type ExecutorNumbers: Integer
+        # @param Arguments: Session相关配置，当前支持：dlc.eni、dlc.role.arn、dlc.sql.set.config以及用户指定的配置，注：roleArn必填；
+        # @type Arguments: Array
+        # @param ProxyUser: 代理用户，默认为root
+        # @type ProxyUser: String
+        # @param TimeoutInSecond: 指定的Session超时时间，单位秒，默认3600秒
+        # @type TimeoutInSecond: Integer
+        # @param ExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
+        # @type ExecutorMaxNumbers: Integer
+
+        attr_accessor :Name, :Kind, :DataEngineName, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :Arguments, :ProxyUser, :TimeoutInSecond, :ExecutorMaxNumbers
+        
+        def initialize(name=nil, kind=nil, dataenginename=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, arguments=nil, proxyuser=nil, timeoutinsecond=nil, executormaxnumbers=nil)
+          @Name = name
+          @Kind = kind
+          @DataEngineName = dataenginename
+          @ProgramDependentFiles = programdependentfiles
+          @ProgramDependentJars = programdependentjars
+          @ProgramDependentPython = programdependentpython
+          @ProgramArchives = programarchives
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNumbers = executornumbers
+          @Arguments = arguments
+          @ProxyUser = proxyuser
+          @TimeoutInSecond = timeoutinsecond
+          @ExecutorMaxNumbers = executormaxnumbers
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Kind = params['Kind']
+          @DataEngineName = params['DataEngineName']
+          @ProgramDependentFiles = params['ProgramDependentFiles']
+          @ProgramDependentJars = params['ProgramDependentJars']
+          @ProgramDependentPython = params['ProgramDependentPython']
+          @ProgramArchives = params['ProgramArchives']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNumbers = params['ExecutorNumbers']
+          unless params['Arguments'].nil?
+            @Arguments = []
+            params['Arguments'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Arguments << kvpair_tmp
+            end
+          end
+          @ProxyUser = params['ProxyUser']
+          @TimeoutInSecond = params['TimeoutInSecond']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+        end
+      end
+
+      # CreateNotebookSession返回参数结构体
+      class CreateNotebookSessionResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param SparkAppId: Spark任务返回的AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkAppId: String
+        # @param State: Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        # @type State: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionId, :SparkAppId, :State, :RequestId
+        
+        def initialize(sessionid=nil, sparkappid=nil, state=nil, requestid=nil)
+          @SessionId = sessionid
+          @SparkAppId = sparkappid
+          @State = state
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @SparkAppId = params['SparkAppId']
+          @State = params['State']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateResultDownload请求参数结构体
       class CreateResultDownloadRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 查询结果任务Id
@@ -2934,6 +3038,45 @@ module TencentCloud
         end
       end
 
+      # DescribeNotebookSession请求参数结构体
+      class DescribeNotebookSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+        
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeNotebookSession返回参数结构体
+      class DescribeNotebookSessionResponse < TencentCloud::Common::AbstractModel
+        # @param Session: Session详情信息
+        # @type Session: :class:`Tencentcloud::Dlc.v20210125.models.NotebookSessionInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Session, :RequestId
+        
+        def initialize(session=nil, requestid=nil)
+          @Session = session
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Session'].nil?
+            @Session = NotebookSessionInfo.new
+            @Session.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResultDownload请求参数结构体
       class DescribeResultDownloadRequest < TencentCloud::Common::AbstractModel
         # @param DownloadId: 查询任务Id
@@ -4539,6 +4682,126 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Notebook Session详细信息。
+      class NotebookSessionInfo < TencentCloud::Common::AbstractModel
+        # @param Name: Session名称
+        # @type Name: String
+        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @type Kind: String
+        # @param DataEngineName: DLC Spark作业引擎名称
+        # @type DataEngineName: String
+        # @param Arguments: Session相关配置，当前支持：eni、roleArn以及用户指定的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Arguments: Array
+        # @param ProgramDependentFiles: 运行程序地址，当前支持：cosn://和lakefs://两种路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramDependentFiles: Array
+        # @param ProgramDependentJars: 依赖的jar程序地址，当前支持：cosn://和lakefs://两种路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramDependentJars: Array
+        # @param ProgramDependentPython: 依赖的python程序地址，当前支持：cosn://和lakefs://两种路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramDependentPython: Array
+        # @param ProgramArchives: 依赖的pyspark虚拟环境地址，当前支持：cosn://和lakefs://两种路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramArchives: Array
+        # @param DriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DriverSize: String
+        # @param ExecutorSize: 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorSize: String
+        # @param ExecutorNumbers: 指定的Executor数量，默认为1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorNumbers: Integer
+        # @param ProxyUser: 代理用户，默认为root
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyUser: String
+        # @param TimeoutInSecond: 指定的Session超时时间，单位秒，默认3600秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeoutInSecond: Integer
+        # @param SparkAppId: Spark任务返回的AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkAppId: String
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param State: Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        # @type State: String
+        # @param CreateTime: Session创建时间
+        # @type CreateTime: String
+        # @param AppInfo: 其它信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppInfo: Array
+        # @param SparkUiUrl: Spark ui地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkUiUrl: String
+        # @param ExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorMaxNumbers: Integer
+
+        attr_accessor :Name, :Kind, :DataEngineName, :Arguments, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ProxyUser, :TimeoutInSecond, :SparkAppId, :SessionId, :State, :CreateTime, :AppInfo, :SparkUiUrl, :ExecutorMaxNumbers
+        
+        def initialize(name=nil, kind=nil, dataenginename=nil, arguments=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, proxyuser=nil, timeoutinsecond=nil, sparkappid=nil, sessionid=nil, state=nil, createtime=nil, appinfo=nil, sparkuiurl=nil, executormaxnumbers=nil)
+          @Name = name
+          @Kind = kind
+          @DataEngineName = dataenginename
+          @Arguments = arguments
+          @ProgramDependentFiles = programdependentfiles
+          @ProgramDependentJars = programdependentjars
+          @ProgramDependentPython = programdependentpython
+          @ProgramArchives = programarchives
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNumbers = executornumbers
+          @ProxyUser = proxyuser
+          @TimeoutInSecond = timeoutinsecond
+          @SparkAppId = sparkappid
+          @SessionId = sessionid
+          @State = state
+          @CreateTime = createtime
+          @AppInfo = appinfo
+          @SparkUiUrl = sparkuiurl
+          @ExecutorMaxNumbers = executormaxnumbers
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Kind = params['Kind']
+          @DataEngineName = params['DataEngineName']
+          unless params['Arguments'].nil?
+            @Arguments = []
+            params['Arguments'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Arguments << kvpair_tmp
+            end
+          end
+          @ProgramDependentFiles = params['ProgramDependentFiles']
+          @ProgramDependentJars = params['ProgramDependentJars']
+          @ProgramDependentPython = params['ProgramDependentPython']
+          @ProgramArchives = params['ProgramArchives']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNumbers = params['ExecutorNumbers']
+          @ProxyUser = params['ProxyUser']
+          @TimeoutInSecond = params['TimeoutInSecond']
+          @SparkAppId = params['SparkAppId']
+          @SessionId = params['SessionId']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          unless params['AppInfo'].nil?
+            @AppInfo = []
+            params['AppInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @AppInfo << kvpair_tmp
+            end
+          end
+          @SparkUiUrl = params['SparkUiUrl']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
         end
       end
 

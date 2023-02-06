@@ -620,6 +620,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过子企业影子账号查询主企业员工账号
+
+        # @param request: Request instance for DescribeIntegrationMainOrganizationUser.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeIntegrationMainOrganizationUserRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeIntegrationMainOrganizationUserResponse`
+        def DescribeIntegrationMainOrganizationUser(request)
+          body = send_request('DescribeIntegrationMainOrganizationUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIntegrationMainOrganizationUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此API接口用户查询加入集团的成员企业
+
+        # @param request: Request instance for DescribeOrganizationGroupOrganizations.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationGroupOrganizationsRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationGroupOrganizationsResponse`
+        def DescribeOrganizationGroupOrganizations(request)
+          body = send_request('DescribeOrganizationGroupOrganizations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationGroupOrganizationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业印章的列表，需要操作者具有查询印章权限
         # 客户指定需要获取的印章数量和偏移量，数量最多100，超过100按100处理；入参InfoType控制印章是否携带授权人信息，为1则携带，为0则返回的授权人信息为空数组。接口调用成功返回印章的信息列表还有企业印章的总数。
 
