@@ -1050,10 +1050,13 @@ module TencentCloud
         # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
+        # @param InputInfo: 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputInfo: :class:`Tencentcloud::Vm.v20201229.models.InputInfo`
 
-        attr_accessor :DataId, :TaskId, :Status, :Name, :BizType, :Type, :Suggestion, :Labels, :MediaInfo, :CreatedAt, :UpdatedAt
+        attr_accessor :DataId, :TaskId, :Status, :Name, :BizType, :Type, :Suggestion, :Labels, :MediaInfo, :CreatedAt, :UpdatedAt, :InputInfo
         
-        def initialize(dataid=nil, taskid=nil, status=nil, name=nil, biztype=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, createdat=nil, updatedat=nil)
+        def initialize(dataid=nil, taskid=nil, status=nil, name=nil, biztype=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, createdat=nil, updatedat=nil, inputinfo=nil)
           @DataId = dataid
           @TaskId = taskid
           @Status = status
@@ -1065,6 +1068,7 @@ module TencentCloud
           @MediaInfo = mediainfo
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @InputInfo = inputinfo
         end
 
         def deserialize(params)
@@ -1089,6 +1093,10 @@ module TencentCloud
           end
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          unless params['InputInfo'].nil?
+            @InputInfo = InputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
         end
       end
 

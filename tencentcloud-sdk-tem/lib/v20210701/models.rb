@@ -508,12 +508,12 @@ module TencentCloud
       class CreateEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentName: 环境名称
         # @type EnvironmentName: String
+        # @param Description: 环境描述
+        # @type Description: String
         # @param Vpc: 私有网络名称
         # @type Vpc: String
         # @param SubnetIds: 子网列表
         # @type SubnetIds: Array
-        # @param Description: 环境描述
-        # @type Description: String
         # @param K8sVersion: K8s version
         # @type K8sVersion: String
         # @param SourceChannel: 来源渠道
@@ -526,27 +526,39 @@ module TencentCloud
         # @type EnvType: String
         # @param CreateRegion: 创建环境的region
         # @type CreateRegion: String
+        # @param SetupVpc: 是否创建私有网络
+        # @type SetupVpc: Boolean
+        # @param SetupPrometheus: 是否创建 Prometheus 实例
+        # @type SetupPrometheus: Boolean
+        # @param PrometheusId: prometheus 实例 id
+        # @type PrometheusId: String
+        # @param ApmId: apm id
+        # @type ApmId: String
 
-        attr_accessor :EnvironmentName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService, :Tags, :EnvType, :CreateRegion
+        attr_accessor :EnvironmentName, :Description, :Vpc, :SubnetIds, :K8sVersion, :SourceChannel, :EnableTswTraceService, :Tags, :EnvType, :CreateRegion, :SetupVpc, :SetupPrometheus, :PrometheusId, :ApmId
         
-        def initialize(environmentname=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil, tags=nil, envtype=nil, createregion=nil)
+        def initialize(environmentname=nil, description=nil, vpc=nil, subnetids=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil, tags=nil, envtype=nil, createregion=nil, setupvpc=nil, setupprometheus=nil, prometheusid=nil, apmid=nil)
           @EnvironmentName = environmentname
+          @Description = description
           @Vpc = vpc
           @SubnetIds = subnetids
-          @Description = description
           @K8sVersion = k8sversion
           @SourceChannel = sourcechannel
           @EnableTswTraceService = enabletswtraceservice
           @Tags = tags
           @EnvType = envtype
           @CreateRegion = createregion
+          @SetupVpc = setupvpc
+          @SetupPrometheus = setupprometheus
+          @PrometheusId = prometheusid
+          @ApmId = apmid
         end
 
         def deserialize(params)
           @EnvironmentName = params['EnvironmentName']
+          @Description = params['Description']
           @Vpc = params['Vpc']
           @SubnetIds = params['SubnetIds']
-          @Description = params['Description']
           @K8sVersion = params['K8sVersion']
           @SourceChannel = params['SourceChannel']
           @EnableTswTraceService = params['EnableTswTraceService']
@@ -560,6 +572,10 @@ module TencentCloud
           end
           @EnvType = params['EnvType']
           @CreateRegion = params['CreateRegion']
+          @SetupVpc = params['SetupVpc']
+          @SetupPrometheus = params['SetupPrometheus']
+          @PrometheusId = params['PrometheusId']
+          @ApmId = params['ApmId']
         end
       end
 

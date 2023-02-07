@@ -5775,19 +5775,23 @@ module TencentCloud
         # @type DeviceName: String
         # @param ToDeviceName: 未开通云存的设备名称
         # @type ToDeviceName: String
+        # @param ToProductId: 未开通云存的设备产品ID
+        # @type ToProductId: String
 
-        attr_accessor :ProductId, :DeviceName, :ToDeviceName
+        attr_accessor :ProductId, :DeviceName, :ToDeviceName, :ToProductId
         
-        def initialize(productid=nil, devicename=nil, todevicename=nil)
+        def initialize(productid=nil, devicename=nil, todevicename=nil, toproductid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ToDeviceName = todevicename
+          @ToProductId = toproductid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @ToDeviceName = params['ToDeviceName']
+          @ToProductId = params['ToProductId']
         end
       end
 

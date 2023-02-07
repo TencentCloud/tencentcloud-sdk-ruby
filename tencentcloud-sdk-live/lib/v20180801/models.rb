@@ -1649,6 +1649,124 @@ module TencentCloud
         end
       end
 
+      # CreateLiveTimeShiftRule请求参数结构体
+      class CreateLiveTimeShiftRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # 注：如果本参数设置为非空字符串，规则将只对此推流起作用。
+        # @type StreamName: String
+        # @param TemplateId: 模板 ID。
+        # @type TemplateId: Integer
+
+        attr_accessor :DomainName, :AppName, :StreamName, :TemplateId
+        
+        def initialize(domainname=nil, appname=nil, streamname=nil, templateid=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # CreateLiveTimeShiftRule返回参数结构体
+      class CreateLiveTimeShiftRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLiveTimeShiftTemplate请求参数结构体
+      class CreateLiveTimeShiftTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称。
+        # 长度上限：255字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type TemplateName: String
+        # @param Duration: 时移时长。
+        # 单位：s。
+        # @type Duration: Integer
+        # @param Description: 描述信息。
+        # 仅支持中文、英文、数字、_、-。
+        # @type Description: String
+        # @param Area: 地域。
+        # Mainland：中国大陆。
+        # Overseas：海外及港澳台地区。
+        # 默认值：Mainland。
+        # @type Area: String
+        # @param ItemDuration: 分片时长。
+        # 可取3-10。
+        # 单位：s。
+        # 默认值：5。
+        # @type ItemDuration: Integer
+        # @param RemoveWatermark: 是否去除水印。
+        # 传true则将录制原始流。
+        # 默认值：false。
+        # @type RemoveWatermark: Boolean
+        # @param TranscodeTemplateIds: 转码流id列表。
+        # 此参数仅在 RemoveWatermark为false时生效。
+        # @type TranscodeTemplateIds: Array
+
+        attr_accessor :TemplateName, :Duration, :Description, :Area, :ItemDuration, :RemoveWatermark, :TranscodeTemplateIds
+        
+        def initialize(templatename=nil, duration=nil, description=nil, area=nil, itemduration=nil, removewatermark=nil, transcodetemplateids=nil)
+          @TemplateName = templatename
+          @Duration = duration
+          @Description = description
+          @Area = area
+          @ItemDuration = itemduration
+          @RemoveWatermark = removewatermark
+          @TranscodeTemplateIds = transcodetemplateids
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @Duration = params['Duration']
+          @Description = params['Description']
+          @Area = params['Area']
+          @ItemDuration = params['ItemDuration']
+          @RemoveWatermark = params['RemoveWatermark']
+          @TranscodeTemplateIds = params['TranscodeTemplateIds']
+        end
+      end
+
+      # CreateLiveTimeShiftTemplate返回参数结构体
+      class CreateLiveTimeShiftTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板Id。
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLiveTranscodeRule请求参数结构体
       class CreateLiveTranscodeRuleRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 播放域名。
@@ -2491,6 +2609,81 @@ module TencentCloud
 
       # DeleteLiveSnapshotTemplate返回参数结构体
       class DeleteLiveSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveTimeShiftRule请求参数结构体
+      class DeleteLiveTimeShiftRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 推流域名。
+        # 域名+AppName+StreamName唯一标识单个时移规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type DomainName: String
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # 域名+AppName+StreamName唯一标识单个时移规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # 域名+AppName+StreamName唯一标识单个时移规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type StreamName: String
+
+        attr_accessor :DomainName, :AppName, :StreamName
+        
+        def initialize(domainname=nil, appname=nil, streamname=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # DeleteLiveTimeShiftRule返回参数结构体
+      class DeleteLiveTimeShiftRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveTimeShiftTemplate请求参数结构体
+      class DeleteLiveTimeShiftTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板 ID。
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteLiveTimeShiftTemplate返回参数结构体
+      class DeleteLiveTimeShiftTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4865,6 +5058,82 @@ module TencentCloud
               timeshiftbilldata_tmp = TimeShiftBillData.new
               timeshiftbilldata_tmp.deserialize(i)
               @DataInfoList << timeshiftbilldata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveTimeShiftRules请求参数结构体
+      class DescribeLiveTimeShiftRulesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLiveTimeShiftRules返回参数结构体
+      class DescribeLiveTimeShiftRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则信息列表。
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :RequestId
+        
+        def initialize(rules=nil, requestid=nil)
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleinfo_tmp = RuleInfo.new
+              ruleinfo_tmp.deserialize(i)
+              @Rules << ruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveTimeShiftTemplates请求参数结构体
+      class DescribeLiveTimeShiftTemplatesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLiveTimeShiftTemplates返回参数结构体
+      class DescribeLiveTimeShiftTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: 直播时移模板信息。
+        # @type Templates: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :RequestId
+        
+        def initialize(templates=nil, requestid=nil)
+          @Templates = templates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Templates'].nil?
+            @Templates = []
+            params['Templates'].each do |i|
+              timeshifttemplate_tmp = TimeShiftTemplate.new
+              timeshifttemplate_tmp.deserialize(i)
+              @Templates << timeshifttemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8088,6 +8357,79 @@ module TencentCloud
         end
       end
 
+      # ModifyLiveTimeShiftTemplate请求参数结构体
+      class ModifyLiveTimeShiftTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 时移模板id。
+        # @type TemplateId: Integer
+        # @param TemplateName: 模板名称。
+        # 仅支持中文、英文、数字、_、-。
+        # @type TemplateName: String
+        # @param Description: 描述信息。
+        # 长度上限：1024字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type Description: String
+        # @param Duration: 时移时长。
+        # 单位：s。
+        # @type Duration: Integer
+        # @param ItemDuration: 分片时长。
+        # 可取3-10。
+        # 单位：s。
+        # 默认值：5。
+        # @type ItemDuration: Integer
+        # @param RemoveWatermark: 是否去除水印。
+        # 传true则将录制原始流。
+        # 默认值：false。
+        # @type RemoveWatermark: Boolean
+        # @param TranscodeTemplateIds: 转码流id列表。
+        # 此参数仅在 RemoveWatermark为false时生效。
+        # @type TranscodeTemplateIds: Array
+        # @param Area: 地域。
+        # Mainland：中国大陆。
+        # Overseas：海外及港澳台地区。
+        # 默认值：Mainland。
+        # @type Area: String
+
+        attr_accessor :TemplateId, :TemplateName, :Description, :Duration, :ItemDuration, :RemoveWatermark, :TranscodeTemplateIds, :Area
+        
+        def initialize(templateid=nil, templatename=nil, description=nil, duration=nil, itemduration=nil, removewatermark=nil, transcodetemplateids=nil, area=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Description = description
+          @Duration = duration
+          @ItemDuration = itemduration
+          @RemoveWatermark = removewatermark
+          @TranscodeTemplateIds = transcodetemplateids
+          @Area = area
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+          @Duration = params['Duration']
+          @ItemDuration = params['ItemDuration']
+          @RemoveWatermark = params['RemoveWatermark']
+          @TranscodeTemplateIds = params['TranscodeTemplateIds']
+          @Area = params['Area']
+        end
+      end
+
+      # ModifyLiveTimeShiftTemplate返回参数结构体
+      class ModifyLiveTimeShiftTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLiveTranscodeTemplate请求参数结构体
       class ModifyLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 Id。
@@ -10062,6 +10404,60 @@ module TencentCloud
           @TransCodeId = params['TransCodeId']
           @StreamType = params['StreamType']
           @Duration = params['Duration']
+        end
+      end
+
+      # 直播时移模板配置
+      class TimeShiftTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+        # @param Duration: 时移时长。
+        # 单位：秒。
+        # @type Duration: Integer
+        # @param ItemDuration: 分片时长。
+        # 可取3-10。
+        # 单位：s。
+        # 默认值：5。
+        # @type ItemDuration: Integer
+        # @param TemplateId: 模板id。
+        # @type TemplateId: Integer
+        # @param Description: 模板描述。
+        # @type Description: String
+        # @param Area: 地域：
+        # Mainland：中国大陆；
+        # Overseas：海外及港澳台地区；
+        # 默认值：Mainland。
+        # @type Area: String
+        # @param RemoveWatermark: 是否去除水印。
+        # 为true则将录制原始流。
+        # 默认值：false。
+        # @type RemoveWatermark: Boolean
+        # @param TranscodeTemplateIds: 转码流id列表。
+        # 此参数仅在 RemoveWatermark为false时生效。
+        # @type TranscodeTemplateIds: Array
+
+        attr_accessor :TemplateName, :Duration, :ItemDuration, :TemplateId, :Description, :Area, :RemoveWatermark, :TranscodeTemplateIds
+        
+        def initialize(templatename=nil, duration=nil, itemduration=nil, templateid=nil, description=nil, area=nil, removewatermark=nil, transcodetemplateids=nil)
+          @TemplateName = templatename
+          @Duration = duration
+          @ItemDuration = itemduration
+          @TemplateId = templateid
+          @Description = description
+          @Area = area
+          @RemoveWatermark = removewatermark
+          @TranscodeTemplateIds = transcodetemplateids
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @Duration = params['Duration']
+          @ItemDuration = params['ItemDuration']
+          @TemplateId = params['TemplateId']
+          @Description = params['Description']
+          @Area = params['Area']
+          @RemoveWatermark = params['RemoveWatermark']
+          @TranscodeTemplateIds = params['TranscodeTemplateIds']
         end
       end
 

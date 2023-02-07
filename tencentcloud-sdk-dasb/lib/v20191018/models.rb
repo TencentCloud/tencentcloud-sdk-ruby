@@ -1108,10 +1108,13 @@ module TencentCloud
         # @type DepartmentId: String
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         # @type TagFilters: Array
+        # @param Filters: 过滤数组。支持的Name：
+        # BindingStatus 绑定状态
+        # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId, :TagFilters
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId, :TagFilters, :Filters
         
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil, tagfilters=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil, tagfilters=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -1124,6 +1127,7 @@ module TencentCloud
           @KindSet = kindset
           @DepartmentId = departmentid
           @TagFilters = tagfilters
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1144,6 +1148,14 @@ module TencentCloud
               tagfilter_tmp = TagFilter.new
               tagfilter_tmp.deserialize(i)
               @TagFilters << tagfilter_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -1528,6 +1540,28 @@ module TencentCloud
         end
       end
 
+      # 描述键值对过滤器，用于条件过滤查询
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+        # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 组信息，用于用户组、主机组
       class Group < TencentCloud::Common::AbstractModel
         # @param Id: 组ID
@@ -1537,13 +1571,17 @@ module TencentCloud
         # @param Department: 所属部门信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
+        # @param Count: 个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
 
-        attr_accessor :Id, :Name, :Department
+        attr_accessor :Id, :Name, :Department, :Count
         
-        def initialize(id=nil, name=nil, department=nil)
+        def initialize(id=nil, name=nil, department=nil, count=nil)
           @Id = id
           @Name = name
           @Department = department
+          @Count = count
         end
 
         def deserialize(params)
@@ -1553,6 +1591,7 @@ module TencentCloud
             @Department = Department.new
             @Department.deserialize(params['Department'])
           end
+          @Count = params['Count']
         end
       end
 

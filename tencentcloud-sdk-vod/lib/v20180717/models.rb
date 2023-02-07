@@ -6034,6 +6034,70 @@ module TencentCloud
         end
       end
 
+      # CreateRoundPlay请求参数结构体
+      class CreateRoundPlayRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param RoundPlaylist: 轮播列表。
+        # <li>数组长度限制：100。</li>
+        # @type RoundPlaylist: Array
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Name: 轮播播单名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
+        # @type Desc: String
+
+        attr_accessor :StartTime, :RoundPlaylist, :SubAppId, :Name, :Desc
+        
+        def initialize(starttime=nil, roundplaylist=nil, subappid=nil, name=nil, desc=nil)
+          @StartTime = starttime
+          @RoundPlaylist = roundplaylist
+          @SubAppId = subappid
+          @Name = name
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          unless params['RoundPlaylist'].nil?
+            @RoundPlaylist = []
+            params['RoundPlaylist'].each do |i|
+              roundplaylistiteminfo_tmp = RoundPlayListItemInfo.new
+              roundplaylistiteminfo_tmp.deserialize(i)
+              @RoundPlaylist << roundplaylistiteminfo_tmp
+            end
+          end
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Desc = params['Desc']
+        end
+      end
+
+      # CreateRoundPlay返回参数结构体
+      class CreateRoundPlayResponse < TencentCloud::Common::AbstractModel
+        # @param RoundPlayId: 轮播播单唯一标识。
+        # @type RoundPlayId: String
+        # @param Url: 轮播播放地址。
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoundPlayId, :Url, :RequestId
+        
+        def initialize(roundplayid=nil, url=nil, requestid=nil)
+          @RoundPlayId = roundplayid
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoundPlayId = params['RoundPlayId']
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSampleSnapshotTemplate请求参数结构体
       class CreateSampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SampleType: 采样截图类型，取值：
@@ -7176,6 +7240,42 @@ module TencentCloud
 
       # DeleteReviewTemplate返回参数结构体
       class DeleteReviewTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoundPlay请求参数结构体
+      class DeleteRoundPlayRequest < TencentCloud::Common::AbstractModel
+        # @param RoundPlayId: 轮播播单唯一标识。
+        # @type RoundPlayId: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :RoundPlayId, :SubAppId
+        
+        def initialize(roundplayid=nil, subappid=nil)
+          @RoundPlayId = roundplayid
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @RoundPlayId = params['RoundPlayId']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteRoundPlay返回参数结构体
+      class DeleteRoundPlayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9396,6 +9496,65 @@ module TencentCloud
               reviewtemplate_tmp = ReviewTemplate.new
               reviewtemplate_tmp.deserialize(i)
               @ReviewTemplateSet << reviewtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoundPlays请求参数结构体
+      class DescribeRoundPlaysRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param RoundPlayIds: 轮播播单标识过滤条件，数组长度限制：100。
+        # @type RoundPlayIds: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :RoundPlayIds, :Offset, :Limit
+        
+        def initialize(subappid=nil, roundplayids=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @RoundPlayIds = roundplayids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @RoundPlayIds = params['RoundPlayIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRoundPlays返回参数结构体
+      class DescribeRoundPlaysResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的轮播播单总数。
+        # @type TotalCount: Integer
+        # @param RoundPlaySet: 轮播播单详情列表。
+        # @type RoundPlaySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RoundPlaySet, :RequestId
+        
+        def initialize(totalcount=nil, roundplayset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RoundPlaySet = roundplayset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RoundPlaySet'].nil?
+            @RoundPlaySet = []
+            params['RoundPlaySet'].each do |i|
+              roundplayinfo_tmp = RoundPlayInfo.new
+              roundplayinfo_tmp.deserialize(i)
+              @RoundPlaySet << roundplayinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15677,6 +15836,66 @@ module TencentCloud
         end
       end
 
+      # ModifyRoundPlay请求参数结构体
+      class ModifyRoundPlayRequest < TencentCloud::Common::AbstractModel
+        # @param RoundPlayId: 轮播播单唯一标识。
+        # @type RoundPlayId: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param StartTime: 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param RoundPlaylist: 轮播列表。
+        # <li>数组长度限制：100。</li>
+        # @type RoundPlaylist: Array
+        # @param Name: 轮播播单名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
+        # @type Desc: String
+
+        attr_accessor :RoundPlayId, :SubAppId, :StartTime, :RoundPlaylist, :Name, :Desc
+        
+        def initialize(roundplayid=nil, subappid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil)
+          @RoundPlayId = roundplayid
+          @SubAppId = subappid
+          @StartTime = starttime
+          @RoundPlaylist = roundplaylist
+          @Name = name
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @RoundPlayId = params['RoundPlayId']
+          @SubAppId = params['SubAppId']
+          @StartTime = params['StartTime']
+          unless params['RoundPlaylist'].nil?
+            @RoundPlaylist = []
+            params['RoundPlaylist'].each do |i|
+              roundplaylistiteminfo_tmp = RoundPlayListItemInfo.new
+              roundplaylistiteminfo_tmp.deserialize(i)
+              @RoundPlaylist << roundplaylistiteminfo_tmp
+            end
+          end
+          @Name = params['Name']
+          @Desc = params['Desc']
+        end
+      end
+
+      # ModifyRoundPlay返回参数结构体
+      class ModifyRoundPlayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySampleSnapshotTemplate请求参数结构体
       class ModifySampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 采样截图模板唯一标识。
@@ -19578,6 +19797,72 @@ module TencentCloud
           @Labels = params['Labels']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 轮播任务信息
+      class RoundPlayInfo < TencentCloud::Common::AbstractModel
+        # @param RoundPlayId: 轮播播单标识。
+        # @type RoundPlayId: String
+        # @param StartTime: 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param RoundPlaylist: 轮播列表。
+        # @type RoundPlaylist: Array
+        # @param Name: 轮播播单名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
+        # @type Desc: String
+
+        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc
+        
+        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil)
+          @RoundPlayId = roundplayid
+          @StartTime = starttime
+          @RoundPlaylist = roundplaylist
+          @Name = name
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @RoundPlayId = params['RoundPlayId']
+          @StartTime = params['StartTime']
+          unless params['RoundPlaylist'].nil?
+            @RoundPlaylist = []
+            params['RoundPlaylist'].each do |i|
+              roundplaylistiteminfo_tmp = RoundPlayListItemInfo.new
+              roundplaylistiteminfo_tmp.deserialize(i)
+              @RoundPlaylist << roundplaylistiteminfo_tmp
+            end
+          end
+          @Name = params['Name']
+          @Desc = params['Desc']
+        end
+      end
+
+      # 加权轮播媒体文件信息
+      class RoundPlayListItemInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件标识。
+        # @type FileId: String
+        # @param AudioVideoType: 播放的音视频类型，可选值：
+        # <li>Transcode：转码输出；转码输出会有多个模版，必须指定 Definition 字段</li>
+        # <li>Original：原始音视频。</li>
+        # Type 对应的格式必须为 HLS 格式。
+        # @type AudioVideoType: String
+        # @param Definition: 指定播放的转码模版，当 AudioVideoType 为 Transcode 时必须指定。
+        # @type Definition: Integer
+
+        attr_accessor :FileId, :AudioVideoType, :Definition
+        
+        def initialize(fileid=nil, audiovideotype=nil, definition=nil)
+          @FileId = fileid
+          @AudioVideoType = audiovideotype
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @AudioVideoType = params['AudioVideoType']
+          @Definition = params['Definition']
         end
       end
 

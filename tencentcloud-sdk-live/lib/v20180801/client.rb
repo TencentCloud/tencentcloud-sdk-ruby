@@ -400,6 +400,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建直播时移规则，需要先调用[CreateLiveTimeShiftTemplate](/document/product/267/84589)接口创建录制模板，将返回的模板id绑定到流使用。
+        # <br>直播时移相关文档：[直播时移](/document/product/267/86134)。
+
+        # @param request: Request instance for CreateLiveTimeShiftRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveTimeShiftRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveTimeShiftRuleResponse`
+        def CreateLiveTimeShiftRule(request)
+          body = send_request('CreateLiveTimeShiftRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveTimeShiftRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建直播垫片模板。
+
+        # @param request: Request instance for CreateLiveTimeShiftTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveTimeShiftTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveTimeShiftTemplateResponse`
+        def CreateLiveTimeShiftTemplate(request)
+          body = send_request('CreateLiveTimeShiftTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveTimeShiftTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
         # <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
 
@@ -771,6 +820,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLiveSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除直播时移规则。
+
+        # @param request: Request instance for DeleteLiveTimeShiftRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveTimeShiftRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveTimeShiftRuleResponse`
+        def DeleteLiveTimeShiftRule(request)
+          body = send_request('DeleteLiveTimeShiftRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveTimeShiftRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除直播时移模板。
+
+        # @param request: Request instance for DeleteLiveTimeShiftTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveTimeShiftTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveTimeShiftTemplateResponse`
+        def DeleteLiveTimeShiftTemplate(request)
+          body = send_request('DeleteLiveTimeShiftTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveTimeShiftTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1865,6 +1962,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播时移规则列表。
+
+        # @param request: Request instance for DescribeLiveTimeShiftRules.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftRulesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftRulesResponse`
+        def DescribeLiveTimeShiftRules(request)
+          body = send_request('DescribeLiveTimeShiftRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveTimeShiftRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取直播时移模板。
+
+        # @param request: Request instance for DescribeLiveTimeShiftTemplates.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftTemplatesResponse`
+        def DescribeLiveTimeShiftTemplates(request)
+          body = send_request('DescribeLiveTimeShiftTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveTimeShiftTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
 
         # @param request: Request instance for DescribeLiveTranscodeDetailInfo.
@@ -2828,6 +2973,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改直播垫片模板。
+
+        # @param request: Request instance for ModifyLiveTimeShiftTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveTimeShiftTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveTimeShiftTemplateResponse`
+        def ModifyLiveTimeShiftTemplate(request)
+          body = send_request('ModifyLiveTimeShiftTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveTimeShiftTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

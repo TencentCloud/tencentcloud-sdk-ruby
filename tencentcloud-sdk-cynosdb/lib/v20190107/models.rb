@@ -3522,6 +3522,42 @@ module TencentCloud
         end
       end
 
+      # DescribeFlow请求参数结构体
+      class DescribeFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeFlow返回参数结构体
+      class DescribeFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务流状态。0-成功，1-失败，2-处理中
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceDetail请求参数结构体
       class DescribeInstanceDetailRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

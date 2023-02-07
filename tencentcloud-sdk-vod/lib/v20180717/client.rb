@@ -457,6 +457,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建轮播播单，数量上限：100。
+        # 轮播播单的每个文件可以指定源文件，也可以指定某个转码文件。
+        # 指定的文件必须是hls格式，所有的播单文件最好保持相同的码率和分辨率。
+
+        # @param request: Request instance for CreateRoundPlay.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateRoundPlayRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateRoundPlayResponse`
+        def CreateRoundPlay(request)
+          body = send_request('CreateRoundPlay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoundPlayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义采样截图模板，数量上限：16。
 
         # @param request: Request instance for CreateSampleSnapshotTemplate.
@@ -982,6 +1008,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于删除轮播播单。
+
+        # @param request: Request instance for DeleteRoundPlay.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteRoundPlayRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteRoundPlayResponse`
+        def DeleteRoundPlay(request)
+          body = send_request('DeleteRoundPlay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRoundPlayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1977,6 +2027,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于获取轮播播单列表。
+
+        # @param request: Request instance for DescribeRoundPlays.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeRoundPlaysRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeRoundPlaysResponse`
+        def DescribeRoundPlays(request)
+          body = send_request('DescribeRoundPlays', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoundPlaysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询采样截图模板，支持根据条件，分页查询。
 
         # @param request: Request instance for DescribeSampleSnapshotTemplates.
@@ -2823,6 +2897,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改轮播播单。
+        # 修改后只有新的播放请求会生效，已经在播放中的用户在七天之内还可以播放修改前的播单。
+
+        # @param request: Request instance for ModifyRoundPlay.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyRoundPlayRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyRoundPlayResponse`
+        def ModifyRoundPlay(request)
+          body = send_request('ModifyRoundPlay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoundPlayResponse.new
             model.deserialize(response['Response'])
             model
           else
