@@ -1625,6 +1625,79 @@ module TencentCloud
         end
       end
 
+      # CreateSealPolicy请求参数结构体
+      class CreateSealPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 授权发起人在平台信息，具体参考UserInfo结构体
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Users: 用户在电子文件签署平台标识信息，具体参考UserInfo结构体。可跟下面的UserIds可叠加起作用
+        # @type Users: Array
+        # @param SealId: 印章ID
+        # @type SealId: String
+        # @param Expired: 授权有效期。时间戳秒级
+        # @type Expired: Integer
+        # @param Policy: 印章授权内容
+        # @type Policy: String
+        # @param Agent: 应用相关
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param UserIds: 需要授权的用户UserId集合。跟上面的SealId参数配合使用。选填，跟上面的Users同时起作用
+        # @type UserIds: Array
+
+        attr_accessor :Operator, :Users, :SealId, :Expired, :Policy, :Agent, :UserIds
+        
+        def initialize(operator=nil, users=nil, sealid=nil, expired=nil, policy=nil, agent=nil, userids=nil)
+          @Operator = operator
+          @Users = users
+          @SealId = sealid
+          @Expired = expired
+          @Policy = policy
+          @Agent = agent
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @Users << userinfo_tmp
+            end
+          end
+          @SealId = params['SealId']
+          @Expired = params['Expired']
+          @Policy = params['Policy']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @UserIds = params['UserIds']
+        end
+      end
+
+      # CreateSealPolicy返回参数结构体
+      class CreateSealPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param UserIds: 最终授权成功的。其他的跳过的是已经授权了的
+        # @type UserIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserIds, :RequestId
+        
+        def initialize(userids=nil, requestid=nil)
+          @UserIds = userids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserIds = params['UserIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建员工的结果
       class CreateStaffResult < TencentCloud::Common::AbstractModel
         # @param SuccessEmployeeData: 创建员工的成功列表
@@ -1710,6 +1783,60 @@ module TencentCloud
             @DeleteEmployeeResult = DeleteStaffsResult.new
             @DeleteEmployeeResult.deserialize(params['DeleteEmployeeResult'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSealPolicies请求参数结构体
+      class DeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作撤销的用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param PolicyIds: 印章授权编码数组。这个参数跟下面的SealId其中一个必填，另外一个可选填
+        # @type PolicyIds: Array
+        # @param Agent: 应用相关
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param SealId: 印章ID。这个参数跟上面的PolicyIds其中一个必填，另外一个可选填
+        # @type SealId: String
+        # @param UserIds: 待授权的员工ID
+        # @type UserIds: Array
+
+        attr_accessor :Operator, :PolicyIds, :Agent, :SealId, :UserIds
+        
+        def initialize(operator=nil, policyids=nil, agent=nil, sealid=nil, userids=nil)
+          @Operator = operator
+          @PolicyIds = policyids
+          @Agent = agent
+          @SealId = sealid
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @PolicyIds = params['PolicyIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SealId = params['SealId']
+          @UserIds = params['UserIds']
+        end
+      end
+
+      # DeleteSealPolicies返回参数结构体
+      class DeleteSealPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

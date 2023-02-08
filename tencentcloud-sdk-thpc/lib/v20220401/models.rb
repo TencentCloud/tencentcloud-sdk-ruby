@@ -62,12 +62,12 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Thpc.v20220401.models.Placement`
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜。
-        # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20220401.models.VirtualPrivateCloud`
         # @param Count: 添加节点数量。
         # @type Count: Integer
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和特定自定义镜像。
+        # @type ImageId: String
         # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
@@ -90,7 +90,8 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param QueueName: 队列名称。
+        # @param QueueName: 队列名称。不指定则为默认队列。<br><li>SLURM默认队列为：compute。<br>
+        # <li>SGE默认队列为：all.q。<br>
         # @type QueueName: String
         # @param NodeRole: 添加节点类型。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
         # @type NodeRole: String
@@ -101,14 +102,14 @@ module TencentCloud
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
 
-        attr_accessor :Placement, :ClusterId, :ImageId, :VirtualPrivateCloud, :Count, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun
+        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun
         
-        def initialize(placement=nil, clusterid=nil, imageid=nil, virtualprivatecloud=nil, count=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil)
+        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil)
           @Placement = placement
           @ClusterId = clusterid
-          @ImageId = imageid
           @VirtualPrivateCloud = virtualprivatecloud
           @Count = count
+          @ImageId = imageid
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -130,12 +131,12 @@ module TencentCloud
             @Placement.deserialize(params['Placement'])
           end
           @ClusterId = params['ClusterId']
-          @ImageId = params['ImageId']
           unless params['VirtualPrivateCloud'].nil?
             @VirtualPrivateCloud = VirtualPrivateCloud.new
             @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
           end
           @Count = params['Count']
+          @ImageId = params['ImageId']
           @InstanceChargeType = params['InstanceChargeType']
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new

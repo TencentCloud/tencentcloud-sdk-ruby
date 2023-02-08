@@ -6816,14 +6816,18 @@ module TencentCloud
         # @param Targets: 后端服务的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
+        # @param FunctionTargets: 后端云函数的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionTargets: Array
 
-        attr_accessor :LocationId, :Domain, :Url, :Targets
+        attr_accessor :LocationId, :Domain, :Url, :Targets, :FunctionTargets
         
-        def initialize(locationid=nil, domain=nil, url=nil, targets=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, targets=nil, functiontargets=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
           @Targets = targets
+          @FunctionTargets = functiontargets
         end
 
         def deserialize(params)
@@ -6836,6 +6840,14 @@ module TencentCloud
               backend_tmp = Backend.new
               backend_tmp.deserialize(i)
               @Targets << backend_tmp
+            end
+          end
+          unless params['FunctionTargets'].nil?
+            @FunctionTargets = []
+            params['FunctionTargets'].each do |i|
+              functiontarget_tmp = FunctionTarget.new
+              functiontarget_tmp.deserialize(i)
+              @FunctionTargets << functiontarget_tmp
             end
           end
         end

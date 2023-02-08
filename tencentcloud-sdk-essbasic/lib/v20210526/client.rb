@@ -358,6 +358,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将指定印章授权给企业下的某些员工
+
+        # @param request: Request instance for ChannelCreateSealPolicy.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateSealPolicyRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateSealPolicyResponse`
+        def ChannelCreateSealPolicy(request)
+          body = send_request('ChannelCreateSealPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateSealPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定印章下多个授权信息
+
+        # @param request: Request instance for ChannelDeleteSealPolicies.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDeleteSealPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelDeleteSealPoliciesResponse`
+        def ChannelDeleteSealPolicies(request)
+          body = send_request('ChannelDeleteSealPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelDeleteSealPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业员工列表
 
         # @param request: Request instance for ChannelDescribeEmployees.

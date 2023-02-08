@@ -4025,15 +4025,15 @@ module TencentCloud
 
       # 代理慢查询详情
       class InstanceProxySlowlogDetail < TencentCloud::Common::AbstractModel
-        # @param Duration: 慢查询耗时
+        # @param Duration: 慢查询耗时（单位：毫秒）。
         # @type Duration: Integer
-        # @param Client: 客户端地址
+        # @param Client: 客户端地址。
         # @type Client: String
-        # @param Command: 命令
+        # @param Command: 命令。
         # @type Command: String
-        # @param CommandLine: 详细命令行信息
+        # @param CommandLine: 详细命令行信息。
         # @type CommandLine: String
-        # @param ExecuteTime: 执行时间
+        # @param ExecuteTime: 执行时间。
         # @type ExecuteTime: String
 
         attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime

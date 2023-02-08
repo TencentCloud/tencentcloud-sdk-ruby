@@ -4386,13 +4386,13 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目 ID，可使用 [查询项目列表](https://cloud.tencent.com/document/product/378/4400) 接口查询项目 ID。
+        # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
         # @param InstanceTypes: 实例类型，可取值：1 - 主实例，2 - 灾备实例，3 - 只读实例。
         # @type InstanceTypes: Array
         # @param Vips: 实例的内网 IP 地址。
         # @type Vips: Array
-        # @param Status: 实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 隔离中（可在回收站恢复开机）
+        # @param Status: 实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 已隔离（可在回收站恢复开机）
         # @type Status: Array
         # @param Offset: 偏移量，默认值为 0。
         # @type Offset: Integer
@@ -6825,7 +6825,7 @@ module TencentCloud
         # @type RoVipInfo: :class:`Tencentcloud::Cdb.v20170320.models.RoVipInfo`
         # @param Memory: 内存容量，单位为 MB
         # @type Memory: Integer
-        # @param Status: 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
+        # @param Status: 实例状态，可能的返回值：0-创建中；1-运行中；4-正在进行隔离操作；5-已隔离
         # @type Status: Integer
         # @param VpcId: 私有网络 ID，例如：51102
         # @type VpcId: Integer
@@ -11119,7 +11119,7 @@ module TencentCloud
         # @type DeviceType: String
         # @param Cpu: 升级后的实例cpu核数， 如果不传将根据 Memory 指定的内存值自动填充对应的cpu值。
         # @type Cpu: Integer
-        # @param FastUpgrade: 是否极速变配。0-普通升级，1-极速变配。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
+        # @param FastUpgrade: 是否极速变配。0-普通升级，1-极速变配,，2 极速优先。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
         # @type FastUpgrade: Integer
         # @param MaxDelayTime: 延迟阈值。取值范围1~10，默认值为10。
         # @type MaxDelayTime: Integer

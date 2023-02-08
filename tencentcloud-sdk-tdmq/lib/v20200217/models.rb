@@ -4547,19 +4547,47 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 一页限制
         # @type Limit: Integer
+        # @param NodeName: 模糊搜索节点名字
+        # @type NodeName: String
+        # @param Filters: 过滤参数的名字和数值
+        # 现在只有一个nodeStatus
+        # running/down
+        # 数组类型，兼容后续添加过滤参数
+        # @type Filters: Array
+        # @param SortElement: 按指定元素排序，现在只有2个
+        # cpuUsage/diskUsage
+        # @type SortElement: String
+        # @param SortOrder: 升序/降序
+        # ascend/descend
+        # @type SortOrder: String
 
-        attr_accessor :InstanceId, :Offset, :Limit
+        attr_accessor :InstanceId, :Offset, :Limit, :NodeName, :Filters, :SortElement, :SortOrder
         
-        def initialize(instanceid=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, nodename=nil, filters=nil, sortelement=nil, sortorder=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
+          @NodeName = nodename
+          @Filters = filters
+          @SortElement = sortelement
+          @SortOrder = sortorder
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NodeName = params['NodeName']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortElement = params['SortElement']
+          @SortOrder = params['SortOrder']
         end
       end
 
@@ -6557,15 +6585,40 @@ module TencentCloud
         # @param NodeName: 节点名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
+        # @param NodeStatus: 节点状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeStatus: String
+        # @param CPUUsage: CPU使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPUUsage: String
+        # @param Memory: 内存使用情况，单位MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param DiskUsage: 磁盘使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskUsage: String
+        # @param ProcessNumber: Rabbitmq的Erlang进程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessNumber: Integer
 
-        attr_accessor :NodeName
+        attr_accessor :NodeName, :NodeStatus, :CPUUsage, :Memory, :DiskUsage, :ProcessNumber
         
-        def initialize(nodename=nil)
+        def initialize(nodename=nil, nodestatus=nil, cpuusage=nil, memory=nil, diskusage=nil, processnumber=nil)
           @NodeName = nodename
+          @NodeStatus = nodestatus
+          @CPUUsage = cpuusage
+          @Memory = memory
+          @DiskUsage = diskusage
+          @ProcessNumber = processnumber
         end
 
         def deserialize(params)
           @NodeName = params['NodeName']
+          @NodeStatus = params['NodeStatus']
+          @CPUUsage = params['CPUUsage']
+          @Memory = params['Memory']
+          @DiskUsage = params['DiskUsage']
+          @ProcessNumber = params['ProcessNumber']
         end
       end
 
@@ -6601,10 +6654,13 @@ module TencentCloud
         # @type Remark: String
         # @param SpecName: 实例配置ID
         # @type SpecName: String
+        # @param ExceptionInformation: 集群异常。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptionInformation: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation
         
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -6619,6 +6675,7 @@ module TencentCloud
           @PayMode = paymode
           @Remark = remark
           @SpecName = specname
+          @ExceptionInformation = exceptioninformation
         end
 
         def deserialize(params)
@@ -6636,6 +6693,7 @@ module TencentCloud
           @PayMode = params['PayMode']
           @Remark = params['Remark']
           @SpecName = params['SpecName']
+          @ExceptionInformation = params['ExceptionInformation']
         end
       end
 

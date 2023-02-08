@@ -4604,6 +4604,7 @@ module TencentCloud
         # <li>ruleId：规则id；</li>
         # <li>sipCountryCode：ip所在国家；</li>
         # <li>attackIp：攻击ip；</li>
+        # <li>realClientIp：真实客户端ip；</li>
         # <li>oriDomain：被攻击的子域名；</li>
         # <li>eventId：事件id；</li>
         # <li>ua：用户代理；</li>
@@ -10409,56 +10410,64 @@ module TencentCloud
       class WebLogs < TencentCloud::Common::AbstractModel
         # @param EventId: 请求（事件）ID。
         # @type EventId: String
-        # @param AttackIp: 攻击源（客户端）Ip。
-        # @type AttackIp: String
-        # @param Domain: 受攻击子域名。
-        # @type Domain: String
         # @param HttpLog: http 日志内容。
         # @type HttpLog: String
+        # @param Domain: 受攻击子域名。
+        # @type Domain: String
+        # @param AttackIp: 攻击源（客户端）Ip。
+        # @type AttackIp: String
         # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)
         # @type SipCountryCode: String
+        # @param RealClientIp: 真实客户端Ip。
+        # @type RealClientIp: String
+        # @param RealClientIpCountryCode: 真实客户端Ip所在国家iso-3166中alpha-2编码。
+        # @type RealClientIpCountryCode: String
         # @param AttackTime: 攻击时间，采用unix秒级时间戳。
         # @type AttackTime: Integer
         # @param RequestUri: 请求地址。
         # @type RequestUri: String
-        # @param AttackContent: 攻击内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AttackContent: String
-        # @param RuleDetailList: 规则相关信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleDetailList: Array
         # @param ReqMethod: 请求类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReqMethod: String
+        # @param RuleDetailList: 规则相关信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDetailList: Array
+        # @param AttackContent: 攻击内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackContent: String
         # @param Area: 日志所属区域。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Area: String
 
-        attr_accessor :EventId, :AttackIp, :Domain, :HttpLog, :SipCountryCode, :AttackTime, :RequestUri, :AttackContent, :RuleDetailList, :ReqMethod, :Area
+        attr_accessor :EventId, :HttpLog, :Domain, :AttackIp, :SipCountryCode, :RealClientIp, :RealClientIpCountryCode, :AttackTime, :RequestUri, :ReqMethod, :RuleDetailList, :AttackContent, :Area
         
-        def initialize(eventid=nil, attackip=nil, domain=nil, httplog=nil, sipcountrycode=nil, attacktime=nil, requesturi=nil, attackcontent=nil, ruledetaillist=nil, reqmethod=nil, area=nil)
+        def initialize(eventid=nil, httplog=nil, domain=nil, attackip=nil, sipcountrycode=nil, realclientip=nil, realclientipcountrycode=nil, attacktime=nil, requesturi=nil, reqmethod=nil, ruledetaillist=nil, attackcontent=nil, area=nil)
           @EventId = eventid
-          @AttackIp = attackip
-          @Domain = domain
           @HttpLog = httplog
+          @Domain = domain
+          @AttackIp = attackip
           @SipCountryCode = sipcountrycode
+          @RealClientIp = realclientip
+          @RealClientIpCountryCode = realclientipcountrycode
           @AttackTime = attacktime
           @RequestUri = requesturi
-          @AttackContent = attackcontent
-          @RuleDetailList = ruledetaillist
           @ReqMethod = reqmethod
+          @RuleDetailList = ruledetaillist
+          @AttackContent = attackcontent
           @Area = area
         end
 
         def deserialize(params)
           @EventId = params['EventId']
-          @AttackIp = params['AttackIp']
-          @Domain = params['Domain']
           @HttpLog = params['HttpLog']
+          @Domain = params['Domain']
+          @AttackIp = params['AttackIp']
           @SipCountryCode = params['SipCountryCode']
+          @RealClientIp = params['RealClientIp']
+          @RealClientIpCountryCode = params['RealClientIpCountryCode']
           @AttackTime = params['AttackTime']
           @RequestUri = params['RequestUri']
-          @AttackContent = params['AttackContent']
+          @ReqMethod = params['ReqMethod']
           unless params['RuleDetailList'].nil?
             @RuleDetailList = []
             params['RuleDetailList'].each do |i|
@@ -10467,7 +10476,7 @@ module TencentCloud
               @RuleDetailList << secrulerelatedinfo_tmp
             end
           end
-          @ReqMethod = params['ReqMethod']
+          @AttackContent = params['AttackContent']
           @Area = params['Area']
         end
       end

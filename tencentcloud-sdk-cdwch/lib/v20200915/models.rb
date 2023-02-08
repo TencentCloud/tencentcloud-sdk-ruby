@@ -770,6 +770,51 @@ module TencentCloud
         end
       end
 
+      # DestroyInstance请求参数结构体
+      class DestroyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DestroyInstance返回参数结构体
+      class DestroyInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowID: 作业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowID: String
+        # @param InstanceID: 集群id
+        # @type InstanceID: String
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowID, :InstanceID, :ErrorMsg, :RequestId
+        
+        def initialize(flowid=nil, instanceid=nil, errormsg=nil, requestid=nil)
+          @FlowID = flowid
+          @InstanceID = instanceid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowID = params['FlowID']
+          @InstanceID = params['InstanceID']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 磁盘规格描述
       class DiskSpec < TencentCloud::Common::AbstractModel
         # @param DiskType: 磁盘类型，例如“CLOUD_SSD", "LOCAL_SSD"等
@@ -1488,18 +1533,21 @@ module TencentCloud
         # @type ScaleOutCluster: String
         # @param UserSubnetIPNum: 子网剩余ip数量，用于判断当前实例子网剩余ip数是否能扩容。需要根据实际填写
         # @type UserSubnetIPNum: Integer
-        # @param ScaleOutNodeIp: 节点同步ip
+        # @param ScaleOutNodeIp: 同步元数据节点IP （uip）
         # @type ScaleOutNodeIp: String
+        # @param ReduceShardInfo: 缩容节点shard的节点IP （uip），其中ha集群需要主副节点ip都传入以逗号分隔
+        # @type ReduceShardInfo: Array
 
-        attr_accessor :InstanceId, :Type, :NodeCount, :ScaleOutCluster, :UserSubnetIPNum, :ScaleOutNodeIp
+        attr_accessor :InstanceId, :Type, :NodeCount, :ScaleOutCluster, :UserSubnetIPNum, :ScaleOutNodeIp, :ReduceShardInfo
         
-        def initialize(instanceid=nil, type=nil, nodecount=nil, scaleoutcluster=nil, usersubnetipnum=nil, scaleoutnodeip=nil)
+        def initialize(instanceid=nil, type=nil, nodecount=nil, scaleoutcluster=nil, usersubnetipnum=nil, scaleoutnodeip=nil, reduceshardinfo=nil)
           @InstanceId = instanceid
           @Type = type
           @NodeCount = nodecount
           @ScaleOutCluster = scaleoutcluster
           @UserSubnetIPNum = usersubnetipnum
           @ScaleOutNodeIp = scaleoutnodeip
+          @ReduceShardInfo = reduceshardinfo
         end
 
         def deserialize(params)
@@ -1509,6 +1557,7 @@ module TencentCloud
           @ScaleOutCluster = params['ScaleOutCluster']
           @UserSubnetIPNum = params['UserSubnetIPNum']
           @ScaleOutNodeIp = params['ScaleOutNodeIp']
+          @ReduceShardInfo = params['ReduceShardInfo']
         end
       end
 

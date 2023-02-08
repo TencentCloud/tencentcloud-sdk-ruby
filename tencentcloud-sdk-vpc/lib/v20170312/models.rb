@@ -10813,20 +10813,32 @@ module TencentCloud
         # @type Status: String
         # @param Output: 异步任务执行输出。
         # @type Output: String
+        # @param Result: 异步任务详细结果。只用于特殊场景，如批量删除弹性网卡时查询成功的网卡列表和失败的列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Output, :RequestId
+        attr_accessor :Status, :Output, :Result, :RequestId
         
-        def initialize(status=nil, output=nil, requestid=nil)
+        def initialize(status=nil, output=nil, result=nil, requestid=nil)
           @Status = status
           @Output = output
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @Output = params['Output']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              vpctaskresultdetailinfo_tmp = VpcTaskResultDetailInfo.new
+              vpctaskresultdetailinfo_tmp.deserialize(i)
+              @Result << vpctaskresultdetailinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -19708,6 +19720,28 @@ module TencentCloud
           @CidrBlock = params['CidrBlock']
           @PrivateIpAddressType = params['PrivateIpAddressType']
           @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # Vpc任务结果详细信息。
+      class VpcTaskResultDetailInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param Status: 状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :ResourceId, :Status
+        
+        def initialize(resourceid=nil, status=nil)
+          @ResourceId = resourceid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
         end
       end
 

@@ -1038,6 +1038,124 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateSealPolicy请求参数结构体
+      class ChannelCreateSealPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 用户渠道信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SealId: 指定印章
+        # @type SealId: String
+        # @param UserIds: 指定待授权的用户ID数组
+        # @type UserIds: Array
+        # @param Organization: 企业机构信息
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 操作人（用户）信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :SealId, :UserIds, :Organization, :Operator
+        
+        def initialize(agent=nil, sealid=nil, userids=nil, organization=nil, operator=nil)
+          @Agent = agent
+          @SealId = sealid
+          @UserIds = userids
+          @Organization = organization
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SealId = params['SealId']
+          @UserIds = params['UserIds']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelCreateSealPolicy返回参数结构体
+      class ChannelCreateSealPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param UserIds: 最终授权成功的用户ID数组。其他的跳过的是已经授权了的
+        # @type UserIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserIds, :RequestId
+        
+        def initialize(userids=nil, requestid=nil)
+          @UserIds = userids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserIds = params['UserIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDeleteSealPolicies请求参数结构体
+      class ChannelDeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SealId: 指定印章ID
+        # @type SealId: String
+        # @param UserIds: 指定用户ID数组
+        # @type UserIds: Array
+        # @param Operator: 操作人（用户）信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Organization: 组织机构信息
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+
+        attr_accessor :Agent, :SealId, :UserIds, :Operator, :Organization
+        
+        def initialize(agent=nil, sealid=nil, userids=nil, operator=nil, organization=nil)
+          @Agent = agent
+          @SealId = sealid
+          @UserIds = userids
+          @Operator = operator
+          @Organization = organization
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SealId = params['SealId']
+          @UserIds = params['UserIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+        end
+      end
+
+      # ChannelDeleteSealPolicies返回参数结构体
+      class ChannelDeleteSealPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDescribeEmployees请求参数结构体
       class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回最大数量，最大为20

@@ -1079,6 +1079,78 @@ module TencentCloud
         end
       end
 
+      # CreateInternalTable请求参数结构体
+      class CreateInternalTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+        # @param Columns: 表字段信息
+        # @type Columns: Array
+        # @param Partitions: 表分区信息
+        # @type Partitions: Array
+        # @param Properties: 表属性信息
+        # @type Properties: Array
+
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties
+        
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil)
+          @TableBaseInfo = tablebaseinfo
+          @Columns = columns
+          @Partitions = partitions
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tcolumn_tmp = TColumn.new
+              tcolumn_tmp.deserialize(i)
+              @Columns << tcolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              tpartition_tmp = TPartition.new
+              tpartition_tmp.deserialize(i)
+              @Partitions << tpartition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+        end
+      end
+
+      # CreateInternalTable返回参数结构体
+      class CreateInternalTableResponse < TencentCloud::Common::AbstractModel
+        # @param Execution: 创建托管存储内表sql语句描述
+        # @type Execution: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Execution, :RequestId
+        
+        def initialize(execution=nil, requestid=nil)
+          @Execution = execution
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Execution = params['Execution']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNotebookSession请求参数结构体
       class CreateNotebookSessionRequest < TencentCloud::Common::AbstractModel
         # @param Name: Session名称
@@ -5391,6 +5463,82 @@ module TencentCloud
         def deserialize(params)
           @DataEngineName = params['DataEngineName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 表字段描述信息
+      class TColumn < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名称
+        # @type Name: String
+        # @param Type: 字段类型
+        # @type Type: String
+        # @param Comment: 字段描述
+        # @type Comment: String
+        # @param Default: 字段默认值
+        # @type Default: String
+        # @param NotNull: 字段是否是非空
+        # @type NotNull: Boolean
+
+        attr_accessor :Name, :Type, :Comment, :Default, :NotNull
+        
+        def initialize(name=nil, type=nil, comment=nil, default=nil, notnull=nil)
+          @Name = name
+          @Type = type
+          @Comment = comment
+          @Default = default
+          @NotNull = notnull
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Comment = params['Comment']
+          @Default = params['Default']
+          @NotNull = params['NotNull']
+        end
+      end
+
+      # 表分区字段信息
+      class TPartition < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名称
+        # @type Name: String
+        # @param Type: 字段类型
+        # @type Type: String
+        # @param Comment: 字段描述
+        # @type Comment: String
+        # @param PartitionType: 分区类型
+        # @type PartitionType: String
+        # @param PartitionFormat: 分区格式
+        # @type PartitionFormat: String
+        # @param PartitionDot: 分区分隔数
+        # @type PartitionDot: Integer
+        # @param Transform: 分区转换策略
+        # @type Transform: String
+        # @param TransformArgs: 策略参数
+        # @type TransformArgs: Array
+
+        attr_accessor :Name, :Type, :Comment, :PartitionType, :PartitionFormat, :PartitionDot, :Transform, :TransformArgs
+        
+        def initialize(name=nil, type=nil, comment=nil, partitiontype=nil, partitionformat=nil, partitiondot=nil, transform=nil, transformargs=nil)
+          @Name = name
+          @Type = type
+          @Comment = comment
+          @PartitionType = partitiontype
+          @PartitionFormat = partitionformat
+          @PartitionDot = partitiondot
+          @Transform = transform
+          @TransformArgs = transformargs
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Comment = params['Comment']
+          @PartitionType = params['PartitionType']
+          @PartitionFormat = params['PartitionFormat']
+          @PartitionDot = params['PartitionDot']
+          @Transform = params['Transform']
+          @TransformArgs = params['TransformArgs']
         end
       end
 
