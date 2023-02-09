@@ -27,20 +27,23 @@ module TencentCloud
         # @type DBPrivileges: Array
         # @param Remark: 账号备注信息
         # @type Remark: String
-        # @param IsAdmin: 是否为管理员账户，默认为否
+        # @param IsAdmin: 是否为管理员账户，当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false，等价于AccountType=L3
         # @type IsAdmin: Boolean
         # @param Authentication: win-windows鉴权,sql-sqlserver鉴权，不填默认值为sql-sqlserver鉴权
         # @type Authentication: String
+        # @param AccountType: 账号类型，IsAdmin的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
+        # @type AccountType: String
 
-        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication
+        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication, :AccountType
         
-        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil)
+        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil, accounttype=nil)
           @UserName = username
           @Password = password
           @DBPrivileges = dbprivileges
           @Remark = remark
           @IsAdmin = isadmin
           @Authentication = authentication
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -57,6 +60,7 @@ module TencentCloud
           @Remark = params['Remark']
           @IsAdmin = params['IsAdmin']
           @Authentication = params['Authentication']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -84,10 +88,12 @@ module TencentCloud
         # @type Authentication: String
         # @param Host: win-windows鉴权账户需要host
         # @type Host: String
+        # @param AccountType: 账号类型。L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限
+        # @type AccountType: String
 
-        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin, :Authentication, :Host
+        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin, :Authentication, :Host, :AccountType
         
-        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil, authentication=nil, host=nil)
+        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil, authentication=nil, host=nil, accounttype=nil)
           @Name = name
           @Remark = remark
           @CreateTime = createtime
@@ -99,6 +105,7 @@ module TencentCloud
           @IsAdmin = isadmin
           @Authentication = authentication
           @Host = host
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -120,6 +127,7 @@ module TencentCloud
           @IsAdmin = params['IsAdmin']
           @Authentication = params['Authentication']
           @Host = params['Host']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -147,19 +155,23 @@ module TencentCloud
       class AccountPrivilege < TencentCloud::Common::AbstractModel
         # @param UserName: 数据库用户名
         # @type UserName: String
-        # @param Privilege: 数据库权限。ReadWrite表示可读写，ReadOnly表示只读
+        # @param Privilege: 数据库权限。ReadWrite表示可读写，ReadOnly表示只读,Delete表示删除DB对该账户的权限，DBOwner所有者
         # @type Privilege: String
+        # @param AccountType: 账户名称，L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限
+        # @type AccountType: String
 
-        attr_accessor :UserName, :Privilege
+        attr_accessor :UserName, :Privilege, :AccountType
         
-        def initialize(username=nil, privilege=nil)
+        def initialize(username=nil, privilege=nil, accounttype=nil)
           @UserName = username
           @Privilege = privilege
+          @AccountType = accounttype
         end
 
         def deserialize(params)
           @UserName = params['UserName']
           @Privilege = params['Privilege']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -169,15 +181,18 @@ module TencentCloud
         # @type UserName: String
         # @param DBPrivileges: 账号权限变更信息
         # @type DBPrivileges: Array
-        # @param IsAdmin: 是否为管理员账户
+        # @param IsAdmin: 是否为管理员账户,当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false时，表示删除管理员权限，默认false
         # @type IsAdmin: Boolean
+        # @param AccountType: 账号类型，IsAdmin字段的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
+        # @type AccountType: String
 
-        attr_accessor :UserName, :DBPrivileges, :IsAdmin
+        attr_accessor :UserName, :DBPrivileges, :IsAdmin, :AccountType
         
-        def initialize(username=nil, dbprivileges=nil, isadmin=nil)
+        def initialize(username=nil, dbprivileges=nil, isadmin=nil, accounttype=nil)
           @UserName = username
           @DBPrivileges = dbprivileges
           @IsAdmin = isadmin
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -191,6 +206,7 @@ module TencentCloud
             end
           end
           @IsAdmin = params['IsAdmin']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -1921,7 +1937,7 @@ module TencentCloud
       class DBPrivilege < TencentCloud::Common::AbstractModel
         # @param DBName: 数据库名
         # @type DBName: String
-        # @param Privilege: 数据库权限，ReadWrite表示可读写，ReadOnly表示只读
+        # @param Privilege: 数据库权限，ReadWrite表示可读写，ReadOnly表示只读，DBOwner所有者
         # @type Privilege: String
 
         attr_accessor :DBName, :Privilege
@@ -1941,7 +1957,7 @@ module TencentCloud
       class DBPrivilegeModifyInfo < TencentCloud::Common::AbstractModel
         # @param DBName: 数据库名
         # @type DBName: String
-        # @param Privilege: 权限变更信息。ReadWrite表示可读写，ReadOnly表示只读，Delete表示删除账号对该DB的权限
+        # @param Privilege: 权限变更信息。ReadWrite表示可读写，ReadOnly表示只读，Delete表示删除账号对该DB的权限，DBOwner所有者
         # @type Privilege: String
 
         attr_accessor :DBName, :Privilege
@@ -1974,6 +1990,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Remark = params['Remark']
+        end
+      end
+
+      # 数据库重命名返回参数
+      class DBRenameRes < TencentCloud::Common::AbstractModel
+        # @param NewName: 新数据库名称
+        # @type NewName: String
+        # @param OldName: 老数据库名称
+        # @type OldName: String
+
+        attr_accessor :NewName, :OldName
+        
+        def initialize(newname=nil, oldname=nil)
+          @NewName = newname
+          @OldName = oldname
+        end
+
+        def deserialize(params)
+          @NewName = params['NewName']
+          @OldName = params['OldName']
         end
       end
 
@@ -2063,10 +2099,12 @@ module TencentCloud
         # @type StateDesc: String
         # @param UserAccessDesc: 用户类型
         # @type UserAccessDesc: String
+        # @param CreateTime: 数据库创建时间
+        # @type CreateTime: String
 
-        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc
+        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime
         
-        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil)
+        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil)
           @IsSubscribed = issubscribed
           @CollationName = collationname
           @IsAutoCleanupOn = isautocleanupon
@@ -2085,6 +2123,7 @@ module TencentCloud
           @RetentionPeriod = retentionperiod
           @StateDesc = statedesc
           @UserAccessDesc = useraccessdesc
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -2106,6 +2145,7 @@ module TencentCloud
           @RetentionPeriod = params['RetentionPeriod']
           @StateDesc = params['StateDesc']
           @UserAccessDesc = params['UserAccessDesc']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -5293,10 +5333,13 @@ module TencentCloud
         # @param IsRecovery: 是否是最终恢复，全量导入任务该字段为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecovery: String
+        # @param DBRename: 重命名的数据库名称集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBRename: Array
 
-        attr_accessor :MigrationId, :MigrationName, :AppId, :Region, :InstanceId, :RecoveryType, :UploadType, :BackupFiles, :Status, :CreateTime, :StartTime, :EndTime, :Message, :Detail, :Action, :IsRecovery
+        attr_accessor :MigrationId, :MigrationName, :AppId, :Region, :InstanceId, :RecoveryType, :UploadType, :BackupFiles, :Status, :CreateTime, :StartTime, :EndTime, :Message, :Detail, :Action, :IsRecovery, :DBRename
         
-        def initialize(migrationid=nil, migrationname=nil, appid=nil, region=nil, instanceid=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil, status=nil, createtime=nil, starttime=nil, endtime=nil, message=nil, detail=nil, action=nil, isrecovery=nil)
+        def initialize(migrationid=nil, migrationname=nil, appid=nil, region=nil, instanceid=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil, status=nil, createtime=nil, starttime=nil, endtime=nil, message=nil, detail=nil, action=nil, isrecovery=nil, dbrename=nil)
           @MigrationId = migrationid
           @MigrationName = migrationname
           @AppId = appid
@@ -5313,6 +5356,7 @@ module TencentCloud
           @Detail = detail
           @Action = action
           @IsRecovery = isrecovery
+          @DBRename = dbrename
         end
 
         def deserialize(params)
@@ -5338,6 +5382,14 @@ module TencentCloud
             @Action.deserialize(params['Action'])
           end
           @IsRecovery = params['IsRecovery']
+          unless params['DBRename'].nil?
+            @DBRename = []
+            params['DBRename'].each do |i|
+              dbrenameres_tmp = DBRenameRes.new
+              dbrenameres_tmp.deserialize(i)
+              @DBRename << dbrenameres_tmp
+            end
+          end
         end
       end
 
@@ -5529,16 +5581,19 @@ module TencentCloud
         # @type UploadType: String
         # @param BackupFiles: UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
         # @type BackupFiles: Array
+        # @param DBRename: 需要重命名的数据库名称集合
+        # @type DBRename: Array
 
-        attr_accessor :InstanceId, :BackupMigrationId, :MigrationName, :RecoveryType, :UploadType, :BackupFiles
+        attr_accessor :InstanceId, :BackupMigrationId, :MigrationName, :RecoveryType, :UploadType, :BackupFiles, :DBRename
         
-        def initialize(instanceid=nil, backupmigrationid=nil, migrationname=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil)
+        def initialize(instanceid=nil, backupmigrationid=nil, migrationname=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil, dbrename=nil)
           @InstanceId = instanceid
           @BackupMigrationId = backupmigrationid
           @MigrationName = migrationname
           @RecoveryType = recoverytype
           @UploadType = uploadtype
           @BackupFiles = backupfiles
+          @DBRename = dbrename
         end
 
         def deserialize(params)
@@ -5548,6 +5603,14 @@ module TencentCloud
           @RecoveryType = params['RecoveryType']
           @UploadType = params['UploadType']
           @BackupFiles = params['BackupFiles']
+          unless params['DBRename'].nil?
+            @DBRename = []
+            params['DBRename'].each do |i|
+              renamerestoredatabase_tmp = RenameRestoreDatabase.new
+              renamerestoredatabase_tmp.deserialize(i)
+              @DBRename << renamerestoredatabase_tmp
+            end
+          end
         end
       end
 
@@ -7071,7 +7134,7 @@ module TencentCloud
         end
       end
 
-      # 用于RestoreInstance，RollbackInstance，CreateMigration、CloneDB 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
+      # 用于RestoreInstance，RollbackInstance，CreateMigration、CloneDB、ModifyBackupMigration 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
       class RenameRestoreDatabase < TencentCloud::Common::AbstractModel
         # @param OldName: 库的名字，如果oldName不存在则返回失败。
         # 在用于离线迁移任务时可不填。

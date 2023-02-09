@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建加速域名
+
+        # @param request: Request instance for CreateAccelerationDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateAccelerationDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateAccelerationDomainResponse`
+        def CreateAccelerationDomain(request)
+          body = send_request('CreateAccelerationDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccelerationDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建别称域名。
 
         # @param request: Request instance for CreateAliasDomain.
@@ -365,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除加速域名
+
+        # @param request: Request instance for DeleteAccelerationDomains.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteAccelerationDomainsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteAccelerationDomainsResponse`
+        def DeleteAccelerationDomains(request)
+          body = send_request('DeleteAccelerationDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccelerationDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除别称域名。
 
         # @param request: Request instance for DeleteAliasDomain.
@@ -495,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询加速域名列表，支持搜索、分页、排序、过滤。
+
+        # @param request: Request instance for DescribeAccelerationDomains.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeAccelerationDomainsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeAccelerationDomainsResponse`
+        def DescribeAccelerationDomains(request)
+          body = send_request('DescribeAccelerationDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccelerationDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1527,6 +1599,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = IdentifyZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改加速域名信息
+
+        # @param request: Request instance for ModifyAccelerationDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyAccelerationDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyAccelerationDomainResponse`
+        def ModifyAccelerationDomain(request)
+          body = send_request('ModifyAccelerationDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccelerationDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改加速域名状态
+
+        # @param request: Request instance for ModifyAccelerationDomainStatuses.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyAccelerationDomainStatusesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyAccelerationDomainStatusesResponse`
+        def ModifyAccelerationDomainStatuses(request)
+          body = send_request('ModifyAccelerationDomainStatuses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccelerationDomainStatusesResponse.new
             model.deserialize(response['Response'])
             model
           else

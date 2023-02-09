@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 批量创建房间接口
+
+        # @param request: Request instance for BatchCreateRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchCreateRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchCreateRoomResponse`
+        def BatchCreateRoom(request)
+          body = send_request('BatchCreateRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchCreateRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除多个房间的录制文件
+
+        # @param request: Request instance for BatchDeleteRecord.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchDeleteRecordRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchDeleteRecordResponse`
+        def BatchDeleteRecord(request)
+          body = send_request('BatchDeleteRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDeleteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
 
         # @param request: Request instance for BatchRegister.
@@ -149,6 +197,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除文档
+
+        # @param request: Request instance for DeleteDocument.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteDocumentResponse`
+        def DeleteDocument(request)
+          body = send_request('DeleteDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定房间的录制文件
+
+        # @param request: Request instance for DeleteRecord.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteRecordRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteRecordResponse`
+        def DeleteRecord(request)
+          body = send_request('DeleteRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除房间
 
         # @param request: Request instance for DeleteRoom.
@@ -183,6 +279,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAppDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取文档信息
+
+        # @param request: Request instance for DescribeDocument.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentResponse`
+        def DescribeDocument(request)
+          body = send_request('DescribeDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口获取指定房间下课件列表
+
+        # @param request: Request instance for DescribeDocumentsByRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentsByRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentsByRoomResponse`
+        def DescribeDocumentsByRoom(request)
+          body = send_request('DescribeDocumentsByRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDocumentsByRoomResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于获取指定应用ID下用户列表
+
+        # @param request: Request instance for DescribeSdkAppIdUsers.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeSdkAppIdUsersRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeSdkAppIdUsersResponse`
+        def DescribeSdkAppIdUsers(request)
+          body = send_request('DescribeSdkAppIdUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSdkAppIdUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户信息
 
         # @param request: Request instance for DescribeUser.
@@ -255,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取水印设置
+
+        # @param request: Request instance for GetWatermark.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::GetWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::GetWatermarkResponse`
+        def GetWatermark(request)
+          body = send_request('GetWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetWatermarkResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于修改用户配置，如头像，昵称/用户名等。
+
+        # @param request: Request instance for ModifyUserProfile.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ModifyUserProfileRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ModifyUserProfileResponse`
+        def ModifyUserProfile(request)
+          body = send_request('ModifyUserProfile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserProfileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 注册用户
 
         # @param request: Request instance for RegisterUser.
@@ -399,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAppCustomContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置水印
+
+        # @param request: Request instance for SetWatermark.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SetWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SetWatermarkResponse`
+        def SetWatermark(request)
+          body = send_request('SetWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetWatermarkResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -337,12 +337,15 @@ module TencentCloud
         # @type EmotionalEnergy: Integer
         # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         # @type ReinforceHotword: Integer
-        # @param SentenceMaxLength: 单标点最多字数，取值范围：[6，40]。默认为0，不开启该功能。该参数可用于字幕生成场景，控制单行字幕最大字数。
+        # @param SentenceMaxLength: 单标点最多字数，取值范围：[6，40]。默认为0，不开启该功能。该参数可用于字幕生成场景，控制单行字幕最大字数（设置ResTextFormat为3，解析返回的ResultDetail列表，通过结构中FinalSentence获取单个标点断句结果）。
         # @type SentenceMaxLength: Integer
+        # @param EmotionRecognition: 情绪识别能力(目前支持16k_zh) 默认为0，不开启。 1：开启情绪识别但是不会在文本展示“情绪标签”， 2：开启情绪识别并且在文本展示“情绪标签”。（该功能需要设置ResTextFormat 大于0）
+        # 注意：本功能为增值服务，购买对应套餐包后，将参数设置为1或2时方可按对应方式生效，并消耗套餐包对应资源。参数设置为0时无需购买套餐包，也不会消耗对应资源。
+        # @type EmotionRecognition: Integer
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal, :EmotionalEnergy, :ReinforceHotword, :SentenceMaxLength
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal, :EmotionalEnergy, :ReinforceHotword, :SentenceMaxLength, :EmotionRecognition
         
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil, emotionalenergy=nil, reinforcehotword=nil, sentencemaxlength=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil, emotionalenergy=nil, reinforcehotword=nil, sentencemaxlength=nil, emotionrecognition=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -363,6 +366,7 @@ module TencentCloud
           @EmotionalEnergy = emotionalenergy
           @ReinforceHotword = reinforcehotword
           @SentenceMaxLength = sentencemaxlength
+          @EmotionRecognition = emotionrecognition
         end
 
         def deserialize(params)
@@ -386,6 +390,7 @@ module TencentCloud
           @EmotionalEnergy = params['EmotionalEnergy']
           @ReinforceHotword = params['ReinforceHotword']
           @SentenceMaxLength = params['SentenceMaxLength']
+          @EmotionRecognition = params['EmotionRecognition']
         end
       end
 
@@ -986,10 +991,13 @@ module TencentCloud
         # @param SilenceTime: 本句与上一句之间的静音时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SilenceTime: Integer
+        # @param EmotionType: 情绪类型（可能为空）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmotionType: Array
 
-        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime
+        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType
         
-        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @StartMs = startms
@@ -1000,6 +1008,7 @@ module TencentCloud
           @SpeakerId = speakerid
           @EmotionalEnergy = emotionalenergy
           @SilenceTime = silencetime
+          @EmotionType = emotiontype
         end
 
         def deserialize(params)
@@ -1020,6 +1029,7 @@ module TencentCloud
           @SpeakerId = params['SpeakerId']
           @EmotionalEnergy = params['EmotionalEnergy']
           @SilenceTime = params['SilenceTime']
+          @EmotionType = params['EmotionType']
         end
       end
 

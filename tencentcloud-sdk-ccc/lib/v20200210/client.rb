@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 绑定号码外呼技能组
+
+        # @param request: Request instance for BindNumberCallOutSkillGroup.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::BindNumberCallOutSkillGroupRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::BindNumberCallOutSkillGroupResponse`
+        def BindNumberCallOutSkillGroup(request)
+          body = send_request('BindNumberCallOutSkillGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindNumberCallOutSkillGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定坐席所属技能组
 
         # @param request: Request instance for BindStaffSkillGroupList.
@@ -535,6 +559,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询号码列表
+
+        # @param request: Request instance for DescribeNumbers.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeNumbersRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeNumbersResponse`
+        def DescribeNumbers(request)
+          body = send_request('DescribeNumbers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNumbersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取当前正在通话的会话列表
 
         # @param request: Request instance for DescribePSTNActiveSessionList.
@@ -857,6 +905,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopAutoCalloutTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解绑号码外呼技能组
+
+        # @param request: Request instance for UnbindNumberCallOutSkillGroup.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::UnbindNumberCallOutSkillGroupRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::UnbindNumberCallOutSkillGroupResponse`
+        def UnbindNumberCallOutSkillGroup(request)
+          body = send_request('UnbindNumberCallOutSkillGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindNumberCallOutSkillGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

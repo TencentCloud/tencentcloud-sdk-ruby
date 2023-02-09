@@ -598,6 +598,78 @@ module TencentCloud
         end
       end
 
+      # CancelNotebookSessionStatementBatch请求参数结构体
+      class CancelNotebookSessionStatementBatchRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param BatchId: 批任务唯一标识
+        # @type BatchId: String
+
+        attr_accessor :SessionId, :BatchId
+        
+        def initialize(sessionid=nil, batchid=nil)
+          @SessionId = sessionid
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # CancelNotebookSessionStatementBatch返回参数结构体
+      class CancelNotebookSessionStatementBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelNotebookSessionStatement请求参数结构体
+      class CancelNotebookSessionStatementRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param StatementId: Session Statement唯一标识
+        # @type StatementId: String
+
+        attr_accessor :SessionId, :StatementId
+        
+        def initialize(sessionid=nil, statementid=nil)
+          @SessionId = sessionid
+          @StatementId = statementid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @StatementId = params['StatementId']
+        end
+      end
+
+      # CancelNotebookSessionStatement返回参数结构体
+      class CancelNotebookSessionStatementResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelTask请求参数结构体
       class CancelTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id，全局唯一
@@ -1255,6 +1327,104 @@ module TencentCloud
         end
       end
 
+      # CreateNotebookSessionStatement请求参数结构体
+      class CreateNotebookSessionStatementRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param Code: 执行的代码
+        # @type Code: String
+        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @type Kind: String
+
+        attr_accessor :SessionId, :Code, :Kind
+        
+        def initialize(sessionid=nil, code=nil, kind=nil)
+          @SessionId = sessionid
+          @Code = code
+          @Kind = kind
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @Code = params['Code']
+          @Kind = params['Kind']
+        end
+      end
+
+      # CreateNotebookSessionStatement返回参数结构体
+      class CreateNotebookSessionStatementResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookSessionStatement: Session Statement详情
+        # @type NotebookSessionStatement: :class:`Tencentcloud::Dlc.v20210125.models.NotebookSessionStatementInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookSessionStatement, :RequestId
+        
+        def initialize(notebooksessionstatement=nil, requestid=nil)
+          @NotebookSessionStatement = notebooksessionstatement
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSessionStatement'].nil?
+            @NotebookSessionStatement = NotebookSessionStatementInfo.new
+            @NotebookSessionStatement.deserialize(params['NotebookSessionStatement'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNotebookSessionStatementSupportBatchSQL请求参数结构体
+      class CreateNotebookSessionStatementSupportBatchSQLRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param Code: 执行的代码
+        # @type Code: String
+        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @type Kind: String
+        # @param SaveResult: 是否保存运行结果
+        # @type SaveResult: Boolean
+
+        attr_accessor :SessionId, :Code, :Kind, :SaveResult
+        
+        def initialize(sessionid=nil, code=nil, kind=nil, saveresult=nil)
+          @SessionId = sessionid
+          @Code = code
+          @Kind = kind
+          @SaveResult = saveresult
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @Code = params['Code']
+          @Kind = params['Kind']
+          @SaveResult = params['SaveResult']
+        end
+      end
+
+      # CreateNotebookSessionStatementSupportBatchSQL返回参数结构体
+      class CreateNotebookSessionStatementSupportBatchSQLResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookSessionStatementBatches: Session Statement详情
+        # @type NotebookSessionStatementBatches: :class:`Tencentcloud::Dlc.v20210125.models.NotebookSessionStatementBatchInformation`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookSessionStatementBatches, :RequestId
+        
+        def initialize(notebooksessionstatementbatches=nil, requestid=nil)
+          @NotebookSessionStatementBatches = notebooksessionstatementbatches
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSessionStatementBatches'].nil?
+            @NotebookSessionStatementBatches = NotebookSessionStatementBatchInformation.new
+            @NotebookSessionStatementBatches.deserialize(params['NotebookSessionStatementBatches'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateResultDownload请求参数结构体
       class CreateResultDownloadRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 查询结果任务Id
@@ -1870,6 +2040,33 @@ module TencentCloud
         end
       end
 
+      # 定时启停策略信息
+      class CrontabResumeSuspendStrategy < TencentCloud::Common::AbstractModel
+        # @param ResumeTime: 定时拉起时间：如：周一8点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResumeTime: String
+        # @param SuspendTime: 定时挂起时间：如：周一20点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuspendTime: String
+        # @param SuspendStrategy: 挂起配置：0（默认）：等待任务结束后挂起、1：强制挂起
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuspendStrategy: Integer
+
+        attr_accessor :ResumeTime, :SuspendTime, :SuspendStrategy
+        
+        def initialize(resumetime=nil, suspendtime=nil, suspendstrategy=nil)
+          @ResumeTime = resumetime
+          @SuspendTime = suspendtime
+          @SuspendStrategy = suspendstrategy
+        end
+
+        def deserialize(params)
+          @ResumeTime = params['ResumeTime']
+          @SuspendTime = params['SuspendTime']
+          @SuspendStrategy = params['SuspendStrategy']
+        end
+      end
+
       # 迁移列对象
       class DMSColumn < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -2289,6 +2486,182 @@ module TencentCloud
         end
       end
 
+      # DataEngine详细信息
+      class DataEngineInfo < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: DataEngine名称
+        # @type DataEngineName: String
+        # @param EngineType: 引擎类型 spark/presto
+        # @type EngineType: String
+        # @param ClusterType: 集群资源类型 spark_private/presto_private/presto_cu/spark_cu
+        # @type ClusterType: String
+        # @param QuotaId: 引用ID
+        # @type QuotaId: String
+        # @param State: 数据引擎状态  -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中
+        # @type State: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param Size: 集群规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Mode: 计费模式 0共享模式 1按量计费 2包年包月
+        # @type Mode: Integer
+        # @param MinClusters: 最小集群数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinClusters: Integer
+        # @param MaxClusters: 最大集群数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxClusters: Integer
+        # @param AutoResume: 是否自动恢复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoResume: Boolean
+        # @param SpendAfter: 自动恢复时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpendAfter: Integer
+        # @param CidrBlock: 集群网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrBlock: String
+        # @param DefaultDataEngine: 是否为默认引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDataEngine: Boolean
+        # @param Message: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param DataEngineId: 引擎id
+        # @type DataEngineId: String
+        # @param SubAccountUin: 操作者
+        # @type SubAccountUin: String
+        # @param ExpireTime: 到期时间
+        # @type ExpireTime: String
+        # @param IsolatedTime: 隔离时间
+        # @type IsolatedTime: String
+        # @param ReversalTime: 冲正时间
+        # @type ReversalTime: String
+        # @param UserAlias: 用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param TagList: 标签对集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param Permissions: 引擎拥有的权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+        # @param AutoSuspend: 是否自定挂起集群：false（默认）：不自动挂起、true：自动挂起
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSuspend: Boolean
+        # @param CrontabResumeSuspend: 定时启停集群策略：0（默认）：关闭定时策略、1：开启定时策略（注：定时启停策略与自动挂起策略互斥）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrontabResumeSuspend: Integer
+        # @param CrontabResumeSuspendStrategy: 定时启停策略，复杂类型：包含启停时间、挂起集群策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrontabResumeSuspendStrategy: :class:`Tencentcloud::Dlc.v20210125.models.CrontabResumeSuspendStrategy`
+        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExecType: String
+        # @param RenewFlag: 自动续费标志，0，初始状态，默认不自动续费，若用户有预付费不停服特权，自动续费。1：自动续费。2：明确不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param AutoSuspendTime: 集群自动挂起时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSuspendTime: Integer
+        # @param NetworkConnectionSet: 网络连接配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConnectionSet: Array
+        # @param UiURL: ui的跳转地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UiURL: String
+
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL
+        
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil)
+          @DataEngineName = dataenginename
+          @EngineType = enginetype
+          @ClusterType = clustertype
+          @QuotaId = quotaid
+          @State = state
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Size = size
+          @Mode = mode
+          @MinClusters = minclusters
+          @MaxClusters = maxclusters
+          @AutoResume = autoresume
+          @SpendAfter = spendafter
+          @CidrBlock = cidrblock
+          @DefaultDataEngine = defaultdataengine
+          @Message = message
+          @DataEngineId = dataengineid
+          @SubAccountUin = subaccountuin
+          @ExpireTime = expiretime
+          @IsolatedTime = isolatedtime
+          @ReversalTime = reversaltime
+          @UserAlias = useralias
+          @TagList = taglist
+          @Permissions = permissions
+          @AutoSuspend = autosuspend
+          @CrontabResumeSuspend = crontabresumesuspend
+          @CrontabResumeSuspendStrategy = crontabresumesuspendstrategy
+          @EngineExecType = engineexectype
+          @RenewFlag = renewflag
+          @AutoSuspendTime = autosuspendtime
+          @NetworkConnectionSet = networkconnectionset
+          @UiURL = uiurl
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @EngineType = params['EngineType']
+          @ClusterType = params['ClusterType']
+          @QuotaId = params['QuotaId']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Size = params['Size']
+          @Mode = params['Mode']
+          @MinClusters = params['MinClusters']
+          @MaxClusters = params['MaxClusters']
+          @AutoResume = params['AutoResume']
+          @SpendAfter = params['SpendAfter']
+          @CidrBlock = params['CidrBlock']
+          @DefaultDataEngine = params['DefaultDataEngine']
+          @Message = params['Message']
+          @DataEngineId = params['DataEngineId']
+          @SubAccountUin = params['SubAccountUin']
+          @ExpireTime = params['ExpireTime']
+          @IsolatedTime = params['IsolatedTime']
+          @ReversalTime = params['ReversalTime']
+          @UserAlias = params['UserAlias']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+          @Permissions = params['Permissions']
+          @AutoSuspend = params['AutoSuspend']
+          @CrontabResumeSuspend = params['CrontabResumeSuspend']
+          unless params['CrontabResumeSuspendStrategy'].nil?
+            @CrontabResumeSuspendStrategy = CrontabResumeSuspendStrategy.new
+            @CrontabResumeSuspendStrategy.deserialize(params['CrontabResumeSuspendStrategy'])
+          end
+          @EngineExecType = params['EngineExecType']
+          @RenewFlag = params['RenewFlag']
+          @AutoSuspendTime = params['AutoSuspendTime']
+          unless params['NetworkConnectionSet'].nil?
+            @NetworkConnectionSet = []
+            params['NetworkConnectionSet'].each do |i|
+              networkconnection_tmp = NetworkConnection.new
+              networkconnection_tmp.deserialize(i)
+              @NetworkConnectionSet << networkconnection_tmp
+            end
+          end
+          @UiURL = params['UiURL']
+        end
+      end
+
       # 数据表数据格式。
       class DataFormat < TencentCloud::Common::AbstractModel
         # @param TextFile: 文本格式，TextFile。
@@ -2466,6 +2839,38 @@ module TencentCloud
             @GovernPolicy.deserialize(params['GovernPolicy'])
           end
           @DatabaseId = params['DatabaseId']
+        end
+      end
+
+      # DeleteNotebookSession请求参数结构体
+      class DeleteNotebookSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+        
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DeleteNotebookSession返回参数结构体
+      class DeleteNotebookSessionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3060,6 +3465,108 @@ module TencentCloud
         end
       end
 
+      # DescribeDataEngines请求参数结构体
+      class DescribeDataEnginesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 滤类型，传参Name应为以下其中一个,
+        # data-engine-name - String
+        # engine-type - String
+        # state - String
+        # mode - String
+        # create-time - String
+        # message - String
+        # @type Filters: Array
+        # @param SortBy: 排序字段，支持如下字段类型，create-time
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
+        # @type Sorting: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param DatasourceConnectionName: 已废弃，请使用DatasourceConnectionNameSet
+        # @type DatasourceConnectionName: String
+        # @param ExcludePublicEngine: 是否不返回共享引擎，true不返回共享引擎，false可以返回共享引擎
+        # @type ExcludePublicEngine: Boolean
+        # @param AccessTypes: 参数应该为引擎权限类型，有效类型："USE", "MODIFY", "OPERATE", "MONITOR", "DELETE"
+        # @type AccessTypes: Array
+        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH
+        # @type EngineExecType: String
+        # @param EngineType: 引擎类型，有效值：spark/presto
+        # @type EngineType: String
+        # @param DatasourceConnectionNameSet: 网络配置列表，若传入该参数，则返回网络配置关联的计算引擎
+        # @type DatasourceConnectionNameSet: Array
+
+        attr_accessor :Offset, :Filters, :SortBy, :Sorting, :Limit, :DatasourceConnectionName, :ExcludePublicEngine, :AccessTypes, :EngineExecType, :EngineType, :DatasourceConnectionNameSet
+        
+        def initialize(offset=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, datasourceconnectionname=nil, excludepublicengine=nil, accesstypes=nil, engineexectype=nil, enginetype=nil, datasourceconnectionnameset=nil)
+          @Offset = offset
+          @Filters = filters
+          @SortBy = sortby
+          @Sorting = sorting
+          @Limit = limit
+          @DatasourceConnectionName = datasourceconnectionname
+          @ExcludePublicEngine = excludepublicengine
+          @AccessTypes = accesstypes
+          @EngineExecType = engineexectype
+          @EngineType = enginetype
+          @DatasourceConnectionNameSet = datasourceconnectionnameset
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @Limit = params['Limit']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @ExcludePublicEngine = params['ExcludePublicEngine']
+          @AccessTypes = params['AccessTypes']
+          @EngineExecType = params['EngineExecType']
+          @EngineType = params['EngineType']
+          @DatasourceConnectionNameSet = params['DatasourceConnectionNameSet']
+        end
+      end
+
+      # DescribeDataEngines返回参数结构体
+      class DescribeDataEnginesResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngines: 数据引擎列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngines: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataEngines, :TotalCount, :RequestId
+        
+        def initialize(dataengines=nil, totalcount=nil, requestid=nil)
+          @DataEngines = dataengines
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataEngines'].nil?
+            @DataEngines = []
+            params['DataEngines'].each do |i|
+              dataengineinfo_tmp = DataEngineInfo.new
+              dataengineinfo_tmp.deserialize(i)
+              @DataEngines << dataengineinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabases请求参数结构体
       class DescribeDatabasesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。
@@ -3127,6 +3634,58 @@ module TencentCloud
         end
       end
 
+      # DescribeNotebookSessionLog请求参数结构体
+      class DescribeNotebookSessionLogRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param Limit: 分页参数，默认200
+        # @type Limit: Integer
+        # @param Offset: 分页参数，默认0
+        # @type Offset: Integer
+
+        attr_accessor :SessionId, :Limit, :Offset
+        
+        def initialize(sessionid=nil, limit=nil, offset=nil)
+          @SessionId = sessionid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNotebookSessionLog返回参数结构体
+      class DescribeNotebookSessionLogResponse < TencentCloud::Common::AbstractModel
+        # @param Logs: 日志信息，默认获取最新的200条
+        # @type Logs: Array
+        # @param Limit: 分页参数，默认200
+        # @type Limit: Integer
+        # @param Offset: 分页参数，默认0
+        # @type Offset: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Logs, :Limit, :Offset, :RequestId
+        
+        def initialize(logs=nil, limit=nil, offset=nil, requestid=nil)
+          @Logs = logs
+          @Limit = limit
+          @Offset = offset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Logs = params['Logs']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNotebookSession请求参数结构体
       class DescribeNotebookSessionRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: Session唯一标识
@@ -3161,6 +3720,240 @@ module TencentCloud
           unless params['Session'].nil?
             @Session = NotebookSessionInfo.new
             @Session.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookSessionStatement请求参数结构体
+      class DescribeNotebookSessionStatementRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param StatementId: Session Statement唯一标识
+        # @type StatementId: String
+
+        attr_accessor :SessionId, :StatementId
+        
+        def initialize(sessionid=nil, statementid=nil)
+          @SessionId = sessionid
+          @StatementId = statementid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @StatementId = params['StatementId']
+        end
+      end
+
+      # DescribeNotebookSessionStatement返回参数结构体
+      class DescribeNotebookSessionStatementResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookSessionStatement: Session Statement详情
+        # @type NotebookSessionStatement: :class:`Tencentcloud::Dlc.v20210125.models.NotebookSessionStatementInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookSessionStatement, :RequestId
+        
+        def initialize(notebooksessionstatement=nil, requestid=nil)
+          @NotebookSessionStatement = notebooksessionstatement
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSessionStatement'].nil?
+            @NotebookSessionStatement = NotebookSessionStatementInfo.new
+            @NotebookSessionStatement.deserialize(params['NotebookSessionStatement'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookSessionStatementSqlResult请求参数结构体
+      class DescribeNotebookSessionStatementSqlResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param MaxResults: 返回结果的最大行数，范围0~1000，默认为1000.
+        # @type MaxResults: Integer
+        # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回MaxResults字段设置的数据量。
+        # @type NextToken: String
+
+        attr_accessor :TaskId, :MaxResults, :NextToken
+        
+        def initialize(taskid=nil, maxresults=nil, nexttoken=nil)
+          @TaskId = taskid
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+        end
+      end
+
+      # DescribeNotebookSessionStatementSqlResult返回参数结构体
+      class DescribeNotebookSessionStatementSqlResultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param ResultSet: 结果数据
+        # @type ResultSet: String
+        # @param ResultSchema: schema
+        # @type ResultSchema: Array
+        # @param NextToken: 分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param OutputPath: 存储结果地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputPath: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :ResultSet, :ResultSchema, :NextToken, :OutputPath, :RequestId
+        
+        def initialize(taskid=nil, resultset=nil, resultschema=nil, nexttoken=nil, outputpath=nil, requestid=nil)
+          @TaskId = taskid
+          @ResultSet = resultset
+          @ResultSchema = resultschema
+          @NextToken = nexttoken
+          @OutputPath = outputpath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ResultSet = params['ResultSet']
+          unless params['ResultSchema'].nil?
+            @ResultSchema = []
+            params['ResultSchema'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @ResultSchema << column_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @OutputPath = params['OutputPath']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookSessionStatements请求参数结构体
+      class DescribeNotebookSessionStatementsRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param BatchId: 批任务id
+        # @type BatchId: String
+
+        attr_accessor :SessionId, :BatchId
+        
+        def initialize(sessionid=nil, batchid=nil)
+          @SessionId = sessionid
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # DescribeNotebookSessionStatements返回参数结构体
+      class DescribeNotebookSessionStatementsResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookSessionStatements: Session Statement详情
+        # @type NotebookSessionStatements: :class:`Tencentcloud::Dlc.v20210125.models.NotebookSessionStatementBatchInformation`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookSessionStatements, :RequestId
+        
+        def initialize(notebooksessionstatements=nil, requestid=nil)
+          @NotebookSessionStatements = notebooksessionstatements
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSessionStatements'].nil?
+            @NotebookSessionStatements = NotebookSessionStatementBatchInformation.new
+            @NotebookSessionStatements.deserialize(params['NotebookSessionStatements'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookSessions请求参数结构体
+      class DescribeNotebookSessionsRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: DLC Spark作业引擎名称
+        # @type DataEngineName: String
+        # @param State: Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        # @type State: Array
+        # @param SortFields: 排序字段（默认按创建时间）
+        # @type SortFields: Array
+        # @param Asc: 排序字段：true：升序、false：降序（默认）
+        # @type Asc: Boolean
+        # @param Limit: 分页字段
+        # @type Limit: Integer
+        # @param Offset: 分页字段
+        # @type Offset: Integer
+
+        attr_accessor :DataEngineName, :State, :SortFields, :Asc, :Limit, :Offset
+        
+        def initialize(dataenginename=nil, state=nil, sortfields=nil, asc=nil, limit=nil, offset=nil)
+          @DataEngineName = dataenginename
+          @State = state
+          @SortFields = sortfields
+          @Asc = asc
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @State = params['State']
+          @SortFields = params['SortFields']
+          @Asc = params['Asc']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNotebookSessions返回参数结构体
+      class DescribeNotebookSessionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalElements: session总数量
+        # @type TotalElements: Integer
+        # @param TotalPages: 总页数
+        # @type TotalPages: Integer
+        # @param Page: 当前页码
+        # @type Page: Integer
+        # @param Size: 当前页数量
+        # @type Size: Integer
+        # @param Sessions: session列表信息
+        # @type Sessions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalElements, :TotalPages, :Page, :Size, :Sessions, :RequestId
+        
+        def initialize(totalelements=nil, totalpages=nil, page=nil, size=nil, sessions=nil, requestid=nil)
+          @TotalElements = totalelements
+          @TotalPages = totalpages
+          @Page = page
+          @Size = size
+          @Sessions = sessions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalElements = params['TotalElements']
+          @TotalPages = params['TotalPages']
+          @Page = params['Page']
+          @Size = params['Size']
+          unless params['Sessions'].nil?
+            @Sessions = []
+            params['Sessions'].each do |i|
+              notebooksessions_tmp = NotebookSessions.new
+              notebooksessions_tmp.deserialize(i)
+              @Sessions << notebooksessions_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -4332,6 +5125,33 @@ module TencentCloud
         end
       end
 
+      # GenerateCreateMangedTableSql请求参数结构体
+      class GenerateCreateMangedTableSqlRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GenerateCreateMangedTableSql返回参数结构体
+      class GenerateCreateMangedTableSqlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 日志详情
       class JobLogResult < TencentCloud::Common::AbstractModel
         # @param Time: 日志时间戳，毫秒
@@ -4813,6 +5633,108 @@ module TencentCloud
         end
       end
 
+      # 网络配置
+      class NetworkConnection < TencentCloud::Common::AbstractModel
+        # @param Id: 网络配置id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param AssociateId: 网络配置唯一标志符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateId: String
+        # @param HouseId: 计算引擎id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HouseId: String
+        # @param DatasourceConnectionId: 数据源id(已废弃)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionId: String
+        # @param State: 网络配置状态（0-初始化，1-正常）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Appid: 创建用户Appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Appid: Integer
+        # @param HouseName: 计算引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HouseName: String
+        # @param DatasourceConnectionName: 网络配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionName: String
+        # @param NetworkConnectionType: 网络配置类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConnectionType: Integer
+        # @param Uin: 创建用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 创建用户SubAccountUin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param NetworkConnectionDesc: 网络配置描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConnectionDesc: String
+        # @param DatasourceConnectionVpcId: 数据源vpcid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionVpcId: String
+        # @param DatasourceConnectionSubnetId: 数据源SubnetId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionSubnetId: String
+        # @param DatasourceConnectionCidrBlock: 数据源SubnetId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionCidrBlock: String
+        # @param DatasourceConnectionSubnetCidrBlock: 数据源SubnetCidrBlock
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionSubnetCidrBlock: String
+
+        attr_accessor :Id, :AssociateId, :HouseId, :DatasourceConnectionId, :State, :CreateTime, :UpdateTime, :Appid, :HouseName, :DatasourceConnectionName, :NetworkConnectionType, :Uin, :SubAccountUin, :NetworkConnectionDesc, :DatasourceConnectionVpcId, :DatasourceConnectionSubnetId, :DatasourceConnectionCidrBlock, :DatasourceConnectionSubnetCidrBlock
+        
+        def initialize(id=nil, associateid=nil, houseid=nil, datasourceconnectionid=nil, state=nil, createtime=nil, updatetime=nil, appid=nil, housename=nil, datasourceconnectionname=nil, networkconnectiontype=nil, uin=nil, subaccountuin=nil, networkconnectiondesc=nil, datasourceconnectionvpcid=nil, datasourceconnectionsubnetid=nil, datasourceconnectioncidrblock=nil, datasourceconnectionsubnetcidrblock=nil)
+          @Id = id
+          @AssociateId = associateid
+          @HouseId = houseid
+          @DatasourceConnectionId = datasourceconnectionid
+          @State = state
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Appid = appid
+          @HouseName = housename
+          @DatasourceConnectionName = datasourceconnectionname
+          @NetworkConnectionType = networkconnectiontype
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @NetworkConnectionDesc = networkconnectiondesc
+          @DatasourceConnectionVpcId = datasourceconnectionvpcid
+          @DatasourceConnectionSubnetId = datasourceconnectionsubnetid
+          @DatasourceConnectionCidrBlock = datasourceconnectioncidrblock
+          @DatasourceConnectionSubnetCidrBlock = datasourceconnectionsubnetcidrblock
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AssociateId = params['AssociateId']
+          @HouseId = params['HouseId']
+          @DatasourceConnectionId = params['DatasourceConnectionId']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Appid = params['Appid']
+          @HouseName = params['HouseName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @NetworkConnectionType = params['NetworkConnectionType']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @NetworkConnectionDesc = params['NetworkConnectionDesc']
+          @DatasourceConnectionVpcId = params['DatasourceConnectionVpcId']
+          @DatasourceConnectionSubnetId = params['DatasourceConnectionSubnetId']
+          @DatasourceConnectionCidrBlock = params['DatasourceConnectionCidrBlock']
+          @DatasourceConnectionSubnetCidrBlock = params['DatasourceConnectionSubnetCidrBlock']
+        end
+      end
+
       # Notebook Session详细信息。
       class NotebookSessionInfo < TencentCloud::Common::AbstractModel
         # @param Name: Session名称
@@ -4930,6 +5852,163 @@ module TencentCloud
           end
           @SparkUiUrl = params['SparkUiUrl']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+        end
+      end
+
+      # 按批提交Statement运行SQL任务。
+      class NotebookSessionStatementBatchInformation < TencentCloud::Common::AbstractModel
+        # @param NotebookSessionStatementBatch: 任务详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotebookSessionStatementBatch: Array
+        # @param IsAvailable: 当前批任务是否运行完成
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAvailable: Boolean
+        # @param SessionId: Session唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param BatchId: Batch唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+
+        attr_accessor :NotebookSessionStatementBatch, :IsAvailable, :SessionId, :BatchId
+        
+        def initialize(notebooksessionstatementbatch=nil, isavailable=nil, sessionid=nil, batchid=nil)
+          @NotebookSessionStatementBatch = notebooksessionstatementbatch
+          @IsAvailable = isavailable
+          @SessionId = sessionid
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSessionStatementBatch'].nil?
+            @NotebookSessionStatementBatch = []
+            params['NotebookSessionStatementBatch'].each do |i|
+              notebooksessionstatementinfo_tmp = NotebookSessionStatementInfo.new
+              notebooksessionstatementinfo_tmp.deserialize(i)
+              @NotebookSessionStatementBatch << notebooksessionstatementinfo_tmp
+            end
+          end
+          @IsAvailable = params['IsAvailable']
+          @SessionId = params['SessionId']
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # NotebookSessionStatement详情。
+      class NotebookSessionStatementInfo < TencentCloud::Common::AbstractModel
+        # @param Completed: 完成时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Completed: Integer
+        # @param Started: 开始时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Started: Integer
+        # @param Progress: 完成进度，百分制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Float
+        # @param StatementId: Session Statement唯一标识
+        # @type StatementId: String
+        # @param State: Session Statement状态，包含：waiting（排队中）、running（运行中）、available（正常）、error（异常）、cancelling（取消中）、cancelled（已取消）
+        # @type State: String
+        # @param OutPut: Statement输出信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutPut: :class:`Tencentcloud::Dlc.v20210125.models.StatementOutput`
+        # @param BatchId: 批任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+        # @param Code: 运行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :Completed, :Started, :Progress, :StatementId, :State, :OutPut, :BatchId, :Code, :TaskId
+        
+        def initialize(completed=nil, started=nil, progress=nil, statementid=nil, state=nil, output=nil, batchid=nil, code=nil, taskid=nil)
+          @Completed = completed
+          @Started = started
+          @Progress = progress
+          @StatementId = statementid
+          @State = state
+          @OutPut = output
+          @BatchId = batchid
+          @Code = code
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @Completed = params['Completed']
+          @Started = params['Started']
+          @Progress = params['Progress']
+          @StatementId = params['StatementId']
+          @State = params['State']
+          unless params['OutPut'].nil?
+            @OutPut = StatementOutput.new
+            @OutPut.deserialize(params['OutPut'])
+          end
+          @BatchId = params['BatchId']
+          @Code = params['Code']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # notebook session列表信息。
+      class NotebookSessions < TencentCloud::Common::AbstractModel
+        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @type Kind: String
+        # @param SessionId: Session唯一标识
+        # @type SessionId: String
+        # @param ProxyUser: 代理用户，默认为root
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyUser: String
+        # @param State: Session状态，包含：not_started（未启动）、starting（已启动）、idle（等待输入）、busy(正在运行statement)、shutting_down（停止）、error（异常）、dead（已退出）、killed（被杀死）、success（正常停止）
+        # @type State: String
+        # @param SparkAppId: Spark任务返回的AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkAppId: String
+        # @param Name: Session名称
+        # @type Name: String
+        # @param CreateTime: Session创建时间
+        # @type CreateTime: String
+        # @param DataEngineName: 引擎名称
+        # @type DataEngineName: String
+        # @param LastRunningTime: 最新的运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRunningTime: String
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param SparkUiUrl: spark ui地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkUiUrl: String
+
+        attr_accessor :Kind, :SessionId, :ProxyUser, :State, :SparkAppId, :Name, :CreateTime, :DataEngineName, :LastRunningTime, :Creator, :SparkUiUrl
+        
+        def initialize(kind=nil, sessionid=nil, proxyuser=nil, state=nil, sparkappid=nil, name=nil, createtime=nil, dataenginename=nil, lastrunningtime=nil, creator=nil, sparkuiurl=nil)
+          @Kind = kind
+          @SessionId = sessionid
+          @ProxyUser = proxyuser
+          @State = state
+          @SparkAppId = sparkappid
+          @Name = name
+          @CreateTime = createtime
+          @DataEngineName = dataenginename
+          @LastRunningTime = lastrunningtime
+          @Creator = creator
+          @SparkUiUrl = sparkuiurl
+        end
+
+        def deserialize(params)
+          @Kind = params['Kind']
+          @SessionId = params['SessionId']
+          @ProxyUser = params['ProxyUser']
+          @State = params['State']
+          @SparkAppId = params['SparkAppId']
+          @Name = params['Name']
+          @CreateTime = params['CreateTime']
+          @DataEngineName = params['DataEngineName']
+          @LastRunningTime = params['LastRunningTime']
+          @Creator = params['Creator']
+          @SparkUiUrl = params['SparkUiUrl']
         end
       end
 
@@ -5370,6 +6449,60 @@ module TencentCloud
         end
       end
 
+      # notebook session statement输出信息。
+      class StatementOutput < TencentCloud::Common::AbstractModel
+        # @param ExecutionCount: 执行总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionCount: Integer
+        # @param Data: Statement数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Status: Statement状态:ok,error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ErrorName: 错误名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorName: String
+        # @param ErrorValue: 错误类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorValue: String
+        # @param ErrorMessage: 错误堆栈信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: Array
+        # @param SQLResult: SQL类型任务结果返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SQLResult: String
+
+        attr_accessor :ExecutionCount, :Data, :Status, :ErrorName, :ErrorValue, :ErrorMessage, :SQLResult
+        
+        def initialize(executioncount=nil, data=nil, status=nil, errorname=nil, errorvalue=nil, errormessage=nil, sqlresult=nil)
+          @ExecutionCount = executioncount
+          @Data = data
+          @Status = status
+          @ErrorName = errorname
+          @ErrorValue = errorvalue
+          @ErrorMessage = errormessage
+          @SQLResult = sqlresult
+        end
+
+        def deserialize(params)
+          @ExecutionCount = params['ExecutionCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Data << kvpair_tmp
+            end
+          end
+          @Status = params['Status']
+          @ErrorName = params['ErrorName']
+          @ErrorValue = params['ErrorValue']
+          @ErrorMessage = params['ErrorMessage']
+          @SQLResult = params['SQLResult']
+        end
+      end
+
       # spark流任务统计信息
       class StreamingStatistics < TencentCloud::Common::AbstractModel
         # @param StartTime: 任务开始时间
@@ -5734,6 +6867,28 @@ module TencentCloud
           @InputFormat = params['InputFormat']
           @StorageSize = params['StorageSize']
           @RecordCount = params['RecordCount']
+        end
+      end
+
+      # 标签对信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

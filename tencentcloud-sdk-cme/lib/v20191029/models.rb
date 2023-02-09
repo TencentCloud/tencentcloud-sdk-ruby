@@ -5853,9 +5853,11 @@ module TencentCloud
 
       # 时间范围
       class TimeRange < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间，使用 ISO 日期格式。
+        # @param StartTime: 开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间，使用 ISO 日期格式。
+        # @param EndTime: 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :StartTime, :EndTime

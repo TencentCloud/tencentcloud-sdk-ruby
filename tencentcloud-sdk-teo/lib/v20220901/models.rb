@@ -35,6 +35,55 @@ module TencentCloud
         end
       end
 
+      # 加速域名
+      class AccelerationDomain < TencentCloud::Common::AbstractModel
+        # @param OriginDetail: 源站信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
+        # @param CreatedOn: 创建时间。
+        # @type CreatedOn: String
+        # @param DomainName: 加速域名名称。
+        # @type DomainName: String
+        # @param ModifiedOn: 修改时间。
+        # @type ModifiedOn: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param DomainStatus: 加速域名状态，取值有：
+        # <li>online：已生效；</li>
+        # <li>process：部署中；</li>
+        # <li>offline：已停用；</li>
+        # <li>forbidden：已封禁；</li>
+        # <li>init：未生效，待激活站点；</li>
+        # @type DomainStatus: String
+        # @param Cname: CNAME 地址。
+        # @type Cname: String
+
+        attr_accessor :OriginDetail, :CreatedOn, :DomainName, :ModifiedOn, :ZoneId, :DomainStatus, :Cname
+        
+        def initialize(origindetail=nil, createdon=nil, domainname=nil, modifiedon=nil, zoneid=nil, domainstatus=nil, cname=nil)
+          @OriginDetail = origindetail
+          @CreatedOn = createdon
+          @DomainName = domainname
+          @ModifiedOn = modifiedon
+          @ZoneId = zoneid
+          @DomainStatus = domainstatus
+          @Cname = cname
+        end
+
+        def deserialize(params)
+          unless params['OriginDetail'].nil?
+            @OriginDetail = OriginDetail.new
+            @OriginDetail.deserialize(params['OriginDetail'])
+          end
+          @CreatedOn = params['CreatedOn']
+          @DomainName = params['DomainName']
+          @ModifiedOn = params['ModifiedOn']
+          @ZoneId = params['ZoneId']
+          @DomainStatus = params['DomainStatus']
+          @Cname = params['Cname']
+        end
+      end
+
       # 精准防护条件
       class AclCondition < TencentCloud::Common::AbstractModel
         # @param MatchFrom: 匹配字段，取值有：
@@ -1154,6 +1203,49 @@ module TencentCloud
         end
       end
 
+      # CreateAccelerationDomain请求参数结构体
+      class CreateAccelerationDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点ID。
+        # @type ZoneId: String
+        # @param DomainName: 加速域名名称。
+        # @type DomainName: String
+        # @param OriginInfo: 源站信息。
+        # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
+
+        attr_accessor :ZoneId, :DomainName, :OriginInfo
+        
+        def initialize(zoneid=nil, domainname=nil, origininfo=nil)
+          @ZoneId = zoneid
+          @DomainName = domainname
+          @OriginInfo = origininfo
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainName = params['DomainName']
+          unless params['OriginInfo'].nil?
+            @OriginInfo = OriginInfo.new
+            @OriginInfo.deserialize(params['OriginInfo'])
+          end
+        end
+      end
+
+      # CreateAccelerationDomain返回参数结构体
+      class CreateAccelerationDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAliasDomain请求参数结构体
       class CreateAliasDomainRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -1971,6 +2063,48 @@ module TencentCloud
         end
       end
 
+      # DeleteAccelerationDomains请求参数结构体
+      class DeleteAccelerationDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点ID。
+        # @type ZoneId: String
+        # @param DomainNames: 需要删除的加速域名ID列表。
+        # @type DomainNames: Array
+        # @param Force: 是否强制删除。当域名存在关联资源（如马甲域名、流量调度功能）时，是否强制删除该域名，取值有：
+        # <li> true：删除该域名及所有关联资源；</li>
+        # <li> false：当该加速域名存在关联资源时，不允许删除。</li>不填写，默认值为：false。
+        # @type Force: Boolean
+
+        attr_accessor :ZoneId, :DomainNames, :Force
+        
+        def initialize(zoneid=nil, domainnames=nil, force=nil)
+          @ZoneId = zoneid
+          @DomainNames = domainnames
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainNames = params['DomainNames']
+          @Force = params['Force']
+        end
+      end
+
+      # DeleteAccelerationDomains返回参数结构体
+      class DeleteAccelerationDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAliasDomain请求参数结构体
       class DeleteAliasDomainRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -2183,6 +2317,95 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccelerationDomains请求参数结构体
+      class DescribeAccelerationDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点ID。不填写该参数默认返回所有站点下的加速域名。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # <li>domain-name<br>   按照【<strong>加速域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>origin-type<br>   按照【<strong>源站类型</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>origin<br>   按照【<strong>主源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>backup-origin<br>   按照【<strong>备用源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # @type Filters: Array
+        # @param Direction: 列表排序方式，取值有：
+        # <li>asc：升序排列；</li>
+        # <li>desc：降序排列。</li>默认值为asc。
+        # @type Direction: String
+        # @param Match: 匹配方式，取值有：
+        # <li>all：返回匹配所有查询条件的加速域名；</li>
+        # <li>any：返回匹配任意一个查询条件的加速域名。</li>默认值为all。
+        # @type Match: String
+        # @param Limit: 分页查询限制数目，默认值：20，上限：200。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Order: 排序依据，取值有：
+        # <li>created_on：加速域名创建时间；</li>
+        # <li>domain-name：加速域名名称；</li>
+        # </li>默认根据domain-name属性排序。
+        # @type Order: String
+
+        attr_accessor :ZoneId, :Filters, :Direction, :Match, :Limit, :Offset, :Order
+        
+        def initialize(zoneid=nil, filters=nil, direction=nil, match=nil, limit=nil, offset=nil, order=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Direction = direction
+          @Match = match
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Direction = params['Direction']
+          @Match = params['Match']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeAccelerationDomains返回参数结构体
+      class DescribeAccelerationDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 加速域名总数。
+        # @type TotalCount: Integer
+        # @param AccelerationDomains: 加速域名列表。
+        # @type AccelerationDomains: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AccelerationDomains, :RequestId
+        
+        def initialize(totalcount=nil, accelerationdomains=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AccelerationDomains = accelerationdomains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AccelerationDomains'].nil?
+            @AccelerationDomains = []
+            params['AccelerationDomains'].each do |i|
+              accelerationdomain_tmp = AccelerationDomain.new
+              accelerationdomain_tmp.deserialize(i)
+              @AccelerationDomains << accelerationdomain_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6509,6 +6732,97 @@ module TencentCloud
         end
       end
 
+      # ModifyAccelerationDomain请求参数结构体
+      class ModifyAccelerationDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点ID。
+        # @type ZoneId: String
+        # @param DomainName: 加速域名名称。
+        # @type DomainName: String
+        # @param OriginInfo: 源站信息。
+        # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
+
+        attr_accessor :ZoneId, :DomainName, :OriginInfo
+        
+        def initialize(zoneid=nil, domainname=nil, origininfo=nil)
+          @ZoneId = zoneid
+          @DomainName = domainname
+          @OriginInfo = origininfo
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainName = params['DomainName']
+          unless params['OriginInfo'].nil?
+            @OriginInfo = OriginInfo.new
+            @OriginInfo.deserialize(params['OriginInfo'])
+          end
+        end
+      end
+
+      # ModifyAccelerationDomain返回参数结构体
+      class ModifyAccelerationDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccelerationDomainStatuses请求参数结构体
+      class ModifyAccelerationDomainStatusesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点ID。
+        # @type ZoneId: String
+        # @param DomainNames: 要执行状态变更的加速域名列表。
+        # @type DomainNames: Array
+        # @param Status: 加速域名状态，取值有：
+        # <li>online：启用；</li>
+        # <li>offline：停用。</li>
+        # @type Status: String
+        # @param Force: 是否强制停用。当域名存在关联资源（如马甲域名、流量调度功能）时，是否强制停用该域名，取值有：
+        # <li> true：停用该域名及所有关联资源；</li>
+        # <li> false：当该加速域名存在关联资源时，不允许停用。</li>不填写，默认值为：false。
+        # @type Force: Boolean
+
+        attr_accessor :ZoneId, :DomainNames, :Status, :Force
+        
+        def initialize(zoneid=nil, domainnames=nil, status=nil, force=nil)
+          @ZoneId = zoneid
+          @DomainNames = domainnames
+          @Status = status
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainNames = params['DomainNames']
+          @Status = params['Status']
+          @Force = params['Force']
+        end
+      end
+
+      # ModifyAccelerationDomainStatuses返回参数结构体
+      class ModifyAccelerationDomainStatusesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAliasDomain请求参数结构体
       class ModifyAliasDomainRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -7628,6 +7942,61 @@ module TencentCloud
         end
       end
 
+      # 加速域名源站信息。
+      class OriginDetail < TencentCloud::Common::AbstractModel
+        # @param OriginType: 源站类型，取值有：
+        # <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
+        # <li>COS：COS源。</li>
+        # <li>ORIGIN_GROUP：源站组类型源站。</li>
+        # <li>AWS_S3：AWS S3对象存储源站。</li>
+        # @type OriginType: String
+        # @param Origin: 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
+        # @type Origin: String
+        # @param BackupOrigin: 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
+        # @type BackupOrigin: String
+        # @param OriginGroupName: 主源源站组名称，当OriginType参数指定为ORIGIN_GROUP时该参数生效。
+        # @type OriginGroupName: String
+        # @param BackOriginGroupName: 备用源站源站组名称，当OriginType参数指定为ORIGIN_GROUP，且用户指定了被用源站时该参数生效。
+        # @type BackOriginGroupName: String
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站。当源站类型OriginType=COS或AWS_S3时有效 取值有：
+        # <li>on：使用私有鉴权；</li>
+        # <li>off：不使用私有鉴权。</li>
+        # 不填写，默认值为off。
+        # @type PrivateAccess: String
+        # @param PrivateParameters: 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateParameters: Array
+
+        attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters
+        
+        def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil)
+          @OriginType = origintype
+          @Origin = origin
+          @BackupOrigin = backuporigin
+          @OriginGroupName = origingroupname
+          @BackOriginGroupName = backorigingroupname
+          @PrivateAccess = privateaccess
+          @PrivateParameters = privateparameters
+        end
+
+        def deserialize(params)
+          @OriginType = params['OriginType']
+          @Origin = params['Origin']
+          @BackupOrigin = params['BackupOrigin']
+          @OriginGroupName = params['OriginGroupName']
+          @BackOriginGroupName = params['BackOriginGroupName']
+          @PrivateAccess = params['PrivateAccess']
+          unless params['PrivateParameters'].nil?
+            @PrivateParameters = []
+            params['PrivateParameters'].each do |i|
+              privateparameter_tmp = PrivateParameter.new
+              privateparameter_tmp.deserialize(i)
+              @PrivateParameters << privateparameter_tmp
+            end
+          end
+        end
+      end
+
       # 源站组信息
       class OriginGroup < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -7687,6 +8056,56 @@ module TencentCloud
           end
           @UpdateTime = params['UpdateTime']
           @HostHeader = params['HostHeader']
+        end
+      end
+
+      # 加速域名源站信息。
+      class OriginInfo < TencentCloud::Common::AbstractModel
+        # @param OriginType: 源站类型，取值有：
+        # <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
+        # <li>COS：COS源。</li>
+        # <li>ORIGIN_GROUP：源站组类型源站。</li>
+        # <li>AWS_S3：AWS S3对象存储源站。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginType: String
+        # @param Origin: 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Origin: String
+        # @param BackupOrigin: 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupOrigin: String
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，当源站类型OriginType=COS或AWS_S3时有效，取值有：
+        # <li>on：使用私有鉴权；</li>
+        # <li>off：不使用私有鉴权。</li>不填写，默认值为：off。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateAccess: String
+        # @param PrivateParameters: 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateParameters: Array
+
+        attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters
+        
+        def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil)
+          @OriginType = origintype
+          @Origin = origin
+          @BackupOrigin = backuporigin
+          @PrivateAccess = privateaccess
+          @PrivateParameters = privateparameters
+        end
+
+        def deserialize(params)
+          @OriginType = params['OriginType']
+          @Origin = params['Origin']
+          @BackupOrigin = params['BackupOrigin']
+          @PrivateAccess = params['PrivateAccess']
+          unless params['PrivateParameters'].nil?
+            @PrivateParameters = []
+            params['PrivateParameters'].each do |i|
+              privateparameter_tmp = PrivateParameter.new
+              privateparameter_tmp.deserialize(i)
+              @PrivateParameters << privateparameter_tmp
+            end
+          end
         end
       end
 

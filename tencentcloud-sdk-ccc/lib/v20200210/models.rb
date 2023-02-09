@@ -114,6 +114,46 @@ module TencentCloud
         end
       end
 
+      # BindNumberCallOutSkillGroup请求参数结构体
+      class BindNumberCallOutSkillGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Number: 待绑定的号码
+        # @type Number: String
+        # @param SkillGroupIds: 待绑定的技能组Id列表
+        # @type SkillGroupIds: Array
+
+        attr_accessor :SdkAppId, :Number, :SkillGroupIds
+        
+        def initialize(sdkappid=nil, number=nil, skillgroupids=nil)
+          @SdkAppId = sdkappid
+          @Number = number
+          @SkillGroupIds = skillgroupids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Number = params['Number']
+          @SkillGroupIds = params['SkillGroupIds']
+        end
+      end
+
+      # BindNumberCallOutSkillGroup返回参数结构体
+      class BindNumberCallOutSkillGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindStaffSkillGroupList请求参数结构体
       class BindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -1486,6 +1526,61 @@ module TencentCloud
         end
       end
 
+      # DescribeNumbers请求参数结构体
+      class DescribeNumbersRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param PageNumber: 页数，从0开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，默认20
+        # @type PageSize: Integer
+
+        attr_accessor :SdkAppId, :PageNumber, :PageSize
+        
+        def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil)
+          @SdkAppId = sdkappid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeNumbers返回参数结构体
+      class DescribeNumbersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param Numbers: 号码列表
+        # @type Numbers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Numbers, :RequestId
+        
+        def initialize(totalcount=nil, numbers=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Numbers = numbers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Numbers'].nil?
+            @Numbers = []
+            params['Numbers'].each do |i|
+              numberinfo_tmp = NumberInfo.new
+              numberinfo_tmp.deserialize(i)
+              @Numbers << numberinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePSTNActiveSessionList请求参数结构体
       class DescribePSTNActiveSessionListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -2415,6 +2510,26 @@ module TencentCloud
         end
       end
 
+      # 号码信息
+      class NumberInfo < TencentCloud::Common::AbstractModel
+        # @param Number: 号码
+        # @type Number: String
+        # @param CallOutSkillGroupIds: 绑定的外呼技能组
+        # @type CallOutSkillGroupIds: Array
+
+        attr_accessor :Number, :CallOutSkillGroupIds
+        
+        def initialize(number=nil, calloutskillgroupids=nil)
+          @Number = number
+          @CallOutSkillGroupIds = calloutskillgroupids
+        end
+
+        def deserialize(params)
+          @Number = params['Number']
+          @CallOutSkillGroupIds = params['CallOutSkillGroupIds']
+        end
+      end
+
       # PSTN 会话类型。
       class PSTNSession < TencentCloud::Common::AbstractModel
         # @param SessionID: 会话 ID
@@ -3264,10 +3379,13 @@ module TencentCloud
         # @param QueuedSkillGroupName: 排队技能组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueuedSkillGroupName: String
+        # @param VoicemailRecordURL: 通话中语音留言录音URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicemailRecordURL: Array
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -3300,6 +3418,7 @@ module TencentCloud
           @CustomRecordURL = customrecordurl
           @Remark = remark
           @QueuedSkillGroupName = queuedskillgroupname
+          @VoicemailRecordURL = voicemailrecordurl
         end
 
         def deserialize(params)
@@ -3359,6 +3478,47 @@ module TencentCloud
           @CustomRecordURL = params['CustomRecordURL']
           @Remark = params['Remark']
           @QueuedSkillGroupName = params['QueuedSkillGroupName']
+          @VoicemailRecordURL = params['VoicemailRecordURL']
+        end
+      end
+
+      # UnbindNumberCallOutSkillGroup请求参数结构体
+      class UnbindNumberCallOutSkillGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Number: 待解绑的号码
+        # @type Number: String
+        # @param SkillGroupIds: 待解绑的技能组Id列表
+        # @type SkillGroupIds: Array
+
+        attr_accessor :SdkAppId, :Number, :SkillGroupIds
+        
+        def initialize(sdkappid=nil, number=nil, skillgroupids=nil)
+          @SdkAppId = sdkappid
+          @Number = number
+          @SkillGroupIds = skillgroupids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Number = params['Number']
+          @SkillGroupIds = params['SkillGroupIds']
+        end
+      end
+
+      # UnbindNumberCallOutSkillGroup返回参数结构体
+      class UnbindNumberCallOutSkillGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
