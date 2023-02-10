@@ -5515,10 +5515,13 @@ module TencentCloud
         # @param MaxRetentionSizeInMB: 消息最大保留空间，MB为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetentionSizeInMB: Integer
+        # @param PublicAccessEnabled: public Access Enabled
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAccessEnabled: Boolean
 
-        attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB
+        attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB, :PublicAccessEnabled
         
-        def initialize(tenantid=nil, tenantname=nil, customeruin=nil, customerappid=nil, clustername=nil, type=nil, maxnamespaces=nil, usednamespaces=nil, maxtopics=nil, usedtopics=nil, maxpartitions=nil, usedpartitions=nil, maxmsgbacklogsize=nil, maxpublishtps=nil, maxretention=nil, createtime=nil, updatetime=nil, maxdispatchtps=nil, maxdispatchrateinbytes=nil, maxpublishrateinbytes=nil, maxretentionsizeinmb=nil)
+        def initialize(tenantid=nil, tenantname=nil, customeruin=nil, customerappid=nil, clustername=nil, type=nil, maxnamespaces=nil, usednamespaces=nil, maxtopics=nil, usedtopics=nil, maxpartitions=nil, usedpartitions=nil, maxmsgbacklogsize=nil, maxpublishtps=nil, maxretention=nil, createtime=nil, updatetime=nil, maxdispatchtps=nil, maxdispatchrateinbytes=nil, maxpublishrateinbytes=nil, maxretentionsizeinmb=nil, publicaccessenabled=nil)
           @TenantId = tenantid
           @TenantName = tenantname
           @CustomerUin = customeruin
@@ -5540,6 +5543,7 @@ module TencentCloud
           @MaxDispatchRateInBytes = maxdispatchrateinbytes
           @MaxPublishRateInBytes = maxpublishrateinbytes
           @MaxRetentionSizeInMB = maxretentionsizeinmb
+          @PublicAccessEnabled = publicaccessenabled
         end
 
         def deserialize(params)
@@ -5564,6 +5568,7 @@ module TencentCloud
           @MaxDispatchRateInBytes = params['MaxDispatchRateInBytes']
           @MaxPublishRateInBytes = params['MaxPublishRateInBytes']
           @MaxRetentionSizeInMB = params['MaxRetentionSizeInMB']
+          @PublicAccessEnabled = params['PublicAccessEnabled']
         end
       end
 
@@ -6966,10 +6971,13 @@ module TencentCloud
         # @type MaxRetentionTime: Integer
         # @param MaxLatencyTime: 消息最长延时，以毫秒为单位
         # @type MaxLatencyTime: Integer
+        # @param MaxQueuesPerTopic: 单个主题最大队列数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxQueuesPerTopic: Integer
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic
         
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -6979,6 +6987,7 @@ module TencentCloud
           @UsedGroupNum = usedgroupnum
           @MaxRetentionTime = maxretentiontime
           @MaxLatencyTime = maxlatencytime
+          @MaxQueuesPerTopic = maxqueuespertopic
         end
 
         def deserialize(params)
@@ -6991,6 +7000,7 @@ module TencentCloud
           @UsedGroupNum = params['UsedGroupNum']
           @MaxRetentionTime = params['MaxRetentionTime']
           @MaxLatencyTime = params['MaxLatencyTime']
+          @MaxQueuesPerTopic = params['MaxQueuesPerTopic']
         end
       end
 
@@ -7307,7 +7317,7 @@ module TencentCloud
         # @param InstanceVersion: 实例版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: String
-        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常
+        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
         # @type Status: Integer
         # @param NodeCount: 节点数量
         # @type NodeCount: Integer

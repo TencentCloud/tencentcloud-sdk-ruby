@@ -2397,7 +2397,7 @@ module TencentCloud
         end
       end
 
-      #  容器部署组详情
+      # 容器部署组详情
       class ContainerGroupDetail < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2510,10 +2510,22 @@ module TencentCloud
         # @param HealthCheckSettings: 部署组健康检查设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param AllowPlainYamlDeploy: 允许PlainYamlDeploy
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowPlainYamlDeploy: Boolean
+        # @param IsNotEqualServiceConfig: 是否不等于ServiceConfig
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNotEqualServiceConfig: Boolean
+        # @param RepoName: 仓库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+        # @param Alias: 别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :CreateTime, :Server, :Reponame, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :LbIp, :ApplicationType, :ClusterIp, :NodePort, :CpuLimit, :MemLimit, :AccessType, :UpdateType, :UpdateIvl, :ProtocolPorts, :Envs, :ApplicationName, :Message, :Status, :MicroserviceType, :CpuRequest, :MemRequest, :SubnetId, :GroupResourceType, :InstanceCount, :UpdatedTime, :MaxSurge, :MaxUnavailable, :HealthCheckSettings
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :CreateTime, :Server, :Reponame, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :LbIp, :ApplicationType, :ClusterIp, :NodePort, :CpuLimit, :MemLimit, :AccessType, :UpdateType, :UpdateIvl, :ProtocolPorts, :Envs, :ApplicationName, :Message, :Status, :MicroserviceType, :CpuRequest, :MemRequest, :SubnetId, :GroupResourceType, :InstanceCount, :UpdatedTime, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :AllowPlainYamlDeploy, :IsNotEqualServiceConfig, :RepoName, :Alias
         
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, lbip=nil, applicationtype=nil, clusterip=nil, nodeport=nil, cpulimit=nil, memlimit=nil, accesstype=nil, updatetype=nil, updateivl=nil, protocolports=nil, envs=nil, applicationname=nil, message=nil, status=nil, microservicetype=nil, cpurequest=nil, memrequest=nil, subnetid=nil, groupresourcetype=nil, instancecount=nil, updatedtime=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, lbip=nil, applicationtype=nil, clusterip=nil, nodeport=nil, cpulimit=nil, memlimit=nil, accesstype=nil, updatetype=nil, updateivl=nil, protocolports=nil, envs=nil, applicationname=nil, message=nil, status=nil, microservicetype=nil, cpurequest=nil, memrequest=nil, subnetid=nil, groupresourcetype=nil, instancecount=nil, updatedtime=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, allowplainyamldeploy=nil, isnotequalserviceconfig=nil, reponame=nil, _alias=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -2551,6 +2563,10 @@ module TencentCloud
           @MaxSurge = maxsurge
           @MaxUnavailable = maxunavailable
           @HealthCheckSettings = healthchecksettings
+          @AllowPlainYamlDeploy = allowplainyamldeploy
+          @IsNotEqualServiceConfig = isnotequalserviceconfig
+          @RepoName = reponame
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -2608,6 +2624,10 @@ module TencentCloud
             @HealthCheckSettings = HealthCheckSettings.new
             @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
           end
+          @AllowPlainYamlDeploy = params['AllowPlainYamlDeploy']
+          @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
+          @RepoName = params['RepoName']
+          @Alias = params['Alias']
         end
       end
 
@@ -4441,6 +4461,43 @@ module TencentCloud
         # @param Result: 删除操作是否成功：
         # true：成功
         # false：失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFileConfig请求参数结构体
+      class DeleteFileConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 文件配置项ID
+        # @type ConfigId: String
+
+        attr_accessor :ConfigId
+        
+        def initialize(configid=nil)
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DeleteFileConfig返回参数结构体
+      class DeleteFileConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

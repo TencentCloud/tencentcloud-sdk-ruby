@@ -1124,6 +1124,54 @@ module TencentCloud
 
         # 获取项目下的日志列表（实例创建的项目下的日志列表）
 
+        # @param request: Request instance for DescribeRumLogExport.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportResponse`
+        def DescribeRumLogExport(request)
+          body = send_request('DescribeRumLogExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取项目下的日志导出列表
+
+        # @param request: Request instance for DescribeRumLogExports.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportsRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportsResponse`
+        def DescribeRumLogExports(request)
+          body = send_request('DescribeRumLogExports', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogExportsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取项目下的日志列表（实例创建的项目下的日志列表）
+
         # @param request: Request instance for DescribeRumLogList.
         # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogListRequest`
         # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogListResponse`
@@ -1372,6 +1420,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResumeInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复应用使用与上报数据
+
+        # @param request: Request instance for ResumeProject.
+        # @type request: :class:`Tencentcloud::rum::V20210622::ResumeProjectRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::ResumeProjectResponse`
+        def ResumeProject(request)
+          body = send_request('ResumeProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeProjectResponse.new
             model.deserialize(response['Response'])
             model
           else

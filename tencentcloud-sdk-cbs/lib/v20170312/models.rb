@@ -2539,26 +2539,26 @@ module TencentCloud
       class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 快照ID, 可通过[DescribeSnapshots](/document/product/362/15647)查询。
         # @type SnapshotId: String
-        # @param SnapshotName: 新的快照名称。最长为60个字符。
-        # @type SnapshotName: String
         # @param IsPermanent: 快照的保留方式，FALSE表示非永久保留，TRUE表示永久保留。
         # @type IsPermanent: Boolean
+        # @param SnapshotName: 新的快照名称。最长为60个字符。
+        # @type SnapshotName: String
         # @param Deadline: 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
         # @type Deadline: String
 
-        attr_accessor :SnapshotId, :SnapshotName, :IsPermanent, :Deadline
+        attr_accessor :SnapshotId, :IsPermanent, :SnapshotName, :Deadline
         
-        def initialize(snapshotid=nil, snapshotname=nil, ispermanent=nil, deadline=nil)
+        def initialize(snapshotid=nil, ispermanent=nil, snapshotname=nil, deadline=nil)
           @SnapshotId = snapshotid
-          @SnapshotName = snapshotname
           @IsPermanent = ispermanent
+          @SnapshotName = snapshotname
           @Deadline = deadline
         end
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
-          @SnapshotName = params['SnapshotName']
           @IsPermanent = params['IsPermanent']
+          @SnapshotName = params['SnapshotName']
           @Deadline = params['Deadline']
         end
       end

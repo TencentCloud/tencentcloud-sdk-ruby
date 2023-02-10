@@ -1594,26 +1594,29 @@ module TencentCloud
         # @param InstanceChargeType: 付费类型，PREPAID为预付费，POSTPAID为后付费。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
-        # @param BandwidthLimitType: 限速类型，INTER_REGION_LIMIT为地域间限速；OUTER_REGION_LIMIT为地域出口限速。
+        # @param BandwidthLimitType: 限速类型，`INTER_REGION_LIMIT` 为地域间限速；`OUTER_REGION_LIMIT` 为地域出口限速。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthLimitType: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
-        # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。False：不支持，True：支持。
+        # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。`False`：不支持，`True`：支持。
         # @type RoutePriorityFlag: Boolean
         # @param RouteTableCount: 实例关联的路由表个数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableCount: Integer
-        # @param RouteTableFlag: 是否开启云联网多路由表特性。False：未开启，True：开启。
+        # @param RouteTableFlag: 是否开启云联网多路由表特性。`False`：未开启，`True`：开启。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableFlag: Boolean
+        # @param IsSecurityLock: `true`：实例已被封禁，流量不通，`false`:解封禁。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSecurityLock: Boolean
         # @param RouteBroadcastPolicyFlag: 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteBroadcastPolicyFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :RouteBroadcastPolicyFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag
         
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, routebroadcastpolicyflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1627,6 +1630,7 @@ module TencentCloud
           @RoutePriorityFlag = routepriorityflag
           @RouteTableCount = routetablecount
           @RouteTableFlag = routetableflag
+          @IsSecurityLock = issecuritylock
           @RouteBroadcastPolicyFlag = routebroadcastpolicyflag
         end
 
@@ -1651,6 +1655,7 @@ module TencentCloud
           @RoutePriorityFlag = params['RoutePriorityFlag']
           @RouteTableCount = params['RouteTableCount']
           @RouteTableFlag = params['RouteTableFlag']
+          @IsSecurityLock = params['IsSecurityLock']
           @RouteBroadcastPolicyFlag = params['RouteBroadcastPolicyFlag']
         end
       end
@@ -2577,11 +2582,11 @@ module TencentCloud
         # @type CcnName: String
         # @param CcnDescription: CCN描述信息，最大长度不能超过100个字节。
         # @type CcnDescription: String
-        # @param QosLevel: CCN服务质量，'PT'：白金，'AU'：金，'AG'：银，默认为‘AU’。
+        # @param QosLevel: CCN服务质量，`PT`：白金，`AU`：金，`AG`：银，默认为`AU`。
         # @type QosLevel: String
-        # @param InstanceChargeType: 计费模式，PREPAID：表示预付费，即包年包月，POSTPAID：表示后付费，即按量计费。默认：POSTPAID。
+        # @param InstanceChargeType: 计费模式，`PREPAID`：表示预付费，即包年包月，`POSTPAID`：表示后付费，即按量计费。默认：`POSTPAID`。
         # @type InstanceChargeType: String
-        # @param BandwidthLimitType: 限速类型，OUTER_REGION_LIMIT表示地域出口限速，INTER_REGION_LIMIT为地域间限速，默认为OUTER_REGION_LIMIT。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
+        # @param BandwidthLimitType: 限速类型，`OUTER_REGION_LIMIT`表示地域出口限速，`INTER_REGION_LIMIT`为地域间限速，默认为`OUTER_REGION_LIMIT`。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
         # @type BandwidthLimitType: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
@@ -4931,13 +4936,13 @@ module TencentCloud
 
       # 跨境带宽监控数据
       class CrossBorderFlowMonitorData < TencentCloud::Common::AbstractModel
-        # @param InBandwidth: 入带宽
+        # @param InBandwidth: 入带宽，单位：`bps`。
         # @type InBandwidth: Array
-        # @param OutBandwidth: 出带宽
+        # @param OutBandwidth: 出带宽，单位：`bps`。
         # @type OutBandwidth: Array
-        # @param InPkg: 入包
+        # @param InPkg: 入包，单位：`pps`。
         # @type InPkg: Array
-        # @param OutPkg: 出包
+        # @param OutPkg: 出包，单位：`pps`。
         # @type OutPkg: Array
 
         attr_accessor :InBandwidth, :OutBandwidth, :InPkg, :OutPkg
@@ -7108,9 +7113,9 @@ module TencentCloud
 
       # DescribeCcnRoutes请求参数结构体
       class DescribeCcnRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: CCN实例ID，形如：ccn-gree226l。
+        # @param CcnId: CCN实例ID，形如：`ccn-gree226l`。
         # @type CcnId: String
-        # @param RouteIds: CCN路由策略唯一ID。形如：ccnr-f49l6u0z。
+        # @param RouteIds: CCN路由策略唯一ID，形如：`ccnr-f49l6u0z`。
         # @type RouteIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定RouteIds和Filters。
         # <li>route-id - String -（过滤条件）路由策略ID。</li>
@@ -7187,7 +7192,7 @@ module TencentCloud
         # @param CcnIds: CCN实例ID。形如：ccn-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定CcnIds和Filters。
         # @type CcnIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定CcnIds和Filters。
-        # <li>ccn-id - String - （过滤条件）CCN唯一ID，形如：vpc-f49l6u0z。</li>
+        # <li>ccn-id - String - （过滤条件）CCN唯一ID，形如：`ccn-f49l6u0z`。</li>
         # <li>ccn-name - String - （过滤条件）CCN名称。</li>
         # <li>ccn-description - String - （过滤条件）CCN描述。</li>
         # <li>state - String - （过滤条件）实例状态， 'ISOLATED': 隔离中（欠费停服），'AVAILABLE'：运行中。</li>

@@ -3033,7 +3033,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+        # 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
 
         # @param request: Request instance for DescribeCcnRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCcnRoutesRequest`
@@ -4781,7 +4781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+        # 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由。
 
         # @param request: Request instance for DisableCcnRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DisableCcnRoutesRequest`

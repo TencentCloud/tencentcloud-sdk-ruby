@@ -3305,6 +3305,106 @@ module TencentCloud
         end
       end
 
+      # DescribeRumLogExport请求参数结构体
+      class DescribeRumLogExportRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 导出标识name
+        # @type Name: String
+        # @param StartTime: 开始时间（必填）
+        # @type StartTime: String
+        # @param Query: 查询语句，参考控制台请求参数，语句长度最大为4096（必填）
+        # @type Query: String
+        # @param EndTime: 结束时间（必填）
+        # @type EndTime: String
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+        # @param Fields: field条件
+        # @type Fields: Array
+
+        attr_accessor :Name, :StartTime, :Query, :EndTime, :ID, :Fields
+        
+        def initialize(name=nil, starttime=nil, query=nil, endtime=nil, id=nil, fields=nil)
+          @Name = name
+          @StartTime = starttime
+          @Query = query
+          @EndTime = endtime
+          @ID = id
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StartTime = params['StartTime']
+          @Query = params['Query']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @Fields = params['Fields']
+        end
+      end
+
+      # DescribeRumLogExport返回参数结构体
+      class DescribeRumLogExportResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRumLogExports请求参数结构体
+      class DescribeRumLogExportsRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 页面大小
+        # @type PageSize: Integer
+        # @param PageNum: 页数，第几页
+        # @type PageNum: Integer
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+
+        attr_accessor :PageSize, :PageNum, :ID
+        
+        def initialize(pagesize=nil, pagenum=nil, id=nil)
+          @PageSize = pagesize
+          @PageNum = pagenum
+          @ID = id
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeRumLogExports返回参数结构体
+      class DescribeRumLogExportsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRumLogList请求参数结构体
       class DescribeRumLogListRequest < TencentCloud::Common::AbstractModel
         # @param OrderBy: 排序方式  desc  asc（必填）
@@ -4050,6 +4150,38 @@ module TencentCloud
 
       # ResumeInstance返回参数结构体
       class ResumeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeProject请求参数结构体
+      class ResumeProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目 id
+        # @type ProjectId: Integer
+
+        attr_accessor :ProjectId
+        
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # ResumeProject返回参数结构体
+      class ResumeProjectResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

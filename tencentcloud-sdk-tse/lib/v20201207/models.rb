@@ -22,6 +22,9 @@ module TencentCloud
         # @param Name: 环境名称
         # @type Name: String
         # @param EngineResourceSpec: 环境内引擎的节点规格 ID
+        # -1C2G
+        # -2C4G
+        # 兼容原spec-xxxxxx形式的规格ID
         # @type EngineResourceSpec: String
         # @param EngineNodeNum: 环境内引擎的节点数量
         # @type EngineNodeNum: Integer
@@ -31,16 +34,19 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网 ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
         # @type SubnetId: String
+        # @param EnvDesc: 环境描述
+        # @type EnvDesc: String
 
-        attr_accessor :Name, :EngineResourceSpec, :EngineNodeNum, :StorageCapacity, :VpcId, :SubnetId
+        attr_accessor :Name, :EngineResourceSpec, :EngineNodeNum, :StorageCapacity, :VpcId, :SubnetId, :EnvDesc
         
-        def initialize(name=nil, engineresourcespec=nil, enginenodenum=nil, storagecapacity=nil, vpcid=nil, subnetid=nil)
+        def initialize(name=nil, engineresourcespec=nil, enginenodenum=nil, storagecapacity=nil, vpcid=nil, subnetid=nil, envdesc=nil)
           @Name = name
           @EngineResourceSpec = engineresourcespec
           @EngineNodeNum = enginenodenum
           @StorageCapacity = storagecapacity
           @VpcId = vpcid
           @SubnetId = subnetid
+          @EnvDesc = envdesc
         end
 
         def deserialize(params)
@@ -50,6 +56,7 @@ module TencentCloud
           @StorageCapacity = params['StorageCapacity']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @EnvDesc = params['EnvDesc']
         end
       end
 
@@ -116,12 +123,17 @@ module TencentCloud
 
         # 引擎各版本及可选择的规格、节点数说明：
         # apollo - STANDARD版本
-        # 规格列表：spec-qcr53kf1t（1C2G）,spec-qdr53kf2w（2C4G）
+        # 规格列表：1C2G、2C4G、4C8G、8C16G、16C32G
         # 节点数：1，2，3，4，5
 
         # eureka - STANDARD版本
-        # 规格列表：spec-qvj6k7t4q（1C2G）,spec-qcr53kfjt（2C4G）,spec-qvj6k7t4m（4G8G）,spec-qcr54kfjt（8C16G）,spec-qcr55kfjt（16C32G）
+        # 规格列表：1C2G、2C4G、4C8G、8C16G、16C32G
         # 节点数：3，4，5
+
+        # polarismesh - STANDARD版本
+        # 规格列表：NUM50、NUM100、NUM200、NUM500、NUM1000、NUM5000、NUM10000、NUM50000
+
+        # 兼容原spec-xxxxxx形式的规格ID
         # @type EngineProductVersion: String
         # @param EngineRegion: 引擎所在地域。参考值说明：
         # 中国区 参考值：
@@ -148,7 +160,7 @@ module TencentCloud
         # @type EngineName: String
         # @param TradeType: 付费类型。参考值：
         # - 0：后付费
-        # - 1：预付费
+        # - 1：预付费（接口暂不支持创建预付费实例）
         # @type TradeType: Integer
         # @param EngineResourceSpec: 引擎的节点规格 ID。参见EngineProductVersion字段说明
         # @type EngineResourceSpec: String
@@ -839,14 +851,18 @@ module TencentCloud
         # @param ConfigIntranetAddress: config内网访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigIntranetAddress: String
+        # @param EnableConfigIntranet: 是否开启config内网clb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableConfigIntranet: Boolean
 
-        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress
+        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet
         
-        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil)
+        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil)
           @EnvName = envname
           @EnableConfigInternet = enableconfiginternet
           @ConfigInternetServiceIp = configinternetserviceip
           @ConfigIntranetAddress = configintranetaddress
+          @EnableConfigIntranet = enableconfigintranet
         end
 
         def deserialize(params)
@@ -854,6 +870,7 @@ module TencentCloud
           @EnableConfigInternet = params['EnableConfigInternet']
           @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
           @ConfigIntranetAddress = params['ConfigIntranetAddress']
+          @EnableConfigIntranet = params['EnableConfigIntranet']
         end
       end
 

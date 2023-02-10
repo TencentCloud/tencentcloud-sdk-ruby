@@ -5127,27 +5127,75 @@ module TencentCloud
 
       # GenerateCreateMangedTableSql请求参数结构体
       class GenerateCreateMangedTableSqlRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+        # @param Columns: 表字段信息
+        # @type Columns: Array
+        # @param Partitions: 表分区信息
+        # @type Partitions: Array
+        # @param Properties: 表属性信息
+        # @type Properties: Array
 
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties
         
-        def initialize()
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil)
+          @TableBaseInfo = tablebaseinfo
+          @Columns = columns
+          @Partitions = partitions
+          @Properties = properties
         end
 
         def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tcolumn_tmp = TColumn.new
+              tcolumn_tmp.deserialize(i)
+              @Columns << tcolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              tpartition_tmp = TPartition.new
+              tpartition_tmp.deserialize(i)
+              @Partitions << tpartition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
         end
       end
 
       # GenerateCreateMangedTableSql返回参数结构体
       class GenerateCreateMangedTableSqlResponse < TencentCloud::Common::AbstractModel
+        # @param Execution: 创建托管存储内表sql语句描述
+        # @type Execution: :class:`Tencentcloud::Dlc.v20210125.models.Execution`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Execution, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(execution=nil, requestid=nil)
+          @Execution = execution
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Execution'].nil?
+            @Execution = Execution.new
+            @Execution.deserialize(params['Execution'])
+          end
           @RequestId = params['RequestId']
         end
       end

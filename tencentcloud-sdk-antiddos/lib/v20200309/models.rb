@@ -6251,15 +6251,21 @@ module TencentCloud
         # @type InstanceDetails: Array
         # @param InstanceDetailRule: 规则所属的资源实例
         # @type InstanceDetailRule: Array
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param Vport: 端口号
+        # @type Vport: Integer
 
-        attr_accessor :Domain, :ProxyTypeList, :RealServers, :InstanceDetails, :InstanceDetailRule
+        attr_accessor :Domain, :ProxyTypeList, :RealServers, :InstanceDetails, :InstanceDetailRule, :Protocol, :Vport
         
-        def initialize(domain=nil, proxytypelist=nil, realservers=nil, instancedetails=nil, instancedetailrule=nil)
+        def initialize(domain=nil, proxytypelist=nil, realservers=nil, instancedetails=nil, instancedetailrule=nil, protocol=nil, vport=nil)
           @Domain = domain
           @ProxyTypeList = proxytypelist
           @RealServers = realservers
           @InstanceDetails = instancedetails
           @InstanceDetailRule = instancedetailrule
+          @Protocol = protocol
+          @Vport = vport
         end
 
         def deserialize(params)
@@ -6296,6 +6302,8 @@ module TencentCloud
               @InstanceDetailRule << ruleinstancerelation_tmp
             end
           end
+          @Protocol = params['Protocol']
+          @Vport = params['Vport']
         end
       end
 
@@ -7751,19 +7759,23 @@ module TencentCloud
         # @type RsType: Integer
         # @param Weight: 源站的回源权重，取值1~100
         # @type Weight: Integer
+        # @param Port: 端口号：0~65535
+        # @type Port: Integer
 
-        attr_accessor :RealServer, :RsType, :Weight
+        attr_accessor :RealServer, :RsType, :Weight, :Port
         
-        def initialize(realserver=nil, rstype=nil, weight=nil)
+        def initialize(realserver=nil, rstype=nil, weight=nil, port=nil)
           @RealServer = realserver
           @RsType = rstype
           @Weight = weight
+          @Port = port
         end
 
         def deserialize(params)
           @RealServer = params['RealServer']
           @RsType = params['RsType']
           @Weight = params['Weight']
+          @Port = params['Port']
         end
       end
 

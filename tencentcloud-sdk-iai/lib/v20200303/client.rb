@@ -632,6 +632,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 避免官网歧义
+
         # 获取人员库升级任务列表
 
         # @param request: Request instance for GetUpgradeGroupFaceModelVersionJobList.
@@ -655,6 +657,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 避免官网歧义
 
         # 人员库升级结果查询
 
@@ -751,6 +755,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 同理
 
         # 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
 
@@ -921,6 +927,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 避免官网歧义
 
         # 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
         # 单个人员库有且仅支持一次回滚操作。
