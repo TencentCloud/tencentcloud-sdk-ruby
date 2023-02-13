@@ -1707,10 +1707,12 @@ module TencentCloud
         # @type IsValidTemplate: Integer
         # @param InvalidReason: 不符合规范原因
         # @type InvalidReason: String
+        # @param IsBlack: 是包含黑名单手机或邮箱
+        # @type IsBlack: Boolean
 
-        attr_accessor :TemplateId, :AuditStatus, :CreatedOn, :UpdatedOn, :UserUin, :IsDefault, :AuditReason, :CertificateInfo, :ContactInfo, :IsValidTemplate, :InvalidReason
+        attr_accessor :TemplateId, :AuditStatus, :CreatedOn, :UpdatedOn, :UserUin, :IsDefault, :AuditReason, :CertificateInfo, :ContactInfo, :IsValidTemplate, :InvalidReason, :IsBlack
         
-        def initialize(templateid=nil, auditstatus=nil, createdon=nil, updatedon=nil, useruin=nil, isdefault=nil, auditreason=nil, certificateinfo=nil, contactinfo=nil, isvalidtemplate=nil, invalidreason=nil)
+        def initialize(templateid=nil, auditstatus=nil, createdon=nil, updatedon=nil, useruin=nil, isdefault=nil, auditreason=nil, certificateinfo=nil, contactinfo=nil, isvalidtemplate=nil, invalidreason=nil, isblack=nil)
           @TemplateId = templateid
           @AuditStatus = auditstatus
           @CreatedOn = createdon
@@ -1722,6 +1724,7 @@ module TencentCloud
           @ContactInfo = contactinfo
           @IsValidTemplate = isvalidtemplate
           @InvalidReason = invalidreason
+          @IsBlack = isblack
         end
 
         def deserialize(params)
@@ -1742,6 +1745,7 @@ module TencentCloud
           end
           @IsValidTemplate = params['IsValidTemplate']
           @InvalidReason = params['InvalidReason']
+          @IsBlack = params['IsBlack']
         end
       end
 

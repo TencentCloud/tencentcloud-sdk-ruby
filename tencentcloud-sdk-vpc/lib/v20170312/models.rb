@@ -1856,6 +1856,17 @@ module TencentCloud
         end
       end
 
+      # 云联网实例对象，该对象特用于运营端使用，不建议给租户的接口中提供该复杂类型。
+      class CcnInstanceInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 云联网（CCN）地域出带宽上限
       class CcnRegionBandwidthLimit < TencentCloud::Common::AbstractModel
         # @param Region: 地域，例如：ap-guangzhou
@@ -7070,7 +7081,7 @@ module TencentCloud
 
       # DescribeCcnRegionBandwidthLimits请求参数结构体
       class DescribeCcnRegionBandwidthLimitsRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # @param CcnId: CCN实例ID，形如：ccn-f49l6u0z。
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -7475,19 +7486,19 @@ module TencentCloud
 
       # DescribeCrossBorderFlowMonitor请求参数结构体
       class DescribeCrossBorderFlowMonitorRequest < TencentCloud::Common::AbstractModel
-        # @param SourceRegion: 源地域
+        # @param SourceRegion: 源地域。
         # @type SourceRegion: String
-        # @param DestinationRegion: 目的地域
+        # @param DestinationRegion: 目的地域。
         # @type DestinationRegion: String
-        # @param CcnId: 云联网Id
+        # @param CcnId: 云联网ID。
         # @type CcnId: String
-        # @param CcnUin: 云联网所属账号
+        # @param CcnUin: 云联网所属账号。
         # @type CcnUin: String
-        # @param Period: 时间粒度
+        # @param Period: 时间粒度。
         # @type Period: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
 
         attr_accessor :SourceRegion, :DestinationRegion, :CcnId, :CcnUin, :Period, :StartTime, :EndTime
@@ -10242,27 +10253,65 @@ module TencentCloud
 
       # DescribeTenantCcns请求参数结构体
       class DescribeTenantCcnsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，目前`value`值个数只支持一个，允许可支持的字段有：
+        # <li>`ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`</li>
+        # <li>`user-account-id` 用户账号ID，值形如：`["12345678"]`</li><li>`is-security-lock` 是否锁定，值形如：`["true"]`</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 单页返回数据量，可选值0到100之间的整数，默认20。
+        # @type Limit: Integer
 
+        attr_accessor :Filters, :Offset, :Limit
         
-        def initialize()
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeTenantCcns返回参数结构体
       class DescribeTenantCcnsResponse < TencentCloud::Common::AbstractModel
+        # @param CcnSet: 云联网（CCN）对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnSet: Array
+        # @param TotalCount: 符合条件的对象总数。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CcnSet, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(ccnset=nil, totalcount=nil, requestid=nil)
+          @CcnSet = ccnset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['CcnSet'].nil?
+            @CcnSet = []
+            params['CcnSet'].each do |i|
+              ccninstanceinfo_tmp = CcnInstanceInfo.new
+              ccninstanceinfo_tmp.deserialize(i)
+              @CcnSet << ccninstanceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -18585,7 +18634,7 @@ module TencentCloud
 
       # SetCcnRegionBandwidthLimits请求参数结构体
       class SetCcnRegionBandwidthLimitsRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # @param CcnId: CCN实例ID，形如：ccn-f49l6u0z。
         # @type CcnId: String
         # @param CcnRegionBandwidthLimits: 云联网（CCN）各地域出带宽上限。
         # @type CcnRegionBandwidthLimits: Array

@@ -332,10 +332,22 @@ module TencentCloud
         # @param ApiMatchType: API路径匹配类型。normal：普通API；wildcard：通配API。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiMatchType: String
+        # @param RpcExt: RPC 额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RpcExt: String
+        # @param GatewayDeployGroupId: 部署组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayDeployGroupId: String
+        # @param Md5: md5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
+        # @param RpcType: RPC 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RpcType: String
 
-        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType
+        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType, :RpcExt, :GatewayDeployGroupId, :Md5, :RpcType
         
-        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil)
+        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil, rpcext=nil, gatewaydeploygroupid=nil, md5=nil, rpctype=nil)
           @ApiId = apiid
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
@@ -358,6 +370,10 @@ module TencentCloud
           @ApiType = apitype
           @Description = description
           @ApiMatchType = apimatchtype
+          @RpcExt = rpcext
+          @GatewayDeployGroupId = gatewaydeploygroupid
+          @Md5 = md5
+          @RpcType = rpctype
         end
 
         def deserialize(params)
@@ -383,6 +399,10 @@ module TencentCloud
           @ApiType = params['ApiType']
           @Description = params['Description']
           @ApiMatchType = params['ApiMatchType']
+          @RpcExt = params['RpcExt']
+          @GatewayDeployGroupId = params['GatewayDeployGroupId']
+          @Md5 = params['Md5']
+          @RpcType = params['RpcType']
         end
       end
 
@@ -2155,7 +2175,7 @@ module TencentCloud
         end
       end
 
-      #  获取部署组
+      # 获取部署组
       class ContainerGroupDeploy < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组id
         # 注意：此字段可能返回 null，表示取不到有效值。

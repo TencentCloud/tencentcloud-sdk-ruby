@@ -177,6 +177,23 @@ module TencentCloud
         end
       end
 
+      # 命名空间漏洞白名单列表
+      class CVEWhitelistItem < TencentCloud::Common::AbstractModel
+        # @param CVEID: 漏洞白名单 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVEID: String
+
+        attr_accessor :CVEID
+        
+        def initialize(cveid=nil)
+          @CVEID = cveid
+        end
+
+        def deserialize(params)
+          @CVEID = params['CVEID']
+        end
+      end
+
       # CheckInstanceName请求参数结构体
       class CheckInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param RegistryName: 待创建的实例名称
@@ -770,14 +787,26 @@ module TencentCloud
         # @type IsPublic: Boolean
         # @param TagSpecification: 云标签描述
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
+        # @param IsAutoScan: 自动扫描级别，true为自动，false为手动
+        # @type IsAutoScan: Boolean
+        # @param IsPreventVUL: 安全阻断级别，true为自动，false为手动
+        # @type IsPreventVUL: Boolean
+        # @param Severity: 阻断漏洞等级，目前仅支持low、medium、high
+        # @type Severity: String
+        # @param CVEWhitelistItems: 漏洞白名单列表
+        # @type CVEWhitelistItems: Array
 
-        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :TagSpecification
+        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :TagSpecification, :IsAutoScan, :IsPreventVUL, :Severity, :CVEWhitelistItems
         
-        def initialize(registryid=nil, namespacename=nil, ispublic=nil, tagspecification=nil)
+        def initialize(registryid=nil, namespacename=nil, ispublic=nil, tagspecification=nil, isautoscan=nil, ispreventvul=nil, severity=nil, cvewhitelistitems=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @IsPublic = ispublic
           @TagSpecification = tagspecification
+          @IsAutoScan = isautoscan
+          @IsPreventVUL = ispreventvul
+          @Severity = severity
+          @CVEWhitelistItems = cvewhitelistitems
         end
 
         def deserialize(params)
@@ -787,6 +816,17 @@ module TencentCloud
           unless params['TagSpecification'].nil?
             @TagSpecification = TagSpecification.new
             @TagSpecification.deserialize(params['TagSpecification'])
+          end
+          @IsAutoScan = params['IsAutoScan']
+          @IsPreventVUL = params['IsPreventVUL']
+          @Severity = params['Severity']
+          unless params['CVEWhitelistItems'].nil?
+            @CVEWhitelistItems = []
+            params['CVEWhitelistItems'].each do |i|
+              cvewhitelistitem_tmp = CVEWhitelistItem.new
+              cvewhitelistitem_tmp.deserialize(i)
+              @CVEWhitelistItems << cvewhitelistitem_tmp
+            end
           end
         end
       end
@@ -5000,19 +5040,42 @@ module TencentCloud
         # @type NamespaceName: String
         # @param IsPublic: 访问级别，True为公开，False为私有
         # @type IsPublic: Boolean
+        # @param IsAutoScan: 扫描级别，True为自动，False为手动
+        # @type IsAutoScan: Boolean
+        # @param IsPreventVUL: 阻断开关，True为开放，False为关闭
+        # @type IsPreventVUL: Boolean
+        # @param Severity: 阻断漏洞等级，目前仅支持 low、medium、high
+        # @type Severity: String
+        # @param CVEWhitelistItems: 漏洞白名单列表
+        # @type CVEWhitelistItems: Array
 
-        attr_accessor :RegistryId, :NamespaceName, :IsPublic
+        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :IsAutoScan, :IsPreventVUL, :Severity, :CVEWhitelistItems
         
-        def initialize(registryid=nil, namespacename=nil, ispublic=nil)
+        def initialize(registryid=nil, namespacename=nil, ispublic=nil, isautoscan=nil, ispreventvul=nil, severity=nil, cvewhitelistitems=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @IsPublic = ispublic
+          @IsAutoScan = isautoscan
+          @IsPreventVUL = ispreventvul
+          @Severity = severity
+          @CVEWhitelistItems = cvewhitelistitems
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @NamespaceName = params['NamespaceName']
           @IsPublic = params['IsPublic']
+          @IsAutoScan = params['IsAutoScan']
+          @IsPreventVUL = params['IsPreventVUL']
+          @Severity = params['Severity']
+          unless params['CVEWhitelistItems'].nil?
+            @CVEWhitelistItems = []
+            params['CVEWhitelistItems'].each do |i|
+              cvewhitelistitem_tmp = CVEWhitelistItem.new
+              cvewhitelistitem_tmp.deserialize(i)
+              @CVEWhitelistItems << cvewhitelistitem_tmp
+            end
+          end
         end
       end
 
@@ -6504,16 +6567,28 @@ module TencentCloud
         # @param Metadata: 命名空间元数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: Array
+        # @param CVEWhitelistItems: 漏洞白名单列表
+        # @type CVEWhitelistItems: Array
+        # @param AutoScan: 扫描级别，true为自动，false为手动
+        # @type AutoScan: Boolean
+        # @param PreventVUL: 安全阻断级别，true为开启，false为关闭
+        # @type PreventVUL: Boolean
+        # @param Severity: 阻断漏洞等级，目前仅支持low、medium、high, 为""时表示没有设置
+        # @type Severity: String
 
-        attr_accessor :Name, :CreationTime, :Public, :NamespaceId, :TagSpecification, :Metadata
+        attr_accessor :Name, :CreationTime, :Public, :NamespaceId, :TagSpecification, :Metadata, :CVEWhitelistItems, :AutoScan, :PreventVUL, :Severity
         
-        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil, tagspecification=nil, metadata=nil)
+        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil, tagspecification=nil, metadata=nil, cvewhitelistitems=nil, autoscan=nil, preventvul=nil, severity=nil)
           @Name = name
           @CreationTime = creationtime
           @Public = public
           @NamespaceId = namespaceid
           @TagSpecification = tagspecification
           @Metadata = metadata
+          @CVEWhitelistItems = cvewhitelistitems
+          @AutoScan = autoscan
+          @PreventVUL = preventvul
+          @Severity = severity
         end
 
         def deserialize(params)
@@ -6533,6 +6608,17 @@ module TencentCloud
               @Metadata << keyvaluestring_tmp
             end
           end
+          unless params['CVEWhitelistItems'].nil?
+            @CVEWhitelistItems = []
+            params['CVEWhitelistItems'].each do |i|
+              cvewhitelistitem_tmp = CVEWhitelistItem.new
+              cvewhitelistitem_tmp.deserialize(i)
+              @CVEWhitelistItems << cvewhitelistitem_tmp
+            end
+          end
+          @AutoScan = params['AutoScan']
+          @PreventVUL = params['PreventVUL']
+          @Severity = params['Severity']
         end
       end
 

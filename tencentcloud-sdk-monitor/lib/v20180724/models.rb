@@ -7985,17 +7985,21 @@ module TencentCloud
 
       # DescribePrometheusZones请求参数结构体
       class DescribePrometheusZonesRequest < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域 ID
+        # @param RegionId: 地域 ID（RegionId 和 RegionName 只需要填一个）
         # @type RegionId: Integer
+        # @param RegionName: 地域名（RegionId 和 RegionName 只需要填一个）
+        # @type RegionName: String
 
-        attr_accessor :RegionId
+        attr_accessor :RegionId, :RegionName
         
-        def initialize(regionid=nil)
+        def initialize(regionid=nil, regionname=nil)
           @RegionId = regionid
+          @RegionName = regionname
         end
 
         def deserialize(params)
           @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
         end
       end
 

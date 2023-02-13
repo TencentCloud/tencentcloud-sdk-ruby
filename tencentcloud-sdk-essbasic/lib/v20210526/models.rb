@@ -1256,15 +1256,24 @@ module TencentCloud
         # @type InfoType: Integer
         # @param SealId: 印章id（没有输入返回所有）
         # @type SealId: String
+        # @param SealTypes: 印章类型列表（都是组织机构印章）。
+        # 为空时查询所有类型的印章。
+        # 目前支持以下类型：
+        # OFFICIAL：企业公章；
+        # CONTRACT：合同专用章；
+        # ORGANIZATION_SEAL：企业印章(图片上传创建)；
+        # LEGAL_PERSON_SEAL：法定代表人章
+        # @type SealTypes: Array
 
-        attr_accessor :Agent, :Limit, :Offset, :InfoType, :SealId
+        attr_accessor :Agent, :Limit, :Offset, :InfoType, :SealId, :SealTypes
         
-        def initialize(agent=nil, limit=nil, offset=nil, infotype=nil, sealid=nil)
+        def initialize(agent=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil)
           @Agent = agent
           @Limit = limit
           @Offset = offset
           @InfoType = infotype
           @SealId = sealid
+          @SealTypes = sealtypes
         end
 
         def deserialize(params)
@@ -1276,6 +1285,7 @@ module TencentCloud
           @Offset = params['Offset']
           @InfoType = params['InfoType']
           @SealId = params['SealId']
+          @SealTypes = params['SealTypes']
         end
       end
 
@@ -1497,7 +1507,8 @@ module TencentCloud
         # SIGN_SIGNATURE - 用户签名控件；
         # SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
         # SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
-        # SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
+        # SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认;
+        # SIGN_LEGAL_PERSON_SEAL - 企业法定代表人控件。
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String

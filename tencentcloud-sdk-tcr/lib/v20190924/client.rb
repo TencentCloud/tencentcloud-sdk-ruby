@@ -2333,7 +2333,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新命名空间信息，当前仅支持修改命名空间访问级别
+        # 更新命名空间信息
 
         # @param request: Request instance for ModifyNamespace.
         # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyNamespaceRequest`

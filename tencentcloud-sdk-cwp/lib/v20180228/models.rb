@@ -4284,15 +4284,19 @@ module TencentCloud
       class DeleteAttackLogsRequest < TencentCloud::Common::AbstractModel
         # @param Ids: 日志ID数组，最大100条。
         # @type Ids: Array
+        # @param IsAll: 是否全部删除
+        # @type IsAll: Boolean
 
-        attr_accessor :Ids
+        attr_accessor :Ids, :IsAll
         
-        def initialize(ids=nil)
+        def initialize(ids=nil, isall=nil)
           @Ids = ids
+          @IsAll = isall
         end
 
         def deserialize(params)
           @Ids = params['Ids']
+          @IsAll = params['IsAll']
         end
       end
 
