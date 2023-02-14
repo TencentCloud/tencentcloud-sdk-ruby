@@ -3462,6 +3462,42 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupEncryptionStatus请求参数结构体
+      class DescribeBackupEncryptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-XXXX。与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBackupEncryptionStatus返回参数结构体
+      class DescribeBackupEncryptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param EncryptionStatus: 实例是否开启了物理备份加密。可能的值有 on, off 。
+        # @type EncryptionStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EncryptionStatus, :RequestId
+        
+        def initialize(encryptionstatus=nil, requestid=nil)
+          @EncryptionStatus = encryptionstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EncryptionStatus = params['EncryptionStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupOverview请求参数结构体
       class DescribeBackupOverviewRequest < TencentCloud::Common::AbstractModel
         # @param Product: 需要查询的云数据库产品类型，目前仅支持 "mysql"。
@@ -7855,6 +7891,42 @@ module TencentCloud
 
       # ModifyBackupDownloadRestriction返回参数结构体
       class ModifyBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupEncryptionStatus请求参数结构体
+      class ModifyBackupEncryptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-XXXX。与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param EncryptionStatus: 设置实例新增的自动物理备份文件默认加密状态。可选值为 on或者off。
+        # @type EncryptionStatus: String
+
+        attr_accessor :InstanceId, :EncryptionStatus
+        
+        def initialize(instanceid=nil, encryptionstatus=nil)
+          @InstanceId = instanceid
+          @EncryptionStatus = encryptionstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EncryptionStatus = params['EncryptionStatus']
+        end
+      end
+
+      # ModifyBackupEncryptionStatus返回参数结构体
+      class ModifyBackupEncryptionStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

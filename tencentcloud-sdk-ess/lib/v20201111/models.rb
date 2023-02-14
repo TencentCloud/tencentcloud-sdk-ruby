@@ -39,14 +39,34 @@ module TencentCloud
         end
       end
 
-      # 应用相关信息
+      # 主企业代子企业操作 或 渠道子客应用相关信息
       class Agent < TencentCloud::Common::AbstractModel
+        # @param AppId: 应用编号,32位字符串
+        # @type AppId: String
+        # @param ProxyAppId: 主组织的应用号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyAppId: String
+        # @param ProxyOrganizationId: 主组织在平台的机构编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyOrganizationId: String
+        # @param ProxyOperator: 主组织的操作人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyOperator: String
 
+        attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
         
-        def initialize()
+        def initialize(appid=nil, proxyappid=nil, proxyorganizationid=nil, proxyoperator=nil)
+          @AppId = appid
+          @ProxyAppId = proxyappid
+          @ProxyOrganizationId = proxyorganizationid
+          @ProxyOperator = proxyoperator
         end
 
         def deserialize(params)
+          @AppId = params['AppId']
+          @ProxyAppId = params['ProxyAppId']
+          @ProxyOrganizationId = params['ProxyOrganizationId']
+          @ProxyOperator = params['ProxyOperator']
         end
       end
 
@@ -2497,16 +2517,19 @@ module TencentCloud
         # ORGANIZATION_SEAL：企业印章(图片上传创建)；
         # LEGAL_PERSON_SEAL：法定代表人章
         # @type SealTypes: Array
+        # @param Agent: 主企业代子企业操作 或 渠道子客应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId, :SealTypes
+        attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId, :SealTypes, :Agent
         
-        def initialize(operator=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil)
+        def initialize(operator=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil, agent=nil)
           @Operator = operator
           @Limit = limit
           @Offset = offset
           @InfoType = infotype
           @SealId = sealid
           @SealTypes = sealtypes
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2519,6 +2542,10 @@ module TencentCloud
           @InfoType = params['InfoType']
           @SealId = params['SealId']
           @SealTypes = params['SealTypes']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 

@@ -755,7 +755,7 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param Ipv6Addresses: 指定的`IPv6`地址列表，单次最多指定10个。与入参`Ipv6AddressCount`合并计算配额。与Ipv6AddressCount必填一个。
         # @type Ipv6Addresses: Array
-        # @param Ipv6AddressCount: 自动分配`IPv6`地址个数，内网IP地址个数总和不能超过配数。与入参`Ipv6Addresses`合并计算配额。与Ipv6Addresses必填一个。
+        # @param Ipv6AddressCount: 自动分配`IPv6`地址个数，内网IP地址个数总和不能超过配额数。与入参`Ipv6Addresses`合并计算配额。与Ipv6Addresses必填一个。
         # @type Ipv6AddressCount: Integer
 
         attr_accessor :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount
@@ -825,7 +825,7 @@ module TencentCloud
 
       # AssignIpv6CidrBlock返回参数结构体
       class AssignIpv6CidrBlockResponse < TencentCloud::Common::AbstractModel
-        # @param Ipv6CidrBlock: 分配的 `IPv6` 网段。形如：`3402:4e00:20:1000::/56`
+        # @param Ipv6CidrBlock: 分配的 `IPv6` 网段。形如：`3402:4e00:20:1000::/56`。
         # @type Ipv6CidrBlock: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1179,7 +1179,7 @@ module TencentCloud
       class AssociateNetworkAclSubnetsRequest < TencentCloud::Common::AbstractModel
         # @param NetworkAclId: 网络ACL实例ID。例如：acl-12345678。
         # @type NetworkAclId: String
-        # @param SubnetIds: 子网实例ID数组。例如：[subnet-12345678]
+        # @param SubnetIds: 子网实例ID数组。例如：[subnet-12345678]。
         # @type SubnetIds: Array
 
         attr_accessor :NetworkAclId, :SubnetIds
@@ -1968,9 +1968,9 @@ module TencentCloud
       class CheckAssistantCidrRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
         # @type VpcId: String
-        # @param NewCidrBlocks: 待添加的负载CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。入参NewCidrBlocks和OldCidrBlocks至少需要其一。
+        # @param NewCidrBlocks: 待添加的辅助CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         # @type NewCidrBlocks: Array
-        # @param OldCidrBlocks: 待删除的负载CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。入参NewCidrBlocks和OldCidrBlocks至少需要其一。
+        # @param OldCidrBlocks: 待删除的辅助CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         # @type OldCidrBlocks: Array
 
         attr_accessor :VpcId, :NewCidrBlocks, :OldCidrBlocks
@@ -2055,20 +2055,6 @@ module TencentCloud
       class CheckNetDetectStateRequest < TencentCloud::Common::AbstractModel
         # @param DetectDestinationIp: 探测目的IPv4地址数组，最多两个。
         # @type DetectDestinationIp: Array
-        # @param NextHopType: 下一跳类型，目前我们支持的类型有：
-        # VPN：VPN网关；
-        # DIRECTCONNECT：专线网关；
-        # PEERCONNECTION：对等连接；
-        # NAT：NAT网关；
-        # NORMAL_CVM：普通云服务器；
-        # @type NextHopType: String
-        # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
-        # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
-        # 下一跳类型为DIRECTCONNECT，取值专线网关ID，形如：dcg-12345678；
-        # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
-        # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
-        # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        # @type NextHopDestination: String
         # @param NetDetectId: 网络探测实例ID。形如：netd-12345678。该参数与（VpcId，SubnetId，NetDetectName），至少要有一个。当NetDetectId存在时，使用NetDetectId。
         # @type NetDetectId: String
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-12345678`。该参数与（SubnetId，NetDetectName）配合使用，与NetDetectId至少要有一个。当NetDetectId存在时，使用NetDetectId。
@@ -2077,27 +2063,45 @@ module TencentCloud
         # @type SubnetId: String
         # @param NetDetectName: 网络探测名称，最大长度不能超过60个字节。该参数与（VpcId，SubnetId）配合使用，与NetDetectId至少要有一个。当NetDetectId存在时，使用NetDetectId。
         # @type NetDetectName: String
+        # @param NextHopType: 下一跳类型，目前我们支持的类型有：
+        # VPN：VPN网关；
+        # DIRECTCONNECT：专线网关；
+        # PEERCONNECTION：对等连接；
+        # NAT：NAT网关；
+        # NORMAL_CVM：普通云服务器；
+        # CCN：云联网网关；
+        # NONEXTHOP：无下一跳；
+        # @type NextHopType: String
+        # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
+        # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
+        # 下一跳类型为DIRECTCONNECT，取值专线网关ID，形如：dcg-12345678；
+        # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
+        # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
+        # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
+        # 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
+        # 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
+        # @type NextHopDestination: String
 
-        attr_accessor :DetectDestinationIp, :NextHopType, :NextHopDestination, :NetDetectId, :VpcId, :SubnetId, :NetDetectName
+        attr_accessor :DetectDestinationIp, :NetDetectId, :VpcId, :SubnetId, :NetDetectName, :NextHopType, :NextHopDestination
         
-        def initialize(detectdestinationip=nil, nexthoptype=nil, nexthopdestination=nil, netdetectid=nil, vpcid=nil, subnetid=nil, netdetectname=nil)
+        def initialize(detectdestinationip=nil, netdetectid=nil, vpcid=nil, subnetid=nil, netdetectname=nil, nexthoptype=nil, nexthopdestination=nil)
           @DetectDestinationIp = detectdestinationip
-          @NextHopType = nexthoptype
-          @NextHopDestination = nexthopdestination
           @NetDetectId = netdetectid
           @VpcId = vpcid
           @SubnetId = subnetid
           @NetDetectName = netdetectname
+          @NextHopType = nexthoptype
+          @NextHopDestination = nexthopdestination
         end
 
         def deserialize(params)
           @DetectDestinationIp = params['DetectDestinationIp']
-          @NextHopType = params['NextHopType']
-          @NextHopDestination = params['NextHopDestination']
           @NetDetectId = params['NetDetectId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @NetDetectName = params['NetDetectName']
+          @NextHopType = params['NextHopType']
+          @NextHopDestination = params['NextHopDestination']
         end
       end
 
@@ -2797,7 +2801,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param DhcpIpName: `DhcpIp`名称。
         # @type DhcpIpName: String
-        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数。总数不能超过64个。
+        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数。总数不能超过64个，为了兼容性，当前参数必填。
         # @type SecondaryPrivateIpAddressCount: Integer
 
         attr_accessor :VpcId, :SubnetId, :DhcpIpName, :SecondaryPrivateIpAddressCount
@@ -2819,7 +2823,7 @@ module TencentCloud
 
       # CreateDhcpIp返回参数结构体
       class CreateDhcpIpResponse < TencentCloud::Common::AbstractModel
-        # @param DhcpIpSet: 新创建的`DhcpIp`信息
+        # @param DhcpIpSet: 新创建的`DhcpIp`信息。
         # @type DhcpIpSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3145,11 +3149,11 @@ module TencentCloud
 
       # CreateLocalGateway请求参数结构体
       class CreateLocalGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param LocalGatewayName: 本地网关名称
+        # @param LocalGatewayName: 本地网关名称。
         # @type LocalGatewayName: String
-        # @param VpcId: VPC实例ID
+        # @param VpcId: VPC实例ID。
         # @type VpcId: String
-        # @param CdcId: CDC实例ID
+        # @param CdcId: CDC实例ID。
         # @type CdcId: String
 
         attr_accessor :LocalGatewayName, :VpcId, :CdcId
@@ -3169,7 +3173,7 @@ module TencentCloud
 
       # CreateLocalGateway返回参数结构体
       class CreateLocalGatewayResponse < TencentCloud::Common::AbstractModel
-        # @param LocalGateway: 本地网关信息
+        # @param LocalGateway: 本地网关信息。
         # @type LocalGateway: :class:`Tencentcloud::Vpc.v20170312.models.LocalGateway`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3494,7 +3498,7 @@ module TencentCloud
         # @type VpcId: String
         # @param NetworkAclName: 网络ACL名称，最大长度不能超过60个字节。
         # @type NetworkAclName: String
-        # @param NetworkAclType: 网络ACL类型，三元组(TRIPLE)或五元组(QUINTUPLE)
+        # @param NetworkAclType: 网络ACL类型，三元组(TRIPLE)或五元组(QUINTUPLE)。
         # @type NetworkAclType: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
@@ -3896,7 +3900,7 @@ module TencentCloud
 
       # CreateServiceTemplateGroup请求参数结构体
       class CreateServiceTemplateGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceTemplateGroupName: 协议端口模板集合名称
+        # @param ServiceTemplateGroupName: 协议端口模板集合名称。
         # @type ServiceTemplateGroupName: String
         # @param ServiceTemplateIds: 协议端口模板实例ID，例如：ppm-4dw6agho。
         # @type ServiceTemplateIds: Array
@@ -3939,7 +3943,7 @@ module TencentCloud
 
       # CreateServiceTemplate请求参数结构体
       class CreateServiceTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceTemplateName: 协议端口模板名称
+        # @param ServiceTemplateName: 协议端口模板名称。
         # @type ServiceTemplateName: String
         # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         # @type Services: Array
@@ -4109,11 +4113,11 @@ module TencentCloud
 
       # CreateSubnets请求参数结构体
       class CreateSubnetsRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
+        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         # @type VpcId: String
         # @param Subnets: 子网对象列表。
         # @type Subnets: Array
-        # @param Tags: 指定绑定的标签列表，注意这里的标签集合为列表中所有子网对象所共享，不能为每个子网对象单独指定标签，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param Tags: 指定绑定的标签列表，注意这里的标签集合为列表中所有子网对象所共享，不能为每个子网对象单独指定标签，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
         # @param CdcId: 需要增加到的CDC实例ID。
         # @type CdcId: String
@@ -5171,9 +5175,9 @@ module TencentCloud
 
       # DeleteAssistantCidr请求参数结构体
       class DeleteAssistantCidrRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
+        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         # @type VpcId: String
-        # @param CidrBlocks: CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]
+        # @param CidrBlocks: CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。
         # @type CidrBlocks: Array
 
         attr_accessor :VpcId, :CidrBlocks
@@ -5503,11 +5507,11 @@ module TencentCloud
 
       # DeleteLocalGateway请求参数结构体
       class DeleteLocalGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param LocalGatewayId: 本地网关实例ID
+        # @param LocalGatewayId: 本地网关实例ID。
         # @type LocalGatewayId: String
-        # @param CdcId: CDC实例ID
+        # @param CdcId: CDC实例ID。
         # @type CdcId: String
-        # @param VpcId: VPC实例ID
+        # @param VpcId: VPC实例ID。
         # @type VpcId: String
 
         attr_accessor :LocalGatewayId, :CdcId, :VpcId
@@ -6436,7 +6440,7 @@ module TencentCloud
 
       # DescribeAccountAttributes返回参数结构体
       class DescribeAccountAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param AccountAttributeSet: 用户账号属性对象
+        # @param AccountAttributeSet: 用户账号属性对象。
         # @type AccountAttributeSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7284,9 +7288,9 @@ module TencentCloud
         # <li>vpc-id - String - （过滤条件）VPC实例ID。</li>
         # <li>vm-ip - String - （过滤条件）基础网络云服务器IP。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值0。
         # @type Offset: String
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
 
         attr_accessor :Filters, :Offset, :Limit
@@ -8027,9 +8031,9 @@ module TencentCloud
         # @type PeeringConnectionId: String
         # @param NatId: NAT网关实例ID，形如：`nat-ltjahce6`。
         # @type NatId: String
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量。
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
         # @param OrderField: 排序字段。支持 `InPkg` `OutPkg` `InTraffic` `OutTraffic`。
         # @type OrderField: String
@@ -8168,9 +8172,9 @@ module TencentCloud
         # <li>vip - String - `HAVIP`的地址`VIP`。</li>
         # <li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :HaVipIds, :Filters, :Offset, :Limit
@@ -8538,9 +8542,9 @@ module TencentCloud
 
       # DescribeLocalGateway返回参数结构体
       class DescribeLocalGatewayResponse < TencentCloud::Common::AbstractModel
-        # @param LocalGatewaySet: 本地网关信息集合
+        # @param LocalGatewaySet: 本地网关信息集合。
         # @type LocalGatewaySet: Array
-        # @param TotalCount: 本地网关总数
+        # @param TotalCount: 本地网关总数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8981,6 +8985,37 @@ module TencentCloud
         end
       end
 
+      # DescribeNetworkAccountType请求参数结构体
+      class DescribeNetworkAccountTypeRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNetworkAccountType返回参数结构体
+      class DescribeNetworkAccountTypeResponse < TencentCloud::Common::AbstractModel
+        # @param NetworkAccountType: 用户账号的网络类型，STANDARD为标准用户，LEGACY为传统用户
+        # @type NetworkAccountType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetworkAccountType, :RequestId
+        
+        def initialize(networkaccounttype=nil, requestid=nil)
+          @NetworkAccountType = networkaccounttype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NetworkAccountType = params['NetworkAccountType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNetworkAclQuintupleEntries请求参数结构体
       class DescribeNetworkAclQuintupleEntriesRequest < TencentCloud::Common::AbstractModel
         # @param NetworkAclId: 网络ACL实例ID。形如：acl-12345678。
@@ -9125,7 +9160,7 @@ module TencentCloud
 
       # DescribeNetworkInterfaceLimit请求参数结构体
       class DescribeNetworkInterfaceLimitRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 要查询的CVM实例ID或弹性网卡ID
+        # @param InstanceId: 要查询的CVM实例ID或弹性网卡ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -9141,20 +9176,20 @@ module TencentCloud
 
       # DescribeNetworkInterfaceLimit返回参数结构体
       class DescribeNetworkInterfaceLimitResponse < TencentCloud::Common::AbstractModel
-        # @param EniQuantity: 标准型弹性网卡配额
+        # @param EniQuantity: 标准型弹性网卡配额。
         # @type EniQuantity: Integer
-        # @param EniPrivateIpAddressQuantity: 每个标准型弹性网卡可以分配的IP配额
+        # @param EniPrivateIpAddressQuantity: 每个标准型弹性网卡可以分配的IP配额。
         # @type EniPrivateIpAddressQuantity: Integer
-        # @param ExtendEniQuantity: 扩展型网卡配额
+        # @param ExtendEniQuantity: 扩展型网卡配额。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendEniQuantity: Integer
-        # @param ExtendEniPrivateIpAddressQuantity: 每个扩展型弹性网卡可以分配的IP配额
+        # @param ExtendEniPrivateIpAddressQuantity: 每个扩展型弹性网卡可以分配的IP配额。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendEniPrivateIpAddressQuantity: Integer
-        # @param SubEniQuantity: 中继网卡配额
+        # @param SubEniQuantity: 中继网卡配额。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEniQuantity: Integer
-        # @param SubEniPrivateIpAddressQuantity: 每个中继网卡可以分配的IP配额
+        # @param SubEniPrivateIpAddressQuantity: 每个中继网卡可以分配的IP配额。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEniPrivateIpAddressQuantity: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -9282,9 +9317,9 @@ module TencentCloud
 
       # DescribeProductQuota返回参数结构体
       class DescribeProductQuotaResponse < TencentCloud::Common::AbstractModel
-        # @param ProductQuotaSet: ProductQuota对象数组
+        # @param ProductQuotaSet: ProductQuota对象数组。
         # @type ProductQuotaSet: Array
-        # @param TotalCount: 符合条件的产品类型个数
+        # @param TotalCount: 符合条件的产品类型个数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9315,7 +9350,7 @@ module TencentCloud
       class DescribeRouteConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
         # @type RouteTableId: String
-        # @param DestinationCidrBlocks: 要检查的与之冲突的目的端列表
+        # @param DestinationCidrBlocks: 要检查的与之冲突的目的端列表。
         # @type DestinationCidrBlocks: Array
 
         attr_accessor :RouteTableId, :DestinationCidrBlocks
@@ -9333,7 +9368,7 @@ module TencentCloud
 
       # DescribeRouteConflicts返回参数结构体
       class DescribeRouteConflictsResponse < TencentCloud::Common::AbstractModel
-        # @param RouteConflictSet: 路由策略冲突列表
+        # @param RouteConflictSet: 路由策略冲突列表。
         # @type RouteConflictSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9568,7 +9603,7 @@ module TencentCloud
 
       # DescribeSecurityGroupReferences请求参数结构体
       class DescribeSecurityGroupReferencesRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIds: 安全组实例ID数组。格式如：['sg-12345678']
+        # @param SecurityGroupIds: 安全组实例ID数组。格式如：['sg-12345678']。
         # @type SecurityGroupIds: Array
 
         attr_accessor :SecurityGroupIds
@@ -10595,9 +10630,9 @@ module TencentCloud
         # <li>instance-id - String - （过滤条件）云主机实例ID。</li>
         # <li>instance-name - String - （过滤条件）云主机名称。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 请求对象个数。
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :Filters, :Offset, :Limit
@@ -10659,18 +10694,21 @@ module TencentCloud
         # @type VpcId: String
         # @param Ipv6Addresses: `IP`地址列表，批量查询单次请求最多支持`10`个。
         # @type Ipv6Addresses: Array
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量。
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param SubnetId: VPC下的子网ID。
+        # @type SubnetId: String
 
-        attr_accessor :VpcId, :Ipv6Addresses, :Offset, :Limit
+        attr_accessor :VpcId, :Ipv6Addresses, :Offset, :Limit, :SubnetId
         
-        def initialize(vpcid=nil, ipv6addresses=nil, offset=nil, limit=nil)
+        def initialize(vpcid=nil, ipv6addresses=nil, offset=nil, limit=nil, subnetid=nil)
           @VpcId = vpcid
           @Ipv6Addresses = ipv6addresses
           @Offset = offset
           @Limit = limit
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -10678,6 +10716,7 @@ module TencentCloud
           @Ipv6Addresses = params['Ipv6Addresses']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -12171,7 +12210,7 @@ module TencentCloud
       class DisassociateNetworkAclSubnetsRequest < TencentCloud::Common::AbstractModel
         # @param NetworkAclId: 网络ACL实例ID。例如：acl-12345678。
         # @type NetworkAclId: String
-        # @param SubnetIds: 子网实例ID数组。例如：[subnet-12345678]
+        # @param SubnetIds: 子网实例ID数组。例如：[subnet-12345678]。
         # @type SubnetIds: Array
 
         attr_accessor :NetworkAclId, :SubnetIds
@@ -13110,9 +13149,9 @@ module TencentCloud
 
       # HaVipAssociateAddressIp请求参数结构体
       class HaVipAssociateAddressIpRequest < TencentCloud::Common::AbstractModel
-        # @param HaVipId: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是没有绑定`EIP`的`HAVIP`
+        # @param HaVipId: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是没有绑定`EIP`的`HAVIP`。
         # @type HaVipId: String
-        # @param AddressIp: 弹性公网`IP`。必须是没有绑定`HAVIP`的`EIP`
+        # @param AddressIp: 弹性公网`IP`。必须是没有绑定`HAVIP`的`EIP`。
         # @type AddressIp: String
 
         attr_accessor :HaVipId, :AddressIp
@@ -14242,7 +14281,7 @@ module TencentCloud
 
       # ModifyAssistantCidr请求参数结构体
       class ModifyAssistantCidrRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
+        # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         # @type VpcId: String
         # @param NewCidrBlocks: 待添加的辅助CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]，入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         # @type NewCidrBlocks: Array
@@ -14823,7 +14862,7 @@ module TencentCloud
       class ModifyIpv6AddressesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
         # @type NetworkInterfaceId: String
-        # @param Ipv6Addresses: 指定的内网IPv6`地址信息。
+        # @param Ipv6Addresses: 指定的内网IPv6地址信息。
         # @type Ipv6Addresses: Array
 
         attr_accessor :NetworkInterfaceId, :Ipv6Addresses
@@ -14864,13 +14903,13 @@ module TencentCloud
 
       # ModifyLocalGateway请求参数结构体
       class ModifyLocalGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param LocalGatewayName: 本地网关名称
+        # @param LocalGatewayName: 本地网关名称。
         # @type LocalGatewayName: String
-        # @param CdcId: CDC实例ID
+        # @param CdcId: CDC实例ID。
         # @type CdcId: String
-        # @param LocalGatewayId: 本地网关实例ID
+        # @param LocalGatewayId: 本地网关实例ID。
         # @type LocalGatewayId: String
-        # @param VpcId: VPC实例ID
+        # @param VpcId: VPC实例ID。
         # @type VpcId: String
 
         attr_accessor :LocalGatewayName, :CdcId, :LocalGatewayId, :VpcId
@@ -15706,9 +15745,9 @@ module TencentCloud
         # @type VpcName: String
         # @param EnableMulticast: 是否开启组播。true: 开启, false: 关闭。
         # @type EnableMulticast: String
-        # @param DnsServers: DNS地址，最多支持4个，第1个默认为主，其余为备
+        # @param DnsServers: DNS地址，最多支持4个，第1个默认为主，其余为备。
         # @type DnsServers: Array
-        # @param DomainName: 域名
+        # @param DomainName: 域名。
         # @type DomainName: String
 
         attr_accessor :VpcId, :VpcName, :EnableMulticast, :DnsServers, :DomainName
@@ -19402,7 +19441,7 @@ module TencentCloud
       class UnassignIpv6CidrBlockRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         # @type VpcId: String
-        # @param Ipv6CidrBlock: `IPv6`网段。形如：`3402:4e00:20:1000::/56`
+        # @param Ipv6CidrBlock: `IPv6`网段。形如：`3402:4e00:20:1000::/56`。
         # @type Ipv6CidrBlock: String
 
         attr_accessor :VpcId, :Ipv6CidrBlock

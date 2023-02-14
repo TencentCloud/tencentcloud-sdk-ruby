@@ -4226,10 +4226,12 @@ module TencentCloud
         # @param MX: MX值，只有MX记录有
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: Integer
+        # @param DefaultNS: 是否是默认的ns记录
+        # @type DefaultNS: Boolean
 
-        attr_accessor :RecordId, :Value, :Status, :UpdatedOn, :Name, :Line, :LineId, :Type, :Weight, :MonitorStatus, :Remark, :TTL, :MX
+        attr_accessor :RecordId, :Value, :Status, :UpdatedOn, :Name, :Line, :LineId, :Type, :Weight, :MonitorStatus, :Remark, :TTL, :MX, :DefaultNS
         
-        def initialize(recordid=nil, value=nil, status=nil, updatedon=nil, name=nil, line=nil, lineid=nil, type=nil, weight=nil, monitorstatus=nil, remark=nil, ttl=nil, mx=nil)
+        def initialize(recordid=nil, value=nil, status=nil, updatedon=nil, name=nil, line=nil, lineid=nil, type=nil, weight=nil, monitorstatus=nil, remark=nil, ttl=nil, mx=nil, defaultns=nil)
           @RecordId = recordid
           @Value = value
           @Status = status
@@ -4243,6 +4245,7 @@ module TencentCloud
           @Remark = remark
           @TTL = ttl
           @MX = mx
+          @DefaultNS = defaultns
         end
 
         def deserialize(params)
@@ -4259,6 +4262,7 @@ module TencentCloud
           @Remark = params['Remark']
           @TTL = params['TTL']
           @MX = params['MX']
+          @DefaultNS = params['DefaultNS']
         end
       end
 

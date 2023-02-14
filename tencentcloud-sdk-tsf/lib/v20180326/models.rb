@@ -12150,10 +12150,13 @@ module TencentCloud
         # @param ApplicationNameReal: ApplicationName值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationNameReal: String
+        # @param Public: 是否公共,1:公有,0:私有
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Public: Integer
 
-        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal
+        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public
         
-        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil)
+        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil)
           @Reponame = reponame
           @Repotype = repotype
           @TagCount = tagcount
@@ -12170,6 +12173,7 @@ module TencentCloud
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationNameReal = applicationnamereal
+          @Public = public
         end
 
         def deserialize(params)
@@ -12195,6 +12199,7 @@ module TencentCloud
             @ApplicationName.deserialize(params['ApplicationName'])
           end
           @ApplicationNameReal = params['ApplicationNameReal']
+          @Public = params['Public']
         end
       end
 
@@ -13003,10 +13008,13 @@ module TencentCloud
         # @param CustomRule: 自定义分行规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: String
+        # @param KafkaAddress: KafkaAddress
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaAddress: String
 
-        attr_accessor :ConfigId, :ConfigName, :CollectPath, :KafkaVIp, :KafkaVPort, :Topic, :LineRule, :EnableAuth, :Username, :Password, :KafkaInfos, :EnableGlobalLineRule, :CustomRule
+        attr_accessor :ConfigId, :ConfigName, :CollectPath, :KafkaVIp, :KafkaVPort, :Topic, :LineRule, :EnableAuth, :Username, :Password, :KafkaInfos, :EnableGlobalLineRule, :CustomRule, :KafkaAddress
         
-        def initialize(configid=nil, configname=nil, collectpath=nil, kafkavip=nil, kafkavport=nil, topic=nil, linerule=nil, enableauth=nil, username=nil, password=nil, kafkainfos=nil, enablegloballinerule=nil, customrule=nil)
+        def initialize(configid=nil, configname=nil, collectpath=nil, kafkavip=nil, kafkavport=nil, topic=nil, linerule=nil, enableauth=nil, username=nil, password=nil, kafkainfos=nil, enablegloballinerule=nil, customrule=nil, kafkaaddress=nil)
           @ConfigId = configid
           @ConfigName = configname
           @CollectPath = collectpath
@@ -13020,6 +13028,7 @@ module TencentCloud
           @KafkaInfos = kafkainfos
           @EnableGlobalLineRule = enablegloballinerule
           @CustomRule = customrule
+          @KafkaAddress = kafkaaddress
         end
 
         def deserialize(params)
@@ -13043,6 +13052,7 @@ module TencentCloud
           end
           @EnableGlobalLineRule = params['EnableGlobalLineRule']
           @CustomRule = params['CustomRule']
+          @KafkaAddress = params['KafkaAddress']
         end
       end
 
@@ -16075,10 +16085,16 @@ module TencentCloud
         # @param Description: 备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param DisableMetricAS: 是否关闭指标伸缩, 默认0, 0:打开指标伸缩 1:关闭指标伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableMetricAS: Integer
+        # @param EnableCronAS: 开启定时伸缩规则, 默认0, 0:关闭定时伸缩 1:开启定时伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCronAS: Integer
 
-        attr_accessor :RuleId, :Name, :ExpandVmCountLimit, :ShrinkVmCountLimit, :GroupCount, :Desc, :Description
+        attr_accessor :RuleId, :Name, :ExpandVmCountLimit, :ShrinkVmCountLimit, :GroupCount, :Desc, :Description, :DisableMetricAS, :EnableCronAS
         
-        def initialize(ruleid=nil, name=nil, expandvmcountlimit=nil, shrinkvmcountlimit=nil, groupcount=nil, desc=nil, description=nil)
+        def initialize(ruleid=nil, name=nil, expandvmcountlimit=nil, shrinkvmcountlimit=nil, groupcount=nil, desc=nil, description=nil, disablemetricas=nil, enablecronas=nil)
           @RuleId = ruleid
           @Name = name
           @ExpandVmCountLimit = expandvmcountlimit
@@ -16086,6 +16102,8 @@ module TencentCloud
           @GroupCount = groupcount
           @Desc = desc
           @Description = description
+          @DisableMetricAS = disablemetricas
+          @EnableCronAS = enablecronas
         end
 
         def deserialize(params)
@@ -16096,6 +16114,8 @@ module TencentCloud
           @GroupCount = params['GroupCount']
           @Desc = params['Desc']
           @Description = params['Description']
+          @DisableMetricAS = params['DisableMetricAS']
+          @EnableCronAS = params['EnableCronAS']
         end
       end
 
@@ -18380,19 +18400,34 @@ module TencentCloud
         # @param Id: 单元化命名空间ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
+        # @param GatewayInstanceId: 网关实体ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayInstanceId: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
 
-        attr_accessor :NamespaceId, :NamespaceName, :Id
+        attr_accessor :NamespaceId, :NamespaceName, :Id, :GatewayInstanceId, :CreatedTime, :UpdatedTime
         
-        def initialize(namespaceid=nil, namespacename=nil, id=nil)
+        def initialize(namespaceid=nil, namespacename=nil, id=nil, gatewayinstanceid=nil, createdtime=nil, updatedtime=nil)
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
           @Id = id
+          @GatewayInstanceId = gatewayinstanceid
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
           @NamespaceId = params['NamespaceId']
           @NamespaceName = params['NamespaceName']
           @Id = params['Id']
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

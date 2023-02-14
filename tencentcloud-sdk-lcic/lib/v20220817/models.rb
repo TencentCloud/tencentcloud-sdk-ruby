@@ -890,12 +890,15 @@ module TencentCloud
         # @param RecordUrl: 录制地址。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
+        # @param Status: 课堂状态。0为未开始，1为正在上课，2为已结束，3为已过期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :RequestId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -909,6 +912,7 @@ module TencentCloud
           @DisableRecord = disablerecord
           @Assistants = assistants
           @RecordUrl = recordurl
+          @Status = status
           @RequestId = requestid
         end
 
@@ -926,6 +930,7 @@ module TencentCloud
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
           @RecordUrl = params['RecordUrl']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -964,16 +969,24 @@ module TencentCloud
         # @type Total: Integer
         # @param MemberRecords: 成员记录列表。
         # @type MemberRecords: Array
+        # @param RealStartTime: 秒级unix时间戳，实际房间开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealStartTime: Integer
+        # @param RealEndTime: 秒级unix时间戳，实际房间结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealEndTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PeakMemberNumber, :MemberNumber, :Total, :MemberRecords, :RequestId
+        attr_accessor :PeakMemberNumber, :MemberNumber, :Total, :MemberRecords, :RealStartTime, :RealEndTime, :RequestId
         
-        def initialize(peakmembernumber=nil, membernumber=nil, total=nil, memberrecords=nil, requestid=nil)
+        def initialize(peakmembernumber=nil, membernumber=nil, total=nil, memberrecords=nil, realstarttime=nil, realendtime=nil, requestid=nil)
           @PeakMemberNumber = peakmembernumber
           @MemberNumber = membernumber
           @Total = total
           @MemberRecords = memberrecords
+          @RealStartTime = realstarttime
+          @RealEndTime = realendtime
           @RequestId = requestid
         end
 
@@ -989,6 +1002,8 @@ module TencentCloud
               @MemberRecords << memberrecord_tmp
             end
           end
+          @RealStartTime = params['RealStartTime']
+          @RealEndTime = params['RealEndTime']
           @RequestId = params['RequestId']
         end
       end

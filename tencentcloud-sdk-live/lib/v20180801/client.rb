@@ -2744,6 +2744,10 @@ module TencentCloud
         end
 
         # 禁止某条流的推送，可以预设某个时刻将流恢复。
+        # 注意：
+        # 1. 默认只要流名称正确，禁推就会生效。
+        # 2. 如需要推流域名+推流路径+流名称 强匹配生效禁推，需提单联系售后开启配置。
+        # 3. 如果配置了域名分组，需填写准确推流域名，才可断掉当前推流。
 
         # @param request: Request instance for ForbidLiveStream.
         # @type request: :class:`Tencentcloud::live::V20180801::ForbidLiveStreamRequest`

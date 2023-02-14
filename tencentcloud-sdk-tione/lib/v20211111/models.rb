@@ -4182,17 +4182,22 @@ module TencentCloud
         # @param Image: 运行镜像
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Image: String
+        # @param IsSupportIntEightQuantization: 是否支持int8量化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportIntEightQuantization: Boolean
 
-        attr_accessor :Version, :Image
+        attr_accessor :Version, :Image, :IsSupportIntEightQuantization
         
-        def initialize(version=nil, image=nil)
+        def initialize(version=nil, image=nil, issupportinteightquantization=nil)
           @Version = version
           @Image = image
+          @IsSupportIntEightQuantization = issupportinteightquantization
         end
 
         def deserialize(params)
           @Version = params['Version']
           @Image = params['Image']
+          @IsSupportIntEightQuantization = params['IsSupportIntEightQuantization']
         end
       end
 
