@@ -14113,16 +14113,21 @@ module TencentCloud
 
       # ModifyNamespace返回参数结构体
       class ModifyNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: Result
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -19308,10 +19313,13 @@ module TencentCloud
         # @param IsNotEqualServiceConfig: 服务配置信息是否匹配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNotEqualServiceConfig: Boolean
+        # @param HealthCheckSettings: HealthCheckSettings
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
 
-        attr_accessor :GroupId, :PackageId, :PackageName, :PackageVersion, :InstanceCount, :RunInstanceCount, :OffInstanceCount, :GroupStatus, :IsNotEqualServiceConfig
+        attr_accessor :GroupId, :PackageId, :PackageName, :PackageVersion, :InstanceCount, :RunInstanceCount, :OffInstanceCount, :GroupStatus, :IsNotEqualServiceConfig, :HealthCheckSettings
         
-        def initialize(groupid=nil, packageid=nil, packagename=nil, packageversion=nil, instancecount=nil, runinstancecount=nil, offinstancecount=nil, groupstatus=nil, isnotequalserviceconfig=nil)
+        def initialize(groupid=nil, packageid=nil, packagename=nil, packageversion=nil, instancecount=nil, runinstancecount=nil, offinstancecount=nil, groupstatus=nil, isnotequalserviceconfig=nil, healthchecksettings=nil)
           @GroupId = groupid
           @PackageId = packageid
           @PackageName = packagename
@@ -19321,6 +19329,7 @@ module TencentCloud
           @OffInstanceCount = offinstancecount
           @GroupStatus = groupstatus
           @IsNotEqualServiceConfig = isnotequalserviceconfig
+          @HealthCheckSettings = healthchecksettings
         end
 
         def deserialize(params)
@@ -19333,6 +19342,10 @@ module TencentCloud
           @OffInstanceCount = params['OffInstanceCount']
           @GroupStatus = params['GroupStatus']
           @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
+          end
         end
       end
 

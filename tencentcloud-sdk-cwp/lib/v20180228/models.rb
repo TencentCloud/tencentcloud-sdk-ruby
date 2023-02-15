@@ -20666,10 +20666,16 @@ module TencentCloud
         # @type ControlBit: Integer
         # @param ControlBits: 漏洞等级控制位二进制，每一位对应页面漏洞等级的开启关闭：低中高（0:关闭；1：开启），例如：101 → 同时勾选低+高
         # @type ControlBits: String
+        # @param HostRange: 告警主机范围类型，0:全部主机，1:按所属项目选，2:按腾讯云标签选，3:按主机安全标签选，4:自选主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostRange: Integer
+        # @param Count: 配置的告警范围主机个数，前端用此判断展示提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
 
-        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :TimeZone, :ControlBit, :ControlBits
+        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :TimeZone, :ControlBit, :ControlBits, :HostRange, :Count
         
-        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, timezone=nil, controlbit=nil, controlbits=nil)
+        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, timezone=nil, controlbit=nil, controlbits=nil, hostrange=nil, count=nil)
           @Type = type
           @DisablePhoneWarning = disablephonewarning
           @BeginTime = begintime
@@ -20677,6 +20683,8 @@ module TencentCloud
           @TimeZone = timezone
           @ControlBit = controlbit
           @ControlBits = controlbits
+          @HostRange = hostrange
+          @Count = count
         end
 
         def deserialize(params)
@@ -20687,12 +20695,14 @@ module TencentCloud
           @TimeZone = params['TimeZone']
           @ControlBit = params['ControlBit']
           @ControlBits = params['ControlBits']
+          @HostRange = params['HostRange']
+          @Count = params['Count']
         end
       end
 
       # 告警更新或插入的参数
       class WarningObject < TencentCloud::Common::AbstractModel
-        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高位命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线
+        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高位命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线，14：恶意请求，15: 网络攻击，16：Windows系统漏洞，17：Linux软件漏洞
         # @type Type: Integer
         # @param DisablePhoneWarning: 1: 关闭告警 0: 开启告警
         # @type DisablePhoneWarning: Integer
@@ -20702,15 +20712,19 @@ module TencentCloud
         # @type EndTime: String
         # @param ControlBits: 漏洞等级控制位二进制，每一位对应页面漏洞等级的开启关闭：低中高（0:关闭；1：开启），例如：101 → 同时勾选低+高；01→(登录审计)疑似不告警，高危告警
         # @type ControlBits: String
+        # @param HostRange: 告警主机范围类型，0:全部主机，1:按所属项目选，2:按腾讯云标签选，3:按主机安全标签选，4:自选主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostRange: Integer
 
-        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :ControlBits
+        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :ControlBits, :HostRange
         
-        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, controlbits=nil)
+        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, controlbits=nil, hostrange=nil)
           @Type = type
           @DisablePhoneWarning = disablephonewarning
           @BeginTime = begintime
           @EndTime = endtime
           @ControlBits = controlbits
+          @HostRange = hostrange
         end
 
         def deserialize(params)
@@ -20719,6 +20733,7 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @ControlBits = params['ControlBits']
+          @HostRange = params['HostRange']
         end
       end
 

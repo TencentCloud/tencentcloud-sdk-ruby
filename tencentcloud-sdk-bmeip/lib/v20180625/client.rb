@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 黑石EIP绑定VPCIP
+        # 黑石EIP绑定VPC IP
 
         # @param request: Request instance for BindVpcIp.
         # @type request: :class:`Tencentcloud::bmeip::V20180625::BindVpcIpRequest`
@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建黑石弹性公网 EIPACL
+        # 创建黑石弹性公网 EIP ACL
 
         # @param request: Request instance for CreateEipAcl.
         # @type request: :class:`Tencentcloud::bmeip::V20180625::CreateEipAclRequest`

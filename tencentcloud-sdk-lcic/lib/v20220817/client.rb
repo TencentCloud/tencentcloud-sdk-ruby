@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取当前房间的成员列表，房间结束或过期后无法使用。
+
+        # @param request: Request instance for DescribeCurrentMemberList.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeCurrentMemberListRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeCurrentMemberListResponse`
+        def DescribeCurrentMemberList(request)
+          body = send_request('DescribeCurrentMemberList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCurrentMemberListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取文档信息
 
         # @param request: Request instance for DescribeDocument.

@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除域名
+
+        # @param request: Request instance for DeleteDomainBatch.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteDomainBatchRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DeleteDomainBatchResponse`
+        def DeleteDomainBatch(request)
+          body = send_request('DeleteDomainBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除记录
 
         # @param request: Request instance for DeleteRecord.
@@ -605,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取域名概览信息
+
+        # @param request: Request instance for DescribeDomainPreview.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainPreviewRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainPreviewResponse`
+        def DescribeDomainPreview(request)
+          body = send_request('DescribeDomainPreview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainPreviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名权限
 
         # @param request: Request instance for DescribeDomainPurview.
@@ -653,6 +701,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取域名Whois信息
+
+        # @param request: Request instance for DescribeDomainWhois.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainWhoisRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainWhoisResponse`
+        def DescribeDomainWhois(request)
+          body = send_request('DescribeDomainWhois', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainWhoisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取各套餐配置详情
+
+        # @param request: Request instance for DescribePackageDetail.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribePackageDetailRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribePackageDetailResponse`
+        def DescribePackageDetail(request)
+          body = send_request('DescribePackageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取记录信息
 
         # @param request: Request instance for DescribeRecord.
@@ -663,6 +759,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 判断是否有除系统默认的@-NS记录之外的记录存在
+
+        # @param request: Request instance for DescribeRecordExistExceptDefaultNS.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordExistExceptDefaultNSRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeRecordExistExceptDefaultNSResponse`
+        def DescribeRecordExistExceptDefaultNS(request)
+          body = send_request('DescribeRecordExistExceptDefaultNS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordExistExceptDefaultNSResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -927,6 +1047,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取域名增值服务用量
+
+        # @param request: Request instance for DescribeVASStatistic.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeVASStatisticRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeVASStatisticResponse`
+        def DescribeVASStatistic(request)
+          body = send_request('DescribeVASStatistic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVASStatisticResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -670,6 +670,61 @@ module TencentCloud
         end
       end
 
+      # DescribeCurrentMemberList请求参数结构体
+      class DescribeCurrentMemberListRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增。
+        # @type Page: Integer
+        # @param Limit: 每页数据量，最大1000。
+        # @type Limit: Integer
+
+        attr_accessor :RoomId, :Page, :Limit
+        
+        def initialize(roomid=nil, page=nil, limit=nil)
+          @RoomId = roomid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCurrentMemberList返回参数结构体
+      class DescribeCurrentMemberListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数。当前房间的总人数。
+        # @type Total: Integer
+        # @param MemberRecords: 成员记录列表。
+        # @type MemberRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :MemberRecords, :RequestId
+        
+        def initialize(total=nil, memberrecords=nil, requestid=nil)
+          @Total = total
+          @MemberRecords = memberrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['MemberRecords'].nil?
+            @MemberRecords = []
+            params['MemberRecords'].each do |i|
+              memberrecord_tmp = MemberRecord.new
+              memberrecord_tmp.deserialize(i)
+              @MemberRecords << memberrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDocument请求参数结构体
       class DescribeDocumentRequest < TencentCloud::Common::AbstractModel
         # @param DocumentId: 文档Id（唯一id）

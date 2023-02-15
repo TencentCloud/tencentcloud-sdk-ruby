@@ -2933,7 +2933,7 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MinQueryTime: 慢查询平均执行时间阈值（单位：微秒）。
+        # @param MinQueryTime: 慢查询平均执行时间阈值（单位：毫秒）。
         # @type MinQueryTime: Integer
         # @param Limit: 每个页面展示的慢查询条数，默认值为20。
         # @type Limit: Integer

@@ -1228,6 +1228,7 @@ module TencentCloud
         # @param AutoRenew: 是否已设置自动续费 。
         # 0：未设置
         # 1：已设置
+        # 2：设置后，关闭
         # @type AutoRenew: Integer
         # @param CreationDate: 注册时间。
         # @type CreationDate: String

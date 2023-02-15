@@ -355,10 +355,13 @@ module TencentCloud
         # @type ExpireTime: Integer
         # @param CreateTime: 资源包创建时间
         # @type CreateTime: Integer
+        # @param Status: 资源包状态 0.未使用 1.使用中 2.已退款 3.已过期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :BonusId, :UserId, :PackageId, :Total, :Used, :ExpireTime, :CreateTime
+        attr_accessor :BonusId, :UserId, :PackageId, :Total, :Used, :ExpireTime, :CreateTime, :Status
         
-        def initialize(bonusid=nil, userid=nil, packageid=nil, total=nil, used=nil, expiretime=nil, createtime=nil)
+        def initialize(bonusid=nil, userid=nil, packageid=nil, total=nil, used=nil, expiretime=nil, createtime=nil, status=nil)
           @BonusId = bonusid
           @UserId = userid
           @PackageId = packageid
@@ -366,6 +369,7 @@ module TencentCloud
           @Used = used
           @ExpireTime = expiretime
           @CreateTime = createtime
+          @Status = status
         end
 
         def deserialize(params)
@@ -376,6 +380,7 @@ module TencentCloud
           @Used = params['Used']
           @ExpireTime = params['ExpireTime']
           @CreateTime = params['CreateTime']
+          @Status = params['Status']
         end
       end
 

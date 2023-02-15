@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeZones)用于查询可售卖地域可用区信息。
+
+        # @param request: Request instance for DescribeZones.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeZonesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeZonesResponse`
+        def DescribeZones(request)
+          body = send_request('DescribeZones', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 安全组批量解绑云资源
 
         # @param request: Request instance for DisassociateSecurityGroups.

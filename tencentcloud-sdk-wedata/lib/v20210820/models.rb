@@ -9844,10 +9844,30 @@ module TencentCloud
         # @type SchemaName: String
         # @param SourceFieldInfoList: 上游节点的字段信息
         # @type SourceFieldInfoList: Array
+        # @param Partitions: 分区字段
+        # @type Partitions: Array
+        # @param Properties: 建表属性
+        # @type Properties: Array
+        # @param TableMode: 建表模式，0:向导模式，1:ddl
+        # @type TableMode: Integer
+        # @param TableVersion: DLC表版本，v1/v2
+        # @type TableVersion: String
+        # @param UpsertFlag: 是否upsert写入
+        # @type UpsertFlag: Boolean
+        # @param TableComment: 表描述信息
+        # @type TableComment: String
+        # @param AddDataFiles: 增加的文件数量阈值, 超过值将触发小文件合并
+        # @type AddDataFiles: Integer
+        # @param AddEqualityDeletes: 增加的Equality delete数量阈值, 超过值将触发小文件合并
+        # @type AddEqualityDeletes: Integer
+        # @param AddPositionDeletes: 增加的Position delete数量阈值, 超过值将触发小文件合并
+        # @type AddPositionDeletes: Integer
+        # @param AddDeleteFiles: 增加的delete file数量阈值
+        # @type AddDeleteFiles: Integer
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles
         
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -9858,6 +9878,16 @@ module TencentCloud
           @SinkType = sinktype
           @SchemaName = schemaname
           @SourceFieldInfoList = sourcefieldinfolist
+          @Partitions = partitions
+          @Properties = properties
+          @TableMode = tablemode
+          @TableVersion = tableversion
+          @UpsertFlag = upsertflag
+          @TableComment = tablecomment
+          @AddDataFiles = adddatafiles
+          @AddEqualityDeletes = addequalitydeletes
+          @AddPositionDeletes = addpositiondeletes
+          @AddDeleteFiles = adddeletefiles
         end
 
         def deserialize(params)
@@ -9878,6 +9908,30 @@ module TencentCloud
               @SourceFieldInfoList << sourcefieldinfo_tmp
             end
           end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              partition_tmp = Partition.new
+              partition_tmp.deserialize(i)
+              @Partitions << partition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+          @TableMode = params['TableMode']
+          @TableVersion = params['TableVersion']
+          @UpsertFlag = params['UpsertFlag']
+          @TableComment = params['TableComment']
+          @AddDataFiles = params['AddDataFiles']
+          @AddEqualityDeletes = params['AddEqualityDeletes']
+          @AddPositionDeletes = params['AddPositionDeletes']
+          @AddDeleteFiles = params['AddDeleteFiles']
         end
       end
 
@@ -12980,6 +13034,30 @@ module TencentCloud
         end
       end
 
+      # 分区参数
+      class Partition < TencentCloud::Common::AbstractModel
+        # @param Transform: 分区转换策略
+        # @type Transform: String
+        # @param Name: 分区字段名
+        # @type Name: String
+        # @param TransformArgs: 策略参数
+        # @type TransformArgs: Array
+
+        attr_accessor :Transform, :Name, :TransformArgs
+        
+        def initialize(transform=nil, name=nil, transformargs=nil)
+          @Transform = transform
+          @Name = name
+          @TransformArgs = transformargs
+        end
+
+        def deserialize(params)
+          @Transform = params['Transform']
+          @Name = params['Name']
+          @TransformArgs = params['TransformArgs']
+        end
+      end
+
       # 数据质量生产调度任务业务实体
       class ProdSchedulerTask < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 生产调度任务工作流ID
@@ -13004,6 +13082,26 @@ module TencentCloud
           @WorkflowId = params['WorkflowId']
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # dlc建表属性
+      class Property < TencentCloud::Common::AbstractModel
+        # @param Key: key值
+        # @type Key: String
+        # @param Value: value值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

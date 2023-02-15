@@ -1040,6 +1040,86 @@ module TencentCloud
         end
       end
 
+      # 批量删除域名详情
+      class DeleteDomainBatchDetail < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名 ID
+        # @type DomainId: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+        # @param Status: 删除状态
+        # @type Status: String
+        # @param Operation: 操作
+        # @type Operation: String
+
+        attr_accessor :DomainId, :Domain, :Error, :Status, :Operation
+        
+        def initialize(domainid=nil, domain=nil, error=nil, status=nil, operation=nil)
+          @DomainId = domainid
+          @Domain = domain
+          @Error = error
+          @Status = status
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Domain = params['Domain']
+          @Error = params['Error']
+          @Status = params['Status']
+          @Operation = params['Operation']
+        end
+      end
+
+      # DeleteDomainBatch请求参数结构体
+      class DeleteDomainBatchRequest < TencentCloud::Common::AbstractModel
+        # @param DomainList: 域名数组
+        # @type DomainList: Array
+
+        attr_accessor :DomainList
+        
+        def initialize(domainlist=nil)
+          @DomainList = domainlist
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+        end
+      end
+
+      # DeleteDomainBatch返回参数结构体
+      class DeleteDomainBatchResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID
+        # @type JobId: Integer
+        # @param DetailList: 任务详情数组
+        # @type DetailList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :DetailList, :RequestId
+        
+        def initialize(jobid=nil, detaillist=nil, requestid=nil)
+          @JobId = jobid
+          @DetailList = detaillist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              deletedomainbatchdetail_tmp = DeleteDomainBatchDetail.new
+              deletedomainbatchdetail_tmp.deserialize(i)
+              @DetailList << deletedomainbatchdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDomain请求参数结构体
       class DeleteDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1642,6 +1722,49 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainPreview请求参数结构体
+      class DescribeDomainPreviewRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeDomainPreview返回参数结构体
+      class DescribeDomainPreviewResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名概览信息
+        # @type Domain: :class:`Tencentcloud::Dnspod.v20210323.models.PreviewDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :RequestId
+        
+        def initialize(domain=nil, requestid=nil)
+          @Domain = domain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Domain'].nil?
+            @Domain = PreviewDetail.new
+            @Domain.deserialize(params['Domain'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainPurview请求参数结构体
       class DescribeDomainPurviewRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1779,6 +1902,127 @@ module TencentCloud
             end
           end
           @Owner = params['Owner']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainWhois请求参数结构体
+      class DescribeDomainWhoisRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeDomainWhois返回参数结构体
+      class DescribeDomainWhoisResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 域名Whois信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = WhoisInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePackageDetail请求参数结构体
+      class DescribePackageDetailRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePackageDetail返回参数结构体
+      class DescribePackageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 套餐配置详情
+        # @type Info: Array
+        # @param LevelMap: 套餐代码列表
+        # @type LevelMap: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :LevelMap, :RequestId
+        
+        def initialize(info=nil, levelmap=nil, requestid=nil)
+          @Info = info
+          @LevelMap = levelmap
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = []
+            params['Info'].each do |i|
+              packagedetailitem_tmp = PackageDetailItem.new
+              packagedetailitem_tmp.deserialize(i)
+              @Info << packagedetailitem_tmp
+            end
+          end
+          @LevelMap = params['LevelMap']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordExistExceptDefaultNS请求参数结构体
+      class DescribeRecordExistExceptDefaultNSRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeRecordExistExceptDefaultNS返回参数结构体
+      class DescribeRecordExistExceptDefaultNSResponse < TencentCloud::Common::AbstractModel
+        # @param Exist: true 是 false 否
+        # @type Exist: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Exist, :RequestId
+        
+        def initialize(exist=nil, requestid=nil)
+          @Exist = exist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Exist = params['Exist']
           @RequestId = params['RequestId']
         end
       end
@@ -2539,6 +2783,49 @@ module TencentCloud
           unless params['UserInfo'].nil?
             @UserInfo = UserInfo.new
             @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVASStatistic请求参数结构体
+      class DescribeVASStatisticRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: Integer
+
+        attr_accessor :DomainId
+        
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeVASStatistic返回参数结构体
+      class DescribeVASStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param VASList: 增值服务用量列表
+        # @type VASList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VASList, :RequestId
+        
+        def initialize(vaslist=nil, requestid=nil)
+          @VASList = vaslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VASList'].nil?
+            @VASList = []
+            params['VASList'].each do |i|
+              vasstatisticitem_tmp = VASStatisticItem.new
+              vasstatisticitem_tmp.deserialize(i)
+              @VASList << vasstatisticitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -4006,6 +4293,62 @@ module TencentCloud
         end
       end
 
+      # 套餐配置明细
+      class PackageDetailItem < TencentCloud::Common::AbstractModel
+        # @param RealPrice: 套餐原价
+        # @type RealPrice: Integer
+        # @param ChangedTimes: 可更换域名次数
+        # @type ChangedTimes: Integer
+        # @param MinTtl: 允许设置的最小 TTL 值
+        # @type MinTtl: Integer
+        # @param RecordRoll: 负载均衡数量
+        # @type RecordRoll: Integer
+        # @param SubDomainLevel: 子域名级数
+        # @type SubDomainLevel: Integer
+        # @param MaxWildcard: 泛解析级数
+        # @type MaxWildcard: Integer
+        # @param DnsServerRegion: DNS 服务集群个数
+        # @type DnsServerRegion: String
+        # @param DomainGradeCn: 套餐名称
+        # @type DomainGradeCn: String
+        # @param GradeLevel: 套餐代号
+        # @type GradeLevel: Integer
+        # @param Ns: 套餐对应的 NS
+        # @type Ns: Array
+        # @param DomainGrade: 套餐代码
+        # @type DomainGrade: String
+
+        attr_accessor :RealPrice, :ChangedTimes, :MinTtl, :RecordRoll, :SubDomainLevel, :MaxWildcard, :DnsServerRegion, :DomainGradeCn, :GradeLevel, :Ns, :DomainGrade
+        
+        def initialize(realprice=nil, changedtimes=nil, minttl=nil, recordroll=nil, subdomainlevel=nil, maxwildcard=nil, dnsserverregion=nil, domaingradecn=nil, gradelevel=nil, ns=nil, domaingrade=nil)
+          @RealPrice = realprice
+          @ChangedTimes = changedtimes
+          @MinTtl = minttl
+          @RecordRoll = recordroll
+          @SubDomainLevel = subdomainlevel
+          @MaxWildcard = maxwildcard
+          @DnsServerRegion = dnsserverregion
+          @DomainGradeCn = domaingradecn
+          @GradeLevel = gradelevel
+          @Ns = ns
+          @DomainGrade = domaingrade
+        end
+
+        def deserialize(params)
+          @RealPrice = params['RealPrice']
+          @ChangedTimes = params['ChangedTimes']
+          @MinTtl = params['MinTtl']
+          @RecordRoll = params['RecordRoll']
+          @SubDomainLevel = params['SubDomainLevel']
+          @MaxWildcard = params['MaxWildcard']
+          @DnsServerRegion = params['DnsServerRegion']
+          @DomainGradeCn = params['DomainGradeCn']
+          @GradeLevel = params['GradeLevel']
+          @Ns = params['Ns']
+          @DomainGrade = params['DomainGrade']
+        end
+      end
+
       # PayOrderWithBalance请求参数结构体
       class PayOrderWithBalanceRequest < TencentCloud::Common::AbstractModel
         # @param BigDealIdList: 需要支付的大订单号数组
@@ -4051,6 +4394,62 @@ module TencentCloud
           @BigDealIdList = params['BigDealIdList']
           @DealNameList = params['DealNameList']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名概览明细
+      class PreviewDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 域名
+        # @type Name: String
+        # @param Grade: 域名套餐代码
+        # @type Grade: String
+        # @param GradeTitle: 域名套餐名称
+        # @type GradeTitle: String
+        # @param Records: 域名记录数
+        # @type Records: Integer
+        # @param DomainParkingStatus: 域名停靠状态。0 未开启 1 已开启 2 已暂停
+        # @type DomainParkingStatus: Integer
+        # @param LineCount: 自定义线路数量
+        # @type LineCount: Integer
+        # @param LineGroupCount: 自定义线路分组数量
+        # @type LineGroupCount: Integer
+        # @param AliasCount: 域名别名数量
+        # @type AliasCount: Integer
+        # @param MaxAliasCount: 允许添加的最大域名别名数量
+        # @type MaxAliasCount: Integer
+        # @param ResolveCount: 昨天的解析量
+        # @type ResolveCount: Integer
+        # @param VASCount: 增值服务数量
+        # @type VASCount: Integer
+
+        attr_accessor :Name, :Grade, :GradeTitle, :Records, :DomainParkingStatus, :LineCount, :LineGroupCount, :AliasCount, :MaxAliasCount, :ResolveCount, :VASCount
+        
+        def initialize(name=nil, grade=nil, gradetitle=nil, records=nil, domainparkingstatus=nil, linecount=nil, linegroupcount=nil, aliascount=nil, maxaliascount=nil, resolvecount=nil, vascount=nil)
+          @Name = name
+          @Grade = grade
+          @GradeTitle = gradetitle
+          @Records = records
+          @DomainParkingStatus = domainparkingstatus
+          @LineCount = linecount
+          @LineGroupCount = linegroupcount
+          @AliasCount = aliascount
+          @MaxAliasCount = maxaliascount
+          @ResolveCount = resolvecount
+          @VASCount = vascount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Grade = params['Grade']
+          @GradeTitle = params['GradeTitle']
+          @Records = params['Records']
+          @DomainParkingStatus = params['DomainParkingStatus']
+          @LineCount = params['LineCount']
+          @LineGroupCount = params['LineGroupCount']
+          @AliasCount = params['AliasCount']
+          @MaxAliasCount = params['MaxAliasCount']
+          @ResolveCount = params['ResolveCount']
+          @VASCount = params['VASCount']
         end
       end
 
@@ -4625,6 +5024,215 @@ module TencentCloud
           @WechatBinded = params['WechatBinded']
           @Uin = params['Uin']
           @FreeNs = params['FreeNs']
+        end
+      end
+
+      # 域名增值服务用量
+      class VASStatisticItem < TencentCloud::Common::AbstractModel
+        # @param Name: 增值服务名称
+        # @type Name: String
+        # @param Key: 增值服务标识
+        # @type Key: String
+        # @param LimitCount: 增值服务最大用量
+        # @type LimitCount: Integer
+        # @param UseCount: 增值服务已使用的用量
+        # @type UseCount: Integer
+
+        attr_accessor :Name, :Key, :LimitCount, :UseCount
+        
+        def initialize(name=nil, key=nil, limitcount=nil, usecount=nil)
+          @Name = name
+          @Key = key
+          @LimitCount = limitcount
+          @UseCount = usecount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Key = params['Key']
+          @LimitCount = params['LimitCount']
+          @UseCount = params['UseCount']
+        end
+      end
+
+      # Whois联系信息
+      class WhoisContact < TencentCloud::Common::AbstractModel
+        # @param Admin: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Admin: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisContactAddress`
+        # @param Billing: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Billing: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisContactAddress`
+        # @param Registrant: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Registrant: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisContactAddress`
+        # @param Tech: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tech: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisContactAddress`
+
+        attr_accessor :Admin, :Billing, :Registrant, :Tech
+        
+        def initialize(admin=nil, billing=nil, registrant=nil, tech=nil)
+          @Admin = admin
+          @Billing = billing
+          @Registrant = registrant
+          @Tech = tech
+        end
+
+        def deserialize(params)
+          unless params['Admin'].nil?
+            @Admin = WhoisContactAddress.new
+            @Admin.deserialize(params['Admin'])
+          end
+          unless params['Billing'].nil?
+            @Billing = WhoisContactAddress.new
+            @Billing.deserialize(params['Billing'])
+          end
+          unless params['Registrant'].nil?
+            @Registrant = WhoisContactAddress.new
+            @Registrant.deserialize(params['Registrant'])
+          end
+          unless params['Tech'].nil?
+            @Tech = WhoisContactAddress.new
+            @Tech.deserialize(params['Tech'])
+          end
+        end
+      end
+
+      # Whois联系信息地址
+      class WhoisContactAddress < TencentCloud::Common::AbstractModel
+        # @param City: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param Country: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Email: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param Fax: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fax: String
+        # @param FaxExt: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaxExt: String
+        # @param Handle: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Handle: String
+        # @param Name: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Organization: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Organization: String
+        # @param Phone: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param PostalCode: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostalCode: String
+        # @param State: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Street: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Street: String
+
+        attr_accessor :City, :Country, :Email, :Fax, :FaxExt, :Handle, :Name, :Organization, :Phone, :PostalCode, :State, :Street
+        
+        def initialize(city=nil, country=nil, email=nil, fax=nil, faxext=nil, handle=nil, name=nil, organization=nil, phone=nil, postalcode=nil, state=nil, street=nil)
+          @City = city
+          @Country = country
+          @Email = email
+          @Fax = fax
+          @FaxExt = faxext
+          @Handle = handle
+          @Name = name
+          @Organization = organization
+          @Phone = phone
+          @PostalCode = postalcode
+          @State = state
+          @Street = street
+        end
+
+        def deserialize(params)
+          @City = params['City']
+          @Country = params['Country']
+          @Email = params['Email']
+          @Fax = params['Fax']
+          @FaxExt = params['FaxExt']
+          @Handle = params['Handle']
+          @Name = params['Name']
+          @Organization = params['Organization']
+          @Phone = params['Phone']
+          @PostalCode = params['PostalCode']
+          @State = params['State']
+          @Street = params['Street']
+        end
+      end
+
+      # Whois信息
+      class WhoisInfo < TencentCloud::Common::AbstractModel
+        # @param Contacts: 联系信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contacts: :class:`Tencentcloud::Dnspod.v20210323.models.WhoisContact`
+        # @param CreationDate: 域名注册时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationDate: String
+        # @param ExpirationDate: 域名到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationDate: String
+        # @param IsQcloud: 是否是在腾讯云注册的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsQcloud: Boolean
+        # @param IsQcloudOwner: 是否当前操作帐号注册的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsQcloudOwner: Boolean
+        # @param NameServers: 域名配置的NS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameServers: Array
+        # @param Raw: Whois原始信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Raw: Array
+        # @param Registrar: 域名注册商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Registrar: Array
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Array
+        # @param UpdatedDate: 更新日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedDate: String
+
+        attr_accessor :Contacts, :CreationDate, :ExpirationDate, :IsQcloud, :IsQcloudOwner, :NameServers, :Raw, :Registrar, :Status, :UpdatedDate
+        
+        def initialize(contacts=nil, creationdate=nil, expirationdate=nil, isqcloud=nil, isqcloudowner=nil, nameservers=nil, raw=nil, registrar=nil, status=nil, updateddate=nil)
+          @Contacts = contacts
+          @CreationDate = creationdate
+          @ExpirationDate = expirationdate
+          @IsQcloud = isqcloud
+          @IsQcloudOwner = isqcloudowner
+          @NameServers = nameservers
+          @Raw = raw
+          @Registrar = registrar
+          @Status = status
+          @UpdatedDate = updateddate
+        end
+
+        def deserialize(params)
+          unless params['Contacts'].nil?
+            @Contacts = WhoisContact.new
+            @Contacts.deserialize(params['Contacts'])
+          end
+          @CreationDate = params['CreationDate']
+          @ExpirationDate = params['ExpirationDate']
+          @IsQcloud = params['IsQcloud']
+          @IsQcloudOwner = params['IsQcloudOwner']
+          @NameServers = params['NameServers']
+          @Raw = params['Raw']
+          @Registrar = params['Registrar']
+          @Status = params['Status']
+          @UpdatedDate = params['UpdatedDate']
         end
       end
 

@@ -4167,6 +4167,53 @@ module TencentCloud
         end
       end
 
+      # DescribeZones请求参数结构体
+      class DescribeZonesRequest < TencentCloud::Common::AbstractModel
+        # @param IncludeVirtualZones: 是否包含虚拟区
+        # @type IncludeVirtualZones: Boolean
+        # @param ShowPermission: 是否展示地域下所有可用区，并显示用户每个可用区权限
+        # @type ShowPermission: Boolean
+
+        attr_accessor :IncludeVirtualZones, :ShowPermission
+        
+        def initialize(includevirtualzones=nil, showpermission=nil)
+          @IncludeVirtualZones = includevirtualzones
+          @ShowPermission = showpermission
+        end
+
+        def deserialize(params)
+          @IncludeVirtualZones = params['IncludeVirtualZones']
+          @ShowPermission = params['ShowPermission']
+        end
+      end
+
+      # DescribeZones返回参数结构体
+      class DescribeZonesResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: 地域信息
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :RequestId
+        
+        def initialize(regionset=nil, requestid=nil)
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              saleregion_tmp = SaleRegion.new
+              saleregion_tmp.deserialize(i)
+              @RegionSet << saleregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateSecurityGroups请求参数结构体
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例组ID数组
@@ -5313,6 +5360,26 @@ module TencentCloud
         end
       end
 
+      # 系统支持的模块
+      class Module < TencentCloud::Common::AbstractModel
+        # @param IsDisable: 是否支持，可选值:yes,no
+        # @type IsDisable: String
+        # @param ModuleName: 模块名
+        # @type ModuleName: String
+
+        attr_accessor :IsDisable, :ModuleName
+        
+        def initialize(isdisable=nil, modulename=nil)
+          @IsDisable = isdisable
+          @ModuleName = modulename
+        end
+
+        def deserialize(params)
+          @IsDisable = params['IsDisable']
+          @ModuleName = params['ModuleName']
+        end
+      end
+
       # 网络信息
       class NetAddr < TencentCloud::Common::AbstractModel
         # @param Vip: 内网ip
@@ -6262,6 +6329,105 @@ module TencentCloud
           @Type = params['Type']
           @Compare = params['Compare']
           @Value = params['Value']
+        end
+      end
+
+      # 售卖地域信息
+      class SaleRegion < TencentCloud::Common::AbstractModel
+        # @param Region: 地域英文名
+        # @type Region: String
+        # @param RegionId: 地域数字ID
+        # @type RegionId: Integer
+        # @param RegionZh: 地域中文名
+        # @type RegionZh: String
+        # @param ZoneSet: 可售卖可用区列表
+        # @type ZoneSet: Array
+        # @param DbType: 引擎类型
+        # @type DbType: String
+        # @param Modules: 地域模块支持情况
+        # @type Modules: Array
+
+        attr_accessor :Region, :RegionId, :RegionZh, :ZoneSet, :DbType, :Modules
+        
+        def initialize(region=nil, regionid=nil, regionzh=nil, zoneset=nil, dbtype=nil, modules=nil)
+          @Region = region
+          @RegionId = regionid
+          @RegionZh = regionzh
+          @ZoneSet = zoneset
+          @DbType = dbtype
+          @Modules = modules
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionId = params['RegionId']
+          @RegionZh = params['RegionZh']
+          unless params['ZoneSet'].nil?
+            @ZoneSet = []
+            params['ZoneSet'].each do |i|
+              salezone_tmp = SaleZone.new
+              salezone_tmp.deserialize(i)
+              @ZoneSet << salezone_tmp
+            end
+          end
+          @DbType = params['DbType']
+          unless params['Modules'].nil?
+            @Modules = []
+            params['Modules'].each do |i|
+              module_tmp = Module.new
+              module_tmp.deserialize(i)
+              @Modules << module_tmp
+            end
+          end
+        end
+      end
+
+      # 售卖可用区信息
+      class SaleZone < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区英文名
+        # @type Zone: String
+        # @param ZoneId: 可用区数字ID
+        # @type ZoneId: Integer
+        # @param ZoneZh: 可用区中文名
+        # @type ZoneZh: String
+        # @param IsSupportServerless: 是否支持serverless集群<br>
+        # 0:不支持<br>
+        # 1:支持
+        # @type IsSupportServerless: Integer
+        # @param IsSupportNormal: 是否支持普通集群<br>
+        # 0:不支持<br>
+        # 1:支持
+        # @type IsSupportNormal: Integer
+        # @param PhysicalZone: 物理区
+        # @type PhysicalZone: String
+        # @param HasPermission: 用户是否有可用区权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasPermission: Boolean
+        # @param IsWholeRdmaZone: 是否为全链路RDMA可用区
+        # @type IsWholeRdmaZone: String
+
+        attr_accessor :Zone, :ZoneId, :ZoneZh, :IsSupportServerless, :IsSupportNormal, :PhysicalZone, :HasPermission, :IsWholeRdmaZone
+        
+        def initialize(zone=nil, zoneid=nil, zonezh=nil, issupportserverless=nil, issupportnormal=nil, physicalzone=nil, haspermission=nil, iswholerdmazone=nil)
+          @Zone = zone
+          @ZoneId = zoneid
+          @ZoneZh = zonezh
+          @IsSupportServerless = issupportserverless
+          @IsSupportNormal = issupportnormal
+          @PhysicalZone = physicalzone
+          @HasPermission = haspermission
+          @IsWholeRdmaZone = iswholerdmazone
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+          @ZoneZh = params['ZoneZh']
+          @IsSupportServerless = params['IsSupportServerless']
+          @IsSupportNormal = params['IsSupportNormal']
+          @PhysicalZone = params['PhysicalZone']
+          @HasPermission = params['HasPermission']
+          @IsWholeRdmaZone = params['IsWholeRdmaZone']
         end
       end
 

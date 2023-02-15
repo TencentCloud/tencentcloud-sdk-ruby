@@ -5,6 +5,9 @@ require 'tencentcloud-sdk-common'
 require_relative 'v20210624/client'
 require_relative 'v20210624/models'
 
+require_relative 'v20221115/client'
+require_relative 'v20221115/models'
+
 module TencentCloud
   module Bma
   end

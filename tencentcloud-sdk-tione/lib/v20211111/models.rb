@@ -1756,10 +1756,19 @@ module TencentCloud
         # @param DatasetScope: 数据集范围
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasetScope: String
+        # @param OcrScene: 数据集OCR子场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrScene: String
+        # @param AnnotationKeyStatus: 数据集字典修改状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationKeyStatus: String
+        # @param ContentType: 文本数据集导入方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentType: String
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType
         
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1783,6 +1792,9 @@ module TencentCloud
           @AnnotationType = annotationtype
           @AnnotationFormat = annotationformat
           @DatasetScope = datasetscope
+          @OcrScene = ocrscene
+          @AnnotationKeyStatus = annotationkeystatus
+          @ContentType = contenttype
         end
 
         def deserialize(params)
@@ -1829,6 +1841,9 @@ module TencentCloud
           @AnnotationType = params['AnnotationType']
           @AnnotationFormat = params['AnnotationFormat']
           @DatasetScope = params['DatasetScope']
+          @OcrScene = params['OcrScene']
+          @AnnotationKeyStatus = params['AnnotationKeyStatus']
+          @ContentType = params['ContentType']
         end
       end
 
@@ -1900,10 +1915,16 @@ module TencentCloud
         # @param DatasetScope: 数据集范围
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasetScope: String
+        # @param OcrScene: 数据集OCR子场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrScene: String
+        # @param AnnotationKeyStatus: 数据集字典修改状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationKeyStatus: String
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus
         
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1926,6 +1947,8 @@ module TencentCloud
           @AnnotationType = annotationtype
           @AnnotationFormat = annotationformat
           @DatasetScope = datasetscope
+          @OcrScene = ocrscene
+          @AnnotationKeyStatus = annotationkeystatus
         end
 
         def deserialize(params)
@@ -1964,6 +1987,8 @@ module TencentCloud
           @AnnotationType = params['AnnotationType']
           @AnnotationFormat = params['AnnotationFormat']
           @DatasetScope = params['DatasetScope']
+          @OcrScene = params['OcrScene']
+          @AnnotationKeyStatus = params['AnnotationKeyStatus']
         end
       end
 
@@ -6619,19 +6644,23 @@ module TencentCloud
         # @type TotalCost: Integer
         # @param RealTotalCost: 优惠后的价格，单位：分
         # @type RealTotalCost: Integer
+        # @param SpecCount: 计费项数量
+        # @type SpecCount: Integer
 
-        attr_accessor :SpecName, :TotalCost, :RealTotalCost
+        attr_accessor :SpecName, :TotalCost, :RealTotalCost, :SpecCount
         
-        def initialize(specname=nil, totalcost=nil, realtotalcost=nil)
+        def initialize(specname=nil, totalcost=nil, realtotalcost=nil, speccount=nil)
           @SpecName = specname
           @TotalCost = totalcost
           @RealTotalCost = realtotalcost
+          @SpecCount = speccount
         end
 
         def deserialize(params)
           @SpecName = params['SpecName']
           @TotalCost = params['TotalCost']
           @RealTotalCost = params['RealTotalCost']
+          @SpecCount = params['SpecCount']
         end
       end
 
