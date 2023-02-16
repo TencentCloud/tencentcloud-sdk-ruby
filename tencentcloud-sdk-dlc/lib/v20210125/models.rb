@@ -2571,10 +2571,22 @@ module TencentCloud
         # @param UiURL: ui的跳转地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UiURL: String
+        # @param ResourceType: 引擎的资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ImageVersionId: 集群镜像版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageVersionId: String
+        # @param ChildImageVersionId: 集群镜像小版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildImageVersionId: String
+        # @param ImageVersionName: 集群镜像版本名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageVersionName: String
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName
         
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -2607,6 +2619,10 @@ module TencentCloud
           @AutoSuspendTime = autosuspendtime
           @NetworkConnectionSet = networkconnectionset
           @UiURL = uiurl
+          @ResourceType = resourcetype
+          @ImageVersionId = imageversionid
+          @ChildImageVersionId = childimageversionid
+          @ImageVersionName = imageversionname
         end
 
         def deserialize(params)
@@ -2659,6 +2675,10 @@ module TencentCloud
             end
           end
           @UiURL = params['UiURL']
+          @ResourceType = params['ResourceType']
+          @ImageVersionId = params['ImageVersionId']
+          @ChildImageVersionId = params['ChildImageVersionId']
+          @ImageVersionName = params['ImageVersionName']
         end
       end
 

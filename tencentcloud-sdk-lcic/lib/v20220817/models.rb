@@ -1421,10 +1421,16 @@ module TencentCloud
         # @type LastQuitTimestamp: Integer
         # @param Rewords: 奖励次数。
         # @type Rewords: Integer
+        # @param IPAddress: 用户IP。
+        # @type IPAddress: String
+        # @param Location: 用户位置信息。
+        # @type Location: String
+        # @param Device: 用户设备平台信息。0:unknown  1:windows  2:mac  3:android  4:ios  5:web   6:h5   7:miniprogram （小程序）
+        # @type Device: Integer
 
-        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords
+        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device
         
-        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil)
+        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil)
           @UserId = userid
           @UserName = username
           @PresentTime = presenttime
@@ -1436,6 +1442,9 @@ module TencentCloud
           @FirstJoinTimestamp = firstjointimestamp
           @LastQuitTimestamp = lastquittimestamp
           @Rewords = rewords
+          @IPAddress = ipaddress
+          @Location = location
+          @Device = device
         end
 
         def deserialize(params)
@@ -1450,6 +1459,9 @@ module TencentCloud
           @FirstJoinTimestamp = params['FirstJoinTimestamp']
           @LastQuitTimestamp = params['LastQuitTimestamp']
           @Rewords = params['Rewords']
+          @IPAddress = params['IPAddress']
+          @Location = params['Location']
+          @Device = params['Device']
         end
       end
 

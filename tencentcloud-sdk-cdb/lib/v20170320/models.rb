@@ -8787,6 +8787,46 @@ module TencentCloud
         end
       end
 
+      # OpenDBInstanceEncryption请求参数结构体
+      class OpenDBInstanceEncryptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 云数据库实例 ID。
+        # @type InstanceId: String
+        # @param KeyId: 用户自定义密钥ID，CMK唯一标识符。该值为空时，将使用腾讯云自动生成的密钥KMS-CDB。
+        # @type KeyId: String
+        # @param KeyRegion: 用户自定义密钥的存储地域。如：ap-guangzhou 。KeyId不为空时，该参数必填。
+        # @type KeyRegion: String
+
+        attr_accessor :InstanceId, :KeyId, :KeyRegion
+        
+        def initialize(instanceid=nil, keyid=nil, keyregion=nil)
+          @InstanceId = instanceid
+          @KeyId = keyid
+          @KeyRegion = keyregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
+        end
+      end
+
+      # OpenDBInstanceEncryption返回参数结构体
+      class OpenDBInstanceEncryptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenDBInstanceGTID请求参数结构体
       class OpenDBInstanceGTIDRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。

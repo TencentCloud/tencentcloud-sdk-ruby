@@ -17039,10 +17039,13 @@ module TencentCloud
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList, :VpcId, :MachineExtraInfo, :InstanceId
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList, :VpcId, :MachineExtraInfo, :InstanceId, :Remark
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil, vpcid=nil, machineextrainfo=nil, instanceid=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil, vpcid=nil, machineextrainfo=nil, instanceid=nil, remark=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -17073,6 +17076,7 @@ module TencentCloud
           @VpcId = vpcid
           @MachineExtraInfo = machineextrainfo
           @InstanceId = instanceid
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -17126,6 +17130,7 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @InstanceId = params['InstanceId']
+          @Remark = params['Remark']
         end
       end
 
@@ -17800,6 +17805,42 @@ module TencentCloud
               @ErrMsg << licenseunbindrsp_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMachineRemark请求参数结构体
+      class ModifyMachineRemarkRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :Quuid, :Remark
+        
+        def initialize(quuid=nil, remark=nil)
+          @Quuid = quuid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMachineRemark返回参数结构体
+      class ModifyMachineRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

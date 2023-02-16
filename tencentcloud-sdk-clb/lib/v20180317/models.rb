@@ -5518,6 +5518,65 @@ module TencentCloud
         end
       end
 
+      # ModifyFunctionTargets请求参数结构体
+      class ModifyFunctionTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例ID。
+        # @type LoadBalancerId: String
+        # @param ListenerId: 负载均衡监听器ID。
+        # @type ListenerId: String
+        # @param FunctionTargets: 要修改的后端云函数服务列表。
+        # @type FunctionTargets: Array
+        # @param LocationId: 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一。
+        # @type LocationId: String
+        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效。
+        # @type Domain: String
+        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效。
+        # @type Url: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :FunctionTargets, :LocationId, :Domain, :Url
+        
+        def initialize(loadbalancerid=nil, listenerid=nil, functiontargets=nil, locationid=nil, domain=nil, url=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @FunctionTargets = functiontargets
+          @LocationId = locationid
+          @Domain = domain
+          @Url = url
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          unless params['FunctionTargets'].nil?
+            @FunctionTargets = []
+            params['FunctionTargets'].each do |i|
+              functiontarget_tmp = FunctionTarget.new
+              functiontarget_tmp.deserialize(i)
+              @FunctionTargets << functiontarget_tmp
+            end
+          end
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
+        end
+      end
+
+      # ModifyFunctionTargets返回参数结构体
+      class ModifyFunctionTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyListener请求参数结构体
       class ModifyListenerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例ID。

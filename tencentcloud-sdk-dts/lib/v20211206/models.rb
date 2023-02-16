@@ -529,9 +529,9 @@ module TencentCloud
       class ConfigureSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步实例id（即标识一个同步作业），形如sync-werwfs23
         # @type JobId: String
-        # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
+        # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云),注意具体可选值依赖当前链路
         # @type SrcAccessType: String
-        # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、noProxy,注意具体可选值依赖当前链路
+        # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、ckafka(CKafka实例),注意具体可选值依赖当前链路
         # @type DstAccessType: String
         # @param Options: 同步任务选项
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
@@ -545,7 +545,7 @@ module TencentCloud
         # @type RunMode: String
         # @param ExpectRunTime: 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
         # @type ExpectRunTime: String
-        # @param SrcInfo: 源端信息，单节点数据库使用
+        # @param SrcInfo: 源端信息，单节点数据库使用，且SrcNodeType传single
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param DstInfo: 目标端信息，单节点数据库使用
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
@@ -2535,10 +2535,13 @@ module TencentCloud
         # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptConn: String
+        # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseNetEnv: String
 
-        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn
+        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv
         
-        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil)
+        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil)
           @Region = region
           @Role = role
           @DbKernel = dbkernel
@@ -2564,6 +2567,7 @@ module TencentCloud
           @TmpSecretKey = tmpsecretkey
           @TmpToken = tmptoken
           @EncryptConn = encryptconn
+          @DatabaseNetEnv = databasenetenv
         end
 
         def deserialize(params)
@@ -2592,6 +2596,7 @@ module TencentCloud
           @TmpSecretKey = params['TmpSecretKey']
           @TmpToken = params['TmpToken']
           @EncryptConn = params['EncryptConn']
+          @DatabaseNetEnv = params['DatabaseNetEnv']
         end
       end
 
@@ -4236,10 +4241,13 @@ module TencentCloud
         # @param StepInfos: 详细步骤信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfos: Array
+        # @param CauseOfCompareDisable: 不能发起一致性校验的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CauseOfCompareDisable: String
 
-        attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos
+        attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos, :CauseOfCompareDisable
         
-        def initialize(stepall=nil, stepnow=nil, progress=nil, currentstepprogress=nil, masterslavedistance=nil, secondsbehindmaster=nil, message=nil, stepinfos=nil)
+        def initialize(stepall=nil, stepnow=nil, progress=nil, currentstepprogress=nil, masterslavedistance=nil, secondsbehindmaster=nil, message=nil, stepinfos=nil, causeofcomparedisable=nil)
           @StepAll = stepall
           @StepNow = stepnow
           @Progress = progress
@@ -4248,6 +4256,7 @@ module TencentCloud
           @SecondsBehindMaster = secondsbehindmaster
           @Message = message
           @StepInfos = stepinfos
+          @CauseOfCompareDisable = causeofcomparedisable
         end
 
         def deserialize(params)
@@ -4266,6 +4275,7 @@ module TencentCloud
               @StepInfos << stepinfo_tmp
             end
           end
+          @CauseOfCompareDisable = params['CauseOfCompareDisable']
         end
       end
 

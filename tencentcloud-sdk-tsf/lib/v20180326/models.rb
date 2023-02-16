@@ -154,10 +154,12 @@ module TencentCloud
         # @type SgId: String
         # @param InstanceImportMode: 云主机导入方式，虚拟机集群必填，容器集群不填写此字段，R：重装TSF系统镜像，M：手动安装agent
         # @type InstanceImportMode: String
+        # @param SecurityGroupIds: 安全组id
+        # @type SecurityGroupIds: String
 
-        attr_accessor :ClusterId, :InstanceIdList, :OsName, :ImageId, :Password, :KeyId, :SgId, :InstanceImportMode
+        attr_accessor :ClusterId, :InstanceIdList, :OsName, :ImageId, :Password, :KeyId, :SgId, :InstanceImportMode, :SecurityGroupIds
         
-        def initialize(clusterid=nil, instanceidlist=nil, osname=nil, imageid=nil, password=nil, keyid=nil, sgid=nil, instanceimportmode=nil)
+        def initialize(clusterid=nil, instanceidlist=nil, osname=nil, imageid=nil, password=nil, keyid=nil, sgid=nil, instanceimportmode=nil, securitygroupids=nil)
           @ClusterId = clusterid
           @InstanceIdList = instanceidlist
           @OsName = osname
@@ -166,6 +168,7 @@ module TencentCloud
           @KeyId = keyid
           @SgId = sgid
           @InstanceImportMode = instanceimportmode
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -177,6 +180,7 @@ module TencentCloud
           @KeyId = params['KeyId']
           @SgId = params['SgId']
           @InstanceImportMode = params['InstanceImportMode']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

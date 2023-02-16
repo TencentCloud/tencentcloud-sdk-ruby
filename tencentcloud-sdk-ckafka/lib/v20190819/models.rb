@@ -1247,16 +1247,20 @@ module TencentCloud
         # @param Timestamp: 消息时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
+        # @param Headers: 消息headers
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: String
 
-        attr_accessor :Topic, :Partition, :Offset, :Key, :Value, :Timestamp
+        attr_accessor :Topic, :Partition, :Offset, :Key, :Value, :Timestamp, :Headers
         
-        def initialize(topic=nil, partition=nil, offset=nil, key=nil, value=nil, timestamp=nil)
+        def initialize(topic=nil, partition=nil, offset=nil, key=nil, value=nil, timestamp=nil, headers=nil)
           @Topic = topic
           @Partition = partition
           @Offset = offset
           @Key = key
           @Value = value
           @Timestamp = timestamp
+          @Headers = headers
         end
 
         def deserialize(params)
@@ -1266,6 +1270,7 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Timestamp = params['Timestamp']
+          @Headers = params['Headers']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加品牌
+
+        # @param request: Request instance for CreateBPBrand.
+        # @type request: :class:`Tencentcloud::bma::V20221115::CreateBPBrandRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::CreateBPBrandResponse`
+        def CreateBPBrand(request)
+          body = send_request('CreateBPBrand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBPBrandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 仿冒应用举报
 
         # @param request: Request instance for CreateBPFakeAPP.
@@ -111,6 +135,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateBPFakeURLsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加白名单
+
+        # @param request: Request instance for CreateBPWhiteList.
+        # @type request: :class:`Tencentcloud::bma::V20221115::CreateBPWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::CreateBPWhiteListResponse`
+        def CreateBPWhiteList(request)
+          body = send_request('CreateBPWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBPWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除白名单
+
+        # @param request: Request instance for DeleteBPWhiteList.
+        # @type request: :class:`Tencentcloud::bma::V20221115::DeleteBPWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::DeleteBPWhiteListResponse`
+        def DeleteBPWhiteList(request)
+          body = send_request('DeleteBPWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBPWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询品牌列表
+
+        # @param request: Request instance for DescribeBPBrands.
+        # @type request: :class:`Tencentcloud::bma::V20221115::DescribeBPBrandsRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::DescribeBPBrandsResponse`
+        def DescribeBPBrands(request)
+          body = send_request('DescribeBPBrands', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBPBrandsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仿冒应用列表
+
+        # @param request: Request instance for DescribeBPFakeAPPList.
+        # @type request: :class:`Tencentcloud::bma::V20221115::DescribeBPFakeAPPListRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::DescribeBPFakeAPPListResponse`
+        def DescribeBPFakeAPPList(request)
+          body = send_request('DescribeBPFakeAPPList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBPFakeAPPListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仿冒网址列表
+
+        # @param request: Request instance for DescribeBPFakeURLs.
+        # @type request: :class:`Tencentcloud::bma::V20221115::DescribeBPFakeURLsRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::DescribeBPFakeURLsResponse`
+        def DescribeBPFakeURLs(request)
+          body = send_request('DescribeBPFakeURLs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBPFakeURLsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询白名单列表
+
+        # @param request: Request instance for DescribeBPWhiteLists.
+        # @type request: :class:`Tencentcloud::bma::V20221115::DescribeBPWhiteListsRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20221115::DescribeBPWhiteListsResponse`
+        def DescribeBPWhiteLists(request)
+          body = send_request('DescribeBPWhiteLists', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBPWhiteListsResponse.new
             model.deserialize(response['Response'])
             model
           else

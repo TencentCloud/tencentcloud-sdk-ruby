@@ -2162,10 +2162,14 @@ module TencentCloud
         # @type SubNetIds: Array
         # @param IsOpenCloudInvoke: 是否打开云调用
         # @type IsOpenCloudInvoke: Boolean
+        # @param Source: 创建来源：wechat | cloud
+        # @type Source: String
+        # @param Channel: 渠道：wechat | cloud
+        # @type Channel: String
 
-        attr_accessor :WxAppId, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :IsOpenCloudInvoke
+        attr_accessor :WxAppId, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :IsOpenCloudInvoke, :Source, :Channel
         
-        def initialize(wxappid=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, isopencloudinvoke=nil)
+        def initialize(wxappid=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, isopencloudinvoke=nil, source=nil, channel=nil)
           @WxAppId = wxappid
           @Alias = _alias
           @FreeQuota = freequota
@@ -2173,6 +2177,8 @@ module TencentCloud
           @VpcId = vpcid
           @SubNetIds = subnetids
           @IsOpenCloudInvoke = isopencloudinvoke
+          @Source = source
+          @Channel = channel
         end
 
         def deserialize(params)
@@ -2183,6 +2189,8 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubNetIds = params['SubNetIds']
           @IsOpenCloudInvoke = params['IsOpenCloudInvoke']
+          @Source = params['Source']
+          @Channel = params['Channel']
         end
       end
 

@@ -9673,19 +9673,23 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: CLS日志主题ID
         # @type TopicId: String
+        # @param TopicRegion: topic所在region，默认为集群当前region
+        # @type TopicRegion: String
 
-        attr_accessor :ClusterId, :LogsetId, :TopicId
+        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion
         
-        def initialize(clusterid=nil, logsetid=nil, topicid=nil)
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil)
           @ClusterId = clusterid
           @LogsetId = logsetid
           @TopicId = topicid
+          @TopicRegion = topicregion
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
+          @TopicRegion = params['TopicRegion']
         end
       end
 
@@ -9745,19 +9749,23 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: cls服务的topicID
         # @type TopicId: String
+        # @param TopicRegion: topic所在地域，默认为集群所在地域
+        # @type TopicRegion: String
 
-        attr_accessor :ClusterId, :LogsetId, :TopicId
+        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion
         
-        def initialize(clusterid=nil, logsetid=nil, topicid=nil)
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil)
           @ClusterId = clusterid
           @LogsetId = logsetid
           @TopicId = topicid
+          @TopicRegion = topicregion
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
+          @TopicRegion = params['TopicRegion']
         end
       end
 

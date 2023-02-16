@@ -17,9 +17,167 @@
 module TencentCloud
   module Bma
     module V20221115
+      # 品牌响应数据
+      class BrandData < TencentCloud::Common::AbstractModel
+        # @param CompanyId: 品牌Id
+        # @type CompanyId: Integer
+        # @param CompanyName: 企业名称
+        # @type CompanyName: String
+        # @param BrandName: 品牌名称
+        # @type BrandName: String
+        # @param Phone: 联系电话
+        # @type Phone: String
+        # @param License: 营业执照
+        # @type License: String
+        # @param LicenseStatus: 营业执照审核状态
+        # @type LicenseStatus: Integer
+        # @param LicenseNote: 营业执照审核状态说明
+        # @type LicenseNote: String
+        # @param Authorization: 授权书
+        # @type Authorization: String
+        # @param AuthorizationStatus: 授权书审核状态
+        # @type AuthorizationStatus: Integer
+        # @param AuthorizationNote: 授权书审核状态说明
+        # @type AuthorizationNote: String
+        # @param Trademarks: 商标信息
+        # @type Trademarks: Array
+        # @param InsertTime: 新增时间
+        # @type InsertTime: String
+        # @param Services: 服务信息
+        # @type Services: :class:`Tencentcloud::Bma.v20221115.models.ServiceData`
+
+        attr_accessor :CompanyId, :CompanyName, :BrandName, :Phone, :License, :LicenseStatus, :LicenseNote, :Authorization, :AuthorizationStatus, :AuthorizationNote, :Trademarks, :InsertTime, :Services
+        
+        def initialize(companyid=nil, companyname=nil, brandname=nil, phone=nil, license=nil, licensestatus=nil, licensenote=nil, authorization=nil, authorizationstatus=nil, authorizationnote=nil, trademarks=nil, inserttime=nil, services=nil)
+          @CompanyId = companyid
+          @CompanyName = companyname
+          @BrandName = brandname
+          @Phone = phone
+          @License = license
+          @LicenseStatus = licensestatus
+          @LicenseNote = licensenote
+          @Authorization = authorization
+          @AuthorizationStatus = authorizationstatus
+          @AuthorizationNote = authorizationnote
+          @Trademarks = trademarks
+          @InsertTime = inserttime
+          @Services = services
+        end
+
+        def deserialize(params)
+          @CompanyId = params['CompanyId']
+          @CompanyName = params['CompanyName']
+          @BrandName = params['BrandName']
+          @Phone = params['Phone']
+          @License = params['License']
+          @LicenseStatus = params['LicenseStatus']
+          @LicenseNote = params['LicenseNote']
+          @Authorization = params['Authorization']
+          @AuthorizationStatus = params['AuthorizationStatus']
+          @AuthorizationNote = params['AuthorizationNote']
+          unless params['Trademarks'].nil?
+            @Trademarks = []
+            params['Trademarks'].each do |i|
+              trademarkdata_tmp = TrademarkData.new
+              trademarkdata_tmp.deserialize(i)
+              @Trademarks << trademarkdata_tmp
+            end
+          end
+          @InsertTime = params['InsertTime']
+          unless params['Services'].nil?
+            @Services = ServiceData.new
+            @Services.deserialize(params['Services'])
+          end
+        end
+      end
+
+      # CreateBPBrand请求参数结构体
+      class CreateBPBrandRequest < TencentCloud::Common::AbstractModel
+        # @param BrandName: 品牌名称
+        # @type BrandName: String
+        # @param CompanyName: 企业名称
+        # @type CompanyName: String
+        # @param Phone: 联系电话
+        # @type Phone: String
+        # @param License: 营业执照
+        # @type License: String
+        # @param Authorization: 授权书
+        # @type Authorization: String
+        # @param TrademarkNames: 商标名称
+        # @type TrademarkNames: Array
+        # @param Trademarks: 商标证明
+        # @type Trademarks: Array
+        # @param IsTransfers: 是否涉及转让: 0-不转让 1-转让
+        # @type IsTransfers: Array
+        # @param Transfers: 转让证明
+        # @type Transfers: Array
+        # @param ProtectURLs: 保护网址
+        # @type ProtectURLs: Array
+        # @param ProtectAPPs: 保护应用
+        # @type ProtectAPPs: Array
+        # @param ProtectOfficialAccounts: 保护公众号
+        # @type ProtectOfficialAccounts: Array
+        # @param ProtectMiniPrograms: 保护小程序
+        # @type ProtectMiniPrograms: Array
+
+        attr_accessor :BrandName, :CompanyName, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms
+        
+        def initialize(brandname=nil, companyname=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil)
+          @BrandName = brandname
+          @CompanyName = companyname
+          @Phone = phone
+          @License = license
+          @Authorization = authorization
+          @TrademarkNames = trademarknames
+          @Trademarks = trademarks
+          @IsTransfers = istransfers
+          @Transfers = transfers
+          @ProtectURLs = protecturls
+          @ProtectAPPs = protectapps
+          @ProtectOfficialAccounts = protectofficialaccounts
+          @ProtectMiniPrograms = protectminiprograms
+        end
+
+        def deserialize(params)
+          @BrandName = params['BrandName']
+          @CompanyName = params['CompanyName']
+          @Phone = params['Phone']
+          @License = params['License']
+          @Authorization = params['Authorization']
+          @TrademarkNames = params['TrademarkNames']
+          @Trademarks = params['Trademarks']
+          @IsTransfers = params['IsTransfers']
+          @Transfers = params['Transfers']
+          @ProtectURLs = params['ProtectURLs']
+          @ProtectAPPs = params['ProtectAPPs']
+          @ProtectOfficialAccounts = params['ProtectOfficialAccounts']
+          @ProtectMiniPrograms = params['ProtectMiniPrograms']
+        end
+      end
+
+      # CreateBPBrand返回参数结构体
+      class CreateBPBrandResponse < TencentCloud::Common::AbstractModel
+        # @param CompanyId: 企业id
+        # @type CompanyId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CompanyId, :RequestId
+        
+        def initialize(companyid=nil, requestid=nil)
+          @CompanyId = companyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CompanyId = params['CompanyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBPFakeAPPList请求参数结构体
       class CreateBPFakeAPPListRequest < TencentCloud::Common::AbstractModel
-        # @param FakeAPPs: 仿冒应用下载链接。请严格按照模版进行填写：https://bma-privacy-detection-1251316161.cosgz.myqcloud.com/20221206/f8c7521fbd84f4c4e7c2a25ac233857e/批量仿冒应用举报模板.xlsx
+        # @param FakeAPPs: 批量模版
         # @type FakeAPPs: String
 
         attr_accessor :FakeAPPs
@@ -155,7 +313,7 @@ module TencentCloud
 
       # CreateBPFakeURLs请求参数结构体
       class CreateBPFakeURLsRequest < TencentCloud::Common::AbstractModel
-        # @param FakeURLs: 仿冒网址下载链接：请严格按照模版要求填写，https://bma-privacy-detection-1251316161.cosgz.myqcloud.com/20221124/ff3273b24104d03fa3a8d0629a7f71a9/批量仿冒网址举报模板.xlsx
+        # @param FakeURLs: 批量模版
         # @type FakeURLs: String
 
         attr_accessor :FakeURLs
@@ -182,6 +340,661 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBPWhiteList请求参数结构体
+      class CreateBPWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param CompanyId: 企业Id
+        # @type CompanyId: Integer
+        # @param WhiteListType: 白名单类型：0-网站 1-应用 2-公众号 3-小程
+        # @type WhiteListType: Integer
+        # @param WhiteLists: 白名单名称
+        # @type WhiteLists: Array
+
+        attr_accessor :CompanyId, :WhiteListType, :WhiteLists
+        
+        def initialize(companyid=nil, whitelisttype=nil, whitelists=nil)
+          @CompanyId = companyid
+          @WhiteListType = whitelisttype
+          @WhiteLists = whitelists
+        end
+
+        def deserialize(params)
+          @CompanyId = params['CompanyId']
+          @WhiteListType = params['WhiteListType']
+          @WhiteLists = params['WhiteLists']
+        end
+      end
+
+      # CreateBPWhiteList返回参数结构体
+      class CreateBPWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBPWhiteList请求参数结构体
+      class DeleteBPWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param WhiteListId: 白名单id
+        # @type WhiteListId: Integer
+
+        attr_accessor :WhiteListId
+        
+        def initialize(whitelistid=nil)
+          @WhiteListId = whitelistid
+        end
+
+        def deserialize(params)
+          @WhiteListId = params['WhiteListId']
+        end
+      end
+
+      # DeleteBPWhiteList返回参数结构体
+      class DeleteBPWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPBrands请求参数结构体
+      class DescribeBPBrandsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBPBrands返回参数结构体
+      class DescribeBPBrandsResponse < TencentCloud::Common::AbstractModel
+        # @param Brands: 品牌信息
+        # @type Brands: Array
+        # @param NoticeStatus: 品牌审核通知栏状态：0 不显示 1 显示
+        # @type NoticeStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Brands, :NoticeStatus, :RequestId
+        
+        def initialize(brands=nil, noticestatus=nil, requestid=nil)
+          @Brands = brands
+          @NoticeStatus = noticestatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Brands'].nil?
+            @Brands = []
+            params['Brands'].each do |i|
+              branddata_tmp = BrandData.new
+              branddata_tmp.deserialize(i)
+              @Brands << branddata_tmp
+            end
+          end
+          @NoticeStatus = params['NoticeStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPFakeAPPList请求参数结构体
+      class DescribeBPFakeAPPListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+        # @param PageSize: 页数
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+
+        attr_accessor :Filters, :PageSize, :PageNumber
+        
+        def initialize(filters=nil, pagesize=nil, pagenumber=nil)
+          @Filters = filters
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPFakeAPPList返回参数结构体
+      class DescribeBPFakeAPPListResponse < TencentCloud::Common::AbstractModel
+        # @param FakeAPPList: 仿冒应用列表
+        # @type FakeAPPList: Array
+        # @param TotalCount: 仿冒应用总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FakeAPPList, :TotalCount, :RequestId
+        
+        def initialize(fakeapplist=nil, totalcount=nil, requestid=nil)
+          @FakeAPPList = fakeapplist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FakeAPPList'].nil?
+            @FakeAPPList = []
+            params['FakeAPPList'].each do |i|
+              fakeappdata_tmp = FakeAPPData.new
+              fakeappdata_tmp.deserialize(i)
+              @FakeAPPList << fakeappdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPFakeURLs请求参数结构体
+      class DescribeBPFakeURLsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+        # @param PageSize: 页数
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+
+        attr_accessor :Filters, :PageSize, :PageNumber
+        
+        def initialize(filters=nil, pagesize=nil, pagenumber=nil)
+          @Filters = filters
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPFakeURLs返回参数结构体
+      class DescribeBPFakeURLsResponse < TencentCloud::Common::AbstractModel
+        # @param FakeURLs: 仿冒网址列表
+        # @type FakeURLs: Array
+        # @param TotalCount: 仿冒网址总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FakeURLs, :TotalCount, :RequestId
+        
+        def initialize(fakeurls=nil, totalcount=nil, requestid=nil)
+          @FakeURLs = fakeurls
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FakeURLs'].nil?
+            @FakeURLs = []
+            params['FakeURLs'].each do |i|
+              fakeurldata_tmp = FakeURLData.new
+              fakeurldata_tmp.deserialize(i)
+              @FakeURLs << fakeurldata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPWhiteLists请求参数结构体
+      class DescribeBPWhiteListsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+        # @param PageSize: 页数
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+
+        attr_accessor :Filters, :PageSize, :PageNumber
+        
+        def initialize(filters=nil, pagesize=nil, pagenumber=nil)
+          @Filters = filters
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPWhiteLists返回参数结构体
+      class DescribeBPWhiteListsResponse < TencentCloud::Common::AbstractModel
+        # @param WhiteLists: 白名单列表
+        # @type WhiteLists: Array
+        # @param TotalCount: 白名单总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WhiteLists, :TotalCount, :RequestId
+        
+        def initialize(whitelists=nil, totalcount=nil, requestid=nil)
+          @WhiteLists = whitelists
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WhiteLists'].nil?
+            @WhiteLists = []
+            params['WhiteLists'].each do |i|
+              whitelistdata_tmp = WhiteListData.new
+              whitelistdata_tmp.deserialize(i)
+              @WhiteLists << whitelistdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 仿冒应用数据
+      class FakeAPPData < TencentCloud::Common::AbstractModel
+        # @param FakeAPPId: 仿冒应用id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeAPPId: Integer
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param Origin: 仿冒来源：0-系统检测 1-人工举报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Origin: Integer
+        # @param FakeAPPName: 仿冒应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeAPPName: String
+        # @param FakeAPPPackageName: 仿冒应用包名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeAPPPackageName: String
+        # @param FakeAPPCert: 仿冒应用证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeAPPCert: String
+        # @param FakeAPPSize: 仿冒应用大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeAPPSize: String
+        # @param Heat: 热度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Heat: Integer
+        # @param BlockStatus: 协助处置状态：0-未处置 1-处置中 2-处置成功 3-处置失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockStatus: Integer
+        # @param BlockNote: 协助处置状态说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockNote: String
+        # @param OfflineStatus: 关停状态：0-未关停 1-关停中 2-关停成功 3-关停失败 4-重复上架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineStatus: Integer
+        # @param OfflineNote: 关停状态说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineNote: String
+        # @param DownloadWay: app来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadWay: String
+        # @param InsertTime: 新增时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+        # @param DownloadCosURL: App下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadCosURL: String
+        # @param CertificationStatus: 资质证明状态:0-不可用 1-可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificationStatus: Integer
+
+        attr_accessor :FakeAPPId, :BrandName, :Origin, :FakeAPPName, :FakeAPPPackageName, :FakeAPPCert, :FakeAPPSize, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :DownloadWay, :InsertTime, :DownloadCosURL, :CertificationStatus
+        
+        def initialize(fakeappid=nil, brandname=nil, origin=nil, fakeappname=nil, fakeapppackagename=nil, fakeappcert=nil, fakeappsize=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, downloadway=nil, inserttime=nil, downloadcosurl=nil, certificationstatus=nil)
+          @FakeAPPId = fakeappid
+          @BrandName = brandname
+          @Origin = origin
+          @FakeAPPName = fakeappname
+          @FakeAPPPackageName = fakeapppackagename
+          @FakeAPPCert = fakeappcert
+          @FakeAPPSize = fakeappsize
+          @Heat = heat
+          @BlockStatus = blockstatus
+          @BlockNote = blocknote
+          @OfflineStatus = offlinestatus
+          @OfflineNote = offlinenote
+          @DownloadWay = downloadway
+          @InsertTime = inserttime
+          @DownloadCosURL = downloadcosurl
+          @CertificationStatus = certificationstatus
+        end
+
+        def deserialize(params)
+          @FakeAPPId = params['FakeAPPId']
+          @BrandName = params['BrandName']
+          @Origin = params['Origin']
+          @FakeAPPName = params['FakeAPPName']
+          @FakeAPPPackageName = params['FakeAPPPackageName']
+          @FakeAPPCert = params['FakeAPPCert']
+          @FakeAPPSize = params['FakeAPPSize']
+          @Heat = params['Heat']
+          @BlockStatus = params['BlockStatus']
+          @BlockNote = params['BlockNote']
+          @OfflineStatus = params['OfflineStatus']
+          @OfflineNote = params['OfflineNote']
+          @DownloadWay = params['DownloadWay']
+          @InsertTime = params['InsertTime']
+          @DownloadCosURL = params['DownloadCosURL']
+          @CertificationStatus = params['CertificationStatus']
+        end
+      end
+
+      # 仿冒网址数据
+      class FakeURLData < TencentCloud::Common::AbstractModel
+        # @param FakeURLId: 仿冒网址id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeURLId: Integer
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param Origin: 仿冒来源：0-系统检测 1-人工举报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Origin: Integer
+        # @param FakeURL: 仿冒网址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeURL: String
+        # @param Heat: 热度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Heat: Integer
+        # @param BlockStatus: 协助处置状态：0-未处置 1-处置中 2-处置成功 3-处置失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockStatus: Integer
+        # @param BlockNote: 协助处置状态说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockNote: String
+        # @param OfflineStatus: 关停状态：0-未关停 1-关停中 2-关停成功 3-关停失败 4-重复上架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineStatus: Integer
+        # @param OfflineNote: 关停状态说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineNote: String
+        # @param IP: ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
+        # @param IPLocation: ip地理位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPLocation: String
+        # @param WebCompany: 网站所属单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCompany: String
+        # @param WebAttribute: 网站性质
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebAttribute: String
+        # @param WebName: 网站名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebName: String
+        # @param WebICP: 备案号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebICP: String
+        # @param WebCreateTime: 网站创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCreateTime: String
+        # @param WebExpireTime: 网站过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebExpireTime: String
+        # @param InsertTime: 新增时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+        # @param CertificationStatus: 资质证明状态：0-不可用 1-可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificationStatus: Integer
+
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus
+        
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil)
+          @FakeURLId = fakeurlid
+          @BrandName = brandname
+          @Origin = origin
+          @FakeURL = fakeurl
+          @Heat = heat
+          @BlockStatus = blockstatus
+          @BlockNote = blocknote
+          @OfflineStatus = offlinestatus
+          @OfflineNote = offlinenote
+          @IP = ip
+          @IPLocation = iplocation
+          @WebCompany = webcompany
+          @WebAttribute = webattribute
+          @WebName = webname
+          @WebICP = webicp
+          @WebCreateTime = webcreatetime
+          @WebExpireTime = webexpiretime
+          @InsertTime = inserttime
+          @CertificationStatus = certificationstatus
+        end
+
+        def deserialize(params)
+          @FakeURLId = params['FakeURLId']
+          @BrandName = params['BrandName']
+          @Origin = params['Origin']
+          @FakeURL = params['FakeURL']
+          @Heat = params['Heat']
+          @BlockStatus = params['BlockStatus']
+          @BlockNote = params['BlockNote']
+          @OfflineStatus = params['OfflineStatus']
+          @OfflineNote = params['OfflineNote']
+          @IP = params['IP']
+          @IPLocation = params['IPLocation']
+          @WebCompany = params['WebCompany']
+          @WebAttribute = params['WebAttribute']
+          @WebName = params['WebName']
+          @WebICP = params['WebICP']
+          @WebCreateTime = params['WebCreateTime']
+          @WebExpireTime = params['WebExpireTime']
+          @InsertTime = params['InsertTime']
+          @CertificationStatus = params['CertificationStatus']
+        end
+      end
+
+      # 过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤参数键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 过滤参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 服务响应数据
+      class ServiceData < TencentCloud::Common::AbstractModel
+        # @param ProtectURLCount: 网站保护关联资产数
+        # @type ProtectURLCount: Integer
+        # @param ProtectURLExpireTime: 网站保护服务到期时间
+        # @type ProtectURLExpireTime: String
+        # @param ProtectAPPCount: 应用保护关联资产数
+        # @type ProtectAPPCount: Integer
+        # @param ProtectAPPExpireTime: 应用保护服务到期时间
+        # @type ProtectAPPExpireTime: String
+        # @param ProtectOfficialAccountCount: 公众号保护关联资产数
+        # @type ProtectOfficialAccountCount: Integer
+        # @param ProtectOfficialAccountExpireTime: 公众号保护服务到期时间
+        # @type ProtectOfficialAccountExpireTime: String
+        # @param ProtectMiniProgramCount: 小程序保护关联资产数
+        # @type ProtectMiniProgramCount: Integer
+        # @param ProtectMiniProgramExpireTime: 小程序保护服务到期时间
+        # @type ProtectMiniProgramExpireTime: String
+        # @param OfflineCount: 关停下架使用次数
+        # @type OfflineCount: Integer
+
+        attr_accessor :ProtectURLCount, :ProtectURLExpireTime, :ProtectAPPCount, :ProtectAPPExpireTime, :ProtectOfficialAccountCount, :ProtectOfficialAccountExpireTime, :ProtectMiniProgramCount, :ProtectMiniProgramExpireTime, :OfflineCount
+        
+        def initialize(protecturlcount=nil, protecturlexpiretime=nil, protectappcount=nil, protectappexpiretime=nil, protectofficialaccountcount=nil, protectofficialaccountexpiretime=nil, protectminiprogramcount=nil, protectminiprogramexpiretime=nil, offlinecount=nil)
+          @ProtectURLCount = protecturlcount
+          @ProtectURLExpireTime = protecturlexpiretime
+          @ProtectAPPCount = protectappcount
+          @ProtectAPPExpireTime = protectappexpiretime
+          @ProtectOfficialAccountCount = protectofficialaccountcount
+          @ProtectOfficialAccountExpireTime = protectofficialaccountexpiretime
+          @ProtectMiniProgramCount = protectminiprogramcount
+          @ProtectMiniProgramExpireTime = protectminiprogramexpiretime
+          @OfflineCount = offlinecount
+        end
+
+        def deserialize(params)
+          @ProtectURLCount = params['ProtectURLCount']
+          @ProtectURLExpireTime = params['ProtectURLExpireTime']
+          @ProtectAPPCount = params['ProtectAPPCount']
+          @ProtectAPPExpireTime = params['ProtectAPPExpireTime']
+          @ProtectOfficialAccountCount = params['ProtectOfficialAccountCount']
+          @ProtectOfficialAccountExpireTime = params['ProtectOfficialAccountExpireTime']
+          @ProtectMiniProgramCount = params['ProtectMiniProgramCount']
+          @ProtectMiniProgramExpireTime = params['ProtectMiniProgramExpireTime']
+          @OfflineCount = params['OfflineCount']
+        end
+      end
+
+      # 商标响应数据
+      class TrademarkData < TencentCloud::Common::AbstractModel
+        # @param Trademark: 商标证明
+        # @type Trademark: String
+        # @param TrademarkStatus: 商标审核状态
+        # @type TrademarkStatus: Integer
+        # @param TrademarkNote: 商标审核状态说明
+        # @type TrademarkNote: String
+        # @param TrademarkId: 商标id
+        # @type TrademarkId: Integer
+        # @param Transfer: 商标转让书
+        # @type Transfer: String
+        # @param TransferStatus: 商标转让书审核状态
+        # @type TransferStatus: Integer
+        # @param TransferNote: 商标转让书审核状态说明
+        # @type TransferNote: String
+        # @param TrademarkName: 商标名称
+        # @type TrademarkName: String
+
+        attr_accessor :Trademark, :TrademarkStatus, :TrademarkNote, :TrademarkId, :Transfer, :TransferStatus, :TransferNote, :TrademarkName
+        
+        def initialize(trademark=nil, trademarkstatus=nil, trademarknote=nil, trademarkid=nil, transfer=nil, transferstatus=nil, transfernote=nil, trademarkname=nil)
+          @Trademark = trademark
+          @TrademarkStatus = trademarkstatus
+          @TrademarkNote = trademarknote
+          @TrademarkId = trademarkid
+          @Transfer = transfer
+          @TransferStatus = transferstatus
+          @TransferNote = transfernote
+          @TrademarkName = trademarkname
+        end
+
+        def deserialize(params)
+          @Trademark = params['Trademark']
+          @TrademarkStatus = params['TrademarkStatus']
+          @TrademarkNote = params['TrademarkNote']
+          @TrademarkId = params['TrademarkId']
+          @Transfer = params['Transfer']
+          @TransferStatus = params['TransferStatus']
+          @TransferNote = params['TransferNote']
+          @TrademarkName = params['TrademarkName']
+        end
+      end
+
+      # 白名单数据
+      class WhiteListData < TencentCloud::Common::AbstractModel
+        # @param WhiteListId: 白名单id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteListId: Integer
+        # @param CompanyId: 企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyId: Integer
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param AssetsType: 资产类型：0-网站 1-app 2-公众号 3-小程序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetsType: Integer
+        # @param WhiteList: 白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteList: String
+        # @param InsertTime: 新增时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+
+        attr_accessor :WhiteListId, :CompanyId, :BrandName, :AssetsType, :WhiteList, :InsertTime
+        
+        def initialize(whitelistid=nil, companyid=nil, brandname=nil, assetstype=nil, whitelist=nil, inserttime=nil)
+          @WhiteListId = whitelistid
+          @CompanyId = companyid
+          @BrandName = brandname
+          @AssetsType = assetstype
+          @WhiteList = whitelist
+          @InsertTime = inserttime
+        end
+
+        def deserialize(params)
+          @WhiteListId = params['WhiteListId']
+          @CompanyId = params['CompanyId']
+          @BrandName = params['BrandName']
+          @AssetsType = params['AssetsType']
+          @WhiteList = params['WhiteList']
+          @InsertTime = params['InsertTime']
         end
       end
 

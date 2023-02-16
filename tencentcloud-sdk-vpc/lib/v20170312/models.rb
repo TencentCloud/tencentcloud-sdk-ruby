@@ -2536,10 +2536,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Protocol: 带宽包协议类型。当前支持'ipv4'和'ipv6'协议带宽包，默认值是'ipv4'。
         # @type Protocol: String
+        # @param TimeSpan: 预付费包月带宽包的购买时长，单位: 月，取值范围: 1~60。
+        # @type TimeSpan: Integer
 
-        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol
+        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol, :TimeSpan
         
-        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil)
+        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil, timespan=nil)
           @NetworkType = networktype
           @ChargeType = chargetype
           @BandwidthPackageName = bandwidthpackagename
@@ -2547,6 +2549,7 @@ module TencentCloud
           @InternetMaxBandwidth = internetmaxbandwidth
           @Tags = tags
           @Protocol = protocol
+          @TimeSpan = timespan
         end
 
         def deserialize(params)
@@ -2564,6 +2567,7 @@ module TencentCloud
             end
           end
           @Protocol = params['Protocol']
+          @TimeSpan = params['TimeSpan']
         end
       end
 

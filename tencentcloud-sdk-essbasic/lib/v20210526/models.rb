@@ -1406,6 +1406,60 @@ module TencentCloud
         end
       end
 
+      # ChannelUpdateSealStatus请求参数结构体
+      class ChannelUpdateSealStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Status: 操作的印章状态，DISABLE-停用印章
+        # @type Status: String
+        # @param SealId: 印章ID
+        # @type SealId: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Reason: 更新印章状态原因说明
+        # @type Reason: String
+
+        attr_accessor :Agent, :Status, :SealId, :Operator, :Reason
+        
+        def initialize(agent=nil, status=nil, sealid=nil, operator=nil, reason=nil)
+          @Agent = agent
+          @Status = status
+          @SealId = sealid
+          @Operator = operator
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Status = params['Status']
+          @SealId = params['SealId']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Reason = params['Reason']
+        end
+      end
+
+      # ChannelUpdateSealStatus返回参数结构体
+      class ChannelUpdateSealStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelVerifyPdf请求参数结构体
       class ChannelVerifyPdfRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 合同Id，流程Id

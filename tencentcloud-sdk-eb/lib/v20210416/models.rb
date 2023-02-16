@@ -326,17 +326,21 @@ module TencentCloud
         # @type EventBusName: String
         # @param Description: 事件集描述，不限字符类型，200字符描述以内
         # @type Description: String
+        # @param SaveDays: EB存储时长
+        # @type SaveDays: Integer
 
-        attr_accessor :EventBusName, :Description
+        attr_accessor :EventBusName, :Description, :SaveDays
         
-        def initialize(eventbusname=nil, description=nil)
+        def initialize(eventbusname=nil, description=nil, savedays=nil)
           @EventBusName = eventbusname
           @Description = description
+          @SaveDays = savedays
         end
 
         def deserialize(params)
           @EventBusName = params['EventBusName']
           @Description = params['Description']
+          @SaveDays = params['SaveDays']
         end
       end
 
@@ -1805,19 +1809,27 @@ module TencentCloud
         # @type Description: String
         # @param EventBusName: 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         # @type EventBusName: String
+        # @param SaveDays: EB日志存储时长
+        # @type SaveDays: Integer
+        # @param LogTopicId: EB日志主题ID
+        # @type LogTopicId: String
 
-        attr_accessor :EventBusId, :Description, :EventBusName
+        attr_accessor :EventBusId, :Description, :EventBusName, :SaveDays, :LogTopicId
         
-        def initialize(eventbusid=nil, description=nil, eventbusname=nil)
+        def initialize(eventbusid=nil, description=nil, eventbusname=nil, savedays=nil, logtopicid=nil)
           @EventBusId = eventbusid
           @Description = description
           @EventBusName = eventbusname
+          @SaveDays = savedays
+          @LogTopicId = logtopicid
         end
 
         def deserialize(params)
           @EventBusId = params['EventBusId']
           @Description = params['Description']
           @EventBusName = params['EventBusName']
+          @SaveDays = params['SaveDays']
+          @LogTopicId = params['LogTopicId']
         end
       end
 

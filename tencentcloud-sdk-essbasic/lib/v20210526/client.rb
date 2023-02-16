@@ -479,6 +479,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ChannelUpdateSealStatus）由于渠道版更新印章状态
+
+        # @param request: Request instance for ChannelUpdateSealStatus.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelUpdateSealStatusRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelUpdateSealStatusResponse`
+        def ChannelUpdateSealStatus(request)
+          body = send_request('ChannelUpdateSealStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelUpdateSealStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 合同文件验签
 
         # @param request: Request instance for ChannelVerifyPdf.
