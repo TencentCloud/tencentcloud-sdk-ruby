@@ -61,25 +61,33 @@ module TencentCloud
         end
       end
 
-      # 认证主体主要信息
+      # 互信主体主要信息
       class AuthNode < TencentCloud::Common::AbstractModel
-        # @param RelationId: 主体关系ID
+        # @param RelationId: 互信主体关系ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelationId: Integer
-        # @param AuthName: 主体名称
+        # @param AuthName: 互信主体名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthName: String
+        # @param Manager: 主体管理员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manager: :class:`Tencentcloud::Organization.v20210331.models.MemberMainInfo`
 
-        attr_accessor :RelationId, :AuthName
+        attr_accessor :RelationId, :AuthName, :Manager
         
-        def initialize(relationid=nil, authname=nil)
+        def initialize(relationid=nil, authname=nil, manager=nil)
           @RelationId = relationid
           @AuthName = authname
+          @Manager = manager
         end
 
         def deserialize(params)
           @RelationId = params['RelationId']
           @AuthName = params['AuthName']
+          unless params['Manager'].nil?
+            @Manager = MemberMainInfo.new
+            @Manager.deserialize(params['Manager'])
+          end
         end
       end
 
@@ -355,17 +363,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目。最大50
         # @type Limit: Integer
+        # @param AuthName: 互信主体名称。
+        # @type AuthName: String
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Offset, :Limit, :AuthName
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(offset=nil, limit=nil, authname=nil)
           @Offset = offset
           @Limit = limit
+          @AuthName = authname
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @AuthName = params['AuthName']
         end
       end
 
@@ -924,6 +936,28 @@ module TencentCloud
         def deserialize(params)
           @IdentityId = params['IdentityId']
           @IdentityAliasName = params['IdentityAliasName']
+        end
+      end
+
+      # 成员主要信息
+      class MemberMainInfo < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param MemberName: 成员名称j
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberName: String
+
+        attr_accessor :MemberUin, :MemberName
+        
+        def initialize(memberuin=nil, membername=nil)
+          @MemberUin = memberuin
+          @MemberName = membername
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
         end
       end
 

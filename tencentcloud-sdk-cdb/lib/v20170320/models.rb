@@ -5122,9 +5122,9 @@ module TencentCloud
       class DescribeErrorLogDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param StartTime: 开始时间戳。
+        # @param StartTime: 开始时间戳。例如 1585142640 。
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳。
+        # @param EndTime: 结束时间戳。例如 1585142640 。
         # @type EndTime: Integer
         # @param KeyWords: 要匹配的关键字列表，最多支持15个关键字。
         # @type KeyWords: Array
@@ -5875,9 +5875,9 @@ module TencentCloud
       class DescribeSlowLogDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 开始时间戳。
+        # @param StartTime: 开始时间戳。例如 1585142640 。
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳。
+        # @param EndTime: 结束时间戳。例如 1585142640 。
         # @type EndTime: Integer
         # @param UserHosts: 客户端 Host 列表。
         # @type UserHosts: Array
@@ -11036,67 +11036,6 @@ module TencentCloud
           @EndTime = params['EndTime']
           @InstanceIds = params['InstanceIds']
           @AsyncRequestId = params['AsyncRequestId']
-        end
-      end
-
-      # UpgradeCDBProxy请求参数结构体
-      class UpgradeCDBProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param ProxyGroupId: 数据库代理ID
-        # @type ProxyGroupId: String
-        # @param ProxyCount: 代理节点个数
-        # @type ProxyCount: Integer
-        # @param Cpu: 代理节点核数
-        # @type Cpu: Integer
-        # @param Mem: 代理节点内存大小
-        # @type Mem: Integer
-        # @param ReloadBalance: 重新负载均衡：auto（自动），manual（手动）
-        # @type ReloadBalance: String
-        # @param UpgradeTime: 升级时间 nowTime（升级完成时）timeWindow（实例维护时间）
-        # @type UpgradeTime: String
-
-        attr_accessor :InstanceId, :ProxyGroupId, :ProxyCount, :Cpu, :Mem, :ReloadBalance, :UpgradeTime
-        
-        def initialize(instanceid=nil, proxygroupid=nil, proxycount=nil, cpu=nil, mem=nil, reloadbalance=nil, upgradetime=nil)
-          @InstanceId = instanceid
-          @ProxyGroupId = proxygroupid
-          @ProxyCount = proxycount
-          @Cpu = cpu
-          @Mem = mem
-          @ReloadBalance = reloadbalance
-          @UpgradeTime = upgradetime
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @ProxyGroupId = params['ProxyGroupId']
-          @ProxyCount = params['ProxyCount']
-          @Cpu = params['Cpu']
-          @Mem = params['Mem']
-          @ReloadBalance = params['ReloadBalance']
-          @UpgradeTime = params['UpgradeTime']
-        end
-      end
-
-      # UpgradeCDBProxy返回参数结构体
-      class UpgradeCDBProxyResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步处理ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AsyncRequestId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AsyncRequestId, :RequestId
-        
-        def initialize(asyncrequestid=nil, requestid=nil)
-          @AsyncRequestId = asyncrequestid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AsyncRequestId = params['AsyncRequestId']
-          @RequestId = params['RequestId']
         end
       end
 

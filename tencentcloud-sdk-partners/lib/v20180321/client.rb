@@ -77,6 +77,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为代客or申请中代客分派跟进人（业务员）
+        # - 代客列表获取API： [DescribeAgentAuditedClients](https://cloud.tencent.com/document/product/563/19184)
+        # - 申请中代客列表获取API：[DescribeAgentClients](https://cloud.tencent.com/document/product/563/16046)
+        # - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196)
+
+        # @param request: Request instance for AssignClientsToSales.
+        # @type request: :class:`Tencentcloud::partners::V20180321::AssignClientsToSalesRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::AssignClientsToSalesResponse`
+        def AssignClientsToSales(request)
+          body = send_request('AssignClientsToSales', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssignClientsToSalesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 代理商可以审核其名下申请中代客
 
         # @param request: Request instance for AuditApplyClient.

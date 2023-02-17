@@ -1238,6 +1238,33 @@ module TencentCloud
         end
       end
 
+      # GetRequestStatistics请求参数结构体
+      class GetRequestStatisticsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetRequestStatistics返回参数结构体
+      class GetRequestStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTicketStatistics请求参数结构体
       class GetTicketStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param CaptchaAppId: 验证码AppId
@@ -1294,6 +1321,33 @@ module TencentCloud
           end
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTotalRequestStatistics请求参数结构体
+      class GetTotalRequestStatisticsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetTotalRequestStatistics返回参数结构体
+      class GetTotalRequestStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

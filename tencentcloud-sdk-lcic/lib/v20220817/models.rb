@@ -17,6 +17,46 @@
 module TencentCloud
   module Lcic
     module V20220817
+      # AddGroupMember请求参数结构体
+      class AddGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID
+        # @type GroupId: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param MemberIds: 成员列表，最大值200
+        # @type MemberIds: Array
+
+        attr_accessor :GroupId, :SdkAppId, :MemberIds
+        
+        def initialize(groupid=nil, sdkappid=nil, memberids=nil)
+          @GroupId = groupid
+          @SdkAppId = sdkappid
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SdkAppId = params['SdkAppId']
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # AddGroupMember返回参数结构体
+      class AddGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 应用配置信息
       class AppConfig < TencentCloud::Common::AbstractModel
 
@@ -77,6 +117,97 @@ module TencentCloud
         end
       end
 
+      # BatchAddGroupMember请求参数结构体
+      class BatchAddGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 待添加群组ID列表，最大值100
+        # @type GroupIds: Array
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param MemberIds: 待添加成员列表，最大值200
+        # @type MemberIds: Array
+
+        attr_accessor :GroupIds, :SdkAppId, :MemberIds
+        
+        def initialize(groupids=nil, sdkappid=nil, memberids=nil)
+          @GroupIds = groupids
+          @SdkAppId = sdkappid
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @SdkAppId = params['SdkAppId']
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # BatchAddGroupMember返回参数结构体
+      class BatchAddGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchCreateGroupWithMembers请求参数结构体
+      class BatchCreateGroupWithMembersRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param GroupBaseInfos: 批量创建群组基础信息，最大长度限制256
+        # @type GroupBaseInfos: Array
+        # @param MemberIds: 群组绑定的成员列表，一次性最多200个
+        # @type MemberIds: Array
+
+        attr_accessor :SdkAppId, :GroupBaseInfos, :MemberIds
+        
+        def initialize(sdkappid=nil, groupbaseinfos=nil, memberids=nil)
+          @SdkAppId = sdkappid
+          @GroupBaseInfos = groupbaseinfos
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['GroupBaseInfos'].nil?
+            @GroupBaseInfos = []
+            params['GroupBaseInfos'].each do |i|
+              groupbaseinfo_tmp = GroupBaseInfo.new
+              groupbaseinfo_tmp.deserialize(i)
+              @GroupBaseInfos << groupbaseinfo_tmp
+            end
+          end
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # BatchCreateGroupWithMembers返回参数结构体
+      class BatchCreateGroupWithMembersResponse < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 新创建群组ID列表，与输入创建参数顺序一致
+        # @type GroupIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupIds, :RequestId
+        
+        def initialize(groupids=nil, requestid=nil)
+          @GroupIds = groupids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchCreateRoom请求参数结构体
       class BatchCreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码平台的SdkAppId。
@@ -120,6 +251,46 @@ module TencentCloud
 
         def deserialize(params)
           @RoomIds = params['RoomIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchDeleteGroupMember请求参数结构体
+      class BatchDeleteGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 待添加群组ID列表，最大值100
+        # @type GroupIds: Array
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param MemberIds: 待添加成员列表，最大值256
+        # @type MemberIds: Array
+
+        attr_accessor :GroupIds, :SdkAppId, :MemberIds
+        
+        def initialize(groupids=nil, sdkappid=nil, memberids=nil)
+          @GroupIds = groupids
+          @SdkAppId = sdkappid
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @SdkAppId = params['SdkAppId']
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # BatchDeleteGroupMember返回参数结构体
+      class BatchDeleteGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -388,6 +559,102 @@ module TencentCloud
         end
       end
 
+      # CreateGroupWithMembers请求参数结构体
+      class CreateGroupWithMembersRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: 待创建群组名称
+        # @type GroupName: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param TeacherId: 默认绑定主讲老师ID
+        # @type TeacherId: String
+        # @param MemberIds: 群组成员列表,一次性最多200个
+        # @type MemberIds: Array
+
+        attr_accessor :GroupName, :SdkAppId, :TeacherId, :MemberIds
+        
+        def initialize(groupname=nil, sdkappid=nil, teacherid=nil, memberids=nil)
+          @GroupName = groupname
+          @SdkAppId = sdkappid
+          @TeacherId = teacherid
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @SdkAppId = params['SdkAppId']
+          @TeacherId = params['TeacherId']
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # CreateGroupWithMembers返回参数结构体
+      class CreateGroupWithMembersResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 创建成功群组ID
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+        
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGroupWithSubGroup请求参数结构体
+      class CreateGroupWithSubGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: 待创建的新群组名
+        # @type GroupName: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param SubGroupIds: 子群组ID列表，子群组ID不能重复，最多40个
+        # @type SubGroupIds: Array
+        # @param TeacherId: 群组默认主讲老师ID
+        # @type TeacherId: String
+
+        attr_accessor :GroupName, :SdkAppId, :SubGroupIds, :TeacherId
+        
+        def initialize(groupname=nil, sdkappid=nil, subgroupids=nil, teacherid=nil)
+          @GroupName = groupname
+          @SdkAppId = sdkappid
+          @SubGroupIds = subgroupids
+          @TeacherId = teacherid
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @SdkAppId = params['SdkAppId']
+          @SubGroupIds = params['SubGroupIds']
+          @TeacherId = params['TeacherId']
+        end
+      end
+
+      # CreateGroupWithSubGroup返回参数结构体
+      class CreateGroupWithSubGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 新创建群组ID
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+        
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRoom请求参数结构体
       class CreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param Name: 房间名称。
@@ -429,10 +696,12 @@ module TencentCloud
         # @type Assistants: Array
         # @param RecordLayout: 录制布局。
         # @type RecordLayout: Integer
+        # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
+        # @type GroupId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :AudioQuality, :DisableRecord, :Assistants, :RecordLayout
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :AudioQuality, :DisableRecord, :Assistants, :RecordLayout, :GroupId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, audioquality=nil, disablerecord=nil, assistants=nil, recordlayout=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, audioquality=nil, disablerecord=nil, assistants=nil, recordlayout=nil, groupid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -446,6 +715,7 @@ module TencentCloud
           @DisableRecord = disablerecord
           @Assistants = assistants
           @RecordLayout = recordlayout
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -462,6 +732,7 @@ module TencentCloud
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
           @RecordLayout = params['RecordLayout']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -530,6 +801,82 @@ module TencentCloud
 
       # DeleteDocument返回参数结构体
       class DeleteDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGroupMember请求参数结构体
+      class DeleteGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID，联合群组无法删除群组成员
+        # @type GroupId: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param MemberIds: 成员列表，最大值200
+        # @type MemberIds: Array
+
+        attr_accessor :GroupId, :SdkAppId, :MemberIds
+        
+        def initialize(groupid=nil, sdkappid=nil, memberids=nil)
+          @GroupId = groupid
+          @SdkAppId = sdkappid
+          @MemberIds = memberids
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SdkAppId = params['SdkAppId']
+          @MemberIds = params['MemberIds']
+        end
+      end
+
+      # DeleteGroupMember返回参数结构体
+      class DeleteGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGroup请求参数结构体
+      class DeleteGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 待删除群组ID列表
+        # @type GroupIds: Array
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+
+        attr_accessor :GroupIds, :SdkAppId
+        
+        def initialize(groupids=nil, sdkappid=nil)
+          @GroupIds = groupids
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DeleteGroup返回参数结构体
+      class DeleteGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -886,6 +1233,183 @@ module TencentCloud
         end
       end
 
+      # DescribeGroupList请求参数结构体
+      class DescribeGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param Page: 分页查询当前页数，默认从1开始递增。
+        # @type Page: Integer
+        # @param Limit: 每页数据量，默认20，最大1000。
+        # @type Limit: Integer
+        # @param TeacherId: 主讲人ID筛选群组，与MemberId有且只有一个,都传时以此字段获取
+        # @type TeacherId: String
+        # @param MemberId: 成员ID刷选群组，与TeacherId有且只有一个
+        # @type MemberId: String
+
+        attr_accessor :SdkAppId, :Page, :Limit, :TeacherId, :MemberId
+        
+        def initialize(sdkappid=nil, page=nil, limit=nil, teacherid=nil, memberid=nil)
+          @SdkAppId = sdkappid
+          @Page = page
+          @Limit = limit
+          @TeacherId = teacherid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @TeacherId = params['TeacherId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeGroupList返回参数结构体
+      class DescribeGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数。当前匹配群组总数。
+        # @type Total: Integer
+        # @param GroupInfos: 群组信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :GroupInfos, :RequestId
+        
+        def initialize(total=nil, groupinfos=nil, requestid=nil)
+          @Total = total
+          @GroupInfos = groupinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['GroupInfos'].nil?
+            @GroupInfos = []
+            params['GroupInfos'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @GroupInfos << groupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGroupMemberList请求参数结构体
+      class DescribeGroupMemberListRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID
+        # @type GroupId: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param Page: 分页值，默认1
+        # @type Page: Integer
+        # @param Limit: 每页数据量，默认20，最大1000
+        # @type Limit: Integer
+
+        attr_accessor :GroupId, :SdkAppId, :Page, :Limit
+        
+        def initialize(groupid=nil, sdkappid=nil, page=nil, limit=nil)
+          @GroupId = groupid
+          @SdkAppId = sdkappid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SdkAppId = params['SdkAppId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGroupMemberList返回参数结构体
+      class DescribeGroupMemberListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件总条数
+        # @type Total: Integer
+        # @param MemberIds: 查询成员列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :MemberIds, :RequestId
+        
+        def initialize(total=nil, memberids=nil, requestid=nil)
+          @Total = total
+          @MemberIds = memberids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @MemberIds = params['MemberIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGroup请求参数结构体
+      class DescribeGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID
+        # @type GroupId: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+
+        attr_accessor :GroupId, :SdkAppId
+        
+        def initialize(groupid=nil, sdkappid=nil)
+          @GroupId = groupid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeGroup返回参数结构体
+      class DescribeGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID
+        # @type GroupId: String
+        # @param GroupName: 群组名称
+        # @type GroupName: String
+        # @param TeacherId: 群主主讲人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TeacherId: String
+        # @param GroupType: 群组类型
+        # 0-基础群组
+        # 1-组合群组，若为1时会返回子群组ID
+        # @type GroupType: Integer
+        # @param SubGroupIds: 子群组ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubGroupIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :GroupName, :TeacherId, :GroupType, :SubGroupIds, :RequestId
+        
+        def initialize(groupid=nil, groupname=nil, teacherid=nil, grouptype=nil, subgroupids=nil, requestid=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @TeacherId = teacherid
+          @GroupType = grouptype
+          @SubGroupIds = subgroupids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @TeacherId = params['TeacherId']
+          @GroupType = params['GroupType']
+          @SubGroupIds = params['SubGroupIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoom请求参数结构体
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
@@ -945,15 +1469,18 @@ module TencentCloud
         # @param RecordUrl: 录制地址。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
-        # @param Status: 课堂状态。0为未开始，1为正在上课，2为已结束，3为已过期。
+        # @param Status: 课堂状态。0为未开始，1为已开始，2为已结束，3为已过期。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param GroupId: 房间绑定的群组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :RequestId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -968,6 +1495,7 @@ module TencentCloud
           @Assistants = assistants
           @RecordUrl = recordurl
           @Status = status
+          @GroupId = groupid
           @RequestId = requestid
         end
 
@@ -986,6 +1514,7 @@ module TencentCloud
           @Assistants = params['Assistants']
           @RecordUrl = params['RecordUrl']
           @Status = params['Status']
+          @GroupId = params['GroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -1313,6 +1842,67 @@ module TencentCloud
         end
       end
 
+      # 批量创建群组基础信息
+      class GroupBaseInfo < TencentCloud::Common::AbstractModel
+        # @param GroupName: 待创建群组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param TeacherId: 群组主讲人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TeacherId: String
+
+        attr_accessor :GroupName, :TeacherId
+        
+        def initialize(groupname=nil, teacherid=nil)
+          @GroupName = groupname
+          @TeacherId = teacherid
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @TeacherId = params['TeacherId']
+        end
+      end
+
+      # 获取群组列表返回的群组信息
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 群组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 群组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param TeacherId: 群组主讲人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TeacherId: String
+        # @param GroupType: 群组类型
+        # 0-基础群组
+        # 1-组合群组，若为1时会返回子群组ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupType: Integer
+        # @param SubGroupIds: 子群组ID列表，如有。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubGroupIds: String
+
+        attr_accessor :GroupId, :GroupName, :TeacherId, :GroupType, :SubGroupIds
+        
+        def initialize(groupid=nil, groupname=nil, teacherid=nil, grouptype=nil, subgroupids=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @TeacherId = teacherid
+          @GroupType = grouptype
+          @SubGroupIds = subgroupids
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @TeacherId = params['TeacherId']
+          @GroupType = params['GroupType']
+          @SubGroupIds = params['SubGroupIds']
+        end
+      end
+
       # LoginOriginId请求参数结构体
       class LoginOriginIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -1505,6 +2095,50 @@ module TencentCloud
         end
       end
 
+      # ModifyGroup请求参数结构体
+      class ModifyGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 需要修改的群组ID
+        # @type GroupId: String
+        # @param SdkAppId: 低代码平台应用ID
+        # @type SdkAppId: Integer
+        # @param TeacherId: 默认绑定主讲老师ID
+        # @type TeacherId: String
+        # @param GroupName: 待修改的群组名称
+        # @type GroupName: String
+
+        attr_accessor :GroupId, :SdkAppId, :TeacherId, :GroupName
+        
+        def initialize(groupid=nil, sdkappid=nil, teacherid=nil, groupname=nil)
+          @GroupId = groupid
+          @SdkAppId = sdkappid
+          @TeacherId = teacherid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SdkAppId = params['SdkAppId']
+          @TeacherId = params['TeacherId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # ModifyGroup返回参数结构体
+      class ModifyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRoom请求参数结构体
       class ModifyRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID。
@@ -1551,10 +2185,12 @@ module TencentCloud
         # @type DisableRecord: Integer
         # @param Assistants: 助教Id列表。直播开始后不允许修改。
         # @type Assistants: Array
+        # @param GroupId: 房间绑定的群组ID
+        # @type GroupId: String
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId
         
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1568,6 +2204,7 @@ module TencentCloud
           @SubType = subtype
           @DisableRecord = disablerecord
           @Assistants = assistants
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -1584,6 +2221,7 @@ module TencentCloud
           @SubType = params['SubType']
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -1742,10 +2380,13 @@ module TencentCloud
         # @param RecordLayout: 录制布局。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordLayout: Integer
+        # @param GroupId: 房间绑定的群组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1761,6 +2402,7 @@ module TencentCloud
           @RTCAudienceNumber = rtcaudiencenumber
           @AudienceType = audiencetype
           @RecordLayout = recordlayout
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -1779,6 +2421,7 @@ module TencentCloud
           @RTCAudienceNumber = params['RTCAudienceNumber']
           @AudienceType = params['AudienceType']
           @RecordLayout = params['RecordLayout']
+          @GroupId = params['GroupId']
         end
       end
 

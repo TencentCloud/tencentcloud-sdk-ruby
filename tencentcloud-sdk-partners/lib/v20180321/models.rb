@@ -642,6 +642,60 @@ module TencentCloud
         end
       end
 
+      # AssignClientsToSales请求参数结构体
+      class AssignClientsToSalesRequest < TencentCloud::Common::AbstractModel
+        # @param ClientUins: 代客/申请中代客uin列表，最大50条
+        # @type ClientUins: Array
+        # @param SalesUin: 业务员uin
+        # @type SalesUin: String
+        # @param AssignClientStatus: 代客类型:normal-代客 apply-申请中代客
+        # @type AssignClientStatus: String
+        # @param AssignActionType: 操作类型:assign-执行分派 cancel-取消分派
+        # @type AssignActionType: String
+
+        attr_accessor :ClientUins, :SalesUin, :AssignClientStatus, :AssignActionType
+        
+        def initialize(clientuins=nil, salesuin=nil, assignclientstatus=nil, assignactiontype=nil)
+          @ClientUins = clientuins
+          @SalesUin = salesuin
+          @AssignClientStatus = assignclientstatus
+          @AssignActionType = assignactiontype
+        end
+
+        def deserialize(params)
+          @ClientUins = params['ClientUins']
+          @SalesUin = params['SalesUin']
+          @AssignClientStatus = params['AssignClientStatus']
+          @AssignActionType = params['AssignActionType']
+        end
+      end
+
+      # AssignClientsToSales返回参数结构体
+      class AssignClientsToSalesResponse < TencentCloud::Common::AbstractModel
+        # @param SucceedUins: 处理成功的代客uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SucceedUins: Array
+        # @param FailedUins: 处理失败的代客uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedUins: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SucceedUins, :FailedUins, :RequestId
+        
+        def initialize(succeeduins=nil, faileduins=nil, requestid=nil)
+          @SucceedUins = succeeduins
+          @FailedUins = faileduins
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SucceedUins = params['SucceedUins']
+          @FailedUins = params['FailedUins']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AuditApplyClient请求参数结构体
       class AuditApplyClientRequest < TencentCloud::Common::AbstractModel
         # @param ClientUin: 待审核客户账号ID

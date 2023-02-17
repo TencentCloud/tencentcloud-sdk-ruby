@@ -10979,10 +10979,15 @@ module TencentCloud
         # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasZoneName: String
+        # @param IsFake: 是否伪站点，取值有：
+        # <li> 0：非伪站点；</li>
+        # <li> 1：伪站点。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFake: Integer
 
-        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName
+        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake
         
-        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil)
+        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @OriginalNameServers = originalnameservers
@@ -11001,6 +11006,7 @@ module TencentCloud
           @VanityNameServersIps = vanitynameserversips
           @ActiveStatus = activestatus
           @AliasZoneName = aliaszonename
+          @IsFake = isfake
         end
 
         def deserialize(params)
@@ -11046,6 +11052,7 @@ module TencentCloud
           end
           @ActiveStatus = params['ActiveStatus']
           @AliasZoneName = params['AliasZoneName']
+          @IsFake = params['IsFake']
         end
       end
 

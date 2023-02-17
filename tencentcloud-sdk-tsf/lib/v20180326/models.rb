@@ -867,10 +867,13 @@ module TencentCloud
         # @param ServiceConfigList: 服务配置信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceConfigList: Array
+        # @param IgnoreCreateImageRepository: IgnoreCreateImageRepository
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreCreateImageRepository: Boolean
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName, :ServiceConfigList
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName, :ServiceConfigList, :IgnoreCreateImageRepository
         
-        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil, serviceconfiglist=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationDesc = applicationdesc
@@ -884,6 +887,7 @@ module TencentCloud
           @ApigatewayServiceId = apigatewayserviceid
           @ApplicationRemarkName = applicationremarkname
           @ServiceConfigList = serviceconfiglist
+          @IgnoreCreateImageRepository = ignorecreateimagerepository
         end
 
         def deserialize(params)
@@ -907,6 +911,7 @@ module TencentCloud
               @ServiceConfigList << serviceconfig_tmp
             end
           end
+          @IgnoreCreateImageRepository = params['IgnoreCreateImageRepository']
         end
       end
 
@@ -2057,10 +2062,13 @@ module TencentCloud
         # @param KubeInjectEnable: KubeInjectEnable值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeInjectEnable: Boolean
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
 
-        attr_accessor :GroupId, :GroupName, :CreateTime, :Server, :RepoName, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :Alias, :KubeInjectEnable
+        attr_accessor :GroupId, :GroupName, :CreateTime, :Server, :RepoName, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :Alias, :KubeInjectEnable, :UpdatedTime
         
-        def initialize(groupid=nil, groupname=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, _alias=nil, kubeinjectenable=nil)
+        def initialize(groupid=nil, groupname=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, _alias=nil, kubeinjectenable=nil, updatedtime=nil)
           @GroupId = groupid
           @GroupName = groupname
           @CreateTime = createtime
@@ -2077,6 +2085,7 @@ module TencentCloud
           @MemLimit = memlimit
           @Alias = _alias
           @KubeInjectEnable = kubeinjectenable
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
@@ -2096,6 +2105,7 @@ module TencentCloud
           @MemLimit = params['MemLimit']
           @Alias = params['Alias']
           @KubeInjectEnable = params['KubeInjectEnable']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 
@@ -5119,15 +5129,59 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param KafkaVIp: KafkaVIp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVIp: String
+        # @param KafkaAddress: KafkaAddress
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaAddress: String
+        # @param KafkaVPort: KafkaVPort
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVPort: String
+        # @param Topic: Topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param LineRule: LineRule
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineRule: String
+        # @param CustomRule: CustomRule
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: String
+        # @param EnableGlobalLineRule: EnableGlobalLineRule
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableGlobalLineRule: Boolean
+        # @param EnableAuth: EnableAuth
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAuth: Boolean
+        # @param Username: Username
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: Password
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param KafkaInfos: KafkaInfos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaInfos: Array
 
-        attr_accessor :ConfigId, :ConfigName, :CollectPath, :Groups, :CreateTime
+        attr_accessor :ConfigId, :ConfigName, :CollectPath, :Groups, :CreateTime, :KafkaVIp, :KafkaAddress, :KafkaVPort, :Topic, :LineRule, :CustomRule, :EnableGlobalLineRule, :EnableAuth, :Username, :Password, :KafkaInfos
         
-        def initialize(configid=nil, configname=nil, collectpath=nil, groups=nil, createtime=nil)
+        def initialize(configid=nil, configname=nil, collectpath=nil, groups=nil, createtime=nil, kafkavip=nil, kafkaaddress=nil, kafkavport=nil, topic=nil, linerule=nil, customrule=nil, enablegloballinerule=nil, enableauth=nil, username=nil, password=nil, kafkainfos=nil)
           @ConfigId = configid
           @ConfigName = configname
           @CollectPath = collectpath
           @Groups = groups
           @CreateTime = createtime
+          @KafkaVIp = kafkavip
+          @KafkaAddress = kafkaaddress
+          @KafkaVPort = kafkavport
+          @Topic = topic
+          @LineRule = linerule
+          @CustomRule = customrule
+          @EnableGlobalLineRule = enablegloballinerule
+          @EnableAuth = enableauth
+          @Username = username
+          @Password = password
+          @KafkaInfos = kafkainfos
         end
 
         def deserialize(params)
@@ -5143,6 +5197,24 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @KafkaVIp = params['KafkaVIp']
+          @KafkaAddress = params['KafkaAddress']
+          @KafkaVPort = params['KafkaVPort']
+          @Topic = params['Topic']
+          @LineRule = params['LineRule']
+          @CustomRule = params['CustomRule']
+          @EnableGlobalLineRule = params['EnableGlobalLineRule']
+          @EnableAuth = params['EnableAuth']
+          @Username = params['Username']
+          @Password = params['Password']
+          unless params['KafkaInfos'].nil?
+            @KafkaInfos = []
+            params['KafkaInfos'].each do |i|
+              deliverykafkainfo_tmp = DeliveryKafkaInfo.new
+              deliverykafkainfo_tmp.deserialize(i)
+              @KafkaInfos << deliverykafkainfo_tmp
+            end
+          end
         end
       end
 
@@ -18459,16 +18531,24 @@ module TencentCloud
         # @param UnitRuleItemList: 规则项列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitRuleItemList: Array
+        # @param CreatedTime: CreatedTime
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: UpdatedTime
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
 
-        attr_accessor :Name, :Id, :GatewayInstanceId, :Description, :Status, :UnitRuleItemList
+        attr_accessor :Name, :Id, :GatewayInstanceId, :Description, :Status, :UnitRuleItemList, :CreatedTime, :UpdatedTime
         
-        def initialize(name=nil, id=nil, gatewayinstanceid=nil, description=nil, status=nil, unitruleitemlist=nil)
+        def initialize(name=nil, id=nil, gatewayinstanceid=nil, description=nil, status=nil, unitruleitemlist=nil, createdtime=nil, updatedtime=nil)
           @Name = name
           @Id = id
           @GatewayInstanceId = gatewayinstanceid
           @Description = description
           @Status = status
           @UnitRuleItemList = unitruleitemlist
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
@@ -18485,6 +18565,8 @@ module TencentCloud
               @UnitRuleItemList << unitruleitem_tmp
             end
           end
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

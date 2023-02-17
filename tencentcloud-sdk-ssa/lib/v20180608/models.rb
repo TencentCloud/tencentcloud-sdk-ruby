@@ -2863,6 +2863,62 @@ module TencentCloud
         end
       end
 
+      # DataSaEventPub
+      class ListDataSaEventPub < TencentCloud::Common::AbstractModel
+        # @param Time: 受影响资产
+        # @type Time: String
+        # @param EventType1: 安全事件名称
+        # @type EventType1: Integer
+        # @param EventType2: 安全事件1级分类
+        # @type EventType2: Integer
+        # @param EventName: 安全事件2级分类
+        # @type EventName: String
+        # @param Level: 风险等级
+        # @type Level: Integer
+        # @param Status: 安全事件状态
+        # @type Status: Integer
+        # @param SrcIp: 攻击源ip
+        # @type SrcIp: String
+        # @param DstIp: 攻击目标ip
+        # @type DstIp: String
+        # @param DstPort: 攻击目标端口
+        # @type DstPort: Integer
+        # @param Asset: 受影响资产
+        # @type Asset: String
+        # @param OldIdMd5: 私有字段和公有字段映射的原始采集数据唯一标识的MD5值
+        # @type OldIdMd5: String
+
+        attr_accessor :Time, :EventType1, :EventType2, :EventName, :Level, :Status, :SrcIp, :DstIp, :DstPort, :Asset, :OldIdMd5
+        
+        def initialize(time=nil, eventtype1=nil, eventtype2=nil, eventname=nil, level=nil, status=nil, srcip=nil, dstip=nil, dstport=nil, asset=nil, oldidmd5=nil)
+          @Time = time
+          @EventType1 = eventtype1
+          @EventType2 = eventtype2
+          @EventName = eventname
+          @Level = level
+          @Status = status
+          @SrcIp = srcip
+          @DstIp = dstip
+          @DstPort = dstport
+          @Asset = asset
+          @OldIdMd5 = oldidmd5
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @EventType1 = params['EventType1']
+          @EventType2 = params['EventType2']
+          @EventName = params['EventName']
+          @Level = params['Level']
+          @Status = params['Status']
+          @SrcIp = params['SrcIp']
+          @DstIp = params['DstIp']
+          @DstPort = params['DstPort']
+          @Asset = params['Asset']
+          @OldIdMd5 = params['OldIdMd5']
+        end
+      end
+
       # 测绘记录
       class MappingResult < TencentCloud::Common::AbstractModel
         # @param AssetName: 资产名称
@@ -2967,6 +3023,33 @@ module TencentCloud
               securitystatus_tmp = SecurityStatus.new
               securitystatus_tmp.deserialize(i)
               @SecurityStatus << securitystatus_tmp
+            end
+          end
+        end
+      end
+
+      # DataSaEventPub
+      class ObjDataSaEventPub < TencentCloud::Common::AbstractModel
+        # @param Count: Count
+        # @type Count: Integer
+        # @param List: List
+        # @type List: Array
+
+        attr_accessor :Count, :List
+        
+        def initialize(count=nil, list=nil)
+          @Count = count
+          @List = list
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              listdatasaeventpub_tmp = ListDataSaEventPub.new
+              listdatasaeventpub_tmp.deserialize(i)
+              @List << listdatasaeventpub_tmp
             end
           end
         end
@@ -3243,6 +3326,85 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = SaDivulgeDataQueryPubList.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SaEventPub请求参数结构体
+      class SaEventPubRequest < TencentCloud::Common::AbstractModel
+        # @param Asset: 受影响资产
+        # @type Asset: String
+        # @param EventName: 安全事件名称
+        # @type EventName: String
+        # @param EventType1: 安全事件1级分类，-1:未知 0:全部 1:攻击事件 2:侦查事件 3:僵木蠕毒 4:违规策略
+        # @type EventType1: Integer
+        # @param EventType2: 安全事件2级分类，-1:未知 0:全部 1:DDOS事件 2:Web攻击 3:木马 4:异地登录 5:密码破解
+        # @type EventType2: Integer
+        # @param Level: 风险等级，-1:未知 0:全部 1:低危 2:中危 3:高危 4:严重，可多选，如：1,2
+        # @type Level: String
+        # @param Status: 安全事件状态，-1:未知 0:全部 1:待处理 2:已处理 3:误报 4:已忽略 5:已知晓 6:已信任
+        # @type Status: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param Offset: 查询起始地址
+        # @type Offset: Integer
+        # @param Limit: 查询个数
+        # @type Limit: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param OldIdMd5: 私有字段和公有字段映射的原始采集数据唯一标识的MD5值
+        # @type OldIdMd5: String
+
+        attr_accessor :Asset, :EventName, :EventType1, :EventType2, :Level, :Status, :StartTime, :Offset, :Limit, :EndTime, :OldIdMd5
+        
+        def initialize(asset=nil, eventname=nil, eventtype1=nil, eventtype2=nil, level=nil, status=nil, starttime=nil, offset=nil, limit=nil, endtime=nil, oldidmd5=nil)
+          @Asset = asset
+          @EventName = eventname
+          @EventType1 = eventtype1
+          @EventType2 = eventtype2
+          @Level = level
+          @Status = status
+          @StartTime = starttime
+          @Offset = offset
+          @Limit = limit
+          @EndTime = endtime
+          @OldIdMd5 = oldidmd5
+        end
+
+        def deserialize(params)
+          @Asset = params['Asset']
+          @EventName = params['EventName']
+          @EventType1 = params['EventType1']
+          @EventType2 = params['EventType2']
+          @Level = params['Level']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @EndTime = params['EndTime']
+          @OldIdMd5 = params['OldIdMd5']
+        end
+      end
+
+      # SaEventPub返回参数结构体
+      class SaEventPubResponse < TencentCloud::Common::AbstractModel
+        # @param DataSaEventPub: DataSaEventPub
+        # @type DataSaEventPub: :class:`Tencentcloud::Ssa.v20180608.models.ObjDataSaEventPub`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSaEventPub, :RequestId
+        
+        def initialize(datasaeventpub=nil, requestid=nil)
+          @DataSaEventPub = datasaeventpub
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSaEventPub'].nil?
+            @DataSaEventPub = ObjDataSaEventPub.new
+            @DataSaEventPub.deserialize(params['DataSaEventPub'])
           end
           @RequestId = params['RequestId']
         end

@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取可创建组织成员的认证主体关系列表
+        # 获取已设置管理员的互信主体关系列表
 
         # @param request: Request instance for DescribeOrganizationAuthNode.
         # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationAuthNodeRequest`

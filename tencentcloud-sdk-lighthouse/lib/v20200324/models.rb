@@ -265,10 +265,13 @@ module TencentCloud
         # @param SceneIdSet: 镜像关联使用场景Id列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneIdSet: Array
+        # @param DockerVersion: Docker版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerVersion: String
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet, :DockerVersion
         
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil, dockerversion=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -288,6 +291,7 @@ module TencentCloud
           @CommunityUrl = communityurl
           @GuideUrl = guideurl
           @SceneIdSet = sceneidset
+          @DockerVersion = dockerversion
         end
 
         def deserialize(params)
@@ -310,6 +314,7 @@ module TencentCloud
           @CommunityUrl = params['CommunityUrl']
           @GuideUrl = params['GuideUrl']
           @SceneIdSet = params['SceneIdSet']
+          @DockerVersion = params['DockerVersion']
         end
       end
 

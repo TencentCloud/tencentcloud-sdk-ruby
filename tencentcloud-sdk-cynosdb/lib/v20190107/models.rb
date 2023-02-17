@@ -6687,6 +6687,54 @@ module TencentCloud
         end
       end
 
+      # SwitchClusterVpc请求参数结构体
+      class SwitchClusterVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param UniqVpcId: 字符串vpc id
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 字符串子网id
+        # @type UniqSubnetId: String
+        # @param OldIpReserveHours: 旧地址回收时间
+        # @type OldIpReserveHours: Integer
+
+        attr_accessor :ClusterId, :UniqVpcId, :UniqSubnetId, :OldIpReserveHours
+        
+        def initialize(clusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, oldipreservehours=nil)
+          @ClusterId = clusterid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @OldIpReserveHours = oldipreservehours
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @OldIpReserveHours = params['OldIpReserveHours']
+        end
+      end
+
+      # SwitchClusterVpc返回参数结构体
+      class SwitchClusterVpcResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SwitchClusterZone请求参数结构体
       class SwitchClusterZoneRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id

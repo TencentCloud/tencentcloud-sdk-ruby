@@ -3404,6 +3404,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起音画质重生
+
+        # @param request: Request instance for RebuildMedia.
+        # @type request: :class:`Tencentcloud::vod::V20180717::RebuildMediaRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::RebuildMediaResponse`
+        def RebuildMedia(request)
+          body = send_request('RebuildMedia', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RebuildMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 1. 刷新指定的 URL 列表。
         # 2. URL 的域名必须已在云点播中注册。
         # 3. 单次请求最多指定20个 URL。

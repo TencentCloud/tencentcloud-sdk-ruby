@@ -29,6 +29,78 @@ module TencentCloud
         end
 
 
+        # 此接口用于添加成员列表到指定群组
+
+        # @param request: Request instance for AddGroupMember.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::AddGroupMemberRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::AddGroupMemberResponse`
+        def AddGroupMember(request)
+          body = send_request('AddGroupMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddGroupMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于批量添加成员列表到指定群组
+
+        # @param request: Request instance for BatchAddGroupMember.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchAddGroupMemberRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchAddGroupMemberResponse`
+        def BatchAddGroupMember(request)
+          body = send_request('BatchAddGroupMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchAddGroupMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于批量创建群组
+
+        # @param request: Request instance for BatchCreateGroupWithMembers.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchCreateGroupWithMembersRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchCreateGroupWithMembersResponse`
+        def BatchCreateGroupWithMembers(request)
+          body = send_request('BatchCreateGroupWithMembers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchCreateGroupWithMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量创建房间接口
 
         # @param request: Request instance for BatchCreateRoom.
@@ -39,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BatchCreateRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于批量删除成员列表到指定群组列表
+
+        # @param request: Request instance for BatchDeleteGroupMember.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchDeleteGroupMemberRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchDeleteGroupMemberResponse`
+        def BatchDeleteGroupMember(request)
+          body = send_request('BatchDeleteGroupMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDeleteGroupMemberResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -149,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口根据成员列表创建群组
+
+        # @param request: Request instance for CreateGroupWithMembers.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::CreateGroupWithMembersRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::CreateGroupWithMembersResponse`
+        def CreateGroupWithMembers(request)
+          body = send_request('CreateGroupWithMembers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGroupWithMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口会聚合子群组创建联合群组
+
+        # @param request: Request instance for CreateGroupWithSubGroup.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::CreateGroupWithSubGroupRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::CreateGroupWithSubGroupResponse`
+        def CreateGroupWithSubGroup(request)
+          body = send_request('CreateGroupWithSubGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGroupWithSubGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建房间
 
         # @param request: Request instance for CreateRoom.
@@ -207,6 +351,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于删除指定群组，支持批量操作。
+
+        # @param request: Request instance for DeleteGroup.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteGroupRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteGroupResponse`
+        def DeleteGroup(request)
+          body = send_request('DeleteGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于删除群组中指定成员
+
+        # @param request: Request instance for DeleteGroupMember.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteGroupMemberRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteGroupMemberResponse`
+        def DeleteGroupMember(request)
+          body = send_request('DeleteGroupMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGroupMemberResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -351,6 +543,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDocumentsByRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于获取群组详情
+
+        # @param request: Request instance for DescribeGroup.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeGroupRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeGroupResponse`
+        def DescribeGroup(request)
+          body = send_request('DescribeGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取群组列表
+
+        # @param request: Request instance for DescribeGroupList.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeGroupListRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeGroupListResponse`
+        def DescribeGroupList(request)
+          body = send_request('DescribeGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于获取群组成员列表
+
+        # @param request: Request instance for DescribeGroupMemberList.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeGroupMemberListRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeGroupMemberListResponse`
+        def DescribeGroupMemberList(request)
+          body = send_request('DescribeGroupMemberList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupMemberListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -543,6 +807,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口修改群组信息
+
+        # @param request: Request instance for ModifyGroup.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ModifyGroupRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ModifyGroupResponse`
+        def ModifyGroup(request)
+          body = send_request('ModifyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

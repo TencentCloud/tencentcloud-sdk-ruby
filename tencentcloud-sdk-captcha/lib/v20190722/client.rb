@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单个CaptchaAppID验证的统计数据，包括：请求量、验证量、验证通过量、验证拦截量。
+
+        # @param request: Request instance for GetRequestStatistics.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::GetRequestStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::GetRequestStatisticsResponse`
+        def GetRequestStatistics(request)
+          body = send_request('GetRequestStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRequestStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
 
         # @param request: Request instance for GetTicketStatistics.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTicketStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询全部验证的统计数据，包括：总请求量、总验证量、总验证通过量、总验证拦截量等数据。
+
+        # @param request: Request instance for GetTotalRequestStatistics.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::GetTotalRequestStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::GetTotalRequestStatisticsResponse`
+        def GetTotalRequestStatistics(request)
+          body = send_request('GetTotalRequestStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTotalRequestStatisticsResponse.new
             model.deserialize(response['Response'])
             model
           else

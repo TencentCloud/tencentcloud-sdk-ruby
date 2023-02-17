@@ -4070,11 +4070,14 @@ module TencentCloud
         # <li>libfdk_aac。</li>
         # 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         # <li>libfdk_aac。</li>
+        # 当外层参数 Container 为 wav 时，可选值为：
+        # <li>pcm16。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
         # 当取值为 0，表示音频码率和原始音频保持一致。
         # @type Bitrate: Integer
         # @param SampleRate: 音频流的采样率，可选值：
+        # <li>16000，仅当 Codec 为 pcm16 时可选。</li>
         # <li>32000</li>
         # <li>44100</li>
         # <li>48000</li>
@@ -4124,10 +4127,13 @@ module TencentCloud
         # <li>libfdk_aac。</li>
         # 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         # <li>libfdk_aac。</li>
+        # 当外层参数 Container 为 wav 时，可选值为：
+        # <li>pcm16。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         # @type Bitrate: Integer
         # @param SampleRate: 音频流的采样率，可选值：
+        # <li>16000，仅当 Codec 为 pcm16 时可选。</li>
         # <li>32000</li>
         # <li>44100</li>
         # <li>48000</li>
@@ -6537,7 +6543,7 @@ module TencentCloud
 
       # CreateTranscodeTemplate请求参数结构体
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
         # @type Container: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -10126,7 +10132,8 @@ module TencentCloud
         # <li>FastClipMedia：快速剪辑任务；</li>
         # <li>RemoveWatermarkTask：智能去除水印任务；</li>
         # <li>DescribeFileAttributesTask：获取文件属性任务；</li>
-        # <li> ReviewAudioVideo：音视频审核任务。</li>
+        # <li>RebuildMedia：音画质重生任务；</li>
+        # <li>ReviewAudioVideo：音视频审核任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -10178,6 +10185,9 @@ module TencentCloud
         # @param RemoveWatermarkTask: 智能去除水印任务信息，仅当 TaskType 为 RemoveWatermark，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoveWatermarkTask: :class:`Tencentcloud::Vod.v20180717.models.RemoveWatermarkTask`
+        # @param RebuildMediaTask: 音画质重生任务信息，仅当 TaskType 为 RebuildMedia，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RebuildMediaTask: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTask`
         # @param ExtractTraceWatermarkTask: 提取溯源水印任务信息，仅当 TaskType 为 ExtractTraceWatermark，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractTraceWatermarkTask: :class:`Tencentcloud::Vod.v20180717.models.ExtractTraceWatermarkTask`
@@ -10193,9 +10203,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :ExtractTraceWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :RequestId
         
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, extracttracewatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -10214,6 +10224,7 @@ module TencentCloud
           @CreateImageSpriteTask = createimagespritetask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
           @RemoveWatermarkTask = removewatermarktask
+          @RebuildMediaTask = rebuildmediatask
           @ExtractTraceWatermarkTask = extracttracewatermarktask
           @ReviewAudioVideoTask = reviewaudiovideotask
           @ReduceMediaBitrateTask = reducemediabitratetask
@@ -10278,6 +10289,10 @@ module TencentCloud
           unless params['RemoveWatermarkTask'].nil?
             @RemoveWatermarkTask = RemoveWatermarkTask.new
             @RemoveWatermarkTask.deserialize(params['RemoveWatermarkTask'])
+          end
+          unless params['RebuildMediaTask'].nil?
+            @RebuildMediaTask = RebuildMediaTask.new
+            @RebuildMediaTask.deserialize(params['RebuildMediaTask'])
           end
           unless params['ExtractTraceWatermarkTask'].nil?
             @ExtractTraceWatermarkTask = ExtractTraceWatermarkTask.new
@@ -16412,7 +16427,7 @@ module TencentCloud
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
         # @type Container: String
         # @param Name: 转码模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -18776,6 +18791,161 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RebuildMedia请求参数结构体
+      class RebuildMediaRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param StartTimeOffset: 起始偏移时间，单位：秒，不填表示从视频开始截取。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 结束偏移时间，单位：秒，不填表示截取到视频末尾。
+        # @type EndTimeOffset: Float
+        # @param RepairInfo: 画质修复控制参数。
+        # @type RepairInfo: :class:`Tencentcloud::Vod.v20180717.models.RepairInfo`
+        # @param VideoFrameInterpolationInfo: 智能插帧控制参数。
+        # @type VideoFrameInterpolationInfo: :class:`Tencentcloud::Vod.v20180717.models.VideoFrameInterpolationInfo`
+        # @param SuperResolutionInfo: 画面超分控制参数。
+        # @type SuperResolutionInfo: :class:`Tencentcloud::Vod.v20180717.models.SuperResolutionInfo`
+        # @param HDRInfo: 高动态范围类型控制参数。
+        # @type HDRInfo: :class:`Tencentcloud::Vod.v20180717.models.HDRInfo`
+        # @param VideoDenoiseInfo: 视频降噪控制参数。
+        # @type VideoDenoiseInfo: :class:`Tencentcloud::Vod.v20180717.models.VideoDenoiseInfo`
+        # @param AudioDenoiseInfo: 音频降噪控制参数。
+        # @type AudioDenoiseInfo: :class:`Tencentcloud::Vod.v20180717.models.AudioDenoiseInfo`
+        # @param ColorInfo: 色彩增强控制参数。
+        # @type ColorInfo: :class:`Tencentcloud::Vod.v20180717.models.ColorEnhanceInfo`
+        # @param SharpInfo: 细节增强控制参数。
+        # @type SharpInfo: :class:`Tencentcloud::Vod.v20180717.models.SharpEnhanceInfo`
+        # @param FaceInfo: 人脸增强控制参数。
+        # @type FaceInfo: :class:`Tencentcloud::Vod.v20180717.models.FaceEnhanceInfo`
+        # @param LowLightInfo: 低光照控制参数。
+        # @type LowLightInfo: :class:`Tencentcloud::Vod.v20180717.models.LowLightEnhanceInfo`
+        # @param ScratchRepairInfo: 去划痕控制参数。
+        # @type ScratchRepairInfo: :class:`Tencentcloud::Vod.v20180717.models.ScratchRepairInfo`
+        # @param ArtifactRepairInfo: 去伪影（毛刺）控制参数。
+        # @type ArtifactRepairInfo: :class:`Tencentcloud::Vod.v20180717.models.ArtifactRepairInfo`
+        # @param TargetInfo: 音画质重生输出目标参数。
+        # @type TargetInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetInfo`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :FileId, :SubAppId, :StartTimeOffset, :EndTimeOffset, :RepairInfo, :VideoFrameInterpolationInfo, :SuperResolutionInfo, :HDRInfo, :VideoDenoiseInfo, :AudioDenoiseInfo, :ColorInfo, :SharpInfo, :FaceInfo, :LowLightInfo, :ScratchRepairInfo, :ArtifactRepairInfo, :TargetInfo, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        
+        def initialize(fileid=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, repairinfo=nil, videoframeinterpolationinfo=nil, superresolutioninfo=nil, hdrinfo=nil, videodenoiseinfo=nil, audiodenoiseinfo=nil, colorinfo=nil, sharpinfo=nil, faceinfo=nil, lowlightinfo=nil, scratchrepairinfo=nil, artifactrepairinfo=nil, targetinfo=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @FileId = fileid
+          @SubAppId = subappid
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @RepairInfo = repairinfo
+          @VideoFrameInterpolationInfo = videoframeinterpolationinfo
+          @SuperResolutionInfo = superresolutioninfo
+          @HDRInfo = hdrinfo
+          @VideoDenoiseInfo = videodenoiseinfo
+          @AudioDenoiseInfo = audiodenoiseinfo
+          @ColorInfo = colorinfo
+          @SharpInfo = sharpinfo
+          @FaceInfo = faceinfo
+          @LowLightInfo = lowlightinfo
+          @ScratchRepairInfo = scratchrepairinfo
+          @ArtifactRepairInfo = artifactrepairinfo
+          @TargetInfo = targetinfo
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          unless params['RepairInfo'].nil?
+            @RepairInfo = RepairInfo.new
+            @RepairInfo.deserialize(params['RepairInfo'])
+          end
+          unless params['VideoFrameInterpolationInfo'].nil?
+            @VideoFrameInterpolationInfo = VideoFrameInterpolationInfo.new
+            @VideoFrameInterpolationInfo.deserialize(params['VideoFrameInterpolationInfo'])
+          end
+          unless params['SuperResolutionInfo'].nil?
+            @SuperResolutionInfo = SuperResolutionInfo.new
+            @SuperResolutionInfo.deserialize(params['SuperResolutionInfo'])
+          end
+          unless params['HDRInfo'].nil?
+            @HDRInfo = HDRInfo.new
+            @HDRInfo.deserialize(params['HDRInfo'])
+          end
+          unless params['VideoDenoiseInfo'].nil?
+            @VideoDenoiseInfo = VideoDenoiseInfo.new
+            @VideoDenoiseInfo.deserialize(params['VideoDenoiseInfo'])
+          end
+          unless params['AudioDenoiseInfo'].nil?
+            @AudioDenoiseInfo = AudioDenoiseInfo.new
+            @AudioDenoiseInfo.deserialize(params['AudioDenoiseInfo'])
+          end
+          unless params['ColorInfo'].nil?
+            @ColorInfo = ColorEnhanceInfo.new
+            @ColorInfo.deserialize(params['ColorInfo'])
+          end
+          unless params['SharpInfo'].nil?
+            @SharpInfo = SharpEnhanceInfo.new
+            @SharpInfo.deserialize(params['SharpInfo'])
+          end
+          unless params['FaceInfo'].nil?
+            @FaceInfo = FaceEnhanceInfo.new
+            @FaceInfo.deserialize(params['FaceInfo'])
+          end
+          unless params['LowLightInfo'].nil?
+            @LowLightInfo = LowLightEnhanceInfo.new
+            @LowLightInfo.deserialize(params['LowLightInfo'])
+          end
+          unless params['ScratchRepairInfo'].nil?
+            @ScratchRepairInfo = ScratchRepairInfo.new
+            @ScratchRepairInfo.deserialize(params['ScratchRepairInfo'])
+          end
+          unless params['ArtifactRepairInfo'].nil?
+            @ArtifactRepairInfo = ArtifactRepairInfo.new
+            @ArtifactRepairInfo.deserialize(params['ArtifactRepairInfo'])
+          end
+          unless params['TargetInfo'].nil?
+            @TargetInfo = RebuildMediaTargetInfo.new
+            @TargetInfo.deserialize(params['TargetInfo'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # RebuildMedia返回参数结构体
+      class RebuildMediaResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 音画质重生的任务 ID，可以通过该 ID 查询音画质重生任务的状态。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
