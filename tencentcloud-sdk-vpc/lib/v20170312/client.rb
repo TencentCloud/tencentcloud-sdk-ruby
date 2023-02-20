@@ -3323,7 +3323,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeFlowLogs）用于查询获取流日志集合
+        # 本接口（DescribeFlowLogs）用于查询获取流日志集合。
 
         # @param request: Request instance for DescribeFlowLogs.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeFlowLogsRequest`
@@ -4289,7 +4289,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询终端节点列表。
+        # 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
 
         # @param request: Request instance for DescribeVpcEndPoint.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpcEndPointRequest`

@@ -7921,35 +7921,35 @@ module TencentCloud
 
       # DescribeFlowLogs请求参数结构体
       class DescribeFlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID
+        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID。
         # @type VpcId: String
-        # @param FlowLogId: 流日志唯一ID
+        # @param FlowLogId: 流日志唯一ID。
         # @type FlowLogId: String
-        # @param FlowLogName: 流日志实例名字
+        # @param FlowLogName: 流日志实例名字。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE。
         # @type ResourceType: String
-        # @param ResourceId: 资源唯一ID
+        # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String
-        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL
+        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL。
         # @type TrafficType: String
-        # @param CloudLogId: 流日志存储ID
+        # @param CloudLogId: 流日志存储ID。
         # @type CloudLogId: String
-        # @param CloudLogState: 流日志存储ID状态
+        # @param CloudLogState: 流日志存储ID状态。
         # @type CloudLogState: String
-        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime
+        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime。
         # @type OrderField: String
-        # @param OrderDirection: 升序（asc）还是降序（desc）,默认：desc
+        # @param OrderDirection: 升序（asc）还是降序（desc）,默认：desc。
         # @type OrderDirection: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页行数，默认为10
+        # @param Limit: 每页行数，默认为10。
         # @type Limit: Integer
         # @param Filters: 过滤条件，参数不支持同时指定FlowLogIds和Filters。
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         # @type Filters: :class:`Tencentcloud::Vpc.v20170312.models.Filter`
-        # @param CloudLogRegion: 流日志存储ID对应的地域信息
+        # @param CloudLogRegion: 流日志存储ID对应的地域信息。
         # @type CloudLogRegion: String
 
         attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :OrderField, :OrderDirection, :Offset, :Limit, :Filters, :CloudLogRegion
@@ -7994,9 +7994,9 @@ module TencentCloud
 
       # DescribeFlowLogs返回参数结构体
       class DescribeFlowLogsResponse < TencentCloud::Common::AbstractModel
-        # @param FlowLog: 流日志实例集合
+        # @param FlowLog: 流日志实例集合。
         # @type FlowLog: Array
-        # @param TotalNum: 流日志总数目
+        # @param TotalNum: 流日志总数目。
         # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9239,8 +9239,8 @@ module TencentCloud
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
         # <li>is-primary - Boolean - 是否必填：否 - （过滤条件）按照是否主网卡进行过滤。值为true时，仅过滤主网卡；值为false时，仅过滤辅助网卡；此过滤参数未提供时，同时过滤主网卡和辅助网卡。</li>
-        # <li>eni-type - String -是否必填：否- （过滤条件）按照网卡类型进行过滤。“0”-辅助网卡，“1”-主网卡，“2”：中继网卡</li>
-        # <li>eni-qos - String -是否必填：否- （过滤条件）按照网卡服务质量进行过滤。“AG”-服务质量云铜，“AU”-服务质量为银</li>
+        # <li>eni-type - String -是否必填：否- （过滤条件）按照网卡类型进行过滤。“0”-辅助网卡，“1”-主网卡，“2”：中继网卡。</li>
+        # <li>eni-qos - String -是否必填：否- （过滤条件）按照网卡服务质量进行过滤。“AG”-服务质量为云铜，“AU”-服务质量为云银。</li>
         # <li>address-ipv6 - String - 是否必填：否 -（过滤条件）内网IPv6地址过滤，支持多ipv6地址查询，如果和address-ip一起使用取交集。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
@@ -9404,8 +9404,22 @@ module TencentCloud
         # <li>route-table-name - String - （过滤条件）路由表名称。</li>
         # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
         # <li>association.main - String - （过滤条件）是否主路由表。</li>
-        # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
+        # <li>tag-key - String -是否必填：否 - （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
+        # <li>next-hop-type - String - 是否必填：否 - （过滤条件）按下一跳类型进行过滤。使用next-hop-type进行过滤时，必须同时携带route-table-id与vpc-id。
+        # 目前我们支持的类型有：
+        # LOCAL: 本地路由
+        # CVM：公网网关类型的云服务器；
+        # VPN：VPN网关；
+        # DIRECTCONNECT：专线网关；
+        # PEERCONNECTION：对等连接；
+        # HAVIP：高可用虚拟IP；
+        # NAT：NAT网关;
+        # NORMAL_CVM：普通云服务器；
+        # EIP：云服务器的公网IP；
+        # CCN：云联网；
+        # LOCAL_GATEWAY：本地网关。
+        # </li>
         # @type Filters: Array
         # @param RouteTableIds: 路由表实例ID，例如：rtb-azd4dt1c。
         # @type RouteTableIds: Array
@@ -10151,6 +10165,8 @@ module TencentCloud
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
         # <li>cdc-id - String - 是否必填：否 - （过滤条件）按照cdc信息进行过滤。过滤出来制定cdc下的子网。</li>
         # <li>is-cdc-subnet - String - 是否必填：否 - （过滤条件）按照是否是cdc子网进行过滤。取值：“0”-非cdc子网，“1”--cdc子网</li>
+        # <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
+        # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -10497,9 +10513,10 @@ module TencentCloud
       # DescribeVpcEndPointService请求参数结构体
       class DescribeVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li> service-id- String - （过滤条件）终端节点服务唯一ID。</li>
+        # <li> service-id - String - （过滤条件）终端节点服务唯一ID。</li>
         # <li>service-name - String - （过滤条件）终端节点实例名称。</li>
         # <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
+        # <li>service-type - String - （过滤条件）后端PAAS服务类型，CLB,CDB,CRS，不填默认查询类型为CLB。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -10953,6 +10970,8 @@ module TencentCloud
         # <li>tag-key ：按照标签键进行过滤，非必填参数。</li>
         # <li>tag:tag-key：按照标签键值对进行过滤，非必填参数。 其中 tag-key 请使用具体的标签键进行替换，可参考示例2。</li>
         #   **说明：**若同一个过滤条件（Filter）存在多个Values，则同一Filter下Values间的关系为逻辑或（OR）关系；若存在多个过滤条件（Filter），Filter之间的关系为逻辑与（AND）关系。
+        # <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
+        # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -12878,10 +12897,10 @@ module TencentCloud
         # @param StorageType: 消费端类型：cls、ckafka。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
-        # @param FlowLogStorage: 消费端信息，当消费端类型为ckafka时返回
+        # @param FlowLogStorage: 消费端信息，当消费端类型为ckafka时返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
-        # @param CloudLogRegion: 流日志存储ID对应的地域信息
+        # @param CloudLogRegion: 流日志存储ID对应的地域信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudLogRegion: String
 
@@ -18452,7 +18471,7 @@ module TencentCloud
         # @type Ipv6CidrBlock: String
         # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。
         # @type SecurityGroupId: String
-        # @param AddressTemplate: IP地址ID或者ID地址组ID。
+        # @param AddressTemplate: IP地址ID或者IP地址组ID。
         # @type AddressTemplate: :class:`Tencentcloud::Vpc.v20170312.models.AddressTemplateSpecification`
         # @param Action: ACCEPT 或 DROP。
         # @type Action: String

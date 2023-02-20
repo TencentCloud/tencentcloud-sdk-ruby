@@ -425,7 +425,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建直播垫片模板。
+        # 创建直播时移模板。
 
         # @param request: Request instance for CreateLiveTimeShiftTemplate.
         # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveTimeShiftTemplateRequest`
@@ -2991,7 +2991,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改直播垫片模板。
+        # 修改直播时移模板。
 
         # @param request: Request instance for ModifyLiveTimeShiftTemplate.
         # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveTimeShiftTemplateRequest`

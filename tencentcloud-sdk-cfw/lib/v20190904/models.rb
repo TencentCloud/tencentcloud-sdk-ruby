@@ -341,6 +341,93 @@ module TencentCloud
         end
       end
 
+      # 入侵防御放通封禁规则
+      class BlockIgnoreRule < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Ioc: 规则ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ioc: String
+        # @param Level: 危险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param EventName: 来源事件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
+        # @param Direction: 方向：1入站，0出站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Direction: Integer
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Address: 地理位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Action: 规则类型：1封禁，2放通
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: Integer
+        # @param StartTime: 规则生效开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 规则生效结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param IgnoreReason: 忽略原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreReason: String
+        # @param Source: 安全事件来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param UniqueId: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqueId: String
+        # @param MatchTimes: 规则命中次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchTimes: Integer
+        # @param Country: 国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+
+        attr_accessor :Domain, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country
+        
+        def initialize(domain=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil)
+          @Domain = domain
+          @Ioc = ioc
+          @Level = level
+          @EventName = eventname
+          @Direction = direction
+          @Protocol = protocol
+          @Address = address
+          @Action = action
+          @StartTime = starttime
+          @EndTime = endtime
+          @IgnoreReason = ignorereason
+          @Source = source
+          @UniqueId = uniqueid
+          @MatchTimes = matchtimes
+          @Country = country
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Ioc = params['Ioc']
+          @Level = params['Level']
+          @EventName = params['EventName']
+          @Direction = params['Direction']
+          @Protocol = params['Protocol']
+          @Address = params['Address']
+          @Action = params['Action']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IgnoreReason = params['IgnoreReason']
+          @Source = params['Source']
+          @UniqueId = params['UniqueId']
+          @MatchTimes = params['MatchTimes']
+          @Country = params['Country']
+        end
+      end
+
       # NAT防火墙Dnat规则
       class CfwNatDnatRule < TencentCloud::Common::AbstractModel
         # @param IpProtocol: 网络协议，可选值：TCP、UDP。
@@ -1297,6 +1384,85 @@ module TencentCloud
               @Data << ipstatic_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlockIgnoreList请求参数结构体
+      class DescribeBlockIgnoreListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 单页数量
+        # @type Limit: Integer
+        # @param Offset: 页偏移量
+        # @type Offset: Integer
+        # @param Direction: 方向：1互联网入站，0互联网出站，3内网，空 全部方向
+        # @type Direction: String
+        # @param RuleType: 规则类型：1封禁，2放通
+        # @type RuleType: Integer
+        # @param Order: 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
+        # @type Order: String
+        # @param By: 排序类型：desc降序，asc正序
+        # @type By: String
+        # @param SearchValue: 搜索参数，json格式字符串，空则传"{}"，域名：domain，危险等级：level，放通原因：ignore_reason，安全事件来源：rule_source，地理位置：address，模糊搜索：common
+        # @type SearchValue: String
+
+        attr_accessor :Limit, :Offset, :Direction, :RuleType, :Order, :By, :SearchValue
+        
+        def initialize(limit=nil, offset=nil, direction=nil, ruletype=nil, order=nil, by=nil, searchvalue=nil)
+          @Limit = limit
+          @Offset = offset
+          @Direction = direction
+          @RuleType = ruletype
+          @Order = order
+          @By = by
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Direction = params['Direction']
+          @RuleType = params['RuleType']
+          @Order = params['Order']
+          @By = params['By']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # DescribeBlockIgnoreList返回参数结构体
+      class DescribeBlockIgnoreListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表数据
+        # @type Data: Array
+        # @param Total: 查询结果总数，用于分页
+        # @type Total: Integer
+        # @param ReturnCode: 状态值，0：查询成功，非0：查询失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              blockignorerule_tmp = BlockIgnoreRule.new
+              blockignorerule_tmp.deserialize(i)
+              @Data << blockignorerule_tmp
+            end
+          end
+          @Total = params['Total']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
         end
       end

@@ -2750,16 +2750,20 @@ module TencentCloud
         # @type Index: Integer
         # @param ChangedIndex: 当 Type 取 Move 时，必填，表示移动歌曲的目标位置。
         # @type ChangedIndex: Integer
-        # @param MusicIds: 歌曲 ID 列表，当 Type 取 Add 时，必填。
+        # @param MusicIds: 歌曲 ID 列表，当 Type 取 Add 时，与MusicURLs必填其中一项。
         # @type MusicIds: Array
+        # @param MusicURLs: 歌曲 URL 列表，当 Type 取 Add 时，与MusicIds必填其中一项。
+        # 注：URL必须以.mp3结尾且必须是mp3编码文件。
+        # @type MusicURLs: Array
 
-        attr_accessor :Type, :Index, :ChangedIndex, :MusicIds
+        attr_accessor :Type, :Index, :ChangedIndex, :MusicIds, :MusicURLs
         
-        def initialize(type=nil, index=nil, changedindex=nil, musicids=nil)
+        def initialize(type=nil, index=nil, changedindex=nil, musicids=nil, musicurls=nil)
           @Type = type
           @Index = index
           @ChangedIndex = changedindex
           @MusicIds = musicids
+          @MusicURLs = musicurls
         end
 
         def deserialize(params)
@@ -2767,6 +2771,7 @@ module TencentCloud
           @Index = params['Index']
           @ChangedIndex = params['ChangedIndex']
           @MusicIds = params['MusicIds']
+          @MusicURLs = params['MusicURLs']
         end
       end
 
@@ -3045,14 +3050,23 @@ module TencentCloud
         # @type SdkAppId: String
         # @param UserId: 用户唯一标识。
         # @type UserId: String
+        # @param PrivateMapKey: 进房钥匙，若需要权限控制请携带该参数。
+        #  [privateMapKey 权限设置](/document/product/647/32240)
+        # @type PrivateMapKey: String
+        # @param Role: 用户角色，目前支持两种角色：
+        # <li>anchor：主播</li>
+        # <li>audience：观众</li>
+        # @type Role: String
 
-        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId
+        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId, :PrivateMapKey, :Role
         
-        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil)
+        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil, privatemapkey=nil, role=nil)
           @Sign = sign
           @RoomId = roomid
           @SdkAppId = sdkappid
           @UserId = userid
+          @PrivateMapKey = privatemapkey
+          @Role = role
         end
 
         def deserialize(params)
@@ -3060,6 +3074,8 @@ module TencentCloud
           @RoomId = params['RoomId']
           @SdkAppId = params['SdkAppId']
           @UserId = params['UserId']
+          @PrivateMapKey = params['PrivateMapKey']
+          @Role = params['Role']
         end
       end
 

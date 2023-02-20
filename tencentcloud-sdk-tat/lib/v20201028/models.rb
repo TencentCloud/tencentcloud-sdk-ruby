@@ -33,15 +33,18 @@ module TencentCloud
         # <li> Linux：Linux实例
         # <li> Windows：Windows实例
         # @type Environment: String
+        # @param SupportFeatures: Agent 支持的功能列表。
+        # @type SupportFeatures: Array
 
-        attr_accessor :InstanceId, :Version, :LastHeartbeatTime, :AgentStatus, :Environment
+        attr_accessor :InstanceId, :Version, :LastHeartbeatTime, :AgentStatus, :Environment, :SupportFeatures
         
-        def initialize(instanceid=nil, version=nil, lastheartbeattime=nil, agentstatus=nil, environment=nil)
+        def initialize(instanceid=nil, version=nil, lastheartbeattime=nil, agentstatus=nil, environment=nil, supportfeatures=nil)
           @InstanceId = instanceid
           @Version = version
           @LastHeartbeatTime = lastheartbeattime
           @AgentStatus = agentstatus
           @Environment = environment
+          @SupportFeatures = supportfeatures
         end
 
         def deserialize(params)
@@ -50,6 +53,7 @@ module TencentCloud
           @LastHeartbeatTime = params['LastHeartbeatTime']
           @AgentStatus = params['AgentStatus']
           @Environment = params['Environment']
+          @SupportFeatures = params['SupportFeatures']
         end
       end
 
@@ -190,15 +194,21 @@ module TencentCloud
         # @type WorkingDirectory: String
         # @param Username: 执行用户。
         # @type Username: String
+        # @param OutputCOSBucketUrl: 保存输出的 COS Bucket 链接。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 保存输出的文件名称前缀。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :Content, :CommandType, :Timeout, :WorkingDirectory, :Username
+        attr_accessor :Content, :CommandType, :Timeout, :WorkingDirectory, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(content=nil, commandtype=nil, timeout=nil, workingdirectory=nil, username=nil)
+        def initialize(content=nil, commandtype=nil, timeout=nil, workingdirectory=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @Content = content
           @CommandType = commandtype
           @Timeout = timeout
           @WorkingDirectory = workingdirectory
           @Username = username
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -207,6 +217,8 @@ module TencentCloud
           @Timeout = params['Timeout']
           @WorkingDirectory = params['WorkingDirectory']
           @Username = params['Username']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 

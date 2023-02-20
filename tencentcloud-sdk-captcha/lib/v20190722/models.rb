@@ -1240,27 +1240,60 @@ module TencentCloud
 
       # GetRequestStatistics请求参数结构体
       class GetRequestStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码AppId
+        # @type CaptchaAppId: String
+        # @param StartTimeStr: 开始时间字符串
+        # @type StartTimeStr: String
+        # @param EndTimeStr: 结束时间字符串
+        # @type EndTimeStr: String
+        # @param Dimension: 查询粒度
+        # @type Dimension: String
 
+        attr_accessor :CaptchaAppId, :StartTimeStr, :EndTimeStr, :Dimension
         
-        def initialize()
+        def initialize(captchaappid=nil, starttimestr=nil, endtimestr=nil, dimension=nil)
+          @CaptchaAppId = captchaappid
+          @StartTimeStr = starttimestr
+          @EndTimeStr = endtimestr
+          @Dimension = dimension
         end
 
         def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @StartTimeStr = params['StartTimeStr']
+          @EndTimeStr = params['EndTimeStr']
+          @Dimension = params['Dimension']
         end
       end
 
       # GetRequestStatistics返回参数结构体
       class GetRequestStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询后数据块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
+        # @param CaptchaCode: 验证码返回码
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 验证码返回信息
+        # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
+          @Data = data
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CaptchaStatisticObj.new
+            @Data.deserialize(params['Data'])
+          end
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1327,27 +1360,56 @@ module TencentCloud
 
       # GetTotalRequestStatistics请求参数结构体
       class GetTotalRequestStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTimeStr: 开始时间字符串
+        # @type StartTimeStr: String
+        # @param EndTimeStr: 结束时间字符串
+        # @type EndTimeStr: String
+        # @param Dimension: 查询粒度
+        # @type Dimension: String
 
+        attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
         
-        def initialize()
+        def initialize(starttimestr=nil, endtimestr=nil, dimension=nil)
+          @StartTimeStr = starttimestr
+          @EndTimeStr = endtimestr
+          @Dimension = dimension
         end
 
         def deserialize(params)
+          @StartTimeStr = params['StartTimeStr']
+          @EndTimeStr = params['EndTimeStr']
+          @Dimension = params['Dimension']
         end
       end
 
       # GetTotalRequestStatistics返回参数结构体
       class GetTotalRequestStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询后数据块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
+        # @param CaptchaCode: 验证码返回码
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 验证码返回信息
+        # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
+          @Data = data
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CaptchaStatisticObj.new
+            @Data.deserialize(params['Data'])
+          end
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
         end
       end
