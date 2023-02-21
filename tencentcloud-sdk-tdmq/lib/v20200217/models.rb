@@ -5027,6 +5027,52 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQVipInstanceDetail请求参数结构体
+      class DescribeRocketMQVipInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeRocketMQVipInstanceDetail返回参数结构体
+      class DescribeRocketMQVipInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfo: 集群信息
+        # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterInfo`
+        # @param InstanceConfig: 集群配置
+        # @type InstanceConfig: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQInstanceConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfo, :InstanceConfig, :RequestId
+        
+        def initialize(clusterinfo=nil, instanceconfig=nil, requestid=nil)
+          @ClusterInfo = clusterinfo
+          @InstanceConfig = instanceconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = RocketMQClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
+          unless params['InstanceConfig'].nil?
+            @InstanceConfig = RocketMQInstanceConfig.new
+            @InstanceConfig.deserialize(params['InstanceConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQVipInstances请求参数结构体
       class DescribeRocketMQVipInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 查询条件过滤器
@@ -5465,6 +5511,30 @@ module TencentCloud
           @ConsumerHasBacklog = params['ConsumerHasBacklog']
           @ConsumerHasExpired = params['ConsumerHasExpired']
           @SubscriptionNames = params['SubscriptionNames']
+        end
+      end
+
+      # 实例节点分布信息
+      class InstanceNodeDistribution < TencentCloud::Common::AbstractModel
+        # @param ZoneName: 可用区
+        # @type ZoneName: String
+        # @param ZoneId: 可用区id
+        # @type ZoneId: String
+        # @param NodeCount: 节点数
+        # @type NodeCount: Integer
+
+        attr_accessor :ZoneName, :ZoneId, :NodeCount
+        
+        def initialize(zonename=nil, zoneid=nil, nodecount=nil)
+          @ZoneName = zonename
+          @ZoneId = zoneid
+          @NodeCount = nodecount
+        end
+
+        def deserialize(params)
+          @ZoneName = params['ZoneName']
+          @ZoneId = params['ZoneId']
+          @NodeCount = params['NodeCount']
         end
       end
 
@@ -7228,6 +7298,76 @@ module TencentCloud
         end
       end
 
+      # RocketMQ专享集群实例配置
+      class RocketMQInstanceConfig < TencentCloud::Common::AbstractModel
+        # @param MaxTpsPerNamespace: 单命名空间TPS上线
+        # @type MaxTpsPerNamespace: Integer
+        # @param MaxNamespaceNum: 最大命名空间数量
+        # @type MaxNamespaceNum: Integer
+        # @param UsedNamespaceNum: 已使用命名空间数量
+        # @type UsedNamespaceNum: Integer
+        # @param MaxTopicNum: 最大Topic数量
+        # @type MaxTopicNum: Integer
+        # @param UsedTopicNum: 已使用Topic数量
+        # @type UsedTopicNum: Integer
+        # @param MaxGroupNum: 最大Group数量
+        # @type MaxGroupNum: Integer
+        # @param UsedGroupNum: 已使用Group数量
+        # @type UsedGroupNum: Integer
+        # @param ConfigDisplay: 集群类型
+        # @type ConfigDisplay: String
+        # @param NodeCount: 集群节点数
+        # @type NodeCount: Integer
+        # @param NodeDistribution: 节点分布情况
+        # @type NodeDistribution: Array
+        # @param TopicDistribution: topic分布情况
+        # @type TopicDistribution: Array
+
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution
+        
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil)
+          @MaxTpsPerNamespace = maxtpspernamespace
+          @MaxNamespaceNum = maxnamespacenum
+          @UsedNamespaceNum = usednamespacenum
+          @MaxTopicNum = maxtopicnum
+          @UsedTopicNum = usedtopicnum
+          @MaxGroupNum = maxgroupnum
+          @UsedGroupNum = usedgroupnum
+          @ConfigDisplay = configdisplay
+          @NodeCount = nodecount
+          @NodeDistribution = nodedistribution
+          @TopicDistribution = topicdistribution
+        end
+
+        def deserialize(params)
+          @MaxTpsPerNamespace = params['MaxTpsPerNamespace']
+          @MaxNamespaceNum = params['MaxNamespaceNum']
+          @UsedNamespaceNum = params['UsedNamespaceNum']
+          @MaxTopicNum = params['MaxTopicNum']
+          @UsedTopicNum = params['UsedTopicNum']
+          @MaxGroupNum = params['MaxGroupNum']
+          @UsedGroupNum = params['UsedGroupNum']
+          @ConfigDisplay = params['ConfigDisplay']
+          @NodeCount = params['NodeCount']
+          unless params['NodeDistribution'].nil?
+            @NodeDistribution = []
+            params['NodeDistribution'].each do |i|
+              instancenodedistribution_tmp = InstanceNodeDistribution.new
+              instancenodedistribution_tmp.deserialize(i)
+              @NodeDistribution << instancenodedistribution_tmp
+            end
+          end
+          unless params['TopicDistribution'].nil?
+            @TopicDistribution = []
+            params['TopicDistribution'].each do |i|
+              rocketmqtopicdistribution_tmp = RocketMQTopicDistribution.new
+              rocketmqtopicdistribution_tmp.deserialize(i)
+              @TopicDistribution << rocketmqtopicdistribution_tmp
+            end
+          end
+        end
+      end
+
       # RocketMQ命名空间信息
       class RocketMQNamespace < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -7305,6 +7445,26 @@ module TencentCloud
           @PartitionNum = params['PartitionNum']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # RocketMQtopic分布情况
+      class RocketMQTopicDistribution < TencentCloud::Common::AbstractModel
+        # @param TopicType: topic类型
+        # @type TopicType: String
+        # @param Count: topic数量
+        # @type Count: Integer
+
+        attr_accessor :TopicType, :Count
+        
+        def initialize(topictype=nil, count=nil)
+          @TopicType = topictype
+          @Count = count
+        end
+
+        def deserialize(params)
+          @TopicType = params['TopicType']
+          @Count = params['Count']
         end
       end
 

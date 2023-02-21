@@ -2422,17 +2422,23 @@ module TencentCloud
         # <li>web-rule：自定义规则日志；</li>
         # <li>web-bot：Bot管理日志。</li>
         # @type EntityType: String
+        # @param Area: 服务区域，取值有：
+        # <li>mainland：中国大陆境内；</li>
+        # <li>overseas：全球（不含中国大陆）。</li>若为国内站账号，则默认取值为mainland；若为国际站账号，则默认取值为overseas。
+        # @type Area: String
 
-        attr_accessor :ZoneId, :EntityType
+        attr_accessor :ZoneId, :EntityType, :Area
         
-        def initialize(zoneid=nil, entitytype=nil)
+        def initialize(zoneid=nil, entitytype=nil, area=nil)
           @ZoneId = zoneid
           @EntityType = entitytype
+          @Area = area
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @EntityType = params['EntityType']
+          @Area = params['Area']
         end
       end
 

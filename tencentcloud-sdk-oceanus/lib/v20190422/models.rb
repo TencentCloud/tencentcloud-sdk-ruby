@@ -1549,17 +1549,114 @@ module TencentCloud
 
       # DescribeTreeResources返回参数结构体
       class DescribeTreeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ParentId: 父节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param Id: 文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 文件夹名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Items: 文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Children: 子目录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+        # @param TotalCount: 资源总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ParentId, :Id, :Name, :Items, :Children, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(parentid=nil, id=nil, name=nil, items=nil, children=nil, totalcount=nil, requestid=nil)
+          @ParentId = parentid
+          @Id = id
+          @Name = name
+          @Items = items
+          @Children = children
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ParentId = params['ParentId']
+          @Id = params['Id']
+          @Name = params['Name']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              treeresourceitem_tmp = TreeResourceItem.new
+              treeresourceitem_tmp.deserialize(i)
+              @Items << treeresourceitem_tmp
+            end
+          end
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              describetreeresourcesrsp_tmp = DescribeTreeResourcesRsp.new
+              describetreeresourcesrsp_tmp.deserialize(i)
+              @Children << describetreeresourcesrsp_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 树状结构资源列表对象
+      class DescribeTreeResourcesRsp < TencentCloud::Common::AbstractModel
+        # @param ParentId: 父节点ID
+        # @type ParentId: String
+        # @param Id: 文件夹ID
+        # @type Id: String
+        # @param Name: 文件夹名称
+        # @type Name: String
+        # @param Items: 文件夹下资源数字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Children: 子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+        # @param TotalCount: 资源总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :ParentId, :Id, :Name, :Items, :Children, :TotalCount
+        
+        def initialize(parentid=nil, id=nil, name=nil, items=nil, children=nil, totalcount=nil)
+          @ParentId = parentid
+          @Id = id
+          @Name = name
+          @Items = items
+          @Children = children
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @ParentId = params['ParentId']
+          @Id = params['Id']
+          @Name = params['Name']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              treeresourceitem_tmp = TreeResourceItem.new
+              treeresourceitem_tmp.deserialize(i)
+              @Items << treeresourceitem_tmp
+            end
+          end
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              describetreeresourcesrsp_tmp = DescribeTreeResourcesRsp.new
+              describetreeresourcesrsp_tmp.deserialize(i)
+              @Children << describetreeresourcesrsp_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -2492,6 +2589,46 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 树状结构资源对象
+      class TreeResourceItem < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Name: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: Integer
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FolderId: 目录ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: String
+
+        attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :FileName, :FolderId
+        
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, filename=nil, folderid=nil)
+          @ResourceId = resourceid
+          @Name = name
+          @ResourceType = resourcetype
+          @Remark = remark
+          @FileName = filename
+          @FolderId = folderid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Name = params['Name']
+          @ResourceType = params['ResourceType']
+          @Remark = params['Remark']
+          @FileName = params['FileName']
+          @FolderId = params['FolderId']
         end
       end
 

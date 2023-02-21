@@ -3938,10 +3938,13 @@ module TencentCloud
         # @type Cm: Integer
         # @param Vod: Vod触发器数量
         # @type Vod: Integer
+        # @param Eb: Eb触发器数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Eb: Integer
 
-        attr_accessor :Cos, :Timer, :Cmq, :Total, :Ckafka, :Apigw, :Cls, :Clb, :Mps, :Cm, :Vod
+        attr_accessor :Cos, :Timer, :Cmq, :Total, :Ckafka, :Apigw, :Cls, :Clb, :Mps, :Cm, :Vod, :Eb
         
-        def initialize(cos=nil, timer=nil, cmq=nil, total=nil, ckafka=nil, apigw=nil, cls=nil, clb=nil, mps=nil, cm=nil, vod=nil)
+        def initialize(cos=nil, timer=nil, cmq=nil, total=nil, ckafka=nil, apigw=nil, cls=nil, clb=nil, mps=nil, cm=nil, vod=nil, eb=nil)
           @Cos = cos
           @Timer = timer
           @Cmq = cmq
@@ -3953,6 +3956,7 @@ module TencentCloud
           @Mps = mps
           @Cm = cm
           @Vod = vod
+          @Eb = eb
         end
 
         def deserialize(params)
@@ -3967,6 +3971,7 @@ module TencentCloud
           @Mps = params['Mps']
           @Cm = params['Cm']
           @Vod = params['Vod']
+          @Eb = params['Eb']
         end
       end
 

@@ -5360,6 +5360,63 @@ module TencentCloud
         end
       end
 
+      # ModifyVipVport请求参数结构体
+      class ModifyVipVportRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param InstanceGrpId: 实例组id
+        # @type InstanceGrpId: String
+        # @param Vip: 需要修改的目的ip
+        # @type Vip: String
+        # @param Vport: 需要修改的目的端口
+        # @type Vport: Integer
+        # @param DbType: 数据库类型，取值范围:
+        # <li> MYSQL </li>
+        # @type DbType: String
+        # @param OldIpReserveHours: 旧ip回收前的保留时间，单位小时，0表示立即回收
+        # @type OldIpReserveHours: Integer
+
+        attr_accessor :ClusterId, :InstanceGrpId, :Vip, :Vport, :DbType, :OldIpReserveHours
+        
+        def initialize(clusterid=nil, instancegrpid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
+          @ClusterId = clusterid
+          @InstanceGrpId = instancegrpid
+          @Vip = vip
+          @Vport = vport
+          @DbType = dbtype
+          @OldIpReserveHours = oldipreservehours
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceGrpId = params['InstanceGrpId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @DbType = params['DbType']
+          @OldIpReserveHours = params['OldIpReserveHours']
+        end
+      end
+
+      # ModifyVipVport返回参数结构体
+      class ModifyVipVportResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 系统支持的模块
       class Module < TencentCloud::Common::AbstractModel
         # @param IsDisable: 是否支持，可选值:yes,no

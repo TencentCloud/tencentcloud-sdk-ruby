@@ -973,6 +973,63 @@ module TencentCloud
         end
       end
 
+      # CreateAIFormTask请求参数结构体
+      class CreateAIFormTaskRequest < TencentCloud::Common::AbstractModel
+        # @param FileList: 多个文件的URL列表
+        # @type FileList: Array
+        # @param FirstNotes: 备注信息1
+        # @type FirstNotes: String
+        # @param SecondNotes: 备注信息2
+        # @type SecondNotes: String
+
+        attr_accessor :FileList, :FirstNotes, :SecondNotes
+        
+        def initialize(filelist=nil, firstnotes=nil, secondnotes=nil)
+          @FileList = filelist
+          @FirstNotes = firstnotes
+          @SecondNotes = secondnotes
+        end
+
+        def deserialize(params)
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              smartformfileurl_tmp = SmartFormFileUrl.new
+              smartformfileurl_tmp.deserialize(i)
+              @FileList << smartformfileurl_tmp
+            end
+          end
+          @FirstNotes = params['FirstNotes']
+          @SecondNotes = params['SecondNotes']
+        end
+      end
+
+      # CreateAIFormTask返回参数结构体
+      class CreateAIFormTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 本次识别任务的唯一身份ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param OperateUrl: 本次识别任务的操作URL，有效期自生成之时起共24小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :OperateUrl, :RequestId
+        
+        def initialize(taskid=nil, operateurl=nil, requestid=nil)
+          @TaskId = taskid
+          @OperateUrl = operateurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @OperateUrl = params['OperateUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 企业四要素核验结果
       class Detail < TencentCloud::Common::AbstractModel
         # @param Result: 企业四要素核验结果状态码
@@ -2248,6 +2305,47 @@ module TencentCloud
             end
           end
           @Angel = params['Angel']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTaskState请求参数结构体
+      class GetTaskStateRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 智慧表单任务唯一身份ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetTaskState返回参数结构体
+      class GetTaskStateResponse < TencentCloud::Common::AbstractModel
+        # @param TaskState: 1:任务识别完成，还未提交
+        # 2:任务已手动关闭
+        # 3:任务已提交
+        # 4:任务识别中
+        # 5:超时：任务超过了可操作的24H时限
+        # 6:任务识别失败
+        # @type TaskState: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskState, :RequestId
+        
+        def initialize(taskstate=nil, requestid=nil)
+          @TaskState = taskstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskState = params['TaskState']
           @RequestId = params['RequestId']
         end
       end
@@ -5139,6 +5237,76 @@ module TencentCloud
         end
       end
 
+      # RecognizeTableAccurateOCR请求参数结构体
+      class RecognizeTableAccurateOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片/PDF的 Base64 值。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片/PDF的 Url 地址。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber
+        
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @PdfPageNumber = pdfpagenumber
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @PdfPageNumber = params['PdfPageNumber']
+        end
+      end
+
+      # RecognizeTableAccurateOCR返回参数结构体
+      class RecognizeTableAccurateOCRResponse < TencentCloud::Common::AbstractModel
+        # @param TableDetections: 检测到的文本信息，具体内容请点击左侧链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableDetections: Array
+        # @param Data: Base64 编码后的 Excel 数据。
+        # @type Data: String
+        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PdfPageSize: Integer
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，统一以逆时针方向旋转，逆时针为负，角度范围为-360°至0°。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Angle: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
+        
+        def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, angle=nil, requestid=nil)
+          @TableDetections = tabledetections
+          @Data = data
+          @PdfPageSize = pdfpagesize
+          @Angle = angle
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableDetections'].nil?
+            @TableDetections = []
+            params['TableDetections'].each do |i|
+              tableinfo_tmp = TableInfo.new
+              tableinfo_tmp.deserialize(i)
+              @TableDetections << tableinfo_tmp
+            end
+          end
+          @Data = params['Data']
+          @PdfPageSize = params['PdfPageSize']
+          @Angle = params['Angle']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeTableOCR请求参数结构体
       class RecognizeTableOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片/PDF的 Base64 值。
@@ -5222,17 +5390,22 @@ module TencentCloud
         # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
+        # @param CropPortrait: 图片开关。默认为false，不返回泰国身份证头像照片的base64编码。
+        # 设置为true时，返回旋转矫正后的泰国身份证头像照片的base64编码
+        # @type CropPortrait: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :CropPortrait
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -5254,12 +5427,14 @@ module TencentCloud
         # @type ExpirationDate: String
         # @param EnLastName: 英文姓名
         # @type EnLastName: String
+        # @param PortraitImage: 证件人像照片抠取
+        # @type PortraitImage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :PortraitImage, :RequestId
         
-        def initialize(id=nil, thainame=nil, enfirstname=nil, address=nil, birthday=nil, issuedate=nil, expirationdate=nil, enlastname=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, address=nil, birthday=nil, issuedate=nil, expirationdate=nil, enlastname=nil, portraitimage=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -5268,6 +5443,7 @@ module TencentCloud
           @IssueDate = issuedate
           @ExpirationDate = expirationdate
           @EnLastName = enlastname
+          @PortraitImage = portraitimage
           @RequestId = requestid
         end
 
@@ -5280,6 +5456,7 @@ module TencentCloud
           @IssueDate = params['IssueDate']
           @ExpirationDate = params['ExpirationDate']
           @EnLastName = params['EnLastName']
+          @PortraitImage = params['PortraitImage']
           @RequestId = params['RequestId']
         end
       end
@@ -5877,6 +6054,17 @@ module TencentCloud
         end
       end
 
+      # 智慧表单上传文件信息
+      class SmartFormFileUrl < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # SmartStructuralOCR请求参数结构体
       class SmartStructuralOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片的 Url 地址。
@@ -6057,6 +6245,57 @@ module TencentCloud
         end
       end
 
+      # 单元格数据
+      class TableCellInfo < TencentCloud::Common::AbstractModel
+        # @param ColTl: 单元格左上角的列索引
+        # @type ColTl: Integer
+        # @param RowTl: 单元格左上角的行索引
+        # @type RowTl: Integer
+        # @param ColBr: 单元格右下角的列索引
+        # @type ColBr: Integer
+        # @param RowBr: 单元格右下角的行索引
+        # @type RowBr: Integer
+        # @param Text: 单元格内识别出的字符串文本，若文本存在多行，以换行符"\n"隔开
+        # @type Text: String
+        # @param Type: 单元格类型
+        # @type Type: String
+        # @param Confidence: 单元格置信度
+        # @type Confidence: Float
+        # @param Polygon: 单元格在图像中的四点坐标
+        # @type Polygon: Array
+
+        attr_accessor :ColTl, :RowTl, :ColBr, :RowBr, :Text, :Type, :Confidence, :Polygon
+        
+        def initialize(coltl=nil, rowtl=nil, colbr=nil, rowbr=nil, text=nil, type=nil, confidence=nil, polygon=nil)
+          @ColTl = coltl
+          @RowTl = rowtl
+          @ColBr = colbr
+          @RowBr = rowbr
+          @Text = text
+          @Type = type
+          @Confidence = confidence
+          @Polygon = polygon
+        end
+
+        def deserialize(params)
+          @ColTl = params['ColTl']
+          @RowTl = params['RowTl']
+          @ColBr = params['ColBr']
+          @RowBr = params['RowBr']
+          @Text = params['Text']
+          @Type = params['Type']
+          @Confidence = params['Confidence']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @Polygon << coord_tmp
+            end
+          end
+        end
+      end
+
       # 表格内容检测
       class TableDetectInfo < TencentCloud::Common::AbstractModel
         # @param Cells: 单元格内容
@@ -6099,6 +6338,49 @@ module TencentCloud
               tabletitle_tmp = TableTitle.new
               tabletitle_tmp.deserialize(i)
               @Titles << tabletitle_tmp
+            end
+          end
+          @Type = params['Type']
+          unless params['TableCoordPoint'].nil?
+            @TableCoordPoint = []
+            params['TableCoordPoint'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @TableCoordPoint << coord_tmp
+            end
+          end
+        end
+      end
+
+      # 表格内容检测
+      class TableInfo < TencentCloud::Common::AbstractModel
+        # @param Cells: 单元格内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cells: Array
+        # @param Type: 图像中的文本块类型，0 为非表格文本，
+        # 1 为有线表格，2 为无线表格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param TableCoordPoint: 表格主体四个顶点坐标（依次为左上角，
+        # 右上角，右下角，左下角）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableCoordPoint: Array
+
+        attr_accessor :Cells, :Type, :TableCoordPoint
+        
+        def initialize(cells=nil, type=nil, tablecoordpoint=nil)
+          @Cells = cells
+          @Type = type
+          @TableCoordPoint = tablecoordpoint
+        end
+
+        def deserialize(params)
+          unless params['Cells'].nil?
+            @Cells = []
+            params['Cells'].each do |i|
+              tablecellinfo_tmp = TableCellInfo.new
+              tablecellinfo_tmp.deserialize(i)
+              @Cells << tablecellinfo_tmp
             end
           end
           @Type = params['Type']

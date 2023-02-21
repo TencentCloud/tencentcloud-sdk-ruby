@@ -701,7 +701,7 @@ module TencentCloud
 
       # CreateDocument请求参数结构体
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 签署流程编号,由CreateFlow接口返回
         # @type FlowId: String
@@ -838,7 +838,7 @@ module TencentCloud
 
       # CreateFlowByFiles请求参数结构体
       class CreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowName: 签署流程名称,最大长度200个字符
         # @type FlowName: String
@@ -1097,7 +1097,7 @@ module TencentCloud
 
       # CreateFlow请求参数结构体
       class CreateFlowRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowName: 签署流程名称,最大长度200个字符
         # @type FlowName: String
@@ -3817,7 +3817,7 @@ module TencentCloud
 
       # StartFlow请求参数结构体
       class StartFlowRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 签署流程编号，由CreateFlow接口返回
         # @type FlowId: String

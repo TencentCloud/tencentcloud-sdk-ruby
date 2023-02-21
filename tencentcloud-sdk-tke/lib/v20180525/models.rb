@@ -597,16 +597,20 @@ module TencentCloud
         # @param Total: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
+        # @param UnavailableVersionReason: 不可升级原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnavailableVersionReason: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterVersion, :LatestVersion, :UpgradeAbleInstances, :Total, :RequestId
+        attr_accessor :ClusterVersion, :LatestVersion, :UpgradeAbleInstances, :Total, :UnavailableVersionReason, :RequestId
         
-        def initialize(clusterversion=nil, latestversion=nil, upgradeableinstances=nil, total=nil, requestid=nil)
+        def initialize(clusterversion=nil, latestversion=nil, upgradeableinstances=nil, total=nil, unavailableversionreason=nil, requestid=nil)
           @ClusterVersion = clusterversion
           @LatestVersion = latestversion
           @UpgradeAbleInstances = upgradeableinstances
           @Total = total
+          @UnavailableVersionReason = unavailableversionreason
           @RequestId = requestid
         end
 
@@ -622,6 +626,14 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          unless params['UnavailableVersionReason'].nil?
+            @UnavailableVersionReason = []
+            params['UnavailableVersionReason'].each do |i|
+              unavailablereason_tmp = UnavailableReason.new
+              unavailablereason_tmp.deserialize(i)
+              @UnavailableVersionReason << unavailablereason_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10872,6 +10884,18 @@ module TencentCloud
 
       # 描述了k8s集群相关配置与信息。
       class InstanceAdvancedSettings < TencentCloud::Common::AbstractModel
+        # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredPodNumber: Integer
+        # @param GPUArgs: GPU驱动相关参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
+        # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreStartUserScript: String
+        # @param Taints: 节点污点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Taints: Array
         # @param MountTarget: 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 (tlinux系统格式化成xfs)并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
         # 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10893,22 +10917,14 @@ module TencentCloud
         # @param ExtraArgs: 节点相关的自定义参数信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
-        # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DesiredPodNumber: Integer
-        # @param GPUArgs: GPU驱动相关参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
-        # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PreStartUserScript: String
-        # @param Taints: 节点污点
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Taints: Array
 
-        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber, :GPUArgs, :PreStartUserScript, :Taints
+        attr_accessor :DesiredPodNumber, :GPUArgs, :PreStartUserScript, :Taints, :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs
         
-        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil, gpuargs=nil, prestartuserscript=nil, taints=nil)
+        def initialize(desiredpodnumber=nil, gpuargs=nil, prestartuserscript=nil, taints=nil, mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil)
+          @DesiredPodNumber = desiredpodnumber
+          @GPUArgs = gpuargs
+          @PreStartUserScript = prestartuserscript
+          @Taints = taints
           @MountTarget = mounttarget
           @DockerGraphPath = dockergraphpath
           @UserScript = userscript
@@ -10916,13 +10932,23 @@ module TencentCloud
           @Labels = labels
           @DataDisks = datadisks
           @ExtraArgs = extraargs
-          @DesiredPodNumber = desiredpodnumber
-          @GPUArgs = gpuargs
-          @PreStartUserScript = prestartuserscript
-          @Taints = taints
         end
 
         def deserialize(params)
+          @DesiredPodNumber = params['DesiredPodNumber']
+          unless params['GPUArgs'].nil?
+            @GPUArgs = GPUArgs.new
+            @GPUArgs.deserialize(params['GPUArgs'])
+          end
+          @PreStartUserScript = params['PreStartUserScript']
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
           @MountTarget = params['MountTarget']
           @DockerGraphPath = params['DockerGraphPath']
           @UserScript = params['UserScript']
@@ -10946,20 +10972,6 @@ module TencentCloud
           unless params['ExtraArgs'].nil?
             @ExtraArgs = InstanceExtraArgs.new
             @ExtraArgs.deserialize(params['ExtraArgs'])
-          end
-          @DesiredPodNumber = params['DesiredPodNumber']
-          unless params['GPUArgs'].nil?
-            @GPUArgs = GPUArgs.new
-            @GPUArgs.deserialize(params['GPUArgs'])
-          end
-          @PreStartUserScript = params['PreStartUserScript']
-          unless params['Taints'].nil?
-            @Taints = []
-            params['Taints'].each do |i|
-              taint_tmp = Taint.new
-              taint_tmp.deserialize(i)
-              @Taints << taint_tmp
-            end
           end
         end
       end
@@ -15052,6 +15064,28 @@ module TencentCloud
         end
       end
 
+      # 不可用原因
+      class UnavailableReason < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Reason: 原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :InstanceId, :Reason
+        
+        def initialize(instanceid=nil, reason=nil)
+          @InstanceId = instanceid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Reason = params['Reason']
+        end
+      end
+
       # UninstallClusterRelease请求参数结构体
       class UninstallClusterReleaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -15595,19 +15629,27 @@ module TencentCloud
         # @param LatestVersion: 当前版本的最新小版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestVersion: String
+        # @param RuntimeVersion: RuntimeVersion
+        # @type RuntimeVersion: String
+        # @param RuntimeLatestVersion: RuntimeLatestVersion
+        # @type RuntimeLatestVersion: String
 
-        attr_accessor :InstanceId, :Version, :LatestVersion
+        attr_accessor :InstanceId, :Version, :LatestVersion, :RuntimeVersion, :RuntimeLatestVersion
         
-        def initialize(instanceid=nil, version=nil, latestversion=nil)
+        def initialize(instanceid=nil, version=nil, latestversion=nil, runtimeversion=nil, runtimelatestversion=nil)
           @InstanceId = instanceid
           @Version = version
           @LatestVersion = latestversion
+          @RuntimeVersion = runtimeversion
+          @RuntimeLatestVersion = runtimelatestversion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Version = params['Version']
           @LatestVersion = params['LatestVersion']
+          @RuntimeVersion = params['RuntimeVersion']
+          @RuntimeLatestVersion = params['RuntimeLatestVersion']
         end
       end
 

@@ -750,7 +750,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安全设置
+        # 获取子账号安全设置
 
         # @param request: Request instance for DescribeSafeAuthFlagColl.
         # @type request: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagCollRequest`

@@ -1709,7 +1709,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  查询集群下节点实例信息
+        # 查询集群下节点实例信息
 
         # @param request: Request instance for DescribeClusterInstances.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterInstancesRequest`

@@ -1517,6 +1517,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改实例组ip，端口
+
+        # @param request: Request instance for ModifyVipVport.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyVipVportRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyVipVportResponse`
+        def ModifyVipVport(request)
+          body = send_request('ModifyVipVport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVipVportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 下线集群
 
         # @param request: Request instance for OfflineCluster.

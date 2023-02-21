@@ -2865,13 +2865,13 @@ module TencentCloud
 
       # DataSaEventPub
       class ListDataSaEventPub < TencentCloud::Common::AbstractModel
-        # @param Time: 受影响资产
+        # @param Time: 时间
         # @type Time: String
-        # @param EventType1: 安全事件名称
+        # @param EventType1: 安全事件1级分类
         # @type EventType1: Integer
-        # @param EventType2: 安全事件1级分类
+        # @param EventType2: 安全事件2级分类
         # @type EventType2: Integer
-        # @param EventName: 安全事件2级分类
+        # @param EventName: 安全事件名称
         # @type EventName: String
         # @param Level: 风险等级
         # @type Level: Integer
