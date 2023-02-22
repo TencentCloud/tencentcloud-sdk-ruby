@@ -514,10 +514,12 @@ module TencentCloud
         # @type Line: Integer
         # @param ElasticServiceBandwidth: 弹性业务带宽开关
         # @type ElasticServiceBandwidth: Integer
+        # @param GiftServiceBandWidth: 赠送的业务带宽
+        # @type GiftServiceBandWidth: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth, :GiftServiceBandWidth
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -536,6 +538,7 @@ module TencentCloud
           @VitalityVersion = vitalityversion
           @Line = line
           @ElasticServiceBandwidth = elasticservicebandwidth
+          @GiftServiceBandWidth = giftservicebandwidth
         end
 
         def deserialize(params)
@@ -586,6 +589,7 @@ module TencentCloud
           @VitalityVersion = params['VitalityVersion']
           @Line = params['Line']
           @ElasticServiceBandwidth = params['ElasticServiceBandwidth']
+          @GiftServiceBandWidth = params['GiftServiceBandWidth']
         end
       end
 

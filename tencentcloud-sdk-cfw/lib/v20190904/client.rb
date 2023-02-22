@@ -1401,6 +1401,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 日志存储设置，可以修改存储时间和清空日志
+
+        # @param request: Request instance for ModifyStorageSetting.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyStorageSettingRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyStorageSettingResponse`
+        def ModifyStorageSetting(request)
+          body = send_request('ModifyStorageSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStorageSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改规则表状态
 
         # @param request: Request instance for ModifyTableStatus.

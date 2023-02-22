@@ -90,10 +90,9 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param QueueName: 队列名称。不指定则为默认队列。<br><li>SLURM默认队列为：compute。<br>
-        # <li>SGE默认队列为：all.q。<br>
+        # @param QueueName: 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。<li>SGE默认队列为：all.q。
         # @type QueueName: String
-        # @param NodeRole: 添加节点类型。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
+        # @param NodeRole: 添加节点角色。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
         # @type NodeRole: String
         # @param DryRun: 是否只预检此次请求。
         # true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和云服务器库存。
@@ -101,10 +100,12 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
+        # @param NodeType: 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。<li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
+        # @type NodeType: String
 
-        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun
+        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType
         
-        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil)
+        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil)
           @Placement = placement
           @ClusterId = clusterid
           @VirtualPrivateCloud = virtualprivatecloud
@@ -123,6 +124,7 @@ module TencentCloud
           @QueueName = queuename
           @NodeRole = noderole
           @DryRun = dryrun
+          @NodeType = nodetype
         end
 
         def deserialize(params)
@@ -173,6 +175,7 @@ module TencentCloud
           @QueueName = params['QueueName']
           @NodeRole = params['NodeRole']
           @DryRun = params['DryRun']
+          @NodeType = params['NodeType']
         end
       end
 

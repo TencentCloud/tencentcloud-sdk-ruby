@@ -4937,33 +4937,33 @@ module TencentCloud
       class ModifyBackupConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
+        # @type ReserveDuration: Integer
         # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeBeg: Integer
         # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeEnd: Integer
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
-        # @type ReserveDuration: Integer
         # @param BackupFreq: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         # @type BackupFreq: Array
         # @param BackupType: 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         # @type BackupType: String
 
-        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType
+        attr_accessor :ClusterId, :ReserveDuration, :BackupTimeBeg, :BackupTimeEnd, :BackupFreq, :BackupType
         
-        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil)
+        def initialize(clusterid=nil, reserveduration=nil, backuptimebeg=nil, backuptimeend=nil, backupfreq=nil, backuptype=nil)
           @ClusterId = clusterid
+          @ReserveDuration = reserveduration
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
-          @ReserveDuration = reserveduration
           @BackupFreq = backupfreq
           @BackupType = backuptype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @ReserveDuration = params['ReserveDuration']
           @BackupTimeBeg = params['BackupTimeBeg']
           @BackupTimeEnd = params['BackupTimeEnd']
-          @ReserveDuration = params['ReserveDuration']
           @BackupFreq = params['BackupFreq']
           @BackupType = params['BackupType']
         end

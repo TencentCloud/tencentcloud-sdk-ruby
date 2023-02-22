@@ -1385,10 +1385,13 @@ module TencentCloud
         # @type RunTime: String
         # @param ExpireTime: 到期时间
         # @type ExpireTime: String
+        # @param HostId: 宿主机id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostId: String
 
-        attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime
+        attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
         
-        def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil)
+        def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil, hostid=nil)
           @HostIp = hostip
           @ServiceType = servicetype
           @HostStatus = hoststatus
@@ -1399,6 +1402,7 @@ module TencentCloud
           @MemTotal = memtotal
           @RunTime = runtime
           @ExpireTime = expiretime
+          @HostId = hostid
         end
 
         def deserialize(params)
@@ -1412,6 +1416,7 @@ module TencentCloud
           @MemTotal = params['MemTotal']
           @RunTime = params['RunTime']
           @ExpireTime = params['ExpireTime']
+          @HostId = params['HostId']
         end
       end
 

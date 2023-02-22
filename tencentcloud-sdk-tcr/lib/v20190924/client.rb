@@ -1493,6 +1493,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 内部替换接口+DescribeInstanceAllForCoding
+
         # 查询全部实例信息
 
         # @param request: Request instance for DescribeInstanceAll.

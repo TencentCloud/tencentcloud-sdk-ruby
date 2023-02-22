@@ -17,6 +17,38 @@
 module TencentCloud
   module Cbs
     module V20170312
+      # 定期快照高级保留策略，四个参数都为必选参数
+      class AdvancedRetentionPolicy < TencentCloud::Common::AbstractModel
+        # @param Days: 保留最新快照Days天内的每天最新的一个快照，取值范围：[0, 100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Days: Integer
+        # @param Weeks: 保留最新快照Weeks周内的每周最新的一个快照，取值范围：[0, 100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weeks: Integer
+        # @param Months: 保留最新快照Months月内的每月最新的一个快照， 取值范围：[0, 100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Months: Integer
+        # @param Years: 保留最新快照Years年内的每年最新的一个快照，取值范围：[0, 100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Years: Integer
+
+        attr_accessor :Days, :Weeks, :Months, :Years
+        
+        def initialize(days=nil, weeks=nil, months=nil, years=nil)
+          @Days = days
+          @Weeks = weeks
+          @Months = months
+          @Years = years
+        end
+
+        def deserialize(params)
+          @Days = params['Days']
+          @Weeks = params['Weeks']
+          @Months = params['Months']
+          @Years = params['Years']
+        end
+      end
+
       # ApplyDiskBackup请求参数结构体
       class ApplyDiskBackupRequest < TencentCloud::Common::AbstractModel
         # @param DiskBackupId: 云硬盘备份点ID，可通过 DescribeDiskBackups 查询。
@@ -220,10 +252,19 @@ module TencentCloud
         # @param InstanceIdSet: 已绑定当前定期快照策略的实例ID列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIdSet: Array
+        # @param RetentionMonths: 该定期快照创建的快照可以保留的月数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionMonths: Integer
+        # @param RetentionAmount: 该定期快照创建的快照最大保留数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionAmount: Integer
+        # @param AdvancedRetentionPolicy: 定期快照高级保留策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedRetentionPolicy: :class:`Tencentcloud::Cbs.v20170312.models.AdvancedRetentionPolicy`
 
-        attr_accessor :DiskIdSet, :IsActivated, :AutoSnapshotPolicyState, :IsCopyToRemote, :IsPermanent, :NextTriggerTime, :AutoSnapshotPolicyName, :AutoSnapshotPolicyId, :Policy, :CreateTime, :RetentionDays, :CopyToAccountUin, :InstanceIdSet
+        attr_accessor :DiskIdSet, :IsActivated, :AutoSnapshotPolicyState, :IsCopyToRemote, :IsPermanent, :NextTriggerTime, :AutoSnapshotPolicyName, :AutoSnapshotPolicyId, :Policy, :CreateTime, :RetentionDays, :CopyToAccountUin, :InstanceIdSet, :RetentionMonths, :RetentionAmount, :AdvancedRetentionPolicy
         
-        def initialize(diskidset=nil, isactivated=nil, autosnapshotpolicystate=nil, iscopytoremote=nil, ispermanent=nil, nexttriggertime=nil, autosnapshotpolicyname=nil, autosnapshotpolicyid=nil, policy=nil, createtime=nil, retentiondays=nil, copytoaccountuin=nil, instanceidset=nil)
+        def initialize(diskidset=nil, isactivated=nil, autosnapshotpolicystate=nil, iscopytoremote=nil, ispermanent=nil, nexttriggertime=nil, autosnapshotpolicyname=nil, autosnapshotpolicyid=nil, policy=nil, createtime=nil, retentiondays=nil, copytoaccountuin=nil, instanceidset=nil, retentionmonths=nil, retentionamount=nil, advancedretentionpolicy=nil)
           @DiskIdSet = diskidset
           @IsActivated = isactivated
           @AutoSnapshotPolicyState = autosnapshotpolicystate
@@ -237,6 +278,9 @@ module TencentCloud
           @RetentionDays = retentiondays
           @CopyToAccountUin = copytoaccountuin
           @InstanceIdSet = instanceidset
+          @RetentionMonths = retentionmonths
+          @RetentionAmount = retentionamount
+          @AdvancedRetentionPolicy = advancedretentionpolicy
         end
 
         def deserialize(params)
@@ -260,6 +304,12 @@ module TencentCloud
           @RetentionDays = params['RetentionDays']
           @CopyToAccountUin = params['CopyToAccountUin']
           @InstanceIdSet = params['InstanceIdSet']
+          @RetentionMonths = params['RetentionMonths']
+          @RetentionAmount = params['RetentionAmount']
+          unless params['AdvancedRetentionPolicy'].nil?
+            @AdvancedRetentionPolicy = AdvancedRetentionPolicy.new
+            @AdvancedRetentionPolicy.deserialize(params['AdvancedRetentionPolicy'])
+          end
         end
       end
 
@@ -2658,23 +2708,31 @@ module TencentCloud
         end
       end
 
-      # 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的小时执行该条定期快照策略。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
+      # 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的时刻点执行该条定期快照策。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
       class Policy < TencentCloud::Common::AbstractModel
         # @param Hour: 指定定期快照策略的触发时间。单位为小时，取值范围：[0, 23]。00:00 ~ 23:00 共 24 个时间点可选，1表示 01:00，依此类推。
         # @type Hour: Array
         # @param DayOfWeek: 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
         # @type DayOfWeek: Array
+        # @param DayOfMonth: 指定每月从月初到月底需要触发定期快照的日期,取值范围：[1, 31]，1-31分别表示每月的具体日期，比如5表示每月的5号。注：若设置29、30、31等部分月份不存在的日期，则对应不存在日期的月份会跳过不打定期快照。
+        # @type DayOfMonth: Array
+        # @param IntervalDays: 指定创建定期快照的间隔天数，取值范围：[1, 365]，例如设置为5，则间隔5天即触发定期快照创建。注：当选择按天备份时，理论上第一次备份的时间为备份策略创建当天。如果当天备份策略创建的时间已经晚于设置的备份时间，那么将会等到第二个备份周期再进行第一次备份。
+        # @type IntervalDays: Integer
 
-        attr_accessor :Hour, :DayOfWeek
+        attr_accessor :Hour, :DayOfWeek, :DayOfMonth, :IntervalDays
         
-        def initialize(hour=nil, dayofweek=nil)
+        def initialize(hour=nil, dayofweek=nil, dayofmonth=nil, intervaldays=nil)
           @Hour = hour
           @DayOfWeek = dayofweek
+          @DayOfMonth = dayofmonth
+          @IntervalDays = intervaldays
         end
 
         def deserialize(params)
           @Hour = params['Hour']
           @DayOfWeek = params['DayOfWeek']
+          @DayOfMonth = params['DayOfMonth']
+          @IntervalDays = params['IntervalDays']
         end
       end
 

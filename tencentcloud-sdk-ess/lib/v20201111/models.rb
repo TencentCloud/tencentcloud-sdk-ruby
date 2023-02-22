@@ -3404,6 +3404,33 @@ module TencentCloud
         end
       end
 
+      # ModifyApplicationCallbackInfo请求参数结构体
+      class ModifyApplicationCallbackInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyApplicationCallbackInfo返回参数结构体
+      class ModifyApplicationCallbackInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 持有的电子印章信息
       class OccupiedSeal < TencentCloud::Common::AbstractModel
         # @param SealId: 电子印章编号

@@ -370,10 +370,16 @@ module TencentCloud
         # @type UpdateProhibition: Integer
         # @param TransferProhibition: 是否开启转移锁：0=默认不开启，1=开启
         # @type TransferProhibition: Integer
+        # @param ChannelFrom: 渠道来源，pc/miniprogram/h5等
+        # @type ChannelFrom: String
+        # @param OrderFrom: 订单来源，common正常/dianshi_active点石活动等
+        # @type OrderFrom: String
+        # @param ActivityId: 活动id
+        # @type ActivityId: String
 
-        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :UpdateProhibition, :TransferProhibition
+        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :UpdateProhibition, :TransferProhibition, :ChannelFrom, :OrderFrom, :ActivityId
         
-        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, updateprohibition=nil, transferprohibition=nil)
+        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, updateprohibition=nil, transferprohibition=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @TemplateId = templateid
           @Period = period
           @Domains = domains
@@ -382,6 +388,9 @@ module TencentCloud
           @PackageResourceId = packageresourceid
           @UpdateProhibition = updateprohibition
           @TransferProhibition = transferprohibition
+          @ChannelFrom = channelfrom
+          @OrderFrom = orderfrom
+          @ActivityId = activityid
         end
 
         def deserialize(params)
@@ -393,6 +402,9 @@ module TencentCloud
           @PackageResourceId = params['PackageResourceId']
           @UpdateProhibition = params['UpdateProhibition']
           @TransferProhibition = params['TransferProhibition']
+          @ChannelFrom = params['ChannelFrom']
+          @OrderFrom = params['OrderFrom']
+          @ActivityId = params['ActivityId']
         end
       end
 
@@ -1564,21 +1576,33 @@ module TencentCloud
         # @type Period: Integer
         # @param Domains: 批量续费的域名。
         # @type Domains: Array
-        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费。
+        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费，2使用特惠包。
         # @type PayMode: Integer
         # @param AutoRenewFlag: 自动续费开关。有三个可选值：
         # 0 表示关闭，不自动续费
         # 1 表示开启，将自动续费
         # 2 表示不处理，保留域名原有状态（默认值）
         # @type AutoRenewFlag: Integer
+        # @param PackageResourceId: 特惠包ID
+        # @type PackageResourceId: String
+        # @param ChannelFrom: 渠道来源，pc/miniprogram/h5等
+        # @type ChannelFrom: String
+        # @param OrderFrom: 订单来源，common正常/dianshi_active点石活动等
+        # @type OrderFrom: String
+        # @param ActivityId: 活动id
+        # @type ActivityId: String
 
-        attr_accessor :Period, :Domains, :PayMode, :AutoRenewFlag
+        attr_accessor :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :ChannelFrom, :OrderFrom, :ActivityId
         
-        def initialize(period=nil, domains=nil, paymode=nil, autorenewflag=nil)
+        def initialize(period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @Period = period
           @Domains = domains
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
+          @PackageResourceId = packageresourceid
+          @ChannelFrom = channelfrom
+          @OrderFrom = orderfrom
+          @ActivityId = activityid
         end
 
         def deserialize(params)
@@ -1586,6 +1610,10 @@ module TencentCloud
           @Domains = params['Domains']
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @PackageResourceId = params['PackageResourceId']
+          @ChannelFrom = params['ChannelFrom']
+          @OrderFrom = params['OrderFrom']
+          @ActivityId = params['ActivityId']
         end
       end
 
@@ -1772,10 +1800,16 @@ module TencentCloud
         # @type UpdateProhibition: Integer
         # @param TransferProhibition: 是否开启转移锁：0=默认不开启，1=开启
         # @type TransferProhibition: Integer
+        # @param ChannelFrom: 渠道来源，pc/miniprogram/h5等
+        # @type ChannelFrom: String
+        # @param OrderFrom: 订单来源，common正常/dianshi_active点石活动等
+        # @type OrderFrom: String
+        # @param ActivityId: 活动id
+        # @type ActivityId: String
 
-        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer, :UpdateProhibition, :TransferProhibition
+        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer, :UpdateProhibition, :TransferProhibition, :ChannelFrom, :OrderFrom, :ActivityId
         
-        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil, updateprohibition=nil, transferprohibition=nil)
+        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil, updateprohibition=nil, transferprohibition=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @Domains = domains
           @PassWords = passwords
           @TemplateId = templateid
@@ -1784,6 +1818,9 @@ module TencentCloud
           @LockTransfer = locktransfer
           @UpdateProhibition = updateprohibition
           @TransferProhibition = transferprohibition
+          @ChannelFrom = channelfrom
+          @OrderFrom = orderfrom
+          @ActivityId = activityid
         end
 
         def deserialize(params)
@@ -1795,6 +1832,9 @@ module TencentCloud
           @LockTransfer = params['LockTransfer']
           @UpdateProhibition = params['UpdateProhibition']
           @TransferProhibition = params['TransferProhibition']
+          @ChannelFrom = params['ChannelFrom']
+          @OrderFrom = params['OrderFrom']
+          @ActivityId = params['ActivityId']
         end
       end
 

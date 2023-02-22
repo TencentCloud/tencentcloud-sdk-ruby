@@ -3789,6 +3789,33 @@ module TencentCloud
         end
       end
 
+      # ModifyStorageSetting请求参数结构体
+      class ModifyStorageSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyStorageSetting返回参数结构体
+      class ModifyStorageSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTableStatus请求参数结构体
       class ModifyTableStatusRequest < TencentCloud::Common::AbstractModel
         # @param EdgeId: EdgeId值两个vpc间的边id
@@ -3963,10 +3990,16 @@ module TencentCloud
         # @param ZoneZhBak: 实例所在可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneZhBak: String
+        # @param RuleUsed: 已使用规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleUsed: Integer
+        # @param RuleMax: 实例的规则限制最大规格数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleMax: Integer
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax
         
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -3982,6 +4015,8 @@ module TencentCloud
           @RegionDetail = regiondetail
           @ZoneZh = zonezh
           @ZoneZhBak = zonezhbak
+          @RuleUsed = ruleused
+          @RuleMax = rulemax
         end
 
         def deserialize(params)
@@ -4000,6 +4035,8 @@ module TencentCloud
           @RegionDetail = params['RegionDetail']
           @ZoneZh = params['ZoneZh']
           @ZoneZhBak = params['ZoneZhBak']
+          @RuleUsed = params['RuleUsed']
+          @RuleMax = params['RuleMax']
         end
       end
 

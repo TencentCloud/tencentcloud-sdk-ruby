@@ -1027,10 +1027,13 @@ module TencentCloud
         # 'AuthFlag': "1",	'AuthMechanism':"SCRAM-SHA-1"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAttr: Array
+        # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseNetEnv: String
 
-        attr_accessor :Region, :AccessType, :DatabaseType, :NodeType, :Info, :Supplier, :ExtraAttr
+        attr_accessor :Region, :AccessType, :DatabaseType, :NodeType, :Info, :Supplier, :ExtraAttr, :DatabaseNetEnv
         
-        def initialize(region=nil, accesstype=nil, databasetype=nil, nodetype=nil, info=nil, supplier=nil, extraattr=nil)
+        def initialize(region=nil, accesstype=nil, databasetype=nil, nodetype=nil, info=nil, supplier=nil, extraattr=nil, databasenetenv=nil)
           @Region = region
           @AccessType = accesstype
           @DatabaseType = databasetype
@@ -1038,6 +1041,7 @@ module TencentCloud
           @Info = info
           @Supplier = supplier
           @ExtraAttr = extraattr
+          @DatabaseNetEnv = databasenetenv
         end
 
         def deserialize(params)
@@ -1062,6 +1066,7 @@ module TencentCloud
               @ExtraAttr << keyvaluepairoption_tmp
             end
           end
+          @DatabaseNetEnv = params['DatabaseNetEnv']
         end
       end
 
@@ -3260,7 +3265,7 @@ module TencentCloud
 
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
-        # @param Mode: 迁移对象类型 Partial(部分对象)
+        # @param Mode: 迁移对象类型 Partial(部分对象)，默认为Partial
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Databases: 同步对象，当 Mode 为 Partial 时，不为空

@@ -1949,75 +1949,75 @@ module TencentCloud
 
       # 实例详情
       class InstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: 实例名称。
         # @type InstanceName: String
         # @param PayMode: 付费类型，可能的返回值：1-包年包月；0-按量计费
         # @type PayMode: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
-        # @param ClusterType: 集群类型，可能的返回值：0-副本集实例，1-分片实例，
+        # @param ClusterType: 集群类型，可能的返回值：0-副本集实例，1-分片实例。
         # @type ClusterType: Integer
-        # @param Region: 地域信息
+        # @param Region: 地域信息。
         # @type Region: String
-        # @param Zone: 可用区信息
+        # @param Zone: 可用区信息。
         # @type Zone: String
         # @param NetType: 网络类型，可能的返回值：0-基础网络，1-私有网络
         # @type NetType: Integer
-        # @param VpcId: 私有网络的ID
+        # @param VpcId: 私有网络的ID。
         # @type VpcId: String
-        # @param SubnetId: 私有网络的子网ID
+        # @param SubnetId: 私有网络的子网ID。
         # @type SubnetId: String
-        # @param Status: 实例状态，可能的返回值：0-待初始化，1-流程处理中，2-运行中，-2-实例已过期
+        # @param Status: 实例状态，可能的返回值：0-待初始化，1-流程处理中，2-运行中，-2-实例已过期。
         # @type Status: Integer
-        # @param Vip: 实例IP
+        # @param Vip: 实例IP。
         # @type Vip: String
-        # @param Vport: 端口号
+        # @param Vport: 端口号。
         # @type Vport: Integer
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: 实例创建时间。
         # @type CreateTime: String
-        # @param DeadLine: 实例到期时间
+        # @param DeadLine: 实例到期时间。
         # @type DeadLine: String
-        # @param MongoVersion: 实例版本信息
+        # @param MongoVersion: 实例版本信息。
         # @type MongoVersion: String
-        # @param Memory: 实例内存规格，单位为MB
+        # @param Memory: 实例内存规格，单位为MB。
         # @type Memory: Integer
-        # @param Volume: 实例磁盘规格，单位为MB
+        # @param Volume: 实例磁盘规格，单位为MB。
         # @type Volume: Integer
-        # @param CpuNum: 实例CPU核心数
+        # @param CpuNum: 实例CPU核心数。
         # @type CpuNum: Integer
-        # @param MachineType: 实例机器类型
+        # @param MachineType: 实例机器类型。
         # @type MachineType: String
-        # @param SecondaryNum: 实例从节点数
+        # @param SecondaryNum: 实例从节点数。
         # @type SecondaryNum: Integer
-        # @param ReplicationSetNum: 实例分片数
+        # @param ReplicationSetNum: 实例分片数。
         # @type ReplicationSetNum: Integer
-        # @param AutoRenewFlag: 实例自动续费标志，可能的返回值：0-手动续费，1-自动续费，2-确认不续费
+        # @param AutoRenewFlag: 实例自动续费标志，可能的返回值：0-手动续费，1-自动续费，2-确认不续费。
         # @type AutoRenewFlag: Integer
-        # @param UsedVolume: 已用容量，单位MB
+        # @param UsedVolume: 已用容量，单位MB。
         # @type UsedVolume: Integer
-        # @param MaintenanceStart: 维护窗口起始时间
+        # @param MaintenanceStart: 维护窗口起始时间。
         # @type MaintenanceStart: String
-        # @param MaintenanceEnd: 维护窗口结束时间
+        # @param MaintenanceEnd: 维护窗口结束时间。
         # @type MaintenanceEnd: String
-        # @param ReplicaSets: 分片信息
+        # @param ReplicaSets: 分片信息。
         # @type ReplicaSets: Array
-        # @param ReadonlyInstances: 只读实例信息
+        # @param ReadonlyInstances: 只读实例信息。
         # @type ReadonlyInstances: Array
-        # @param StandbyInstances: 灾备实例信息
+        # @param StandbyInstances: 灾备实例信息。
         # @type StandbyInstances: Array
-        # @param CloneInstances: 临时实例信息
+        # @param CloneInstances: 临时实例信息。
         # @type CloneInstances: Array
-        # @param RelatedInstance: 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息
+        # @param RelatedInstance: 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息。
         # @type RelatedInstance: :class:`Tencentcloud::Mongodb.v20190725.models.DBInstanceInfo`
-        # @param Tags: 实例标签信息集合
+        # @param Tags: 实例标签信息集合。
         # @type Tags: Array
-        # @param InstanceVer: 实例版本标记
+        # @param InstanceVer: 实例版本标记。
         # @type InstanceVer: Integer
-        # @param ClusterVer: 实例版本标记
+        # @param ClusterVer: 实例版本标记。
         # @type ClusterVer: Integer
-        # @param Protocol: 协议信息，可能的返回值：1-mongodb，2-dynamodb
+        # @param Protocol: 协议信息，可能的返回值：1-mongodb，2-dynamodb。
         # @type Protocol: Integer
         # @param InstanceType: 实例类型，可能的返回值，1-正式实例，2-临时实例，3-只读实例，4-灾备实例
         # @type InstanceType: Integer
@@ -2025,10 +2025,34 @@ module TencentCloud
         # @type InstanceStatusDesc: String
         # @param RealInstanceId: 实例对应的物理实例id，回档并替换过的实例有不同的InstanceId和RealInstanceId，从barad获取监控数据等场景下需要用物理id获取
         # @type RealInstanceId: String
+        # @param MongosNodeNum: mongos节点个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongosNodeNum: Integer
+        # @param MongosMemory: mongos节点内存。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongosMemory: Integer
+        # @param MongosCpuNum: mongos节点CPU核数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongosCpuNum: Integer
+        # @param ConfigServerNodeNum: Config Server节点个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigServerNodeNum: Integer
+        # @param ConfigServerMemory: Config Server节点内存。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigServerMemory: Integer
+        # @param ConfigServerVolume: Config Server节点磁盘大小。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigServerVolume: Integer
+        # @param ConfigServerCpuNum: Config Server节点CPU核数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigServerCpuNum: Integer
+        # @param ReadonlyNodeNum: readonly节点个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadonlyNodeNum: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :PayMode, :ProjectId, :ClusterType, :Region, :Zone, :NetType, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :DeadLine, :MongoVersion, :Memory, :Volume, :CpuNum, :MachineType, :SecondaryNum, :ReplicationSetNum, :AutoRenewFlag, :UsedVolume, :MaintenanceStart, :MaintenanceEnd, :ReplicaSets, :ReadonlyInstances, :StandbyInstances, :CloneInstances, :RelatedInstance, :Tags, :InstanceVer, :ClusterVer, :Protocol, :InstanceType, :InstanceStatusDesc, :RealInstanceId
+        attr_accessor :InstanceId, :InstanceName, :PayMode, :ProjectId, :ClusterType, :Region, :Zone, :NetType, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :DeadLine, :MongoVersion, :Memory, :Volume, :CpuNum, :MachineType, :SecondaryNum, :ReplicationSetNum, :AutoRenewFlag, :UsedVolume, :MaintenanceStart, :MaintenanceEnd, :ReplicaSets, :ReadonlyInstances, :StandbyInstances, :CloneInstances, :RelatedInstance, :Tags, :InstanceVer, :ClusterVer, :Protocol, :InstanceType, :InstanceStatusDesc, :RealInstanceId, :MongosNodeNum, :MongosMemory, :MongosCpuNum, :ConfigServerNodeNum, :ConfigServerMemory, :ConfigServerVolume, :ConfigServerCpuNum, :ReadonlyNodeNum
         
-        def initialize(instanceid=nil, instancename=nil, paymode=nil, projectid=nil, clustertype=nil, region=nil, zone=nil, nettype=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, deadline=nil, mongoversion=nil, memory=nil, volume=nil, cpunum=nil, machinetype=nil, secondarynum=nil, replicationsetnum=nil, autorenewflag=nil, usedvolume=nil, maintenancestart=nil, maintenanceend=nil, replicasets=nil, readonlyinstances=nil, standbyinstances=nil, cloneinstances=nil, relatedinstance=nil, tags=nil, instancever=nil, clusterver=nil, protocol=nil, instancetype=nil, instancestatusdesc=nil, realinstanceid=nil)
+        def initialize(instanceid=nil, instancename=nil, paymode=nil, projectid=nil, clustertype=nil, region=nil, zone=nil, nettype=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, deadline=nil, mongoversion=nil, memory=nil, volume=nil, cpunum=nil, machinetype=nil, secondarynum=nil, replicationsetnum=nil, autorenewflag=nil, usedvolume=nil, maintenancestart=nil, maintenanceend=nil, replicasets=nil, readonlyinstances=nil, standbyinstances=nil, cloneinstances=nil, relatedinstance=nil, tags=nil, instancever=nil, clusterver=nil, protocol=nil, instancetype=nil, instancestatusdesc=nil, realinstanceid=nil, mongosnodenum=nil, mongosmemory=nil, mongoscpunum=nil, configservernodenum=nil, configservermemory=nil, configservervolume=nil, configservercpunum=nil, readonlynodenum=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @PayMode = paymode
@@ -2067,6 +2091,14 @@ module TencentCloud
           @InstanceType = instancetype
           @InstanceStatusDesc = instancestatusdesc
           @RealInstanceId = realinstanceid
+          @MongosNodeNum = mongosnodenum
+          @MongosMemory = mongosmemory
+          @MongosCpuNum = mongoscpunum
+          @ConfigServerNodeNum = configservernodenum
+          @ConfigServerMemory = configservermemory
+          @ConfigServerVolume = configservervolume
+          @ConfigServerCpuNum = configservercpunum
+          @ReadonlyNodeNum = readonlynodenum
         end
 
         def deserialize(params)
@@ -2146,6 +2178,14 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @InstanceStatusDesc = params['InstanceStatusDesc']
           @RealInstanceId = params['RealInstanceId']
+          @MongosNodeNum = params['MongosNodeNum']
+          @MongosMemory = params['MongosMemory']
+          @MongosCpuNum = params['MongosCpuNum']
+          @ConfigServerNodeNum = params['ConfigServerNodeNum']
+          @ConfigServerMemory = params['ConfigServerMemory']
+          @ConfigServerVolume = params['ConfigServerVolume']
+          @ConfigServerCpuNum = params['ConfigServerCpuNum']
+          @ReadonlyNodeNum = params['ReadonlyNodeNum']
         end
       end
 

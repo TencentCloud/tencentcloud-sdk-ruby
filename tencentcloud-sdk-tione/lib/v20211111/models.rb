@@ -222,10 +222,13 @@ module TencentCloud
         # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfo: String
+        # @param PodList: 运行中的Pod的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodList: Array
 
-        attr_accessor :BatchTaskId, :BatchTaskName, :Uin, :SubUin, :Region, :ChargeType, :ResourceGroupId, :ResourceGroupName, :ResourceConfigInfo, :Tags, :ModelInfo, :ImageInfo, :CodePackagePath, :StartCmd, :DataConfigs, :Outputs, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :UpdateTime, :StartTime, :EndTime, :ChargeStatus, :LatestInstanceId, :Remark, :FailureReason, :BillingInfo
+        attr_accessor :BatchTaskId, :BatchTaskName, :Uin, :SubUin, :Region, :ChargeType, :ResourceGroupId, :ResourceGroupName, :ResourceConfigInfo, :Tags, :ModelInfo, :ImageInfo, :CodePackagePath, :StartCmd, :DataConfigs, :Outputs, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :UpdateTime, :StartTime, :EndTime, :ChargeStatus, :LatestInstanceId, :Remark, :FailureReason, :BillingInfo, :PodList
         
-        def initialize(batchtaskid=nil, batchtaskname=nil, uin=nil, subuin=nil, region=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, resourceconfiginfo=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackagepath=nil, startcmd=nil, dataconfigs=nil, outputs=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, chargestatus=nil, latestinstanceid=nil, remark=nil, failurereason=nil, billinginfo=nil)
+        def initialize(batchtaskid=nil, batchtaskname=nil, uin=nil, subuin=nil, region=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, resourceconfiginfo=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackagepath=nil, startcmd=nil, dataconfigs=nil, outputs=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, chargestatus=nil, latestinstanceid=nil, remark=nil, failurereason=nil, billinginfo=nil, podlist=nil)
           @BatchTaskId = batchtaskid
           @BatchTaskName = batchtaskname
           @Uin = uin
@@ -257,6 +260,7 @@ module TencentCloud
           @Remark = remark
           @FailureReason = failurereason
           @BillingInfo = billinginfo
+          @PodList = podlist
         end
 
         def deserialize(params)
@@ -327,6 +331,7 @@ module TencentCloud
           @Remark = params['Remark']
           @FailureReason = params['FailureReason']
           @BillingInfo = params['BillingInfo']
+          @PodList = params['PodList']
         end
       end
 
@@ -501,6 +506,78 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Path = params['Path']
+        end
+      end
+
+      # 容器信息
+      class Container < TencentCloud::Common::AbstractModel
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ContainerId: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerId: String
+        # @param Image: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Image: String
+        # @param Status: 容器状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: :class:`Tencentcloud::Tione.v20211111.models.ContainerStatus`
+
+        attr_accessor :Name, :ContainerId, :Image, :Status
+        
+        def initialize(name=nil, containerid=nil, image=nil, status=nil)
+          @Name = name
+          @ContainerId = containerid
+          @Image = image
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ContainerId = params['ContainerId']
+          @Image = params['Image']
+          unless params['Status'].nil?
+            @Status = ContainerStatus.new
+            @Status.deserialize(params['Status'])
+          end
+        end
+      end
+
+      # 容器状态
+      class ContainerStatus < TencentCloud::Common::AbstractModel
+        # @param RestartCount: 重启次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestartCount: Integer
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Ready: 是否就绪
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ready: Boolean
+        # @param Reason: 状态原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Message: 容器的错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :RestartCount, :State, :Ready, :Reason, :Message
+        
+        def initialize(restartcount=nil, state=nil, ready=nil, reason=nil, message=nil)
+          @RestartCount = restartcount
+          @State = state
+          @Ready = ready
+          @Reason = reason
+          @Message = message
+        end
+
+        def deserialize(params)
+          @RestartCount = params['RestartCount']
+          @State = params['State']
+          @Ready = params['Ready']
+          @Reason = params['Reason']
+          @Message = params['Message']
         end
       end
 
@@ -1992,6 +2069,23 @@ module TencentCloud
         end
       end
 
+      # 默认Nginx网关结构
+      class DefaultNginxGatewayCallInfo < TencentCloud::Common::AbstractModel
+        # @param Host: host
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+
+        attr_accessor :Host
+        
+        def initialize(host=nil)
+          @Host = host
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+        end
+      end
+
       # DeleteBatchTask请求参数结构体
       class DeleteBatchTaskRequest < TencentCloud::Common::AbstractModel
         # @param BatchTaskId: 跑批任务ID
@@ -3350,14 +3444,18 @@ module TencentCloud
         # @param InferGatewayCallInfo: 升级网关调用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InferGatewayCallInfo: :class:`Tencentcloud::Tione.v20211111.models.InferGatewayCallInfo`
+        # @param DefaultNginxGatewayCallInfo: 默认nginx网关的调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultNginxGatewayCallInfo: :class:`Tencentcloud::Tione.v20211111.models.DefaultNginxGatewayCallInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :RequestId
+        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :DefaultNginxGatewayCallInfo, :RequestId
         
-        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, requestid=nil)
+        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, defaultnginxgatewaycallinfo=nil, requestid=nil)
           @ServiceCallInfo = servicecallinfo
           @InferGatewayCallInfo = infergatewaycallinfo
+          @DefaultNginxGatewayCallInfo = defaultnginxgatewaycallinfo
           @RequestId = requestid
         end
 
@@ -3369,6 +3467,10 @@ module TencentCloud
           unless params['InferGatewayCallInfo'].nil?
             @InferGatewayCallInfo = InferGatewayCallInfo.new
             @InferGatewayCallInfo.deserialize(params['InferGatewayCallInfo'])
+          end
+          unless params['DefaultNginxGatewayCallInfo'].nil?
+            @DefaultNginxGatewayCallInfo = DefaultNginxGatewayCallInfo.new
+            @DefaultNginxGatewayCallInfo.deserialize(params['DefaultNginxGatewayCallInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -5554,6 +5656,56 @@ module TencentCloud
         end
       end
 
+      # Pod信息展示
+      class Pod < TencentCloud::Common::AbstractModel
+        # @param Name: pod名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Uid: pod的唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uid: String
+        # @param ChargeType: 服务付费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param Phase: pod的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phase: String
+        # @param IP: pod的IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
+        # @param CreateTime: pod的创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Containers: 容器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Containers: :class:`Tencentcloud::Tione.v20211111.models.Container`
+
+        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers
+        
+        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil)
+          @Name = name
+          @Uid = uid
+          @ChargeType = chargetype
+          @Phase = phase
+          @IP = ip
+          @CreateTime = createtime
+          @Containers = containers
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @ChargeType = params['ChargeType']
+          @Phase = params['Phase']
+          @IP = params['IP']
+          @CreateTime = params['CreateTime']
+          unless params['Containers'].nil?
+            @Containers = Container.new
+            @Containers.deserialize(params['Containers'])
+          end
+        end
+      end
+
       # 点信息描述
       class PointInfo < TencentCloud::Common::AbstractModel
         # @param X: X坐标值
@@ -6510,10 +6662,13 @@ module TencentCloud
         # @param ModelHotUpdateEnable: 是否开启模型的热更新。默认不开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelHotUpdateEnable: Boolean
+        # @param Pods: Pod列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pods: :class:`Tencentcloud::Tione.v20211111.models.Pod`
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :Pods
         
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, pods=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -6532,6 +6687,7 @@ module TencentCloud
           @HybridBillingPrepaidReplicas = hybridbillingprepaidreplicas
           @OldHybridBillingPrepaidReplicas = oldhybridbillingprepaidreplicas
           @ModelHotUpdateEnable = modelhotupdateenable
+          @Pods = pods
         end
 
         def deserialize(params)
@@ -6581,6 +6737,10 @@ module TencentCloud
           @HybridBillingPrepaidReplicas = params['HybridBillingPrepaidReplicas']
           @OldHybridBillingPrepaidReplicas = params['OldHybridBillingPrepaidReplicas']
           @ModelHotUpdateEnable = params['ModelHotUpdateEnable']
+          unless params['Pods'].nil?
+            @Pods = Pod.new
+            @Pods.deserialize(params['Pods'])
+          end
         end
       end
 
@@ -7314,10 +7474,25 @@ module TencentCloud
         # @param ModelHotUpdatePath: 模型热更新目录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelHotUpdatePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param ReasoningEnvironmentId: 推理环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasoningEnvironmentId: String
+        # @param TrainingJobVersion: 训练任务版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainingJobVersion: String
+        # @param TrainingPreference: 训练偏好
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainingPreference: String
+        # @param AutoMLTaskId: 自动学习任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoMLTaskId: String
+        # @param IsQAT: 是否QAT模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsQAT: Boolean
 
-        attr_accessor :TrainingModelId, :TrainingModelVersionId, :TrainingModelVersion, :TrainingModelSource, :TrainingModelCreateTime, :TrainingModelCreator, :AlgorithmFramework, :ReasoningEnvironment, :ReasoningEnvironmentSource, :TrainingModelIndex, :TrainingJobName, :TrainingModelCosPath, :TrainingModelName, :TrainingJobId, :ReasoningImageInfo, :CreateTime, :TrainingModelStatus, :TrainingModelProgress, :TrainingModelErrorMsg, :TrainingModelFormat, :VersionType, :GPUType, :AutoClean, :ModelCleanPeriod, :MaxReservedModels, :ModelHotUpdatePath
+        attr_accessor :TrainingModelId, :TrainingModelVersionId, :TrainingModelVersion, :TrainingModelSource, :TrainingModelCreateTime, :TrainingModelCreator, :AlgorithmFramework, :ReasoningEnvironment, :ReasoningEnvironmentSource, :TrainingModelIndex, :TrainingJobName, :TrainingModelCosPath, :TrainingModelName, :TrainingJobId, :ReasoningImageInfo, :CreateTime, :TrainingModelStatus, :TrainingModelProgress, :TrainingModelErrorMsg, :TrainingModelFormat, :VersionType, :GPUType, :AutoClean, :ModelCleanPeriod, :MaxReservedModels, :ModelHotUpdatePath, :ReasoningEnvironmentId, :TrainingJobVersion, :TrainingPreference, :AutoMLTaskId, :IsQAT
         
-        def initialize(trainingmodelid=nil, trainingmodelversionid=nil, trainingmodelversion=nil, trainingmodelsource=nil, trainingmodelcreatetime=nil, trainingmodelcreator=nil, algorithmframework=nil, reasoningenvironment=nil, reasoningenvironmentsource=nil, trainingmodelindex=nil, trainingjobname=nil, trainingmodelcospath=nil, trainingmodelname=nil, trainingjobid=nil, reasoningimageinfo=nil, createtime=nil, trainingmodelstatus=nil, trainingmodelprogress=nil, trainingmodelerrormsg=nil, trainingmodelformat=nil, versiontype=nil, gputype=nil, autoclean=nil, modelcleanperiod=nil, maxreservedmodels=nil, modelhotupdatepath=nil)
+        def initialize(trainingmodelid=nil, trainingmodelversionid=nil, trainingmodelversion=nil, trainingmodelsource=nil, trainingmodelcreatetime=nil, trainingmodelcreator=nil, algorithmframework=nil, reasoningenvironment=nil, reasoningenvironmentsource=nil, trainingmodelindex=nil, trainingjobname=nil, trainingmodelcospath=nil, trainingmodelname=nil, trainingjobid=nil, reasoningimageinfo=nil, createtime=nil, trainingmodelstatus=nil, trainingmodelprogress=nil, trainingmodelerrormsg=nil, trainingmodelformat=nil, versiontype=nil, gputype=nil, autoclean=nil, modelcleanperiod=nil, maxreservedmodels=nil, modelhotupdatepath=nil, reasoningenvironmentid=nil, trainingjobversion=nil, trainingpreference=nil, automltaskid=nil, isqat=nil)
           @TrainingModelId = trainingmodelid
           @TrainingModelVersionId = trainingmodelversionid
           @TrainingModelVersion = trainingmodelversion
@@ -7344,6 +7519,11 @@ module TencentCloud
           @ModelCleanPeriod = modelcleanperiod
           @MaxReservedModels = maxreservedmodels
           @ModelHotUpdatePath = modelhotupdatepath
+          @ReasoningEnvironmentId = reasoningenvironmentid
+          @TrainingJobVersion = trainingjobversion
+          @TrainingPreference = trainingpreference
+          @AutoMLTaskId = automltaskid
+          @IsQAT = isqat
         end
 
         def deserialize(params)
@@ -7382,6 +7562,11 @@ module TencentCloud
             @ModelHotUpdatePath = CosPathInfo.new
             @ModelHotUpdatePath.deserialize(params['ModelHotUpdatePath'])
           end
+          @ReasoningEnvironmentId = params['ReasoningEnvironmentId']
+          @TrainingJobVersion = params['TrainingJobVersion']
+          @TrainingPreference = params['TrainingPreference']
+          @AutoMLTaskId = params['AutoMLTaskId']
+          @IsQAT = params['IsQAT']
         end
       end
 

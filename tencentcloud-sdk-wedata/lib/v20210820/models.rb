@@ -6191,18 +6191,23 @@ module TencentCloud
       class DescribeOfflineTaskTokenResponse < TencentCloud::Common::AbstractModel
         # @param Token: 长连接临时token
         # @type Token: String
+        # @param Data: 长连接临时token。与Token相同含义，优先取Data，Data为空时，取Token。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Token, :RequestId
+        attr_accessor :Token, :Data, :RequestId
         
-        def initialize(token=nil, requestid=nil)
+        def initialize(token=nil, data=nil, requestid=nil)
           @Token = token
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Token = params['Token']
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -6641,14 +6646,17 @@ module TencentCloud
         # @type RecordsSpeedList: Array
         # @param BytesSpeedList: 同步速度字节/s列表
         # @type BytesSpeedList: Array
+        # @param Data: 同步速度，包括了RecordsSpeedList和BytesSpeedList
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RealTimeTaskSpeed`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RecordsSpeedList, :BytesSpeedList, :RequestId
+        attr_accessor :RecordsSpeedList, :BytesSpeedList, :Data, :RequestId
         
-        def initialize(recordsspeedlist=nil, bytesspeedlist=nil, requestid=nil)
+        def initialize(recordsspeedlist=nil, bytesspeedlist=nil, data=nil, requestid=nil)
           @RecordsSpeedList = recordsspeedlist
           @BytesSpeedList = bytesspeedlist
+          @Data = data
           @RequestId = requestid
         end
 
@@ -6668,6 +6676,10 @@ module TencentCloud
               bytesspeed_tmp.deserialize(i)
               @BytesSpeedList << bytesspeed_tmp
             end
+          end
+          unless params['Data'].nil?
+            @Data = RealTimeTaskSpeed.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -8631,13 +8643,17 @@ module TencentCloud
       class DescribeTaskInstanceResponse < TencentCloud::Common::AbstractModel
         # @param TaskInstanceDetail: 任务实例详情
         # @type TaskInstanceDetail: :class:`Tencentcloud::Wedata.v20210820.models.TaskInstanceDetail`
+        # @param Data: 任务实例详情。与TaskInstanceDetail相同含义，优先取Data，Data为空时，取TaskInstanceDetail
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskInstanceDetail`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskInstanceDetail, :RequestId
+        attr_accessor :TaskInstanceDetail, :Data, :RequestId
         
-        def initialize(taskinstancedetail=nil, requestid=nil)
+        def initialize(taskinstancedetail=nil, data=nil, requestid=nil)
           @TaskInstanceDetail = taskinstancedetail
+          @Data = data
           @RequestId = requestid
         end
 
@@ -8645,6 +8661,10 @@ module TencentCloud
           unless params['TaskInstanceDetail'].nil?
             @TaskInstanceDetail = TaskInstanceDetail.new
             @TaskInstanceDetail.deserialize(params['TaskInstanceDetail'])
+          end
+          unless params['Data'].nil?
+            @Data = TaskInstanceDetail.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -9939,18 +9959,23 @@ module TencentCloud
       class GenHiveTableDDLSqlResponse < TencentCloud::Common::AbstractModel
         # @param DDLSql: 生成的ddl语句
         # @type DDLSql: String
+        # @param Data: 生成的ddl语句。与DDLSql相同含义，优先取Data，如果Data为空，则取DDLSql。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DDLSql, :RequestId
+        attr_accessor :DDLSql, :Data, :RequestId
         
-        def initialize(ddlsql=nil, requestid=nil)
+        def initialize(ddlsql=nil, data=nil, requestid=nil)
           @DDLSql = ddlsql
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DDLSql = params['DDLSql']
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -13197,6 +13222,40 @@ module TencentCloud
               instancenodeinfo_tmp = InstanceNodeInfo.new
               instancenodeinfo_tmp.deserialize(i)
               @InstanceNodeInfoList << instancenodeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 实时任务同步速度趋势
+      class RealTimeTaskSpeed < TencentCloud::Common::AbstractModel
+        # @param RecordsSpeedList: 同步速度条/s列表
+        # @type RecordsSpeedList: Array
+        # @param BytesSpeedList: 同步速度字节/s列表
+        # @type BytesSpeedList: Array
+
+        attr_accessor :RecordsSpeedList, :BytesSpeedList
+        
+        def initialize(recordsspeedlist=nil, bytesspeedlist=nil)
+          @RecordsSpeedList = recordsspeedlist
+          @BytesSpeedList = bytesspeedlist
+        end
+
+        def deserialize(params)
+          unless params['RecordsSpeedList'].nil?
+            @RecordsSpeedList = []
+            params['RecordsSpeedList'].each do |i|
+              recordsspeed_tmp = RecordsSpeed.new
+              recordsspeed_tmp.deserialize(i)
+              @RecordsSpeedList << recordsspeed_tmp
+            end
+          end
+          unless params['BytesSpeedList'].nil?
+            @BytesSpeedList = []
+            params['BytesSpeedList'].each do |i|
+              bytesspeed_tmp = BytesSpeed.new
+              bytesspeed_tmp.deserialize(i)
+              @BytesSpeedList << bytesspeed_tmp
             end
           end
         end
