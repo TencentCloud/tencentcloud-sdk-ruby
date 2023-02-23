@@ -1940,12 +1940,14 @@ module TencentCloud
         # <li>RepeatSingle：单曲循环</li>
         # <li>Shuffle：随机播放</li>
         # @type SetPlayModeInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
-        # @param SetVolumeInput: 音量，范围 0~100，默认为 50。
+        # @param SetVolumeInput: <del>音量，范围 0~100，默认为 50。</del>（已废弃，请采用 SetRealVolumeInput ）
         # @type SetVolumeInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
+        # @param SetRealVolumeInput: 真实音量，范围 0~100，默认为 50。
+        # @type SetRealVolumeInput: :class:`Tencentcloud::Ame.v20190916.models.SetRealVolumeCommandInput`
 
-        attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem, :SetPlayModeInput, :SetVolumeInput
+        attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem, :SetPlayModeInput, :SetVolumeInput, :SetRealVolumeInput
         
-        def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil, setplaymodeinput=nil, setvolumeinput=nil)
+        def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil, setplaymodeinput=nil, setvolumeinput=nil, setrealvolumeinput=nil)
           @RobotId = robotid
           @Status = status
           @Playlists = playlists
@@ -1956,6 +1958,7 @@ module TencentCloud
           @RTCSystem = rtcsystem
           @SetPlayModeInput = setplaymodeinput
           @SetVolumeInput = setvolumeinput
+          @SetRealVolumeInput = setrealvolumeinput
         end
 
         def deserialize(params)
@@ -1980,6 +1983,10 @@ module TencentCloud
           unless params['SetVolumeInput'].nil?
             @SetVolumeInput = SetVolumeCommandInput.new
             @SetVolumeInput.deserialize(params['SetVolumeInput'])
+          end
+          unless params['SetRealVolumeInput'].nil?
+            @SetRealVolumeInput = SetRealVolumeCommandInput.new
+            @SetRealVolumeInput.deserialize(params['SetRealVolumeInput'])
           end
         end
       end
@@ -2775,6 +2782,22 @@ module TencentCloud
         end
       end
 
+      # 设置真实音量。
+      class SetRealVolumeCommandInput < TencentCloud::Common::AbstractModel
+        # @param RealVolume: 真实音量大小，取值范围为 0~100，默认值为 50。
+        # @type RealVolume: Integer
+
+        attr_accessor :RealVolume
+        
+        def initialize(realvolume=nil)
+          @RealVolume = realvolume
+        end
+
+        def deserialize(params)
+          @RealVolume = params['RealVolume']
+        end
+      end
+
       # 设置音量。
       class SetVolumeCommandInput < TencentCloud::Common::AbstractModel
         # @param Volume: 音量大小，取值范围为 0~100，默认值为 50。
@@ -2869,7 +2892,8 @@ module TencentCloud
         # <li>SetAudioParam：音频参数变更</li>
         # <li>SendMessage：发送自定义消息</li>
         # <li>SetDestroyMode：设置销毁模式</li>
-        # <li>SetVolume：设置音量</li>
+        # <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
+        # <li>SetRealVolume：设置真实音量</li>
         # @type Command: String
         # @param PlayCommandInput: 播放参数。
         # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
@@ -2885,12 +2909,15 @@ module TencentCloud
         # @type SetPlayModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
         # @param SetDestroyModeCommandInput: 销毁模式，当Command取SetDestroyMode时，必填。
         # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetDestroyModeCommandInput`
-        # @param SetVolumeCommandInput: 音量，当Command取SetVolume时，必填。
+        # @param SetVolumeCommandInput: <del>音量，当Command取SetVolume时，必填。</del>
+        # （已废弃，请采用 SetRealVolumeCommandInput ）
         # @type SetVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
+        # @param SetRealVolumeCommandInput: 真实音量，当Command取SetRealVolume时，必填。
+        # @type SetRealVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetRealVolumeCommandInput`
 
-        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput
+        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput, :SetRealVolumeCommandInput
         
-        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil)
+        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil, setrealvolumecommandinput=nil)
           @RobotId = robotid
           @Command = command
           @PlayCommandInput = playcommandinput
@@ -2901,6 +2928,7 @@ module TencentCloud
           @SetPlayModeCommandInput = setplaymodecommandinput
           @SetDestroyModeCommandInput = setdestroymodecommandinput
           @SetVolumeCommandInput = setvolumecommandinput
+          @SetRealVolumeCommandInput = setrealvolumecommandinput
         end
 
         def deserialize(params)
@@ -2938,6 +2966,10 @@ module TencentCloud
             @SetVolumeCommandInput = SetVolumeCommandInput.new
             @SetVolumeCommandInput.deserialize(params['SetVolumeCommandInput'])
           end
+          unless params['SetRealVolumeCommandInput'].nil?
+            @SetRealVolumeCommandInput = SetRealVolumeCommandInput.new
+            @SetRealVolumeCommandInput.deserialize(params['SetRealVolumeCommandInput'])
+          end
         end
       end
 
@@ -2970,7 +3002,8 @@ module TencentCloud
         # <li>SetAudioParam：音频参数变更</li>
         # <li>SendMessage：发送自定义消息</li>
         # <li>SetDestroyMode：设置销毁模式</li>
-        # <li>SetVolume：设置音量</li>
+        # <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
+        # <li>SetRealVolume：设置真实音量</li>
         # @type Command: String
         # @param PlayCommandInput: 播放参数。
         # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
@@ -2986,12 +3019,15 @@ module TencentCloud
         # @type SetPlayModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
         # @param SetDestroyModeCommandInput: 销毁模式，当Command取SetDestroyMode时，必填。
         # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetDestroyModeCommandInput`
-        # @param SetVolumeCommandInput: 音量，当Command取SetVolume时，必填。
+        # @param SetVolumeCommandInput: <del>音量，当Command取SetVolume时，必填。</del>
+        # （已废弃，请采用 SetRealVolumeCommandInput）
         # @type SetVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
+        # @param SetRealVolumeCommandInput: 真实音量，当Command取SetRealVolume时，必填。
+        # @type SetRealVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetRealVolumeCommandInput`
 
-        attr_accessor :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput
+        attr_accessor :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput, :SetRealVolumeCommandInput
         
-        def initialize(command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil)
+        def initialize(command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil, setrealvolumecommandinput=nil)
           @Command = command
           @PlayCommandInput = playcommandinput
           @SetPlaylistCommandInput = setplaylistcommandinput
@@ -3001,6 +3037,7 @@ module TencentCloud
           @SetPlayModeCommandInput = setplaymodecommandinput
           @SetDestroyModeCommandInput = setdestroymodecommandinput
           @SetVolumeCommandInput = setvolumecommandinput
+          @SetRealVolumeCommandInput = setrealvolumecommandinput
         end
 
         def deserialize(params)
@@ -3036,6 +3073,10 @@ module TencentCloud
           unless params['SetVolumeCommandInput'].nil?
             @SetVolumeCommandInput = SetVolumeCommandInput.new
             @SetVolumeCommandInput.deserialize(params['SetVolumeCommandInput'])
+          end
+          unless params['SetRealVolumeCommandInput'].nil?
+            @SetRealVolumeCommandInput = SetRealVolumeCommandInput.new
+            @SetRealVolumeCommandInput.deserialize(params['SetRealVolumeCommandInput'])
           end
         end
       end

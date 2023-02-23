@@ -1410,6 +1410,8 @@ module TencentCloud
         # @type QrEffectiveDay: Integer
         # @param Restrictions: 限制二维码用户条件
         # @type Restrictions: Array
+        # @param UserData: 用户自定义字段，回调的时候会进行透传，长度需要小于20480
+        # @type UserData: String
         # @param CallbackUrl: 回调地址,最大长度1000字符串
         # 回调时机：
         # 用户通过签署二维码发起签署流程时，企业额度不足导致失败
@@ -1419,9 +1421,9 @@ module TencentCloud
         # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
 
-        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :Agent, :ApproverRestrictions
+        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions
         
-        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, agent=nil, approverrestrictions=nil)
+        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil)
           @Operator = operator
           @TemplateId = templateid
           @FlowName = flowname
@@ -1429,6 +1431,7 @@ module TencentCloud
           @FlowEffectiveDay = floweffectiveday
           @QrEffectiveDay = qreffectiveday
           @Restrictions = restrictions
+          @UserData = userdata
           @CallbackUrl = callbackurl
           @Agent = agent
           @ApproverRestrictions = approverrestrictions
@@ -1452,6 +1455,7 @@ module TencentCloud
               @Restrictions << approverrestriction_tmp
             end
           end
+          @UserData = params['UserData']
           @CallbackUrl = params['CallbackUrl']
           unless params['Agent'].nil?
             @Agent = Agent.new

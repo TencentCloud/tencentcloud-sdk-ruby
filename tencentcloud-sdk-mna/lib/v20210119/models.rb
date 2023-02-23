@@ -445,12 +445,24 @@ module TencentCloud
         # @param DeviceNetInfo: 设备网络信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNetInfo: Array
+        # @param GatewaySite: 聚合服务器地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewaySite: String
+        # @param BusinessDownRate: 业务下行速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessDownRate: Float
+        # @param BusinessUpRate: 业务上行速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessUpRate: Float
 
-        attr_accessor :DeviceBaseInfo, :DeviceNetInfo
+        attr_accessor :DeviceBaseInfo, :DeviceNetInfo, :GatewaySite, :BusinessDownRate, :BusinessUpRate
         
-        def initialize(devicebaseinfo=nil, devicenetinfo=nil)
+        def initialize(devicebaseinfo=nil, devicenetinfo=nil, gatewaysite=nil, businessdownrate=nil, businessuprate=nil)
           @DeviceBaseInfo = devicebaseinfo
           @DeviceNetInfo = devicenetinfo
+          @GatewaySite = gatewaysite
+          @BusinessDownRate = businessdownrate
+          @BusinessUpRate = businessuprate
         end
 
         def deserialize(params)
@@ -466,6 +478,9 @@ module TencentCloud
               @DeviceNetInfo << devicenetinfo_tmp
             end
           end
+          @GatewaySite = params['GatewaySite']
+          @BusinessDownRate = params['BusinessDownRate']
+          @BusinessUpRate = params['BusinessUpRate']
         end
       end
 
@@ -567,10 +582,16 @@ module TencentCloud
         # @param NetInfoName: 网卡名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetInfoName: String
+        # @param DownRate: 下行实时速率（浮点数类型代替上一版本DataRx的整型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownRate: Float
+        # @param UpRate: 上行实时速率（浮点数类型代替上一版本TxRate的整型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpRate: Float
 
-        attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :DataRx, :DataTx, :Vendor, :State, :PublicIp, :SignalStrength, :Rat, :NetInfoName
+        attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :DataRx, :DataTx, :Vendor, :State, :PublicIp, :SignalStrength, :Rat, :NetInfoName, :DownRate, :UpRate
         
-        def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, datarx=nil, datatx=nil, vendor=nil, state=nil, publicip=nil, signalstrength=nil, rat=nil, netinfoname=nil)
+        def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, datarx=nil, datatx=nil, vendor=nil, state=nil, publicip=nil, signalstrength=nil, rat=nil, netinfoname=nil, downrate=nil, uprate=nil)
           @Type = type
           @DataEnable = dataenable
           @UploadLimit = uploadlimit
@@ -583,6 +604,8 @@ module TencentCloud
           @SignalStrength = signalstrength
           @Rat = rat
           @NetInfoName = netinfoname
+          @DownRate = downrate
+          @UpRate = uprate
         end
 
         def deserialize(params)
@@ -598,6 +621,8 @@ module TencentCloud
           @SignalStrength = params['SignalStrength']
           @Rat = params['Rat']
           @NetInfoName = params['NetInfoName']
+          @DownRate = params['DownRate']
+          @UpRate = params['UpRate']
         end
       end
 
@@ -725,7 +750,7 @@ module TencentCloud
 
       # GetFlowStatistic请求参数结构体
       class GetFlowStatisticRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID，ID="-1"时默认查找所有设备
+        # @param DeviceId: 设备ID
         # @type DeviceId: String
         # @param BeginTime: 开始查找时间
         # @type BeginTime: Integer
@@ -827,7 +852,7 @@ module TencentCloud
 
       # GetStatisticData请求参数结构体
       class GetStatisticDataRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID，设备ID="-1"获取所有设备流量统计
+        # @param DeviceId: 设备ID
         # @type DeviceId: String
         # @param BeginTime: 统计开始时间，单位：s
         # @type BeginTime: Integer
@@ -877,21 +902,21 @@ module TencentCloud
 
       # 网络详细信息
       class NetDetails < TencentCloud::Common::AbstractModel
-        # @param Time: 时间点，单位：s
-        # @type Time: String
         # @param Current: 流量值（bit）
         # @type Current: Float
+        # @param Time: 时间点，单位：s
+        # @type Time: String
 
-        attr_accessor :Time, :Current
+        attr_accessor :Current, :Time
         
-        def initialize(time=nil, current=nil)
-          @Time = time
+        def initialize(current=nil, time=nil)
           @Current = current
+          @Time = time
         end
 
         def deserialize(params)
-          @Time = params['Time']
           @Current = params['Current']
+          @Time = params['Time']
         end
       end
 

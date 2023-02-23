@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建容器部署组
+        # （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
 
         # @param request: Request instance for CreateContainGroup.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateContainGroupRequest`

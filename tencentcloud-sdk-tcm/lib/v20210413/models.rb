@@ -1253,19 +1253,24 @@ module TencentCloud
         # @type LoadBalancerName: String
         # @param LoadBalancerVip: 负载均衡实例 VIP
         # @type LoadBalancerVip: String
+        # @param LoadBalancerHostname: 负载均衡实例 Hostname
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerHostname: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerVip
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerVip, :LoadBalancerHostname
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancervip=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancervip=nil, loadbalancerhostname=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerVip = loadbalancervip
+          @LoadBalancerHostname = loadbalancerhostname
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @LoadBalancerName = params['LoadBalancerName']
           @LoadBalancerVip = params['LoadBalancerVip']
+          @LoadBalancerHostname = params['LoadBalancerHostname']
         end
       end
 

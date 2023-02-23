@@ -251,6 +251,26 @@ module TencentCloud
         end
       end
 
+      # 自定义的备份文件下载地址的 VPC 信息。
+      class BackupLimitVpcItem < TencentCloud::Common::AbstractModel
+        # @param Region: 自定义下载备份文件的VPC 所属地域。
+        # @type Region: String
+        # @param VpcList: 自定义下载备份文件的 VPC 列表。
+        # @type VpcList: Array
+
+        attr_accessor :Region, :VpcList
+        
+        def initialize(region=nil, vpclist=nil)
+          @Region = region
+          @VpcList = vpclist
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @VpcList = params['VpcList']
+        end
+      end
+
       # 大Key详情
       class BigKeyInfo < TencentCloud::Common::AbstractModel
         # @param DB: 所属的database
@@ -1087,19 +1107,53 @@ module TencentCloud
       class DescribeBackupUrlRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param BackupId: 备份 ID，可通过DescribeInstanceBackups接口返回的参数 BackupSet 获取。
+        # @param BackupId: 备份 ID，可通过 [DescribeInstanceBackups ](https://cloud.tencent.com/document/product/239/20011)接口返回的参数 RedisBackupSet 获取。
         # @type BackupId: String
+        # @param LimitType: 下载备份文件的网络限制类型，如果不配置该参数，则使用用户自定义的配置。
 
-        attr_accessor :InstanceId, :BackupId
+        # - NoLimit：不限制，腾讯云内外网均可以下载备份文件。
+        # -  LimitOnlyIntranet：仅腾讯云自动分配的内网地址可下载备份文件。
+        # - Customize：指用户自定义的私有网络可下载备份文件。
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持输入 In，表示自定义的**LimitVpc**可以下载备份文件。
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: 标识自定义的 LimitIp 地址是否可下载备份文件。
+
+        # - In: 自定义的 IP 地址可以下载。默认为 In。
+        # - NotIn: 自定义的 IP 不可以下载。
+        # @type IpComparisonSymbol: String
+        # @param LimitVpc: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，需配置该参数。
+        # @type LimitVpc: Array
+        # @param LimitIp: 自定义的可下载备份文件的 VPC IP 地址。当参数**LimitType**为**Customize **时，需配置该参数。
+        # @type LimitIp: Array
+
+        attr_accessor :InstanceId, :BackupId, :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpc, :LimitIp
         
-        def initialize(instanceid=nil, backupid=nil)
+        def initialize(instanceid=nil, backupid=nil, limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpc=nil, limitip=nil)
           @InstanceId = instanceid
           @BackupId = backupid
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpc = limitvpc
+          @LimitIp = limitip
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupId = params['BackupId']
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpc'].nil?
+            @LimitVpc = []
+            params['LimitVpc'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpc << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIp = params['LimitIp']
         end
       end
 
@@ -1353,45 +1407,55 @@ module TencentCloud
 
       # DescribeInstanceBackups请求参数结构体
       class DescribeInstanceBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页输出的备份列表大小。默认大小为20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
+        # @type Offset: Integer
         # @param InstanceId: 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
-        # @param Limit: 实例列表大小，默认大小20
-        # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍
-        # @type Offset: Integer
         # @param BeginTime: 开始时间，格式如：2017-02-08 16:46:34。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表。
         # @type BeginTime: String
         # @param EndTime: 结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表。
         # @type EndTime: String
-        # @param Status: 1：备份在流程中，2：备份正常，3：备份转RDB文件处理中，4：已完成RDB转换，-1：备份已过期，-2：备份已删除。
+        # @param Status: 备份任务的状态：
+        # 1：备份在流程中。
+        # 2：备份正常。
+        # 3：备份转RDB文件处理中。
+        # 4：已完成RDB转换。
+        # -1：备份已过期。
+        # -2：备份已删除。
         # @type Status: Array
+        # @param InstanceName: 实例名称，支持根据实例名称模糊搜索。
+        # @type InstanceName: String
 
-        attr_accessor :InstanceId, :Limit, :Offset, :BeginTime, :EndTime, :Status
+        attr_accessor :Limit, :Offset, :InstanceId, :BeginTime, :EndTime, :Status, :InstanceName
         
-        def initialize(instanceid=nil, limit=nil, offset=nil, begintime=nil, endtime=nil, status=nil)
-          @InstanceId = instanceid
+        def initialize(limit=nil, offset=nil, instanceid=nil, begintime=nil, endtime=nil, status=nil, instancename=nil)
           @Limit = limit
           @Offset = offset
+          @InstanceId = instanceid
           @BeginTime = begintime
           @EndTime = endtime
           @Status = status
+          @InstanceName = instancename
         end
 
         def deserialize(params)
-          @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @InstanceId = params['InstanceId']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Status = params['Status']
+          @InstanceName = params['InstanceName']
         end
       end
 
       # DescribeInstanceBackups返回参数结构体
       class DescribeInstanceBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 备份总数
+        # @param TotalCount: 备份总数。
         # @type TotalCount: Integer
-        # @param BackupSet: 实例的备份数组
+        # @param BackupSet: 实例的备份数组。
         # @type BackupSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5092,28 +5156,39 @@ module TencentCloud
 
       # ModifyNetworkConfig请求参数结构体
       class ModifyNetworkConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param Operation: 操作类型：changeVip——修改实例VIP；changeVpc——修改实例子网；changeBaseToVpc——基础网络转VPC网络
+        # @param Operation: 指预修改网络的类别，包括：
+        # - changeVip：指切换私有网络，包含其内网IPv4地址及端口。
+        # - changeVpc：指切换私有网络所属子网。
+        # - changeBaseToVpc：指基础网络切换为私有网络。
+        # - changeVPort：指仅修改实例网络端口。
         # @type Operation: String
-        # @param Vip: VIP地址，changeVip的时候填写，不填则默认分配
+        # @param Vip: 指实例私有网络内网 IPv4 地址。当**Operation**为**changeVip**时，需配置该参数。
         # @type Vip: String
-        # @param VpcId: 私有网络ID，changeVpc、changeBaseToVpc的时候需要提供
+        # @param VpcId: 指修改后的私有网络 ID，当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
         # @type VpcId: String
-        # @param SubnetId: 子网ID，changeVpc、changeBaseToVpc的时候需要提供
+        # @param SubnetId: 指修改后的私有网络所属子网 ID，当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
         # @type SubnetId: String
-        # @param Recycle: 原VIP保留时间，单位：天，注：需要最新版SDK，否则原VIP立即释放，查看SDK版本，详见 [SDK中心](https://cloud.tencent.com/document/sdk)
-        # @type Recycle: Integer
+        # @param Recycle: 原内网 IPv4 地址保留时长。
+        # - 单位：天。
+        # - 取值范围：0、1、2、3、7、15。
 
-        attr_accessor :InstanceId, :Operation, :Vip, :VpcId, :SubnetId, :Recycle
+        # **说明**：设置原地址保留时长需最新版SDK，否则原地址将立即释放，查看SDK版本，请参见 [SDK中心](https://cloud.tencent.com/document/sdk)。
+        # @type Recycle: Integer
+        # @param VPort: 指修改后的网络端口。当**Operation**为**changeVPort**或**changeVip**时，需配置该参数。取值范围为[1024,65535]。
+        # @type VPort: Integer
+
+        attr_accessor :InstanceId, :Operation, :Vip, :VpcId, :SubnetId, :Recycle, :VPort
         
-        def initialize(instanceid=nil, operation=nil, vip=nil, vpcid=nil, subnetid=nil, recycle=nil)
+        def initialize(instanceid=nil, operation=nil, vip=nil, vpcid=nil, subnetid=nil, recycle=nil, vport=nil)
           @InstanceId = instanceid
           @Operation = operation
           @Vip = vip
           @VpcId = vpcid
           @SubnetId = subnetid
           @Recycle = recycle
+          @VPort = vport
         end
 
         def deserialize(params)
@@ -5123,29 +5198,33 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Recycle = params['Recycle']
+          @VPort = params['VPort']
         end
       end
 
       # ModifyNetworkConfig返回参数结构体
       class ModifyNetworkConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 执行状态：true|false
+        # @param Status: 执行状态，请忽略该参数。
         # @type Status: Boolean
-        # @param SubnetId: 子网ID
+        # @param SubnetId: 指实例新私有网络所属子网 ID。
         # @type SubnetId: String
-        # @param VpcId: 私有网络ID
+        # @param VpcId: 指实例新的私有网络ID。
         # @type VpcId: String
-        # @param Vip: VIP地址
+        # @param Vip: 指实例新的内网 IPv4 地址。
         # @type Vip: String
+        # @param TaskId: 任务 ID。可获取**taskId**，通过接口 **DescribeTaskInfo **查询任务执行状态。
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :SubnetId, :VpcId, :Vip, :RequestId
+        attr_accessor :Status, :SubnetId, :VpcId, :Vip, :TaskId, :RequestId
         
-        def initialize(status=nil, subnetid=nil, vpcid=nil, vip=nil, requestid=nil)
+        def initialize(status=nil, subnetid=nil, vpcid=nil, vip=nil, taskid=nil, requestid=nil)
           @Status = status
           @SubnetId = subnetid
           @VpcId = vpcid
           @Vip = vip
+          @TaskId = taskid
           @RequestId = requestid
         end
 
@@ -5154,6 +5233,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @VpcId = params['VpcId']
           @Vip = params['Vip']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -5456,31 +5536,55 @@ module TencentCloud
 
       # 实例的备份数组
       class RedisBackupSet < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始备份的时间
+        # @param StartTime: 备份开始时间。
         # @type StartTime: String
-        # @param BackupId: 备份ID
+        # @param BackupId: 备份ID。
         # @type BackupId: String
-        # @param BackupType: 备份类型。1：用户发起的手动备份； 0：凌晨系统发起的备份
+        # @param BackupType: 备份类型。
+
+        # - 1：用户发起的手动备份。
+        # - 0：凌晨系统发起的备份。
         # @type BackupType: String
-        # @param Status: 备份状态。  1:"备份被其它流程锁定";  2:"备份正常，没有被任何流程锁定";  -1:"备份已过期"； 3:"备份正在被导出";  4:"备份导出成功"
+        # @param Status: 备份状态。
+
+        # - 1：备份被其它流程锁定。
+        # - 2：备份正常，没有被任何流程锁定。
+        # - -1：备份已过期。
+        # - 3：备份正在被导出。
+        # - 4：备份导出成功。
         # @type Status: Integer
-        # @param Remark: 备份的备注信息
+        # @param Remark: 备份的备注信息。
         # @type Remark: String
-        # @param Locked: 备份是否被锁定，0：未被锁定；1：已被锁定
+        # @param Locked: 备份是否被锁定。
+
+        # - 0：未被锁定。
+        # - 1：已被锁定。
         # @type Locked: Integer
-        # @param BackupSize: 内部字段，用户可忽略
+        # @param BackupSize: 内部字段，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSize: Integer
-        # @param FullBackup: 内部字段，用户可忽略
+        # @param FullBackup: 内部字段，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullBackup: Integer
-        # @param InstanceType: 内部字段，用户可忽略
+        # @param InstanceType: 内部字段，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param Region: 本地备份所在地域。
+        # @type Region: String
+        # @param EndTime: 备份结束时间。
+        # @type EndTime: String
+        # @param FileType: 备份文件类型。
+        # @type FileType: String
+        # @param ExpireTime: 备份文件过期时间。
+        # @type ExpireTime: String
 
-        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked, :BackupSize, :FullBackup, :InstanceType
+        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked, :BackupSize, :FullBackup, :InstanceType, :InstanceId, :InstanceName, :Region, :EndTime, :FileType, :ExpireTime
         
-        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, fullbackup=nil, instancetype=nil)
+        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, fullbackup=nil, instancetype=nil, instanceid=nil, instancename=nil, region=nil, endtime=nil, filetype=nil, expiretime=nil)
           @StartTime = starttime
           @BackupId = backupid
           @BackupType = backuptype
@@ -5490,6 +5594,12 @@ module TencentCloud
           @BackupSize = backupsize
           @FullBackup = fullbackup
           @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Region = region
+          @EndTime = endtime
+          @FileType = filetype
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
@@ -5502,6 +5612,12 @@ module TencentCloud
           @BackupSize = params['BackupSize']
           @FullBackup = params['FullBackup']
           @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Region = params['Region']
+          @EndTime = params['EndTime']
+          @FileType = params['FileType']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

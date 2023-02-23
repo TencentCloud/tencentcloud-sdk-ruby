@@ -7196,6 +7196,17 @@ module TencentCloud
         end
       end
 
+      # 小写字符解析
+      class LowercaseParam < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # Map参数
       class MapParam < TencentCloud::Common::AbstractModel
         # @param Key: key值
@@ -10043,10 +10054,13 @@ module TencentCloud
         # @param UrlDecode: Url解析
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrlDecode: :class:`Tencentcloud::Ckafka.v20190819.models.UrlDecodeParam`
+        # @param Lowercase: 小写字符解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lowercase: :class:`Tencentcloud::Ckafka.v20190819.models.LowercaseParam`
 
-        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result, :JsonPathReplace, :UrlDecode
+        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result, :JsonPathReplace, :UrlDecode, :Lowercase
         
-        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil, jsonpathreplace=nil, urldecode=nil)
+        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil, jsonpathreplace=nil, urldecode=nil, lowercase=nil)
           @Type = type
           @Replace = replace
           @Substr = substr
@@ -10057,6 +10071,7 @@ module TencentCloud
           @Result = result
           @JsonPathReplace = jsonpathreplace
           @UrlDecode = urldecode
+          @Lowercase = lowercase
         end
 
         def deserialize(params)
@@ -10093,6 +10108,10 @@ module TencentCloud
           unless params['UrlDecode'].nil?
             @UrlDecode = UrlDecodeParam.new
             @UrlDecode.deserialize(params['UrlDecode'])
+          end
+          unless params['Lowercase'].nil?
+            @Lowercase = LowercaseParam.new
+            @Lowercase.deserialize(params['Lowercase'])
           end
         end
       end

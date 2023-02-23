@@ -1128,9 +1128,9 @@ module TencentCloud
         # @type DosageBeginTime: String
         # @param DosageEndTime: 用量结束时间
         # @type DosageEndTime: String
-        # @param SubProductCodeName: 一级产品类型名称
+        # @param SubProductCodeName: 子产品名称
         # @type SubProductCodeName: String
-        # @param BillingItemCodeName: 二级产品类型名称
+        # @param BillingItemCodeName: 计费项名称
         # @type BillingItemCodeName: String
         # @param DosageValue: 用量
         # @type DosageValue: String
@@ -2712,9 +2712,9 @@ module TencentCloud
 
       # DescribeDosageCosDetailByDate请求参数结构体
       class DescribeDosageCosDetailByDateRequest < TencentCloud::Common::AbstractModel
-        # @param StartDate: 查询用量开始时间
+        # @param StartDate: 查询用量开始时间，例如：2020-09-01
         # @type StartDate: String
-        # @param EndDate: 查询用量结束时间（与开始时间同月，不支持跨月查询）
+        # @param EndDate: 查询用量结束时间，例如：2020-09-30（与开始时间同月，不支持跨月查询）
         # @type EndDate: String
         # @param BucketName: COS 存储桶名称，可通过Get Service 接口是用来获取请求者名下的所有存储空间列表（Bucket list）https://cloud.tencent.com/document/product/436/8291
         # @type BucketName: String

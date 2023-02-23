@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 CRS 实例备份列表
+        # 本接口（DescribeInstanceBackups）用于查询实例备份列表。
 
         # @param request: Request instance for DescribeInstanceBackups.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceBackupsRequest`
@@ -1733,7 +1733,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例网络配置
+        # 本接口（ModifyNetworkConfig）用于修改实例网络配置。
 
         # @param request: Request instance for ModifyNetworkConfig.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyNetworkConfigRequest`
