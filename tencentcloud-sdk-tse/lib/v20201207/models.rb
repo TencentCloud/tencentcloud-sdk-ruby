@@ -854,15 +854,19 @@ module TencentCloud
         # @param EnableConfigIntranet: 是否开启config内网clb
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableConfigIntranet: Boolean
+        # @param InternetBandWidth: 客户端公网带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetBandWidth: Integer
 
-        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet
+        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet, :InternetBandWidth
         
-        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil)
+        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil, internetbandwidth=nil)
           @EnvName = envname
           @EnableConfigInternet = enableconfiginternet
           @ConfigInternetServiceIp = configinternetserviceip
           @ConfigIntranetAddress = configintranetaddress
           @EnableConfigIntranet = enableconfigintranet
+          @InternetBandWidth = internetbandwidth
         end
 
         def deserialize(params)
@@ -871,6 +875,7 @@ module TencentCloud
           @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
           @ConfigIntranetAddress = params['ConfigIntranetAddress']
           @EnableConfigIntranet = params['EnableConfigIntranet']
+          @InternetBandWidth = params['InternetBandWidth']
         end
       end
 
@@ -1026,16 +1031,20 @@ module TencentCloud
         # @param ZoneId: 可用区ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
+        # @param VpcId: VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
 
-        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId
+        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :VpcId
         
-        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil)
+        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, vpcid=nil)
           @Name = name
           @Role = role
           @Status = status
           @SubnetId = subnetid
           @Zone = zone
           @ZoneId = zoneid
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -1045,6 +1054,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Zone = params['Zone']
           @ZoneId = params['ZoneId']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -1166,10 +1176,19 @@ module TencentCloud
         # @param RegionInfos: 实例地域相关的描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionInfos: Array
+        # @param EKSType: 所在EKS环境，分为common和yunti
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EKSType: String
+        # @param FeatureVersion: 引擎的产品版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureVersion: String
+        # @param EnableClientIntranet: 引擎实例是否开启客户端内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableClientIntranet: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -1200,6 +1219,9 @@ module TencentCloud
           @CurDeadline = curdeadline
           @IsolateTime = isolatetime
           @RegionInfos = regioninfos
+          @EKSType = ekstype
+          @FeatureVersion = featureversion
+          @EnableClientIntranet = enableclientintranet
         end
 
         def deserialize(params)
@@ -1268,6 +1290,9 @@ module TencentCloud
               @RegionInfos << describeinstanceregioninfo_tmp
             end
           end
+          @EKSType = params['EKSType']
+          @FeatureVersion = params['FeatureVersion']
+          @EnableClientIntranet = params['EnableClientIntranet']
         end
       end
 
@@ -1428,10 +1453,13 @@ module TencentCloud
         # @param AliasName: 别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasName: String
+        # @param VpcId: VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
 
-        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :AliasName
+        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :AliasName, :VpcId
         
-        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, aliasname=nil)
+        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, aliasname=nil, vpcid=nil)
           @Name = name
           @Role = role
           @Status = status
@@ -1439,6 +1467,7 @@ module TencentCloud
           @Zone = zone
           @ZoneId = zoneid
           @AliasName = aliasname
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -1449,6 +1478,7 @@ module TencentCloud
           @Zone = params['Zone']
           @ZoneId = params['ZoneId']
           @AliasName = params['AliasName']
+          @VpcId = params['VpcId']
         end
       end
 

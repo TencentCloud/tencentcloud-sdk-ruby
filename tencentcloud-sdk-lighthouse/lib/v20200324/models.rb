@@ -230,6 +230,7 @@ module TencentCloud
         # @param DisplayVersion: 镜像对外展示版本。
         # @type DisplayVersion: String
         # @param Description: 镜像描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param OsName: 操作系统名称。
         # @type OsName: String
@@ -359,7 +360,7 @@ module TencentCloud
         # @param OriginalPrice: 镜像总价，原价。单位元。
         # @type OriginalPrice: Float
         # @param Discount: 折扣。
-        # @type Discount: Integer
+        # @type Discount: Float
         # @param DiscountPrice: 镜像折扣后总价。单位元。
         # @type DiscountPrice: Float
 
@@ -3027,7 +3028,7 @@ module TencentCloud
         # @param RealTotalCost: 折后总价。
         # @type RealTotalCost: Float
         # @param Discount: 折扣。
-        # @type Discount: Integer
+        # @type Discount: Float
         # @param PolicyDetail: 具体折扣详情。
         # @type PolicyDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.PolicyDetail`
 
@@ -3099,6 +3100,7 @@ module TencentCloud
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param ExpiredTime: 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
@@ -4168,7 +4170,7 @@ module TencentCloud
         # @param OriginalPrice: 原价。
         # @type OriginalPrice: Float
         # @param Discount: 折扣。
-        # @type Discount: Integer
+        # @type Discount: Float
         # @param DiscountPrice: 折后价。
         # @type DiscountPrice: Float
         # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
@@ -5309,6 +5311,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 快照的创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :SnapshotId, :DiskUsage, :DiskId, :DiskSize, :SnapshotName, :SnapshotState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime

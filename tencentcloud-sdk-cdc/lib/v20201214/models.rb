@@ -1050,20 +1050,53 @@ module TencentCloud
         # @type CvmCount: Integer
         # @param HostCount: 宿主机数量
         # @type HostCount: Integer
+        # @param VpnConnectionState: vpn通道状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpnConnectionState: String
+        # @param VpngwBandwidthData: vpn网关监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpngwBandwidthData: :class:`Tencentcloud::Cdc.v20201214.models.VpngwBandwidthData`
+        # @param LocalNetInfo: 本地网关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalNetInfo: :class:`Tencentcloud::Cdc.v20201214.models.LocalNetInfo`
+        # @param VpnConnectionBandwidthData: vpn网关通道监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpnConnectionBandwidthData: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CvmCount, :HostCount, :RequestId
+        attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :RequestId
         
-        def initialize(cvmcount=nil, hostcount=nil, requestid=nil)
+        def initialize(cvmcount=nil, hostcount=nil, vpnconnectionstate=nil, vpngwbandwidthdata=nil, localnetinfo=nil, vpnconnectionbandwidthdata=nil, requestid=nil)
           @CvmCount = cvmcount
           @HostCount = hostcount
+          @VpnConnectionState = vpnconnectionstate
+          @VpngwBandwidthData = vpngwbandwidthdata
+          @LocalNetInfo = localnetinfo
+          @VpnConnectionBandwidthData = vpnconnectionbandwidthdata
           @RequestId = requestid
         end
 
         def deserialize(params)
           @CvmCount = params['CvmCount']
           @HostCount = params['HostCount']
+          @VpnConnectionState = params['VpnConnectionState']
+          unless params['VpngwBandwidthData'].nil?
+            @VpngwBandwidthData = VpngwBandwidthData.new
+            @VpngwBandwidthData.deserialize(params['VpngwBandwidthData'])
+          end
+          unless params['LocalNetInfo'].nil?
+            @LocalNetInfo = LocalNetInfo.new
+            @LocalNetInfo.deserialize(params['LocalNetInfo'])
+          end
+          unless params['VpnConnectionBandwidthData'].nil?
+            @VpnConnectionBandwidthData = []
+            params['VpnConnectionBandwidthData'].each do |i|
+              vpngwbandwidthdata_tmp = VpngwBandwidthData.new
+              vpngwbandwidthdata_tmp.deserialize(i)
+              @VpnConnectionBandwidthData << vpngwbandwidthdata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1452,6 +1485,60 @@ module TencentCloud
         end
       end
 
+      # 入带宽数据
+      class InBandwidth < TencentCloud::Common::AbstractModel
+        # @param Timestamps: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamps: Array
+        # @param Values: 时间对应的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Timestamps, :Values
+        
+        def initialize(timestamps=nil, values=nil)
+          @Timestamps = timestamps
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Timestamps = params['Timestamps']
+          @Values = params['Values']
+        end
+      end
+
+      # 本地网络信息
+      class LocalNetInfo < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param VpcId: 网络id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param BGPRoute: 路由信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BGPRoute: String
+        # @param LocalIp: 本地IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalIp: String
+
+        attr_accessor :Protocol, :VpcId, :BGPRoute, :LocalIp
+        
+        def initialize(protocol=nil, vpcid=nil, bgproute=nil, localip=nil)
+          @Protocol = protocol
+          @VpcId = vpcid
+          @BGPRoute = bgproute
+          @LocalIp = localip
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @VpcId = params['VpcId']
+          @BGPRoute = params['BGPRoute']
+          @LocalIp = params['LocalIp']
+        end
+      end
+
       # ModifyDedicatedClusterInfo请求参数结构体
       class ModifyDedicatedClusterInfoRequest < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterId: 本地专用集群ID
@@ -1700,6 +1787,28 @@ module TencentCloud
         end
       end
 
+      # 出带宽数据。
+      class OutBandwidth < TencentCloud::Common::AbstractModel
+        # @param Timestamps: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamps: Array
+        # @param Values: 对应时间的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Timestamps, :Values
+        
+        def initialize(timestamps=nil, values=nil)
+          @Timestamps = timestamps
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Timestamps = params['Timestamps']
+          @Values = params['Values']
+        end
+      end
+
       # RegionZoneInfo信息
       class RegionZoneInfo < TencentCloud::Common::AbstractModel
         # @param RegionId: Region id
@@ -1869,6 +1978,33 @@ module TencentCloud
           @Province = params['Province']
           @City = params['City']
           @PostalCode = params['PostalCode']
+        end
+      end
+
+      # VPN网关的流量监控数据。
+      class VpngwBandwidthData < TencentCloud::Common::AbstractModel
+        # @param OutBandwidth: 出带宽流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutBandwidth: :class:`Tencentcloud::Cdc.v20201214.models.OutBandwidth`
+        # @param InBandwidth: 入带宽流量
+        # @type InBandwidth: :class:`Tencentcloud::Cdc.v20201214.models.InBandwidth`
+
+        attr_accessor :OutBandwidth, :InBandwidth
+        
+        def initialize(outbandwidth=nil, inbandwidth=nil)
+          @OutBandwidth = outbandwidth
+          @InBandwidth = inbandwidth
+        end
+
+        def deserialize(params)
+          unless params['OutBandwidth'].nil?
+            @OutBandwidth = OutBandwidth.new
+            @OutBandwidth.deserialize(params['OutBandwidth'])
+          end
+          unless params['InBandwidth'].nil?
+            @InBandwidth = InBandwidth.new
+            @InBandwidth.deserialize(params['InBandwidth'])
+          end
         end
       end
 

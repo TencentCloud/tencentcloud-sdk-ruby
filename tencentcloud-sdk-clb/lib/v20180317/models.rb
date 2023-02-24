@@ -3820,14 +3820,19 @@ module TencentCloud
         # @type Protocol: String
         # @param Port: 监听器端口。
         # @type Port: Integer
+        # @param Filters: 查询负载均衡绑定的后端服务列表，过滤条件如下：
+        # <li> location-id - String - 是否必填：否 - （过滤条件）按照 规则ID 过滤，如："loc-12345678"。</li>
+        # <li> private-ip-address - String - 是否必填：否 - （过滤条件）按照 后端服务内网IP 过滤，如："172.16.1.1"。</li>
+        # @type Filters: Array
 
-        attr_accessor :LoadBalancerId, :ListenerIds, :Protocol, :Port
+        attr_accessor :LoadBalancerId, :ListenerIds, :Protocol, :Port, :Filters
         
-        def initialize(loadbalancerid=nil, listenerids=nil, protocol=nil, port=nil)
+        def initialize(loadbalancerid=nil, listenerids=nil, protocol=nil, port=nil, filters=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerIds = listenerids
           @Protocol = protocol
           @Port = port
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -3835,6 +3840,14 @@ module TencentCloud
           @ListenerIds = params['ListenerIds']
           @Protocol = params['Protocol']
           @Port = params['Port']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -5681,13 +5694,13 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param LoadBalancerName: 负载均衡实例名称
         # @type LoadBalancerName: String
-        # @param TargetRegionInfo: 负载均衡绑定的后端服务的地域信息
+        # @param TargetRegionInfo: 设置负载均衡跨地域绑定1.0的后端服务信息
         # @type TargetRegionInfo: :class:`Tencentcloud::Clb.v20180317.models.TargetRegionInfo`
         # @param InternetChargeInfo: 网络计费相关参数
         # @type InternetChargeInfo: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
         # @param LoadBalancerPassToTarget: Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
         # @type LoadBalancerPassToTarget: Boolean
-        # @param SnatPro: 是否开启SnatPro
+        # @param SnatPro: 是否开启跨地域绑定2.0功能
         # @type SnatPro: Boolean
         # @param DeleteProtect: 是否开启删除保护
         # @type DeleteProtect: Boolean

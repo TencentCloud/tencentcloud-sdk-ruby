@@ -2687,6 +2687,46 @@ module TencentCloud
         end
       end
 
+      # Datahub主题
+      class DatahubTopicDTO < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+        # @param TopicId: Topic Id
+        # @type TopicId: String
+        # @param PartitionNum: 分区数
+        # @type PartitionNum: Integer
+        # @param RetentionMs: 过期时间
+        # @type RetentionMs: Integer
+        # @param Note: 备注
+        # @type Note: String
+        # @param Status: 状态，1使用中，2删除中
+        # @type Status: Integer
+
+        attr_accessor :Name, :TopicName, :TopicId, :PartitionNum, :RetentionMs, :Note, :Status
+        
+        def initialize(name=nil, topicname=nil, topicid=nil, partitionnum=nil, retentionms=nil, note=nil, status=nil)
+          @Name = name
+          @TopicName = topicname
+          @TopicId = topicid
+          @PartitionNum = partitionnum
+          @RetentionMs = retentionms
+          @Note = note
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
+          @PartitionNum = params['PartitionNum']
+          @RetentionMs = params['RetentionMs']
+          @Note = params['Note']
+          @Status = params['Status']
+        end
+      end
+
       # 数据处理——Value处理参数——转换时间格式参数
       class DateParam < TencentCloud::Common::AbstractModel
         # @param Format: 时间格式
@@ -4142,6 +4182,175 @@ module TencentCloud
         end
       end
 
+      # DescribeDatahubTopic请求参数结构体
+      class DescribeDatahubTopicRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # Datahub Topic详情
+      class DescribeDatahubTopicResp < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+        # @param TopicId: Topic Id
+        # @type TopicId: String
+        # @param PartitionNum: 分区数
+        # @type PartitionNum: Integer
+        # @param RetentionMs: 过期时间
+        # @type RetentionMs: Integer
+        # @param Note: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param Status: 状态，1使用中，2删除中
+        # @type Status: Integer
+        # @param Address: 服务路由地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+
+        attr_accessor :Name, :TopicName, :TopicId, :PartitionNum, :RetentionMs, :Note, :UserName, :Password, :Status, :Address
+        
+        def initialize(name=nil, topicname=nil, topicid=nil, partitionnum=nil, retentionms=nil, note=nil, username=nil, password=nil, status=nil, address=nil)
+          @Name = name
+          @TopicName = topicname
+          @TopicId = topicid
+          @PartitionNum = partitionnum
+          @RetentionMs = retentionms
+          @Note = note
+          @UserName = username
+          @Password = password
+          @Status = status
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
+          @PartitionNum = params['PartitionNum']
+          @RetentionMs = params['RetentionMs']
+          @Note = params['Note']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Status = params['Status']
+          @Address = params['Address']
+        end
+      end
+
+      # DescribeDatahubTopic返回参数结构体
+      class DescribeDatahubTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的结果对象
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeDatahubTopicResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatahubTopics请求参数结构体
+      class DescribeDatahubTopicsRequest < TencentCloud::Common::AbstractModel
+        # @param SearchWord: 查询值
+        # @type SearchWord: String
+        # @param Offset: 本次查询的偏移位置，默认为0
+        # @type Offset: Integer
+        # @param Limit: 本次返回结果的最大个数，默认为50，最大值为50
+        # @type Limit: Integer
+
+        attr_accessor :SearchWord, :Offset, :Limit
+        
+        def initialize(searchword=nil, offset=nil, limit=nil)
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # Datahub主题列表
+      class DescribeDatahubTopicsResp < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param TopicList: Topic列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicList: Array
+
+        attr_accessor :TotalCount, :TopicList
+        
+        def initialize(totalcount=nil, topiclist=nil)
+          @TotalCount = totalcount
+          @TopicList = topiclist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              datahubtopicdto_tmp = DatahubTopicDTO.new
+              datahubtopicdto_tmp.deserialize(i)
+              @TopicList << datahubtopicdto_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDatahubTopics返回参数结构体
+      class DescribeDatahubTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 主题列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicsResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeDatahubTopicsResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGroup返回实体
       class DescribeGroup < TencentCloud::Common::AbstractModel
         # @param Group: groupId
@@ -4379,10 +4588,12 @@ module TencentCloud
         # @type InstanceIds: String
         # @param InstanceIdList: 按照实例ID过滤
         # @type InstanceIdList: Array
+        # @param TagList: 根据标签列表过滤实例（取交集）
+        # @type TagList: Array
 
-        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList
+        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         
-        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil)
+        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Status = status
@@ -4392,6 +4603,7 @@ module TencentCloud
           @Filters = filters
           @InstanceIds = instanceids
           @InstanceIdList = instanceidlist
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -4411,6 +4623,14 @@ module TencentCloud
           end
           @InstanceIds = params['InstanceIds']
           @InstanceIdList = params['InstanceIdList']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 

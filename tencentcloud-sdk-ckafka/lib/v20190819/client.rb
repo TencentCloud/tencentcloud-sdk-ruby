@@ -989,6 +989,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Datahub主题属性
+
+        # @param request: Request instance for DescribeDatahubTopic.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTopicRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTopicResponse`
+        def DescribeDatahubTopic(request)
+          body = send_request('DescribeDatahubTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatahubTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询DIP主题列表
+
+        # @param request: Request instance for DescribeDatahubTopics.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTopicsRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTopicsResponse`
+        def DescribeDatahubTopics(request)
+          body = send_request('DescribeDatahubTopics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatahubTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 枚举消费分组(精简版)
 
         # @param request: Request instance for DescribeGroup.

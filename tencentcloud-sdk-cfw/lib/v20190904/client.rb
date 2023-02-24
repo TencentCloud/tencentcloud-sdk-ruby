@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加nat访问控制规则
+
+        # @param request: Request instance for AddNatAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::AddNatAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::AddNatAcRuleResponse`
+        def AddNatAcRule(request)
+          body = send_request('AddNatAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddNatAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建访问控制规则
 
         # @param request: Request instance for CreateAcRules.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIPStatusListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询NAT访问控制列表
+
+        # @param request: Request instance for DescribeNatAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNatAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNatAcRuleResponse`
+        def DescribeNatAcRule(request)
+          body = send_request('DescribeNatAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatAcRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1160,6 +1208,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改NAT访问控制规则
+
+        # @param request: Request instance for ModifyNatAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyNatAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyNatAcRuleResponse`
+        def ModifyNatAcRule(request)
+          body = send_request('ModifyNatAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNatAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 防火墙实例重新选择vpc或nat
 
         # @param request: Request instance for ModifyNatFwReSelect.
@@ -1483,6 +1555,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveEnterpriseSecurityGroupRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除NAT访问控制规则
+
+        # @param request: Request instance for RemoveNatAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::RemoveNatAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::RemoveNatAcRuleResponse`
+        def RemoveNatAcRule(request)
+          body = send_request('RemoveNatAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveNatAcRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

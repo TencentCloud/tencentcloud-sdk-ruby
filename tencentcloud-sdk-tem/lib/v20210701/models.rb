@@ -2654,10 +2654,13 @@ module TencentCloud
         # @param AllIpDone: 所有服务IP是否已经ready
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllIpDone: Boolean
+        # @param ExternalDomain: clb 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalDomain: String
 
-        attr_accessor :Name, :Ports, :Yaml, :ApplicationName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings, :ServicePortMappingList, :FlushAll, :EnableRegistryNextDeploy, :ApplicationId, :AllIpDone
+        attr_accessor :Name, :Ports, :Yaml, :ApplicationName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings, :ServicePortMappingList, :FlushAll, :EnableRegistryNextDeploy, :ApplicationId, :AllIpDone, :ExternalDomain
         
-        def initialize(name=nil, ports=nil, yaml=nil, applicationname=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil, serviceportmappinglist=nil, flushall=nil, enableregistrynextdeploy=nil, applicationid=nil, allipdone=nil)
+        def initialize(name=nil, ports=nil, yaml=nil, applicationname=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil, serviceportmappinglist=nil, flushall=nil, enableregistrynextdeploy=nil, applicationid=nil, allipdone=nil, externaldomain=nil)
           @Name = name
           @Ports = ports
           @Yaml = yaml
@@ -2674,6 +2677,7 @@ module TencentCloud
           @EnableRegistryNextDeploy = enableregistrynextdeploy
           @ApplicationId = applicationid
           @AllIpDone = allipdone
+          @ExternalDomain = externaldomain
         end
 
         def deserialize(params)
@@ -2707,6 +2711,7 @@ module TencentCloud
           @EnableRegistryNextDeploy = params['EnableRegistryNextDeploy']
           @ApplicationId = params['ApplicationId']
           @AllIpDone = params['AllIpDone']
+          @ExternalDomain = params['ExternalDomain']
         end
       end
 
@@ -2990,10 +2995,13 @@ module TencentCloud
         # - NONE（不使用重定向）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RewriteType: String
+        # @param Domain: clb 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :EnvironmentId, :ClusterNamespace, :AddressIPVersion, :IngressName, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType
+        attr_accessor :EnvironmentId, :ClusterNamespace, :AddressIPVersion, :IngressName, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType, :Domain
         
-        def initialize(environmentid=nil, clusternamespace=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil, rewritetype=nil)
+        def initialize(environmentid=nil, clusternamespace=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil, rewritetype=nil, domain=nil)
           @EnvironmentId = environmentid
           @ClusterNamespace = clusternamespace
           @AddressIPVersion = addressipversion
@@ -3006,6 +3014,7 @@ module TencentCloud
           @CreateTime = createtime
           @Mixed = mixed
           @RewriteType = rewritetype
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -3035,6 +3044,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Mixed = params['Mixed']
           @RewriteType = params['RewriteType']
+          @Domain = params['Domain']
         end
       end
 
@@ -4514,10 +4524,13 @@ module TencentCloud
         # @param PortMappingItemList: 端口映射数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortMappingItemList: Array
+        # @param ExternalDomain: clb domain
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalDomain: String
 
-        attr_accessor :Type, :ServiceName, :ClusterIp, :ExternalIp, :SubnetId, :VpcId, :LoadBalanceId, :Yaml, :Ports, :PortMappingItemList
+        attr_accessor :Type, :ServiceName, :ClusterIp, :ExternalIp, :SubnetId, :VpcId, :LoadBalanceId, :Yaml, :Ports, :PortMappingItemList, :ExternalDomain
         
-        def initialize(type=nil, servicename=nil, clusterip=nil, externalip=nil, subnetid=nil, vpcid=nil, loadbalanceid=nil, yaml=nil, ports=nil, portmappingitemlist=nil)
+        def initialize(type=nil, servicename=nil, clusterip=nil, externalip=nil, subnetid=nil, vpcid=nil, loadbalanceid=nil, yaml=nil, ports=nil, portmappingitemlist=nil, externaldomain=nil)
           @Type = type
           @ServiceName = servicename
           @ClusterIp = clusterip
@@ -4528,6 +4541,7 @@ module TencentCloud
           @Yaml = yaml
           @Ports = ports
           @PortMappingItemList = portmappingitemlist
+          @ExternalDomain = externaldomain
         end
 
         def deserialize(params)
@@ -4548,6 +4562,7 @@ module TencentCloud
               @PortMappingItemList << serviceportmappingitem_tmp
             end
           end
+          @ExternalDomain = params['ExternalDomain']
         end
       end
 

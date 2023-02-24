@@ -650,6 +650,50 @@ module TencentCloud
         end
       end
 
+      # 设备流量信息
+      class FlowDetails < TencentCloud::Common::AbstractModel
+        # @param NetDetails: 流量数据点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetDetails: Array
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param MaxValue: 流量最大值（单位：bytes）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxValue: Float
+        # @param AvgValue: 流量平均值（单位：bytes）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgValue: Float
+        # @param TotalValue: 流量总值（单位：bytes）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalValue: Float
+
+        attr_accessor :NetDetails, :DeviceId, :MaxValue, :AvgValue, :TotalValue
+        
+        def initialize(netdetails=nil, deviceid=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil)
+          @NetDetails = netdetails
+          @DeviceId = deviceid
+          @MaxValue = maxvalue
+          @AvgValue = avgvalue
+          @TotalValue = totalvalue
+        end
+
+        def deserialize(params)
+          unless params['NetDetails'].nil?
+            @NetDetails = []
+            params['NetDetails'].each do |i|
+              netdetails_tmp = NetDetails.new
+              netdetails_tmp.deserialize(i)
+              @NetDetails << netdetails_tmp
+            end
+          end
+          @DeviceId = params['DeviceId']
+          @MaxValue = params['MaxValue']
+          @AvgValue = params['AvgValue']
+          @TotalValue = params['TotalValue']
+        end
+      end
+
       # GetDevice请求参数结构体
       class GetDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 搜索指定设备的id
@@ -815,6 +859,65 @@ module TencentCloud
           @MaxValue = params['MaxValue']
           @AvgValue = params['AvgValue']
           @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetMultiFlowStatistic请求参数结构体
+      class GetMultiFlowStatisticRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备id列表，单次最多请求10个设备
+        # @type DeviceIds: Array
+        # @param BeginTime: 1659514436
+        # @type BeginTime: Integer
+        # @param EndTime: 1659515000
+        # @type EndTime: Integer
+        # @param Type: 统计流量类型（1：上行流量，2：下行流量）
+        # @type Type: Integer
+        # @param TimeGranularity: 统计时间粒度（1：按小时统计，2：按天统计）
+        # @type TimeGranularity: Integer
+
+        attr_accessor :DeviceIds, :BeginTime, :EndTime, :Type, :TimeGranularity
+        
+        def initialize(deviceids=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
+          @DeviceIds = deviceids
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Type = type
+          @TimeGranularity = timegranularity
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @TimeGranularity = params['TimeGranularity']
+        end
+      end
+
+      # GetMultiFlowStatistic返回参数结构体
+      class GetMultiFlowStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param FlowDetails: 批量设备流量信息
+        # @type FlowDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowDetails, :RequestId
+        
+        def initialize(flowdetails=nil, requestid=nil)
+          @FlowDetails = flowdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowDetails'].nil?
+            @FlowDetails = []
+            params['FlowDetails'].each do |i|
+              flowdetails_tmp = FlowDetails.new
+              flowdetails_tmp.deserialize(i)
+              @FlowDetails << flowdetails_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -749,6 +749,9 @@ module TencentCloud
         # @param FakeURL: 仿冒网址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FakeURL: String
+        # @param FakeDomain: 仿冒域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeDomain: String
         # @param Heat: 热度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Heat: Integer
@@ -795,13 +798,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificationStatus: Integer
 
-        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus
         
-        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil)
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
           @Origin = origin
           @FakeURL = fakeurl
+          @FakeDomain = fakedomain
           @Heat = heat
           @BlockStatus = blockstatus
           @BlockNote = blocknote
@@ -824,6 +828,7 @@ module TencentCloud
           @BrandName = params['BrandName']
           @Origin = params['Origin']
           @FakeURL = params['FakeURL']
+          @FakeDomain = params['FakeDomain']
           @Heat = params['Heat']
           @BlockStatus = params['BlockStatus']
           @BlockNote = params['BlockNote']

@@ -269,6 +269,53 @@ module TencentCloud
         end
       end
 
+      # AddNatAcRule请求参数结构体
+      class AddNatAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 需要添加的nat访问控制规则列表
+        # @type Rules: Array
+        # @param From: 添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则
+        # @type From: String
+
+        attr_accessor :Rules, :From
+        
+        def initialize(rules=nil, from=nil)
+          @Rules = rules
+          @From = from
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              createnatruleitem_tmp = CreateNatRuleItem.new
+              createnatruleitem_tmp.deserialize(i)
+              @Rules << createnatruleitem_tmp
+            end
+          end
+          @From = params['From']
+        end
+      end
+
+      # AddNatAcRule返回参数结构体
+      class AddNatAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 创建成功后返回新策略ID列表
+        # @type RuleUuid: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :RequestId
+        
+        def initialize(ruleuuid=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssetZone
       class AssetZone < TencentCloud::Common::AbstractModel
         # @param Zone: 地域
@@ -461,6 +508,58 @@ module TencentCloud
           @PrivateIpAddress = params['PrivateIpAddress']
           @PrivatePort = params['PrivatePort']
           @Description = params['Description']
+        end
+      end
+
+      # 通用的列表检索过滤选项
+      class CommonFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 检索的键值
+        # @type Name: String
+        # @param Values: 检索的值
+        # @type Values: Array
+        # @param OperatorType: 枚举类型，代表name与values之间的匹配关系
+        # enum FilterOperatorType {
+        #     //INVALID
+        #     FILTER_OPERATOR_TYPE_INVALID = 0;
+        #     //等于
+        #     FILTER_OPERATOR_TYPE_EQUAL = 1;
+        #     //大于
+        #     FILTER_OPERATOR_TYPE_GREATER = 2;
+        #     //小于
+        #     FILTER_OPERATOR_TYPE_LESS = 3;
+        #     //大于等于
+        #     FILTER_OPERATOR_TYPE_GREATER_EQ = 4;
+        #     //小于等于
+        #     FILTER_OPERATOR_TYPE_LESS_EQ = 5;
+        #     //不等于
+        #     FILTER_OPERATOR_TYPE_NO_EQ = 6;
+        #     //in，数组中包含
+        #     FILTER_OPERATOR_TYPE_IN = 7;
+        #     //not in
+        #     FILTER_OPERATOR_TYPE_NOT_IN = 8;
+        #     //模糊匹配
+        #     FILTER_OPERATOR_TYPE_FUZZINESS = 9;
+        #     //存在
+        #     FILTER_OPERATOR_TYPE_EXIST = 10;
+        #     //不存在
+        #     FILTER_OPERATOR_TYPE_NOT_EXIST = 11;
+        #     //正则
+        #     FILTER_OPERATOR_TYPE_REGULAR = 12;
+        # }
+        # @type OperatorType: Integer
+
+        attr_accessor :Name, :Values, :OperatorType
+        
+        def initialize(name=nil, values=nil, operatortype=nil)
+          @Name = name
+          @Values = values
+          @OperatorType = operatortype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @OperatorType = params['OperatorType']
         end
       end
 
@@ -780,6 +879,78 @@ module TencentCloud
         def deserialize(params)
           @CfwInsId = params['CfwInsId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建NAT ACL规则参数结构
+      class CreateNatRuleItem < TencentCloud::Common::AbstractModel
+        # @param SourceContent: 访问源示例： net：IP/CIDR(192.168.0.2)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceContent: String
+        # @param SourceType: 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param TargetContent: 访问目的示例： net：IP/CIDR(192.168.0.2) domain：域名规则，例如*.qq.com
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetContent: String
+        # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为  ip,net,domain,template,location
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: String
+        # @param Protocol: 协议，可选的值： TCP UDP ICMP ANY HTTP HTTPS HTTP/HTTPS SMTP SMTPS SMTP/SMTPS FTP DNS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleAction: String
+        # @param Port: 访问控制策略的端口。取值： -1/-1：全部端口 80：80端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Direction: 规则方向：1，入站；0，出站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Direction: Integer
+        # @param OrderIndex: 规则序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderIndex: Integer
+        # @param Enable: 规则状态，true表示启用，false表示禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: String
+        # @param Uuid: 规则对应的唯一id，创建规则时无需填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: Integer
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description
+        
+        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil)
+          @SourceContent = sourcecontent
+          @SourceType = sourcetype
+          @TargetContent = targetcontent
+          @TargetType = targettype
+          @Protocol = protocol
+          @RuleAction = ruleaction
+          @Port = port
+          @Direction = direction
+          @OrderIndex = orderindex
+          @Enable = enable
+          @Uuid = uuid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SourceContent = params['SourceContent']
+          @SourceType = params['SourceType']
+          @TargetContent = params['TargetContent']
+          @TargetType = params['TargetType']
+          @Protocol = params['Protocol']
+          @RuleAction = params['RuleAction']
+          @Port = params['Port']
+          @Direction = params['Direction']
+          @OrderIndex = params['OrderIndex']
+          @Enable = params['Enable']
+          @Uuid = params['Uuid']
+          @Description = params['Description']
         end
       end
 
@@ -1145,6 +1316,136 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 访问控制列表对象
+      class DescAcItem < TencentCloud::Common::AbstractModel
+        # @param SourceContent: 访问源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceContent: String
+        # @param TargetContent: 访问目的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetContent: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleAction: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Count: 命中次数
+        # @type Count: Integer
+        # @param OrderIndex: 执行顺序
+        # @type OrderIndex: Integer
+        # @param SourceType: 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为 ip,net,domain,template,location
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: String
+        # @param Uuid: 规则对应的唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: Integer
+        # @param Invalid: 规则有效性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Invalid: Integer
+        # @param IsRegion: 0为正常规则,1为地域规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRegion: Integer
+        # @param CountryCode: 国家id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountryCode: Integer
+        # @param CityCode: 城市id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityCode: Integer
+        # @param CountryName: 国家名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountryName: String
+        # @param CityName: 省名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityName: String
+        # @param CloudCode: 云厂商code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudCode: String
+        # @param IsCloud: 0为正常规则,1为云厂商规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCloud: Integer
+        # @param Enable: 规则状态，true表示启用，false表示禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: String
+        # @param Direction: 规则方向：1，入向；0，出向
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Direction: Integer
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InternalUuid: 内部使用的uuid，一般情况下不会使用到该字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalUuid: Integer
+        # @param Status: 规则状态，查询规则命中详情时该字段有效，0：新增，1: 已删除, 2: 编辑删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status
+        
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil)
+          @SourceContent = sourcecontent
+          @TargetContent = targetcontent
+          @Protocol = protocol
+          @Port = port
+          @RuleAction = ruleaction
+          @Description = description
+          @Count = count
+          @OrderIndex = orderindex
+          @SourceType = sourcetype
+          @TargetType = targettype
+          @Uuid = uuid
+          @Invalid = invalid
+          @IsRegion = isregion
+          @CountryCode = countrycode
+          @CityCode = citycode
+          @CountryName = countryname
+          @CityName = cityname
+          @CloudCode = cloudcode
+          @IsCloud = iscloud
+          @Enable = enable
+          @Direction = direction
+          @InstanceName = instancename
+          @InternalUuid = internaluuid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @SourceContent = params['SourceContent']
+          @TargetContent = params['TargetContent']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @RuleAction = params['RuleAction']
+          @Description = params['Description']
+          @Count = params['Count']
+          @OrderIndex = params['OrderIndex']
+          @SourceType = params['SourceType']
+          @TargetType = params['TargetType']
+          @Uuid = params['Uuid']
+          @Invalid = params['Invalid']
+          @IsRegion = params['IsRegion']
+          @CountryCode = params['CountryCode']
+          @CityCode = params['CityCode']
+          @CountryName = params['CountryName']
+          @CityName = params['CityName']
+          @CloudCode = params['CloudCode']
+          @IsCloud = params['IsCloud']
+          @Enable = params['Enable']
+          @Direction = params['Direction']
+          @InstanceName = params['InstanceName']
+          @InternalUuid = params['InternalUuid']
+          @Status = params['Status']
         end
       end
 
@@ -1827,6 +2128,93 @@ module TencentCloud
           end
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNatAcRule请求参数结构体
+      class DescribeNatAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @type Index: String
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param StartTime: 检索的起始时间，可不传
+        # @type StartTime: String
+        # @param EndTime: 检索的截止时间，可不传
+        # @type EndTime: String
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, index=nil, filters=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Index = index
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Index = params['Index']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeNatAcRule返回参数结构体
+      class DescribeNatAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param Data: nat访问控制列表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param AllTotal: 未过滤的总条数
+        # @type AllTotal: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :AllTotal, :RequestId
+        
+        def initialize(total=nil, data=nil, alltotal=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @AllTotal = alltotal
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              descacitem_tmp = DescAcItem.new
+              descacitem_tmp.deserialize(i)
+              @Data << descacitem_tmp
+            end
+          end
+          @AllTotal = params['AllTotal']
           @RequestId = params['RequestId']
         end
       end
@@ -3319,6 +3707,49 @@ module TencentCloud
         end
       end
 
+      # ModifyNatAcRule请求参数结构体
+      class ModifyNatAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 需要编辑的规则数组
+        # @type Rules: Array
+
+        attr_accessor :Rules
+        
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              createnatruleitem_tmp = CreateNatRuleItem.new
+              createnatruleitem_tmp.deserialize(i)
+              @Rules << createnatruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNatAcRule返回参数结构体
+      class ModifyNatAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 编辑成功后返回新策略ID列表
+        # @type RuleUuid: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :RequestId
+        
+        def initialize(ruleuuid=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNatFwReSelect请求参数结构体
       class ModifyNatFwReSelectRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 模式 1：接入模式；0：新增模式
@@ -4151,6 +4582,46 @@ module TencentCloud
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveNatAcRule请求参数结构体
+      class RemoveNatAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
+        # @type RuleUuid: Array
+        # @param Direction: 规则方向：1，入站；0，出站
+        # @type Direction: Integer
+
+        attr_accessor :RuleUuid, :Direction
+        
+        def initialize(ruleuuid=nil, direction=nil)
+          @RuleUuid = ruleuuid
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @Direction = params['Direction']
+        end
+      end
+
+      # RemoveNatAcRule返回参数结构体
+      class RemoveNatAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 删除成功后返回被删除策略的uuid列表
+        # @type RuleUuid: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :RequestId
+        
+        def initialize(ruleuuid=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
           @RequestId = params['RequestId']
         end
       end

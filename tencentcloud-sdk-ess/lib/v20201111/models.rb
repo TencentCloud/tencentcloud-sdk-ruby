@@ -39,17 +39,17 @@ module TencentCloud
         end
       end
 
-      # 主企业代子企业操作 或 渠道子客应用相关信息
+      # 代理相关应用信息，如集团主企业代子企业操作
       class Agent < TencentCloud::Common::AbstractModel
-        # @param AppId: 应用编号,32位字符串
+        # @param AppId: 代理机构的应用编号,32位字符串，一般不用传
         # @type AppId: String
-        # @param ProxyAppId: 主组织的应用号
+        # @param ProxyAppId: 被代理机构的应用号，一般不用传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAppId: String
-        # @param ProxyOrganizationId: 主组织在平台的机构编号
+        # @param ProxyOrganizationId: 被代理机构在电子签平台的机构编号，集团代理下场景必传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOrganizationId: String
-        # @param ProxyOperator: 主组织的操作人
+        # @param ProxyOperator: 被代理机构的经办人，一般不用传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOperator: String
 
@@ -716,7 +716,7 @@ module TencentCloud
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
         # @type PreviewType: Integer
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
@@ -877,8 +877,6 @@ module TencentCloud
         # @type NeedSignReview: Boolean
         # @param UserData: 用户自定义字段，回调的时候会进行透传，长度需要小于20480
         # @type UserData: String
-        # @param Agent: 应用号信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ApproverVerifyType: 签署人校验方式
         # VerifyCheck: 人脸识别（默认）
         # MobileCheck：手机号验证
@@ -888,10 +886,12 @@ module TencentCloud
         # @type FlowDescription: String
         # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         # @type SignBeanTag: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :Agent, :ApproverVerifyType, :FlowDescription, :SignBeanTag
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, agent=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -906,10 +906,10 @@ module TencentCloud
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
           @UserData = userdata
-          @Agent = agent
           @ApproverVerifyType = approververifytype
           @FlowDescription = flowdescription
           @SignBeanTag = signbeantag
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -951,13 +951,13 @@ module TencentCloud
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
           @UserData = params['UserData']
+          @ApproverVerifyType = params['ApproverVerifyType']
+          @FlowDescription = params['FlowDescription']
+          @SignBeanTag = params['SignBeanTag']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @ApproverVerifyType = params['ApproverVerifyType']
-          @FlowDescription = params['FlowDescription']
-          @SignBeanTag = params['SignBeanTag']
         end
       end
 
@@ -1130,7 +1130,7 @@ module TencentCloud
         # @type NeedSignReview: Boolean
         # @param CallbackUrl: 暂未开放
         # @type CallbackUrl: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param CcInfos: 被抄送人的信息列表。
         # 注: 此功能为白名单功能，若有需要，请联系电子签客服开白使用。
@@ -1594,7 +1594,7 @@ module TencentCloud
         # @type PathType: Integer
         # @param AutoJumpBack: 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
         # @type AutoJumpBack: Boolean
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :PathType, :AutoJumpBack, :Agent
@@ -2133,7 +2133,7 @@ module TencentCloud
         # @type FlowIds: Array
         # @param Operator: 调用方用户信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :FlowIds, :Operator, :Agent
@@ -2188,9 +2188,9 @@ module TencentCloud
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Organization: 企业组织相关信息
+        # @param Organization: 企业组织相关信息，一般不用填
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Offset: 查询偏移位置，默认0
         # @type Offset: Integer
@@ -2521,7 +2521,7 @@ module TencentCloud
         # ORGANIZATION_SEAL：企业印章(图片上传创建)；
         # LEGAL_PERSON_SEAL：法定代表人章
         # @type SealTypes: Array
-        # @param Agent: 主企业代子企业操作 或 渠道子客应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId, :SealTypes, :Agent
@@ -3854,7 +3854,7 @@ module TencentCloud
         # @type FlowId: String
         # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :FlowId, :ClientToken, :Agent
