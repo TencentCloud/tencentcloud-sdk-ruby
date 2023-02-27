@@ -19,8 +19,6 @@ module TencentCloud
     module V20191118
       # CreateSession请求参数结构体
       class CreateSessionRequest < TencentCloud::Common::AbstractModel
-        # @param ClientSession: 客户端session信息，从JSSDK请求中获得
-        # @type ClientSession: String
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
         # @type UserId: String
         # @param GameId: 游戏ID
@@ -29,6 +27,8 @@ module TencentCloud
         # @type GameRegion: String
         # @param GameParas: 游戏参数
         # @type GameParas: String
+        # @param ClientSession: 客户端session信息，从JSSDK请求中获得。特殊的，当 RunMode 参数为 RunWithoutClient 时，该字段可以为空
+        # @type ClientSession: String
         # @param Resolution: 分辨率,，可设置为1080p或720p或1920x1080格式
         # @type Resolution: String
         # @param ImageUrl: 背景图url，格式为png或jpeg，宽高1920*1080
@@ -58,14 +58,14 @@ module TencentCloud
         # 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         # @type RunMode: String
 
-        attr_accessor :ClientSession, :UserId, :GameId, :GameRegion, :GameParas, :Resolution, :ImageUrl, :SetNo, :Bitrate, :MaxBitrate, :MinBitrate, :Fps, :UserIp, :Optimization, :HostUserId, :Role, :GameContext, :RunMode
+        attr_accessor :UserId, :GameId, :GameRegion, :GameParas, :ClientSession, :Resolution, :ImageUrl, :SetNo, :Bitrate, :MaxBitrate, :MinBitrate, :Fps, :UserIp, :Optimization, :HostUserId, :Role, :GameContext, :RunMode
         
-        def initialize(clientsession=nil, userid=nil, gameid=nil, gameregion=nil, gameparas=nil, resolution=nil, imageurl=nil, setno=nil, bitrate=nil, maxbitrate=nil, minbitrate=nil, fps=nil, userip=nil, optimization=nil, hostuserid=nil, role=nil, gamecontext=nil, runmode=nil)
-          @ClientSession = clientsession
+        def initialize(userid=nil, gameid=nil, gameregion=nil, gameparas=nil, clientsession=nil, resolution=nil, imageurl=nil, setno=nil, bitrate=nil, maxbitrate=nil, minbitrate=nil, fps=nil, userip=nil, optimization=nil, hostuserid=nil, role=nil, gamecontext=nil, runmode=nil)
           @UserId = userid
           @GameId = gameid
           @GameRegion = gameregion
           @GameParas = gameparas
+          @ClientSession = clientsession
           @Resolution = resolution
           @ImageUrl = imageurl
           @SetNo = setno
@@ -82,11 +82,11 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ClientSession = params['ClientSession']
           @UserId = params['UserId']
           @GameId = params['GameId']
           @GameRegion = params['GameRegion']
           @GameParas = params['GameParas']
+          @ClientSession = params['ClientSession']
           @Resolution = params['Resolution']
           @ImageUrl = params['ImageUrl']
           @SetNo = params['SetNo']

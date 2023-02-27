@@ -533,8 +533,6 @@ module TencentCloud
         # @type SrcAccessType: String
         # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、ckafka(CKafka实例),注意具体可选值依赖当前链路
         # @type DstAccessType: String
-        # @param Options: 同步任务选项
-        # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param Objects: 同步库表对象信息
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
         # @param JobName: 同步任务名称
@@ -549,16 +547,17 @@ module TencentCloud
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param DstInfo: 目标端信息，单节点数据库使用
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param Options: 同步任务选项
+        # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
         # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Options, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :DstInfo, :AutoRetryTimeRangeMinutes
+        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :DstInfo, :Options, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, options=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, dstinfo=nil, autoretrytimerangeminutes=nil)
+        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, dstinfo=nil, options=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @SrcAccessType = srcaccesstype
           @DstAccessType = dstaccesstype
-          @Options = options
           @Objects = objects
           @JobName = jobname
           @JobMode = jobmode
@@ -566,6 +565,7 @@ module TencentCloud
           @ExpectRunTime = expectruntime
           @SrcInfo = srcinfo
           @DstInfo = dstinfo
+          @Options = options
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
@@ -573,10 +573,6 @@ module TencentCloud
           @JobId = params['JobId']
           @SrcAccessType = params['SrcAccessType']
           @DstAccessType = params['DstAccessType']
-          unless params['Options'].nil?
-            @Options = Options.new
-            @Options.deserialize(params['Options'])
-          end
           unless params['Objects'].nil?
             @Objects = Objects.new
             @Objects.deserialize(params['Objects'])
@@ -592,6 +588,10 @@ module TencentCloud
           unless params['DstInfo'].nil?
             @DstInfo = Endpoint.new
             @DstInfo.deserialize(params['DstInfo'])
+          end
+          unless params['Options'].nil?
+            @Options = Options.new
+            @Options.deserialize(params['Options'])
           end
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
@@ -1356,13 +1356,13 @@ module TencentCloud
         # @param Procedures: ProcedureMode取值为Partial时需要填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Procedures: Array
-        # @param TriggerMode: 触发器迁移模式，All(为当前对象下的所有对象)，partial(部分对象)，如果整库同步此处应该为All。
+        # @param TriggerMode: 触发器迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMode: String
         # @param Triggers: 当TriggerMode为partial，指定要迁移的触发器名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Triggers: Array
-        # @param EventMode: 事件迁移模式，All(为当前对象下的所有对象)，partial(部分对象)，如果整库同步此处应该为All。
+        # @param EventMode: 事件迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventMode: String
         # @param Events: 当EventMode为partial，指定要迁移的事件名称

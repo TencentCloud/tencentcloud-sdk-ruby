@@ -3622,6 +3622,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDBEncryptAttributes请求参数结构体
+      class ModifyDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，形如：tdsqlshard-ow728lmc。
+        # @type InstanceId: String
+        # @param EncryptEnabled: 是否启用数据加密，开启后暂不支持关闭。本接口的可选值为：1-开启数据加密。
+        # @type EncryptEnabled: Integer
+
+        attr_accessor :InstanceId, :EncryptEnabled
+        
+        def initialize(instanceid=nil, encryptenabled=nil)
+          @InstanceId = instanceid
+          @EncryptEnabled = encryptenabled
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EncryptEnabled = params['EncryptEnabled']
+        end
+      end
+
+      # ModifyDBEncryptAttributes返回参数结构体
+      class ModifyDBEncryptAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如tdsql-hdaprz0v

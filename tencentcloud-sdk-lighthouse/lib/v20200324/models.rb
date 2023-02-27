@@ -3780,29 +3780,29 @@ module TencentCloud
       class InquirePriceCreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param BundleId: 实例的套餐 ID。
         # @type BundleId: String
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
         # @param InstanceCount: 创建数量，默认为 1。
         # @type InstanceCount: Integer
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
         # @param BlueprintId: 应用镜像 ID，使用收费应用镜像时必填。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         # @type BlueprintId: String
 
-        attr_accessor :BundleId, :InstanceCount, :InstanceChargePrepaid, :BlueprintId
+        attr_accessor :BundleId, :InstanceChargePrepaid, :InstanceCount, :BlueprintId
         
-        def initialize(bundleid=nil, instancecount=nil, instancechargeprepaid=nil, blueprintid=nil)
+        def initialize(bundleid=nil, instancechargeprepaid=nil, instancecount=nil, blueprintid=nil)
           @BundleId = bundleid
-          @InstanceCount = instancecount
           @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceCount = instancecount
           @BlueprintId = blueprintid
         end
 
         def deserialize(params)
           @BundleId = params['BundleId']
-          @InstanceCount = params['InstanceCount']
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @InstanceCount = params['InstanceCount']
           @BlueprintId = params['BlueprintId']
         end
       end
@@ -3880,7 +3880,7 @@ module TencentCloud
       class InquirePriceRenewInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 待续费的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573 )接口返回值中的InstanceId获取。每次请求批量实例的上限为50。
         # @type InstanceIds: Array
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
         # @param RenewDataDisk: 是否续费数据盘。默认值: false, 即不续费。
         # @type RenewDataDisk: Boolean

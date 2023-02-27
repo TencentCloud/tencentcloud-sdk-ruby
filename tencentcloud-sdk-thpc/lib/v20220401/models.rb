@@ -195,6 +195,42 @@ module TencentCloud
         end
       end
 
+      # AddQueue请求参数结构体
+      class AddQueueRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param QueueName: 队列名称。<br><li>最多支持32个字符。
+        # @type QueueName: String
+
+        attr_accessor :ClusterId, :QueueName
+        
+        def initialize(clusterid=nil, queuename=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+        end
+      end
+
+      # AddQueue返回参数结构体
+      class AddQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindAutoScalingGroup请求参数结构体
       class BindAutoScalingGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -822,6 +858,42 @@ module TencentCloud
         end
       end
 
+      # DeleteQueue请求参数结构体
+      class DeleteQueueRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param QueueName: 队列名称。<br><li>最多支持32个字符。
+        # @type QueueName: String
+
+        attr_accessor :ClusterId, :QueueName
+        
+        def initialize(clusterid=nil, queuename=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+        end
+      end
+
+      # DeleteQueue返回参数结构体
+      class DeleteQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoScalingConfiguration请求参数结构体
       class DescribeAutoScalingConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -1026,6 +1098,127 @@ module TencentCloud
         end
       end
 
+      # DescribeNodes请求参数结构体
+      class DescribeNodesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param Filters: <li><strong>queue-name</strong></li> <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;"><li><strong>node-role</strong></li> <p style="padding-left: 30px;">按照【<strong>节点角色</strong>】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;"><li><strong>node-type</strong></li> <p style="padding-left: 30px;">按照【<strong>节点类型</strong>】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :Filters, :Offset, :Limit
+        
+        def initialize(clusterid=nil, filters=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeNodes返回参数结构体
+      class DescribeNodesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSet: 节点概览信息列表。
+        # @type NodeSet: Array
+        # @param TotalCount: 符合条件的节点数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSet, :TotalCount, :RequestId
+        
+        def initialize(nodeset=nil, totalcount=nil, requestid=nil)
+          @NodeSet = nodeset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              nodeoverview_tmp = NodeOverview.new
+              nodeoverview_tmp.deserialize(i)
+              @NodeSet << nodeoverview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQueues请求参数结构体
+      class DescribeQueuesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :Offset, :Limit
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeQueues返回参数结构体
+      class DescribeQueuesResponse < TencentCloud::Common::AbstractModel
+        # @param QueueSet: 队列概览信息列表。
+        # @type QueueSet: Array
+        # @param TotalCount: 符合条件的节点数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QueueSet, :TotalCount, :RequestId
+        
+        def initialize(queueset=nil, totalcount=nil, requestid=nil)
+          @QueueSet = queueset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QueueSet'].nil?
+            @QueueSet = []
+            params['QueueSet'].each do |i|
+              queueoverview_tmp = QueueOverview.new
+              queueoverview_tmp.deserialize(i)
+              @QueueSet << queueoverview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 弹性扩容节点配置信息。
       class ExpansionNodeConfig < TencentCloud::Common::AbstractModel
         # @param Placement: 扩容实例所在的位置。
@@ -1144,6 +1337,30 @@ module TencentCloud
               @DataDisks << datadisk_tmp
             end
           end
+        end
+      end
+
+      # >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+      # > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
+      # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -1453,6 +1670,53 @@ module TencentCloud
         end
       end
 
+      # 节点概览信息。
+      class NodeOverview < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 节点实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Zone: 节点所在可用区信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param NodeState: 节点状态。<br><li>SUBMITTED：已完成提交。<br><li>CREATING：创建中。<br><li>CREATED：完成创建。<br><li>INITING：初始化中。<br><li>INIT_FAILED：初始化失败。<br><li>RUNNING：运行中。<br><li>DELETING：销毁中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeState: String
+        # @param ImageId: 镜像ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param QueueName: 节点所属队列名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueName: String
+        # @param NodeRole: 节点角色。<br><li>Manager：管控节点。<br><li>Compute：计算节点。<br><li>Login：登录节点。<br><li>ManagerBackup：备用管控节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeRole: String
+        # @param NodeType: 节点类型。<br><li>STATIC：静态节点。<br><li>DYNAMIC：弹性节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: String
+
+        attr_accessor :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType
+        
+        def initialize(instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil)
+          @InstanceId = instanceid
+          @Zone = zone
+          @NodeState = nodestate
+          @ImageId = imageid
+          @QueueName = queuename
+          @NodeRole = noderole
+          @NodeType = nodetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @NodeState = params['NodeState']
+          @ImageId = params['ImageId']
+          @QueueName = params['QueueName']
+          @NodeRole = params['NodeRole']
+          @NodeType = params['NodeType']
+        end
+      end
+
       # 描述了实例的抽象位置
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
@@ -1581,6 +1845,23 @@ module TencentCloud
               @ExpansionNodeConfigs << expansionnodeconfigoverview_tmp
             end
           end
+        end
+      end
+
+      # 队列信息概览。
+      class QueueOverview < TencentCloud::Common::AbstractModel
+        # @param QueueName: 队列名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueName: String
+
+        attr_accessor :QueueName
+        
+        def initialize(queuename=nil)
+          @QueueName = queuename
+        end
+
+        def deserialize(params)
+          @QueueName = params['QueueName']
         end
       end
 

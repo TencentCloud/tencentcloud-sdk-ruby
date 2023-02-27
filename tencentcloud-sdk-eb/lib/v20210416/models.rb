@@ -1813,15 +1813,18 @@ module TencentCloud
         # @type SaveDays: Integer
         # @param LogTopicId: EB日志主题ID
         # @type LogTopicId: String
+        # @param EnableStore: 是否开启存储
+        # @type EnableStore: Boolean
 
-        attr_accessor :EventBusId, :Description, :EventBusName, :SaveDays, :LogTopicId
+        attr_accessor :EventBusId, :Description, :EventBusName, :SaveDays, :LogTopicId, :EnableStore
         
-        def initialize(eventbusid=nil, description=nil, eventbusname=nil, savedays=nil, logtopicid=nil)
+        def initialize(eventbusid=nil, description=nil, eventbusname=nil, savedays=nil, logtopicid=nil, enablestore=nil)
           @EventBusId = eventbusid
           @Description = description
           @EventBusName = eventbusname
           @SaveDays = savedays
           @LogTopicId = logtopicid
+          @EnableStore = enablestore
         end
 
         def deserialize(params)
@@ -1830,6 +1833,7 @@ module TencentCloud
           @EventBusName = params['EventBusName']
           @SaveDays = params['SaveDays']
           @LogTopicId = params['LogTopicId']
+          @EnableStore = params['EnableStore']
         end
       end
 

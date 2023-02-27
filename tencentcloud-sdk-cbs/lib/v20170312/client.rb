@@ -818,8 +818,6 @@ module TencentCloud
 
         # 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
 
-        # * 只支持预付费模式的云硬盘扩容询价。
-
         # @param request: Request instance for InquiryPriceResizeDisk.
         # @type request: :class:`Tencentcloud::cbs::V20170312::InquiryPriceResizeDiskRequest`
         # @rtype: :class:`Tencentcloud::cbs::V20170312::InquiryPriceResizeDiskResponse`

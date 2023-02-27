@@ -177,7 +177,7 @@ module TencentCloud
 
       # CreateBPFakeAPPList请求参数结构体
       class CreateBPFakeAPPListRequest < TencentCloud::Common::AbstractModel
-        # @param FakeAPPs: 批量模版
+        # @param FakeAPPs: 批量模板
         # @type FakeAPPs: String
 
         attr_accessor :FakeAPPs
@@ -313,7 +313,7 @@ module TencentCloud
 
       # CreateBPFakeURLs请求参数结构体
       class CreateBPFakeURLsRequest < TencentCloud::Common::AbstractModel
-        # @param FakeURLs: 批量模版
+        # @param FakeURLs: 批量模板
         # @type FakeURLs: String
 
         attr_accessor :FakeURLs

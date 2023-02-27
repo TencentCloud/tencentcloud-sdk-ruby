@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(AddQueue)用于添加队列到指定集群。
+
+        # @param request: Request instance for AddQueue.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::AddQueueRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::AddQueueResponse`
+        def AddQueue(request)
+          body = send_request('AddQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddQueueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
 
         # @param request: Request instance for BindAutoScalingGroup.
@@ -197,6 +221,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DeleteQueue)用于从指定集群删除队列。
+
+        # * 删除队列时，需要保证队列内不存在节点。
+
+        # @param request: Request instance for DeleteQueue.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::DeleteQueueRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::DeleteQueueResponse`
+        def DeleteQueue(request)
+          body = send_request('DeleteQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteQueueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeAutoScalingConfiguration)用于查询集群弹性伸缩配置信息。本接口仅适用于弹性伸缩类型为THPC_AS的集群。
 
         # @param request: Request instance for DescribeAutoScalingConfiguration.
@@ -279,6 +329,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeNodes) 用于查询指定集群节点概览信息列表。
+
+        # @param request: Request instance for DescribeNodes.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::DescribeNodesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::DescribeNodesResponse`
+        def DescribeNodes(request)
+          body = send_request('DescribeNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeQueues)用于查询指定集群队列概览信息列表。
+
+        # @param request: Request instance for DescribeQueues.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::DescribeQueuesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::DescribeQueuesResponse`
+        def DescribeQueues(request)
+          body = send_request('DescribeQueues', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQueuesResponse.new
             model.deserialize(response['Response'])
             model
           else
