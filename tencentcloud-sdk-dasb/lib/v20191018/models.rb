@@ -250,6 +250,106 @@ module TencentCloud
         end
       end
 
+      # 资产同步状态
+      class AssetSyncStatus < TencentCloud::Common::AbstractModel
+        # @param LastTime: 上一次同步完成的时间
+        # @type LastTime: String
+        # @param LastStatus: 上一次同步的结果。 0 - 从未进行, 1 - 成功， 2 - 失败
+        # @type LastStatus: Integer
+        # @param InProcess: 同步任务是否正在进行中
+        # @type InProcess: Boolean
+
+        attr_accessor :LastTime, :LastStatus, :InProcess
+        
+        def initialize(lasttime=nil, laststatus=nil, inprocess=nil)
+          @LastTime = lasttime
+          @LastStatus = laststatus
+          @InProcess = inprocess
+        end
+
+        def deserialize(params)
+          @LastTime = params['LastTime']
+          @LastStatus = params['LastStatus']
+          @InProcess = params['InProcess']
+        end
+      end
+
+      # BindDeviceAccountPassword请求参数结构体
+      class BindDeviceAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 主机账号ID
+        # @type Id: Integer
+        # @param Password: 主机账号密码
+        # @type Password: String
+
+        attr_accessor :Id, :Password
+        
+        def initialize(id=nil, password=nil)
+          @Id = id
+          @Password = password
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Password = params['Password']
+        end
+      end
+
+      # BindDeviceAccountPassword返回参数结构体
+      class BindDeviceAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindDeviceAccountPrivateKey请求参数结构体
+      class BindDeviceAccountPrivateKeyRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 主机账号ID
+        # @type Id: Integer
+        # @param PrivateKey: 主机账号私钥，最新长度128字节，最大长度8192字节
+        # @type PrivateKey: String
+        # @param PrivateKeyPassword: 主机账号私钥口令，最大长度256字节
+        # @type PrivateKeyPassword: String
+
+        attr_accessor :Id, :PrivateKey, :PrivateKeyPassword
+        
+        def initialize(id=nil, privatekey=nil, privatekeypassword=nil)
+          @Id = id
+          @PrivateKey = privatekey
+          @PrivateKeyPassword = privatekeypassword
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PrivateKey = params['PrivateKey']
+          @PrivateKeyPassword = params['PrivateKeyPassword']
+        end
+      end
+
+      # BindDeviceAccountPrivateKey返回参数结构体
+      class BindDeviceAccountPrivateKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindDeviceResource请求参数结构体
       class BindDeviceResourceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIdSet: 资产ID集合
@@ -427,6 +527,118 @@ module TencentCloud
       # CreateAcl返回参数结构体
       class CreateAclResponse < TencentCloud::Common::AbstractModel
         # @param Id: 新建成功的访问权限ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAssetSyncJob请求参数结构体
+      class CreateAssetSyncJobRequest < TencentCloud::Common::AbstractModel
+        # @param Category: 同步资产类别，1 - 主机资产, 2 - 数据库资产
+        # @type Category: Integer
+
+        attr_accessor :Category
+        
+        def initialize(category=nil)
+          @Category = category
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+        end
+      end
+
+      # CreateAssetSyncJob返回参数结构体
+      class CreateAssetSyncJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCmdTemplate请求参数结构体
+      class CreateCmdTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名，最大长度32字符，不能包含空白字符
+        # @type Name: String
+        # @param CmdList: 命令列表，\n分隔，最大长度32768字节
+        # @type CmdList: String
+
+        attr_accessor :Name, :CmdList
+        
+        def initialize(name=nil, cmdlist=nil)
+          @Name = name
+          @CmdList = cmdlist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CmdList = params['CmdList']
+        end
+      end
+
+      # CreateCmdTemplate返回参数结构体
+      class CreateCmdTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新建成功后返回的记录ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDeviceAccount请求参数结构体
+      class CreateDeviceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 主机记录ID
+        # @type DeviceId: Integer
+        # @param Account: 账号名
+        # @type Account: String
+
+        attr_accessor :DeviceId, :Account
+        
+        def initialize(deviceid=nil, account=nil)
+          @DeviceId = deviceid
+          @Account = account
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Account = params['Account']
+        end
+      end
+
+      # CreateDeviceAccount返回参数结构体
+      class CreateDeviceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新建成功后返回的记录ID
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -630,6 +842,70 @@ module TencentCloud
         end
       end
 
+      # DeleteCmdTemplates请求参数结构体
+      class DeleteCmdTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteCmdTemplates返回参数结构体
+      class DeleteCmdTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDeviceAccounts请求参数结构体
+      class DeleteDeviceAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteDeviceAccounts返回参数结构体
+      class DeleteDeviceAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDeviceGroupMembers请求参数结构体
       class DeleteDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
         # @param Id: 资产组ID
@@ -684,6 +960,38 @@ module TencentCloud
 
       # DeleteDeviceGroups返回参数结构体
       class DeleteDeviceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDevices请求参数结构体
+      class DeleteDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteDevices返回参数结构体
+      class DeleteDevicesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -823,6 +1131,70 @@ module TencentCloud
         end
       end
 
+      # DeployResource请求参数结构体
+      class DeployResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 需要开通服务的资源ID
+        # @type ResourceId: String
+        # @param ApCode: 需要开通服务的地域
+        # @type ApCode: String
+        # @param Zone: 子网所在可用区
+        # @type Zone: String
+        # @param VpcId: 需要开通服务的VPC
+        # @type VpcId: String
+        # @param SubnetId: 需要开通服务的子网ID
+        # @type SubnetId: String
+        # @param CidrBlock: 需要开通服务的子网网段
+        # @type CidrBlock: String
+        # @param VpcName: 需要开通服务的VPC名称
+        # @type VpcName: String
+        # @param VpcCidrBlock: 需要开通服务的VPC对应的网段
+        # @type VpcCidrBlock: String
+        # @param SubnetName: 需要开通服务的子网名称
+        # @type SubnetName: String
+
+        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName
+        
+        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil)
+          @ResourceId = resourceid
+          @ApCode = apcode
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @CidrBlock = cidrblock
+          @VpcName = vpcname
+          @VpcCidrBlock = vpccidrblock
+          @SubnetName = subnetname
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ApCode = params['ApCode']
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @CidrBlock = params['CidrBlock']
+          @VpcName = params['VpcName']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @SubnetName = params['SubnetName']
+        end
+      end
+
+      # DeployResource返回参数结构体
+      class DeployResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAcls请求参数结构体
       class DescribeAclsRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: 访问权限ID集合
@@ -902,6 +1274,104 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetSyncStatus请求参数结构体
+      class DescribeAssetSyncStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Category: 查询的资产同步类型。1 -主机资产， 2 - 数据库资产
+        # @type Category: Integer
+
+        attr_accessor :Category
+        
+        def initialize(category=nil)
+          @Category = category
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+        end
+      end
+
+      # DescribeAssetSyncStatus返回参数结构体
+      class DescribeAssetSyncStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 资产同步结果
+        # @type Status: :class:`Tencentcloud::Dasb.v20191018.models.AssetSyncStatus`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Status'].nil?
+            @Status = AssetSyncStatus.new
+            @Status.deserialize(params['Status'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCmdTemplates请求参数结构体
+      class DescribeCmdTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 命令模板ID集合，非必需
+        # @type IdSet: Array
+        # @param Name: 命令模板名，模糊查询，最大长度64字符
+        # @type Name: String
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20
+        # @type Limit: Integer
+
+        attr_accessor :IdSet, :Name, :Offset, :Limit
+        
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+          @IdSet = idset
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCmdTemplates返回参数结构体
+      class DescribeCmdTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param CmdTemplateSet: 命令模板列表
+        # @type CmdTemplateSet: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CmdTemplateSet, :TotalCount, :RequestId
+        
+        def initialize(cmdtemplateset=nil, totalcount=nil, requestid=nil)
+          @CmdTemplateSet = cmdtemplateset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CmdTemplateSet'].nil?
+            @CmdTemplateSet = []
+            params['CmdTemplateSet'].each do |i|
+              cmdtemplate_tmp = CmdTemplate.new
+              cmdtemplate_tmp.deserialize(i)
+              @CmdTemplateSet << cmdtemplate_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDasbImageIds请求参数结构体
       class DescribeDasbImageIdsRequest < TencentCloud::Common::AbstractModel
 
@@ -933,6 +1403,69 @@ module TencentCloud
         def deserialize(params)
           @BaseImageId = params['BaseImageId']
           @AiImageId = params['AiImageId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceAccounts请求参数结构体
+      class DescribeDeviceAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 主机账号ID集合，非必需，如果使用IdSet则忽略其他过滤参数
+        # @type IdSet: Array
+        # @param Account: 主机账号名，模糊查询，不能单独出现，必须于DeviceId一起提交
+        # @type Account: String
+        # @param DeviceId: 主机ID，未使用IdSet时必须携带
+        # @type DeviceId: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20
+        # @type Limit: Integer
+
+        attr_accessor :IdSet, :Account, :DeviceId, :Offset, :Limit
+        
+        def initialize(idset=nil, account=nil, deviceid=nil, offset=nil, limit=nil)
+          @IdSet = idset
+          @Account = account
+          @DeviceId = deviceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+          @Account = params['Account']
+          @DeviceId = params['DeviceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeviceAccounts返回参数结构体
+      class DescribeDeviceAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param DeviceAccountSet: 账号信息列表
+        # @type DeviceAccountSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeviceAccountSet, :RequestId
+        
+        def initialize(totalcount=nil, deviceaccountset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeviceAccountSet = deviceaccountset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeviceAccountSet'].nil?
+            @DeviceAccountSet = []
+            params['DeviceAccountSet'].each do |i|
+              deviceaccount_tmp = DeviceAccount.new
+              deviceaccount_tmp.deserialize(i)
+              @DeviceAccountSet << deviceaccount_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1540,6 +2073,70 @@ module TencentCloud
         end
       end
 
+      # 主机账号
+      class DeviceAccount < TencentCloud::Common::AbstractModel
+        # @param Id: 账号ID
+        # @type Id: Integer
+        # @param DeviceId: 主机ID
+        # @type DeviceId: Integer
+        # @param Account: 账号名
+        # @type Account: String
+        # @param BoundPassword: true-已托管密码，false-未托管密码
+        # @type BoundPassword: Boolean
+        # @param BoundPrivateKey: true-已托管私钥，false-未托管私钥
+        # @type BoundPrivateKey: Boolean
+
+        attr_accessor :Id, :DeviceId, :Account, :BoundPassword, :BoundPrivateKey
+        
+        def initialize(id=nil, deviceid=nil, account=nil, boundpassword=nil, boundprivatekey=nil)
+          @Id = id
+          @DeviceId = deviceid
+          @Account = account
+          @BoundPassword = boundpassword
+          @BoundPrivateKey = boundprivatekey
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DeviceId = params['DeviceId']
+          @Account = params['Account']
+          @BoundPassword = params['BoundPassword']
+          @BoundPrivateKey = params['BoundPrivateKey']
+        end
+      end
+
+      # 主机参数，导入外部主机时使用
+      class ExternalDevice < TencentCloud::Common::AbstractModel
+        # @param OsName: 操作系统名称，只能是Linux、Windows或MySQL
+        # @type OsName: String
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Port: 管理端口
+        # @type Port: Integer
+        # @param Name: 主机名，可为空
+        # @type Name: String
+        # @param DepartmentId: 资产所属的部门ID
+        # @type DepartmentId: String
+
+        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId
+        
+        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil)
+          @OsName = osname
+          @Ip = ip
+          @Port = port
+          @Name = name
+          @DepartmentId = departmentid
+        end
+
+        def deserialize(params)
+          @OsName = params['OsName']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @Name = params['Name']
+          @DepartmentId = params['DepartmentId']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 需要过滤的字段。
@@ -1592,6 +2189,45 @@ module TencentCloud
             @Department.deserialize(params['Department'])
           end
           @Count = params['Count']
+        end
+      end
+
+      # ImportExternalDevice请求参数结构体
+      class ImportExternalDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceSet: 资产参数列表
+        # @type DeviceSet: Array
+
+        attr_accessor :DeviceSet
+        
+        def initialize(deviceset=nil)
+          @DeviceSet = deviceset
+        end
+
+        def deserialize(params)
+          unless params['DeviceSet'].nil?
+            @DeviceSet = []
+            params['DeviceSet'].each do |i|
+              externaldevice_tmp = ExternalDevice.new
+              externaldevice_tmp.deserialize(i)
+              @DeviceSet << externaldevice_tmp
+            end
+          end
+        end
+      end
+
+      # ImportExternalDevice返回参数结构体
+      class ImportExternalDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1729,6 +2365,90 @@ module TencentCloud
         end
       end
 
+      # ModifyDeviceGroup请求参数结构体
+      class ModifyDeviceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 资产组名，最大长度32字符，不能为空
+        # @type Name: String
+        # @param Id: 资产组ID
+        # @type Id: Integer
+        # @param DepartmentId: 资产组所属部门ID，如：1.2.3
+        # @type DepartmentId: String
+
+        attr_accessor :Name, :Id, :DepartmentId
+        
+        def initialize(name=nil, id=nil, departmentid=nil)
+          @Name = name
+          @Id = id
+          @DepartmentId = departmentid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
+          @DepartmentId = params['DepartmentId']
+        end
+      end
+
+      # ModifyDeviceGroup返回参数结构体
+      class ModifyDeviceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDevice请求参数结构体
+      class ModifyDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资产记录ID
+        # @type Id: Integer
+        # @param Port: 管理端口
+        # @type Port: Integer
+        # @param GroupIdSet: 资产所属组ID集合
+        # @type GroupIdSet: Array
+        # @param DepartmentId: 资产所属部门ID
+        # @type DepartmentId: String
+
+        attr_accessor :Id, :Port, :GroupIdSet, :DepartmentId
+        
+        def initialize(id=nil, port=nil, groupidset=nil, departmentid=nil)
+          @Id = id
+          @Port = port
+          @GroupIdSet = groupidset
+          @DepartmentId = departmentid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Port = params['Port']
+          @GroupIdSet = params['GroupIdSet']
+          @DepartmentId = params['DepartmentId']
+        end
+      end
+
+      # ModifyDevice返回参数结构体
+      class ModifyDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户ID
@@ -1785,6 +2505,102 @@ module TencentCloud
 
       # ModifyUser返回参数结构体
       class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetDeviceAccountPassword请求参数结构体
+      class ResetDeviceAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # ResetDeviceAccountPassword返回参数结构体
+      class ResetDeviceAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetDeviceAccountPrivateKey请求参数结构体
+      class ResetDeviceAccountPrivateKeyRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # ResetDeviceAccountPrivateKey返回参数结构体
+      class ResetDeviceAccountPrivateKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetUser请求参数结构体
+      class ResetUserRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 用户ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # ResetUser返回参数结构体
+      class ResetUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

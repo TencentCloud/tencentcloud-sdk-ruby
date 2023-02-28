@@ -667,6 +667,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeHttpsPackages 用于查询 CDN HTTPS请求包详情。
+
+        # @param request: Request instance for DescribeHttpsPackages.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeHttpsPackagesRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeHttpsPackagesResponse`
+        def DescribeHttpsPackages(request)
+          body = send_request('DescribeHttpsPackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHttpsPackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
 
         # @param request: Request instance for DescribeImageConfig.

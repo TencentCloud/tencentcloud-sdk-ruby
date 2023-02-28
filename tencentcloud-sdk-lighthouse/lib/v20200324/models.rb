@@ -21,7 +21,7 @@ module TencentCloud
       class ApplyDiskBackupRequest < TencentCloud::Common::AbstractModel
         # @param DiskId: 云硬盘ID，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。
         # @type DiskId: String
-        # @param DiskBackupId: 云硬盘备份点ID，可通过 DescribeDiskBackups 接口查询。
+        # @param DiskBackupId: 云硬盘备份点ID，可通过[DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询。
         # @type DiskBackupId: String
 
         attr_accessor :DiskId, :DiskBackupId
@@ -899,7 +899,7 @@ module TencentCloud
 
       # DeleteDiskBackups请求参数结构体
       class DeleteDiskBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 云硬盘备份点ID列表，可通过 DescribeDiskBackups接口查询。
+        # @param DiskBackupIds: 云硬盘备份点ID列表，可通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询。
         # @type DiskBackupIds: Array
 
         attr_accessor :DiskBackupIds
@@ -1483,7 +1483,7 @@ module TencentCloud
         # <li>disk-backup-state</li>按照【云硬盘备份点状态】进行过滤。
         # 类型：String
         # 必选：否
-        # 取值：参考数据结构DiskBackup下的DiskBackupState取值。
+        # 取值：参考数据结构[DiskBackup](https://cloud.tencent.com/document/product/1207/47576#DiskBackup)下的DiskBackupState取值。
         # <li>disk-usage</li>按照【云硬盘类型】进行过滤。
         # 类型：String
         # 必选：否

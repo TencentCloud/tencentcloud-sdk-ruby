@@ -1557,18 +1557,24 @@ module TencentCloud
         # @param RealEndTime: 秒级unix时间戳，实际房间结束时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealEndTime: Integer
+        # @param MessageCount: 房间消息总数。
+        # @type MessageCount: Integer
+        # @param MicCount: 房间连麦总数。
+        # @type MicCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PeakMemberNumber, :MemberNumber, :Total, :MemberRecords, :RealStartTime, :RealEndTime, :RequestId
+        attr_accessor :PeakMemberNumber, :MemberNumber, :Total, :MemberRecords, :RealStartTime, :RealEndTime, :MessageCount, :MicCount, :RequestId
         
-        def initialize(peakmembernumber=nil, membernumber=nil, total=nil, memberrecords=nil, realstarttime=nil, realendtime=nil, requestid=nil)
+        def initialize(peakmembernumber=nil, membernumber=nil, total=nil, memberrecords=nil, realstarttime=nil, realendtime=nil, messagecount=nil, miccount=nil, requestid=nil)
           @PeakMemberNumber = peakmembernumber
           @MemberNumber = membernumber
           @Total = total
           @MemberRecords = memberrecords
           @RealStartTime = realstarttime
           @RealEndTime = realendtime
+          @MessageCount = messagecount
+          @MicCount = miccount
           @RequestId = requestid
         end
 
@@ -1586,6 +1592,8 @@ module TencentCloud
           end
           @RealStartTime = params['RealStartTime']
           @RealEndTime = params['RealEndTime']
+          @MessageCount = params['MessageCount']
+          @MicCount = params['MicCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1773,6 +1781,61 @@ module TencentCloud
           @DocumentType = params['DocumentType']
           @DocumentSize = params['DocumentSize']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # GetRoomMessage请求参数结构体
+      class GetRoomMessageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param Seq: 消息序列。获取该序列以前前的消息(不包含该seq消息)
+        # @type Seq: Integer
+        # @param Limit: 消息拉取的条数。最大数量不能超过套餐包限制。
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :Seq, :Limit
+        
+        def initialize(sdkappid=nil, roomid=nil, seq=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @Seq = seq
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @Seq = params['Seq']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetRoomMessage返回参数结构体
+      class GetRoomMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Messages: 消息列表
+        # @type Messages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Messages, :RequestId
+        
+        def initialize(messages=nil, requestid=nil)
+          @Messages = messages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              messagelist_tmp = MessageList.new
+              messagelist_tmp.deserialize(i)
+              @Messages << messagelist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2015,10 +2078,14 @@ module TencentCloud
         # @type Location: String
         # @param Device: 用户设备平台信息。0:unknown  1:windows  2:mac  3:android  4:ios  5:web   6:h5   7:miniprogram （小程序）
         # @type Device: Integer
+        # @param PerMemberMicCount: 每个成员上麦次数。
+        # @type PerMemberMicCount: Integer
+        # @param PerMemberMessageCount: 每个成员发送消息数量。
+        # @type PerMemberMessageCount: Integer
 
-        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device
+        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount
         
-        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil)
+        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil, permembermiccount=nil, permembermessagecount=nil)
           @UserId = userid
           @UserName = username
           @PresentTime = presenttime
@@ -2033,6 +2100,8 @@ module TencentCloud
           @IPAddress = ipaddress
           @Location = location
           @Device = device
+          @PerMemberMicCount = permembermiccount
+          @PerMemberMessageCount = permembermessagecount
         end
 
         def deserialize(params)
@@ -2050,6 +2119,74 @@ module TencentCloud
           @IPAddress = params['IPAddress']
           @Location = params['Location']
           @Device = params['Device']
+          @PerMemberMicCount = params['PerMemberMicCount']
+          @PerMemberMessageCount = params['PerMemberMessageCount']
+        end
+      end
+
+      # 单条消息体内容
+      class MessageItem < TencentCloud::Common::AbstractModel
+        # @param MessageType: 消息类型。0表示文本消息，1表示图片消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageType: Integer
+        # @param TextMessage: 文本消息内容。message type为0时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextMessage: String
+        # @param ImageMessage: 图片消息URL。 message type为1时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageMessage: String
+
+        attr_accessor :MessageType, :TextMessage, :ImageMessage
+        
+        def initialize(messagetype=nil, textmessage=nil, imagemessage=nil)
+          @MessageType = messagetype
+          @TextMessage = textmessage
+          @ImageMessage = imagemessage
+        end
+
+        def deserialize(params)
+          @MessageType = params['MessageType']
+          @TextMessage = params['TextMessage']
+          @ImageMessage = params['ImageMessage']
+        end
+      end
+
+      # 历史消息列表
+      class MessageList < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 消息时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param FromAccount: 消息发送者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromAccount: String
+        # @param Seq: 消息序列号，当前课堂内唯一且单调递增
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seq: Integer
+        # @param MessageBody: 历史消息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageBody: Array
+
+        attr_accessor :Timestamp, :FromAccount, :Seq, :MessageBody
+        
+        def initialize(timestamp=nil, fromaccount=nil, seq=nil, messagebody=nil)
+          @Timestamp = timestamp
+          @FromAccount = fromaccount
+          @Seq = seq
+          @MessageBody = messagebody
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @FromAccount = params['FromAccount']
+          @Seq = params['Seq']
+          unless params['MessageBody'].nil?
+            @MessageBody = []
+            params['MessageBody'].each do |i|
+              messageitem_tmp = MessageItem.new
+              messageitem_tmp.deserialize(i)
+              @MessageBody << messageitem_tmp
+            end
+          end
         end
       end
 

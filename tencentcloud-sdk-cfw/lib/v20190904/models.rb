@@ -3707,6 +3707,98 @@ module TencentCloud
         end
       end
 
+      # ModifyEnterpriseSecurityDispatchStatus请求参数结构体
+      class ModifyEnterpriseSecurityDispatchStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 状态，0：立即下发，1：停止下发
+        # @type Status: Integer
+
+        attr_accessor :Status
+        
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyEnterpriseSecurityDispatchStatus返回参数结构体
+      class ModifyEnterpriseSecurityDispatchStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0: 修改成功, 其他: 修改失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEnterpriseSecurityGroupRule请求参数结构体
+      class ModifyEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
+        # @type RuleUuid: Integer
+        # @param ModifyType: 修改类型，0：修改规则内容；1：修改单条规则开关状态；2：修改所有规则开关状态
+        # @type ModifyType: Integer
+        # @param Data: 编辑后的企业安全组规则数据；修改规则状态不用填该字段
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.SecurityGroupRule`
+        # @param Enable: 0是关闭,1是开启
+        # @type Enable: Integer
+
+        attr_accessor :RuleUuid, :ModifyType, :Data, :Enable
+        
+        def initialize(ruleuuid=nil, modifytype=nil, data=nil, enable=nil)
+          @RuleUuid = ruleuuid
+          @ModifyType = modifytype
+          @Data = data
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @ModifyType = params['ModifyType']
+          unless params['Data'].nil?
+            @Data = SecurityGroupRule.new
+            @Data.deserialize(params['Data'])
+          end
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyEnterpriseSecurityGroupRule返回参数结构体
+      class ModifyEnterpriseSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态值，0：编辑成功，非0：编辑失败
+        # @type Status: Integer
+        # @param NewRuleUuid: 编辑后新生成规则的Id
+        # @type NewRuleUuid: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :NewRuleUuid, :RequestId
+        
+        def initialize(status=nil, newruleuuid=nil, requestid=nil)
+          @Status = status
+          @NewRuleUuid = newruleuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @NewRuleUuid = params['NewRuleUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNatAcRule请求参数结构体
       class ModifyNatAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Rules: 需要编辑的规则数组
@@ -3889,6 +3981,49 @@ module TencentCloud
 
         def deserialize(params)
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNatSequenceRules请求参数结构体
+      class ModifyNatSequenceRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RuleChangeItems: 规则快速排序：OrderIndex，原始序号；NewOrderIndex：新序号
+        # @type RuleChangeItems: Array
+        # @param Direction: 规则方向：1，入站；0，出站
+        # @type Direction: Integer
+
+        attr_accessor :RuleChangeItems, :Direction
+        
+        def initialize(rulechangeitems=nil, direction=nil)
+          @RuleChangeItems = rulechangeitems
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          unless params['RuleChangeItems'].nil?
+            @RuleChangeItems = []
+            params['RuleChangeItems'].each do |i|
+              rulechangeitem_tmp = RuleChangeItem.new
+              rulechangeitem_tmp.deserialize(i)
+              @RuleChangeItems << rulechangeitem_tmp
+            end
+          end
+          @Direction = params['Direction']
+        end
+      end
+
+      # ModifyNatSequenceRules返回参数结构体
+      class ModifyNatSequenceRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4623,6 +4758,26 @@ module TencentCloud
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 规则顺序变更项，由原始id值变为新的id值。
+      class RuleChangeItem < TencentCloud::Common::AbstractModel
+        # @param OrderIndex: 原始sequence 值
+        # @type OrderIndex: Integer
+        # @param NewOrderIndex: 新的sequence 值
+        # @type NewOrderIndex: Integer
+
+        attr_accessor :OrderIndex, :NewOrderIndex
+        
+        def initialize(orderindex=nil, neworderindex=nil)
+          @OrderIndex = orderindex
+          @NewOrderIndex = neworderindex
+        end
+
+        def deserialize(params)
+          @OrderIndex = params['OrderIndex']
+          @NewOrderIndex = params['NewOrderIndex']
         end
       end
 

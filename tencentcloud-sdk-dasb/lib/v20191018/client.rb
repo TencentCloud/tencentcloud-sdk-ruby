@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定主机账号密码
+
+        # @param request: Request instance for BindDeviceAccountPassword.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::BindDeviceAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::BindDeviceAccountPasswordResponse`
+        def BindDeviceAccountPassword(request)
+          body = send_request('BindDeviceAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindDeviceAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定主机账号私钥
+
+        # @param request: Request instance for BindDeviceAccountPrivateKey.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::BindDeviceAccountPrivateKeyRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::BindDeviceAccountPrivateKeyResponse`
+        def BindDeviceAccountPrivateKey(request)
+          body = send_request('BindDeviceAccountPrivateKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindDeviceAccountPrivateKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改资产绑定的堡垒机服务
 
         # @param request: Request instance for BindDeviceResource.
@@ -111,6 +159,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAclResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建手工资产同步任务
+
+        # @param request: Request instance for CreateAssetSyncJob.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::CreateAssetSyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::CreateAssetSyncJobResponse`
+        def CreateAssetSyncJob(request)
+          body = send_request('CreateAssetSyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAssetSyncJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建高危命令模板
+
+        # @param request: Request instance for CreateCmdTemplate.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::CreateCmdTemplateRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::CreateCmdTemplateResponse`
+        def CreateCmdTemplate(request)
+          body = send_request('CreateCmdTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCmdTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建主机账号
+
+        # @param request: Request instance for CreateDeviceAccount.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::CreateDeviceAccountRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::CreateDeviceAccountResponse`
+        def CreateDeviceAccount(request)
+          body = send_request('CreateDeviceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,6 +341,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除高危命令模板
+
+        # @param request: Request instance for DeleteCmdTemplates.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DeleteCmdTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DeleteCmdTemplatesResponse`
+        def DeleteCmdTemplates(request)
+          body = send_request('DeleteCmdTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCmdTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主机账号
+
+        # @param request: Request instance for DeleteDeviceAccounts.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DeleteDeviceAccountsRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DeleteDeviceAccountsResponse`
+        def DeleteDeviceAccounts(request)
+          body = send_request('DeleteDeviceAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除资产组成员
 
         # @param request: Request instance for DeleteDeviceGroupMembers.
@@ -255,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDeviceGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主机
+
+        # @param request: Request instance for DeleteDevices.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DeleteDevicesRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DeleteDevicesResponse`
+        def DeleteDevices(request)
+          body = send_request('DeleteDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDevicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通服务，初始化资源，只针对新购资源
+
+        # @param request: Request instance for DeployResource.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DeployResourceRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DeployResourceResponse`
+        def DeployResource(request)
+          body = send_request('DeployResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询访问权限列表
 
         # @param request: Request instance for DescribeAcls.
@@ -365,6 +581,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资产同步状态
+
+        # @param request: Request instance for DescribeAssetSyncStatus.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeAssetSyncStatusRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeAssetSyncStatusResponse`
+        def DescribeAssetSyncStatus(request)
+          body = send_request('DescribeAssetSyncStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetSyncStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询命令模板列表
+
+        # @param request: Request instance for DescribeCmdTemplates.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeCmdTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeCmdTemplatesResponse`
+        def DescribeCmdTemplates(request)
+          body = send_request('DescribeCmdTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCmdTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取镜像列表
 
         # @param request: Request instance for DescribeDasbImageIds.
@@ -375,6 +639,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDasbImageIdsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询主机账号列表
+
+        # @param request: Request instance for DescribeDeviceAccounts.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeDeviceAccountsRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeDeviceAccountsResponse`
+        def DescribeDeviceAccounts(request)
+          body = send_request('DescribeDeviceAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导入外部资产信息
+
+        # @param request: Request instance for ImportExternalDevice.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ImportExternalDeviceRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ImportExternalDeviceResponse`
+        def ImportExternalDevice(request)
+          body = send_request('ImportExternalDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportExternalDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改访问权限
 
         # @param request: Request instance for ModifyAcl.
@@ -581,6 +893,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改资产信息
+
+        # @param request: Request instance for ModifyDevice.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ModifyDeviceRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ModifyDeviceResponse`
+        def ModifyDevice(request)
+          body = send_request('ModifyDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资产组
+
+        # @param request: Request instance for ModifyDeviceGroup.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ModifyDeviceGroupRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ModifyDeviceGroupResponse`
+        def ModifyDeviceGroup(request)
+          body = send_request('ModifyDeviceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户信息
 
         # @param request: Request instance for ModifyUser.
@@ -591,6 +951,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 清除设备账号绑定密码
+
+        # @param request: Request instance for ResetDeviceAccountPassword.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ResetDeviceAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ResetDeviceAccountPasswordResponse`
+        def ResetDeviceAccountPassword(request)
+          body = send_request('ResetDeviceAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetDeviceAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 清除设备账号绑定的密钥
+
+        # @param request: Request instance for ResetDeviceAccountPrivateKey.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ResetDeviceAccountPrivateKeyRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ResetDeviceAccountPrivateKeyResponse`
+        def ResetDeviceAccountPrivateKey(request)
+          body = send_request('ResetDeviceAccountPrivateKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetDeviceAccountPrivateKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置用户
+
+        # @param request: Request instance for ResetUser.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ResetUserRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ResetUserResponse`
+        def ResetUser(request)
+          body = send_request('ResetUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetUserResponse.new
             model.deserialize(response['Response'])
             model
           else

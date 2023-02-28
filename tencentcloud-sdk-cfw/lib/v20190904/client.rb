@@ -1208,6 +1208,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改企业安全组下发状态
+
+        # @param request: Request instance for ModifyEnterpriseSecurityDispatchStatus.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyEnterpriseSecurityDispatchStatusRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyEnterpriseSecurityDispatchStatusResponse`
+        def ModifyEnterpriseSecurityDispatchStatus(request)
+          body = send_request('ModifyEnterpriseSecurityDispatchStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEnterpriseSecurityDispatchStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑新企业安全组规则
+
+        # @param request: Request instance for ModifyEnterpriseSecurityGroupRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyEnterpriseSecurityGroupRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyEnterpriseSecurityGroupRuleResponse`
+        def ModifyEnterpriseSecurityGroupRule(request)
+          body = send_request('ModifyEnterpriseSecurityGroupRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEnterpriseSecurityGroupRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改NAT访问控制规则
 
         # @param request: Request instance for ModifyNatAcRule.
@@ -1290,6 +1338,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNatFwVpcDnsSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # NAT防火墙规则快速排序
+
+        # @param request: Request instance for ModifyNatSequenceRules.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyNatSequenceRulesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyNatSequenceRulesResponse`
+        def ModifyNatSequenceRules(request)
+          body = send_request('ModifyNatSequenceRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNatSequenceRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

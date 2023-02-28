@@ -229,6 +229,28 @@ module TencentCloud
         end
       end
 
+      # 连接器基础信息
+      class ConnectionBrief < TencentCloud::Common::AbstractModel
+        # @param Type: 连接器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 连接器状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Type, :Status
+        
+        def initialize(type=nil, status=nil)
+          @Type = type
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Status = params['Status']
+        end
+      end
+
       # ConnectionDescription描述
       class ConnectionDescription < TencentCloud::Common::AbstractModel
         # @param ResourceDescription: 资源qcs六段式，更多参考 [资源六段式](https://cloud.tencent.com/document/product/598/10606)
@@ -239,13 +261,17 @@ module TencentCloud
         # @param CkafkaParams: ckafka参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CkafkaParams: :class:`Tencentcloud::Eb.v20210416.models.CkafkaParams`
+        # @param DTSParams: data transfer service (DTS)参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DTSParams: :class:`Tencentcloud::Eb.v20210416.models.DTSParams`
 
-        attr_accessor :ResourceDescription, :APIGWParams, :CkafkaParams
+        attr_accessor :ResourceDescription, :APIGWParams, :CkafkaParams, :DTSParams
         
-        def initialize(resourcedescription=nil, apigwparams=nil, ckafkaparams=nil)
+        def initialize(resourcedescription=nil, apigwparams=nil, ckafkaparams=nil, dtsparams=nil)
           @ResourceDescription = resourcedescription
           @APIGWParams = apigwparams
           @CkafkaParams = ckafkaparams
+          @DTSParams = dtsparams
         end
 
         def deserialize(params)
@@ -257,6 +283,10 @@ module TencentCloud
           unless params['CkafkaParams'].nil?
             @CkafkaParams = CkafkaParams.new
             @CkafkaParams.deserialize(params['CkafkaParams'])
+          end
+          unless params['DTSParams'].nil?
+            @DTSParams = DTSParams.new
+            @DTSParams.deserialize(params['DTSParams'])
           end
         end
       end
@@ -328,19 +358,23 @@ module TencentCloud
         # @type Description: String
         # @param SaveDays: EB存储时长
         # @type SaveDays: Integer
+        # @param EnableStore: EB是否开启存储
+        # @type EnableStore: Boolean
 
-        attr_accessor :EventBusName, :Description, :SaveDays
+        attr_accessor :EventBusName, :Description, :SaveDays, :EnableStore
         
-        def initialize(eventbusname=nil, description=nil, savedays=nil)
+        def initialize(eventbusname=nil, description=nil, savedays=nil, enablestore=nil)
           @EventBusName = eventbusname
           @Description = description
           @SaveDays = savedays
+          @EnableStore = enablestore
         end
 
         def deserialize(params)
           @EventBusName = params['EventBusName']
           @Description = params['Description']
           @SaveDays = params['SaveDays']
+          @EnableStore = params['EnableStore']
         end
       end
 
@@ -515,6 +549,17 @@ module TencentCloud
         def deserialize(params)
           @TransformationId = params['TransformationId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Data Transfer Service参数
+      class DTSParams < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -825,16 +870,28 @@ module TencentCloud
         # @type EventBusId: String
         # @param Type: 事件集类型
         # @type Type: String
+        # @param PayMode: 计费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param ConnectionBriefs: 连接器基础信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionBriefs: Array
+        # @param TargetBriefs: 目标简要信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetBriefs: Array
 
-        attr_accessor :ModTime, :Description, :AddTime, :EventBusName, :EventBusId, :Type
+        attr_accessor :ModTime, :Description, :AddTime, :EventBusName, :EventBusId, :Type, :PayMode, :ConnectionBriefs, :TargetBriefs
         
-        def initialize(modtime=nil, description=nil, addtime=nil, eventbusname=nil, eventbusid=nil, type=nil)
+        def initialize(modtime=nil, description=nil, addtime=nil, eventbusname=nil, eventbusid=nil, type=nil, paymode=nil, connectionbriefs=nil, targetbriefs=nil)
           @ModTime = modtime
           @Description = description
           @AddTime = addtime
           @EventBusName = eventbusname
           @EventBusId = eventbusid
           @Type = type
+          @PayMode = paymode
+          @ConnectionBriefs = connectionbriefs
+          @TargetBriefs = targetbriefs
         end
 
         def deserialize(params)
@@ -844,6 +901,23 @@ module TencentCloud
           @EventBusName = params['EventBusName']
           @EventBusId = params['EventBusId']
           @Type = params['Type']
+          @PayMode = params['PayMode']
+          unless params['ConnectionBriefs'].nil?
+            @ConnectionBriefs = []
+            params['ConnectionBriefs'].each do |i|
+              connectionbrief_tmp = ConnectionBrief.new
+              connectionbrief_tmp.deserialize(i)
+              @ConnectionBriefs << connectionbrief_tmp
+            end
+          end
+          unless params['TargetBriefs'].nil?
+            @TargetBriefs = []
+            params['TargetBriefs'].each do |i|
+              targetbrief_tmp = TargetBrief.new
+              targetbrief_tmp.deserialize(i)
+              @TargetBriefs << targetbrief_tmp
+            end
+          end
         end
       end
 
@@ -931,12 +1005,26 @@ module TencentCloud
         # @type EventBusId: String
         # @param Type: （已废弃）事件集类型
         # @type Type: String
+        # @param PayMode: 计费模式
+        # @type PayMode: String
+        # @param SaveDays: EB日志存储时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SaveDays: Integer
+        # @param LogTopicId: EB日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogTopicId: String
+        # @param EnableStore: 是否开启存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableStore: Boolean
+        # @param LinkMode: 消息序列，是否有序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LinkMode: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :Description, :ClsTopicId, :AddTime, :ClsLogsetId, :EventBusName, :EventBusId, :Type, :RequestId
+        attr_accessor :ModTime, :Description, :ClsTopicId, :AddTime, :ClsLogsetId, :EventBusName, :EventBusId, :Type, :PayMode, :SaveDays, :LogTopicId, :EnableStore, :LinkMode, :RequestId
         
-        def initialize(modtime=nil, description=nil, clstopicid=nil, addtime=nil, clslogsetid=nil, eventbusname=nil, eventbusid=nil, type=nil, requestid=nil)
+        def initialize(modtime=nil, description=nil, clstopicid=nil, addtime=nil, clslogsetid=nil, eventbusname=nil, eventbusid=nil, type=nil, paymode=nil, savedays=nil, logtopicid=nil, enablestore=nil, linkmode=nil, requestid=nil)
           @ModTime = modtime
           @Description = description
           @ClsTopicId = clstopicid
@@ -945,6 +1033,11 @@ module TencentCloud
           @EventBusName = eventbusname
           @EventBusId = eventbusid
           @Type = type
+          @PayMode = paymode
+          @SaveDays = savedays
+          @LogTopicId = logtopicid
+          @EnableStore = enablestore
+          @LinkMode = linkmode
           @RequestId = requestid
         end
 
@@ -957,6 +1050,11 @@ module TencentCloud
           @EventBusName = params['EventBusName']
           @EventBusId = params['EventBusId']
           @Type = params['Type']
+          @PayMode = params['PayMode']
+          @SaveDays = params['SaveDays']
+          @LogTopicId = params['LogTopicId']
+          @EnableStore = params['EnableStore']
+          @LinkMode = params['LinkMode']
           @RequestId = params['RequestId']
         end
       end

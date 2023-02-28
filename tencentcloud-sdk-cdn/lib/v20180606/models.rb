@@ -4534,6 +4534,69 @@ module TencentCloud
         end
       end
 
+      # DescribeHttpsPackages请求参数结构体
+      class DescribeHttpsPackagesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页查询起始地址，默认 0
+        # @type Offset: Integer
+        # @param Limit: 分页查询记录个数，默认100，最大1000
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHttpsPackages返回参数结构体
+      class DescribeHttpsPackagesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: HTTPS请求包总个数
+        # @type TotalCount: Integer
+        # @param HttpsPackages: HTTPS请求包详情
+        # @type HttpsPackages: Array
+        # @param ExpiringCount: 即将过期的HTTPS请求包个数（7天内）
+        # @type ExpiringCount: Integer
+        # @param EnabledCount: 有效HTTPS请求包个数
+        # @type EnabledCount: Integer
+        # @param PaidCount: 付费HTTPS请求包个数
+        # @type PaidCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :HttpsPackages, :ExpiringCount, :EnabledCount, :PaidCount, :RequestId
+        
+        def initialize(totalcount=nil, httpspackages=nil, expiringcount=nil, enabledcount=nil, paidcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @HttpsPackages = httpspackages
+          @ExpiringCount = expiringcount
+          @EnabledCount = enabledcount
+          @PaidCount = paidcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['HttpsPackages'].nil?
+            @HttpsPackages = []
+            params['HttpsPackages'].each do |i|
+              httpspackage_tmp = HttpsPackage.new
+              httpspackage_tmp.deserialize(i)
+              @HttpsPackages << httpspackage_tmp
+            end
+          end
+          @ExpiringCount = params['ExpiringCount']
+          @EnabledCount = params['EnabledCount']
+          @PaidCount = params['PaidCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImageConfig请求参数结构体
       class DescribeImageConfigRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -7864,6 +7927,98 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # CDN HTTPS请求包。
+      class HttpsPackage < TencentCloud::Common::AbstractModel
+        # @param Id: HTTPS请求包 Id
+        # @type Id: Integer
+        # @param Type: HTTPS请求包类型
+        # @type Type: String
+        # @param Size: HTTPS请求包大小（单位为：次）
+        # @type Size: Integer
+        # @param SizeUsed: 已消耗HTTPS请求包（单位为：次）
+        # @type SizeUsed: Integer
+        # @param Status: HTTPS请求包状态
+        # enabled：已启用
+        # expired：已过期
+        # disabled：未启用
+        # @type Status: String
+        # @param CreateTime: HTTPS请求包发放时间
+        # @type CreateTime: String
+        # @param EnableTime: HTTPS请求包生效时间
+        # @type EnableTime: String
+        # @param ExpireTime: HTTPS请求包过期时间
+        # @type ExpireTime: String
+        # @param Channel: HTTPS请求包来源
+        # @type Channel: String
+        # @param LifeTimeMonth: HTTPS请求包生命周期月数
+        # @type LifeTimeMonth: Integer
+        # @param RefundAvailable: HTTPS请求包是否支持退费
+        # @type RefundAvailable: Boolean
+        # @param ConfigId: HTTPS请求包类型id
+        # @type ConfigId: Integer
+        # @param TrueEnableTime: HTTPS请求包实际生效时间
+        # @type TrueEnableTime: String
+        # @param TrueExpireTime: HTTPS请求包实际过期时间
+        # @type TrueExpireTime: String
+        # @param Area: HTTPS请求包生效区域
+        # global：全球
+        # @type Area: String
+        # @param ContractExtension: HTTPS请求包是否续订
+        # @type ContractExtension: Boolean
+        # @param ExtensionAvailable: HTTPS请求包是否支持续订
+        # @type ExtensionAvailable: Boolean
+        # @param ExtensionMode: HTTPS请求包当前续订模式
+        # 0：未续订
+        # 1：到期续订
+        # 2：用完续订
+        # 3：到期或用完续订
+        # @type ExtensionMode: Integer
+
+        attr_accessor :Id, :Type, :Size, :SizeUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :Channel, :LifeTimeMonth, :RefundAvailable, :ConfigId, :TrueEnableTime, :TrueExpireTime, :Area, :ContractExtension, :ExtensionAvailable, :ExtensionMode
+        
+        def initialize(id=nil, type=nil, size=nil, sizeused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, channel=nil, lifetimemonth=nil, refundavailable=nil, configid=nil, trueenabletime=nil, trueexpiretime=nil, area=nil, contractextension=nil, extensionavailable=nil, extensionmode=nil)
+          @Id = id
+          @Type = type
+          @Size = size
+          @SizeUsed = sizeused
+          @Status = status
+          @CreateTime = createtime
+          @EnableTime = enabletime
+          @ExpireTime = expiretime
+          @Channel = channel
+          @LifeTimeMonth = lifetimemonth
+          @RefundAvailable = refundavailable
+          @ConfigId = configid
+          @TrueEnableTime = trueenabletime
+          @TrueExpireTime = trueexpiretime
+          @Area = area
+          @ContractExtension = contractextension
+          @ExtensionAvailable = extensionavailable
+          @ExtensionMode = extensionmode
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @Size = params['Size']
+          @SizeUsed = params['SizeUsed']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @EnableTime = params['EnableTime']
+          @ExpireTime = params['ExpireTime']
+          @Channel = params['Channel']
+          @LifeTimeMonth = params['LifeTimeMonth']
+          @RefundAvailable = params['RefundAvailable']
+          @ConfigId = params['ConfigId']
+          @TrueEnableTime = params['TrueEnableTime']
+          @TrueExpireTime = params['TrueExpireTime']
+          @Area = params['Area']
+          @ContractExtension = params['ContractExtension']
+          @ExtensionAvailable = params['ExtensionAvailable']
+          @ExtensionMode = params['ExtensionMode']
         end
       end
 

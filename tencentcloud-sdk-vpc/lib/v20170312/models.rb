@@ -486,19 +486,27 @@ module TencentCloud
 
       # 地址信息
       class AddressTemplateItem < TencentCloud::Common::AbstractModel
-        # @param From: 起始地址。
+        # @param AddressTemplateId: ipm-xxxxxxxx
+        # @type AddressTemplateId: String
+        # @param AddressTemplateName: IP模板名称
+        # @type AddressTemplateName: String
+        # @param From: 废弃字段
         # @type From: String
-        # @param To: 结束地址。
+        # @param To: 废弃字段
         # @type To: String
 
-        attr_accessor :From, :To
+        attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To
         
-        def initialize(from=nil, to=nil)
+        def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil)
+          @AddressTemplateId = addresstemplateid
+          @AddressTemplateName = addresstemplatename
           @From = from
           @To = to
         end
 
         def deserialize(params)
+          @AddressTemplateId = params['AddressTemplateId']
+          @AddressTemplateName = params['AddressTemplateName']
           @From = params['From']
           @To = params['To']
         end
