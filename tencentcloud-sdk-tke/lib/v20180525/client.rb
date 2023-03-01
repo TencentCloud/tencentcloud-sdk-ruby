@@ -2381,7 +2381,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取事件、审计和日志的状态接口
+        # 获取事件、审计和日志的状态
 
         # @param request: Request instance for DescribeEdgeLogSwitches.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEdgeLogSwitchesRequest`

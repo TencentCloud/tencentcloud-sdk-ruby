@@ -2634,12 +2634,18 @@ module TencentCloud
         # @type CountryCode: String
         # @param Email: 邮箱
         # @type Email: String
+        # @param RecentlyLoginIP: 最近一次登录ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecentlyLoginIP: String
+        # @param RecentlyLoginTime: 最近一次登录时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecentlyLoginTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :RequestId
+        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :RecentlyLoginIP, :RecentlyLoginTime, :RequestId
         
-        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, requestid=nil)
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, recentlyloginip=nil, recentlylogintime=nil, requestid=nil)
           @Uin = uin
           @Name = name
           @Uid = uid
@@ -2648,6 +2654,8 @@ module TencentCloud
           @PhoneNum = phonenum
           @CountryCode = countrycode
           @Email = email
+          @RecentlyLoginIP = recentlyloginip
+          @RecentlyLoginTime = recentlylogintime
           @RequestId = requestid
         end
 
@@ -2660,6 +2668,8 @@ module TencentCloud
           @PhoneNum = params['PhoneNum']
           @CountryCode = params['CountryCode']
           @Email = params['Email']
+          @RecentlyLoginIP = params['RecentlyLoginIP']
+          @RecentlyLoginTime = params['RecentlyLoginTime']
           @RequestId = params['RequestId']
         end
       end

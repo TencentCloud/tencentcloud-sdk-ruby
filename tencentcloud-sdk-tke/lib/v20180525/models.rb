@@ -9220,10 +9220,16 @@ module TencentCloud
         # @param Level: 边缘容器集群级别
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
+        # @param AutoUpgradeClusterLevel: 是否支持自动提升集群配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoUpgradeClusterLevel: Boolean
+        # @param ChargeType: 集群付费模式，支持POSTPAID_BY_HOUR或者PREPAID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
 
-        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level, :AutoUpgradeClusterLevel, :ChargeType
         
-        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil)
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil, autoupgradeclusterlevel=nil, chargetype=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @VpcId = vpcid
@@ -9237,6 +9243,8 @@ module TencentCloud
           @MaxNodePodNum = maxnodepodnum
           @ClusterAdvancedSettings = clusteradvancedsettings
           @Level = level
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @ChargeType = chargetype
         end
 
         def deserialize(params)
@@ -9256,6 +9264,8 @@ module TencentCloud
             @ClusterAdvancedSettings.deserialize(params['ClusterAdvancedSettings'])
           end
           @Level = params['Level']
+          @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
+          @ChargeType = params['ChargeType']
         end
       end
 

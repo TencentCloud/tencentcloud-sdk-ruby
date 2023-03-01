@@ -2827,7 +2827,8 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param SignComponents: 使用PDF文件直接发起合同时，签署人指定的签署控件
         # @type SignComponents: Array
-        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前仅支持：OCR_ESIGN(AI智慧手写签名)
+        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前支持：OCR_ESIGN -AI智慧手写签名
+        # HANDWRITE -手写签名
         # @type ComponentLimitType: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer

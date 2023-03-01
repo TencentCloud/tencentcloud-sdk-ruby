@@ -943,30 +943,34 @@ module TencentCloud
         # @param Name: 本次验证使用的姓名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param OcrNation: Ocr识别结果。民族。
+        # @param OcrNation: 身份校验环节识别结果：民族。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrNation: String
-        # @param OcrAddress: Ocr识别结果。家庭住址。
+        # @param OcrAddress: 身份校验环节识别结果：家庭住址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrAddress: String
-        # @param OcrBirth: Ocr识别结果。生日。
+        # @param OcrBirth: 身份校验环节识别结果：生日。格式为：YYYY/M/D
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrBirth: String
-        # @param OcrAuthority: Ocr识别结果。签发机关。
+        # @param OcrAuthority: 身份校验环节识别结果：签发机关。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrAuthority: String
-        # @param OcrValidDate: Ocr识别结果。有效日期。
+        # @param OcrValidDate: 身份校验环节识别结果：有效日期。格式为：YYYY.MM.DD-YYYY.MM.DD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrValidDate: String
-        # @param OcrName: Ocr识别结果。姓名。
+        # @param OcrName: 身份校验环节识别结果：姓名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrName: String
-        # @param OcrIdCard: Ocr识别结果。身份证号。
+        # @param OcrIdCard: 身份校验环节识别结果：身份证号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrIdCard: String
-        # @param OcrGender: Ocr识别结果。性别。
+        # @param OcrGender: 身份校验环节识别结果：性别。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrGender: String
+        # @param IdInfoFrom: 身份校验环节采用的信息上传方式。
+        # 取值有"NFC"、"OCR"、"手动输入"、"其他"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdInfoFrom: String
         # @param LiveStatus: 本次流程最终活体结果。0为成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStatus: Integer
@@ -1010,9 +1014,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessMode: Integer
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode
         
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -1025,6 +1029,7 @@ module TencentCloud
           @OcrName = ocrname
           @OcrIdCard = ocridcard
           @OcrGender = ocrgender
+          @IdInfoFrom = idinfofrom
           @LiveStatus = livestatus
           @LiveMsg = livemsg
           @Comparestatus = comparestatus
@@ -1051,6 +1056,7 @@ module TencentCloud
           @OcrName = params['OcrName']
           @OcrIdCard = params['OcrIdCard']
           @OcrGender = params['OcrGender']
+          @IdInfoFrom = params['IdInfoFrom']
           @LiveStatus = params['LiveStatus']
           @LiveMsg = params['LiveMsg']
           @Comparestatus = params['Comparestatus']

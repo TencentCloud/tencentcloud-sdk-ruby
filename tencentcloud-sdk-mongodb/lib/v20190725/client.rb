@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
+        # 本接口（CreateDBInstanceHour）用于创建按量计费的MongoDB云数据库实例。
 
         # @param request: Request instance for CreateDBInstanceHour.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateDBInstanceHourRequest`

@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # CreateDiagnoseUrl 用于添加域名诊断任务URL
+        # CreateDiagnoseUrl 用于添加域名诊断任务URL， <font color=red>将于 **2023年5月31日** 下线</font><br>
 
         # @param request: Request instance for CreateDiagnoseUrl.
         # @type request: :class:`Tencentcloud::cdn::V20180606::CreateDiagnoseUrlRequest`
@@ -522,7 +522,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeDiagnoseReport 用于获取指定报告id的内容
+        # DescribeDiagnoseReport 用于获取指定报告id的内容， <font color=red>将于 **2023年5月31日** 下线</font><br>
 
         # @param request: Request instance for DescribeDiagnoseReport.
         # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeDiagnoseReportRequest`
@@ -1389,7 +1389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+        # ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情， <font color=red>将于 **2023年5月31日** 下线</font><br>
 
         # @param request: Request instance for ListDiagnoseReport.
         # @type request: :class:`Tencentcloud::cdn::V20180606::ListDiagnoseReportRequest`
