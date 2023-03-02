@@ -150,7 +150,7 @@ module TencentCloud
 
       # ChannelBatchCancelFlows请求参数结构体
       class ChannelBatchCancelFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
         # @type FlowIds: Array
@@ -162,7 +162,7 @@ module TencentCloud
         # 2 保留身份信息+企业名称：展示为【发起方xxx公司】
         # 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         # @type CancelMessageFormat: Integer
-        # @param Operator: 操作人信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :CancelMessage, :CancelMessageFormat, :Operator
@@ -214,27 +214,27 @@ module TencentCloud
       class ChannelCancelFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 签署流程编号
         # @type FlowId: String
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param CancelMessage: 撤回原因，最大不超过200字符
         # @type CancelMessage: String
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param CancelMessageFormat: 撤销理由自定义格式；选项：
         # 0 默认格式
         # 1 只保留身份信息：展示为【发起方】
         # 2 保留身份信息+企业名称：展示为【发起方xxx公司】
         # 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         # @type CancelMessageFormat: Integer
+        # @param Operator: 暂未开放
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :FlowId, :Agent, :CancelMessage, :Operator, :CancelMessageFormat
+        attr_accessor :FlowId, :Agent, :CancelMessage, :CancelMessageFormat, :Operator
         
-        def initialize(flowid=nil, agent=nil, cancelmessage=nil, operator=nil, cancelmessageformat=nil)
+        def initialize(flowid=nil, agent=nil, cancelmessage=nil, cancelmessageformat=nil, operator=nil)
           @FlowId = flowid
           @Agent = agent
           @CancelMessage = cancelmessage
-          @Operator = operator
           @CancelMessageFormat = cancelmessageformat
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -244,11 +244,11 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @CancelMessage = params['CancelMessage']
+          @CancelMessageFormat = params['CancelMessageFormat']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @CancelMessageFormat = params['CancelMessageFormat']
         end
       end
 
@@ -270,11 +270,11 @@ module TencentCloud
 
       # ChannelCancelMultiFlowSignQRCode请求参数结构体
       class ChannelCancelMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param QrCodeId: 二维码id
         # @type QrCodeId: String
-        # @param Operator: 用户信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :QrCodeId, :Operator
@@ -316,11 +316,11 @@ module TencentCloud
 
       # ChannelCreateBatchCancelFlowUrl请求参数结构体
       class ChannelCreateBatchCancelFlowUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程Id数组
         # @type FlowIds: Array
-        # @param Operator: 操作人信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
@@ -421,7 +421,7 @@ module TencentCloud
 
       # ChannelCreateConvertTaskApi请求参数结构体
       class ChannelCreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ResourceType: 资源类型 取值范围doc,docx,html,xls,xlsx之一
         # @type ResourceType: String
@@ -429,7 +429,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param ResourceId: 资源Id，通过UploadFiles获取
         # @type ResourceId: String
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方用户信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
@@ -486,7 +486,7 @@ module TencentCloud
 
       # ChannelCreateFlowByFiles请求参数结构体
       class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowName: 签署流程名称，长度不超过200个字符
         # @type FlowName: String
@@ -512,8 +512,6 @@ module TencentCloud
         # @type CustomerData: String
         # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。  注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param ApproverVerifyType: 签署人校验方式
         # VerifyCheck: 人脸识别（默认）
         # MobileCheck：手机号验证
@@ -521,10 +519,12 @@ module TencentCloud
         # @type ApproverVerifyType: String
         # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         # @type SignBeanTag: Integer
+        # @param Operator: 操作者的信息，不用传
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :Operator, :ApproverVerifyType, :SignBeanTag
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, operator=nil, approververifytype=nil, signbeantag=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -538,9 +538,9 @@ module TencentCloud
           @CustomShowMap = customshowmap
           @CustomerData = customerdata
           @NeedSignReview = needsignreview
-          @Operator = operator
           @ApproverVerifyType = approververifytype
           @SignBeanTag = signbeantag
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -574,12 +574,12 @@ module TencentCloud
           @CustomShowMap = params['CustomShowMap']
           @CustomerData = params['CustomerData']
           @NeedSignReview = params['NeedSignReview']
+          @ApproverVerifyType = params['ApproverVerifyType']
+          @SignBeanTag = params['SignBeanTag']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @ApproverVerifyType = params['ApproverVerifyType']
-          @SignBeanTag = params['SignBeanTag']
         end
       end
 
@@ -610,14 +610,14 @@ module TencentCloud
         # @type FlowFileInfos: Array
         # @param FlowGroupName: 合同组名称，长度不超过200个字符
         # @type FlowGroupName: String
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ApproverVerifyType: 签署人校验方式
         # VerifyCheck: 人脸识别（默认）
         # MobileCheck：手机号验证
         # 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 操作者的信息，此参数不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :ApproverVerifyType, :Operator
@@ -680,7 +680,7 @@ module TencentCloud
 
       # ChannelCreateFlowReminds请求参数结构体
       class ChannelCreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
         # @type FlowIds: Array
@@ -730,7 +730,7 @@ module TencentCloud
 
       # ChannelCreateFlowSignReview请求参数结构体
       class ChannelCreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowId: 签署流程编号
         # @type FlowId: String
@@ -785,7 +785,7 @@ module TencentCloud
 
       # ChannelCreateFlowSignUrl请求参数结构体
       class ChannelCreateFlowSignUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowId: 流程编号
         # @type FlowId: String
@@ -860,7 +860,7 @@ module TencentCloud
 
       # ChannelCreateMultiFlowSignQRCode请求参数结构体
       class ChannelCreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。
+        # @param Agent: 应用相关信息。
         # 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TemplateId: 模版ID
@@ -879,14 +879,14 @@ module TencentCloud
         # 不传默认使用渠道应用号配置的回调地址
         # 回调时机:用户通过签署二维码发起合同时，企业额度不足导致失败
         # @type CallbackUrl: String
-        # @param Operator: 用户信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverRestriction`
+        # @param Operator: 暂未开放
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :Operator, :ApproverRestrictions
+        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator
         
-        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, operator=nil, approverrestrictions=nil)
+        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, approverrestrictions=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
           @FlowName = flowname
@@ -895,8 +895,8 @@ module TencentCloud
           @QrEffectiveDay = qreffectiveday
           @Restrictions = restrictions
           @CallbackUrl = callbackurl
-          @Operator = operator
           @ApproverRestrictions = approverrestrictions
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -918,13 +918,13 @@ module TencentCloud
             end
           end
           @CallbackUrl = params['CallbackUrl']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['ApproverRestrictions'].nil?
             @ApproverRestrictions = ApproverRestriction.new
             @ApproverRestrictions.deserialize(params['ApproverRestrictions'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
           end
         end
       end
@@ -961,7 +961,7 @@ module TencentCloud
 
       # ChannelCreateReleaseFlow请求参数结构体
       class ChannelCreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param NeedRelievedFlowId: 待解除的流程编号（即原流程的编号）
         # @type NeedRelievedFlowId: String
@@ -971,9 +971,9 @@ module TencentCloud
         # @type ReleasedApprovers: Array
         # @param CallbackUrl: 签署完回调url，最大长度1000个字符
         # @type CallbackUrl: String
-        # @param Organization: 机构信息
+        # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
-        # @param Operator: 用户信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :CallbackUrl, :Organization, :Operator
@@ -1040,15 +1040,15 @@ module TencentCloud
 
       # ChannelCreateSealPolicy请求参数结构体
       class ChannelCreateSealPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 用户渠道信息
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param SealId: 指定印章
+        # @param SealId: 指定印章ID
         # @type SealId: String
         # @param UserIds: 指定待授权的用户ID数组
         # @type UserIds: Array
-        # @param Organization: 企业机构信息
+        # @param Organization: 企业机构信息，不用传
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
-        # @param Operator: 操作人（用户）信息
+        # @param Operator: 操作人（用户）信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :SealId, :UserIds, :Organization, :Operator
@@ -1101,25 +1101,25 @@ module TencentCloud
 
       # ChannelDeleteSealPolicies请求参数结构体
       class ChannelDeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道信息
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param SealId: 指定印章ID
         # @type SealId: String
         # @param UserIds: 指定用户ID数组
         # @type UserIds: Array
-        # @param Operator: 操作人（用户）信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param Organization: 组织机构信息
+        # @param Organization: 组织机构信息，不用传
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 操作人（用户）信息，不用传
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :SealId, :UserIds, :Operator, :Organization
+        attr_accessor :Agent, :SealId, :UserIds, :Organization, :Operator
         
-        def initialize(agent=nil, sealid=nil, userids=nil, operator=nil, organization=nil)
+        def initialize(agent=nil, sealid=nil, userids=nil, organization=nil, operator=nil)
           @Agent = agent
           @SealId = sealid
           @UserIds = userids
-          @Operator = operator
           @Organization = organization
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1129,13 +1129,13 @@ module TencentCloud
           end
           @SealId = params['SealId']
           @UserIds = params['UserIds']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['Organization'].nil?
             @Organization = OrganizationInfo.new
             @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
           end
         end
       end
@@ -1160,7 +1160,7 @@ module TencentCloud
       class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回最大数量，最大为20
         # @type Limit: Integer
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
@@ -1168,7 +1168,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Limit, :Agent, :Filters, :Offset, :Operator
@@ -1246,7 +1246,7 @@ module TencentCloud
 
       # ChannelDescribeOrganizationSeals请求参数结构体
       class ChannelDescribeOrganizationSealsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Limit: 返回最大数量，最大为100
         # @type Limit: Integer
@@ -1322,11 +1322,11 @@ module TencentCloud
 
       # ChannelGetTaskResultApi请求参数结构体
       class ChannelGetTaskResultApiRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TaskId: 任务Id，通过ChannelCreateConvertTaskApi接口获得
         # @type TaskId: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
@@ -1408,7 +1408,7 @@ module TencentCloud
 
       # ChannelUpdateSealStatus请求参数结构体
       class ChannelUpdateSealStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Status: 操作的印章状态，DISABLE-停用印章
         # @type Status: String
@@ -1464,9 +1464,9 @@ module TencentCloud
       class ChannelVerifyPdfRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 合同Id，流程Id
         # @type FlowId: String
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :FlowId, :Agent, :Operator
@@ -1775,27 +1775,27 @@ module TencentCloud
 
       # CreateChannelFlowEvidenceReport请求参数结构体
       class CreateChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowId: 签署流程编号
         # @type FlowId: String
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :FlowId, :Agent, :Operator
+        attr_accessor :Agent, :FlowId, :Operator
         
-        def initialize(flowid=nil, agent=nil, operator=nil)
-          @FlowId = flowid
+        def initialize(agent=nil, flowid=nil, operator=nil)
           @Agent = agent
+          @FlowId = flowid
           @Operator = operator
         end
 
         def deserialize(params)
-          @FlowId = params['FlowId']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @FlowId = params['FlowId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1856,14 +1856,14 @@ module TencentCloud
         # @type Endpoint: String
         # @param AutoJumpBackEvent: 触发自动跳转事件，仅对App类型有效，"VERIFIED":企业认证完成/员工认证完成后跳回原App/小程序
         # @type AutoJumpBackEvent: String
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param AuthorizationTypes: 支持的授权方式,授权方式: "1" - 上传授权书认证  "2" - 法定代表人认证
         # @type AuthorizationTypes: Array
+        # @param Operator: 暂未开放
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :Operator, :AuthorizationTypes
+        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator
         
-        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, operator=nil, authorizationtypes=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @ProxyOperatorName = proxyoperatorname
@@ -1873,8 +1873,8 @@ module TencentCloud
           @MenuStatus = menustatus
           @Endpoint = endpoint
           @AutoJumpBackEvent = autojumpbackevent
-          @Operator = operator
           @AuthorizationTypes = authorizationtypes
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1890,11 +1890,11 @@ module TencentCloud
           @MenuStatus = params['MenuStatus']
           @Endpoint = params['Endpoint']
           @AutoJumpBackEvent = params['AutoJumpBackEvent']
+          @AuthorizationTypes = params['AuthorizationTypes']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @AuthorizationTypes = params['AuthorizationTypes']
         end
       end
 
@@ -1933,7 +1933,7 @@ module TencentCloud
 
       # CreateFlowsByTemplates请求参数结构体
       class CreateFlowsByTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowInfos: 多个合同（签署流程）信息，最多支持20个
         # @type FlowInfos: Array
@@ -1943,7 +1943,7 @@ module TencentCloud
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
         # @type PreviewType: Integer
-        # @param Operator: 操作者的信息
+        # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowInfos, :NeedPreview, :PreviewType, :Operator
@@ -2025,7 +2025,7 @@ module TencentCloud
 
       # CreateSealByImage请求参数结构体
       class CreateSealByImageRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param SealName: 印章名称，最大长度不超过50字符
         # @type SealName: String
@@ -2079,7 +2079,7 @@ module TencentCloud
 
       # CreateSignUrls请求参数结构体
       class CreateSignUrlsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程编号数组，最多支持100个。(备注：该参数和合同组编号必须二选一)
         # @type FlowIds: Array
@@ -2103,13 +2103,13 @@ module TencentCloud
         # @type Mobile: String
         # @param OrganizationOpenId: 渠道合作企业的企业Id，GenerateType为"CHANNEL"时必填
         # @type OrganizationOpenId: String
-        # @param OpenId: 渠道合作企业参与人OpenId，GenerateType为"CHANNEL"时可用，指定到具体参与人
+        # @param OpenId: 渠道合作企业参与人OpenId，GenerateType为"CHANNEL"时可用，指定到具体参与人, 仅展示已经实名的经办人信息
         # @type OpenId: String
         # @param AutoJumpBack: Endpoint为"APP" 类型的签署链接，可以设置此值；支持调用方小程序打开签署链接，在电子签小程序完成签署后自动回跳至调用方小程序
         # @type AutoJumpBack: Boolean
         # @param JumpUrl: 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效，最大长度1000个字符。
         # @type JumpUrl: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator
@@ -2208,11 +2208,11 @@ module TencentCloud
 
       # DescribeChannelFlowEvidenceReport请求参数结构体
       class DescribeChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ReportId: 出证报告编号
         # @type ReportId: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :ReportId, :Operator
@@ -2265,7 +2265,7 @@ module TencentCloud
 
       # DescribeExtendedServiceAuthInfo请求参数结构体
       class DescribeExtendedServiceAuthInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
 
         # 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
@@ -2314,23 +2314,23 @@ module TencentCloud
 
       # DescribeFlowDetailInfo请求参数结构体
       class DescribeFlowDetailInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 合同(流程)编号数组，最多支持100个。
         # （备注：该参数和合同组编号必须二选一）
         # @type FlowIds: Array
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param FlowGroupId: 合同组编号（备注：该参数和合同(流程)编号数组必须二选一）
         # @type FlowGroupId: String
+        # @param Operator: 暂未开放
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowIds, :Operator, :FlowGroupId
+        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Operator
         
-        def initialize(agent=nil, flowids=nil, operator=nil, flowgroupid=nil)
+        def initialize(agent=nil, flowids=nil, flowgroupid=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
-          @Operator = operator
           @FlowGroupId = flowgroupid
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -2339,11 +2339,11 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @FlowIds = params['FlowIds']
+          @FlowGroupId = params['FlowGroupId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowGroupId = params['FlowGroupId']
         end
       end
 
@@ -2395,12 +2395,12 @@ module TencentCloud
 
       # DescribeResourceUrlsByFlows请求参数结构体
       class DescribeResourceUrlsByFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。
+        # @param Agent: 应用相关信息。
         # 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 查询资源所对应的签署流程Id，最多支持50个
         # @type FlowIds: Array
-        # @param Operator: 操作者的信息
+        # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
@@ -2458,7 +2458,7 @@ module TencentCloud
 
       # DescribeTemplates请求参数结构体
       class DescribeTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TemplateId: 模板唯一标识，查询单个模板时使用
         # @type TemplateId: String
@@ -2574,7 +2574,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认是0。
         # @type Offset: Integer
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :StartDate, :EndDate, :NeedAggregate, :Limit, :Offset, :Operator
@@ -3301,11 +3301,11 @@ module TencentCloud
 
       # GetDownloadFlowUrl请求参数结构体
       class GetDownloadFlowUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param DownLoadFlows: 文件夹数组，签署流程总数不能超过50个，一个文件夹下，不能超过20个签署流程
         # @type DownLoadFlows: Array
-        # @param Operator: 操作者的信息
+        # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :DownLoadFlows, :Operator
@@ -3358,7 +3358,7 @@ module TencentCloud
 
       # ModifyExtendedService请求参数结构体
       class ModifyExtendedServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
 
         # 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
@@ -3482,7 +3482,7 @@ module TencentCloud
 
       # OperateChannelTemplate请求参数结构体
       class OperateChannelTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param OperateType: 操作类型，查询:"SELECT"，删除:"DELETE"，更新:"UPDATE"
         # @type OperateType: String
@@ -3492,7 +3492,7 @@ module TencentCloud
         # @type ProxyOrganizationOpenIds: String
         # @param AuthTag: 模板可见性, 全部可见-"all", 部分可见-"part"
         # @type AuthTag: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :OperateType, :TemplateId, :ProxyOrganizationOpenIds, :AuthTag, :Operator
@@ -3677,13 +3677,13 @@ module TencentCloud
 
       # PrepareFlows请求参数结构体
       class PrepareFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowInfos: 多个合同（签署流程）信息，最大支持20个签署流程。
         # @type FlowInfos: Array
         # @param JumpUrl: 操作完成后的跳转地址，最大长度200
         # @type JumpUrl: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowInfos, :JumpUrl, :Operator
@@ -4205,13 +4205,13 @@ module TencentCloud
 
       # SyncProxyOrganizationOperators请求参数结构体
       class SyncProxyOrganizationOperatorsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息。 此接口Agent.AppId 和 Agent.ProxyOrganizationOpenId必填。
+        # @param Agent: 应用相关信息。 此接口Agent.AppId 和 Agent.ProxyOrganizationOpenId必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param OperatorType: 操作类型，新增:"CREATE"，修改:"UPDATE"，离职:"RESIGN"
         # @type OperatorType: String
         # @param ProxyOrganizationOperators: 经办人信息列表，最大长度200
         # @type ProxyOrganizationOperators: Array
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :OperatorType, :ProxyOrganizationOperators, :Operator
@@ -4292,7 +4292,7 @@ module TencentCloud
         # @type UniformSocialCreditCode: String
         # @param ProxyLegalName: 渠道侧合作企业法人/负责人姓名
         # @type ProxyLegalName: String
-        # @param Operator: 操作者的信息
+        # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :ProxyLegalName, :Operator

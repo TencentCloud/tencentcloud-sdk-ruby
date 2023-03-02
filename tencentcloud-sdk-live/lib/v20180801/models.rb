@@ -1771,7 +1771,7 @@ module TencentCloud
       class CreateLiveTranscodeRuleRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 播放域名。
         # @type DomainName: String
-        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致。如果只绑定域名，则此处填空。
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致。如果只绑定域名，则此处填""。
         # @type AppName: String
         # @param StreamName: 流名称。如果只绑定域名或路径，则此处填空。
         # @type StreamName: String

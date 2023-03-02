@@ -794,13 +794,16 @@ module TencentCloud
         # @type FlowId: String
         # @param Approvers: 补充签署人信息
         # @type Approvers: Array
+        # @param Initiator: 企微消息中的发起人
+        # @type Initiator: String
 
-        attr_accessor :Operator, :FlowId, :Approvers
+        attr_accessor :Operator, :FlowId, :Approvers, :Initiator
         
-        def initialize(operator=nil, flowid=nil, approvers=nil)
+        def initialize(operator=nil, flowid=nil, approvers=nil, initiator=nil)
           @Operator = operator
           @FlowId = flowid
           @Approvers = approvers
+          @Initiator = initiator
         end
 
         def deserialize(params)
@@ -817,6 +820,7 @@ module TencentCloud
               @Approvers << fillapproverinfo_tmp
             end
           end
+          @Initiator = params['Initiator']
         end
       end
 

@@ -2784,7 +2784,7 @@ module TencentCloud
 
       # CreateDefaultVpc返回参数结构体
       class CreateDefaultVpcResponse < TencentCloud::Common::AbstractModel
-        # @param Vpc: 默认VPC和子网ID
+        # @param Vpc: 默认VPC和子网ID。
         # @type Vpc: :class:`Tencentcloud::Vpc.v20170312.models.DefaultVpcSubnet`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3392,7 +3392,7 @@ module TencentCloud
 
       # CreateNetDetect请求参数结构体
       class CreateNetDetectRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: `VPC`实例`ID`。形如：`vpc-12345678`
+        # @param VpcId: `VPC`实例`ID`。形如：`vpc-12345678`。
         # @type VpcId: String
         # @param SubnetId: 子网实例ID。形如：subnet-12345678。
         # @type SubnetId: String
@@ -3407,6 +3407,7 @@ module TencentCloud
         # NAT：NAT网关；
         # NORMAL_CVM：普通云服务器；
         # CCN：云联网网关；
+        # NONEXTHOP：无下一跳；
         # @type NextHopType: String
         # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
         # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
@@ -3414,7 +3415,8 @@ module TencentCloud
         # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        # 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
+        # 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        # 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         # @type NextHopDestination: String
         # @param NetDetectDescription: 网络探测描述。
         # @type NetDetectDescription: String
@@ -3806,7 +3808,7 @@ module TencentCloud
         # @type GroupDescription: String
         # @param ProjectId: 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
         # @type ProjectId: String
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
 
         attr_accessor :GroupName, :GroupDescription, :ProjectId, :Tags
@@ -5103,21 +5105,33 @@ module TencentCloud
 
       # 默认VPC和子网
       class DefaultVpcSubnet < TencentCloud::Common::AbstractModel
-        # @param VpcId: 默认VpcId
+        # @param VpcId: 默认VpcId。
         # @type VpcId: String
-        # @param SubnetId: 默认SubnetId
+        # @param SubnetId: 默认SubnetId。
         # @type SubnetId: String
+        # @param VpcName: 默认Vpc名字。
+        # @type VpcName: String
+        # @param SubnetName: 默认Subnet名字。
+        # @type SubnetName: String
+        # @param CidrBlock: 默认子网网段。
+        # @type CidrBlock: String
 
-        attr_accessor :VpcId, :SubnetId
+        attr_accessor :VpcId, :SubnetId, :VpcName, :SubnetName, :CidrBlock
         
-        def initialize(vpcid=nil, subnetid=nil)
+        def initialize(vpcid=nil, subnetid=nil, vpcname=nil, subnetname=nil, cidrblock=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
+          @VpcName = vpcname
+          @SubnetName = subnetname
+          @CidrBlock = cidrblock
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @VpcName = params['VpcName']
+          @SubnetName = params['SubnetName']
+          @CidrBlock = params['CidrBlock']
         end
       end
 
@@ -5670,7 +5684,7 @@ module TencentCloud
 
       # DeleteNetDetect请求参数结构体
       class DeleteNetDetectRequest < TencentCloud::Common::AbstractModel
-        # @param NetDetectId: 网络探测实例`ID`。形如：`netd-12345678`
+        # @param NetDetectId: 网络探测实例`ID`。形如：`netd-12345678`。
         # @type NetDetectId: String
 
         attr_accessor :NetDetectId
@@ -8858,10 +8872,10 @@ module TencentCloud
 
       # DescribeNetDetectStates请求参数结构体
       class DescribeNetDetectStatesRequest < TencentCloud::Common::AbstractModel
-        # @param NetDetectIds: 网络探测实例`ID`数组。形如：[`netd-12345678`]
+        # @param NetDetectIds: 网络探测实例`ID`数组。形如：[`netd-12345678`]。
         # @type NetDetectIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定NetDetectIds和Filters。
-        # <li>net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678</li>
+        # <li>net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -8927,7 +8941,7 @@ module TencentCloud
 
       # DescribeNetDetects请求参数结构体
       class DescribeNetDetectsRequest < TencentCloud::Common::AbstractModel
-        # @param NetDetectIds: 网络探测实例`ID`数组。形如：[`netd-12345678`]
+        # @param NetDetectIds: 网络探测实例`ID`数组。形如：[`netd-12345678`]。
         # @type NetDetectIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定NetDetectIds和Filters。
         # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678</li>
@@ -15124,6 +15138,7 @@ module TencentCloud
         # NAT：NAT网关；
         # NORMAL_CVM：普通云服务器；
         # CCN：云联网网关；
+        # NONEXTHOP：无下一跳；
         # @type NextHopType: String
         # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
         # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
@@ -15131,7 +15146,8 @@ module TencentCloud
         # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        # 下一跳类型为CCN，取值云联网ID，形如：ccn-44csczop；
+        # 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        # 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         # @type NextHopDestination: String
         # @param NetDetectDescription: 网络探测描述。
         # @type NetDetectDescription: String
@@ -16433,6 +16449,7 @@ module TencentCloud
         # NAT：NAT网关；
         # NORMAL_CVM：普通云服务器；
         # CCN：云联网网关；
+        # NONEXTHOP：无下一跳；
         # @type NextHopType: String
         # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
         # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
@@ -16440,7 +16457,8 @@ module TencentCloud
         # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        # 下一跳类型为CCN，取值云联网网关，形如：ccn-12345678；
+        # 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        # 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         # @type NextHopDestination: String
         # @param NextHopName: 下一跳网关名称。
         # 注意：此字段可能返回 null，表示取不到有效值。

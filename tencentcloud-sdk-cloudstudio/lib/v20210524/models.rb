@@ -256,6 +256,48 @@ module TencentCloud
         end
       end
 
+      # CreateWorkspaceTemporaryToken请求参数结构体
+      class CreateWorkspaceTemporaryTokenRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceTokenDTO: 创建工作空间凭证 DTO
+        # @type WorkspaceTokenDTO: :class:`Tencentcloud::Cloudstudio.v20210524.models.WorkspaceTokenDTO`
+
+        attr_accessor :WorkspaceTokenDTO
+        
+        def initialize(workspacetokendto=nil)
+          @WorkspaceTokenDTO = workspacetokendto
+        end
+
+        def deserialize(params)
+          unless params['WorkspaceTokenDTO'].nil?
+            @WorkspaceTokenDTO = WorkspaceTokenDTO.new
+            @WorkspaceTokenDTO.deserialize(params['WorkspaceTokenDTO'])
+          end
+        end
+      end
+
+      # CreateWorkspaceTemporaryToken返回参数结构体
+      class CreateWorkspaceTemporaryTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 工作空间临时访问 token 信息
+        # @type Data: :class:`Tencentcloud::Cloudstudio.v20210524.models.WorkspaceTokenInfoV0`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = WorkspaceTokenInfoV0.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 模板的预置参数
       class CustomizeTemplatesPresetsInfo < TencentCloud::Common::AbstractModel
         # @param Tags: 模板tag列表
@@ -1661,6 +1703,49 @@ module TencentCloud
           @Author = params['Author']
           @Me = params['Me']
           @AuthorAvatar = params['AuthorAvatar']
+        end
+      end
+
+      # 创建临时工作空间凭证 DTO
+      class WorkspaceTokenDTO < TencentCloud::Common::AbstractModel
+        # @param SpaceKey: 工作空间 SpaceKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceKey: String
+        # @param TokenExpiredLimitSec: token过期时间，单位是秒，默认 3600
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenExpiredLimitSec: Integer
+
+        attr_accessor :SpaceKey, :TokenExpiredLimitSec
+        
+        def initialize(spacekey=nil, tokenexpiredlimitsec=nil)
+          @SpaceKey = spacekey
+          @TokenExpiredLimitSec = tokenexpiredlimitsec
+        end
+
+        def deserialize(params)
+          @SpaceKey = params['SpaceKey']
+          @TokenExpiredLimitSec = params['TokenExpiredLimitSec']
+        end
+      end
+
+      # 获取工作空间临时访问 token 出参
+      class WorkspaceTokenInfoV0 < TencentCloud::Common::AbstractModel
+        # @param Token: 访问工作空间临时凭证
+        # @type Token: String
+        # @param ExpiredTime: token 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+
+        attr_accessor :Token, :ExpiredTime
+        
+        def initialize(token=nil, expiredtime=nil)
+          @Token = token
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

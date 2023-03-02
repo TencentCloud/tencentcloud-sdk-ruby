@@ -3603,15 +3603,18 @@ module TencentCloud
         # @type Angle: Float
         # @param SingleInvoiceInfos: 识别到的内容。
         # @type SingleInvoiceInfos: Array
+        # @param Page: 发票处于识别图片或PDF文件中的页教，默认从1开始。
+        # @type Page: Integer
 
-        attr_accessor :Code, :Type, :Rect, :Angle, :SingleInvoiceInfos
+        attr_accessor :Code, :Type, :Rect, :Angle, :SingleInvoiceInfos, :Page
         
-        def initialize(code=nil, type=nil, rect=nil, angle=nil, singleinvoiceinfos=nil)
+        def initialize(code=nil, type=nil, rect=nil, angle=nil, singleinvoiceinfos=nil, page=nil)
           @Code = code
           @Type = type
           @Rect = rect
           @Angle = angle
           @SingleInvoiceInfos = singleinvoiceinfos
+          @Page = page
         end
 
         def deserialize(params)
@@ -3630,6 +3633,7 @@ module TencentCloud
               @SingleInvoiceInfos << singleinvoiceinfo_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -3661,7 +3665,7 @@ module TencentCloud
         # 15：非税发票
         # 16：全电发票
         # ----------------------
-        # -1：其他发票,（仅返回，本参数不支持传入-1，请在ReturnOther中控制是否返回）
+        # -1：其他发票,（只传入此类型时，图片均采用其他票类型进行识别）
         # @type Types: Array
         # @param ReturnOther: 是否识别其他类型发票，默认为Yes
         # Yes：识别其他类型发票
@@ -3671,16 +3675,19 @@ module TencentCloud
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
+        # @param ReturnMultiplePage: 是否开启PDF多页识别，默认值为false，开启后可同时支持多页PDF的识别返回，仅支持返回文件前30页。开启后IsPDF和PdfPageNumber入参不进行控制。
+        # @type ReturnMultiplePage: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther, :IsPdf, :PdfPageNumber, :ReturnMultiplePage
         
-        def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil, ispdf=nil, pdfpagenumber=nil, returnmultiplepage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
           @ReturnOther = returnother
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
+          @ReturnMultiplePage = returnmultiplepage
         end
 
         def deserialize(params)
@@ -3690,6 +3697,7 @@ module TencentCloud
           @ReturnOther = params['ReturnOther']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @ReturnMultiplePage = params['ReturnMultiplePage']
         end
       end
 

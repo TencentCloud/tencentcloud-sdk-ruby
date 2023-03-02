@@ -910,7 +910,7 @@ module TencentCloud
         # * 支持基础网络、VPC，返回VpcId为0
         # * 只支持VPC，返回默认VPC信息
 
-        # 您也可以通过 Force 参数，强制返回默认VPC
+        # 您也可以通过 Force 参数，强制返回默认VPC。
 
         # @param request: Request instance for CreateDefaultVpc.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateDefaultVpcRequest`
@@ -1176,7 +1176,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateNetDetect)用于创建网络探测。
+        # 本接口（CreateNetDetect）用于创建网络探测。
 
         # @param request: Request instance for CreateNetDetect.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateNetDetectRequest`
@@ -2204,7 +2204,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DeleteNetDetect)用于删除网络探测实例。
+        # 本接口（DeleteNetDetect）用于删除网络探测实例。
 
         # @param request: Request instance for DeleteNetDetect.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteNetDetectRequest`
@@ -2304,7 +2304,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除路由表
+        # 本接口（DeleteRouteTable）用于删除路由表。
 
         # @param request: Request instance for DeleteRouteTable.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteRouteTableRequest`
