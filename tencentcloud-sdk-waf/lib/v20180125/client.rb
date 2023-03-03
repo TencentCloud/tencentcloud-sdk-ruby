@@ -342,6 +342,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 攻击总览
+
+        # @param request: Request instance for DescribeAttackOverview.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAttackOverviewRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAttackOverviewResponse`
+        def DescribeAttackOverview(request)
+          body = send_request('DescribeAttackOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAttackOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 描述WAF自动封禁IP详情,对齐自动封堵状态
 
         # @param request: Request instance for DescribeAutoDenyIP.

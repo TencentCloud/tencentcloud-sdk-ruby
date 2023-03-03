@@ -2099,17 +2099,27 @@ module TencentCloud
         # @type AppData: String
         # @param PayloadType: SEI消息的payload_type，默认值100，取值范围100-254（244除外，244为我们内部自定义的时间戳SEI）
         # @type PayloadType: Integer
+        # @param Interval: SEI发送间隔，单位毫秒，默认值为1000。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param FollowIdr: 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowIdr: Integer
 
-        attr_accessor :AppData, :PayloadType
+        attr_accessor :AppData, :PayloadType, :Interval, :FollowIdr
         
-        def initialize(appdata=nil, payloadtype=nil)
+        def initialize(appdata=nil, payloadtype=nil, interval=nil, followidr=nil)
           @AppData = appdata
           @PayloadType = payloadtype
+          @Interval = interval
+          @FollowIdr = followidr
         end
 
         def deserialize(params)
           @AppData = params['AppData']
           @PayloadType = params['PayloadType']
+          @Interval = params['Interval']
+          @FollowIdr = params['FollowIdr']
         end
       end
 
@@ -2121,19 +2131,29 @@ module TencentCloud
         # @type PayloadType: Integer
         # @param PayloadUuid: PayloadType为5，PayloadUuid必须填写。PayloadType不是5时，不需要填写，填写会被后台忽略。该值必须是32长度的十六进制。
         # @type PayloadUuid: String
+        # @param Interval: SEI发送间隔，单位毫秒，默认值为1000。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param FollowIdr: 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowIdr: Integer
 
-        attr_accessor :PayloadContent, :PayloadType, :PayloadUuid
+        attr_accessor :PayloadContent, :PayloadType, :PayloadUuid, :Interval, :FollowIdr
         
-        def initialize(payloadcontent=nil, payloadtype=nil, payloaduuid=nil)
+        def initialize(payloadcontent=nil, payloadtype=nil, payloaduuid=nil, interval=nil, followidr=nil)
           @PayloadContent = payloadcontent
           @PayloadType = payloadtype
           @PayloadUuid = payloaduuid
+          @Interval = interval
+          @FollowIdr = followidr
         end
 
         def deserialize(params)
           @PayloadContent = params['PayloadContent']
           @PayloadType = params['PayloadType']
           @PayloadUuid = params['PayloadUuid']
+          @Interval = params['Interval']
+          @FollowIdr = params['FollowIdr']
         end
       end
 

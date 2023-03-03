@@ -1262,6 +1262,53 @@ module TencentCloud
         end
       end
 
+      # DescribeAttackOverview请求参数结构体
+      class DescribeAttackOverviewRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAttackOverview返回参数结构体
+      class DescribeAttackOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param AccessCount: 访问请求总数
+        # @type AccessCount: Integer
+        # @param AttackCount: Web攻击总数
+        # @type AttackCount: Integer
+        # @param ACLCount: 访问控制总数
+        # @type ACLCount: Integer
+        # @param CCCount: CC攻击总数
+        # @type CCCount: Integer
+        # @param BotCount: Bot攻击总数
+        # @type BotCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :RequestId
+        
+        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, requestid=nil)
+          @AccessCount = accesscount
+          @AttackCount = attackcount
+          @ACLCount = aclcount
+          @CCCount = cccount
+          @BotCount = botcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccessCount = params['AccessCount']
+          @AttackCount = params['AttackCount']
+          @ACLCount = params['ACLCount']
+          @CCCount = params['CCCount']
+          @BotCount = params['BotCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoDenyIP请求参数结构体
       class DescribeAutoDenyIPRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

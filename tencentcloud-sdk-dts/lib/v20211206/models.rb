@@ -1520,7 +1520,7 @@ module TencentCloud
 
       # DescribeCheckSyncJobResult请求参数结构体
       class DescribeCheckSyncJobResultRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id
+        # @param JobId: 同步实例id（即标识一个同步作业），形如sync-werwfs23，此值必填
         # @type JobId: String
 
         attr_accessor :JobId
@@ -1536,7 +1536,7 @@ module TencentCloud
 
       # DescribeCheckSyncJobResult返回参数结构体
       class DescribeCheckSyncJobResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 校验结果
+        # @param Status: 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StepCount: 步骤总数
@@ -1545,7 +1545,7 @@ module TencentCloud
         # @param StepCur: 当前所在步骤
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepCur: Integer
-        # @param Progress: 总体进度
+        # @param Progress: 总体进度，范围为[0,100]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param StepInfos: 步骤信息
@@ -4028,10 +4028,10 @@ module TencentCloud
         # @param StepId: 步骤标号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepId: String
-        # @param Status: 当前状态，是否完成
+        # @param Status: 当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param StartTime: 步骤开始时间
+        # @param StartTime: 步骤开始时间，可能为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param Errors: 错误信息
@@ -4040,7 +4040,7 @@ module TencentCloud
         # @param Warnings: 警告信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warnings: Array
-        # @param Progress: 当前步骤进度
+        # @param Progress: 当前步骤进度，范围为[0-100]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
 

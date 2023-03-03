@@ -273,7 +273,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询同步校验任务结果
+        # 查询同步校验任务结果，检查必要参数和周边配置
 
         # @param request: Request instance for DescribeCheckSyncJobResult.
         # @type request: :class:`Tencentcloud::dts::V20211206::DescribeCheckSyncJobResultRequest`

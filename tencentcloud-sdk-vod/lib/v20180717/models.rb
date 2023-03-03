@@ -220,7 +220,9 @@ module TencentCloud
       class AdaptiveDynamicStreamingInfoItem < TencentCloud::Common::AbstractModel
         # @param Definition: 转自适应码流规格。
         # @type Definition: Integer
-        # @param Package: 打包格式，只能为 HLS。
+        # @param Package: 打包格式，取值范围：
+        # <li>HLS；</li>
+        # <li>DASH。</li>
         # @type Package: String
         # @param DrmType: 加密类型。
         # @type DrmType: String
@@ -235,16 +237,19 @@ module TencentCloud
         # <li>Trace 表示经过溯源水印处理；</li>
         # <li>None 表示没有经过数字水印处理。</li>
         # @type DigitalWatermarkType: String
+        # @param SubStreamSet: 子流信息列表。
+        # @type SubStreamSet: Array
 
-        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType
+        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet
         
-        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil)
+        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil)
           @Definition = definition
           @Package = package
           @DrmType = drmtype
           @Url = url
           @Size = size
           @DigitalWatermarkType = digitalwatermarktype
+          @SubStreamSet = substreamset
         end
 
         def deserialize(params)
@@ -254,6 +259,14 @@ module TencentCloud
           @Url = params['Url']
           @Size = params['Size']
           @DigitalWatermarkType = params['DigitalWatermarkType']
+          unless params['SubStreamSet'].nil?
+            @SubStreamSet = []
+            params['SubStreamSet'].each do |i|
+              mediasubstreaminfoitem_tmp = MediaSubStreamInfoItem.new
+              mediasubstreaminfoitem_tmp.deserialize(i)
+              @SubStreamSet << mediasubstreaminfoitem_tmp
+            end
+          end
         end
       end
 
@@ -10133,7 +10146,8 @@ module TencentCloud
         # <li>RemoveWatermarkTask：智能去除水印任务；</li>
         # <li>DescribeFileAttributesTask：获取文件属性任务；</li>
         # <li>RebuildMedia：音画质重生任务；</li>
-        # <li>ReviewAudioVideo：音视频审核任务。</li>
+        # <li>ReviewAudioVideo：音视频审核任务；</li>
+        # <li>ExtractTraceWatermark：提取溯源水印任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -14609,6 +14623,37 @@ module TencentCloud
             @TrtcRecordInfo = TrtcRecordInfo.new
             @TrtcRecordInfo.deserialize(params['TrtcRecordInfo'])
           end
+        end
+      end
+
+      # 转自适应码流子流信息。
+      class MediaSubStreamInfoItem < TencentCloud::Common::AbstractModel
+        # @param Type: 子流类型，取值范围：
+        # <li>audio：纯音频；</li>
+        # <li>video：视频（可能包含音频流）。</li>
+        # @type Type: String
+        # @param Width: 当子流为视频流时，视频画面宽度，单位：px。
+        # @type Width: Integer
+        # @param Height: 当子流为视频流时，视频画面高度，单位：px。
+        # @type Height: Integer
+        # @param Size: 子流媒体文件大小，单位：Byte。
+        # <font color=red>注意：</font>在 2023-02-09T16:00:00Z 前处理生成的自适应码流文件此字段为0。
+        # @type Size: Integer
+
+        attr_accessor :Type, :Width, :Height, :Size
+        
+        def initialize(type=nil, width=nil, height=nil, size=nil)
+          @Type = type
+          @Width = width
+          @Height = height
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Size = params['Size']
         end
       end
 

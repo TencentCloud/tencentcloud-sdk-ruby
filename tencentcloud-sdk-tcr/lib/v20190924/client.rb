@@ -1493,32 +1493,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 内部替换接口+DescribeInstanceAllForCoding
-
-        # 查询全部实例信息
-
-        # @param request: Request instance for DescribeInstanceAll.
-        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeInstanceAllRequest`
-        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeInstanceAllResponse`
-        def DescribeInstanceAll(request)
-          body = send_request('DescribeInstanceAll', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeInstanceAllResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询所有实例命名空间列表
 
         # @param request: Request instance for DescribeInstanceAllNamespaces.

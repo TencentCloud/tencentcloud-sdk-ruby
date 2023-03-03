@@ -41,7 +41,7 @@ module TencentCloud
         end
       end
 
-      # 通知模版ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
+      # 通知模板ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
       class AlarmHierarchicalNotice < TencentCloud::Common::AbstractModel
         # @param NoticeId: 通知模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -284,7 +284,7 @@ module TencentCloud
         # @param CLSNotices: 推送cls渠道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSNotices: Array
-        # @param Tags: 通知模版绑定的标签
+        # @param Tags: 通知模板绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
@@ -580,18 +580,22 @@ module TencentCloud
 
       # 告警策略指标触发条件
       class AlarmPolicyCondition < TencentCloud::Common::AbstractModel
-        # @param IsUnionRule: 指标触发与或条件，0=或，1=与
+        # @param IsUnionRule: 告警触发条件的判断方式. 0: 任意; 1: 全部; 2: 复合. 当取值为2的时候为复合告警，与参数 ComplexExpression 配合使用.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnionRule: Integer
         # @param Rules: 告警触发条件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
+        # @param ComplexExpression: 复合告警触发条件的判断表达式，当 IsUnionRule 取值为2的时候有效. 其作用是描述多个触发条件需要满足表达式求值为True时才算是满足告警条件.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexExpression: String
 
-        attr_accessor :IsUnionRule, :Rules
+        attr_accessor :IsUnionRule, :Rules, :ComplexExpression
         
-        def initialize(isunionrule=nil, rules=nil)
+        def initialize(isunionrule=nil, rules=nil, complexexpression=nil)
           @IsUnionRule = isunionrule
           @Rules = rules
+          @ComplexExpression = complexexpression
         end
 
         def deserialize(params)
@@ -604,6 +608,7 @@ module TencentCloud
               @Rules << alarmpolicyrule_tmp
             end
           end
+          @ComplexExpression = params['ComplexExpression']
         end
       end
 
@@ -1274,7 +1279,7 @@ module TencentCloud
         # @type URLNotices: Array
         # @param CLSNotices: 推送CLS日志服务的操作 最多1个
         # @type CLSNotices: Array
-        # @param Tags: 模版绑定的标签
+        # @param Tags: 模板绑定的标签
         # @type Tags: Array
 
         attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags
@@ -1380,7 +1385,7 @@ module TencentCloud
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
         # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
         # @type GroupBy: Array
-        # @param Tags: 模版绑定的标签
+        # @param Tags: 模板绑定的标签
         # @type Tags: Array
         # @param LogAlarmReqInfo: 日志告警信息
         # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
@@ -1818,7 +1823,7 @@ module TencentCloud
         # @type CalcPeriod: Integer
         # @param ContinuePeriod: 持续几个检测周期触发规则会告警
         # @type ContinuePeriod: Integer
-        # @param RuleId: 如果通过模版创建，需要传入模版中该指标的对应RuleId
+        # @param RuleId: 如果通过模板创建，需要传入模板中该指标的对应RuleId
         # @type RuleId: Integer
 
         attr_accessor :MetricId, :AlarmNotifyType, :AlarmNotifyPeriod, :CalcType, :CalcValue, :CalcPeriod, :ContinuePeriod, :RuleId
@@ -1854,7 +1859,7 @@ module TencentCloud
         # @type AlarmNotifyType: Integer
         # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
         # @type AlarmNotifyPeriod: Integer
-        # @param RuleId: 如果通过模版创建，需要传入模版中该指标的对应RuleId
+        # @param RuleId: 如果通过模板创建，需要传入模板中该指标的对应RuleId
         # @type RuleId: Integer
 
         attr_accessor :EventId, :AlarmNotifyType, :AlarmNotifyPeriod, :RuleId
@@ -1880,11 +1885,11 @@ module TencentCloud
         # @type GroupName: String
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param ViewName: 策略组所属视图的名称，若通过模版创建，可不传入
+        # @param ViewName: 策略组所属视图的名称，若通过模板创建，可不传入
         # @type ViewName: String
         # @param ProjectId: 策略组所属项目Id，会进行鉴权操作
         # @type ProjectId: Integer
-        # @param ConditionTempGroupId: 模版策略组Id, 通过模版创建时才需要传
+        # @param ConditionTempGroupId: 模板策略组Id, 通过模板创建时才需要传
         # @type ConditionTempGroupId: Integer
         # @param IsShielded: 是否屏蔽策略组，0表示不屏蔽，1表示屏蔽。不填默认为0
         # @type IsShielded: Integer
@@ -1896,7 +1901,7 @@ module TencentCloud
         # @type Conditions: Array
         # @param EventConditions: 策略组中的事件告警规则
         # @type EventConditions: Array
-        # @param BackEndCall: 是否为后端调用。当且仅当值为1时，后台拉取策略模版中的规则填充入Conditions以及EventConditions字段
+        # @param BackEndCall: 是否为后端调用。当且仅当值为1时，后台拉取策略模板中的规则填充入Conditions以及EventConditions字段
         # @type BackEndCall: Integer
         # @param IsUnionRule: 指标告警规则的且或关系，0表示或规则(满足任意规则就告警)，1表示且规则(满足所有规则才告警)
         # @type IsUnionRule: Integer
@@ -3795,7 +3800,7 @@ module TencentCloud
         # @type GroupIds: Array
         # @param NoticeIds: 根据通知模板 id 过滤，空数组/不传则不过滤
         # @type NoticeIds: Array
-        # @param Tags: 模版根据标签过滤
+        # @param Tags: 模板根据标签过滤
         # @type Tags: Array
 
         attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds, :Tags
@@ -5400,10 +5405,13 @@ module TencentCloud
         # @param SupportRegions: 支持该策略类型的地域列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportRegions: Array
+        # @param DeprecatingInfo: 弃用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeprecatingInfo: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListResponseDeprecatingInfo`
 
-        attr_accessor :PolicyViewName, :EventMetrics, :IsSupportMultiRegion, :Metrics, :Name, :SortId, :SupportDefault, :SupportRegions
+        attr_accessor :PolicyViewName, :EventMetrics, :IsSupportMultiRegion, :Metrics, :Name, :SortId, :SupportDefault, :SupportRegions, :DeprecatingInfo
         
-        def initialize(policyviewname=nil, eventmetrics=nil, issupportmultiregion=nil, metrics=nil, name=nil, sortid=nil, supportdefault=nil, supportregions=nil)
+        def initialize(policyviewname=nil, eventmetrics=nil, issupportmultiregion=nil, metrics=nil, name=nil, sortid=nil, supportdefault=nil, supportregions=nil, deprecatinginfo=nil)
           @PolicyViewName = policyviewname
           @EventMetrics = eventmetrics
           @IsSupportMultiRegion = issupportmultiregion
@@ -5412,6 +5420,7 @@ module TencentCloud
           @SortId = sortid
           @SupportDefault = supportdefault
           @SupportRegions = supportregions
+          @DeprecatingInfo = deprecatinginfo
         end
 
         def deserialize(params)
@@ -5437,6 +5446,10 @@ module TencentCloud
           @SortId = params['SortId']
           @SupportDefault = params['SupportDefault']
           @SupportRegions = params['SupportRegions']
+          unless params['DeprecatingInfo'].nil?
+            @DeprecatingInfo = DescribePolicyConditionListResponseDeprecatingInfo.new
+            @DeprecatingInfo.deserialize(params['DeprecatingInfo'])
+          end
         end
       end
 
@@ -5787,6 +5800,33 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePolicyConditionListResponseDeprecatingInfo
+      class DescribePolicyConditionListResponseDeprecatingInfo < TencentCloud::Common::AbstractModel
+        # @param Hidden: 是否隐藏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hidden: Boolean
+        # @param NewViewNames: 新视图名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewViewNames: Array
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Hidden, :NewViewNames, :Description
+        
+        def initialize(hidden=nil, newviewnames=nil, description=nil)
+          @Hidden = hidden
+          @NewViewNames = newviewnames
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Hidden = params['Hidden']
+          @NewViewNames = params['NewViewNames']
+          @Description = params['Description']
         end
       end
 
@@ -6677,15 +6717,15 @@ module TencentCloud
       class DescribeProductEventListRequest < TencentCloud::Common::AbstractModel
         # @param Module: 接口模块名，固定值"monitor"
         # @type Module: String
-        # @param ProductName: 产品类型过滤，比如"cvm"表示云服务器
+        # @param ProductName: 产品类型过滤，例如"cvm"表示云服务器
         # @type ProductName: Array
-        # @param EventName: 事件名称过滤，比如"guest_reboot"表示机器重启
+        # @param EventName: 事件名称过滤，例如"guest_reboot"表示机器重启
         # @type EventName: Array
-        # @param InstanceId: 影响对象，比如"ins-19708ino"
+        # @param InstanceId: 影响对象，例如"ins-19708ino"
         # @type InstanceId: Array
-        # @param Dimensions: 维度过滤，比如外网IP:10.0.0.1
+        # @param Dimensions: 维度过滤，例如外网IP:10.0.0.1
         # @type Dimensions: Array
-        # @param RegionList: 产品事件地域过滤参数，比如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
+        # @param RegionList: 产品事件地域过滤参数，例如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
         # @type RegionList: Array
         # @param Type: 事件类型过滤，取值范围["status_change","abnormal"]，分别表示状态变更、异常事件
         # @type Type: Array
@@ -7104,16 +7144,53 @@ module TencentCloud
 
       # DescribePrometheusConfig返回参数结构体
       class DescribePrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Config: 全局配置
+        # @type Config: String
+        # @param ServiceMonitors: ServiceMonitor配置
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: PodMonitor配置
+        # @type PodMonitors: Array
+        # @param RawJobs: 原生Job
+        # @type RawJobs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+          @Config = config
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Config = params['Config']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10520,7 +10597,7 @@ module TencentCloud
         end
       end
 
-      # 通知模版与策略绑定关系
+      # 通知模板与策略绑定关系
       class NoticeBindPolicys < TencentCloud::Common::AbstractModel
         # @param NoticeId: 告警通知模板 ID
         # @type NoticeId: String

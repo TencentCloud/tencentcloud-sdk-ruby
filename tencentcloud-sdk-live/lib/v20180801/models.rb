@@ -10053,6 +10053,7 @@ module TencentCloud
         # @param Duration: 推流持续时长，单位：秒。
         # @type Duration: Integer
         # @param ClientIp: 主播 IP。
+        # 当客户端为内网推流时，展示为: - 。
         # @type ClientIp: String
         # @param Resolution: 分辨率。
         # @type Resolution: String

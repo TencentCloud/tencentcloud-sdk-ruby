@@ -1603,12 +1603,15 @@ module TencentCloud
         # @param ExclusiveHSMEnabled: 是否开通 KMS 独享版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveHSMEnabled: Boolean
+        # @param SubscriptionInfo: KMS 订阅信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionInfo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :RequestId
         
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -1617,6 +1620,7 @@ module TencentCloud
           @ProResourceId = proresourceid
           @ExclusiveVSMEnabled = exclusivevsmenabled
           @ExclusiveHSMEnabled = exclusivehsmenabled
+          @SubscriptionInfo = subscriptioninfo
           @RequestId = requestid
         end
 
@@ -1629,6 +1633,7 @@ module TencentCloud
           @ProResourceId = params['ProResourceId']
           @ExclusiveVSMEnabled = params['ExclusiveVSMEnabled']
           @ExclusiveHSMEnabled = params['ExclusiveHSMEnabled']
+          @SubscriptionInfo = params['SubscriptionInfo']
           @RequestId = params['RequestId']
         end
       end

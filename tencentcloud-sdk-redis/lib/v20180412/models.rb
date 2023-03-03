@@ -1103,6 +1103,67 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDownloadRestriction请求参数结构体
+      class DescribeBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBackupDownloadRestriction返回参数结构体
+      class DescribeBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param LimitType: 下载备份文件的网络限制类型：
+
+        # - NoLimit：不限制，腾讯云内外网均可以下载备份文件。
+        # -  LimitOnlyIntranet：仅腾讯云自动分配的内网地址可下载备份文件。
+        # - Customize：指用户自定义的私有网络可下载备份文件。
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持输入 In，表示自定义的**LimitVpc**可以下载备份文件。
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: 标识自定义的 LimitIp 地址是否可下载备份文件。
+
+        # - In: 自定义的 IP 地址可以下载。
+        # - NotIn: 自定义的 IP 不可以下载。
+        # @type IpComparisonSymbol: String
+        # @param LimitVpc: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，显示该参数。
+        # @type LimitVpc: Array
+        # @param LimitIp: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，显示该参数。
+        # @type LimitIp: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpc, :LimitIp, :RequestId
+        
+        def initialize(limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpc=nil, limitip=nil, requestid=nil)
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpc = limitvpc
+          @LimitIp = limitip
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpc'].nil?
+            @LimitVpc = []
+            params['LimitVpc'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpc << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIp = params['LimitIp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupUrl请求参数结构体
       class DescribeBackupUrlRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -4809,6 +4870,68 @@ module TencentCloud
           @WeekDays = params['WeekDays']
           @TimePeriod = params['TimePeriod']
           @BackupStorageDays = params['BackupStorageDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupDownloadRestriction请求参数结构体
+      class ModifyBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param LimitType: 下载备份文件的网络限制类型：
+
+        # - NoLimit：不限制，腾讯云内外网均可以下载备份文件。
+        # -  LimitOnlyIntranet：仅腾讯云自动分配的内网地址可下载备份文件。
+        # - Customize：指用户自定义的私有网络可下载备份文件。
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持输入 In，表示自定义的**LimitVpc**可以下载备份文件。
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: 标识自定义的 LimitIp 地址是否可下载备份文件。
+
+        # - In: 自定义的 IP 地址可以下载。
+        # - NotIn: 自定义的 IP 不可以下载。
+        # @type IpComparisonSymbol: String
+        # @param LimitVpc: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，需配置该参数。
+        # @type LimitVpc: Array
+        # @param LimitIp: 自定义的可下载备份文件的 VPC IP 地址。当参数**LimitType**为**Customize **时，需配置该参数。
+        # @type LimitIp: Array
+
+        attr_accessor :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpc, :LimitIp
+        
+        def initialize(limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpc=nil, limitip=nil)
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpc = limitvpc
+          @LimitIp = limitip
+        end
+
+        def deserialize(params)
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpc'].nil?
+            @LimitVpc = []
+            params['LimitVpc'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpc << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIp = params['LimitIp']
+        end
+      end
+
+      # ModifyBackupDownloadRestriction返回参数结构体
+      class ModifyBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

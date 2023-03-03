@@ -5241,15 +5241,19 @@ module TencentCloud
         # @type Vip: String
         # @param OutBandwidth: 最大出带宽，单位：Mbps
         # @type OutBandwidth: Float
+        # @param Domain: CLB域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :OutBandwidth
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :OutBandwidth, :Domain
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, outbandwidth=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, outbandwidth=nil, domain=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @Region = region
           @Vip = vip
           @OutBandwidth = outbandwidth
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -5258,6 +5262,7 @@ module TencentCloud
           @Region = params['Region']
           @Vip = params['Vip']
           @OutBandwidth = params['OutBandwidth']
+          @Domain = params['Domain']
         end
       end
 
