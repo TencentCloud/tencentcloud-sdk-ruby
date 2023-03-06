@@ -797,10 +797,13 @@ module TencentCloud
         # @param CertificationStatus: 资质证明状态：0-不可用 1-可用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificationStatus: Integer
+        # @param Snapshot: 网址截图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Snapshot: String
 
-        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot
         
-        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil)
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
           @Origin = origin
@@ -821,6 +824,7 @@ module TencentCloud
           @WebExpireTime = webexpiretime
           @InsertTime = inserttime
           @CertificationStatus = certificationstatus
+          @Snapshot = snapshot
         end
 
         def deserialize(params)
@@ -844,6 +848,7 @@ module TencentCloud
           @WebExpireTime = params['WebExpireTime']
           @InsertTime = params['InsertTime']
           @CertificationStatus = params['CertificationStatus']
+          @Snapshot = params['Snapshot']
         end
       end
 

@@ -1101,6 +1101,62 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordInfo请求参数结构体
+      class DescribeRecordInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 进行中的任务taskid（StartRecord接口返回）。
+        # @type TaskId: Integer
+        # @param BizId: 应用ID。
+        # @type BizId: Integer
+
+        attr_accessor :TaskId, :BizId
+        
+        def initialize(taskid=nil, bizid=nil)
+          @TaskId = taskid
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @BizId = params['BizId']
+        end
+      end
+
+      # DescribeRecordInfo返回参数结构体
+      class DescribeRecordInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RecordInfo: 录制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordInfo: Array
+        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # @type RecordMode: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordInfo, :RecordMode, :RoomId, :RequestId
+        
+        def initialize(recordinfo=nil, recordmode=nil, roomid=nil, requestid=nil)
+          @RecordInfo = recordinfo
+          @RecordMode = recordmode
+          @RoomId = roomid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordInfo'].nil?
+            @RecordInfo = []
+            params['RecordInfo'].each do |i|
+              recordinfo_tmp = RecordInfo.new
+              recordinfo_tmp.deserialize(i)
+              @RecordInfo << recordinfo_tmp
+            end
+          end
+          @RecordMode = params['RecordMode']
+          @RoomId = params['RoomId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomInfo请求参数结构体
       class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
@@ -1281,6 +1337,60 @@ module TencentCloud
               describescanresult_tmp.deserialize(i)
               @Data << describescanresult_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTaskInfo请求参数结构体
+      class DescribeTaskInfoRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID。
+        # @type BizId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: String
+
+        attr_accessor :BizId, :RoomId
+        
+        def initialize(bizid=nil, roomid=nil)
+          @BizId = bizid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeTaskInfo返回参数结构体
+      class DescribeTaskInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 进行中的任务taskid（StartRecord接口返回）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordMode: Integer
+        # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RecordMode, :SubscribeRecordUserIds, :RequestId
+        
+        def initialize(taskid=nil, recordmode=nil, subscriberecorduserids=nil, requestid=nil)
+          @TaskId = taskid
+          @RecordMode = recordmode
+          @SubscribeRecordUserIds = subscriberecorduserids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RecordMode = params['RecordMode']
+          unless params['SubscribeRecordUserIds'].nil?
+            @SubscribeRecordUserIds = SubscribeRecordUserIds.new
+            @SubscribeRecordUserIds.deserialize(params['SubscribeRecordUserIds'])
           end
           @RequestId = params['RequestId']
         end
@@ -1592,6 +1702,53 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordInfo请求参数结构体
+      class ModifyRecordInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 进行中的任务taskid（StartRecord接口返回）。
+        # @type TaskId: Integer
+        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # @type RecordMode: Integer
+        # @param BizId: 应用ID。
+        # @type BizId: Integer
+        # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单。
+        # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
+
+        attr_accessor :TaskId, :RecordMode, :BizId, :SubscribeRecordUserIds
+        
+        def initialize(taskid=nil, recordmode=nil, bizid=nil, subscriberecorduserids=nil)
+          @TaskId = taskid
+          @RecordMode = recordmode
+          @BizId = bizid
+          @SubscribeRecordUserIds = subscriberecorduserids
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RecordMode = params['RecordMode']
+          @BizId = params['BizId']
+          unless params['SubscribeRecordUserIds'].nil?
+            @SubscribeRecordUserIds = SubscribeRecordUserIds.new
+            @SubscribeRecordUserIds.deserialize(params['SubscribeRecordUserIds'])
+          end
+        end
+      end
+
+      # ModifyRecordInfo返回参数结构体
+      class ModifyRecordInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserMicStatus请求参数结构体
       class ModifyUserMicStatusRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 来自 [腾讯云控制台](https://console.cloud.tencent.com/gamegme) 的 GME 服务提供的 AppID，获取请参考 [语音服务开通指引](https://cloud.tencent.com/document/product/607/10782#.E9.87.8D.E7.82.B9.E5.8F.82.E6.95.B0)。
@@ -1734,6 +1891,35 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+        end
+      end
+
+      # 房间内录制信息信息
+      # 注意：此字段可能返回 null，表示取不到有效值。
+      class RecordInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID（当混流模式时，取值为0）。
+        # @type UserId: String
+        # @param FileName: 录制文件名。
+        # @type FileName: String
+        # @param RecordBeginTime: 录制开始时间（unix时间戳如：1234567868）。
+        # @type RecordBeginTime: Integer
+        # @param RecordStatus: 录制状态：2代表正在录制  10代表等待转码  11代表正在转码  12正在上传  13代表上传完成  14代表通知用户完成。
+        # @type RecordStatus: Integer
+
+        attr_accessor :UserId, :FileName, :RecordBeginTime, :RecordStatus
+        
+        def initialize(userid=nil, filename=nil, recordbegintime=nil, recordstatus=nil)
+          @UserId = userid
+          @FileName = filename
+          @RecordBeginTime = recordbegintime
+          @RecordStatus = recordstatus
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @FileName = params['FileName']
+          @RecordBeginTime = params['RecordBeginTime']
+          @RecordStatus = params['RecordStatus']
         end
       end
 
@@ -2012,6 +2198,57 @@ module TencentCloud
         end
       end
 
+      # StartRecord请求参数结构体
+      class StartRecordRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID。
+        # @type BizId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: String
+        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # @type RecordMode: Integer
+        # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单（不传默认订阅房间内所有音频流）。
+        # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
+
+        attr_accessor :BizId, :RoomId, :RecordMode, :SubscribeRecordUserIds
+        
+        def initialize(bizid=nil, roomid=nil, recordmode=nil, subscriberecorduserids=nil)
+          @BizId = bizid
+          @RoomId = roomid
+          @RecordMode = recordmode
+          @SubscribeRecordUserIds = subscriberecorduserids
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @RoomId = params['RoomId']
+          @RecordMode = params['RecordMode']
+          unless params['SubscribeRecordUserIds'].nil?
+            @SubscribeRecordUserIds = SubscribeRecordUserIds.new
+            @SubscribeRecordUserIds.deserialize(params['SubscribeRecordUserIds'])
+          end
+        end
+      end
+
+      # StartRecord返回参数结构体
+      class StartRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务taskid。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用量数据单元
       class StatisticsItem < TencentCloud::Common::AbstractModel
         # @param StatDate: 日期，格式为年-月-日，如2018-07-13
@@ -2048,6 +2285,42 @@ module TencentCloud
         end
       end
 
+      # StopRecord请求参数结构体
+      class StopRecordRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param BizId: 应用ID。
+        # @type BizId: Integer
+
+        attr_accessor :TaskId, :BizId
+        
+        def initialize(taskid=nil, bizid=nil)
+          @TaskId = taskid
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @BizId = params['BizId']
+        end
+      end
+
+      # StopRecord返回参数结构体
+      class StopRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 流式转文本用量数据
       class StreamTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
@@ -2062,6 +2335,28 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+        end
+      end
+
+      # 指定订阅流白名单或者黑名单。
+      class SubscribeRecordUserIds < TencentCloud::Common::AbstractModel
+        # @param UnSubscribeUserIds: 订阅音频流黑名单，指定不订阅哪几个UserId的音频流，例如["1", "2", "3"], 代表不订阅UserId 1，2，3的音频流。默认不填订阅房间内所有音频流，订阅列表用户数不超过20。
+        # 注意：只能同时设置UnSubscribeAudioUserIds、SubscribeAudioUserIds 其中1个参数
+        # @type UnSubscribeUserIds: Array
+        # @param SubscribeUserIds: 订阅音频流白名单，指定订阅哪几个UserId的音频流，例如["1", "2", "3"], 代表订阅UserId 1，2，3的音频流。默认不填订阅房间内所有音频流，订阅列表用户数不超过20。
+        # 注意：只能同时设置UnSubscribeAudioUserIds、SubscribeAudioUserIds 其中1个参数。
+        # @type SubscribeUserIds: Array
+
+        attr_accessor :UnSubscribeUserIds, :SubscribeUserIds
+        
+        def initialize(unsubscribeuserids=nil, subscribeuserids=nil)
+          @UnSubscribeUserIds = unsubscribeuserids
+          @SubscribeUserIds = subscribeuserids
+        end
+
+        def deserialize(params)
+          @UnSubscribeUserIds = params['UnSubscribeUserIds']
+          @SubscribeUserIds = params['SubscribeUserIds']
         end
       end
 

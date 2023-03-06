@@ -327,6 +327,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询录制任务信息。
+
+        # @param request: Request instance for DescribeRecordInfo.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeRecordInfoRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeRecordInfoResponse`
+        def DescribeRecordInfo(request)
+          body = send_request('DescribeRecordInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间内用户信息
 
         # @param request: Request instance for DescribeRoomInfo.
@@ -362,6 +386,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScanResultListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询房间录制的详细信息
+
+        # @param request: Request instance for DescribeTaskInfo.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeTaskInfoRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeTaskInfoResponse`
+        def DescribeTaskInfo(request)
+          body = send_request('DescribeTaskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -482,6 +530,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomizationStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改录制配置信息
+
+        # @param request: Request instance for ModifyRecordInfo.
+        # @type request: :class:`Tencentcloud::gme::V20180711::ModifyRecordInfoRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::ModifyRecordInfoResponse`
+        def ModifyRecordInfo(request)
+          body = send_request('ModifyRecordInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -667,6 +739,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScanVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启录制
+
+        # @param request: Request instance for StartRecord.
+        # @type request: :class:`Tencentcloud::gme::V20180711::StartRecordRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::StartRecordResponse`
+        def StartRecord(request)
+          body = send_request('StartRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止录制
+
+        # @param request: Request instance for StopRecord.
+        # @type request: :class:`Tencentcloud::gme::V20180711::StopRecordRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::StopRecordResponse`
+        def StopRecord(request)
+          body = send_request('StopRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

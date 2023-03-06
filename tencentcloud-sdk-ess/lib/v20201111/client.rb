@@ -471,6 +471,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 企业方可以通过此接口获取个人用户开启自动签的跳转链接
+
+        # @param request: Request instance for CreateUserAutoSignEnableUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateUserAutoSignEnableUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateUserAutoSignEnableUrlResponse`
+        def CreateUserAutoSignEnableUrl(request)
+          body = send_request('CreateUserAutoSignEnableUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserAutoSignEnableUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 移除员工
 
         # @param request: Request instance for DeleteIntegrationEmployees.
@@ -750,6 +774,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeThirdPartyAuthCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 企业方可以通过此接口查询个人用户自动签开启状态
+
+        # @param request: Request instance for DescribeUserAutoSignStatus.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeUserAutoSignStatusRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeUserAutoSignStatusResponse`
+        def DescribeUserAutoSignStatus(request)
+          body = send_request('DescribeUserAutoSignStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserAutoSignStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 企业方可以通过此接口关闭个人的自动签功能
+
+        # @param request: Request instance for DisableUserAutoSign.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DisableUserAutoSignRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DisableUserAutoSignResponse`
+        def DisableUserAutoSign(request)
+          body = send_request('DisableUserAutoSign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableUserAutoSignResponse.new
             model.deserialize(response['Response'])
             model
           else
