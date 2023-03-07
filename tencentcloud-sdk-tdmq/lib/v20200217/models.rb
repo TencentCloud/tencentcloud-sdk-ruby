@@ -5075,7 +5075,9 @@ module TencentCloud
 
       # DescribeRocketMQVipInstances请求参数结构体
       class DescribeRocketMQVipInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件过滤器
+        # @param Filters: 查询条件过滤器，支持的查询条件如下：
+        # instanceIds - 实例ID
+        # instanceName - 实例名称
         # @type Filters: Array
         # @param Limit: 查询数目上限，默认20
         # @type Limit: Integer
@@ -7322,10 +7324,13 @@ module TencentCloud
         # @type NodeDistribution: Array
         # @param TopicDistribution: topic分布情况
         # @type TopicDistribution: Array
+        # @param MaxQueuesPerTopic: 每个主题最大队列数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxQueuesPerTopic: Integer
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic
         
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -7337,6 +7342,7 @@ module TencentCloud
           @NodeCount = nodecount
           @NodeDistribution = nodedistribution
           @TopicDistribution = topicdistribution
+          @MaxQueuesPerTopic = maxqueuespertopic
         end
 
         def deserialize(params)
@@ -7365,6 +7371,7 @@ module TencentCloud
               @TopicDistribution << rocketmqtopicdistribution_tmp
             end
           end
+          @MaxQueuesPerTopic = params['MaxQueuesPerTopic']
         end
       end
 
@@ -7477,7 +7484,7 @@ module TencentCloud
         # @param InstanceVersion: 实例版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: String
-        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
         # @type Status: Integer
         # @param NodeCount: 节点数量
         # @type NodeCount: Integer

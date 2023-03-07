@@ -194,10 +194,12 @@ module TencentCloud
         # - 0：不自动续费
         # - 1：自动续费
         # @type PrepaidRenewFlag: Integer
+        # @param EngineRegionInfos: 跨地域部署的引擎地域配置详情
+        # @type EngineRegionInfos: Array
 
-        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag
+        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos
         
-        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil)
+        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil)
           @EngineType = enginetype
           @EngineVersion = engineversion
           @EngineProductVersion = engineproductversion
@@ -213,6 +215,7 @@ module TencentCloud
           @EngineAdmin = engineadmin
           @PrepaidPeriod = prepaidperiod
           @PrepaidRenewFlag = prepaidrenewflag
+          @EngineRegionInfos = engineregioninfos
         end
 
         def deserialize(params)
@@ -248,6 +251,14 @@ module TencentCloud
           end
           @PrepaidPeriod = params['PrepaidPeriod']
           @PrepaidRenewFlag = params['PrepaidRenewFlag']
+          unless params['EngineRegionInfos'].nil?
+            @EngineRegionInfos = []
+            params['EngineRegionInfos'].each do |i|
+              engineregioninfo_tmp = EngineRegionInfo.new
+              engineregioninfo_tmp.deserialize(i)
+              @EngineRegionInfos << engineregioninfo_tmp
+            end
+          end
         end
       end
 
@@ -837,6 +848,40 @@ module TencentCloud
           @Name = params['Name']
           @Password = params['Password']
           @Token = params['Token']
+        end
+      end
+
+      # 引擎地域配置详情
+      class EngineRegionInfo < TencentCloud::Common::AbstractModel
+        # @param EngineRegion: 引擎节点所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineRegion: String
+        # @param Replica: 此地域节点分配数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replica: Integer
+        # @param VpcInfos: 集群网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcInfos: Array
+
+        attr_accessor :EngineRegion, :Replica, :VpcInfos
+        
+        def initialize(engineregion=nil, replica=nil, vpcinfos=nil)
+          @EngineRegion = engineregion
+          @Replica = replica
+          @VpcInfos = vpcinfos
+        end
+
+        def deserialize(params)
+          @EngineRegion = params['EngineRegion']
+          @Replica = params['Replica']
+          unless params['VpcInfos'].nil?
+            @VpcInfos = []
+            params['VpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfos << vpcinfo_tmp
+            end
+          end
         end
       end
 

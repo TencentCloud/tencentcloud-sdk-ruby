@@ -1912,15 +1912,18 @@ module TencentCloud
         # @type TelCallInCount: Integer
         # @param SeatUsedCount: 坐席使用统计个数
         # @type SeatUsedCount: Integer
+        # @param VoipCallInCount: 音频套餐包消耗分钟数
+        # @type VoipCallInCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :RequestId
+        attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :RequestId
         
-        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, requestid=nil)
+        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
           @TelCallInCount = telcallincount
           @SeatUsedCount = seatusedcount
+          @VoipCallInCount = voipcallincount
           @RequestId = requestid
         end
 
@@ -1928,6 +1931,7 @@ module TencentCloud
           @TelCallOutCount = params['TelCallOutCount']
           @TelCallInCount = params['TelCallInCount']
           @SeatUsedCount = params['SeatUsedCount']
+          @VoipCallInCount = params['VoipCallInCount']
           @RequestId = params['RequestId']
         end
       end
