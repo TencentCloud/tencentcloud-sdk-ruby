@@ -29,14 +29,14 @@ module TencentCloud
         # @type RegularName: String
         # @param AlarmLevel: 告警级别,0表示普通，1表示重要，2表示紧急
         # @type AlarmLevel: Integer
-        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
-        # @type AlarmIndicator: Integer
         # @param AlarmWay: 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         # @type AlarmWay: Integer
         # @param AlarmRecipientId: 告警接收人Id，多个用逗号隔开
         # @type AlarmRecipientId: String
         # @param ProjectId: 项目ID
         # @type ProjectId: String
+        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        # @type AlarmIndicator: Integer
         # @param AlarmIndicatorDesc: 告警指标描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmIndicatorDesc: String
@@ -62,18 +62,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: Integer
 
-        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmIndicator, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :MessageId, :Operator
+        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :MessageId, :Operator
         
-        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmindicator=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, messageid=nil, operator=nil)
+        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, messageid=nil, operator=nil)
           @AlarmId = alarmid
           @AlarmTime = alarmtime
           @TaskId = taskid
           @RegularName = regularname
           @AlarmLevel = alarmlevel
-          @AlarmIndicator = alarmindicator
           @AlarmWay = alarmway
           @AlarmRecipientId = alarmrecipientid
           @ProjectId = projectid
+          @AlarmIndicator = alarmindicator
           @AlarmIndicatorDesc = alarmindicatordesc
           @TriggerType = triggertype
           @EstimatedTime = estimatedtime
@@ -90,10 +90,10 @@ module TencentCloud
           @TaskId = params['TaskId']
           @RegularName = params['RegularName']
           @AlarmLevel = params['AlarmLevel']
-          @AlarmIndicator = params['AlarmIndicator']
           @AlarmWay = params['AlarmWay']
           @AlarmRecipientId = params['AlarmRecipientId']
           @ProjectId = params['ProjectId']
+          @AlarmIndicator = params['AlarmIndicator']
           @AlarmIndicatorDesc = params['AlarmIndicatorDesc']
           @TriggerType = params['TriggerType']
           @EstimatedTime = params['EstimatedTime']
@@ -101,6 +101,48 @@ module TencentCloud
           @TaskName = params['TaskName']
           @IsSendSuccess = params['IsSendSuccess']
           @MessageId = params['MessageId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # 告警指标
+      class AlarmIndicatorInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 指标id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmIndicator: Integer
+        # @param AlarmIndicatorDesc: 告警指标描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmIndicatorDesc: String
+        # @param TriggerType: 指标阈值，1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerType: Integer
+        # @param EstimatedTime: 预计的超时时间，分钟级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EstimatedTime: Integer
+        # @param Operator: 实时任务告警需要的参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: Integer
+
+        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator
+        
+        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil)
+          @Id = id
+          @AlarmIndicator = alarmindicator
+          @AlarmIndicatorDesc = alarmindicatordesc
+          @TriggerType = triggertype
+          @EstimatedTime = estimatedtime
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AlarmIndicator = params['AlarmIndicator']
+          @AlarmIndicatorDesc = params['AlarmIndicatorDesc']
+          @TriggerType = params['TriggerType']
+          @EstimatedTime = params['EstimatedTime']
           @Operator = params['Operator']
         end
       end
@@ -175,10 +217,13 @@ module TencentCloud
         # @type Wecom: Integer
         # @param Http: http，0：未设置，1：成功，2：失败
         # @type Http: Integer
+        # @param WecomGroup: 企业微信群，0：未设置，1：成功，2：失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WecomGroup: Integer
 
-        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http
+        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http, :WecomGroup
         
-        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil)
+        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil, wecomgroup=nil)
           @AlarmId = alarmid
           @AlarmReceiver = alarmreceiver
           @Email = email
@@ -187,6 +232,7 @@ module TencentCloud
           @Voice = voice
           @Wecom = wecom
           @Http = http
+          @WecomGroup = wecomgroup
         end
 
         def deserialize(params)
@@ -198,6 +244,7 @@ module TencentCloud
           @Voice = params['Voice']
           @Wecom = params['Wecom']
           @Http = params['Http']
+          @WecomGroup = params['WecomGroup']
         end
       end
 
@@ -10980,10 +11027,16 @@ module TencentCloud
         # @param InLongManagerVersion: version
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InLongManagerVersion: String
+        # @param DataProxyUrl: dataproxy url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyUrl: Array
+        # @param Submit: 任务版本是否已提交运维
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Submit: Boolean
 
-        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion
+        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit
         
-        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil)
+        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil)
           @TaskName = taskname
           @Description = description
           @SyncType = synctype
@@ -11011,6 +11064,8 @@ module TencentCloud
           @InLongManagerUrl = inlongmanagerurl
           @InLongStreamId = inlongstreamid
           @InLongManagerVersion = inlongmanagerversion
+          @DataProxyUrl = dataproxyurl
+          @Submit = submit
         end
 
         def deserialize(params)
@@ -11079,6 +11134,8 @@ module TencentCloud
           @InLongManagerUrl = params['InLongManagerUrl']
           @InLongStreamId = params['InLongStreamId']
           @InLongManagerVersion = params['InLongManagerVersion']
+          @DataProxyUrl = params['DataProxyUrl']
+          @Submit = params['Submit']
         end
       end
 
@@ -16177,17 +16234,27 @@ module TencentCloud
         # @param TableName: 表名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
+        # @param OriginDatabaseName: 表databaseName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDatabaseName: String
+        # @param OriginSchemaName: 表schemaName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginSchemaName: String
 
-        attr_accessor :TableId, :TableName
+        attr_accessor :TableId, :TableName, :OriginDatabaseName, :OriginSchemaName
         
-        def initialize(tableid=nil, tablename=nil)
+        def initialize(tableid=nil, tablename=nil, origindatabasename=nil, originschemaname=nil)
           @TableId = tableid
           @TableName = tablename
+          @OriginDatabaseName = origindatabasename
+          @OriginSchemaName = originschemaname
         end
 
         def deserialize(params)
           @TableId = params['TableId']
           @TableName = params['TableName']
+          @OriginDatabaseName = params['OriginDatabaseName']
+          @OriginSchemaName = params['OriginSchemaName']
         end
       end
 
@@ -16314,35 +16381,35 @@ module TencentCloud
         # @type RegularStatus: Integer
         # @param AlarmLevel: 告警级别(0表示普通，1表示重要，2表示紧急)
         # @type AlarmLevel: Integer
-        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
-        # ，4写入速度，5读取速度，6读取吞吐，7写入吞吐, 8脏数据字节数，9脏数据条数
-        # @type AlarmIndicator: Integer
         # @param AlarmWay: 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         # @type AlarmWay: String
-        # @param AlarmRecipientId: 告警接收人ID，多个用逗号隔开
-        # @type AlarmRecipientId: String
         # @param TaskType: 任务类型(201表示实时，202表示离线)
         # @type TaskType: Integer
-        # @param AlarmRecipientName: 告警接收人昵称，多个用逗号隔开
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipientName: String
         # @param Id: 主键ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param RegularId: 规则ID
         # @type RegularId: String
+        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        # ，4写入速度，5读取速度，6读取吞吐，7写入吞吐, 8脏数据字节数，9脏数据条数
+        # @type AlarmIndicator: Integer
         # @param TriggerType: 指标阈值(1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: Integer
         # @param EstimatedTime: 预计的超时时间(分钟级别)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EstimatedTime: Integer
+        # @param AlarmRecipientId: 告警接收人ID，多个用逗号隔开
+        # @type AlarmRecipientId: String
         # @param ProjectId: 项目ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param Creater: 创建人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creater: String
+        # @param AlarmRecipientName: 告警接收人昵称，多个用逗号隔开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmRecipientName: String
         # @param AlarmIndicatorDesc: 告警指标描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmIndicatorDesc: String
@@ -16355,29 +16422,41 @@ module TencentCloud
         # @param NodeName: 节点名称，多个逗号分隔
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
+        # @param AlarmIndicatorInfos: 指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmIndicatorInfos: Array
+        # @param AlarmRecipientType: 告警接收人类型，0指定人员；1任务责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmRecipientType: Integer
+        # @param WeComHook: 企业微信群Hook地址，多个hook地址使用,隔开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeComHook: String
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmIndicator, :AlarmWay, :AlarmRecipientId, :TaskType, :AlarmRecipientName, :Id, :RegularId, :TriggerType, :EstimatedTime, :ProjectId, :Creater, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :WeComHook
         
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmindicator=nil, alarmway=nil, alarmrecipientid=nil, tasktype=nil, alarmrecipientname=nil, id=nil, regularid=nil, triggertype=nil, estimatedtime=nil, projectid=nil, creater=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, wecomhook=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
           @AlarmLevel = alarmlevel
-          @AlarmIndicator = alarmindicator
           @AlarmWay = alarmway
-          @AlarmRecipientId = alarmrecipientid
           @TaskType = tasktype
-          @AlarmRecipientName = alarmrecipientname
           @Id = id
           @RegularId = regularid
+          @AlarmIndicator = alarmindicator
           @TriggerType = triggertype
           @EstimatedTime = estimatedtime
+          @AlarmRecipientId = alarmrecipientid
           @ProjectId = projectid
           @Creater = creater
+          @AlarmRecipientName = alarmrecipientname
           @AlarmIndicatorDesc = alarmindicatordesc
           @Operator = operator
           @NodeId = nodeid
           @NodeName = nodename
+          @AlarmIndicatorInfos = alarmindicatorinfos
+          @AlarmRecipientType = alarmrecipienttype
+          @WeComHook = wecomhook
         end
 
         def deserialize(params)
@@ -16385,21 +16464,31 @@ module TencentCloud
           @RegularName = params['RegularName']
           @RegularStatus = params['RegularStatus']
           @AlarmLevel = params['AlarmLevel']
-          @AlarmIndicator = params['AlarmIndicator']
           @AlarmWay = params['AlarmWay']
-          @AlarmRecipientId = params['AlarmRecipientId']
           @TaskType = params['TaskType']
-          @AlarmRecipientName = params['AlarmRecipientName']
           @Id = params['Id']
           @RegularId = params['RegularId']
+          @AlarmIndicator = params['AlarmIndicator']
           @TriggerType = params['TriggerType']
           @EstimatedTime = params['EstimatedTime']
+          @AlarmRecipientId = params['AlarmRecipientId']
           @ProjectId = params['ProjectId']
           @Creater = params['Creater']
+          @AlarmRecipientName = params['AlarmRecipientName']
           @AlarmIndicatorDesc = params['AlarmIndicatorDesc']
           @Operator = params['Operator']
           @NodeId = params['NodeId']
           @NodeName = params['NodeName']
+          unless params['AlarmIndicatorInfos'].nil?
+            @AlarmIndicatorInfos = []
+            params['AlarmIndicatorInfos'].each do |i|
+              alarmindicatorinfo_tmp = AlarmIndicatorInfo.new
+              alarmindicatorinfo_tmp.deserialize(i)
+              @AlarmIndicatorInfos << alarmindicatorinfo_tmp
+            end
+          end
+          @AlarmRecipientType = params['AlarmRecipientType']
+          @WeComHook = params['WeComHook']
         end
       end
 

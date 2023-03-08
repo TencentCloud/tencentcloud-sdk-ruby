@@ -2064,25 +2064,25 @@ module TencentCloud
 
       # DisableCCCPhoneNumber请求参数结构体
       class DisableCCCPhoneNumberRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
-        # @type SdkAppId: Integer
         # @param PhoneNumbers: 号码列表，0086开头
         # @type PhoneNumbers: Array
         # @param Disabled: 停用开关，0启用 1停用
         # @type Disabled: Integer
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
 
-        attr_accessor :SdkAppId, :PhoneNumbers, :Disabled
+        attr_accessor :PhoneNumbers, :Disabled, :SdkAppId
         
-        def initialize(sdkappid=nil, phonenumbers=nil, disabled=nil)
-          @SdkAppId = sdkappid
+        def initialize(phonenumbers=nil, disabled=nil, sdkappid=nil)
           @PhoneNumbers = phonenumbers
           @Disabled = disabled
+          @SdkAppId = sdkappid
         end
 
         def deserialize(params)
-          @SdkAppId = params['SdkAppId']
           @PhoneNumbers = params['PhoneNumbers']
           @Disabled = params['Disabled']
+          @SdkAppId = params['SdkAppId']
         end
       end
 

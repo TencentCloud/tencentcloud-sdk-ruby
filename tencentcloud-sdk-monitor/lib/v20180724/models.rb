@@ -9267,12 +9267,21 @@ module TencentCloud
 
       # k8s中标签，一般以数组的方式存在
       class Label < TencentCloud::Common::AbstractModel
+        # @param Name: map表中的Name
+        # @type Name: String
+        # @param Value: map表中的Value
+        # @type Value: String
 
+        attr_accessor :Name, :Value
         
-        def initialize()
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -10928,12 +10937,25 @@ module TencentCloud
 
       # 托管Prometheus agent信息
       class PrometheusAgentInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Describe: 备注
+        # @type Describe: String
 
+        attr_accessor :ClusterType, :ClusterId, :Describe
         
-        def initialize()
+        def initialize(clustertype=nil, clusterid=nil, describe=nil)
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @Describe = describe
         end
 
         def deserialize(params)
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @Describe = params['Describe']
         end
       end
 

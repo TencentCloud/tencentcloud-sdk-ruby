@@ -95,10 +95,12 @@ module TencentCloud
         # @type Source: String
         # @param Channel: 渠道：wechat | cloud
         # @type Channel: String
+        # @param EnvId: 环境ID
+        # @type EnvId: String
 
-        attr_accessor :PackageType, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :ReqKey, :Source, :Channel
+        attr_accessor :PackageType, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :ReqKey, :Source, :Channel, :EnvId
         
-        def initialize(packagetype=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, reqkey=nil, source=nil, channel=nil)
+        def initialize(packagetype=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, reqkey=nil, source=nil, channel=nil, envid=nil)
           @PackageType = packagetype
           @Alias = _alias
           @FreeQuota = freequota
@@ -108,6 +110,7 @@ module TencentCloud
           @ReqKey = reqkey
           @Source = source
           @Channel = channel
+          @EnvId = envid
         end
 
         def deserialize(params)
@@ -120,6 +123,7 @@ module TencentCloud
           @ReqKey = params['ReqKey']
           @Source = params['Source']
           @Channel = params['Channel']
+          @EnvId = params['EnvId']
         end
       end
 

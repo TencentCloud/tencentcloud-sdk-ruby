@@ -364,10 +364,13 @@ module TencentCloud
         # @param ExternalUrl: 外部审批Url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalUrl: String
+        # @param ParallelNodes: 并行节点 3-4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParallelNodes: String
 
-        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl
+        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl, :ParallelNodes
         
-        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil)
+        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil, parallelnodes=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @NodeType = nodetype
@@ -388,6 +391,7 @@ module TencentCloud
           @TaskName = taskname
           @CKafkaRegion = ckafkaregion
           @ExternalUrl = externalurl
+          @ParallelNodes = parallelnodes
         end
 
         def deserialize(params)
@@ -417,6 +421,7 @@ module TencentCloud
           @TaskName = params['TaskName']
           @CKafkaRegion = params['CKafkaRegion']
           @ExternalUrl = params['ExternalUrl']
+          @ParallelNodes = params['ParallelNodes']
         end
       end
 

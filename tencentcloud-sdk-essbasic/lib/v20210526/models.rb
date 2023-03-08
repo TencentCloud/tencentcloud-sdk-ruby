@@ -132,6 +132,65 @@ module TencentCloud
         end
       end
 
+      # 基础流程信息
+      class BaseFlowInfo < TencentCloud::Common::AbstractModel
+        # @param FlowName: 合同流程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowType: 合同流程类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowType: String
+        # @param FlowDescription: 合同流程描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowDescription: String
+        # @param Deadline: 合同流程截止时间，unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deadline: Integer
+        # @param Unordered: 是否顺序签署(true:无序签,false:顺序签)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unordered: Boolean
+        # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntelligentStatus: String
+        # @param FormFields: 填写控件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormFields: Array
+        # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedSignReview: Boolean
+
+        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview
+        
+        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil)
+          @FlowName = flowname
+          @FlowType = flowtype
+          @FlowDescription = flowdescription
+          @Deadline = deadline
+          @Unordered = unordered
+          @IntelligentStatus = intelligentstatus
+          @FormFields = formfields
+          @NeedSignReview = needsignreview
+        end
+
+        def deserialize(params)
+          @FlowName = params['FlowName']
+          @FlowType = params['FlowType']
+          @FlowDescription = params['FlowDescription']
+          @Deadline = params['Deadline']
+          @Unordered = params['Unordered']
+          @IntelligentStatus = params['IntelligentStatus']
+          unless params['FormFields'].nil?
+            @FormFields = []
+            params['FormFields'].each do |i|
+              formfield_tmp = FormField.new
+              formfield_tmp.deserialize(i)
+              @FormFields << formfield_tmp
+            end
+          end
+          @NeedSignReview = params['NeedSignReview']
+        end
+      end
+
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号，大陆11位手机号
@@ -959,6 +1018,104 @@ module TencentCloud
         end
       end
 
+      # ChannelCreatePrepareFlow请求参数结构体
+      class ChannelCreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id，与ResourceType对应
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型，1：模版，目前仅支持模版，与ResourceId对应
+        # @type ResourceType: Integer
+        # @param FlowInfo: 合同流程基础信息
+        # @type FlowInfo: :class:`Tencentcloud::Essbasic.v20210526.models.BaseFlowInfo`
+        # @param FlowApproverList: 合同签署人信息
+        # @type FlowApproverList: Array
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowOption: 合同流程配置信息
+        # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
+        # @param FlowId: 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
+        # @type FlowId: String
+        # @param NeedPreview: 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
+        # @type NeedPreview: Boolean
+        # @param Organization: 企业机构信息，不用传
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 操作人（用户）信息，不用传
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :ResourceId, :ResourceType, :FlowInfo, :FlowApproverList, :Agent, :FlowOption, :FlowId, :NeedPreview, :Organization, :Operator
+        
+        def initialize(resourceid=nil, resourcetype=nil, flowinfo=nil, flowapproverlist=nil, agent=nil, flowoption=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @FlowInfo = flowinfo
+          @FlowApproverList = flowapproverlist
+          @Agent = agent
+          @FlowOption = flowoption
+          @FlowId = flowid
+          @NeedPreview = needpreview
+          @Organization = organization
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          unless params['FlowInfo'].nil?
+            @FlowInfo = BaseFlowInfo.new
+            @FlowInfo.deserialize(params['FlowInfo'])
+          end
+          unless params['FlowApproverList'].nil?
+            @FlowApproverList = []
+            params['FlowApproverList'].each do |i|
+              commonflowapprover_tmp = CommonFlowApprover.new
+              commonflowapprover_tmp.deserialize(i)
+              @FlowApproverList << commonflowapprover_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['FlowOption'].nil?
+            @FlowOption = CreateFlowOption.new
+            @FlowOption.deserialize(params['FlowOption'])
+          end
+          @FlowId = params['FlowId']
+          @NeedPreview = params['NeedPreview']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelCreatePrepareFlow返回参数结构体
+      class ChannelCreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
+        # @param PrepareFlowUrl: 预发起的合同链接
+        # @type PrepareFlowUrl: String
+        # @param PreviewFlowUrl: 合同发起后预览链接
+        # @type PreviewFlowUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrepareFlowUrl, :PreviewFlowUrl, :RequestId
+        
+        def initialize(prepareflowurl=nil, previewflowurl=nil, requestid=nil)
+          @PrepareFlowUrl = prepareflowurl
+          @PreviewFlowUrl = previewflowurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PrepareFlowUrl = params['PrepareFlowUrl']
+          @PreviewFlowUrl = params['PreviewFlowUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateReleaseFlow请求参数结构体
       class ChannelCreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1522,6 +1679,108 @@ module TencentCloud
         end
       end
 
+      # 签署人配置信息
+      class CommonApproverOption < TencentCloud::Common::AbstractModel
+        # @param CanEditApprover: 是否允许修改签署人信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanEditApprover: Boolean
+
+        attr_accessor :CanEditApprover
+        
+        def initialize(caneditapprover=nil)
+          @CanEditApprover = caneditapprover
+        end
+
+        def deserialize(params)
+          @CanEditApprover = params['CanEditApprover']
+        end
+      end
+
+      # 通用签署人信息
+      class CommonFlowApprover < TencentCloud::Common::AbstractModel
+        # @param NotChannelOrganization: 指定当前签署人为第三方应用集成子客，默认false：当前签署人为第三方应用集成子客，true：当前签署人为saas企业用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotChannelOrganization: Boolean
+        # @param ApproverType: 签署人类型,目前支持：0-企业签署人，1-个人签署人，3-企业静默签署人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverType: Integer
+        # @param OrganizationId: 企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationId: String
+        # @param OrganizationOpenId: 企业OpenId，第三方应用集成非静默签子客企业签署人发起合同毕传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationOpenId: String
+        # @param OrganizationName: 企业名称，第三方应用集成非静默签子客企业签署人必传，saas企业签署人必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+        # @param UserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param OpenId: 用户openId，第三方应用集成非静默签子客企业签署人必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param ApproverName: 签署人名称，saas企业签署人，个人签署人必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverName: String
+        # @param ApproverMobile: 签署人手机号，saas企业签署人，个人签署人必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverMobile: String
+        # @param RecipientId: 签署人Id，使用模版发起是，对应模版配置中的签署人RecipientId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param PreReadTime: 签署前置条件：阅读时长限制，不传默认10s,最大300s，最小3s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreReadTime: Integer
+        # @param IsFullText: 签署前置条件：阅读全文限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFullText: Boolean
+        # @param NotifyType: 通知类型：SMS（短信） NONE（不做通知）, 不传 默认SMS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyType: String
+        # @param ApproverOption: 签署人配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
+
+        attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption
+        
+        def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil)
+          @NotChannelOrganization = notchannelorganization
+          @ApproverType = approvertype
+          @OrganizationId = organizationid
+          @OrganizationOpenId = organizationopenid
+          @OrganizationName = organizationname
+          @UserId = userid
+          @OpenId = openid
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
+          @RecipientId = recipientid
+          @PreReadTime = prereadtime
+          @IsFullText = isfulltext
+          @NotifyType = notifytype
+          @ApproverOption = approveroption
+        end
+
+        def deserialize(params)
+          @NotChannelOrganization = params['NotChannelOrganization']
+          @ApproverType = params['ApproverType']
+          @OrganizationId = params['OrganizationId']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OrganizationName = params['OrganizationName']
+          @UserId = params['UserId']
+          @OpenId = params['OpenId']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
+          @RecipientId = params['RecipientId']
+          @PreReadTime = params['PreReadTime']
+          @IsFullText = params['IsFullText']
+          @NotifyType = params['NotifyType']
+          unless params['ApproverOption'].nil?
+            @ApproverOption = CommonApproverOption.new
+            @ApproverOption.deserialize(params['ApproverOption'])
+          end
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
 
       # 在通过文件发起合同时，对应的component有三种定位方式
@@ -1928,6 +2187,23 @@ module TencentCloud
           @IsActivated = params['IsActivated']
           @ProxyOperatorIsVerified = params['ProxyOperatorIsVerified']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建合同配置信息
+      class CreateFlowOption < TencentCloud::Common::AbstractModel
+        # @param CanEditFlow: 是否允许修改合同信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanEditFlow: Boolean
+
+        attr_accessor :CanEditFlow
+        
+        def initialize(caneditflow=nil)
+          @CanEditFlow = caneditflow
+        end
+
+        def deserialize(params)
+          @CanEditFlow = params['CanEditFlow']
         end
       end
 

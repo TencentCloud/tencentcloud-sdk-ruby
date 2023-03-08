@@ -2312,16 +2312,20 @@ module TencentCloud
 
       # 水印参数。
       class McuWaterMarkParams < TencentCloud::Common::AbstractModel
-        # @param WaterMarkType: 水印类型，0为图片（默认）。
+        # @param WaterMarkType: 水印类型，0为图片（默认），1为文字。
         # @type WaterMarkType: Integer
         # @param WaterMarkImage: 图片水印参数。WaterMarkType为0指定。
         # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkImage`
+        # @param WaterMarkText: 文字水印参数。WaterMarkType为1指定。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaterMarkText: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkText`
 
-        attr_accessor :WaterMarkType, :WaterMarkImage
+        attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkText
         
-        def initialize(watermarktype=nil, watermarkimage=nil)
+        def initialize(watermarktype=nil, watermarkimage=nil, watermarktext=nil)
           @WaterMarkType = watermarktype
           @WaterMarkImage = watermarkimage
+          @WaterMarkText = watermarktext
         end
 
         def deserialize(params)
@@ -2330,6 +2334,57 @@ module TencentCloud
             @WaterMarkImage = McuWaterMarkImage.new
             @WaterMarkImage.deserialize(params['WaterMarkImage'])
           end
+          unless params['WaterMarkText'].nil?
+            @WaterMarkText = McuWaterMarkText.new
+            @WaterMarkText.deserialize(params['WaterMarkText'])
+          end
+        end
+      end
+
+      # 文字水印参数。
+      class McuWaterMarkText < TencentCloud::Common::AbstractModel
+        # @param Text: 文字水印内容。
+        # @type Text: String
+        # @param WaterMarkWidth: 水印在输出时的宽。单位为像素值。
+        # @type WaterMarkWidth: Integer
+        # @param WaterMarkHeight: 水印在输出时的高。单位为像素值。
+        # @type WaterMarkHeight: Integer
+        # @param LocationX: 水印在输出时的X偏移。单位为像素值。
+        # @type LocationX: Integer
+        # @param LocationY: 水印在输出时的Y偏移。单位为像素值。
+        # @type LocationY: Integer
+        # @param FontSize: 字体大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FontSize: Integer
+        # @param FontColor: 字体颜色，默认为白色。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FontColor: String
+        # @param BackGroundColor: 字体背景色，不配置默认为透明。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackGroundColor: String
+
+        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor
+        
+        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
+          @Text = text
+          @WaterMarkWidth = watermarkwidth
+          @WaterMarkHeight = watermarkheight
+          @LocationX = locationx
+          @LocationY = locationy
+          @FontSize = fontsize
+          @FontColor = fontcolor
+          @BackGroundColor = backgroundcolor
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @WaterMarkWidth = params['WaterMarkWidth']
+          @WaterMarkHeight = params['WaterMarkHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+          @FontSize = params['FontSize']
+          @FontColor = params['FontColor']
+          @BackGroundColor = params['BackGroundColor']
         end
       end
 
