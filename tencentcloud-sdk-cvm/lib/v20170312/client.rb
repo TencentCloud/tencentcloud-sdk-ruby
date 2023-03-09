@@ -1145,6 +1145,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeTaskInfo) 用于查询云服务器维修任务列表及详细信息。
+
+        # - 可以根据实例ID、实例名称或任务状态等信息来查询维修任务列表。过滤信息详情可参考入参说明。
+        # - 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的维修任务列表。
+
+        # 默认接口请求频率限制：10次/秒。</br>
+
+        # @param request: Request instance for DescribeTaskInfo.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeTaskInfoRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeTaskInfoResponse`
+        def DescribeTaskInfo(request)
+          body = send_request('DescribeTaskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
 
         # @param request: Request instance for DescribeZoneInstanceConfigInfos.

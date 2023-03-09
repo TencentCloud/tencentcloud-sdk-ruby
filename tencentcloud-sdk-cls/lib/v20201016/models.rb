@@ -5661,10 +5661,14 @@ module TencentCloud
         # @param Describes: 日志主题描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describes: String
+        # @param HotPeriod: 开启日志沉降，热存储的生命周期， hotPeriod < Period。
+        # 热存储为 hotPeriod, 冷存储则为 Period-hotPeriod。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HotPeriod: Integer
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod
         
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -5680,6 +5684,7 @@ module TencentCloud
           @Period = period
           @SubAssumerName = subassumername
           @Describes = describes
+          @HotPeriod = hotperiod
         end
 
         def deserialize(params)
@@ -5705,6 +5710,7 @@ module TencentCloud
           @Period = params['Period']
           @SubAssumerName = params['SubAssumerName']
           @Describes = params['Describes']
+          @HotPeriod = params['HotPeriod']
         end
       end
 

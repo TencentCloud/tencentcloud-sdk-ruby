@@ -2043,6 +2043,28 @@ module TencentCloud
         end
       end
 
+      # 依赖作业分状态计数信息
+      class RefJobStatusCountItem < TencentCloud::Common::AbstractModel
+        # @param JobStatus: 作业状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobStatus: Integer
+        # @param Count: 作业数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :JobStatus, :Count
+        
+        def initialize(jobstatus=nil, count=nil)
+          @JobStatus = jobstatus
+          @Count = count
+        end
+
+        def deserialize(params)
+          @JobStatus = params['JobStatus']
+          @Count = params['Count']
+        end
+      end
+
       # 描述资源配置的返回参数
       class ResourceConfigItem < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -2071,10 +2093,13 @@ module TencentCloud
         # @param RefJobCount: 关联作业个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefJobCount: Integer
+        # @param RefJobStatusCountSet: 分状态统计关联作业数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefJobStatusCountSet: Array
 
-        attr_accessor :ResourceId, :ResourceType, :Region, :AppId, :OwnerUin, :CreatorUin, :ResourceLoc, :CreateTime, :Version, :Remark, :Status, :RefJobCount
+        attr_accessor :ResourceId, :ResourceType, :Region, :AppId, :OwnerUin, :CreatorUin, :ResourceLoc, :CreateTime, :Version, :Remark, :Status, :RefJobCount, :RefJobStatusCountSet
         
-        def initialize(resourceid=nil, resourcetype=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, resourceloc=nil, createtime=nil, version=nil, remark=nil, status=nil, refjobcount=nil)
+        def initialize(resourceid=nil, resourcetype=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, resourceloc=nil, createtime=nil, version=nil, remark=nil, status=nil, refjobcount=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
           @Region = region
@@ -2087,6 +2112,7 @@ module TencentCloud
           @Remark = remark
           @Status = status
           @RefJobCount = refjobcount
+          @RefJobStatusCountSet = refjobstatuscountset
         end
 
         def deserialize(params)
@@ -2105,6 +2131,14 @@ module TencentCloud
           @Remark = params['Remark']
           @Status = params['Status']
           @RefJobCount = params['RefJobCount']
+          unless params['RefJobStatusCountSet'].nil?
+            @RefJobStatusCountSet = []
+            params['RefJobStatusCountSet'].each do |i|
+              refjobstatuscountitem_tmp = RefJobStatusCountItem.new
+              refjobstatuscountitem_tmp.deserialize(i)
+              @RefJobStatusCountSet << refjobstatuscountitem_tmp
+            end
+          end
         end
       end
 
@@ -2141,10 +2175,22 @@ module TencentCloud
         # @param RefJobCount: 关联作业数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefJobCount: Integer
+        # @param IsJobRun: 作业运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsJobRun: Integer
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param WorkSpaceId: 工作空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceId: Integer
+        # @param RefJobStatusCountSet: 分状态统计关联作业数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefJobStatusCountSet: Array
 
-        attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount
+        attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount, :IsJobRun, :FileName, :WorkSpaceId, :RefJobStatusCountSet
         
-        def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil)
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil, isjobrun=nil, filename=nil, workspaceid=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @Name = name
           @ResourceType = resourcetype
@@ -2159,6 +2205,10 @@ module TencentCloud
           @Remark = remark
           @VersionCount = versioncount
           @RefJobCount = refjobcount
+          @IsJobRun = isjobrun
+          @FileName = filename
+          @WorkSpaceId = workspaceid
+          @RefJobStatusCountSet = refjobstatuscountset
         end
 
         def deserialize(params)
@@ -2179,6 +2229,17 @@ module TencentCloud
           @Remark = params['Remark']
           @VersionCount = params['VersionCount']
           @RefJobCount = params['RefJobCount']
+          @IsJobRun = params['IsJobRun']
+          @FileName = params['FileName']
+          @WorkSpaceId = params['WorkSpaceId']
+          unless params['RefJobStatusCountSet'].nil?
+            @RefJobStatusCountSet = []
+            params['RefJobStatusCountSet'].each do |i|
+              refjobstatuscountitem_tmp = RefJobStatusCountItem.new
+              refjobstatuscountitem_tmp.deserialize(i)
+              @RefJobStatusCountSet << refjobstatuscountitem_tmp
+            end
+          end
         end
       end
 
@@ -2316,7 +2377,7 @@ module TencentCloud
         # @type JobId: String
         # @param RunType: 运行类型，1：启动，2：恢复
         # @type RunType: Integer
-        # @param StartMode: 已废弃。旧版 SQL 类型作业启动参数：指定数据源消费起始时间点
+        # @param StartMode: 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（例:T1557394288000）
         # @type StartMode: String
         # @param JobConfigVersion: 当前作业的某个版本
         # @type JobConfigVersion: Integer
@@ -2324,16 +2385,20 @@ module TencentCloud
         # @type SavepointPath: String
         # @param SavepointId: Savepoint的Id
         # @type SavepointId: String
+        # @param UseOldSystemConnector: 使用历史版本系统依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseOldSystemConnector: Boolean
 
-        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId
+        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector
         
-        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil)
+        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil)
           @JobId = jobid
           @RunType = runtype
           @StartMode = startmode
           @JobConfigVersion = jobconfigversion
           @SavepointPath = savepointpath
           @SavepointId = savepointid
+          @UseOldSystemConnector = useoldsystemconnector
         end
 
         def deserialize(params)
@@ -2343,6 +2408,7 @@ module TencentCloud
           @JobConfigVersion = params['JobConfigVersion']
           @SavepointPath = params['SavepointPath']
           @SavepointId = params['SavepointId']
+          @UseOldSystemConnector = params['UseOldSystemConnector']
         end
       end
 

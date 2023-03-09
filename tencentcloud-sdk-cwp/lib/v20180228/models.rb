@@ -4361,17 +4361,21 @@ module TencentCloud
         # @type VulId: Integer
         # @param Uuids: 自选服务器时生效，主机uuid的string数组
         # @type Uuids: Array
+        # @param TimeoutPeriod: 扫描超时时长 ，单位秒
+        # @type TimeoutPeriod: Integer
 
-        attr_accessor :VulId, :Uuids
+        attr_accessor :VulId, :Uuids, :TimeoutPeriod
         
-        def initialize(vulid=nil, uuids=nil)
+        def initialize(vulid=nil, uuids=nil, timeoutperiod=nil)
           @VulId = vulid
           @Uuids = uuids
+          @TimeoutPeriod = timeoutperiod
         end
 
         def deserialize(params)
           @VulId = params['VulId']
           @Uuids = params['Uuids']
+          @TimeoutPeriod = params['TimeoutPeriod']
         end
       end
 

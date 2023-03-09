@@ -101,6 +101,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 创建AMQP集群
 
         # @param request: Request instance for CreateAMQPCluster.
@@ -124,6 +126,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 创建AMQP Exchange
 
@@ -149,6 +153,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 创建AMQP队列
 
         # @param request: Request instance for CreateAMQPQueue.
@@ -173,6 +179,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 创建AMQP路由关系
 
         # @param request: Request instance for CreateAMQPRouteRelation.
@@ -196,6 +204,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 创建Amqp Vhost
 
@@ -533,6 +543,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 删除AMQP集群
 
         # @param request: Request instance for DeleteAMQPCluster.
@@ -556,6 +568,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 删除Amqp交换机
 
@@ -581,6 +595,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 删除Amqp队列
 
         # @param request: Request instance for DeleteAMQPQueue.
@@ -605,6 +621,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 删除Amqp路由关系
 
         # @param request: Request instance for DeleteAMQPRouteRelation.
@@ -628,6 +646,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 删除Vhost
 
@@ -965,6 +985,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 获取单个Amqp集群信息
 
         # @param request: Request instance for DescribeAMQPCluster.
@@ -1013,6 +1035,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
 
         # @param request: Request instance for DescribeAMQPCreateQuota.
@@ -1036,6 +1060,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 获取AMQP Exchange列表
 
@@ -1061,6 +1087,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 获取Amqp队列列表
 
         # @param request: Request instance for DescribeAMQPQueues.
@@ -1085,6 +1113,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 获取Amqp路由关系列表
 
         # @param request: Request instance for DescribeAMQPRouteRelations.
@@ -1108,6 +1138,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 获取Amqp Vhost 列表
 
@@ -1877,6 +1909,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 更新Amqp交换机
 
         # @param request: Request instance for ModifyAMQPExchange.
@@ -1901,6 +1935,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线了，对应的接口也要下线。
+
         # 更新Amqp队列
 
         # @param request: Request instance for ModifyAMQPQueue.
@@ -1924,6 +1960,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线了，对应的接口也要下线。
 
         # 更新Vhost
 

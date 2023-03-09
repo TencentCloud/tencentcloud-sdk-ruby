@@ -3456,6 +3456,81 @@ module TencentCloud
         end
       end
 
+      # AWS S3 文件是上传触发器。
+      class AwsS3FileUploadTrigger < TencentCloud::Common::AbstractModel
+        # @param S3Bucket: 工作流绑定的 AWS S3 存储桶。
+        # @type S3Bucket: String
+        # @param S3Region: 工作流绑定的桶所在 AWS 区域。
+        # @type S3Region: String
+        # @param Dir: 工作流绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
+        # @type Dir: String
+        # @param Formats: 工作流允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
+        # @type Formats: Array
+        # @param S3SecretId: 工作流绑定的 AWS S3 存储桶的秘钥ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type S3SecretId: String
+        # @param S3SecretKey: 工作流绑定的 AWS S3 存储桶的秘钥Key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type S3SecretKey: String
+        # @param AwsSQS: 工作流绑定的 AWS S3 存储桶对应的 SQS事件队列。
+        # 注意：队列和桶需要在同一区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
+
+        attr_accessor :S3Bucket, :S3Region, :Dir, :Formats, :S3SecretId, :S3SecretKey, :AwsSQS
+        
+        def initialize(s3bucket=nil, s3region=nil, dir=nil, formats=nil, s3secretid=nil, s3secretkey=nil, awssqs=nil)
+          @S3Bucket = s3bucket
+          @S3Region = s3region
+          @Dir = dir
+          @Formats = formats
+          @S3SecretId = s3secretid
+          @S3SecretKey = s3secretkey
+          @AwsSQS = awssqs
+        end
+
+        def deserialize(params)
+          @S3Bucket = params['S3Bucket']
+          @S3Region = params['S3Region']
+          @Dir = params['Dir']
+          @Formats = params['Formats']
+          @S3SecretId = params['S3SecretId']
+          @S3SecretKey = params['S3SecretKey']
+          unless params['AwsSQS'].nil?
+            @AwsSQS = AwsSQS.new
+            @AwsSQS.deserialize(params['AwsSQS'])
+          end
+        end
+      end
+
+      # Aws SQS 队列信息
+      class AwsSQS < TencentCloud::Common::AbstractModel
+        # @param SQSRegion: SQS 队列区域。
+        # @type SQSRegion: String
+        # @param SQSQueueName: SQS 队列名称。
+        # @type SQSQueueName: String
+        # @param S3SecretId: 读写SQS的秘钥id。
+        # @type S3SecretId: String
+        # @param S3SecretKey: 读写SQS的秘钥key。
+        # @type S3SecretKey: String
+
+        attr_accessor :SQSRegion, :SQSQueueName, :S3SecretId, :S3SecretKey
+        
+        def initialize(sqsregion=nil, sqsqueuename=nil, s3secretid=nil, s3secretkey=nil)
+          @SQSRegion = sqsregion
+          @SQSQueueName = sqsqueuename
+          @S3SecretId = s3secretid
+          @S3SecretKey = s3secretkey
+        end
+
+        def deserialize(params)
+          @SQSRegion = params['SQSRegion']
+          @SQSQueueName = params['SQSQueueName']
+          @S3SecretId = params['S3SecretId']
+          @S3SecretKey = params['S3SecretKey']
+        end
+      end
+
       # 智能分类任务控制参数
       class ClassificationConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能分类任务开关，可选值：
@@ -10706,20 +10781,27 @@ module TencentCloud
 
       # 媒体处理的输入对象信息。
       class MediaInputInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 输入来源对象的类型，支持 COS、URL 两种。
+        # @param Type: 输入来源对象的类型，支持：
+        # <li> COS：COS源</li>
+        # <li> URL：URL源</li>
+        # <li> AWS-S3：AWS 源，目前只支持转码任务 </li>
         # @type Type: String
         # @param CosInputInfo: 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
         # @type CosInputInfo: :class:`Tencentcloud::Mps.v20190612.models.CosInputInfo`
         # @param UrlInputInfo: 当 Type 为 URL 时有效，则该项为必填，表示媒体处理 URL 对象信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrlInputInfo: :class:`Tencentcloud::Mps.v20190612.models.UrlInputInfo`
+        # @param S3InputInfo: 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 对象信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type S3InputInfo: :class:`Tencentcloud::Mps.v20190612.models.S3InputInfo`
 
-        attr_accessor :Type, :CosInputInfo, :UrlInputInfo
+        attr_accessor :Type, :CosInputInfo, :UrlInputInfo, :S3InputInfo
         
-        def initialize(type=nil, cosinputinfo=nil, urlinputinfo=nil)
+        def initialize(type=nil, cosinputinfo=nil, urlinputinfo=nil, s3inputinfo=nil)
           @Type = type
           @CosInputInfo = cosinputinfo
           @UrlInputInfo = urlinputinfo
+          @S3InputInfo = s3inputinfo
         end
 
         def deserialize(params)
@@ -10731,6 +10813,10 @@ module TencentCloud
           unless params['UrlInputInfo'].nil?
             @UrlInputInfo = UrlInputInfo.new
             @UrlInputInfo.deserialize(params['UrlInputInfo'])
+          end
+          unless params['S3InputInfo'].nil?
+            @S3InputInfo = S3InputInfo.new
+            @S3InputInfo.deserialize(params['S3InputInfo'])
           end
         end
       end
@@ -14276,6 +14362,66 @@ module TencentCloud
         end
       end
 
+      # AWS S3存储输入
+      class S3InputInfo < TencentCloud::Common::AbstractModel
+        # @param S3Bucket: S3 bucket。
+        # @type S3Bucket: String
+        # @param S3Region: S3 bucket 对应的区域。
+        # @type S3Region: String
+        # @param S3Object: S3 bucket 中的媒体资源路径。
+        # @type S3Object: String
+        # @param S3SecretId: AWS 内网访问 媒体资源的秘钥id。
+        # @type S3SecretId: String
+        # @param S3SecretKey: AWS 内网访问 媒体资源的秘钥key。
+        # @type S3SecretKey: String
+
+        attr_accessor :S3Bucket, :S3Region, :S3Object, :S3SecretId, :S3SecretKey
+        
+        def initialize(s3bucket=nil, s3region=nil, s3object=nil, s3secretid=nil, s3secretkey=nil)
+          @S3Bucket = s3bucket
+          @S3Region = s3region
+          @S3Object = s3object
+          @S3SecretId = s3secretid
+          @S3SecretKey = s3secretkey
+        end
+
+        def deserialize(params)
+          @S3Bucket = params['S3Bucket']
+          @S3Region = params['S3Region']
+          @S3Object = params['S3Object']
+          @S3SecretId = params['S3SecretId']
+          @S3SecretKey = params['S3SecretKey']
+        end
+      end
+
+      # AWS S3 输出位置
+      class S3OutputStorage < TencentCloud::Common::AbstractModel
+        # @param S3Bucket: S3 bucket。
+        # @type S3Bucket: String
+        # @param S3Region: S3 bucket 对应的区域。
+        # @type S3Region: String
+        # @param S3SecretId: AWS 内网上传 媒体资源的秘钥id。
+        # @type S3SecretId: String
+        # @param S3SecretKey: AWS 内网上传 媒体资源的秘钥key。
+        # @type S3SecretKey: String
+
+        attr_accessor :S3Bucket, :S3Region, :S3SecretId, :S3SecretKey
+        
+        def initialize(s3bucket=nil, s3region=nil, s3secretid=nil, s3secretkey=nil)
+          @S3Bucket = s3bucket
+          @S3Region = s3region
+          @S3SecretId = s3secretid
+          @S3SecretKey = s3secretkey
+        end
+
+        def deserialize(params)
+          @S3Bucket = params['S3Bucket']
+          @S3Region = params['S3Region']
+          @S3SecretId = params['S3SecretId']
+          @S3SecretKey = params['S3SecretKey']
+        end
+      end
+
       # 转推的目标地址信息。
       class SRTAddressDestination < TencentCloud::Common::AbstractModel
         # @param Ip: 目标地址的IP。
@@ -15176,14 +15322,19 @@ module TencentCloud
         # <li>TDMQ-CMQ：消息队列</li>
         # <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
         # <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
+        # <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
         # <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         # @type NotifyType: String
         # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
         # @type NotifyUrl: String
+        # @param AwsSQS: AWS SQS 回调，NotifyType为 AWS-SQS 时必填。
 
-        attr_accessor :CmqModel, :CmqRegion, :TopicName, :QueueName, :NotifyMode, :NotifyType, :NotifyUrl
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
+
+        attr_accessor :CmqModel, :CmqRegion, :TopicName, :QueueName, :NotifyMode, :NotifyType, :NotifyUrl, :AwsSQS
         
-        def initialize(cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, notifymode=nil, notifytype=nil, notifyurl=nil)
+        def initialize(cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, notifymode=nil, notifytype=nil, notifyurl=nil, awssqs=nil)
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @TopicName = topicname
@@ -15191,6 +15342,7 @@ module TencentCloud
           @NotifyMode = notifymode
           @NotifyType = notifytype
           @NotifyUrl = notifyurl
+          @AwsSQS = awssqs
         end
 
         def deserialize(params)
@@ -15201,22 +15353,32 @@ module TencentCloud
           @NotifyMode = params['NotifyMode']
           @NotifyType = params['NotifyType']
           @NotifyUrl = params['NotifyUrl']
+          unless params['AwsSQS'].nil?
+            @AwsSQS = AwsSQS.new
+            @AwsSQS.deserialize(params['AwsSQS'])
+          end
         end
       end
 
       # 媒体处理输出对象信息。
       class TaskOutputStorage < TencentCloud::Common::AbstractModel
-        # @param Type: 媒体处理输出对象存储位置的类型，现在仅支持 COS。
+        # @param Type: 媒体处理输出对象存储位置的类型，支持：
+        # <li>COS：COS存储</li>
+        # <li>AWS-S3：AWS 存储，只适用于AWS任务，且要求同区域</li>
         # @type Type: String
         # @param CosOutputStorage: 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 输出位置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosOutputStorage: :class:`Tencentcloud::Mps.v20190612.models.CosOutputStorage`
+        # @param S3OutputStorage: 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 输出位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type S3OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.S3OutputStorage`
 
-        attr_accessor :Type, :CosOutputStorage
+        attr_accessor :Type, :CosOutputStorage, :S3OutputStorage
         
-        def initialize(type=nil, cosoutputstorage=nil)
+        def initialize(type=nil, cosoutputstorage=nil, s3outputstorage=nil)
           @Type = type
           @CosOutputStorage = cosoutputstorage
+          @S3OutputStorage = s3outputstorage
         end
 
         def deserialize(params)
@@ -15224,6 +15386,10 @@ module TencentCloud
           unless params['CosOutputStorage'].nil?
             @CosOutputStorage = CosOutputStorage.new
             @CosOutputStorage.deserialize(params['CosOutputStorage'])
+          end
+          unless params['S3OutputStorage'].nil?
+            @S3OutputStorage = S3OutputStorage.new
+            @S3OutputStorage.deserialize(params['S3OutputStorage'])
           end
         end
       end
@@ -16387,6 +16553,56 @@ module TencentCloud
         end
       end
 
+      # WithdrawsWatermark请求参数结构体
+      class WithdrawsWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 输入媒体文件存储信息。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :InputInfo, :TaskNotifyConfig, :SessionContext
+        
+        def initialize(inputinfo=nil, tasknotifyconfig=nil, sessioncontext=nil)
+          @InputInfo = inputinfo
+          @TaskNotifyConfig = tasknotifyconfig
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # WithdrawsWatermark返回参数结构体
+      class WithdrawsWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID，可以通过该 ID 查询任务状态和结果。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 工作流信息详情。
       class WorkflowInfo < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 工作流 ID。
@@ -16576,17 +16792,26 @@ module TencentCloud
 
       # 输入规则，当上传视频命中该规则时，即触发工作流。
       class WorkflowTrigger < TencentCloud::Common::AbstractModel
-        # @param Type: 触发器的类型，目前仅支持 CosFileUpload。
+        # @param Type: 触发器的类型，可选值：
+        # <li>CosFileUpload：COS触发</li>
+        # <li>AwsS3FileUpload：AWS触发，目前只支持转码任务。只有编排支持，工作流不支持。  </li>
+
         # @type Type: String
         # @param CosFileUploadTrigger: 当 Type 为 CosFileUpload 时必填且有效，为 COS 触发规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosFileUploadTrigger: :class:`Tencentcloud::Mps.v20190612.models.CosFileUploadTrigger`
+        # @param AwsS3FileUploadTrigger: 当 Type 为 AwsS3FileUpload 时必填且有效，为 AWS S3 触发规则。
 
-        attr_accessor :Type, :CosFileUploadTrigger
+        # 注意：目前AWS的S3、对应触发队列SQS、回调队列SQS的秘钥需要一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwsS3FileUploadTrigger: :class:`Tencentcloud::Mps.v20190612.models.AwsS3FileUploadTrigger`
+
+        attr_accessor :Type, :CosFileUploadTrigger, :AwsS3FileUploadTrigger
         
-        def initialize(type=nil, cosfileuploadtrigger=nil)
+        def initialize(type=nil, cosfileuploadtrigger=nil, awss3fileuploadtrigger=nil)
           @Type = type
           @CosFileUploadTrigger = cosfileuploadtrigger
+          @AwsS3FileUploadTrigger = awss3fileuploadtrigger
         end
 
         def deserialize(params)
@@ -16594,6 +16819,10 @@ module TencentCloud
           unless params['CosFileUploadTrigger'].nil?
             @CosFileUploadTrigger = CosFileUploadTrigger.new
             @CosFileUploadTrigger.deserialize(params['CosFileUploadTrigger'])
+          end
+          unless params['AwsS3FileUploadTrigger'].nil?
+            @AwsS3FileUploadTrigger = AwsS3FileUploadTrigger.new
+            @AwsS3FileUploadTrigger.deserialize(params['AwsS3FileUploadTrigger'])
           end
         end
       end

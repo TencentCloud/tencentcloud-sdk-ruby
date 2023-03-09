@@ -543,6 +543,64 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateEmbedWebUrl请求参数结构体
+      class ChannelCreateEmbedWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param EmbedType: WEB嵌入资源类型，取值范围：CREATE_SEAL创建印章，CREATE_TEMPLATE创建模板，MODIFY_TEMPLATE修改模板，PREVIEW_TEMPLATE预览模板，PREVIEW_FLOW预览流程
+        # @type EmbedType: String
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 渠道操作者信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param BusinessId: WEB嵌入的业务资源ID，EmbedType取值MODIFY_TEMPLATE或PREVIEW_TEMPLATE或 PREVIEW_FLOW时BusinessId必填
+        # @type BusinessId: String
+        # @param HiddenComponents: 是否隐藏控件，只有预览模板时生效
+        # @type HiddenComponents: Boolean
+
+        attr_accessor :EmbedType, :Agent, :Operator, :BusinessId, :HiddenComponents
+        
+        def initialize(embedtype=nil, agent=nil, operator=nil, businessid=nil, hiddencomponents=nil)
+          @EmbedType = embedtype
+          @Agent = agent
+          @Operator = operator
+          @BusinessId = businessid
+          @HiddenComponents = hiddencomponents
+        end
+
+        def deserialize(params)
+          @EmbedType = params['EmbedType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @BusinessId = params['BusinessId']
+          @HiddenComponents = params['HiddenComponents']
+        end
+      end
+
+      # ChannelCreateEmbedWebUrl返回参数结构体
+      class ChannelCreateEmbedWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入的web链接
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+        
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateFlowByFiles请求参数结构体
       class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
