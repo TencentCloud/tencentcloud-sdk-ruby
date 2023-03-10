@@ -195,15 +195,33 @@ module TencentCloud
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号，大陆11位手机号
         # @type Mobile: String
+        # @param Name: 被抄送人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param CcType: 被抄送人类型
+        # 0--个人. 1--员工
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcType: Integer
+        # @param CcPermission: 被抄送人权限
+        # 0--可查看
+        # 1--可查看也可下载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcPermission: Integer
 
-        attr_accessor :Mobile
+        attr_accessor :Mobile, :Name, :CcType, :CcPermission
         
-        def initialize(mobile=nil)
+        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil)
           @Mobile = mobile
+          @Name = name
+          @CcType = cctype
+          @CcPermission = ccpermission
         end
 
         def deserialize(params)
           @Mobile = params['Mobile']
+          @Name = params['Name']
+          @CcType = params['CcType']
+          @CcPermission = params['CcPermission']
         end
       end
 
@@ -607,7 +625,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowName: 签署流程名称，长度不超过200个字符
         # @type FlowName: String
-        # @param FlowApprovers: 签署流程签约方列表，最多不超过5个参与方
+        # @param FlowApprovers: 签署流程签约方列表，最多不超过50个参与方
         # @type FlowApprovers: Array
         # @param FileIds: 签署文件资源Id列表，目前仅支持单个文件
         # @type FileIds: Array
@@ -638,10 +656,14 @@ module TencentCloud
         # @type SignBeanTag: Integer
         # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param CcInfos: 被抄送人信息列表
+        # @type CcInfos: Array
+        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @type CcNotifyType: Integer
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator, :CcInfos, :CcNotifyType
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil, ccinfos=nil, ccnotifytype=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -658,6 +680,8 @@ module TencentCloud
           @ApproverVerifyType = approververifytype
           @SignBeanTag = signbeantag
           @Operator = operator
+          @CcInfos = ccinfos
+          @CcNotifyType = ccnotifytype
         end
 
         def deserialize(params)
@@ -697,6 +721,15 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              ccinfo_tmp = CcInfo.new
+              ccinfo_tmp.deserialize(i)
+              @CcInfos << ccinfo_tmp
+            end
+          end
+          @CcNotifyType = params['CcNotifyType']
         end
       end
 
@@ -3516,10 +3549,12 @@ module TencentCloud
 
         # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
+        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @type CcNotifyType: Integer
 
-        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview
+        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType
         
-        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil)
+        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil)
           @FlowName = flowname
           @Deadline = deadline
           @TemplateId = templateid
@@ -3532,6 +3567,7 @@ module TencentCloud
           @CustomShowMap = customshowmap
           @CcInfos = ccinfos
           @NeedSignReview = needsignreview
+          @CcNotifyType = ccnotifytype
         end
 
         def deserialize(params)
@@ -3568,6 +3604,7 @@ module TencentCloud
             end
           end
           @NeedSignReview = params['NeedSignReview']
+          @CcNotifyType = params['CcNotifyType']
         end
       end
 

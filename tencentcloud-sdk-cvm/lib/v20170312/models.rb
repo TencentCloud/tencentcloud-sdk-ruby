@@ -3065,9 +3065,9 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param Aliases: 按照一个或者多个实例名称查询。
         # @type Aliases: Array
-        # @param StartDate: 时间查询区间的起始位置，会根据`OrderField`中指定的字段进行过滤。未传入时默认为当天`00:00:00`。
+        # @param StartDate: 时间查询区间的起始位置，会根据任务创建时间`CreateTime`进行过滤。未传入时默认为当天`00:00:00`。
         # @type StartDate: String
-        # @param EndDate: 时间查询区间的终止位置，会根据`OrderField`中指定的字段进行过滤。未传入时默认为当前时刻。
+        # @param EndDate: 时间查询区间的终止位置，会根据任务创建时间`CreateTime`进行过滤。未传入时默认为当前时刻。
         # @type EndDate: String
         # @param OrderField: 指定返回维修任务列表的排序字段，目前支持：
 
@@ -6859,6 +6859,66 @@ module TencentCloud
         end
       end
 
+      # RepairTaskControl请求参数结构体
+      class RepairTaskControlRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 待授权任务实例对应的产品类型，支持取值：
+
+        # - `CVM`：云服务器
+        # - `CDH`：专用宿主机
+        # - `CPM2.0`：裸金属云服务器
+        # @type Product: String
+        # @param InstanceIds: 指定待操作的实例ID列表，仅允许对列表中的实例ID相关的维修任务发起授权。
+        # @type InstanceIds: Array
+        # @param TaskId: 维修任务ID。
+        # @type TaskId: String
+        # @param Operate: 操作类型，当前只支持传入`AuthorizeRepair`。
+        # @type Operate: String
+        # @param OrderAuthTime: 预约授权时间，形如`2023-01-01 12:00:00`。预约时间需晚于当前时间至少5分钟，且在48小时之内。
+        # @type OrderAuthTime: String
+        # @param TaskSubMethod: 附加的授权处理策略。
+        # @type TaskSubMethod: String
+
+        attr_accessor :Product, :InstanceIds, :TaskId, :Operate, :OrderAuthTime, :TaskSubMethod
+        
+        def initialize(product=nil, instanceids=nil, taskid=nil, operate=nil, orderauthtime=nil, tasksubmethod=nil)
+          @Product = product
+          @InstanceIds = instanceids
+          @TaskId = taskid
+          @Operate = operate
+          @OrderAuthTime = orderauthtime
+          @TaskSubMethod = tasksubmethod
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceIds = params['InstanceIds']
+          @TaskId = params['TaskId']
+          @Operate = params['Operate']
+          @OrderAuthTime = params['OrderAuthTime']
+          @TaskSubMethod = params['TaskSubMethod']
+        end
+      end
+
+      # RepairTaskControl返回参数结构体
+      class RepairTaskControlResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 已完成授权的维修任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述维修任务的相关信息
       class RepairTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 维修任务ID
@@ -8228,15 +8288,19 @@ module TencentCloud
       class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         # @type InstanceIds: Array
+        # @param ReleasePrepaidDataDisks: 释放实例挂载的包年包月数据盘。
+        # @type ReleasePrepaidDataDisks: Boolean
 
-        attr_accessor :InstanceIds
+        attr_accessor :InstanceIds, :ReleasePrepaidDataDisks
         
-        def initialize(instanceids=nil)
+        def initialize(instanceids=nil, releaseprepaiddatadisks=nil)
           @InstanceIds = instanceids
+          @ReleasePrepaidDataDisks = releaseprepaiddatadisks
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
+          @ReleasePrepaidDataDisks = params['ReleasePrepaidDataDisks']
         end
       end
 

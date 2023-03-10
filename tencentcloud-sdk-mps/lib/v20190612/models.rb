@@ -180,6 +180,119 @@ module TencentCloud
         end
       end
 
+      # 编排原子任务
+      class Activity < TencentCloud::Common::AbstractModel
+        # @param ActivityType: 原子任务类型：
+        # <li>input: 起始节点</li>
+        # <li>output：终止节点</li>
+        # <li>action-trans：转码</li>
+        # <li>action-samplesnapshot：采样截图</li>
+        # <li>action-AIAnalysis: 分析</li>
+        # <li>action-AIRecognition：识别</li>
+        # <li>action-aiReview：审核</li>
+        # <li>action-animated-graphics：转动图</li>
+        # <li>action-image-sprite：雪碧图</li>
+        # <li>action-snapshotByTimeOffset: 时间点截图</li>
+        # <li>action-adaptive-substream：自适应码流</li>
+        # @type ActivityType: String
+        # @param ReardriveIndex: 后驱节点索引数组
+        # @type ReardriveIndex: Array
+        # @param ActivityPara: 原子任务参数
+        # @type ActivityPara: :class:`Tencentcloud::Mps.v20190612.models.ActivityPara`
+
+        attr_accessor :ActivityType, :ReardriveIndex, :ActivityPara
+        
+        def initialize(activitytype=nil, reardriveindex=nil, activitypara=nil)
+          @ActivityType = activitytype
+          @ReardriveIndex = reardriveindex
+          @ActivityPara = activitypara
+        end
+
+        def deserialize(params)
+          @ActivityType = params['ActivityType']
+          @ReardriveIndex = params['ReardriveIndex']
+          unless params['ActivityPara'].nil?
+            @ActivityPara = ActivityPara.new
+            @ActivityPara.deserialize(params['ActivityPara'])
+          end
+        end
+      end
+
+      # 编排原子任务
+      class ActivityPara < TencentCloud::Common::AbstractModel
+        # @param TranscodeTask: 视频转码任务
+        # @type TranscodeTask: :class:`Tencentcloud::Mps.v20190612.models.TranscodeTaskInput`
+        # @param AnimatedGraphicTask: 视频转动图任务
+        # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.AnimatedGraphicTaskInput`
+        # @param SnapshotByTimeOffsetTask: 视频按时间点截图任务
+        # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.SnapshotByTimeOffsetTaskInput`
+        # @param SampleSnapshotTask: 视频采样截图任务
+        # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.SampleSnapshotTaskInput`
+        # @param ImageSpriteTask: 视频截雪碧图任务
+        # @type ImageSpriteTask: :class:`Tencentcloud::Mps.v20190612.models.ImageSpriteTaskInput`
+        # @param AdaptiveDynamicStreamingTask: 转自适应码流任务
+        # @type AdaptiveDynamicStreamingTask: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingTaskInput`
+        # @param AiContentReviewTask: 视频内容审核类型任务
+        # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
+        # @param AiAnalysisTask: 视频内容分析类型任务
+        # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
+        # @param AiRecognitionTask: 视频内容识别类型任务
+        # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
+
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask
+        
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil)
+          @TranscodeTask = transcodetask
+          @AnimatedGraphicTask = animatedgraphictask
+          @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
+          @SampleSnapshotTask = samplesnapshottask
+          @ImageSpriteTask = imagespritetask
+          @AdaptiveDynamicStreamingTask = adaptivedynamicstreamingtask
+          @AiContentReviewTask = aicontentreviewtask
+          @AiAnalysisTask = aianalysistask
+          @AiRecognitionTask = airecognitiontask
+        end
+
+        def deserialize(params)
+          unless params['TranscodeTask'].nil?
+            @TranscodeTask = TranscodeTaskInput.new
+            @TranscodeTask.deserialize(params['TranscodeTask'])
+          end
+          unless params['AnimatedGraphicTask'].nil?
+            @AnimatedGraphicTask = AnimatedGraphicTaskInput.new
+            @AnimatedGraphicTask.deserialize(params['AnimatedGraphicTask'])
+          end
+          unless params['SnapshotByTimeOffsetTask'].nil?
+            @SnapshotByTimeOffsetTask = SnapshotByTimeOffsetTaskInput.new
+            @SnapshotByTimeOffsetTask.deserialize(params['SnapshotByTimeOffsetTask'])
+          end
+          unless params['SampleSnapshotTask'].nil?
+            @SampleSnapshotTask = SampleSnapshotTaskInput.new
+            @SampleSnapshotTask.deserialize(params['SampleSnapshotTask'])
+          end
+          unless params['ImageSpriteTask'].nil?
+            @ImageSpriteTask = ImageSpriteTaskInput.new
+            @ImageSpriteTask.deserialize(params['ImageSpriteTask'])
+          end
+          unless params['AdaptiveDynamicStreamingTask'].nil?
+            @AdaptiveDynamicStreamingTask = AdaptiveDynamicStreamingTaskInput.new
+            @AdaptiveDynamicStreamingTask.deserialize(params['AdaptiveDynamicStreamingTask'])
+          end
+          unless params['AiContentReviewTask'].nil?
+            @AiContentReviewTask = AiContentReviewTaskInput.new
+            @AiContentReviewTask.deserialize(params['AiContentReviewTask'])
+          end
+          unless params['AiAnalysisTask'].nil?
+            @AiAnalysisTask = AiAnalysisTaskInput.new
+            @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['AiRecognitionTask'].nil?
+            @AiRecognitionTask = AiRecognitionTaskInput.new
+            @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
+          end
+        end
+      end
+
       # 编排子任务输出
       class ActivityResItem < TencentCloud::Common::AbstractModel
         # @param TranscodeTask: 转码任务输出
@@ -4857,6 +4970,78 @@ module TencentCloud
         end
       end
 
+      # CreateSchedule请求参数结构体
+      class CreateScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleName: 编排名称，最多128字符。同一个用户该名称唯一。
+        # @type ScheduleName: String
+        # @param Trigger: 编排绑定的触发规则，当上传视频命中该规则到该对象时即触发工作流。
+        # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
+        # @param Activities: 编排任务列表。
+        # @type Activities: Array
+        # @param OutputStorage: 媒体处理的文件输出存储位置。不填则继承 Trigger 中的存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致。
+        # @type OutputDir: String
+        # @param TaskNotifyConfig: 任务的事件通知配置，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+
+        attr_accessor :ScheduleName, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig
+        
+        def initialize(schedulename=nil, trigger=nil, activities=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil)
+          @ScheduleName = schedulename
+          @Trigger = trigger
+          @Activities = activities
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @TaskNotifyConfig = tasknotifyconfig
+        end
+
+        def deserialize(params)
+          @ScheduleName = params['ScheduleName']
+          unless params['Trigger'].nil?
+            @Trigger = WorkflowTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          unless params['Activities'].nil?
+            @Activities = []
+            params['Activities'].each do |i|
+              activity_tmp = Activity.new
+              activity_tmp.deserialize(i)
+              @Activities << activity_tmp
+            end
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+        end
+      end
+
+      # CreateSchedule返回参数结构体
+      class CreateScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排 ID。
+        # @type ScheduleId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScheduleId, :RequestId
+        
+        def initialize(scheduleid=nil, requestid=nil)
+          @ScheduleId = scheduleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSnapshotByTimeOffsetTemplate请求参数结构体
       class CreateSnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
@@ -5606,6 +5791,38 @@ module TencentCloud
 
       # DeleteSampleSnapshotTemplate返回参数结构体
       class DeleteSampleSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSchedule请求参数结构体
+      class DeleteScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排唯一标识。
+        # @type ScheduleId: Integer
+
+        attr_accessor :ScheduleId
+        
+        def initialize(scheduleid=nil)
+          @ScheduleId = scheduleid
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+        end
+      end
+
+      # DeleteSchedule返回参数结构体
+      class DeleteScheduleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7151,6 +7368,68 @@ module TencentCloud
         end
       end
 
+      # DescribeSchedules请求参数结构体
+      class DescribeSchedulesRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleIds: 编排 ID 过滤条件，数组长度限制：100。
+        # @type ScheduleIds: Array
+        # @param Status: 状态，取值范围：
+        # <li>Enabled：已启用，</li>
+        # <li>Disabled：已禁用。</li>
+        # 不填此参数，则不区分工作流状态。
+        # @type Status: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :ScheduleIds, :Status, :Offset, :Limit
+        
+        def initialize(scheduleids=nil, status=nil, offset=nil, limit=nil)
+          @ScheduleIds = scheduleids
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ScheduleIds = params['ScheduleIds']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSchedules返回参数结构体
+      class DescribeSchedulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param ScheduleInfoSet: 编排信息数组。
+        # @type ScheduleInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ScheduleInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, scheduleinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ScheduleInfoSet = scheduleinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ScheduleInfoSet'].nil?
+            @ScheduleInfoSet = []
+            params['ScheduleInfoSet'].each do |i|
+              schedulesinfo_tmp = SchedulesInfo.new
+              schedulesinfo_tmp.deserialize(i)
+              @ScheduleInfoSet << schedulesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSnapshotByTimeOffsetTemplates请求参数结构体
       class DescribeSnapshotByTimeOffsetTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 指定时间点截图模板唯一标识过滤条件，数组长度限制：100。
@@ -8183,6 +8462,38 @@ module TencentCloud
         end
       end
 
+      # DisableSchedule请求参数结构体
+      class DisableScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排唯一表示。
+        # @type ScheduleId: Integer
+
+        attr_accessor :ScheduleId
+        
+        def initialize(scheduleid=nil)
+          @ScheduleId = scheduleid
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+        end
+      end
+
+      # DisableSchedule返回参数结构体
+      class DisableScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableWorkflow请求参数结构体
       class DisableWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 工作流 ID。
@@ -8432,6 +8743,38 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @Path = params['Path']
+        end
+      end
+
+      # EnableSchedule请求参数结构体
+      class EnableScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排唯一标识。
+        # @type ScheduleId: Integer
+
+        attr_accessor :ScheduleId
+        
+        def initialize(scheduleid=nil)
+          @ScheduleId = scheduleid
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+        end
+      end
+
+      # EnableSchedule返回参数结构体
+      class EnableScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12302,6 +12645,80 @@ module TencentCloud
         end
       end
 
+      # ModifySchedule请求参数结构体
+      class ModifyScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排唯一标识。
+        # @type ScheduleId: Integer
+        # @param ScheduleName: 编排名称。
+        # @type ScheduleName: String
+        # @param Trigger: 编排绑定的触发规则。
+        # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
+        # @param Activities: 编排任务列表。
+        # 注意：内部不允许部分更新，如果需要更新需全量提交编排任务列表。
+        # @type Activities: Array
+        # @param OutputStorage: 媒体处理的文件输出存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录。
+        # 注意：如果设置为空，则表示取消老配置的OutputDir值。
+        # @type OutputDir: String
+        # @param TaskNotifyConfig: 任务的事件通知配置。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+
+        attr_accessor :ScheduleId, :ScheduleName, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig
+        
+        def initialize(scheduleid=nil, schedulename=nil, trigger=nil, activities=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil)
+          @ScheduleId = scheduleid
+          @ScheduleName = schedulename
+          @Trigger = trigger
+          @Activities = activities
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @TaskNotifyConfig = tasknotifyconfig
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+          @ScheduleName = params['ScheduleName']
+          unless params['Trigger'].nil?
+            @Trigger = WorkflowTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          unless params['Activities'].nil?
+            @Activities = []
+            params['Activities'].each do |i|
+              activity_tmp = Activity.new
+              activity_tmp.deserialize(i)
+              @Activities << activity_tmp
+            end
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+        end
+      end
+
+      # ModifySchedule返回参数结构体
+      class ModifyScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySnapshotByTimeOffsetTemplate请求参数结构体
       class ModifySnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 指定时间点截图模板唯一标识。
@@ -14801,6 +15218,85 @@ module TencentCloud
               @ActivityResultSet << activityresult_tmp
             end
           end
+        end
+      end
+
+      # 编排详情。
+      class SchedulesInfo < TencentCloud::Common::AbstractModel
+        # @param ScheduleId: 编排唯一标识。
+        # @type ScheduleId: Integer
+        # @param ScheduleName: 编排名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleName: String
+        # @param Status: 编排状态，取值范围：
+        # Enabled：已启用，
+        # Disabled：已禁用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Array
+        # @param Trigger: 编排绑定的触发规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
+        # @param Activities: 编排任务列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Activities: Array
+        # @param OutputStorage: 媒体处理的文件输出存储位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputDir: String
+        # @param TaskNotifyConfig: 任务的事件通知配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 最后编辑时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :ScheduleId, :ScheduleName, :Status, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig, :CreateTime, :UpdateTime
+        
+        def initialize(scheduleid=nil, schedulename=nil, status=nil, trigger=nil, activities=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil, createtime=nil, updatetime=nil)
+          @ScheduleId = scheduleid
+          @ScheduleName = schedulename
+          @Status = status
+          @Trigger = trigger
+          @Activities = activities
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @TaskNotifyConfig = tasknotifyconfig
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ScheduleId = params['ScheduleId']
+          @ScheduleName = params['ScheduleName']
+          @Status = params['Status']
+          unless params['Trigger'].nil?
+            @Trigger = WorkflowTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          unless params['Activities'].nil?
+            @Activities = []
+            params['Activities'].each do |i|
+              activity_tmp = Activity.new
+              activity_tmp.deserialize(i)
+              @Activities << activity_tmp
+            end
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

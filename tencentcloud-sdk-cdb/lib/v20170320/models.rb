@@ -1111,10 +1111,14 @@ module TencentCloud
         # @type EndTime: String
         # @param TaskStatus: 任务状态，包括以下状态：initial,running,wait_complete,success,failed
         # @type TaskStatus: String
+        # @param NewRegionId: 克隆实例所在地域Id
+        # @type NewRegionId: Integer
+        # @param SrcRegionId: 源实例所在地域Id
+        # @type SrcRegionId: Integer
 
-        attr_accessor :SrcInstanceId, :DstInstanceId, :CloneJobId, :RollbackStrategy, :RollbackTargetTime, :StartTime, :EndTime, :TaskStatus
+        attr_accessor :SrcInstanceId, :DstInstanceId, :CloneJobId, :RollbackStrategy, :RollbackTargetTime, :StartTime, :EndTime, :TaskStatus, :NewRegionId, :SrcRegionId
         
-        def initialize(srcinstanceid=nil, dstinstanceid=nil, clonejobid=nil, rollbackstrategy=nil, rollbacktargettime=nil, starttime=nil, endtime=nil, taskstatus=nil)
+        def initialize(srcinstanceid=nil, dstinstanceid=nil, clonejobid=nil, rollbackstrategy=nil, rollbacktargettime=nil, starttime=nil, endtime=nil, taskstatus=nil, newregionid=nil, srcregionid=nil)
           @SrcInstanceId = srcinstanceid
           @DstInstanceId = dstinstanceid
           @CloneJobId = clonejobid
@@ -1123,6 +1127,8 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @TaskStatus = taskstatus
+          @NewRegionId = newregionid
+          @SrcRegionId = srcregionid
         end
 
         def deserialize(params)
@@ -1134,6 +1140,8 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @TaskStatus = params['TaskStatus']
+          @NewRegionId = params['NewRegionId']
+          @SrcRegionId = params['SrcRegionId']
         end
       end
 

@@ -18453,10 +18453,13 @@ module TencentCloud
         # @param MachineExtraInfo: 主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Uuid: 服务器uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
 
-        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid, :MachineExtraInfo
+        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid, :MachineExtraInfo, :Uuid
         
-        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil, machineextrainfo=nil)
+        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil, machineextrainfo=nil, uuid=nil)
           @Id = id
           @Alias = _alias
           @HostIp = hostip
@@ -18467,6 +18470,7 @@ module TencentCloud
           @Status = status
           @Quuid = quuid
           @MachineExtraInfo = machineextrainfo
+          @Uuid = uuid
         end
 
         def deserialize(params)
@@ -18483,6 +18487,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Uuid = params['Uuid']
         end
       end
 

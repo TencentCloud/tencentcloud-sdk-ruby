@@ -221,6 +221,41 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
+        # 1. 视频转码（带水印）；
+        # 2. 视频转动图；
+        # 3. 对视频按指定时间点截图；
+        # 4. 对视频采样截图；
+        # 5. 对视频截图雪碧图；
+        # 6. 对视频转自适应码流；
+        # 7. 智能内容审核（鉴黄、敏感信息检测）；
+        # 8. 智能内容分析（标签、分类、封面、按帧标签）；
+        # 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+
+        # 注意：创建编排成功后是禁用状态，需要手动启用。
+
+        # @param request: Request instance for CreateSchedule.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateScheduleRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateScheduleResponse`
+        def CreateSchedule(request)
+          body = send_request('CreateSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义指定时间点截图模板，数量上限：16。
 
         # @param request: Request instance for CreateSnapshotByTimeOffsetTemplate.
@@ -580,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSampleSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除编排
+
+        # @param request: Request instance for DeleteSchedule.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteScheduleRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteScheduleResponse`
+        def DeleteSchedule(request)
+          body = send_request('DeleteSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteScheduleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -964,6 +1023,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSampleSnapshotTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询编排。
+
+        # @param request: Request instance for DescribeSchedules.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeSchedulesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeSchedulesResponse`
+        def DescribeSchedules(request)
+          body = send_request('DescribeSchedules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSchedulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1364,6 +1447,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 禁用自动化触发编排任务。
+
+        # @param request: Request instance for DisableSchedule.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DisableScheduleRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DisableScheduleResponse`
+        def DisableSchedule(request)
+          body = send_request('DisableSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 禁用工作流。
 
         # @param request: Request instance for DisableWorkflow.
@@ -1402,6 +1509,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EditMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用自动化触发编排任务。
+
+        # @param request: Request instance for EnableSchedule.
+        # @type request: :class:`Tencentcloud::mps::V20190612::EnableScheduleRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::EnableScheduleResponse`
+        def EnableSchedule(request)
+          body = send_request('EnableSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableScheduleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1668,6 +1799,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySampleSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改编排
+
+        # @param request: Request instance for ModifySchedule.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyScheduleRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyScheduleResponse`
+        def ModifySchedule(request)
+          body = send_request('ModifySchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyScheduleResponse.new
             model.deserialize(response['Response'])
             model
           else

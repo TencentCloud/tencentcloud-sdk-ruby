@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建cos导入任务
+
+        # @param request: Request instance for CreateCosRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateCosRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateCosRechargeResponse`
+        def CreateCosRecharge(request)
+          body = send_request('CreateCosRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCosRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
 
         # @param request: Request instance for CreateExport.
@@ -821,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取cos导入配置
+
+        # @param request: Request instance for DescribeCosRecharges.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeCosRechargesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeCosRechargesResponse`
+        def DescribeCosRecharges(request)
+          body = send_request('DescribeCosRecharges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCosRechargesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取日志下载任务列表
 
         # @param request: Request instance for DescribeExports.
@@ -1263,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改cos导入任务
+
+        # @param request: Request instance for ModifyCosRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyCosRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyCosRechargeResponse`
+        def ModifyCosRecharge(request)
+          body = send_request('ModifyCosRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCosRechargeResponse.new
             model.deserialize(response['Response'])
             model
           else

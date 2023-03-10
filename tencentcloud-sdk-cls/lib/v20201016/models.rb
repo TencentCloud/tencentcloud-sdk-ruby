@@ -905,6 +905,97 @@ module TencentCloud
         end
       end
 
+      # cos导入配置信息
+      class CosRechargeInfo < TencentCloud::Common::AbstractModel
+        # @param Id: COS导入配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param LogsetId: 日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+        # @param Name: cos导入任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Bucket: cos存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param BucketRegion: cos存储桶地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketRegion: String
+        # @param Prefix: cos存储桶前缀地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prefix: String
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志；
+        # 默认为minimalist_log
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogType: String
+        # @param Status: 状态   status 0: 已创建, 1: 运行中, 2: 已停止, 3: 已完成, 4: 运行失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Enable: 是否启用:   0： 未启用  ， 1：启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Progress: 进度条百分值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param Compress: supported: "", "gzip", "lzop", "snappy”; 默认空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compress: String
+        # @param ExtractRuleInfo: 见： ExtractRuleInfo 结构描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+
+        attr_accessor :Id, :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Status, :Enable, :CreateTime, :UpdateTime, :Progress, :Compress, :ExtractRuleInfo
+        
+        def initialize(id=nil, topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, progress=nil, compress=nil, extractruleinfo=nil)
+          @Id = id
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Name = name
+          @Bucket = bucket
+          @BucketRegion = bucketregion
+          @Prefix = prefix
+          @LogType = logtype
+          @Status = status
+          @Enable = enable
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Progress = progress
+          @Compress = compress
+          @ExtractRuleInfo = extractruleinfo
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Name = params['Name']
+          @Bucket = params['Bucket']
+          @BucketRegion = params['BucketRegion']
+          @Prefix = params['Prefix']
+          @LogType = params['LogType']
+          @Status = params['Status']
+          @Enable = params['Enable']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Progress = params['Progress']
+          @Compress = params['Compress']
+          unless params['ExtractRuleInfo'].nil?
+            @ExtractRuleInfo = ExtractRuleInfo.new
+            @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
+          end
+        end
+      end
+
       # CreateAlarmNotice请求参数结构体
       class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param Name: 通知渠道组名称。
@@ -1295,6 +1386,74 @@ module TencentCloud
 
       # CreateConsumer返回参数结构体
       class CreateConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCosRecharge请求参数结构体
+      class CreateCosRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID
+        # @type TopicId: String
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+        # @param Name: 投递任务名称
+        # @type Name: String
+        # @param Bucket: COS存储桶
+        # @type Bucket: String
+        # @param BucketRegion: COS存储桶所在地域
+        # @type BucketRegion: String
+        # @param Prefix: COS文件所在文件夹的前缀
+        # @type Prefix: String
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
+        # 默认为minimalist_log
+        # @type LogType: String
+        # @param Compress: supported: "", "gzip", "lzop", "snappy”; 默认空
+        # @type Compress: String
+        # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
+        # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+
+        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Compress, :ExtractRuleInfo
+        
+        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, compress=nil, extractruleinfo=nil)
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Name = name
+          @Bucket = bucket
+          @BucketRegion = bucketregion
+          @Prefix = prefix
+          @LogType = logtype
+          @Compress = compress
+          @ExtractRuleInfo = extractruleinfo
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Name = params['Name']
+          @Bucket = params['Bucket']
+          @BucketRegion = params['BucketRegion']
+          @Prefix = params['Prefix']
+          @LogType = params['LogType']
+          @Compress = params['Compress']
+          unless params['ExtractRuleInfo'].nil?
+            @ExtractRuleInfo = ExtractRuleInfo.new
+            @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
+          end
+        end
+      end
+
+      # CreateCosRecharge返回参数结构体
+      class CreateCosRechargeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2585,6 +2744,58 @@ module TencentCloud
             @Ckafka.deserialize(params['Ckafka'])
           end
           @Compression = params['Compression']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRecharges请求参数结构体
+      class DescribeCosRechargesRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID
+        # @type TopicId: String
+        # @param Status: 状态   status 0: 已创建, 1: 运行中, 2: 已停止, 3: 已完成, 4: 运行失败。
+        # @type Status: Integer
+        # @param Enable: 是否启用:   0： 未启用  ， 1：启用
+        # @type Enable: Integer
+
+        attr_accessor :TopicId, :Status, :Enable
+        
+        def initialize(topicid=nil, status=nil, enable=nil)
+          @TopicId = topicid
+          @Status = status
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Status = params['Status']
+          @Enable = params['Enable']
+        end
+      end
+
+      # DescribeCosRecharges返回参数结构体
+      class DescribeCosRechargesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 见: CosRechargeInfo 结构描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosrechargeinfo_tmp = CosRechargeInfo.new
+              cosrechargeinfo_tmp.deserialize(i)
+              @Data << cosrechargeinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4627,6 +4838,50 @@ module TencentCloud
         end
       end
 
+      # ModifyCosRecharge请求参数结构体
+      class ModifyCosRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: COS导入配置ID
+        # @type Id: String
+        # @param TopicId: 日志主题Id
+        # @type TopicId: String
+        # @param Name: COS导入任务名称
+        # @type Name: String
+        # @param Enable: 是否启用:   0： 未启用  ， 1：启用
+        # @type Enable: Integer
+
+        attr_accessor :Id, :TopicId, :Name, :Enable
+        
+        def initialize(id=nil, topicid=nil, name=nil, enable=nil)
+          @Id = id
+          @TopicId = topicid
+          @Name = name
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyCosRecharge返回参数结构体
+      class ModifyCosRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIndex请求参数结构体
       class ModifyIndexRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
@@ -5604,8 +5859,10 @@ module TencentCloud
       # 创建资源实例时同时绑定的标签对说明
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value

@@ -3871,6 +3871,33 @@ module TencentCloud
         end
       end
 
+      # DescribeForbiddenTablePro请求参数结构体
+      class DescribeForbiddenTableProRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeForbiddenTablePro返回参数结构体
+      class DescribeForbiddenTableProResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLakeFsDirSummary请求参数结构体
       class DescribeLakeFsDirSummaryRequest < TencentCloud::Common::AbstractModel
 

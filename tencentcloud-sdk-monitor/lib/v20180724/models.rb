@@ -2606,7 +2606,7 @@ module TencentCloud
         # @type Module: String
         # @param NoticeIds: 告警通知模板id列表
         # @type NoticeIds: Array
-        # @param NoticeBindPolicys: 通知模版与策略绑定关系
+        # @param NoticeBindPolicys: 通知模板与策略绑定关系
         # @type NoticeBindPolicys: Array
 
         attr_accessor :Module, :NoticeIds, :NoticeBindPolicys

@@ -262,10 +262,10 @@ module TencentCloud
         # @param ApiAccessIpv6: TcaplusDB SDK连接参数，接入ipv6地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAccessIpv6: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，0,1:共享集群; 2:独立集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
-        # @param ClusterStatus: 集群状态
+        # @param ClusterStatus: 集群状态, 0：表示正常运行中，1：表示冻结隔离一般欠费进入此状态，2：表示待回收，一般用户主动触发删除进入这个状态，3：待释放，进入这个状态，表示可以释放此表占用的资源了，4：变更中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: Integer
         # @param ReadCapacityUnit: 读CU
@@ -303,10 +303,13 @@ module TencentCloud
         # @param IsReadOnlyUlogBackupExpireDay: 集群Ulog备份文件过期策略是否为只读， 0： UlogBackupExpire是只读，不可修改， 1： UlogBackupExpire可以修改（当前业务存在Svrid第二段等于clusterid的机器）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsReadOnlyUlogBackupExpireDay: Integer
+        # @param RestProxyStatus: restproxy状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestProxyStatus: Integer
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay, :RestProxyStatus
         
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil, restproxystatus=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -336,6 +339,7 @@ module TencentCloud
           @TxhBackupExpireDay = txhbackupexpireday
           @UlogBackupExpireDay = ulogbackupexpireday
           @IsReadOnlyUlogBackupExpireDay = isreadonlyulogbackupexpireday
+          @RestProxyStatus = restproxystatus
         end
 
         def deserialize(params)
@@ -385,6 +389,7 @@ module TencentCloud
           @TxhBackupExpireDay = params['TxhBackupExpireDay']
           @UlogBackupExpireDay = params['UlogBackupExpireDay']
           @IsReadOnlyUlogBackupExpireDay = params['IsReadOnlyUlogBackupExpireDay']
+          @RestProxyStatus = params['RestProxyStatus']
         end
       end
 
@@ -3428,15 +3433,19 @@ module TencentCloud
         # @type AverageProcessDelay: Integer
         # @param SlowProcessSpeed: 慢处理包速度
         # @type SlowProcessSpeed: Integer
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
 
-        attr_accessor :ProxyUid, :MachineType, :ProcessSpeed, :AverageProcessDelay, :SlowProcessSpeed
+        attr_accessor :ProxyUid, :MachineType, :ProcessSpeed, :AverageProcessDelay, :SlowProcessSpeed, :Version
         
-        def initialize(proxyuid=nil, machinetype=nil, processspeed=nil, averageprocessdelay=nil, slowprocessspeed=nil)
+        def initialize(proxyuid=nil, machinetype=nil, processspeed=nil, averageprocessdelay=nil, slowprocessspeed=nil, version=nil)
           @ProxyUid = proxyuid
           @MachineType = machinetype
           @ProcessSpeed = processspeed
           @AverageProcessDelay = averageprocessdelay
           @SlowProcessSpeed = slowprocessspeed
+          @Version = version
         end
 
         def deserialize(params)
@@ -3445,6 +3454,7 @@ module TencentCloud
           @ProcessSpeed = params['ProcessSpeed']
           @AverageProcessDelay = params['AverageProcessDelay']
           @SlowProcessSpeed = params['SlowProcessSpeed']
+          @Version = params['Version']
         end
       end
 
@@ -3760,16 +3770,20 @@ module TencentCloud
         # @type ReadNum: Integer
         # @param WriteNum: 写次数
         # @type WriteNum: Integer
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
 
-        attr_accessor :ServerUid, :MachineType, :MemoryRate, :DiskRate, :ReadNum, :WriteNum
+        attr_accessor :ServerUid, :MachineType, :MemoryRate, :DiskRate, :ReadNum, :WriteNum, :Version
         
-        def initialize(serveruid=nil, machinetype=nil, memoryrate=nil, diskrate=nil, readnum=nil, writenum=nil)
+        def initialize(serveruid=nil, machinetype=nil, memoryrate=nil, diskrate=nil, readnum=nil, writenum=nil, version=nil)
           @ServerUid = serveruid
           @MachineType = machinetype
           @MemoryRate = memoryrate
           @DiskRate = diskrate
           @ReadNum = readnum
           @WriteNum = writenum
+          @Version = version
         end
 
         def deserialize(params)
@@ -3779,6 +3793,7 @@ module TencentCloud
           @DiskRate = params['DiskRate']
           @ReadNum = params['ReadNum']
           @WriteNum = params['WriteNum']
+          @Version = params['Version']
         end
       end
 
@@ -4145,15 +4160,30 @@ module TencentCloud
         # @type TableCount: Integer
         # @param TotalSize: 表格组包含的表格存储总量（MB）
         # @type TotalSize: Integer
+        # @param TxhBackupExpireDay: 表格Txh备份文件多少天后过期删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxhBackupExpireDay: Integer
+        # @param EnableMysql: 是否开启mysql负载均衡,0未开启 1开启中 2已开启
+        # @type EnableMysql: Integer
+        # @param MysqlConnIp: mysql负载均衡vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MysqlConnIp: String
+        # @param MysqlConnPort: mysql负载均衡vport
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MysqlConnPort: Integer
 
-        attr_accessor :TableGroupId, :TableGroupName, :CreatedTime, :TableCount, :TotalSize
+        attr_accessor :TableGroupId, :TableGroupName, :CreatedTime, :TableCount, :TotalSize, :TxhBackupExpireDay, :EnableMysql, :MysqlConnIp, :MysqlConnPort
         
-        def initialize(tablegroupid=nil, tablegroupname=nil, createdtime=nil, tablecount=nil, totalsize=nil)
+        def initialize(tablegroupid=nil, tablegroupname=nil, createdtime=nil, tablecount=nil, totalsize=nil, txhbackupexpireday=nil, enablemysql=nil, mysqlconnip=nil, mysqlconnport=nil)
           @TableGroupId = tablegroupid
           @TableGroupName = tablegroupname
           @CreatedTime = createdtime
           @TableCount = tablecount
           @TotalSize = totalsize
+          @TxhBackupExpireDay = txhbackupexpireday
+          @EnableMysql = enablemysql
+          @MysqlConnIp = mysqlconnip
+          @MysqlConnPort = mysqlconnport
         end
 
         def deserialize(params)
@@ -4162,6 +4192,10 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @TableCount = params['TableCount']
           @TotalSize = params['TotalSize']
+          @TxhBackupExpireDay = params['TxhBackupExpireDay']
+          @EnableMysql = params['EnableMysql']
+          @MysqlConnIp = params['MysqlConnIp']
+          @MysqlConnPort = params['MysqlConnPort']
         end
       end
 

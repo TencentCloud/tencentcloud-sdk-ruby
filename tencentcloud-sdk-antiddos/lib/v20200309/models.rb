@@ -624,10 +624,13 @@ module TencentCloud
         # @param ElasticLimit: 高防包企业版弹性阈值，0表示未开启；大于0为弹性防护阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticLimit: Integer
+        # @param DownGradeProtect: 降配后的防护能力，单位Gbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownGradeProtect: Integer
 
-        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag, :EnterpriseFlag, :ElasticLimit
+        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag, :EnterpriseFlag, :ElasticLimit, :DownGradeProtect
         
-        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil, battleeditionflag=nil, channeleditionflag=nil, enterpriseflag=nil, elasticlimit=nil)
+        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil, battleeditionflag=nil, channeleditionflag=nil, enterpriseflag=nil, elasticlimit=nil, downgradeprotect=nil)
           @ProtectBandwidth = protectbandwidth
           @ProtectCountLimit = protectcountlimit
           @ProtectIPNumberLimit = protectipnumberlimit
@@ -638,6 +641,7 @@ module TencentCloud
           @ChannelEditionFlag = channeleditionflag
           @EnterpriseFlag = enterpriseflag
           @ElasticLimit = elasticlimit
+          @DownGradeProtect = downgradeprotect
         end
 
         def deserialize(params)
@@ -651,6 +655,7 @@ module TencentCloud
           @ChannelEditionFlag = params['ChannelEditionFlag']
           @EnterpriseFlag = params['EnterpriseFlag']
           @ElasticLimit = params['ElasticLimit']
+          @DownGradeProtect = params['DownGradeProtect']
         end
       end
 

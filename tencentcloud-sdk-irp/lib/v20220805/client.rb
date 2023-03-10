@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 获取电商类推荐结果
+
+        # @param request: Request instance for DescribeGoodsRecommend.
+        # @type request: :class:`Tencentcloud::irp::V20220805::DescribeGoodsRecommendRequest`
+        # @rtype: :class:`Tencentcloud::irp::V20220805::DescribeGoodsRecommendResponse`
+        def DescribeGoodsRecommend(request)
+          body = send_request('DescribeGoodsRecommend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGoodsRecommendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取信息流推荐结果
 
         # @param request: Request instance for FeedRecommend.
@@ -111,6 +135,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReportFeedUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上报电商类行为数据
+
+        # @param request: Request instance for ReportGoodsBehavior.
+        # @type request: :class:`Tencentcloud::irp::V20220805::ReportGoodsBehaviorRequest`
+        # @rtype: :class:`Tencentcloud::irp::V20220805::ReportGoodsBehaviorResponse`
+        def ReportGoodsBehavior(request)
+          body = send_request('ReportGoodsBehavior', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReportGoodsBehaviorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上报电商类商品信息
+
+        # @param request: Request instance for ReportGoodsInfo.
+        # @type request: :class:`Tencentcloud::irp::V20220805::ReportGoodsInfoRequest`
+        # @rtype: :class:`Tencentcloud::irp::V20220805::ReportGoodsInfoResponse`
+        def ReportGoodsInfo(request)
+          body = send_request('ReportGoodsInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReportGoodsInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -17,6 +17,42 @@
 module TencentCloud
   module Cloudhsm
     module V20191112
+      # 告警策略
+      class AlarmPolicy < TencentCloud::Common::AbstractModel
+        # @param Uin: 用户账号
+        # @type Uin: String
+        # @param Event: 告警事件
+        # @type Event: String
+        # @param Limit: 告警阈值
+        # @type Limit: Integer
+        # @param Status: 告警策略是否生效，0：停用，1：启用
+        # @type Status: Integer
+        # @param BeginTime: 在这个时间后才允许发送告警
+        # @type BeginTime: String
+        # @param EndTime: 在这个时间前才允许发送告警
+        # @type EndTime: String
+
+        attr_accessor :Uin, :Event, :Limit, :Status, :BeginTime, :EndTime
+        
+        def initialize(uin=nil, event=nil, limit=nil, status=nil, begintime=nil, endtime=nil)
+          @Uin = uin
+          @Event = event
+          @Limit = limit
+          @Status = status
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Event = params['Event']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # DescribeHSMBySubnetId请求参数结构体
       class DescribeHSMBySubnetIdRequest < TencentCloud::Common::AbstractModel
         # @param SubnetId: Subnet标识符
@@ -614,18 +650,100 @@ module TencentCloud
         end
       end
 
+      # GetAlarmEvent请求参数结构体
+      class GetAlarmEventRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetAlarmEvent返回参数结构体
+      class GetAlarmEventResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmConfig: 用户所有的告警策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmConfig: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmConfig, :RequestId
+        
+        def initialize(alarmconfig=nil, requestid=nil)
+          @AlarmConfig = alarmconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlarmConfig'].nil?
+            @AlarmConfig = []
+            params['AlarmConfig'].each do |i|
+              alarmpolicy_tmp = AlarmPolicy.new
+              alarmpolicy_tmp.deserialize(i)
+              @AlarmConfig << alarmpolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetVsmMonitorInfo请求参数结构体
+      class GetVsmMonitorInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源Id
+        # @type ResourceId: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+
+        attr_accessor :ResourceId, :ResourceName
+        
+        def initialize(resourceid=nil, resourcename=nil)
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+        end
+      end
+
+      # GetVsmMonitorInfo返回参数结构体
+      class GetVsmMonitorInfoResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorInfo: VSM监控信息
+        # @type MonitorInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorInfo, :RequestId
+        
+        def initialize(monitorinfo=nil, requestid=nil)
+          @MonitorInfo = monitorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MonitorInfo = params['MonitorInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 支持的加密机类型信息
       class HsmInfo < TencentCloud::Common::AbstractModel
         # @param Model: 加密机型号
         # @type Model: String
         # @param VsmTypes: 此类型的加密机所支持的VSM类型列表
         # @type VsmTypes: Array
+        # @param HsmType: 加密机母机类型：virtualization、GHSM、EHSM、SHSM
+        # @type HsmType: String
 
-        attr_accessor :Model, :VsmTypes
+        attr_accessor :Model, :VsmTypes, :HsmType
         
-        def initialize(model=nil, vsmtypes=nil)
+        def initialize(model=nil, vsmtypes=nil, hsmtype=nil)
           @Model = model
           @VsmTypes = vsmtypes
+          @HsmType = hsmtype
         end
 
         def deserialize(params)
@@ -638,6 +756,7 @@ module TencentCloud
               @VsmTypes << vsminfo_tmp
             end
           end
+          @HsmType = params['HsmType']
         end
       end
 
@@ -722,6 +841,54 @@ module TencentCloud
         end
       end
 
+      # ModifyAlarmEvent请求参数结构体
+      class ModifyAlarmEventRequest < TencentCloud::Common::AbstractModel
+        # @param Event: 告警事件，支持CPU、MEM、TCP
+        # @type Event: String
+        # @param Limit: 告警阈值
+        # @type Limit: Integer
+        # @param Status: 告警状态，0表示停用，1表示启动
+        # @type Status: Integer
+        # @param BeginTime: 告警开始时间，只有在这个时间后才会发送告警，当跟EndTime同时为空时表示全天告警
+        # @type BeginTime: String
+        # @param EndTime: 告警结束时间，只有在这个时间前才会发送告警，当跟BeginTime同时为空时表示全天告警
+        # @type EndTime: String
+
+        attr_accessor :Event, :Limit, :Status, :BeginTime, :EndTime
+        
+        def initialize(event=nil, limit=nil, status=nil, begintime=nil, endtime=nil)
+          @Event = event
+          @Limit = limit
+          @Status = status
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Event = params['Event']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ModifyAlarmEvent返回参数结构体
+      class ModifyAlarmEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVsmAttributes请求参数结构体
       class ModifyVsmAttributesRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
@@ -739,16 +906,19 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网Id
         # @type SubnetId: String
+        # @param AlarmStatus: 告警开关，0表示关闭告警，1表示启用告警
+        # @type AlarmStatus: Integer
 
-        attr_accessor :ResourceId, :Type, :ResourceName, :SgIds, :VpcId, :SubnetId
+        attr_accessor :ResourceId, :Type, :ResourceName, :SgIds, :VpcId, :SubnetId, :AlarmStatus
         
-        def initialize(resourceid=nil, type=nil, resourcename=nil, sgids=nil, vpcid=nil, subnetid=nil)
+        def initialize(resourceid=nil, type=nil, resourcename=nil, sgids=nil, vpcid=nil, subnetid=nil, alarmstatus=nil)
           @ResourceId = resourceid
           @Type = type
           @ResourceName = resourcename
           @SgIds = sgids
           @VpcId = vpcid
           @SubnetId = subnetid
+          @AlarmStatus = alarmstatus
         end
 
         def deserialize(params)
@@ -758,6 +928,7 @@ module TencentCloud
           @SgIds = params['SgIds']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @AlarmStatus = params['AlarmStatus']
         end
       end
 
@@ -845,10 +1016,13 @@ module TencentCloud
         # @param Manufacturer: 厂商
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
+        # @param AlarmStatus: 告警状态，0：停用，1：启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmStatus: Integer
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus
         
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -871,6 +1045,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @Tags = tags
           @Manufacturer = manufacturer
+          @AlarmStatus = alarmstatus
         end
 
         def deserialize(params)
@@ -910,6 +1085,7 @@ module TencentCloud
             end
           end
           @Manufacturer = params['Manufacturer']
+          @AlarmStatus = params['AlarmStatus']
         end
       end
 

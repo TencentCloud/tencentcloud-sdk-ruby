@@ -396,15 +396,34 @@ module TencentCloud
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号
         # @type Mobile: String
+        # @param Name: 被抄送人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param CcType: 被抄送人类型,
+        # 0--个人
+        # 1--员工
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcType: Integer
+        # @param CcPermission: 被抄送人权限
+        # 0--可查看
+        # 1--可查看也可下载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcPermission: Integer
 
-        attr_accessor :Mobile
+        attr_accessor :Mobile, :Name, :CcType, :CcPermission
         
-        def initialize(mobile=nil)
+        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil)
           @Mobile = mobile
+          @Name = name
+          @CcType = cctype
+          @CcPermission = ccpermission
         end
 
         def deserialize(params)
           @Mobile = params['Mobile']
+          @Name = params['Name']
+          @CcType = params['CcType']
+          @CcPermission = params['CcPermission']
         end
       end
 
@@ -937,10 +956,12 @@ module TencentCloud
         # @type SignBeanTag: Integer
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @type CcNotifyType: Integer
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent, :CcNotifyType
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil, ccnotifytype=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -959,6 +980,7 @@ module TencentCloud
           @FlowDescription = flowdescription
           @SignBeanTag = signbeantag
           @Agent = agent
+          @CcNotifyType = ccnotifytype
         end
 
         def deserialize(params)
@@ -1007,6 +1029,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @CcNotifyType = params['CcNotifyType']
         end
       end
 
@@ -1618,6 +1641,69 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReleaseFlow请求参数结构体
+      class CreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param NeedRelievedFlowId: 待解除的签署流程编号（即原签署流程的编号）
+        # @type NeedRelievedFlowId: String
+        # @param ReliveInfo: 解除协议内容
+        # @type ReliveInfo: :class:`Tencentcloud::Ess.v20201111.models.RelieveInfo`
+        # @param ReleasedApprovers: 非必须，解除协议的本企业签署人列表，
+        # 默认使用原流程的签署人列表,当解除协议的签署人与原流程的签署人不能相同时（例如原流程签署人离职了），需要指定本企业其他已实名员工来替换原流程中的原签署人，注意需要指明原签署人的编号(ReceiptId,通过DescribeFlowInfo接口获取)来代表需要替换哪一个签署人
+        # 解除协议的签署人数量不能多于原流程的签署人数量
+        # @type ReleasedApprovers: Array
+
+        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers
+        
+        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil)
+          @Operator = operator
+          @NeedRelievedFlowId = needrelievedflowid
+          @ReliveInfo = reliveinfo
+          @ReleasedApprovers = releasedapprovers
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @NeedRelievedFlowId = params['NeedRelievedFlowId']
+          unless params['ReliveInfo'].nil?
+            @ReliveInfo = RelieveInfo.new
+            @ReliveInfo.deserialize(params['ReliveInfo'])
+          end
+          unless params['ReleasedApprovers'].nil?
+            @ReleasedApprovers = []
+            params['ReleasedApprovers'].each do |i|
+              releasedapprover_tmp = ReleasedApprover.new
+              releasedapprover_tmp.deserialize(i)
+              @ReleasedApprovers << releasedapprover_tmp
+            end
+          end
+        end
+      end
+
+      # CreateReleaseFlow返回参数结构体
+      class CreateReleaseFlowResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 解除协议流程编号
+        # @type FlowId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -3902,6 +3988,76 @@ module TencentCloud
         end
       end
 
+      # 解除协议的签署人，如不指定，默认使用待解除流程（即原流程）中的签署人。
+      # 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该C端签署人。
+      class ReleasedApprover < TencentCloud::Common::AbstractModel
+        # @param Name: 签署人姓名，最大长度50个字符
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Mobile: 签署人手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mobile: String
+        # @param RelievedApproverReceiptId: 要替换的参与人在原合同参与人列表中的签署人编号,通过DescribeFlowInfo 接口获取（即FlowDetailInfos. FlowApproverInfos 结构中的ReceiptId ）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelievedApproverReceiptId: String
+
+        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId
+        
+        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil)
+          @Name = name
+          @Mobile = mobile
+          @RelievedApproverReceiptId = relievedapproverreceiptid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          @RelievedApproverReceiptId = params['RelievedApproverReceiptId']
+        end
+      end
+
+      # 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。
+      class RelieveInfo < TencentCloud::Common::AbstractModel
+        # @param Reason: 解除理由，最大支持200个字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param RemainInForceItem: 解除后仍然有效的条款，保留条款，最大支持200个字
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainInForceItem: String
+        # @param OriginalExpenseSettlement: 原合同事项处理-费用结算，最大支持200个字
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalExpenseSettlement: String
+        # @param OriginalOtherSettlement: 原合同事项处理-其他事项，最大支持200个字
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalOtherSettlement: String
+        # @param OtherDeals: 其他约定，最大支持200个字
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherDeals: String
+
+        attr_accessor :Reason, :RemainInForceItem, :OriginalExpenseSettlement, :OriginalOtherSettlement, :OtherDeals
+        
+        def initialize(reason=nil, remaininforceitem=nil, originalexpensesettlement=nil, originalothersettlement=nil, otherdeals=nil)
+          @Reason = reason
+          @RemainInForceItem = remaininforceitem
+          @OriginalExpenseSettlement = originalexpensesettlement
+          @OriginalOtherSettlement = originalothersettlement
+          @OtherDeals = otherdeals
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+          @RemainInForceItem = params['RemainInForceItem']
+          @OriginalExpenseSettlement = params['OriginalExpenseSettlement']
+          @OriginalOtherSettlement = params['OriginalOtherSettlement']
+          @OtherDeals = params['OtherDeals']
+        end
+      end
+
       # 催办接口返回详细信息
       class RemindFlowRecords < TencentCloud::Common::AbstractModel
         # @param CanRemind: 是否能够催办
@@ -4078,14 +4234,17 @@ module TencentCloud
         # @type ClientToken: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @type CcNotifyType: Integer
 
-        attr_accessor :Operator, :FlowId, :ClientToken, :Agent
+        attr_accessor :Operator, :FlowId, :ClientToken, :Agent, :CcNotifyType
         
-        def initialize(operator=nil, flowid=nil, clienttoken=nil, agent=nil)
+        def initialize(operator=nil, flowid=nil, clienttoken=nil, agent=nil, ccnotifytype=nil)
           @Operator = operator
           @FlowId = flowid
           @ClientToken = clienttoken
           @Agent = agent
+          @CcNotifyType = ccnotifytype
         end
 
         def deserialize(params)
@@ -4099,6 +4258,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @CcNotifyType = params['CcNotifyType']
         end
       end
 

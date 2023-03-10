@@ -1464,7 +1464,7 @@ module TencentCloud
         # @param Assistants: 助教UserId列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Assistants: Array
-        # @param RecordUrl: 录制地址。仅在房间结束后存在。
+        # @param RecordUrl: 录制地址（协议为https)。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
         # @param Status: 课堂状态。0为未开始，1为已开始，2为已结束，3为已过期。
