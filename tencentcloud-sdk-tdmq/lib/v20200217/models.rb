@@ -1860,6 +1860,84 @@ module TencentCloud
         end
       end
 
+      # CreateRabbitMQVipInstance请求参数结构体
+      class CreateRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: 可用区
+        # @type ZoneIds: Array
+        # @param VpcId: 私有网络VpcId
+        # @type VpcId: String
+        # @param SubnetId: 私有网络SubnetId
+        # @type SubnetId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param NodeSpec: 节点规格,基础型rabbit-vip-basic-1,标准型rabbit-vip-basic-2,高阶1型rabbit-vip-basic-3,高阶2型rabbit-vip-basic-4。不传默认为基础型
+        # @type NodeSpec: String
+        # @param NodeNum: 节点数量,多可用区最少为3节点。不传默认单可用区为1,多可用区为3
+        # @type NodeNum: Integer
+        # @param StorageSize: 单节点存储规格,不传默认为200G
+        # @type StorageSize: Integer
+        # @param EnableCreateDefaultHaMirrorQueue: 镜像队列,不传默认为false
+        # @type EnableCreateDefaultHaMirrorQueue: Boolean
+        # @param AutoRenewFlag: 自动续费,不传默认为true
+        # @type AutoRenewFlag: Boolean
+        # @param TimeSpan: 购买时长,不传默认为1(月)
+        # @type TimeSpan: Integer
+
+        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan
+        
+        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil)
+          @ZoneIds = zoneids
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ClusterName = clustername
+          @NodeSpec = nodespec
+          @NodeNum = nodenum
+          @StorageSize = storagesize
+          @EnableCreateDefaultHaMirrorQueue = enablecreatedefaulthamirrorqueue
+          @AutoRenewFlag = autorenewflag
+          @TimeSpan = timespan
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ClusterName = params['ClusterName']
+          @NodeSpec = params['NodeSpec']
+          @NodeNum = params['NodeNum']
+          @StorageSize = params['StorageSize']
+          @EnableCreateDefaultHaMirrorQueue = params['EnableCreateDefaultHaMirrorQueue']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @TimeSpan = params['TimeSpan']
+        end
+      end
+
+      # CreateRabbitMQVipInstance返回参数结构体
+      class CreateRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: 订单号Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param InstanceId: 实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :InstanceId, :RequestId
+        
+        def initialize(tranid=nil, instanceid=nil, requestid=nil)
+          @TranId = tranid
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRocketMQCluster请求参数结构体
       class CreateRocketMQClusterRequest < TencentCloud::Common::AbstractModel
         # @param Name: 集群名称，3-64个字符，只能包含字母、数字、“-”及“_”

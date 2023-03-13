@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除设置自定义元素。如果参数scenes为空则删除所有自定义元素，否则删除指定的scene自定义元素。
+
+        # @param request: Request instance for DeleteAppCustomContent.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteAppCustomContentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteAppCustomContentResponse`
+        def DeleteAppCustomContent(request)
+          body = send_request('DeleteAppCustomContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAppCustomContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除文档
 
         # @param request: Request instance for DeleteDocument.

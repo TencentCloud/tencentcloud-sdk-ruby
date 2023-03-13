@@ -9603,10 +9603,13 @@ module TencentCloud
         # @param QuotaConfig: topic 限流策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaConfig: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceQuotaConfigResp`
+        # @param ReplicaNum: 副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaNum: Integer
 
-        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList, :QuotaConfig
+        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList, :QuotaConfig, :ReplicaNum
         
-        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil, enableaclrule=nil, aclrulelist=nil, quotaconfig=nil)
+        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil, enableaclrule=nil, aclrulelist=nil, quotaconfig=nil, replicanum=nil)
           @TopicId = topicid
           @CreateTime = createtime
           @Note = note
@@ -9618,6 +9621,7 @@ module TencentCloud
           @EnableAclRule = enableaclrule
           @AclRuleList = aclrulelist
           @QuotaConfig = quotaconfig
+          @ReplicaNum = replicanum
         end
 
         def deserialize(params)
@@ -9652,6 +9656,7 @@ module TencentCloud
             @QuotaConfig = InstanceQuotaConfigResp.new
             @QuotaConfig.deserialize(params['QuotaConfig'])
           end
+          @ReplicaNum = params['ReplicaNum']
         end
       end
 
@@ -9690,10 +9695,13 @@ module TencentCloud
         # @param Status: 0:正常，1：已删除，2：删除中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param Tags: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config, :RetentionTimeConfig, :Status
+        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config, :RetentionTimeConfig, :Status, :Tags
         
-        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil, retentiontimeconfig=nil, status=nil)
+        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil, retentiontimeconfig=nil, status=nil, tags=nil)
           @TopicName = topicname
           @TopicId = topicid
           @PartitionNum = partitionnum
@@ -9708,6 +9716,7 @@ module TencentCloud
           @Config = config
           @RetentionTimeConfig = retentiontimeconfig
           @Status = status
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -9731,6 +9740,14 @@ module TencentCloud
             @RetentionTimeConfig.deserialize(params['RetentionTimeConfig'])
           end
           @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

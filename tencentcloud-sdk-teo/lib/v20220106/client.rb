@@ -797,6 +797,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口已经做不兼容变更，所以此版本的接口已经无法调用，故作下线处理
+
         # 查询DDos主攻击事件
 
         # @param request: Request instance for DescribeDDosMajorAttackEvent.
@@ -1085,6 +1087,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已经不兼容升级，故作下线处理
+
         # 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
 
         # @param request: Request instance for DescribeOverviewL7Data.
@@ -1349,6 +1353,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本的接口已经不兼容，故作下线处理
+
         # 四层时序流量数据查询
 
         # @param request: Request instance for DescribeTimingL4Data.
@@ -1540,6 +1546,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此版本的接口已经废弃
 
         # 查询waf攻击top数据
 

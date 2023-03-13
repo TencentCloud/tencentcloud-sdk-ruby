@@ -782,6 +782,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAppCustomContent请求参数结构体
+      class DeleteAppCustomContentRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID。
+        # @type SdkAppId: Integer
+        # @param Scenes: 指定需要删除的已设置的scene场景自定义元素，如果为空则删除应用下已设置的所有自定义元素。
+        # @type Scenes: Array
+
+        attr_accessor :SdkAppId, :Scenes
+        
+        def initialize(sdkappid=nil, scenes=nil)
+          @SdkAppId = sdkappid
+          @Scenes = scenes
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Scenes = params['Scenes']
+        end
+      end
+
+      # DeleteAppCustomContent返回参数结构体
+      class DeleteAppCustomContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDocument请求参数结构体
       class DeleteDocumentRequest < TencentCloud::Common::AbstractModel
         # @param DocumentId: 文档ID。

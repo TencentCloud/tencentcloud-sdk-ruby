@@ -375,6 +375,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建RabbitMQ专享版实例
+
+        # @param request: Request instance for CreateRabbitMQVipInstance.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQVipInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQVipInstanceResponse`
+        def CreateRabbitMQVipInstance(request)
+          body = send_request('CreateRabbitMQVipInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRabbitMQVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于创建一个RocketMQ集群
 
         # @param request: Request instance for CreateRocketMQCluster.

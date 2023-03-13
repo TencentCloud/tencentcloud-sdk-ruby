@@ -7152,16 +7152,19 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: 原生Job
         # @type RawJobs: Array
+        # @param Probes: Probes
+        # @type Probes: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes, :RequestId
         
-        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil, requestid=nil)
           @Config = config
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
           @RequestId = requestid
         end
 
@@ -7189,6 +7192,14 @@ module TencentCloud
               prometheusconfigitem_tmp = PrometheusConfigItem.new
               prometheusconfigitem_tmp.deserialize(i)
               @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['Probes'].nil?
+            @Probes = []
+            params['Probes'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @Probes << prometheusconfigitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -10984,10 +10995,13 @@ module TencentCloud
         # @param FailedReason: 记录关联等操作的失败信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedReason: String
+        # @param Name: agent名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason, :Name
         
-        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil)
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil, name=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Status = status
@@ -10996,6 +11010,7 @@ module TencentCloud
           @Region = region
           @VpcId = vpcid
           @FailedReason = failedreason
+          @Name = name
         end
 
         def deserialize(params)
@@ -11014,6 +11029,7 @@ module TencentCloud
           @Region = params['Region']
           @VpcId = params['VpcId']
           @FailedReason = params['FailedReason']
+          @Name = params['Name']
         end
       end
 
