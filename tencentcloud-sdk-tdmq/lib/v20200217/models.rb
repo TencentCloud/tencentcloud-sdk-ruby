@@ -6257,6 +6257,51 @@ module TencentCloud
         end
       end
 
+      # ModifyRabbitMQVipInstance请求参数结构体
+      class ModifyRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :ClusterName, :Remark
+        
+        def initialize(instanceid=nil, clustername=nil, remark=nil)
+          @InstanceId = instanceid
+          @ClusterName = clustername
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyRabbitMQVipInstance返回参数结构体
+      class ModifyRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRocketMQCluster请求参数结构体
       class ModifyRocketMQClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: RocketMQ集群ID

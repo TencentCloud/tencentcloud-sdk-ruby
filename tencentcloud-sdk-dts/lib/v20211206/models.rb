@@ -545,16 +545,24 @@ module TencentCloud
         # @type ExpectRunTime: String
         # @param SrcInfo: 源端信息，单节点数据库使用，且SrcNodeType传single
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param SrcInfos: 源端信息，多节点数据库使用，且SrcNodeType传cluster
+        # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
+        # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        # @type SrcNodeType: String
         # @param DstInfo: 目标端信息，单节点数据库使用
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param DstInfos: 目标端信息，多节点数据库使用，且DstNodeType传cluster
+        # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
+        # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        # @type DstNodeType: String
         # @param Options: 同步任务选项
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
         # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :DstInfo, :Options, :AutoRetryTimeRangeMinutes
+        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :SrcInfos, :SrcNodeType, :DstInfo, :DstInfos, :DstNodeType, :Options, :AutoRetryTimeRangeMinutes
         
-        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, dstinfo=nil, options=nil, autoretrytimerangeminutes=nil)
+        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, srcinfos=nil, srcnodetype=nil, dstinfo=nil, dstinfos=nil, dstnodetype=nil, options=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @SrcAccessType = srcaccesstype
           @DstAccessType = dstaccesstype
@@ -564,7 +572,11 @@ module TencentCloud
           @RunMode = runmode
           @ExpectRunTime = expectruntime
           @SrcInfo = srcinfo
+          @SrcInfos = srcinfos
+          @SrcNodeType = srcnodetype
           @DstInfo = dstinfo
+          @DstInfos = dstinfos
+          @DstNodeType = dstnodetype
           @Options = options
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
@@ -585,10 +597,20 @@ module TencentCloud
             @SrcInfo = Endpoint.new
             @SrcInfo.deserialize(params['SrcInfo'])
           end
+          unless params['SrcInfos'].nil?
+            @SrcInfos = SyncDBEndpointInfos.new
+            @SrcInfos.deserialize(params['SrcInfos'])
+          end
+          @SrcNodeType = params['SrcNodeType']
           unless params['DstInfo'].nil?
             @DstInfo = Endpoint.new
             @DstInfo.deserialize(params['DstInfo'])
           end
+          unless params['DstInfos'].nil?
+            @DstInfos = SyncDBEndpointInfos.new
+            @DstInfos.deserialize(params['DstInfos'])
+          end
+          @DstNodeType = params['DstNodeType']
           unless params['Options'].nil?
             @Options = Options.new
             @Options.deserialize(params['Options'])
@@ -924,7 +946,7 @@ module TencentCloud
         # @type SrcDatabaseType: String
         # @param SrcRegion: 源端数据库所在地域,如ap-guangzhou
         # @type SrcRegion: String
-        # @param DstDatabaseType: 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
+        # @param DstDatabaseType: 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql,kafka等
         # @type DstDatabaseType: String
         # @param DstRegion: 目标端数据库所在地域,如ap-guangzhou
         # @type DstRegion: String
@@ -2828,6 +2850,41 @@ module TencentCloud
         end
       end
 
+      # 目标端为kakfa时添加的同步选项字段
+      class KafkaOption < TencentCloud::Common::AbstractModel
+        # @param DataType: 投递到kafka的数据类型，如Avro,Json
+        # @type DataType: String
+        # @param TopicType: 同步topic策略，如Single（集中投递到单topic）,Multi (自定义topic名称)
+        # @type TopicType: String
+        # @param DDLTopicName: 用于存储ddl的topic
+        # @type DDLTopicName: String
+        # @param TopicRules: 单topic和自定义topic的描述
+        # @type TopicRules: Array
+
+        attr_accessor :DataType, :TopicType, :DDLTopicName, :TopicRules
+        
+        def initialize(datatype=nil, topictype=nil, ddltopicname=nil, topicrules=nil)
+          @DataType = datatype
+          @TopicType = topictype
+          @DDLTopicName = ddltopicname
+          @TopicRules = topicrules
+        end
+
+        def deserialize(params)
+          @DataType = params['DataType']
+          @TopicType = params['TopicType']
+          @DDLTopicName = params['DDLTopicName']
+          unless params['TopicRules'].nil?
+            @TopicRules = []
+            params['TopicRules'].each do |i|
+              topicrule_tmp = TopicRule.new
+              topicrule_tmp.deserialize(i)
+              @TopicRules << topicrule_tmp
+            end
+          end
+        end
+      end
+
       # 存放配置时的额外信息
       class KeyValuePairOption < TencentCloud::Common::AbstractModel
         # @param Key: 选项key
@@ -3345,10 +3402,13 @@ module TencentCloud
         # @param DdlOptions: DDL同步选项，具体描述要同步那些DDL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlOptions: Array
+        # @param KafkaOption: kafka同步选项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
 
-        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions
+        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption
         
-        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil)
+        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil)
           @InitType = inittype
           @DealOfExistSameTable = dealofexistsametable
           @ConflictHandleType = conflicthandletype
@@ -3356,6 +3416,7 @@ module TencentCloud
           @OpTypes = optypes
           @ConflictHandleOption = conflicthandleoption
           @DdlOptions = ddloptions
+          @KafkaOption = kafkaoption
         end
 
         def deserialize(params)
@@ -3375,6 +3436,10 @@ module TencentCloud
               ddloption_tmp.deserialize(i)
               @DdlOptions << ddloption_tmp
             end
+          end
+          unless params['KafkaOption'].nil?
+            @KafkaOption = KafkaOption.new
+            @KafkaOption.deserialize(params['KafkaOption'])
           end
         end
       end
@@ -4220,6 +4285,45 @@ module TencentCloud
         end
       end
 
+      # 数据同步配置多节点数据库的节点信息。多节点数据库，如tdsqlmysql使用该结构；单节点数据库，如mysql使用Endpoint。
+      class SyncDBEndpointInfos < TencentCloud::Common::AbstractModel
+        # @param Region: 数据库所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param AccessType: 实例网络接入类型，如：extranet(外网)、ipv6(公网ipv6)、cvm(云主机自建)、dcg(专线接入)、vpncloud(vpn接入的实例)、cdb(云数据库)、ccn(云联网)、intranet(自研上云)、vpc(私有网络)等，注意具体可选值依赖当前链路
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: String
+        # @param DatabaseType: 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseType: String
+        # @param Info: 数据库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: Array
+
+        attr_accessor :Region, :AccessType, :DatabaseType, :Info
+        
+        def initialize(region=nil, accesstype=nil, databasetype=nil, info=nil)
+          @Region = region
+          @AccessType = accesstype
+          @DatabaseType = databasetype
+          @Info = info
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @AccessType = params['AccessType']
+          @DatabaseType = params['DatabaseType']
+          unless params['Info'].nil?
+            @Info = []
+            params['Info'].each do |i|
+              endpoint_tmp = Endpoint.new
+              endpoint_tmp.deserialize(i)
+              @Info << endpoint_tmp
+            end
+          end
+        end
+      end
+
       # 同步任务的步骤信息
       class SyncDetailInfo < TencentCloud::Common::AbstractModel
         # @param StepAll: 总步骤数
@@ -4576,6 +4680,42 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 单topic和自定义topic的描述
+      class TopicRule < TencentCloud::Common::AbstractModel
+        # @param TopicName: topic名
+        # @type TopicName: String
+        # @param PartitionType: topic分区策略，如 自定义topic：Random（随机投递），集中投递到单Topic：AllInPartitionZero（全部投递至partition0）、PartitionByTable(按表名分区)、PartitionByTableAndKey(按表名加主键分区)
+        # @type PartitionType: String
+        # @param DbMatchMode: 库名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余库)，数组中必须有一项为‘Default’
+        # @type DbMatchMode: String
+        # @param DbName: 库名，仅“自定义topic”时，DbMatchMode=Regular生效
+        # @type DbName: String
+        # @param TableMatchMode: 表名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余表)，数组中必须有一项为‘Default’
+        # @type TableMatchMode: String
+        # @param TableName: 表名，仅“自定义topic”时，TableMatchMode=Regular生效
+        # @type TableName: String
+
+        attr_accessor :TopicName, :PartitionType, :DbMatchMode, :DbName, :TableMatchMode, :TableName
+        
+        def initialize(topicname=nil, partitiontype=nil, dbmatchmode=nil, dbname=nil, tablematchmode=nil, tablename=nil)
+          @TopicName = topicname
+          @PartitionType = partitiontype
+          @DbMatchMode = dbmatchmode
+          @DbName = dbname
+          @TableMatchMode = tablematchmode
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @PartitionType = params['PartitionType']
+          @DbMatchMode = params['DbMatchMode']
+          @DbName = params['DbName']
+          @TableMatchMode = params['TableMatchMode']
+          @TableName = params['TableName']
         end
       end
 

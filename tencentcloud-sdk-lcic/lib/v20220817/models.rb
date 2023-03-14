@@ -757,12 +757,21 @@ module TencentCloud
 
       # CreateSupervisor请求参数结构体
       class CreateSupervisorRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID。
+        # @type SdkAppId: Integer
+        # @param Users: 用户ID列表。
+        # @type Users: Array
 
+        attr_accessor :SdkAppId, :Users
         
-        def initialize()
+        def initialize(sdkappid=nil, users=nil)
+          @SdkAppId = sdkappid
+          @Users = users
         end
 
         def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Users = params['Users']
         end
       end
 

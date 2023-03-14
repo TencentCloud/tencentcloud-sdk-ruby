@@ -57,10 +57,13 @@ module TencentCloud
         # @type DomainStatus: String
         # @param Cname: CNAME 地址。
         # @type Cname: String
+        # @param IdentificationStatus: 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentificationStatus: String
 
-        attr_accessor :OriginDetail, :CreatedOn, :DomainName, :ModifiedOn, :ZoneId, :DomainStatus, :Cname
+        attr_accessor :OriginDetail, :CreatedOn, :DomainName, :ModifiedOn, :ZoneId, :DomainStatus, :Cname, :IdentificationStatus
         
-        def initialize(origindetail=nil, createdon=nil, domainname=nil, modifiedon=nil, zoneid=nil, domainstatus=nil, cname=nil)
+        def initialize(origindetail=nil, createdon=nil, domainname=nil, modifiedon=nil, zoneid=nil, domainstatus=nil, cname=nil, identificationstatus=nil)
           @OriginDetail = origindetail
           @CreatedOn = createdon
           @DomainName = domainname
@@ -68,6 +71,7 @@ module TencentCloud
           @ZoneId = zoneid
           @DomainStatus = domainstatus
           @Cname = cname
+          @IdentificationStatus = identificationstatus
         end
 
         def deserialize(params)
@@ -81,6 +85,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @DomainStatus = params['DomainStatus']
           @Cname = params['Cname']
+          @IdentificationStatus = params['IdentificationStatus']
         end
       end
 
@@ -6303,16 +6308,23 @@ module TencentCloud
         # <li>none：不托管EdgeOne。</li>不填，默认取值为none。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyType: String
+        # @param CipherSuite: 密码套件，取值有：
+        # <li>loose-v2023：提供最高的兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；</li>
+        # <li>general-v2023：提供较高的兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；</li>
+        # <li>strict-v2023：提供最高的安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CipherSuite: String
 
-        attr_accessor :Http2, :OcspStapling, :TlsVersion, :Hsts, :CertInfo, :ApplyType
+        attr_accessor :Http2, :OcspStapling, :TlsVersion, :Hsts, :CertInfo, :ApplyType, :CipherSuite
         
-        def initialize(http2=nil, ocspstapling=nil, tlsversion=nil, hsts=nil, certinfo=nil, applytype=nil)
+        def initialize(http2=nil, ocspstapling=nil, tlsversion=nil, hsts=nil, certinfo=nil, applytype=nil, ciphersuite=nil)
           @Http2 = http2
           @OcspStapling = ocspstapling
           @TlsVersion = tlsversion
           @Hsts = hsts
           @CertInfo = certinfo
           @ApplyType = applytype
+          @CipherSuite = ciphersuite
         end
 
         def deserialize(params)
@@ -6332,6 +6344,7 @@ module TencentCloud
             end
           end
           @ApplyType = params['ApplyType']
+          @CipherSuite = params['CipherSuite']
         end
       end
 
@@ -6359,6 +6372,9 @@ module TencentCloud
       class Identification < TencentCloud::Common::AbstractModel
         # @param ZoneName: 站点名称。
         # @type ZoneName: String
+        # @param Domain: 验证子域名。验证站点时，该值为空。验证子域名是为具体子域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
         # @param Status: 验证状态，取值有：
         # <li> pending：验证中；</li>
         # <li> finished：验证完成。</li>
@@ -6371,10 +6387,11 @@ module TencentCloud
         # @param FileAscription: 站点归属权校验：文件校验信息。
         # @type FileAscription: :class:`Tencentcloud::Teo.v20220901.models.FileAscriptionInfo`
 
-        attr_accessor :ZoneName, :Status, :Ascription, :OriginalNameServers, :FileAscription
+        attr_accessor :ZoneName, :Domain, :Status, :Ascription, :OriginalNameServers, :FileAscription
         
-        def initialize(zonename=nil, status=nil, ascription=nil, originalnameservers=nil, fileascription=nil)
+        def initialize(zonename=nil, domain=nil, status=nil, ascription=nil, originalnameservers=nil, fileascription=nil)
           @ZoneName = zonename
+          @Domain = domain
           @Status = status
           @Ascription = ascription
           @OriginalNameServers = originalnameservers
@@ -6383,6 +6400,7 @@ module TencentCloud
 
         def deserialize(params)
           @ZoneName = params['ZoneName']
+          @Domain = params['Domain']
           @Status = params['Status']
           unless params['Ascription'].nil?
             @Ascription = AscriptionInfo.new
@@ -6400,15 +6418,19 @@ module TencentCloud
       class IdentifyZoneRequest < TencentCloud::Common::AbstractModel
         # @param ZoneName: 站点名称。
         # @type ZoneName: String
+        # @param Domain: 站点下的子域名。如果验证站点下的子域名，则传该值，否则为空。
+        # @type Domain: String
 
-        attr_accessor :ZoneName
+        attr_accessor :ZoneName, :Domain
         
-        def initialize(zonename=nil)
+        def initialize(zonename=nil, domain=nil)
           @ZoneName = zonename
+          @Domain = domain
         end
 
         def deserialize(params)
           @ZoneName = params['ZoneName']
+          @Domain = params['Domain']
         end
       end
 

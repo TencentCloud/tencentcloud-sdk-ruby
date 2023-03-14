@@ -1392,6 +1392,139 @@ module TencentCloud
         end
       end
 
+      # DescribeCustomRules接口回包中的复杂类型
+      class DescribeCustomRulesRspRuleListItem < TencentCloud::Common::AbstractModel
+        # @param ActionType: 动作类型
+        # @type ActionType: String
+        # @param Bypass: 跳过的策略
+        # @type Bypass: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param Name: 策略名称
+        # @type Name: String
+        # @param Redirect: 重定向地址
+        # @type Redirect: String
+        # @param RuleId: 策略ID
+        # @type RuleId: String
+        # @param SortId: 优先级
+        # @type SortId: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param Strategies: 策略详情
+        # @type Strategies: Array
+
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies
+        
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil)
+          @ActionType = actiontype
+          @Bypass = bypass
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @Name = name
+          @Redirect = redirect
+          @RuleId = ruleid
+          @SortId = sortid
+          @Status = status
+          @Strategies = strategies
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @Bypass = params['Bypass']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @Name = params['Name']
+          @Redirect = params['Redirect']
+          @RuleId = params['RuleId']
+          @SortId = params['SortId']
+          @Status = params['Status']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCustomWhiteRule请求参数结构体
+      class DescribeCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param Filters: 过滤数组,name可以是如下的值： RuleID,RuleName,Match
+        # @type Filters: Array
+        # @param Order: asc或者desc
+        # @type Order: String
+        # @param By: exp_ts或者mod_ts
+        # @type By: String
+
+        attr_accessor :Domain, :Offset, :Limit, :Filters, :Order, :By
+        
+        def initialize(domain=nil, offset=nil, limit=nil, filters=nil, order=nil, by=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeCustomWhiteRule返回参数结构体
+      class DescribeCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 规则详情
+        # @type RuleList: Array
+        # @param TotalCount: 规则条数
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :TotalCount, :RequestId
+        
+        def initialize(rulelist=nil, totalcount=nil, requestid=nil)
+          @RuleList = rulelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              describecustomrulesrsprulelistitem_tmp = DescribeCustomRulesRspRuleListItem.new
+              describecustomrulesrsprulelistitem_tmp.deserialize(i)
+              @RuleList << describecustomrulesrsprulelistitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainDetailsSaas请求参数结构体
       class DescribeDomainDetailsSaasRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1845,6 +1978,89 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = IpHitItemsData.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePolicyStatus请求参数结构体
+      class DescribePolicyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Edition: clb-waf或者saas-waf
+        # @type Edition: String
+
+        attr_accessor :Domain, :Edition
+        
+        def initialize(domain=nil, edition=nil)
+          @Domain = domain
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+        end
+      end
+
+      # DescribePolicyStatus返回参数结构体
+      class DescribePolicyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Status: 防护状态
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Status, :RequestId
+        
+        def initialize(instanceid=nil, status=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRuleLimit请求参数结构体
+      class DescribeRuleLimitRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeRuleLimit返回参数结构体
+      class DescribeRuleLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Res: waf模块的规格
+        # @type Res: :class:`Tencentcloud::Waf.v20180125.models.WafRuleLimit`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Res, :RequestId
+        
+        def initialize(res=nil, requestid=nil)
+          @Res = res
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Res'].nil?
+            @Res = WafRuleLimit.new
+            @Res.deserialize(params['Res'])
           end
           @RequestId = params['RequestId']
         end
@@ -3687,6 +3903,70 @@ module TencentCloud
           @FailedItems = params['FailedItems']
           @FailedCount = params['FailedCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # waf模块的规格
+      class WafRuleLimit < TencentCloud::Common::AbstractModel
+        # @param CC: 自定义CC的规格
+        # @type CC: Integer
+        # @param CustomRule: 自定义策略的规格
+        # @type CustomRule: Integer
+        # @param IPControl: 黑白名单的规格
+        # @type IPControl: Integer
+        # @param AntiLeak: 信息防泄漏的规格
+        # @type AntiLeak: Integer
+        # @param AntiTamper: 防篡改的规格
+        # @type AntiTamper: Integer
+        # @param AutoCC: 紧急CC的规格
+        # @type AutoCC: Integer
+        # @param AreaBan: 地域封禁的规格
+        # @type AreaBan: Integer
+        # @param CCSession: 自定义CC中配置session
+        # @type CCSession: Integer
+        # @param AI: AI的规格
+        # @type AI: Integer
+        # @param CustomWhite: 精准白名单的规格
+        # @type CustomWhite: Integer
+        # @param ApiSecurity: api安全的规格
+        # @type ApiSecurity: Integer
+        # @param ClientMsg: 客户端流量标记的规格
+        # @type ClientMsg: Integer
+        # @param TrafficMarking: 流量标记的规格
+        # @type TrafficMarking: Integer
+
+        attr_accessor :CC, :CustomRule, :IPControl, :AntiLeak, :AntiTamper, :AutoCC, :AreaBan, :CCSession, :AI, :CustomWhite, :ApiSecurity, :ClientMsg, :TrafficMarking
+        
+        def initialize(cc=nil, customrule=nil, ipcontrol=nil, antileak=nil, antitamper=nil, autocc=nil, areaban=nil, ccsession=nil, ai=nil, customwhite=nil, apisecurity=nil, clientmsg=nil, trafficmarking=nil)
+          @CC = cc
+          @CustomRule = customrule
+          @IPControl = ipcontrol
+          @AntiLeak = antileak
+          @AntiTamper = antitamper
+          @AutoCC = autocc
+          @AreaBan = areaban
+          @CCSession = ccsession
+          @AI = ai
+          @CustomWhite = customwhite
+          @ApiSecurity = apisecurity
+          @ClientMsg = clientmsg
+          @TrafficMarking = trafficmarking
+        end
+
+        def deserialize(params)
+          @CC = params['CC']
+          @CustomRule = params['CustomRule']
+          @IPControl = params['IPControl']
+          @AntiLeak = params['AntiLeak']
+          @AntiTamper = params['AntiTamper']
+          @AutoCC = params['AutoCC']
+          @AreaBan = params['AreaBan']
+          @CCSession = params['CCSession']
+          @AI = params['AI']
+          @CustomWhite = params['CustomWhite']
+          @ApiSecurity = params['ApiSecurity']
+          @ClientMsg = params['ClientMsg']
+          @TrafficMarking = params['TrafficMarking']
         end
       end
 

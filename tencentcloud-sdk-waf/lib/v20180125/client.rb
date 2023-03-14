@@ -390,6 +390,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取防护配置中的精准白名单策略列表
+
+        # @param request: Request instance for DescribeCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeCustomWhiteRuleResponse`
+        def DescribeCustomWhiteRule(request)
+          body = send_request('DescribeCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询单个saas域名详情
 
         # @param request: Request instance for DescribeDomainDetailsSaas.
@@ -544,6 +568,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIpHitItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取防护状态以及生效的实例id
+
+        # @param request: Request instance for DescribePolicyStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribePolicyStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribePolicyStatusResponse`
+        def DescribePolicyStatus(request)
+          body = send_request('DescribePolicyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取各个模块具体的规格限制
+
+        # @param request: Request instance for DescribeRuleLimit.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeRuleLimitRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeRuleLimitResponse`
+        def DescribeRuleLimit(request)
+          body = send_request('DescribeRuleLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRuleLimitResponse.new
             model.deserialize(response['Response'])
             model
           else

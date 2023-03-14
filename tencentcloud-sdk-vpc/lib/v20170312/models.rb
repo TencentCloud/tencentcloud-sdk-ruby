@@ -17618,6 +17618,52 @@ module TencentCloud
         end
       end
 
+      # ReplaceSecurityGroupPolicies请求参数结构体
+      class ReplaceSecurityGroupPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        # @type SecurityGroupId: String
+        # @param SecurityGroupPolicySet: 安全组规则集合对象。
+        # @type SecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
+        # @param OriginalSecurityGroupPolicySet: 旧的安全组规则集合对象，可选，日志记录用。
+        # @type OriginalSecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
+
+        attr_accessor :SecurityGroupId, :SecurityGroupPolicySet, :OriginalSecurityGroupPolicySet
+        
+        def initialize(securitygroupid=nil, securitygrouppolicyset=nil, originalsecuritygrouppolicyset=nil)
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupPolicySet = securitygrouppolicyset
+          @OriginalSecurityGroupPolicySet = originalsecuritygrouppolicyset
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+          unless params['SecurityGroupPolicySet'].nil?
+            @SecurityGroupPolicySet = SecurityGroupPolicySet.new
+            @SecurityGroupPolicySet.deserialize(params['SecurityGroupPolicySet'])
+          end
+          unless params['OriginalSecurityGroupPolicySet'].nil?
+            @OriginalSecurityGroupPolicySet = SecurityGroupPolicySet.new
+            @OriginalSecurityGroupPolicySet.deserialize(params['OriginalSecurityGroupPolicySet'])
+          end
+        end
+      end
+
+      # ReplaceSecurityGroupPolicies返回参数结构体
+      class ReplaceSecurityGroupPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceSecurityGroupPolicy请求参数结构体
       class ReplaceSecurityGroupPolicyRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupId: 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
