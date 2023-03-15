@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过接口拉取租户已有潜客客户档案列表信息
+
+        # @param request: Request instance for QueryCustomerProfileList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryCustomerProfileListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryCustomerProfileListResponse`
+        def QueryCustomerProfileList(request)
+          body = send_request('QueryCustomerProfileList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCustomerProfileListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
 
         # @param request: Request instance for QueryDealerInfoList.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryExternalContactDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 企业可通过传入起始和结束时间，获取该时间段的外部联系人详情列表
+
+        # @param request: Request instance for QueryExternalContactDetailByDate.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryExternalContactDetailByDateRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryExternalContactDetailByDateResponse`
+        def QueryExternalContactDetailByDate(request)
+          body = send_request('QueryExternalContactDetailByDate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryExternalContactDetailByDateResponse.new
             model.deserialize(response['Response'])
             model
           else

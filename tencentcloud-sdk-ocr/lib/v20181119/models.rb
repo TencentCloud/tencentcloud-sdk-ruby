@@ -3319,12 +3319,18 @@ module TencentCloud
         # @type CodeSet: String
         # @param CodeCrc: 最下方第二行 MRZ Code 序列
         # @type CodeCrc: String
+        # @param Surname: 姓
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Surname: String
+        # @param GivenName: 名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GivenName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :RequestId
         
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -3337,6 +3343,8 @@ module TencentCloud
           @AdvancedInfo = advancedinfo
           @CodeSet = codeset
           @CodeCrc = codecrc
+          @Surname = surname
+          @GivenName = givenname
           @RequestId = requestid
         end
 
@@ -3353,6 +3361,8 @@ module TencentCloud
           @AdvancedInfo = params['AdvancedInfo']
           @CodeSet = params['CodeSet']
           @CodeCrc = params['CodeCrc']
+          @Surname = params['Surname']
+          @GivenName = params['GivenName']
           @RequestId = params['RequestId']
         end
       end

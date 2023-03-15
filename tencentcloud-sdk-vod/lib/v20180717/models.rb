@@ -19131,7 +19131,7 @@ module TencentCloud
 
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
@@ -19139,7 +19139,7 @@ module TencentCloud
 
         # 默认值：0。
         # @type Width: Integer
-        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
@@ -20918,6 +20918,9 @@ module TencentCloud
         # <li> ARCHIVE：归档存储。</li>
         # <li> DEEP_ARCHIVE：深度归档存储。</li>
         # @type StorageClasses: Array
+        # @param MediaTypes: 媒体文件封装格式集合，匹配集合中任意元素。
+        # <li>数组长度限制：10。</li>
+        # @type MediaTypes: Array
         # @param TrtcSdkAppIds: TRTC 应用 ID 集合。匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # @type TrtcSdkAppIds: Array
@@ -20951,9 +20954,9 @@ module TencentCloud
         # @param Vid: 该字段已无效。
         # @type Vid: String
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :MediaTypes, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
         
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -20972,6 +20975,7 @@ module TencentCloud
           @Filters = filters
           @StorageRegions = storageregions
           @StorageClasses = storageclasses
+          @MediaTypes = mediatypes
           @TrtcSdkAppIds = trtcsdkappids
           @TrtcRoomIds = trtcroomids
           @Text = text
@@ -21011,6 +21015,7 @@ module TencentCloud
           @Filters = params['Filters']
           @StorageRegions = params['StorageRegions']
           @StorageClasses = params['StorageClasses']
+          @MediaTypes = params['MediaTypes']
           @TrtcSdkAppIds = params['TrtcSdkAppIds']
           @TrtcRoomIds = params['TrtcRoomIds']
           @Text = params['Text']
@@ -23381,7 +23386,7 @@ module TencentCloud
         # <li>ON：开启智能插帧；</li>
         # <li>OFF：关闭智能插帧。</li>
         # @type Switch: String
-        # @param Fps: 智能插帧帧率，帧率范围为 (0, 60]，仅当智能插帧控制开关为 ON 时有效。默认跟源文件帧率一致。
+        # @param Fps: 智能插帧帧率，帧率范围为 (0, 100]，仅当智能插帧控制开关为 ON 时有效。默认跟源文件帧率一致。
         # @type Fps: Integer
 
         attr_accessor :Switch, :Fps

@@ -183,6 +183,28 @@ module TencentCloud
         end
       end
 
+      # clickhouse vcluster信息
+      class ClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterName: vcluster名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param NodeIps: 当前cluster的IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeIps: Array
+
+        attr_accessor :ClusterName, :NodeIps
+        
+        def initialize(clustername=nil, nodeips=nil)
+          @ClusterName = clustername
+          @NodeIps = nodeips
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          @NodeIps = params['NodeIps']
+        end
+      end
+
       # 配置文件修改信息
       class ConfigSubmitContext < TencentCloud::Common::AbstractModel
         # @param FileName: 配置文件名称
@@ -538,6 +560,49 @@ module TencentCloud
               clusterconfigsinfofromemr_tmp = ClusterConfigsInfoFromEMR.new
               clusterconfigsinfofromemr_tmp.deserialize(i)
               @ClusterConfList << clusterconfigsinfofromemr_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceClusters请求参数结构体
+      class DescribeInstanceClustersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceClusters返回参数结构体
+      class DescribeInstanceClustersResponse < TencentCloud::Common::AbstractModel
+        # @param Clusters: cluster列表
+        # @type Clusters: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Clusters, :RequestId
+        
+        def initialize(clusters=nil, requestid=nil)
+          @Clusters = clusters
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              clusterinfo_tmp = ClusterInfo.new
+              clusterinfo_tmp.deserialize(i)
+              @Clusters << clusterinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1533,9 +1598,9 @@ module TencentCloud
         # @type ScaleOutCluster: String
         # @param UserSubnetIPNum: 子网剩余ip数量，用于判断当前实例子网剩余ip数是否能扩容。需要根据实际填写
         # @type UserSubnetIPNum: Integer
-        # @param ScaleOutNodeIp: 同步元数据节点IP （uip）
+        # @param ScaleOutNodeIp: 同步元数据节点IP （uip），扩容的时候必填
         # @type ScaleOutNodeIp: String
-        # @param ReduceShardInfo: 缩容节点shard的节点IP （uip），其中ha集群需要主副节点ip都传入以逗号分隔
+        # @param ReduceShardInfo: 缩容节点shard的节点IP （uip），其中ha集群需要主副节点ip都传入以逗号分隔，缩容的时候必填
         # @type ReduceShardInfo: Array
 
         attr_accessor :InstanceId, :Type, :NodeCount, :ScaleOutCluster, :UserSubnetIPNum, :ScaleOutNodeIp, :ReduceShardInfo

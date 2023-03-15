@@ -103,7 +103,12 @@ module TencentCloud
         # <li>method：请求方式；</li>
         # <li>header：请求头部；</li>
         # <li>app_proto：应用层协议；</li>
-        # <li>sip_proto：网络层协议。</li>
+        # <li>sip_proto：网络层协议；</li>
+        # <li>uabot：UA 特征规则，仅bot自定义规则可用；</li>
+        # <li>idcid：IDC 规则，仅bot自定义规则可用；</li>
+        # <li>sipbot：搜索引擎规则，仅bot自定义规则可用；</li>
+        # <li>portrait：画像分析，仅bot自定义规则可用；</li>
+        # <li>header_seq：请求头顺序，仅bot自定义规则可用。</li>
         # @type MatchFrom: String
         # @param MatchParam: 匹配字符串。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
         # @type MatchParam: String
@@ -689,14 +694,21 @@ module TencentCloud
         # @param IntelligenceRule: Bot智能分析。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligenceRule: :class:`Tencentcloud::Teo.v20220901.models.IntelligenceRule`
+        # @param BotUserRules: Bot自定义规则。如果为null，默认使用历史配置。
+        # @type BotUserRules: Array
+        # @param Customizes: Bot托管定制策略，入参可不填，仅出参使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Customizes: Array
 
-        attr_accessor :Switch, :BotManagedRule, :BotPortraitRule, :IntelligenceRule
+        attr_accessor :Switch, :BotManagedRule, :BotPortraitRule, :IntelligenceRule, :BotUserRules, :Customizes
         
-        def initialize(switch=nil, botmanagedrule=nil, botportraitrule=nil, intelligencerule=nil)
+        def initialize(switch=nil, botmanagedrule=nil, botportraitrule=nil, intelligencerule=nil, botuserrules=nil, customizes=nil)
           @Switch = switch
           @BotManagedRule = botmanagedrule
           @BotPortraitRule = botportraitrule
           @IntelligenceRule = intelligencerule
+          @BotUserRules = botuserrules
+          @Customizes = customizes
         end
 
         def deserialize(params)
@@ -713,6 +725,51 @@ module TencentCloud
             @IntelligenceRule = IntelligenceRule.new
             @IntelligenceRule.deserialize(params['IntelligenceRule'])
           end
+          unless params['BotUserRules'].nil?
+            @BotUserRules = []
+            params['BotUserRules'].each do |i|
+              botuserrule_tmp = BotUserRule.new
+              botuserrule_tmp.deserialize(i)
+              @BotUserRules << botuserrule_tmp
+            end
+          end
+          unless params['Customizes'].nil?
+            @Customizes = []
+            params['Customizes'].each do |i|
+              botuserrule_tmp = BotUserRule.new
+              botuserrule_tmp.deserialize(i)
+              @Customizes << botuserrule_tmp
+            end
+          end
+        end
+      end
+
+      # Bot扩展处置方式，多处置动作组合。
+      class BotExtendAction < TencentCloud::Common::AbstractModel
+        # @param Action: 处置动作，取值有：
+        # <li>monitor：观察；</li>
+        # <li>trans：放行；</li>
+        # <li>alg：JavaScript挑战；</li>
+        # <li>captcha：托管挑战；</li>
+        # <li>random：随机，按照ExtendActions分配处置动作和比例；</li>
+        # <li>silence：静默；</li>
+        # <li>shortdelay：短时响应；</li>
+        # <li>longdelay：长时响应。</li>
+        # @type Action: String
+        # @param Percent: 处置方式的触发概率，范围0-100。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+
+        attr_accessor :Action, :Percent
+        
+        def initialize(action=nil, percent=nil)
+          @Action = action
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Percent = params['Percent']
         end
       end
 
@@ -804,6 +861,89 @@ module TencentCloud
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
+        end
+      end
+
+      # Bot自定义规则
+      class BotUserRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名，只能以英文字符，数字，下划线组合，且不能以下划线开头。
+        # @type RuleName: String
+        # @param Action: 处置动作，取值有：
+        # <li>drop：拦截；</li>
+        # <li>monitor：观察；</li>
+        # <li>trans：放行；</li>
+        # <li>alg：JavaScript挑战；</li>
+        # <li>captcha：托管挑战；</li>
+        # <li>silence：静默；</li>
+        # <li>shortdelay：短时响应；</li>
+        # <li>longdelay：长时响应。</li>
+        # @type Action: String
+        # @param RuleStatus: 规则状态，取值有：
+        # <li>on：生效；</li>
+        # <li>off：不生效。</li>默认on生效。
+        # @type RuleStatus: String
+        # @param AclConditions: 规则详情。
+        # @type AclConditions: Array
+        # @param RulePriority: 规则权重，取值范围0-100。
+        # @type RulePriority: Integer
+        # @param RuleID: 规则id。仅出参使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param ExtendActions: 随机处置的处置方式及占比，非随机处置可不填暂不支持。
+        # @type ExtendActions: Array
+        # @param FreqFields: 过滤词，取值有：
+        # <li>sip：客户端ip。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreqFields: Array
+        # @param UpdateTime: 更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param FreqScope: 统计范围，字段为null时，代表source_to_eo。取值有：
+        # <li>source_to_eo：（响应）源站到EdgeOne。</li>
+        # <li>client_to_eo：（请求）客户端到EdgeOne；</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreqScope: Array
+
+        attr_accessor :RuleName, :Action, :RuleStatus, :AclConditions, :RulePriority, :RuleID, :ExtendActions, :FreqFields, :UpdateTime, :FreqScope
+        
+        def initialize(rulename=nil, action=nil, rulestatus=nil, aclconditions=nil, rulepriority=nil, ruleid=nil, extendactions=nil, freqfields=nil, updatetime=nil, freqscope=nil)
+          @RuleName = rulename
+          @Action = action
+          @RuleStatus = rulestatus
+          @AclConditions = aclconditions
+          @RulePriority = rulepriority
+          @RuleID = ruleid
+          @ExtendActions = extendactions
+          @FreqFields = freqfields
+          @UpdateTime = updatetime
+          @FreqScope = freqscope
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @RuleStatus = params['RuleStatus']
+          unless params['AclConditions'].nil?
+            @AclConditions = []
+            params['AclConditions'].each do |i|
+              aclcondition_tmp = AclCondition.new
+              aclcondition_tmp.deserialize(i)
+              @AclConditions << aclcondition_tmp
+            end
+          end
+          @RulePriority = params['RulePriority']
+          @RuleID = params['RuleID']
+          unless params['ExtendActions'].nil?
+            @ExtendActions = []
+            params['ExtendActions'].each do |i|
+              botextendaction_tmp = BotExtendAction.new
+              botextendaction_tmp.deserialize(i)
+              @ExtendActions << botextendaction_tmp
+            end
+          end
+          @FreqFields = params['FreqFields']
+          @UpdateTime = params['UpdateTime']
+          @FreqScope = params['FreqScope']
         end
       end
 

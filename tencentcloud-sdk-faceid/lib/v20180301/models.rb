@@ -1013,10 +1013,16 @@ module TencentCloud
         # 4：一闪活体（动作+光线）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessMode: Integer
+        # @param NFCRequestIds: nfc重复计费requestId列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NFCRequestIds: Array
+        # @param NFCBillingCounts: nfc重复计费计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NFCBillingCounts: Integer
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts
         
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -1041,6 +1047,8 @@ module TencentCloud
           @Mobile = mobile
           @CompareLibType = comparelibtype
           @LivenessMode = livenessmode
+          @NFCRequestIds = nfcrequestids
+          @NFCBillingCounts = nfcbillingcounts
         end
 
         def deserialize(params)
@@ -1075,6 +1083,8 @@ module TencentCloud
           @Mobile = params['Mobile']
           @CompareLibType = params['CompareLibType']
           @LivenessMode = params['LivenessMode']
+          @NFCRequestIds = params['NFCRequestIds']
+          @NFCBillingCounts = params['NFCBillingCounts']
         end
       end
 

@@ -131,12 +131,12 @@ module TencentCloud
 
       # 录制音频转码参数。
       class AudioParams < TencentCloud::Common::AbstractModel
-        # @param SampleRate: 音频采样率:
+        # @param SampleRate: 音频采样率枚举值:(注意1 代表48000HZ, 2 代表44100HZ, 3 代表16000HZ)
         # 1：48000Hz（默认）;
         # 2：44100Hz
         # 3：16000Hz。
         # @type SampleRate: Integer
-        # @param Channel: 声道数:
+        # @param Channel: 声道数枚举值:
         # 1：单声道;
         # 2：双声道（默认）。
         # @type Channel: Integer
@@ -4147,16 +4147,24 @@ module TencentCloud
 
       # 水印布局参数
       class WaterMark < TencentCloud::Common::AbstractModel
-        # @param WaterMarkType: 水印类型，0为图片（默认），1为文字（暂不支持）。
+        # @param WaterMarkType: 水印类型，0为图片（默认），1为文字，2为时间戳。
         # @type WaterMarkType: Integer
         # @param WaterMarkImage: 水印为图片时的参数列表，水印为图片时校验必填。
         # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkImage`
+        # @param WaterMarkChar: 水印为文字时的参数列表，水印为文字时校验必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaterMarkChar: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkChar`
+        # @param WaterMarkTimestamp: 水印为时间戳时的参数列表，水印为时间戳时校验必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaterMarkTimestamp: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkTimestamp`
 
-        attr_accessor :WaterMarkType, :WaterMarkImage
+        attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkChar, :WaterMarkTimestamp
         
-        def initialize(watermarktype=nil, watermarkimage=nil)
+        def initialize(watermarktype=nil, watermarkimage=nil, watermarkchar=nil, watermarktimestamp=nil)
           @WaterMarkType = watermarktype
           @WaterMarkImage = watermarkimage
+          @WaterMarkChar = watermarkchar
+          @WaterMarkTimestamp = watermarktimestamp
         end
 
         def deserialize(params)
@@ -4165,6 +4173,66 @@ module TencentCloud
             @WaterMarkImage = WaterMarkImage.new
             @WaterMarkImage.deserialize(params['WaterMarkImage'])
           end
+          unless params['WaterMarkChar'].nil?
+            @WaterMarkChar = WaterMarkChar.new
+            @WaterMarkChar.deserialize(params['WaterMarkChar'])
+          end
+          unless params['WaterMarkTimestamp'].nil?
+            @WaterMarkTimestamp = WaterMarkTimestamp.new
+            @WaterMarkTimestamp.deserialize(params['WaterMarkTimestamp'])
+          end
+        end
+      end
+
+      # 自定义文字水印数据结构
+      class WaterMarkChar < TencentCloud::Common::AbstractModel
+        # @param Top: 文字水印的起始坐标Y值，从左上角开始
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Top: Integer
+        # @param Left: 文字水印的起始坐标X值，从左上角开始
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Left: Integer
+        # @param Width: 文字水印的宽度，单位像素值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 文字水印的高度，单位像素值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Chars: 水印文字的内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Chars: String
+        # @param FontSize: 水印文字的大小，单位像素，默认14
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FontSize: Integer
+        # @param FontColor: 水印文字的颜色，默认白色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FontColor: String
+        # @param BackGroundColor: 水印文字的背景色，为空代表背景透明，默认为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackGroundColor: String
+
+        attr_accessor :Top, :Left, :Width, :Height, :Chars, :FontSize, :FontColor, :BackGroundColor
+        
+        def initialize(top=nil, left=nil, width=nil, height=nil, chars=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
+          @Top = top
+          @Left = left
+          @Width = width
+          @Height = height
+          @Chars = chars
+          @FontSize = fontsize
+          @FontColor = fontcolor
+          @BackGroundColor = backgroundcolor
+        end
+
+        def deserialize(params)
+          @Top = params['Top']
+          @Left = params['Left']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Chars = params['Chars']
+          @FontSize = params['FontSize']
+          @FontColor = params['FontColor']
+          @BackGroundColor = params['BackGroundColor']
         end
       end
 
@@ -4233,6 +4301,28 @@ module TencentCloud
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
           @WaterMarkUrl = params['WaterMarkUrl']
+        end
+      end
+
+      # 时间戳水印数据结构
+      class WaterMarkTimestamp < TencentCloud::Common::AbstractModel
+        # @param Pos: 时间戳的位置，取值范围0-6，分别代表上左，上右，下左，下右，上居中，下居中，居中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pos: Integer
+        # @param TimeZone: 显示时间戳的时区，默认东八区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZone: Integer
+
+        attr_accessor :Pos, :TimeZone
+        
+        def initialize(pos=nil, timezone=nil)
+          @Pos = pos
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @Pos = params['Pos']
+          @TimeZone = params['TimeZone']
         end
       end
 

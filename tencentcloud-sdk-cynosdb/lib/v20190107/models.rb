@@ -1925,10 +1925,13 @@ module TencentCloud
         # @param SlaveZones: 备可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
+        # @param InstanceNetInfo: 实例网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNetInfo: Array
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -1978,6 +1981,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @MasterZone = masterzone
           @SlaveZones = slavezones
+          @InstanceNetInfo = instancenetinfo
         end
 
         def deserialize(params)
@@ -2044,6 +2048,14 @@ module TencentCloud
           end
           @MasterZone = params['MasterZone']
           @SlaveZones = params['SlaveZones']
+          unless params['InstanceNetInfo'].nil?
+            @InstanceNetInfo = []
+            params['InstanceNetInfo'].each do |i|
+              instancenetinfo_tmp = InstanceNetInfo.new
+              instancenetinfo_tmp.deserialize(i)
+              @InstanceNetInfo << instancenetinfo_tmp
+            end
+          end
         end
       end
 
@@ -4613,6 +4625,73 @@ module TencentCloud
           @Memory = params['Memory']
           @InstanceType = params['InstanceType']
           @InstanceCount = params['InstanceCount']
+        end
+      end
+
+      # 实例网络信息
+      class InstanceNetInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceGroupType: 网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupType: String
+        # @param InstanceGroupId: 接入组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupId: String
+        # @param VpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param NetType: 网络类型, 0-基础网络, 1-vpc网络, 2-黑石网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetType: Integer
+        # @param Vip: 私有网络IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: 私有网络端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param WanDomain: 外网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanDomain: String
+        # @param WanIP: 外网Ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanIP: String
+        # @param WanPort: 外网端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanPort: Integer
+        # @param WanStatus: 外网开启状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanStatus: String
+
+        attr_accessor :InstanceGroupType, :InstanceGroupId, :VpcId, :SubnetId, :NetType, :Vip, :Vport, :WanDomain, :WanIP, :WanPort, :WanStatus
+        
+        def initialize(instancegrouptype=nil, instancegroupid=nil, vpcid=nil, subnetid=nil, nettype=nil, vip=nil, vport=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil)
+          @InstanceGroupType = instancegrouptype
+          @InstanceGroupId = instancegroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @NetType = nettype
+          @Vip = vip
+          @Vport = vport
+          @WanDomain = wandomain
+          @WanIP = wanip
+          @WanPort = wanport
+          @WanStatus = wanstatus
+        end
+
+        def deserialize(params)
+          @InstanceGroupType = params['InstanceGroupType']
+          @InstanceGroupId = params['InstanceGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @NetType = params['NetType']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @WanDomain = params['WanDomain']
+          @WanIP = params['WanIP']
+          @WanPort = params['WanPort']
+          @WanStatus = params['WanStatus']
         end
       end
 

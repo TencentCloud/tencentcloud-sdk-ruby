@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceDealDetail）用于查询预付费订单信息。
+
+        # @param request: Request instance for DescribeInstanceDealDetail.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::DescribeInstanceDealDetailRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::DescribeInstanceDealDetailResponse`
+        def DescribeInstanceDealDetail(request)
+          body = send_request('DescribeInstanceDealDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceDealDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstanceNodeInfo）查询实例节点信息。
 
         # @param request: Request instance for DescribeInstanceNodeInfo.

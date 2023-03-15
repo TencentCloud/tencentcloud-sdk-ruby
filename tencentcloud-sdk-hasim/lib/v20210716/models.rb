@@ -392,10 +392,14 @@ module TencentCloud
         # @type LinkedState: Integer
         # @param TagIDs: 标签ID 集合
         # @type TagIDs: Array
+        # @param Limit: 翻页大小, 默认翻页大小为10，最大数量为500
+        # @type Limit: Integer
+        # @param Offset: 翻页起始
+        # @type Offset: Integer
 
-        attr_accessor :LinkID, :ICCID, :IMEI, :Status, :TeleOperator, :TagID, :TacticID, :LinkedState, :TagIDs
+        attr_accessor :LinkID, :ICCID, :IMEI, :Status, :TeleOperator, :TagID, :TacticID, :LinkedState, :TagIDs, :Limit, :Offset
         
-        def initialize(linkid=nil, iccid=nil, imei=nil, status=nil, teleoperator=nil, tagid=nil, tacticid=nil, linkedstate=nil, tagids=nil)
+        def initialize(linkid=nil, iccid=nil, imei=nil, status=nil, teleoperator=nil, tagid=nil, tacticid=nil, linkedstate=nil, tagids=nil, limit=nil, offset=nil)
           @LinkID = linkid
           @ICCID = iccid
           @IMEI = imei
@@ -405,6 +409,8 @@ module TencentCloud
           @TacticID = tacticid
           @LinkedState = linkedstate
           @TagIDs = tagids
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -417,6 +423,8 @@ module TencentCloud
           @TacticID = params['TacticID']
           @LinkedState = params['LinkedState']
           @TagIDs = params['TagIDs']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 

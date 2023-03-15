@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 集群vcluster列表
+
+        # @param request: Request instance for DescribeInstanceClusters.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::DescribeInstanceClustersRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::DescribeInstanceClustersResponse`
+        def DescribeInstanceClusters(request)
+          body = send_request('DescribeInstanceClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在集群详情页面获取所有参数列表
 
         # @param request: Request instance for DescribeInstanceKeyValConfigs.

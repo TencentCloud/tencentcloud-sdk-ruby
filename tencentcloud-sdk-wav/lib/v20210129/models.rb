@@ -254,6 +254,28 @@ module TencentCloud
         end
       end
 
+      # 客户渠道标签
+      class ChannelTag < TencentCloud::Common::AbstractModel
+        # @param TagName: 该客户档案当前已成功关联的渠道标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagName: String
+        # @param TagId: 该客户档案当前已成功关联的渠道标签的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagId: String
+
+        attr_accessor :TagName, :TagId
+        
+        def initialize(tagname=nil, tagid=nil)
+          @TagName = tagname
+          @TagId = tagid
+        end
+
+        def deserialize(params)
+          @TagName = params['TagName']
+          @TagId = params['TagId']
+        end
+      end
+
       # 会话存档数据详情
       class ChatArchivingDetail < TencentCloud::Common::AbstractModel
         # @param MsgId: 消息id
@@ -372,10 +394,37 @@ module TencentCloud
         # @param UserName: 客户姓名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
+        # @param LeadUserType: 线索属性，0：个人，1：企业
+        # @type LeadUserType: Integer
+        # @param LeadType: 线索来源类型，1：线上，2：线下
+        # @type LeadType: Integer
+        # @param ChannelId: 线索渠道对应ID
+        # @type ChannelId: Integer
+        # @param ChannelName: 线索渠道类型，与线索来源对应的渠道名称
+        # @type ChannelName: String
+        # @param SourceChannelName: 线索渠道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceChannelName: String
+        # @param Gender: 0：未知，1：男，2：女
+        # @type Gender: Integer
+        # @param CreateTime: 线索创建时间戳，单位：秒
+        # @type CreateTime: String
+        # @param LeadStatus: 线索所处状态，101-待分配 201-待建档 301-已建档 401-已邀约 501-跟进中 601-已下订单 701-已成交 801-战败申请中 901-已战败 1001-未知状态 1101-转移申请中 1201-已完成
+        # @type LeadStatus: Integer
+        # @param LevelCode: 线索意向等级
+        # @type LevelCode: String
+        # @param ImportAtTime: 线索成功导入的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportAtTime: Integer
+        # @param DistributeTime: 完成线索分配的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeTime: Integer
+        # @param CreateAtTime: 获取线索的时间戳，单位：秒
+        # @type CreateAtTime: Integer
 
-        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime
         
-        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil)
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil)
           @ClueId = clueid
           @DealerId = dealerid
           @EnquireTime = enquiretime
@@ -391,6 +440,18 @@ module TencentCloud
           @Remark = remark
           @TagList = taglist
           @UserName = username
+          @LeadUserType = leadusertype
+          @LeadType = leadtype
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @SourceChannelName = sourcechannelname
+          @Gender = gender
+          @CreateTime = createtime
+          @LeadStatus = leadstatus
+          @LevelCode = levelcode
+          @ImportAtTime = importattime
+          @DistributeTime = distributetime
+          @CreateAtTime = createattime
         end
 
         def deserialize(params)
@@ -409,6 +470,18 @@ module TencentCloud
           @Remark = params['Remark']
           @TagList = params['TagList']
           @UserName = params['UserName']
+          @LeadUserType = params['LeadUserType']
+          @LeadType = params['LeadType']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @SourceChannelName = params['SourceChannelName']
+          @Gender = params['Gender']
+          @CreateTime = params['CreateTime']
+          @LeadStatus = params['LeadStatus']
+          @LevelCode = params['LevelCode']
+          @ImportAtTime = params['ImportAtTime']
+          @DistributeTime = params['DistributeTime']
+          @CreateAtTime = params['CreateAtTime']
         end
       end
 
@@ -793,23 +866,270 @@ module TencentCloud
         end
       end
 
+      # 潜客客户档案信息
+      class CustomerProfile < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 客户档案id，客户唯一识别编码
+        # @type CustomerId: Integer
+        # @param DealerCode: 所属经销商id
+        # @type DealerCode: String
+        # @param UnionId: 客户在微信生态中唯一识别码
+        # @type UnionId: String
+        # @param CreateTime: 档案创建时间戳，单位：秒
+        # @type CreateTime: String
+        # @param UserName: 客户姓名
+        # @type UserName: String
+        # @param Gender: 0未知，1：男，2：女
+        # @type Gender: Integer
+        # @param Phone: 客户联系手机号
+        # @type Phone: String
+        # @param AgeRangeName: 客户年龄段名称
+        # @type AgeRangeName: String
+        # @param JobTypeName: 客户行业类型名称信息，如教师、医生
+        # @type JobTypeName: String
+        # @param Address: 客户居住地址
+        # @type Address: String
+        # @param LeadsProcessStatus: 客户所处状态
+        #  0:已分配 1:未分配 1 待建档, 2 已建档， 3 已到店 4 已经试驾 5 战败申请中 6 已战败 7 已成交
+        # @type LeadsProcessStatus: Integer
+        # @param LeadType: 客户来源类型，1：线上，2：线下
+        # @type LeadType: Integer
+        # @param SourceName: 与客户来源类型对应的渠道名称
+        # @type SourceName: String
+        # @param LeadsLevelCode: 客户购车的意向等级
+        # @type LeadsLevelCode: String
+        # @param VehicleBrandCode: 客户意向品牌编号
+        # @type VehicleBrandCode: String
+        # @param VehicleSeriesCode: 客户意向车系编号
+        # @type VehicleSeriesCode: String
+        # @param VehicleTypeCode: 客户意向车型编号
+        # @type VehicleTypeCode: String
+        # @param VehiclePurpose: 购车用途信息
+        # @type VehiclePurpose: :class:`Tencentcloud::Wav.v20210129.models.VehiclePurpose`
+        # @param PurchaseConcern: 购车关注点信息
+        # @type PurchaseConcern: Array
+        # @param SalesName: 客户所属顾问姓名
+        # @type SalesName: String
+        # @param SalesPhone: 客户所属顾问手机号
+        # @type SalesPhone: String
+        # @param RealArrivalTime: 客户实际到店时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealArrivalTime: Integer
+        # @param CompleteTestDriveTime: 客户到店完成试乘试驾时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompleteTestDriveTime: String
+        # @param OrderTime: 客户完成下订的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderTime: Integer
+        # @param DeliveryTime: 客户成交的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliveryTime: Integer
+        # @param InvoiceTime: 开票时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvoiceTime: Integer
+        # @param LoseTime: 完成对此客户战败审批的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoseTime: Integer
+        # @param CreatedAtTime: 线索成功获取的时间戳，单位：秒
+        # @type CreatedAtTime: Integer
+        # @param ImportAtTime: 线索成功导入的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportAtTime: Integer
+        # @param DistributeTime: 完成线索分配的时间戳，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeTime: Integer
+        # @param LeadCreateTime: 线索成功创建的时间戳，单位：秒
+        # @type LeadCreateTime: Integer
+        # @param Nickname: 线索关联微信昵称
+        # @type Nickname: String
+        # @param OrgIdList: 线索归属部门节点
+        # @type OrgIdList: Array
+        # @param Introducer: 客户的介绍人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Introducer: String
+        # @param IntroducerPhone: 客户的介绍人手机号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntroducerPhone: String
+        # @param FollowTime: 最近一次完成跟进的时间戳，单位：秒
+        # @type FollowTime: Integer
+        # @param NextFollowTime: 最近一次计划跟进的时间戳，单位：秒
+        # @type NextFollowTime: Integer
+        # @param EnterpriseTags: 已为该客户添加的企业标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterpriseTags: Array
+        # @param ChannelTags: 已为该客户添加的渠道标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelTags: Array
+
+        attr_accessor :CustomerId, :DealerCode, :UnionId, :CreateTime, :UserName, :Gender, :Phone, :AgeRangeName, :JobTypeName, :Address, :LeadsProcessStatus, :LeadType, :SourceName, :LeadsLevelCode, :VehicleBrandCode, :VehicleSeriesCode, :VehicleTypeCode, :VehiclePurpose, :PurchaseConcern, :SalesName, :SalesPhone, :RealArrivalTime, :CompleteTestDriveTime, :OrderTime, :DeliveryTime, :InvoiceTime, :LoseTime, :CreatedAtTime, :ImportAtTime, :DistributeTime, :LeadCreateTime, :Nickname, :OrgIdList, :Introducer, :IntroducerPhone, :FollowTime, :NextFollowTime, :EnterpriseTags, :ChannelTags
+        
+        def initialize(customerid=nil, dealercode=nil, unionid=nil, createtime=nil, username=nil, gender=nil, phone=nil, agerangename=nil, jobtypename=nil, address=nil, leadsprocessstatus=nil, leadtype=nil, sourcename=nil, leadslevelcode=nil, vehiclebrandcode=nil, vehicleseriescode=nil, vehicletypecode=nil, vehiclepurpose=nil, purchaseconcern=nil, salesname=nil, salesphone=nil, realarrivaltime=nil, completetestdrivetime=nil, ordertime=nil, deliverytime=nil, invoicetime=nil, losetime=nil, createdattime=nil, importattime=nil, distributetime=nil, leadcreatetime=nil, nickname=nil, orgidlist=nil, introducer=nil, introducerphone=nil, followtime=nil, nextfollowtime=nil, enterprisetags=nil, channeltags=nil)
+          @CustomerId = customerid
+          @DealerCode = dealercode
+          @UnionId = unionid
+          @CreateTime = createtime
+          @UserName = username
+          @Gender = gender
+          @Phone = phone
+          @AgeRangeName = agerangename
+          @JobTypeName = jobtypename
+          @Address = address
+          @LeadsProcessStatus = leadsprocessstatus
+          @LeadType = leadtype
+          @SourceName = sourcename
+          @LeadsLevelCode = leadslevelcode
+          @VehicleBrandCode = vehiclebrandcode
+          @VehicleSeriesCode = vehicleseriescode
+          @VehicleTypeCode = vehicletypecode
+          @VehiclePurpose = vehiclepurpose
+          @PurchaseConcern = purchaseconcern
+          @SalesName = salesname
+          @SalesPhone = salesphone
+          @RealArrivalTime = realarrivaltime
+          @CompleteTestDriveTime = completetestdrivetime
+          @OrderTime = ordertime
+          @DeliveryTime = deliverytime
+          @InvoiceTime = invoicetime
+          @LoseTime = losetime
+          @CreatedAtTime = createdattime
+          @ImportAtTime = importattime
+          @DistributeTime = distributetime
+          @LeadCreateTime = leadcreatetime
+          @Nickname = nickname
+          @OrgIdList = orgidlist
+          @Introducer = introducer
+          @IntroducerPhone = introducerphone
+          @FollowTime = followtime
+          @NextFollowTime = nextfollowtime
+          @EnterpriseTags = enterprisetags
+          @ChannelTags = channeltags
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @DealerCode = params['DealerCode']
+          @UnionId = params['UnionId']
+          @CreateTime = params['CreateTime']
+          @UserName = params['UserName']
+          @Gender = params['Gender']
+          @Phone = params['Phone']
+          @AgeRangeName = params['AgeRangeName']
+          @JobTypeName = params['JobTypeName']
+          @Address = params['Address']
+          @LeadsProcessStatus = params['LeadsProcessStatus']
+          @LeadType = params['LeadType']
+          @SourceName = params['SourceName']
+          @LeadsLevelCode = params['LeadsLevelCode']
+          @VehicleBrandCode = params['VehicleBrandCode']
+          @VehicleSeriesCode = params['VehicleSeriesCode']
+          @VehicleTypeCode = params['VehicleTypeCode']
+          unless params['VehiclePurpose'].nil?
+            @VehiclePurpose = VehiclePurpose.new
+            @VehiclePurpose.deserialize(params['VehiclePurpose'])
+          end
+          unless params['PurchaseConcern'].nil?
+            @PurchaseConcern = []
+            params['PurchaseConcern'].each do |i|
+              purchaseconcern_tmp = PurchaseConcern.new
+              purchaseconcern_tmp.deserialize(i)
+              @PurchaseConcern << purchaseconcern_tmp
+            end
+          end
+          @SalesName = params['SalesName']
+          @SalesPhone = params['SalesPhone']
+          @RealArrivalTime = params['RealArrivalTime']
+          @CompleteTestDriveTime = params['CompleteTestDriveTime']
+          @OrderTime = params['OrderTime']
+          @DeliveryTime = params['DeliveryTime']
+          @InvoiceTime = params['InvoiceTime']
+          @LoseTime = params['LoseTime']
+          @CreatedAtTime = params['CreatedAtTime']
+          @ImportAtTime = params['ImportAtTime']
+          @DistributeTime = params['DistributeTime']
+          @LeadCreateTime = params['LeadCreateTime']
+          @Nickname = params['Nickname']
+          @OrgIdList = params['OrgIdList']
+          @Introducer = params['Introducer']
+          @IntroducerPhone = params['IntroducerPhone']
+          @FollowTime = params['FollowTime']
+          @NextFollowTime = params['NextFollowTime']
+          unless params['EnterpriseTags'].nil?
+            @EnterpriseTags = []
+            params['EnterpriseTags'].each do |i|
+              enterprisetag_tmp = EnterpriseTag.new
+              enterprisetag_tmp.deserialize(i)
+              @EnterpriseTags << enterprisetag_tmp
+            end
+          end
+          unless params['ChannelTags'].nil?
+            @ChannelTags = []
+            params['ChannelTags'].each do |i|
+              channeltag_tmp = ChannelTag.new
+              channeltag_tmp.deserialize(i)
+              @ChannelTags << channeltag_tmp
+            end
+          end
+        end
+      end
+
       # 经销商信息
       class DealerInfo < TencentCloud::Common::AbstractModel
         # @param DealerId: 企微SaaS平台经销商id
         # @type DealerId: Integer
         # @param DealerName: 经销商名称
         # @type DealerName: String
+        # @param ProvinceCode: 所属省份编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProvinceCode: String
+        # @param CityCodeList: 所属城市编号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityCodeList: Array
+        # @param BrandIdList: 业务覆盖品牌id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandIdList: Array
 
-        attr_accessor :DealerId, :DealerName
+        attr_accessor :DealerId, :DealerName, :ProvinceCode, :CityCodeList, :BrandIdList
         
-        def initialize(dealerid=nil, dealername=nil)
+        def initialize(dealerid=nil, dealername=nil, provincecode=nil, citycodelist=nil, brandidlist=nil)
           @DealerId = dealerid
           @DealerName = dealername
+          @ProvinceCode = provincecode
+          @CityCodeList = citycodelist
+          @BrandIdList = brandidlist
         end
 
         def deserialize(params)
           @DealerId = params['DealerId']
           @DealerName = params['DealerName']
+          @ProvinceCode = params['ProvinceCode']
+          @CityCodeList = params['CityCodeList']
+          @BrandIdList = params['BrandIdList']
+        end
+      end
+
+      # 客户企业标签
+      class EnterpriseTag < TencentCloud::Common::AbstractModel
+        # @param GroupName: 该客户档案当前已成功关联的企业标签分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param TagName: 该客户档案当前已成功关联的企业标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagName: String
+        # @param TagId: 该客户档案当前已成功关联的企业标签的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagId: String
+
+        attr_accessor :GroupName, :TagName, :TagId
+        
+        def initialize(groupname=nil, tagname=nil, tagid=nil)
+          @GroupName = groupname
+          @TagName = tagname
+          @TagId = tagid
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @TagName = params['TagName']
+          @TagId = params['TagId']
         end
       end
 
@@ -848,6 +1168,38 @@ module TencentCloud
           @Type = params['Type']
           @UnionId = params['UnionId']
           @Phone = params['Phone']
+        end
+      end
+
+      # 具备更多信息的外部联系人详细信息
+      class ExternalContactDetailPro < TencentCloud::Common::AbstractModel
+        # @param Customer: 客户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Customer: :class:`Tencentcloud::Wav.v20210129.models.ExternalContact`
+        # @param FollowUser: 添加了此外部联系人的企业成员信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowUser: Array
+
+        attr_accessor :Customer, :FollowUser
+        
+        def initialize(customer=nil, followuser=nil)
+          @Customer = customer
+          @FollowUser = followuser
+        end
+
+        def deserialize(params)
+          unless params['Customer'].nil?
+            @Customer = ExternalContact.new
+            @Customer.deserialize(params['Customer'])
+          end
+          unless params['FollowUser'].nil?
+            @FollowUser = []
+            params['FollowUser'].each do |i|
+              followuserpro_tmp = FollowUserPro.new
+              followuserpro_tmp.deserialize(i)
+              @FollowUser << followuserpro_tmp
+            end
+          end
         end
       end
 
@@ -1008,6 +1360,65 @@ module TencentCloud
               @Tags << externalcontacttag_tmp
             end
           end
+        end
+      end
+
+      # 具备更多信息的添加了此外部联系人的企业成员信息
+      class FollowUserPro < TencentCloud::Common::AbstractModel
+        # @param UserId: 添加了此外部联系人的企业成员userid
+        # @type UserId: String
+        # @param Remark: 该成员对此外部联系人的备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Description: 该成员对此外部联系人的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 该成员添加此外部联系人的时间戳，单位为秒
+        # @type CreateTime: Integer
+        # @param AddWay: 该成员添加此客户的来源，具体含义详见<a href="https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89">来源定义</a>
+        # @type AddWay: Integer
+        # @param OperUserId: 发起添加的userid，如果成员主动添加，为成员的userid；如果是客户主动添加，则为客户的外部联系人userid；如果是内部成员共享/管理员分配，则为对应的成员/管理员userid
+        # @type OperUserId: String
+        # @param Tags: 该成员添加此外部联系人所打标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param SalesName: 添加了此外部联系人的企业成员的姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SalesName: String
+        # @param DepartmentIdList: 企业成员的归属部门id列表
+        # @type DepartmentIdList: Array
+
+        attr_accessor :UserId, :Remark, :Description, :CreateTime, :AddWay, :OperUserId, :Tags, :SalesName, :DepartmentIdList
+        
+        def initialize(userid=nil, remark=nil, description=nil, createtime=nil, addway=nil, operuserid=nil, tags=nil, salesname=nil, departmentidlist=nil)
+          @UserId = userid
+          @Remark = remark
+          @Description = description
+          @CreateTime = createtime
+          @AddWay = addway
+          @OperUserId = operuserid
+          @Tags = tags
+          @SalesName = salesname
+          @DepartmentIdList = departmentidlist
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Remark = params['Remark']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @AddWay = params['AddWay']
+          @OperUserId = params['OperUserId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              externalcontacttag_tmp = ExternalContactTag.new
+              externalcontacttag_tmp.deserialize(i)
+              @Tags << externalcontacttag_tmp
+            end
+          end
+          @SalesName = params['SalesName']
+          @DepartmentIdList = params['DepartmentIdList']
         end
       end
 
@@ -1175,6 +1586,26 @@ module TencentCloud
           @State = params['State']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 购车关注点
+      class PurchaseConcern < TencentCloud::Common::AbstractModel
+        # @param Code: 购车关注点code
+        # @type Code: String
+        # @param Description: 购车关注点描述
+        # @type Description: String
+
+        attr_accessor :Code, :Description
+        
+        def initialize(code=nil, description=nil)
+          @Code = code
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Description = params['Description']
         end
       end
 
@@ -1453,17 +1884,25 @@ module TencentCloud
         # @type Cursor: String
         # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         # @type Limit: Integer
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
 
-        attr_accessor :Cursor, :Limit
+        attr_accessor :Cursor, :Limit, :BeginTime, :EndTime
         
-        def initialize(cursor=nil, limit=nil)
+        def initialize(cursor=nil, limit=nil, begintime=nil, endtime=nil)
           @Cursor = cursor
           @Limit = limit
+          @BeginTime = begintime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @Cursor = params['Cursor']
           @Limit = params['Limit']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -1635,6 +2074,67 @@ module TencentCloud
         end
       end
 
+      # QueryCustomerProfileList请求参数结构体
+      class QueryCustomerProfileListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页，预期请求的数据量，取值范围 1 ~ 1000
+        # @type Limit: Integer
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+
+        attr_accessor :Limit, :BeginTime, :EndTime, :Cursor
+        
+        def initialize(limit=nil, begintime=nil, endtime=nil, cursor=nil)
+          @Limit = limit
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+        end
+      end
+
+      # QueryCustomerProfileList返回参数结构体
+      class QueryCustomerProfileListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 潜客客户存档信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              customerprofile_tmp = CustomerProfile.new
+              customerprofile_tmp.deserialize(i)
+              @PageData << customerprofile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryDealerInfoList请求参数结构体
       class QueryDealerInfoListRequest < TencentCloud::Common::AbstractModel
         # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -1689,6 +2189,66 @@ module TencentCloud
           end
           @NextCursor = params['NextCursor']
           @HasMore = params['HasMore']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryExternalContactDetailByDate请求参数结构体
+      class QueryExternalContactDetailByDateRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 查询结束时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
+        
+        def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryExternalContactDetailByDate返回参数结构体
+      class QueryExternalContactDetailByDateResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 外部联系人详细信息
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              externalcontactdetailpro_tmp = ExternalContactDetailPro.new
+              externalcontactdetailpro_tmp.deserialize(i)
+              @PageData << externalcontactdetailpro_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2406,6 +2966,26 @@ module TencentCloud
           @SeriesName = params['SeriesName']
           @ModelId = params['ModelId']
           @ModelName = params['ModelName']
+        end
+      end
+
+      # 购车用途详细信息
+      class VehiclePurpose < TencentCloud::Common::AbstractModel
+        # @param VehiclePurposeCode: 购车用途code
+        # @type VehiclePurposeCode: String
+        # @param VehiclePurposeName: 购车用途名称
+        # @type VehiclePurposeName: String
+
+        attr_accessor :VehiclePurposeCode, :VehiclePurposeName
+        
+        def initialize(vehiclepurposecode=nil, vehiclepurposename=nil)
+          @VehiclePurposeCode = vehiclepurposecode
+          @VehiclePurposeName = vehiclepurposename
+        end
+
+        def deserialize(params)
+          @VehiclePurposeCode = params['VehiclePurposeCode']
+          @VehiclePurposeName = params['VehiclePurposeName']
         end
       end
 

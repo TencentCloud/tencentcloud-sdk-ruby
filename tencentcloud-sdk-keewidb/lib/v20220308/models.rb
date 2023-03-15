@@ -672,6 +672,49 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceDealDetail请求参数结构体
+      class DescribeInstanceDealDetailRequest < TencentCloud::Common::AbstractModel
+        # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/1520/86207) 的输出参数DealId。
+        # @type DealIds: Array
+
+        attr_accessor :DealIds
+        
+        def initialize(dealids=nil)
+          @DealIds = dealids
+        end
+
+        def deserialize(params)
+          @DealIds = params['DealIds']
+        end
+      end
+
+      # DescribeInstanceDealDetail返回参数结构体
+      class DescribeInstanceDealDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DealDetails: 订单详细信息
+        # @type DealDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealDetails, :RequestId
+        
+        def initialize(dealdetails=nil, requestid=nil)
+          @DealDetails = dealdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DealDetails'].nil?
+            @DealDetails = []
+            params['DealDetails'].each do |i|
+              tradedealdetail_tmp = TradeDealDetail.new
+              tradedealdetail_tmp.deserialize(i)
+              @DealDetails << tradedealdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceNodeInfo请求参数结构体
       class DescribeInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，如：kee-6ubh****。
@@ -3118,6 +3161,66 @@ module TencentCloud
           @Command = params['Command']
           @CommandLine = params['CommandLine']
           @Node = params['Node']
+        end
+      end
+
+      # 订单交易信息
+      class TradeDealDetail < TencentCloud::Common::AbstractModel
+        # @param DealId: 订单号ID，调用云API时使用此ID
+        # @type DealId: String
+        # @param DealName: 长订单ID，反馈订单问题给官方客服使用此ID
+        # @type DealName: String
+        # @param ZoneId: 可用区id
+        # @type ZoneId: Integer
+        # @param GoodsNum: 订单关联的实例数
+        # @type GoodsNum: Integer
+        # @param Creater: 创建用户uin
+        # @type Creater: String
+        # @param CreatTime: 订单创建时间
+        # @type CreatTime: String
+        # @param OverdueTime: 订单超时时间
+        # @type OverdueTime: String
+        # @param EndTime: 订单完成时间
+        # @type EndTime: String
+        # @param Status: 订单状态 1：未支付 2:已支付，未发货 3:发货中 4:发货成功 5:发货失败 6:已退款 7:已关闭订单 8:订单过期 9:订单已失效 10:产品已失效 11:代付拒绝 12:支付中
+        # @type Status: Integer
+        # @param Description: 订单状态描述
+        # @type Description: String
+        # @param Price: 订单实际总价，单位：分
+        # @type Price: Float
+        # @param InstanceIds: 实例ID
+        # @type InstanceIds: Array
+
+        attr_accessor :DealId, :DealName, :ZoneId, :GoodsNum, :Creater, :CreatTime, :OverdueTime, :EndTime, :Status, :Description, :Price, :InstanceIds
+        
+        def initialize(dealid=nil, dealname=nil, zoneid=nil, goodsnum=nil, creater=nil, creattime=nil, overduetime=nil, endtime=nil, status=nil, description=nil, price=nil, instanceids=nil)
+          @DealId = dealid
+          @DealName = dealname
+          @ZoneId = zoneid
+          @GoodsNum = goodsnum
+          @Creater = creater
+          @CreatTime = creattime
+          @OverdueTime = overduetime
+          @EndTime = endtime
+          @Status = status
+          @Description = description
+          @Price = price
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @DealId = params['DealId']
+          @DealName = params['DealName']
+          @ZoneId = params['ZoneId']
+          @GoodsNum = params['GoodsNum']
+          @Creater = params['Creater']
+          @CreatTime = params['CreatTime']
+          @OverdueTime = params['OverdueTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Price = params['Price']
+          @InstanceIds = params['InstanceIds']
         end
       end
 

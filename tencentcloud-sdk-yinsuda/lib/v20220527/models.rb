@@ -105,19 +105,24 @@ module TencentCloud
         # @type UserId: String
         # @param MusicIds: 歌曲 Id 列表。
         # @type MusicIds: Array
+        # @param PlayScene: 播放场景。默认为Chat
+        # <li>Live：直播</li><li>Chat：语聊</li>
+        # @type PlayScene: String
 
-        attr_accessor :AppName, :UserId, :MusicIds
+        attr_accessor :AppName, :UserId, :MusicIds, :PlayScene
         
-        def initialize(appname=nil, userid=nil, musicids=nil)
+        def initialize(appname=nil, userid=nil, musicids=nil, playscene=nil)
           @AppName = appname
           @UserId = userid
           @MusicIds = musicids
+          @PlayScene = playscene
         end
 
         def deserialize(params)
           @AppName = params['AppName']
           @UserId = params['UserId']
           @MusicIds = params['MusicIds']
+          @PlayScene = params['PlayScene']
         end
       end
 

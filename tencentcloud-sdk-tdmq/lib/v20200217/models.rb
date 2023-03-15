@@ -4701,6 +4701,89 @@ module TencentCloud
         end
       end
 
+      # DescribeRabbitMQVipInstance请求参数结构体
+      class DescribeRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeRabbitMQVipInstance返回参数结构体
+      class DescribeRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfo: 集群信息
+        # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterInfo`
+        # @param ClusterSpecInfo: 集群规格信息
+        # @type ClusterSpecInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterSpecInfo`
+        # @param ClusterNetInfo: 集群访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterNetInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterAccessInfo`
+        # @param ClusterWhiteListInfo: 集群白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterWhiteListInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterWhiteListInfo`
+        # @param VirtualHostQuota: vhost配额信息
+        # @type VirtualHostQuota: :class:`Tencentcloud::Tdmq.v20200217.models.VirtualHostQuota`
+        # @param ExchangeQuota: exchange配额信息
+        # @type ExchangeQuota: :class:`Tencentcloud::Tdmq.v20200217.models.ExchangeQuota`
+        # @param QueueQuota: queue配额信息
+        # @type QueueQuota: :class:`Tencentcloud::Tdmq.v20200217.models.QueueQuota`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfo, :ClusterSpecInfo, :ClusterNetInfo, :ClusterWhiteListInfo, :VirtualHostQuota, :ExchangeQuota, :QueueQuota, :RequestId
+        
+        def initialize(clusterinfo=nil, clusterspecinfo=nil, clusternetinfo=nil, clusterwhitelistinfo=nil, virtualhostquota=nil, exchangequota=nil, queuequota=nil, requestid=nil)
+          @ClusterInfo = clusterinfo
+          @ClusterSpecInfo = clusterspecinfo
+          @ClusterNetInfo = clusternetinfo
+          @ClusterWhiteListInfo = clusterwhitelistinfo
+          @VirtualHostQuota = virtualhostquota
+          @ExchangeQuota = exchangequota
+          @QueueQuota = queuequota
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = RabbitMQClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
+          unless params['ClusterSpecInfo'].nil?
+            @ClusterSpecInfo = RabbitMQClusterSpecInfo.new
+            @ClusterSpecInfo.deserialize(params['ClusterSpecInfo'])
+          end
+          unless params['ClusterNetInfo'].nil?
+            @ClusterNetInfo = RabbitMQClusterAccessInfo.new
+            @ClusterNetInfo.deserialize(params['ClusterNetInfo'])
+          end
+          unless params['ClusterWhiteListInfo'].nil?
+            @ClusterWhiteListInfo = RabbitMQClusterWhiteListInfo.new
+            @ClusterWhiteListInfo.deserialize(params['ClusterWhiteListInfo'])
+          end
+          unless params['VirtualHostQuota'].nil?
+            @VirtualHostQuota = VirtualHostQuota.new
+            @VirtualHostQuota.deserialize(params['VirtualHostQuota'])
+          end
+          unless params['ExchangeQuota'].nil?
+            @ExchangeQuota = ExchangeQuota.new
+            @ExchangeQuota.deserialize(params['ExchangeQuota'])
+          end
+          unless params['QueueQuota'].nil?
+            @QueueQuota = QueueQuota.new
+            @QueueQuota.deserialize(params['QueueQuota'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRabbitMQVipInstances请求参数结构体
       class DescribeRabbitMQVipInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 查询条件过滤器
@@ -5543,6 +5626,27 @@ module TencentCloud
           @RoleDescribe = params['RoleDescribe']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # exchange使用配额信息
+      class ExchangeQuota < TencentCloud::Common::AbstractModel
+        # @param MaxExchange: 可创建最大exchange数
+        # @type MaxExchange: Integer
+        # @param UsedExchange: 已创建exchange数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedExchange: Integer
+
+        attr_accessor :MaxExchange, :UsedExchange
+        
+        def initialize(maxexchange=nil, usedexchange=nil)
+          @MaxExchange = maxexchange
+          @UsedExchange = usedexchange
+        end
+
+        def deserialize(params)
+          @MaxExchange = params['MaxExchange']
+          @UsedExchange = params['UsedExchange']
         end
       end
 
@@ -6675,6 +6779,41 @@ module TencentCloud
         end
       end
 
+      # rabbitmq Prometheus信息
+      class PrometheusEndpointInfo < TencentCloud::Common::AbstractModel
+        # @param PrometheusEndpointStatus: Prometheus开关的状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrometheusEndpointStatus: String
+        # @param VpcPrometheusEndpoint: prometheus信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcPrometheusEndpoint: Array
+        # @param NodePrometheusAddress: 节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePrometheusAddress: Array
+        # @param VpcEndpointInfo: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcEndpointInfo`
+
+        attr_accessor :PrometheusEndpointStatus, :VpcPrometheusEndpoint, :NodePrometheusAddress, :VpcEndpointInfo
+        
+        def initialize(prometheusendpointstatus=nil, vpcprometheusendpoint=nil, nodeprometheusaddress=nil, vpcendpointinfo=nil)
+          @PrometheusEndpointStatus = prometheusendpointstatus
+          @VpcPrometheusEndpoint = vpcprometheusendpoint
+          @NodePrometheusAddress = nodeprometheusaddress
+          @VpcEndpointInfo = vpcendpointinfo
+        end
+
+        def deserialize(params)
+          @PrometheusEndpointStatus = params['PrometheusEndpointStatus']
+          @VpcPrometheusEndpoint = params['VpcPrometheusEndpoint']
+          @NodePrometheusAddress = params['NodePrometheusAddress']
+          unless params['VpcEndpointInfo'].nil?
+            @VpcEndpointInfo = VpcEndpointInfo.new
+            @VpcEndpointInfo.deserialize(params['VpcEndpointInfo'])
+          end
+        end
+      end
+
       # PublishCmqMsg请求参数结构体
       class PublishCmqMsgRequest < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名
@@ -6777,6 +6916,259 @@ module TencentCloud
           @AverageMsgSize = params['AverageMsgSize']
           @ConnectedSince = params['ConnectedSince']
           @Partition = params['Partition']
+        end
+      end
+
+      # queue使用配额信息
+      class QueueQuota < TencentCloud::Common::AbstractModel
+        # @param MaxQueue: 可创建最大Queue数
+        # @type MaxQueue: Integer
+        # @param UsedQueue: 已创建Queue数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedQueue: Integer
+
+        attr_accessor :MaxQueue, :UsedQueue
+        
+        def initialize(maxqueue=nil, usedqueue=nil)
+          @MaxQueue = maxqueue
+          @UsedQueue = usedqueue
+        end
+
+        def deserialize(params)
+          @MaxQueue = params['MaxQueue']
+          @UsedQueue = params['UsedQueue']
+        end
+      end
+
+      # RabbitMQ集群访问信息
+      class RabbitMQClusterAccessInfo < TencentCloud::Common::AbstractModel
+        # @param PublicAccessEndpoint: 集群公网接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAccessEndpoint: String
+        # @param WebConsoleEndpoint: 集群控制台访问地址
+        # @type WebConsoleEndpoint: String
+        # @param WebConsoleUsername: 集群控制台登录用户名
+        # @type WebConsoleUsername: String
+        # @param WebConsolePassword: 集群控制台登录密码
+        # @type WebConsolePassword: String
+        # @param PublicAccessEndpointStatus: 已废弃
+        # @type PublicAccessEndpointStatus: Boolean
+        # @param PublicControlConsoleSwitchStatus: 已废弃
+        # @type PublicControlConsoleSwitchStatus: Boolean
+        # @param VpcControlConsoleSwitchStatus: 已废弃
+        # @type VpcControlConsoleSwitchStatus: Boolean
+        # @param VpcWebConsoleEndpoint: Vpc管控台访问地址，示例值，http://1.1.1.1:15672
+        # @type VpcWebConsoleEndpoint: String
+        # @param PublicWebConsoleSwitchStatus: 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicWebConsoleSwitchStatus: String
+        # @param VpcWebConsoleSwitchStatus: Vpc管控台开关状态，示例值，
+        # OFF/ON/CREATING/DELETING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcWebConsoleSwitchStatus: String
+        # @param PublicDataStreamStatus: 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicDataStreamStatus: String
+        # @param PrometheusEndpointInfo: Prometheus信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrometheusEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PrometheusEndpointInfo`
+
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo
+        
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil)
+          @PublicAccessEndpoint = publicaccessendpoint
+          @WebConsoleEndpoint = webconsoleendpoint
+          @WebConsoleUsername = webconsoleusername
+          @WebConsolePassword = webconsolepassword
+          @PublicAccessEndpointStatus = publicaccessendpointstatus
+          @PublicControlConsoleSwitchStatus = publiccontrolconsoleswitchstatus
+          @VpcControlConsoleSwitchStatus = vpccontrolconsoleswitchstatus
+          @VpcWebConsoleEndpoint = vpcwebconsoleendpoint
+          @PublicWebConsoleSwitchStatus = publicwebconsoleswitchstatus
+          @VpcWebConsoleSwitchStatus = vpcwebconsoleswitchstatus
+          @PublicDataStreamStatus = publicdatastreamstatus
+          @PrometheusEndpointInfo = prometheusendpointinfo
+        end
+
+        def deserialize(params)
+          @PublicAccessEndpoint = params['PublicAccessEndpoint']
+          @WebConsoleEndpoint = params['WebConsoleEndpoint']
+          @WebConsoleUsername = params['WebConsoleUsername']
+          @WebConsolePassword = params['WebConsolePassword']
+          @PublicAccessEndpointStatus = params['PublicAccessEndpointStatus']
+          @PublicControlConsoleSwitchStatus = params['PublicControlConsoleSwitchStatus']
+          @VpcControlConsoleSwitchStatus = params['VpcControlConsoleSwitchStatus']
+          @VpcWebConsoleEndpoint = params['VpcWebConsoleEndpoint']
+          @PublicWebConsoleSwitchStatus = params['PublicWebConsoleSwitchStatus']
+          @VpcWebConsoleSwitchStatus = params['VpcWebConsoleSwitchStatus']
+          @PublicDataStreamStatus = params['PublicDataStreamStatus']
+          unless params['PrometheusEndpointInfo'].nil?
+            @PrometheusEndpointInfo = PrometheusEndpointInfo.new
+            @PrometheusEndpointInfo.deserialize(params['PrometheusEndpointInfo'])
+          end
+        end
+      end
+
+      # RabbiteMQ集群基本信息
+      class RabbitMQClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Region: 地域信息
+        # @type Region: String
+        # @param CreateTime: 创建时间，毫秒为单位
+        # @type CreateTime: Integer
+        # @param Remark: 集群说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Vpcs: VPC及网络信息
+        # @type Vpcs: Array
+        # @param VirtualHostNumber: 虚拟主机数量
+        # @type VirtualHostNumber: Integer
+        # @param QueueNumber: 队列数量
+        # @type QueueNumber: Integer
+        # @param MessagePublishRate: 每秒生产消息数 单位：条/秒
+        # @type MessagePublishRate: Float
+        # @param MessageStackNumber: 堆积消息数 单位：条
+        # @type MessageStackNumber: Integer
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+        # @param ChannelNumber: Channel数量
+        # @type ChannelNumber: Integer
+        # @param ConnectionNumber: Connection数量
+        # @type ConnectionNumber: Integer
+        # @param ConsumerNumber: Consumer数量
+        # @type ConsumerNumber: Integer
+        # @param ExchangeNumber: Exchang数量
+        # @type ExchangeNumber: Integer
+        # @param ExceptionInformation: 集群异常。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptionInformation: String
+        # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: Integer
+
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus
+        
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @CreateTime = createtime
+          @Remark = remark
+          @Vpcs = vpcs
+          @VirtualHostNumber = virtualhostnumber
+          @QueueNumber = queuenumber
+          @MessagePublishRate = messagepublishrate
+          @MessageStackNumber = messagestacknumber
+          @ExpireTime = expiretime
+          @ChannelNumber = channelnumber
+          @ConnectionNumber = connectionnumber
+          @ConsumerNumber = consumernumber
+          @ExchangeNumber = exchangenumber
+          @ExceptionInformation = exceptioninformation
+          @ClusterStatus = clusterstatus
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @CreateTime = params['CreateTime']
+          @Remark = params['Remark']
+          unless params['Vpcs'].nil?
+            @Vpcs = []
+            params['Vpcs'].each do |i|
+              vpcendpointinfo_tmp = VpcEndpointInfo.new
+              vpcendpointinfo_tmp.deserialize(i)
+              @Vpcs << vpcendpointinfo_tmp
+            end
+          end
+          @VirtualHostNumber = params['VirtualHostNumber']
+          @QueueNumber = params['QueueNumber']
+          @MessagePublishRate = params['MessagePublishRate']
+          @MessageStackNumber = params['MessageStackNumber']
+          @ExpireTime = params['ExpireTime']
+          @ChannelNumber = params['ChannelNumber']
+          @ConnectionNumber = params['ConnectionNumber']
+          @ConsumerNumber = params['ConsumerNumber']
+          @ExchangeNumber = params['ExchangeNumber']
+          @ExceptionInformation = params['ExceptionInformation']
+          @ClusterStatus = params['ClusterStatus']
+        end
+      end
+
+      # RabbitMQ集群规格信息
+      class RabbitMQClusterSpecInfo < TencentCloud::Common::AbstractModel
+        # @param SpecName: 集群规格名称
+        # @type SpecName: String
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param MaxTps: 峰值tps
+        # @type MaxTps: Integer
+        # @param MaxBandWidth: 峰值带宽。单位：mbps
+        # @type MaxBandWidth: Integer
+        # @param MaxStorage: 存储容量。单位：GB
+        # @type MaxStorage: Integer
+        # @param PublicNetworkTps: 公网带宽tps。单位：Mbps
+        # @type PublicNetworkTps: Integer
+
+        attr_accessor :SpecName, :NodeCount, :MaxTps, :MaxBandWidth, :MaxStorage, :PublicNetworkTps
+        
+        def initialize(specname=nil, nodecount=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, publicnetworktps=nil)
+          @SpecName = specname
+          @NodeCount = nodecount
+          @MaxTps = maxtps
+          @MaxBandWidth = maxbandwidth
+          @MaxStorage = maxstorage
+          @PublicNetworkTps = publicnetworktps
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @NodeCount = params['NodeCount']
+          @MaxTps = params['MaxTps']
+          @MaxBandWidth = params['MaxBandWidth']
+          @MaxStorage = params['MaxStorage']
+          @PublicNetworkTps = params['PublicNetworkTps']
+        end
+      end
+
+      # RabbiteMQ集群白名单信息
+      class RabbitMQClusterWhiteListInfo < TencentCloud::Common::AbstractModel
+        # @param WhiteList: 废弃
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteList: String
+        # @param PublicControlConsoleWhiteList: 公网管控台白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicControlConsoleWhiteList: String
+        # @param PublicDataStreamWhiteList: 公网数据流白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicDataStreamWhiteList: String
+        # @param PublicControlConsoleWhiteListStatus: 公网管控台白名单状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicControlConsoleWhiteListStatus: String
+        # @param PublicDataStreamWhiteListStatus: 公网数据流白名单状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicDataStreamWhiteListStatus: String
+
+        attr_accessor :WhiteList, :PublicControlConsoleWhiteList, :PublicDataStreamWhiteList, :PublicControlConsoleWhiteListStatus, :PublicDataStreamWhiteListStatus
+        
+        def initialize(whitelist=nil, publiccontrolconsolewhitelist=nil, publicdatastreamwhitelist=nil, publiccontrolconsolewhiteliststatus=nil, publicdatastreamwhiteliststatus=nil)
+          @WhiteList = whitelist
+          @PublicControlConsoleWhiteList = publiccontrolconsolewhitelist
+          @PublicDataStreamWhiteList = publicdatastreamwhitelist
+          @PublicControlConsoleWhiteListStatus = publiccontrolconsolewhiteliststatus
+          @PublicDataStreamWhiteListStatus = publicdatastreamwhiteliststatus
+        end
+
+        def deserialize(params)
+          @WhiteList = params['WhiteList']
+          @PublicControlConsoleWhiteList = params['PublicControlConsoleWhiteList']
+          @PublicDataStreamWhiteList = params['PublicDataStreamWhiteList']
+          @PublicControlConsoleWhiteListStatus = params['PublicControlConsoleWhiteListStatus']
+          @PublicDataStreamWhiteListStatus = params['PublicDataStreamWhiteListStatus']
         end
       end
 
@@ -8307,6 +8699,27 @@ module TencentCloud
         end
       end
 
+      # vhost使用配额信息
+      class VirtualHostQuota < TencentCloud::Common::AbstractModel
+        # @param MaxVirtualHost: 允许创建最大vhost数
+        # @type MaxVirtualHost: Integer
+        # @param UsedVirtualHost: 已创建vhost数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedVirtualHost: Integer
+
+        attr_accessor :MaxVirtualHost, :UsedVirtualHost
+        
+        def initialize(maxvirtualhost=nil, usedvirtualhost=nil)
+          @MaxVirtualHost = maxvirtualhost
+          @UsedVirtualHost = usedvirtualhost
+        end
+
+        def deserialize(params)
+          @MaxVirtualHost = params['MaxVirtualHost']
+          @UsedVirtualHost = params['UsedVirtualHost']
+        end
+      end
+
       # vcp绑定记录
       class VpcBindRecord < TencentCloud::Common::AbstractModel
         # @param UniqueVpcId: 租户Vpc Id
@@ -8361,6 +8774,36 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # VPC接入点信息
+      class VpcEndpointInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的id
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param VpcEndpoint: vpc接入点信息
+        # @type VpcEndpoint: String
+        # @param VpcDataStreamEndpointStatus: vpc接入点状态
+        # OFF/ON/CREATING/DELETING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcDataStreamEndpointStatus: String
+
+        attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus
+        
+        def initialize(vpcid=nil, subnetid=nil, vpcendpoint=nil, vpcdatastreamendpointstatus=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VpcEndpoint = vpcendpoint
+          @VpcDataStreamEndpointStatus = vpcdatastreamendpointstatus
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VpcEndpoint = params['VpcEndpoint']
+          @VpcDataStreamEndpointStatus = params['VpcDataStreamEndpointStatus']
         end
       end
 
