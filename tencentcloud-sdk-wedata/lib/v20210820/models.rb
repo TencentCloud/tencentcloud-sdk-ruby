@@ -13895,10 +13895,28 @@ module TencentCloud
         # @param WhereFlag: 是否where参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhereFlag: Boolean
+        # @param TemplateSql: 模版原始SQL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateSql: String
+        # @param SubQualityDim: 模版子维度：0.父维度类型,1.一致性: 枚举范围一致性,2.一致性：数值范围一致性,3.一致性：字段数据相关性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubQualityDim: Integer
+        # @param TargetObjectType: 规则适用的目标数据对象类型（1：常量，2：离线表级，3：离线字段级别）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObjectType: Integer
+        # @param TargetObjectDataType: 规则适用的目标数据对象类型（1：数值，2：字符串）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObjectDataType: Integer
+        # @param TargetObjectDataTypeName: 目标字段详细类型，INT、STRING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObjectDataTypeName: String
+        # @param TargetObjectValue: 目标字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObjectValue: String
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue
         
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -13927,6 +13945,12 @@ module TencentCloud
           @FieldConfig = fieldconfig
           @MultiSourceFlag = multisourceflag
           @WhereFlag = whereflag
+          @TemplateSql = templatesql
+          @SubQualityDim = subqualitydim
+          @TargetObjectType = targetobjecttype
+          @TargetObjectDataType = targetobjectdatatype
+          @TargetObjectDataTypeName = targetobjectdatatypename
+          @TargetObjectValue = targetobjectvalue
         end
 
         def deserialize(params)
@@ -13964,6 +13988,12 @@ module TencentCloud
           end
           @MultiSourceFlag = params['MultiSourceFlag']
           @WhereFlag = params['WhereFlag']
+          @TemplateSql = params['TemplateSql']
+          @SubQualityDim = params['SubQualityDim']
+          @TargetObjectType = params['TargetObjectType']
+          @TargetObjectDataType = params['TargetObjectDataType']
+          @TargetObjectDataTypeName = params['TargetObjectDataTypeName']
+          @TargetObjectValue = params['TargetObjectValue']
         end
       end
 

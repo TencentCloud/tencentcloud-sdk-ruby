@@ -1986,11 +1986,7 @@ module TencentCloud
         # @type LayerVersion: Integer
         # @param LayerName: 层名称
         # @type LayerName: String
-        # @param Status: 层的具体版本当前状态，可能取值：
-        # Active 正常
-        # Publishing  发布中
-        # PublishFailed  发布失败
-        # Deleted 已删除
+        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

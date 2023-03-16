@@ -689,6 +689,122 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveVipTradeInfos请求参数结构体
+      class DescribeLiveVipTradeInfosRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param StartTime: 直播会员充值下单起始时间，格式为 ISO。默认为当前时间前一天。
+        # @type StartTime: String
+        # @param EndTime: 直播会员充值下单截止时间，格式为 ISO。默认为当前时间。 EndTime不能小于StartTime
+        # @type EndTime: String
+        # @param TradeSerialNos: 交易流水号集合，匹配集合指定所有流水号 。
+        # <li>数组长度限制：10。</li>
+        # @type TradeSerialNos: Array
+        # @param UserIds: 用户标识集合，匹配集合指定所有用户标识 。
+        # <li>数组长度限制：10。</li>
+        # @type UserIds: Array
+        # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：20，最大值：50。
+        # @type Limit: Integer
+
+        attr_accessor :AppName, :StartTime, :EndTime, :TradeSerialNos, :UserIds, :Offset, :Limit
+        
+        def initialize(appname=nil, starttime=nil, endtime=nil, tradeserialnos=nil, userids=nil, offset=nil, limit=nil)
+          @AppName = appname
+          @StartTime = starttime
+          @EndTime = endtime
+          @TradeSerialNos = tradeserialnos
+          @UserIds = userids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TradeSerialNos = params['TradeSerialNos']
+          @UserIds = params['UserIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLiveVipTradeInfos返回参数结构体
+      class DescribeLiveVipTradeInfosResponse < TencentCloud::Common::AbstractModel
+        # @param LiveVipTradeInfoSet: 直播会员充值流水信息列表
+        # @type LiveVipTradeInfoSet: Array
+        # @param TotalCount: 直播会员充值流水总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveVipTradeInfoSet, :TotalCount, :RequestId
+        
+        def initialize(liveviptradeinfoset=nil, totalcount=nil, requestid=nil)
+          @LiveVipTradeInfoSet = liveviptradeinfoset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LiveVipTradeInfoSet'].nil?
+            @LiveVipTradeInfoSet = []
+            params['LiveVipTradeInfoSet'].each do |i|
+              liveviptradeinfo_tmp = LiveVipTradeInfo.new
+              liveviptradeinfo_tmp.deserialize(i)
+              @LiveVipTradeInfoSet << liveviptradeinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserInfo请求参数结构体
+      class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+
+        attr_accessor :AppName, :UserId
+        
+        def initialize(appname=nil, userid=nil)
+          @AppName = appname
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeUserInfo返回参数结构体
+      class DescribeUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户信息。
+        # @type UserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.UserInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+        
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyKTVRobot请求参数结构体
       class DestroyKTVRobotRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -1116,6 +1232,75 @@ module TencentCloud
         end
       end
 
+      # 充值直播会员流水信息
+      class LiveVipTradeInfo < TencentCloud::Common::AbstractModel
+        # @param TradeSerialNo: 交易流水号。
+        # @type TradeSerialNo: String
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param RoomId: 房间标识。
+        # @type RoomId: String
+        # @param VipDays: 充值会员天数。
+        # 取值有：
+        # <li>31</li> <li>93</li><li>186</li> <li>372</li>
+        # @type VipDays: Integer
+        # @param Status: 订单状态。
+        # 取值有：
+        # <li>Success：成功</li><li>Fail：失败</li><li>Processing：订单处理中</li>
+        # @type Status: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+
+        attr_accessor :TradeSerialNo, :AppName, :UserId, :RoomId, :VipDays, :Status, :CreateTime
+        
+        def initialize(tradeserialno=nil, appname=nil, userid=nil, roomid=nil, vipdays=nil, status=nil, createtime=nil)
+          @TradeSerialNo = tradeserialno
+          @AppName = appname
+          @UserId = userid
+          @RoomId = roomid
+          @VipDays = vipdays
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @TradeSerialNo = params['TradeSerialNo']
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+          @VipDays = params['VipDays']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 直播会员用户信息
+      class LiveVipUserInfo < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间标识。
+        # @type RoomId: String
+        # @param LiveVipEndTime: 直播会员结束时间。
+        # @type LiveVipEndTime: String
+        # @param LiveVipStatus: 会员生效状态
+        # <li>Valid：生效</li><li>Invalid：无效</li>
+        # @type LiveVipStatus: String
+
+        attr_accessor :RoomId, :LiveVipEndTime, :LiveVipStatus
+        
+        def initialize(roomid=nil, livevipendtime=nil, livevipstatus=nil)
+          @RoomId = roomid
+          @LiveVipEndTime = livevipendtime
+          @LiveVipStatus = livevipstatus
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @LiveVipEndTime = params['LiveVipEndTime']
+          @LiveVipStatus = params['LiveVipStatus']
+        end
+      end
+
       # 歌曲专辑封面信息。
       class MusicAlbumCoverInfo < TencentCloud::Common::AbstractModel
         # @param Dimension: 尺寸规格，取值有：
@@ -1179,6 +1364,66 @@ module TencentCloud
 
         def deserialize(params)
           @Index = params['Index']
+        end
+      end
+
+      # RechargeLiveVip请求参数结构体
+      class RechargeLiveVipRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param TradeSerialNo: 交易流水号，用于标记此次充值记录，多次充值记录传入相同的 TradeSerialNo 会判断为失败，可用于防止重提提交造成重复计费。
+        # @type TradeSerialNo: String
+        # @param RoomId: 房间标识。
+        # @type RoomId: String
+        # @param VipDays: 充值会员天数。
+        # 取值有：
+        # <li>31</li>
+        # <li>93</li>
+        # <li>186</li>
+        # <li>372</li>
+        # @type VipDays: Integer
+
+        attr_accessor :AppName, :UserId, :TradeSerialNo, :RoomId, :VipDays
+        
+        def initialize(appname=nil, userid=nil, tradeserialno=nil, roomid=nil, vipdays=nil)
+          @AppName = appname
+          @UserId = userid
+          @TradeSerialNo = tradeserialno
+          @RoomId = roomid
+          @VipDays = vipdays
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @TradeSerialNo = params['TradeSerialNo']
+          @RoomId = params['RoomId']
+          @VipDays = params['VipDays']
+        end
+      end
+
+      # RechargeLiveVip返回参数结构体
+      class RechargeLiveVipResponse < TencentCloud::Common::AbstractModel
+        # @param LiveVipUserInfo: 直播会员信息。
+        # @type LiveVipUserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.LiveVipUserInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveVipUserInfo, :RequestId
+        
+        def initialize(livevipuserinfo=nil, requestid=nil)
+          @LiveVipUserInfo = livevipuserinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LiveVipUserInfo'].nil?
+            @LiveVipUserInfo = LiveVipUserInfo.new
+            @LiveVipUserInfo.deserialize(params['LiveVipUserInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1556,6 +1801,40 @@ module TencentCloud
         def deserialize(params)
           @Before = params['Before']
           @After = params['After']
+        end
+      end
+
+      # 用户信息
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param LiveVipUserInfo: 直播会员详细信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveVipUserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.LiveVipUserInfo`
+        # @param UserType: 用户类型
+        # <li>Normal：普通用户</li>
+        # <li>LiveVip：直播会员用户</li>
+        # @type UserType: String
+
+        attr_accessor :AppName, :UserId, :LiveVipUserInfo, :UserType
+        
+        def initialize(appname=nil, userid=nil, livevipuserinfo=nil, usertype=nil)
+          @AppName = appname
+          @UserId = userid
+          @LiveVipUserInfo = livevipuserinfo
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          unless params['LiveVipUserInfo'].nil?
+            @LiveVipUserInfo = LiveVipUserInfo.new
+            @LiveVipUserInfo.deserialize(params['LiveVipUserInfo'])
+          end
+          @UserType = params['UserType']
         end
       end
 

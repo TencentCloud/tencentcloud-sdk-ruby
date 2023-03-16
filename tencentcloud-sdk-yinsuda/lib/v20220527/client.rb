@@ -269,6 +269,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量获取直播会员充值流水详细信息，包括：流水号，订单状态，下订单时间等
+
+        # @param request: Request instance for DescribeLiveVipTradeInfos.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeLiveVipTradeInfosRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeLiveVipTradeInfosResponse`
+        def DescribeLiveVipTradeInfos(request)
+          body = send_request('DescribeLiveVipTradeInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveVipTradeInfosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户信息，包括是否为直播会员，及直播会员信息等
+
+        # @param request: Request instance for DescribeUserInfo.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeUserInfoResponse`
+        def DescribeUserInfo(request)
+          body = send_request('DescribeUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 销毁机器人，机器人退出 RTC 房间。
 
         # @param request: Request instance for DestroyKTVRobot.
@@ -279,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyKTVRobotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 充值直播会员，使该用户可以在直播场景使用
+
+        # @param request: Request instance for RechargeLiveVip.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::RechargeLiveVipRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::RechargeLiveVipResponse`
+        def RechargeLiveVip(request)
+          body = send_request('RechargeLiveVip', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RechargeLiveVipResponse.new
             model.deserialize(response['Response'])
             model
           else

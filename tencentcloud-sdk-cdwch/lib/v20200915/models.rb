@@ -62,6 +62,34 @@ module TencentCloud
         end
       end
 
+      # 集群内节点的规格磁盘规格描述
+      class AttachCBSSpec < TencentCloud::Common::AbstractModel
+        # @param DiskType: 节点磁盘类型，例如“CLOUD_SSD”\"CLOUD_PREMIUM"
+        # @type DiskType: String
+        # @param DiskSize: 磁盘容量，单位G
+        # @type DiskSize: Integer
+        # @param DiskCount: 磁盘总数
+        # @type DiskCount: Integer
+        # @param DiskDesc: 描述
+        # @type DiskDesc: String
+
+        attr_accessor :DiskType, :DiskSize, :DiskCount, :DiskDesc
+        
+        def initialize(disktype=nil, disksize=nil, diskcount=nil, diskdesc=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+          @DiskCount = diskcount
+          @DiskDesc = diskdesc
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @DiskCount = params['DiskCount']
+          @DiskDesc = params['DiskDesc']
+        end
+      end
+
       # 备份表信息
       class BackupTableContent < TencentCloud::Common::AbstractModel
         # @param Database: 数据库
@@ -1083,10 +1111,46 @@ module TencentCloud
         # @param CosMoveFactor: 冷热分层系数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosMoveFactor: Integer
+        # @param Kind: external/local/yunti
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param IsElastic: 是否弹性ck
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsElastic: Boolean
+        # @param InstanceStateInfo: 集群详细状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceStateInfo`
+        # @param HAZk: ZK高可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HAZk: Boolean
+        # @param MountDiskType: 挂载盘,默认0:没有类型；1:裸盘;2:lvm
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountDiskType: Integer
+        # @param CHProxyVip: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CHProxyVip: String
+        # @param CosBucketName: cos buket的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucketName: String
+        # @param CanAttachCbs: 是否可以挂载云盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanAttachCbs: Boolean
+        # @param CanAttachCbsLvm: 是否可以挂载云盘阵列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanAttachCbsLvm: Boolean
+        # @param CanAttachCos: 是否可以挂载cos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanAttachCos: Boolean
+        # @param Components: 服务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Components: Array
+        # @param UpgradeVersions: 可升级的内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeVersions: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions
         
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1117,6 +1181,18 @@ module TencentCloud
           @RegionDesc = regiondesc
           @Eip = eip
           @CosMoveFactor = cosmovefactor
+          @Kind = kind
+          @IsElastic = iselastic
+          @InstanceStateInfo = instancestateinfo
+          @HAZk = hazk
+          @MountDiskType = mountdisktype
+          @CHProxyVip = chproxyvip
+          @CosBucketName = cosbucketname
+          @CanAttachCbs = canattachcbs
+          @CanAttachCbsLvm = canattachcbslvm
+          @CanAttachCos = canattachcos
+          @Components = components
+          @UpgradeVersions = upgradeversions
         end
 
         def deserialize(params)
@@ -1163,6 +1239,80 @@ module TencentCloud
           @RegionDesc = params['RegionDesc']
           @Eip = params['Eip']
           @CosMoveFactor = params['CosMoveFactor']
+          @Kind = params['Kind']
+          @IsElastic = params['IsElastic']
+          unless params['InstanceStateInfo'].nil?
+            @InstanceStateInfo = InstanceStateInfo.new
+            @InstanceStateInfo.deserialize(params['InstanceStateInfo'])
+          end
+          @HAZk = params['HAZk']
+          @MountDiskType = params['MountDiskType']
+          @CHProxyVip = params['CHProxyVip']
+          @CosBucketName = params['CosBucketName']
+          @CanAttachCbs = params['CanAttachCbs']
+          @CanAttachCbsLvm = params['CanAttachCbsLvm']
+          @CanAttachCos = params['CanAttachCos']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              serviceinfo_tmp = ServiceInfo.new
+              serviceinfo_tmp.deserialize(i)
+              @Components << serviceinfo_tmp
+            end
+          end
+          @UpgradeVersions = params['UpgradeVersions']
+        end
+      end
+
+      # 集群状态抽象后的结构体
+      class InstanceStateInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceState: 集群状态，例如：Serving
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
+        # @param FlowCreateTime: 集群操作创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowCreateTime: String
+        # @param FlowName: 集群操作名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowProgress: 集群操作进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowProgress: Integer
+        # @param InstanceStateDesc: 集群状态描述，例如：运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateDesc: String
+        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMsg: String
+        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param RequestId: 请求id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId
+        
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, requestid=nil)
+          @InstanceState = instancestate
+          @FlowCreateTime = flowcreatetime
+          @FlowName = flowname
+          @FlowProgress = flowprogress
+          @InstanceStateDesc = instancestatedesc
+          @FlowMsg = flowmsg
+          @ProcessName = processname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceState = params['InstanceState']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
+          @InstanceStateDesc = params['InstanceStateDesc']
+          @FlowMsg = params['FlowMsg']
+          @ProcessName = params['ProcessName']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1400,10 +1550,31 @@ module TencentCloud
         # @type DiskType: String
         # @param DiskDesc: 磁盘描述
         # @type DiskDesc: String
+        # @param AttachCBSSpec: 挂载云盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachCBSSpec: :class:`Tencentcloud::Cdwch.v20200915.models.AttachCBSSpec`
+        # @param SubProductType: 子产品类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductType: String
+        # @param SpecCore: 规格对应的核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecCore: Integer
+        # @param SpecMemory: 规格对应的内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecMemory: Integer
+        # @param DiskCount: 磁盘的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskCount: Integer
+        # @param MaxDiskSize: 磁盘的最大大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDiskSize: Integer
+        # @param Encrypt: 是否为加密云盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: Integer
 
-        attr_accessor :Spec, :NodeSize, :Core, :Memory, :Disk, :DiskType, :DiskDesc
+        attr_accessor :Spec, :NodeSize, :Core, :Memory, :Disk, :DiskType, :DiskDesc, :AttachCBSSpec, :SubProductType, :SpecCore, :SpecMemory, :DiskCount, :MaxDiskSize, :Encrypt
         
-        def initialize(spec=nil, nodesize=nil, core=nil, memory=nil, disk=nil, disktype=nil, diskdesc=nil)
+        def initialize(spec=nil, nodesize=nil, core=nil, memory=nil, disk=nil, disktype=nil, diskdesc=nil, attachcbsspec=nil, subproducttype=nil, speccore=nil, specmemory=nil, diskcount=nil, maxdisksize=nil, encrypt=nil)
           @Spec = spec
           @NodeSize = nodesize
           @Core = core
@@ -1411,6 +1582,13 @@ module TencentCloud
           @Disk = disk
           @DiskType = disktype
           @DiskDesc = diskdesc
+          @AttachCBSSpec = attachcbsspec
+          @SubProductType = subproducttype
+          @SpecCore = speccore
+          @SpecMemory = specmemory
+          @DiskCount = diskcount
+          @MaxDiskSize = maxdisksize
+          @Encrypt = encrypt
         end
 
         def deserialize(params)
@@ -1421,6 +1599,16 @@ module TencentCloud
           @Disk = params['Disk']
           @DiskType = params['DiskType']
           @DiskDesc = params['DiskDesc']
+          unless params['AttachCBSSpec'].nil?
+            @AttachCBSSpec = AttachCBSSpec.new
+            @AttachCBSSpec.deserialize(params['AttachCBSSpec'])
+          end
+          @SubProductType = params['SubProductType']
+          @SpecCore = params['SpecCore']
+          @SpecMemory = params['SpecMemory']
+          @DiskCount = params['DiskCount']
+          @MaxDiskSize = params['MaxDiskSize']
+          @Encrypt = params['Encrypt']
         end
       end
 
@@ -1746,6 +1934,28 @@ module TencentCloud
           @WeekDays = params['WeekDays']
           @ExecuteHour = params['ExecuteHour']
           @ScheduleId = params['ScheduleId']
+        end
+      end
+
+      # 服务详细信息描述。
+      class ServiceInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Version: 服务的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :Name, :Version
+        
+        def initialize(name=nil, version=nil)
+          @Name = name
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
         end
       end
 

@@ -2398,13 +2398,13 @@ module TencentCloud
         # @type InstanceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
-        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配数。
+        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # @type SecondaryPrivateIpAddressCount: Integer
         # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
         # @type SecurityGroupIds: Array
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
         # @param AttachType: 绑定类型：0 标准型 1 扩展型。
         # @type AttachType: Integer
@@ -3074,14 +3074,17 @@ module TencentCloud
         # @type HaVipName: String
         # @param Vip: 指定虚拟IP地址，必须在`VPC`网段内且未被占用。不指定则自动分配。
         # @type Vip: String
+        # @param NetworkInterfaceId: `HAVIP`所在弹性网卡`ID`。
+        # @type NetworkInterfaceId: String
 
-        attr_accessor :VpcId, :SubnetId, :HaVipName, :Vip
+        attr_accessor :VpcId, :SubnetId, :HaVipName, :Vip, :NetworkInterfaceId
         
-        def initialize(vpcid=nil, subnetid=nil, havipname=nil, vip=nil)
+        def initialize(vpcid=nil, subnetid=nil, havipname=nil, vip=nil, networkinterfaceid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @HaVipName = havipname
           @Vip = vip
+          @NetworkInterfaceId = networkinterfaceid
         end
 
         def deserialize(params)
@@ -3089,6 +3092,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @HaVipName = params['HaVipName']
           @Vip = params['Vip']
+          @NetworkInterfaceId = params['NetworkInterfaceId']
         end
       end
 
@@ -3574,7 +3578,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
-        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配数。
+        # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # @type SecondaryPrivateIpAddressCount: Integer
         # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
         # @type SecurityGroupIds: Array

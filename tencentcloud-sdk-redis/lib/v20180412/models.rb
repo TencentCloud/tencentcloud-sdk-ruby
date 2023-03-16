@@ -3050,6 +3050,58 @@ module TencentCloud
         end
       end
 
+      # DescribeSSLStatus请求参数结构体
+      class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSSLStatus返回参数结构体
+      class DescribeSSLStatusResponse < TencentCloud::Common::AbstractModel
+        # @param CertDownloadUrl: 证书下载地址
+        # @type CertDownloadUrl: String
+        # @param UrlExpiredTime: 证书下载链接到期时间
+        # @type UrlExpiredTime: String
+        # @param SSLConfig: 实例SSL配置状态， true：开启 false：关闭
+        # @type SSLConfig: Boolean
+        # @param FeatureSupport: 实例SSL特性支持， true：支持 false：不支持（小版本升级后才能支持SSL特性）
+        # @type FeatureSupport: Boolean
+        # @param Status: SSL配置状态，1: 配置中 2：配置成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertDownloadUrl, :UrlExpiredTime, :SSLConfig, :FeatureSupport, :Status, :RequestId
+        
+        def initialize(certdownloadurl=nil, urlexpiredtime=nil, sslconfig=nil, featuresupport=nil, status=nil, requestid=nil)
+          @CertDownloadUrl = certdownloadurl
+          @UrlExpiredTime = urlexpiredtime
+          @SSLConfig = sslconfig
+          @FeatureSupport = featuresupport
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertDownloadUrl = params['CertDownloadUrl']
+          @UrlExpiredTime = params['UrlExpiredTime']
+          @SSLConfig = params['SSLConfig']
+          @FeatureSupport = params['FeatureSupport']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLog请求参数结构体
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id。
