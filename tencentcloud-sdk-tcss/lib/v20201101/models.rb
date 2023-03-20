@@ -5275,10 +5275,15 @@ module TencentCloud
         # @type ScanIds: Array
         # @param ScanPath: 自选排除或扫描的地址
         # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
 
-        attr_accessor :ScanPathAll, :ScanRangeType, :ScanRangeAll, :Timeout, :ScanPathType, :ScanIds, :ScanPath
+        attr_accessor :ScanPathAll, :ScanRangeType, :ScanRangeAll, :Timeout, :ScanPathType, :ScanIds, :ScanPath, :ScanPathMode
         
-        def initialize(scanpathall=nil, scanrangetype=nil, scanrangeall=nil, timeout=nil, scanpathtype=nil, scanids=nil, scanpath=nil)
+        def initialize(scanpathall=nil, scanrangetype=nil, scanrangeall=nil, timeout=nil, scanpathtype=nil, scanids=nil, scanpath=nil, scanpathmode=nil)
           @ScanPathAll = scanpathall
           @ScanRangeType = scanrangetype
           @ScanRangeAll = scanrangeall
@@ -5286,6 +5291,7 @@ module TencentCloud
           @ScanPathType = scanpathtype
           @ScanIds = scanids
           @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
         end
 
         def deserialize(params)
@@ -5296,6 +5302,7 @@ module TencentCloud
           @ScanPathType = params['ScanPathType']
           @ScanIds = params['ScanIds']
           @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
         end
       end
 
@@ -17130,12 +17137,18 @@ module TencentCloud
         # 5: 威胁情报
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckPlatform: Array
+        # @param FileAccessTime: 文件访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileAccessTime: String
+        # @param FileModifyTime: 文件修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileModifyTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :CheckPlatform, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :CheckPlatform, :FileAccessTime, :FileModifyTime, :RequestId
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, checkplatform=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, checkplatform=nil, fileaccesstime=nil, filemodifytime=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -17183,6 +17196,8 @@ module TencentCloud
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
           @CheckPlatform = checkplatform
+          @FileAccessTime = fileaccesstime
+          @FileModifyTime = filemodifytime
           @RequestId = requestid
         end
 
@@ -17234,6 +17249,8 @@ module TencentCloud
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @CheckPlatform = params['CheckPlatform']
+          @FileAccessTime = params['FileAccessTime']
+          @FileModifyTime = params['FileModifyTime']
           @RequestId = params['RequestId']
         end
       end
@@ -17437,16 +17454,22 @@ module TencentCloud
         # @param ScanPath: 自选排除或扫描的地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableScan, :ScanPathAll, :ScanPathType, :ScanPath, :RequestId
+        attr_accessor :EnableScan, :ScanPathAll, :ScanPathType, :ScanPath, :ScanPathMode, :RequestId
         
-        def initialize(enablescan=nil, scanpathall=nil, scanpathtype=nil, scanpath=nil, requestid=nil)
+        def initialize(enablescan=nil, scanpathall=nil, scanpathtype=nil, scanpath=nil, scanpathmode=nil, requestid=nil)
           @EnableScan = enablescan
           @ScanPathAll = scanpathall
           @ScanPathType = scanpathtype
           @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
           @RequestId = requestid
         end
 
@@ -17455,6 +17478,7 @@ module TencentCloud
           @ScanPathAll = params['ScanPathAll']
           @ScanPathType = params['ScanPathType']
           @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
           @RequestId = params['RequestId']
         end
       end
@@ -17531,12 +17555,17 @@ module TencentCloud
         # @param ClickTimeout: 一键检测的超时设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickTimeout: Integer
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableScan, :Cycle, :BeginScanAt, :ScanPathAll, :ScanPathType, :Timeout, :ScanRangeType, :ScanRangeAll, :ScanIds, :ScanPath, :ClickTimeout, :RequestId
+        attr_accessor :EnableScan, :Cycle, :BeginScanAt, :ScanPathAll, :ScanPathType, :Timeout, :ScanRangeType, :ScanRangeAll, :ScanIds, :ScanPath, :ClickTimeout, :ScanPathMode, :RequestId
         
-        def initialize(enablescan=nil, cycle=nil, beginscanat=nil, scanpathall=nil, scanpathtype=nil, timeout=nil, scanrangetype=nil, scanrangeall=nil, scanids=nil, scanpath=nil, clicktimeout=nil, requestid=nil)
+        def initialize(enablescan=nil, cycle=nil, beginscanat=nil, scanpathall=nil, scanpathtype=nil, timeout=nil, scanrangetype=nil, scanrangeall=nil, scanids=nil, scanpath=nil, clicktimeout=nil, scanpathmode=nil, requestid=nil)
           @EnableScan = enablescan
           @Cycle = cycle
           @BeginScanAt = beginscanat
@@ -17548,6 +17577,7 @@ module TencentCloud
           @ScanIds = scanids
           @ScanPath = scanpath
           @ClickTimeout = clicktimeout
+          @ScanPathMode = scanpathmode
           @RequestId = requestid
         end
 
@@ -17563,6 +17593,7 @@ module TencentCloud
           @ScanIds = params['ScanIds']
           @ScanPath = params['ScanPath']
           @ClickTimeout = params['ClickTimeout']
+          @ScanPathMode = params['ScanPathMode']
           @RequestId = params['RequestId']
         end
       end
@@ -22525,14 +22556,20 @@ module TencentCloud
         # @type ScanPathType: Integer
         # @param ScanPath: 自选排除或扫描的地址
         # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
 
-        attr_accessor :EnableScan, :ScanPathAll, :ScanPathType, :ScanPath
+        attr_accessor :EnableScan, :ScanPathAll, :ScanPathType, :ScanPath, :ScanPathMode
         
-        def initialize(enablescan=nil, scanpathall=nil, scanpathtype=nil, scanpath=nil)
+        def initialize(enablescan=nil, scanpathall=nil, scanpathtype=nil, scanpath=nil, scanpathmode=nil)
           @EnableScan = enablescan
           @ScanPathAll = scanpathall
           @ScanPathType = scanpathtype
           @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
         end
 
         def deserialize(params)
@@ -22540,6 +22577,7 @@ module TencentCloud
           @ScanPathAll = params['ScanPathAll']
           @ScanPathType = params['ScanPathType']
           @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
         end
       end
 
@@ -22581,10 +22619,15 @@ module TencentCloud
         # @type ScanIds: Array
         # @param ScanPath: 扫描路径
         # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
 
-        attr_accessor :EnableScan, :Cycle, :BeginScanAt, :ScanPathAll, :ScanPathType, :Timeout, :ScanRangeType, :ScanRangeAll, :ScanIds, :ScanPath
+        attr_accessor :EnableScan, :Cycle, :BeginScanAt, :ScanPathAll, :ScanPathType, :Timeout, :ScanRangeType, :ScanRangeAll, :ScanIds, :ScanPath, :ScanPathMode
         
-        def initialize(enablescan=nil, cycle=nil, beginscanat=nil, scanpathall=nil, scanpathtype=nil, timeout=nil, scanrangetype=nil, scanrangeall=nil, scanids=nil, scanpath=nil)
+        def initialize(enablescan=nil, cycle=nil, beginscanat=nil, scanpathall=nil, scanpathtype=nil, timeout=nil, scanrangetype=nil, scanrangeall=nil, scanids=nil, scanpath=nil, scanpathmode=nil)
           @EnableScan = enablescan
           @Cycle = cycle
           @BeginScanAt = beginscanat
@@ -22595,6 +22638,7 @@ module TencentCloud
           @ScanRangeAll = scanrangeall
           @ScanIds = scanids
           @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
         end
 
         def deserialize(params)
@@ -22608,6 +22652,7 @@ module TencentCloud
           @ScanRangeAll = params['ScanRangeAll']
           @ScanIds = params['ScanIds']
           @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
         end
       end
 

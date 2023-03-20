@@ -1650,21 +1650,21 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetIds: 子网 ID 数组
         # @type SubnetIds: Array
-        # @param GrafanaInitPassword: Grafana 初始密码
-        # @type GrafanaInitPassword: String
         # @param EnableInternet: 是否启用外网
         # @type EnableInternet: Boolean
+        # @param GrafanaInitPassword: Grafana 初始密码
+        # @type GrafanaInitPassword: String
         # @param TagSpecification: 标签
         # @type TagSpecification: Array
 
-        attr_accessor :InstanceName, :VpcId, :SubnetIds, :GrafanaInitPassword, :EnableInternet, :TagSpecification
+        attr_accessor :InstanceName, :VpcId, :SubnetIds, :EnableInternet, :GrafanaInitPassword, :TagSpecification
         
-        def initialize(instancename=nil, vpcid=nil, subnetids=nil, grafanainitpassword=nil, enableinternet=nil, tagspecification=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetids=nil, enableinternet=nil, grafanainitpassword=nil, tagspecification=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetIds = subnetids
-          @GrafanaInitPassword = grafanainitpassword
           @EnableInternet = enableinternet
+          @GrafanaInitPassword = grafanainitpassword
           @TagSpecification = tagspecification
         end
 
@@ -1672,8 +1672,8 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @VpcId = params['VpcId']
           @SubnetIds = params['SubnetIds']
-          @GrafanaInitPassword = params['GrafanaInitPassword']
           @EnableInternet = params['EnableInternet']
+          @GrafanaInitPassword = params['GrafanaInitPassword']
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
@@ -2289,17 +2289,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param Content: yaml的内容
         # @type Content: String
+        # @param Name: 规则名称
+        # @type Name: String
 
-        attr_accessor :InstanceId, :Content
+        attr_accessor :InstanceId, :Content, :Name
         
-        def initialize(instanceid=nil, content=nil)
+        def initialize(instanceid=nil, content=nil, name=nil)
           @InstanceId = instanceid
           @Content = content
+          @Name = name
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Content = params['Content']
+          @Name = params['Name']
         end
       end
 

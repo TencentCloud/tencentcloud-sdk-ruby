@@ -1139,7 +1139,8 @@ module TencentCloud
         # @type Class: String
         # @param StartDate: 有效期开始时间（YYYY-MM-DD）
         # @type StartDate: String
-        # @param EndDate: 有效期截止时间（YYYY-MM-DD）
+        # @param EndDate: 有效期截止时间（新版驾驶证返回 YYYY-MM-DD，
+        # 老版驾驶证返回有效期限 X年）
         # @type EndDate: String
         # @param CardCode: 证号
         # @type CardCode: String

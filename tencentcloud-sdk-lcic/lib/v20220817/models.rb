@@ -1829,6 +1829,126 @@ module TencentCloud
         end
       end
 
+      # 房间事件对应的信息。
+      class EventDataInfo < TencentCloud::Common::AbstractModel
+        # @param RoomId: 事件发生的房间号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomId: Integer
+        # @param UserId: 事件发生的用户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+
+        attr_accessor :RoomId, :UserId
+        
+        def initialize(roomid=nil, userid=nil)
+          @RoomId = roomid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # 房间事件信息。
+      class EventInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 事件发生的秒级unix时间戳。
+        # @type Timestamp: Integer
+        # @param EventType: 事件类型,有以下值:
+        # RoomStart:房间开始 RoomEnd:房间结束 MemberJoin:成员加入 MemberQuit:成员退出 RecordFinish:录制结束
+        # @type EventType: String
+        # @param EventData: 事件详细内容，包含房间号,成员类型事件包含用户Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventData: :class:`Tencentcloud::Lcic.v20220817.models.EventDataInfo`
+
+        attr_accessor :Timestamp, :EventType, :EventData
+        
+        def initialize(timestamp=nil, eventtype=nil, eventdata=nil)
+          @Timestamp = timestamp
+          @EventType = eventtype
+          @EventData = eventdata
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @EventType = params['EventType']
+          unless params['EventData'].nil?
+            @EventData = EventDataInfo.new
+            @EventData.deserialize(params['EventData'])
+          end
+        end
+      end
+
+      # GetRoomEvent请求参数结构体
+      class GetRoomEventRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param SdkAppId: 应用Id。
+        # @type SdkAppId: Integer
+        # @param Page: 起始页，1开始。keyword为空时有效。
+        # @type Page: Integer
+        # @param Limit: 每页个数。keyword为空时有效。一次性最多200条。
+        # @type Limit: Integer
+        # @param Keyword: 搜索事件类型。有以下事件类型:
+        # RoomStart:房间开始
+        # RoomEnd:房间结束
+        # MemberJoin:成员加入
+        # MemberQuit:成员退出
+        # RecordFinish:录制结束
+        # @type Keyword: String
+
+        attr_accessor :RoomId, :SdkAppId, :Page, :Limit, :Keyword
+        
+        def initialize(roomid=nil, sdkappid=nil, page=nil, limit=nil, keyword=nil)
+          @RoomId = roomid
+          @SdkAppId = sdkappid
+          @Page = page
+          @Limit = limit
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @SdkAppId = params['SdkAppId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # GetRoomEvent返回参数结构体
+      class GetRoomEventResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 该房间的事件总数，keyword搜索不影响该值。
+        # @type Total: Integer
+        # @param Events: 详细事件内容。包含相应的类型、发生的时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Events, :RequestId
+        
+        def initialize(total=nil, events=nil, requestid=nil)
+          @Total = total
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              eventinfo_tmp = EventInfo.new
+              eventinfo_tmp.deserialize(i)
+              @Events << eventinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRoomMessage请求参数结构体
       class GetRoomMessageRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。

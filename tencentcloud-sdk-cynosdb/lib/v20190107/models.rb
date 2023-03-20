@@ -193,11 +193,11 @@ module TencentCloud
         # @type Memory: Integer
         # @param ReadOnlyCount: 新增只读实例数，取值范围为[0,4]
         # @type ReadOnlyCount: Integer
-        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
+        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。当前版本已废弃。
         # @type InstanceGrpId: String
-        # @param VpcId: 所属VPC网络ID，该参数已废弃
+        # @param VpcId: 所属VPC网络ID。
         # @type VpcId: String
-        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填。该参数已废弃。
+        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填。
         # @type SubnetId: String
         # @param Port: 新增RO组时使用的Port，取值范围为[0,65535)
         # @type Port: Integer
@@ -216,10 +216,12 @@ module TencentCloud
         # @type ParamTemplateId: Integer
         # @param InstanceParams: 参数列表，ParamTemplateId 传入时InstanceParams才有效
         # @type InstanceParams: Array
+        # @param SecurityGroupIds: 安全组ID，新建只读实例时可以指定安全组。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams
+        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds
         
-        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil)
+        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Memory = memory
@@ -235,6 +237,7 @@ module TencentCloud
           @DealMode = dealmode
           @ParamTemplateId = paramtemplateid
           @InstanceParams = instanceparams
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -260,6 +263,7 @@ module TencentCloud
               @InstanceParams << modifyparamitem_tmp
             end
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

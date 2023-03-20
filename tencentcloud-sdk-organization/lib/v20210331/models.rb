@@ -477,9 +477,9 @@ module TencentCloud
 
       # DescribeOrganizationMemberAuthIdentities请求参数结构体
       class DescribeOrganizationMemberAuthIdentitiesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
         # @type Offset: Integer
-        # @param Limit: 限制数目。最大50
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
         # @type Limit: Integer
         # @param MemberUin: 组织成员Uin。
         # @type MemberUin: Integer
@@ -501,7 +501,7 @@ module TencentCloud
 
       # DescribeOrganizationMemberAuthIdentities返回参数结构体
       class DescribeOrganizationMemberAuthIdentitiesResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 列表。
+        # @param Items: 授权身份列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目。
@@ -595,9 +595,9 @@ module TencentCloud
 
       # DescribeOrganizationMembers请求参数结构体
       class DescribeOrganizationMembersRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
         # @type Offset: Integer
-        # @param Limit: 限制数目。最大50
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
         # @type Limit: Integer
         # @param Lang: 国际站：en，国内站：zh
         # @type Lang: String
@@ -1219,13 +1219,13 @@ module TencentCloud
         # @param IdentityId: 身份ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
-        # @param IdentityRoleName: 身份角色名。
+        # @param IdentityRoleName: 身份的角色名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleName: String
-        # @param IdentityRoleAliasName: 身份角色别名。
+        # @param IdentityRoleAliasName: 身份的角色别名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleAliasName: String
-        # @param Description: 描述
+        # @param Description: 描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateTime: 创建时间。
@@ -1234,16 +1234,20 @@ module TencentCloud
         # @param UpdateTime: 更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param IdentityType: 身份类型。取值： 1-预设  2-自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityType: Integer
 
-        attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime
+        attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime, :IdentityType
         
-        def initialize(identityid=nil, identityrolename=nil, identityrolealiasname=nil, description=nil, createtime=nil, updatetime=nil)
+        def initialize(identityid=nil, identityrolename=nil, identityrolealiasname=nil, description=nil, createtime=nil, updatetime=nil, identitytype=nil)
           @IdentityId = identityid
           @IdentityRoleName = identityrolename
           @IdentityRoleAliasName = identityrolealiasname
           @Description = description
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @IdentityType = identitytype
         end
 
         def deserialize(params)
@@ -1253,6 +1257,7 @@ module TencentCloud
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @IdentityType = params['IdentityType']
         end
       end
 

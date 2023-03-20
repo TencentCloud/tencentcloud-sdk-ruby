@@ -305,7 +305,7 @@ module TencentCloud
         # <li> 智能压缩（Compression）；</li>
         # <li> Hsts；</li>
         # <li> ClientIpHeader；</li>
-        # <li> TlsVersion；</li>
+        # <li> SslTlsSecureConf；</li>
         # <li> OcspStapling；</li>
         # <li> HTTP/2 访问（Http2）；</li>
         # <li> 回源跟随重定向(UpstreamFollowRedirect)；</li>
@@ -2475,6 +2475,8 @@ module TencentCloud
         # <li>origin-type<br>   按照【<strong>源站类型</strong>】进行过滤。<br>   类型：String<br>   必选：否
         # <li>origin<br>   按照【<strong>主源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
         # <li>backup-origin<br>   按照【<strong>备用源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>domain-cname<br>   按照【<strong>加速CNAME名</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>share-cname<br>   按照【<strong>共享CNAME名</strong>】进行过滤。<br>   类型：String<br>   必选：否
         # @type Filters: Array
         # @param Direction: 列表排序方式，取值有：
         # <li>asc：升序排列；</li>
@@ -6601,6 +6603,24 @@ module TencentCloud
             @FileAscription.deserialize(params['FileAscription'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图片优化配置。
+      class ImageOptimize < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -11290,10 +11310,13 @@ module TencentCloud
         # @param Grpc: Grpc协议支持配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.Grpc`
+        # @param ImageOptimize: 图片优化相关配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageOptimize: :class:`Tencentcloud::Teo.v20220901.models.ImageOptimize`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize
         
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -11314,6 +11337,7 @@ module TencentCloud
           @Https = https
           @ClientIpCountry = clientipcountry
           @Grpc = grpc
+          @ImageOptimize = imageoptimize
         end
 
         def deserialize(params)
@@ -11390,6 +11414,10 @@ module TencentCloud
           unless params['Grpc'].nil?
             @Grpc = Grpc.new
             @Grpc.deserialize(params['Grpc'])
+          end
+          unless params['ImageOptimize'].nil?
+            @ImageOptimize = ImageOptimize.new
+            @ImageOptimize.deserialize(params['ImageOptimize'])
           end
         end
       end

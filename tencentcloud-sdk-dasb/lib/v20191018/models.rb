@@ -2673,10 +2673,13 @@ module TencentCloud
         # @type PackageBandwidth: Integer
         # @param PackageNode: 授权点数扩展包个数(50点)
         # @type PackageNode: Integer
+        # @param LogDeliveryArgs: 日志投递规格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogDeliveryArgs: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs
         
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -2705,6 +2708,7 @@ module TencentCloud
           @ExtendPoints = extendpoints
           @PackageBandwidth = packagebandwidth
           @PackageNode = packagenode
+          @LogDeliveryArgs = logdeliveryargs
         end
 
         def deserialize(params)
@@ -2736,6 +2740,7 @@ module TencentCloud
           @ExtendPoints = params['ExtendPoints']
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
+          @LogDeliveryArgs = params['LogDeliveryArgs']
         end
       end
 

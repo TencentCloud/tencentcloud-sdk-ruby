@@ -5541,26 +5541,32 @@ module TencentCloud
       class DescribeLogDownloadListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，北京时间。
         # 格式：yyyy-mm-dd HH:MM:SS。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type StartTime: String
         # @param EndTime: 结束时间，北京时间。
         # 格式：yyyy-mm-dd HH:MM:SS。
         # 注意：结束时间 - 开始时间 <=7天。
+        # 注：此字段为北京时间（UTC+8时区）。
         # @type EndTime: String
         # @param PlayDomains: 域名列表。
         # @type PlayDomains: Array
+        # @param IsFastLive: 快直播还是标准直播，0：标准直播，1：快直播。默认为0。
+        # @type IsFastLive: Integer
 
-        attr_accessor :StartTime, :EndTime, :PlayDomains
+        attr_accessor :StartTime, :EndTime, :PlayDomains, :IsFastLive
         
-        def initialize(starttime=nil, endtime=nil, playdomains=nil)
+        def initialize(starttime=nil, endtime=nil, playdomains=nil, isfastlive=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PlayDomains = playdomains
+          @IsFastLive = isfastlive
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @PlayDomains = params['PlayDomains']
+          @IsFastLive = params['IsFastLive']
         end
       end
 

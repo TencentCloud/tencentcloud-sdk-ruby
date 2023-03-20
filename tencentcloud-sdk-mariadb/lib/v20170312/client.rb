@@ -367,6 +367,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeBackupFiles)用于查看备份文件列表。
+
+        # @param request: Request instance for DescribeBackupFiles.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeBackupFilesRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeBackupFilesResponse`
+        def DescribeBackupFiles(request)
+          body = send_request('DescribeBackupFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
 
         # @param request: Request instance for DescribeBackupTime.

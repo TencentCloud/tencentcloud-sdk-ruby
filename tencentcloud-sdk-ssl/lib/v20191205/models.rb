@@ -2790,16 +2790,19 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param CertificateUse: 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         # @type CertificateUse: String
+        # @param Repeatable: 相同的证书是否允许重复上传
+        # @type Repeatable: Boolean
 
-        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse
+        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Repeatable
         
-        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil)
+        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, repeatable=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @CertificateType = certificatetype
           @Alias = _alias
           @ProjectId = projectid
           @CertificateUse = certificateuse
+          @Repeatable = repeatable
         end
 
         def deserialize(params)
@@ -2809,6 +2812,7 @@ module TencentCloud
           @Alias = params['Alias']
           @ProjectId = params['ProjectId']
           @CertificateUse = params['CertificateUse']
+          @Repeatable = params['Repeatable']
         end
       end
 
@@ -2816,18 +2820,23 @@ module TencentCloud
       class UploadCertificateResponse < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
+        # @param RepeatCertId: 重复证书的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepeatCertId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertificateId, :RequestId
+        attr_accessor :CertificateId, :RepeatCertId, :RequestId
         
-        def initialize(certificateid=nil, requestid=nil)
+        def initialize(certificateid=nil, repeatcertid=nil, requestid=nil)
           @CertificateId = certificateid
+          @RepeatCertId = repeatcertid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
+          @RepeatCertId = params['RepeatCertId']
           @RequestId = params['RequestId']
         end
       end

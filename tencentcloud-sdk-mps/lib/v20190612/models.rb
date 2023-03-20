@@ -13371,10 +13371,13 @@ module TencentCloud
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
         # @param SubtitleTemplate: 字幕流配置参数。
         # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
+        # @param AddonAudioStream: 外挂音轨参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddonAudioStream: Array
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate, :AddonAudioStream
         
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subtitletemplate=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subtitletemplate=nil, addonaudiostream=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
@@ -13382,6 +13385,7 @@ module TencentCloud
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
           @SubtitleTemplate = subtitletemplate
+          @AddonAudioStream = addonaudiostream
         end
 
         def deserialize(params)
@@ -13403,6 +13407,14 @@ module TencentCloud
           unless params['SubtitleTemplate'].nil?
             @SubtitleTemplate = SubtitleTemplate.new
             @SubtitleTemplate.deserialize(params['SubtitleTemplate'])
+          end
+          unless params['AddonAudioStream'].nil?
+            @AddonAudioStream = []
+            params['AddonAudioStream'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @AddonAudioStream << mediainputinfo_tmp
+            end
           end
         end
       end

@@ -1605,10 +1605,15 @@ module TencentCloud
         # @type Capacity: Integer
         # @param Tags: 文件系统标签列表
         # @type Tags: Array
+        # @param TieringState: 文件系统声明周期管理状态
+        # @type TieringState: String
+        # @param TieringDetail: 分层存储详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TieringDetail: :class:`Tencentcloud::Cfs.v20190719.models.TieringDetailInfo`
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity, :Tags
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity, :Tags, :TieringState, :TieringDetail
         
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil, tags=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -1629,6 +1634,8 @@ module TencentCloud
           @BandwidthLimit = bandwidthlimit
           @Capacity = capacity
           @Tags = tags
+          @TieringState = tieringstate
+          @TieringDetail = tieringdetail
         end
 
         def deserialize(params)
@@ -1661,6 +1668,11 @@ module TencentCloud
               taginfo_tmp.deserialize(i)
               @Tags << taginfo_tmp
             end
+          end
+          @TieringState = params['TieringState']
+          unless params['TieringDetail'].nil?
+            @TieringDetail = TieringDetailInfo.new
+            @TieringDetail.deserialize(params['TieringDetail'])
           end
         end
       end
@@ -2052,6 +2064,17 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 分层存储详细信息
+      class TieringDetailInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

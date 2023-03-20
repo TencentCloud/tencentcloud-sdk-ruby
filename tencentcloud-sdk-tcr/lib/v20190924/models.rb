@@ -538,16 +538,19 @@ module TencentCloud
         # @type RegistryChargePrepaid: :class:`Tencentcloud::Tcr.v20190924.models.RegistryChargePrepaid`
         # @param SyncTag: 是否同步TCR云标签至生成的COS Bucket
         # @type SyncTag: Boolean
+        # @param EnableCosMAZ: 是否开启Cos桶多AZ特性
+        # @type EnableCosMAZ: Boolean
 
-        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag, :EnableCosMAZ
         
-        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil, enablecosmaz=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
           @TagSpecification = tagspecification
           @RegistryChargeType = registrychargetype
           @RegistryChargePrepaid = registrychargeprepaid
           @SyncTag = synctag
+          @EnableCosMAZ = enablecosmaz
         end
 
         def deserialize(params)
@@ -563,6 +566,7 @@ module TencentCloud
             @RegistryChargePrepaid.deserialize(params['RegistryChargePrepaid'])
           end
           @SyncTag = params['SyncTag']
+          @EnableCosMAZ = params['EnableCosMAZ']
         end
       end
 
