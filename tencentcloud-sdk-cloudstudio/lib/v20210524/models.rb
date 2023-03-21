@@ -1709,10 +1709,8 @@ module TencentCloud
       # 创建临时工作空间凭证 DTO
       class WorkspaceTokenDTO < TencentCloud::Common::AbstractModel
         # @param SpaceKey: 工作空间 SpaceKey
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceKey: String
         # @param TokenExpiredLimitSec: token过期时间，单位是秒，默认 3600
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TokenExpiredLimitSec: Integer
 
         attr_accessor :SpaceKey, :TokenExpiredLimitSec

@@ -15645,10 +15645,8 @@ module TencentCloud
         # @param ExecutionSpace: 执行空间 "DRY_RUN"
         # @type ExecutionSpace: Integer
         # @param ProductName: 产品名称，可选
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: Integer
         # @param ResourceGroup: 资源组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroup: Integer
 
         attr_accessor :ExecutionSpace, :ProductName, :ResourceGroup

@@ -2386,7 +2386,6 @@ module TencentCloud
         # @param SavepointId: Savepoint的Id
         # @type SavepointId: String
         # @param UseOldSystemConnector: 使用历史版本系统依赖
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseOldSystemConnector: Boolean
 
         attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector

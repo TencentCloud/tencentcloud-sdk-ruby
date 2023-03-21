@@ -135,28 +135,20 @@ module TencentCloud
       # 基础流程信息
       class BaseFlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowName: 合同流程名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowType: 合同流程类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowType: String
         # @param FlowDescription: 合同流程描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
         # @param Deadline: 合同流程截止时间，unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: Integer
         # @param Unordered: 是否顺序签署(true:无序签,false:顺序签)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unordered: Boolean
         # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligentStatus: String
         # @param FormFields: 填写控件内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FormFields: Array
         # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedSignReview: Boolean
 
         attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview
@@ -196,16 +188,13 @@ module TencentCloud
         # @param Mobile: 被抄送人手机号，大陆11位手机号
         # @type Mobile: String
         # @param Name: 被抄送人姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param CcType: 被抄送人类型
         # 0--个人. 1--员工
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcType: Integer
         # @param CcPermission: 被抄送人权限
         # 0--可查看
         # 1--可查看也可下载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcPermission: Integer
 
         attr_accessor :Mobile, :Name, :CcType, :CcPermission
@@ -1773,7 +1762,6 @@ module TencentCloud
       # 签署人配置信息
       class CommonApproverOption < TencentCloud::Common::AbstractModel
         # @param CanEditApprover: 是否允许修改签署人信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanEditApprover: Boolean
 
         attr_accessor :CanEditApprover
@@ -1790,47 +1778,33 @@ module TencentCloud
       # 通用签署人信息
       class CommonFlowApprover < TencentCloud::Common::AbstractModel
         # @param NotChannelOrganization: 指定当前签署人为第三方应用集成子客，默认false：当前签署人为第三方应用集成子客，true：当前签署人为saas企业用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotChannelOrganization: Boolean
         # @param ApproverType: 签署人类型,目前支持：0-企业签署人，1-个人签署人，3-企业静默签署人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverType: Integer
         # @param OrganizationId: 企业id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param OrganizationOpenId: 企业OpenId，第三方应用集成非静默签子客企业签署人发起合同毕传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationOpenId: String
         # @param OrganizationName: 企业名称，第三方应用集成非静默签子客企业签署人必传，saas企业签署人必传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
         # @param UserId: 用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param OpenId: 用户openId，第三方应用集成非静默签子客企业签署人必传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param ApproverName: 签署人名称，saas企业签署人，个人签署人必传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverName: String
         # @param ApproverMobile: 签署人手机号，saas企业签署人，个人签署人必传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverMobile: String
         # @param RecipientId: 签署人Id，使用模板发起是，对应模板配置中的签署人RecipientId
         # 注意：模板发起时该字段必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param PreReadTime: 签署前置条件：阅读时长限制，不传默认10s,最大300s，最小3s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreReadTime: Integer
         # @param IsFullText: 签署前置条件：阅读全文限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFullText: Boolean
         # @param NotifyType: 通知类型：SMS（短信） NONE（不做通知）, 不传 默认SMS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyType: String
         # @param ApproverOption: 签署人配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
 
         attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption
@@ -2285,7 +2259,6 @@ module TencentCloud
       # 创建合同配置信息
       class CreateFlowOption < TencentCloud::Common::AbstractModel
         # @param CanEditFlow: 是否允许修改合同信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanEditFlow: Boolean
 
         attr_accessor :CanEditFlow
@@ -4127,7 +4100,6 @@ module TencentCloud
         # 业务管理员：admin
         # 经办人：channel-normal-operator
         # 业务员：channel-sales-man
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultRole: String
 
         attr_accessor :Id, :Name, :IdCardType, :IdCardNumber, :Mobile, :DefaultRole

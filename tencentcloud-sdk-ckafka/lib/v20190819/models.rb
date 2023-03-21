@@ -920,15 +920,12 @@ module TencentCloud
       # Cls类型入参
       class ClsParam < TencentCloud::Common::AbstractModel
         # @param DecodeJson: 生产的信息是否为json格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecodeJson: Boolean
         # @param Resource: cls日志主题id
         # @type Resource: String
         # @param LogSet: cls日志集id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSet: String
         # @param ContentKey: 当DecodeJson为false时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentKey: String
         # @param TimeField: 指定消息中的某字段内容作为cls日志的时间。
         # 字段内容格式需要是秒级时间戳
@@ -1478,10 +1475,12 @@ module TencentCloud
         # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerConnectParam`
         # @param DorisConnectParam: Doris 配置，Type为 DORIS 时必填
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
+        # @param KafkaConnectParam: Kafka配置，Type为 KAFKA 时必填
+        # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
 
-        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam
+        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam, :KafkaConnectParam
         
-        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil)
+        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
           @ResourceName = resourcename
           @Type = type
           @Description = description
@@ -1494,6 +1493,7 @@ module TencentCloud
           @MariaDBConnectParam = mariadbconnectparam
           @SQLServerConnectParam = sqlserverconnectparam
           @DorisConnectParam = dorisconnectparam
+          @KafkaConnectParam = kafkaconnectparam
         end
 
         def deserialize(params)
@@ -1535,6 +1535,10 @@ module TencentCloud
           unless params['DorisConnectParam'].nil?
             @DorisConnectParam = DorisConnectParam.new
             @DorisConnectParam.deserialize(params['DorisConnectParam'])
+          end
+          unless params['KafkaConnectParam'].nil?
+            @KafkaConnectParam = KafkaConnectParam.new
+            @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
           end
         end
       end
@@ -1725,6 +1729,68 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CreateDatahubTaskRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDatahubTopic请求参数结构体
+      class CreateDatahubTopicRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称，是一个不超过 128 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @type Name: String
+        # @param PartitionNum: Partition个数，大于0
+        # @type PartitionNum: Integer
+        # @param RetentionMs: 消息保留时间，单位ms，当前最小值为60000ms
+        # @type RetentionMs: Integer
+        # @param Note: 主题备注，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @type Note: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+
+        attr_accessor :Name, :PartitionNum, :RetentionMs, :Note, :Tags
+        
+        def initialize(name=nil, partitionnum=nil, retentionms=nil, note=nil, tags=nil)
+          @Name = name
+          @PartitionNum = partitionnum
+          @RetentionMs = retentionms
+          @Note = note
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @PartitionNum = params['PartitionNum']
+          @RetentionMs = params['RetentionMs']
+          @Note = params['Note']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDatahubTopic返回参数结构体
+      class CreateDatahubTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回创建结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTopicResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTopicResp.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -2727,6 +2793,22 @@ module TencentCloud
         end
       end
 
+      # Datahub Topic 响应
+      class DatahubTopicResp < TencentCloud::Common::AbstractModel
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+
+        attr_accessor :TopicName
+        
+        def initialize(topicname=nil)
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+        end
+      end
+
       # 数据处理——Value处理参数——转换时间格式参数
       class DateParam < TencentCloud::Common::AbstractModel
         # @param Format: 时间格式
@@ -3499,10 +3581,13 @@ module TencentCloud
         # @param DorisConnectParam: Doris 配置，Type 为 DORIS 时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
+        # @param KafkaConnectParam: Kafka配置，Type 为 KAFKA 时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3522,6 +3607,7 @@ module TencentCloud
           @SQLServerConnectParam = sqlserverconnectparam
           @CtsdbConnectParam = ctsdbconnectparam
           @DorisConnectParam = dorisconnectparam
+          @KafkaConnectParam = kafkaconnectparam
         end
 
         def deserialize(params)
@@ -3573,6 +3659,10 @@ module TencentCloud
           unless params['DorisConnectParam'].nil?
             @DorisConnectParam = DorisConnectParam.new
             @DorisConnectParam.deserialize(params['DorisConnectParam'])
+          end
+          unless params['KafkaConnectParam'].nil?
+            @KafkaConnectParam = KafkaConnectParam.new
+            @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
           end
         end
       end
@@ -3652,10 +3742,13 @@ module TencentCloud
         # @param DorisConnectParam: Doris 配置，Type 为 DORIS 时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
+        # @param KafkaConnectParam: Kafka配置，Type 为 KAFKA 时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3675,6 +3768,7 @@ module TencentCloud
           @SQLServerConnectParam = sqlserverconnectparam
           @CtsdbConnectParam = ctsdbconnectparam
           @DorisConnectParam = dorisconnectparam
+          @KafkaConnectParam = kafkaconnectparam
         end
 
         def deserialize(params)
@@ -3726,6 +3820,10 @@ module TencentCloud
           unless params['DorisConnectParam'].nil?
             @DorisConnectParam = DorisConnectParam.new
             @DorisConnectParam.deserialize(params['DorisConnectParam'])
+          end
+          unless params['KafkaConnectParam'].nil?
+            @KafkaConnectParam = KafkaConnectParam.new
+            @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
           end
         end
       end
@@ -5374,25 +5472,18 @@ module TencentCloud
       # Dts修改连接源参数
       class DtsModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: Dts实例Id【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: Dts的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param GroupId: Dts消费分组的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param UserName: Dts消费分组的账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Dts消费分组的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param IsUpdate: 是否更新到关联的Datahub任务，默认为true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param Topic: Dts订阅的topic【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
 
         attr_accessor :Resource, :Port, :GroupId, :UserName, :Password, :IsUpdate, :Topic
@@ -7317,6 +7408,43 @@ module TencentCloud
           @Delimiter = params['Delimiter']
           @Regex = params['Regex']
           @KeepOriginalKey = params['KeepOriginalKey']
+        end
+      end
+
+      # Kafka连接源参数
+      class KafkaConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: Kafka连接源的实例资源, 非自建时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param SelfBuilt: 是否为自建集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
+        # @param IsUpdate: 是否更新到关联的Dip任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+        # @param BrokerAddress: Kafka连接的broker地址, 自建时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerAddress: String
+        # @param Region: CKafka连接源的实例资源地域, 跨地域时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region
+        
+        def initialize(resource=nil, selfbuilt=nil, isupdate=nil, brokeraddress=nil, region=nil)
+          @Resource = resource
+          @SelfBuilt = selfbuilt
+          @IsUpdate = isupdate
+          @BrokerAddress = brokeraddress
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @SelfBuilt = params['SelfBuilt']
+          @IsUpdate = params['IsUpdate']
+          @BrokerAddress = params['BrokerAddress']
+          @Region = params['Region']
         end
       end
 
@@ -9301,13 +9429,10 @@ module TencentCloud
       # Scf类型入参
       class ScfParam < TencentCloud::Common::AbstractModel
         # @param FunctionName: SCF云函数函数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FunctionName: String
         # @param Namespace: SCF云函数命名空间, 默认为default
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Qualifier: SCF云函数版本及别名, 默认为$DEFAULT
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qualifier: String
         # @param BatchSize: 每批最大发送消息数, 默认为1000
         # @type BatchSize: Integer

@@ -113,13 +113,10 @@ module TencentCloud
       # logo参数
       class LogoParam < TencentCloud::Common::AbstractModel
         # @param LogoUrl: 水印url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoUrl: String
         # @param LogoImage: 水印base64，url和base64二选一传入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoImage: String
         # @param LogoRect: 水印图片位于融合结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoRect: :class:`Tencentcloud::Aiart.v20221229.models.LogoRect`
 
         attr_accessor :LogoUrl, :LogoImage, :LogoRect
@@ -143,16 +140,12 @@ module TencentCloud
       # 输入框
       class LogoRect < TencentCloud::Common::AbstractModel
         # @param X: 左上角X坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
         # @param Y: 左上角Y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
         # @param Width: 方框宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 方框高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
@@ -180,7 +173,6 @@ module TencentCloud
         # ● 768:768
         # ● 768:1024
         # ● 1024:768
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resolution: String
 
         attr_accessor :Resolution

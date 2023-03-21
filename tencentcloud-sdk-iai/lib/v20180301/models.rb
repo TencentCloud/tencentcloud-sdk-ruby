@@ -2373,7 +2373,6 @@ module TencentCloud
       # 需要修改的人员库自定义描述字段key-value
       class GroupExDescriptionInfo < TencentCloud::Common::AbstractModel
         # @param GroupExDescriptionIndex: 人员库自定义描述字段Index，从0开始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupExDescriptionIndex: Integer
         # @param GroupExDescription: 需要更新的人员库自定义描述字段内容
         # @type GroupExDescription: String
@@ -2681,7 +2680,6 @@ module TencentCloud
       # 需要修改的人员描述字段内容，key-value
       class PersonExDescriptionInfo < TencentCloud::Common::AbstractModel
         # @param PersonExDescriptionIndex: 人员描述字段Index，从0开始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonExDescriptionIndex: Integer
         # @param PersonExDescription: 需要更新的人员描述字段内容
         # @type PersonExDescription: String

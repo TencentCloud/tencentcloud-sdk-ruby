@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Datahub主题
+
+        # @param request: Request instance for CreateDatahubTopic.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateDatahubTopicRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateDatahubTopicResponse`
+        def CreateDatahubTopic(request)
+          body = send_request('CreateDatahubTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDatahubTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建按量计费实例
 
         # @param request: Request instance for CreateInstancePost.

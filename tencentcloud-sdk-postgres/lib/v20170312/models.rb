@@ -185,6 +185,142 @@ module TencentCloud
         end
       end
 
+      # 实例备份统计项
+      class BackupSummary < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param LogBackupCount: 实例日志备份数量。
+        # @type LogBackupCount: Integer
+        # @param LogBackupSize: 实例日志备份大小。
+        # @type LogBackupSize: Integer
+        # @param ManualBaseBackupCount: 手动创建的实例基础备份数量。
+        # @type ManualBaseBackupCount: Integer
+        # @param ManualBaseBackupSize: 手动创建的实例基础备份大小。
+        # @type ManualBaseBackupSize: Integer
+        # @param AutoBaseBackupCount: 自动创建的实例基础备份数量。
+        # @type AutoBaseBackupCount: Integer
+        # @param AutoBaseBackupSize: 自动创建的实例基础备份大小。
+        # @type AutoBaseBackupSize: Integer
+        # @param TotalBackupCount: 总备份数量
+        # @type TotalBackupCount: Integer
+        # @param TotalBackupSize: 总备份大小
+        # @type TotalBackupSize: Integer
+
+        attr_accessor :DBInstanceId, :LogBackupCount, :LogBackupSize, :ManualBaseBackupCount, :ManualBaseBackupSize, :AutoBaseBackupCount, :AutoBaseBackupSize, :TotalBackupCount, :TotalBackupSize
+        
+        def initialize(dbinstanceid=nil, logbackupcount=nil, logbackupsize=nil, manualbasebackupcount=nil, manualbasebackupsize=nil, autobasebackupcount=nil, autobasebackupsize=nil, totalbackupcount=nil, totalbackupsize=nil)
+          @DBInstanceId = dbinstanceid
+          @LogBackupCount = logbackupcount
+          @LogBackupSize = logbackupsize
+          @ManualBaseBackupCount = manualbasebackupcount
+          @ManualBaseBackupSize = manualbasebackupsize
+          @AutoBaseBackupCount = autobasebackupcount
+          @AutoBaseBackupSize = autobasebackupsize
+          @TotalBackupCount = totalbackupcount
+          @TotalBackupSize = totalbackupsize
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @LogBackupCount = params['LogBackupCount']
+          @LogBackupSize = params['LogBackupSize']
+          @ManualBaseBackupCount = params['ManualBaseBackupCount']
+          @ManualBaseBackupSize = params['ManualBaseBackupSize']
+          @AutoBaseBackupCount = params['AutoBaseBackupCount']
+          @AutoBaseBackupSize = params['AutoBaseBackupSize']
+          @TotalBackupCount = params['TotalBackupCount']
+          @TotalBackupSize = params['TotalBackupSize']
+        end
+      end
+
+      # 数据库基础备份信息
+      class BaseBackup < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param Id: 备份文件唯一标识。
+        # @type Id: String
+        # @param Name: 备份文件名称。
+        # @type Name: String
+        # @param BackupMethod: 备份方式：物理备份、逻辑备份。
+        # @type BackupMethod: String
+        # @param BackupMode: 备份模式：自动备份、手动备份。
+        # @type BackupMode: String
+        # @param State: 备份任务状态。
+        # @type State: String
+        # @param Size: 备份集大小，单位bytes。
+        # @type Size: Integer
+        # @param StartTime: 备份的开始时间。
+        # @type StartTime: String
+        # @param FinishTime: 备份的结束时间。
+        # @type FinishTime: String
+        # @param ExpireTime: 备份的过期时间。
+        # @type ExpireTime: String
+
+        attr_accessor :DBInstanceId, :Id, :Name, :BackupMethod, :BackupMode, :State, :Size, :StartTime, :FinishTime, :ExpireTime
+        
+        def initialize(dbinstanceid=nil, id=nil, name=nil, backupmethod=nil, backupmode=nil, state=nil, size=nil, starttime=nil, finishtime=nil, expiretime=nil)
+          @DBInstanceId = dbinstanceid
+          @Id = id
+          @Name = name
+          @BackupMethod = backupmethod
+          @BackupMode = backupmode
+          @State = state
+          @Size = size
+          @StartTime = starttime
+          @FinishTime = finishtime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @Id = params['Id']
+          @Name = params['Name']
+          @BackupMethod = params['BackupMethod']
+          @BackupMode = params['BackupMode']
+          @State = params['State']
+          @Size = params['Size']
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 数据库实例规格
+      class ClassInfo < TencentCloud::Common::AbstractModel
+        # @param SpecCode: 规格ID
+        # @type SpecCode: String
+        # @param CPU: CPU核数
+        # @type CPU: Integer
+        # @param Memory: 内存大小，单位：MB
+        # @type Memory: Integer
+        # @param MaxStorage: 该规格所支持最大存储容量，单位：GB
+        # @type MaxStorage: Integer
+        # @param MinStorage: 该规格所支持最小存储容量，单位：GB
+        # @type MinStorage: Integer
+        # @param QPS: 该规格的预估QPS
+        # @type QPS: Integer
+
+        attr_accessor :SpecCode, :CPU, :Memory, :MaxStorage, :MinStorage, :QPS
+        
+        def initialize(speccode=nil, cpu=nil, memory=nil, maxstorage=nil, minstorage=nil, qps=nil)
+          @SpecCode = speccode
+          @CPU = cpu
+          @Memory = memory
+          @MaxStorage = maxstorage
+          @MinStorage = minstorage
+          @QPS = qps
+        end
+
+        def deserialize(params)
+          @SpecCode = params['SpecCode']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @MaxStorage = params['MaxStorage']
+          @MinStorage = params['MinStorage']
+          @QPS = params['QPS']
+        end
+      end
+
       # CloneDBInstance请求参数结构体
       class CloneDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 克隆的源实例ID。
@@ -376,6 +512,38 @@ module TencentCloud
 
       # CloseServerlessDBExtranetAccess返回参数结构体
       class CloseServerlessDBExtranetAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBaseBackup请求参数结构体
+      class CreateBaseBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+        
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # CreateBaseBackup返回参数结构体
+      class CreateBaseBackupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1468,6 +1636,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBaseBackup请求参数结构体
+      class DeleteBaseBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param BaseBackupId: 基础备份ID。
+        # @type BaseBackupId: String
+
+        attr_accessor :DBInstanceId, :BaseBackupId
+        
+        def initialize(dbinstanceid=nil, basebackupid=nil)
+          @DBInstanceId = dbinstanceid
+          @BaseBackupId = basebackupid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @BaseBackupId = params['BaseBackupId']
+        end
+      end
+
+      # DeleteBaseBackup返回参数结构体
+      class DeleteBaseBackupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDBInstanceNetworkAccess请求参数结构体
       class DeleteDBInstanceNetworkAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
@@ -1513,6 +1717,42 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLogBackup请求参数结构体
+      class DeleteLogBackupRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param LogBackupId: 日志备份ID。
+        # @type LogBackupId: String
+
+        attr_accessor :DBInstanceId, :LogBackupId
+        
+        def initialize(dbinstanceid=nil, logbackupid=nil)
+          @DBInstanceId = dbinstanceid
+          @LogBackupId = logbackupid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @LogBackupId = params['LogBackupId']
+        end
+      end
+
+      # DeleteLogBackup返回参数结构体
+      class DeleteLogBackupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1774,6 +2014,117 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDownloadURL请求参数结构体
+      class DescribeBackupDownloadURLRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param BackupType: 备份类型，目前支持：LogBackup，BaseBackup。
+        # @type BackupType: String
+        # @param BackupId: 备份的唯一ID。
+        # @type BackupId: String
+        # @param URLExpireTime: 链接的有效时间，默认为12小时。
+        # @type URLExpireTime: Integer
+
+        attr_accessor :DBInstanceId, :BackupType, :BackupId, :URLExpireTime
+        
+        def initialize(dbinstanceid=nil, backuptype=nil, backupid=nil, urlexpiretime=nil)
+          @DBInstanceId = dbinstanceid
+          @BackupType = backuptype
+          @BackupId = backupid
+          @URLExpireTime = urlexpiretime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @BackupType = params['BackupType']
+          @BackupId = params['BackupId']
+          @URLExpireTime = params['URLExpireTime']
+        end
+      end
+
+      # DescribeBackupDownloadURL返回参数结构体
+      class DescribeBackupDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param BackupDownloadURL: 备份的下载地址。
+        # @type BackupDownloadURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupDownloadURL, :RequestId
+        
+        def initialize(backupdownloadurl=nil, requestid=nil)
+          @BackupDownloadURL = backupdownloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupDownloadURL = params['BackupDownloadURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupOverview请求参数结构体
+      class DescribeBackupOverviewRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBackupOverview返回参数结构体
+      class DescribeBackupOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalFreeSize: 总免费空间大小，单位byte。
+        # @type TotalFreeSize: Integer
+        # @param UsedFreeSize: 已使用免费空间大小，单位byte。
+        # @type UsedFreeSize: Integer
+        # @param UsedBillingSize: 已使用收费空间大小，单位byte。
+        # @type UsedBillingSize: Integer
+        # @param LogBackupCount: 日志备份数量。
+        # @type LogBackupCount: Integer
+        # @param LogBackupSize: 日志备份大小，单位byte。
+        # @type LogBackupSize: Integer
+        # @param ManualBaseBackupCount: 手动创建的基础备份数量。
+        # @type ManualBaseBackupCount: Integer
+        # @param ManualBaseBackupSize: 手动创建的基础备份大小，单位byte。
+        # @type ManualBaseBackupSize: Integer
+        # @param AutoBaseBackupCount: 自动创建的基础备份数量。
+        # @type AutoBaseBackupCount: Integer
+        # @param AutoBaseBackupSize: 自动创建的基础备份大小，单位byte。
+        # @type AutoBaseBackupSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalFreeSize, :UsedFreeSize, :UsedBillingSize, :LogBackupCount, :LogBackupSize, :ManualBaseBackupCount, :ManualBaseBackupSize, :AutoBaseBackupCount, :AutoBaseBackupSize, :RequestId
+        
+        def initialize(totalfreesize=nil, usedfreesize=nil, usedbillingsize=nil, logbackupcount=nil, logbackupsize=nil, manualbasebackupcount=nil, manualbasebackupsize=nil, autobasebackupcount=nil, autobasebackupsize=nil, requestid=nil)
+          @TotalFreeSize = totalfreesize
+          @UsedFreeSize = usedfreesize
+          @UsedBillingSize = usedbillingsize
+          @LogBackupCount = logbackupcount
+          @LogBackupSize = logbackupsize
+          @ManualBaseBackupCount = manualbasebackupcount
+          @ManualBaseBackupSize = manualbasebackupsize
+          @AutoBaseBackupCount = autobasebackupcount
+          @AutoBaseBackupSize = autobasebackupsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalFreeSize = params['TotalFreeSize']
+          @UsedFreeSize = params['UsedFreeSize']
+          @UsedBillingSize = params['UsedBillingSize']
+          @LogBackupCount = params['LogBackupCount']
+          @LogBackupSize = params['LogBackupSize']
+          @ManualBaseBackupCount = params['ManualBaseBackupCount']
+          @ManualBaseBackupSize = params['ManualBaseBackupSize']
+          @AutoBaseBackupCount = params['AutoBaseBackupCount']
+          @AutoBaseBackupSize = params['AutoBaseBackupSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupPlans请求参数结构体
       class DescribeBackupPlansRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID
@@ -1811,6 +2162,213 @@ module TencentCloud
               backupplan_tmp = BackupPlan.new
               backupplan_tmp.deserialize(i)
               @Plans << backupplan_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupSummaries请求参数结构体
+      class DescribeBackupSummariesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
+        # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        # db-instance-id：按照实例ID过滤，类型为string。
+        # db-instance-name：按照实例名过滤，类型为string。
+        # db-instance-ip：按照实例私有网络IP地址过滤，类型为string。
+        # @type Filters: Array
+        # @param OrderBy: 排序字段，支持TotalBackupSize,LogBackupSize,ManualBaseBackupSize,AutoBaseBackupSize。
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，包括升序：asc，降序：desc。
+        # @type OrderByType: String
+
+        attr_accessor :Limit, :Offset, :Filters, :OrderBy, :OrderByType
+        
+        def initialize(limit=nil, offset=nil, filters=nil, orderby=nil, orderbytype=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeBackupSummaries返回参数结构体
+      class DescribeBackupSummariesResponse < TencentCloud::Common::AbstractModel
+        # @param BackupSummarySet: 备份统计信息列表。
+        # @type BackupSummarySet: Array
+        # @param TotalCount: 查询到的所有备份信息数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupSummarySet, :TotalCount, :RequestId
+        
+        def initialize(backupsummaryset=nil, totalcount=nil, requestid=nil)
+          @BackupSummarySet = backupsummaryset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupSummarySet'].nil?
+            @BackupSummarySet = []
+            params['BackupSummarySet'].each do |i|
+              backupsummary_tmp = BackupSummary.new
+              backupsummary_tmp.deserialize(i)
+              @BackupSummarySet << backupsummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBaseBackups请求参数结构体
+      class DescribeBaseBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param MinFinishTime: 备份的最小结束时间，形如2018-01-01 00:00:00。默认为7天前。
+        # @type MinFinishTime: String
+        # @param MaxFinishTime: 备份的最大结束时间，形如2018-01-01 00:00:00。默认为当前时间。
+        # @type MaxFinishTime: String
+        # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        # db-instance-id：按照实例ID过滤，类型为string。
+        # db-instance-name：按照实例名过滤，类型为string。
+        # db-instance-ip：按照实例私有网络IP地址过滤，类型为string。
+        # @type Filters: Array
+        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，支持StartTime,FinishTime,Size。
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，包括升序：asc，降序：desc。
+        # @type OrderByType: String
+
+        attr_accessor :MinFinishTime, :MaxFinishTime, :Filters, :Limit, :Offset, :OrderBy, :OrderByType
+        
+        def initialize(minfinishtime=nil, maxfinishtime=nil, filters=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @MinFinishTime = minfinishtime
+          @MaxFinishTime = maxfinishtime
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @MinFinishTime = params['MinFinishTime']
+          @MaxFinishTime = params['MaxFinishTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeBaseBackups返回参数结构体
+      class DescribeBaseBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的基础备份数量。
+        # @type TotalCount: Integer
+        # @param BaseBackupSet: 基础备份详细信息列表。
+        # @type BaseBackupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BaseBackupSet, :RequestId
+        
+        def initialize(totalcount=nil, basebackupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BaseBackupSet = basebackupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BaseBackupSet'].nil?
+            @BaseBackupSet = []
+            params['BaseBackupSet'].each do |i|
+              basebackup_tmp = BaseBackup.new
+              basebackup_tmp.deserialize(i)
+              @BaseBackupSet << basebackup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClasses请求参数结构体
+      class DescribeClassesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区ID。可以通过接口DescribeZones获取。
+        # @type Zone: String
+        # @param DBEngine: 数据库引擎，支持：
+        # 1、postgresql（云数据库PostgreSQL）；
+        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # @type DBEngine: String
+        # @param DBMajorVersion: 数据库主版本号。例如12，13，可以通过接口DescribeDBVersions获取。
+        # @type DBMajorVersion: String
+
+        attr_accessor :Zone, :DBEngine, :DBMajorVersion
+        
+        def initialize(zone=nil, dbengine=nil, dbmajorversion=nil)
+          @Zone = zone
+          @DBEngine = dbengine
+          @DBMajorVersion = dbmajorversion
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @DBEngine = params['DBEngine']
+          @DBMajorVersion = params['DBMajorVersion']
+        end
+      end
+
+      # DescribeClasses返回参数结构体
+      class DescribeClassesResponse < TencentCloud::Common::AbstractModel
+        # @param ClassInfoSet: 数据库规格列表
+        # @type ClassInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClassInfoSet, :RequestId
+        
+        def initialize(classinfoset=nil, requestid=nil)
+          @ClassInfoSet = classinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClassInfoSet'].nil?
+            @ClassInfoSet = []
+            params['ClassInfoSet'].each do |i|
+              classinfo_tmp = ClassInfo.new
+              classinfo_tmp.deserialize(i)
+              @ClassInfoSet << classinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2286,6 +2844,44 @@ module TencentCloud
         end
       end
 
+      # DescribeDBVersions请求参数结构体
+      class DescribeDBVersionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBVersions返回参数结构体
+      class DescribeDBVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param VersionSet: 数据库版本号信息列表
+        # @type VersionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionSet, :RequestId
+        
+        def initialize(versionset=nil, requestid=nil)
+          @VersionSet = versionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VersionSet'].nil?
+            @VersionSet = []
+            params['VersionSet'].each do |i|
+              version_tmp = Version.new
+              version_tmp.deserialize(i)
+              @VersionSet << version_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBXlogs请求参数结构体
       class DescribeDBXlogsRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-4wdeb0zv。
@@ -2475,6 +3071,87 @@ module TencentCloud
               encryptionkey_tmp = EncryptionKey.new
               encryptionkey_tmp.deserialize(i)
               @EncryptionKeys << encryptionkey_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogBackups请求参数结构体
+      class DescribeLogBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param MinFinishTime: 备份的最小结束时间，形如2018-01-01 00:00:00。默认为7天前。
+        # @type MinFinishTime: String
+        # @param MaxFinishTime: 备份的最大结束时间，形如2018-01-01 00:00:00。默认为当前时间。
+        # @type MaxFinishTime: String
+        # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        # db-instance-id：按照实例ID过滤，类型为string。
+        # db-instance-name：按照实例名过滤，类型为string。
+        # db-instance-ip：按照实例私有网络IP地址过滤，类型为string。
+        # @type Filters: Array
+        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，支持StartTime,FinishTime,Size。
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，包括升序：asc，降序：desc。
+        # @type OrderByType: String
+
+        attr_accessor :MinFinishTime, :MaxFinishTime, :Filters, :Limit, :Offset, :OrderBy, :OrderByType
+        
+        def initialize(minfinishtime=nil, maxfinishtime=nil, filters=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @MinFinishTime = minfinishtime
+          @MaxFinishTime = maxfinishtime
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @MinFinishTime = params['MinFinishTime']
+          @MaxFinishTime = params['MaxFinishTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeLogBackups返回参数结构体
+      class DescribeLogBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的日志备份数量。
+        # @type TotalCount: Integer
+        # @param LogBackupSet: 日志备份详细信息列表。
+        # @type LogBackupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LogBackupSet, :RequestId
+        
+        def initialize(totalcount=nil, logbackupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LogBackupSet = logbackupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LogBackupSet'].nil?
+            @LogBackupSet = []
+            params['LogBackupSet'].each do |i|
+              logbackup_tmp = LogBackup.new
+              logbackup_tmp.deserialize(i)
+              @LogBackupSet << logbackup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3719,6 +4396,58 @@ module TencentCloud
         end
       end
 
+      # 数据库日志备份信息
+      class LogBackup < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param Id: 备份文件唯一标识。
+        # @type Id: String
+        # @param Name: 备份文件名称。
+        # @type Name: String
+        # @param BackupMethod: 备份方式：物理备份、逻辑备份。
+        # @type BackupMethod: String
+        # @param BackupMode: 备份模式：自动备份、手动备份。
+        # @type BackupMode: String
+        # @param State: 备份任务状态。
+        # @type State: String
+        # @param Size: 备份集大小，单位bytes。
+        # @type Size: Integer
+        # @param StartTime: 备份的开始时间。
+        # @type StartTime: String
+        # @param FinishTime: 备份的结束时间。
+        # @type FinishTime: String
+        # @param ExpireTime: 备份的过期时间。
+        # @type ExpireTime: String
+
+        attr_accessor :DBInstanceId, :Id, :Name, :BackupMethod, :BackupMode, :State, :Size, :StartTime, :FinishTime, :ExpireTime
+        
+        def initialize(dbinstanceid=nil, id=nil, name=nil, backupmethod=nil, backupmode=nil, state=nil, size=nil, starttime=nil, finishtime=nil, expiretime=nil)
+          @DBInstanceId = dbinstanceid
+          @Id = id
+          @Name = name
+          @BackupMethod = backupmethod
+          @BackupMode = backupmode
+          @State = state
+          @Size = size
+          @StartTime = starttime
+          @FinishTime = finishtime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @Id = params['Id']
+          @Name = params['Name']
+          @BackupMethod = params['BackupMethod']
+          @BackupMode = params['BackupMode']
+          @State = params['State']
+          @Size = params['Size']
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # ModifyAccountRemark请求参数结构体
       class ModifyAccountRemarkRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-4wdeb0zv
@@ -3793,6 +4522,46 @@ module TencentCloud
 
       # ModifyBackupPlan返回参数结构体
       class ModifyBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBaseBackupExpireTime请求参数结构体
+      class ModifyBaseBackupExpireTimeRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param BaseBackupId: 基础备份ID。
+        # @type BaseBackupId: String
+        # @param NewExpireTime: 新过期时间。
+        # @type NewExpireTime: String
+
+        attr_accessor :DBInstanceId, :BaseBackupId, :NewExpireTime
+        
+        def initialize(dbinstanceid=nil, basebackupid=nil, newexpiretime=nil)
+          @DBInstanceId = dbinstanceid
+          @BaseBackupId = basebackupid
+          @NewExpireTime = newexpiretime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @BaseBackupId = params['BaseBackupId']
+          @NewExpireTime = params['NewExpireTime']
+        end
+      end
+
+      # ModifyBaseBackupExpireTime返回参数结构体
+      class ModifyBaseBackupExpireTimeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5638,6 +6407,63 @@ module TencentCloud
         end
       end
 
+      # UpgradeDBInstanceKernelVersion请求参数结构体
+      class UpgradeDBInstanceKernelVersionRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param TargetDBKernelVersion: 升级的目标内核版本号。可以通过接口DescribeDBVersions的返回字段AvailableUpgradeTarget获取。
+        # @type TargetDBKernelVersion: String
+        # @param SwitchTag: 指定实例升级内核版本号完成后的切换时间。可选值，
+        # 0：立即切换（默认值）。
+        # 1：指定时间切换。
+        # 2：维护时间窗口内切换。
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。SwitchStartTime和SwitchEndTime时间窗口不能小于30分钟。
+        # @type SwitchEndTime: String
+        # @param DryRun: 是否对本次升级实例内核版本号操作执行预检查。可选值，
+        # true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
+        # false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        # @type DryRun: Boolean
+
+        attr_accessor :DBInstanceId, :TargetDBKernelVersion, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :DryRun
+        
+        def initialize(dbinstanceid=nil, targetdbkernelversion=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, dryrun=nil)
+          @DBInstanceId = dbinstanceid
+          @TargetDBKernelVersion = targetdbkernelversion
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @TargetDBKernelVersion = params['TargetDBKernelVersion']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # UpgradeDBInstanceKernelVersion返回参数结构体
+      class UpgradeDBInstanceKernelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeDBInstance请求参数结构体
       class UpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Memory: 升级后的实例内存大小，单位GB
@@ -5707,6 +6533,51 @@ module TencentCloud
           @DealName = params['DealName']
           @BillId = params['BillId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据库版本号信息
+      class Version < TencentCloud::Common::AbstractModel
+        # @param DBEngine: 数据库引擎，支持：
+        # 1、postgresql（云数据库PostgreSQL）；
+        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # @type DBEngine: String
+        # @param DBVersion: 数据库版本，例如：12.4
+        # @type DBVersion: String
+        # @param DBMajorVersion: 数据库主要版本，例如：12
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: 数据库内核版本，例如：v12.4_r1.3
+        # @type DBKernelVersion: String
+        # @param SupportedFeatureNames: 数据库内核支持的特性列表。例如，
+        # TDE：支持数据加密。
+        # @type SupportedFeatureNames: Array
+        # @param Status: 数据库版本状态，包括：
+        # AVAILABLE：可用；
+        # DEPRECATED：已弃用。
+        # @type Status: String
+        # @param AvailableUpgradeTarget: 该数据库版本（DBKernelVersion）可以升级到的版本号列表。
+        # @type AvailableUpgradeTarget: Array
+
+        attr_accessor :DBEngine, :DBVersion, :DBMajorVersion, :DBKernelVersion, :SupportedFeatureNames, :Status, :AvailableUpgradeTarget
+        
+        def initialize(dbengine=nil, dbversion=nil, dbmajorversion=nil, dbkernelversion=nil, supportedfeaturenames=nil, status=nil, availableupgradetarget=nil)
+          @DBEngine = dbengine
+          @DBVersion = dbversion
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
+          @SupportedFeatureNames = supportedfeaturenames
+          @Status = status
+          @AvailableUpgradeTarget = availableupgradetarget
+        end
+
+        def deserialize(params)
+          @DBEngine = params['DBEngine']
+          @DBVersion = params['DBVersion']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
+          @SupportedFeatureNames = params['SupportedFeatureNames']
+          @Status = params['Status']
+          @AvailableUpgradeTarget = params['AvailableUpgradeTarget']
         end
       end
 

@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateBaseBackup）用于创建实例的全量备份。
+
+        # @param request: Request instance for CreateBaseBackup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateBaseBackupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateBaseBackupResponse`
+        def CreateBaseBackup(request)
+          body = send_request('CreateBaseBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBaseBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 可对实例进行网络的添加操作。
 
         # @param request: Request instance for CreateDBInstanceNetworkAccess.
@@ -317,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeleteBaseBackup）用于删除实例指定全量备份。
+
+        # @param request: Request instance for DeleteBaseBackup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteBaseBackupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteBaseBackupResponse`
+        def DeleteBaseBackup(request)
+          body = send_request('DeleteBaseBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBaseBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 可对实例进行网络的删除操作。
 
         # @param request: Request instance for DeleteDBInstanceNetworkAccess.
@@ -327,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBInstanceNetworkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteLogBackup）用于删除实例指定日志备份。
+
+        # @param request: Request instance for DeleteLogBackup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteLogBackupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteLogBackupResponse`
+        def DeleteLogBackup(request)
+          body = send_request('DeleteLogBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogBackupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -485,6 +557,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+
+        # @param request: Request instance for DescribeBackupDownloadURL.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupDownloadURLRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBackupDownloadURLResponse`
+        def DescribeBackupDownloadURL(request)
+          body = send_request('DescribeBackupDownloadURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeBackupOverview）用于查询用户的备份概览信息。返回用户当前备份个数、备份占用容量、免费容量、收费容量等信息（容量单位为字节）。
+
+        # @param request: Request instance for DescribeBackupOverview.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupOverviewRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBackupOverviewResponse`
+        def DescribeBackupOverview(request)
+          body = send_request('DescribeBackupOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
 
         # @param request: Request instance for DescribeBackupPlans.
@@ -495,6 +615,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupPlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeBackupSummaries)用于查询实例备份的统计信息，返回以实例为维度的备份个数、占用容量等信息（容量单位为字节）。
+
+        # @param request: Request instance for DescribeBackupSummaries.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupSummariesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBackupSummariesResponse`
+        def DescribeBackupSummaries(request)
+          body = send_request('DescribeBackupSummaries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupSummariesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+
+        # @param request: Request instance for DescribeBaseBackups.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBaseBackupsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBaseBackupsResponse`
+        def DescribeBaseBackups(request)
+          body = send_request('DescribeBaseBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaseBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeClasses）用于查询实例售卖规格。
+
+        # @param request: Request instance for DescribeClasses.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeClassesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeClassesResponse`
+        def DescribeClasses(request)
+          body = send_request('DescribeClasses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClassesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -701,6 +893,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+
+        # @param request: Request instance for DescribeDBVersions.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBVersionsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBVersionsResponse`
+        def DescribeDBVersions(request)
+          body = send_request('DescribeDBVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
 
         # @param request: Request instance for DescribeDBXlogs.
@@ -783,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEncryptionKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+
+        # @param request: Request instance for DescribeLogBackups.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeLogBackupsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeLogBackupsResponse`
+        def DescribeLogBackups(request)
+          body = send_request('DescribeLogBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogBackupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1277,6 +1517,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeleteBaseBackup）用于修改实例指定全量备份的过期时间。
+
+        # @param request: Request instance for ModifyBaseBackupExpireTime.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyBaseBackupExpireTimeRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyBaseBackupExpireTimeResponse`
+        def ModifyBaseBackupExpireTime(request)
+          body = send_request('ModifyBaseBackupExpireTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBaseBackupExpireTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
 
         # @param request: Request instance for ModifyDBInstanceDeployment.
@@ -1719,6 +1983,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpgradeDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpgradeDBInstanceKernelVersion）用于升级实例的内核版本号。
+
+        # @param request: Request instance for UpgradeDBInstanceKernelVersion.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::UpgradeDBInstanceKernelVersionRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::UpgradeDBInstanceKernelVersionResponse`
+        def UpgradeDBInstanceKernelVersion(request)
+          body = send_request('UpgradeDBInstanceKernelVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeDBInstanceKernelVersionResponse.new
             model.deserialize(response['Response'])
             model
           else

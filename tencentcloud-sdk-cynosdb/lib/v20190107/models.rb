@@ -4637,7 +4637,7 @@ module TencentCloud
         # @param InstanceGroupType: 网络类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupType: String
-        # @param InstanceGroupId: 接入组ID
+        # @param InstanceGroupId: 实例组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: String
         # @param VpcId: 私有网络ID

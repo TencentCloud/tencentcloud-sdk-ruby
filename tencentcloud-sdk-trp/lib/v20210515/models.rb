@@ -2105,29 +2105,37 @@ module TencentCloud
 
       # DescribeScanStats请求参数结构体
       class DescribeScanStatsRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 批次ID
-        # @type BatchId: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
         # @param PageSize: 分页数量
         # @type PageSize: Integer
         # @param PageNumber: 当前分页
         # @type PageNumber: Integer
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param BatchId: 批次ID
+        # @type BatchId: String
 
-        attr_accessor :BatchId, :CorpId, :PageSize, :PageNumber
+        attr_accessor :CorpId, :PageSize, :PageNumber, :MerchantId, :ProductId, :BatchId
         
-        def initialize(batchid=nil, corpid=nil, pagesize=nil, pagenumber=nil)
-          @BatchId = batchid
+        def initialize(corpid=nil, pagesize=nil, pagenumber=nil, merchantid=nil, productid=nil, batchid=nil)
           @CorpId = corpid
           @PageSize = pagesize
           @PageNumber = pagenumber
+          @MerchantId = merchantid
+          @ProductId = productid
+          @BatchId = batchid
         end
 
         def deserialize(params)
-          @BatchId = params['BatchId']
           @CorpId = params['CorpId']
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
+          @MerchantId = params['MerchantId']
+          @ProductId = params['ProductId']
+          @BatchId = params['BatchId']
         end
       end
 
@@ -3332,10 +3340,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param MerchantName: 商户名称
+        # @type MerchantName: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
 
-        attr_accessor :Code, :CorpId, :MerchantId, :ProductId, :BatchId, :Pv, :Uv, :CreateTime, :UpdateTime
+        attr_accessor :Code, :CorpId, :MerchantId, :ProductId, :BatchId, :Pv, :Uv, :CreateTime, :UpdateTime, :MerchantName, :ProductName
         
-        def initialize(code=nil, corpid=nil, merchantid=nil, productid=nil, batchid=nil, pv=nil, uv=nil, createtime=nil, updatetime=nil)
+        def initialize(code=nil, corpid=nil, merchantid=nil, productid=nil, batchid=nil, pv=nil, uv=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil)
           @Code = code
           @CorpId = corpid
           @MerchantId = merchantid
@@ -3345,6 +3357,8 @@ module TencentCloud
           @Uv = uv
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @MerchantName = merchantname
+          @ProductName = productname
         end
 
         def deserialize(params)
@@ -3357,6 +3371,8 @@ module TencentCloud
           @Uv = params['Uv']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @MerchantName = params['MerchantName']
+          @ProductName = params['ProductName']
         end
       end
 

@@ -855,10 +855,8 @@ module TencentCloud
       # 过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤参数键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 过滤参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value

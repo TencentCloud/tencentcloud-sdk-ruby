@@ -1345,10 +1345,8 @@ module TencentCloud
       # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 需要过滤的字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 字段的过滤值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -1926,9 +1924,9 @@ module TencentCloud
 
       # 描述集群文件系统选项
       class StorageOption < TencentCloud::Common::AbstractModel
-        # @param CFSOptions: 集群挂载CFS文件系统选项
+        # @param CFSOptions: 集群挂载CFS文件系统选项。
         # @type CFSOptions: Array
-        # @param GooseFSOptions: 集群挂在GooseFS文件系统选项
+        # @param GooseFSOptions: 集群挂载GooseFS文件系统选项。
         # @type GooseFSOptions: Array
 
         attr_accessor :CFSOptions, :GooseFSOptions

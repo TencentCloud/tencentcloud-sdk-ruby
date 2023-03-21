@@ -924,6 +924,105 @@ module TencentCloud
         end
       end
 
+      # ModifyApmInstance请求参数结构体
+      class ModifyApmInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名
+        # @type Name: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param Description: 实例详情
+        # @type Description: String
+        # @param TraceDuration: Trace数据保存时长
+        # @type TraceDuration: Integer
+        # @param OpenBilling: 是否开启计费
+        # @type OpenBilling: Boolean
+        # @param SpanDailyCounters: 实例上报额度
+        # @type SpanDailyCounters: Integer
+        # @param ErrRateThreshold: 错误率阈值
+        # @type ErrRateThreshold: Integer
+        # @param SampleRate: 采样率
+        # @type SampleRate: Integer
+        # @param ErrorSample: 是否开启错误采样 0 关 1 开
+        # @type ErrorSample: Integer
+        # @param SlowRequestSavedThreshold: 慢请求阈值
+        # @type SlowRequestSavedThreshold: Integer
+        # @param IsRelatedLog: 是否开启日志功能 0 关 1 开
+        # @type IsRelatedLog: Integer
+        # @param LogRegion: 日志地域
+        # @type LogRegion: String
+        # @param LogTopicID: CLS日志主题ID | ES 索引名
+        # @type LogTopicID: String
+        # @param LogSet: CLS日志集 | ES集群ID
+        # @type LogSet: String
+        # @param LogSource: CLS | ES
+        # @type LogSource: String
+
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource
+        
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Tags = tags
+          @Description = description
+          @TraceDuration = traceduration
+          @OpenBilling = openbilling
+          @SpanDailyCounters = spandailycounters
+          @ErrRateThreshold = errratethreshold
+          @SampleRate = samplerate
+          @ErrorSample = errorsample
+          @SlowRequestSavedThreshold = slowrequestsavedthreshold
+          @IsRelatedLog = isrelatedlog
+          @LogRegion = logregion
+          @LogTopicID = logtopicid
+          @LogSet = logset
+          @LogSource = logsource
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @Description = params['Description']
+          @TraceDuration = params['TraceDuration']
+          @OpenBilling = params['OpenBilling']
+          @SpanDailyCounters = params['SpanDailyCounters']
+          @ErrRateThreshold = params['ErrRateThreshold']
+          @SampleRate = params['SampleRate']
+          @ErrorSample = params['ErrorSample']
+          @SlowRequestSavedThreshold = params['SlowRequestSavedThreshold']
+          @IsRelatedLog = params['IsRelatedLog']
+          @LogRegion = params['LogRegion']
+          @LogTopicID = params['LogTopicID']
+          @LogSet = params['LogSet']
+          @LogSource = params['LogSource']
+        end
+      end
+
+      # ModifyApmInstance返回参数结构体
+      class ModifyApmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # sql排序字段
       class OrderBy < TencentCloud::Common::AbstractModel
         # @param Key: 需要排序的字段
@@ -965,6 +1064,38 @@ module TencentCloud
           @MetricName = params['MetricName']
           @Compare = params['Compare']
           @Compares = params['Compares']
+        end
+      end
+
+      # TerminateApmInstance请求参数结构体
+      class TerminateApmInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # TerminateApmInstance返回参数结构体
+      class TerminateApmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

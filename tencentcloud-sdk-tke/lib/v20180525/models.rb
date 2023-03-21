@@ -250,19 +250,23 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param VpcId: 集群所属的VPC的ID
         # @type VpcId: String
+        # @param SkipAddingNonMasqueradeCIDRs: 是否同步添加 vpc 网段到 ip-masq-agent-config 的 NonMasqueradeCIDRs 字段，默认 false 会同步添加
+        # @type SkipAddingNonMasqueradeCIDRs: Boolean
 
-        attr_accessor :ClusterId, :SubnetIds, :VpcId
+        attr_accessor :ClusterId, :SubnetIds, :VpcId, :SkipAddingNonMasqueradeCIDRs
         
-        def initialize(clusterid=nil, subnetids=nil, vpcid=nil)
+        def initialize(clusterid=nil, subnetids=nil, vpcid=nil, skipaddingnonmasqueradecidrs=nil)
           @ClusterId = clusterid
           @SubnetIds = subnetids
           @VpcId = vpcid
+          @SkipAddingNonMasqueradeCIDRs = skipaddingnonmasqueradecidrs
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SubnetIds = params['SubnetIds']
           @VpcId = params['VpcId']
+          @SkipAddingNonMasqueradeCIDRs = params['SkipAddingNonMasqueradeCIDRs']
         end
       end
 

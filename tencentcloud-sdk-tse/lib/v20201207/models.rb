@@ -854,13 +854,10 @@ module TencentCloud
       # 引擎地域配置详情
       class EngineRegionInfo < TencentCloud::Common::AbstractModel
         # @param EngineRegion: 引擎节点所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineRegion: String
         # @param Replica: 此地域节点分配数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Replica: Integer
         # @param VpcInfos: 集群网络信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcInfos: Array
 
         attr_accessor :EngineRegion, :Replica, :VpcInfos

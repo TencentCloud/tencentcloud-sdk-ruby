@@ -13081,11 +13081,9 @@ module TencentCloud
       class OpenBankSettlementRulesInfo < TencentCloud::Common::AbstractModel
         # @param UnfreezeRule: ONCE：仅单次解冻（默认）
         # MULTI：多次解冻
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnfreezeRule: String
         # @param RefundRule: ONCE：仅单次退款（默认）
         # MULTI：多次退款
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefundRule: String
 
         attr_accessor :UnfreezeRule, :RefundRule

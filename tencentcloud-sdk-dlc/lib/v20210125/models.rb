@@ -548,10 +548,8 @@ module TencentCloud
         # @param CSVSerde: CSV序列化及反序列化数据结构。
         # @type CSVSerde: :class:`Tencentcloud::Dlc.v20210125.models.CSVSerde`
         # @param HeadLines: 标题行，默认为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadLines: Integer
         # @param Format: 格式，默认值为CSV
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
 
         attr_accessor :CodeCompress, :CSVSerde, :HeadLines, :Format

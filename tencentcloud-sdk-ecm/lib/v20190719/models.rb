@@ -788,19 +788,14 @@ module TencentCloud
       # 负责均衡批量目标项
       class BatchTarget < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
         # @param Port: 绑定端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param InstanceId: 子机ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param EniIp: 弹性网卡ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniIp: String
         # @param Weight: 子机权重，范围[0, 100]。绑定时如果不存在，则默认为10。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
 
         attr_accessor :ListenerId, :Port, :InstanceId, :EniIp, :Weight
@@ -10493,16 +10488,12 @@ module TencentCloud
       # 负责均衡后端目标
       class Target < TencentCloud::Common::AbstractModel
         # @param Port: 后端服务的监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param InstanceId: 子机ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Weight: 后端服务的转发权重，取值范围：[0, 100]，默认为 10。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
         # @param EniIp: 绑定弹性网卡时需要传入此参数，代表弹性网卡的IP，弹性网卡必须先绑定至子机，然后才能绑定到负载均衡实例。注意：参数 InstanceId 和 EniIp 只能传入一个且必须传入一个。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniIp: String
 
         attr_accessor :Port, :InstanceId, :Weight, :EniIp
@@ -10562,13 +10553,10 @@ module TencentCloud
       # 目标和权重的描述信息
       class TargetsWeightRule < TencentCloud::Common::AbstractModel
         # @param ListenerId: 负载均衡监听器 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
         # @param Targets: 要修改权重的后端机器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
         # @param Weight: 后端服务新的转发权重，取值范围：0~100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
 
         attr_accessor :ListenerId, :Targets, :Weight

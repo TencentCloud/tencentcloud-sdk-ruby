@@ -44,13 +44,10 @@ module TencentCloud
         # @param AppId: 代理机构的应用编号,32位字符串，一般不用传
         # @type AppId: String
         # @param ProxyAppId: 被代理机构的应用号，一般不用传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAppId: String
         # @param ProxyOrganizationId: 被代理机构在电子签平台的机构编号，集团代理下场景必传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOrganizationId: String
         # @param ProxyOperator: 被代理机构的经办人，一般不用传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOperator: String
 
         attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
@@ -226,22 +223,16 @@ module TencentCloud
       # 自动签开启、签署相关配置
       class AutoSignConfig < TencentCloud::Common::AbstractModel
         # @param UserInfo: 自动签开通个人用户的三要素
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
         # @param CallbackUrl: 回调链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
         # @param CertInfoCallback: 是否回调证书信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertInfoCallback: Boolean
         # @param UserDefineSeal: 是否支持用户自定义签名印章
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineSeal: Boolean
         # @param SealImgCallback: 是否需要回调的时候返回印章(签名) 图片的 base64
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SealImgCallback: Boolean
         # @param VerifyChannels: 开通时候的验证方式，取值：WEIXINAPP（微信人脸识别），INSIGHT（慧眼人脸认别），TELECOM（运营商三要素验证）。如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyChannels: Array
 
         attr_accessor :UserInfo, :CallbackUrl, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :VerifyChannels
@@ -397,17 +388,14 @@ module TencentCloud
         # @param Mobile: 被抄送人手机号
         # @type Mobile: String
         # @param Name: 被抄送人姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param CcType: 被抄送人类型,
         # 0--个人
         # 1--员工
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcType: Integer
         # @param CcPermission: 被抄送人权限
         # 0--可查看
         # 1--可查看也可下载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcPermission: Integer
 
         attr_accessor :Mobile, :Name, :CcType, :CcPermission
@@ -3992,14 +3980,10 @@ module TencentCloud
       # 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该C端签署人。
       class ReleasedApprover < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Mobile: 签署人手机号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
         # @param RelievedApproverReceiptId: 要替换的参与人在原合同参与人列表中的签署人编号,通过DescribeFlowInfo 接口获取（即FlowDetailInfos. FlowApproverInfos 结构中的ReceiptId ）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelievedApproverReceiptId: String
 
         attr_accessor :Name, :Mobile, :RelievedApproverReceiptId
@@ -4020,23 +4004,14 @@ module TencentCloud
       # 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。
       class RelieveInfo < TencentCloud::Common::AbstractModel
         # @param Reason: 解除理由，最大支持200个字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param RemainInForceItem: 解除后仍然有效的条款，保留条款，最大支持200个字
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainInForceItem: String
         # @param OriginalExpenseSettlement: 原合同事项处理-费用结算，最大支持200个字
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalExpenseSettlement: String
         # @param OriginalOtherSettlement: 原合同事项处理-其他事项，最大支持200个字
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalOtherSettlement: String
         # @param OtherDeals: 其他约定，最大支持200个字
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherDeals: String
 
         attr_accessor :Reason, :RemainInForceItem, :OriginalExpenseSettlement, :OriginalOtherSettlement, :OtherDeals
@@ -4583,16 +4558,13 @@ module TencentCloud
       # 用户的三要素：姓名，证件号，证件类型
       class UserThreeFactor < TencentCloud::Common::AbstractModel
         # @param Name: 姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param IdCardType: 证件类型:
         # ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCardType: String
         # @param IdCardNumber: 证件号，如果有 X 请大写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCardNumber: String
 
         attr_accessor :Name, :IdCardType, :IdCardNumber

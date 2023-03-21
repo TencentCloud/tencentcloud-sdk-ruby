@@ -2506,7 +2506,6 @@ module TencentCloud
         # @param Uid: 客户端用于标识用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
         # @type Uid: Integer
         # @param StrUid: 客户端用于标识字符串型用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrUid: String
 
         attr_accessor :EnableMic, :Uid, :StrUid

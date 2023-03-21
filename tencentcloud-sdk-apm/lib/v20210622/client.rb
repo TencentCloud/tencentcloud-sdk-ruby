@@ -174,6 +174,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Apm实例接口
+
+        # @param request: Request instance for ModifyApmInstance.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmInstanceRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmInstanceResponse`
+        def ModifyApmInstance(request)
+          body = send_request('ModifyApmInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # apm销毁实例
+
+        # @param request: Request instance for TerminateApmInstance.
+        # @type request: :class:`Tencentcloud::apm::V20210622::TerminateApmInstanceRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::TerminateApmInstanceResponse`
+        def TerminateApmInstance(request)
+          body = send_request('TerminateApmInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateApmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

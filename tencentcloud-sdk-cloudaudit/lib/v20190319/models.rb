@@ -1062,10 +1062,8 @@ module TencentCloud
       # 检索条件
       class LookupAttribute < TencentCloud::Common::AbstractModel
         # @param AttributeKey: AttributeKey的有效取值范围是:RequestId、EventName、ReadOnly、Username、ResourceType、ResourceName和AccessKeyId，EventId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttributeKey: String
         # @param AttributeValue: AttributeValue的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttributeValue: String
 
         attr_accessor :AttributeKey, :AttributeValue
@@ -1149,7 +1147,6 @@ module TencentCloud
         # @param ResourceType: 资源类型
         # @type ResourceType: String
         # @param ResourceName: 资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
 
         attr_accessor :ResourceType, :ResourceName

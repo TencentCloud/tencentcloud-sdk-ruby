@@ -137,28 +137,20 @@ module TencentCloud
         # @param SecondClassName: 二级分类名称
         # @type SecondClassName: String
         # @param FirstClassProbability: 一级分类概率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstClassProbability: Float
         # @param SecondClassProbability: 二级分类概率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondClassProbability: Float
         # @param ThirdClassName: 三级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdClassName: String
         # @param ThirdClassProbability: 三级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdClassProbability: Float
         # @param FourthClassName: 四级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FourthClassName: String
         # @param FourthClassProbability: 四级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FourthClassProbability: Float
         # @param FifthClassName: 五级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FifthClassName: String
         # @param FifthClassProbability: 五级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FifthClassProbability: Float
 
         attr_accessor :FirstClassName, :SecondClassName, :FirstClassProbability, :SecondClassProbability, :ThirdClassName, :ThirdClassProbability, :FourthClassName, :FourthClassProbability, :FifthClassName, :FifthClassProbability
@@ -574,13 +566,10 @@ module TencentCloud
         # @param Id: 自定义词库ID。
         # @type Id: String
         # @param Description: 自定义词库描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param UpdateTime: 自定义词库修改时间，形式为:yyyy-mm-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param CreateTime: 自定义词库创建时间，形式为:yyyy-mm-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Name, :Id, :Description, :UpdateTime, :CreateTime
@@ -605,16 +594,12 @@ module TencentCloud
       # 句法依存分析结果，包括基础词，基础词的序号，当前词父节点的序号，句法依存关系的类型
       class DpToken < TencentCloud::Common::AbstractModel
         # @param Relation: 句法依存关系的类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
         # @param HeadId: 当前词父节点的序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadId: Integer
         # @param Word: 基础词
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Word: String
         # @param Id: 基础词的序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
         attr_accessor :Relation, :HeadId, :Word, :Id
@@ -930,10 +915,8 @@ module TencentCloud
         # @param IsExist: 0表示词条不存在，1表示存在。
         # @type IsExist: Integer
         # @param MatchText: 匹配到的词条文本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchText: String
         # @param Pos: 词条的词性。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pos: String
 
         attr_accessor :Text, :IsExist, :MatchText, :Pos
@@ -1500,7 +1483,6 @@ module TencentCloud
         # @param CreateTime: 词条创建时间。
         # @type CreateTime: String
         # @param Pos: 词条的词性。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pos: String
 
         attr_accessor :Text, :CreateTime, :Pos

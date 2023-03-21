@@ -2185,10 +2185,8 @@ module TencentCloud
       # 筛选条件
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 筛选字段名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 筛选条件值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Name, :Values

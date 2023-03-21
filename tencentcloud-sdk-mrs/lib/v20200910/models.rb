@@ -6595,10 +6595,8 @@ module TencentCloud
       # 指定报告类型选用其结构化版本
       class ReportTypeVersion < TencentCloud::Common::AbstractModel
         # @param ReportType: 检验报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportType: Integer
         # @param Version: 版本2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
 
         attr_accessor :ReportType, :Version

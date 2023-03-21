@@ -2100,10 +2100,8 @@ module TencentCloud
         # @param PayloadType: SEI消息的payload_type，默认值100，取值范围100-254（244除外，244为我们内部自定义的时间戳SEI）
         # @type PayloadType: Integer
         # @param Interval: SEI发送间隔，单位毫秒，默认值为1000。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
         # @param FollowIdr: 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowIdr: Integer
 
         attr_accessor :AppData, :PayloadType, :Interval, :FollowIdr
@@ -2132,10 +2130,8 @@ module TencentCloud
         # @param PayloadUuid: PayloadType为5，PayloadUuid必须填写。PayloadType不是5时，不需要填写，填写会被后台忽略。该值必须是32长度的十六进制。
         # @type PayloadUuid: String
         # @param Interval: SEI发送间隔，单位毫秒，默认值为1000。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
         # @param FollowIdr: 取值范围[0,1]，填1：发送关键帧时会确保带SEI；填0：发送关键帧时不确保带SEI。默认值为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowIdr: Integer
 
         attr_accessor :PayloadContent, :PayloadType, :PayloadUuid, :Interval, :FollowIdr
@@ -2317,7 +2313,6 @@ module TencentCloud
         # @param WaterMarkImage: 图片水印参数。WaterMarkType为0指定。
         # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkImage`
         # @param WaterMarkText: 文字水印参数。WaterMarkType为1指定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaterMarkText: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkText`
 
         attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkText
@@ -2354,13 +2349,10 @@ module TencentCloud
         # @param LocationY: 水印在输出时的Y偏移。单位为像素值。
         # @type LocationY: Integer
         # @param FontSize: 字体大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontSize: Integer
         # @param FontColor: 字体颜色，默认为白色。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontColor: String
         # @param BackGroundColor: 字体背景色，不配置默认为透明。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackGroundColor: String
 
         attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor
@@ -2920,7 +2912,6 @@ module TencentCloud
         # Hls 格式录制此参数不生效。
         # @type MaxMediaFileDuration: Integer
         # @param MediaId: 指定录制主辅流，0：主流+辅流（默认）；1:主流；2:辅流。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaId: Integer
 
         attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId
@@ -4152,10 +4143,8 @@ module TencentCloud
         # @param WaterMarkImage: 水印为图片时的参数列表，水印为图片时校验必填。
         # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkImage`
         # @param WaterMarkChar: 水印为文字时的参数列表，水印为文字时校验必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaterMarkChar: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkChar`
         # @param WaterMarkTimestamp: 水印为时间戳时的参数列表，水印为时间戳时校验必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaterMarkTimestamp: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkTimestamp`
 
         attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkChar, :WaterMarkTimestamp
@@ -4187,28 +4176,20 @@ module TencentCloud
       # 自定义文字水印数据结构
       class WaterMarkChar < TencentCloud::Common::AbstractModel
         # @param Top: 文字水印的起始坐标Y值，从左上角开始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Top: Integer
         # @param Left: 文字水印的起始坐标X值，从左上角开始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Left: Integer
         # @param Width: 文字水印的宽度，单位像素值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 文字水印的高度，单位像素值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
         # @param Chars: 水印文字的内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Chars: String
         # @param FontSize: 水印文字的大小，单位像素，默认14
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontSize: Integer
         # @param FontColor: 水印文字的颜色，默认白色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontColor: String
         # @param BackGroundColor: 水印文字的背景色，为空代表背景透明，默认为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackGroundColor: String
 
         attr_accessor :Top, :Left, :Width, :Height, :Chars, :FontSize, :FontColor, :BackGroundColor
@@ -4307,10 +4288,8 @@ module TencentCloud
       # 时间戳水印数据结构
       class WaterMarkTimestamp < TencentCloud::Common::AbstractModel
         # @param Pos: 时间戳的位置，取值范围0-6，分别代表上左，上右，下左，下右，上居中，下居中，居中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pos: Integer
         # @param TimeZone: 显示时间戳的时区，默认东八区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: Integer
 
         attr_accessor :Pos, :TimeZone
