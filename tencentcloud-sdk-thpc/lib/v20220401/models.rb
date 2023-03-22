@@ -606,7 +606,7 @@ module TencentCloud
         # @type ComputeNodeCount: Integer
         # @param SchedulerType: 调度器类型。默认取值：SLURM。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
         # @type SchedulerType: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
         # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20220401.models.VirtualPrivateCloud`

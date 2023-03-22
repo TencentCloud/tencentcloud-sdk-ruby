@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 服务商信息获取
+
+        # @param request: Request instance for DescribeDeveloper.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDeveloperRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeDeveloperResponse`
+        def DescribeDeveloper(request)
+          body = send_request('DescribeDeveloper', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeveloperResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取文档信息
 
         # @param request: Request instance for DescribeDocument.

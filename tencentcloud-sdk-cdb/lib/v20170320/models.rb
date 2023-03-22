@@ -178,6 +178,105 @@ module TencentCloud
         end
       end
 
+      # 审计日志聚合条件
+      class AggregationCondition < TencentCloud::Common::AbstractModel
+        # @param AggregationField: 聚合字段。目前仅支持host-源IP、user-用户名、dbName-数据库名、sqlType-sql类型。
+        # @type AggregationField: String
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 该聚合字段下要返回聚合桶的数量，最大100。
+        # @type Limit: Integer
+
+        attr_accessor :AggregationField, :Offset, :Limit
+        
+        def initialize(aggregationfield=nil, offset=nil, limit=nil)
+          @AggregationField = aggregationfield
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AggregationField = params['AggregationField']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # AnalyzeAuditLogs请求参数结构体
+      class AnalyzeAuditLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StartTime: 要分析的日志开始时间，格式为："2023-02-16 00:00:20"。
+        # @type StartTime: String
+        # @param EndTime: 要分析的日志结束时间，格式为："2023-02-16 00:10:20"。
+        # @type EndTime: String
+        # @param AggregationConditions: 聚合维度的排序条件。
+        # @type AggregationConditions: Array
+        # @param AuditLogFilter: 该过滤条件下的审计日志结果集作为分析日志。
+        # @type AuditLogFilter: :class:`Tencentcloud::Cdb.v20170320.models.AuditLogFilter`
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @AggregationConditions = aggregationconditions
+          @AuditLogFilter = auditlogfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['AggregationConditions'].nil?
+            @AggregationConditions = []
+            params['AggregationConditions'].each do |i|
+              aggregationcondition_tmp = AggregationCondition.new
+              aggregationcondition_tmp.deserialize(i)
+              @AggregationConditions << aggregationcondition_tmp
+            end
+          end
+          unless params['AuditLogFilter'].nil?
+            @AuditLogFilter = AuditLogFilter.new
+            @AuditLogFilter.deserialize(params['AuditLogFilter'])
+          end
+        end
+      end
+
+      # AnalyzeAuditLogs返回参数结构体
+      class AnalyzeAuditLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 返回的聚合桶信息集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 扫描的日志条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+        
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditlogaggregationresult_tmp = AuditLogAggregationResult.new
+              auditlogaggregationresult_tmp.deserialize(i)
+              @Items << auditlogaggregationresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupId: 安全组 ID。
@@ -249,6 +348,35 @@ module TencentCloud
         end
       end
 
+      # 审计日志分析结果
+      class AuditLogAggregationResult < TencentCloud::Common::AbstractModel
+        # @param AggregationField: 聚合维度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggregationField: String
+        # @param Buckets: 聚合桶的结果集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Buckets: Array
+
+        attr_accessor :AggregationField, :Buckets
+        
+        def initialize(aggregationfield=nil, buckets=nil)
+          @AggregationField = aggregationfield
+          @Buckets = buckets
+        end
+
+        def deserialize(params)
+          @AggregationField = params['AggregationField']
+          unless params['Buckets'].nil?
+            @Buckets = []
+            params['Buckets'].each do |i|
+              bucket_tmp = Bucket.new
+              bucket_tmp.deserialize(i)
+              @Buckets << bucket_tmp
+            end
+          end
+        end
+      end
+
       # 审计日志文件
       class AuditLogFile < TencentCloud::Common::AbstractModel
         # @param FileName: 审计日志文件名称
@@ -315,10 +443,22 @@ module TencentCloud
         # @type SqlTypes: Array
         # @param Sqls: SQL 语句。支持传递多个sql语句。
         # @type Sqls: Array
+        # @param AffectRowsSection: 影响行数，格式为M-N，例如：10-200
+        # @type AffectRowsSection: String
+        # @param SentRowsSection: 返回行数，格式为M-N，例如：10-200
+        # @type SentRowsSection: String
+        # @param ExecTimeSection: 执行时间，格式为M-N，例如：10-200
+        # @type ExecTimeSection: String
+        # @param LockWaitTimeSection: 锁等待时间，格式为M-N，例如：10-200
+        # @type LockWaitTimeSection: String
+        # @param IoWaitTimeSection: IO等待时间，格式为M-N，例如：10-200
+        # @type IoWaitTimeSection: String
+        # @param TransactionLivingTimeSection: 事务持续时间，格式为M-N，例如：10-200
+        # @type TransactionLivingTimeSection: String
 
-        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls
+        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls, :AffectRowsSection, :SentRowsSection, :ExecTimeSection, :LockWaitTimeSection, :IoWaitTimeSection, :TransactionLivingTimeSection
         
-        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil)
+        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil, affectrowssection=nil, sentrowssection=nil, exectimesection=nil, lockwaittimesection=nil, iowaittimesection=nil, transactionlivingtimesection=nil)
           @Host = host
           @User = user
           @DBName = dbname
@@ -330,6 +470,12 @@ module TencentCloud
           @AffectRows = affectrows
           @SqlTypes = sqltypes
           @Sqls = sqls
+          @AffectRowsSection = affectrowssection
+          @SentRowsSection = sentrowssection
+          @ExecTimeSection = exectimesection
+          @LockWaitTimeSection = lockwaittimesection
+          @IoWaitTimeSection = iowaittimesection
+          @TransactionLivingTimeSection = transactionlivingtimesection
         end
 
         def deserialize(params)
@@ -344,6 +490,12 @@ module TencentCloud
           @AffectRows = params['AffectRows']
           @SqlTypes = params['SqlTypes']
           @Sqls = params['Sqls']
+          @AffectRowsSection = params['AffectRowsSection']
+          @SentRowsSection = params['SentRowsSection']
+          @ExecTimeSection = params['ExecTimeSection']
+          @LockWaitTimeSection = params['LockWaitTimeSection']
+          @IoWaitTimeSection = params['IoWaitTimeSection']
+          @TransactionLivingTimeSection = params['TransactionLivingTimeSection']
         end
       end
 
@@ -823,6 +975,27 @@ module TencentCloud
           end
           @CosStorageType = params['CosStorageType']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 聚合桶的信息
+      class Bucket < TencentCloud::Common::AbstractModel
+        # @param Key: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Count: ip等于10.0.0.8访问了26次实例，即桶内文档数量。
+        # @type Count: Integer
+
+        attr_accessor :Key, :Count
+        
+        def initialize(key=nil, count=nil)
+          @Key = key
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Count = params['Count']
         end
       end
 

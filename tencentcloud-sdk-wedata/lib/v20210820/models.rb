@@ -2370,19 +2370,24 @@ module TencentCloud
 
       # CreateOfflineTask返回参数结构体
       class CreateOfflineTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
         # @param Data: 结果
         # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :TaskId, :Data, :RequestId
         
-        def initialize(data=nil, requestid=nil)
+        def initialize(taskid=nil, data=nil, requestid=nil)
+          @TaskId = taskid
           @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @Data = params['Data']
           @RequestId = params['RequestId']
         end

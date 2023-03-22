@@ -497,6 +497,49 @@ module TencentCloud
         end
       end
 
+      # CallTRTCDevice请求参数结构体
+      class CallTRTCDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # CallTRTCDevice返回参数结构体
+      class CallTRTCDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param TRTCParams: TRTC SDK房间参数
+        # @type TRTCParams: :class:`Tencentcloud::Iotvideo.v20211125.models.TRTCParams`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TRTCParams, :RequestId
+        
+        def initialize(trtcparams=nil, requestid=nil)
+          @TRTCParams = trtcparams
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TRTCParams'].nil?
+            @TRTCParams = TRTCParams.new
+            @TRTCParams.deserialize(params['TRTCParams'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelAIModelApplication请求参数结构体
       class CancelAIModelApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ModelId: AI模型ID
@@ -5769,6 +5812,43 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Total = params['Total']
+        end
+      end
+
+      # TRTC调用参数
+      class TRTCParams < TencentCloud::Common::AbstractModel
+        # @param SDKAppId: 应用id，供TRTC SDK使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SDKAppId: Integer
+        # @param UserId: 用户id，供TRTC SDK使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserSig: 用户id签名，供TRTC SDK使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSig: String
+        # @param StrRoomId: 房间id，供TRTC SDK使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrRoomId: String
+        # @param PrivateMapKey: 权限票据，供TRTC SDK使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateMapKey: String
+
+        attr_accessor :SDKAppId, :UserId, :UserSig, :StrRoomId, :PrivateMapKey
+        
+        def initialize(sdkappid=nil, userid=nil, usersig=nil, strroomid=nil, privatemapkey=nil)
+          @SDKAppId = sdkappid
+          @UserId = userid
+          @UserSig = usersig
+          @StrRoomId = strroomid
+          @PrivateMapKey = privatemapkey
+        end
+
+        def deserialize(params)
+          @SDKAppId = params['SDKAppId']
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @StrRoomId = params['StrRoomId']
+          @PrivateMapKey = params['PrivateMapKey']
         end
       end
 

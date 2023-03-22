@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在不同过滤条件下的审计日志结果集中，选定特定的数据列进行聚合统计。
+
+        # @param request: Request instance for AnalyzeAuditLogs.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::AnalyzeAuditLogsRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::AnalyzeAuditLogsResponse`
+        def AnalyzeAuditLogs(request)
+          body = send_request('AnalyzeAuditLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AnalyzeAuditLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
 
         # @param request: Request instance for AssociateSecurityGroups.
@@ -2071,6 +2095,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再维护，参考CreateDBInstance+API文档，在发货时即可完成初始化。
 
         # 本接口(InitDBInstances)用于初始化云数据库实例，包括初始化密码、默认字符集、实例端口号等。该接口已经废弃，在发货接口CreateDBInstance、CreateDBInstanceHour可以直接使用参数Password设置密码，使用参数ParamList设置字符集，使用参数Port设置端口号。
 

@@ -4785,6 +4785,86 @@ module TencentCloud
         end
       end
 
+      # DescribeGatewayCurveData请求参数结构体
+      class DescribeGatewayCurveDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param GatewayId: 网关id
+        # @type GatewayId: String
+        # @param MetricName: 监控类型 GWQps GWBandwidth GwHttpError GwHttp404 GwHttp502
+        # @type MetricName: String
+        # @param StartTime: 监控起始时间
+        # @type StartTime: String
+        # @param EndTime: 监控结束时间
+        # @type EndTime: String
+        # @param GatewayVersion: 网关版本
+        # @type GatewayVersion: String
+        # @param GatewayRoute: 网关路由名称
+        # @type GatewayRoute: String
+
+        attr_accessor :EnvId, :GatewayId, :MetricName, :StartTime, :EndTime, :GatewayVersion, :GatewayRoute
+        
+        def initialize(envid=nil, gatewayid=nil, metricname=nil, starttime=nil, endtime=nil, gatewayversion=nil, gatewayroute=nil)
+          @EnvId = envid
+          @GatewayId = gatewayid
+          @MetricName = metricname
+          @StartTime = starttime
+          @EndTime = endtime
+          @GatewayVersion = gatewayversion
+          @GatewayRoute = gatewayroute
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayId = params['GatewayId']
+          @MetricName = params['MetricName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @GatewayVersion = params['GatewayVersion']
+          @GatewayRoute = params['GatewayRoute']
+        end
+      end
+
+      # DescribeGatewayCurveData返回参数结构体
+      class DescribeGatewayCurveDataResponse < TencentCloud::Common::AbstractModel
+        # @param MetricName: 监控类型
+        # @type MetricName: String
+        # @param StartTime: 监控起始时间
+        # @type StartTime: String
+        # @param EndTime: 监控结束时间
+        # @type EndTime: String
+        # @param Period: 监控数据间隔
+        # @type Period: Integer
+        # @param Values: 监控值
+        # @type Values: Array
+        # @param Time: 监控时间
+        # @type Time: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricName, :StartTime, :EndTime, :Period, :Values, :Time, :RequestId
+        
+        def initialize(metricname=nil, starttime=nil, endtime=nil, period=nil, values=nil, time=nil, requestid=nil)
+          @MetricName = metricname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+          @Values = values
+          @Time = time
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+          @Values = params['Values']
+          @Time = params['Time']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHostingDomainTask请求参数结构体
       class DescribeHostingDomainTaskRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

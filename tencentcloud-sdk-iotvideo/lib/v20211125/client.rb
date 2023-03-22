@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 呼叫TRTC设备
+
+        # @param request: Request instance for CallTRTCDevice.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::CallTRTCDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::CallTRTCDeviceResponse`
+        def CallTRTCDevice(request)
+          body = send_request('CallTRTCDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CallTRTCDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消AI模型申请
 
         # @param request: Request instance for CancelAIModelApplication.

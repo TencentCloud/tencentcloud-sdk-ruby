@@ -1229,6 +1229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询网关监控数据
+
+        # @param request: Request instance for DescribeGatewayCurveData.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayCurveDataRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayCurveDataResponse`
+        def DescribeGatewayCurveData(request)
+          body = send_request('DescribeGatewayCurveData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatewayCurveDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询静态托管域名任务状态
 
         # @param request: Request instance for DescribeHostingDomainTask.
