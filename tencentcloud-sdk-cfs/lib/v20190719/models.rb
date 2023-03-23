@@ -27,7 +27,7 @@ module TencentCloud
         # @type CreationTime: String
         # @param FileSystemNums: 关联的文件系统个数
         # @type FileSystemNums: Integer
-        # @param DayOfWeek: 快照定期备份在一星期哪一天
+        # @param DayOfWeek: 快照定期备份在一星期哪一天，该参数与DayOfMonth,IntervalDays互斥
         # @type DayOfWeek: String
         # @param Hour: 快照定期备份在一天的哪一小时
         # @type Hour: String
@@ -45,10 +45,16 @@ module TencentCloud
         # @type RegionName: String
         # @param FileSystems: 文件系统信息
         # @type FileSystems: Array
+        # @param DayOfMonth: 快照定期备份在一个月的某个时间；该参数与DayOfWeek,IntervalDays互斥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayOfMonth: String
+        # @param IntervalDays: 快照定期间隔天数，1-365 天；该参数与DayOfMonth,DayOfWeek互斥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalDays: Integer
 
-        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems
+        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays
         
-        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil)
+        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
           @CreationTime = creationtime
@@ -62,6 +68,8 @@ module TencentCloud
           @AliveDays = alivedays
           @RegionName = regionname
           @FileSystems = filesystems
+          @DayOfMonth = dayofmonth
+          @IntervalDays = intervaldays
         end
 
         def deserialize(params)
@@ -85,6 +93,8 @@ module TencentCloud
               @FileSystems << filesystembypolicy_tmp
             end
           end
+          @DayOfMonth = params['DayOfMonth']
+          @IntervalDays = params['IntervalDays']
         end
       end
 
@@ -259,29 +269,37 @@ module TencentCloud
 
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param DayOfWeek: 快照重复日期，星期一到星期日
-        # @type DayOfWeek: String
         # @param Hour: 快照重复时间点
         # @type Hour: String
         # @param PolicyName: 策略名称
         # @type PolicyName: String
+        # @param DayOfWeek: 快照重复日期，星期一到星期日
+        # @type DayOfWeek: String
         # @param AliveDays: 快照保留时长
         # @type AliveDays: Integer
+        # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月这一天打快照。
+        # @type DayOfMonth: String
+        # @param IntervalDays: 间隔天数
+        # @type IntervalDays: Integer
 
-        attr_accessor :DayOfWeek, :Hour, :PolicyName, :AliveDays
+        attr_accessor :Hour, :PolicyName, :DayOfWeek, :AliveDays, :DayOfMonth, :IntervalDays
         
-        def initialize(dayofweek=nil, hour=nil, policyname=nil, alivedays=nil)
-          @DayOfWeek = dayofweek
+        def initialize(hour=nil, policyname=nil, dayofweek=nil, alivedays=nil, dayofmonth=nil, intervaldays=nil)
           @Hour = hour
           @PolicyName = policyname
+          @DayOfWeek = dayofweek
           @AliveDays = alivedays
+          @DayOfMonth = dayofmonth
+          @IntervalDays = intervaldays
         end
 
         def deserialize(params)
-          @DayOfWeek = params['DayOfWeek']
           @Hour = params['Hour']
           @PolicyName = params['PolicyName']
+          @DayOfWeek = params['DayOfWeek']
           @AliveDays = params['AliveDays']
+          @DayOfMonth = params['DayOfMonth']
+          @IntervalDays = params['IntervalDays']
         end
       end
 
@@ -2132,16 +2150,22 @@ module TencentCloud
         # @type AliveDays: Integer
         # @param IsActivated: 是否激活定期快照功能
         # @type IsActivated: Integer
+        # @param DayOfMonth: 定期快照在月的某几天天，该参数与DayOfWeek互斥
+        # @type DayOfMonth: String
+        # @param IntervalDays: 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 互斥
+        # @type IntervalDays: Integer
 
-        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :DayOfWeek, :Hour, :AliveDays, :IsActivated
+        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :DayOfWeek, :Hour, :AliveDays, :IsActivated, :DayOfMonth, :IntervalDays
         
-        def initialize(autosnapshotpolicyid=nil, policyname=nil, dayofweek=nil, hour=nil, alivedays=nil, isactivated=nil)
+        def initialize(autosnapshotpolicyid=nil, policyname=nil, dayofweek=nil, hour=nil, alivedays=nil, isactivated=nil, dayofmonth=nil, intervaldays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
           @DayOfWeek = dayofweek
           @Hour = hour
           @AliveDays = alivedays
           @IsActivated = isactivated
+          @DayOfMonth = dayofmonth
+          @IntervalDays = intervaldays
         end
 
         def deserialize(params)
@@ -2151,6 +2175,8 @@ module TencentCloud
           @Hour = params['Hour']
           @AliveDays = params['AliveDays']
           @IsActivated = params['IsActivated']
+          @DayOfMonth = params['DayOfMonth']
+          @IntervalDays = params['IntervalDays']
         end
       end
 

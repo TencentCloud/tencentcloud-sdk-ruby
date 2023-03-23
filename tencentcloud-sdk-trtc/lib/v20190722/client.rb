@@ -555,6 +555,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询TRTC音视频房间维度用量。
+        # - 单次只能查询一天数据，返回查询时间段内的汇总数据；通过多次查询可以查不同天数据。若查询跨天用量，由于统计延迟等原因，返回数据可能不够准确。
+        # - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+        # - 默认接口请求频率限制：1次/15秒。
+
+        # @param request: Request instance for DescribeTrtcRoomUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcRoomUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcRoomUsageResponse`
+        def DescribeTrtcRoomUsage(request)
+          body = send_request('DescribeTrtcRoomUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrtcRoomUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取TRTC音视频互动的用量明细。
         # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
         # - 单次查询统计区间最多不能超过31天。

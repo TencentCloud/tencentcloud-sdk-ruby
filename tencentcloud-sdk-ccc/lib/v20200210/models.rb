@@ -3173,10 +3173,16 @@ module TencentCloud
         # @type UseMobileAccept: Integer
         # @param UseMobileCallOut: 手机外呼开关
         # @type UseMobileCallOut: Boolean
+        # @param LastOnlineTimestamp: 最近一次上线时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastOnlineTimestamp: Integer
+        # @param LastStatusTimestamp: 最近一次状态时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastStatusTimestamp: Integer
 
-        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut
+        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut, :LastOnlineTimestamp, :LastStatusTimestamp
         
-        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil)
+        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil, lastonlinetimestamp=nil, laststatustimestamp=nil)
           @Email = email
           @Status = status
           @StatusExtra = statusextra
@@ -3191,6 +3197,8 @@ module TencentCloud
           @ReserveNotReady = reservenotready
           @UseMobileAccept = usemobileaccept
           @UseMobileCallOut = usemobilecallout
+          @LastOnlineTimestamp = lastonlinetimestamp
+          @LastStatusTimestamp = laststatustimestamp
         end
 
         def deserialize(params)
@@ -3211,6 +3219,8 @@ module TencentCloud
           @ReserveNotReady = params['ReserveNotReady']
           @UseMobileAccept = params['UseMobileAccept']
           @UseMobileCallOut = params['UseMobileCallOut']
+          @LastOnlineTimestamp = params['LastOnlineTimestamp']
+          @LastStatusTimestamp = params['LastStatusTimestamp']
         end
       end
 

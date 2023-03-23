@@ -9906,14 +9906,17 @@ module TencentCloud
         # @type NoticeIds: Array
         # @param PolicyIds: 告警策略ID数组，支持给多个告警策略批量绑定通知模板。最多30个。
         # @type PolicyIds: Array
+        # @param HierarchicalNotices: 告警分级通知规则配置
+        # @type HierarchicalNotices: Array
 
-        attr_accessor :Module, :PolicyId, :NoticeIds, :PolicyIds
+        attr_accessor :Module, :PolicyId, :NoticeIds, :PolicyIds, :HierarchicalNotices
         
-        def initialize(_module=nil, policyid=nil, noticeids=nil, policyids=nil)
+        def initialize(_module=nil, policyid=nil, noticeids=nil, policyids=nil, hierarchicalnotices=nil)
           @Module = _module
           @PolicyId = policyid
           @NoticeIds = noticeids
           @PolicyIds = policyids
+          @HierarchicalNotices = hierarchicalnotices
         end
 
         def deserialize(params)
@@ -9921,6 +9924,14 @@ module TencentCloud
           @PolicyId = params['PolicyId']
           @NoticeIds = params['NoticeIds']
           @PolicyIds = params['PolicyIds']
+          unless params['HierarchicalNotices'].nil?
+            @HierarchicalNotices = []
+            params['HierarchicalNotices'].each do |i|
+              alarmhierarchicalnotice_tmp = AlarmHierarchicalNotice.new
+              alarmhierarchicalnotice_tmp.deserialize(i)
+              @HierarchicalNotices << alarmhierarchicalnotice_tmp
+            end
+          end
         end
       end
 
@@ -12465,7 +12476,7 @@ module TencentCloud
       class SendCustomAlarmMsgRequest < TencentCloud::Common::AbstractModel
         # @param Module: 接口模块名，当前取值monitor
         # @type Module: String
-        # @param PolicyId: 消息策略ID，在云监控自定义消息页面配置
+        # @param PolicyId: 消息策略ID，在自定义消息页面配置
         # @type PolicyId: String
         # @param Msg: 用户想要发送的自定义消息内容
         # @type Msg: String

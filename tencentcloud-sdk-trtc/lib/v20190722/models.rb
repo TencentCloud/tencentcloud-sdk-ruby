@@ -1341,6 +1341,33 @@ module TencentCloud
         end
       end
 
+      # DescribeTrtcRoomUsage请求参数结构体
+      class DescribeTrtcRoomUsageRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTrtcRoomUsage返回参数结构体
+      class DescribeTrtcRoomUsageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrtcUsage请求参数结构体
       class DescribeTrtcUsageRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。

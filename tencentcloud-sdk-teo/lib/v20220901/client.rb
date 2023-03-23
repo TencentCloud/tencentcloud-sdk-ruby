@@ -749,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
+
+        # @param request: Request instance for DescribeDDoSAttackEvent.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDDoSAttackEventRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDDoSAttackEventResponse`
+        def DescribeDDoSAttackEvent(request)
+          body = send_request('DescribeDDoSAttackEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSAttackEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDDoSAttackTopData）用于查询DDoS攻击Top数据。
 
         # @param request: Request instance for DescribeDDoSAttackTopData.

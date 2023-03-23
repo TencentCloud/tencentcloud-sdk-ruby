@@ -4600,10 +4600,12 @@ module TencentCloud
         # @param AllowIpList: IP白名单列表，格式为CIDR，如0.0.0.0/0。
         # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         # @type AllowIpList: Array
+        # @param MaxConcurrent: 最大拉流并发数，最大4，默认4。
+        # @type MaxConcurrent: Integer
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent
         
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -4612,6 +4614,7 @@ module TencentCloud
           @RTMPSettings = rtmpsettings
           @RTPSettings = rtpsettings
           @AllowIpList = allowiplist
+          @MaxConcurrent = maxconcurrent
         end
 
         def deserialize(params)
@@ -4632,6 +4635,7 @@ module TencentCloud
             @RTPSettings.deserialize(params['RTPSettings'])
           end
           @AllowIpList = params['AllowIpList']
+          @MaxConcurrent = params['MaxConcurrent']
         end
       end
 
@@ -6865,10 +6869,12 @@ module TencentCloud
         # @param HLSPullSettings: 输出的HLS拉流配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputHLSPullSettings`
+        # @param MaxConcurrent: 最大拉流并发数，最大为4，默认4。
+        # @type MaxConcurrent: Integer
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent
         
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -6883,6 +6889,7 @@ module TencentCloud
           @AllowIpList = allowiplist
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
+          @MaxConcurrent = maxconcurrent
         end
 
         def deserialize(params)
@@ -6925,6 +6932,7 @@ module TencentCloud
             @HLSPullSettings = DescribeOutputHLSPullSettings.new
             @HLSPullSettings.deserialize(params['HLSPullSettings'])
           end
+          @MaxConcurrent = params['MaxConcurrent']
         end
       end
 
@@ -12440,10 +12448,12 @@ module TencentCloud
         # @param AllowIpList: IP白名单列表，格式为CIDR，如0.0.0.0/0。
         # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         # @type AllowIpList: Array
+        # @param MaxConcurrent: 最大拉流并发数，最大4，默认4。
+        # @type MaxConcurrent: Integer
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent
         
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -12452,6 +12462,7 @@ module TencentCloud
           @RTPSettings = rtpsettings
           @RTMPSettings = rtmpsettings
           @AllowIpList = allowiplist
+          @MaxConcurrent = maxconcurrent
         end
 
         def deserialize(params)
@@ -12472,6 +12483,7 @@ module TencentCloud
             @RTMPSettings.deserialize(params['RTMPSettings'])
           end
           @AllowIpList = params['AllowIpList']
+          @MaxConcurrent = params['MaxConcurrent']
         end
       end
 

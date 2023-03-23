@@ -710,7 +710,7 @@ module TencentCloud
         # @type TerminationPolicies: Array
         # @param Zones: 可用区列表，基础网络场景下必须指定可用区。多个可用区以填写顺序为优先级，依次进行尝试，直至可以成功创建实例。
         # @type Zones: Array
-        # @param RetryPolicy: 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。
+        # @param RetryPolicy: 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。部分成功的伸缩活动判定为一次失败活动。
         # <br><li> IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。
         # <br><li> INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大，重试间隔从秒级到1天不等。
         # <br><li> NO_RETRY，不进行重试，直到再次收到用户调用或者告警信息后才会重试。
@@ -1192,40 +1192,60 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param ScalingPolicyName: 告警触发策略名称。
         # @type ScalingPolicyName: String
-        # @param AdjustmentType: 告警触发后，期望实例数修改方式。取值 ：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        # @param ScalingPolicyType: 告警触发策略类型，默认类型为SIMPLE。取值范围：<br><li>SIMPLE：简单策略</li><li>TARGET_TRACKING：目标追踪策略</li>
+        # @type ScalingPolicyType: String
+        # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值。取值：<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
+        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
         # @type AdjustmentValue: Integer
-        # @param MetricAlarm: 告警监控指标。
-        # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
-        # @param Cooldown: 冷却时间，单位为秒。默认冷却时间300秒。
+        # @param Cooldown: 冷却时间，单位为秒，仅适用于简单策略。默认冷却时间300秒。
         # @type Cooldown: Integer
+        # @param MetricAlarm: 告警监控指标，仅适用于简单策略。
+        # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
+        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # @type PredefinedMetricType: String
+        # @param TargetValue: 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # @type TargetValue: Integer
+        # @param EstimatedInstanceWarmup: 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600，默认预热时间300秒。
+        # @type EstimatedInstanceWarmup: Integer
+        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略，默认值为 false。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        # @type DisableScaleIn: Boolean
         # @param NotificationUserGroupIds: 此参数已不再生效，请使用[创建通知](https://cloud.tencent.com/document/api/377/33185)。
         # 通知组ID，即为用户组ID集合。
         # @type NotificationUserGroupIds: Array
 
-        attr_accessor :AutoScalingGroupId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :MetricAlarm, :Cooldown, :NotificationUserGroupIds
+        attr_accessor :AutoScalingGroupId, :ScalingPolicyName, :ScalingPolicyType, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :NotificationUserGroupIds
         
-        def initialize(autoscalinggroupid=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, metricalarm=nil, cooldown=nil, notificationusergroupids=nil)
+        def initialize(autoscalinggroupid=nil, scalingpolicyname=nil, scalingpolicytype=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, notificationusergroupids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScalingPolicyName = scalingpolicyname
+          @ScalingPolicyType = scalingpolicytype
           @AdjustmentType = adjustmenttype
           @AdjustmentValue = adjustmentvalue
-          @MetricAlarm = metricalarm
           @Cooldown = cooldown
+          @MetricAlarm = metricalarm
+          @PredefinedMetricType = predefinedmetrictype
+          @TargetValue = targetvalue
+          @EstimatedInstanceWarmup = estimatedinstancewarmup
+          @DisableScaleIn = disablescalein
           @NotificationUserGroupIds = notificationusergroupids
         end
 
         def deserialize(params)
           @AutoScalingGroupId = params['AutoScalingGroupId']
           @ScalingPolicyName = params['ScalingPolicyName']
+          @ScalingPolicyType = params['ScalingPolicyType']
           @AdjustmentType = params['AdjustmentType']
           @AdjustmentValue = params['AdjustmentValue']
+          @Cooldown = params['Cooldown']
           unless params['MetricAlarm'].nil?
             @MetricAlarm = MetricAlarm.new
             @MetricAlarm.deserialize(params['MetricAlarm'])
           end
-          @Cooldown = params['Cooldown']
+          @PredefinedMetricType = params['PredefinedMetricType']
+          @TargetValue = params['TargetValue']
+          @EstimatedInstanceWarmup = params['EstimatedInstanceWarmup']
+          @DisableScaleIn = params['DisableScaleIn']
           @NotificationUserGroupIds = params['NotificationUserGroupIds']
         end
       end
@@ -2121,6 +2141,7 @@ module TencentCloud
         # <li> auto-scaling-policy-id - String - 是否必填：否 -（过滤条件）按照告警策略ID过滤。</li>
         # <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
         # <li> scaling-policy-name - String - 是否必填：否 -（过滤条件）按照告警策略名称过滤。</li>
+        # <li> scaling-policy-type - String - 是否必填：否 -（过滤条件）按照告警策略类型过滤，取值范围为SIMPLE，TARGET_TRACKING。</li>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -2493,7 +2514,7 @@ module TencentCloud
 
       # ExecuteScalingPolicy请求参数结构体
       class ExecuteScalingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingPolicyId: 告警伸缩策略ID
+        # @param AutoScalingPolicyId: 告警伸缩策略ID，不支持目标追踪策略。
         # @type AutoScalingPolicyId: String
         # @param HonorCooldown: 是否检查伸缩组活动处于冷却时间内，默认值为false
         # @type HonorCooldown: Boolean
@@ -2732,10 +2753,16 @@ module TencentCloud
         # @type VersionNumber: Integer
         # @param AutoScalingGroupName: 伸缩组名称
         # @type AutoScalingGroupName: String
+        # @param WarmupStatus: 预热状态，取值如下：
+        # <li>WAITING_ENTER_WARMUP：等待进入预热
+        # <li>NO_NEED_WARMUP：无需预热
+        # <li>IN_WARMUP：预热中
+        # <li>AFTER_WARMUP：完成预热
+        # @type WarmupStatus: String
 
-        attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName
+        attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName, :WarmupStatus
         
-        def initialize(instanceid=nil, autoscalinggroupid=nil, launchconfigurationid=nil, launchconfigurationname=nil, lifecyclestate=nil, healthstatus=nil, protectedfromscalein=nil, zone=nil, creationtype=nil, addtime=nil, instancetype=nil, versionnumber=nil, autoscalinggroupname=nil)
+        def initialize(instanceid=nil, autoscalinggroupid=nil, launchconfigurationid=nil, launchconfigurationname=nil, lifecyclestate=nil, healthstatus=nil, protectedfromscalein=nil, zone=nil, creationtype=nil, addtime=nil, instancetype=nil, versionnumber=nil, autoscalinggroupname=nil, warmupstatus=nil)
           @InstanceId = instanceid
           @AutoScalingGroupId = autoscalinggroupid
           @LaunchConfigurationId = launchconfigurationid
@@ -2749,6 +2776,7 @@ module TencentCloud
           @InstanceType = instancetype
           @VersionNumber = versionnumber
           @AutoScalingGroupName = autoscalinggroupname
+          @WarmupStatus = warmupstatus
         end
 
         def deserialize(params)
@@ -2765,6 +2793,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @VersionNumber = params['VersionNumber']
           @AutoScalingGroupName = params['AutoScalingGroupName']
+          @WarmupStatus = params['WarmupStatus']
         end
       end
 
@@ -3324,16 +3353,19 @@ module TencentCloud
         # @type ContinuousTime: Integer
         # @param Statistic: 统计类型，可选字段如下：<br><li>AVERAGE：平均值</li><li>MAXIMUM：最大值<li>MINIMUM：最小值</li><br> 默认取值：AVERAGE
         # @type Statistic: String
+        # @param PreciseThreshold: 精确告警阈值，本参数不作为入参输入，仅用作查询接口出参：<br><li>CPU_UTILIZATION：(0, 100]，单位：%</li><li>MEM_UTILIZATION：(0, 100]，单位：%</li><li>LAN_TRAFFIC_OUT：>0，单位：Mbps </li><li>LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # @type PreciseThreshold: Float
 
-        attr_accessor :ComparisonOperator, :MetricName, :Threshold, :Period, :ContinuousTime, :Statistic
+        attr_accessor :ComparisonOperator, :MetricName, :Threshold, :Period, :ContinuousTime, :Statistic, :PreciseThreshold
         
-        def initialize(comparisonoperator=nil, metricname=nil, threshold=nil, period=nil, continuoustime=nil, statistic=nil)
+        def initialize(comparisonoperator=nil, metricname=nil, threshold=nil, period=nil, continuoustime=nil, statistic=nil, precisethreshold=nil)
           @ComparisonOperator = comparisonoperator
           @MetricName = metricname
           @Threshold = threshold
           @Period = period
           @ContinuousTime = continuoustime
           @Statistic = statistic
+          @PreciseThreshold = precisethreshold
         end
 
         def deserialize(params)
@@ -3343,6 +3375,7 @@ module TencentCloud
           @Period = params['Period']
           @ContinuousTime = params['ContinuousTime']
           @Statistic = params['Statistic']
+          @PreciseThreshold = params['PreciseThreshold']
         end
       end
 
@@ -3374,9 +3407,11 @@ module TencentCloud
         # @type VpcId: String
         # @param Zones: 可用区列表
         # @type Zones: Array
-        # @param RetryPolicy: 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。
-        # <br><li> IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。
-        # <br><li> INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大，重试间隔从秒级到1天不等。
+        # @param RetryPolicy: 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。部分成功的伸缩活动判定为一次失败活动。
+        # <br><li>
+        # IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。
+        # <br><li>
+        # INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大，重试间隔从秒级到1天不等。
         # <br><li> NO_RETRY，不进行重试，直到再次收到用户调用或者告警信息后才会重试。
         # @type RetryPolicy: String
         # @param ZonesCheckPolicy: 可用区校验策略，取值包括 ALL 和 ANY，默认取值为ANY。在伸缩组实际变更资源相关字段时（启动配置、可用区、子网）发挥作用。
@@ -3937,27 +3972,39 @@ module TencentCloud
         # @type AutoScalingPolicyId: String
         # @param ScalingPolicyName: 告警策略名称。
         # @type ScalingPolicyName: String
-        # @param AdjustmentType: 告警触发后，期望实例数修改方式。取值 ：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值。取值：<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
+        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
         # @type AdjustmentValue: Integer
-        # @param Cooldown: 冷却时间，单位为秒。
+        # @param Cooldown: 冷却时间，仅适用于简单策略，单位为秒。
         # @type Cooldown: Integer
-        # @param MetricAlarm: 告警监控指标。
+        # @param MetricAlarm: 告警监控指标，仅适用于简单策略。
         # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
+        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # @type PredefinedMetricType: String
+        # @param TargetValue: 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # @type TargetValue: Integer
+        # @param EstimatedInstanceWarmup: 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600。
+        # @type EstimatedInstanceWarmup: Integer
+        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        # @type DisableScaleIn: Boolean
         # @param NotificationUserGroupIds: 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
         # 如果需要清空通知用户组，需要在列表中传入特定字符串 "NULL"。
         # @type NotificationUserGroupIds: Array
 
-        attr_accessor :AutoScalingPolicyId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :NotificationUserGroupIds
+        attr_accessor :AutoScalingPolicyId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :NotificationUserGroupIds
         
-        def initialize(autoscalingpolicyid=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, notificationusergroupids=nil)
+        def initialize(autoscalingpolicyid=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, notificationusergroupids=nil)
           @AutoScalingPolicyId = autoscalingpolicyid
           @ScalingPolicyName = scalingpolicyname
           @AdjustmentType = adjustmenttype
           @AdjustmentValue = adjustmentvalue
           @Cooldown = cooldown
           @MetricAlarm = metricalarm
+          @PredefinedMetricType = predefinedmetrictype
+          @TargetValue = targetvalue
+          @EstimatedInstanceWarmup = estimatedinstancewarmup
+          @DisableScaleIn = disablescalein
           @NotificationUserGroupIds = notificationusergroupids
         end
 
@@ -3971,6 +4018,10 @@ module TencentCloud
             @MetricAlarm = MetricAlarm.new
             @MetricAlarm.deserialize(params['MetricAlarm'])
           end
+          @PredefinedMetricType = params['PredefinedMetricType']
+          @TargetValue = params['TargetValue']
+          @EstimatedInstanceWarmup = params['EstimatedInstanceWarmup']
+          @DisableScaleIn = params['DisableScaleIn']
           @NotificationUserGroupIds = params['NotificationUserGroupIds']
         end
       end
@@ -4256,35 +4307,61 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param AutoScalingPolicyId: 告警触发策略ID。
         # @type AutoScalingPolicyId: String
+        # @param ScalingPolicyType: 告警触发策略类型。取值：
+        # - SIMPLE：简单策略
+        # - TARGET_TRACKING：目标追踪策略
+        # @type ScalingPolicyType: String
         # @param ScalingPolicyName: 告警触发策略名称。
         # @type ScalingPolicyName: String
-        # @param AdjustmentType: 告警触发后，期望实例数修改方式。取值 ：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值。
+        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。
         # @type AdjustmentValue: Integer
-        # @param Cooldown: 冷却时间。
+        # @param Cooldown: 冷却时间，仅适用于简单策略。
         # @type Cooldown: Integer
-        # @param MetricAlarm: 告警监控指标。
+        # @param MetricAlarm: 简单告警触发策略告警监控指标，仅适用于简单策略。
         # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
+        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PredefinedMetricType: String
+        # @param TargetValue: 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetValue: Integer
+        # @param EstimatedInstanceWarmup: 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EstimatedInstanceWarmup: Integer
+        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableScaleIn: Boolean
+        # @param MetricAlarms: 告警监控指标列表，仅适用于目标追踪策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricAlarms: Array
         # @param NotificationUserGroupIds: 通知组ID，即为用户组ID集合。
         # @type NotificationUserGroupIds: Array
 
-        attr_accessor :AutoScalingGroupId, :AutoScalingPolicyId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :NotificationUserGroupIds
+        attr_accessor :AutoScalingGroupId, :AutoScalingPolicyId, :ScalingPolicyType, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :MetricAlarms, :NotificationUserGroupIds
         
-        def initialize(autoscalinggroupid=nil, autoscalingpolicyid=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, notificationusergroupids=nil)
+        def initialize(autoscalinggroupid=nil, autoscalingpolicyid=nil, scalingpolicytype=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, metricalarms=nil, notificationusergroupids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingPolicyId = autoscalingpolicyid
+          @ScalingPolicyType = scalingpolicytype
           @ScalingPolicyName = scalingpolicyname
           @AdjustmentType = adjustmenttype
           @AdjustmentValue = adjustmentvalue
           @Cooldown = cooldown
           @MetricAlarm = metricalarm
+          @PredefinedMetricType = predefinedmetrictype
+          @TargetValue = targetvalue
+          @EstimatedInstanceWarmup = estimatedinstancewarmup
+          @DisableScaleIn = disablescalein
+          @MetricAlarms = metricalarms
           @NotificationUserGroupIds = notificationusergroupids
         end
 
         def deserialize(params)
           @AutoScalingGroupId = params['AutoScalingGroupId']
           @AutoScalingPolicyId = params['AutoScalingPolicyId']
+          @ScalingPolicyType = params['ScalingPolicyType']
           @ScalingPolicyName = params['ScalingPolicyName']
           @AdjustmentType = params['AdjustmentType']
           @AdjustmentValue = params['AdjustmentValue']
@@ -4292,6 +4369,18 @@ module TencentCloud
           unless params['MetricAlarm'].nil?
             @MetricAlarm = MetricAlarm.new
             @MetricAlarm.deserialize(params['MetricAlarm'])
+          end
+          @PredefinedMetricType = params['PredefinedMetricType']
+          @TargetValue = params['TargetValue']
+          @EstimatedInstanceWarmup = params['EstimatedInstanceWarmup']
+          @DisableScaleIn = params['DisableScaleIn']
+          unless params['MetricAlarms'].nil?
+            @MetricAlarms = []
+            params['MetricAlarms'].each do |i|
+              metricalarm_tmp = MetricAlarm.new
+              metricalarm_tmp.deserialize(i)
+              @MetricAlarms << metricalarm_tmp
+            end
           end
           @NotificationUserGroupIds = params['NotificationUserGroupIds']
         end

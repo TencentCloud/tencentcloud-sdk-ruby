@@ -2140,6 +2140,99 @@ module TencentCloud
         end
       end
 
+      # DDoS攻击事件对象
+      class DDoSAttackEvent < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件ID。
+        # @type EventId: String
+        # @param AttackType: 攻击类型(对应交互事件名称)。
+        # @type AttackType: String
+        # @param AttackStatus: 攻击状态。
+        # @type AttackStatus: Integer
+        # @param AttackMaxBandWidth: 攻击最大带宽。
+        # @type AttackMaxBandWidth: Integer
+        # @param AttackPacketMaxRate: 攻击包速率峰值。
+        # @type AttackPacketMaxRate: Integer
+        # @param AttackStartTime: 攻击开始时间，单位为s。
+        # @type AttackStartTime: Integer
+        # @param AttackEndTime: 攻击结束时间，单位为s。
+        # @type AttackEndTime: Integer
+        # @param PolicyId: DDoS策略组ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param ZoneId: 站点ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param Area: 攻击事件所属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
+        # @param DDoSBlockData: 封禁解封信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DDoSBlockData: Array
+
+        attr_accessor :EventId, :AttackType, :AttackStatus, :AttackMaxBandWidth, :AttackPacketMaxRate, :AttackStartTime, :AttackEndTime, :PolicyId, :ZoneId, :Area, :DDoSBlockData
+        
+        def initialize(eventid=nil, attacktype=nil, attackstatus=nil, attackmaxbandwidth=nil, attackpacketmaxrate=nil, attackstarttime=nil, attackendtime=nil, policyid=nil, zoneid=nil, area=nil, ddosblockdata=nil)
+          @EventId = eventid
+          @AttackType = attacktype
+          @AttackStatus = attackstatus
+          @AttackMaxBandWidth = attackmaxbandwidth
+          @AttackPacketMaxRate = attackpacketmaxrate
+          @AttackStartTime = attackstarttime
+          @AttackEndTime = attackendtime
+          @PolicyId = policyid
+          @ZoneId = zoneid
+          @Area = area
+          @DDoSBlockData = ddosblockdata
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @AttackType = params['AttackType']
+          @AttackStatus = params['AttackStatus']
+          @AttackMaxBandWidth = params['AttackMaxBandWidth']
+          @AttackPacketMaxRate = params['AttackPacketMaxRate']
+          @AttackStartTime = params['AttackStartTime']
+          @AttackEndTime = params['AttackEndTime']
+          @PolicyId = params['PolicyId']
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          unless params['DDoSBlockData'].nil?
+            @DDoSBlockData = []
+            params['DDoSBlockData'].each do |i|
+              ddosblockdata_tmp = DDoSBlockData.new
+              ddosblockdata_tmp.deserialize(i)
+              @DDoSBlockData << ddosblockdata_tmp
+            end
+          end
+        end
+      end
+
+      # DDoS封禁解封信息
+      class DDoSBlockData < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，采用unix时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，采用unix时间戳, 为0表示还处于封禁中。
+        # @type EndTime: Integer
+        # @param BlockArea: 封禁受影响区域。
+        # @type BlockArea: String
+
+        attr_accessor :StartTime, :EndTime, :BlockArea
+        
+        def initialize(starttime=nil, endtime=nil, blockarea=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @BlockArea = blockarea
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @BlockArea = params['BlockArea']
+        end
+      end
+
       # https 服务端证书配置
       class DefaultServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。
@@ -2997,6 +3090,97 @@ module TencentCloud
               @Data << secentry_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDDoSAttackEvent请求参数结构体
+      class DescribeDDoSAttackEventRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param PolicyIds: ddos策略组集合，不填默认选择全部策略。
+        # @type PolicyIds: Array
+        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
+        # @type ZoneIds: Array
+        # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
+        # @type Limit: Integer
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param ShowDetail: 是否展示详细信息。
+        # @type ShowDetail: Boolean
+        # @param Area: 数据归属地区，取值有：
+        # <li>overseas：全球（除中国大陆地区）数据；</li>
+        # <li>mainland：中国大陆地区数据；</li>
+        # <li>global：全球数据；</li>不填默认取值为global。
+        # @type Area: String
+        # @param OrderBy: 排序字段，取值有：
+        # <li>MaxBandWidth：带宽峰值；</li>
+        # <li>AttackStartTime：攻击开始时间。</li>不填默认值为：AttackStartTime。
+        # @type OrderBy: String
+        # @param OrderType: 排序方式，取值有：
+        # <li>asc：升序方式；</li>
+        # <li>desc：降序方式。</li>不填默认值为：desc。
+        # @type OrderType: String
+
+        attr_accessor :StartTime, :EndTime, :PolicyIds, :ZoneIds, :Limit, :Offset, :ShowDetail, :Area, :OrderBy, :OrderType
+        
+        def initialize(starttime=nil, endtime=nil, policyids=nil, zoneids=nil, limit=nil, offset=nil, showdetail=nil, area=nil, orderby=nil, ordertype=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PolicyIds = policyids
+          @ZoneIds = zoneids
+          @Limit = limit
+          @Offset = offset
+          @ShowDetail = showdetail
+          @Area = area
+          @OrderBy = orderby
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PolicyIds = params['PolicyIds']
+          @ZoneIds = params['ZoneIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ShowDetail = params['ShowDetail']
+          @Area = params['Area']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # DescribeDDoSAttackEvent返回参数结构体
+      class DescribeDDoSAttackEventResponse < TencentCloud::Common::AbstractModel
+        # @param Data: DDOS攻击事件数据列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ddosattackevent_tmp = DDoSAttackEvent.new
+              ddosattackevent_tmp.deserialize(i)
+              @Data << ddosattackevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4567,18 +4751,28 @@ module TencentCloud
         # @param EndTime: 结束时间。
         # @type EndTime: String
         # @param MetricName: 查询的指标，取值有：
-        # <li> l7Flow_outFlux_country：请求的国家；</li>
-        # <li> l7Flow_outFlux_statusCode：请求的状态码；</li>
-        # <li> l7Flow_outFlux_domain：请求域名；</li>
-        # <li> l7Flow_outFlux_url：请求的URL; </li>
-        # <li> l7Flow_outFlux_resourceType：请求的资源类型；</li>
-        # <li> l7Flow_outFlux_sip：客户端的源IP；</li>
-        # <li> l7Flow_outFlux_referers：refer信息；</li>
-        # <li> l7Flow_outFlux_ua_device：设备类型; </li>
-        # <li> l7Flow_outFlux_ua_browser：浏览器类型；</li>
-        # <li> l7Flow_outFlux_us_os：操作系统类型。</li>
+        # <li> l7Flow_outFlux_country：按国家维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_statusCode：按状态码维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_domain：按域名维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_url：按URL维度统计流量指标; </li>
+        # <li> l7Flow_outFlux_resourceType：按资源类型维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_sip：按客户端的源IP维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_referers：按refer信息维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_ua_device：按设备类型维度统计流量指标; </li>
+        # <li> l7Flow_outFlux_ua_browser：按浏览器类型维度统计流量指标；</li>
+        # <li> l7Flow_outFlux_us_os：按操作系统类型维度统计流量指标；</li>
+        # <li> l7Flow_request_country：按国家维度统计请求数指标；</li>
+        # <li> l7Flow_request_statusCode：按状态码维度统计请求数指标；</li>
+        # <li> l7Flow_request_domain：按域名维度统计请求数指标；</li>
+        # <li> l7Flow_request_url：按URL维度统计请求数指标; </li>
+        # <li> l7Flow_request_resourceType：按资源类型维度统计请求数指标；</li>
+        # <li> l7Flow_request_sip：按客户端的源IP维度统计请求数指标；</li>
+        # <li> l7Flow_request_refere请求的rs：按refer信息维度统计请求数指标；</li>
+        # <li> l7Flow_request_ua_device：按设备类型维度统计请求数指标; </li>
+        # <li> l7Flow_request_ua_browser：按浏览器类型维度统计请求数指标；</li>
+        # <li> l7Flow_request_us_os：按操作系统类型维度统计请求数指标。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个数据，最大值为1000，不填默认默认为: 10， 表示查询前top10的数据。
         # @type Limit: Integer

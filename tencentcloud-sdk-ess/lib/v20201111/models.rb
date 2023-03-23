@@ -106,10 +106,18 @@ module TencentCloud
         # @type CustomApproverTag: String
         # @param ApproverOption: 签署人个性化能力值
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
+        # @param ApproverVerifyTypes: 签署人查看合同时认证方式,
+        # 1-实名查看 2-短信验证码查看(企业签署方不支持该方式)
+        # 如果不传默认为1
+        # @type ApproverVerifyTypes: Array
+        # @param ApproverSignTypes: 签署人签署合同时的认证方式
+        # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
+        # 合同签署认证方式的优先级 verifyChannel>approverSignTypes
+        # @type ApproverSignTypes: Array
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes
         
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -125,6 +133,8 @@ module TencentCloud
           @ApproverSource = approversource
           @CustomApproverTag = customapprovertag
           @ApproverOption = approveroption
+          @ApproverVerifyTypes = approververifytypes
+          @ApproverSignTypes = approversigntypes
         end
 
         def deserialize(params)
@@ -153,6 +163,8 @@ module TencentCloud
             @ApproverOption = ApproverOption.new
             @ApproverOption.deserialize(params['ApproverOption'])
           end
+          @ApproverVerifyTypes = params['ApproverVerifyTypes']
+          @ApproverSignTypes = params['ApproverSignTypes']
         end
       end
 

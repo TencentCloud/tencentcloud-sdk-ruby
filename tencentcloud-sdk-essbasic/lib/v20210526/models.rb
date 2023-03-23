@@ -3179,10 +3179,16 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverOption`
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要
         # @type ApproverNeedSignReview: Boolean
+        # @param ApproverVerifyTypes: 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1
+        # 查看合同的签署方式 Flow层级的优先于approver层级的
+        # @type ApproverVerifyTypes: Array
+        # @param ApproverSignTypes: 签署人签署合同时的认证方式
+        # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
+        # @type ApproverSignTypes: Array
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes
         
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -3201,6 +3207,8 @@ module TencentCloud
           @JumpUrl = jumpurl
           @ApproverOption = approveroption
           @ApproverNeedSignReview = approverneedsignreview
+          @ApproverVerifyTypes = approververifytypes
+          @ApproverSignTypes = approversigntypes
         end
 
         def deserialize(params)
@@ -3232,6 +3240,8 @@ module TencentCloud
             @ApproverOption.deserialize(params['ApproverOption'])
           end
           @ApproverNeedSignReview = params['ApproverNeedSignReview']
+          @ApproverVerifyTypes = params['ApproverVerifyTypes']
+          @ApproverSignTypes = params['ApproverSignTypes']
         end
       end
 
@@ -3283,10 +3293,12 @@ module TencentCloud
         # @type CustomData: String
         # @param FlowApproverInfos: 合同(流程)的签署人数组
         # @type FlowApproverInfos: Array
+        # @param CcInfos: 合同(流程)关注方信息列表
+        # @type CcInfos: Array
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos
         
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil)
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -3296,6 +3308,7 @@ module TencentCloud
           @DeadLine = deadline
           @CustomData = customdata
           @FlowApproverInfos = flowapproverinfos
+          @CcInfos = ccinfos
         end
 
         def deserialize(params)
@@ -3313,6 +3326,14 @@ module TencentCloud
               flowapproverdetail_tmp = FlowApproverDetail.new
               flowapproverdetail_tmp.deserialize(i)
               @FlowApproverInfos << flowapproverdetail_tmp
+            end
+          end
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              flowapproverdetail_tmp = FlowApproverDetail.new
+              flowapproverdetail_tmp.deserialize(i)
+              @CcInfos << flowapproverdetail_tmp
             end
           end
         end
