@@ -2836,6 +2836,9 @@ module TencentCloud
         # @type Name: String
         # @param Mail: 坐席邮箱
         # @type Mail: String
+        # @param StaffNumber: 工号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaffNumber: String
         # @param Phone: 坐席电话号码（带0086前缀）
         # @type Phone: String
         # @param Nick: 坐席昵称
@@ -2845,30 +2848,27 @@ module TencentCloud
         # @param SkillGroupNameList: 坐席关联的技能组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupNameList: Array
-        # @param StaffNumber: 工号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StaffNumber: String
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :UserId, :SkillGroupNameList, :StaffNumber
+        attr_accessor :Name, :Mail, :StaffNumber, :Phone, :Nick, :UserId, :SkillGroupNameList
         
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, userid=nil, skillgroupnamelist=nil, staffnumber=nil)
+        def initialize(name=nil, mail=nil, staffnumber=nil, phone=nil, nick=nil, userid=nil, skillgroupnamelist=nil)
           @Name = name
           @Mail = mail
+          @StaffNumber = staffnumber
           @Phone = phone
           @Nick = nick
           @UserId = userid
           @SkillGroupNameList = skillgroupnamelist
-          @StaffNumber = staffnumber
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Mail = params['Mail']
+          @StaffNumber = params['StaffNumber']
           @Phone = params['Phone']
           @Nick = params['Nick']
           @UserId = params['UserId']
           @SkillGroupNameList = params['SkillGroupNameList']
-          @StaffNumber = params['StaffNumber']
         end
       end
 

@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询日志索引维度值
+
+        # @param request: Request instance for DescribeLogTagValue.
+        # @type request: :class:`Tencentcloud::eb::V20210416::DescribeLogTagValueRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::DescribeLogTagValueResponse`
+        def DescribeLogTagValue(request)
+          body = send_request('DescribeLogTagValue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogTagValueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取事件集详情
 
         # @param request: Request instance for GetEventBus.
@@ -519,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PutEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 日志检索
+
+        # @param request: Request instance for SearchLog.
+        # @type request: :class:`Tencentcloud::eb::V20210416::SearchLogRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::SearchLogResponse`
+        def SearchLog(request)
+          body = send_request('SearchLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchLogResponse.new
             model.deserialize(response['Response'])
             model
           else

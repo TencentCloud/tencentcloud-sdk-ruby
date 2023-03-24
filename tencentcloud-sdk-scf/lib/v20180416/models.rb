@@ -2202,10 +2202,16 @@ module TencentCloud
         # @param ContainerImageAccelerate: 镜像加速开关，默认False
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerImageAccelerate: Boolean
+        # @param ImagePort: 镜像函数端口设置
+        # -1: 无端口镜像函数
+        # 0: 默认端口，当前默认端口是9000
+        # 其他: 特殊端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImagePort: Integer
 
-        attr_accessor :ImageType, :ImageUri, :RegistryId, :EntryPoint, :Command, :Args, :ContainerImageAccelerate
+        attr_accessor :ImageType, :ImageUri, :RegistryId, :EntryPoint, :Command, :Args, :ContainerImageAccelerate, :ImagePort
         
-        def initialize(imagetype=nil, imageuri=nil, registryid=nil, entrypoint=nil, command=nil, args=nil, containerimageaccelerate=nil)
+        def initialize(imagetype=nil, imageuri=nil, registryid=nil, entrypoint=nil, command=nil, args=nil, containerimageaccelerate=nil, imageport=nil)
           @ImageType = imagetype
           @ImageUri = imageuri
           @RegistryId = registryid
@@ -2213,6 +2219,7 @@ module TencentCloud
           @Command = command
           @Args = args
           @ContainerImageAccelerate = containerimageaccelerate
+          @ImagePort = imageport
         end
 
         def deserialize(params)
@@ -2223,6 +2230,7 @@ module TencentCloud
           @Command = params['Command']
           @Args = params['Args']
           @ContainerImageAccelerate = params['ContainerImageAccelerate']
+          @ImagePort = params['ImagePort']
         end
       end
 

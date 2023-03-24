@@ -188,6 +188,34 @@ module TencentCloud
         end
       end
 
+      # AclRule列表接口返回结果
+      class AclRuleResp < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数据条数
+        # @type TotalCount: Integer
+        # @param AclRuleList: AclRule列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclRuleList: Array
+
+        attr_accessor :TotalCount, :AclRuleList
+        
+        def initialize(totalcount=nil, aclrulelist=nil)
+          @TotalCount = totalcount
+          @AclRuleList = aclrulelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AclRuleList'].nil?
+            @AclRuleList = []
+            params['AclRuleList'].each do |i|
+              aclrule_tmp = AclRule.new
+              aclrule_tmp.deserialize(i)
+              @AclRuleList << aclrule_tmp
+            end
+          end
+        end
+      end
+
       # 数据处理-解析参数
       class AnalyseParam < TencentCloud::Common::AbstractModel
         # @param Format: 解析格式，JSON，DELIMITER分隔符，REGULAR正则提取，SOURCE处理上层所有结果
@@ -1378,6 +1406,77 @@ module TencentCloud
             @Result = JgwOperateResponse.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAclRule请求参数结构体
+      class CreateAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id信息
+        # @type InstanceId: String
+        # @param ResourceType: Acl资源类型,目前只支持Topic,枚举值列表：Topic
+        # @type ResourceType: String
+        # @param PatternType: 匹配类型，目前支持前缀匹配与预设策略，枚举值列表：PREFIXED/PRESET
+        # @type PatternType: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleList: 设置的ACL规则列表
+        # @type RuleList: Array
+        # @param Pattern: 表示前缀匹配的前缀的值
+        # @type Pattern: String
+        # @param IsApplied: 预设ACL规则是否应用到新增的topic中
+        # @type IsApplied: Integer
+        # @param Comment: ACL规则的备注
+        # @type Comment: String
+
+        attr_accessor :InstanceId, :ResourceType, :PatternType, :RuleName, :RuleList, :Pattern, :IsApplied, :Comment
+        
+        def initialize(instanceid=nil, resourcetype=nil, patterntype=nil, rulename=nil, rulelist=nil, pattern=nil, isapplied=nil, comment=nil)
+          @InstanceId = instanceid
+          @ResourceType = resourcetype
+          @PatternType = patterntype
+          @RuleName = rulename
+          @RuleList = rulelist
+          @Pattern = pattern
+          @IsApplied = isapplied
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceType = params['ResourceType']
+          @PatternType = params['PatternType']
+          @RuleName = params['RuleName']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              aclruleinfo_tmp = AclRuleInfo.new
+              aclruleinfo_tmp.deserialize(i)
+              @RuleList << aclruleinfo_tmp
+            end
+          end
+          @Pattern = params['Pattern']
+          @IsApplied = params['IsApplied']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateAclRule返回参数结构体
+      class CreateAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 规则的唯一表示Key
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -3413,6 +3512,57 @@ module TencentCloud
         end
       end
 
+      # DescribeAclRule请求参数结构体
+      class DescribeAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param RuleName: ACL规则名
+        # @type RuleName: String
+        # @param PatternType: ACL规则匹配类型
+        # @type PatternType: String
+        # @param IsSimplified: 是否读取简略的ACL规则
+        # @type IsSimplified: Boolean
+
+        attr_accessor :InstanceId, :RuleName, :PatternType, :IsSimplified
+        
+        def initialize(instanceid=nil, rulename=nil, patterntype=nil, issimplified=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @PatternType = patterntype
+          @IsSimplified = issimplified
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @PatternType = params['PatternType']
+          @IsSimplified = params['IsSimplified']
+        end
+      end
+
+      # DescribeAclRule返回参数结构体
+      class DescribeAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的AclRule结果集对象
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.AclRuleResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AclRuleResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAppInfo请求参数结构体
       class DescribeAppInfoRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移位置
@@ -3545,12 +3695,18 @@ module TencentCloud
         # @param ErrorMessage: 连接源的异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
-        # @param CurrentStep: 连接源的当前所处步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CurrentStep: String
         # @param DatahubTaskCount: 该连接源关联的Datahub任务数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatahubTaskCount: Integer
+        # @param CurrentStep: 连接源的当前所处步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStep: String
+        # @param TaskProgress: 创建进度百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskProgress: Float
+        # @param StepList: 步骤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepList: Array
         # @param DtsConnectParam: Dts配置，Type为DTS时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DtsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DtsConnectParam`
@@ -3585,9 +3741,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :DatahubTaskCount, :CurrentStep, :TaskProgress, :StepList, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, datahubtaskcount=nil, currentstep=nil, taskprogress=nil, steplist=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3595,8 +3751,10 @@ module TencentCloud
           @Status = status
           @CreateTime = createtime
           @ErrorMessage = errormessage
-          @CurrentStep = currentstep
           @DatahubTaskCount = datahubtaskcount
+          @CurrentStep = currentstep
+          @TaskProgress = taskprogress
+          @StepList = steplist
           @DtsConnectParam = dtsconnectparam
           @MongoDBConnectParam = mongodbconnectparam
           @EsConnectParam = esconnectparam
@@ -3618,8 +3776,10 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @ErrorMessage = params['ErrorMessage']
-          @CurrentStep = params['CurrentStep']
           @DatahubTaskCount = params['DatahubTaskCount']
+          @CurrentStep = params['CurrentStep']
+          @TaskProgress = params['TaskProgress']
+          @StepList = params['StepList']
           unless params['DtsConnectParam'].nil?
             @DtsConnectParam = DtsConnectParam.new
             @DtsConnectParam.deserialize(params['DtsConnectParam'])
@@ -7732,6 +7892,50 @@ module TencentCloud
           @IncludeContentChanges = params['IncludeContentChanges']
           @IncludeQuery = params['IncludeQuery']
           @RecordWithSchema = params['RecordWithSchema']
+        end
+      end
+
+      # ModifyAclRule请求参数结构体
+      class ModifyAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param RuleName: ACL策略名
+        # @type RuleName: String
+        # @param IsApplied: 是否应用到新增的Topic
+        # @type IsApplied: Integer
+
+        attr_accessor :InstanceId, :RuleName, :IsApplied
+        
+        def initialize(instanceid=nil, rulename=nil, isapplied=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @IsApplied = isapplied
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @IsApplied = params['IsApplied']
+        end
+      end
+
+      # ModifyAclRule返回参数结构体
+      class ModifyAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 规则的唯一表示Key
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

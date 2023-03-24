@@ -546,14 +546,18 @@ module TencentCloud
         # @param ClearInstanceNameSettings: 是否清空云服务器实例名相关设置信息，非必填，默认为 false。
         # 填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置。
         # @type ClearInstanceNameSettings: Boolean
+        # @param ClearDisasterRecoverGroupIds: 是否清空置放群组信息，非必填，默认为 false。
+        # 填 true 代表清空置放群组信息，清空后基于此新创建的云主机将不指定任何置放群组。
+        # @type ClearDisasterRecoverGroupIds: Boolean
 
-        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings
+        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds
         
-        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil)
+        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ClearDataDisks = cleardatadisks
           @ClearHostNameSettings = clearhostnamesettings
           @ClearInstanceNameSettings = clearinstancenamesettings
+          @ClearDisasterRecoverGroupIds = cleardisasterrecovergroupids
         end
 
         def deserialize(params)
@@ -561,6 +565,7 @@ module TencentCloud
           @ClearDataDisks = params['ClearDataDisks']
           @ClearHostNameSettings = params['ClearHostNameSettings']
           @ClearInstanceNameSettings = params['ClearInstanceNameSettings']
+          @ClearDisasterRecoverGroupIds = params['ClearDisasterRecoverGroupIds']
         end
       end
 
@@ -917,10 +922,12 @@ module TencentCloud
         # @type HpcClusterId: String
         # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
+        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @type DisasterRecoverGroupIds: Array
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
         
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -945,6 +952,7 @@ module TencentCloud
           @DiskTypePolicy = disktypepolicy
           @HpcClusterId = hpcclusterid
           @IPv6InternetAccessible = ipv6internetaccessible
+          @DisasterRecoverGroupIds = disasterrecovergroupids
         end
 
         def deserialize(params)
@@ -1020,6 +1028,7 @@ module TencentCloud
             @IPv6InternetAccessible = IPv6InternetAccessible.new
             @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
           end
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
         end
       end
 
@@ -2759,10 +2768,13 @@ module TencentCloud
         # <li>IN_WARMUP：预热中
         # <li>AFTER_WARMUP：完成预热
         # @type WarmupStatus: String
+        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisasterRecoverGroupIds: Array
 
-        attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName, :WarmupStatus
+        attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName, :WarmupStatus, :DisasterRecoverGroupIds
         
-        def initialize(instanceid=nil, autoscalinggroupid=nil, launchconfigurationid=nil, launchconfigurationname=nil, lifecyclestate=nil, healthstatus=nil, protectedfromscalein=nil, zone=nil, creationtype=nil, addtime=nil, instancetype=nil, versionnumber=nil, autoscalinggroupname=nil, warmupstatus=nil)
+        def initialize(instanceid=nil, autoscalinggroupid=nil, launchconfigurationid=nil, launchconfigurationname=nil, lifecyclestate=nil, healthstatus=nil, protectedfromscalein=nil, zone=nil, creationtype=nil, addtime=nil, instancetype=nil, versionnumber=nil, autoscalinggroupname=nil, warmupstatus=nil, disasterrecovergroupids=nil)
           @InstanceId = instanceid
           @AutoScalingGroupId = autoscalinggroupid
           @LaunchConfigurationId = launchconfigurationid
@@ -2777,6 +2789,7 @@ module TencentCloud
           @VersionNumber = versionnumber
           @AutoScalingGroupName = autoscalinggroupname
           @WarmupStatus = warmupstatus
+          @DisasterRecoverGroupIds = disasterrecovergroupids
         end
 
         def deserialize(params)
@@ -2794,6 +2807,7 @@ module TencentCloud
           @VersionNumber = params['VersionNumber']
           @AutoScalingGroupName = params['AutoScalingGroupName']
           @WarmupStatus = params['WarmupStatus']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
         end
       end
 
@@ -3637,10 +3651,12 @@ module TencentCloud
         # @type HpcClusterId: String
         # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
+        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @type DisasterRecoverGroupIds: Array
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3661,6 +3677,7 @@ module TencentCloud
           @CamRoleName = camrolename
           @HpcClusterId = hpcclusterid
           @IPv6InternetAccessible = ipv6internetaccessible
+          @DisasterRecoverGroupIds = disasterrecovergroupids
         end
 
         def deserialize(params)
@@ -3715,6 +3732,7 @@ module TencentCloud
             @IPv6InternetAccessible = IPv6InternetAccessible.new
             @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
           end
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
         end
       end
 

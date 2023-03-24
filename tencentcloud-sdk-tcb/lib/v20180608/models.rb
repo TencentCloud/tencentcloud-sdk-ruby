@@ -4791,7 +4791,7 @@ module TencentCloud
         # @type EnvId: String
         # @param GatewayId: 网关id
         # @type GatewayId: String
-        # @param MetricName: 监控类型 GWQps GWBandwidth GwHttpError GwHttp404 GwHttp502
+        # @param MetricName: 监控类型 GWQps GWBandwidth GwHttpError GwHttp404 GwHttp502 GwConnect GwCircuit
         # @type MetricName: String
         # @param StartTime: 监控起始时间
         # @type StartTime: String

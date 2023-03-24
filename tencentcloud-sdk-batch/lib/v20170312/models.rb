@@ -2523,8 +2523,10 @@ module TencentCloud
       # 竞价请求相关选项
       class InstanceMarketOptionsRequest < TencentCloud::Common::AbstractModel
         # @param SpotOptions: 竞价相关选项
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotOptions: :class:`Tencentcloud::Batch.v20170312.models.SpotMarketOptions`
         # @param MarketType: 市场选项类型，当前只支持取值：spot
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketType: String
 
         attr_accessor :SpotOptions, :MarketType

@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询订单信息
+        # 本接口（DescribeInstanceDealDetail）用于查询订单信息。
 
         # @param request: Request instance for DescribeInstanceDealDetail.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceDealDetailRequest`
@@ -1205,7 +1205,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询SSL状态
+        # 本接口（DescribeSSLStatus）用于查询实例 SSL 认证相关信息，包括开启状态、配置状态、证书地址等。
 
         # @param request: Request instance for DescribeSSLStatus.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeSSLStatusRequest`
@@ -1565,7 +1565,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改redis密码
+        # 本接口（ModfiyInstancePassword）用于修改实例访问密码。
 
         # @param request: Request instance for ModfiyInstancePassword.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModfiyInstancePasswordRequest`

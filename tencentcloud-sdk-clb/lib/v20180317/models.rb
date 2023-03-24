@@ -5444,6 +5444,8 @@ module TencentCloud
         # @type Http2: Boolean
         # @param DefaultServer: 是否设为默认域名，注意，一个监听器下只能设置一个默认域名。
         # @type DefaultServer: Boolean
+        # @param Quic: 是否开启Quic，注意，只有HTTPS域名才能开启Quic
+        # @type Quic: Boolean
         # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，若要关闭原默认域名，必须同时指定另一个域名作为新的默认域名，如果新的默认域名是多域名，可以指定多域名列表中的任意一个。
         # @type NewDefaultServerDomain: String
         # @param NewDomains: 要修改的新域名列表。NewDomain和NewDomains只能传一个。
@@ -5451,9 +5453,9 @@ module TencentCloud
         # @param MultiCertInfo: 域名相关的证书信息，注意，仅对启用SNI的监听器适用；支持同时传入多本算法类型不同的服务器证书，不可和MultiCertInfo 同时传入。
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
 
-        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :NewDefaultServerDomain, :NewDomains, :MultiCertInfo
+        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :Quic, :NewDefaultServerDomain, :NewDomains, :MultiCertInfo
         
-        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, newdefaultserverdomain=nil, newdomains=nil, multicertinfo=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, quic=nil, newdefaultserverdomain=nil, newdomains=nil, multicertinfo=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @Domain = domain
@@ -5461,6 +5463,7 @@ module TencentCloud
           @Certificate = certificate
           @Http2 = http2
           @DefaultServer = defaultserver
+          @Quic = quic
           @NewDefaultServerDomain = newdefaultserverdomain
           @NewDomains = newdomains
           @MultiCertInfo = multicertinfo
@@ -5477,6 +5480,7 @@ module TencentCloud
           end
           @Http2 = params['Http2']
           @DefaultServer = params['DefaultServer']
+          @Quic = params['Quic']
           @NewDefaultServerDomain = params['NewDefaultServerDomain']
           @NewDomains = params['NewDomains']
           unless params['MultiCertInfo'].nil?

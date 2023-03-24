@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建API限流规则,并返回规则信息
+
+        # @param request: Request instance for CreateApiRateLimitRuleWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateApiRateLimitRuleWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateApiRateLimitRuleWithDetailRespResponse`
+        def CreateApiRateLimitRuleWithDetailResp(request)
+          body = send_request('CreateApiRateLimitRuleWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApiRateLimitRuleWithDetailRespResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建应用
 
         # @param request: Request instance for CreateApplication.
@@ -375,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateConfigTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建参数模板,并返回模版详细信息
+
+        # @param request: Request instance for CreateConfigTemplateWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateConfigTemplateWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateConfigTemplateWithDetailRespResponse`
+        def CreateConfigTemplateWithDetailResp(request)
+          body = send_request('CreateConfigTemplateWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigTemplateWithDetailRespResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建路径重写，并返回路径重写规则信息
+
+        # @param request: Request instance for CreatePathRewritesWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreatePathRewritesWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreatePathRewritesWithDetailRespResponse`
+        def CreatePathRewritesWithDetailResp(request)
+          body = send_request('CreatePathRewritesWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePathRewritesWithDetailRespResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建公共配置项
 
         # @param request: Request instance for CreatePublicConfig.
@@ -639,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePublicConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建公共配置项，并返回配置项详细信息
+
+        # @param request: Request instance for CreatePublicConfigWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreatePublicConfigWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreatePublicConfigWithDetailRespResponse`
+        def CreatePublicConfigWithDetailResp(request)
+          body = send_request('CreatePublicConfigWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePublicConfigWithDetailRespResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -749,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建单元化规则, 并返回详细信息
+
+        # @param request: Request instance for CreateUnitRuleWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateUnitRuleWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateUnitRuleWithDetailRespResponse`
+        def CreateUnitRuleWithDetailResp(request)
+          body = send_request('CreateUnitRuleWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUnitRuleWithDetailRespResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除Api分组
 
         # @param request: Request instance for DeleteApiGroup.
@@ -759,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApiGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除API限流规则
+
+        # @param request: Request instance for DeleteApiRateLimitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DeleteApiRateLimitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeleteApiRateLimitRuleResponse`
+        def DeleteApiRateLimitRule(request)
+          body = send_request('DeleteApiRateLimitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApiRateLimitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3127,6 +3271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 资源任务的执行状态描述接口
+
+        # @param request: Request instance for DescribeResourceTaskStatus.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeResourceTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeResourceTaskStatusResponse`
+        def DescribeResourceTaskStatus(request)
+          body = send_request('DescribeResourceTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询简单应用列表
 
         # @param request: Request instance for DescribeSimpleApplications.
@@ -4267,6 +4435,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReleaseConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发布配置,并且返回配置 ID
+
+        # @param request: Request instance for ReleaseConfigWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::ReleaseConfigWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::ReleaseConfigWithDetailRespResponse`
+        def ReleaseConfigWithDetailResp(request)
+          body = send_request('ReleaseConfigWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseConfigWithDetailRespResponse.new
             model.deserialize(response['Response'])
             model
           else

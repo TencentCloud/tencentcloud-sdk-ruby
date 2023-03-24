@@ -11208,10 +11208,12 @@ module TencentCloud
         # @type NotInstallBasicScrape: Boolean
         # @param NotScrape: 是否采集指标，true代表drop所有指标，false代表采集默认指标
         # @type NotScrape: Boolean
+        # @param OpenDefaultRecord: 是否开启默认预聚合规则
+        # @type OpenDefaultRecord: Boolean
 
-        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape
+        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape, :OpenDefaultRecord
         
-        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil)
+        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil, opendefaultrecord=nil)
           @Region = region
           @ClusterType = clustertype
           @ClusterId = clusterid
@@ -11220,6 +11222,7 @@ module TencentCloud
           @ExternalLabels = externallabels
           @NotInstallBasicScrape = notinstallbasicscrape
           @NotScrape = notscrape
+          @OpenDefaultRecord = opendefaultrecord
         end
 
         def deserialize(params)
@@ -11241,6 +11244,7 @@ module TencentCloud
           end
           @NotInstallBasicScrape = params['NotInstallBasicScrape']
           @NotScrape = params['NotScrape']
+          @OpenDefaultRecord = params['OpenDefaultRecord']
         end
       end
 

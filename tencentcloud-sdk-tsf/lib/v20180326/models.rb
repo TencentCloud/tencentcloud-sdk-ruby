@@ -2974,6 +2974,54 @@ module TencentCloud
         end
       end
 
+      # CreateApiRateLimitRuleWithDetailResp请求参数结构体
+      class CreateApiRateLimitRuleWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ApiId: Api Id
+        # @type ApiId: String
+        # @param MaxQps: qps值
+        # @type MaxQps: Integer
+        # @param UsableStatus: 开启/禁用，enabled/disabled, 不传默认开启
+        # @type UsableStatus: String
+
+        attr_accessor :ApiId, :MaxQps, :UsableStatus
+        
+        def initialize(apiid=nil, maxqps=nil, usablestatus=nil)
+          @ApiId = apiid
+          @MaxQps = maxqps
+          @UsableStatus = usablestatus
+        end
+
+        def deserialize(params)
+          @ApiId = params['ApiId']
+          @MaxQps = params['MaxQps']
+          @UsableStatus = params['UsableStatus']
+        end
+      end
+
+      # CreateApiRateLimitRuleWithDetailResp返回参数结构体
+      class CreateApiRateLimitRuleWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建的规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ApiRateLimitRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiRateLimitRule.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateApplication请求参数结构体
       class CreateApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationName: 应用名称
@@ -3268,6 +3316,62 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConfigTemplateWithDetailResp请求参数结构体
+      class CreateConfigTemplateWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigTemplateName: 配置模板名称
+        # @type ConfigTemplateName: String
+        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @type ConfigTemplateType: String
+        # @param ConfigTemplateValue: 配置模板数据
+        # @type ConfigTemplateValue: String
+        # @param ConfigTemplateDesc: 配置模板描述
+        # @type ConfigTemplateDesc: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
+
+        attr_accessor :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc, :ProgramIdList
+        
+        def initialize(configtemplatename=nil, configtemplatetype=nil, configtemplatevalue=nil, configtemplatedesc=nil, programidlist=nil)
+          @ConfigTemplateName = configtemplatename
+          @ConfigTemplateType = configtemplatetype
+          @ConfigTemplateValue = configtemplatevalue
+          @ConfigTemplateDesc = configtemplatedesc
+          @ProgramIdList = programidlist
+        end
+
+        def deserialize(params)
+          @ConfigTemplateName = params['ConfigTemplateName']
+          @ConfigTemplateType = params['ConfigTemplateType']
+          @ConfigTemplateValue = params['ConfigTemplateValue']
+          @ConfigTemplateDesc = params['ConfigTemplateDesc']
+          @ProgramIdList = params['ProgramIdList']
+        end
+      end
+
+      # CreateConfigTemplateWithDetailResp返回参数结构体
+      class CreateConfigTemplateWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建成功，返回 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigTemplate`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConfigTemplate.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3914,6 +4018,50 @@ module TencentCloud
         end
       end
 
+      # CreatePathRewritesWithDetailResp请求参数结构体
+      class CreatePathRewritesWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param PathRewrites: 路径重写列表
+        # @type PathRewrites: Array
+
+        attr_accessor :PathRewrites
+        
+        def initialize(pathrewrites=nil)
+          @PathRewrites = pathrewrites
+        end
+
+        def deserialize(params)
+          unless params['PathRewrites'].nil?
+            @PathRewrites = []
+            params['PathRewrites'].each do |i|
+              pathrewritecreateobject_tmp = PathRewriteCreateObject.new
+              pathrewritecreateobject_tmp.deserialize(i)
+              @PathRewrites << pathrewritecreateobject_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePathRewritesWithDetailResp返回参数结构体
+      class CreatePathRewritesWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回路径重写规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePublicConfig请求参数结构体
       class CreatePublicConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigName: 配置项名称
@@ -3971,6 +4119,70 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePublicConfigWithDetailResp请求参数结构体
+      class CreatePublicConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # @type ConfigVersion: String
+        # @param ConfigValue: 配置项值，总是接收yaml格式的内容
+        # @type ConfigValue: String
+        # @param ConfigVersionDesc: 配置项版本描述
+        # @type ConfigVersionDesc: String
+        # @param ConfigType: 配置项类型
+        # @type ConfigType: String
+        # @param EncodeWithBase64: Base64编码的配置项
+        # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
+
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
+        
+        def initialize(configname=nil, configversion=nil, configvalue=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil, programidlist=nil)
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ConfigValue = configvalue
+          @ConfigVersionDesc = configversiondesc
+          @ConfigType = configtype
+          @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
+        end
+
+        def deserialize(params)
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ConfigValue = params['ConfigValue']
+          @ConfigVersionDesc = params['ConfigVersionDesc']
+          @ConfigType = params['ConfigType']
+          @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
+        end
+      end
+
+      # CreatePublicConfigWithDetailResp返回参数结构体
+      class CreatePublicConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 公共配置项 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = Config.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4261,6 +4473,65 @@ module TencentCloud
         end
       end
 
+      # CreateUnitRuleWithDetailResp请求参数结构体
+      class CreateUnitRuleWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param UnitRuleItemList: 规则项列表
+        # @type UnitRuleItemList: Array
+
+        attr_accessor :GatewayInstanceId, :Name, :Description, :UnitRuleItemList
+        
+        def initialize(gatewayinstanceid=nil, name=nil, description=nil, unitruleitemlist=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @Name = name
+          @Description = description
+          @UnitRuleItemList = unitruleitemlist
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['UnitRuleItemList'].nil?
+            @UnitRuleItemList = []
+            params['UnitRuleItemList'].each do |i|
+              unitruleitem_tmp = UnitRuleItem.new
+              unitruleitem_tmp.deserialize(i)
+              @UnitRuleItemList << unitruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateUnitRuleWithDetailResp返回参数结构体
+      class CreateUnitRuleWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单元化规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.UnitRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UnitRule.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 构成监控数据图的曲线坐标点
       class CurvePoint < TencentCloud::Common::AbstractModel
         # @param Label: 当前坐标 X轴的值 当前是日期格式:"yyyy-MM-dd HH:mm:ss"
@@ -4304,6 +4575,42 @@ module TencentCloud
       # DeleteApiGroup返回参数结构体
       class DeleteApiGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteApiRateLimitRule请求参数结构体
+      class DeleteApiRateLimitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 限流规则ID
+        # @type RuleId: String
+
+        attr_accessor :RuleId
+        
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DeleteApiRateLimitRule返回参数结构体
+      class DeleteApiRateLimitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9721,6 +10028,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = RepositoryInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceTaskStatus请求参数结构体
+      class DescribeResourceTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeResourceTaskStatus返回参数结构体
+      class DescribeResourceTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 资源任务执行状态结果
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ResourceTaskStatusResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ResourceTaskStatusResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -15674,6 +16020,54 @@ module TencentCloud
         end
       end
 
+      # ReleaseConfigWithDetailResp请求参数结构体
+      class ReleaseConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置ID
+        # @type ConfigId: String
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param ReleaseDesc: 发布描述
+        # @type ReleaseDesc: String
+
+        attr_accessor :ConfigId, :GroupId, :ReleaseDesc
+        
+        def initialize(configid=nil, groupid=nil, releasedesc=nil)
+          @ConfigId = configid
+          @GroupId = groupid
+          @ReleaseDesc = releasedesc
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @GroupId = params['GroupId']
+          @ReleaseDesc = params['ReleaseDesc']
+        end
+      end
+
+      # ReleaseConfigWithDetailResp返回参数结构体
+      class ReleaseConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置项发布 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConfigRelease.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReleaseFileConfig请求参数结构体
       class ReleaseFileConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置ID
@@ -15990,6 +16384,23 @@ module TencentCloud
 
         def deserialize(params)
           @Resource = params['Resource']
+        end
+      end
+
+      # 资源任务转态结果
+      class ResourceTaskStatusResult < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务的执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: Integer
+
+        attr_accessor :TaskStatus
+        
+        def initialize(taskstatus=nil)
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
         end
       end
 

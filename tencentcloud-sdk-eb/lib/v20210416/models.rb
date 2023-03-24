@@ -771,6 +771,74 @@ module TencentCloud
         end
       end
 
+      # DescribeLogTagValue请求参数结构体
+      class DescribeLogTagValueRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param EventBusId: 事件集ID
+        # @type EventBusId: String
+        # @param GroupField: 聚合字段
+        # @type GroupField: String
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param Limit: 每页数据大小
+        # @type Limit: Integer
+        # @param Filter: 筛选条件
+        # @type Filter: Array
+
+        attr_accessor :StartTime, :EndTime, :EventBusId, :GroupField, :Page, :Limit, :Filter
+        
+        def initialize(starttime=nil, endtime=nil, eventbusid=nil, groupfield=nil, page=nil, limit=nil, filter=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @EventBusId = eventbusid
+          @GroupField = groupfield
+          @Page = page
+          @Limit = limit
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @EventBusId = params['EventBusId']
+          @GroupField = params['GroupField']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @Filter << logfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLogTagValue返回参数结构体
+      class DescribeLogTagValueResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 索引检索维度值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+        
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Results = params['Results']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述Es规则目标
       class ESTargetParams < TencentCloud::Common::AbstractModel
         # @param NetMode: 网络连接类型
@@ -1445,6 +1513,69 @@ module TencentCloud
         end
       end
 
+      # 日志查询相关接口filter参数定义
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤字段名称
+        # @type Key: String
+        # @param Operator: 运算符，全等 eq，不等 neq，相似 like，排除相似 not like,  小于 lt，小于且等于 lte，大于 gt，大于且等于 gte，在范围内 range，不在范围内 norange
+        # @type Operator: String
+        # @param Value: 过滤值,范围运算需要同时输入两个值，以英文逗号分隔
+        # @type Value: String
+        # @param Type: 该层级filters逻辑关系，取值 "AND" 或 "OR"
+        # @type Type: String
+        # @param Filters: LogFilters数组
+        # @type Filters: Array
+
+        attr_accessor :Key, :Operator, :Value, :Type, :Filters
+        
+        def initialize(key=nil, operator=nil, value=nil, type=nil, filters=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+          @Type = type
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+          @Type = params['Type']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              logfilters_tmp = LogFilters.new
+              logfilters_tmp.deserialize(i)
+              @Filters << logfilters_tmp
+            end
+          end
+        end
+      end
+
+      # 日志存储过滤条件
+      class LogFilters < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤字段名称
+        # @type Key: String
+        # @param Operator: 运算符, 全等 eq，不等 neq，相似 like，排除相似 not like,  小于 lt，小于且等于 lte，大于 gt，大于且等于 gte，在范围内 range，不在范围内 norange
+        # @type Operator: String
+        # @param Value: 过滤值，范围运算需要同时输入两个值，以英文逗号分隔
+        # @type Value: String
+
+        attr_accessor :Key, :Operator, :Value
+        
+        def initialize(key=nil, operator=nil, value=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
       # Transform输出参数
       class OutputStructParam < TencentCloud::Common::AbstractModel
         # @param Key: 对应输出json中的key
@@ -1660,6 +1791,152 @@ module TencentCloud
           @BatchTimeout = params['BatchTimeout']
           @BatchEventCount = params['BatchEventCount']
           @EnableBatchDelivery = params['EnableBatchDelivery']
+        end
+      end
+
+      # SearchLog请求参数结构体
+      class SearchLogRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间unix 毫秒时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间unix 毫秒时间戳
+        # @type EndTime: Integer
+        # @param EventBusId: 事件集ID
+        # @type EventBusId: String
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param Limit: 每页数据大小
+        # @type Limit: Integer
+        # @param Filter: 筛选条件
+        # @type Filter: Array
+        # @param OrderFields: 排序数组
+        # @type OrderFields: Array
+        # @param OrderBy: 排序方式，asc 从旧到新，desc 从新到旧
+        # @type OrderBy: String
+
+        attr_accessor :StartTime, :EndTime, :EventBusId, :Page, :Limit, :Filter, :OrderFields, :OrderBy
+        
+        def initialize(starttime=nil, endtime=nil, eventbusid=nil, page=nil, limit=nil, filter=nil, orderfields=nil, orderby=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @EventBusId = eventbusid
+          @Page = page
+          @Limit = limit
+          @Filter = filter
+          @OrderFields = orderfields
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @EventBusId = params['EventBusId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @Filter << logfilter_tmp
+            end
+          end
+          @OrderFields = params['OrderFields']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # SearchLog返回参数结构体
+      class SearchLogResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 日志总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Limit: 每页日志条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Page: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
+        # @param Results: 日志检索结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Limit, :Page, :Results, :RequestId
+        
+        def initialize(total=nil, limit=nil, page=nil, results=nil, requestid=nil)
+          @Total = total
+          @Limit = limit
+          @Page = page
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Limit = params['Limit']
+          @Page = params['Page']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              searchlogresult_tmp = SearchLogResult.new
+              searchlogresult_tmp.deserialize(i)
+              @Results << searchlogresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 日志检索详情
+      class SearchLogResult < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 单条日志上报时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param Message: 日志内容详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Source: 事件来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Type: 事件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param RuleIds: 事件匹配规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleIds: String
+        # @param Subject: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subject: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: 事件状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Timestamp, :Message, :Source, :Type, :RuleIds, :Subject, :Region, :Status
+        
+        def initialize(timestamp=nil, message=nil, source=nil, type=nil, ruleids=nil, subject=nil, region=nil, status=nil)
+          @Timestamp = timestamp
+          @Message = message
+          @Source = source
+          @Type = type
+          @RuleIds = ruleids
+          @Subject = subject
+          @Region = region
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Message = params['Message']
+          @Source = params['Source']
+          @Type = params['Type']
+          @RuleIds = params['RuleIds']
+          @Subject = params['Subject']
+          @Region = params['Region']
+          @Status = params['Status']
         end
       end
 

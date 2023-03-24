@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加 ACL 规则
+
+        # @param request: Request instance for CreateAclRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateAclRuleResponse`
+        def CreateAclRule(request)
+          body = send_request('CreateAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于cdc的专用ckafka集群
 
         # @param request: Request instance for CreateCdcCluster.
@@ -807,6 +831,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeACLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询ACL规则列表
+
+        # @param request: Request instance for DescribeAclRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeAclRuleResponse`
+        def DescribeAclRule(request)
+          body = send_request('DescribeAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAclRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1528,6 +1576,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquireCkafkaPriceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改AC策略，目前只支持预设规则的是否应用到新增topic这一项的修改
+
+        # @param request: Request instance for ModifyAclRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyAclRuleResponse`
+        def ModifyAclRule(request)
+          body = send_request('ModifyAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAclRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

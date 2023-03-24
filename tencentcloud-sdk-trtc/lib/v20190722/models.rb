@@ -2032,7 +2032,7 @@ module TencentCloud
         # @type ZOrder: Integer
         # @param RenderMode: 子画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
         # @type RenderMode: Integer
-        # @param BackGroundColor: 子画面的背景颜色，常用的颜色有：
+        # @param BackGroundColor: 【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：
         # 红色：0xcc0033。
         # 黄色：0xcc9900。
         # 绿色：0xcccc33。
