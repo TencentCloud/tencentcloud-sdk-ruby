@@ -1006,7 +1006,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateFlowLog）用于创建流日志
+        # 本接口（CreateFlowLog）用于创建网络流日志。
 
         # @param request: Request instance for CreateFlowLog.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateFlowLogRequest`

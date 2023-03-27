@@ -439,6 +439,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 渠道版绑定员工角色
+
+        # @param request: Request instance for ChannelCreateUserRoles.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateUserRolesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateUserRolesResponse`
+        def ChannelCreateUserRoles(request)
+          body = send_request('ChannelCreateUserRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateUserRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 渠道版删除员工绑定角色
+
+        # @param request: Request instance for ChannelDeleteRoleUsers.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDeleteRoleUsersRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelDeleteRoleUsersResponse`
+        def ChannelDeleteRoleUsers(request)
+          body = send_request('ChannelDeleteRoleUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelDeleteRoleUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除指定印章下多个授权信息
 
         # @param request: Request instance for ChannelDeleteSealPolicies.
@@ -498,6 +546,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ChannelDescribeOrganizationSealsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 渠道办查询用户角色
+
+        # @param request: Request instance for ChannelDescribeRoles.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeRolesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeRolesResponse`
+        def ChannelDescribeRoles(request)
+          body = send_request('ChannelDescribeRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelDescribeRolesResponse.new
             model.deserialize(response['Response'])
             model
           else

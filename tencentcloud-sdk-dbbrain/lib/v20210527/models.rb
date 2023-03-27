@@ -2728,17 +2728,22 @@ module TencentCloud
         # @type DailyInspection: String
         # @param OverviewDisplay: 实例概览开关，Yes/No。
         # @type OverviewDisplay: String
+        # @param KeyDelimiters: redis大key分析的自定义分割符，仅redis使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyDelimiters: Array
 
-        attr_accessor :DailyInspection, :OverviewDisplay
+        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters
         
-        def initialize(dailyinspection=nil, overviewdisplay=nil)
+        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil)
           @DailyInspection = dailyinspection
           @OverviewDisplay = overviewdisplay
+          @KeyDelimiters = keydelimiters
         end
 
         def deserialize(params)
           @DailyInspection = params['DailyInspection']
           @OverviewDisplay = params['OverviewDisplay']
+          @KeyDelimiters = params['KeyDelimiters']
         end
       end
 
@@ -2800,10 +2805,18 @@ module TencentCloud
         # @type AuditPolicyStatus: String
         # @param AuditRunningStatus: 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         # @type AuditRunningStatus: String
+        # @param InternalVip: 内网vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalVip: String
+        # @param InternalVport: 内网port
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalVport: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus
+        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus, :InternalVip, :InternalVport, :CreateTime
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil, internalvip=nil, internalvport=nil, createtime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -2832,6 +2845,9 @@ module TencentCloud
           @SecAuditStatus = secauditstatus
           @AuditPolicyStatus = auditpolicystatus
           @AuditRunningStatus = auditrunningstatus
+          @InternalVip = internalvip
+          @InternalVport = internalvport
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -2866,6 +2882,9 @@ module TencentCloud
           @SecAuditStatus = params['SecAuditStatus']
           @AuditPolicyStatus = params['AuditPolicyStatus']
           @AuditRunningStatus = params['AuditRunningStatus']
+          @InternalVip = params['InternalVip']
+          @InternalVport = params['InternalVport']
+          @CreateTime = params['CreateTime']
         end
       end
 

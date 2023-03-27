@@ -6735,10 +6735,13 @@ module TencentCloud
         # @param JobExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于JobExecutorNums
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobExecutorMaxNumbers: Integer
+        # @param SparkImageVersion: 镜像版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkImageVersion: String
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion
         
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -6774,6 +6777,7 @@ module TencentCloud
           @TaskNum = tasknum
           @DataEngineStatus = dataenginestatus
           @JobExecutorMaxNumbers = jobexecutormaxnumbers
+          @SparkImageVersion = sparkimageversion
         end
 
         def deserialize(params)
@@ -6815,6 +6819,7 @@ module TencentCloud
           @TaskNum = params['TaskNum']
           @DataEngineStatus = params['DataEngineStatus']
           @JobExecutorMaxNumbers = params['JobExecutorMaxNumbers']
+          @SparkImageVersion = params['SparkImageVersion']
         end
       end
 

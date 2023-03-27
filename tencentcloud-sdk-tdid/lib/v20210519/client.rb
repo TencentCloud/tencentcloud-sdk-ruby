@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # DID添加标签
 
         # @param request: Request instance for AddLabel.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 撤消权威机构认证
 
@@ -101,6 +105,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 检查部署情况
 
         # @param request: Request instance for CheckDidDeploy.
@@ -149,6 +155,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 创建DID服务
 
         # @param request: Request instance for CreateDidService.
@@ -172,6 +180,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 新建标签
 
@@ -293,6 +303,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 通过Name部署TDID合约
 
         # @param request: Request instance for DeployByName.
@@ -317,6 +329,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 凭证模版下载
 
         # @param request: Request instance for DownCpt.
@@ -340,6 +354,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 启用合约
 
@@ -391,6 +407,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 权威机构列表
 
         # @param request: Request instance for GetAuthoritiesList.
@@ -439,6 +457,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 获取联盟bcos网络列表
 
         # @param request: Request instance for GetConsortiumClusterList.
@@ -462,6 +482,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 获取联盟列表
 
@@ -511,6 +533,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 凭证模版列表
 
         # @param request: Request instance for GetCptList.
@@ -534,6 +558,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 凭证颁发按机构排行
 
@@ -559,6 +585,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 凭证颁发按机构排行
 
         # @param request: Request instance for GetCredentialIssueRank.
@@ -582,6 +610,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 凭证颁发趋势
 
@@ -631,6 +661,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 概览
 
         # @param request: Request instance for GetDataPanel.
@@ -654,6 +686,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 合约部署详情
 
@@ -679,6 +713,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 合约部署列表
 
         # @param request: Request instance for GetDeployList.
@@ -702,6 +738,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 获取DID区块链网络详情
 
@@ -727,6 +765,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 获取用户的DID网络列表
 
         # @param request: Request instance for GetDidClusterList.
@@ -750,6 +790,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # DID详情
 
@@ -799,6 +841,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # DID列表
 
         # @param request: Request instance for GetDidList.
@@ -822,6 +866,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # DID注册趋势
 
@@ -847,6 +893,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 获取DID服务详情
 
         # @param request: Request instance for GetDidServiceDetail.
@@ -870,6 +918,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 获取DID服务列表
 
@@ -895,6 +945,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 主群组配置列表
 
         # @param request: Request instance for GetGroupList.
@@ -918,6 +970,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 标签列表
 
@@ -943,6 +997,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 披露策略Policy管理列表
 
         # @param request: Request instance for GetPolicyList.
@@ -966,6 +1022,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 查看公钥
 
@@ -991,6 +1049,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 披露策略Policy查看
 
         # @param request: Request instance for QueryPolicy.
@@ -1015,6 +1075,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 认证权威机构
 
         # @param request: Request instance for RecognizeAuthorityIssuer.
@@ -1038,6 +1100,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 披露策略Policy注册
 
@@ -1087,6 +1151,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线已有内测接口，待上线正式版本的接口
+
         # 注册为权威机构
 
         # @param request: Request instance for RegisterIssuer.
@@ -1110,6 +1176,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线已有内测接口，待上线正式版本的接口
 
         # 删除合约
 

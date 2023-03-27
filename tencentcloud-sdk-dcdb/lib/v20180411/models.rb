@@ -1890,6 +1890,264 @@ module TencentCloud
         end
       end
 
+      # DescribeDCDBInstanceDetail请求参数结构体
+      class DescribeDCDBInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如dcdbt-7oaxtcb7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDCDBInstanceDetail返回参数结构体
+      class DescribeDCDBInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如dcdbt-7oaxtcb7
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Status: 实例状态。0-实例创建中；1-异步任务处理中；2-运行中；3-实例未初始化；-1-实例已隔离
+        # @type Status: Integer
+        # @param StatusDesc: 实例目前运行状态描述
+        # @type StatusDesc: String
+        # @param Vip: 实例内网IP地址
+        # @type Vip: String
+        # @param Vport: 实例内网端口
+        # @type Vport: Integer
+        # @param NodeCount: 实例节点数。值为2时表示一主一从，值为3时表示一主二从
+        # @type NodeCount: Integer
+        # @param Region: 实例所在地域名称，形如ap-guangzhou
+        # @type Region: String
+        # @param VpcId: 实例私有网络ID，形如vpc-r9jr0de3
+        # @type VpcId: String
+        # @param SubnetId: 实例私有网络子网ID，形如subnet-6rqs61o2
+        # @type SubnetId: String
+        # @param WanStatus: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中
+        # @type WanStatus: Integer
+        # @param WanDomain: 外网访问的域名，公网可解析
+        # @type WanDomain: String
+        # @param WanVip: 外网IP地址，公网可访问
+        # @type WanVip: String
+        # @param WanPort: 外网访问端口
+        # @type WanPort: Integer
+        # @param ProjectId: 实例所属项目ID
+        # @type ProjectId: Integer
+        # @param AutoRenewFlag: 实例自动续费标志。0-正常续费；1-自动续费；2-到期不续费
+        # @type AutoRenewFlag: Integer
+        # @param ExclusterId: 独享集群ID
+        # @type ExclusterId: String
+        # @param PayMode: 付费模式。prepaid-预付费；postpaid-按量计费
+        # @type PayMode: String
+        # @param CreateTime: 实例创建时间，格式为 2006-01-02 15:04:05
+        # @type CreateTime: String
+        # @param PeriodEndTime: 实例到期时间，格式为 2006-01-02 15:04:05
+        # @type PeriodEndTime: String
+        # @param DbVersion: 数据库版本信息
+        # @type DbVersion: String
+        # @param IsAuditSupported: 实例是否支持审计。0-不支持；1-支持
+        # @type IsAuditSupported: Integer
+        # @param IsEncryptSupported: 实例是否支持数据加密。0-不支持；1-支持
+        # @type IsEncryptSupported: Integer
+        # @param Machine: 实例母机机器型号
+        # @type Machine: String
+        # @param Memory: 实例内存大小，单位 GB，各个分片的内存大小的和
+        # @type Memory: Integer
+        # @param Storage: 实例磁盘存储大小，单位 GB，各个分片的磁盘大小的和
+        # @type Storage: Integer
+        # @param StorageUsage: 实例存储空间使用率，计算方式为：各个分片已经使用的磁盘大小的和/各个分片的磁盘大小的和。
+        # @type StorageUsage: Float
+        # @param LogStorage: 日志存储空间大小，单位GB
+        # @type LogStorage: Integer
+        # @param Pid: 产品类型ID
+        # @type Pid: Integer
+        # @param MasterZone: 主DB可用区
+        # @type MasterZone: String
+        # @param SlaveZones: 从DB可用区
+        # @type SlaveZones: Array
+        # @param Shards: 分片信息
+        # @type Shards: Array
+        # @param Vip6: 内网IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip6: String
+        # @param Cpu: 实例Cpu核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Qps: 实例QPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qps: Integer
+        # @param DbEngine: DB引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbEngine: String
+        # @param Ipv6Flag: 是否支持IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Flag: Integer
+        # @param WanVipv6: 外网IPv6地址，公网可访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanVipv6: String
+        # @param WanStatusIpv6: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanStatusIpv6: Integer
+        # @param WanPortIpv6: 外网IPv6端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanPortIpv6: Integer
+        # @param ResourceTags: 标签信息
+        # @type ResourceTags: Array
+        # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnFlag: Integer
+        # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnStatus: Integer
+        # @param DcnDstNum: DCN灾备实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnDstNum: Integer
+        # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
+        # @param IsMaxUserConnectionsSupported: 实例是否支持设置用户连接数限制，内核为10.1暂不支持。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMaxUserConnectionsSupported: Boolean
+        # @param DbVersionId: 对外显示的数据库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbVersionId: String
+        # @param EncryptStatus: 加密状态, 0-未开启，1-已开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptStatus: Integer
+        # @param ExclusterType: 独享集群类型，0:公有云, 1:金融围笼, 2:CDC集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusterType: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :NodeCount, :Region, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :PeriodEndTime, :DbVersion, :IsAuditSupported, :IsEncryptSupported, :Machine, :Memory, :Storage, :StorageUsage, :LogStorage, :Pid, :MasterZone, :SlaveZones, :Shards, :Vip6, :Cpu, :Qps, :DbEngine, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ExclusterType, :RequestId
+        
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, nodecount=nil, region=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, periodendtime=nil, dbversion=nil, isauditsupported=nil, isencryptsupported=nil, machine=nil, memory=nil, storage=nil, storageusage=nil, logstorage=nil, pid=nil, masterzone=nil, slavezones=nil, shards=nil, vip6=nil, cpu=nil, qps=nil, dbengine=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, exclustertype=nil, requestid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Status = status
+          @StatusDesc = statusdesc
+          @Vip = vip
+          @Vport = vport
+          @NodeCount = nodecount
+          @Region = region
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @WanStatus = wanstatus
+          @WanDomain = wandomain
+          @WanVip = wanvip
+          @WanPort = wanport
+          @ProjectId = projectid
+          @AutoRenewFlag = autorenewflag
+          @ExclusterId = exclusterid
+          @PayMode = paymode
+          @CreateTime = createtime
+          @PeriodEndTime = periodendtime
+          @DbVersion = dbversion
+          @IsAuditSupported = isauditsupported
+          @IsEncryptSupported = isencryptsupported
+          @Machine = machine
+          @Memory = memory
+          @Storage = storage
+          @StorageUsage = storageusage
+          @LogStorage = logstorage
+          @Pid = pid
+          @MasterZone = masterzone
+          @SlaveZones = slavezones
+          @Shards = shards
+          @Vip6 = vip6
+          @Cpu = cpu
+          @Qps = qps
+          @DbEngine = dbengine
+          @Ipv6Flag = ipv6flag
+          @WanVipv6 = wanvipv6
+          @WanStatusIpv6 = wanstatusipv6
+          @WanPortIpv6 = wanportipv6
+          @ResourceTags = resourcetags
+          @DcnFlag = dcnflag
+          @DcnStatus = dcnstatus
+          @DcnDstNum = dcndstnum
+          @InstanceType = instancetype
+          @IsMaxUserConnectionsSupported = ismaxuserconnectionssupported
+          @DbVersionId = dbversionid
+          @EncryptStatus = encryptstatus
+          @ExclusterType = exclustertype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @NodeCount = params['NodeCount']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @WanStatus = params['WanStatus']
+          @WanDomain = params['WanDomain']
+          @WanVip = params['WanVip']
+          @WanPort = params['WanPort']
+          @ProjectId = params['ProjectId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ExclusterId = params['ExclusterId']
+          @PayMode = params['PayMode']
+          @CreateTime = params['CreateTime']
+          @PeriodEndTime = params['PeriodEndTime']
+          @DbVersion = params['DbVersion']
+          @IsAuditSupported = params['IsAuditSupported']
+          @IsEncryptSupported = params['IsEncryptSupported']
+          @Machine = params['Machine']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @StorageUsage = params['StorageUsage']
+          @LogStorage = params['LogStorage']
+          @Pid = params['Pid']
+          @MasterZone = params['MasterZone']
+          @SlaveZones = params['SlaveZones']
+          unless params['Shards'].nil?
+            @Shards = []
+            params['Shards'].each do |i|
+              shardbriefinfo_tmp = ShardBriefInfo.new
+              shardbriefinfo_tmp.deserialize(i)
+              @Shards << shardbriefinfo_tmp
+            end
+          end
+          @Vip6 = params['Vip6']
+          @Cpu = params['Cpu']
+          @Qps = params['Qps']
+          @DbEngine = params['DbEngine']
+          @Ipv6Flag = params['Ipv6Flag']
+          @WanVipv6 = params['WanVipv6']
+          @WanStatusIpv6 = params['WanStatusIpv6']
+          @WanPortIpv6 = params['WanPortIpv6']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @DcnFlag = params['DcnFlag']
+          @DcnStatus = params['DcnStatus']
+          @DcnDstNum = params['DcnDstNum']
+          @InstanceType = params['InstanceType']
+          @IsMaxUserConnectionsSupported = params['IsMaxUserConnectionsSupported']
+          @DbVersionId = params['DbVersionId']
+          @EncryptStatus = params['EncryptStatus']
+          @ExclusterType = params['ExclusterType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDCDBInstanceNodeInfo请求参数结构体
       class DescribeDCDBInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -4040,6 +4298,26 @@ module TencentCloud
         end
       end
 
+      # 描述DB节点信息
+      class NodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: DB节点ID
+        # @type NodeId: String
+        # @param Role: DB节点角色，取值为master或者slave
+        # @type Role: String
+
+        attr_accessor :NodeId, :Role
+        
+        def initialize(nodeid=nil, role=nil)
+          @NodeId = nodeid
+          @Role = role
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Role = params['Role']
+        end
+      end
+
       # OpenDBExtranetAccess请求参数结构体
       class OpenDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待开放外网访问的实例ID。形如：dcdbt-ow728lmc。
@@ -4471,6 +4749,86 @@ module TencentCloud
           @Action = params['Action']
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
+        end
+      end
+
+      # DCDB分片信息
+      class ShardBriefInfo < TencentCloud::Common::AbstractModel
+        # @param ShardSerialId: 分片SerialId
+        # @type ShardSerialId: String
+        # @param ShardInstanceId: 分片ID，形如shard-7vg1o339
+        # @type ShardInstanceId: String
+        # @param Status: 分片运行状态
+        # @type Status: Integer
+        # @param StatusDesc: 分片运行状态描述
+        # @type StatusDesc: String
+        # @param CreateTime: 分片创建时间
+        # @type CreateTime: String
+        # @param Memory: 分片内存大小，单位GB
+        # @type Memory: Integer
+        # @param Storage: 分片磁盘大小，单位GB
+        # @type Storage: Integer
+        # @param LogDisk: 分片日志磁盘空间大小，单位GB
+        # @type LogDisk: Integer
+        # @param NodeCount: 分片节点个数
+        # @type NodeCount: Integer
+        # @param StorageUsage: 分片磁盘空间使用率
+        # @type StorageUsage: Float
+        # @param ProxyVersion: 分片Proxy版本信息
+        # @type ProxyVersion: String
+        # @param ShardMasterZone: 分片主DB可用区
+        # @type ShardMasterZone: String
+        # @param ShardSlaveZones: 分片从DB可用区
+        # @type ShardSlaveZones: Array
+        # @param Cpu: 分片Cpu核数
+        # @type Cpu: Integer
+        # @param NodesInfo: DB节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodesInfo: Array
+
+        attr_accessor :ShardSerialId, :ShardInstanceId, :Status, :StatusDesc, :CreateTime, :Memory, :Storage, :LogDisk, :NodeCount, :StorageUsage, :ProxyVersion, :ShardMasterZone, :ShardSlaveZones, :Cpu, :NodesInfo
+        
+        def initialize(shardserialid=nil, shardinstanceid=nil, status=nil, statusdesc=nil, createtime=nil, memory=nil, storage=nil, logdisk=nil, nodecount=nil, storageusage=nil, proxyversion=nil, shardmasterzone=nil, shardslavezones=nil, cpu=nil, nodesinfo=nil)
+          @ShardSerialId = shardserialid
+          @ShardInstanceId = shardinstanceid
+          @Status = status
+          @StatusDesc = statusdesc
+          @CreateTime = createtime
+          @Memory = memory
+          @Storage = storage
+          @LogDisk = logdisk
+          @NodeCount = nodecount
+          @StorageUsage = storageusage
+          @ProxyVersion = proxyversion
+          @ShardMasterZone = shardmasterzone
+          @ShardSlaveZones = shardslavezones
+          @Cpu = cpu
+          @NodesInfo = nodesinfo
+        end
+
+        def deserialize(params)
+          @ShardSerialId = params['ShardSerialId']
+          @ShardInstanceId = params['ShardInstanceId']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @CreateTime = params['CreateTime']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @LogDisk = params['LogDisk']
+          @NodeCount = params['NodeCount']
+          @StorageUsage = params['StorageUsage']
+          @ProxyVersion = params['ProxyVersion']
+          @ShardMasterZone = params['ShardMasterZone']
+          @ShardSlaveZones = params['ShardSlaveZones']
+          @Cpu = params['Cpu']
+          unless params['NodesInfo'].nil?
+            @NodesInfo = []
+            params['NodesInfo'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @NodesInfo << nodeinfo_tmp
+            end
+          end
         end
       end
 

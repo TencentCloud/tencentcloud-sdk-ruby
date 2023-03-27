@@ -435,7 +435,7 @@ module TencentCloud
         # CHECK_BOX - 勾选框控件，若选中填写ComponentValue 填写 true或者 false 字符串；
         # FILL_IMAGE - 图片控件，ComponentValue 填写图片的资源 ID；
         # DYNAMIC_TABLE - 动态表格控件；
-        # ATTACHMENT - 附件控件,ComponentValue 填写福建图片的资源 ID列表，以逗号分割；
+        # ATTACHMENT - 附件控件,ComponentValue 填写附件图片的资源 ID列表，以逗号分割；
         # SELECTOR - 选择器控件，ComponentValue填写选择的字符串内容；
         # DATE - 日期控件；默认是格式化为xxxx年xx月xx日字符串；
         # DISTRICT - 省市区行政区划控件，ComponentValue填写省市区行政区划字符串内容；
@@ -1418,12 +1418,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 待创建员工的信息，Mobile和DisplayName必填
         # @type Employees: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Employees
+        attr_accessor :Operator, :Employees, :Agent
         
-        def initialize(operator=nil, employees=nil)
+        def initialize(operator=nil, employees=nil, agent=nil)
           @Operator = operator
           @Employees = employees
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1438,6 +1441,10 @@ module TencentCloud
               staff_tmp.deserialize(i)
               @Employees << staff_tmp
             end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -1641,6 +1648,78 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePreparedPersonalEsign请求参数结构体
+      class CreatePreparedPersonalEsignRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 个人用户名称
+        # @type UserName: String
+        # @param IdCardNumber: 身份证件号码
+        # @type IdCardNumber: String
+        # @param SealImage: 印章图片的base64
+        # @type SealImage: String
+        # @param SealName: 印章名称
+        # @type SealName: String
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param IdCardType: 身份证件类型:
+        # ID_CARD 身份证
+        # PASSPORT 护照
+        # HONGKONG_AND_MACAO 香港身份
+        # FOREIGN_ID_CARD 国外身份
+        # HONGKONG_MACAO_AND_TAIWAN 港台身份
+        # @type IdCardType: String
+        # @param Mobile: 手机号码
+        # @type Mobile: String
+        # @param EnableAutoSign: 是否需开通自动签
+        # @type EnableAutoSign: Boolean
+
+        attr_accessor :UserName, :IdCardNumber, :SealImage, :SealName, :Operator, :IdCardType, :Mobile, :EnableAutoSign
+        
+        def initialize(username=nil, idcardnumber=nil, sealimage=nil, sealname=nil, operator=nil, idcardtype=nil, mobile=nil, enableautosign=nil)
+          @UserName = username
+          @IdCardNumber = idcardnumber
+          @SealImage = sealimage
+          @SealName = sealname
+          @Operator = operator
+          @IdCardType = idcardtype
+          @Mobile = mobile
+          @EnableAutoSign = enableautosign
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @IdCardNumber = params['IdCardNumber']
+          @SealImage = params['SealImage']
+          @SealName = params['SealName']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @IdCardType = params['IdCardType']
+          @Mobile = params['Mobile']
+          @EnableAutoSign = params['EnableAutoSign']
+        end
+      end
+
+      # CreatePreparedPersonalEsign返回参数结构体
+      class CreatePreparedPersonalEsignResponse < TencentCloud::Common::AbstractModel
+        # @param SealId: 导入生成的印章ID
+        # @type SealId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SealId, :RequestId
+        
+        def initialize(sealid=nil, requestid=nil)
+          @SealId = sealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SealId = params['SealId']
           @RequestId = params['RequestId']
         end
       end
@@ -1975,12 +2054,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个
         # @type Employees: Array
+        # @param Agent: 代理信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Employees
+        attr_accessor :Operator, :Employees, :Agent
         
-        def initialize(operator=nil, employees=nil)
+        def initialize(operator=nil, employees=nil, agent=nil)
           @Operator = operator
           @Employees = employees
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1995,6 +2077,10 @@ module TencentCloud
               staff_tmp.deserialize(i)
               @Employees << staff_tmp
             end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -4128,7 +4214,7 @@ module TencentCloud
         # @param Email: 用户邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param OpenId: 用户在第三方平台id
+        # @param OpenId: 用户在第三方平台id，如需在此接口提醒员工实名，该参数不传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param Roles: 员工角色
@@ -4147,10 +4233,14 @@ module TencentCloud
         # @param QuiteJob: 员工是否离职：0-未离职，1-离职
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuiteJob: Integer
+        # @param ReceiveUserId: 员工离职交接人用户id
+        # @type ReceiveUserId: String
+        # @param ReceiveOpenId: 员工离职交接人用户OpenId
+        # @type ReceiveOpenId: String
 
-        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob, :ReceiveUserId, :ReceiveOpenId
         
-        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil)
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil, receiveuserid=nil, receiveopenid=nil)
           @UserId = userid
           @DisplayName = displayname
           @Mobile = mobile
@@ -4162,6 +4252,8 @@ module TencentCloud
           @CreatedOn = createdon
           @VerifiedOn = verifiedon
           @QuiteJob = quitejob
+          @ReceiveUserId = receiveuserid
+          @ReceiveOpenId = receiveopenid
         end
 
         def deserialize(params)
@@ -4186,6 +4278,8 @@ module TencentCloud
           @CreatedOn = params['CreatedOn']
           @VerifiedOn = params['VerifiedOn']
           @QuiteJob = params['QuiteJob']
+          @ReceiveUserId = params['ReceiveUserId']
+          @ReceiveOpenId = params['ReceiveOpenId']
         end
       end
 
@@ -4277,19 +4371,24 @@ module TencentCloud
         # @type Mobile: String
         # @param UserId: 员工在电子签平台的id
         # @type UserId: String
+        # @param Note: 提示，当创建已存在未实名用户时，改字段有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
 
-        attr_accessor :DisplayName, :Mobile, :UserId
+        attr_accessor :DisplayName, :Mobile, :UserId, :Note
         
-        def initialize(displayname=nil, mobile=nil, userid=nil)
+        def initialize(displayname=nil, mobile=nil, userid=nil, note=nil)
           @DisplayName = displayname
           @Mobile = mobile
           @UserId = userid
+          @Note = note
         end
 
         def deserialize(params)
           @DisplayName = params['DisplayName']
           @Mobile = params['Mobile']
           @UserId = params['UserId']
+          @Note = params['Note']
         end
       end
 
@@ -4596,7 +4695,7 @@ module TencentCloud
 
       # VerifyPdf请求参数结构体
       class VerifyPdfRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同Id，流程Id
+        # @param FlowId: 流程ID
         # @type FlowId: String
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
@@ -4621,8 +4720,7 @@ module TencentCloud
       class VerifyPdfResponse < TencentCloud::Common::AbstractModel
         # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
         # @type VerifyResult: Integer
-        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
-        # ；5-文件签名格式错误
+        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
         # @type PdfVerifyResults: Array
         # @param VerifySerialNo: 验签序列号
         # @type VerifySerialNo: String

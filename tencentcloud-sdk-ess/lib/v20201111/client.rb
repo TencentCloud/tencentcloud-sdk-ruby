@@ -337,7 +337,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建员工
+        # 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
 
         # @param request: Request instance for CreateIntegrationEmployees.
         # @type request: :class:`Tencentcloud::ess::V20201111::CreateIntegrationEmployeesRequest`
@@ -399,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePrepareFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreatePreparedPersonalEsign）由于创建导入个人印章。
+
+        # @param request: Request instance for CreatePreparedPersonalEsign.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreatePreparedPersonalEsignRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreatePreparedPersonalEsignResponse`
+        def CreatePreparedPersonalEsign(request)
+          body = send_request('CreatePreparedPersonalEsign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePreparedPersonalEsignResponse.new
             model.deserialize(response['Response'])
             model
           else

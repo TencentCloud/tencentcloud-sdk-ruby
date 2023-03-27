@@ -1336,6 +1336,121 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateUserRoles请求参数结构体
+      class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作者信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param UserIds: 绑定角色的员工id列表
+        # @type UserIds: Array
+        # @param RoleIds: 绑定角色的角色id列表
+        # @type RoleIds: Array
+
+        attr_accessor :Operator, :Agent, :UserIds, :RoleIds
+        
+        def initialize(operator=nil, agent=nil, userids=nil, roleids=nil)
+          @Operator = operator
+          @Agent = agent
+          @UserIds = userids
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @UserIds = params['UserIds']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # ChannelCreateUserRoles返回参数结构体
+      class ChannelCreateUserRolesResponse < TencentCloud::Common::AbstractModel
+        # @param FailedCreateRoleData: 绑定失败的用户角色列表
+        # @type FailedCreateRoleData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedCreateRoleData, :RequestId
+        
+        def initialize(failedcreateroledata=nil, requestid=nil)
+          @FailedCreateRoleData = failedcreateroledata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedCreateRoleData'].nil?
+            @FailedCreateRoleData = []
+            params['FailedCreateRoleData'].each do |i|
+              failedcreateroledata_tmp = FailedCreateRoleData.new
+              failedcreateroledata_tmp.deserialize(i)
+              @FailedCreateRoleData << failedcreateroledata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDeleteRoleUsers请求参数结构体
+      class ChannelDeleteRoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param RoleId: 角色Id
+        # @type RoleId: String
+        # @param UserIds: 用户列表
+        # @type UserIds: Array
+        # @param Agent: 代理信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :Operator, :RoleId, :UserIds, :Agent
+        
+        def initialize(operator=nil, roleid=nil, userids=nil, agent=nil)
+          @Operator = operator
+          @RoleId = roleid
+          @UserIds = userids
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @RoleId = params['RoleId']
+          @UserIds = params['UserIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ChannelDeleteRoleUsers返回参数结构体
+      class ChannelDeleteRoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+        
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDeleteSealPolicies请求参数结构体
       class ChannelDeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1557,6 +1672,93 @@ module TencentCloud
         end
       end
 
+      # ChannelDescribeRoles请求参数结构体
+      class ChannelDescribeRolesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Offset: 查询起始偏移，最大2000
+        # @type Offset: Integer
+        # @param Limit: 查询数量，最大200
+        # @type Limit: String
+        # @param Filters: 查询的关键字段:
+        # Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
+        # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
+        # @type Filters: Array
+
+        attr_accessor :Operator, :Agent, :Offset, :Limit, :Filters
+        
+        def initialize(operator=nil, agent=nil, offset=nil, limit=nil, filters=nil)
+          @Operator = operator
+          @Agent = agent
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ChannelDescribeRoles返回参数结构体
+      class ChannelDescribeRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Offset: 页面偏移量，最大2000
+        # @type Offset: Integer
+        # @param Limit: 查询数量，最大200
+        # @type Limit: Integer
+        # @param TotalCount: 查询角色的总数量
+        # @type TotalCount: Integer
+        # @param ChannelRoles: 角色信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelRoles: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Offset, :Limit, :TotalCount, :ChannelRoles, :RequestId
+        
+        def initialize(offset=nil, limit=nil, totalcount=nil, channelroles=nil, requestid=nil)
+          @Offset = offset
+          @Limit = limit
+          @TotalCount = totalcount
+          @ChannelRoles = channelroles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TotalCount = params['TotalCount']
+          unless params['ChannelRoles'].nil?
+            @ChannelRoles = []
+            params['ChannelRoles'].each do |i|
+              channelrole_tmp = ChannelRole.new
+              channelrole_tmp.deserialize(i)
+              @ChannelRoles << channelrole_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelGetTaskResultApi请求参数结构体
       class ChannelGetTaskResultApiRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1643,6 +1845,33 @@ module TencentCloud
         end
       end
 
+      # 渠道角色信息
+      class ChannelRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: String
+        # @param RoleName: 角色名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param RoleStatus: 角色状态：1-启用；2-禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleStatus: Integer
+
+        attr_accessor :RoleId, :RoleName, :RoleStatus
+        
+        def initialize(roleid=nil, rolename=nil, rolestatus=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleStatus = rolestatus
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleStatus = params['RoleStatus']
+        end
+      end
+
       # ChannelUpdateSealStatus请求参数结构体
       class ChannelUpdateSealStatusRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1699,7 +1928,7 @@ module TencentCloud
 
       # ChannelVerifyPdf请求参数结构体
       class ChannelVerifyPdfRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同Id，流程Id
+        # @param FlowId: 流程ID
         # @type FlowId: String
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
@@ -1731,8 +1960,7 @@ module TencentCloud
       class ChannelVerifyPdfResponse < TencentCloud::Common::AbstractModel
         # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
         # @type VerifyResult: Integer
-        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
-        # ；5-文件签名格式错误
+        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
         # @type PdfVerifyResults: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3037,6 +3265,28 @@ module TencentCloud
           @Status = params['Status']
           @OperatorOpenId = params['OperatorOpenId']
           @OperateOn = params['OperateOn']
+        end
+      end
+
+      # 绑定失败的用户角色信息
+      class FailedCreateRoleData < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户userId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param RoleIds: 角色RoleId列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleIds: Array
+
+        attr_accessor :UserId, :RoleIds
+        
+        def initialize(userid=nil, roleids=nil)
+          @UserId = userid
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoleIds = params['RoleIds']
         end
       end
 

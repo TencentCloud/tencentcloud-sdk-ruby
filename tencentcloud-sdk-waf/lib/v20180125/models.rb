@@ -1264,12 +1264,37 @@ module TencentCloud
 
       # DescribeAttackOverview请求参数结构体
       class DescribeAttackOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 查询开始时间
+        # @type FromTime: String
+        # @param ToTime: 查询结束时间
+        # @type ToTime: String
+        # @param Appid: 客户的Appid
+        # @type Appid: Integer
+        # @param Domain: 被查询的域名
+        # @type Domain: String
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
 
+        attr_accessor :FromTime, :ToTime, :Appid, :Domain, :Edition, :InstanceID
         
-        def initialize()
+        def initialize(fromtime=nil, totime=nil, appid=nil, domain=nil, edition=nil, instanceid=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @Appid = appid
+          @Domain = domain
+          @Edition = edition
+          @InstanceID = instanceid
         end
 
         def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @Appid = params['Appid']
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
         end
       end
 

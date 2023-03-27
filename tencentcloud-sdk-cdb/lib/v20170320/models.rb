@@ -5130,17 +5130,21 @@ module TencentCloud
         # @type EngineVersion: String
         # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
+        # @param EngineType: 参数模板引擎，默认值：InnoDB
+        # @type EngineType: String
 
-        attr_accessor :EngineVersion, :TemplateType
+        attr_accessor :EngineVersion, :TemplateType, :EngineType
         
-        def initialize(engineversion=nil, templatetype=nil)
+        def initialize(engineversion=nil, templatetype=nil, enginetype=nil)
           @EngineVersion = engineversion
           @TemplateType = templatetype
+          @EngineType = enginetype
         end
 
         def deserialize(params)
           @EngineVersion = params['EngineVersion']
           @TemplateType = params['TemplateType']
+          @EngineType = params['EngineType']
         end
       end
 

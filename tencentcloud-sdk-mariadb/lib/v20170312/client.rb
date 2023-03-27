@@ -439,6 +439,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeDBInstanceDetail)用于查询指定实例的详细信息。
+
+        # @param request: Request instance for DescribeDBInstanceDetail.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBInstanceDetailResponse`
+        def DescribeDBInstanceDetail(request)
+          body = send_request('DescribeDBInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
 
         # @param request: Request instance for DescribeDBInstanceSpecs.

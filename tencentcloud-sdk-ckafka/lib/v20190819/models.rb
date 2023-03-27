@@ -4022,14 +4022,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100
         # @type Limit: Integer
+        # @param ResourceRegion: 连接源的关键字查询, 根据地域查询本地域内连接管理列表中的连接(仅支持包含region输入的连接源)
+        # @type ResourceRegion: String
 
-        attr_accessor :Type, :SearchWord, :Offset, :Limit
+        attr_accessor :Type, :SearchWord, :Offset, :Limit, :ResourceRegion
         
-        def initialize(type=nil, searchword=nil, offset=nil, limit=nil)
+        def initialize(type=nil, searchword=nil, offset=nil, limit=nil, resourceregion=nil)
           @Type = type
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @ResourceRegion = resourceregion
         end
 
         def deserialize(params)
@@ -4037,6 +4040,7 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ResourceRegion = params['ResourceRegion']
         end
       end
 

@@ -531,6 +531,132 @@ module TencentCloud
         end
       end
 
+      # CloneInstances请求参数结构体
+      class CloneInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 当前实例ID。
+        # @type InstanceId: String
+        # @param GoodsNum: 单次克隆实例的数量。包年包月每次购买最大数量为100。按量计费每次购买最大数量为30，每个地域购买数量取值范围为[1,100]。
+        # @type GoodsNum: Integer
+        # @param ZoneId: 克隆实例所属的可用区ID。当前所支持的可用区 ID，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106) 。
+        # @type ZoneId: Integer
+        # @param BillingMode: 付费方式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        # @type BillingMode: Integer
+        # @param Period: 购买实例时长。<ul><li>单位：月。</li><li>付费方式选择包年包月计费时，取值范围为[1,2,3,4,5,6,7,8,9,10,11,12,24,36,48,60]。</li><li>付费方式选择按量计费时，设置为1。</li></ul>
+        # @type Period: Integer
+        # @param SecurityGroupIdList: 安全组ID。请登录控制台，在<b>安全组</b>页面获取安全组 ID 信息。
+        # @type SecurityGroupIdList: Array
+        # @param BackupId: 克隆实例使用的备份ID。请通过接口[DescribeInstanceBackups](https://cloud.tencent.com/document/product/239/20011)获取备份ID。
+        # @type BackupId: String
+        # @param NoAuth: 配置克隆实例是否支持免密访问。开启 SSL 与外网均不支持免密访问。<ul><li>true：免密实例，</li><li>false：非免密实例。默认为非免密实例。</li></ul>
+        # @type NoAuth: Boolean
+        # @param VpcId: 私有网络ID。如果未配置该参数，默认选择基础网络。
+        # @type VpcId: String
+        # @param SubnetId: 私有网络所属子网。基础网络时该参数无需配置。
+        # @type SubnetId: String
+        # @param InstanceName: 克隆实例的名称。<br>仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。</br>
+        # @type InstanceName: String
+        # @param Password: 克隆实例的访问密码。<ul><li>当输入参数<b>NoAuth</b>为<b>true</b>时，可不设置该参数。</li><li>当实例为Redis2.8、4.0和5.0时，其密码格式为：8-30个字符，至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头；</li><li>当实例为CKV 3.2时，其密码格式为：8-30个字符，必须包含字母和数字，且不包含其他字符。</li></ul>
+        # @type Password: String
+        # @param AutoRenew: 自动续费标识。<ul><li>0：默认状态（手动续费）。</li><li>1：自动续费。</li><li>2：不自动续费，到期自动隔离。</li></ul>
+        # @type AutoRenew: Integer
+        # @param VPort: 用户自定义的端口，默认为6379，取值范围[1024,65535]。
+        # @type VPort: Integer
+        # @param NodeSet: 实例的节点信息。<ul><li>目前支持配置节点的类型（主节点或者副本节点），及其节点的可用区信息。具体信息，请参见[RedisNodeInfo](https://cloud.tencent.com/document/product/239/20022#RedisNodeInfo)。</li><li>单可用区部署可不配置该参数。</li></ul>
+        # @type NodeSet: Array
+        # @param ProjectId: 项目 ID。登录控制台，可在右上角的<b>账号中心</b> > <b>项目管理</b>中查找项目ID。
+        # @type ProjectId: Integer
+        # @param ResourceTags: 克隆实例需绑定的标签。
+        # @type ResourceTags: Array
+        # @param TemplateId: 克隆实例需要应用的参数模板ID,请登录 Redis 控制台，在<b>参数模板</b>页面获取。若不配置该参数，则应用默认的参数模板。
+        # @type TemplateId: String
+        # @param AlarmPolicyList: 指定克隆实例的告警策略 ID。请登录控制台，在<b>云监控</b> > <b>告警配置</b> > <b>告警策略</b>页面获取策略 ID 信息。
+        # @type AlarmPolicyList: Array
+
+        attr_accessor :InstanceId, :GoodsNum, :ZoneId, :BillingMode, :Period, :SecurityGroupIdList, :BackupId, :NoAuth, :VpcId, :SubnetId, :InstanceName, :Password, :AutoRenew, :VPort, :NodeSet, :ProjectId, :ResourceTags, :TemplateId, :AlarmPolicyList
+        
+        def initialize(instanceid=nil, goodsnum=nil, zoneid=nil, billingmode=nil, period=nil, securitygroupidlist=nil, backupid=nil, noauth=nil, vpcid=nil, subnetid=nil, instancename=nil, password=nil, autorenew=nil, vport=nil, nodeset=nil, projectid=nil, resourcetags=nil, templateid=nil, alarmpolicylist=nil)
+          @InstanceId = instanceid
+          @GoodsNum = goodsnum
+          @ZoneId = zoneid
+          @BillingMode = billingmode
+          @Period = period
+          @SecurityGroupIdList = securitygroupidlist
+          @BackupId = backupid
+          @NoAuth = noauth
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceName = instancename
+          @Password = password
+          @AutoRenew = autorenew
+          @VPort = vport
+          @NodeSet = nodeset
+          @ProjectId = projectid
+          @ResourceTags = resourcetags
+          @TemplateId = templateid
+          @AlarmPolicyList = alarmpolicylist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GoodsNum = params['GoodsNum']
+          @ZoneId = params['ZoneId']
+          @BillingMode = params['BillingMode']
+          @Period = params['Period']
+          @SecurityGroupIdList = params['SecurityGroupIdList']
+          @BackupId = params['BackupId']
+          @NoAuth = params['NoAuth']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceName = params['InstanceName']
+          @Password = params['Password']
+          @AutoRenew = params['AutoRenew']
+          @VPort = params['VPort']
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              redisnodeinfo_tmp = RedisNodeInfo.new
+              redisnodeinfo_tmp.deserialize(i)
+              @NodeSet << redisnodeinfo_tmp
+            end
+          end
+          @ProjectId = params['ProjectId']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @TemplateId = params['TemplateId']
+          @AlarmPolicyList = params['AlarmPolicyList']
+        end
+      end
+
+      # CloneInstances返回参数结构体
+      class CloneInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DealId: 请求任务 ID。
+        # @type DealId: String
+        # @param InstanceIds: 克隆实例的 ID。
+        # @type InstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealId, :InstanceIds, :RequestId
+        
+        def initialize(dealid=nil, instanceids=nil, requestid=nil)
+          @DealId = dealid
+          @InstanceIds = instanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealId = params['DealId']
+          @InstanceIds = params['InstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseSSL请求参数结构体
       class CloseSSLRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。

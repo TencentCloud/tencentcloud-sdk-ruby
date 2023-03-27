@@ -2105,7 +2105,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取与云监控融合实例列表
+        # 获取与 Prometheus 监控融合实例列表
 
         # @param request: Request instance for DescribePrometheusInstancesOverview.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstancesOverviewRequest`
@@ -2569,7 +2569,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云监控告警编辑告警通知模板
+        # 编辑告警通知模板
 
         # @param request: Request instance for ModifyAlarmNotice.
         # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyAlarmNoticeRequest`

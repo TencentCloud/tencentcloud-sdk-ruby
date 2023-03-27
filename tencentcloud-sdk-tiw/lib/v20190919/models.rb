@@ -17,6 +17,68 @@
 module TencentCloud
   module Tiw
     module V20190919
+      # 白板应用
+      class ApplicationItem < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param AppName: 应用名
+        # @type AppName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
+
+        attr_accessor :SdkAppId, :AppName, :CreateTime, :TagList
+        
+        def initialize(sdkappid=nil, appname=nil, createtime=nil, taglist=nil)
+          @SdkAppId = sdkappid
+          @AppName = appname
+          @CreateTime = createtime
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @AppName = params['AppName']
+          @CreateTime = params['CreateTime']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ApplyTiwTrial请求参数结构体
+      class ApplyTiwTrialRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ApplyTiwTrial返回参数结构体
+      class ApplyTiwTrialResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 鉴权参数
       class AuthParam < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用SdkAppId
@@ -82,6 +144,128 @@ module TencentCloud
         def deserialize(params)
           @Enabled = params['Enabled']
           @Image = params['Image']
+        end
+      end
+
+      # CreateApplication请求参数结构体
+      class CreateApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param AppName: App名字
+        # @type AppName: String
+        # @param SKey: 创建IM应用需要的SKey
+        # @type SKey: String
+        # @param TinyId: 创建IM应用需要的TinyId
+        # @type TinyId: String
+        # @param TagList: 需要绑定的标签列表
+        # @type TagList: Array
+
+        attr_accessor :SdkAppId, :AppName, :SKey, :TinyId, :TagList
+        
+        def initialize(sdkappid=nil, appname=nil, skey=nil, tinyid=nil, taglist=nil)
+          @SdkAppId = sdkappid
+          @AppName = appname
+          @SKey = skey
+          @TinyId = tinyid
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @AppName = params['AppName']
+          @SKey = params['SKey']
+          @TinyId = params['TinyId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateApplication返回参数结构体
+      class CreateApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 客户的AppId
+        # @type AppId: Integer
+        # @param AppName: App名字
+        # @type AppName: String
+        # @param SdkAppId: 应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :AppName, :SdkAppId, :RequestId
+        
+        def initialize(appid=nil, appname=nil, sdkappid=nil, requestid=nil)
+          @AppId = appid
+          @AppName = appname
+          @SdkAppId = sdkappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AppName = params['AppName']
+          @SdkAppId = params['SdkAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOfflineRecord请求参数结构体
+      class CreateOfflineRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RoomId: 录制任务对应的房间号
+        # @type RoomId: Integer
+        # @param GroupId: 录制任务对应的群组Id
+        # @type GroupId: String
+        # @param MixStream: 混流参数配置
+        # 目前课后录制暂未支持自定义混流布局Custom参数
+        # @type MixStream: :class:`Tencentcloud::Tiw.v20190919.models.MixStream`
+        # @param Whiteboard: 白板参数配置
+        # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
+
+        attr_accessor :SdkAppId, :RoomId, :GroupId, :MixStream, :Whiteboard
+        
+        def initialize(sdkappid=nil, roomid=nil, groupid=nil, mixstream=nil, whiteboard=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @GroupId = groupid
+          @MixStream = mixstream
+          @Whiteboard = whiteboard
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @GroupId = params['GroupId']
+          unless params['MixStream'].nil?
+            @MixStream = MixStream.new
+            @MixStream.deserialize(params['MixStream'])
+          end
+          unless params['Whiteboard'].nil?
+            @Whiteboard = Whiteboard.new
+            @Whiteboard.deserialize(params['Whiteboard'])
+          end
+        end
+      end
+
+      # CreateOfflineRecord返回参数结构体
+      class CreateOfflineRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -355,6 +539,360 @@ module TencentCloud
         end
       end
 
+      # 画图数据，Time/Value/Details
+      class DataItem < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # 按月格式yyyy-mm
+        # 按天格式yyyy-mm-dd
+        # 按分钟格式 yyyy-mm-dd HH:MM:SS
+        # @type Time: String
+        # @param Value: 画图所需要的值
+        # @type Value: Integer
+        # @param Details: 各个具体指标的详情
+        # @type Details: Array
+
+        attr_accessor :Time, :Value, :Details
+        
+        def initialize(time=nil, value=nil, details=nil)
+          @Time = time
+          @Value = value
+          @Details = details
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              detail_tmp = Detail.new
+              detail_tmp.deserialize(i)
+              @Details << detail_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAPIService请求参数结构体
+      class DescribeAPIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 目前支持的Service为cos:GetService，cdn:DescribeDomainsConfig
+        # @type Service: String
+        # @param Data: JSON格式的请求参数
+        # @type Data: String
+
+        attr_accessor :Service, :Data
+        
+        def initialize(service=nil, data=nil)
+          @Service = service
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Data = params['Data']
+        end
+      end
+
+      # DescribeAPIService返回参数结构体
+      class DescribeAPIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ResponseData: Json格式的响应数据
+        # @type ResponseData: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResponseData, :RequestId
+        
+        def initialize(responsedata=nil, requestid=nil)
+          @ResponseData = responsedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResponseData = params['ResponseData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplicationInfos请求参数结构体
+      class DescribeApplicationInfosRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeApplicationInfos返回参数结构体
+      class DescribeApplicationInfosResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationInfos: 应用列表
+        # @type ApplicationInfos: Array
+        # @param AllOption: 是否包含所有的应用，0-不包含，1-包含
+        # @type AllOption: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationInfos, :AllOption, :RequestId
+        
+        def initialize(applicationinfos=nil, alloption=nil, requestid=nil)
+          @ApplicationInfos = applicationinfos
+          @AllOption = alloption
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplicationInfos'].nil?
+            @ApplicationInfos = []
+            params['ApplicationInfos'].each do |i|
+              applicationitem_tmp = ApplicationItem.new
+              applicationitem_tmp.deserialize(i)
+              @ApplicationInfos << applicationitem_tmp
+            end
+          end
+          @AllOption = params['AllOption']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplicationUsage请求参数结构体
+      class DescribeApplicationUsageRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 用量开始时间（包括该时间点）
+        # @type BeginTime: String
+        # @param EndTime: 用量结束时间（不包括该时间点）
+        # @type EndTime: String
+        # @param SubProduct: 白板子产品名
+        # @type SubProduct: String
+        # @param TimeLevel: 时间跨度单位
+        # - MONTHLY：月
+        # - DAILY：天
+        # - MINUTELY：分钟
+        # @type TimeLevel: String
+        # @param SdkAppId: 白板应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param IsWeighted: true: 返回加权求和后的用量数据
+        # false: 返回原始用量数据
+        # @type IsWeighted: Boolean
+
+        attr_accessor :BeginTime, :EndTime, :SubProduct, :TimeLevel, :SdkAppId, :IsWeighted
+        
+        def initialize(begintime=nil, endtime=nil, subproduct=nil, timelevel=nil, sdkappid=nil, isweighted=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @SubProduct = subproduct
+          @TimeLevel = timelevel
+          @SdkAppId = sdkappid
+          @IsWeighted = isweighted
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @SubProduct = params['SubProduct']
+          @TimeLevel = params['TimeLevel']
+          @SdkAppId = params['SdkAppId']
+          @IsWeighted = params['IsWeighted']
+        end
+      end
+
+      # DescribeApplicationUsage返回参数结构体
+      class DescribeApplicationUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 画图所需的用量数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              dataitem_tmp = DataItem.new
+              dataitem_tmp.deserialize(i)
+              @Data << dataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBoardSDKLog请求参数结构体
+      class DescribeBoardSDKLogRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 白板应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RoomId: 需要查询日志的白板房间号
+        # @type RoomId: String
+        # @param UserId: 需要查询日志的用户ID
+        # @type UserId: String
+        # @param TimeRange: 查询时间段，Unix时间戳，单位毫秒，第一个值为开始时间戳，第二个值为结束时间
+        # @type TimeRange: Array
+        # @param AggregationInterval: 聚合日志条数查询的桶的时间范围，如5m, 1h, 4h等
+        # @type AggregationInterval: String
+        # @param Query: 额外的查询条件
+        # @type Query: String
+        # @param Ascending: 是否按时间升序排列
+        # @type Ascending: Boolean
+        # @param Context: 用于递归拉取的上下文Key，在上一次请求中返回
+        # @type Context: String
+
+        attr_accessor :SdkAppId, :RoomId, :UserId, :TimeRange, :AggregationInterval, :Query, :Ascending, :Context
+        
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, timerange=nil, aggregationinterval=nil, query=nil, ascending=nil, context=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserId = userid
+          @TimeRange = timerange
+          @AggregationInterval = aggregationinterval
+          @Query = query
+          @Ascending = ascending
+          @Context = context
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @TimeRange = params['TimeRange']
+          @AggregationInterval = params['AggregationInterval']
+          @Query = params['Query']
+          @Ascending = params['Ascending']
+          @Context = params['Context']
+        end
+      end
+
+      # DescribeBoardSDKLog返回参数结构体
+      class DescribeBoardSDKLogResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总共能查到日志条数
+        # @type Total: Integer
+        # @param Sources: 日志详细内容
+        # @type Sources: Array
+        # @param Buckets: 按时间段聚合后每个时间段的日志条数
+        # @type Buckets: Array
+        # @param Context: 用于递归拉取的上下文Key，下一次请求的时候带上
+        # @type Context: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Sources, :Buckets, :Context, :RequestId
+        
+        def initialize(total=nil, sources=nil, buckets=nil, context=nil, requestid=nil)
+          @Total = total
+          @Sources = sources
+          @Buckets = buckets
+          @Context = context
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Sources = params['Sources']
+          @Buckets = params['Buckets']
+          @Context = params['Context']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIMApplications请求参数结构体
+      class DescribeIMApplicationsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIMApplications返回参数结构体
+      class DescribeIMApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOfflineRecordCallback请求参数结构体
+      class DescribeOfflineRecordCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+        
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeOfflineRecordCallback返回参数结构体
+      class DescribeOfflineRecordCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOfflineRecord请求参数结构体
+      class DescribeOfflineRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskId: 课后录制任务的Id
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeOfflineRecord返回参数结构体
+      class DescribeOfflineRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOnlineRecordCallback请求参数结构体
       class DescribeOnlineRecordCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用的SdkAppId
@@ -519,6 +1057,42 @@ module TencentCloud
         end
       end
 
+      # DescribePostpaidUsage请求参数结构体
+      class DescribePostpaidUsageRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :BeginTime, :EndTime
+        
+        def initialize(begintime=nil, endtime=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribePostpaidUsage返回参数结构体
+      class DescribePostpaidUsageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQualityMetrics请求参数结构体
       class DescribeQualityMetricsRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 白板应用的SdkAppId
@@ -587,6 +1161,61 @@ module TencentCloud
               timevalue_tmp = TimeValue.new
               timevalue_tmp.deserialize(i)
               @Content << timevalue_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoomList请求参数结构体
+      class DescribeRoomListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 白板应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TimeRange: 查询时间段，Unix时间戳，单位毫秒，第一个值为开始时间戳，第二个值为结束时间
+        # @type TimeRange: Array
+        # @param Query: 额外的查询条件
+        # @type Query: String
+        # @param MaxSize: 返回最大的数据条数，默认1000
+        # @type MaxSize: Integer
+
+        attr_accessor :SdkAppId, :TimeRange, :Query, :MaxSize
+        
+        def initialize(sdkappid=nil, timerange=nil, query=nil, maxsize=nil)
+          @SdkAppId = sdkappid
+          @TimeRange = timerange
+          @Query = query
+          @MaxSize = maxsize
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TimeRange = params['TimeRange']
+          @Query = params['Query']
+          @MaxSize = params['MaxSize']
+        end
+      end
+
+      # DescribeRoomList返回参数结构体
+      class DescribeRoomListResponse < TencentCloud::Common::AbstractModel
+        # @param RoomList: 白板房间列表
+        # @type RoomList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoomList, :RequestId
+        
+        def initialize(roomlist=nil, requestid=nil)
+          @RoomList = roomlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoomList'].nil?
+            @RoomList = []
+            params['RoomList'].each do |i|
+              roomlistitem_tmp = RoomListItem.new
+              roomlistitem_tmp.deserialize(i)
+              @RoomList << roomlistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -928,6 +1557,229 @@ module TencentCloud
         end
       end
 
+      # DescribeTranscodeSearch请求参数结构体
+      class DescribeTranscodeSearchRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTranscodeSearch返回参数结构体
+      class DescribeTranscodeSearchResponse < TencentCloud::Common::AbstractModel
+        # @param TranscodeTaskSet: 转码任务搜索结果集合
+        # @type TranscodeTaskSet: Array
+        # @param TotalCount: 转码总任务数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranscodeTaskSet, :TotalCount, :RequestId
+        
+        def initialize(transcodetaskset=nil, totalcount=nil, requestid=nil)
+          @TranscodeTaskSet = transcodetaskset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TranscodeTaskSet'].nil?
+            @TranscodeTaskSet = []
+            params['TranscodeTaskSet'].each do |i|
+              transcodetasksearchresult_tmp = TranscodeTaskSearchResult.new
+              transcodetasksearchresult_tmp.deserialize(i)
+              @TranscodeTaskSet << transcodetasksearchresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUsageSummary请求参数结构体
+      class DescribeUsageSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 统计时间段的开始时间
+        # @type BeginTime: String
+        # @param EndTime: 统计时间段的结束时间
+        # @type EndTime: String
+        # @param SubProducts: 需要获取用量的子产品列表
+        # @type SubProducts: Array
+        # @param IsWeighted: true: 返回加权后的数据
+        # false: 返回原始数据
+        # @type IsWeighted: Boolean
+
+        attr_accessor :BeginTime, :EndTime, :SubProducts, :IsWeighted
+        
+        def initialize(begintime=nil, endtime=nil, subproducts=nil, isweighted=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @SubProducts = subproducts
+          @IsWeighted = isweighted
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @SubProducts = params['SubProducts']
+          @IsWeighted = params['IsWeighted']
+        end
+      end
+
+      # DescribeUsageSummary返回参数结构体
+      class DescribeUsageSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserList请求参数结构体
+      class DescribeUserListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 白板应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RoomId: 需要查询用户列表的白板房间号
+        # @type RoomId: String
+        # @param TimeRange: 查询时间段，Unix时间戳，单位毫秒，第一个值为开始时间戳，第二个值为结束时间
+        # @type TimeRange: Array
+        # @param Query: 额外的查询条件
+        # @type Query: String
+        # @param MaxSize: 返回最大的数据条数，默认1000
+        # @type MaxSize: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :TimeRange, :Query, :MaxSize
+        
+        def initialize(sdkappid=nil, roomid=nil, timerange=nil, query=nil, maxsize=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @TimeRange = timerange
+          @Query = query
+          @MaxSize = maxsize
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @TimeRange = params['TimeRange']
+          @Query = params['Query']
+          @MaxSize = params['MaxSize']
+        end
+      end
+
+      # DescribeUserList返回参数结构体
+      class DescribeUserListResponse < TencentCloud::Common::AbstractModel
+        # @param UserList: 房间内的用户列表
+        # @type UserList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserList, :RequestId
+        
+        def initialize(userlist=nil, requestid=nil)
+          @UserList = userlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              userlistitem_tmp = UserListItem.new
+              userlistitem_tmp.deserialize(i)
+              @UserList << userlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserResources请求参数结构体
+      class DescribeUserResourcesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserResources返回参数结构体
+      class DescribeUserResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserStatus请求参数结构体
+      class DescribeUserStatusRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserStatus返回参数结构体
+      class DescribeUserStatusResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 客户的AppId
+        # @type AppId: Integer
+        # @param IsTiwUser: 是否开通过白板（试用或正式）
+
+        # 0: 从未开通过白板服务
+        # 1: 已经开通过白板服务
+        # @type IsTiwUser: Integer
+        # @param IsSaaSUser: 是否开通过互动课堂（试用或正式）
+        # @type IsSaaSUser: Integer
+        # @param IsTiwOfflineRecordUser: 是否使用白板的课后录制
+        # @type IsTiwOfflineRecordUser: Integer
+        # @param IsAuthenticated: 用户是否实名认证
+        # @type IsAuthenticated: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :IsTiwUser, :IsSaaSUser, :IsTiwOfflineRecordUser, :IsAuthenticated, :RequestId
+        
+        def initialize(appid=nil, istiwuser=nil, issaasuser=nil, istiwofflinerecorduser=nil, isauthenticated=nil, requestid=nil)
+          @AppId = appid
+          @IsTiwUser = istiwuser
+          @IsSaaSUser = issaasuser
+          @IsTiwOfflineRecordUser = istiwofflinerecorduser
+          @IsAuthenticated = isauthenticated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @IsTiwUser = params['IsTiwUser']
+          @IsSaaSUser = params['IsSaaSUser']
+          @IsTiwOfflineRecordUser = params['IsTiwOfflineRecordUser']
+          @IsAuthenticated = params['IsAuthenticated']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoGenerationTaskCallback请求参数结构体
       class DescribeVideoGenerationTaskCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用的SdkAppId
@@ -1045,6 +1897,101 @@ module TencentCloud
               @VideoInfoList << videoinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWhiteboardApplicationConfig请求参数结构体
+      class DescribeWhiteboardApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskTypes: 需要查询的任务类型
+        # recording: 实时录制
+        # transcode: 文档转码
+        # @type TaskTypes: Array
+        # @param SdkAppIds: 需要查询配置的SdkAppId列表
+        # @type SdkAppIds: Array
+
+        attr_accessor :SdkAppId, :TaskTypes, :SdkAppIds
+        
+        def initialize(sdkappid=nil, tasktypes=nil, sdkappids=nil)
+          @SdkAppId = sdkappid
+          @TaskTypes = tasktypes
+          @SdkAppIds = sdkappids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskTypes = params['TaskTypes']
+          @SdkAppIds = params['SdkAppIds']
+        end
+      end
+
+      # DescribeWhiteboardApplicationConfig返回参数结构体
+      class DescribeWhiteboardApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Configs: 白板应用任务相关配置
+        # @type Configs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SdkAppId, :Configs, :RequestId
+        
+        def initialize(sdkappid=nil, configs=nil, requestid=nil)
+          @SdkAppId = sdkappid
+          @Configs = configs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              whiteboardapplicationconfig_tmp = WhiteboardApplicationConfig.new
+              whiteboardapplicationconfig_tmp.deserialize(i)
+              @Configs << whiteboardapplicationconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWhiteboardBucketConfig请求参数结构体
+      class DescribeWhiteboardBucketConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskType: 需要查询的任务类型
+        # recording: 实时录制
+        # transcode: 文档转码
+        # @type TaskType: String
+
+        attr_accessor :SdkAppId, :TaskType
+        
+        def initialize(sdkappid=nil, tasktype=nil)
+          @SdkAppId = sdkappid
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # DescribeWhiteboardBucketConfig返回参数结构体
+      class DescribeWhiteboardBucketConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1176,6 +2123,72 @@ module TencentCloud
         end
       end
 
+      # DescribeWhiteboardPushSearch请求参数结构体
+      class DescribeWhiteboardPushSearchRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeWhiteboardPushSearch返回参数结构体
+      class DescribeWhiteboardPushSearchResponse < TencentCloud::Common::AbstractModel
+        # @param WhiteboardPushTaskSet: 推流任务搜索结果集合
+        # @type WhiteboardPushTaskSet: Array
+        # @param TotalCount: 推流总任务数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WhiteboardPushTaskSet, :TotalCount, :RequestId
+        
+        def initialize(whiteboardpushtaskset=nil, totalcount=nil, requestid=nil)
+          @WhiteboardPushTaskSet = whiteboardpushtaskset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WhiteboardPushTaskSet'].nil?
+            @WhiteboardPushTaskSet = []
+            params['WhiteboardPushTaskSet'].each do |i|
+              whiteboardpushtasksearchresult_tmp = WhiteboardPushTaskSearchResult.new
+              whiteboardpushtasksearchresult_tmp.deserialize(i)
+              @WhiteboardPushTaskSet << whiteboardpushtasksearchresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 计费用量数据里，带不同指标Tag的详情
+      class Detail < TencentCloud::Common::AbstractModel
+        # @param TagName: 用量指标
+        # @type TagName: String
+        # @param Weight: 用量权重
+        # @type Weight: Float
+        # @param Value: 用量的值
+        # @type Value: Float
+
+        attr_accessor :TagName, :Weight, :Value
+        
+        def initialize(tagname=nil, weight=nil, value=nil)
+          @TagName = tagname
+          @Weight = weight
+          @Value = value
+        end
+
+        def deserialize(params)
+          @TagName = params['TagName']
+          @Weight = params['Weight']
+          @Value = params['Value']
+        end
+      end
+
       # 实时录制中出现的用户视频流断流次数统计
       class Interrupt < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -1267,6 +2280,179 @@ module TencentCloud
             @Custom = CustomLayout.new
             @Custom.deserialize(params['Custom'])
           end
+        end
+      end
+
+      # ModifyApplication请求参数结构体
+      class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param AppName: App名字
+        # @type AppName: String
+
+        attr_accessor :SdkAppId, :AppName
+        
+        def initialize(sdkappid=nil, appname=nil)
+          @SdkAppId = sdkappid
+          @AppName = appname
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @AppName = params['AppName']
+        end
+      end
+
+      # ModifyApplication返回参数结构体
+      class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAutoRenewFlag请求参数结构体
+      class ModifyAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param SubProduct: 资源Id，从DescribeUserResources接口中获取Level=1的正式月功能费的SubProduct，一般为sp_tiw_package
+        # @type SubProduct: String
+        # @param ResourceId: 资源Id，从DescribeUserResources接口中获取Level=1的正式月功能费资源Id
+        # @type ResourceId: String
+        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续 费，需要设置为0
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :SubProduct, :ResourceId, :AutoRenewFlag
+        
+        def initialize(subproduct=nil, resourceid=nil, autorenewflag=nil)
+          @SubProduct = subproduct
+          @ResourceId = resourceid
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @SubProduct = params['SubProduct']
+          @ResourceId = params['ResourceId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # ModifyAutoRenewFlag返回参数结构体
+      class ModifyAutoRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWhiteboardApplicationConfig请求参数结构体
+      class ModifyWhiteboardApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Configs: 白板应用任务相关配置
+        # @type Configs: Array
+
+        attr_accessor :SdkAppId, :Configs
+        
+        def initialize(sdkappid=nil, configs=nil)
+          @SdkAppId = sdkappid
+          @Configs = configs
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              whiteboardapplicationconfig_tmp = WhiteboardApplicationConfig.new
+              whiteboardapplicationconfig_tmp.deserialize(i)
+              @Configs << whiteboardapplicationconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyWhiteboardApplicationConfig返回参数结构体
+      class ModifyWhiteboardApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWhiteboardBucketConfig请求参数结构体
+      class ModifyWhiteboardBucketConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskType: 需要查询的任务类型
+        # recording: 实时录制
+        # transcode: 文档转码
+        # @type TaskType: String
+        # @param BucketName: COS存储桶名字
+        # @type BucketName: String
+        # @param BucketLocation: COS存储桶地域
+        # @type BucketLocation: String
+        # @param BucketPrefix: 存储桶里资源前缀
+        # @type BucketPrefix: String
+        # @param ResultDomain: 返回Url域名
+        # @type ResultDomain: String
+
+        attr_accessor :SdkAppId, :TaskType, :BucketName, :BucketLocation, :BucketPrefix, :ResultDomain
+        
+        def initialize(sdkappid=nil, tasktype=nil, bucketname=nil, bucketlocation=nil, bucketprefix=nil, resultdomain=nil)
+          @SdkAppId = sdkappid
+          @TaskType = tasktype
+          @BucketName = bucketname
+          @BucketLocation = bucketlocation
+          @BucketPrefix = bucketprefix
+          @ResultDomain = resultdomain
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskType = params['TaskType']
+          @BucketName = params['BucketName']
+          @BucketLocation = params['BucketLocation']
+          @BucketPrefix = params['BucketPrefix']
+          @ResultDomain = params['ResultDomain']
+        end
+      end
+
+      # ModifyWhiteboardBucketConfig返回参数结构体
+      class ModifyWhiteboardBucketConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1420,6 +2606,34 @@ module TencentCloud
         end
       end
 
+      # 日志查询里返回的白板房间数据
+      class RoomListItem < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+        # @param StartTime: 房间在查询时间段内最早出现的时间，Unix时间戳，单位毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 房间在查询时间段内最晚出现的时间，Unix时间戳，单位毫秒
+        # @type EndTime: Integer
+        # @param UserNumber: 房间里成员数
+        # @type UserNumber: Integer
+
+        attr_accessor :RoomId, :StartTime, :EndTime, :UserNumber
+        
+        def initialize(roomid=nil, starttime=nil, endtime=nil, usernumber=nil)
+          @RoomId = roomid
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserNumber = usernumber
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserNumber = params['UserNumber']
+        end
+      end
+
       # 互动白板房间用量信息
       class RoomUsageDataItem < TencentCloud::Common::AbstractModel
         # @param Time: 日期，格式为YYYY-MM-DD
@@ -1452,6 +2666,42 @@ module TencentCloud
           @SubProduct = params['SubProduct']
           @Value = params['Value']
           @RoomID = params['RoomID']
+        end
+      end
+
+      # SetOfflineRecordCallback请求参数结构体
+      class SetOfflineRecordCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callback: 课后录制任务结果回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持 http或https协议，即回调地址以http://或https://开头
+        # @type Callback: String
+
+        attr_accessor :SdkAppId, :Callback
+        
+        def initialize(sdkappid=nil, callback=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+        end
+      end
+
+      # SetOfflineRecordCallback返回参数结构体
+      class SetOfflineRecordCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2304,6 +3554,26 @@ module TencentCloud
         end
       end
 
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 查询指标返回的时间序列
       class TimeValue < TencentCloud::Common::AbstractModel
         # @param Time: Unix时间戳，单位秒
@@ -2321,6 +3591,103 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Value = params['Value']
+        end
+      end
+
+      # 转码任务结果
+      class TranscodeTaskResult < TencentCloud::Common::AbstractModel
+        # @param ResultUrl: 转码结果地址
+        # @type ResultUrl: String
+        # @param Resolution: 分辨率
+        # @type Resolution: String
+        # @param Title: 标题（一般为文件名）
+        # @type Title: String
+        # @param Pages: 转码页数
+        # @type Pages: Integer
+        # @param ThumbnailUrl: 缩略图URL前缀，比如，该URL前缀为http://example.com/g0jb42ps49vtebjshilb/，那么动态PPT第1页的缩略图URL为
+        # http://example.com/g0jb42ps49vtebjshilb/1.jpg，其它页以此类推
+
+        # 如果发起文档转码请求参数中带了ThumbnailResolution参数，并且转码类型为动态转码，该参数不为空，其余情况该参数为空字符串
+        # @type ThumbnailUrl: String
+        # @param ThumbnailResolution: 动态转码缩略图生成分辨率
+        # @type ThumbnailResolution: String
+        # @param CompressFileUrl: 转码压缩文件下载的URL，如果发起文档转码请求参数中CompressFileType为空或者不是支持的压缩格式，该参数为空字符串
+        # @type CompressFileUrl: String
+        # @param ErrorCode: 任务失败错误码
+        # @type ErrorCode: Integer
+        # @param ErrorMsg: 任务失败错误信息
+        # @type ErrorMsg: String
+
+        attr_accessor :ResultUrl, :Resolution, :Title, :Pages, :ThumbnailUrl, :ThumbnailResolution, :CompressFileUrl, :ErrorCode, :ErrorMsg
+        
+        def initialize(resulturl=nil, resolution=nil, title=nil, pages=nil, thumbnailurl=nil, thumbnailresolution=nil, compressfileurl=nil, errorcode=nil, errormsg=nil)
+          @ResultUrl = resulturl
+          @Resolution = resolution
+          @Title = title
+          @Pages = pages
+          @ThumbnailUrl = thumbnailurl
+          @ThumbnailResolution = thumbnailresolution
+          @CompressFileUrl = compressfileurl
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @ResultUrl = params['ResultUrl']
+          @Resolution = params['Resolution']
+          @Title = params['Title']
+          @Pages = params['Pages']
+          @ThumbnailUrl = params['ThumbnailUrl']
+          @ThumbnailResolution = params['ThumbnailResolution']
+          @CompressFileUrl = params['CompressFileUrl']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # 转码任务搜索结果
+      class TranscodeTaskSearchResult < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param Status: 任务的当前状态
+        # - QUEUED: 正在排队等待转换
+        # - PROCESSING: 转换中
+        # - FINISHED: 转换完成
+        # @type Status: String
+        # @param OriginalFilename: 转码文件原始名称
+        # @type OriginalFilename: String
+        # @param SdkAppId: 用户应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param Result: 转码任务结果
+        # @type Result: :class:`Tencentcloud::Tiw.v20190919.models.TranscodeTaskResult`
+        # @param IsStatic: 是否静态转码
+        # @type IsStatic: Boolean
+
+        attr_accessor :CreateTime, :TaskId, :Status, :OriginalFilename, :SdkAppId, :Result, :IsStatic
+        
+        def initialize(createtime=nil, taskid=nil, status=nil, originalfilename=nil, sdkappid=nil, result=nil, isstatic=nil)
+          @CreateTime = createtime
+          @TaskId = taskid
+          @Status = status
+          @OriginalFilename = originalfilename
+          @SdkAppId = sdkappid
+          @Result = result
+          @IsStatic = isstatic
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @OriginalFilename = params['OriginalFilename']
+          @SdkAppId = params['SdkAppId']
+          unless params['Result'].nil?
+            @Result = TranscodeTaskResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @IsStatic = params['IsStatic']
         end
       end
 
@@ -2355,6 +3722,30 @@ module TencentCloud
           @SdkAppId = params['SdkAppId']
           @SubProduct = params['SubProduct']
           @Value = params['Value']
+        end
+      end
+
+      # 日志查询里返回的白板用户数据
+      class UserListItem < TencentCloud::Common::AbstractModel
+        # @param UserId: 房间内的用户ID
+        # @type UserId: String
+        # @param StartTime: 用户在查询时间段内最早出现的时间，Unix时间戳，单位毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 用户在查询时间段内最晚出现的时间，Unix时间戳，单位毫秒
+        # @type EndTime: Integer
+
+        attr_accessor :UserId, :StartTime, :EndTime
+        
+        def initialize(userid=nil, starttime=nil, endtime=nil)
+          @UserId = userid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -2439,6 +3830,61 @@ module TencentCloud
         end
       end
 
+      # 白板应用配置，包括资源存储桶，域名，回调地址，回调密钥等
+      class WhiteboardApplicationConfig < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型
+
+        # recording: 实时录制
+        # transcode: 文档转码
+        # @type TaskType: String
+        # @param BucketName: 存储桶名字
+        # @type BucketName: String
+        # @param BucketLocation: 存储桶地域
+        # @type BucketLocation: String
+        # @param BucketPrefix: 资源在存储桶中的前缀
+        # @type BucketPrefix: String
+        # @param ResultDomain: 目标CDN域名
+        # @type ResultDomain: String
+        # @param Callback: 回调地址
+        # @type Callback: String
+        # @param CallbackKey: 回调鉴权密钥
+        # @type CallbackKey: String
+        # @param SdkAppId: 配置的应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param AdminUserId: IM管理员UserId
+        # @type AdminUserId: String
+        # @param AdminUserSig: IM管理员UserSig
+        # @type AdminUserSig: String
+
+        attr_accessor :TaskType, :BucketName, :BucketLocation, :BucketPrefix, :ResultDomain, :Callback, :CallbackKey, :SdkAppId, :AdminUserId, :AdminUserSig
+        
+        def initialize(tasktype=nil, bucketname=nil, bucketlocation=nil, bucketprefix=nil, resultdomain=nil, callback=nil, callbackkey=nil, sdkappid=nil, adminuserid=nil, adminusersig=nil)
+          @TaskType = tasktype
+          @BucketName = bucketname
+          @BucketLocation = bucketlocation
+          @BucketPrefix = bucketprefix
+          @ResultDomain = resultdomain
+          @Callback = callback
+          @CallbackKey = callbackkey
+          @SdkAppId = sdkappid
+          @AdminUserId = adminuserid
+          @AdminUserSig = adminusersig
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @BucketName = params['BucketName']
+          @BucketLocation = params['BucketLocation']
+          @BucketPrefix = params['BucketPrefix']
+          @ResultDomain = params['ResultDomain']
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+          @SdkAppId = params['SdkAppId']
+          @AdminUserId = params['AdminUserId']
+          @AdminUserSig = params['AdminUserSig']
+        end
+      end
+
       # 白板推流备份相关请求参数
       class WhiteboardPushBackupParam < TencentCloud::Common::AbstractModel
         # @param PushUserId: 用于白板推流服务进房的用户ID，
@@ -2457,6 +3903,100 @@ module TencentCloud
         def deserialize(params)
           @PushUserId = params['PushUserId']
           @PushUserSig = params['PushUserSig']
+        end
+      end
+
+      # 白板推流任务结果
+      class WhiteboardPushResult < TencentCloud::Common::AbstractModel
+        # @param FinishReason: AUTO - 自动停止推流， USER_CALL - 用户主动调用停止推流
+        # @type FinishReason: String
+        # @param ExceptionCnt: 异常数
+        # @type ExceptionCnt: Integer
+        # @param RoomId: 房间号
+        # @type RoomId: Integer
+        # @param GroupId: IM群组ID
+        # @type GroupId: String
+        # @param PushStartTime: 推流真实开始时间
+        # @type PushStartTime: Integer
+        # @param PushStopTime: 推流结束时间
+        # @type PushStopTime: Integer
+        # @param IMSyncTime: 白板推流首帧对应的IM时间戳，可用于录制回放时IM聊天消息与白板推流视频进行同步对时。
+        # @type IMSyncTime: Integer
+        # @param ErrorCode: 任务失败错误码
+        # @type ErrorCode: Integer
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+
+        attr_accessor :FinishReason, :ExceptionCnt, :RoomId, :GroupId, :PushStartTime, :PushStopTime, :IMSyncTime, :ErrorCode, :ErrorMsg
+        
+        def initialize(finishreason=nil, exceptioncnt=nil, roomid=nil, groupid=nil, pushstarttime=nil, pushstoptime=nil, imsynctime=nil, errorcode=nil, errormsg=nil)
+          @FinishReason = finishreason
+          @ExceptionCnt = exceptioncnt
+          @RoomId = roomid
+          @GroupId = groupid
+          @PushStartTime = pushstarttime
+          @PushStopTime = pushstoptime
+          @IMSyncTime = imsynctime
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          @ExceptionCnt = params['ExceptionCnt']
+          @RoomId = params['RoomId']
+          @GroupId = params['GroupId']
+          @PushStartTime = params['PushStartTime']
+          @PushStopTime = params['PushStopTime']
+          @IMSyncTime = params['IMSyncTime']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # 实时录制任务搜索结果
+      class WhiteboardPushTaskSearchResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param Status: 白板推流任务状态
+        # - PREPARED: 推流在准备阶段
+        # - PUSHING: 正在推流
+        # - STOPPED：推流已停止
+        # @type Status: String
+        # @param RoomId: 白板推流房间号
+        # @type RoomId: Integer
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param SdkAppId: 用户应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param Result: 白板推流结果
+        # @type Result: :class:`Tencentcloud::Tiw.v20190919.models.WhiteboardPushResult`
+        # @param PushUserId: 白板推流用户ID
+        # @type PushUserId: String
+
+        attr_accessor :TaskId, :Status, :RoomId, :CreateTime, :SdkAppId, :Result, :PushUserId
+        
+        def initialize(taskid=nil, status=nil, roomid=nil, createtime=nil, sdkappid=nil, result=nil, pushuserid=nil)
+          @TaskId = taskid
+          @Status = status
+          @RoomId = roomid
+          @CreateTime = createtime
+          @SdkAppId = sdkappid
+          @Result = result
+          @PushUserId = pushuserid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @RoomId = params['RoomId']
+          @CreateTime = params['CreateTime']
+          @SdkAppId = params['SdkAppId']
+          unless params['Result'].nil?
+            @Result = WhiteboardPushResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @PushUserId = params['PushUserId']
         end
       end
 
