@@ -572,13 +572,13 @@ module TencentCloud
         # @type GenerateMode: String
         # @param ComponentDateFontSize: 日期签署控件的字号，默认为 12
         # @type ComponentDateFontSize: Integer
-        # @param ChannelComponentId: 渠道版控件 id 标识
+        # @param ChannelComponentId: 平台模板控件 id 标识
         # @type ChannelComponentId: String
         # @param OffsetX: 指定关键字时横坐标偏移量，单位pt
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
-        # @param ChannelComponentSource: //渠道子客控件来源。0-渠道指定；1-用户自定义
+        # @param ChannelComponentSource: //子客控件来源。0-平台指定；1-用户自定义
         # @type ChannelComponentSource: Integer
         # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
         # 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
@@ -1472,6 +1472,67 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrationUserRoles请求参数结构体
+      class CreateIntegrationUserRolesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserIds: 绑定角色的用户id列表
+        # @type UserIds: Array
+        # @param RoleIds: 绑定角色的角色id列表
+        # @type RoleIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :UserIds, :RoleIds, :Agent
+        
+        def initialize(operator=nil, userids=nil, roleids=nil, agent=nil)
+          @Operator = operator
+          @UserIds = userids
+          @RoleIds = roleids
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserIds = params['UserIds']
+          @RoleIds = params['RoleIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateIntegrationUserRoles返回参数结构体
+      class CreateIntegrationUserRolesResponse < TencentCloud::Common::AbstractModel
+        # @param FailedCreateRoleData: 绑定角色失败列表信息
+        # @type FailedCreateRoleData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedCreateRoleData, :RequestId
+        
+        def initialize(failedcreateroledata=nil, requestid=nil)
+          @FailedCreateRoleData = failedcreateroledata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedCreateRoleData'].nil?
+            @FailedCreateRoleData = []
+            params['FailedCreateRoleData'].each do |i|
+              failedcreateroledata_tmp = FailedCreateRoleData.new
+              failedcreateroledata_tmp.deserialize(i)
+              @FailedCreateRoleData << failedcreateroledata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 用户信息
@@ -2108,6 +2169,67 @@ module TencentCloud
         end
       end
 
+      # DeleteIntegrationRoleUsers请求参数结构体
+      class DeleteIntegrationRoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param Users: 用户信息
+        # @type Users: Array
+        # @param Agent: 代理信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :RoleId, :Users, :Agent
+        
+        def initialize(operator=nil, roleid=nil, users=nil, agent=nil)
+          @Operator = operator
+          @RoleId = roleid
+          @Users = users
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @RoleId = params['RoleId']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @Users << userinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DeleteIntegrationRoleUsers返回参数结构体
+      class DeleteIntegrationRoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+        
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSealPolicies请求参数结构体
       class DeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作撤销的用户信息
@@ -2496,11 +2618,11 @@ module TencentCloud
         # @type Filters: Array
         # @param ApplicationId: 这个参数跟下面的IsChannel参数配合使用。
         # IsChannel=false时，ApplicationId参数不起任何作用。
-        # IsChannel=true时，ApplicationId为空，查询所有渠道模板列表；ApplicationId不为空，查询指定渠道下的模板列表
-        # ApplicationId为空，查询渠道模板列表
+        # IsChannel=true时，ApplicationId为空，查询所有第三方应用集成平台企业模板列表；ApplicationId不为空，查询指定应用下的模板列表
+        # ApplicationId为空，查询所有应用下的模板列表
         # @type ApplicationId: String
         # @param IsChannel: 默认为false，查询SaaS模板库列表；
-        # 为true，查询渠道模板库管理列表
+        # 为true，查询第三方应用集成平台企业模板库管理列表
         # @type IsChannel: Boolean
         # @param GenerateSource: 暂未开放
         # @type GenerateSource: Integer
@@ -2701,6 +2823,93 @@ module TencentCloud
           unless params['IntegrationMainOrganizationUser'].nil?
             @IntegrationMainOrganizationUser = IntegrationMainOrganizationUser.new
             @IntegrationMainOrganizationUser.deserialize(params['IntegrationMainOrganizationUser'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIntegrationRoles请求参数结构体
+      class DescribeIntegrationRolesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Limit: 返回最大数量，最大为200
+        # @type Limit: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Filters: 查询的关键字段:
+        # Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
+        # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
+        # Key:"IsGroupRole"，Values:["0"],查询非集团角色，Values:["1"]表示查询集团角色
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0，最大为2000
+        # @type Offset: Integer
+
+        attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
+        
+        def initialize(operator=nil, limit=nil, agent=nil, filters=nil, offset=nil)
+          @Operator = operator
+          @Limit = limit
+          @Agent = agent
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Limit = params['Limit']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeIntegrationRoles返回参数结构体
+      class DescribeIntegrationRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0，最大为2000
+        # @type Offset: Integer
+        # @param Limit: 返回最大数量，最大为200
+        # @type Limit: Integer
+        # @param TotalCount: 符合查询条件的总的角色数
+        # @type TotalCount: Integer
+        # @param IntegrateRoles: 企业角色信息列表
+        # @type IntegrateRoles: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Offset, :Limit, :TotalCount, :IntegrateRoles, :RequestId
+        
+        def initialize(offset=nil, limit=nil, totalcount=nil, integrateroles=nil, requestid=nil)
+          @Offset = offset
+          @Limit = limit
+          @TotalCount = totalcount
+          @IntegrateRoles = integrateroles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TotalCount = params['TotalCount']
+          unless params['IntegrateRoles'].nil?
+            @IntegrateRoles = []
+            params['IntegrateRoles'].each do |i|
+              integraterole_tmp = IntegrateRole.new
+              integraterole_tmp.deserialize(i)
+              @IntegrateRoles << integraterole_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3014,6 +3223,28 @@ module TencentCloud
         end
       end
 
+      # 绑定角色失败信息
+      class FailedCreateRoleData < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户userId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param RoleIds: 角色id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleIds: Array
+
+        attr_accessor :UserId, :RoleIds
+        
+        def initialize(userid=nil, roleids=nil)
+          @UserId = userid
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
       # 创建员工的失败数据
       class FailedCreateStaffData < TencentCloud::Common::AbstractModel
         # @param DisplayName: 员工名
@@ -3061,6 +3292,38 @@ module TencentCloud
           @UserId = params['UserId']
           @OpenId = params['OpenId']
           @Reason = params['Reason']
+        end
+      end
+
+      # 更新员工信息失败返回的数据信息
+      class FailedUpdateStaffData < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 用户传入的名称
+        # @type DisplayName: String
+        # @param Mobile: 用户传入的手机号
+        # @type Mobile: String
+        # @param Reason: 失败原因
+        # @type Reason: String
+        # @param UserId: 用户Id
+        # @type UserId: String
+        # @param OpenId: 用户OpenId
+        # @type OpenId: String
+
+        attr_accessor :DisplayName, :Mobile, :Reason, :UserId, :OpenId
+        
+        def initialize(displayname=nil, mobile=nil, reason=nil, userid=nil, openid=nil)
+          @DisplayName = displayname
+          @Mobile = mobile
+          @Reason = reason
+          @UserId = userid
+          @OpenId = openid
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @Reason = params['Reason']
+          @UserId = params['UserId']
+          @OpenId = params['OpenId']
         end
       end
 
@@ -3482,7 +3745,7 @@ module TencentCloud
       # 电子文档的控件填充信息。按照控件类型进行相应的填充。
 
       # 【数据表格传参说明】
-      # 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
+      # 当模板的 ComponentType='DYNAMIC_TABLE'时，FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
       # 输入示例1：
 
       # ```
@@ -3772,6 +4035,43 @@ module TencentCloud
           @LicenseExpireTime = params['LicenseExpireTime']
           @JoinTime = params['JoinTime']
           @FlowEngineEnable = params['FlowEngineEnable']
+        end
+      end
+
+      # 企业角色数据信息
+      class IntegrateRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: String
+        # @param RoleName: 角色名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param RoleStatus: 角色类型：1-系统角色，2-自定义角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleStatus: Integer
+        # @param IsGroupRole: 是否是集团角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsGroupRole: Boolean
+        # @param SubOrgIdList: 管辖的子企业列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubOrgIdList: Array
+
+        attr_accessor :RoleId, :RoleName, :RoleStatus, :IsGroupRole, :SubOrgIdList
+        
+        def initialize(roleid=nil, rolename=nil, rolestatus=nil, isgrouprole=nil, suborgidlist=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleStatus = rolestatus
+          @IsGroupRole = isgrouprole
+          @SubOrgIdList = suborgidlist
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleStatus = params['RoleStatus']
+          @IsGroupRole = params['IsGroupRole']
+          @SubOrgIdList = params['SubOrgIdList']
         end
       end
 
@@ -4416,6 +4716,30 @@ module TencentCloud
         end
       end
 
+      # 更新员工信息成功返回的数据信息
+      class SuccessUpdateStaffData < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 传入的用户名称
+        # @type DisplayName: String
+        # @param Mobile: 传入的手机号
+        # @type Mobile: String
+        # @param UserId: 用户Id
+        # @type UserId: String
+
+        attr_accessor :DisplayName, :Mobile, :UserId
+        
+        def initialize(displayname=nil, mobile=nil, userid=nil)
+          @DisplayName = displayname
+          @Mobile = mobile
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @UserId = params['UserId']
+        end
+      end
+
       # 二期接口返回的模板的信息结构
       class TemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -4531,6 +4855,81 @@ module TencentCloud
           @PreviewUrl = params['PreviewUrl']
           @TemplateVersion = params['TemplateVersion']
           @Published = params['Published']
+        end
+      end
+
+      # UpdateIntegrationEmployees请求参数结构体
+      class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Employees: 员工信息
+        # @type Employees: Array
+
+        attr_accessor :Operator, :Agent, :Employees
+        
+        def initialize(operator=nil, agent=nil, employees=nil)
+          @Operator = operator
+          @Agent = agent
+          @Employees = employees
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Employees'].nil?
+            @Employees = []
+            params['Employees'].each do |i|
+              staff_tmp = Staff.new
+              staff_tmp.deserialize(i)
+              @Employees << staff_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateIntegrationEmployees返回参数结构体
+      class UpdateIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessEmployeeData: 更新成功的用户列表
+        # @type SuccessEmployeeData: Array
+        # @param FailedEmployeeData: 更新失败的用户列表
+        # @type FailedEmployeeData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessEmployeeData, :FailedEmployeeData, :RequestId
+        
+        def initialize(successemployeedata=nil, failedemployeedata=nil, requestid=nil)
+          @SuccessEmployeeData = successemployeedata
+          @FailedEmployeeData = failedemployeedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SuccessEmployeeData'].nil?
+            @SuccessEmployeeData = []
+            params['SuccessEmployeeData'].each do |i|
+              successupdatestaffdata_tmp = SuccessUpdateStaffData.new
+              successupdatestaffdata_tmp.deserialize(i)
+              @SuccessEmployeeData << successupdatestaffdata_tmp
+            end
+          end
+          unless params['FailedEmployeeData'].nil?
+            @FailedEmployeeData = []
+            params['FailedEmployeeData'].each do |i|
+              failedupdatestaffdata_tmp = FailedUpdateStaffData.new
+              failedupdatestaffdata_tmp.deserialize(i)
+              @FailedEmployeeData << failedupdatestaffdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

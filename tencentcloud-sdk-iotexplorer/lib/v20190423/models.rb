@@ -897,11 +897,11 @@ module TencentCloud
         # @type ProductName: String
         # @param CategoryId: 产品分组模板ID , ( 自定义模板填写1 , 控制台调用会使用预置的其他ID)
         # @type CategoryId: Integer
-        # @param ProductType: 产品类型 填写 ( 0 普通产品 )
+        # @param ProductType: 产品类型 填写 ( 0 普通产品 ， 5 网关产品)
         # @type ProductType: Integer
-        # @param EncryptionType: 加密类型 加密类型，1表示证书认证，2表示签名认证。
+        # @param EncryptionType: 加密类型 ，1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         # @type EncryptionType: String
-        # @param NetType: 连接类型 可以填写 wifi cellular else
+        # @param NetType: 连接类型 可以填写 wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
         # @type NetType: String
         # @param DataProtocol: 数据协议 (1 使用物模型 2 为自定义)
         # @type DataProtocol: Integer
@@ -4749,15 +4749,18 @@ module TencentCloud
         # @type ModuleId: Integer
         # @param EnableProductScript: 是否打开二进制转Json功能, 取值为字符串 true/false
         # @type EnableProductScript: String
+        # @param BindStrategy: 传1或者2；1代表强踢，2代表非强踢。传其它值不做任何处理
+        # @type BindStrategy: Integer
 
-        attr_accessor :ProductId, :ProductName, :ProductDesc, :ModuleId, :EnableProductScript
+        attr_accessor :ProductId, :ProductName, :ProductDesc, :ModuleId, :EnableProductScript, :BindStrategy
         
-        def initialize(productid=nil, productname=nil, productdesc=nil, moduleid=nil, enableproductscript=nil)
+        def initialize(productid=nil, productname=nil, productdesc=nil, moduleid=nil, enableproductscript=nil, bindstrategy=nil)
           @ProductId = productid
           @ProductName = productname
           @ProductDesc = productdesc
           @ModuleId = moduleid
           @EnableProductScript = enableproductscript
+          @BindStrategy = bindstrategy
         end
 
         def deserialize(params)
@@ -4766,6 +4769,7 @@ module TencentCloud
           @ProductDesc = params['ProductDesc']
           @ModuleId = params['ModuleId']
           @EnableProductScript = params['EnableProductScript']
+          @BindStrategy = params['BindStrategy']
         end
       end
 
@@ -5060,15 +5064,16 @@ module TencentCloud
         # @type ProductName: String
         # @param CategoryId: 产品分组模板ID
         # @type CategoryId: Integer
-        # @param EncryptionType: 加密类型
+        # @param EncryptionType: 加密类型。1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         # @type EncryptionType: String
-        # @param NetType: 连接类型
+        # @param NetType: 连接类型。如：
+        # wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
         # @type NetType: String
-        # @param DataProtocol: 数据协议
+        # @param DataProtocol: 数据协议 (1 使用物模型 2 为自定义类型)
         # @type DataProtocol: Integer
         # @param ProductDesc: 产品描述
         # @type ProductDesc: String
-        # @param DevStatus: 状态
+        # @param DevStatus: 状态 如：all 全部, dev 开发中, audit 审核中 released 已发布
         # @type DevStatus: String
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
@@ -5076,7 +5081,7 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param Region: 区域
         # @type Region: String
-        # @param ProductType: 产品类型
+        # @param ProductType: 产品类型。如： 0 普通产品 ， 5 网关产品
         # @type ProductType: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -5091,10 +5096,13 @@ module TencentCloud
         # @param CreatorNickName: 创建者昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorNickName: String
+        # @param BindStrategy: 绑定策略（1：强踢；2：非强踢；0：表示无意义）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindStrategy: Integer
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy
         
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -5112,6 +5120,7 @@ module TencentCloud
           @EnableProductScript = enableproductscript
           @CreateUserId = createuserid
           @CreatorNickName = creatornickname
+          @BindStrategy = bindstrategy
         end
 
         def deserialize(params)
@@ -5132,6 +5141,7 @@ module TencentCloud
           @EnableProductScript = params['EnableProductScript']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+          @BindStrategy = params['BindStrategy']
         end
       end
 

@@ -1343,12 +1343,25 @@ module TencentCloud
 
       # DescribeTrtcRoomUsage请求参数结构体
       class DescribeTrtcRoomUsageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppid: TRTC的SdkAppId，和房间所对应的SdkAppId相同。
+        # @type SdkAppid: Integer
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD HH:MM，精确到分钟级。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD HH:MM，单次查询不超过24h。
+        # @type EndTime: String
 
+        attr_accessor :SdkAppid, :StartTime, :EndTime
         
-        def initialize()
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil)
+          @SdkAppid = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
+          @SdkAppid = params['SdkAppid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -2091,14 +2104,17 @@ module TencentCloud
         # @type MixLayoutList: Array
         # @param MaxVideoUser: 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
         # @type MaxVideoUser: :class:`Tencentcloud::Trtc.v20190722.models.MaxVideoUser`
+        # @param RenderMode: 屏幕分享模板、悬浮模板、九宫格模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底
+        # @type RenderMode: Integer
 
-        attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser
+        attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser, :RenderMode
         
-        def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil)
+        def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil, rendermode=nil)
           @MixLayoutMode = mixlayoutmode
           @PureAudioHoldPlaceMode = pureaudioholdplacemode
           @MixLayoutList = mixlayoutlist
           @MaxVideoUser = maxvideouser
+          @RenderMode = rendermode
         end
 
         def deserialize(params)
@@ -2116,6 +2132,7 @@ module TencentCloud
             @MaxVideoUser = MaxVideoUser.new
             @MaxVideoUser.deserialize(params['MaxVideoUser'])
           end
+          @RenderMode = params['RenderMode']
         end
       end
 
@@ -3465,19 +3482,19 @@ module TencentCloud
         # @type RoomIdType: Integer
         # @param AgentParams: 转推服务加入TRTC房间的机器人参数。
         # @type AgentParams: :class:`Tencentcloud::Trtc.v20190722.models.AgentParams`
-        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。是否收取转码费是由WithTranscoding参数决定的，WithTranscoding为0，表示旁路转推，不会收取转码费用，WithTranscoding为1，表示混流转推，会收取转吗费用。
         # @type WithTranscoding: Integer
-        # @param AudioParams: 转推流的音频编码参数。
+        # @param AudioParams: 转推流的音频编码参数。由于音频是必转码的（不会收取转码费用），所以启动任务的时候，必须填写。
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
         # @param VideoParams: 转推流的视频编码参数，不填表示纯音频转推。
         # @type VideoParams: :class:`Tencentcloud::Trtc.v20190722.models.McuVideoParams`
         # @param SingleSubscribeParams: 需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。
         # @type SingleSubscribeParams: :class:`Tencentcloud::Trtc.v20190722.models.SingleSubscribeParams`
-        # @param PublishCdnParams: 转推的CDN参数。
+        # @param PublishCdnParams: 转推的CDN参数。和回推房间参数必须要有一个。
         # @type PublishCdnParams: Array
         # @param SeiParams: 混流SEI参数
         # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
-        # @param FeedBackRoomParams: 回推房间信息
+        # @param FeedBackRoomParams: 回推房间信息，和转推CDN参数必须要有一个。
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams

@@ -2873,9 +2873,9 @@ module TencentCloud
         # @type ActivityId: String
         # @param VoucherName: 代金券名称
         # @type VoucherName: String
-        # @param TimeFrom: 发放开始时间
+        # @param TimeFrom: 发放开始时间,例：2021-01-01
         # @type TimeFrom: String
-        # @param TimeTo: 发放结束时间
+        # @param TimeTo: 发放结束时间，例：2021-01-01
         # @type TimeTo: String
         # @param SortField: 指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间
         # @type SortField: String

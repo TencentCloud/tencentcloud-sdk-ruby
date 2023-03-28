@@ -1914,16 +1914,22 @@ module TencentCloud
         # @type SeatUsedCount: Integer
         # @param VoipCallInCount: 音频套餐包消耗分钟数
         # @type VoipCallInCount: Integer
+        # @param AsrOfflineCount: 离线语音转文字套餐包消耗分钟数
+        # @type AsrOfflineCount: Integer
+        # @param AsrRealtimeCount: 实时语音转文字套餐包消耗分钟数
+        # @type AsrRealtimeCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :RequestId
+        attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         
-        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, requestid=nil)
+        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
           @TelCallInCount = telcallincount
           @SeatUsedCount = seatusedcount
           @VoipCallInCount = voipcallincount
+          @AsrOfflineCount = asrofflinecount
+          @AsrRealtimeCount = asrrealtimecount
           @RequestId = requestid
         end
 
@@ -1932,6 +1938,8 @@ module TencentCloud
           @TelCallInCount = params['TelCallInCount']
           @SeatUsedCount = params['SeatUsedCount']
           @VoipCallInCount = params['VoipCallInCount']
+          @AsrOfflineCount = params['AsrOfflineCount']
+          @AsrRealtimeCount = params['AsrRealtimeCount']
           @RequestId = params['RequestId']
         end
       end

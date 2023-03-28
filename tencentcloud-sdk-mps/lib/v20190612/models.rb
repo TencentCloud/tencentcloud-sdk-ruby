@@ -10233,7 +10233,7 @@ module TencentCloud
         # <li>ImagePorn：图片鉴黄</li>
         # <li>ImageTerrorism：图片涉敏</li>
         # <li>ImagePolitical：图片涉敏</li>
-        # <li>PornVoice：声音鉴黄</li>
+        # <li>VoicePorn：声音违规</li>
         # @type Type: String
         # @param ImagePornResultSet: 图片鉴黄的结果，当 Type 为 ImagePorn 时有效。
         # @type ImagePornResultSet: Array
@@ -10241,7 +10241,7 @@ module TencentCloud
         # @type ImageTerrorismResultSet: Array
         # @param ImagePoliticalResultSet: 图片涉敏的结果，当 Type 为 ImagePolitical 时有效。
         # @type ImagePoliticalResultSet: Array
-        # @param VoicePornResultSet: 声音鉴黄的结果，当 Type 为 PornVoice 时有效。
+        # @param VoicePornResultSet: 声音违规的结果，当 Type 为 VoicePorn 时有效。
         # @type VoicePornResultSet: Array
 
         attr_accessor :Type, :ImagePornResultSet, :ImageTerrorismResultSet, :ImagePoliticalResultSet, :VoicePornResultSet

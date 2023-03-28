@@ -18965,18 +18965,33 @@ module TencentCloud
         # @type RemoteExpLevelVulCount: Integer
         # @param SeriousVulNewestImageCount: 受严重或高危漏洞影响的最新版本镜像数
         # @type SeriousVulNewestImageCount: Integer
+        # @param SystemVulnerabilityFocusCount: 系统漏洞重点关注数
+        # @type SystemVulnerabilityFocusCount: Integer
+        # @param WebVulnerabilityFocusCount: web漏洞重点关注数
+        # @type WebVulnerabilityFocusCount: Integer
+        # @param SeriousVulnerabilityLocalImageCount: 受影响本地镜像数
+        # @type SeriousVulnerabilityLocalImageCount: Integer
+        # @param SeriousVulnerabilityRegistryImageCount: 受影响仓库镜像数
+        # @type SeriousVulnerabilityRegistryImageCount: Integer
+        # @param EmergencyVulnerabilityCount: 应急漏洞数量
+        # @type EmergencyVulnerabilityCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulTotalCount, :SeriousVulCount, :SuggestVulCount, :PocExpLevelVulCount, :RemoteExpLevelVulCount, :SeriousVulNewestImageCount, :RequestId
+        attr_accessor :VulTotalCount, :SeriousVulCount, :SuggestVulCount, :PocExpLevelVulCount, :RemoteExpLevelVulCount, :SeriousVulNewestImageCount, :SystemVulnerabilityFocusCount, :WebVulnerabilityFocusCount, :SeriousVulnerabilityLocalImageCount, :SeriousVulnerabilityRegistryImageCount, :EmergencyVulnerabilityCount, :RequestId
         
-        def initialize(vultotalcount=nil, seriousvulcount=nil, suggestvulcount=nil, pocexplevelvulcount=nil, remoteexplevelvulcount=nil, seriousvulnewestimagecount=nil, requestid=nil)
+        def initialize(vultotalcount=nil, seriousvulcount=nil, suggestvulcount=nil, pocexplevelvulcount=nil, remoteexplevelvulcount=nil, seriousvulnewestimagecount=nil, systemvulnerabilityfocuscount=nil, webvulnerabilityfocuscount=nil, seriousvulnerabilitylocalimagecount=nil, seriousvulnerabilityregistryimagecount=nil, emergencyvulnerabilitycount=nil, requestid=nil)
           @VulTotalCount = vultotalcount
           @SeriousVulCount = seriousvulcount
           @SuggestVulCount = suggestvulcount
           @PocExpLevelVulCount = pocexplevelvulcount
           @RemoteExpLevelVulCount = remoteexplevelvulcount
           @SeriousVulNewestImageCount = seriousvulnewestimagecount
+          @SystemVulnerabilityFocusCount = systemvulnerabilityfocuscount
+          @WebVulnerabilityFocusCount = webvulnerabilityfocuscount
+          @SeriousVulnerabilityLocalImageCount = seriousvulnerabilitylocalimagecount
+          @SeriousVulnerabilityRegistryImageCount = seriousvulnerabilityregistryimagecount
+          @EmergencyVulnerabilityCount = emergencyvulnerabilitycount
           @RequestId = requestid
         end
 
@@ -18987,6 +19002,11 @@ module TencentCloud
           @PocExpLevelVulCount = params['PocExpLevelVulCount']
           @RemoteExpLevelVulCount = params['RemoteExpLevelVulCount']
           @SeriousVulNewestImageCount = params['SeriousVulNewestImageCount']
+          @SystemVulnerabilityFocusCount = params['SystemVulnerabilityFocusCount']
+          @WebVulnerabilityFocusCount = params['WebVulnerabilityFocusCount']
+          @SeriousVulnerabilityLocalImageCount = params['SeriousVulnerabilityLocalImageCount']
+          @SeriousVulnerabilityRegistryImageCount = params['SeriousVulnerabilityRegistryImageCount']
+          @EmergencyVulnerabilityCount = params['EmergencyVulnerabilityCount']
           @RequestId = params['RequestId']
         end
       end

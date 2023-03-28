@@ -4094,10 +4094,16 @@ module TencentCloud
         # @param HostName: 日志来源主机名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
+        # @param RawLog: 原始日志(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawLog: String
+        # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStatus: String
 
-        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName
+        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName, :RawLog, :IndexStatus
         
-        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil, hostname=nil)
+        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil, hostname=nil, rawlog=nil, indexstatus=nil)
           @Source = source
           @Filename = filename
           @Content = content
@@ -4105,6 +4111,8 @@ module TencentCloud
           @PkgLogId = pkglogid
           @BTime = btime
           @HostName = hostname
+          @RawLog = rawlog
+          @IndexStatus = indexstatus
         end
 
         def deserialize(params)
@@ -4115,6 +4123,8 @@ module TencentCloud
           @PkgLogId = params['PkgLogId']
           @BTime = params['BTime']
           @HostName = params['HostName']
+          @RawLog = params['RawLog']
+          @IndexStatus = params['IndexStatus']
         end
       end
 
@@ -4140,10 +4150,16 @@ module TencentCloud
         # @param HostName: 日志来源主机名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
+        # @param RawLog: 原始日志(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawLog: String
+        # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStatus: String
 
-        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName, :RawLog, :IndexStatus
         
-        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil)
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil, rawlog=nil, indexstatus=nil)
           @Time = time
           @TopicId = topicid
           @TopicName = topicname
@@ -4153,6 +4169,8 @@ module TencentCloud
           @PkgLogId = pkglogid
           @LogJson = logjson
           @HostName = hostname
+          @RawLog = rawlog
+          @IndexStatus = indexstatus
         end
 
         def deserialize(params)
@@ -4165,6 +4183,8 @@ module TencentCloud
           @PkgLogId = params['PkgLogId']
           @LogJson = params['LogJson']
           @HostName = params['HostName']
+          @RawLog = params['RawLog']
+          @IndexStatus = params['IndexStatus']
         end
       end
 
@@ -5561,10 +5581,14 @@ module TencentCloud
         # 1：不采样，即精确分析
         # 默认值为1
         # @type SamplingRate: Float
+        # @param SyntaxRule: 检索语法规则，默认值为0。
+        # 0：Lucene语法，1：CQL语法。
+        # 详细说明参见https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules
+        # @type SyntaxRule: Integer
 
-        attr_accessor :From, :To, :Query, :TopicId, :Limit, :Context, :Sort, :UseNewAnalysis, :SamplingRate
+        attr_accessor :From, :To, :Query, :TopicId, :Limit, :Context, :Sort, :UseNewAnalysis, :SamplingRate, :SyntaxRule
         
-        def initialize(from=nil, to=nil, query=nil, topicid=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil, samplingrate=nil)
+        def initialize(from=nil, to=nil, query=nil, topicid=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil, samplingrate=nil, syntaxrule=nil)
           @From = from
           @To = to
           @Query = query
@@ -5574,6 +5598,7 @@ module TencentCloud
           @Sort = sort
           @UseNewAnalysis = usenewanalysis
           @SamplingRate = samplingrate
+          @SyntaxRule = syntaxrule
         end
 
         def deserialize(params)
@@ -5586,6 +5611,7 @@ module TencentCloud
           @Sort = params['Sort']
           @UseNewAnalysis = params['UseNewAnalysis']
           @SamplingRate = params['SamplingRate']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 

@@ -7097,14 +7097,17 @@ module TencentCloud
         # @type Agents: Array
         # @param Total: 被关联集群总量
         # @type Total: Integer
+        # @param IsFirstBind: 是否为首次绑定，需要安装预聚合规则
+        # @type IsFirstBind: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Agents, :Total, :RequestId
+        attr_accessor :Agents, :Total, :IsFirstBind, :RequestId
         
-        def initialize(agents=nil, total=nil, requestid=nil)
+        def initialize(agents=nil, total=nil, isfirstbind=nil, requestid=nil)
           @Agents = agents
           @Total = total
+          @IsFirstBind = isfirstbind
           @RequestId = requestid
         end
 
@@ -7118,6 +7121,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @IsFirstBind = params['IsFirstBind']
           @RequestId = params['RequestId']
         end
       end
