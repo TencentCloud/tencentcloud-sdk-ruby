@@ -7973,10 +7973,12 @@ module TencentCloud
         # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbModifyConnectParam`
         # @param DorisConnectParam: Doris配置，Type为DORIS
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisModifyConnectParam`
+        # @param KafkaConnectParam: Kafka配置，Type为 KAFKA 时必填
+        # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -7991,6 +7993,7 @@ module TencentCloud
           @SQLServerConnectParam = sqlserverconnectparam
           @CtsdbConnectParam = ctsdbconnectparam
           @DorisConnectParam = dorisconnectparam
+          @KafkaConnectParam = kafkaconnectparam
         end
 
         def deserialize(params)
@@ -8037,6 +8040,10 @@ module TencentCloud
           unless params['DorisConnectParam'].nil?
             @DorisConnectParam = DorisModifyConnectParam.new
             @DorisConnectParam.deserialize(params['DorisConnectParam'])
+          end
+          unless params['KafkaConnectParam'].nil?
+            @KafkaConnectParam = KafkaConnectParam.new
+            @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
           end
         end
       end
@@ -8102,6 +8109,64 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatahubTopic请求参数结构体
+      class ModifyDatahubTopicRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param RetentionMs: 消息保留时间，单位：ms，当前最小值为60000ms。
+        # @type RetentionMs: Integer
+        # @param Note: 主题备注，是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线-。
+        # @type Note: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+
+        attr_accessor :Name, :RetentionMs, :Note, :Tags
+        
+        def initialize(name=nil, retentionms=nil, note=nil, tags=nil)
+          @Name = name
+          @RetentionMs = retentionms
+          @Note = note
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @RetentionMs = params['RetentionMs']
+          @Note = params['Note']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDatahubTopic返回参数结构体
+      class ModifyDatahubTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果集
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

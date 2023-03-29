@@ -10929,7 +10929,7 @@ module TencentCloud
 
       # DescribeExportMachines返回参数结构体
       class DescribeExportMachinesResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14214,9 +14214,9 @@ module TencentCloud
 
       # DescribeSearchExportList返回参数结构体
       class DescribeSearchExportListResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 导出的任务号
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: Integer
-        # @param DownloadUrl: 下载地址
+        # @param DownloadUrl: 该参数作废
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16617,7 +16617,7 @@ module TencentCloud
       class ExportAttackLogsResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务ID 可通过ExportTasks接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16679,10 +16679,10 @@ module TencentCloud
 
       # ExportBaselineEffectHostList返回参数结构体
       class ExportBaselineEffectHostListResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 下载地址
+        # @param DownloadUrl: 该参数已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务id 可通过 ExportTasks接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16928,7 +16928,7 @@ module TencentCloud
         # @param DownloadUrl: 导出文件下载地址（已弃用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
-        # @param TaskId: 导出文件Id 可通过ExportTasks接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17063,7 +17063,7 @@ module TencentCloud
       class ExportBashEventsResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 导出文件下载链接地址。
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务ID
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17108,9 +17108,9 @@ module TencentCloud
 
       # ExportBruteAttacks返回参数结构体
       class ExportBruteAttacksResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务ID
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17148,9 +17148,9 @@ module TencentCloud
 
       # ExportIgnoreBaselineRule返回参数结构体
       class ExportIgnoreBaselineRuleResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 文件下载地址
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务Id , 可通过ExportTasks 接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17200,9 +17200,9 @@ module TencentCloud
 
       # ExportIgnoreRuleEffectHostList返回参数结构体
       class ExportIgnoreRuleEffectHostListResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载地址
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务Id , 可通过ExportTasks 接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17270,7 +17270,7 @@ module TencentCloud
       class ExportLicenseDetailResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 下载地址,该字段废弃
         # @type DownloadUrl: String
-        # @param TaskId: 任务ID,可通过任务ID去查下载任务
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17315,9 +17315,9 @@ module TencentCloud
 
       # ExportMaliciousRequests返回参数结构体
       class ExportMaliciousRequestsResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务Id , 可通过ExportTasks 接口下载
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17384,9 +17384,9 @@ module TencentCloud
 
       # ExportMalwares返回参数结构体
       class ExportMalwaresResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 任务id
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17431,9 +17431,9 @@ module TencentCloud
 
       # ExportNonlocalLoginPlaces返回参数结构体
       class ExportNonlocalLoginPlacesResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务ID
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17478,9 +17478,9 @@ module TencentCloud
 
       # ExportPrivilegeEvents返回参数结构体
       class ExportPrivilegeEventsResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出任务ID
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17534,7 +17534,7 @@ module TencentCloud
 
       # ExportProtectDirList返回参数结构体
       class ExportProtectDirListResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17577,9 +17577,9 @@ module TencentCloud
 
       # ExportReverseShellEvents返回参数结构体
       class ExportReverseShellEventsResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址。
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 任务id
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17632,7 +17632,7 @@ module TencentCloud
 
       # ExportScanTaskDetails返回参数结构体
       class ExportScanTaskDetailsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 导出本次检测Excel的任务Id（不同于入参的本次检测任务id）
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址(不同于入参的本次检测任务id)
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17748,9 +17748,9 @@ module TencentCloud
 
       # ExportVulDetectionExcel返回参数结构体
       class ExportVulDetectionExcelResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 导出文件下载链接地址
+        # @param DownloadUrl: 该参数已废弃
         # @type DownloadUrl: String
-        # @param TaskId: 导出本次漏洞检测Excel的任务Id（不同于入参的本次漏洞检测任务id）
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址（不同于入参的本次漏洞检测任务id）
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -22304,27 +22304,27 @@ module TencentCloud
       class UpdateMachineTagsRequest < TencentCloud::Common::AbstractModel
         # @param Quuid: 机器 Quuid
         # @type Quuid: String
+        # @param TagIds: 标签ID，该操作会覆盖原有的标签列表
+        # @type TagIds: Array
         # @param MachineRegion: 服务器地区 如: ap-guangzhou
         # @type MachineRegion: String
         # @param MachineArea: 服务器类型(CVM|BM|ECM|LH|Other)
         # @type MachineArea: String
-        # @param TagIds: 标签ID，该操作会覆盖原有的标签列表
-        # @type TagIds: Array
 
-        attr_accessor :Quuid, :MachineRegion, :MachineArea, :TagIds
+        attr_accessor :Quuid, :TagIds, :MachineRegion, :MachineArea
         
-        def initialize(quuid=nil, machineregion=nil, machinearea=nil, tagids=nil)
+        def initialize(quuid=nil, tagids=nil, machineregion=nil, machinearea=nil)
           @Quuid = quuid
+          @TagIds = tagids
           @MachineRegion = machineregion
           @MachineArea = machinearea
-          @TagIds = tagids
         end
 
         def deserialize(params)
           @Quuid = params['Quuid']
+          @TagIds = params['TagIds']
           @MachineRegion = params['MachineRegion']
           @MachineArea = params['MachineArea']
-          @TagIds = params['TagIds']
         end
       end
 

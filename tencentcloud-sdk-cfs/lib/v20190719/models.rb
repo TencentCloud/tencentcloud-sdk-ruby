@@ -1589,7 +1589,13 @@ module TencentCloud
         # @type CreationToken: String
         # @param FileSystemId: 文件系统 ID
         # @type FileSystemId: String
-        # @param LifeCycleState: 文件系统状态
+        # @param LifeCycleState: 文件系统状态。取值范围：
+        # - creating:创建中
+        # - mounting:挂载中
+        # - create_failed:创建失败
+        # - available:可使用
+        # - unserviced:停服中
+        # - upgrading:升级中
         # @type LifeCycleState: String
         # @param SizeByte: 文件系统已使用容量
         # @type SizeByte: Integer
@@ -1623,7 +1629,7 @@ module TencentCloud
         # @type Capacity: Integer
         # @param Tags: 文件系统标签列表
         # @type Tags: Array
-        # @param TieringState: 文件系统声明周期管理状态
+        # @param TieringState: 文件系统生命周期管理状态
         # @type TieringState: String
         # @param TieringDetail: 分层存储详情
         # 注意：此字段可能返回 null，表示取不到有效值。

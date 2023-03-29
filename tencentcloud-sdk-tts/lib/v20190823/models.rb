@@ -199,15 +199,19 @@ module TencentCloud
         # @type BeginIndex: Integer
         # @param EndIndex: 该字在整句中的结束位置，从0开始。
         # @type EndIndex: Integer
+        # @param Phoneme: 该字的音素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phoneme: String
 
-        attr_accessor :Text, :BeginTime, :EndTime, :BeginIndex, :EndIndex
+        attr_accessor :Text, :BeginTime, :EndTime, :BeginIndex, :EndIndex, :Phoneme
         
-        def initialize(text=nil, begintime=nil, endtime=nil, beginindex=nil, endindex=nil)
+        def initialize(text=nil, begintime=nil, endtime=nil, beginindex=nil, endindex=nil, phoneme=nil)
           @Text = text
           @BeginTime = begintime
           @EndTime = endtime
           @BeginIndex = beginindex
           @EndIndex = endindex
+          @Phoneme = phoneme
         end
 
         def deserialize(params)
@@ -216,6 +220,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @BeginIndex = params['BeginIndex']
           @EndIndex = params['EndIndex']
+          @Phoneme = params['Phoneme']
         end
       end
 

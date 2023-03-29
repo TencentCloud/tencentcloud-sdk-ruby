@@ -778,7 +778,7 @@ module TencentCloud
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
-        # @param PackageType: 证书套餐类型：1 = GeoTrust DV SSL CA - G3， 2 = TrustAsia TLS RSA CA， 3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
+        # @param PackageType: 证书套餐类型：null = 用户上传证书（没有套餐类型），1 = GeoTrust DV SSL CA - G3， 2 = TrustAsia TLS RSA CA， 3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param ProductZhName: 颁发者。
@@ -1479,12 +1479,14 @@ module TencentCloud
         # @type CompanyId: Integer
         # @param ManagerId: 管理人ID
         # @type ManagerId: Integer
+        # @param StatusInfo: 审核状态详细信息
+        # @type StatusInfo: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :RequestId
+        attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :RequestId
         
-        def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, requestid=nil)
+        def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, requestid=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
           @ManagerMail = managermail
@@ -1503,6 +1505,7 @@ module TencentCloud
           @CompanyInfo = companyinfo
           @CompanyId = companyid
           @ManagerId = managerid
+          @StatusInfo = statusinfo
           @RequestId = requestid
         end
 
@@ -1528,6 +1531,14 @@ module TencentCloud
           end
           @CompanyId = params['CompanyId']
           @ManagerId = params['ManagerId']
+          unless params['StatusInfo'].nil?
+            @StatusInfo = []
+            params['StatusInfo'].each do |i|
+              managerstatusinfo_tmp = ManagerStatusInfo.new
+              managerstatusinfo_tmp.deserialize(i)
+              @StatusInfo << managerstatusinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1540,9 +1551,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页每页数量
         # @type Limit: Integer
-        # @param ManagerName: 管理人姓名
+        # @param ManagerName: 管理人姓名（将废弃），请使用SearchKey
         # @type ManagerName: String
-        # @param ManagerMail: 模糊查询管理人邮箱
+        # @param ManagerMail: 模糊查询管理人邮箱（将废弃），请使用SearchKey
         # @type ManagerMail: String
         # @param Status: 根据管理人状态进行筛选，取值有
         # 'none' 未提交审核
@@ -1553,7 +1564,7 @@ module TencentCloud
         # 'expiring'  即将过期
         # 'expired' 已过期
         # @type Status: String
-        # @param SearchKey: 管理人姓名/邮箱/部门精准匹配
+        # @param SearchKey: 管理人姓/管理人名/邮箱/部门精准匹配
         # @type SearchKey: String
 
         attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status, :SearchKey
@@ -2789,7 +2800,7 @@ module TencentCloud
         # @type CertificatePublicKey: String
         # @param CertificatePrivateKey: 私钥内容，证书类型为 SVR 时必填，为 CA 时可不填。
         # @type CertificatePrivateKey: String
-        # @param CertificateType: 证书类型，默认 SVR。CA = 客户端证书，SVR = 服务器证书。
+        # @param CertificateType: 证书类型，默认 SVR。CA = CA证书，SVR = 服务器证书。
         # @type CertificateType: String
         # @param Alias: 备注名称。
         # @type Alias: String

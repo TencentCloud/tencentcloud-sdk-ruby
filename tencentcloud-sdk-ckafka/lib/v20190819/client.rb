@@ -1662,6 +1662,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Datahub主题属性
+
+        # @param request: Request instance for ModifyDatahubTopic.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTopicRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTopicResponse`
+        def ModifyDatahubTopic(request)
+          body = send_request('ModifyDatahubTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatahubTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置Groups 消费分组offset
 
         # @param request: Request instance for ModifyGroupOffsets.

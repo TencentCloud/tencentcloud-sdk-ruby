@@ -1167,6 +1167,48 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordSearch请求参数结构体
+      class DescribeRecordSearchRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRecordSearch返回参数结构体
+      class DescribeRecordSearchResponse < TencentCloud::Common::AbstractModel
+        # @param RecordTaskSet: 录制任务搜索结果集合
+        # @type RecordTaskSet: Array
+        # @param TotalCount: 录制总任务数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordTaskSet, :TotalCount, :RequestId
+        
+        def initialize(recordtaskset=nil, totalcount=nil, requestid=nil)
+          @RecordTaskSet = recordtaskset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordTaskSet'].nil?
+            @RecordTaskSet = []
+            params['RecordTaskSet'].each do |i|
+              recordtasksearchresult_tmp = RecordTaskSearchResult.new
+              recordtasksearchresult_tmp.deserialize(i)
+              @RecordTaskSet << recordtasksearchresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomList请求参数结构体
       class DescribeRoomListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 白板应用的SdkAppId
@@ -2566,6 +2608,124 @@ module TencentCloud
               streamcontrol_tmp.deserialize(i)
               @StreamControls << streamcontrol_tmp
             end
+          end
+        end
+      end
+
+      # 实时录制结果
+      class RecordTaskResult < TencentCloud::Common::AbstractModel
+        # @param FinishReason: AUTO - 自动停止录制， USER_CALL - 用户主动调用停止录制
+        # @type FinishReason: String
+        # @param ExceptionCnt: 异常数
+        # @type ExceptionCnt: Integer
+        # @param RoomId: 房间号
+        # @type RoomId: Integer
+        # @param GroupId: 分组
+        # @type GroupId: String
+        # @param RecordStartTime: 录制真实开始时间
+        # @type RecordStartTime: Integer
+        # @param RecordStopTime: 录制结束时间
+        # @type RecordStopTime: Integer
+        # @param TotalTime: 录制总时长
+        # @type TotalTime: Integer
+        # @param VideoInfos: 视频信息列表
+        # @type VideoInfos: Array
+        # @param OmittedDurations: 被忽略的视频时间段
+        # @type OmittedDurations: Array
+        # @param Details: 详情
+        # @type Details: String
+        # @param ErrorCode: 任务失败错误码
+        # @type ErrorCode: Integer
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+
+        attr_accessor :FinishReason, :ExceptionCnt, :RoomId, :GroupId, :RecordStartTime, :RecordStopTime, :TotalTime, :VideoInfos, :OmittedDurations, :Details, :ErrorCode, :ErrorMsg
+        
+        def initialize(finishreason=nil, exceptioncnt=nil, roomid=nil, groupid=nil, recordstarttime=nil, recordstoptime=nil, totaltime=nil, videoinfos=nil, omitteddurations=nil, details=nil, errorcode=nil, errormsg=nil)
+          @FinishReason = finishreason
+          @ExceptionCnt = exceptioncnt
+          @RoomId = roomid
+          @GroupId = groupid
+          @RecordStartTime = recordstarttime
+          @RecordStopTime = recordstoptime
+          @TotalTime = totaltime
+          @VideoInfos = videoinfos
+          @OmittedDurations = omitteddurations
+          @Details = details
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          @ExceptionCnt = params['ExceptionCnt']
+          @RoomId = params['RoomId']
+          @GroupId = params['GroupId']
+          @RecordStartTime = params['RecordStartTime']
+          @RecordStopTime = params['RecordStopTime']
+          @TotalTime = params['TotalTime']
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              videoinfo_tmp = VideoInfo.new
+              videoinfo_tmp.deserialize(i)
+              @VideoInfos << videoinfo_tmp
+            end
+          end
+          unless params['OmittedDurations'].nil?
+            @OmittedDurations = []
+            params['OmittedDurations'].each do |i|
+              omittedduration_tmp = OmittedDuration.new
+              omittedduration_tmp.deserialize(i)
+              @OmittedDurations << omittedduration_tmp
+            end
+          end
+          @Details = params['Details']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # 实时录制任务搜索结果
+      class RecordTaskSearchResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param Status: 实时录制任务状态
+        # - PAUSED: 录制已暂停
+        # - PREPARED: 录制在准备阶段
+        # - RECORDING: 正在录制
+        # - STOPPED：录制已停止
+        # - FINISHED: 录制已结束
+        # @type Status: String
+        # @param RoomId: 实时录制房间号
+        # @type RoomId: Integer
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param SdkAppId: 用户应用SdkAppId
+        # @type SdkAppId: Integer
+        # @param Result: 实时录制结果
+        # @type Result: :class:`Tencentcloud::Tiw.v20190919.models.RecordTaskResult`
+
+        attr_accessor :TaskId, :Status, :RoomId, :CreateTime, :SdkAppId, :Result
+        
+        def initialize(taskid=nil, status=nil, roomid=nil, createtime=nil, sdkappid=nil, result=nil)
+          @TaskId = taskid
+          @Status = status
+          @RoomId = roomid
+          @CreateTime = createtime
+          @SdkAppId = sdkappid
+          @Result = result
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @RoomId = params['RoomId']
+          @CreateTime = params['CreateTime']
+          @SdkAppId = params['SdkAppId']
+          unless params['Result'].nil?
+            @Result = RecordTaskResult.new
+            @Result.deserialize(params['Result'])
           end
         end
       end

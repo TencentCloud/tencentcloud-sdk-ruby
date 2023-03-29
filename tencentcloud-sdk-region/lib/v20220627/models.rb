@@ -72,15 +72,19 @@ module TencentCloud
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         # @type Product: String
+        # @param Scene: 不传或者0表示不查询【可选业务白名单】，1表示查询【可选业务白名单】，该参数设置了1，只有在业务白名单查不到情况下，才会查该白名单
+        # @type Scene: Integer
 
-        attr_accessor :Product
+        attr_accessor :Product, :Scene
         
-        def initialize(product=nil)
+        def initialize(product=nil, scene=nil)
           @Product = product
+          @Scene = scene
         end
 
         def deserialize(params)
           @Product = params['Product']
+          @Scene = params['Scene']
         end
       end
 
@@ -119,15 +123,19 @@ module TencentCloud
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
         # @param Product: 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         # @type Product: String
+        # @param Scene: 不传或者0表示不查询【可选业务白名单】，1表示查询【可选业务白名单】，该参数设置了1，只有在业务白名单查不到情况下，才会查该白名单
+        # @type Scene: Integer
 
-        attr_accessor :Product
+        attr_accessor :Product, :Scene
         
-        def initialize(product=nil)
+        def initialize(product=nil, scene=nil)
           @Product = product
+          @Scene = scene
         end
 
         def deserialize(params)
           @Product = params['Product']
+          @Scene = params['Scene']
         end
       end
 

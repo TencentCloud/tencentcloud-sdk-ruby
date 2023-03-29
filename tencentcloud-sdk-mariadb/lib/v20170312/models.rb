@@ -1985,12 +1985,15 @@ module TencentCloud
         # @param ExclusterType: 独享集群类型，0:公有云, 1:金融围笼, 2:CDC集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusterType: Integer
+        # @param RsAccessStrategy: VPC就近访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RsAccessStrategy: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :RequestId
         
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2045,6 +2048,7 @@ module TencentCloud
           @ReplicaConfig = replicaconfig
           @ReplicaStatus = replicastatus
           @ExclusterType = exclustertype
+          @RsAccessStrategy = rsaccessstrategy
           @RequestId = requestid
         end
 
@@ -2123,6 +2127,7 @@ module TencentCloud
             @ReplicaStatus.deserialize(params['ReplicaStatus'])
           end
           @ExclusterType = params['ExclusterType']
+          @RsAccessStrategy = params['RsAccessStrategy']
           @RequestId = params['RequestId']
         end
       end

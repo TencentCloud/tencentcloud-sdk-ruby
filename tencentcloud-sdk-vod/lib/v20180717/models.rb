@@ -9248,6 +9248,7 @@ module TencentCloud
         # <li> RemoveWatermark: 去除水印</li>
         # <li> ExtractTraceWatermark: 提取水印</li>
         # <li> AddTraceWatermark: 添加水印</li>
+        # <li> RebuildMedia: 音画质重生</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # @type Type: String
 
@@ -20921,6 +20922,17 @@ module TencentCloud
         # @param MediaTypes: 媒体文件封装格式集合，匹配集合中任意元素。
         # <li>数组长度限制：10。</li>
         # @type MediaTypes: Array
+        # @param Status: 媒体文件状态，匹配集合中任意元素。
+        # <li> Normal：正常；</li>
+        # <li> SystemForbidden：平台封禁；</li>
+        # <li> Forbidden：主动封禁。</li>
+        # @type Status: Array
+        # @param ReviewResults: 媒体文件审核结果，匹配集合中任意元素。
+        # <li> pass：审核通过；</li>
+        # <li> review：疑似违规，建议复审；</li>
+        # <li> block：确认违规，建议封禁；</li>
+        # <li> notModerated：未审核。</li>
+        # @type ReviewResults: Array
         # @param TrtcSdkAppIds: TRTC 应用 ID 集合。匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # @type TrtcSdkAppIds: Array
@@ -20954,9 +20966,9 @@ module TencentCloud
         # @param Vid: 该字段已无效。
         # @type Vid: String
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :MediaTypes, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :MediaTypes, :Status, :ReviewResults, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
         
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, status=nil, reviewresults=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -20976,6 +20988,8 @@ module TencentCloud
           @StorageRegions = storageregions
           @StorageClasses = storageclasses
           @MediaTypes = mediatypes
+          @Status = status
+          @ReviewResults = reviewresults
           @TrtcSdkAppIds = trtcsdkappids
           @TrtcRoomIds = trtcroomids
           @Text = text
@@ -21016,6 +21030,8 @@ module TencentCloud
           @StorageRegions = params['StorageRegions']
           @StorageClasses = params['StorageClasses']
           @MediaTypes = params['MediaTypes']
+          @Status = params['Status']
+          @ReviewResults = params['ReviewResults']
           @TrtcSdkAppIds = params['TrtcSdkAppIds']
           @TrtcRoomIds = params['TrtcRoomIds']
           @Text = params['Text']
@@ -22278,6 +22294,7 @@ module TencentCloud
         # <li> RemoveWatermark: 去水印</li>
         # <li> ExtractTraceWatermark: 提取水印</li>
         # <li> AddTraceWatermark: 添加水印</li>
+        # <li> RebuildMedia: 音画质重生</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # @type TaskType: String
         # @param Summary: 任务数统计数据概览，用量单位为秒。
@@ -22327,13 +22344,14 @@ module TencentCloud
         # <li>Edit.TESHD-10.H265.FHD: H.265编码方式全高清极速高清视频编辑</li>
         # <li>Edit.TESHD-10.H265.2K: H.265编码方式2K极速高清视频编辑</li>
         # <li>Edit.TESHD-10.H265.4K: H.265编码方式4K极速高清视频编辑</li>
-        # 去水印规格：
+        # 去水印、音画质重生规格：
         # <li>480P: 短边 ≤ 480px</li>
         # <li>720P: 短边 ≤ 720px</li>
         # <li>1080P: 短边 ≤ 1080px</li>
         # <li>2K: 短边 ≤ 1440px</li>
         # <li>4K: 短边 ≤ 2160px</li>
         # <li>8K: 短边 ≤ 4320px</li>
+        # <li>Audio: 音频</li>
         # @type Details: Array
 
         attr_accessor :TaskType, :Summary, :Details

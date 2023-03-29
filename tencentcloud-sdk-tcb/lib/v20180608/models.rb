@@ -1994,10 +1994,14 @@ module TencentCloud
         # <li>QuickStart：快速启动来源</li>
         # <li>Activity：活动来源</li>
         # @type Flag: String
+        # @param EnvAlias: 环境别名，无字符类型限制
+        # @type EnvAlias: String
+        # @param Extra: 附加字段，用于透传额外的自定义信息
+        # @type Extra: String
 
-        attr_accessor :EnvId, :WxAppId, :Source, :FreeQuota, :EnvSource, :Alias, :Channel, :ExtensionId, :Flag
+        attr_accessor :EnvId, :WxAppId, :Source, :FreeQuota, :EnvSource, :Alias, :Channel, :ExtensionId, :Flag, :EnvAlias, :Extra
         
-        def initialize(envid=nil, wxappid=nil, source=nil, freequota=nil, envsource=nil, _alias=nil, channel=nil, extensionid=nil, flag=nil)
+        def initialize(envid=nil, wxappid=nil, source=nil, freequota=nil, envsource=nil, _alias=nil, channel=nil, extensionid=nil, flag=nil, envalias=nil, extra=nil)
           @EnvId = envid
           @WxAppId = wxappid
           @Source = source
@@ -2007,6 +2011,8 @@ module TencentCloud
           @Channel = channel
           @ExtensionId = extensionid
           @Flag = flag
+          @EnvAlias = envalias
+          @Extra = extra
         end
 
         def deserialize(params)
@@ -2019,6 +2025,8 @@ module TencentCloud
           @Channel = params['Channel']
           @ExtensionId = params['ExtensionId']
           @Flag = params['Flag']
+          @EnvAlias = params['EnvAlias']
+          @Extra = params['Extra']
         end
       end
 

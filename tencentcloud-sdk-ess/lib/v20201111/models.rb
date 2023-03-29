@@ -271,6 +271,26 @@ module TencentCloud
         end
       end
 
+      # 应用回调信息
+      class CallbackInfo < TencentCloud::Common::AbstractModel
+        # @param CallbackUrl: 回调url
+        # @type CallbackUrl: String
+        # @param Token: 回调加密token
+        # @type Token: String
+
+        attr_accessor :CallbackUrl, :Token
+        
+        def initialize(callbackurl=nil, token=nil)
+          @CallbackUrl = callbackurl
+          @Token = token
+        end
+
+        def deserialize(params)
+          @CallbackUrl = params['CallbackUrl']
+          @Token = params['Token']
+        end
+      end
+
       # 此结构体 (Caller) 用于描述调用方属性。
       class Caller < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用号
@@ -4104,12 +4124,31 @@ module TencentCloud
 
       # ModifyApplicationCallbackInfo请求参数结构体
       class ModifyApplicationCallbackInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param OperateType: 操作类型：1-新增，2-删除
+        # @type OperateType: Integer
+        # @param CallbackInfo: 回调信息
+        # @type CallbackInfo: :class:`Tencentcloud::Ess.v20201111.models.CallbackInfo`
 
+        attr_accessor :Operator, :OperateType, :CallbackInfo
         
-        def initialize()
+        def initialize(operator=nil, operatetype=nil, callbackinfo=nil)
+          @Operator = operator
+          @OperateType = operatetype
+          @CallbackInfo = callbackinfo
         end
 
         def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OperateType = params['OperateType']
+          unless params['CallbackInfo'].nil?
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
         end
       end
 

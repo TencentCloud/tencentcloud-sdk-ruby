@@ -5125,7 +5125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+        # 本接口（DownloadCustomerGatewayConfiguration）用于下载VPN通道配置。
 
         # @param request: Request instance for DownloadCustomerGatewayConfiguration.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DownloadCustomerGatewayConfigurationRequest`
