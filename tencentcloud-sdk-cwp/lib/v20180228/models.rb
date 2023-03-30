@@ -13682,6 +13682,84 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskDnsEventList请求参数结构体
+      class DescribeRiskDnsEventListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li>IpOrName - String - 是否必填：否 - 主机Ip或别名筛选</li>
+        # <li>HostId - String - 是否必填：否 - 主机Id</li>
+        # <li>AgentId - String - 是否必填：否 - 客户端Id</li>
+        # <li>PolicyType - String - 是否必填：否 - 策略类型,0:系统策略1:用户自定义策略</li>
+        # <li>Domain - String - 是否必填：否 - 域名(先对域名做urlencode,再base64)</li>
+        # <li>HandleStatus - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任</li>
+        # <li>BeginTime - String - 是否必填：否 - 最近访问开始时间</li>
+        # <li>EndTime - String - 是否必填：否 - 最近访问结束时间</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：根据请求次数排序：[asc:升序|desc:降序]
+        # @type Order: String
+        # @param By: 排序字段：[AccessCount:请求次数|LastTime:最近请求时间]
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeRiskDnsEventList返回参数结构体
+      class DescribeRiskDnsEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 恶意请求事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              riskdnsevent_tmp = RiskDnsEvent.new
+              riskdnsevent_tmp.deserialize(i)
+              @List << riskdnsevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskDnsList请求参数结构体
       class DescribeRiskDnsListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -21097,6 +21175,122 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
+        end
+      end
+
+      # 恶意请求事件
+      class RiskDnsEvent < TencentCloud::Common::AbstractModel
+        # @param Id: 事件Id
+        # @type Id: Integer
+        # @param PolicyId: 策略ID
+        # @type PolicyId: Integer
+        # @param PolicyType: 命中策略类型[-1:未知|0系统|1:用户]
+        # @type PolicyType: Integer
+        # @param PolicyName: 命中策略名称
+        # @type PolicyName: String
+        # @param ProtectLevel: 保护级别[0:基础版|1:专业版|2:旗舰版]
+        # @type ProtectLevel: Integer
+        # @param HostId: 主机ID
+        # @type HostId: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostIp: 主机IP
+        # @type HostIp: String
+        # @param WanIp: 外网IP
+        # @type WanIp: String
+        # @param AgentId: 客户端ID
+        # @type AgentId: String
+        # @param Domain: 访问域名
+        # @type Domain: String
+        # @param Tags: 标签特性
+        # @type Tags: Array
+        # @param AccessCount: 访问次数
+        # @type AccessCount: Integer
+        # @param ThreatDesc: 威胁描述
+        # @type ThreatDesc: String
+        # @param SuggestSolution: 修复方案
+        # @type SuggestSolution: String
+        # @param ReferenceLink: 参考链接
+        # @type ReferenceLink: String
+        # @param HandleStatus: 处理状态；[0:待处理|2:已加白|3:非信任状态|4:已处理|5:已忽略]
+        # @type HandleStatus: Integer
+        # @param Pid: 进程ID
+        # @type Pid: Integer
+        # @param ProcessName: 进程名
+        # @type ProcessName: String
+        # @param ProcessMd5: 进程MD5
+        # @type ProcessMd5: String
+        # @param CmdLine: 命令行
+        # @type CmdLine: String
+        # @param FirstTime: 首次访问时间
+        # @type FirstTime: String
+        # @param LastTime: 最近访问时间
+        # @type LastTime: String
+        # @param HostStatus: 主机在线状态[OFFLINE:离线|ONLINE:在线|UNKNOWN:未知]
+        # @type HostStatus: String
+        # @param MachineExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :Id, :PolicyId, :PolicyType, :PolicyName, :ProtectLevel, :HostId, :HostName, :HostIp, :WanIp, :AgentId, :Domain, :Tags, :AccessCount, :ThreatDesc, :SuggestSolution, :ReferenceLink, :HandleStatus, :Pid, :ProcessName, :ProcessMd5, :CmdLine, :FirstTime, :LastTime, :HostStatus, :MachineExtraInfo
+        
+        def initialize(id=nil, policyid=nil, policytype=nil, policyname=nil, protectlevel=nil, hostid=nil, hostname=nil, hostip=nil, wanip=nil, agentid=nil, domain=nil, tags=nil, accesscount=nil, threatdesc=nil, suggestsolution=nil, referencelink=nil, handlestatus=nil, pid=nil, processname=nil, processmd5=nil, cmdline=nil, firsttime=nil, lasttime=nil, hoststatus=nil, machineextrainfo=nil)
+          @Id = id
+          @PolicyId = policyid
+          @PolicyType = policytype
+          @PolicyName = policyname
+          @ProtectLevel = protectlevel
+          @HostId = hostid
+          @HostName = hostname
+          @HostIp = hostip
+          @WanIp = wanip
+          @AgentId = agentid
+          @Domain = domain
+          @Tags = tags
+          @AccessCount = accesscount
+          @ThreatDesc = threatdesc
+          @SuggestSolution = suggestsolution
+          @ReferenceLink = referencelink
+          @HandleStatus = handlestatus
+          @Pid = pid
+          @ProcessName = processname
+          @ProcessMd5 = processmd5
+          @CmdLine = cmdline
+          @FirstTime = firsttime
+          @LastTime = lasttime
+          @HostStatus = hoststatus
+          @MachineExtraInfo = machineextrainfo
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PolicyId = params['PolicyId']
+          @PolicyType = params['PolicyType']
+          @PolicyName = params['PolicyName']
+          @ProtectLevel = params['ProtectLevel']
+          @HostId = params['HostId']
+          @HostName = params['HostName']
+          @HostIp = params['HostIp']
+          @WanIp = params['WanIp']
+          @AgentId = params['AgentId']
+          @Domain = params['Domain']
+          @Tags = params['Tags']
+          @AccessCount = params['AccessCount']
+          @ThreatDesc = params['ThreatDesc']
+          @SuggestSolution = params['SuggestSolution']
+          @ReferenceLink = params['ReferenceLink']
+          @HandleStatus = params['HandleStatus']
+          @Pid = params['Pid']
+          @ProcessName = params['ProcessName']
+          @ProcessMd5 = params['ProcessMd5']
+          @CmdLine = params['CmdLine']
+          @FirstTime = params['FirstTime']
+          @LastTime = params['LastTime']
+          @HostStatus = params['HostStatus']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 

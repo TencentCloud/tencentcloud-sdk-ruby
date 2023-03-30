@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
+        # 本接口 (InquirePriceModifyDBInstanceSpec) 用于查询实例配置变更后的价格。
 
         # @param request: Request instance for InquirePriceModifyDBInstanceSpec.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::InquirePriceModifyDBInstanceSpecRequest`

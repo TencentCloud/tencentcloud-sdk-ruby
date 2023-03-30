@@ -92,17 +92,42 @@ module TencentCloud
         # @type NodeId: String
         # @param NodeIp: 节点 ip
         # @type NodeIp: String
+        # @param ZoneId: Zone id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param Zone: Zone
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param GroupId: 分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 分组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :NodeId, :NodeIp
+        attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status
         
-        def initialize(nodeid=nil, nodeip=nil)
+        def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
+          @ZoneId = zoneid
+          @Zone = zone
+          @GroupId = groupid
+          @GroupName = groupname
+          @Status = status
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @NodeIp = params['NodeIp']
+          @ZoneId = params['ZoneId']
+          @Zone = params['Zone']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Status = params['Status']
         end
       end
 

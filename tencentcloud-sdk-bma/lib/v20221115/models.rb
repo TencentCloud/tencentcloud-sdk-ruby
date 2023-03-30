@@ -45,10 +45,12 @@ module TencentCloud
         # @type InsertTime: String
         # @param Services: 服务信息
         # @type Services: :class:`Tencentcloud::Bma.v20221115.models.ServiceData`
+        # @param Uin: 账号id
+        # @type Uin: String
 
-        attr_accessor :CompanyId, :CompanyName, :BrandName, :Phone, :License, :LicenseStatus, :LicenseNote, :Authorization, :AuthorizationStatus, :AuthorizationNote, :Trademarks, :InsertTime, :Services
+        attr_accessor :CompanyId, :CompanyName, :BrandName, :Phone, :License, :LicenseStatus, :LicenseNote, :Authorization, :AuthorizationStatus, :AuthorizationNote, :Trademarks, :InsertTime, :Services, :Uin
         
-        def initialize(companyid=nil, companyname=nil, brandname=nil, phone=nil, license=nil, licensestatus=nil, licensenote=nil, authorization=nil, authorizationstatus=nil, authorizationnote=nil, trademarks=nil, inserttime=nil, services=nil)
+        def initialize(companyid=nil, companyname=nil, brandname=nil, phone=nil, license=nil, licensestatus=nil, licensenote=nil, authorization=nil, authorizationstatus=nil, authorizationnote=nil, trademarks=nil, inserttime=nil, services=nil, uin=nil)
           @CompanyId = companyid
           @CompanyName = companyname
           @BrandName = brandname
@@ -62,6 +64,7 @@ module TencentCloud
           @Trademarks = trademarks
           @InsertTime = inserttime
           @Services = services
+          @Uin = uin
         end
 
         def deserialize(params)
@@ -88,6 +91,7 @@ module TencentCloud
             @Services = ServiceData.new
             @Services.deserialize(params['Services'])
           end
+          @Uin = params['Uin']
         end
       end
 

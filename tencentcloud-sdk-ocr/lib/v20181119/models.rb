@@ -6075,12 +6075,21 @@ module TencentCloud
 
       # 智慧表单上传文件信息
       class SmartFormFileUrl < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 文件url地址
+        # @type FileUrl: String
+        # @param FileOrderNumber: 文件的顺序，顺序从1开始
+        # @type FileOrderNumber: Integer
 
+        attr_accessor :FileUrl, :FileOrderNumber
         
-        def initialize()
+        def initialize(fileurl=nil, fileordernumber=nil)
+          @FileUrl = fileurl
+          @FileOrderNumber = fileordernumber
         end
 
         def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @FileOrderNumber = params['FileOrderNumber']
         end
       end
 
