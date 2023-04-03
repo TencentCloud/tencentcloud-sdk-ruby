@@ -1323,34 +1323,34 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceIds: Array
-        # @param InstanceType: 实例类型，取值范围：0-所有实例,1-正式实例，2-临时实例, 3-只读实例，-1-正式实例+只读+灾备实例
+        # @param InstanceType: 实例类型。取值范围如下：<ul><li>0：所有实例。</li><li>1：正式实例。</li><li>2：临时实例。</li><li>3：只读实例。</li><li>-1：正式实例、只读、灾备实例。</li></ul>
         # @type InstanceType: Integer
-        # @param ClusterType: 集群类型，取值范围：0-副本集实例，1-分片实例，-1-所有实例
+        # @param ClusterType: 集群类型，取值范围如下：<ul><li>0：副本集实例。</li><li>1：分片实例。</li><li>-1：所有实例。</li></ul>
         # @type ClusterType: Integer
-        # @param Status: 实例状态，取值范围：0-待初始化，1-流程执行中，2-实例有效，-2-已隔离（包年包月实例），-3-已隔离（按量计费实例）
+        # @param Status: 实例状态，取值范围如下所示：<ul><li>0：待初始化。</li><li>1：流程执行中。</li><li>2：实例有效。</li><li>-2：已隔离（包年包月实例）。</li><li>-3：已隔离（按量计费实例）。</li></ul>
         # @type Status: Array
-        # @param VpcId: 私有网络的ID，基础网络则不传该参数
+        # @param VpcId: 私有网络的ID，基础网络则不传该参数。
         # @type VpcId: String
-        # @param SubnetId: 私有网络的子网ID，基础网络则不传该参数。入参设置该参数的同时，必须设置相应的VpcId
+        # @param SubnetId: 私有网络的子网ID，基础网络则不传该参数。入参设置该参数的同时，必须设置相应的VpcId。
         # @type SubnetId: String
-        # @param PayMode: 付费类型，取值范围：0-按量计费，1-包年包月，-1-按量计费+包年包月
+        # @param PayMode: 付费类型，取值范围如下：<ul><li>0：查询按量计费实例。</li><li>1：查询包年包月实例。</li><li>-1：查询按量计费与包年包月实例。</li></ul>
         # @type PayMode: Integer
-        # @param Limit: 单次请求返回的数量，最小值为1，最大值为100，默认值为20
+        # @param Limit: 单次请求返回的数量。默认值为20，取值范围为[1,100]。
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认值为0
+        # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
-        # @param OrderBy: 返回结果集排序的字段，目前支持："ProjectId", "InstanceName", "CreateTime"，默认为升序排序
+        # @param OrderBy: 返回结果集排序的字段，目前支持："ProjectId"、"InstanceName"、"CreateTime"，默认为升序排序。
         # @type OrderBy: String
-        # @param OrderByType: 返回结果集排序方式，目前支持："ASC"或者"DESC"
+        # @param OrderByType: 返回结果集排序方式，目前支持："ASC"或者"DESC"。
         # @type OrderByType: String
-        # @param ProjectIds: 项目 ID
+        # @param ProjectIds: 项目 ID。
         # @type ProjectIds: Array
-        # @param SearchKey: 搜索关键词，支持实例ID、实例名称、完整IP
+        # @param SearchKey: 搜索关键词，支持实例ID、实例名称、完整IP。
         # @type SearchKey: String
-        # @param Tags: Tag信息
-        # @type Tags: :class:`Tencentcloud::Mongodb.v20190725.models.TagInfo`
+        # @param Tags: Tag信息。
+        # @type Tags: Array
 
         attr_accessor :InstanceIds, :InstanceType, :ClusterType, :Status, :VpcId, :SubnetId, :PayMode, :Limit, :Offset, :OrderBy, :OrderByType, :ProjectIds, :SearchKey, :Tags
         
@@ -1386,17 +1386,21 @@ module TencentCloud
           @ProjectIds = params['ProjectIds']
           @SearchKey = params['SearchKey']
           unless params['Tags'].nil?
-            @Tags = TagInfo.new
-            @Tags.deserialize(params['Tags'])
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
           end
         end
       end
 
       # DescribeDBInstances返回参数结构体
       class DescribeDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的实例总数
+        # @param TotalCount: 符合查询条件的实例总数。
         # @type TotalCount: Integer
-        # @param InstanceDetails: 实例详细信息列表
+        # @param InstanceDetails: 实例详细信息列表。
         # @type InstanceDetails: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

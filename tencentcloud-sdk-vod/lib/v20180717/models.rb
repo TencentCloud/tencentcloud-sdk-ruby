@@ -19264,6 +19264,8 @@ module TencentCloud
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 结束偏移时间，单位：秒，不填表示截取到视频末尾。
         # @type EndTimeOffset: Float
+        # @param Definition: 音画质重生模版号。
+        # @type Definition: Integer
         # @param RepairInfo: 画质修复控制参数。
         # @type RepairInfo: :class:`Tencentcloud::Vod.v20180717.models.RepairInfo`
         # @param VideoFrameInterpolationInfo: 智能插帧控制参数。
@@ -19291,12 +19293,13 @@ module TencentCloud
         # @param TargetInfo: 音画质重生输出目标参数。
         # @type TargetInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetInfo`
 
-        attr_accessor :FileId, :StartTimeOffset, :EndTimeOffset, :RepairInfo, :VideoFrameInterpolationInfo, :SuperResolutionInfo, :HDRInfo, :VideoDenoiseInfo, :AudioDenoiseInfo, :ColorInfo, :SharpInfo, :FaceInfo, :LowLightInfo, :ScratchRepairInfo, :ArtifactRepairInfo, :TargetInfo
+        attr_accessor :FileId, :StartTimeOffset, :EndTimeOffset, :Definition, :RepairInfo, :VideoFrameInterpolationInfo, :SuperResolutionInfo, :HDRInfo, :VideoDenoiseInfo, :AudioDenoiseInfo, :ColorInfo, :SharpInfo, :FaceInfo, :LowLightInfo, :ScratchRepairInfo, :ArtifactRepairInfo, :TargetInfo
         
-        def initialize(fileid=nil, starttimeoffset=nil, endtimeoffset=nil, repairinfo=nil, videoframeinterpolationinfo=nil, superresolutioninfo=nil, hdrinfo=nil, videodenoiseinfo=nil, audiodenoiseinfo=nil, colorinfo=nil, sharpinfo=nil, faceinfo=nil, lowlightinfo=nil, scratchrepairinfo=nil, artifactrepairinfo=nil, targetinfo=nil)
+        def initialize(fileid=nil, starttimeoffset=nil, endtimeoffset=nil, definition=nil, repairinfo=nil, videoframeinterpolationinfo=nil, superresolutioninfo=nil, hdrinfo=nil, videodenoiseinfo=nil, audiodenoiseinfo=nil, colorinfo=nil, sharpinfo=nil, faceinfo=nil, lowlightinfo=nil, scratchrepairinfo=nil, artifactrepairinfo=nil, targetinfo=nil)
           @FileId = fileid
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
+          @Definition = definition
           @RepairInfo = repairinfo
           @VideoFrameInterpolationInfo = videoframeinterpolationinfo
           @SuperResolutionInfo = superresolutioninfo
@@ -19316,6 +19319,7 @@ module TencentCloud
           @FileId = params['FileId']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+          @Definition = params['Definition']
           unless params['RepairInfo'].nil?
             @RepairInfo = RepairInfo.new
             @RepairInfo.deserialize(params['RepairInfo'])

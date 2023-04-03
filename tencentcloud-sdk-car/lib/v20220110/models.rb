@@ -147,6 +147,70 @@ module TencentCloud
         end
       end
 
+      # StartPublishStream请求参数结构体
+      class StartPublishStreamRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（UserId将作为StreamId进行推流，比如绑定推流域名为abc.livepush.myqcloud.com，那么推流地址为rtmp://abc.livepush.myqcloud.com/live/UserId?txSecret=xxx&txTime=xxx）
+        # @type UserId: String
+
+        attr_accessor :UserId
+        
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+        end
+      end
+
+      # StartPublishStream返回参数结构体
+      class StartPublishStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopPublishStream请求参数结构体
+      class StopPublishStreamRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
+        # @type UserId: String
+
+        attr_accessor :UserId
+        
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+        end
+      end
+
+      # StopPublishStream返回参数结构体
+      class StopPublishStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

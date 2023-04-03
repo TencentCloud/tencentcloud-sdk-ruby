@@ -150,10 +150,12 @@ module TencentCloud
         # @type FormFields: Array
         # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批
         # @type NeedSignReview: Boolean
+        # @param UserData: 用户流程自定义数据参数
+        # @type UserData: String
 
-        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview
+        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData
         
-        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil)
+        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil)
           @FlowName = flowname
           @FlowType = flowtype
           @FlowDescription = flowdescription
@@ -162,6 +164,7 @@ module TencentCloud
           @IntelligentStatus = intelligentstatus
           @FormFields = formfields
           @NeedSignReview = needsignreview
+          @UserData = userdata
         end
 
         def deserialize(params)
@@ -180,6 +183,7 @@ module TencentCloud
             end
           end
           @NeedSignReview = params['NeedSignReview']
+          @UserData = params['UserData']
         end
       end
 

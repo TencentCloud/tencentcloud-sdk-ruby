@@ -4833,12 +4833,16 @@ module TencentCloud
         # @type IssuedDate: String
         # @param Photo: 人像截图
         # @type Photo: String
+        # @param Provinsi: 省份，Scene为V2时支持识别
+        # @type Provinsi: String
+        # @param Kota: 城市，Scene为V2时支持识别
+        # @type Kota: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :RequestId
+        attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :Provinsi, :Kota, :RequestId
         
-        def initialize(nik=nil, nama=nil, tempattgllahir=nil, jeniskelamin=nil, goldarah=nil, alamat=nil, rtrw=nil, keldesa=nil, kecamatan=nil, agama=nil, statusperkawinan=nil, perkerjaan=nil, kewarganegaraan=nil, berlakuhingga=nil, issueddate=nil, photo=nil, requestid=nil)
+        def initialize(nik=nil, nama=nil, tempattgllahir=nil, jeniskelamin=nil, goldarah=nil, alamat=nil, rtrw=nil, keldesa=nil, kecamatan=nil, agama=nil, statusperkawinan=nil, perkerjaan=nil, kewarganegaraan=nil, berlakuhingga=nil, issueddate=nil, photo=nil, provinsi=nil, kota=nil, requestid=nil)
           @NIK = nik
           @Nama = nama
           @TempatTglLahir = tempattgllahir
@@ -4855,6 +4859,8 @@ module TencentCloud
           @BerlakuHingga = berlakuhingga
           @IssuedDate = issueddate
           @Photo = photo
+          @Provinsi = provinsi
+          @Kota = kota
           @RequestId = requestid
         end
 
@@ -4875,6 +4881,8 @@ module TencentCloud
           @BerlakuHingga = params['BerlakuHingga']
           @IssuedDate = params['IssuedDate']
           @Photo = params['Photo']
+          @Provinsi = params['Provinsi']
+          @Kota = params['Kota']
           @RequestId = params['RequestId']
         end
       end

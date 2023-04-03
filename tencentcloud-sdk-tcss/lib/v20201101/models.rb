@@ -10897,12 +10897,14 @@ module TencentCloud
         # @type ServiceCount: Integer
         # @param IngressCount: Ingress数量
         # @type IngressCount: Integer
+        # @param MasterIps: 主节点的ip列表
+        # @type MasterIps: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :NetworkType, :ApiServerAddress, :NodeCount, :NamespaceCount, :WorkloadCount, :PodCount, :ServiceCount, :IngressCount, :RequestId
+        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :NetworkType, :ApiServerAddress, :NodeCount, :NamespaceCount, :WorkloadCount, :PodCount, :ServiceCount, :IngressCount, :MasterIps, :RequestId
         
-        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, networktype=nil, apiserveraddress=nil, nodecount=nil, namespacecount=nil, workloadcount=nil, podcount=nil, servicecount=nil, ingresscount=nil, requestid=nil)
+        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, networktype=nil, apiserveraddress=nil, nodecount=nil, namespacecount=nil, workloadcount=nil, podcount=nil, servicecount=nil, ingresscount=nil, masterips=nil, requestid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ScanTaskProgress = scantaskprogress
@@ -10927,6 +10929,7 @@ module TencentCloud
           @PodCount = podcount
           @ServiceCount = servicecount
           @IngressCount = ingresscount
+          @MasterIps = masterips
           @RequestId = requestid
         end
 
@@ -10955,6 +10958,7 @@ module TencentCloud
           @PodCount = params['PodCount']
           @ServiceCount = params['ServiceCount']
           @IngressCount = params['IngressCount']
+          @MasterIps = params['MasterIps']
           @RequestId = params['RequestId']
         end
       end
@@ -10992,12 +10996,14 @@ module TencentCloud
         # @type ManualCheckClusterCount: Integer
         # @param FailedClusterCount: 检查失败集群数
         # @type FailedClusterCount: Integer
+        # @param NotImportedClusterCount: 未导入的集群数量
+        # @type NotImportedClusterCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :CheckedClusterCount, :AutoCheckClusterCount, :ManualCheckClusterCount, :FailedClusterCount, :RequestId
+        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :CheckedClusterCount, :AutoCheckClusterCount, :ManualCheckClusterCount, :FailedClusterCount, :NotImportedClusterCount, :RequestId
         
-        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, checkedclustercount=nil, autocheckclustercount=nil, manualcheckclustercount=nil, failedclustercount=nil, requestid=nil)
+        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, checkedclustercount=nil, autocheckclustercount=nil, manualcheckclustercount=nil, failedclustercount=nil, notimportedclustercount=nil, requestid=nil)
           @TotalCount = totalcount
           @RiskClusterCount = riskclustercount
           @UncheckClusterCount = uncheckclustercount
@@ -11008,6 +11014,7 @@ module TencentCloud
           @AutoCheckClusterCount = autocheckclustercount
           @ManualCheckClusterCount = manualcheckclustercount
           @FailedClusterCount = failedclustercount
+          @NotImportedClusterCount = notimportedclustercount
           @RequestId = requestid
         end
 
@@ -11022,6 +11029,7 @@ module TencentCloud
           @AutoCheckClusterCount = params['AutoCheckClusterCount']
           @ManualCheckClusterCount = params['ManualCheckClusterCount']
           @FailedClusterCount = params['FailedClusterCount']
+          @NotImportedClusterCount = params['NotImportedClusterCount']
           @RequestId = params['RequestId']
         end
       end

@@ -2671,7 +2671,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
+        # 本接口（DeleteVpnGatewayRoutes）用于删除VPN网关路由
 
         # @param request: Request instance for DeleteVpnGatewayRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteVpnGatewayRoutesRequest`
@@ -4587,7 +4587,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+        # 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
 
         # @param request: Request instance for DescribeVpnGatewayCcnRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpnGatewayCcnRoutesRequest`
@@ -4611,7 +4611,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询路由型VPN网关的目的路由
+        # 本接口（DescribeVpnGatewayRoutes）用于查询VPN网关路由。
 
         # @param request: Request instance for DescribeVpnGatewayRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpnGatewayRoutesRequest`
@@ -6721,7 +6721,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
+        # 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由。
 
         # @param request: Request instance for ModifyVpnGatewayCcnRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyVpnGatewayCcnRoutesRequest`
@@ -6745,7 +6745,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改VPN路由是否启用
+        # 本接口（ModifyVpnGatewayRoutes）用于修改VPN路由是否启用。
 
         # @param request: Request instance for ModifyVpnGatewayRoutes.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyVpnGatewayRoutesRequest`
@@ -7305,7 +7305,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置VPNGW续费标记
+        # 本接口（SetVpnGatewaysRenewFlag）用于设置VPNGW续费标记。
 
         # @param request: Request instance for SetVpnGatewaysRenewFlag.
         # @type request: :class:`Tencentcloud::vpc::V20170312::SetVpnGatewaysRenewFlagRequest`

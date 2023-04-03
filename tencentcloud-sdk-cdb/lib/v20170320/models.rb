@@ -5130,7 +5130,7 @@ module TencentCloud
 
       # DescribeDefaultParams请求参数结构体
       class DescribeDefaultParamsRequest < TencentCloud::Common::AbstractModel
-        # @param EngineVersion: mysql版本，目前支持 ["5.1", "5.5", "5.6", "5.7"]。
+        # @param EngineVersion: 引擎版本，目前支持 ["5.1", "5.5", "5.6", "5.7", "8.0"]
         # @type EngineVersion: String
         # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String

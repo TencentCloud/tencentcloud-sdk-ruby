@@ -10257,10 +10257,13 @@ module TencentCloud
         # @param AgentTotal: agent数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentTotal: Integer
+        # @param LifeDays: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeDays: Integer
 
-        attr_accessor :AgentId, :AgentName, :Status, :StatusDesc, :AgentType, :Source, :VpcId, :ExecutorGroupId, :ExecutorGroupName, :TaskCount, :AgentGroupId, :CvmAgentStatusList, :AgentTotal
+        attr_accessor :AgentId, :AgentName, :Status, :StatusDesc, :AgentType, :Source, :VpcId, :ExecutorGroupId, :ExecutorGroupName, :TaskCount, :AgentGroupId, :CvmAgentStatusList, :AgentTotal, :LifeDays
         
-        def initialize(agentid=nil, agentname=nil, status=nil, statusdesc=nil, agenttype=nil, source=nil, vpcid=nil, executorgroupid=nil, executorgroupname=nil, taskcount=nil, agentgroupid=nil, cvmagentstatuslist=nil, agenttotal=nil)
+        def initialize(agentid=nil, agentname=nil, status=nil, statusdesc=nil, agenttype=nil, source=nil, vpcid=nil, executorgroupid=nil, executorgroupname=nil, taskcount=nil, agentgroupid=nil, cvmagentstatuslist=nil, agenttotal=nil, lifedays=nil)
           @AgentId = agentid
           @AgentName = agentname
           @Status = status
@@ -10274,6 +10277,7 @@ module TencentCloud
           @AgentGroupId = agentgroupid
           @CvmAgentStatusList = cvmagentstatuslist
           @AgentTotal = agenttotal
+          @LifeDays = lifedays
         end
 
         def deserialize(params)
@@ -10297,6 +10301,7 @@ module TencentCloud
             end
           end
           @AgentTotal = params['AgentTotal']
+          @LifeDays = params['LifeDays']
         end
       end
 

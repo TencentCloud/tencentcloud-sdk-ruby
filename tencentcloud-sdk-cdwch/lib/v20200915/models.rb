@@ -717,15 +717,19 @@ module TencentCloud
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
         # @type InstanceId: String
+        # @param IsOpenApi: 是否是open api查询
+        # @type IsOpenApi: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IsOpenApi
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, isopenapi=nil)
           @InstanceId = instanceid
+          @IsOpenApi = isopenapi
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IsOpenApi = params['IsOpenApi']
         end
       end
 
@@ -785,6 +789,67 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceShardsList = params['InstanceShardsList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceState请求参数结构体
+      class DescribeInstanceStateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例名称
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceState返回参数结构体
+      class DescribeInstanceStateResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceState: 集群状态，例如：Serving
+        # @type InstanceState: String
+        # @param FlowCreateTime: 集群操作创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowCreateTime: String
+        # @param FlowName: 集群操作名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowProgress: 集群操作进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowProgress: Float
+        # @param InstanceStateDesc: 集群状态描述，例如：运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateDesc: String
+        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :RequestId
+        
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, requestid=nil)
+          @InstanceState = instancestate
+          @FlowCreateTime = flowcreatetime
+          @FlowName = flowname
+          @FlowProgress = flowprogress
+          @InstanceStateDesc = instancestatedesc
+          @FlowMsg = flowmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceState = params['InstanceState']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
+          @InstanceStateDesc = params['InstanceStateDesc']
+          @FlowMsg = params['FlowMsg']
           @RequestId = params['RequestId']
         end
       end

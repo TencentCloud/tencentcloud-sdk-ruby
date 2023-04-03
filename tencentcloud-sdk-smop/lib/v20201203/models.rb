@@ -27,7 +27,7 @@ module TencentCloud
         # @type OrderId: String
         # @param Code: 任务事件Code
         # @type Code: String
-        # @param Async: 同步异步方式
+        # @param Async: 同步异步方式：0为同步、1位异步
         # @type Async: Integer
         # @param ProductId: 产品ID
         # @type ProductId: Integer
@@ -123,7 +123,7 @@ module TencentCloud
         # @param TaskType: 任务类型后台代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
-        # @param TotalCoin: 当前积分/成长值
+        # @param TotalCoin: 当前积分
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCoin: Integer
         # @param Attach: 用户透传的代码块
@@ -138,10 +138,13 @@ module TencentCloud
         # @param TaskName: 任务名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
+        # @param GrowScore: 当前成长值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrowScore: Integer
 
-        attr_accessor :Code, :Message, :TaskId, :TaskOrderId, :TaskCode, :TaskCoinNumber, :TaskType, :TotalCoin, :Attach, :DoneTimes, :TotalTimes, :TaskName
+        attr_accessor :Code, :Message, :TaskId, :TaskOrderId, :TaskCode, :TaskCoinNumber, :TaskType, :TotalCoin, :Attach, :DoneTimes, :TotalTimes, :TaskName, :GrowScore
         
-        def initialize(code=nil, message=nil, taskid=nil, taskorderid=nil, taskcode=nil, taskcoinnumber=nil, tasktype=nil, totalcoin=nil, attach=nil, donetimes=nil, totaltimes=nil, taskname=nil)
+        def initialize(code=nil, message=nil, taskid=nil, taskorderid=nil, taskcode=nil, taskcoinnumber=nil, tasktype=nil, totalcoin=nil, attach=nil, donetimes=nil, totaltimes=nil, taskname=nil, growscore=nil)
           @Code = code
           @Message = message
           @TaskId = taskid
@@ -154,6 +157,7 @@ module TencentCloud
           @DoneTimes = donetimes
           @TotalTimes = totaltimes
           @TaskName = taskname
+          @GrowScore = growscore
         end
 
         def deserialize(params)
@@ -169,6 +173,7 @@ module TencentCloud
           @DoneTimes = params['DoneTimes']
           @TotalTimes = params['TotalTimes']
           @TaskName = params['TaskName']
+          @GrowScore = params['GrowScore']
         end
       end
 

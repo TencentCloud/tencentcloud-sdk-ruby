@@ -2504,6 +2504,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询高危命令事件详情(新)
+
+        # @param request: Request instance for DescribeBashEventsInfoNew.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBashEventsInfoNewRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBashEventsInfoNewResponse`
+        def DescribeBashEventsInfoNew(request)
+          body = send_request('DescribeBashEventsInfoNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBashEventsInfoNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取高危命令列表(新)
 
         # @param request: Request instance for DescribeBashEventsNew.

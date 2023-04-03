@@ -3729,10 +3729,12 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param FlowApproverInfos: 合同(流程)的签署人数组
         # @type FlowApproverInfos: Array
+        # @param CcInfos: 合同(流程)的关注方信息列表
+        # @type CcInfos: Array
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos
         
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil)
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -3741,6 +3743,7 @@ module TencentCloud
           @FlowDescription = flowdescription
           @CreatedOn = createdon
           @FlowApproverInfos = flowapproverinfos
+          @CcInfos = ccinfos
         end
 
         def deserialize(params)
@@ -3757,6 +3760,14 @@ module TencentCloud
               flowapproverdetail_tmp = FlowApproverDetail.new
               flowapproverdetail_tmp.deserialize(i)
               @FlowApproverInfos << flowapproverdetail_tmp
+            end
+          end
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              flowapproverdetail_tmp = FlowApproverDetail.new
+              flowapproverdetail_tmp.deserialize(i)
+              @CcInfos << flowapproverdetail_tmp
             end
           end
         end

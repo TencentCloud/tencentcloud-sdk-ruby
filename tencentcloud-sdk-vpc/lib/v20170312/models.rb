@@ -1425,7 +1425,7 @@ module TencentCloud
       class AuditCrossBorderComplianceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceProvider: 服务商, 可选值：`UNICOM`。
         # @type ServiceProvider: String
-        # @param ComplianceId: 表单唯一`ID`。
+        # @param ComplianceId: 表单唯一`ID`。可通过[DescribeCrossBorderCompliance](https://cloud.tencent.com/document/product/215/47838)接口查询ComplianceId信息
         # @type ComplianceId: Integer
         # @param AuditBehavior: 通过：`APPROVED `，拒绝：`DENY`。
         # @type AuditBehavior: String
@@ -1751,6 +1751,80 @@ module TencentCloud
       end
 
       # 用于描述云联网地域间限速带宽实例的信息。
+      class CcnBandwidth < TencentCloud::Common::AbstractModel
+        # @param CcnId: 带宽所属的云联网ID。
+        # @type CcnId: String
+        # @param CreatedTime: 实例的创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ExpiredTime: 实例的过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param RegionFlowControlId: 带宽实例的唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionFlowControlId: String
+        # @param RenewFlag: 带宽是否自动续费的标记。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+        # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnRegionBandwidthLimit: :class:`Tencentcloud::Vpc.v20170312.models.CcnRegionBandwidthLimitInfo`
+        # @param MarketId: 云市场实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarketId: String
+        # @param UserAccountID: 实例所属用户主账号ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAccountID: String
+        # @param IsCrossBorder: 是否跨境，`true`表示跨境，反之不跨境。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCrossBorder: Boolean
+        # @param IsSecurityLock: `true`表示封禁，地域间流量不通，`false`解禁，地域间流量正常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSecurityLock: Boolean
+        # @param InstanceChargeType: `POSTPAID`表示后付费，`PREPAID`表示预付费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargeType: String
+        # @param UpdateTime: 实例更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId, :UserAccountID, :IsCrossBorder, :IsSecurityLock, :InstanceChargeType, :UpdateTime
+        
+        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil, useraccountid=nil, iscrossborder=nil, issecuritylock=nil, instancechargetype=nil, updatetime=nil)
+          @CcnId = ccnid
+          @CreatedTime = createdtime
+          @ExpiredTime = expiredtime
+          @RegionFlowControlId = regionflowcontrolid
+          @RenewFlag = renewflag
+          @CcnRegionBandwidthLimit = ccnregionbandwidthlimit
+          @MarketId = marketid
+          @UserAccountID = useraccountid
+          @IsCrossBorder = iscrossborder
+          @IsSecurityLock = issecuritylock
+          @InstanceChargeType = instancechargetype
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @CreatedTime = params['CreatedTime']
+          @ExpiredTime = params['ExpiredTime']
+          @RegionFlowControlId = params['RegionFlowControlId']
+          @RenewFlag = params['RenewFlag']
+          unless params['CcnRegionBandwidthLimit'].nil?
+            @CcnRegionBandwidthLimit = CcnRegionBandwidthLimitInfo.new
+            @CcnRegionBandwidthLimit.deserialize(params['CcnRegionBandwidthLimit'])
+          end
+          @MarketId = params['MarketId']
+          @UserAccountID = params['UserAccountID']
+          @IsCrossBorder = params['IsCrossBorder']
+          @IsSecurityLock = params['IsSecurityLock']
+          @InstanceChargeType = params['InstanceChargeType']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 用于描述云联网地域间限速带宽实例的信息。
       class CcnBandwidthInfo < TencentCloud::Common::AbstractModel
         # @param CcnId: 带宽所属的云联网ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1773,10 +1847,13 @@ module TencentCloud
         # @param MarketId: 云市场实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketId: String
+        # @param TagSet: 资源绑定的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId
+        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId, :TagSet
         
-        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil)
+        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil, tagset=nil)
           @CcnId = ccnid
           @CreatedTime = createdtime
           @ExpiredTime = expiredtime
@@ -1784,6 +1861,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @CcnRegionBandwidthLimit = ccnregionbandwidthlimit
           @MarketId = marketid
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -1797,6 +1875,14 @@ module TencentCloud
             @CcnRegionBandwidthLimit.deserialize(params['CcnRegionBandwidthLimit'])
           end
           @MarketId = params['MarketId']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -1902,6 +1988,17 @@ module TencentCloud
           @IsBm = params['IsBm']
           @DstRegion = params['DstRegion']
           @DstIsBm = params['DstIsBm']
+        end
+      end
+
+      # 云联网（CCN）地域出带宽上限。
+      class CcnRegionBandwidthLimitInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -6350,7 +6447,7 @@ module TencentCloud
       class DeleteVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID
         # @type VpnGatewayId: String
-        # @param RouteIds: 路由ID信息列表
+        # @param RouteIds: 路由ID信息列表，可以通过[DescribeVpnGatewayRoutes](https://cloud.tencent.com/document/api/215/57676)接口查询。
         # @type RouteIds: Array
 
         attr_accessor :VpnGatewayId, :RouteIds
@@ -7046,9 +7143,9 @@ module TencentCloud
         # @type Filters: Array
         # @param CcnId: 云联网实例ID
         # @type CcnId: String
-        # @param OrderField: 排序字段。支持：`CcnId` `InstanceType` `InstanceId` `InstanceName` `InstanceRegion` `AttachedTime` `State`。
+        # @param OrderField: 排序字段。支持：`CcnId` `InstanceType` `InstanceId` `InstanceName` `InstanceRegion` `AttachedTime` `State`。默认值：`AttachedTime`
         # @type OrderField: String
-        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。默认值：`ASC`
         # @type OrderDirection: String
 
         attr_accessor :Offset, :Limit, :Filters, :CcnId, :OrderField, :OrderDirection
@@ -7245,9 +7342,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量
         # @type Limit: Integer
-        # @param OrderField: 排序字段。支持：`CcnId` `CcnName` `CreateTime` `State` `QosLevel`
+        # @param OrderField: 排序字段。支持：`CcnId` `CcnName` `CreateTime` `State` `QosLevel`。默认值: `CreateTime`
         # @type OrderField: String
-        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。默认值：`ASC`
         # @type OrderDirection: String
 
         attr_accessor :CcnIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
@@ -7375,27 +7472,63 @@ module TencentCloud
 
       # DescribeCrossBorderCcnRegionBandwidthLimits请求参数结构体
       class DescribeCrossBorderCcnRegionBandwidthLimitsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，目前`value`值个数只支持一个，可支持的字段有：
+        # <li>`source-region` 源地域，值形如：`["ap-guangzhou"]`</li> <li>`destination-region` 目的地域，值形如：`["ap-shanghai"]`</li> <li>`ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`</li> <li>`user-account-id` 用户账号ID，值形如`["12345678"]`</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 单页返回数据量可选值0到100之间的整数，默认20。
+        # @type Limit: Integer
 
+        attr_accessor :Filters, :Offset, :Limit
         
-        def initialize()
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeCrossBorderCcnRegionBandwidthLimits返回参数结构体
       class DescribeCrossBorderCcnRegionBandwidthLimitsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的对象总数。
+        # @type TotalCount: Integer
+        # @param CcnBandwidthSet: 云联网地域间限速带宽实例的信息。
+        # @type CcnBandwidthSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :CcnBandwidthSet, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, ccnbandwidthset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CcnBandwidthSet = ccnbandwidthset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CcnBandwidthSet'].nil?
+            @CcnBandwidthSet = []
+            params['CcnBandwidthSet'].each do |i|
+              ccnbandwidth_tmp = CcnBandwidth.new
+              ccnbandwidth_tmp.deserialize(i)
+              @CcnBandwidthSet << ccnbandwidth_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7630,7 +7763,7 @@ module TencentCloud
         # <li>customer-gateway-name - String - （过滤条件）用户网关名称形如：`test-cgw`。</li>
         # <li>ip-address - String - （过滤条件）公网地址形如：`58.211.1.12`。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -7661,7 +7794,7 @@ module TencentCloud
 
       # DescribeCustomerGateways返回参数结构体
       class DescribeCustomerGatewaysResponse < TencentCloud::Common::AbstractModel
-        # @param CustomerGatewaySet: 对端网关对象列表
+        # @param CustomerGatewaySet: 对端网关对象列表。
         # @type CustomerGatewaySet: Array
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
@@ -11129,11 +11262,11 @@ module TencentCloud
 
       # DescribeVpnGatewayCcnRoutes请求参数结构体
       class DescribeVpnGatewayCcnRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN网关实例ID
+        # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。默认值：0
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量。默认值：20
         # @type Limit: Integer
 
         attr_accessor :VpnGatewayId, :Offset, :Limit
@@ -11184,13 +11317,13 @@ module TencentCloud
 
       # DescribeVpnGatewayRoutes请求参数结构体
       class DescribeVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN网关的ID
+        # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param Filters: 过滤条件,  条件包括(DestinationCidr, InstanceId,InstanceType)
+        # @param Filters: 过滤条件,  条件包括(DestinationCidr, InstanceId,InstanceType)。
         # @type Filters: Array
-        # @param Offset: 偏移量, 默认0
+        # @param Offset: 偏移量, 默认0。
         # @type Offset: Integer
-        # @param Limit: 单页个数, 默认20, 最大值100
+        # @param Limit: 单页个数, 默认20, 最大值100。
         # @type Limit: Integer
 
         attr_accessor :VpnGatewayId, :Filters, :Offset, :Limit
@@ -11219,15 +11352,19 @@ module TencentCloud
 
       # DescribeVpnGatewayRoutes返回参数结构体
       class DescribeVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
-        # @param Routes: VPN网关目的路由
+        # @param Routes: VPN网关目的路由。
         # @type Routes: Array
+        # @param TotalCount: 路由条数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Routes, :RequestId
+        attr_accessor :Routes, :TotalCount, :RequestId
         
-        def initialize(routes=nil, requestid=nil)
+        def initialize(routes=nil, totalcount=nil, requestid=nil)
           @Routes = routes
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -11240,6 +11377,7 @@ module TencentCloud
               @Routes << vpngatewayroute_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -12366,7 +12504,7 @@ module TencentCloud
         # @type VpnGatewayId: String
         # @param VpnConnectionId: VPN通道实例ID。形如：vpnx-f49l6u0z。
         # @type VpnConnectionId: String
-        # @param CustomerGatewayVendor: 对端网关厂商信息对象，可通过DescribeCustomerGatewayVendors获取。
+        # @param CustomerGatewayVendor: 对端网关厂商信息对象，可通过[DescribeCustomerGatewayVendors](https://cloud.tencent.com/document/api/215/17513)获取。
         # @type CustomerGatewayVendor: :class:`Tencentcloud::Vpc.v20170312.models.CustomerGatewayVendor`
         # @param InterfaceName: 通道接入设备物理接口名称。
         # @type InterfaceName: String
@@ -13066,13 +13204,13 @@ module TencentCloud
         # <li>sregion - String - （过滤条件）源地域，形如：ap-guangzhou。</li>
         # <li>dregion - String - （过滤条件）目的地域，形如：ap-shanghai-bm</li>
         # @type Filters: Array
-        # @param SortedBy: 排序条件，目前支持带宽（BandwidthLimit）和过期时间（ExpireTime）
+        # @param SortedBy: 排序条件，目前支持带宽（`BandwidthLimit`）和过期时间（`ExpireTime`），默认按 `ExpireTime` 排序。
         # @type SortedBy: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量。
         # @type Limit: Integer
-        # @param OrderBy: 排序方式，'ASC':升序,'DESC':降序。
+        # @param OrderBy: 排序方式，'ASC':升序,'DESC':降序。默认按'ASC'排序。
         # @type OrderBy: String
 
         attr_accessor :CcnId, :Filters, :SortedBy, :Offset, :Limit, :OrderBy
@@ -13105,7 +13243,7 @@ module TencentCloud
 
       # GetCcnRegionBandwidthLimits返回参数结构体
       class GetCcnRegionBandwidthLimitsResponse < TencentCloud::Common::AbstractModel
-        # @param CcnBandwidthSet: 云联网（CCN）各地域出带宽带宽详情。
+        # @param CcnBandwidthSet: 云联网（CCN）各地域出带宽详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnBandwidthSet: Array
         # @param TotalCount: 符合条件的对象数。
@@ -13542,7 +13680,7 @@ module TencentCloud
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36。
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费， NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。默认：NOTIFY_AND_MANUAL_RENEW
+        # @param RenewFlag: 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费， NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。默认：NOTIFY_AND_AUTO_RENEW
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
@@ -14506,7 +14644,7 @@ module TencentCloud
       class ModifyCcnRegionBandwidthLimitsTypeRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网实例ID。
         # @type CcnId: String
-        # @param BandwidthLimitType: 云联网限速类型，INTER_REGION_LIMIT：地域间限速，OUTER_REGION_LIMIT：地域出口限速。
+        # @param BandwidthLimitType: 云联网限速类型，INTER_REGION_LIMIT：地域间限速，OUTER_REGION_LIMIT：地域出口限速。默认值：OUTER_REGION_LIMIT。
         # @type BandwidthLimitType: String
 
         attr_accessor :CcnId, :BandwidthLimitType
@@ -16097,9 +16235,9 @@ module TencentCloud
 
       # ModifyVpnGatewayCcnRoutes请求参数结构体
       class ModifyVpnGatewayCcnRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN网关实例ID
+        # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param Routes: 云联网路由（IDC网段）列表
+        # @param Routes: 云联网路由（IDC网段）列表。
         # @type Routes: Array
 
         attr_accessor :VpnGatewayId, :Routes
@@ -16140,9 +16278,9 @@ module TencentCloud
 
       # ModifyVpnGatewayRoutes请求参数结构体
       class ModifyVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: Vpn网关id
+        # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param Routes: 路由修改参数
+        # @param Routes: 路由修改参数。
         # @type Routes: Array
 
         attr_accessor :VpnGatewayId, :Routes
@@ -18817,12 +18955,12 @@ module TencentCloud
 
       # SetVpnGatewaysRenewFlag请求参数结构体
       class SetVpnGatewaysRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayIds: VPNGW字符型ID列表
+        # @param VpnGatewayIds: VPNGW字符型ID列表。可通过[DescribeVpnGateways](https://cloud.tencent.com/document/api/215/17514)接口返回值VpnGatewaySet中的VpnGatewayId获取。
         # @type VpnGatewayIds: Array
-        # @param AutoRenewFlag: 自动续费标记[0, 1, 2]
-        # 0表示默认状态(初始状态)， 1表示自动续费，2表示明确不自动续费
+        # @param AutoRenewFlag: 自动续费标记 [0, 1, 2]
+        # 0表示默认状态(初始状态)， 1表示自动续费，2表示明确不自动续费。
         # @type AutoRenewFlag: Integer
-        # @param Type: VPNGW类型['IPSEC', 'SSL']
+        # @param Type: VPNGW类型['IPSEC', 'SSL']， 默认为IPSEC。
         # @type Type: String
 
         attr_accessor :VpnGatewayIds, :AutoRenewFlag, :Type
@@ -20190,25 +20328,25 @@ module TencentCloud
         end
       end
 
-      # Vpn网关目的路由
+      # VPN网关目的路由
       class VpnGatewayRoute < TencentCloud::Common::AbstractModel
-        # @param DestinationCidrBlock: 目的端IDC网段
+        # @param DestinationCidrBlock: 目的端IDC网段。
         # @type DestinationCidrBlock: String
-        # @param InstanceType: 下一跳类型（关联实例类型）可选值:"VPNCONN"(VPN通道), "CCN"(CCN实例)
+        # @param InstanceType: 下一跳类型（关联实例类型）可选值："VPNCONN"（VPN通道）， "CCN"（CCN实例）。
         # @type InstanceType: String
-        # @param InstanceId: 下一跳实例ID
+        # @param InstanceId: 下一跳实例ID。
         # @type InstanceId: String
-        # @param Priority: 优先级, 可选值: 0, 100
+        # @param Priority: 优先级，可选值：0，100。
         # @type Priority: Integer
-        # @param Status: 启用状态, 可选值: "ENABLE"(启用), "DISABLE"(禁用)
+        # @param Status: 启用状态，可选值："ENABLE"（启用），"DISABLE"  (禁用)。
         # @type Status: String
-        # @param RouteId: 路由条目ID
+        # @param RouteId: 路由条目ID。
         # @type RouteId: String
-        # @param Type: 路由类型, 可选值: "VPC"(VPC路由), "CCN"(云联网传播路由), "Static"(静态路由), "BGP"(BGP路由)
+        # @param Type: 路由类型，可选值："VPC"（VPC路由），"CCN"（云联网传播路由），"Static"（静态路由），"BGP"（BGP路由）。
         # @type Type: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
 
         attr_accessor :DestinationCidrBlock, :InstanceType, :InstanceId, :Priority, :Status, :RouteId, :Type, :CreateTime, :UpdateTime
@@ -20240,9 +20378,9 @@ module TencentCloud
 
       # 修改VPN状态参数
       class VpnGatewayRouteModify < TencentCloud::Common::AbstractModel
-        # @param RouteId: Vpn网关路由ID
+        # @param RouteId: VPN网关路由ID。
         # @type RouteId: String
-        # @param Status: Vpn网关状态, ENABEL 启用, DISABLE禁用
+        # @param Status: VPN网关状态, ENABLE 启用, DISABLE禁用。
         # @type Status: String
 
         attr_accessor :RouteId, :Status
@@ -20260,13 +20398,13 @@ module TencentCloud
 
       # VPN网关云联网路由信息
       class VpngwCcnRoutes < TencentCloud::Common::AbstractModel
-        # @param RouteId: 路由信息ID
+        # @param RouteId: 路由信息ID。
         # @type RouteId: String
-        # @param Status: 路由信息是否启用
+        # @param Status: 路由信息是否启用。
         # ENABLE：启用该路由
         # DISABLE：不启用该路由
         # @type Status: String
-        # @param DestinationCidrBlock: 路由CIDR
+        # @param DestinationCidrBlock: 路由CIDR。
         # @type DestinationCidrBlock: String
 
         attr_accessor :RouteId, :Status, :DestinationCidrBlock

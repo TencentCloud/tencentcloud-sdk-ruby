@@ -1605,7 +1605,7 @@ module TencentCloud
 
       # DescribeDomainList请求参数结构体
       class DescribeDomainListRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
+        # @param Type: 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT，FREE。
         # @type Type: String
         # @param Offset: 记录开始的偏移, 第一条记录为 0, 依次类推。默认值为0。
         # @type Offset: Integer

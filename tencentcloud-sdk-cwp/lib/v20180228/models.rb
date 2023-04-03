@@ -3877,6 +3877,141 @@ module TencentCloud
         end
       end
 
+      # 高危命令数据详情(新)
+      class BashEventsInfoNew < TencentCloud::Common::AbstractModel
+        # @param Id: 数据ID
+        # @type Id: Integer
+        # @param Uuid: 云镜ID
+        # @type Uuid: String
+        # @param Quuid: 主机ID
+        # @type Quuid: String
+        # @param HostIp: 主机内网IP
+        # @type HostIp: String
+        # @param Platform: 平台类型
+        # @type Platform: Integer
+        # @param BashCmd: 执行命令
+        # @type BashCmd: String
+        # @param RuleId: 规则ID,等于0表示已规则已被删除或生效范围已修改
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleLevel: 规则等级：1-高 2-中 3-低
+        # @type RuleLevel: Integer
+        # @param Status: 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3= 已忽略
+        # @type Status: Integer
+        # @param CreateTime: 发生时间
+        # @type CreateTime: String
+        # @param MachineName: 主机名
+        # @type MachineName: String
+        # @param Exe: 进程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exe: String
+        # @param ModifyTime: 处理时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleCategory: Integer
+        # @param RegexBashCmd: 自动生成的正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegexBashCmd: String
+        # @param PsTree: 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PsTree: String
+        # @param SuggestScheme: 建议方案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuggestScheme: String
+        # @param HarmDescribe: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HarmDescribe: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param References: 参考链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type References: Array
+        # @param MachineWanIp: 主机外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineWanIp: String
+        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineStatus: String
+        # @param User: 登录用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Pid: 进程号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: String
+        # @param MachineType: 0:普通 1:专业版 2:旗舰版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineType: Integer
+        # @param DetectBy: 检测来源 0:bash日志 1:实时监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectBy: Integer
+
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :MachineType, :DetectBy
+        
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, machinetype=nil, detectby=nil)
+          @Id = id
+          @Uuid = uuid
+          @Quuid = quuid
+          @HostIp = hostip
+          @Platform = platform
+          @BashCmd = bashcmd
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleLevel = rulelevel
+          @Status = status
+          @CreateTime = createtime
+          @MachineName = machinename
+          @Exe = exe
+          @ModifyTime = modifytime
+          @RuleCategory = rulecategory
+          @RegexBashCmd = regexbashcmd
+          @PsTree = pstree
+          @SuggestScheme = suggestscheme
+          @HarmDescribe = harmdescribe
+          @Tags = tags
+          @References = references
+          @MachineWanIp = machinewanip
+          @MachineStatus = machinestatus
+          @User = user
+          @Pid = pid
+          @MachineType = machinetype
+          @DetectBy = detectby
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @HostIp = params['HostIp']
+          @Platform = params['Platform']
+          @BashCmd = params['BashCmd']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleLevel = params['RuleLevel']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @MachineName = params['MachineName']
+          @Exe = params['Exe']
+          @ModifyTime = params['ModifyTime']
+          @RuleCategory = params['RuleCategory']
+          @RegexBashCmd = params['RegexBashCmd']
+          @PsTree = params['PsTree']
+          @SuggestScheme = params['SuggestScheme']
+          @HarmDescribe = params['HarmDescribe']
+          @Tags = params['Tags']
+          @References = params['References']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineStatus = params['MachineStatus']
+          @User = params['User']
+          @Pid = params['Pid']
+          @MachineType = params['MachineType']
+          @DetectBy = params['DetectBy']
+        end
+      end
+
       # 高危命令规则
       class BashRule < TencentCloud::Common::AbstractModel
         # @param Id: 规则ID
@@ -10084,6 +10219,46 @@ module TencentCloud
               baselineweakpassword_tmp.deserialize(i)
               @List << baselineweakpassword_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBashEventsInfoNew请求参数结构体
+      class DescribeBashEventsInfoNewRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 事件id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeBashEventsInfoNew返回参数结构体
+      class DescribeBashEventsInfoNewResponse < TencentCloud::Common::AbstractModel
+        # @param BashEventsInfo: 事件详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BashEventsInfo: :class:`Tencentcloud::Cwp.v20180228.models.BashEventsInfoNew`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BashEventsInfo, :RequestId
+        
+        def initialize(basheventsinfo=nil, requestid=nil)
+          @BashEventsInfo = basheventsinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BashEventsInfo'].nil?
+            @BashEventsInfo = BashEventsInfoNew.new
+            @BashEventsInfo.deserialize(params['BashEventsInfo'])
           end
           @RequestId = params['RequestId']
         end

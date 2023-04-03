@@ -57,6 +57,58 @@ module TencentCloud
         end
       end
 
+      # 房间问答问题详情
+      class AnswerInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 用户名
+        # @type Name: String
+        # @param Answer: 答案（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        # @type Answer: Integer
+        # @param CostTime: 答题用时
+        # @type CostTime: Integer
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param IsCorrect: 答案是否正确（1正确0错误）
+        # @type IsCorrect: Integer
+
+        attr_accessor :Name, :Answer, :CostTime, :UserId, :IsCorrect
+        
+        def initialize(name=nil, answer=nil, costtime=nil, userid=nil, iscorrect=nil)
+          @Name = name
+          @Answer = answer
+          @CostTime = costtime
+          @UserId = userid
+          @IsCorrect = iscorrect
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Answer = params['Answer']
+          @CostTime = params['CostTime']
+          @UserId = params['UserId']
+          @IsCorrect = params['IsCorrect']
+        end
+      end
+
+      # 每个选项答题人数统计
+      class AnswerStat < TencentCloud::Common::AbstractModel
+        # @param Answer: 选项（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        # @type Answer: Integer
+        # @param Count: 答题人数
+        # @type Count: Integer
+
+        attr_accessor :Answer, :Count
+        
+        def initialize(answer=nil, count=nil)
+          @Answer = answer
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @Count = params['Count']
+        end
+      end
+
       # 应用配置信息
       class AppConfig < TencentCloud::Common::AbstractModel
 
@@ -995,6 +1047,62 @@ module TencentCloud
         end
       end
 
+      # DescribeAnswerList请求参数结构体
+      class DescribeAnswerListRequest < TencentCloud::Common::AbstractModel
+        # @param QuestionId: 问题ID
+        # @type QuestionId: String
+        # @param Page: 1
+        # @type Page: Integer
+        # @param Limit: 100
+        # @type Limit: Integer
+
+        attr_accessor :QuestionId, :Page, :Limit
+        
+        def initialize(questionid=nil, page=nil, limit=nil)
+          @QuestionId = questionid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @QuestionId = params['QuestionId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAnswerList返回参数结构体
+      class DescribeAnswerListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件的房间答案总数
+        # @type Total: Integer
+        # @param AnswerInfo: 房间提问答案列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnswerInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AnswerInfo, :RequestId
+        
+        def initialize(total=nil, answerinfo=nil, requestid=nil)
+          @Total = total
+          @AnswerInfo = answerinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['AnswerInfo'].nil?
+            @AnswerInfo = []
+            params['AnswerInfo'].each do |i|
+              answerinfo_tmp = AnswerInfo.new
+              answerinfo_tmp.deserialize(i)
+              @AnswerInfo << answerinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAppDetail请求参数结构体
       class DescribeAppDetailRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID。低代码互动课堂的SdkAppId。
@@ -1121,16 +1229,20 @@ module TencentCloud
 
       # DescribeDeveloper返回参数结构体
       class DescribeDeveloperResponse < TencentCloud::Common::AbstractModel
+        # @param DeveloperId: 服务商ID
+        # @type DeveloperId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DeveloperId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(developerid=nil, requestid=nil)
+          @DeveloperId = developerid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DeveloperId = params['DeveloperId']
           @RequestId = params['RequestId']
         end
       end
@@ -1473,6 +1585,62 @@ module TencentCloud
         end
       end
 
+      # DescribeQuestionList请求参数结构体
+      class DescribeQuestionListRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增，默认值为1
+        # @type Page: Integer
+        # @param Limit: 分页查询当前页数，从1开始递增，默认值为1
+        # @type Limit: Integer
+
+        attr_accessor :RoomId, :Page, :Limit
+        
+        def initialize(roomid=nil, page=nil, limit=nil)
+          @RoomId = roomid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeQuestionList返回参数结构体
+      class DescribeQuestionListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件的房间问答问题总数
+        # @type Total: Integer
+        # @param QuestionInfo: 房间问答问题列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuestionInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :QuestionInfo, :RequestId
+        
+        def initialize(total=nil, questioninfo=nil, requestid=nil)
+          @Total = total
+          @QuestionInfo = questioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoom请求参数结构体
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
@@ -1714,6 +1882,62 @@ module TencentCloud
               @Users << userinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSupervisors请求参数结构体
+      class DescribeSupervisorsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param Limit: 每页数据量，最大100。 不填默认20.
+        # @type Limit: Integer
+        # @param Page: 分页查询当前页数，从1开始递增，不填默认为1。
+        # @type Page: Integer
+
+        attr_accessor :SdkAppId, :Limit, :Page
+        
+        def initialize(sdkappid=nil, limit=nil, page=nil)
+          @SdkAppId = sdkappid
+          @Limit = limit
+          @Page = page
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Limit = params['Limit']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeSupervisors返回参数结构体
+      class DescribeSupervisorsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 数据总量
+        # @type Total: Integer
+        # @param Page: 分页查询当前页数
+        # @type Page: Integer
+        # @param Limit: 当前页数据量
+        # @type Limit: Integer
+        # @param UserIds: 巡课列表
+        # @type UserIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Page, :Limit, :UserIds, :RequestId
+        
+        def initialize(total=nil, page=nil, limit=nil, userids=nil, requestid=nil)
+          @Total = total
+          @Page = page
+          @Limit = limit
+          @UserIds = userids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @UserIds = params['UserIds']
           @RequestId = params['RequestId']
         end
       end
@@ -2595,6 +2819,46 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 房间问答答案详情
+      class QuestionInfo < TencentCloud::Common::AbstractModel
+        # @param QuestionId: 问题ID
+        # @type QuestionId: String
+        # @param QuestionContent: 问题内容
+        # @type QuestionContent: String
+        # @param Duration: 倒计时答题设置的秒数（0 表示不计时）
+        # @type Duration: Integer
+        # @param CorrectAnswer: 正确答案（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        # @type CorrectAnswer: Integer
+        # @param AnswerStats: 每个选项答题人数统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnswerStats: Array
+
+        attr_accessor :QuestionId, :QuestionContent, :Duration, :CorrectAnswer, :AnswerStats
+        
+        def initialize(questionid=nil, questioncontent=nil, duration=nil, correctanswer=nil, answerstats=nil)
+          @QuestionId = questionid
+          @QuestionContent = questioncontent
+          @Duration = duration
+          @CorrectAnswer = correctanswer
+          @AnswerStats = answerstats
+        end
+
+        def deserialize(params)
+          @QuestionId = params['QuestionId']
+          @QuestionContent = params['QuestionContent']
+          @Duration = params['Duration']
+          @CorrectAnswer = params['CorrectAnswer']
+          unless params['AnswerStats'].nil?
+            @AnswerStats = []
+            params['AnswerStats'].each do |i|
+              answerstat_tmp = AnswerStat.new
+              answerstat_tmp.deserialize(i)
+              @AnswerStats << answerstat_tmp
+            end
+          end
         end
       end
 
