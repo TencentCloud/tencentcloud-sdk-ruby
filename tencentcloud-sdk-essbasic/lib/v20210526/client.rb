@@ -439,7 +439,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 渠道版绑定员工角色
+        # 绑定员工角色
 
         # @param request: Request instance for ChannelCreateUserRoles.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateUserRolesRequest`
@@ -463,7 +463,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 渠道版删除员工绑定角色
+        # 删除员工绑定角色
 
         # @param request: Request instance for ChannelDeleteRoleUsers.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDeleteRoleUsersRequest`
@@ -560,7 +560,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 渠道办查询用户角色
+        # 查询用户角色
 
         # @param request: Request instance for ChannelDescribeRoles.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeRolesRequest`

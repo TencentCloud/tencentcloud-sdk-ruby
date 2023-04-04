@@ -1572,6 +1572,85 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupFiles请求参数结构体
+      class DescribeBackupFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 按实例ID查询
+        # @type InstanceId: String
+        # @param ShardId: 按分片ID查询
+        # @type ShardId: String
+        # @param BackupType: 备份类型，Data:数据备份，Binlog:Binlog备份，Errlog:错误日志，Slowlog:慢日志
+        # @type BackupType: String
+        # @param StartTime: 按开始时间查询
+        # @type StartTime: String
+        # @param EndTime: 按结束时间查询
+        # @type EndTime: String
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param OrderBy: 排序参数，可选值：Time,Size
+        # @type OrderBy: String
+        # @param OrderType: 排序参数，可选值：DESC,ASC
+        # @type OrderType: String
+
+        attr_accessor :InstanceId, :ShardId, :BackupType, :StartTime, :EndTime, :Limit, :Offset, :OrderBy, :OrderType
+        
+        def initialize(instanceid=nil, shardid=nil, backuptype=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, orderby=nil, ordertype=nil)
+          @InstanceId = instanceid
+          @ShardId = shardid
+          @BackupType = backuptype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ShardId = params['ShardId']
+          @BackupType = params['BackupType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # DescribeBackupFiles返回参数结构体
+      class DescribeBackupFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Files: 备份文件列表
+        # @type Files: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Files, :TotalCount, :RequestId
+        
+        def initialize(files=nil, totalcount=nil, requestid=nil)
+          @Files = files
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              instancebackupfileitem_tmp = InstanceBackupFileItem.new
+              instancebackupfileitem_tmp.deserialize(i)
+              @Files << instancebackupfileitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBLogFiles请求参数结构体
       class DescribeDBLogFilesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -3582,6 +3661,62 @@ module TencentCloud
           @FlowIds = params['FlowIds']
           @InstanceIds = params['InstanceIds']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例备份文件信息
+      class InstanceBackupFileItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: Integer
+        # @param ShardId: 分片ID
+        # @type ShardId: String
+        # @param FilePath: 文件路径
+        # @type FilePath: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileSize: 文件大小
+        # @type FileSize: Integer
+        # @param BackupType: 备份类型，Data:数据备份，Binlog:Binlog备份，Errlog:错误日志，Slowlog:慢日志
+        # @type BackupType: String
+        # @param ManualBackup: 手动备份，0:否，1:是
+        # @type ManualBackup: Integer
+        # @param StartTime: 备份开始时间
+        # @type StartTime: String
+        # @param EndTime: 备份结束时间
+        # @type EndTime: String
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceStatus, :ShardId, :FilePath, :FileName, :FileSize, :BackupType, :ManualBackup, :StartTime, :EndTime
+        
+        def initialize(instanceid=nil, instancename=nil, instancestatus=nil, shardid=nil, filepath=nil, filename=nil, filesize=nil, backuptype=nil, manualbackup=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceStatus = instancestatus
+          @ShardId = shardid
+          @FilePath = filepath
+          @FileName = filename
+          @FileSize = filesize
+          @BackupType = backuptype
+          @ManualBackup = manualbackup
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceStatus = params['InstanceStatus']
+          @ShardId = params['ShardId']
+          @FilePath = params['FilePath']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @BackupType = params['BackupType']
+          @ManualBackup = params['ManualBackup']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

@@ -678,6 +678,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据过滤条件查询VIP信息
+
+        # @param request: Request instance for DescribeVipInfo.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeVipInfoRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeVipInfoResponse`
+        def DescribeVipInfo(request)
+          body = send_request('DescribeVipInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVipInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 返回ip惩罚规则详细信息
 
         # @param request: Request instance for DescribeWafAutoDenyRules.

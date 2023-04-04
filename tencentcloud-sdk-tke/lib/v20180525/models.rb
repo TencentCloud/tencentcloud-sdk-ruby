@@ -14728,6 +14728,9 @@ module TencentCloud
 
       # ServiceAccount认证相关配置
       class ServiceAccountAuthenticationOptions < TencentCloud::Common::AbstractModel
+        # @param UseTKEDefault: 使用TKE默认issuer和jwksuri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseTKEDefault: Boolean
         # @param Issuer: service-account-issuer
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Issuer: String
@@ -14738,15 +14741,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoCreateDiscoveryAnonymousAuth: Boolean
 
-        attr_accessor :Issuer, :JWKSURI, :AutoCreateDiscoveryAnonymousAuth
+        attr_accessor :UseTKEDefault, :Issuer, :JWKSURI, :AutoCreateDiscoveryAnonymousAuth
         
-        def initialize(issuer=nil, jwksuri=nil, autocreatediscoveryanonymousauth=nil)
+        def initialize(usetkedefault=nil, issuer=nil, jwksuri=nil, autocreatediscoveryanonymousauth=nil)
+          @UseTKEDefault = usetkedefault
           @Issuer = issuer
           @JWKSURI = jwksuri
           @AutoCreateDiscoveryAnonymousAuth = autocreatediscoveryanonymousauth
         end
 
         def deserialize(params)
+          @UseTKEDefault = params['UseTKEDefault']
           @Issuer = params['Issuer']
           @JWKSURI = params['JWKSURI']
           @AutoCreateDiscoveryAnonymousAuth = params['AutoCreateDiscoveryAnonymousAuth']

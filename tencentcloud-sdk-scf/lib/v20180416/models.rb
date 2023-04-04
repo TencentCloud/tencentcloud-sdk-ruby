@@ -4394,6 +4394,62 @@ module TencentCloud
         end
       end
 
+      # UpdateTriggerStatus请求参数结构体
+      class UpdateTriggerStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 触发器的初始是能状态OPEN表示开启 CLOSE表示关闭
+        # @type Enable: String
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param TriggerName: 触发器名称
+        # @type TriggerName: String
+        # @param Type: 触发器类型
+        # @type Type: String
+        # @param Qualifier: 函数的版本，默认为 $LATEST，建议填写 [$DEFAULT](https://cloud.tencent.com/document/product/583/36149#.E9.BB.98.E8.AE.A4.E5.88.AB.E5.90.8D)方便后续进行版本的灰度发布。
+        # @type Qualifier: String
+        # @param Namespace: 函数的命名空间
+        # @type Namespace: String
+        # @param TriggerDesc: 如果更新的触发器类型为 COS 触发器，该字段为必填值，存放 JSON 格式的数据 {"event":"cos:ObjectCreated:*"}，数据内容和 SetTrigger 接口中该字段的格式相同；如果更新的触发器类型为定时触发器或 CMQ 触发器，可以不指定该字段
+        # @type TriggerDesc: String
+
+        attr_accessor :Enable, :FunctionName, :TriggerName, :Type, :Qualifier, :Namespace, :TriggerDesc
+        
+        def initialize(enable=nil, functionname=nil, triggername=nil, type=nil, qualifier=nil, namespace=nil, triggerdesc=nil)
+          @Enable = enable
+          @FunctionName = functionname
+          @TriggerName = triggername
+          @Type = type
+          @Qualifier = qualifier
+          @Namespace = namespace
+          @TriggerDesc = triggerdesc
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @FunctionName = params['FunctionName']
+          @TriggerName = params['TriggerName']
+          @Type = params['Type']
+          @Qualifier = params['Qualifier']
+          @Namespace = params['Namespace']
+          @TriggerDesc = params['TriggerDesc']
+        end
+      end
+
+      # UpdateTriggerStatus返回参数结构体
+      class UpdateTriggerStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 已使用的信息
       class UsageInfo < TencentCloud::Common::AbstractModel
         # @param NamespacesCount: 命名空间个数

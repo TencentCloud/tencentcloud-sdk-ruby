@@ -8680,19 +8680,27 @@ module TencentCloud
         # @type Key: String
         # @param Value: 过滤值，in过滤方式用逗号分割多个值
         # @type Value: String
+        # @param Name: 过滤条件名称
+        # @type Name: String
+        # @param Values: 过滤条件取值范围
+        # @type Values: Array
 
-        attr_accessor :Type, :Key, :Value
+        attr_accessor :Type, :Key, :Value, :Name, :Values
         
-        def initialize(type=nil, key=nil, value=nil)
+        def initialize(type=nil, key=nil, value=nil, name=nil, values=nil)
           @Type = type
           @Key = key
           @Value = value
+          @Name = name
+          @Values = values
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Key = params['Key']
           @Value = params['Value']
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -11630,10 +11638,16 @@ module TencentCloud
         # @type BoundTotal: Integer
         # @param BoundNormal: 绑定集群正常状态总数
         # @type BoundNormal: Integer
+        # @param ResourcePackageStatus: 资源包状态，0-无可用资源包，1-有可用资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackageStatus: Integer
+        # @param ResourcePackageSpecName: 资源包规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackageSpecName: String
 
-        attr_accessor :InstanceId, :InstanceName, :VpcId, :SubnetId, :InstanceStatus, :ChargeStatus, :EnableGrafana, :GrafanaURL, :InstanceChargeType, :SpecName, :DataRetentionTime, :ExpireTime, :AutoRenewFlag, :BoundTotal, :BoundNormal
+        attr_accessor :InstanceId, :InstanceName, :VpcId, :SubnetId, :InstanceStatus, :ChargeStatus, :EnableGrafana, :GrafanaURL, :InstanceChargeType, :SpecName, :DataRetentionTime, :ExpireTime, :AutoRenewFlag, :BoundTotal, :BoundNormal, :ResourcePackageStatus, :ResourcePackageSpecName
         
-        def initialize(instanceid=nil, instancename=nil, vpcid=nil, subnetid=nil, instancestatus=nil, chargestatus=nil, enablegrafana=nil, grafanaurl=nil, instancechargetype=nil, specname=nil, dataretentiontime=nil, expiretime=nil, autorenewflag=nil, boundtotal=nil, boundnormal=nil)
+        def initialize(instanceid=nil, instancename=nil, vpcid=nil, subnetid=nil, instancestatus=nil, chargestatus=nil, enablegrafana=nil, grafanaurl=nil, instancechargetype=nil, specname=nil, dataretentiontime=nil, expiretime=nil, autorenewflag=nil, boundtotal=nil, boundnormal=nil, resourcepackagestatus=nil, resourcepackagespecname=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VpcId = vpcid
@@ -11649,6 +11663,8 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @BoundTotal = boundtotal
           @BoundNormal = boundnormal
+          @ResourcePackageStatus = resourcepackagestatus
+          @ResourcePackageSpecName = resourcepackagespecname
         end
 
         def deserialize(params)
@@ -11667,6 +11683,8 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @BoundTotal = params['BoundTotal']
           @BoundNormal = params['BoundNormal']
+          @ResourcePackageStatus = params['ResourcePackageStatus']
+          @ResourcePackageSpecName = params['ResourcePackageSpecName']
         end
       end
 

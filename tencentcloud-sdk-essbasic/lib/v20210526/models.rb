@@ -1342,35 +1342,35 @@ module TencentCloud
 
       # ChannelCreateUserRoles请求参数结构体
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作者信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param UserIds: 绑定角色的员工id列表
         # @type UserIds: Array
         # @param RoleIds: 绑定角色的角色id列表
         # @type RoleIds: Array
+        # @param Operator: 操作者信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Operator, :Agent, :UserIds, :RoleIds
+        attr_accessor :Agent, :UserIds, :RoleIds, :Operator
         
-        def initialize(operator=nil, agent=nil, userids=nil, roleids=nil)
-          @Operator = operator
+        def initialize(agent=nil, userids=nil, roleids=nil, operator=nil)
           @Agent = agent
           @UserIds = userids
           @RoleIds = roleids
+          @Operator = operator
         end
 
         def deserialize(params)
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
           @UserIds = params['UserIds']
           @RoleIds = params['RoleIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
         end
       end
 
@@ -1403,34 +1403,34 @@ module TencentCloud
 
       # ChannelDeleteRoleUsers请求参数结构体
       class ChannelDeleteRoleUsersRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Agent: 代理信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param RoleId: 角色Id
         # @type RoleId: String
         # @param UserIds: 用户列表
         # @type UserIds: Array
-        # @param Agent: 代理信息
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Operator, :RoleId, :UserIds, :Agent
+        attr_accessor :Agent, :RoleId, :UserIds, :Operator
         
-        def initialize(operator=nil, roleid=nil, userids=nil, agent=nil)
-          @Operator = operator
+        def initialize(agent=nil, roleid=nil, userids=nil, operator=nil)
+          @Agent = agent
           @RoleId = roleid
           @UserIds = userids
-          @Agent = agent
+          @Operator = operator
         end
 
         def deserialize(params)
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
-          @RoleId = params['RoleId']
-          @UserIds = params['UserIds']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
+          end
+          @RoleId = params['RoleId']
+          @UserIds = params['UserIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
           end
         end
       end
@@ -1678,40 +1678,40 @@ module TencentCloud
 
       # ChannelDescribeRoles请求参数结构体
       class ChannelDescribeRolesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Offset: 查询起始偏移，最大2000
         # @type Offset: Integer
         # @param Limit: 查询数量，最大200
         # @type Limit: String
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Filters: 查询的关键字段:
         # Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
         # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
         # @type Filters: Array
 
-        attr_accessor :Operator, :Agent, :Offset, :Limit, :Filters
+        attr_accessor :Agent, :Offset, :Limit, :Operator, :Filters
         
-        def initialize(operator=nil, agent=nil, offset=nil, limit=nil, filters=nil)
-          @Operator = operator
+        def initialize(agent=nil, offset=nil, limit=nil, operator=nil, filters=nil)
           @Agent = agent
           @Offset = offset
           @Limit = limit
+          @Operator = operator
           @Filters = filters
         end
 
         def deserialize(params)
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|

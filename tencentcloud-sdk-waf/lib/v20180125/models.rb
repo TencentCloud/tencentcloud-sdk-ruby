@@ -2162,6 +2162,49 @@ module TencentCloud
         end
       end
 
+      # DescribeVipInfo请求参数结构体
+      class DescribeVipInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: waf实例id列表
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeVipInfo返回参数结构体
+      class DescribeVipInfoResponse < TencentCloud::Common::AbstractModel
+        # @param VipInfo: VIP信息
+        # @type VipInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VipInfo, :RequestId
+        
+        def initialize(vipinfo=nil, requestid=nil)
+          @VipInfo = vipinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VipInfo'].nil?
+            @VipInfo = []
+            params['VipInfo'].each do |i|
+              vipinfo_tmp = VipInfo.new
+              vipinfo_tmp.deserialize(i)
+              @VipInfo << vipinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWafAutoDenyRules请求参数结构体
       class DescribeWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3928,6 +3971,28 @@ module TencentCloud
           @FailedItems = params['FailedItems']
           @FailedCount = params['FailedCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Vip信息
+      class VipInfo < TencentCloud::Common::AbstractModel
+        # @param Vip: Virtual IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param InstanceId: waf实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :Vip, :InstanceId
+        
+        def initialize(vip=nil, instanceid=nil)
+          @Vip = vip
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @InstanceId = params['InstanceId']
         end
       end
 

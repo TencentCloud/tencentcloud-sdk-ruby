@@ -6074,6 +6074,96 @@ module TencentCloud
         end
       end
 
+      # CreateRebuildMediaTemplate请求参数结构体
+      class CreateRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Container: 输出文件封装格式，可选值：mp4、flv、hls。
+        # @type Container: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Name: 音画质重生模版名称。
+        # @type Name: String
+        # @param Comment: 模版描述。
+        # @type Comment: String
+        # @param RebuildVideoInfo: 音画质重生视频控制控制信息。
+        # @type RebuildVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildVideoInfo`
+        # @param RebuildAudioInfo: 音画质重生音频控制控制信息。
+        # @type RebuildAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildAudioInfo`
+        # @param TargetVideoInfo: 输出目标视频控制信息。
+        # @type TargetVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetVideoStream`
+        # @param TargetAudioInfo: 输出目标音频控制信息。
+        # @type TargetAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetAudioStream`
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # 默认值 0。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # 默认值 0。
+        # @type RemoveAudio: String
+
+        attr_accessor :Container, :SubAppId, :Name, :Comment, :RebuildVideoInfo, :RebuildAudioInfo, :TargetVideoInfo, :TargetAudioInfo, :RemoveVideo, :RemoveAudio
+        
+        def initialize(container=nil, subappid=nil, name=nil, comment=nil, rebuildvideoinfo=nil, rebuildaudioinfo=nil, targetvideoinfo=nil, targetaudioinfo=nil, removevideo=nil, removeaudio=nil)
+          @Container = container
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @RebuildVideoInfo = rebuildvideoinfo
+          @RebuildAudioInfo = rebuildaudioinfo
+          @TargetVideoInfo = targetvideoinfo
+          @TargetAudioInfo = targetaudioinfo
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['RebuildVideoInfo'].nil?
+            @RebuildVideoInfo = RebuildVideoInfo.new
+            @RebuildVideoInfo.deserialize(params['RebuildVideoInfo'])
+          end
+          unless params['RebuildAudioInfo'].nil?
+            @RebuildAudioInfo = RebuildAudioInfo.new
+            @RebuildAudioInfo.deserialize(params['RebuildAudioInfo'])
+          end
+          unless params['TargetVideoInfo'].nil?
+            @TargetVideoInfo = RebuildMediaTargetVideoStream.new
+            @TargetVideoInfo.deserialize(params['TargetVideoInfo'])
+          end
+          unless params['TargetAudioInfo'].nil?
+            @TargetAudioInfo = RebuildMediaTargetAudioStream.new
+            @TargetAudioInfo.deserialize(params['TargetAudioInfo'])
+          end
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+        end
+      end
+
+      # CreateRebuildMediaTemplate返回参数结构体
+      class CreateRebuildMediaTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 音画质重生模版 ID。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+        
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateReviewTemplate请求参数结构体
       class CreateReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Labels: 需要返回的违规标签列表，可选值为：
@@ -7299,6 +7389,42 @@ module TencentCloud
 
       # DeleteProcedureTemplate返回参数结构体
       class DeleteProcedureTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRebuildMediaTemplate请求参数结构体
+      class DeleteRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 音画质重生模版号。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+        
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteRebuildMediaTemplate返回参数结构体
+      class DeleteRebuildMediaTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9469,6 +9595,71 @@ module TencentCloud
               proceduretemplate_tmp = ProcedureTemplate.new
               proceduretemplate_tmp.deserialize(i)
               @ProcedureTemplateSet << proceduretemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRebuildMediaTemplates请求参数结构体
+      class DescribeRebuildMediaTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 音画质重生模版列表。
+        # @type Definitions: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Type: 模板类型过滤条件，可选值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :Definitions, :SubAppId, :Type, :Offset, :Limit
+        
+        def initialize(definitions=nil, subappid=nil, type=nil, offset=nil, limit=nil)
+          @Definitions = definitions
+          @SubAppId = subappid
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @SubAppId = params['SubAppId']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRebuildMediaTemplates返回参数结构体
+      class DescribeRebuildMediaTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param RebuildMediaTemplateSet: 音画质重生模板详情列表。
+        # @type RebuildMediaTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RebuildMediaTemplateSet, :RequestId
+        
+        def initialize(totalcount=nil, rebuildmediatemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RebuildMediaTemplateSet = rebuildmediatemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RebuildMediaTemplateSet'].nil?
+            @RebuildMediaTemplateSet = []
+            params['RebuildMediaTemplateSet'].each do |i|
+              rebuildmediatemplate_tmp = RebuildMediaTemplate.new
+              rebuildmediatemplate_tmp.deserialize(i)
+              @RebuildMediaTemplateSet << rebuildmediatemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16000,6 +16191,94 @@ module TencentCloud
         end
       end
 
+      # ModifyRebuildMediaTemplate请求参数结构体
+      class ModifyRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 音画质重生模版号。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: String
+        # @param Name: 音画质重生模版名称。
+        # @type Name: String
+        # @param Comment: 音画质重生模版描述。
+        # @type Comment: String
+        # @param RebuildVideoInfo: 音画质重生视频控制信息。
+        # @type RebuildVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildVideoInfo`
+        # @param RebuildAudioInfo: 音画质重生音频控制信息。
+        # @type RebuildAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildAudioInfo`
+        # @param TargetVideoInfo: 输出目标视频控制信息。
+        # @type TargetVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetVideoStream`
+        # @param TargetAudioInfo: 输出目标音频控制信息。
+        # @type TargetAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetAudioStream`
+        # @param Container: 输出文件封装格式，可选值：mp4、flv、hls。
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # @type RemoveAudio: Integer
+
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :RebuildVideoInfo, :RebuildAudioInfo, :TargetVideoInfo, :TargetAudioInfo, :Container, :RemoveVideo, :RemoveAudio
+        
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, rebuildvideoinfo=nil, rebuildaudioinfo=nil, targetvideoinfo=nil, targetaudioinfo=nil, container=nil, removevideo=nil, removeaudio=nil)
+          @Definition = definition
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @RebuildVideoInfo = rebuildvideoinfo
+          @RebuildAudioInfo = rebuildaudioinfo
+          @TargetVideoInfo = targetvideoinfo
+          @TargetAudioInfo = targetaudioinfo
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['RebuildVideoInfo'].nil?
+            @RebuildVideoInfo = RebuildVideoInfo.new
+            @RebuildVideoInfo.deserialize(params['RebuildVideoInfo'])
+          end
+          unless params['RebuildAudioInfo'].nil?
+            @RebuildAudioInfo = RebuildAudioInfo.new
+            @RebuildAudioInfo.deserialize(params['RebuildAudioInfo'])
+          end
+          unless params['TargetVideoInfo'].nil?
+            @TargetVideoInfo = RebuildMediaTargetVideoStream.new
+            @TargetVideoInfo.deserialize(params['TargetVideoInfo'])
+          end
+          unless params['TargetAudioInfo'].nil?
+            @TargetAudioInfo = RebuildMediaTargetAudioStream.new
+            @TargetAudioInfo.deserialize(params['TargetAudioInfo'])
+          end
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+        end
+      end
+
+      # ModifyRebuildMediaTemplate返回参数结构体
+      class ModifyRebuildMediaTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyReviewTemplate请求参数结构体
       class ModifyReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 审核模板唯一标识。
@@ -18651,6 +18930,9 @@ module TencentCloud
         # @param MediaUrl: 要拉取的媒体 URL，暂不支持拉取 Dash 格式（可以支持 HLS）。
         # 支持的扩展名详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。请确保媒体 URL 可以访问。
         # @type MediaUrl: String
+        # @param MediaType: 媒体文件类型（扩展名），支持的类型详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。
+        # 如果 MediaType 不填或取值为空字符串，将根据 MediaUrl 自动获取文件类型。
+        # @type MediaType: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
         # @param MediaName: 媒体名称。
@@ -18676,10 +18958,11 @@ module TencentCloud
         # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         # @type SourceContext: String
 
-        attr_accessor :MediaUrl, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SessionContext, :SessionId, :ExtInfo, :SourceContext
+        attr_accessor :MediaUrl, :MediaType, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SessionContext, :SessionId, :ExtInfo, :SourceContext
         
-        def initialize(mediaurl=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
+        def initialize(mediaurl=nil, mediatype=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
           @MediaUrl = mediaurl
+          @MediaType = mediatype
           @SubAppId = subappid
           @MediaName = medianame
           @CoverUrl = coverurl
@@ -18695,6 +18978,7 @@ module TencentCloud
 
         def deserialize(params)
           @MediaUrl = params['MediaUrl']
+          @MediaType = params['MediaType']
           @SubAppId = params['SubAppId']
           @MediaName = params['MediaName']
           @CoverUrl = params['CoverUrl']
@@ -18838,6 +19122,126 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 音画质重生音频控制控制信息。
+      class RebuildAudioInfo < TencentCloud::Common::AbstractModel
+        # @param AudioDenoiseInfo: 音频降噪控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioDenoiseInfo: :class:`Tencentcloud::Vod.v20180717.models.AudioDenoiseInfo`
+
+        attr_accessor :AudioDenoiseInfo
+        
+        def initialize(audiodenoiseinfo=nil)
+          @AudioDenoiseInfo = audiodenoiseinfo
+        end
+
+        def deserialize(params)
+          unless params['AudioDenoiseInfo'].nil?
+            @AudioDenoiseInfo = AudioDenoiseInfo.new
+            @AudioDenoiseInfo.deserialize(params['AudioDenoiseInfo'])
+          end
+        end
+      end
+
+      # RebuildMediaByTemplate请求参数结构体
+      class RebuildMediaByTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+        # @param Definition: 音画质重生模版 ID。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: String
+        # @param StartTimeOffset: 起始偏移时间，单位：秒，不填表示从视频开始截取。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 结束偏移时间，单位：秒，不填表示截取到视频末尾。
+        # @type EndTimeOffset: Float
+        # @param OutputConfig: 音画质重生后的文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :FileId, :Definition, :SubAppId, :StartTimeOffset, :EndTimeOffset, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        
+        def initialize(fileid=nil, definition=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @FileId = fileid
+          @Definition = definition
+          @SubAppId = subappid
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = RebuildMediaOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # RebuildMediaByTemplate返回参数结构体
+      class RebuildMediaByTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 音画质重生的任务 ID，可以通过该 ID 查询音画质重生任务的状态。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 音画质重生结果文件输出。
+      class RebuildMediaOutputConfig < TencentCloud::Common::AbstractModel
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+
+        attr_accessor :MediaName, :ClassId, :ExpireTime
+        
+        def initialize(medianame=nil, classid=nil, expiretime=nil)
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
         end
       end
 
@@ -19409,6 +19813,194 @@ module TencentCloud
           @MediaName = params['MediaName']
           @ClassId = params['ClassId']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 音画质重生模版详情。
+      class RebuildMediaTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 音画质重生模版号。
+        # @type Definition: Integer
+        # @param Type: 模板类型，可选值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param Name: 音画质重生模版名称。
+        # @type Name: String
+        # @param Comment: 音画质重生模版描述。
+        # @type Comment: String
+        # @param RebuildVideoInfo: 音画质重生视频控制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RebuildVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildVideoInfo`
+        # @param RebuildAudioInfo: 音画质重生音频控制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RebuildAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildAudioInfo`
+        # @param TargetVideoInfo: 输出视频控制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetVideoStream`
+        # @param TargetAudioInfo: 输出音频控制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetAudioInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTargetAudioStream`
+        # @param Container: 封装格式。可选值：mp4、hls。默认是 mp4。
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # 默认值 0。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留</li>
+        # <li>1：去除</li>
+        # 默认值 0。
+        # @type RemoveAudio: Integer
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Type, :Name, :Comment, :RebuildVideoInfo, :RebuildAudioInfo, :TargetVideoInfo, :TargetAudioInfo, :Container, :RemoveVideo, :RemoveAudio, :CreateTime, :UpdateTime
+        
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, rebuildvideoinfo=nil, rebuildaudioinfo=nil, targetvideoinfo=nil, targetaudioinfo=nil, container=nil, removevideo=nil, removeaudio=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Type = type
+          @Name = name
+          @Comment = comment
+          @RebuildVideoInfo = rebuildvideoinfo
+          @RebuildAudioInfo = rebuildaudioinfo
+          @TargetVideoInfo = targetvideoinfo
+          @TargetAudioInfo = targetaudioinfo
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['RebuildVideoInfo'].nil?
+            @RebuildVideoInfo = RebuildVideoInfo.new
+            @RebuildVideoInfo.deserialize(params['RebuildVideoInfo'])
+          end
+          unless params['RebuildAudioInfo'].nil?
+            @RebuildAudioInfo = RebuildAudioInfo.new
+            @RebuildAudioInfo.deserialize(params['RebuildAudioInfo'])
+          end
+          unless params['TargetVideoInfo'].nil?
+            @TargetVideoInfo = RebuildMediaTargetVideoStream.new
+            @TargetVideoInfo.deserialize(params['TargetVideoInfo'])
+          end
+          unless params['TargetAudioInfo'].nil?
+            @TargetAudioInfo = RebuildMediaTargetAudioStream.new
+            @TargetAudioInfo.deserialize(params['TargetAudioInfo'])
+          end
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 音画质重生视频控制控制信息。
+      class RebuildVideoInfo < TencentCloud::Common::AbstractModel
+        # @param RepairInfo: 画质修复控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepairInfo: :class:`Tencentcloud::Vod.v20180717.models.RepairInfo`
+        # @param VideoFrameInterpolationInfo: 智能插帧控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoFrameInterpolationInfo: :class:`Tencentcloud::Vod.v20180717.models.VideoFrameInterpolationInfo`
+        # @param SuperResolutionInfo: 画面超分控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperResolutionInfo: :class:`Tencentcloud::Vod.v20180717.models.SuperResolutionInfo`
+        # @param HDRInfo: 高动态范围类型控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HDRInfo: :class:`Tencentcloud::Vod.v20180717.models.HDRInfo`
+        # @param VideoDenoiseInfo: 视频降噪控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoDenoiseInfo: :class:`Tencentcloud::Vod.v20180717.models.VideoDenoiseInfo`
+        # @param ColorInfo: 色彩增强控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorInfo: :class:`Tencentcloud::Vod.v20180717.models.ColorEnhanceInfo`
+        # @param SharpInfo: 细节增强控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharpInfo: :class:`Tencentcloud::Vod.v20180717.models.SharpEnhanceInfo`
+        # @param FaceInfo: 人脸增强控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaceInfo: :class:`Tencentcloud::Vod.v20180717.models.FaceEnhanceInfo`
+        # @param LowLightInfo: 低光照控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLightInfo: :class:`Tencentcloud::Vod.v20180717.models.LowLightEnhanceInfo`
+        # @param ScratchRepairInfo: 去划痕控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScratchRepairInfo: :class:`Tencentcloud::Vod.v20180717.models.ScratchRepairInfo`
+        # @param ArtifactRepairInfo: 去伪影控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArtifactRepairInfo: :class:`Tencentcloud::Vod.v20180717.models.ArtifactRepairInfo`
+
+        attr_accessor :RepairInfo, :VideoFrameInterpolationInfo, :SuperResolutionInfo, :HDRInfo, :VideoDenoiseInfo, :ColorInfo, :SharpInfo, :FaceInfo, :LowLightInfo, :ScratchRepairInfo, :ArtifactRepairInfo
+        
+        def initialize(repairinfo=nil, videoframeinterpolationinfo=nil, superresolutioninfo=nil, hdrinfo=nil, videodenoiseinfo=nil, colorinfo=nil, sharpinfo=nil, faceinfo=nil, lowlightinfo=nil, scratchrepairinfo=nil, artifactrepairinfo=nil)
+          @RepairInfo = repairinfo
+          @VideoFrameInterpolationInfo = videoframeinterpolationinfo
+          @SuperResolutionInfo = superresolutioninfo
+          @HDRInfo = hdrinfo
+          @VideoDenoiseInfo = videodenoiseinfo
+          @ColorInfo = colorinfo
+          @SharpInfo = sharpinfo
+          @FaceInfo = faceinfo
+          @LowLightInfo = lowlightinfo
+          @ScratchRepairInfo = scratchrepairinfo
+          @ArtifactRepairInfo = artifactrepairinfo
+        end
+
+        def deserialize(params)
+          unless params['RepairInfo'].nil?
+            @RepairInfo = RepairInfo.new
+            @RepairInfo.deserialize(params['RepairInfo'])
+          end
+          unless params['VideoFrameInterpolationInfo'].nil?
+            @VideoFrameInterpolationInfo = VideoFrameInterpolationInfo.new
+            @VideoFrameInterpolationInfo.deserialize(params['VideoFrameInterpolationInfo'])
+          end
+          unless params['SuperResolutionInfo'].nil?
+            @SuperResolutionInfo = SuperResolutionInfo.new
+            @SuperResolutionInfo.deserialize(params['SuperResolutionInfo'])
+          end
+          unless params['HDRInfo'].nil?
+            @HDRInfo = HDRInfo.new
+            @HDRInfo.deserialize(params['HDRInfo'])
+          end
+          unless params['VideoDenoiseInfo'].nil?
+            @VideoDenoiseInfo = VideoDenoiseInfo.new
+            @VideoDenoiseInfo.deserialize(params['VideoDenoiseInfo'])
+          end
+          unless params['ColorInfo'].nil?
+            @ColorInfo = ColorEnhanceInfo.new
+            @ColorInfo.deserialize(params['ColorInfo'])
+          end
+          unless params['SharpInfo'].nil?
+            @SharpInfo = SharpEnhanceInfo.new
+            @SharpInfo.deserialize(params['SharpInfo'])
+          end
+          unless params['FaceInfo'].nil?
+            @FaceInfo = FaceEnhanceInfo.new
+            @FaceInfo.deserialize(params['FaceInfo'])
+          end
+          unless params['LowLightInfo'].nil?
+            @LowLightInfo = LowLightEnhanceInfo.new
+            @LowLightInfo.deserialize(params['LowLightInfo'])
+          end
+          unless params['ScratchRepairInfo'].nil?
+            @ScratchRepairInfo = ScratchRepairInfo.new
+            @ScratchRepairInfo.deserialize(params['ScratchRepairInfo'])
+          end
+          unless params['ArtifactRepairInfo'].nil?
+            @ArtifactRepairInfo = ArtifactRepairInfo.new
+            @ArtifactRepairInfo.deserialize(params['ArtifactRepairInfo'])
+          end
         end
       end
 

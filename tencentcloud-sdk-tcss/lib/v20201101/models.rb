@@ -8051,7 +8051,7 @@ module TencentCloud
 
       # DescribeAssetHostDetail返回参数结构体
       class DescribeAssetHostDetailResponse < TencentCloud::Common::AbstractModel
-        # @param UUID: 云镜uuid
+        # @param UUID: 容器安全uuid
         # @type UUID: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
