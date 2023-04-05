@@ -392,6 +392,202 @@ module TencentCloud
         end
       end
 
+      # Bot主动特征识别客户端行为校验。
+      class AlgDetectJS < TencentCloud::Common::AbstractModel
+        # @param Name: 操作名称。
+        # @type Name: String
+        # @param WorkLevel: 工作量证明 (proof_Of-Work)校验强度，默认low，取值有：
+        # <li>low：低；</li>
+        # <li>middle：中；</li>
+        # <li>high：高。</li>
+        # @type WorkLevel: String
+        # @param ExecuteMode: 执行方式，js延迟执行的时间。单位为ms，默认500，取值：0～1000。
+        # @type ExecuteMode: Integer
+        # @param InvalidStatTime: 客户端末启用JS（末完成检测）统计周期。单位为秒，默认10，取值：5～3600。
+        # @type InvalidStatTime: Integer
+        # @param InvalidThreshold: 客户端末启用JS（末完成检测）触发阈值。单位为次，默认300，取值：1～100000000。
+        # @type InvalidThreshold: Integer
+        # @param AlgDetectResults: Bot主动特征识别客户端行为校验结果。
+        # @type AlgDetectResults: Array
+
+        attr_accessor :Name, :WorkLevel, :ExecuteMode, :InvalidStatTime, :InvalidThreshold, :AlgDetectResults
+        
+        def initialize(name=nil, worklevel=nil, executemode=nil, invalidstattime=nil, invalidthreshold=nil, algdetectresults=nil)
+          @Name = name
+          @WorkLevel = worklevel
+          @ExecuteMode = executemode
+          @InvalidStatTime = invalidstattime
+          @InvalidThreshold = invalidthreshold
+          @AlgDetectResults = algdetectresults
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @WorkLevel = params['WorkLevel']
+          @ExecuteMode = params['ExecuteMode']
+          @InvalidStatTime = params['InvalidStatTime']
+          @InvalidThreshold = params['InvalidThreshold']
+          unless params['AlgDetectResults'].nil?
+            @AlgDetectResults = []
+            params['AlgDetectResults'].each do |i|
+              algdetectresult_tmp = AlgDetectResult.new
+              algdetectresult_tmp.deserialize(i)
+              @AlgDetectResults << algdetectresult_tmp
+            end
+          end
+        end
+      end
+
+      # Bot主动特征识别校验结果。
+      class AlgDetectResult < TencentCloud::Common::AbstractModel
+        # @param Result: 校验结果，取值有：
+        # <li>invalid：不合法Cookie；</li>
+        # <li>cookie_empty：末携带Cookie或Cookie己过期；</li>
+        # <li>js_empty：客户端末启用JS（末完成检测）；</li>
+        # <li>low：会话速率和周期特征校验低风险；</li>
+        # <li>middle：会话速率和周期特征校验中风险；</li>
+        # <li>high：会话速率和周期特征校验高风险；</li>
+        # <li>timeout：检测超时时长；</li>
+        # <li>not_browser：不合法浏览器；</li>
+        # <li>is_bot：Bot客户端。</li>
+        # @type Result: String
+        # @param Action: 处罚动作，取值有：
+        # <li>drop：拦截；</li>
+        # <li>monitor：观察；</li>
+        # <li>silence：静默；</li>
+        # <li>shortdelay：（短时间）等待后响应；</li>
+        # <li>longdelay：（长时间）等待后响应。</li>
+        # @type Action: String
+
+        attr_accessor :Result, :Action
+        
+        def initialize(result=nil, action=nil)
+          @Result = result
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Action = params['Action']
+        end
+      end
+
+      # Bot主动特征识别规则。
+      class AlgDetectRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则id。
+        # @type RuleID: Integer
+        # @param RuleName: 规则名。
+        # @type RuleName: String
+        # @param Switch: 规则开关。
+        # @type Switch: String
+        # @param AlgConditions: 自定义规则。
+        # @type AlgConditions: Array
+        # @param AlgDetectSession: Cookie校验和会话行为分析。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgDetectSession: :class:`Tencentcloud::Teo.v20220901.models.AlgDetectSession`
+        # @param AlgDetectJS: 客户端行为校验。
+        # @type AlgDetectJS: Array
+        # @param UpdateTime: 更新时间。仅出参使用。
+        # @type UpdateTime: String
+
+        attr_accessor :RuleID, :RuleName, :Switch, :AlgConditions, :AlgDetectSession, :AlgDetectJS, :UpdateTime
+        
+        def initialize(ruleid=nil, rulename=nil, switch=nil, algconditions=nil, algdetectsession=nil, algdetectjs=nil, updatetime=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @Switch = switch
+          @AlgConditions = algconditions
+          @AlgDetectSession = algdetectsession
+          @AlgDetectJS = algdetectjs
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @Switch = params['Switch']
+          unless params['AlgConditions'].nil?
+            @AlgConditions = []
+            params['AlgConditions'].each do |i|
+              aclcondition_tmp = AclCondition.new
+              aclcondition_tmp.deserialize(i)
+              @AlgConditions << aclcondition_tmp
+            end
+          end
+          unless params['AlgDetectSession'].nil?
+            @AlgDetectSession = AlgDetectSession.new
+            @AlgDetectSession.deserialize(params['AlgDetectSession'])
+          end
+          unless params['AlgDetectJS'].nil?
+            @AlgDetectJS = []
+            params['AlgDetectJS'].each do |i|
+              algdetectjs_tmp = AlgDetectJS.new
+              algdetectjs_tmp.deserialize(i)
+              @AlgDetectJS << algdetectjs_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # Cookie校验与会话跟踪。
+      class AlgDetectSession < TencentCloud::Common::AbstractModel
+        # @param Name: 操作名称。
+        # @type Name: String
+        # @param DetectMode: 校验方式，默认update_detect，取值有：
+        # <li>detect：仅校验；</li>
+        # <li>update_detect：更新Cookie并校验。</li>
+        # @type DetectMode: String
+        # @param SessionAnalyzeSwitch: 会话速率和周期特征校验开关，默认off，取值有：
+        # <li>off：关闭；</li>
+        # <li>on：打开。</li>
+        # @type SessionAnalyzeSwitch: String
+        # @param InvalidStatTime: 校验结果为未携带Cookie或Cookie已过期的统计周期。单位为秒，默认10，取值：5～3600。
+        # @type InvalidStatTime: Integer
+        # @param InvalidThreshold: 校验结果为未携带Cookie或Cookie已过期的触发阈值。单位为次，默认300，取值：1～100000000。
+        # @type InvalidThreshold: Integer
+        # @param AlgDetectResults: Cookie校验校验结果。
+        # @type AlgDetectResults: Array
+        # @param SessionBehaviors: 会话速率和周期特征校验结果。
+        # @type SessionBehaviors: Array
+
+        attr_accessor :Name, :DetectMode, :SessionAnalyzeSwitch, :InvalidStatTime, :InvalidThreshold, :AlgDetectResults, :SessionBehaviors
+        
+        def initialize(name=nil, detectmode=nil, sessionanalyzeswitch=nil, invalidstattime=nil, invalidthreshold=nil, algdetectresults=nil, sessionbehaviors=nil)
+          @Name = name
+          @DetectMode = detectmode
+          @SessionAnalyzeSwitch = sessionanalyzeswitch
+          @InvalidStatTime = invalidstattime
+          @InvalidThreshold = invalidthreshold
+          @AlgDetectResults = algdetectresults
+          @SessionBehaviors = sessionbehaviors
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DetectMode = params['DetectMode']
+          @SessionAnalyzeSwitch = params['SessionAnalyzeSwitch']
+          @InvalidStatTime = params['InvalidStatTime']
+          @InvalidThreshold = params['InvalidThreshold']
+          unless params['AlgDetectResults'].nil?
+            @AlgDetectResults = []
+            params['AlgDetectResults'].each do |i|
+              algdetectresult_tmp = AlgDetectResult.new
+              algdetectresult_tmp.deserialize(i)
+              @AlgDetectResults << algdetectresult_tmp
+            end
+          end
+          unless params['SessionBehaviors'].nil?
+            @SessionBehaviors = []
+            params['SessionBehaviors'].each do |i|
+              algdetectresult_tmp = AlgDetectResult.new
+              algdetectresult_tmp.deserialize(i)
+              @SessionBehaviors << algdetectresult_tmp
+            end
+          end
+        end
+      end
+
       # 别称域名信息。
       class AliasDomain < TencentCloud::Common::AbstractModel
         # @param AliasName: 别称域名名称。
@@ -696,18 +892,21 @@ module TencentCloud
         # @type IntelligenceRule: :class:`Tencentcloud::Teo.v20220901.models.IntelligenceRule`
         # @param BotUserRules: Bot自定义规则。如果为null，默认使用历史配置。
         # @type BotUserRules: Array
+        # @param AlgDetectRule: Bot主动特征识别规则。
+        # @type AlgDetectRule: Array
         # @param Customizes: Bot托管定制策略，入参可不填，仅出参使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Customizes: Array
 
-        attr_accessor :Switch, :BotManagedRule, :BotPortraitRule, :IntelligenceRule, :BotUserRules, :Customizes
+        attr_accessor :Switch, :BotManagedRule, :BotPortraitRule, :IntelligenceRule, :BotUserRules, :AlgDetectRule, :Customizes
         
-        def initialize(switch=nil, botmanagedrule=nil, botportraitrule=nil, intelligencerule=nil, botuserrules=nil, customizes=nil)
+        def initialize(switch=nil, botmanagedrule=nil, botportraitrule=nil, intelligencerule=nil, botuserrules=nil, algdetectrule=nil, customizes=nil)
           @Switch = switch
           @BotManagedRule = botmanagedrule
           @BotPortraitRule = botportraitrule
           @IntelligenceRule = intelligencerule
           @BotUserRules = botuserrules
+          @AlgDetectRule = algdetectrule
           @Customizes = customizes
         end
 
@@ -731,6 +930,14 @@ module TencentCloud
               botuserrule_tmp = BotUserRule.new
               botuserrule_tmp.deserialize(i)
               @BotUserRules << botuserrule_tmp
+            end
+          end
+          unless params['AlgDetectRule'].nil?
+            @AlgDetectRule = []
+            params['AlgDetectRule'].each do |i|
+              algdetectrule_tmp = AlgDetectRule.new
+              algdetectrule_tmp.deserialize(i)
+              @AlgDetectRule << algdetectrule_tmp
             end
           end
           unless params['Customizes'].nil?

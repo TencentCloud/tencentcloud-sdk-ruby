@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为推流设备绑定license，优先绑定到期时间最近的，到期时间相同优先绑定月包
+
+        # @param request: Request instance for BoundLicenses.
+        # @type request: :class:`Tencentcloud::trro::V20220325::BoundLicensesRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::BoundLicensesResponse`
+        def BoundLicenses(request)
+          body = send_request('BoundLicenses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BoundLicensesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建设备
 
         # @param request: Request instance for CreateDevice.
@@ -317,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取最新设备会话列表
+
+        # @param request: Request instance for DescribeRecentSessionList.
+        # @type request: :class:`Tencentcloud::trro::V20220325::DescribeRecentSessionListRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::DescribeRecentSessionListResponse`
+        def DescribeRecentSessionList(request)
+          body = send_request('DescribeRecentSessionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecentSessionListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取会话统计值
 
         # @param request: Request instance for DescribeSessionStatistics.
@@ -351,6 +399,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSessionStatisticsByIntervalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备已经绑定的可用授权数量
+
+        # @param request: Request instance for GetDeviceLicense.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetDeviceLicenseRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetDeviceLicenseResponse`
+        def GetDeviceLicense(request)
+          body = send_request('GetDeviceLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDeviceLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户设备的授权绑定情况
+
+        # @param request: Request instance for GetDevices.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetDevicesRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetDevicesResponse`
+        def GetDevices(request)
+          body = send_request('GetDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计license类型数量
+
+        # @param request: Request instance for GetLicenseStat.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetLicenseStatRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetLicenseStatResponse`
+        def GetLicenseStat(request)
+          body = send_request('GetLicenseStat', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetLicenseStatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 按授权查看license列表
+
+        # @param request: Request instance for GetLicenses.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetLicensesRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetLicensesResponse`
+        def GetLicenses(request)
+          body = send_request('GetLicenses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetLicensesResponse.new
             model.deserialize(response['Response'])
             model
           else

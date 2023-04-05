@@ -878,6 +878,49 @@ module TencentCloud
         end
       end
 
+      # CreateHost请求参数结构体
+      class CreateHostRequest < TencentCloud::Common::AbstractModel
+        # @param Host: 防护域名配置信息
+        # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+
+        attr_accessor :Host, :InstanceID
+        
+        def initialize(host=nil, instanceid=nil)
+          @Host = host
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          unless params['Host'].nil?
+            @Host = HostRecord.new
+            @Host.deserialize(params['Host'])
+          end
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # CreateHost返回参数结构体
+      class CreateHostResponse < TencentCloud::Common::AbstractModel
+        # @param DomainId: 新增防护域名ID
+        # @type DomainId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainId, :RequestId
+        
+        def initialize(domainid=nil, requestid=nil)
+          @DomainId = domainid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAccessExport请求参数结构体
       class DeleteAccessExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出ID
@@ -2836,6 +2879,92 @@ module TencentCloud
         end
       end
 
+      # clb-waf防护域名
+      class HostRecord < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param MainDomain: 主域名，入参时为空
+        # @type MainDomain: String
+        # @param Mode: waf模式，同saas waf保持一致
+        # @type Mode: Integer
+        # @param Status: waf和LD的绑定，0：没有绑定，1：绑定
+        # @type Status: Integer
+        # @param State: 域名状态，0：正常，1：未检测到流量，2：即将过期，3：过期
+        # @type State: Integer
+        # @param Engine: 使用的规则，同saas waf保持一致
+        # @type Engine: Integer
+        # @param IsCdn: 是否开启代理，0：不开启，1：开启
+        # @type IsCdn: Integer
+        # @param LoadBalancerSet: 绑定的LB列表
+        # @type LoadBalancerSet: Array
+        # @param Region: 域名绑定的LB的地域，以,分割多个地域
+        # @type Region: String
+        # @param Edition: 产品分类，取值为：sparta-waf、clb-waf、cdn-waf
+        # @type Edition: String
+        # @param FlowMode: WAF的流量模式，1：清洗模式，0：镜像模式
+        # @type FlowMode: Integer
+        # @param ClsStatus: 是否开启访问日志，1：开启，0：关闭
+        # @type ClsStatus: Integer
+        # @param Level: 防护等级，可选值100,200,300
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param CdcClusters: 域名需要下发到的cdc集群列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcClusters: Array
+        # @param AlbType: 应用型负载均衡类型: clb或者apisix，默认clb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlbType: String
+
+        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType
+        
+        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @MainDomain = maindomain
+          @Mode = mode
+          @Status = status
+          @State = state
+          @Engine = engine
+          @IsCdn = iscdn
+          @LoadBalancerSet = loadbalancerset
+          @Region = region
+          @Edition = edition
+          @FlowMode = flowmode
+          @ClsStatus = clsstatus
+          @Level = level
+          @CdcClusters = cdcclusters
+          @AlbType = albtype
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @MainDomain = params['MainDomain']
+          @Mode = params['Mode']
+          @Status = params['Status']
+          @State = params['State']
+          @Engine = params['Engine']
+          @IsCdn = params['IsCdn']
+          unless params['LoadBalancerSet'].nil?
+            @LoadBalancerSet = []
+            params['LoadBalancerSet'].each do |i|
+              loadbalancer_tmp = LoadBalancer.new
+              loadbalancer_tmp.deserialize(i)
+              @LoadBalancerSet << loadbalancer_tmp
+            end
+          end
+          @Region = params['Region']
+          @Edition = params['Edition']
+          @FlowMode = params['FlowMode']
+          @ClsStatus = params['ClsStatus']
+          @Level = params['Level']
+          @CdcClusters = params['CdcClusters']
+          @AlbType = params['AlbType']
+        end
+      end
+
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: id
@@ -3094,6 +3223,64 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 负载均衡的监听器
+      class LoadBalancer < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡LD的ID
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡LD的名称
+        # @type LoadBalancerName: String
+        # @param ListenerId: 负载均衡监听器的ID
+        # @type ListenerId: String
+        # @param ListenerName: 负载均衡监听器的名称
+        # @type ListenerName: String
+        # @param Vip: 负载均衡实例的IP
+        # @type Vip: String
+        # @param Vport: 负载均衡实例的端口
+        # @type Vport: Integer
+        # @param Region: 负载均衡LD的地域
+        # @type Region: String
+        # @param Protocol: 监听器协议，http、https
+        # @type Protocol: String
+        # @param Zone: 负载均衡监听器所在的zone
+        # @type Zone: String
+        # @param NumericalVpcId: 负载均衡的VPCID，公网为-1，内网按实际填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumericalVpcId: Integer
+        # @param LoadBalancerType: 负载均衡的网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vip, :Vport, :Region, :Protocol, :Zone, :NumericalVpcId, :LoadBalancerType
+        
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vip=nil, vport=nil, region=nil, protocol=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @ListenerId = listenerid
+          @ListenerName = listenername
+          @Vip = vip
+          @Vport = vport
+          @Region = region
+          @Protocol = protocol
+          @Zone = zone
+          @NumericalVpcId = numericalvpcid
+          @LoadBalancerType = loadbalancertype
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @ListenerId = params['ListenerId']
+          @ListenerName = params['ListenerName']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Region = params['Region']
+          @Protocol = params['Protocol']
+          @Zone = params['Zone']
+          @NumericalVpcId = params['NumericalVpcId']
+          @LoadBalancerType = params['LoadBalancerType']
         end
       end
 

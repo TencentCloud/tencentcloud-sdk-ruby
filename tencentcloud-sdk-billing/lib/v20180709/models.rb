@@ -2625,9 +2625,9 @@ module TencentCloud
 
       # DescribeDealsByCond请求参数结构体
       class DescribeDealsByCondRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间 2016-01-01 00:00:00
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间 2016-02-01 00:00:00 建议跨度不超过3个月
         # @type EndTime: String
         # @param Limit: 一页多少条数据，默认是20条，最大不超过1000
         # @type Limit: Integer

@@ -313,12 +313,16 @@ module TencentCloud
       # 多维分析的分析维度
       class AnalysisDimensional < TencentCloud::Common::AbstractModel
         # @param Name: 分析名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 分析类型：query，field ，original
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Content: 分析内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param ConfigInfo: 配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigInfo: Array
 
         attr_accessor :Name, :Type, :Content, :ConfigInfo

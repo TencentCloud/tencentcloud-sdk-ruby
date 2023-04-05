@@ -102,6 +102,46 @@ module TencentCloud
         end
       end
 
+      # BoundLicenses请求参数结构体
+      class BoundLicensesRequest < TencentCloud::Common::AbstractModel
+        # @param Count: license数量
+        # @type Count: Integer
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+
+        attr_accessor :Count, :DeviceId, :ProjectId
+        
+        def initialize(count=nil, deviceid=nil, projectid=nil)
+          @Count = count
+          @DeviceId = deviceid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @DeviceId = params['DeviceId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # BoundLicenses返回参数结构体
+      class BoundLicensesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 创建设备所归属的项目ID
@@ -645,6 +685,77 @@ module TencentCloud
         end
       end
 
+      # DescribeRecentSessionList请求参数结构体
+      class DescribeRecentSessionListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数
+        # @type PageSize: Integer
+        # @param DeviceId: 设备ID，支持过滤远端设备或现场设备
+        # @type DeviceId: String
+        # @param StartTime: 时间范围的起始时间。时间范围最大为最近两小时，若不传或超出范围，则起始时间按两小时前计算
+        # @type StartTime: Integer
+        # @param EndTime: 时间范围的结束时间。时间范围最大为最近两小时，若不传或超出范围，则结束时间按当前时间计算
+        # @type EndTime: Integer
+
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :DeviceId, :StartTime, :EndTime
+        
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, deviceid=nil, starttime=nil, endtime=nil)
+          @ProjectId = projectid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @DeviceId = deviceid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @DeviceId = params['DeviceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeRecentSessionList返回参数结构体
+      class DescribeRecentSessionListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总个数
+        # @type Total: Integer
+        # @param RecentSessionList: 会话列表
+        # @type RecentSessionList: Array
+        # @param Num: 本页数量
+        # @type Num: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RecentSessionList, :Num, :RequestId
+        
+        def initialize(total=nil, recentsessionlist=nil, num=nil, requestid=nil)
+          @Total = total
+          @RecentSessionList = recentsessionlist
+          @Num = num
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RecentSessionList'].nil?
+            @RecentSessionList = []
+            params['RecentSessionList'].each do |i|
+              recentsessioninfo_tmp = RecentSessionInfo.new
+              recentsessioninfo_tmp.deserialize(i)
+              @RecentSessionList << recentsessioninfo_tmp
+            end
+          end
+          @Num = params['Num']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSessionStatisticsByInterval请求参数结构体
       class DescribeSessionStatisticsByIntervalRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -768,6 +879,53 @@ module TencentCloud
         end
       end
 
+      # 查询用户设备的授权绑定情况
+      class Device < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param LicenseCount: 已经绑定license数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseCount: Integer
+        # @param RemainDay: 剩余天数：天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainDay: Integer
+        # @param ExpireTime: 过期时间：s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param Duration: 服务时长：s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param LicenseIds: 已经绑定licenseId列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseIds: Array
+
+        attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds
+        
+        def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil)
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @LicenseCount = licensecount
+          @RemainDay = remainday
+          @ExpireTime = expiretime
+          @Duration = duration
+          @LicenseIds = licenseids
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @LicenseCount = params['LicenseCount']
+          @RemainDay = params['RemainDay']
+          @ExpireTime = params['ExpireTime']
+          @Duration = params['Duration']
+          @LicenseIds = params['LicenseIds']
+        end
+      end
+
       # 设备信息
       class DeviceInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
@@ -805,6 +963,249 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @LastReportTime = params['LastReportTime']
           @ProjectId = params['ProjectId']
+        end
+      end
+
+      # GetDeviceLicense请求参数结构体
+      class GetDeviceLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 目标设备所属项目ID
+        # @type ProjectId: String
+        # @param DeviceId: 目标设备ID
+        # @type DeviceId: String
+
+        attr_accessor :ProjectId, :DeviceId
+        
+        def initialize(projectid=nil, deviceid=nil)
+          @ProjectId = projectid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetDeviceLicense返回参数结构体
+      class GetDeviceLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableCount: 指定设备已经绑定的可用license数量
+        # @type AvailableCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableCount, :RequestId
+        
+        def initialize(availablecount=nil, requestid=nil)
+          @AvailableCount = availablecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AvailableCount = params['AvailableCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDevices请求参数结构体
+      class GetDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 页面数量
+        # @type PageSize: Integer
+        # @param ProjectId: 项目 ID
+        # @type ProjectId: String
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+
+        attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId
+        
+        def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @ProjectId = projectid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetDevices返回参数结构体
+      class GetDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param Devices: 设备授权列表
+        # @type Devices: Array
+        # @param TotalCount: 列表数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Devices, :TotalCount, :RequestId
+        
+        def initialize(devices=nil, totalcount=nil, requestid=nil)
+          @Devices = devices
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              device_tmp = Device.new
+              device_tmp.deserialize(i)
+              @Devices << device_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetLicenseStat请求参数结构体
+      class GetLicenseStatRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetLicenseStat返回参数结构体
+      class GetLicenseStatResponse < TencentCloud::Common::AbstractModel
+        # @param Valid: 有效授权
+        # @type Valid: Integer
+        # @param Bound: 已绑定授权
+        # @type Bound: Integer
+        # @param UnBound: 未绑定授权
+        # @type UnBound: Integer
+        # @param Expire: 过期授权
+        # @type Expire: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Valid, :Bound, :UnBound, :Expire, :RequestId
+        
+        def initialize(valid=nil, bound=nil, unbound=nil, expire=nil, requestid=nil)
+          @Valid = valid
+          @Bound = bound
+          @UnBound = unbound
+          @Expire = expire
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Valid = params['Valid']
+          @Bound = params['Bound']
+          @UnBound = params['UnBound']
+          @Expire = params['Expire']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetLicenses请求参数结构体
+      class GetLicensesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 页面数量
+        # @type PageSize: Integer
+        # @param ProjectId: projectId
+        # @type ProjectId: String
+        # @param DeviceId: DeviceId
+        # @type DeviceId: String
+
+        attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId
+        
+        def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @ProjectId = projectid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetLicenses返回参数结构体
+      class GetLicensesResponse < TencentCloud::Common::AbstractModel
+        # @param Licenses: license列表
+        # @type Licenses: Array
+        # @param TotalCount: license列表项数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Licenses, :TotalCount, :RequestId
+        
+        def initialize(licenses=nil, totalcount=nil, requestid=nil)
+          @Licenses = licenses
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Licenses'].nil?
+            @Licenses = []
+            params['Licenses'].each do |i|
+              license_tmp = License.new
+              license_tmp.deserialize(i)
+              @Licenses << license_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 按授权查看的license列表
+      class License < TencentCloud::Common::AbstractModel
+        # @param Count: 该类型的license个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Status: license状态：0:未绑定；1:已绑定；2:已停服；3:已退费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ExpireTime: 到期时间戳：s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param Duration: 服务时长：s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param RemainDay: 剩余天数：天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainDay: Integer
+        # @param LicenseIds: 该类型的licenseId列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseIds: Array
+
+        attr_accessor :Count, :Status, :ExpireTime, :Duration, :RemainDay, :LicenseIds
+        
+        def initialize(count=nil, status=nil, expiretime=nil, duration=nil, remainday=nil, licenseids=nil)
+          @Count = count
+          @Status = status
+          @ExpireTime = expiretime
+          @Duration = duration
+          @RemainDay = remainday
+          @LicenseIds = licenseids
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @Duration = params['Duration']
+          @RemainDay = params['RemainDay']
+          @LicenseIds = params['LicenseIds']
         end
       end
 
@@ -1007,6 +1408,42 @@ module TencentCloud
           @ProjectDescription = params['ProjectDescription']
           @PolicyMode = params['PolicyMode']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 最新会话信息
+      class RecentSessionInfo < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param RemoteDeviceId: 远端设备ID
+        # @type RemoteDeviceId: String
+        # @param FieldDeviceId: 现场设备ID
+        # @type FieldDeviceId: String
+        # @param Resolution: 分辨率
+        # @type Resolution: String
+        # @param StartTime: 会话开始时间
+        # @type StartTime: Integer
+        # @param LatestUpdateTime: 最后更新时间
+        # @type LatestUpdateTime: Integer
+
+        attr_accessor :SessionId, :RemoteDeviceId, :FieldDeviceId, :Resolution, :StartTime, :LatestUpdateTime
+        
+        def initialize(sessionid=nil, remotedeviceid=nil, fielddeviceid=nil, resolution=nil, starttime=nil, latestupdatetime=nil)
+          @SessionId = sessionid
+          @RemoteDeviceId = remotedeviceid
+          @FieldDeviceId = fielddeviceid
+          @Resolution = resolution
+          @StartTime = starttime
+          @LatestUpdateTime = latestupdatetime
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @RemoteDeviceId = params['RemoteDeviceId']
+          @FieldDeviceId = params['FieldDeviceId']
+          @Resolution = params['Resolution']
+          @StartTime = params['StartTime']
+          @LatestUpdateTime = params['LatestUpdateTime']
         end
       end
 

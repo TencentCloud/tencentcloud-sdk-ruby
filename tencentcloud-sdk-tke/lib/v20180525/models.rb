@@ -5577,6 +5577,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 页偏移量
         # @type Offset: Integer
+        # @param ClusterType: 集群类型, 目前支持传入 tke, eks, tkeedge, external
+        # @type ClusterType: String
         # @param Namespace: helm Release 安装的namespace
         # @type Namespace: String
         # @param ReleaseName: helm Release 的名字
@@ -5584,12 +5586,13 @@ module TencentCloud
         # @param ChartName: helm Chart 的名字
         # @type ChartName: String
 
-        attr_accessor :ClusterId, :Limit, :Offset, :Namespace, :ReleaseName, :ChartName
+        attr_accessor :ClusterId, :Limit, :Offset, :ClusterType, :Namespace, :ReleaseName, :ChartName
         
-        def initialize(clusterid=nil, limit=nil, offset=nil, namespace=nil, releasename=nil, chartname=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, clustertype=nil, namespace=nil, releasename=nil, chartname=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
+          @ClusterType = clustertype
           @Namespace = namespace
           @ReleaseName = releasename
           @ChartName = chartname
@@ -5599,6 +5602,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ClusterType = params['ClusterType']
           @Namespace = params['Namespace']
           @ReleaseName = params['ReleaseName']
           @ChartName = params['ChartName']

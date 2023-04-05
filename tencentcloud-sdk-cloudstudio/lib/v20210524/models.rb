@@ -540,6 +540,43 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkspaceIsReady请求参数结构体
+      class DescribeWorkspaceIsReadyRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceKey: 工作空间 spaceKey
+        # @type SpaceKey: String
+
+        attr_accessor :SpaceKey
+        
+        def initialize(spacekey=nil)
+          @SpaceKey = spacekey
+        end
+
+        def deserialize(params)
+          @SpaceKey = params['SpaceKey']
+        end
+      end
+
+      # DescribeWorkspaceIsReady返回参数结构体
+      class DescribeWorkspaceIsReadyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 工作空间是否就绪
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWorkspaceNameExist请求参数结构体
       class DescribeWorkspaceNameExistRequest < TencentCloud::Common::AbstractModel
         # @param CloudStudioSessionTeam: 用户所属组
@@ -566,16 +603,24 @@ module TencentCloud
 
       # DescribeWorkspaceNameExist返回参数结构体
       class DescribeWorkspaceNameExistResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 工作空间信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Cloudstudio.v20210524.models.WorkspaceInfoDTO`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = WorkspaceInfoDTO.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

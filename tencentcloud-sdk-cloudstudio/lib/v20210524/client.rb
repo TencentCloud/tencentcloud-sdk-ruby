@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取工作空间是否已经启动就绪
+
+        # @param request: Request instance for DescribeWorkspaceIsReady.
+        # @type request: :class:`Tencentcloud::cloudstudio::V20210524::DescribeWorkspaceIsReadyRequest`
+        # @rtype: :class:`Tencentcloud::cloudstudio::V20210524::DescribeWorkspaceIsReadyResponse`
+        def DescribeWorkspaceIsReady(request)
+          body = send_request('DescribeWorkspaceIsReady', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkspaceIsReadyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查工作空间是否存在
 
         # @param request: Request instance for DescribeWorkspaceNameExist.

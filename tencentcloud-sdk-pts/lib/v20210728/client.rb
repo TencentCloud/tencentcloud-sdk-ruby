@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询错误详情汇总信息
+
+        # @param request: Request instance for DescribeErrorSummary.
+        # @type request: :class:`Tencentcloud::pts::V20210728::DescribeErrorSummaryRequest`
+        # @rtype: :class:`Tencentcloud::pts::V20210728::DescribeErrorSummaryResponse`
+        def DescribeErrorSummary(request)
+          body = send_request('DescribeErrorSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeErrorSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询文件列表
 
         # @param request: Request instance for DescribeFiles.

@@ -426,14 +426,18 @@ module TencentCloud
         # @param GracefulStopSeconds: 优雅终止任务的等待时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GracefulStopSeconds: Integer
+        # @param Resources: 资源数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Integer
 
-        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds
+        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds, :Resources
         
-        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil, gracefulstopseconds=nil)
+        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil, gracefulstopseconds=nil, resources=nil)
           @Stages = stages
           @IterationCount = iterationcount
           @MaxRequestsPerSecond = maxrequestspersecond
           @GracefulStopSeconds = gracefulstopseconds
+          @Resources = resources
         end
 
         def deserialize(params)
@@ -448,6 +452,7 @@ module TencentCloud
           @IterationCount = params['IterationCount']
           @MaxRequestsPerSecond = params['MaxRequestsPerSecond']
           @GracefulStopSeconds = params['GracefulStopSeconds']
+          @Resources = params['Resources']
         end
       end
 
@@ -1655,6 +1660,69 @@ module TencentCloud
         end
       end
 
+      # DescribeErrorSummary请求参数结构体
+      class DescribeErrorSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+        # @param ScenarioId: 场景ID
+        # @type ScenarioId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+
+        attr_accessor :JobId, :ScenarioId, :ProjectId, :Filters
+        
+        def initialize(jobid=nil, scenarioid=nil, projectid=nil, filters=nil)
+          @JobId = jobid
+          @ScenarioId = scenarioid
+          @ProjectId = projectid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @ScenarioId = params['ScenarioId']
+          @ProjectId = params['ProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeErrorSummary返回参数结构体
+      class DescribeErrorSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorSummarySet: 错误汇总信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorSummarySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorSummarySet, :RequestId
+        
+        def initialize(errorsummaryset=nil, requestid=nil)
+          @ErrorSummarySet = errorsummaryset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorSummarySet'].nil?
+            @ErrorSummarySet = []
+            params['ErrorSummarySet'].each do |i|
+              errorsummary_tmp = ErrorSummary.new
+              errorsummary_tmp.deserialize(i)
+              @ErrorSummarySet << errorsummary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFiles请求参数结构体
       class DescribeFilesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectIds: 项目 ID 数组
@@ -2765,6 +2833,48 @@ module TencentCloud
             @DNSConfig = DNSConfig.new
             @DNSConfig.deserialize(params['DNSConfig'])
           end
+        end
+      end
+
+      # 错误信息汇总
+      class ErrorSummary < TencentCloud::Common::AbstractModel
+        # @param Status: 状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Result: 结果码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param Count: 错误出现次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Rate: 错误率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rate: Float
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Proto: 请求协议类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proto: String
+
+        attr_accessor :Status, :Result, :Count, :Rate, :Message, :Proto
+        
+        def initialize(status=nil, result=nil, count=nil, rate=nil, message=nil, proto=nil)
+          @Status = status
+          @Result = result
+          @Count = count
+          @Rate = rate
+          @Message = message
+          @Proto = proto
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Result = params['Result']
+          @Count = params['Count']
+          @Rate = params['Rate']
+          @Message = params['Message']
+          @Proto = params['Proto']
         end
       end
 

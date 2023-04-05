@@ -2592,21 +2592,21 @@ module TencentCloud
 
       # ModifyDiskExtraPerformance请求参数结构体
       class ModifyDiskExtraPerformanceRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
-        # @type DiskId: String
         # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。
         # @type ThroughputPerformance: Integer
+        # @param DiskId: 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @type DiskId: String
 
-        attr_accessor :DiskId, :ThroughputPerformance
+        attr_accessor :ThroughputPerformance, :DiskId
         
-        def initialize(diskid=nil, throughputperformance=nil)
-          @DiskId = diskid
+        def initialize(throughputperformance=nil, diskid=nil)
           @ThroughputPerformance = throughputperformance
+          @DiskId = diskid
         end
 
         def deserialize(params)
-          @DiskId = params['DiskId']
           @ThroughputPerformance = params['ThroughputPerformance']
+          @DiskId = params['DiskId']
         end
       end
 

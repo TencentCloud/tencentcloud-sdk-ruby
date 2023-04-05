@@ -388,6 +388,33 @@ module TencentCloud
         end
       end
 
+      # 规则关联的beta任务
+      class BetaInfoByACL < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param LastTime: 上次执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTime: String
+
+        attr_accessor :TaskId, :TaskName, :LastTime
+        
+        def initialize(taskid=nil, taskname=nil, lasttime=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @LastTime = lasttime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @LastTime = params['LastTime']
+        end
+      end
+
       # 入侵防御放通封禁规则
       class BlockIgnoreRule < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1379,10 +1406,13 @@ module TencentCloud
         # @param Status: 规则状态，查询规则命中详情时该字段有效，0：新增，1: 已删除, 2: 编辑删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param BetaList: 关联任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BetaList: Array
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList
         
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -1407,6 +1437,7 @@ module TencentCloud
           @InstanceName = instancename
           @InternalUuid = internaluuid
           @Status = status
+          @BetaList = betalist
         end
 
         def deserialize(params)
@@ -1434,6 +1465,14 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @InternalUuid = params['InternalUuid']
           @Status = params['Status']
+          unless params['BetaList'].nil?
+            @BetaList = []
+            params['BetaList'].each do |i|
+              betainfobyacl_tmp = BetaInfoByACL.new
+              betainfobyacl_tmp.deserialize(i)
+              @BetaList << betainfobyacl_tmp
+            end
+          end
         end
       end
 
@@ -2891,7 +2930,12 @@ module TencentCloud
 
       # DescribeTLogInfo返回参数结构体
       class DescribeTLogInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
+        # @param Data: "NetworkNum":网络扫描探测
+        #  "HandleNum": 待处理事件
+        # "BanNum":
+        #   "VulNum": 漏洞利用
+        #   "OutNum": 失陷主机
+        # "BruteForceNum": 0
         # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.TLogInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

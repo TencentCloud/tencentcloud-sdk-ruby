@@ -1041,10 +1041,6 @@ module TencentCloud
 
       # SentenceRecognition请求参数结构体
       class SentenceRecognitionRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 腾讯云项目 ID，废弃参数，填写0即可。
-        # @type ProjectId: Integer
-        # @param SubServiceType: 子服务类型。2： 一句话识别。
-        # @type SubServiceType: Integer
         # @param EngSerViceType: 引擎模型类型。
         # 电话场景：
         # • 8k_zh：中文电话通用；
@@ -1062,16 +1058,21 @@ module TencentCloud
         # • 16k_ms：马来语；
         # • 16k_id：印度尼西亚语；
         # • 16k_fil：菲律宾语；
+        # • 16k_th：泰语；
         # • 16k_zh_dialect：多方言，支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
         # @type EngSerViceType: String
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
         # @type SourceType: Integer
         # @param VoiceFormat: 识别音频的音频格式，支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
         # @type VoiceFormat: String
-        # @param UsrAudioKey: 废弃参数，填写任意字符串即可。
-        # @type UsrAudioKey: String
+        # @param ProjectId: 腾讯云项目 ID，废弃参数，填写0即可。
+        # @type ProjectId: Integer
+        # @param SubServiceType: 子服务类型。2： 一句话识别。
+        # @type SubServiceType: Integer
         # @param Url: 语音的URL地址，需要公网环境浏览器可下载。当 SourceType 值为 0时须填写该字段，为 1 时不填。音频时长不能超过60s，音频文件大小不能超过3MB。
         # @type Url: String
+        # @param UsrAudioKey: 废弃参数，填写任意字符串即可。
+        # @type UsrAudioKey: String
         # @param Data: 语音数据，当SourceType 值为1（本地语音数据上传）时必须填写，当SourceType 值为0（语音 URL上传）可不写。要使用base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。音频时长不能超过60s，音频文件大小不能超过3MB（Base64后）。
         # @type Data: String
         # @param DataLen: 数据长度，单位为字节。当 SourceType 值为1（本地语音数据上传）时必须填写，当 SourceType 值为0（语音 URL上传）可不写（此数据长度为数据未进行base64编码时的数据长度）。
@@ -1093,16 +1094,16 @@ module TencentCloud
         # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”、“蜜汁”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         # @type ReinforceHotword: Integer
 
-        attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword
+        attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword
         
-        def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil)
-          @ProjectId = projectid
-          @SubServiceType = subservicetype
+        def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil)
           @EngSerViceType = engservicetype
           @SourceType = sourcetype
           @VoiceFormat = voiceformat
-          @UsrAudioKey = usraudiokey
+          @ProjectId = projectid
+          @SubServiceType = subservicetype
           @Url = url
+          @UsrAudioKey = usraudiokey
           @Data = data
           @DataLen = datalen
           @WordInfo = wordinfo
@@ -1116,13 +1117,13 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @SubServiceType = params['SubServiceType']
           @EngSerViceType = params['EngSerViceType']
           @SourceType = params['SourceType']
           @VoiceFormat = params['VoiceFormat']
-          @UsrAudioKey = params['UsrAudioKey']
+          @ProjectId = params['ProjectId']
+          @SubServiceType = params['SubServiceType']
           @Url = params['Url']
+          @UsrAudioKey = params['UsrAudioKey']
           @Data = params['Data']
           @DataLen = params['DataLen']
           @WordInfo = params['WordInfo']
