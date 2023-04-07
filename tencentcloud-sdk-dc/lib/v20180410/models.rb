@@ -249,9 +249,20 @@ module TencentCloud
         # @param AccessPointId: 物理专线所在的接入点。
         # 您可以通过调用 DescribeAccessPoints接口获取地域ID。所选择的接入点必须存在且处于可接入的状态。
         # @type AccessPointId: String
-        # @param LineOperator: 提供接入物理专线的运营商。ChinaTelecom：中国电信， ChinaMobile：中国移动，ChinaUnicom：中国联通， In-houseWiring：楼内线，ChinaOther：中国其他， InternationalOperator：境外其他。
+        # @param LineOperator: 提供接入物理专线的运营商。
+        # ChinaTelecom：中国电信；
+        # ChinaMobile：中国移动；
+        # ChinaUnicom：中国联通；
+        #  In-houseWiring：楼内线；
+        # ChinaOther：中国其他；
+        #  InternationalOperator：境外其他。
         # @type LineOperator: String
-        # @param PortType: 物理专线接入端口类型,取值：100Base-T：百兆电口,1000Base-T（默认值）：千兆电口,1000Base-LX：千兆单模光口（10千米）,10GBase-T：万兆电口10GBase-LR：万兆单模光口（10千米），默认值，千兆单模光口（10千米）。
+        # @param PortType: 物理专线接入端口类型，取值：
+        # 100Base-T：百兆电口；
+        # 1000Base-T（默认值）：千兆电口；
+        # 1000Base-LX：千兆单模光口（10千米）；
+        # 10GBase-T：万兆电口；
+        # 10GBase-LR（默认值）：万兆单模光口（10千米）。
         # @type PortType: String
         # @param CircuitCode: 运营商或者服务商为物理专线提供的电路编码。
         # @type CircuitCode: String
@@ -277,7 +288,7 @@ module TencentCloud
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
         # @type FaultReportContactNumber: String
-        # @param SignLaw: 物理专线申请者是否签署了用户使用协议。默认已签署
+        # @param SignLaw: 物理专线申请者是否签署了用户使用协议。默认已签署。
         # @type SignLaw: Boolean
 
         attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw

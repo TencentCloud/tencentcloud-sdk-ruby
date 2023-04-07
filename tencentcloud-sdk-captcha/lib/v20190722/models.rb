@@ -1047,9 +1047,9 @@ module TencentCloud
         # @type CaptchaAppId: Integer
         # @param AppSecretKey: 验证码应用密钥。登录 [验证码控制台](https://console.cloud.tencent.com/captcha/graphical)，在验证列表的【密钥】列，即可查看到AppSecretKey。AppSecretKey属于服务器端校验验证码票据的密钥，请妥善保密，请勿泄露给第三方。
         # @type AppSecretKey: String
-        # @param BusinessId: 业务 ID，网站或应用在多个业务中使用此服务，通过此 ID 区分统计数据
+        # @param BusinessId: 预留字段
         # @type BusinessId: Integer
-        # @param SceneId: 场景 ID，网站或应用的业务下有多个场景使用此服务，通过此 ID 区分统计数据
+        # @param SceneId: 预留字段
         # @type SceneId: Integer
         # @param MacAddress: mac 地址或设备唯一标识
         # @type MacAddress: String
@@ -1111,16 +1111,23 @@ module TencentCloud
         # @param GetCaptchaTime: 前端获取验证码时间，时间戳格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GetCaptchaTime: Integer
+        # @param EvilBitmap: 拦截类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvilBitmap: Integer
+        # @param SubmitCaptchaTime: 提交验证码时间
+        # @type SubmitCaptchaTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :RequestId
+        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RequestId
         
-        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, requestid=nil)
+        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
           @EvilLevel = evillevel
           @GetCaptchaTime = getcaptchatime
+          @EvilBitmap = evilbitmap
+          @SubmitCaptchaTime = submitcaptchatime
           @RequestId = requestid
         end
 
@@ -1129,6 +1136,8 @@ module TencentCloud
           @CaptchaMsg = params['CaptchaMsg']
           @EvilLevel = params['EvilLevel']
           @GetCaptchaTime = params['GetCaptchaTime']
+          @EvilBitmap = params['EvilBitmap']
+          @SubmitCaptchaTime = params['SubmitCaptchaTime']
           @RequestId = params['RequestId']
         end
       end

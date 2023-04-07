@@ -665,7 +665,7 @@ module TencentCloud
         # @param TagSpecification: 标签描述列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: Array
-        # @param ClusterStatus: 集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
+        # @param ClusterStatus: 集群状态 (Trading 集群开通中,Creating 创建中,Running 运行中,Deleting 删除中,Idling 闲置中,Recovering 唤醒中,Scaling 规模调整中,Upgrading 升级中,WaittingForConnect 等待注册,Trading 集群开通中,Isolated 欠费隔离中,Pause 集群升级暂停,NodeUpgrading 节点升级中,RuntimeUpgrading 节点运行时升级中,MasterScaling Master扩缩容中,ClusterLevelUpgrading 调整规格中,ResourceIsolate 隔离中,ResourceIsolated 已隔离,ResourceReverse 冲正中,Abnormal 异常)
         # @type ClusterStatus: String
         # @param Property: 集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -702,10 +702,13 @@ module TencentCloud
         # @param RuntimeVersion: 运行时版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeVersion: String
+        # @param ClusterEtcdNodeNum: 集群当前etcd数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterEtcdNodeNum: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum
         
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -729,6 +732,7 @@ module TencentCloud
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
           @RuntimeVersion = runtimeversion
+          @ClusterEtcdNodeNum = clusteretcdnodenum
         end
 
         def deserialize(params)
@@ -765,6 +769,7 @@ module TencentCloud
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
           @QGPUShareEnable = params['QGPUShareEnable']
           @RuntimeVersion = params['RuntimeVersion']
+          @ClusterEtcdNodeNum = params['ClusterEtcdNodeNum']
         end
       end
 
@@ -1363,10 +1368,14 @@ module TencentCloud
         # @param Ipv6ServiceCIDR: 用于分配service的IP range，由系统自动分配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6ServiceCIDR: String
+        # @param CiliumMode: 集群Cilium Mode配置
+        # - clusterIP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CiliumMode: String
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict, :IsDualStack, :Ipv6ServiceCIDR
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict, :IsDualStack, :Ipv6ServiceCIDR, :CiliumMode
         
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil, isdualstack=nil, ipv6servicecidr=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil, isdualstack=nil, ipv6servicecidr=nil, ciliummode=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -1380,6 +1389,7 @@ module TencentCloud
           @IgnoreServiceCIDRConflict = ignoreservicecidrconflict
           @IsDualStack = isdualstack
           @Ipv6ServiceCIDR = ipv6servicecidr
+          @CiliumMode = ciliummode
         end
 
         def deserialize(params)
@@ -1396,6 +1406,7 @@ module TencentCloud
           @IgnoreServiceCIDRConflict = params['IgnoreServiceCIDRConflict']
           @IsDualStack = params['IsDualStack']
           @Ipv6ServiceCIDR = params['Ipv6ServiceCIDR']
+          @CiliumMode = params['CiliumMode']
         end
       end
 

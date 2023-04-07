@@ -5719,7 +5719,7 @@ module TencentCloud
       # CreateImageProcessingTemplate请求参数结构体
       class CreateImageProcessingTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Operations: 图片处理操作数组，操作将以其在数组中的顺序执行。
-        # <li>长度限制：3。</li>
+        # <li>长度限制：10。</li>
         # @type Operations: Array
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -6080,9 +6080,9 @@ module TencentCloud
         # @type Container: String
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
-        # @param Name: 音画质重生模版名称。
+        # @param Name: 音画质重生模板名称。
         # @type Name: String
-        # @param Comment: 模版描述。
+        # @param Comment: 模板描述。
         # @type Comment: String
         # @param RebuildVideoInfo: 音画质重生视频控制控制信息。
         # @type RebuildVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildVideoInfo`
@@ -6146,7 +6146,7 @@ module TencentCloud
 
       # CreateRebuildMediaTemplate返回参数结构体
       class CreateRebuildMediaTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模版 ID。
+        # @param Definition: 音画质重生模板 ID。
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7405,7 +7405,7 @@ module TencentCloud
 
       # DeleteRebuildMediaTemplate请求参数结构体
       class DeleteRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模版号。
+        # @param Definition: 音画质重生模板号。
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -9603,7 +9603,7 @@ module TencentCloud
 
       # DescribeRebuildMediaTemplates请求参数结构体
       class DescribeRebuildMediaTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 音画质重生模版列表。
+        # @param Definitions: 音画质重生模板列表。
         # @type Definitions: Array
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -12372,6 +12372,31 @@ module TencentCloud
         end
       end
 
+      # 图片模糊处理。
+      class ImageBlur < TencentCloud::Common::AbstractModel
+        # @param Type: 图片模糊的操作类型。可选模式有：
+        # <li>Gaussian : 高斯模糊。</li>
+        # @type Type: String
+        # @param Radius: 模糊半径，取值范围为1 - 50。当 Type 取值为 Gaussian 时此字段有效。
+        # @type Radius: Integer
+        # @param Sigma: 正态分布的标准差，必须大于0。当 Type 取值为 Gaussian 时此字段有效。
+        # @type Sigma: Integer
+
+        attr_accessor :Type, :Radius, :Sigma
+        
+        def initialize(type=nil, radius=nil, sigma=nil)
+          @Type = type
+          @Radius = radius
+          @Sigma = sigma
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Radius = params['Radius']
+          @Sigma = params['Sigma']
+        end
+      end
+
       # 图片中心裁剪处理。
       class ImageCenterCut < TencentCloud::Common::AbstractModel
         # @param Type: 图片的裁剪模式，可选 Circle 和 Rectangle。
@@ -12429,13 +12454,16 @@ module TencentCloud
         # @type Scale: :class:`Tencentcloud::Vod.v20180717.models.ImageScale`
         # @param CenterCut: 图片裁剪处理，仅当 Type 为 CenterCut 时有效。
         # @type CenterCut: :class:`Tencentcloud::Vod.v20180717.models.ImageCenterCut`
+        # @param Blur: 图片模糊处理，仅当 Type 为 Blur 时有效。
+        # @type Blur: :class:`Tencentcloud::Vod.v20180717.models.ImageBlur`
 
-        attr_accessor :Type, :Scale, :CenterCut
+        attr_accessor :Type, :Scale, :CenterCut, :Blur
         
-        def initialize(type=nil, scale=nil, centercut=nil)
+        def initialize(type=nil, scale=nil, centercut=nil, blur=nil)
           @Type = type
           @Scale = scale
           @CenterCut = centercut
+          @Blur = blur
         end
 
         def deserialize(params)
@@ -12447,6 +12475,10 @@ module TencentCloud
           unless params['CenterCut'].nil?
             @CenterCut = ImageCenterCut.new
             @CenterCut.deserialize(params['CenterCut'])
+          end
+          unless params['Blur'].nil?
+            @Blur = ImageBlur.new
+            @Blur.deserialize(params['Blur'])
           end
         end
       end
@@ -16193,13 +16225,13 @@ module TencentCloud
 
       # ModifyRebuildMediaTemplate请求参数结构体
       class ModifyRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模版号。
+        # @param Definition: 音画质重生模板号。
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: String
-        # @param Name: 音画质重生模版名称。
+        # @param Name: 音画质重生模板名称。
         # @type Name: String
-        # @param Comment: 音画质重生模版描述。
+        # @param Comment: 音画质重生模板描述。
         # @type Comment: String
         # @param RebuildVideoInfo: 音画质重生视频控制信息。
         # @type RebuildVideoInfo: :class:`Tencentcloud::Vod.v20180717.models.RebuildVideoInfo`
@@ -19149,7 +19181,7 @@ module TencentCloud
       class RebuildMediaByTemplateRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。
         # @type FileId: String
-        # @param Definition: 音画质重生模版 ID。
+        # @param Definition: 音画质重生模板 ID。
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: String
@@ -19816,17 +19848,17 @@ module TencentCloud
         end
       end
 
-      # 音画质重生模版详情。
+      # 音画质重生模板详情。
       class RebuildMediaTemplate < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模版号。
+        # @param Definition: 音画质重生模板号。
         # @type Definition: Integer
         # @param Type: 模板类型，可选值：
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
-        # @param Name: 音画质重生模版名称。
+        # @param Name: 音画质重生模板名称。
         # @type Name: String
-        # @param Comment: 音画质重生模版描述。
+        # @param Comment: 音画质重生模板描述。
         # @type Comment: String
         # @param RebuildVideoInfo: 音画质重生视频控制信息。
         # 注意：此字段可能返回 null，表示取不到有效值。

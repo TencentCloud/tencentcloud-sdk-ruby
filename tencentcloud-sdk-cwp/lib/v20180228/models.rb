@@ -37,6 +37,26 @@ module TencentCloud
         end
       end
 
+      # 节点关联的告警信息
+      class AlarmInfo < TencentCloud::Common::AbstractModel
+        # @param AlarmId: 该节点关联的告警，告警的table_name+id（t1:id1,t2:id2,...)
+        # @type AlarmId: String
+        # @param Status: 告警事件表状态，当该节点为告警点时生效
+        # @type Status: Integer
+
+        attr_accessor :AlarmId, :Status
+        
+        def initialize(alarmid=nil, status=nil)
+          @AlarmId = alarmid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @AlarmId = params['AlarmId']
+          @Status = params['Status']
+        end
+      end
+
       # 资源管理进程基本信息
       class AssetAppBaseInfo < TencentCloud::Common::AbstractModel
         # @param MachineIp: 主机内网IP
@@ -4154,10 +4174,13 @@ module TencentCloud
         # @param MachineExtraInfo: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Location: 地理位置中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -4180,6 +4203,7 @@ module TencentCloud
           @InstanceId = instanceid
           @DataStatus = datastatus
           @MachineExtraInfo = machineextrainfo
+          @Location = location
         end
 
         def deserialize(params)
@@ -4208,6 +4232,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Location = params['Location']
         end
       end
 
@@ -5785,6 +5810,103 @@ module TencentCloud
               @AccountStatistics << accountstatistics_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmIncidentNodes请求参数结构体
+      class DescribeAlarmIncidentNodesRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 机器uuid
+        # @type Uuid: String
+        # @param AlarmVid: 告警vid
+        # @type AlarmVid: String
+        # @param AlarmTime: 告警时间
+        # @type AlarmTime: Integer
+
+        attr_accessor :Uuid, :AlarmVid, :AlarmTime
+        
+        def initialize(uuid=nil, alarmvid=nil, alarmtime=nil)
+          @Uuid = uuid
+          @AlarmVid = alarmvid
+          @AlarmTime = alarmtime
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @AlarmVid = params['AlarmVid']
+          @AlarmTime = params['AlarmTime']
+        end
+      end
+
+      # DescribeAlarmIncidentNodes返回参数结构体
+      class DescribeAlarmIncidentNodesResponse < TencentCloud::Common::AbstractModel
+        # @param IncidentNodes: 告警点所在事件的所有节点信息,可能包含多事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncidentNodes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IncidentNodes, :RequestId
+        
+        def initialize(incidentnodes=nil, requestid=nil)
+          @IncidentNodes = incidentnodes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IncidentNodes'].nil?
+            @IncidentNodes = []
+            params['IncidentNodes'].each do |i|
+              incidentvertexinfo_tmp = IncidentVertexInfo.new
+              incidentvertexinfo_tmp.deserialize(i)
+              @IncidentNodes << incidentvertexinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmVertexId请求参数结构体
+      class DescribeAlarmVertexIdRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 机器uuid
+        # @type Uuid: String
+        # @param StartTime: 开始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :Uuid, :StartTime, :EndTime
+        
+        def initialize(uuid=nil, starttime=nil, endtime=nil)
+          @Uuid = uuid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAlarmVertexId返回参数结构体
+      class DescribeAlarmVertexIdResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmVertexIds: 告警点id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmVertexIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmVertexIds, :RequestId
+        
+        def initialize(alarmvertexids=nil, requestid=nil)
+          @AlarmVertexIds = alarmvertexids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AlarmVertexIds = params['AlarmVertexIds']
           @RequestId = params['RequestId']
         end
       end
@@ -10919,6 +11041,50 @@ module TencentCloud
         end
       end
 
+      # DescribeEventByTable请求参数结构体
+      class DescribeEventByTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableName: 事件表名
+        # @type TableName: String
+        # @param Ids: 事件表id号
+        # @type Ids: Array
+
+        attr_accessor :TableName, :Ids
+        
+        def initialize(tablename=nil, ids=nil)
+          @TableName = tablename
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Ids = params['Ids']
+        end
+      end
+
+      # DescribeEventByTable返回参数结构体
+      class DescribeEventByTableResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 告警类型，爆破bruteattack，高危命令bash，恶意文件malware，恶意请求risk_dns，本地提权privilege_escalation，反弹shell reverse_shell，内存马java_shell
+        # @type Type: String
+        # @param Value: 事件内容的json编码字符串，字段结构对齐事件表
+        # @type Value: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :Value, :RequestId
+        
+        def initialize(type=nil, value=nil, requestid=nil)
+          @Type = type
+          @Value = value
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExpertServiceList请求参数结构体
       class DescribeExpertServiceListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -13234,6 +13400,46 @@ module TencentCloud
         end
       end
 
+      # DescribePrivilegeEventInfo请求参数结构体
+      class DescribePrivilegeEventInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 事件id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribePrivilegeEventInfo返回参数结构体
+      class DescribePrivilegeEventInfoResponse < TencentCloud::Common::AbstractModel
+        # @param PrivilegeEventInfo: 本地提权详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeEventInfo: :class:`Tencentcloud::Cwp.v20180228.models.PrivilegeEventInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivilegeEventInfo, :RequestId
+        
+        def initialize(privilegeeventinfo=nil, requestid=nil)
+          @PrivilegeEventInfo = privilegeeventinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PrivilegeEventInfo'].nil?
+            @PrivilegeEventInfo = PrivilegeEventInfo.new
+            @PrivilegeEventInfo.deserialize(params['PrivilegeEventInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrivilegeEvents请求参数结构体
       class DescribePrivilegeEventsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，最大值为100。
@@ -13723,6 +13929,46 @@ module TencentCloud
         end
       end
 
+      # DescribeReverseShellEventInfo请求参数结构体
+      class DescribeReverseShellEventInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 事件id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeReverseShellEventInfo返回参数结构体
+      class DescribeReverseShellEventInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ReverseShellEventInfo: 反弹shell详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReverseShellEventInfo: :class:`Tencentcloud::Cwp.v20180228.models.ReverseShellEventInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReverseShellEventInfo, :RequestId
+        
+        def initialize(reverseshelleventinfo=nil, requestid=nil)
+          @ReverseShellEventInfo = reverseshelleventinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReverseShellEventInfo'].nil?
+            @ReverseShellEventInfo = ReverseShellEventInfo.new
+            @ReverseShellEventInfo.deserialize(params['ReverseShellEventInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReverseShellEvents请求参数结构体
       class DescribeReverseShellEventsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，最大值为100。
@@ -13853,6 +14099,46 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskDnsEventInfo请求参数结构体
+      class DescribeRiskDnsEventInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 恶意请求事件Id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeRiskDnsEventInfo返回参数结构体
+      class DescribeRiskDnsEventInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 恶意请求事件详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: :class:`Tencentcloud::Cwp.v20180228.models.RiskDnsEvent`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = RiskDnsEvent.new
+            @Info.deserialize(params['Info'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15470,6 +15756,58 @@ module TencentCloud
           @ProVersionNum = params['ProVersionNum']
           @UltimateVersionNum = params['UltimateVersionNum']
           @GeneralVersionNum = params['GeneralVersionNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVertexDetail请求参数结构体
+      class DescribeVertexDetailRequest < TencentCloud::Common::AbstractModel
+        # @param VertexIds: 点id列表
+        # @type VertexIds: Array
+        # @param IncidentId: 事件id
+        # @type IncidentId: String
+        # @param TableName: 事件所在表名
+        # @type TableName: String
+
+        attr_accessor :VertexIds, :IncidentId, :TableName
+        
+        def initialize(vertexids=nil, incidentid=nil, tablename=nil)
+          @VertexIds = vertexids
+          @IncidentId = incidentid
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @VertexIds = params['VertexIds']
+          @IncidentId = params['IncidentId']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeVertexDetail返回参数结构体
+      class DescribeVertexDetailResponse < TencentCloud::Common::AbstractModel
+        # @param VertexDetails: 指定点列表的属性信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VertexDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VertexDetails, :RequestId
+        
+        def initialize(vertexdetails=nil, requestid=nil)
+          @VertexDetails = vertexdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VertexDetails'].nil?
+            @VertexDetails = []
+            params['VertexDetails'].each do |i|
+              vertexdetail_tmp = VertexDetail.new
+              vertexdetail_tmp.deserialize(i)
+              @VertexDetails << vertexdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -18453,10 +18791,13 @@ module TencentCloud
         # @param MachineExtraInfo: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Port: 请求目的端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc, :MachineExtraInfo, :Port
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil, machineextrainfo=nil, port=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -18478,6 +18819,7 @@ module TencentCloud
           @Quuid = quuid
           @Desc = desc
           @MachineExtraInfo = machineextrainfo
+          @Port = port
         end
 
         def deserialize(params)
@@ -18505,6 +18847,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Port = params['Port']
         end
       end
 
@@ -18658,6 +19001,45 @@ module TencentCloud
           @LastScanTime = params['LastScanTime']
           @EventId = params['EventId']
           @Quuid = params['Quuid']
+        end
+      end
+
+      # 事件点信息
+      class IncidentVertexInfo < TencentCloud::Common::AbstractModel
+        # @param IncidentId: 事件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncidentId: String
+        # @param TableName: 事件所在表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param Vertex: 节点信息列表，数组项中包含节点详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vertex: Array
+        # @param VertexCount: 节点总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VertexCount: Integer
+
+        attr_accessor :IncidentId, :TableName, :Vertex, :VertexCount
+        
+        def initialize(incidentid=nil, tablename=nil, vertex=nil, vertexcount=nil)
+          @IncidentId = incidentid
+          @TableName = tablename
+          @Vertex = vertex
+          @VertexCount = vertexcount
+        end
+
+        def deserialize(params)
+          @IncidentId = params['IncidentId']
+          @TableName = params['TableName']
+          unless params['Vertex'].nil?
+            @Vertex = []
+            params['Vertex'].each do |i|
+              vertexinfo_tmp = VertexInfo.new
+              vertexinfo_tmp.deserialize(i)
+              @Vertex << vertexinfo_tmp
+            end
+          end
+          @VertexCount = params['VertexCount']
         end
       end
 
@@ -20631,10 +21013,13 @@ module TencentCloud
         # @param MachineExtraInfo: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Pid: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName, :MachineExtraInfo, :Pid
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil, machineextrainfo=nil, pid=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -20654,6 +21039,7 @@ module TencentCloud
           @CreateTime = createtime
           @MachineName = machinename
           @MachineExtraInfo = machineextrainfo
+          @Pid = pid
         end
 
         def deserialize(params)
@@ -20679,6 +21065,123 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Pid = params['Pid']
+        end
+      end
+
+      # 本地提权数据
+      class PrivilegeEventInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 数据ID
+        # @type Id: Integer
+        # @param Uuid: 云镜ID
+        # @type Uuid: String
+        # @param Quuid: 主机ID
+        # @type Quuid: String
+        # @param HostIp: 主机内网IP
+        # @type HostIp: String
+        # @param ProcessName: 进程名
+        # @type ProcessName: String
+        # @param FullPath: 进程路径
+        # @type FullPath: String
+        # @param CmdLine: 执行命令
+        # @type CmdLine: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param UserGroup: 用户组
+        # @type UserGroup: String
+        # @param ProcFilePrivilege: 进程文件权限
+        # @type ProcFilePrivilege: String
+        # @param ParentProcName: 父进程名
+        # @type ParentProcName: String
+        # @param ParentProcUser: 父进程用户名
+        # @type ParentProcUser: String
+        # @param ParentProcGroup: 父进程用户组
+        # @type ParentProcGroup: String
+        # @param ParentProcPath: 父进程路径
+        # @type ParentProcPath: String
+        # @param PsTree: 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        # @type PsTree: String
+        # @param Status: 处理状态：0-待处理 2-白名单 3-已处理 4-已忽略
+        # @type Status: Integer
+        # @param CreateTime: 发生时间
+        # @type CreateTime: String
+        # @param MachineName: 机器名
+        # @type MachineName: String
+        # @param SuggestScheme: 建议方案
+        # @type SuggestScheme: String
+        # @param HarmDescribe: 危害描述信息
+        # @type HarmDescribe: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param References: 参考链接
+        # @type References: Array
+        # @param MachineWanIp: 主机外网ip
+        # @type MachineWanIp: String
+        # @param NewCaps: 权限列表|隔开
+        # @type NewCaps: String
+        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # @type MachineStatus: String
+        # @param ModifyTime: 处理时间
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :PsTree, :Status, :CreateTime, :MachineName, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :NewCaps, :MachineStatus, :ModifyTime
+        
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, pstree=nil, status=nil, createtime=nil, machinename=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, newcaps=nil, machinestatus=nil, modifytime=nil)
+          @Id = id
+          @Uuid = uuid
+          @Quuid = quuid
+          @HostIp = hostip
+          @ProcessName = processname
+          @FullPath = fullpath
+          @CmdLine = cmdline
+          @UserName = username
+          @UserGroup = usergroup
+          @ProcFilePrivilege = procfileprivilege
+          @ParentProcName = parentprocname
+          @ParentProcUser = parentprocuser
+          @ParentProcGroup = parentprocgroup
+          @ParentProcPath = parentprocpath
+          @PsTree = pstree
+          @Status = status
+          @CreateTime = createtime
+          @MachineName = machinename
+          @SuggestScheme = suggestscheme
+          @HarmDescribe = harmdescribe
+          @Tags = tags
+          @References = references
+          @MachineWanIp = machinewanip
+          @NewCaps = newcaps
+          @MachineStatus = machinestatus
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @HostIp = params['HostIp']
+          @ProcessName = params['ProcessName']
+          @FullPath = params['FullPath']
+          @CmdLine = params['CmdLine']
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
+          @ProcFilePrivilege = params['ProcFilePrivilege']
+          @ParentProcName = params['ParentProcName']
+          @ParentProcUser = params['ParentProcUser']
+          @ParentProcGroup = params['ParentProcGroup']
+          @ParentProcPath = params['ParentProcPath']
+          @PsTree = params['PsTree']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @MachineName = params['MachineName']
+          @SuggestScheme = params['SuggestScheme']
+          @HarmDescribe = params['HarmDescribe']
+          @Tags = params['Tags']
+          @References = params['References']
+          @MachineWanIp = params['MachineWanIp']
+          @NewCaps = params['NewCaps']
+          @MachineStatus = params['MachineStatus']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -21242,10 +21745,13 @@ module TencentCloud
         # @param MachineExtraInfo:  主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Pid: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo, :Pid
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil, pid=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -21267,6 +21773,7 @@ module TencentCloud
           @ProcTree = proctree
           @DetectBy = detectby
           @MachineExtraInfo = machineextrainfo
+          @Pid = pid
         end
 
         def deserialize(params)
@@ -21294,6 +21801,128 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Pid = params['Pid']
+        end
+      end
+
+      # 反弹Shell数据详情
+      class ReverseShellEventInfo < TencentCloud::Common::AbstractModel
+        # @param Id: ID 主键
+        # @type Id: Integer
+        # @param Uuid: 云镜UUID
+        # @type Uuid: String
+        # @param Quuid: 主机ID
+        # @type Quuid: String
+        # @param HostIp: 主机内网IP
+        # @type HostIp: String
+        # @param DstIp: 目标IP
+        # @type DstIp: String
+        # @param DstPort: 目标端口
+        # @type DstPort: Integer
+        # @param ProcessName: 进程名
+        # @type ProcessName: String
+        # @param FullPath: 进程路径
+        # @type FullPath: String
+        # @param CmdLine: 命令详情
+        # @type CmdLine: String
+        # @param UserName: 执行用户
+        # @type UserName: String
+        # @param UserGroup: 执行用户组
+        # @type UserGroup: String
+        # @param ParentProcName: 父进程名
+        # @type ParentProcName: String
+        # @param ParentProcUser: 父进程用户
+        # @type ParentProcUser: String
+        # @param ParentProcGroup: 父进程用户组
+        # @type ParentProcGroup: String
+        # @param ParentProcPath: 父进程路径
+        # @type ParentProcPath: String
+        # @param Status: 处理状态：0-待处理 2-白名单 3-已处理 4-已忽略
+        # @type Status: Integer
+        # @param CreateTime: 产生时间
+        # @type CreateTime: String
+        # @param MachineName: 主机名
+        # @type MachineName: String
+        # @param DetectBy: 检测方法
+        # @type DetectBy: Integer
+        # @param PsTree: 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PsTree: String
+        # @param SuggestScheme: 建议方案
+        # @type SuggestScheme: String
+        # @param HarmDescribe: 描述
+        # @type HarmDescribe: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param References: 参考链接
+        # @type References: Array
+        # @param MachineWanIp: 主机外网ip
+        # @type MachineWanIp: String
+        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # @type MachineStatus: String
+        # @param ModifyTime: 处理时间
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :DetectBy, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :ModifyTime
+        
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, modifytime=nil)
+          @Id = id
+          @Uuid = uuid
+          @Quuid = quuid
+          @HostIp = hostip
+          @DstIp = dstip
+          @DstPort = dstport
+          @ProcessName = processname
+          @FullPath = fullpath
+          @CmdLine = cmdline
+          @UserName = username
+          @UserGroup = usergroup
+          @ParentProcName = parentprocname
+          @ParentProcUser = parentprocuser
+          @ParentProcGroup = parentprocgroup
+          @ParentProcPath = parentprocpath
+          @Status = status
+          @CreateTime = createtime
+          @MachineName = machinename
+          @DetectBy = detectby
+          @PsTree = pstree
+          @SuggestScheme = suggestscheme
+          @HarmDescribe = harmdescribe
+          @Tags = tags
+          @References = references
+          @MachineWanIp = machinewanip
+          @MachineStatus = machinestatus
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @HostIp = params['HostIp']
+          @DstIp = params['DstIp']
+          @DstPort = params['DstPort']
+          @ProcessName = params['ProcessName']
+          @FullPath = params['FullPath']
+          @CmdLine = params['CmdLine']
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
+          @ParentProcName = params['ParentProcName']
+          @ParentProcUser = params['ParentProcUser']
+          @ParentProcGroup = params['ParentProcGroup']
+          @ParentProcPath = params['ParentProcPath']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @MachineName = params['MachineName']
+          @DetectBy = params['DetectBy']
+          @PsTree = params['PsTree']
+          @SuggestScheme = params['SuggestScheme']
+          @HarmDescribe = params['HarmDescribe']
+          @Tags = params['Tags']
+          @References = params['References']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineStatus = params['MachineStatus']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -22742,6 +23371,196 @@ module TencentCloud
           @CountryId = params['CountryId']
           @ProvinceId = params['ProvinceId']
           @CityId = params['CityId']
+        end
+      end
+
+      # 点详细信息
+      class VertexDetail < TencentCloud::Common::AbstractModel
+        # @param Type: 该节点类型，进程:1；网络:2；文件:3；ssh:4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Time: 各节点类型用到的时间，2022-11-29 00:00:00 格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param AlarmInfo: 告警信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmInfo: Array
+        # @param ProcName: 进程名，当该节点为进程时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcName: String
+        # @param CmdLine: 命令行，当该节点为进程时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdLine: String
+        # @param Pid: 进程id，当该节点为进程时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: String
+        # @param FileMd5: 文件md5，当该节点为文件时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMd5: String
+        # @param FileContent: 文件写入内容，当该节点为文件时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileContent: String
+        # @param FilePath: 文件路径，当该节点为文件时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePath: String
+        # @param FileCreateTime: 文件创建时间，当该节点为文件时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileCreateTime: String
+        # @param Address: 请求目的地址，当该节点为网络时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param DstPort: 目标端口，当该节点为网络时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstPort: Integer
+        # @param SrcIP: 登录源ip，当该节点为ssh时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcIP: String
+        # @param User: 登录用户名用户组，当该节点为ssh时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param VulName: 漏洞名称，当该节点为漏洞时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulName: String
+        # @param VulTime: 漏洞利用时间，当该节点为漏洞时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulTime: String
+        # @param HttpContent: http请求内容，当该节点为漏洞时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpContent: String
+        # @param VulSrcIP: 漏洞利用者来源ip，当该节点为漏洞时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulSrcIP: String
+        # @param VertexId: 点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VertexId: String
+
+        attr_accessor :Type, :Time, :AlarmInfo, :ProcName, :CmdLine, :Pid, :FileMd5, :FileContent, :FilePath, :FileCreateTime, :Address, :DstPort, :SrcIP, :User, :VulName, :VulTime, :HttpContent, :VulSrcIP, :VertexId
+        
+        def initialize(type=nil, time=nil, alarminfo=nil, procname=nil, cmdline=nil, pid=nil, filemd5=nil, filecontent=nil, filepath=nil, filecreatetime=nil, address=nil, dstport=nil, srcip=nil, user=nil, vulname=nil, vultime=nil, httpcontent=nil, vulsrcip=nil, vertexid=nil)
+          @Type = type
+          @Time = time
+          @AlarmInfo = alarminfo
+          @ProcName = procname
+          @CmdLine = cmdline
+          @Pid = pid
+          @FileMd5 = filemd5
+          @FileContent = filecontent
+          @FilePath = filepath
+          @FileCreateTime = filecreatetime
+          @Address = address
+          @DstPort = dstport
+          @SrcIP = srcip
+          @User = user
+          @VulName = vulname
+          @VulTime = vultime
+          @HttpContent = httpcontent
+          @VulSrcIP = vulsrcip
+          @VertexId = vertexid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Time = params['Time']
+          unless params['AlarmInfo'].nil?
+            @AlarmInfo = []
+            params['AlarmInfo'].each do |i|
+              alarminfo_tmp = AlarmInfo.new
+              alarminfo_tmp.deserialize(i)
+              @AlarmInfo << alarminfo_tmp
+            end
+          end
+          @ProcName = params['ProcName']
+          @CmdLine = params['CmdLine']
+          @Pid = params['Pid']
+          @FileMd5 = params['FileMd5']
+          @FileContent = params['FileContent']
+          @FilePath = params['FilePath']
+          @FileCreateTime = params['FileCreateTime']
+          @Address = params['Address']
+          @DstPort = params['DstPort']
+          @SrcIP = params['SrcIP']
+          @User = params['User']
+          @VulName = params['VulName']
+          @VulTime = params['VulTime']
+          @HttpContent = params['HttpContent']
+          @VulSrcIP = params['VulSrcIP']
+          @VertexId = params['VertexId']
+        end
+      end
+
+      # 攻击溯源节点信息
+      class VertexInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 该结点类型，进程:1；网络:2；文件:3；ssh:4；
+        # @type Type: Integer
+        # @param Vid: 该节点包含的vid
+        # @type Vid: String
+        # @param ParentVid: 该节点的父节点vid
+        # @type ParentVid: String
+        # @param IsLeaf: 是否叶子
+        # @type IsLeaf: Boolean
+        # @param ProcNamePrefix: 进程名，当Type=1时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcNamePrefix: String
+        # @param ProcNameMd5: 进程名md5，当Type=1时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcNameMd5: String
+        # @param CmdLinePrefix: 命令行，当Type=1时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdLinePrefix: String
+        # @param CmdLineMd5: 命令行md5，当Type=1时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdLineMd5: String
+        # @param FilePathPrefix: 文件路径，当Type=3时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePathPrefix: String
+        # @param AddressPrefix: 请求目的地址，当Type=2时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressPrefix: String
+        # @param IsWeDetect: 是否漏洞节点
+        # @type IsWeDetect: Boolean
+        # @param IsAlarm: 是否告警节点
+        # @type IsAlarm: Boolean
+        # @param FilePathMd5: 文件路径md5，当Type=3时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePathMd5: String
+        # @param AddressMd5: 请求目的地址md5，当Type=2时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressMd5: String
+
+        attr_accessor :Type, :Vid, :ParentVid, :IsLeaf, :ProcNamePrefix, :ProcNameMd5, :CmdLinePrefix, :CmdLineMd5, :FilePathPrefix, :AddressPrefix, :IsWeDetect, :IsAlarm, :FilePathMd5, :AddressMd5
+        
+        def initialize(type=nil, vid=nil, parentvid=nil, isleaf=nil, procnameprefix=nil, procnamemd5=nil, cmdlineprefix=nil, cmdlinemd5=nil, filepathprefix=nil, addressprefix=nil, iswedetect=nil, isalarm=nil, filepathmd5=nil, addressmd5=nil)
+          @Type = type
+          @Vid = vid
+          @ParentVid = parentvid
+          @IsLeaf = isleaf
+          @ProcNamePrefix = procnameprefix
+          @ProcNameMd5 = procnamemd5
+          @CmdLinePrefix = cmdlineprefix
+          @CmdLineMd5 = cmdlinemd5
+          @FilePathPrefix = filepathprefix
+          @AddressPrefix = addressprefix
+          @IsWeDetect = iswedetect
+          @IsAlarm = isalarm
+          @FilePathMd5 = filepathmd5
+          @AddressMd5 = addressmd5
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Vid = params['Vid']
+          @ParentVid = params['ParentVid']
+          @IsLeaf = params['IsLeaf']
+          @ProcNamePrefix = params['ProcNamePrefix']
+          @ProcNameMd5 = params['ProcNameMd5']
+          @CmdLinePrefix = params['CmdLinePrefix']
+          @CmdLineMd5 = params['CmdLineMd5']
+          @FilePathPrefix = params['FilePathPrefix']
+          @AddressPrefix = params['AddressPrefix']
+          @IsWeDetect = params['IsWeDetect']
+          @IsAlarm = params['IsAlarm']
+          @FilePathMd5 = params['FilePathMd5']
+          @AddressMd5 = params['AddressMd5']
         end
       end
 

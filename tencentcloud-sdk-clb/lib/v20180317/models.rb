@@ -4218,10 +4218,13 @@ module TencentCloud
         # @type Status: Integer
         # @param Forward: 负载均衡类型标识，1：负载均衡，0：传统型负载均衡。
         # @type Forward: Integer
+        # @param Domain: 负载均衡域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :IdleReason, :Status, :Forward
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :IdleReason, :Status, :Forward, :Domain
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, idlereason=nil, status=nil, forward=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, idlereason=nil, status=nil, forward=nil, domain=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @Region = region
@@ -4229,6 +4232,7 @@ module TencentCloud
           @IdleReason = idlereason
           @Status = status
           @Forward = forward
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -4239,6 +4243,7 @@ module TencentCloud
           @IdleReason = params['IdleReason']
           @Status = params['Status']
           @Forward = params['Forward']
+          @Domain = params['Domain']
         end
       end
 

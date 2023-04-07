@@ -194,10 +194,13 @@ module TencentCloud
         # <li>action-image-sprite：雪碧图</li>
         # <li>action-snapshotByTimeOffset: 时间点截图</li>
         # <li>action-adaptive-substream：自适应码流</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityType: String
         # @param ReardriveIndex: 后驱节点索引数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReardriveIndex: Array
         # @param ActivityPara: 原子任务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityPara: :class:`Tencentcloud::Mps.v20190612.models.ActivityPara`
 
         attr_accessor :ActivityType, :ReardriveIndex, :ActivityPara
@@ -613,15 +616,19 @@ module TencentCloud
         # @param FrameTagTask: 视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameTagTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskFrameTagResult`
+        # @param HighlightTask: 视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighlightTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask
         
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
           @TagTask = tagtask
           @FrameTagTask = frametagtask
+          @HighlightTask = highlighttask
         end
 
         def deserialize(params)
@@ -641,6 +648,10 @@ module TencentCloud
           unless params['FrameTagTask'].nil?
             @FrameTagTask = AiAnalysisTaskFrameTagResult.new
             @FrameTagTask.deserialize(params['FrameTagTask'])
+          end
+          unless params['HighlightTask'].nil?
+            @HighlightTask = AiAnalysisTaskHighlightResult.new
+            @HighlightTask.deserialize(params['HighlightTask'])
           end
         end
       end
@@ -898,6 +909,91 @@ module TencentCloud
         end
       end
 
+      # 智能精彩片段任务输入类型
+      class AiAnalysisTaskHighlightInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能精彩片段模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+        
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能精彩片段结果信息
+      class AiAnalysisTaskHighlightOutput < TencentCloud::Common::AbstractModel
+        # @param HighlightSet: 视频智能精彩片段列表。
+        # @type HighlightSet: Array
+        # @param OutputStorage: 精彩片段的存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :HighlightSet, :OutputStorage
+        
+        def initialize(highlightset=nil, outputstorage=nil)
+          @HighlightSet = highlightset
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          unless params['HighlightSet'].nil?
+            @HighlightSet = []
+            params['HighlightSet'].each do |i|
+              mediaaianalysishighlightitem_tmp = MediaAiAnalysisHighlightItem.new
+              mediaaianalysishighlightitem_tmp.deserialize(i)
+              @HighlightSet << mediaaianalysishighlightitem_tmp
+            end
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 智能精彩片段结果类型
+      class AiAnalysisTaskHighlightResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能精彩片段任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightInput`
+        # @param Output: 智能精彩片段任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskHighlightInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskHighlightOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
       # AI 视频智能分析输入参数类型
       class AiAnalysisTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频内容分析模板 ID。
@@ -1129,6 +1225,28 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+        end
+      end
+
+      # 视频质检输入参数类型
+      class AiQualityControlTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频质检模板 ID 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Definition: Integer
+        # @param ChannelExtPara: 渠道扩展参数json序列化字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelExtPara: String
+
+        attr_accessor :Definition, :ChannelExtPara
+        
+        def initialize(definition=nil, channelextpara=nil)
+          @Definition = definition
+          @ChannelExtPara = channelextpara
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @ChannelExtPara = params['ChannelExtPara']
         end
       end
 
@@ -3571,21 +3689,21 @@ module TencentCloud
 
       # AWS S3 文件是上传触发器。
       class AwsS3FileUploadTrigger < TencentCloud::Common::AbstractModel
-        # @param S3Bucket: 工作流绑定的 AWS S3 存储桶。
+        # @param S3Bucket: 绑定的 AWS S3 存储桶。
         # @type S3Bucket: String
-        # @param S3Region: 工作流绑定的桶所在 AWS 区域。
+        # @param S3Region: 绑定的桶所在 AWS 区域。
         # @type S3Region: String
-        # @param Dir: 工作流绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
+        # @param Dir: 绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
         # @type Dir: String
-        # @param Formats: 工作流允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
+        # @param Formats: 允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
         # @type Formats: Array
-        # @param S3SecretId: 工作流绑定的 AWS S3 存储桶的秘钥ID。
+        # @param S3SecretId: 绑定的 AWS S3 存储桶的秘钥ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretId: String
-        # @param S3SecretKey: 工作流绑定的 AWS S3 存储桶的秘钥Key。
+        # @param S3SecretKey: 绑定的 AWS S3 存储桶的秘钥Key。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretKey: String
-        # @param AwsSQS: 工作流绑定的 AWS S3 存储桶对应的 SQS事件队列。
+        # @param AwsSQS: 绑定的 AWS S3 存储桶对应的 SQS事件队列。
         # 注意：队列和桶需要在同一区域。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
@@ -4978,13 +5096,14 @@ module TencentCloud
       class CreateScheduleRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleName: 编排名称，最多128字符。同一个用户该名称唯一。
         # @type ScheduleName: String
-        # @param Trigger: 编排绑定的触发规则，当上传视频命中该规则到该对象时即触发工作流。
+        # @param Trigger: 编排绑定的触发规则，当上传视频命中该规则到该对象时即触发编排。
         # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
         # @param Activities: 编排任务列表。
         # @type Activities: Array
         # @param OutputStorage: 媒体处理的文件输出存储位置。不填则继承 Trigger 中的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致。
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        # 如果不填，表示与触发文件所在的目录一致。
         # @type OutputDir: String
         # @param TaskNotifyConfig: 任务的事件通知配置，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
@@ -5468,7 +5587,8 @@ module TencentCloud
         # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
         # @param OutputStorage: 媒体处理的文件输出存储位置。不填则继承 Trigger 中的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致。
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        # 如果不填，表示与触发文件所在的目录一致。
         # @type OutputDir: String
         # @param MediaProcessTask: 媒体处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
@@ -7380,20 +7500,26 @@ module TencentCloud
       class DescribeSchedulesRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleIds: 编排 ID 过滤条件，数组长度限制：100。
         # @type ScheduleIds: Array
+        # @param TriggerType: 编排触发类型，可选值：
+        # <li>CosFileUpload： 腾讯云 COS 文件上传触发</li>
+        # <li>AwsS3FileUpload：Aws S3 文件上传触发。</li>
+        # 不填或者为空表示全部。
+        # @type TriggerType: String
         # @param Status: 状态，取值范围：
         # <li>Enabled：已启用，</li>
         # <li>Disabled：已禁用。</li>
-        # 不填此参数，则不区分工作流状态。
+        # 不填此参数，则不区编排状态。
         # @type Status: String
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
 
-        attr_accessor :ScheduleIds, :Status, :Offset, :Limit
+        attr_accessor :ScheduleIds, :TriggerType, :Status, :Offset, :Limit
         
-        def initialize(scheduleids=nil, status=nil, offset=nil, limit=nil)
+        def initialize(scheduleids=nil, triggertype=nil, status=nil, offset=nil, limit=nil)
           @ScheduleIds = scheduleids
+          @TriggerType = triggertype
           @Status = status
           @Offset = offset
           @Limit = limit
@@ -7401,6 +7527,7 @@ module TencentCloud
 
         def deserialize(params)
           @ScheduleIds = params['ScheduleIds']
+          @TriggerType = params['TriggerType']
           @Status = params['Status']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -9647,6 +9774,30 @@ module TencentCloud
         end
       end
 
+      # 智能精彩集锦片段列表。
+      class HighlightSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 置信度。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 片段起始时间偏移。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 片段结束时间偏移。
+        # @type EndTimeOffset: Float
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset
+        
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+        end
+      end
+
       # 综合增强配置
       class ImageQualityEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -10772,6 +10923,45 @@ module TencentCloud
               mediaaianalysisframetagitem_tmp = MediaAiAnalysisFrameTagItem.new
               mediaaianalysisframetagitem_tmp.deserialize(i)
               @TagSet << mediaaianalysisframetagitem_tmp
+            end
+          end
+        end
+      end
+
+      # 智能精彩片段信息
+      class MediaAiAnalysisHighlightItem < TencentCloud::Common::AbstractModel
+        # @param HighlightPath: 智能精彩集锦地址。
+        # @type HighlightPath: String
+        # @param CovImgPath: 智能精彩集锦封面地址。
+        # @type CovImgPath: String
+        # @param Confidence: 智能精彩集锦的可信度，取值范围是 0 到 100。
+        # @type Confidence: Float
+        # @param Duration: 智能精彩集锦持续时间。
+        # @type Duration: Float
+        # @param SegmentSet: 智能精彩集锦子片段列表。
+        # @type SegmentSet: Array
+
+        attr_accessor :HighlightPath, :CovImgPath, :Confidence, :Duration, :SegmentSet
+        
+        def initialize(highlightpath=nil, covimgpath=nil, confidence=nil, duration=nil, segmentset=nil)
+          @HighlightPath = highlightpath
+          @CovImgPath = covimgpath
+          @Confidence = confidence
+          @Duration = duration
+          @SegmentSet = segmentset
+        end
+
+        def deserialize(params)
+          @HighlightPath = params['HighlightPath']
+          @CovImgPath = params['CovImgPath']
+          @Confidence = params['Confidence']
+          @Duration = params['Duration']
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              highlightsegmentitem_tmp = HighlightSegmentItem.new
+              highlightsegmentitem_tmp.deserialize(i)
+              @SegmentSet << highlightsegmentitem_tmp
             end
           end
         end
@@ -12670,7 +12860,7 @@ module TencentCloud
         # @type Activities: Array
         # @param OutputStorage: 媒体处理的文件输出存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 媒体处理生成的文件输出的目标目录。
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾。
         # 注意：如果设置为空，则表示取消老配置的OutputDir值。
         # @type OutputDir: String
         # @param TaskNotifyConfig: 任务的事件通知配置。
@@ -14143,24 +14333,9 @@ module TencentCloud
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
         # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与 InputInfo 中文件所在的目录一致。
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        # 如果不填，表示与 InputInfo 中文件所在的目录一致。
         # @type OutputDir: String
-        # @param MediaProcessTask: 媒体处理类型任务参数。
-        # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: 视频内容审核类型任务参数。
-        # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: 视频内容分析类型任务参数。
-        # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: 视频内容识别类型任务参数。
-        # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
-        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
-        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
-        # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
-        # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
-        # @type SessionContext: String
         # @param ScheduleId: 编排ID。
         # 注意1：对于OutputStorage、OutputDir参数：
         # <li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li>
@@ -14169,26 +14344,45 @@ module TencentCloud
 
         # 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
         # @type ScheduleId: Integer
+        # @param MediaProcessTask: 媒体处理类型任务参数。
+        # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
+        # @param AiContentReviewTask: 视频内容审核类型任务参数。
+        # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
+        # @param AiAnalysisTask: 视频内容分析类型任务参数。
+        # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
+        # @param AiRecognitionTask: 视频内容识别类型任务参数。
+        # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
+        # @param AiQualityControlTask: 视频质检类型任务参数。
+        # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @type TasksPriority: Integer
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
         # @param TaskType: 任务类型，默认Online
         # <li> Online：实时任务</li>
         # <li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
         # @type TaskType: String
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ScheduleId, :TaskType
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType
         
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil, tasktype=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
+          @ScheduleId = scheduleid
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
+          @AiQualityControlTask = aiqualitycontroltask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
-          @ScheduleId = scheduleid
           @TaskType = tasktype
         end
 
@@ -14202,6 +14396,7 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @OutputDir = params['OutputDir']
+          @ScheduleId = params['ScheduleId']
           unless params['MediaProcessTask'].nil?
             @MediaProcessTask = MediaProcessTaskInput.new
             @MediaProcessTask.deserialize(params['MediaProcessTask'])
@@ -14218,6 +14413,10 @@ module TencentCloud
             @AiRecognitionTask = AiRecognitionTaskInput.new
             @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
           end
+          unless params['AiQualityControlTask'].nil?
+            @AiQualityControlTask = AiQualityControlTaskInput.new
+            @AiQualityControlTask.deserialize(params['AiQualityControlTask'])
+          end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
             @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
@@ -14225,7 +14424,6 @@ module TencentCloud
           @TasksPriority = params['TasksPriority']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
-          @ScheduleId = params['ScheduleId']
           @TaskType = params['TaskType']
         end
       end
@@ -14405,6 +14603,118 @@ module TencentCloud
           @Switch = params['Switch']
           @BlockConfidence = params['BlockConfidence']
           @ReviewConfidence = params['ReviewConfidence']
+        end
+      end
+
+      # 质检结果输出。
+      class QualityControlData < TencentCloud::Common::AbstractModel
+        # @param NoAudio: 为true时表示视频无音频轨。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoAudio: Boolean
+        # @param NoVideo: 为true时表示视频无视频轨。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoVideo: Boolean
+        # @param QualityEvaluationScore: 视频无参考质量打分，百分制。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityEvaluationScore: Integer
+        # @param QualityControlResultSet: 质检检出异常项。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlResultSet: Array
+
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityControlResultSet
+        
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualitycontrolresultset=nil)
+          @NoAudio = noaudio
+          @NoVideo = novideo
+          @QualityEvaluationScore = qualityevaluationscore
+          @QualityControlResultSet = qualitycontrolresultset
+        end
+
+        def deserialize(params)
+          @NoAudio = params['NoAudio']
+          @NoVideo = params['NoVideo']
+          @QualityEvaluationScore = params['QualityEvaluationScore']
+          unless params['QualityControlResultSet'].nil?
+            @QualityControlResultSet = []
+            params['QualityControlResultSet'].each do |i|
+              qualitycontrolresult_tmp = QualityControlResult.new
+              qualitycontrolresult_tmp.deserialize(i)
+              @QualityControlResultSet << qualitycontrolresult_tmp
+            end
+          end
+        end
+      end
+
+      # 质检结果项
+      class QualityControlItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 置信度，取值范围是 0 到 100。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Confidence: Integer
+        # @param StartTimeOffset: 出现的起始时间戳，秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 出现的结束时间戳，秒。
+        # @type EndTimeOffset: Float
+        # @param AreaCoordSet: 区域坐标(px)，即左上角坐标、右下角坐标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :AreaCoordSet
+        
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, areacoordset=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
+      # 质检异常项。
+      class QualityControlResult < TencentCloud::Common::AbstractModel
+        # @param Type: 异常类型，取值范围：
+        # Jitter：抖动，
+        # Blur：模糊，
+        # LowLighting：低光照，
+        # HighLighting：过曝，
+        # CrashScreen：花屏，
+        # BlackWhiteEdge：黑白边，
+        # SolidColorScreen：纯色屏，
+        # Noise：噪点，
+        # Mosaic：马赛克，
+        # QRCode：二维码，
+        # AppletCode：小程序码，
+        # BarCode：条形码，
+        # LowVoice：低音，
+        # HighVoice：爆音，
+        # NoVoice：静音，
+        # LowEvaluation：无参考打分低于阈值。
+        # @type Type: String
+        # @param QualityControlItems: 质检结果项。
+        # @type QualityControlItems: Array
+
+        attr_accessor :Type, :QualityControlItems
+        
+        def initialize(type=nil, qualitycontrolitems=nil)
+          @Type = type
+          @QualityControlItems = qualitycontrolitems
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['QualityControlItems'].nil?
+            @QualityControlItems = []
+            params['QualityControlItems'].each do |i|
+              qualitycontrolitem_tmp = QualityControlItem.new
+              qualitycontrolitem_tmp.deserialize(i)
+              @QualityControlItems << qualitycontrolitem_tmp
+            end
+          end
         end
       end
 
@@ -15101,6 +15411,49 @@ module TencentCloud
         end
       end
 
+      # 质检任务结果类型
+      class ScheduleQualityControlTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 质检任务的输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param Output: 质检任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.QualityControlData`
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiQualityControlTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = QualityControlData.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
       # 编排视频识别任务结果类型
       class ScheduleRecognitionTaskResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
@@ -15203,6 +15556,10 @@ module TencentCloud
         # <li>PROCESSING：处理中；</li>
         # <li>FINISH：已完成。</li>
         # @type Status: String
+        # @param ErrCode: 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
+        # @type Message: String
         # @param InputInfo: 媒体处理的目标文件信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
@@ -15213,11 +15570,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityResultSet: Array
 
-        attr_accessor :TaskId, :Status, :InputInfo, :MetaData, :ActivityResultSet
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :ActivityResultSet
         
-        def initialize(taskid=nil, status=nil, inputinfo=nil, metadata=nil, activityresultset=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, activityresultset=nil)
           @TaskId = taskid
           @Status = status
+          @ErrCode = errcode
+          @Message = message
           @InputInfo = inputinfo
           @MetaData = metadata
           @ActivityResultSet = activityresultset
@@ -15226,6 +15585,8 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
           unless params['InputInfo'].nil?
             @InputInfo = MediaInputInfo.new
             @InputInfo.deserialize(params['InputInfo'])
@@ -17246,10 +17607,13 @@ module TencentCloud
         # @type AiAnalysisResultSet: Array
         # @param AiRecognitionResultSet: 视频内容识别任务的执行状态与结果。
         # @type AiRecognitionResultSet: Array
+        # @param AiQualityControlTaskResult: 视频质检任务的执行状态与结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiQualityControlTaskResult: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -17260,6 +17624,7 @@ module TencentCloud
           @AiContentReviewResultSet = aicontentreviewresultset
           @AiAnalysisResultSet = aianalysisresultset
           @AiRecognitionResultSet = airecognitionresultset
+          @AiQualityControlTaskResult = aiqualitycontroltaskresult
         end
 
         def deserialize(params)
@@ -17306,6 +17671,10 @@ module TencentCloud
               airecognitionresult_tmp.deserialize(i)
               @AiRecognitionResultSet << airecognitionresult_tmp
             end
+          end
+          unless params['AiQualityControlTaskResult'].nil?
+            @AiQualityControlTaskResult = ScheduleQualityControlTaskResult.new
+            @AiQualityControlTaskResult.deserialize(params['AiQualityControlTaskResult'])
           end
         end
       end

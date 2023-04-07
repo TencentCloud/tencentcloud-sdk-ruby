@@ -336,7 +336,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
+        # 创建一个用户自定义的图片处理模板，数量上限：16。最多支持十次操作，例如：裁剪-缩略-裁剪-模糊-缩略-裁剪-缩略-裁剪-模糊-缩略。
 
         # @param request: Request instance for CreateImageProcessingTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateImageProcessingTemplateRequest`
@@ -432,7 +432,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建音画质重生模版。
+        # 创建音画质重生模板。
 
         # @param request: Request instance for CreateRebuildMediaTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateRebuildMediaTemplateRequest`
@@ -1021,7 +1021,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除音画质重生模版。
+        # 删除音画质重生模板。
 
         # @param request: Request instance for DeleteRebuildMediaTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::DeleteRebuildMediaTemplateRequest`
@@ -2021,7 +2021,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取音画质重生模版列表。
+        # 获取音画质重生模板列表。
 
         # @param request: Request instance for DescribeRebuildMediaTemplates.
         # @type request: :class:`Tencentcloud::vod::V20180717::DescribeRebuildMediaTemplatesRequest`
@@ -2958,7 +2958,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改音画质重生模版。
+        # 修改音画质重生模板。
 
         # @param request: Request instance for ModifyRebuildMediaTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::ModifyRebuildMediaTemplateRequest`
@@ -3524,7 +3524,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用模版发起音画质重生。
+        # 使用模板发起音画质重生。
 
         # @param request: Request instance for RebuildMediaByTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::RebuildMediaByTemplateRequest`

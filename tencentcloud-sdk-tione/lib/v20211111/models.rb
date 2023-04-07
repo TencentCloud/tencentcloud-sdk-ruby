@@ -109,10 +109,12 @@ module TencentCloud
         # @type ModelName: String
         # @param ModelSignature: SavedModel保存时配置的签名
         # @type ModelSignature: String
+        # @param FrameworkVersion: 加速引擎对应的框架版本
+        # @type FrameworkVersion: String
 
-        attr_accessor :ModelId, :ModelVersion, :ModelSource, :ModelFormat, :TensorInfos, :AccEngineVersion, :ModelInputPath, :ModelName, :ModelSignature
+        attr_accessor :ModelId, :ModelVersion, :ModelSource, :ModelFormat, :TensorInfos, :AccEngineVersion, :ModelInputPath, :ModelName, :ModelSignature, :FrameworkVersion
         
-        def initialize(modelid=nil, modelversion=nil, modelsource=nil, modelformat=nil, tensorinfos=nil, accengineversion=nil, modelinputpath=nil, modelname=nil, modelsignature=nil)
+        def initialize(modelid=nil, modelversion=nil, modelsource=nil, modelformat=nil, tensorinfos=nil, accengineversion=nil, modelinputpath=nil, modelname=nil, modelsignature=nil, frameworkversion=nil)
           @ModelId = modelid
           @ModelVersion = modelversion
           @ModelSource = modelsource
@@ -122,6 +124,7 @@ module TencentCloud
           @ModelInputPath = modelinputpath
           @ModelName = modelname
           @ModelSignature = modelsignature
+          @FrameworkVersion = frameworkversion
         end
 
         def deserialize(params)
@@ -137,6 +140,7 @@ module TencentCloud
           end
           @ModelName = params['ModelName']
           @ModelSignature = params['ModelSignature']
+          @FrameworkVersion = params['FrameworkVersion']
         end
       end
 
@@ -4013,11 +4017,11 @@ module TencentCloud
       class DescribeTrainingModelsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤器
         # Filter.Name: 枚举值:
-        #     keyword (模型名称)
-        #     TrainingModelId (模型ID)
-        #     ModelVersionType (模型版本类型) 其值Filter.Values支持: NORMAL(通用) ACCELERATE (加速)
-        #     TrainingModelSource (模型来源)  其值Filter.Values支持： JOB/COS
-        #     ModelFormat（模型格式）其值Filter.Values支持：
+        # keyword (模型名称)
+        # TrainingModelId (模型ID)
+        # ModelVersionType (模型版本类型) 其值Filter.Values支持: NORMAL(通用) ACCELERATE (加速)
+        # TrainingModelSource (模型来源) 其值Filter.Values支持： JOB/COS
+        # ModelFormat（模型格式）其值Filter.Values支持：
         # PYTORCH/TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML/MMDETECTION/ONNX/HUGGING_FACE
         # Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
         # 每次请求的Filters的上限为10，Filter.Values的上限为100
@@ -4033,16 +4037,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param TagFilters: 标签过滤
         # @type TagFilters: Array
+        # @param WithModelVersions: 是否同时返回模型版本列表
+        # @type WithModelVersions: Boolean
 
-        attr_accessor :Filters, :OrderField, :Order, :Offset, :Limit, :TagFilters
+        attr_accessor :Filters, :OrderField, :Order, :Offset, :Limit, :TagFilters, :WithModelVersions
         
-        def initialize(filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, tagfilters=nil)
+        def initialize(filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, tagfilters=nil, withmodelversions=nil)
           @Filters = filters
           @OrderField = orderfield
           @Order = order
           @Offset = offset
           @Limit = limit
           @TagFilters = tagfilters
+          @WithModelVersions = withmodelversions
         end
 
         def deserialize(params)
@@ -4066,6 +4073,7 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @WithModelVersions = params['WithModelVersions']
         end
       end
 
@@ -4312,19 +4320,24 @@ module TencentCloud
         # @param IsSupportIntEightQuantization: 是否支持int8量化
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportIntEightQuantization: Boolean
+        # @param FrameworkVersion: 框架版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameworkVersion: String
 
-        attr_accessor :Version, :Image, :IsSupportIntEightQuantization
+        attr_accessor :Version, :Image, :IsSupportIntEightQuantization, :FrameworkVersion
         
-        def initialize(version=nil, image=nil, issupportinteightquantization=nil)
+        def initialize(version=nil, image=nil, issupportinteightquantization=nil, frameworkversion=nil)
           @Version = version
           @Image = image
           @IsSupportIntEightQuantization = issupportinteightquantization
+          @FrameworkVersion = frameworkversion
         end
 
         def deserialize(params)
           @Version = params['Version']
           @Image = params['Image']
           @IsSupportIntEightQuantization = params['IsSupportIntEightQuantization']
+          @FrameworkVersion = params['FrameworkVersion']
         end
       end
 
@@ -5133,10 +5146,13 @@ module TencentCloud
         # @param QATModel: 是否是QAT模型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QATModel: Boolean
+        # @param FrameworkVersion: 加速引擎对应的框架版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameworkVersion: String
 
-        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature, :QATModel
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature, :QATModel, :FrameworkVersion
         
-        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil, qatmodel=nil)
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil, qatmodel=nil, frameworkversion=nil)
           @ModelAccTaskId = modelacctaskid
           @ModelAccTaskName = modelacctaskname
           @ModelId = modelid
@@ -5165,6 +5181,7 @@ module TencentCloud
           @IsSaved = issaved
           @ModelSignature = modelsignature
           @QATModel = qatmodel
+          @FrameworkVersion = frameworkversion
         end
 
         def deserialize(params)
@@ -5219,6 +5236,7 @@ module TencentCloud
           @IsSaved = params['IsSaved']
           @ModelSignature = params['ModelSignature']
           @QATModel = params['QATModel']
+          @FrameworkVersion = params['FrameworkVersion']
         end
       end
 
@@ -5679,10 +5697,13 @@ module TencentCloud
         # @param Containers: 容器列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Containers: :class:`Tencentcloud::Tione.v20211111.models.Container`
+        # @param ContainerInfos: 容器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerInfos: Array
 
-        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers
+        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos
         
-        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil)
+        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil)
           @Name = name
           @Uid = uid
           @ChargeType = chargetype
@@ -5690,6 +5711,7 @@ module TencentCloud
           @IP = ip
           @CreateTime = createtime
           @Containers = containers
+          @ContainerInfos = containerinfos
         end
 
         def deserialize(params)
@@ -5702,6 +5724,14 @@ module TencentCloud
           unless params['Containers'].nil?
             @Containers = Container.new
             @Containers.deserialize(params['Containers'])
+          end
+          unless params['ContainerInfos'].nil?
+            @ContainerInfos = []
+            params['ContainerInfos'].each do |i|
+              container_tmp = Container.new
+              container_tmp.deserialize(i)
+              @ContainerInfos << container_tmp
+            end
           end
         end
       end
@@ -6007,10 +6037,12 @@ module TencentCloud
         # @type Tags: Array
         # @param ModelSignature: SavedModel保存时配置的签名
         # @type ModelSignature: String
+        # @param FrameworkVersion: 加速引擎对应的框架版本
+        # @type FrameworkVersion: String
 
-        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelSource, :AlgorithmFramework, :ModelId, :ModelName, :ModelVersion, :ModelInputPath, :OptimizationLevel, :ModelInputNum, :ModelInputInfos, :ModelOutputPath, :ModelFormat, :TensorInfos, :GPUType, :HyperParameter, :AccEngineVersion, :Tags, :ModelSignature
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelSource, :AlgorithmFramework, :ModelId, :ModelName, :ModelVersion, :ModelInputPath, :OptimizationLevel, :ModelInputNum, :ModelInputInfos, :ModelOutputPath, :ModelFormat, :TensorInfos, :GPUType, :HyperParameter, :AccEngineVersion, :Tags, :ModelSignature, :FrameworkVersion
         
-        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelsource=nil, algorithmframework=nil, modelid=nil, modelname=nil, modelversion=nil, modelinputpath=nil, optimizationlevel=nil, modelinputnum=nil, modelinputinfos=nil, modeloutputpath=nil, modelformat=nil, tensorinfos=nil, gputype=nil, hyperparameter=nil, accengineversion=nil, tags=nil, modelsignature=nil)
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelsource=nil, algorithmframework=nil, modelid=nil, modelname=nil, modelversion=nil, modelinputpath=nil, optimizationlevel=nil, modelinputnum=nil, modelinputinfos=nil, modeloutputpath=nil, modelformat=nil, tensorinfos=nil, gputype=nil, hyperparameter=nil, accengineversion=nil, tags=nil, modelsignature=nil, frameworkversion=nil)
           @ModelAccTaskId = modelacctaskid
           @ModelAccTaskName = modelacctaskname
           @ModelSource = modelsource
@@ -6030,6 +6062,7 @@ module TencentCloud
           @AccEngineVersion = accengineversion
           @Tags = tags
           @ModelSignature = modelsignature
+          @FrameworkVersion = frameworkversion
         end
 
         def deserialize(params)
@@ -6075,6 +6108,7 @@ module TencentCloud
             end
           end
           @ModelSignature = params['ModelSignature']
+          @FrameworkVersion = params['FrameworkVersion']
         end
       end
 
@@ -6665,10 +6699,13 @@ module TencentCloud
         # @param Pods: Pod列表信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pods: :class:`Tencentcloud::Tione.v20211111.models.Pod`
+        # @param PodInfos: Pod列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodInfos: Array
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :Pods
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :Pods, :PodInfos
         
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, pods=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, pods=nil, podinfos=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -6688,6 +6725,7 @@ module TencentCloud
           @OldHybridBillingPrepaidReplicas = oldhybridbillingprepaidreplicas
           @ModelHotUpdateEnable = modelhotupdateenable
           @Pods = pods
+          @PodInfos = podinfos
         end
 
         def deserialize(params)
@@ -6740,6 +6778,14 @@ module TencentCloud
           unless params['Pods'].nil?
             @Pods = Pod.new
             @Pods.deserialize(params['Pods'])
+          end
+          unless params['PodInfos'].nil?
+            @PodInfos = []
+            params['PodInfos'].each do |i|
+              pod_tmp = Pod.new
+              pod_tmp.deserialize(i)
+              @PodInfos << pod_tmp
+            end
           end
         end
       end
@@ -7384,14 +7430,18 @@ module TencentCloud
         # @param CreateTime: 模型创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param TrainingModelVersions: 模型版本列表。默认不返回，仅在指定请求参数开启时返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainingModelVersions: Array
 
-        attr_accessor :TrainingModelId, :TrainingModelName, :Tags, :CreateTime
+        attr_accessor :TrainingModelId, :TrainingModelName, :Tags, :CreateTime, :TrainingModelVersions
         
-        def initialize(trainingmodelid=nil, trainingmodelname=nil, tags=nil, createtime=nil)
+        def initialize(trainingmodelid=nil, trainingmodelname=nil, tags=nil, createtime=nil, trainingmodelversions=nil)
           @TrainingModelId = trainingmodelid
           @TrainingModelName = trainingmodelname
           @Tags = tags
           @CreateTime = createtime
+          @TrainingModelVersions = trainingmodelversions
         end
 
         def deserialize(params)
@@ -7406,6 +7456,14 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          unless params['TrainingModelVersions'].nil?
+            @TrainingModelVersions = []
+            params['TrainingModelVersions'].each do |i|
+              trainingmodelversiondto_tmp = TrainingModelVersionDTO.new
+              trainingmodelversiondto_tmp.deserialize(i)
+              @TrainingModelVersions << trainingmodelversiondto_tmp
+            end
+          end
         end
       end
 
