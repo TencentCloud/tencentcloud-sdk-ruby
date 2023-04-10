@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据任务id删除健康报告生成任务
+
+        # @param request: Request instance for DeleteDBDiagReportTasks.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DeleteDBDiagReportTasksRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DeleteDBDiagReportTasksResponse`
+        def DeleteDBDiagReportTasks(request)
+          body = send_request('DeleteDBDiagReportTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDBDiagReportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除安全审计日志导出任务。
 
         # @param request: Request instance for DeleteSecurityAuditLogExportTasks.

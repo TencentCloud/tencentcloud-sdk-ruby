@@ -709,6 +709,28 @@ module TencentCloud
         end
       end
 
+      # 操作的进程范围
+      class ComponentBasicRestartInfo < TencentCloud::Common::AbstractModel
+        # @param ComponentName: 进程名，必填，如NameNode
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentName: String
+        # @param IpList: 操作的IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpList: Array
+
+        attr_accessor :ComponentName, :IpList
+        
+        def initialize(componentname=nil, iplist=nil)
+          @ComponentName = componentname
+          @IpList = iplist
+        end
+
+        def deserialize(params)
+          @ComponentName = params['ComponentName']
+          @IpList = params['IpList']
+        end
+      end
+
       # 自定义配置参数
       class Configuration < TencentCloud::Common::AbstractModel
         # @param Classification: 配置文件名，支持SPARK、HIVE、HDFS、YARN的部分配置文件自定义。
@@ -3903,6 +3925,30 @@ module TencentCloud
         end
       end
 
+      # 操作范围
+      class OpScope < TencentCloud::Common::AbstractModel
+        # @param ServiceInfoList: 操作范围，要操作的服务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceInfoList: Array
+
+        attr_accessor :ServiceInfoList
+        
+        def initialize(serviceinfolist=nil)
+          @ServiceInfoList = serviceinfolist
+        end
+
+        def deserialize(params)
+          unless params['ServiceInfoList'].nil?
+            @ServiceInfoList = []
+            params['ServiceInfoList'].each do |i|
+              servicebasicrestartinfo_tmp = ServiceBasicRestartInfo.new
+              servicebasicrestartinfo_tmp.deserialize(i)
+              @ServiceInfoList << servicebasicrestartinfo_tmp
+            end
+          end
+        end
+      end
+
       # 资源详情
       class OutterResource < TencentCloud::Common::AbstractModel
         # @param Spec: 规格
@@ -5502,6 +5548,33 @@ module TencentCloud
         end
       end
 
+      # 操作的服务范围
+      class ServiceBasicRestartInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名，必填，如HDFS
+        # @type ServiceName: String
+        # @param ComponentInfoList: 如果没传，则表示所有进程
+        # @type ComponentInfoList: Array
+
+        attr_accessor :ServiceName, :ComponentInfoList
+        
+        def initialize(servicename=nil, componentinfolist=nil)
+          @ServiceName = servicename
+          @ComponentInfoList = componentinfolist
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          unless params['ComponentInfoList'].nil?
+            @ComponentInfoList = []
+            params['ComponentInfoList'].each do |i|
+              componentbasicrestartinfo_tmp = ComponentBasicRestartInfo.new
+              componentbasicrestartinfo_tmp.deserialize(i)
+              @ComponentInfoList << componentbasicrestartinfo_tmp
+            end
+          end
+        end
+      end
+
       # 节点信息
       class ShortNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型，Master/Core/Task/Router/Common
@@ -5541,6 +5614,53 @@ module TencentCloud
         def deserialize(params)
           @SoftName = params['SoftName']
           @Required = params['Required']
+        end
+      end
+
+      # StartStopServiceOrMonitor请求参数结构体
+      class StartStopServiceOrMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param OpType: 操作类型，当前支持
+        # <li>StartService：启动服务</li>
+        # <li>StopService：停止服务</li>
+        # <li>StartMonitor：退出维护</li>
+        # <li>StopMonitor：进入维护</li>
+        # @type OpType: String
+        # @param OpScope: 操作范围
+        # @type OpScope: :class:`Tencentcloud::Emr.v20190103.models.OpScope`
+
+        attr_accessor :InstanceId, :OpType, :OpScope
+        
+        def initialize(instanceid=nil, optype=nil, opscope=nil)
+          @InstanceId = instanceid
+          @OpType = optype
+          @OpScope = opscope
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OpType = params['OpType']
+          unless params['OpScope'].nil?
+            @OpScope = OpScope.new
+            @OpScope.deserialize(params['OpScope'])
+          end
+        end
+      end
+
+      # StartStopServiceOrMonitor返回参数结构体
+      class StartStopServiceOrMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5651,6 +5771,64 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # TerminateClusterNodes请求参数结构体
+      class TerminateClusterNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param CvmInstanceIds: 销毁资源列表
+        # @type CvmInstanceIds: Array
+        # @param NodeFlag: 销毁节点类型取值范围：
+        #   <li>MASTER</li>
+        #   <li>TASK</li>
+        #   <li>CORE</li>
+        #   <li>ROUTER</li>
+        # @type NodeFlag: String
+        # @param GraceDownFlag: 优雅缩容开关
+        #   <li>true:开启</li>
+        #   <li>false:不开启</li>
+        # @type GraceDownFlag: Boolean
+        # @param GraceDownTime: 优雅缩容等待时间,时间范围60到1800  单位秒
+        # @type GraceDownTime: Integer
+
+        attr_accessor :InstanceId, :CvmInstanceIds, :NodeFlag, :GraceDownFlag, :GraceDownTime
+        
+        def initialize(instanceid=nil, cvminstanceids=nil, nodeflag=nil, gracedownflag=nil, gracedowntime=nil)
+          @InstanceId = instanceid
+          @CvmInstanceIds = cvminstanceids
+          @NodeFlag = nodeflag
+          @GraceDownFlag = gracedownflag
+          @GraceDownTime = gracedowntime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CvmInstanceIds = params['CvmInstanceIds']
+          @NodeFlag = params['NodeFlag']
+          @GraceDownFlag = params['GraceDownFlag']
+          @GraceDownTime = params['GraceDownTime']
+        end
+      end
+
+      # TerminateClusterNodes返回参数结构体
+      class TerminateClusterNodesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 缩容流程ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

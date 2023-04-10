@@ -560,6 +560,51 @@ module TencentCloud
         end
       end
 
+      # DeleteDBDiagReportTasks请求参数结构体
+      class DeleteDBDiagReportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestIds: 需要删除的任务id列表
+        # @type AsyncRequestIds: Array
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB for MySQL， "mongodb" - 云数据库 CynosDB for MySQL，
+        # 默认值为"mysql"。
+        # @type Product: String
+
+        attr_accessor :AsyncRequestIds, :InstanceId, :Product
+        
+        def initialize(asyncrequestids=nil, instanceid=nil, product=nil)
+          @AsyncRequestIds = asyncrequestids
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # DeleteDBDiagReportTasks返回参数结构体
+      class DeleteDBDiagReportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务删除状态, 0-删除成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSecurityAuditLogExportTasks请求参数结构体
       class DeleteSecurityAuditLogExportTasksRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。

@@ -2351,6 +2351,29 @@ module TencentCloud
         end
       end
 
+      # 组在图中的序号
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param Groups: 每一行的元素
+        # @type Groups: Array
+
+        attr_accessor :Groups
+        
+        def initialize(groups=nil)
+          @Groups = groups
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              lineinfo_tmp = LineInfo.new
+              lineinfo_tmp.deserialize(i)
+              @Groups << lineinfo_tmp
+            end
+          end
+        end
+      end
+
       # HKIDCardOCR请求参数结构体
       class HKIDCardOCRRequest < TencentCloud::Common::AbstractModel
         # @param DetectFake: 是否鉴伪。
@@ -3060,6 +3083,50 @@ module TencentCloud
         end
       end
 
+      # 智能结构化元素组
+      class ItemInfo < TencentCloud::Common::AbstractModel
+        # @param Key: key信息组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: :class:`Tencentcloud::Ocr.v20181119.models.Key`
+        # @param Value: Value信息组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Ocr.v20181119.models.Value`
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          unless params['Key'].nil?
+            @Key = Key.new
+            @Key.deserialize(params['Key'])
+          end
+          unless params['Value'].nil?
+            @Value = Value.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # key信息组
+      class Key < TencentCloud::Common::AbstractModel
+        # @param AutoName: 自动识别的字段名称
+        # @type AutoName: String
+
+        attr_accessor :AutoName
+        
+        def initialize(autoname=nil)
+          @AutoName = autoname
+        end
+
+        def deserialize(params)
+          @AutoName = params['AutoName']
+        end
+      end
+
       # 全部车牌信息
       class LicensePlateInfo < TencentCloud::Common::AbstractModel
         # @param Number: 识别出的车牌号码。
@@ -3161,6 +3228,29 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 按行输出，行序号
+      class LineInfo < TencentCloud::Common::AbstractModel
+        # @param Lines: 每行的一个元素
+        # @type Lines: Array
+
+        attr_accessor :Lines
+        
+        def initialize(lines=nil)
+          @Lines = lines
+        end
+
+        def deserialize(params)
+          unless params['Lines'].nil?
+            @Lines = []
+            params['Lines'].each do |i|
+              iteminfo_tmp = ItemInfo.new
+              iteminfo_tmp.deserialize(i)
+              @Lines << iteminfo_tmp
+            end
+          end
         end
       end
 
@@ -6178,6 +6268,79 @@ module TencentCloud
         end
       end
 
+      # SmartStructuralOCRV2请求参数结构体
+      class SmartStructuralOCRV2Request < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：
+        # 若客户只想返回姓名、性别两个字段的识别结果，则输入
+        # ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames
+        
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+          @ItemNames = itemnames
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ItemNames = params['ItemNames']
+        end
+      end
+
+      # SmartStructuralOCRV2返回参数结构体
+      class SmartStructuralOCRV2Response < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向
+        # 为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息
+        # @type StructuralList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :RequestId
+        
+        def initialize(angle=nil, structurallist=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 智能结构化识别
       class StructuralItem < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)。
@@ -7579,6 +7742,30 @@ module TencentCloud
           @MarketAddress = params['MarketAddress']
           @MarketBankAccount = params['MarketBankAccount']
           @MarketTel = params['MarketTel']
+        end
+      end
+
+      # value信息组
+      class Value < TencentCloud::Common::AbstractModel
+        # @param AutoContent: 自动识别的字段内容
+        # @type AutoContent: String
+        # @param Coord: 四点坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+
+        attr_accessor :AutoContent, :Coord
+        
+        def initialize(autocontent=nil, coord=nil)
+          @AutoContent = autocontent
+          @Coord = coord
+        end
+
+        def deserialize(params)
+          @AutoContent = params['AutoContent']
+          unless params['Coord'].nil?
+            @Coord = Polygon.new
+            @Coord.deserialize(params['Coord'])
+          end
         end
       end
 

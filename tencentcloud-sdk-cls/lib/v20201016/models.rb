@@ -1812,10 +1812,15 @@ module TencentCloud
         # @type StorageType: String
         # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存
         # @type Period: Integer
+        # @param Describes: 日志主题描述
+        # @type Describes: String
+        # @param HotPeriod: 0：关闭日志沉降。
+        # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        # @type HotPeriod: Integer
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod
         
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -1824,6 +1829,8 @@ module TencentCloud
           @MaxSplitPartitions = maxsplitpartitions
           @StorageType = storagetype
           @Period = period
+          @Describes = describes
+          @HotPeriod = hotperiod
         end
 
         def deserialize(params)
@@ -1842,6 +1849,8 @@ module TencentCloud
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @StorageType = params['StorageType']
           @Period = params['Period']
+          @Describes = params['Describes']
+          @HotPeriod = params['HotPeriod']
         end
       end
 
@@ -5184,10 +5193,15 @@ module TencentCloud
         # @type MaxSplitPartitions: Integer
         # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         # @type Period: Integer
+        # @param Describes: 日志主题描述
+        # @type Describes: String
+        # @param HotPeriod: 0：关闭日志沉降。
+        # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        # @type HotPeriod: Integer
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod
         
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -5195,6 +5209,8 @@ module TencentCloud
           @AutoSplit = autosplit
           @MaxSplitPartitions = maxsplitpartitions
           @Period = period
+          @Describes = describes
+          @HotPeriod = hotperiod
         end
 
         def deserialize(params)
@@ -5212,6 +5228,8 @@ module TencentCloud
           @AutoSplit = params['AutoSplit']
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @Period = params['Period']
+          @Describes = params['Describes']
+          @HotPeriod = params['HotPeriod']
         end
       end
 

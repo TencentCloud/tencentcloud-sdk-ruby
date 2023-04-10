@@ -229,7 +229,7 @@ module TencentCloud
 
       # CreateAccountUser请求参数结构体
       class CreateAccountUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param UserName: 新账号名称。其格式要求如下：<ul><li>字符范围[1,32]。</li><li>可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“_”与短划线“-”。</li></ul>
         # @type UserName: String
@@ -831,7 +831,7 @@ module TencentCloud
 
       # DescribeAccountUsers请求参数结构体
       class DescribeAccountUsersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 指定待获取账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -989,11 +989,11 @@ module TencentCloud
 
       # DescribeClientConnections请求参数结构体
       class DescribeClientConnectionsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 指定待查询的实例ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Limit: 单次请求返回的数量，最小值为1，最大值为1000，默认值为1000。
+        # @param Limit: 单次请求返回的数量。最小值为1，最大值为1000，默认值为1000。
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认值为0。
+        # @param Offset: 偏移量，默认值为0。Offset=Limit*(页码-1)。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
@@ -1013,7 +1013,7 @@ module TencentCloud
 
       # DescribeClientConnections返回参数结构体
       class DescribeClientConnectionsResponse < TencentCloud::Common::AbstractModel
-        # @param Clients: 客户端连接信息，包括客户端IP和对应IP的连接数量。
+        # @param Clients: 客户端连接信息，包括客户端 IP 和对应 IP 的连接数量。
         # @type Clients: Array
         # @param TotalCount: 满足条件的记录总条数，可用于分页查询。
         # @type TotalCount: Integer
@@ -1323,7 +1323,7 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceIds: 实例 ID 列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceIds: Array
         # @param InstanceType: 实例类型。取值范围如下：<ul><li>0：所有实例。</li><li>1：正式实例。</li><li>2：临时实例。</li><li>3：只读实例。</li><li>-1：正式实例、只读、灾备实例。</li></ul>
         # @type InstanceType: Integer

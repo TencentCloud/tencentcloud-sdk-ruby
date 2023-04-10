@@ -2247,6 +2247,69 @@ module TencentCloud
         end
       end
 
+      # GetRooms请求参数结构体
+      class GetRoomsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码平台的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param StartTime: 开始时间。默认以当前时间减去半小时作为开始时间。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间。默认以当前时间加上半小时作为结束时间。
+        # @type EndTime: Integer
+        # @param Page: 分页查询当前页数，从1开始递增
+        # @type Page: Integer
+        # @param Limit: 默认是10条
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :Page, :Limit
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, page=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetRooms返回参数结构体
+      class GetRoomsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Rooms: 房间列表
+        # @type Rooms: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Rooms, :RequestId
+        
+        def initialize(total=nil, rooms=nil, requestid=nil)
+          @Total = total
+          @Rooms = rooms
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Rooms'].nil?
+            @Rooms = []
+            params['Rooms'].each do |i|
+              roomitem_tmp = RoomItem.new
+              roomitem_tmp.deserialize(i)
+              @Rooms << roomitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetWatermark请求参数结构体
       class GetWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -2987,6 +3050,75 @@ module TencentCloud
           @AudienceType = params['AudienceType']
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
+        end
+      end
+
+      # 房间列表
+      class RoomItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param RoomId: 房间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomId: Integer
+        # @param Status: 房间状态。0 未开始 ；1进行中  ；2 已结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param RealStartTime: 实际开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealStartTime: Integer
+        # @param RealEndTime: 实际结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealEndTime: Integer
+        # @param Resolution: 分辨率。1 标清
+        # 2 高清
+        # 3 全高清
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resolution: Integer
+        # @param MaxRTCMember: 最大允许连麦人数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRTCMember: Integer
+        # @param ReplayUrl: 房间录制地址。已废弃，使用新字段 RecordUrl
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplayUrl: String
+        # @param RecordUrl: 录制地址（协议为https)。仅在房间结束后存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordUrl: String
+
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl
+        
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil)
+          @Name = name
+          @RoomId = roomid
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @RealStartTime = realstarttime
+          @RealEndTime = realendtime
+          @Resolution = resolution
+          @MaxRTCMember = maxrtcmember
+          @ReplayUrl = replayurl
+          @RecordUrl = recordurl
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @RoomId = params['RoomId']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RealStartTime = params['RealStartTime']
+          @RealEndTime = params['RealEndTime']
+          @Resolution = params['Resolution']
+          @MaxRTCMember = params['MaxRTCMember']
+          @ReplayUrl = params['ReplayUrl']
+          @RecordUrl = params['RecordUrl']
         end
       end
 

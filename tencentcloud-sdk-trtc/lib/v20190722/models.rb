@@ -3482,7 +3482,7 @@ module TencentCloud
         # @type RoomIdType: Integer
         # @param AgentParams: 转推服务加入TRTC房间的机器人参数。
         # @type AgentParams: :class:`Tencentcloud::Trtc.v20190722.models.AgentParams`
-        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。是否收取转码费是由WithTranscoding参数决定的，WithTranscoding为0，表示旁路转推，不会收取转码费用，WithTranscoding为1，表示混流转推，会收取转吗费用。
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。是否收取转码费是由WithTranscoding参数决定的，WithTranscoding为0，表示旁路转推，不会收取转码费用，WithTranscoding为1，表示混流转推，会收取转码费用。
         # @type WithTranscoding: Integer
         # @param AudioParams: 转推流的音频编码参数。由于音频是必转码的（不会收取转码费用），所以启动任务的时候，必须填写。
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
@@ -3494,7 +3494,7 @@ module TencentCloud
         # @type PublishCdnParams: Array
         # @param SeiParams: 混流SEI参数
         # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
-        # @param FeedBackRoomParams: 回推房间信息，和转推CDN参数必须要有一个。
+        # @param FeedBackRoomParams: 回推房间信息，和转推CDN参数必须要有一个。注：回推房间需使用特殊的SDK版本，如您有需求，请联系腾讯云技术支持。
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams

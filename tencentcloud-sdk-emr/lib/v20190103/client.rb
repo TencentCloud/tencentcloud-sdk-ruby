@@ -607,6 +607,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于启动或停止监控或服务
+
+        # @param request: Request instance for StartStopServiceOrMonitor.
+        # @type request: :class:`Tencentcloud::emr::V20190103::StartStopServiceOrMonitorRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::StartStopServiceOrMonitorResponse`
+        def StartStopServiceOrMonitor(request)
+          body = send_request('StartStopServiceOrMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartStopServiceOrMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # EMR同步TKE中POD状态
 
         # @param request: Request instance for SyncPodState.
@@ -617,6 +641,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncPodStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁集群节点
+
+        # @param request: Request instance for TerminateClusterNodes.
+        # @type request: :class:`Tencentcloud::emr::V20190103::TerminateClusterNodesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::TerminateClusterNodesResponse`
+        def TerminateClusterNodes(request)
+          body = send_request('TerminateClusterNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateClusterNodesResponse.new
             model.deserialize(response['Response'])
             model
           else

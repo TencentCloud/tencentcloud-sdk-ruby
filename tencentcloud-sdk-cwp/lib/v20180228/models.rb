@@ -11288,6 +11288,81 @@ module TencentCloud
         end
       end
 
+      # DescribeFileTamperEvents请求参数结构体
+      class DescribeFileTamperEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status - String - 是否必填：否 - 处理状态  0 -- 待处理 1 -- 已加白 2 -- 已删除 3 - 已忽略</li>
+        # <li>ModifyTime - String - 是否必填：否 - 最近发生时间</li>
+        # <li>Uuid- String - 是否必填：否 - 主机uuid查询</li>
+        # <li>RuleCategory- string - 是否必填：否 - 规则类别 0 系统规则 1 自定义规则</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式 ASC,DESC
+        # @type Order: String
+        # @param By: 排序字段 CreateTime、ModifyTime
+        # @type By: String
+
+        attr_accessor :Filters, :Offset, :Limit, :Order, :By
+        
+        def initialize(filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeFileTamperEvents返回参数结构体
+      class DescribeFileTamperEventsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 核心文件事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 数据总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              filetamperevent_tmp = FileTamperEvent.new
+              filetamperevent_tmp.deserialize(i)
+              @List << filetamperevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGeneralStat请求参数结构体
       class DescribeGeneralStatRequest < TencentCloud::Common::AbstractModel
         # @param MachineType: 云主机类型。
@@ -18581,6 +18656,173 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 核心文件监控事件
+      class FileTamperEvent < TencentCloud::Common::AbstractModel
+        # @param HostName: 机器名称
+        # @type HostName: String
+        # @param HostIp: 机器IP
+        # @type HostIp: String
+        # @param CreateTime: 发生时间
+        # @type CreateTime: String
+        # @param ModifyTime: 最近发生时间
+        # @type ModifyTime: String
+        # @param Id: 事件id
+        # @type Id: Integer
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param Quuid: cvm id
+        # @type Quuid: String
+        # @param Type: 事件类型/动作  0 -- 告警
+        # @type Type: Integer
+        # @param ProcessExe: 进程路径
+        # @type ProcessExe: String
+        # @param ProcessArgv: 进程参数
+        # @type ProcessArgv: String
+        # @param Target: 目标文件路径
+        # @type Target: String
+        # @param Status: 处理状态  0 -- 待处理 1 -- 已加白 2 -- 已删除 3 - 已忽略 4-已手动处理
+        # @type Status: Integer
+        # @param EventCount: 事件产生次数
+        # @type EventCount: Integer
+        # @param RuleId: 规则id
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Pstree: 事件详情: json格式
+        # @type Pstree: String
+        # @param RuleCategory: 规则类型 0系统规则 1自定义规则
+        # @type RuleCategory: Integer
+        # @param MachineStatus: 主机在线信息 ONLINE、OFFLINE
+        # @type MachineStatus: String
+        # @param Description: 危害描述
+        # @type Description: String
+        # @param Suggestion: 修护建议
+        # @type Suggestion: String
+        # @param PrivateIp: 内网ip
+        # @type PrivateIp: String
+        # @param ExePermission: 进程权限
+        # @type ExePermission: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param UserGroup: 用户组
+        # @type UserGroup: String
+        # @param ExeMd5: 进程名
+        # @type ExeMd5: String
+        # @param ExeSize: 进程文件大小
+        # @type ExeSize: Integer
+        # @param ExeTime: 进程执行时长
+        # @type ExeTime: Integer
+        # @param TargetSize: 目标文件大小
+        # @type TargetSize: Integer
+        # @param TargetPermission: 目标文件权限
+        # @type TargetPermission: String
+        # @param TargetModifyTime: 目标文件更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetModifyTime: String
+        # @param TargetCreatTime: 目标文件创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetCreatTime: String
+        # @param ExePid: 进程pid
+        # @type ExePid: Integer
+        # @param TargetName: 文件名称
+        # @type TargetName: String
+        # @param Reference: 参考链接
+        # @type Reference: String
+        # @param Level: 风险等级 0：无， 1: 高危， 2:中危， 3: 低危
+        # @type Level: Integer
+        # @param ExeName: 进程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExeName: String
+        # @param MachineExtraInfo:  主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+
+        attr_accessor :HostName, :HostIp, :CreateTime, :ModifyTime, :Id, :Uuid, :Quuid, :Type, :ProcessExe, :ProcessArgv, :Target, :Status, :EventCount, :RuleId, :RuleName, :Pstree, :RuleCategory, :MachineStatus, :Description, :Suggestion, :PrivateIp, :ExePermission, :UserName, :UserGroup, :ExeMd5, :ExeSize, :ExeTime, :TargetSize, :TargetPermission, :TargetModifyTime, :TargetCreatTime, :ExePid, :TargetName, :Reference, :Level, :ExeName, :MachineExtraInfo
+        
+        def initialize(hostname=nil, hostip=nil, createtime=nil, modifytime=nil, id=nil, uuid=nil, quuid=nil, type=nil, processexe=nil, processargv=nil, target=nil, status=nil, eventcount=nil, ruleid=nil, rulename=nil, pstree=nil, rulecategory=nil, machinestatus=nil, description=nil, suggestion=nil, privateip=nil, exepermission=nil, username=nil, usergroup=nil, exemd5=nil, exesize=nil, exetime=nil, targetsize=nil, targetpermission=nil, targetmodifytime=nil, targetcreattime=nil, exepid=nil, targetname=nil, reference=nil, level=nil, exename=nil, machineextrainfo=nil)
+          @HostName = hostname
+          @HostIp = hostip
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Id = id
+          @Uuid = uuid
+          @Quuid = quuid
+          @Type = type
+          @ProcessExe = processexe
+          @ProcessArgv = processargv
+          @Target = target
+          @Status = status
+          @EventCount = eventcount
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Pstree = pstree
+          @RuleCategory = rulecategory
+          @MachineStatus = machinestatus
+          @Description = description
+          @Suggestion = suggestion
+          @PrivateIp = privateip
+          @ExePermission = exepermission
+          @UserName = username
+          @UserGroup = usergroup
+          @ExeMd5 = exemd5
+          @ExeSize = exesize
+          @ExeTime = exetime
+          @TargetSize = targetsize
+          @TargetPermission = targetpermission
+          @TargetModifyTime = targetmodifytime
+          @TargetCreatTime = targetcreattime
+          @ExePid = exepid
+          @TargetName = targetname
+          @Reference = reference
+          @Level = level
+          @ExeName = exename
+          @MachineExtraInfo = machineextrainfo
+        end
+
+        def deserialize(params)
+          @HostName = params['HostName']
+          @HostIp = params['HostIp']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Type = params['Type']
+          @ProcessExe = params['ProcessExe']
+          @ProcessArgv = params['ProcessArgv']
+          @Target = params['Target']
+          @Status = params['Status']
+          @EventCount = params['EventCount']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Pstree = params['Pstree']
+          @RuleCategory = params['RuleCategory']
+          @MachineStatus = params['MachineStatus']
+          @Description = params['Description']
+          @Suggestion = params['Suggestion']
+          @PrivateIp = params['PrivateIp']
+          @ExePermission = params['ExePermission']
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
+          @ExeMd5 = params['ExeMd5']
+          @ExeSize = params['ExeSize']
+          @ExeTime = params['ExeTime']
+          @TargetSize = params['TargetSize']
+          @TargetPermission = params['TargetPermission']
+          @TargetModifyTime = params['TargetModifyTime']
+          @TargetCreatTime = params['TargetCreatTime']
+          @ExePid = params['ExePid']
+          @TargetName = params['TargetName']
+          @Reference = params['Reference']
+          @Level = params['Level']
+          @ExeName = params['ExeName']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 

@@ -3146,15 +3146,19 @@ module TencentCloud
       class DescribeReleaseFileSignRequest < TencentCloud::Common::AbstractModel
         # @param Timeout: 超时时间，不填默认是 5 分钟
         # @type Timeout: Integer
+        # @param FileType: bucket类型，不填默认web，2:app
+        # @type FileType: Integer
 
-        attr_accessor :Timeout
+        attr_accessor :Timeout, :FileType
         
-        def initialize(timeout=nil)
+        def initialize(timeout=nil, filetype=nil)
           @Timeout = timeout
+          @FileType = filetype
         end
 
         def deserialize(params)
           @Timeout = params['Timeout']
+          @FileType = params['FileType']
         end
       end
 

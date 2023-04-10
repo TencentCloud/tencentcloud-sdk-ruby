@@ -7247,16 +7247,20 @@ module TencentCloud
         # @param RawJobs: RawJobs列表以及对应targets信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawJobs: Array
+        # @param Probes: Probes列表以及对应targets信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Probes: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes, :RequestId
         
-        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil, requestid=nil)
           @Config = config
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
           @RequestId = requestid
         end
 
@@ -7284,6 +7288,14 @@ module TencentCloud
               prometheusconfigitem_tmp = PrometheusConfigItem.new
               prometheusconfigitem_tmp.deserialize(i)
               @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['Probes'].nil?
+            @Probes = []
+            params['Probes'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @Probes << prometheusconfigitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11307,19 +11319,27 @@ module TencentCloud
         # @param TemplateId: 用于出参，如果该配置来至模板，则为模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
+        # @param Targets: 目标数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Targets: :class:`Tencentcloud::Monitor.v20180724.models.Targets`
 
-        attr_accessor :Name, :Config, :TemplateId
+        attr_accessor :Name, :Config, :TemplateId, :Targets
         
-        def initialize(name=nil, config=nil, templateid=nil)
+        def initialize(name=nil, config=nil, templateid=nil, targets=nil)
           @Name = name
           @Config = config
           @TemplateId = templateid
+          @Targets = targets
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Config = params['Config']
           @TemplateId = params['TemplateId']
+          unless params['Targets'].nil?
+            @Targets = Targets.new
+            @Targets.deserialize(params['Targets'])
+          end
         end
       end
 
@@ -11801,15 +11821,27 @@ module TencentCloud
         # @param ClusterId: 该聚合规则如果来源于用户集群crd资源定义，则ClusterId为所属集群ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Count: 规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
 
-        attr_accessor :Name, :UpdateTime, :TemplateId, :Content, :ClusterId
+        attr_accessor :Name, :UpdateTime, :TemplateId, :Content, :ClusterId, :Status, :Id, :Count
         
-        def initialize(name=nil, updatetime=nil, templateid=nil, content=nil, clusterid=nil)
+        def initialize(name=nil, updatetime=nil, templateid=nil, content=nil, clusterid=nil, status=nil, id=nil, count=nil)
           @Name = name
           @UpdateTime = updatetime
           @TemplateId = templateid
           @Content = content
           @ClusterId = clusterid
+          @Status = status
+          @Id = id
+          @Count = count
         end
 
         def deserialize(params)
@@ -11818,6 +11850,9 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @Content = params['Content']
           @ClusterId = params['ClusterId']
+          @Status = params['Status']
+          @Id = params['Id']
+          @Count = params['Count']
         end
       end
 
@@ -12724,6 +12759,38 @@ module TencentCloud
           @RegionId = params['RegionId']
           @BindingStatus = params['BindingStatus']
           @TagStatus = params['TagStatus']
+        end
+      end
+
+      # 抓取目标数
+      class Targets < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Up: 在线数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Up: Integer
+        # @param Down: 不在线数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Down: Integer
+        # @param Unknown: 未知状态数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unknown: Integer
+
+        attr_accessor :Total, :Up, :Down, :Unknown
+        
+        def initialize(total=nil, up=nil, down=nil, unknown=nil)
+          @Total = total
+          @Up = up
+          @Down = down
+          @Unknown = unknown
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Up = params['Up']
+          @Down = params['Down']
+          @Unknown = params['Unknown']
         end
       end
 

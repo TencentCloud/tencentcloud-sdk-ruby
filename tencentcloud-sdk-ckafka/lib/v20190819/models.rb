@@ -2896,15 +2896,20 @@ module TencentCloud
       class DatahubTopicResp < TencentCloud::Common::AbstractModel
         # @param TopicName: Topic名称
         # @type TopicName: String
+        # @param TopicId: TopicId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
 
-        attr_accessor :TopicName
+        attr_accessor :TopicName, :TopicId
         
-        def initialize(topicname=nil)
+        def initialize(topicname=nil, topicid=nil)
           @TopicName = topicname
+          @TopicId = topicid
         end
 
         def deserialize(params)
           @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
         end
       end
 

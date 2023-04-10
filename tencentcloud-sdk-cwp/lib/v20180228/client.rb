@@ -2888,6 +2888,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 核心文件监控事件列表
+
+        # @param request: Request instance for DescribeFileTamperEvents.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeFileTamperEventsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeFileTamperEventsResponse`
+        def DescribeFileTamperEvents(request)
+          body = send_request('DescribeFileTamperEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFileTamperEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取主机相关统计
 
         # @param request: Request instance for DescribeGeneralStat.
