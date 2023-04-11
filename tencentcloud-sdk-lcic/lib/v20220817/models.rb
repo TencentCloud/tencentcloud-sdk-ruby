@@ -726,6 +726,10 @@ module TencentCloud
         # 0 不自动连麦（需要手动申请上麦，默认值）
         # 1 自动连麦
         # @type AutoMic: Integer
+        # @param TurnOffMic: 释放音视频权限后是否自动取消连麦。可以有以下取值：
+        # 0 自动取消连麦（默认值）
+        # 1 保持连麦状态
+        # @type TurnOffMic: Integer
         # @param AudioQuality: 高音质模式。可以有以下取值：
         # 0 不开启高音质（默认值）
         # 1 开启高音质
@@ -737,14 +741,18 @@ module TencentCloud
         # @type DisableRecord: Integer
         # @param Assistants: 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
         # @type Assistants: Array
+        # @param RTCAudienceNumber: rtc人数。
+        # @type RTCAudienceNumber: Integer
+        # @param AudienceType: 观看类型。0未知，1互动，2cdn或直播。 目前仅支持互动类型
+        # @type AudienceType: Integer
         # @param RecordLayout: 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
         # @type GroupId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :AudioQuality, :DisableRecord, :Assistants, :RecordLayout, :GroupId
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, audioquality=nil, disablerecord=nil, assistants=nil, recordlayout=nil, groupid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -754,9 +762,12 @@ module TencentCloud
           @SubType = subtype
           @TeacherId = teacherid
           @AutoMic = automic
+          @TurnOffMic = turnoffmic
           @AudioQuality = audioquality
           @DisableRecord = disablerecord
           @Assistants = assistants
+          @RTCAudienceNumber = rtcaudiencenumber
+          @AudienceType = audiencetype
           @RecordLayout = recordlayout
           @GroupId = groupid
         end
@@ -771,9 +782,12 @@ module TencentCloud
           @SubType = params['SubType']
           @TeacherId = params['TeacherId']
           @AutoMic = params['AutoMic']
+          @TurnOffMic = params['TurnOffMic']
           @AudioQuality = params['AudioQuality']
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
+          @RTCAudienceNumber = params['RTCAudienceNumber']
+          @AudienceType = params['AudienceType']
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
         end

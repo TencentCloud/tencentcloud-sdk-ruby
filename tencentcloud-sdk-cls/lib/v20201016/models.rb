@@ -3607,6 +3607,23 @@ module TencentCloud
         end
       end
 
+      # 动态更新索引配置
+      class DynamicIndex < TencentCloud::Common::AbstractModel
+        # @param Status: 动态索引配置开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+        
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # 黑名单path信息
       class ExcludePathInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型，选填File或Path
@@ -5486,13 +5503,17 @@ module TencentCloud
         # @param Tag: 元字段索引配置，如果为空时代表未开启元字段索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: :class:`Tencentcloud::Cls.v20201016.models.RuleTagInfo`
+        # @param DynamicIndex: 动态索引配置，如果为空时代表未开启动态段索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicIndex: :class:`Tencentcloud::Cls.v20201016.models.DynamicIndex`
 
-        attr_accessor :FullText, :KeyValue, :Tag
+        attr_accessor :FullText, :KeyValue, :Tag, :DynamicIndex
         
-        def initialize(fulltext=nil, keyvalue=nil, tag=nil)
+        def initialize(fulltext=nil, keyvalue=nil, tag=nil, dynamicindex=nil)
           @FullText = fulltext
           @KeyValue = keyvalue
           @Tag = tag
+          @DynamicIndex = dynamicindex
         end
 
         def deserialize(params)
@@ -5507,6 +5528,10 @@ module TencentCloud
           unless params['Tag'].nil?
             @Tag = RuleTagInfo.new
             @Tag.deserialize(params['Tag'])
+          end
+          unless params['DynamicIndex'].nil?
+            @DynamicIndex = DynamicIndex.new
+            @DynamicIndex.deserialize(params['DynamicIndex'])
           end
         end
       end
@@ -5605,7 +5630,7 @@ module TencentCloud
         # @type SamplingRate: Float
         # @param SyntaxRule: 检索语法规则，默认值为0。
         # 0：Lucene语法，1：CQL语法。
-        # 详细说明参见https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules
+        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
         # @type SyntaxRule: Integer
 
         attr_accessor :From, :To, :Query, :TopicId, :Limit, :Context, :Sort, :UseNewAnalysis, :SamplingRate, :SyntaxRule
@@ -5665,12 +5690,15 @@ module TencentCloud
         # 当UseNewAnalysis为true时生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
+        # @param SamplingRate: 本次统计分析使用的采样率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplingRate: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :RequestId
+        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :SamplingRate, :RequestId
         
-        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, requestid=nil)
+        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, samplingrate=nil, requestid=nil)
           @Context = context
           @ListOver = listover
           @Analysis = analysis
@@ -5679,6 +5707,7 @@ module TencentCloud
           @AnalysisResults = analysisresults
           @AnalysisRecords = analysisrecords
           @Columns = columns
+          @SamplingRate = samplingrate
           @RequestId = requestid
         end
 
@@ -5712,6 +5741,7 @@ module TencentCloud
               @Columns << column_tmp
             end
           end
+          @SamplingRate = params['SamplingRate']
           @RequestId = params['RequestId']
         end
       end

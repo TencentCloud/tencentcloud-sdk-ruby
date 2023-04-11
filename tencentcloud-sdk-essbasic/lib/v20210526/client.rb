@@ -260,6 +260,7 @@ module TencentCloud
         # 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
         # 注意:
         # 该接口不可直接调用，请联系客户经理申请使用
+        # 仅能催办当前状态为“待签署”的签署人，且只能催办一次
 
         # @param request: Request instance for ChannelCreateFlowReminds.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowRemindsRequest`
@@ -584,7 +585,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询转换任务状态
+        # 通过发起转换任务接口（ChannelCreateConvertTaskApi）返回的任务Id查询转换任务状态，通过本接口确认转换任务是否完成。大文件转换所需的时间可能会比较长。
 
         # @param request: Request instance for ChannelGetTaskResultApi.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelGetTaskResultApiRequest`
@@ -632,7 +633,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 合同文件验签
+        # 对流程的合同文件进行验证，判断文件是否合法。
 
         # @param request: Request instance for ChannelVerifyPdf.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelVerifyPdfRequest`

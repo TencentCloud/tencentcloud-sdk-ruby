@@ -221,6 +221,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不对外提供接口能力了
+
         # 版权保护-新建取证接口
 
         # @param request: Request instance for CreateCRObtain.

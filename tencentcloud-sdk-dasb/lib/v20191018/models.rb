@@ -274,6 +274,62 @@ module TencentCloud
         end
       end
 
+      # 审计日志
+      class AuditLogResult < TencentCloud::Common::AbstractModel
+        # @param Sid: 被审计会话的Sid
+        # @type Sid: String
+        # @param Uin: 审计者的编号
+        # @type Uin: String
+        # @param Time: 审计动作发生的时间
+        # @type Time: String
+        # @param ClientIp: 审计者的Ip
+        # @type ClientIp: String
+        # @param Operation: 审计动作类型，1--回放、2--中断、3--监控
+        # @type Operation: Integer
+        # @param InstanceId: 被审计主机的Id
+        # @type InstanceId: String
+        # @param DeviceName: 被审计主机的主机名
+        # @type DeviceName: String
+        # @param Protocol: 被审计会话所属的类型，如字符会话
+        # @type Protocol: String
+        # @param PrivateIp: 被审计主机的内部Ip
+        # @type PrivateIp: String
+        # @param PublicIp: 被审计主机的外部Ip
+        # @type PublicIp: String
+        # @param SubAccountUin: 审计者的子账号
+        # @type SubAccountUin: String
+
+        attr_accessor :Sid, :Uin, :Time, :ClientIp, :Operation, :InstanceId, :DeviceName, :Protocol, :PrivateIp, :PublicIp, :SubAccountUin
+        
+        def initialize(sid=nil, uin=nil, time=nil, clientip=nil, operation=nil, instanceid=nil, devicename=nil, protocol=nil, privateip=nil, publicip=nil, subaccountuin=nil)
+          @Sid = sid
+          @Uin = uin
+          @Time = time
+          @ClientIp = clientip
+          @Operation = operation
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @Protocol = protocol
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @SubAccountUin = subaccountuin
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @Uin = params['Uin']
+          @Time = params['Time']
+          @ClientIp = params['ClientIp']
+          @Operation = params['Operation']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @Protocol = params['Protocol']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @SubAccountUin = params['SubAccountUin']
+        end
+      end
+
       # BindDeviceAccountPassword请求参数结构体
       class BindDeviceAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param Id: 主机账号ID
@@ -407,6 +463,34 @@ module TencentCloud
           @Id = params['Id']
           @Name = params['Name']
           @CmdList = params['CmdList']
+        end
+      end
+
+      # 命令集合
+      class Command < TencentCloud::Common::AbstractModel
+        # @param Cmd: 命令
+        # @type Cmd: String
+        # @param Time: 命令输入的时间
+        # @type Time: String
+        # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        # @type TimeOffset: Integer
+        # @param Action: 命令执行情况，1--允许，2--拒绝，3--确认
+        # @type Action: Integer
+
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action
+        
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil)
+          @Cmd = cmd
+          @Time = time
+          @TimeOffset = timeoffset
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @Time = params['Time']
+          @TimeOffset = params['TimeOffset']
+          @Action = params['Action']
         end
       end
 
@@ -1725,6 +1809,164 @@ module TencentCloud
         end
       end
 
+      # DescribeLoginEvent请求参数结构体
+      class DescribeLoginEventRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名，如果不包含其他条件时对user_name or real_name两个字段模糊查询
+        # @type UserName: String
+        # @param RealName: 姓名，模糊查询
+        # @type RealName: String
+        # @param StartTime: 查询时间范围，起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询时间范围，结束时间
+        # @type EndTime: String
+        # @param SourceIp: 来源IP，模糊查询
+        # @type SourceIp: String
+        # @param Entry: 登录入口：1-字符界面,2-图形界面，3-web页面, 4-API
+        # @type Entry: Integer
+        # @param Result: 操作结果，1-成功，2-失败
+        # @type Result: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页每页记录数，默认20
+        # @type Limit: Integer
+
+        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Entry, :Result, :Offset, :Limit
+        
+        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, entry=nil, result=nil, offset=nil, limit=nil)
+          @UserName = username
+          @RealName = realname
+          @StartTime = starttime
+          @EndTime = endtime
+          @SourceIp = sourceip
+          @Entry = entry
+          @Result = result
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SourceIp = params['SourceIp']
+          @Entry = params['Entry']
+          @Result = params['Result']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLoginEvent返回参数结构体
+      class DescribeLoginEventResponse < TencentCloud::Common::AbstractModel
+        # @param LoginEventSet: 登录日志列表
+        # @type LoginEventSet: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoginEventSet, :TotalCount, :RequestId
+        
+        def initialize(logineventset=nil, totalcount=nil, requestid=nil)
+          @LoginEventSet = logineventset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoginEventSet'].nil?
+            @LoginEventSet = []
+            params['LoginEventSet'].each do |i|
+              loginevent_tmp = LoginEvent.new
+              loginevent_tmp.deserialize(i)
+              @LoginEventSet << loginevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOperationEvent请求参数结构体
+      class DescribeOperationEventRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名，如果不包含其他条件时对user_name or real_name两个字段模糊查询
+        # @type UserName: String
+        # @param RealName: 姓名，模糊查询
+        # @type RealName: String
+        # @param StartTime: 查询时间范围，起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询时间范围，结束时间
+        # @type EndTime: String
+        # @param SourceIp: 来源IP，模糊查询
+        # @type SourceIp: String
+        # @param Kind: 操作类型，参考DescribeOperationType返回结果
+        # @type Kind: Integer
+        # @param Result: 操作结果，1-成功，2-失败
+        # @type Result: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页每页记录数，默认20
+        # @type Limit: Integer
+
+        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Kind, :Result, :Offset, :Limit
+        
+        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, kind=nil, result=nil, offset=nil, limit=nil)
+          @UserName = username
+          @RealName = realname
+          @StartTime = starttime
+          @EndTime = endtime
+          @SourceIp = sourceip
+          @Kind = kind
+          @Result = result
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SourceIp = params['SourceIp']
+          @Kind = params['Kind']
+          @Result = params['Result']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeOperationEvent返回参数结构体
+      class DescribeOperationEventResponse < TencentCloud::Common::AbstractModel
+        # @param OperationEventSet: 操作日志列表
+        # @type OperationEventSet: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperationEventSet, :TotalCount, :RequestId
+        
+        def initialize(operationeventset=nil, totalcount=nil, requestid=nil)
+          @OperationEventSet = operationeventset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OperationEventSet'].nil?
+            @OperationEventSet = []
+            params['OperationEventSet'].each do |i|
+              operationevent_tmp = OperationEvent.new
+              operationevent_tmp.deserialize(i)
+              @OperationEventSet << operationevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResources请求参数结构体
       class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
         # @param ApCode: 地域码, 如: ap-guangzhou
@@ -2231,6 +2473,42 @@ module TencentCloud
         end
       end
 
+      # 登录日志
+      class LoginEvent < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param Time: 操作时间
+        # @type Time: String
+        # @param SourceIp: 来源IP
+        # @type SourceIp: String
+        # @param Entry: 登录入口：1-字符界面,2-图形界面，3-web页面, 4-API
+        # @type Entry: Integer
+        # @param Result: 操作结果，1-成功，2-失败
+        # @type Result: Integer
+
+        attr_accessor :UserName, :RealName, :Time, :SourceIp, :Entry, :Result
+        
+        def initialize(username=nil, realname=nil, time=nil, sourceip=nil, entry=nil, result=nil)
+          @UserName = username
+          @RealName = realname
+          @Time = time
+          @SourceIp = sourceip
+          @Entry = entry
+          @Result = result
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Time = params['Time']
+          @SourceIp = params['SourceIp']
+          @Entry = params['Entry']
+          @Result = params['Result']
+        end
+      end
+
       # ModifyAcl请求参数结构体
       class ModifyAclRequest < TencentCloud::Common::AbstractModel
         # @param Name: 访问权限名称，最大32字符，不能包含空白字符
@@ -2519,6 +2797,46 @@ module TencentCloud
         end
       end
 
+      # 操作日志
+      class OperationEvent < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param Time: 操作时间
+        # @type Time: String
+        # @param SourceIp: 来源IP
+        # @type SourceIp: String
+        # @param Kind: 操作类型
+        # @type Kind: Integer
+        # @param Operation: 具体操作内容
+        # @type Operation: String
+        # @param Result: 操作结果，1-成功，2-失败
+        # @type Result: Integer
+
+        attr_accessor :UserName, :RealName, :Time, :SourceIp, :Kind, :Operation, :Result
+        
+        def initialize(username=nil, realname=nil, time=nil, sourceip=nil, kind=nil, operation=nil, result=nil)
+          @UserName = username
+          @RealName = realname
+          @Time = time
+          @SourceIp = sourceip
+          @Kind = kind
+          @Operation = operation
+          @Result = result
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Time = params['Time']
+          @SourceIp = params['SourceIp']
+          @Kind = params['Kind']
+          @Operation = params['Operation']
+          @Result = params['Result']
+        end
+      end
+
       # ResetDeviceAccountPassword请求参数结构体
       class ResetDeviceAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: ID集合
@@ -2741,6 +3059,881 @@ module TencentCloud
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
           @LogDeliveryArgs = params['LogDeliveryArgs']
+        end
+      end
+
+      # SearchAuditLog请求参数结构体
+      class SearchAuditLogRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，不得早于当前时间的180天前
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页容量，默认为20，最大200
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # SearchAuditLog返回参数结构体
+      class SearchAuditLogResponse < TencentCloud::Common::AbstractModel
+        # @param AuditLogSet: 审计日志
+        # @type AuditLogSet: Array
+        # @param TotalCount: 日志总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuditLogSet, :TotalCount, :RequestId
+        
+        def initialize(auditlogset=nil, totalcount=nil, requestid=nil)
+          @AuditLogSet = auditlogset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuditLogSet'].nil?
+            @AuditLogSet = []
+            params['AuditLogSet'].each do |i|
+              auditlogresult_tmp = AuditLogResult.new
+              auditlogresult_tmp.deserialize(i)
+              @AuditLogSet << auditlogresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchCommandBySid请求参数结构体
+      class SearchCommandBySidRequest < TencentCloud::Common::AbstractModel
+        # @param Sid: 会话Id
+        # @type Sid: String
+        # @param Cmd: 命令，可模糊搜索
+        # @type Cmd: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页容量，默认20，最大200
+        # @type Limit: Integer
+        # @param AuditAction: 根据拦截状态进行过滤
+        # @type AuditAction: Array
+
+        attr_accessor :Sid, :Cmd, :Offset, :Limit, :AuditAction
+        
+        def initialize(sid=nil, cmd=nil, offset=nil, limit=nil, auditaction=nil)
+          @Sid = sid
+          @Cmd = cmd
+          @Offset = offset
+          @Limit = limit
+          @AuditAction = auditaction
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @Cmd = params['Cmd']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @AuditAction = params['AuditAction']
+        end
+      end
+
+      # SearchCommandBySid返回参数结构体
+      class SearchCommandBySidResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param CommandSet: 命令列表
+        # @type CommandSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CommandSet, :RequestId
+        
+        def initialize(totalcount=nil, commandset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CommandSet = commandset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CommandSet'].nil?
+            @CommandSet = []
+            params['CommandSet'].each do |i|
+              command_tmp = Command.new
+              command_tmp.deserialize(i)
+              @CommandSet << command_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchCommand请求参数结构体
+      class SearchCommandRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 搜索区间的开始时间
+        # @type StartTime: String
+        # @param EndTime: 搜索区间的结束时间，不填默认为开始时间到现在为止
+        # @type EndTime: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param InstanceId: 资产实例ID
+        # @type InstanceId: String
+        # @param DeviceName: 资产名称
+        # @type DeviceName: String
+        # @param PublicIp: 资产的公网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 资产的内网IP
+        # @type PrivateIp: String
+        # @param Cmd: 执行的命令
+        # @type Cmd: String
+        # @param AuditAction: 根据拦截状态进行过滤：1 - 已执行，2 - 被阻断
+        # @type AuditAction: Array
+        # @param Limit: 每页容量，默认20，最大200
+        # @type Limit: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+
+        attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :AuditAction, :Limit, :Offset
+        
+        def initialize(starttime=nil, endtime=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, auditaction=nil, limit=nil, offset=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserName = username
+          @RealName = realname
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Cmd = cmd
+          @AuditAction = auditaction
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Cmd = params['Cmd']
+          @AuditAction = params['AuditAction']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # SearchCommand返回参数结构体
+      class SearchCommandResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Commands: 命令列表
+        # @type Commands: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Commands, :RequestId
+        
+        def initialize(totalcount=nil, commands=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Commands = commands
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Commands'].nil?
+            @Commands = []
+            params['Commands'].each do |i|
+              searchcommandresult_tmp = SearchCommandResult.new
+              searchcommandresult_tmp.deserialize(i)
+              @Commands << searchcommandresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 命令执行检索结果
+      class SearchCommandResult < TencentCloud::Common::AbstractModel
+        # @param Time: 命令输入的时间
+        # @type Time: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param InstanceId: 资产ID
+        # @type InstanceId: String
+        # @param DeviceName: 资产名称
+        # @type DeviceName: String
+        # @param PublicIp: 资产公网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 资产内网IP
+        # @type PrivateIp: String
+        # @param Cmd: 命令
+        # @type Cmd: String
+        # @param Action: 命令执行情况，1--允许，2--拒绝
+        # @type Action: Integer
+        # @param Sid: 命令所属的会话ID
+        # @type Sid: String
+        # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        # @type TimeOffset: Integer
+
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset
+        
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil)
+          @Time = time
+          @UserName = username
+          @RealName = realname
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Cmd = cmd
+          @Action = action
+          @Sid = sid
+          @TimeOffset = timeoffset
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Cmd = params['Cmd']
+          @Action = params['Action']
+          @Sid = params['Sid']
+          @TimeOffset = params['TimeOffset']
+        end
+      end
+
+      # SearchFileBySid请求参数结构体
+      class SearchFileBySidRequest < TencentCloud::Common::AbstractModel
+        # @param Sid: 若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话
+        # @type Sid: String
+        # @param AuditLog: 是否创建审计日志,通过查看按钮调用时为true,其他为false
+        # @type AuditLog: Boolean
+        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @type Limit: Integer
+        # @param FileName: 可填写路径名或文件名
+        # @type FileName: String
+        # @param Offset: 分页用偏移量
+        # @type Offset: Integer
+        # @param AuditAction: 1-已执行，  2-被阻断
+        # @type AuditAction: Integer
+        # @param TypeFilters: 以Protocol和Method为条件查询
+        # @type TypeFilters: Array
+
+        attr_accessor :Sid, :AuditLog, :Limit, :FileName, :Offset, :AuditAction, :TypeFilters
+        
+        def initialize(sid=nil, auditlog=nil, limit=nil, filename=nil, offset=nil, auditaction=nil, typefilters=nil)
+          @Sid = sid
+          @AuditLog = auditlog
+          @Limit = limit
+          @FileName = filename
+          @Offset = offset
+          @AuditAction = auditaction
+          @TypeFilters = typefilters
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @AuditLog = params['AuditLog']
+          @Limit = params['Limit']
+          @FileName = params['FileName']
+          @Offset = params['Offset']
+          @AuditAction = params['AuditAction']
+          unless params['TypeFilters'].nil?
+            @TypeFilters = []
+            params['TypeFilters'].each do |i|
+              searchfiletypefilter_tmp = SearchFileTypeFilter.new
+              searchfiletypefilter_tmp.deserialize(i)
+              @TypeFilters << searchfiletypefilter_tmp
+            end
+          end
+        end
+      end
+
+      # SearchFileBySid返回参数结构体
+      class SearchFileBySidResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数
+        # @type TotalCount: Integer
+        # @param SearchFileBySidResult: 某会话的文件操作列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchFileBySidResult: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SearchFileBySidResult, :RequestId
+        
+        def initialize(totalcount=nil, searchfilebysidresult=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SearchFileBySidResult = searchfilebysidresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SearchFileBySidResult'].nil?
+            @SearchFileBySidResult = []
+            params['SearchFileBySidResult'].each do |i|
+              searchfilebysidresult_tmp = SearchFileBySidResult.new
+              searchfilebysidresult_tmp.deserialize(i)
+              @SearchFileBySidResult << searchfilebysidresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 文件操作搜索结果
+      class SearchFileBySidResult < TencentCloud::Common::AbstractModel
+        # @param Time: 文件操作时间
+        # @type Time: String
+        # @param Method: 1-上传文件 2-下载文件 3-删除文件 4-移动文件 5-重命名文件 6-新建文件夹 7-移动文件夹 8-重命名文件夹 9-删除文件夹
+        # @type Method: Integer
+        # @param Protocol: 文件传输协议
+        # @type Protocol: String
+        # @param FileCurr: method为上传、下载、删除时文件在服务器上的位置, 或重命名、移动文件前文件的位置
+        # @type FileCurr: String
+        # @param FileNew: method为重命名、移动文件时代表移动后的新位置.其他情况为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileNew: String
+        # @param Size: method为上传文件、下载文件、删除文件时显示文件大小。其他情况为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Action: 堡垒机拦截情况, 1-已执行，  2-被阻断
+        # @type Action: Integer
+
+        attr_accessor :Time, :Method, :Protocol, :FileCurr, :FileNew, :Size, :Action
+        
+        def initialize(time=nil, method=nil, protocol=nil, filecurr=nil, filenew=nil, size=nil, action=nil)
+          @Time = time
+          @Method = method
+          @Protocol = protocol
+          @FileCurr = filecurr
+          @FileNew = filenew
+          @Size = size
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Method = params['Method']
+          @Protocol = params['Protocol']
+          @FileCurr = params['FileCurr']
+          @FileNew = params['FileNew']
+          @Size = params['Size']
+          @Action = params['Action']
+        end
+      end
+
+      # SearchFile请求参数结构体
+      class SearchFileRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param InstanceId: 资产ID
+        # @type InstanceId: String
+        # @param DeviceName: 资产名称
+        # @type DeviceName: String
+        # @param PublicIp: 资产公网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 资产内网IP
+        # @type PrivateIp: String
+        # @param Method: 操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹
+        # @type Method: Array
+        # @param FileName: 可填写路径名或文件（夹）名
+        # @type FileName: String
+        # @param AuditAction: 1-已执行，  2-被阻断
+        # @type AuditAction: Array
+        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @type Limit: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+
+        attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Method, :FileName, :AuditAction, :Limit, :Offset
+        
+        def initialize(starttime=nil, endtime=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, method=nil, filename=nil, auditaction=nil, limit=nil, offset=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserName = username
+          @RealName = realname
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Method = method
+          @FileName = filename
+          @AuditAction = auditaction
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Method = params['Method']
+          @FileName = params['FileName']
+          @AuditAction = params['AuditAction']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # SearchFile返回参数结构体
+      class SearchFileResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数
+        # @type TotalCount: Integer
+        # @param Files: 文件操作列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Files: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Files, :RequestId
+        
+        def initialize(totalcount=nil, files=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Files = files
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              searchfileresult_tmp = SearchFileResult.new
+              searchfileresult_tmp.deserialize(i)
+              @Files << searchfileresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 文件传输检索结果
+      class SearchFileResult < TencentCloud::Common::AbstractModel
+        # @param Time: 文件传输的时间
+        # @type Time: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param InstanceId: 资产ID
+        # @type InstanceId: String
+        # @param DeviceName: 资产名称
+        # @type DeviceName: String
+        # @param PublicIp: 资产公网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 资产内网IP
+        # @type PrivateIp: String
+        # @param Action: 操作结果：1 - 已执行，2 - 已阻断
+        # @type Action: Integer
+        # @param Method: 操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹
+        # @type Method: Integer
+        # @param FileCurr: 下载的文件（夹）路径及名称
+        # @type FileCurr: String
+        # @param FileNew: 上传或新建文件（夹）路径及名称
+        # @type FileNew: String
+
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Action, :Method, :FileCurr, :FileNew
+        
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, action=nil, method=nil, filecurr=nil, filenew=nil)
+          @Time = time
+          @UserName = username
+          @RealName = realname
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Action = action
+          @Method = method
+          @FileCurr = filecurr
+          @FileNew = filenew
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Action = params['Action']
+          @Method = params['Method']
+          @FileCurr = params['FileCurr']
+          @FileNew = params['FileNew']
+        end
+      end
+
+      # 用于搜索文件传输记录等日志时按照protocol和method进行过滤
+      class SearchFileTypeFilter < TencentCloud::Common::AbstractModel
+        # @param Protocol: 需要查询的文件传输类型，如SFTP/CLIP/RDP/RZSZ
+        # @type Protocol: String
+        # @param Method: 在当前指定的protocol下进一步过滤具体操作类型,如剪贴板文件上传，剪贴板文件下载等
+        # @type Method: Array
+
+        attr_accessor :Protocol, :Method
+        
+        def initialize(protocol=nil, method=nil)
+          @Protocol = protocol
+          @Method = method
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Method = params['Method']
+        end
+      end
+
+      # SearchSessionCommand请求参数结构体
+      class SearchSessionCommandRequest < TencentCloud::Common::AbstractModel
+        # @param Cmd: 检索的目标命令，为模糊搜索
+        # @type Cmd: String
+        # @param StartTime: 开始时间，不得早于当前时间的180天前
+        # @type StartTime: String
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 默认值为20，最大200
+        # @type Limit: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Cmd, :StartTime, :Offset, :Limit, :EndTime
+        
+        def initialize(cmd=nil, starttime=nil, offset=nil, limit=nil, endtime=nil)
+          @Cmd = cmd
+          @StartTime = starttime
+          @Offset = offset
+          @Limit = limit
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @StartTime = params['StartTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # SearchSessionCommand返回参数结构体
+      class SearchSessionCommandResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param CommandSessionSet: 命令和所属会话
+        # @type CommandSessionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CommandSessionSet, :RequestId
+        
+        def initialize(totalcount=nil, commandsessionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CommandSessionSet = commandsessionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CommandSessionSet'].nil?
+            @CommandSessionSet = []
+            params['CommandSessionSet'].each do |i|
+              sessioncommand_tmp = SessionCommand.new
+              sessioncommand_tmp.deserialize(i)
+              @CommandSessionSet << sessioncommand_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchSession请求参数结构体
+      class SearchSessionRequest < TencentCloud::Common::AbstractModel
+        # @param PrivateIp: 内部Ip
+        # @type PrivateIp: String
+        # @param PublicIp: 外部Ip
+        # @type PublicIp: String
+        # @param UserName: 用户名，长度不超过20
+        # @type UserName: String
+        # @param Account: 账号，长度不超过64
+        # @type Account: String
+        # @param FromIp: 来源Ip
+        # @type FromIp: String
+        # @param StartTime: 搜索区间的开始时间。若入参是Id，则非必传，否则为必传。
+        # @type StartTime: String
+        # @param EndTime: 搜索区间的结束时间
+        # @type EndTime: String
+        # @param Kind: 会话协议类型，只能是1、2、3或4 对应关系为1-tui 2-gui 3-file 4-数据库。若入参是Id，则非必传，否则为必传。
+        # @type Kind: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @type Limit: Integer
+        # @param RealName: 姓名，长度不超过20
+        # @type RealName: String
+        # @param DeviceName: 主机名，长度不超过64
+        # @type DeviceName: String
+        # @param Status: 状态，1为活跃，2为结束，3为强制离线，4为其他错误
+        # @type Status: Integer
+        # @param Id: 若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话
+        # @type Id: String
+
+        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id
+        
+        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil)
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @UserName = username
+          @Account = account
+          @FromIp = fromip
+          @StartTime = starttime
+          @EndTime = endtime
+          @Kind = kind
+          @Offset = offset
+          @Limit = limit
+          @RealName = realname
+          @DeviceName = devicename
+          @Status = status
+          @Id = id
+        end
+
+        def deserialize(params)
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @UserName = params['UserName']
+          @Account = params['Account']
+          @FromIp = params['FromIp']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Kind = params['Kind']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RealName = params['RealName']
+          @DeviceName = params['DeviceName']
+          @Status = params['Status']
+          @Id = params['Id']
+        end
+      end
+
+      # SearchSession返回参数结构体
+      class SearchSessionResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数
+        # @type TotalCount: Integer
+        # @param SessionSet: 会话信息列表
+        # @type SessionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SessionSet, :RequestId
+        
+        def initialize(totalcount=nil, sessionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SessionSet = sessionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SessionSet'].nil?
+            @SessionSet = []
+            params['SessionSet'].each do |i|
+              sessionresult_tmp = SessionResult.new
+              sessionresult_tmp.deserialize(i)
+              @SessionSet << sessionresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 命令和所属会话
+      class SessionCommand < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 账号
+        # @type RealName: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param PrivateIp: 内部Ip
+        # @type PrivateIp: String
+        # @param PublicIp: 外部Ip
+        # @type PublicIp: String
+        # @param Commands: 命令列表
+        # @type Commands: Array
+        # @param Count: 记录数
+        # @type Count: Integer
+        # @param Id: 会话Id
+        # @type Id: String
+        # @param InstanceId: 设备id
+        # @type InstanceId: String
+        # @param ApCode: 设备所属的地域
+        # @type ApCode: String
+
+        attr_accessor :StartTime, :EndTime, :UserName, :RealName, :DeviceName, :PrivateIp, :PublicIp, :Commands, :Count, :Id, :InstanceId, :ApCode
+        
+        def initialize(starttime=nil, endtime=nil, username=nil, realname=nil, devicename=nil, privateip=nil, publicip=nil, commands=nil, count=nil, id=nil, instanceid=nil, apcode=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserName = username
+          @RealName = realname
+          @DeviceName = devicename
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @Commands = commands
+          @Count = count
+          @Id = id
+          @InstanceId = instanceid
+          @ApCode = apcode
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @DeviceName = params['DeviceName']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          unless params['Commands'].nil?
+            @Commands = []
+            params['Commands'].each do |i|
+              command_tmp = Command.new
+              command_tmp.deserialize(i)
+              @Commands << command_tmp
+            end
+          end
+          @Count = params['Count']
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @ApCode = params['ApCode']
+        end
+      end
+
+      # 搜索字符或图形会话时返回的SessionResul结构体
+      class SessionResult < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param Account: 主机账号
+        # @type Account: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Size: 会话大小
+        # @type Size: Integer
+        # @param InstanceId: 设备ID
+        # @type InstanceId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param PrivateIp: 内部Ip
+        # @type PrivateIp: String
+        # @param PublicIp: 外部Ip
+        # @type PublicIp: String
+        # @param FromIp: 来源Ip
+        # @type FromIp: String
+        # @param Duration: 会话持续时长
+        # @type Duration: Float
+        # @param Count: 该会话内命令数量 ，搜索图形会话时该字段无意义
+        # @type Count: Integer
+        # @param DangerCount: 该会话内高危命令数，搜索图形时该字段无意义
+        # @type DangerCount: Integer
+        # @param Status: 会话状态，如1会话活跃  2会话结束  3强制离线  4其他错误
+        # @type Status: Integer
+        # @param Id: 会话Id
+        # @type Id: String
+        # @param ApCode: 设备所属的地域
+        # @type ApCode: String
+        # @param Protocol: 会话协议
+        # @type Protocol: String
+
+        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol
+        
+        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil)
+          @UserName = username
+          @RealName = realname
+          @Account = account
+          @StartTime = starttime
+          @EndTime = endtime
+          @Size = size
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @FromIp = fromip
+          @Duration = duration
+          @Count = count
+          @DangerCount = dangercount
+          @Status = status
+          @Id = id
+          @ApCode = apcode
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Account = params['Account']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Size = params['Size']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @FromIp = params['FromIp']
+          @Duration = params['Duration']
+          @Count = params['Count']
+          @DangerCount = params['DangerCount']
+          @Status = params['Status']
+          @Id = params['Id']
+          @ApCode = params['ApCode']
+          @Protocol = params['Protocol']
         end
       end
 

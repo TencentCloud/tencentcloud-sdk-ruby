@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 备份实例接口
+        # 本接口（CreateBackupDBInstance）用于备份实例。
 
         # @param request: Request instance for CreateBackupDBInstance.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateBackupDBInstanceRequest`
@@ -159,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDBInstanceHourResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteAccountUser）用于删除实例的自定义账号。
+
+        # @param request: Request instance for DeleteAccountUser.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DeleteAccountUserRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DeleteAccountUserResponse`
+        def DeleteAccountUser(request)
+          body = send_request('DeleteAccountUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -389,7 +413,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+        # 本接口（DescribeInstanceParams）用于查询当前实例可修改的参数列表。
 
         # @param request: Request instance for DescribeInstanceParams.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeInstanceParamsRequest`
@@ -821,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
+        # 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
 
         # @param request: Request instance for SetAccountUserPrivilege.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::SetAccountUserPrivilegeRequest`

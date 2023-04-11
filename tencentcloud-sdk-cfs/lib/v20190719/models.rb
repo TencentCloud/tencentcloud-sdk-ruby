@@ -277,7 +277,7 @@ module TencentCloud
         # @type DayOfWeek: String
         # @param AliveDays: 快照保留时长
         # @type AliveDays: Integer
-        # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月这一天打快照。
+        # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照。
         # @type DayOfMonth: String
         # @param IntervalDays: 间隔天数
         # @type IntervalDays: Integer
@@ -2156,7 +2156,7 @@ module TencentCloud
         # @type AliveDays: Integer
         # @param IsActivated: 是否激活定期快照功能
         # @type IsActivated: Integer
-        # @param DayOfMonth: 定期快照在月的某几天天，该参数与DayOfWeek互斥
+        # @param DayOfMonth: 定期快照在每月的第几天创建快照，该参数与DayOfWeek互斥
         # @type DayOfMonth: String
         # @param IntervalDays: 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 互斥
         # @type IntervalDays: Integer

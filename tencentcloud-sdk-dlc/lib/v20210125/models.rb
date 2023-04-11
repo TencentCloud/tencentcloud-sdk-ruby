@@ -1035,10 +1035,14 @@ module TencentCloud
         # @type ImageVersionName: String
         # @param MainClusterName: 主集群名称
         # @type MainClusterName: String
+        # @param ElasticSwitch: spark jar 包年包月集群是否开启弹性
+        # @type ElasticSwitch: Boolean
+        # @param ElasticLimit: spark jar 包年包月集群弹性上限
+        # @type ElasticLimit: Integer
 
-        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName
+        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit
         
-        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil)
+        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil)
           @EngineType = enginetype
           @DataEngineName = dataenginename
           @ClusterType = clustertype
@@ -1066,6 +1070,8 @@ module TencentCloud
           @DataEngineConfigPairs = dataengineconfigpairs
           @ImageVersionName = imageversionname
           @MainClusterName = mainclustername
+          @ElasticSwitch = elasticswitch
+          @ElasticLimit = elasticlimit
         end
 
         def deserialize(params)
@@ -1113,6 +1119,8 @@ module TencentCloud
           end
           @ImageVersionName = params['ImageVersionName']
           @MainClusterName = params['MainClusterName']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticLimit = params['ElasticLimit']
         end
       end
 

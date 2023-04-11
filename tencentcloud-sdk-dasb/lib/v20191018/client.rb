@@ -749,6 +749,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询登录日志
+
+        # @param request: Request instance for DescribeLoginEvent.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeLoginEventRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeLoginEventResponse`
+        def DescribeLoginEvent(request)
+          body = send_request('DescribeLoginEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoginEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询操作日志
+
+        # @param request: Request instance for DescribeOperationEvent.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeOperationEventRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeOperationEventResponse`
+        def DescribeOperationEvent(request)
+          body = send_request('DescribeOperationEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOperationEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
 
         # @param request: Request instance for DescribeResources.
@@ -1023,6 +1071,174 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 搜索审计日志
+
+        # @param request: Request instance for SearchAuditLog.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchAuditLogRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchAuditLogResponse`
+        def SearchAuditLog(request)
+          body = send_request('SearchAuditLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchAuditLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 命令执行检索
+
+        # @param request: Request instance for SearchCommand.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchCommandRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchCommandResponse`
+        def SearchCommand(request)
+          body = send_request('SearchCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据会话Id搜索Command
+
+        # @param request: Request instance for SearchCommandBySid.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchCommandBySidRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchCommandBySidResponse`
+        def SearchCommandBySid(request)
+          body = send_request('SearchCommandBySid', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchCommandBySidResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 文件传输检索
+
+        # @param request: Request instance for SearchFile.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchFileRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchFileResponse`
+        def SearchFile(request)
+          body = send_request('SearchFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 搜索文件传输会话下文件操作列表
+
+        # @param request: Request instance for SearchFileBySid.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchFileBySidRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchFileBySidResponse`
+        def SearchFileBySid(request)
+          body = send_request('SearchFileBySid', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchFileBySidResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 搜索会话
+
+        # @param request: Request instance for SearchSession.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchSessionRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchSessionResponse`
+        def SearchSession(request)
+          body = send_request('SearchSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 命令检索
+
+        # @param request: Request instance for SearchSessionCommand.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::SearchSessionCommandRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::SearchSessionCommandResponse`
+        def SearchSessionCommand(request)
+          body = send_request('SearchSessionCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchSessionCommandResponse.new
             model.deserialize(response['Response'])
             model
           else

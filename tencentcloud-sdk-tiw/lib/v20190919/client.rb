@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检测PPT文件，识别PPT中包含的动态转码任务（Transcode）不支持的元素
+
+        # @param request: Request instance for CreatePPTCheckTask.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::CreatePPTCheckTaskRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::CreatePPTCheckTaskResponse`
+        def CreatePPTCheckTask(request)
+          body = send_request('CreatePPTCheckTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePPTCheckTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
 
         # @param request: Request instance for CreateSnapshotTask.
@@ -389,6 +413,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询PPT检测任务的执行进度或结果
+
+        # @param request: Request instance for DescribePPTCheck.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribePPTCheckRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribePPTCheckResponse`
+        def DescribePPTCheck(request)
+          body = send_request('DescribePPTCheck', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePPTCheckResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询PPT检测任务回调地址
+
+        # @param request: Request instance for DescribePPTCheckCallback.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribePPTCheckCallbackRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribePPTCheckCallbackResponse`
+        def DescribePPTCheckCallback(request)
+          body = send_request('DescribePPTCheckCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePPTCheckCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户后付费用量
 
         # @param request: Request instance for DescribePostpaidUsage.
@@ -471,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRoomListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据指定的任务类型，获取当前正在执行中的任务列表。只能查询最近3天内创建的任务。
+
+        # @param request: Request instance for DescribeRunningTasks.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeRunningTasksRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeRunningTasksResponse`
+        def DescribeRunningTasks(request)
+          body = send_request('DescribeRunningTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRunningTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -763,6 +859,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoGenerationTaskCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询告警回调地址。此功能需要申请白名单使用。
+
+        # @param request: Request instance for DescribeWarningCallback.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeWarningCallbackRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeWarningCallbackResponse`
+        def DescribeWarningCallback(request)
+          body = send_request('DescribeWarningCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWarningCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1113,6 +1233,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置PPT检测任务回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+
+        # @param request: Request instance for SetPPTCheckCallback.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::SetPPTCheckCallbackRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::SetPPTCheckCallbackResponse`
+        def SetPPTCheckCallback(request)
+          body = send_request('SetPPTCheckCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetPPTCheckCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置PPT检测任务回调密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+
+        # @param request: Request instance for SetPPTCheckCallbackKey.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::SetPPTCheckCallbackKeyRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::SetPPTCheckCallbackKeyResponse`
+        def SetPPTCheckCallbackKey(request)
+          body = send_request('SetPPTCheckCallbackKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetPPTCheckCallbackKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
 
         # @param request: Request instance for SetTranscodeCallback.
@@ -1195,6 +1363,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetVideoGenerationTaskCallbackKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置告警回调地址。此功能需要申请白名单使用。
+
+        # @param request: Request instance for SetWarningCallback.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::SetWarningCallbackRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::SetWarningCallbackResponse`
+        def SetWarningCallback(request)
+          body = send_request('SetWarningCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetWarningCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else

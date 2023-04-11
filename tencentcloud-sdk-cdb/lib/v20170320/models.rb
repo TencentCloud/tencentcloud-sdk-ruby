@@ -11371,10 +11371,12 @@ module TencentCloud
         # @type CrossCluster: Integer
         # @param ZoneId: 主节点可用区，该值仅在跨区迁移时生效。仅支持同地域下的可用区进行迁移。
         # @type ZoneId: String
+        # @param RoTransType: 针对跨集群搬迁场景，选择同可用区RO的处理逻辑。together-同可用区RO跟随主实例迁移至目标可用区（默认选项），severally-同可用区RO保持原部署模式、不迁移至目标可用区。
+        # @type RoTransType: String
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -11391,6 +11393,7 @@ module TencentCloud
           @MaxDelayTime = maxdelaytime
           @CrossCluster = crosscluster
           @ZoneId = zoneid
+          @RoTransType = rotranstype
         end
 
         def deserialize(params)
@@ -11410,6 +11413,7 @@ module TencentCloud
           @MaxDelayTime = params['MaxDelayTime']
           @CrossCluster = params['CrossCluster']
           @ZoneId = params['ZoneId']
+          @RoTransType = params['RoTransType']
         end
       end
 

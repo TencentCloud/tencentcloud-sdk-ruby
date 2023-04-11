@@ -3700,7 +3700,7 @@ module TencentCloud
       class BashEvent < TencentCloud::Common::AbstractModel
         # @param Id: 数据ID
         # @type Id: Integer
-        # @param Uuid: 云镜ID
+        # @param Uuid: 主机安全ID
         # @type Uuid: String
         # @param Quuid: 主机ID
         # @type Quuid: String
@@ -3794,7 +3794,7 @@ module TencentCloud
       class BashEventNew < TencentCloud::Common::AbstractModel
         # @param Id: 数据ID
         # @type Id: Integer
-        # @param Uuid: 云镜ID
+        # @param Uuid: 主机安全ID
         # @type Uuid: String
         # @param Quuid: 主机ID
         # @type Quuid: String
@@ -3901,7 +3901,7 @@ module TencentCloud
       class BashEventsInfoNew < TencentCloud::Common::AbstractModel
         # @param Id: 数据ID
         # @type Id: Integer
-        # @param Uuid: 云镜ID
+        # @param Uuid: 主机安全ID
         # @type Uuid: String
         # @param Quuid: 主机ID
         # @type Quuid: String
@@ -4111,7 +4111,7 @@ module TencentCloud
       class BruteAttackInfo < TencentCloud::Common::AbstractModel
         # @param Id: 唯一Id
         # @type Id: Integer
-        # @param Uuid: 云镜客户端唯一标识UUID
+        # @param Uuid: 主机安全客户端唯一标识UUID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
         # @param MachineIp: 主机ip
@@ -5259,7 +5259,7 @@ module TencentCloud
 
       # DeleteMachine请求参数结构体
       class DeleteMachineRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端Uuid。
+        # @param Uuid: 主机安全客户端Uuid。
         # @type Uuid: String
 
         attr_accessor :Uuid
@@ -12513,7 +12513,7 @@ module TencentCloud
 
       # DescribeMachineInfo请求参数结构体
       class DescribeMachineInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端唯一Uuid。
+        # @param Uuid: 主机安全客户端唯一Uuid。
         # @type Uuid: String
         # @param Quuid: Quuid , Uuid 必填一项
         # @type Quuid: String
@@ -12535,7 +12535,7 @@ module TencentCloud
       class DescribeMachineInfoResponse < TencentCloud::Common::AbstractModel
         # @param MachineIp: 机器ip。
         # @type MachineIp: String
-        # @param ProtectDays: 受云镜保护天数。
+        # @param ProtectDays: 受主机安全保护天数。
         # @type ProtectDays: Integer
         # @param MachineOs: 操作系统。
         # @type MachineOs: String
@@ -12551,7 +12551,7 @@ module TencentCloud
         # @type MachineWanIp: String
         # @param Quuid: CVM或BM主机唯一Uuid。
         # @type Quuid: String
-        # @param Uuid: 云镜客户端唯一Uuid。
+        # @param Uuid: 主机安全客户端唯一Uuid。
         # @type Uuid: String
         # @param IsProVersion: 是否开通专业版。
         # <li>true：是</li>
@@ -12582,7 +12582,7 @@ module TencentCloud
         # @type ProVersionDeadline: String
         # @param HasAssetScan: 是否有资产扫描记录，0无，1有
         # @type HasAssetScan: Integer
-        # @param ProtectType: 防护版本 BASIC_VERSION 基础版, PRO_VERSION 专业版 Flagship 旗舰版.
+        # @param ProtectType: 防护版本：BASIC_VERSION 基础版，PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版
         # @type ProtectType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15751,7 +15751,7 @@ module TencentCloud
 
       # DescribeUsualLoginPlaces请求参数结构体
       class DescribeUsualLoginPlacesRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端UUID
+        # @param Uuid: 主机安全客户端UUID
         # @type Uuid: String
 
         attr_accessor :Uuid
@@ -18927,7 +18927,7 @@ module TencentCloud
       class HistoryAccount < TencentCloud::Common::AbstractModel
         # @param Id: 唯一ID。
         # @type Id: Integer
-        # @param Uuid: 云镜客户端唯一Uuid。
+        # @param Uuid: 主机安全客户端唯一Uuid。
         # @type Uuid: String
         # @param MachineIp: 主机内网IP。
         # @type MachineIp: String

@@ -292,11 +292,13 @@ module TencentCloud
 
       # CreateBackupDBInstance请求参数结构体
       class CreateBackupDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupMethod: 0-逻辑备份，1-物理备份
+        # @param BackupMethod: 设置备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
         # @type BackupMethod: Integer
-        # @param BackupRemark: 备份备注
+        # @param BackupRemark: 备份备注信息。
         # @type BackupRemark: String
 
         attr_accessor :InstanceId, :BackupMethod, :BackupRemark
@@ -316,7 +318,7 @@ module TencentCloud
 
       # CreateBackupDBInstance返回参数结构体
       class CreateBackupDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 查询备份流程的状态
+        # @param AsyncRequestId: 查询备份流程的状态。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -826,6 +828,50 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @OriginalPrice = params['OriginalPrice']
           @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
+      # DeleteAccountUser请求参数结构体
+      class DeleteAccountUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定待删除账号的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param UserName: 配置待删除的账号名。
+        # @type UserName: String
+        # @param MongoUserPassword: 配置 mongouser 对应的密码。mongouser为系统默认账号，输入其对应的密码。
+        # @type MongoUserPassword: String
+
+        attr_accessor :InstanceId, :UserName, :MongoUserPassword
+        
+        def initialize(instanceid=nil, username=nil, mongouserpassword=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @MongoUserPassword = mongouserpassword
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @MongoUserPassword = params['MongoUserPassword']
+        end
+      end
+
+      # DeleteAccountUser返回参数结构体
+      class DeleteAccountUserResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 账户删除任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1435,7 +1481,7 @@ module TencentCloud
 
       # DescribeInstanceParams请求参数结构体
       class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定待查询参数列表的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1451,13 +1497,13 @@ module TencentCloud
 
       # DescribeInstanceParams返回参数结构体
       class DescribeInstanceParamsResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceEnumParam: 值为枚举类型参数集合
+        # @param InstanceEnumParam: 参数值为枚举类型参数集合。
         # @type InstanceEnumParam: Array
-        # @param InstanceIntegerParam: 值为integer类型参数集合
+        # @param InstanceIntegerParam: 参数值为 Integer 类型参数集合。
         # @type InstanceIntegerParam: Array
-        # @param InstanceTextParam: 值为text类型的参数集合
+        # @param InstanceTextParam: 参数值为 Text 类型的参数集合。
         # @type InstanceTextParam: Array
-        # @param InstanceMultiParam: 值为混合类型的参数集合
+        # @param InstanceMultiParam: 参数值为混合类型的参数集合。
         # @type InstanceMultiParam: Array
         # @param TotalCount: 当前实例支持修改的参数个数统计 如0
         # @type TotalCount: Integer
@@ -2242,21 +2288,25 @@ module TencentCloud
 
       # 实例可修改参数枚举类型集合。
       class InstanceEnumParam < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 参数当前值
+        # @param CurrentValue: 参数当前值。
         # @type CurrentValue: String
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: 参数默认值。
         # @type DefaultValue: String
-        # @param EnumValue: 枚举值，所有支持的值
+        # @param EnumValue: 枚举值，所有支持的值。
         # @type EnumValue: Array
-        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        # @param NeedRestart: 参数修改之后是否需要重启生效。
+        # - 1：需要重启后生效。
+        # - 0：无需重启，设置成功即可生效。
         # @type NeedRestart: String
-        # @param ParamName: 参数名称
+        # @param ParamName: 参数名称。
         # @type ParamName: String
-        # @param Tips: 中英文说明
+        # @param Tips: 参数说明。
         # @type Tips: Array
-        # @param ValueType: 参数值类型说明
+        # @param ValueType: 参数值类型说明。
         # @type ValueType: String
-        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        # @param Status: 是否为运行中参数值。
+        # - 1：运行中参数值。
+        # - 0：非运行中参数值。
         # @type Status: Integer
 
         attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Tips, :ValueType, :Status
@@ -2284,27 +2334,31 @@ module TencentCloud
         end
       end
 
-      # 实例可修改参数integer类型集合。
+      # 实例可修改参数 Integer 类型集合。
       class InstanceIntegerParam < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 当前值
+        # @param CurrentValue: 参数当前值。
         # @type CurrentValue: String
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: 参数默认值。
         # @type DefaultValue: String
-        # @param Max: 最大值
+        # @param Max: 参数最大值。
         # @type Max: String
-        # @param Min: 最小值
+        # @param Min: 最小值。
         # @type Min: String
-        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        # @param NeedRestart: 参数修改之后是否需要重启生效。
+        # - 1:需要重启后生效。
+        # - 0：无需重启，设置成功即可生效。
         # @type NeedRestart: String
-        # @param ParamName: 参数名称
+        # @param ParamName: 参数名称。
         # @type ParamName: String
-        # @param Tips: 参数说明
+        # @param Tips: 参数说明。
         # @type Tips: Array
-        # @param ValueType: 参数类型
+        # @param ValueType: 参数类型。
         # @type ValueType: String
-        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        # @param Status: 是否为运行中参数值。
+        # - 1：运行中参数值。
+        # - 0：非运行中参数值。
         # @type Status: Integer
-        # @param Unit: 冗余字段，可忽略
+        # @param Unit: 冗余字段，可忽略。
         # @type Unit: String
 
         attr_accessor :CurrentValue, :DefaultValue, :Max, :Min, :NeedRestart, :ParamName, :Tips, :ValueType, :Status, :Unit
@@ -2338,21 +2392,25 @@ module TencentCloud
 
       # 实例可修改参数Multi类型集合。
       class InstanceMultiParam < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 当前值
+        # @param CurrentValue: 参数当前值。
         # @type CurrentValue: String
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: 参数默认值。
         # @type DefaultValue: String
-        # @param EnumValue: 指导值范围
+        # @param EnumValue: 参考值范围。
         # @type EnumValue: Array
-        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        # @param NeedRestart: 参数修改后是否需要重启才会生效。
+        # - 1：需要重启后生效。
+        # - 0：无需重启，设置成功即可生效。
         # @type NeedRestart: String
-        # @param ParamName: 参数名称
+        # @param ParamName: 参数名称。
         # @type ParamName: String
-        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        # @param Status: 是否为运行中参数值。
+        # - 1：运行中参数值。
+        # - 0：非运行中参数值。
         # @type Status: Integer
-        # @param Tips: 参数说明
+        # @param Tips: 参数说明。
         # @type Tips: Array
-        # @param ValueType: 当前值的类型描述，默认为multi
+        # @param ValueType: 当前值的类型描述，默认为multi。
         # @type ValueType: String
 
         attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Status, :Tips, :ValueType
@@ -2380,23 +2438,25 @@ module TencentCloud
         end
       end
 
-      # 实例可修改参数text类型集合。
+      # 实例可修改参数为 Text 类型的参数集合。
       class InstanceTextParam < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 当前值
+        # @param CurrentValue: 参数当前值。
         # @type CurrentValue: String
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: 参数默认值。
         # @type DefaultValue: String
-        # @param NeedRestart: 是否需要重启
+        # @param NeedRestart: 修改参数值之后是否需要重启。
         # @type NeedRestart: String
-        # @param ParamName: 参数名称
+        # @param ParamName: 参数名称。
         # @type ParamName: String
-        # @param TextValue: text类型值
+        # @param TextValue: Text 类型参数对应的值。
         # @type TextValue: String
-        # @param Tips: 参数说明
+        # @param Tips: 参数说明。
         # @type Tips: Array
-        # @param ValueType: 值类型说明
+        # @param ValueType: 参数值类型说明。
         # @type ValueType: String
-        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        # @param Status: 是否为运行中的参数值。
+        # - 1：运行中参数值。
+        # - 0：非运行中参数值。
         # @type Status: String
 
         attr_accessor :CurrentValue, :DefaultValue, :NeedRestart, :ParamName, :TextValue, :Tips, :ValueType, :Status
@@ -3089,11 +3149,11 @@ module TencentCloud
 
       # SetAccountUserPrivilege请求参数结构体
       class SetAccountUserPrivilegeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 指定待设置账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param UserName: 账号名称。
+        # @param UserName: 设置账号名称。
         # @type UserName: String
-        # @param AuthRole: 权限信息。
+        # @param AuthRole: 设置权限信息。
         # @type AuthRole: Array
 
         attr_accessor :InstanceId, :UserName, :AuthRole
@@ -3120,7 +3180,7 @@ module TencentCloud
 
       # SetAccountUserPrivilege返回参数结构体
       class SetAccountUserPrivilegeResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 设置任务ID,用于查询是否设置完成
+        # @param FlowId: 任务ID。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

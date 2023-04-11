@@ -740,10 +740,13 @@ module TencentCloud
         # @param MX: 记录的MX权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: Integer
+        # @param Weight: 记录的权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
 
-        attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :Status, :Operation, :ErrMsg, :Id, :MX
+        attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :Status, :Operation, :ErrMsg, :Id, :MX, :Weight
         
-        def initialize(subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, status=nil, operation=nil, errmsg=nil, id=nil, mx=nil)
+        def initialize(subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, status=nil, operation=nil, errmsg=nil, id=nil, mx=nil, weight=nil)
           @SubDomain = subdomain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -754,6 +757,7 @@ module TencentCloud
           @ErrMsg = errmsg
           @Id = id
           @MX = mx
+          @Weight = weight
         end
 
         def deserialize(params)
@@ -767,6 +771,7 @@ module TencentCloud
           @ErrMsg = params['ErrMsg']
           @Id = params['Id']
           @MX = params['MX']
+          @Weight = params['Weight']
         end
       end
 

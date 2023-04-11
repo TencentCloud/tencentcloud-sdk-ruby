@@ -536,7 +536,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteMachine）用于卸载云镜客户端。
+        # 本接口（DeleteMachine）用于卸载主机安全客户端。
 
         # @param request: Request instance for DeleteMachine.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DeleteMachineRequest`

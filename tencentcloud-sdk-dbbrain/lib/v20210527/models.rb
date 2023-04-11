@@ -2042,6 +2042,97 @@ module TencentCloud
         end
       end
 
+      # DescribeSlowLogs请求参数结构体
+      class DescribeSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB for MySQL，默认为"mysql"。
+        # @type Product: String
+        # @param InstanceId: 实例id。
+        # @type InstanceId: String
+        # @param Md5: sql模版的md5值
+        # @type Md5: String
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
+        # @type StartTime: String
+        # @param EndTime: 截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。
+        # @type EndTime: String
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+        # @param DB: 数据库列表
+        # @type DB: Array
+        # @param Key: 关键字
+        # @type Key: Array
+        # @param User: 用户
+        # @type User: Array
+        # @param Ip: ip
+        # @type Ip: Array
+        # @param Time: 耗时区间,耗时区间的左右边界分别对应数组的第0个元素和第一个元素
+        # @type Time: Array
+
+        attr_accessor :Product, :InstanceId, :Md5, :StartTime, :EndTime, :Offset, :Limit, :DB, :Key, :User, :Ip, :Time
+        
+        def initialize(product=nil, instanceid=nil, md5=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, db=nil, key=nil, user=nil, ip=nil, time=nil)
+          @Product = product
+          @InstanceId = instanceid
+          @Md5 = md5
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @DB = db
+          @Key = key
+          @User = user
+          @Ip = ip
+          @Time = time
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @Md5 = params['Md5']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DB = params['DB']
+          @Key = params['Key']
+          @User = params['User']
+          @Ip = params['Ip']
+          @Time = params['Time']
+        end
+      end
+
+      # DescribeSlowLogs返回参数结构体
+      class DescribeSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的记录总数。
+        # @type TotalCount: Integer
+        # @param Rows: 慢日志明细
+        # @type Rows: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Rows, :RequestId
+        
+        def initialize(totalcount=nil, rows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Rows = rows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              slowloginfoitem_tmp = SlowLogInfoItem.new
+              slowloginfoitem_tmp.deserialize(i)
+              @Rows << slowloginfoitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSqlFilters请求参数结构体
       class DescribeSqlFiltersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -3737,6 +3828,59 @@ module TencentCloud
           @UserHost = params['UserHost']
           @Ratio = params['Ratio']
           @Count = params['Count']
+        end
+      end
+
+      # 慢日志详细信息
+      class SlowLogInfoItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 慢日志开始时间
+        # @type Timestamp: String
+        # @param SqlText: sql语句
+        # @type SqlText: String
+        # @param Database: 数据库
+        # @type Database: String
+        # @param UserName: User来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param UserHost: IP来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserHost: String
+        # @param QueryTime: 执行时间,单位秒
+        # @type QueryTime: Integer
+        # @param LockTime: 锁时间,单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockTime: Integer
+        # @param RowsExamined: 扫描行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowsExamined: Integer
+        # @param RowsSent: 返回行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowsSent: Integer
+
+        attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent
+        
+        def initialize(timestamp=nil, sqltext=nil, database=nil, username=nil, userhost=nil, querytime=nil, locktime=nil, rowsexamined=nil, rowssent=nil)
+          @Timestamp = timestamp
+          @SqlText = sqltext
+          @Database = database
+          @UserName = username
+          @UserHost = userhost
+          @QueryTime = querytime
+          @LockTime = locktime
+          @RowsExamined = rowsexamined
+          @RowsSent = rowssent
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @SqlText = params['SqlText']
+          @Database = params['Database']
+          @UserName = params['UserName']
+          @UserHost = params['UserHost']
+          @QueryTime = params['QueryTime']
+          @LockTime = params['LockTime']
+          @RowsExamined = params['RowsExamined']
+          @RowsSent = params['RowsSent']
         end
       end
 

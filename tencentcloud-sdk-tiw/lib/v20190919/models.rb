@@ -269,6 +269,55 @@ module TencentCloud
         end
       end
 
+      # CreatePPTCheckTask请求参数结构体
+      class CreatePPTCheckTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Url: 经过URL编码后的PPT文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pptx，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pptx。为了提高URL解析的成功率，请对URL进行编码。
+        # @type Url: String
+        # @param AutoHandleUnsupportedElement: 是否对不支持元素开启自动处理的功能。默认不开启。
+
+        # 在开启自动处理的情况下，会自动进行如下处理：
+        # 1. 墨迹：移除不支持的墨迹（比如使用WPS画的）
+        # 2. 自动翻页：移除PPT上所有的自动翻页设置，并设置为单击鼠标翻页
+        # 3. 已损坏音视频：移除PPT上对损坏音视频的引用
+        # @type AutoHandleUnsupportedElement: Boolean
+
+        attr_accessor :SdkAppId, :Url, :AutoHandleUnsupportedElement
+        
+        def initialize(sdkappid=nil, url=nil, autohandleunsupportedelement=nil)
+          @SdkAppId = sdkappid
+          @Url = url
+          @AutoHandleUnsupportedElement = autohandleunsupportedelement
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Url = params['Url']
+          @AutoHandleUnsupportedElement = params['AutoHandleUnsupportedElement']
+        end
+      end
+
+      # CreatePPTCheckTask返回参数结构体
+      class CreatePPTCheckTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 检测任务的唯一标识Id，用于查询该任务的进度以及检测结果
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSnapshotTask请求参数结构体
       class CreateSnapshotTaskRequest < TencentCloud::Common::AbstractModel
         # @param Whiteboard: 白板相关参数
@@ -1057,6 +1106,115 @@ module TencentCloud
         end
       end
 
+      # DescribePPTCheckCallback请求参数结构体
+      class DescribePPTCheckCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+        
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribePPTCheckCallback返回参数结构体
+      class DescribePPTCheckCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param Callback: 回调地址
+        # @type Callback: String
+        # @param CallbackKey: 回调鉴权密钥
+        # @type CallbackKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Callback, :CallbackKey, :RequestId
+        
+        def initialize(callback=nil, callbackkey=nil, requestid=nil)
+          @Callback = callback
+          @CallbackKey = callbackkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePPTCheck请求参数结构体
+      class DescribePPTCheckRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务的唯一标识Id
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribePPTCheck返回参数结构体
+      class DescribePPTCheckResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务的唯一标识Id
+        # @type TaskId: String
+        # @param IsOK: PPT文件是否正常
+        # @type IsOK: Boolean
+        # @param ResultUrl: 修复后的PPT URL，只有创建任务时参数AutoHandleUnsupportedElement=true，才返回此参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultUrl: String
+        # @param Slides: 错误PPT页面列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Slides: Array
+        # @param Status: 任务的当前状态 - QUEUED: 正在排队等待 - PROCESSING: 执行中 - FINISHED: 执行完成
+        # @type Status: String
+        # @param Progress: 当前进度,取值范围为0~100
+        # @type Progress: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :IsOK, :ResultUrl, :Slides, :Status, :Progress, :RequestId
+        
+        def initialize(taskid=nil, isok=nil, resulturl=nil, slides=nil, status=nil, progress=nil, requestid=nil)
+          @TaskId = taskid
+          @IsOK = isok
+          @ResultUrl = resulturl
+          @Slides = slides
+          @Status = status
+          @Progress = progress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @IsOK = params['IsOK']
+          @ResultUrl = params['ResultUrl']
+          unless params['Slides'].nil?
+            @Slides = []
+            params['Slides'].each do |i|
+              ppterrslide_tmp = PPTErrSlide.new
+              ppterrslide_tmp.deserialize(i)
+              @Slides << ppterrslide_tmp
+            end
+          end
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePostpaidUsage请求参数结构体
       class DescribePostpaidUsageRequest < TencentCloud::Common::AbstractModel
         # @param BeginTime: 开始时间
@@ -1258,6 +1416,71 @@ module TencentCloud
               roomlistitem_tmp = RoomListItem.new
               roomlistitem_tmp.deserialize(i)
               @RoomList << roomlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRunningTasks请求参数结构体
+      class DescribeRunningTasksRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppID: 应用的SdkAppID
+        # @type SdkAppID: Integer
+        # @param TaskType: 指定需要获取的任务类型。
+        # 有效取值如下：
+        # - TranscodeH5: 动态转码任务，文档转HTML5页面
+        # - TranscodeJPG: 静态转码任务，文档转图片
+        # - WhiteboardPush: 白板推流任务
+        # - OnlineRecord: 实时录制任务
+        # @type TaskType: String
+        # @param Offset: 分页获取时的任务偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 每次获取任务列表时最大获取任务数，默认值为100。
+        # 有效取值范围：[1, 500]
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppID, :TaskType, :Offset, :Limit
+        
+        def initialize(sdkappid=nil, tasktype=nil, offset=nil, limit=nil)
+          @SdkAppID = sdkappid
+          @TaskType = tasktype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppID = params['SdkAppID']
+          @TaskType = params['TaskType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRunningTasks返回参数结构体
+      class DescribeRunningTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 当前正在执行中的任务总数
+        # @type Total: Integer
+        # @param Tasks: 任务信息列表
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Tasks, :RequestId
+        
+        def initialize(total=nil, tasks=nil, requestid=nil)
+          @Total = total
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              runningtaskitem_tmp = RunningTaskItem.new
+              runningtaskitem_tmp.deserialize(i)
+              @Tasks << runningtaskitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1943,6 +2166,46 @@ module TencentCloud
         end
       end
 
+      # DescribeWarningCallback请求参数结构体
+      class DescribeWarningCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+        
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeWarningCallback返回参数结构体
+      class DescribeWarningCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param Callback: 告警事件回调地址，如果未设置回调地址，该字段为空字符串
+        # @type Callback: String
+        # @param CallbackKey: 告警回调鉴权密钥
+        # @type CallbackKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Callback, :CallbackKey, :RequestId
+        
+        def initialize(callback=nil, callbackkey=nil, requestid=nil)
+          @Callback = callback
+          @CallbackKey = callbackkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWhiteboardApplicationConfig请求参数结构体
       class DescribeWhiteboardApplicationConfigRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -2522,6 +2785,62 @@ module TencentCloud
         end
       end
 
+      # PPT错误元素
+      class PPTErr < TencentCloud::Common::AbstractModel
+        # @param Name: 元素名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 0: 不支持的墨迹类型，1: 不支持自动翻页，2: 存在已损坏音视频，3: 存在不可访问资源，4: 只读文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Detail: 错误详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+
+        attr_accessor :Name, :Type, :Detail
+        
+        def initialize(name=nil, type=nil, detail=nil)
+          @Name = name
+          @Type = type
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Detail = params['Detail']
+        end
+      end
+
+      # PPT错误页面列表
+      class PPTErrSlide < TencentCloud::Common::AbstractModel
+        # @param Page: 异常元素存在的页面，由页面类型+页码组成，页码类型包括：幻灯片、幻灯片母版、幻灯片布局等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: String
+        # @param Errs: 错误元素列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errs: Array
+
+        attr_accessor :Page, :Errs
+        
+        def initialize(page=nil, errs=nil)
+          @Page = page
+          @Errs = errs
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          unless params['Errs'].nil?
+            @Errs = []
+            params['Errs'].each do |i|
+              ppterr_tmp = PPTErr.new
+              ppterr_tmp.deserialize(i)
+              @Errs << ppterr_tmp
+            end
+          end
+        end
+      end
+
       # PauseOnlineRecord请求参数结构体
       class PauseOnlineRecordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -2829,6 +3148,67 @@ module TencentCloud
         end
       end
 
+      # 正在运行的任务列表项
+      class RunningTaskItem < TencentCloud::Common::AbstractModel
+        # @param SdkAppID: 应用SdkAppID
+        # @type SdkAppID: Integer
+        # @param TaskID: 任务ID
+        # @type TaskID: String
+        # @param TaskType: 任务类型
+        # - TranscodeH5: 动态转码任务，文档转HTML5页面
+        # - TranscodeJPG: 静态转码任务，文档转图片
+        # - WhiteboardPush: 白板推流任务
+        # - OnlineRecord: 实时录制任务
+        # @type TaskType: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param CancelTime: 任务取消时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CancelTime: String
+        # @param Status: 任务状态
+        # - QUEUED: 任务正在排队等待执行中
+        # - PROCESSING: 任务正在执行中
+        # - FINISHED: 任务已完成
+        # @type Status: String
+        # @param Progress: 任务当前进度
+        # @type Progress: Integer
+        # @param FileURL: 转码任务中转码文件的原始URL
+        # 此参数只有任务类型为TranscodeH5、TranscodeJPG类型时才会有有效值。其他任务类型为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileURL: String
+        # @param RoomID: 房间号
+
+        # 当任务类型为TranscodeH5、TranscodeJPG时，房间号为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomID: Integer
+
+        attr_accessor :SdkAppID, :TaskID, :TaskType, :CreateTime, :CancelTime, :Status, :Progress, :FileURL, :RoomID
+        
+        def initialize(sdkappid=nil, taskid=nil, tasktype=nil, createtime=nil, canceltime=nil, status=nil, progress=nil, fileurl=nil, roomid=nil)
+          @SdkAppID = sdkappid
+          @TaskID = taskid
+          @TaskType = tasktype
+          @CreateTime = createtime
+          @CancelTime = canceltime
+          @Status = status
+          @Progress = progress
+          @FileURL = fileurl
+          @RoomID = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppID = params['SdkAppID']
+          @TaskID = params['TaskID']
+          @TaskType = params['TaskType']
+          @CreateTime = params['CreateTime']
+          @CancelTime = params['CancelTime']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @FileURL = params['FileURL']
+          @RoomID = params['RoomID']
+        end
+      end
+
       # SetOfflineRecordCallback请求参数结构体
       class SetOfflineRecordCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -2923,6 +3303,78 @@ module TencentCloud
 
       # SetOnlineRecordCallback返回参数结构体
       class SetOnlineRecordCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetPPTCheckCallbackKey请求参数结构体
+      class SetPPTCheckCallbackKeyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param CallbackKey: 设置回调鉴权密钥，最长64字符，如果传入空字符串，那么删除现有的鉴权回调密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+        # @type CallbackKey: String
+
+        attr_accessor :SdkAppId, :CallbackKey
+        
+        def initialize(sdkappid=nil, callbackkey=nil)
+          @SdkAppId = sdkappid
+          @CallbackKey = callbackkey
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CallbackKey = params['CallbackKey']
+        end
+      end
+
+      # SetPPTCheckCallbackKey返回参数结构体
+      class SetPPTCheckCallbackKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetPPTCheckCallback请求参数结构体
+      class SetPPTCheckCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callback: 进度回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持http或https协议，即回调地址以http://或https://开头。 回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+        # @type Callback: String
+
+        attr_accessor :SdkAppId, :Callback
+        
+        def initialize(sdkappid=nil, callback=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+        end
+      end
+
+      # SetPPTCheckCallback返回参数结构体
+      class SetPPTCheckCallbackResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3068,6 +3520,47 @@ module TencentCloud
 
       # SetVideoGenerationTaskCallback返回参数结构体
       class SetVideoGenerationTaskCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetWarningCallback请求参数结构体
+      class SetWarningCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callback: 告警回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持http或https协议，即回调地址以http://或https://开头。
+        # 回调数据格式请参考文档：
+        # @type Callback: String
+        # @param CallbackKey: 设置告警回调鉴权密钥，最长64字符，如果传入空字符串，那么删除现有的鉴权回调密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+        # @type CallbackKey: String
+
+        attr_accessor :SdkAppId, :Callback, :CallbackKey
+        
+        def initialize(sdkappid=nil, callback=nil, callbackkey=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+          @CallbackKey = callbackkey
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+        end
+      end
+
+      # SetWarningCallback返回参数结构体
+      class SetWarningCallbackResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
