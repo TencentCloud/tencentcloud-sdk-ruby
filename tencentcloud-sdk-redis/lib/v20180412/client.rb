@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CloneInstances）可基于当前实例的备份文件克隆一个完整的新实例。
+        # 本接口（CloneInstances）用于基于当前实例的备份文件克隆一个完整的新实例。
 
         # @param request: Request instance for CloneInstances.
         # @type request: :class:`Tencentcloud::redis::V20180412::CloneInstancesRequest`
@@ -519,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeBandwidthRange）用于查询实例带宽信息。
+
+        # @param request: Request instance for DescribeBandwidthRange.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeBandwidthRangeRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeBandwidthRangeResponse`
+        def DescribeBandwidthRange(request)
+          body = send_request('DescribeBandwidthRange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBandwidthRangeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1911,6 +1935,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReleaseWanAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 移除复制组成员
+
+        # @param request: Request instance for RemoveReplicationInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::RemoveReplicationInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::RemoveReplicationInstanceResponse`
+        def RemoveReplicationInstance(request)
+          body = send_request('RemoveReplicationInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveReplicationInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

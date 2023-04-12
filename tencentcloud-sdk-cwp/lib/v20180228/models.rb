@@ -10470,29 +10470,36 @@ module TencentCloud
       class DescribeBashEventsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。
         # @type Limit: Integer
+        # @param Filters: 过滤条件。
+        # <li>HostName - String - 是否必填：否 - 主机名</li>
+        # <li>Hostip - String - 是否必填：否 - 主机内网IP</li>
+        # <li>RuleCategory - Int - 是否必填：否 - 策略类型,全部或者单选(0:系统 1:用户)</li>
+        # <li>RuleName - String - 是否必填：否 - 策略名称</li>
+        # <li>RuleLevel - Int - 是否必填：否 - 威胁等级,可以多选</li>
+        # <li>Status - Int - 是否必填：否 - 处理状态,可多选(0:待处理 1:已处理 2:已加白  3:已忽略 4:已删除 5:已拦截)</li>
+        # <li>DetectBy - Int - 是否必填：否 - 数据来源,可多选(0:bash日志 1:实时监控)</li>
+        # <li>StartTime - String - 是否必填：否 - 开始时间</li>
+        # <li>EndTime - String - 是否必填：否 - 结束时间</li>
+        # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>Keywords - String - 是否必填：否 - 关键词(主机内网IP)</li>
-        # @type Filters: Array
         # @param Order: 排序方式：根据请求次数排序：asc-升序/desc-降序
         # @type Order: String
         # @param By: 排序字段：CreateTime-发生时间。ModifyTime-处理时间
         # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Filters, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(limit=nil, filters=nil, offset=nil, order=nil, by=nil)
           @Limit = limit
-          @Offset = offset
           @Filters = filters
+          @Offset = offset
           @Order = order
           @By = by
         end
 
         def deserialize(params)
           @Limit = params['Limit']
-          @Offset = params['Offset']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -10501,6 +10508,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
         end
@@ -10612,7 +10620,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        # <li>Uuid - String - 是否必填：否 - 云镜唯一Uuid</li>
+        # <li>Uuid - String - 是否必填：否 - 主机安全唯一Uuid</li>
         # <li>Quuid - String - 是否必填：否 - 云服务器uuid</li>
         # <li>Status - String - 是否必填：否 - 状态筛选：失败：FAILED 成功：SUCCESS</li>
         # <li>UserName - String - 是否必填：否 - UserName筛选</li>
@@ -11593,7 +11601,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        # <li>Uuid - String - 是否必填：否 - 云镜唯一Uuid</li>
+        # <li>Uuid - String - 是否必填：否 - 主机安全唯一Uuid</li>
         # <li>Quuid - String - 是否必填：否 - 云服务器uuid</li>
         # <li>UserName - String - 是否必填：否 - 用户名筛选</li>
         # <li>LoginTimeBegin - String - 是否必填：否 - 按照修改时间段筛选，开始时间</li>
@@ -13690,7 +13698,7 @@ module TencentCloud
 
       # DescribeProVersionStatus请求参数结构体
       class DescribeProVersionStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端UUID、填写"all"表示所有主机。
+        # @param Uuid: 主机安全客户端UUID、填写"all"表示所有主机。
         # @type Uuid: String
 
         attr_accessor :Uuid
@@ -19378,11 +19386,11 @@ module TencentCloud
         # @type MachineIp: String
         # @param Quuid: 云服务器UUID
         # @type Quuid: String
-        # @param Uuid: 云镜客户端UUID
+        # @param Uuid: 主机安全客户端UUID
         # @type Uuid: String
         # @param Tags: 标签信息
         # @type Tags: Array
-        # @param AgentStatus: 云镜客户端状态,OFFLINE 离线,ONLINE 在线,UNINSTALL 未安装
+        # @param AgentStatus: 主机安全客户端状态,OFFLINE 离线,ONLINE 在线,UNINSTALL 未安装
         # @type AgentStatus: String
         # @param IsUnBind: 是否允许解绑,false 不允许解绑
         # @type IsUnBind: Boolean
@@ -21218,7 +21226,7 @@ module TencentCloud
       class PrivilegeEscalationProcess < TencentCloud::Common::AbstractModel
         # @param Id: 数据ID
         # @type Id: Integer
-        # @param Uuid: 云镜ID
+        # @param Uuid: 主机安全ID
         # @type Uuid: String
         # @param Quuid: 主机ID
         # @type Quuid: String
@@ -21946,7 +21954,7 @@ module TencentCloud
       class ReverseShell < TencentCloud::Common::AbstractModel
         # @param Id: ID 主键
         # @type Id: Integer
-        # @param Uuid: 云镜UUID
+        # @param Uuid: 主机安全UUID
         # @type Uuid: String
         # @param Quuid: 主机ID
         # @type Quuid: String
@@ -22814,7 +22822,7 @@ module TencentCloud
 
       # 安全事件消息数据。
       class SecurityDynamic < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端UUID。
+        # @param Uuid: 主机安全客户端UUID。
         # @type Uuid: String
         # @param EventTime: 安全事件发生时间。
         # @type EventTime: String
@@ -23588,7 +23596,7 @@ module TencentCloud
       class UsualPlace < TencentCloud::Common::AbstractModel
         # @param Id: ID。
         # @type Id: Integer
-        # @param Uuid: 云镜客户端唯一标识UUID。
+        # @param Uuid: 主机安全客户端唯一标识UUID。
         # @type Uuid: String
         # @param CountryId: 国家 ID。
         # @type CountryId: Integer

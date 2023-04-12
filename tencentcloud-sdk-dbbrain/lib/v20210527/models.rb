@@ -2054,9 +2054,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。
         # @type EndTime: String
-        # @param Offset: 分页参数
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 分页参数
+        # @param Limit: 查询数目，默认为20，最大为100。
         # @type Limit: Integer
         # @param DB: 数据库列表
         # @type DB: Array

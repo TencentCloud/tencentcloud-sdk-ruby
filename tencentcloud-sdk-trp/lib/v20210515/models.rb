@@ -2117,16 +2117,19 @@ module TencentCloud
         # @type ProductId: String
         # @param BatchId: 批次ID
         # @type BatchId: String
+        # @param Code: 安心码
+        # @type Code: String
 
-        attr_accessor :CorpId, :PageSize, :PageNumber, :MerchantId, :ProductId, :BatchId
+        attr_accessor :CorpId, :PageSize, :PageNumber, :MerchantId, :ProductId, :BatchId, :Code
         
-        def initialize(corpid=nil, pagesize=nil, pagenumber=nil, merchantid=nil, productid=nil, batchid=nil)
+        def initialize(corpid=nil, pagesize=nil, pagenumber=nil, merchantid=nil, productid=nil, batchid=nil, code=nil)
           @CorpId = corpid
           @PageSize = pagesize
           @PageNumber = pagenumber
           @MerchantId = merchantid
           @ProductId = productid
           @BatchId = batchid
+          @Code = code
         end
 
         def deserialize(params)
@@ -2136,6 +2139,7 @@ module TencentCloud
           @MerchantId = params['MerchantId']
           @ProductId = params['ProductId']
           @BatchId = params['BatchId']
+          @Code = params['Code']
         end
       end
 

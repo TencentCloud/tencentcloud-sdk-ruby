@@ -4820,6 +4820,8 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param Promoter: 发起人角色信息
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
+        # @param Available: 模板可用状态，取值：0未知，但默认会被转成启用；1启用（默认），2停用
+        # @type Available: Integer
         # @param OrganizationId: 模板创建组织id
         # @type OrganizationId: String
         # @param PreviewUrl: 模板预览链接
@@ -4832,9 +4834,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Published: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
         
-        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -4849,6 +4851,7 @@ module TencentCloud
           @Creator = creator
           @CreatedOn = createdon
           @Promoter = promoter
+          @Available = available
           @OrganizationId = organizationid
           @PreviewUrl = previewurl
           @TemplateVersion = templateversion
@@ -4901,6 +4904,7 @@ module TencentCloud
             @Promoter = Recipient.new
             @Promoter.deserialize(params['Promoter'])
           end
+          @Available = params['Available']
           @OrganizationId = params['OrganizationId']
           @PreviewUrl = params['PreviewUrl']
           @TemplateVersion = params['TemplateVersion']

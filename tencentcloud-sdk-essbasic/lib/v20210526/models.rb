@@ -5049,10 +5049,13 @@ module TencentCloud
         # @param TemplateVersion: 模板版本，全数字字符。默认为空，初始版本为yyyyMMdd001。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateVersion: String
+        # @param Available: 模板可用状态，取值：1启用（默认），2停用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Available: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion, :Available
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil, available=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -5069,6 +5072,7 @@ module TencentCloud
           @ChannelTemplateName = channeltemplatename
           @ChannelAutoSave = channelautosave
           @TemplateVersion = templateversion
+          @Available = available
         end
 
         def deserialize(params)
@@ -5109,6 +5113,7 @@ module TencentCloud
           @ChannelTemplateName = params['ChannelTemplateName']
           @ChannelAutoSave = params['ChannelAutoSave']
           @TemplateVersion = params['TemplateVersion']
+          @Available = params['Available']
         end
       end
 
