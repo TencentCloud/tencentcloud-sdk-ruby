@@ -170,6 +170,99 @@ module TencentCloud
         end
       end
 
+      # 备份保留策略详情
+      # 集群策略： ClueterId=集群Id， TableGroupId=-1,  TableName="-1"
+      # 集群+表格组策略： ClueterId=集群Id， TableGroupId=表格组Id,  TableName="-1"
+      # 集群+表格组+表格策略： ClueterId=集群Id， TableGroupId=表格组Id,  TableName="表格名"
+
+      # FileTag=0 txh引擎文件， =1 ulog流水文件， 当要设置为=1时， 这两项不可变 TableGroupId=-1和TableName="-1"
+      # ExpireDay为大于等于1，小于999的整形数字
+      # OperType=0 代表动作为新增， =1 代表动作为删除， =2 代表动作为修改， 其中0和2可以混用，后端实现兼容
+      class BackupExpireRuleInfo < TencentCloud::Common::AbstractModel
+        # @param TableGroupId: 所属表格组ID
+        # @type TableGroupId: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param FileTag: 文件标签，见上面描述
+        # @type FileTag: Integer
+        # @param ExpireDay: 淘汰天数，见上面描述
+        # @type ExpireDay: Integer
+        # @param OperType: 操作类型，见上面描述
+        # @type OperType: Integer
+
+        attr_accessor :TableGroupId, :TableName, :FileTag, :ExpireDay, :OperType
+        
+        def initialize(tablegroupid=nil, tablename=nil, filetag=nil, expireday=nil, opertype=nil)
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @FileTag = filetag
+          @ExpireDay = expireday
+          @OperType = opertype
+        end
+
+        def deserialize(params)
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @FileTag = params['FileTag']
+          @ExpireDay = params['ExpireDay']
+          @OperType = params['OperType']
+        end
+      end
+
+      # 备份记录
+      # 作为出参时，每个字段都会填充
+      # 作为入参时， 原封不动将每个字段填回结构体， 注意只有FIleTag=OSDATA才可以调用此接口
+      class BackupRecords < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 表格组ID
+        # @type ZoneId: Integer
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param BackupType: 备份源
+        # @type BackupType: String
+        # @param FileTag: 文件标签：TCAPLUS_FULL或OSDATA
+        # @type FileTag: String
+        # @param ShardCount: 分片数量
+        # @type ShardCount: Integer
+        # @param BackupBatchTime: 备份批次日期
+        # @type BackupBatchTime: String
+        # @param BackupFileSize: 备份文件汇总大小
+        # @type BackupFileSize: Integer
+        # @param BackupSuccRate: 备份成功率
+        # @type BackupSuccRate: String
+        # @param BackupExpireTime: 备份文件过期时间
+        # @type BackupExpireTime: String
+        # @param AppId: 业务ID
+        # @type AppId: Integer
+
+        attr_accessor :ZoneId, :TableName, :BackupType, :FileTag, :ShardCount, :BackupBatchTime, :BackupFileSize, :BackupSuccRate, :BackupExpireTime, :AppId
+        
+        def initialize(zoneid=nil, tablename=nil, backuptype=nil, filetag=nil, shardcount=nil, backupbatchtime=nil, backupfilesize=nil, backupsuccrate=nil, backupexpiretime=nil, appid=nil)
+          @ZoneId = zoneid
+          @TableName = tablename
+          @BackupType = backuptype
+          @FileTag = filetag
+          @ShardCount = shardcount
+          @BackupBatchTime = backupbatchtime
+          @BackupFileSize = backupfilesize
+          @BackupSuccRate = backupsuccrate
+          @BackupExpireTime = backupexpiretime
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TableName = params['TableName']
+          @BackupType = params['BackupType']
+          @FileTag = params['FileTag']
+          @ShardCount = params['ShardCount']
+          @BackupBatchTime = params['BackupBatchTime']
+          @BackupFileSize = params['BackupFileSize']
+          @BackupSuccRate = params['BackupSuccRate']
+          @BackupExpireTime = params['BackupExpireTime']
+          @AppId = params['AppId']
+        end
+      end
+
       # ClearTables请求参数结构体
       class ClearTablesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 表所属集群实例ID
@@ -875,6 +968,54 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupRecords请求参数结构体
+      class DeleteBackupRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 待删除备份记录的所在集群ID
+        # @type ClusterId: String
+        # @param BackupRecords: 待删除备份记录的详情
+        # @type BackupRecords: Array
+
+        attr_accessor :ClusterId, :BackupRecords
+        
+        def initialize(clusterid=nil, backuprecords=nil)
+          @ClusterId = clusterid
+          @BackupRecords = backuprecords
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['BackupRecords'].nil?
+            @BackupRecords = []
+            params['BackupRecords'].each do |i|
+              backuprecords_tmp = BackupRecords.new
+              backuprecords_tmp.deserialize(i)
+              @BackupRecords << backuprecords_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteBackupRecords返回参数结构体
+      class DeleteBackupRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCluster请求参数结构体
       class DeleteClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 待删除的集群ID
@@ -1309,6 +1450,69 @@ module TencentCloud
               application_tmp = Application.new
               application_tmp.deserialize(i)
               @Applications << application_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupRecords请求参数结构体
+      class DescribeBackupRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID，用于获取指定集群的单据
+        # @type ClusterId: String
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param TableGroupId: 表格组id，用于过滤
+        # @type TableGroupId: String
+        # @param TableName: 表格名，用于过滤
+        # @type TableName: String
+
+        attr_accessor :ClusterId, :Limit, :Offset, :TableGroupId, :TableName
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil, tablegroupid=nil, tablename=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeBackupRecords返回参数结构体
+      class DescribeBackupRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param BackupRecords: 备份记录详情
+        # @type BackupRecords: Array
+        # @param TotalCount: 返回记录条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupRecords, :TotalCount, :RequestId
+        
+        def initialize(backuprecords=nil, totalcount=nil, requestid=nil)
+          @BackupRecords = backuprecords
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupRecords'].nil?
+            @BackupRecords = []
+            params['BackupRecords'].each do |i|
+              backuprecords_tmp = BackupRecords.new
+              backuprecords_tmp.deserialize(i)
+              @BackupRecords << backuprecords_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3814,6 +4018,54 @@ module TencentCloud
         def deserialize(params)
           @ServerUid = params['ServerUid']
           @MachineType = params['MachineType']
+        end
+      end
+
+      # SetBackupExpireRule请求参数结构体
+      class SetBackupExpireRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表所属集群实例ID
+        # @type ClusterId: String
+        # @param BackupExpireRules: 淘汰策略数组
+        # @type BackupExpireRules: Array
+
+        attr_accessor :ClusterId, :BackupExpireRules
+        
+        def initialize(clusterid=nil, backupexpirerules=nil)
+          @ClusterId = clusterid
+          @BackupExpireRules = backupexpirerules
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['BackupExpireRules'].nil?
+            @BackupExpireRules = []
+            params['BackupExpireRules'].each do |i|
+              backupexpireruleinfo_tmp = BackupExpireRuleInfo.new
+              backupexpireruleinfo_tmp.deserialize(i)
+              @BackupExpireRules << backupexpireruleinfo_tmp
+            end
+          end
+        end
+      end
+
+      # SetBackupExpireRule返回参数结构体
+      class SetBackupExpireRuleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

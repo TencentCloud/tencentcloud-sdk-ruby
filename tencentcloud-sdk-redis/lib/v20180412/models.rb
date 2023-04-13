@@ -251,11 +251,11 @@ module TencentCloud
         end
       end
 
-      # 自定义的备份文件下载地址的 VPC 信息。
+      # 已配置的备份文件下载地址对应的 VPC 信息。
       class BackupLimitVpcItem < TencentCloud::Common::AbstractModel
-        # @param Region: 自定义下载备份文件的VPC 所属地域。
+        # @param Region: 备份文件的下载地址对应VPC 所属的地域。
         # @type Region: String
-        # @param VpcList: 自定义下载备份文件的 VPC 列表。
+        # @param VpcList: 备份文件下载地址的 VPC 列表。
         # @type VpcList: Array
 
         attr_accessor :Region, :VpcList
@@ -2838,7 +2838,7 @@ module TencentCloud
 
       # DescribeParamTemplateInfo请求参数结构体
       class DescribeParamTemplateInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模板 ID。
+        # @param TemplateId: 指定查询的参数模板 ID。请通过接口[DescribeParamTemplates](https://cloud.tencent.com/document/product/239/58750)获取参数模板列表信息。
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -2854,17 +2854,27 @@ module TencentCloud
 
       # DescribeParamTemplateInfo返回参数结构体
       class DescribeParamTemplateInfoResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例参数个数
+        # @param TotalCount: 参数模板的参数数量。
         # @type TotalCount: Integer
         # @param TemplateId: 参数模板 ID。
         # @type TemplateId: String
         # @param Name: 参数模板名称。
         # @type Name: String
-        # @param ProductType: 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @param ProductType: 产品类型。
+        # - 2：Redis 2.8内存版（标准架构）。
+        # - 3：CKV 3.2内存版（标准架构）。
+        # - 4：CKV 3.2内存版（集群架构）。
+        # - 5：Redis 2.8内存版（单机）。
+        # - 6：Redis 4.0内存版（标准架构）。
+        # - 7：Redis 4.0内存版（集群架构）。
+        # - 8：Redis 5.0内存版（标准架构）。
+        # - 9：Redis 5.0内存版（集群架构）。
+        # - 15：Redis 6.2内存版（标准架构）。
+        # - 16：Redis 6.2内存版（集群架构）。
         # @type ProductType: Integer
-        # @param Description: 参数模板描述
+        # @param Description: 参数模板描述。
         # @type Description: String
-        # @param Items: 参数详情
+        # @param Items: 参数详情。包含：参数的名称，当前运行值，默认值，最大值、最小值、枚举值等信息。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3764,7 +3774,7 @@ module TencentCloud
 
       # 复制组信息
       class Groups < TencentCloud::Common::AbstractModel
-        # @param AppId: 用户AppID
+        # @param AppId: 用户 APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         # @type AppId: Integer
         # @param RegionId: 地域ID 。
         # - 1：广州
@@ -3786,7 +3796,7 @@ module TencentCloud
         # - 24：俄罗斯
         # - 25：日本
         # @type RegionId: Integer
-        # @param GroupId: 复制组 ID。
+        # @param GroupId: 复制组 ID。格式如：crs-rpl-deind****。
         # @type GroupId: String
         # @param GroupName: 复制组名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4377,15 +4387,18 @@ module TencentCloud
 
       # 实例参数修改历史
       class InstanceParamHistory < TencentCloud::Common::AbstractModel
-        # @param ParamName: 参数名称
+        # @param ParamName: 参数名称。
         # @type ParamName: String
-        # @param PreValue: 修改前值
+        # @param PreValue: 参数修改之前的值。
         # @type PreValue: String
-        # @param NewValue: 修改后值
+        # @param NewValue: 参数修改之后的值。
         # @type NewValue: String
-        # @param Status: 状态：1-参数配置修改中；2-参数配置修改成功；3-参数配置修改失败
+        # @param Status: 参数配置状态。
+        # - 1：参数配置修改中。
+        # - 2：参数配置修改成功。
+        # - 3：参数配置修改失败。
         # @type Status: Integer
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: 修改时间。
         # @type ModifyTime: String
 
         attr_accessor :ParamName, :PreValue, :NewValue, :Status, :ModifyTime
@@ -4409,13 +4422,13 @@ module TencentCloud
 
       # 代理慢查询详情
       class InstanceProxySlowlogDetail < TencentCloud::Common::AbstractModel
-        # @param Duration: 慢查询耗时（单位：毫秒）。
+        # @param Duration: 慢查询耗时时长。单位：毫秒。
         # @type Duration: Integer
         # @param Client: 客户端地址。
         # @type Client: String
-        # @param Command: 命令。
+        # @param Command: 慢查询的命令。
         # @type Command: String
-        # @param CommandLine: 详细命令行信息。
+        # @param CommandLine: 慢查询详细命令行信息。
         # @type CommandLine: String
         # @param ExecuteTime: 执行时间。
         # @type ExecuteTime: String
@@ -4496,7 +4509,17 @@ module TencentCloud
         # @type Size: Float
         # @param SizeUsed: 该字段已废弃。请使用腾讯云可观测平台API 接口 [GetMonitorData](https://cloud.tencent.com/document/product/248/31014) 获取实例已使用的内存容量。
         # @type SizeUsed: Float
-        # @param Type: 实例类型：<ul><li>1：Redis2.8内存版（集群架构）。</li><li>2：Redis2.8内存版（标准架构）。</li><li>3：CKV 3.2内存版(标准架构)。</li><li>4：CKV 3.2内存版(集群架构)。</li><li>5：Redis2.8内存版（单机）。</li></li><li>6：Redis4.0内存版（标准架构）。</li></li><li>7：Redis4.0内存版（集群架构）。</li></li><li>8：Redis5.0内存版（标准架构）。</li></li><li>9：Redis5.0内存版（集群架构）。</li></ul>
+        # @param Type: 实例类型。
+        # - 2：Redis 2.8内存版（标准架构）。
+        # - 3：CKV 3.2内存版（标准架构）。
+        # - 4：CKV 3.2内存版（集群架构）。
+        # - 5：Redis 2.8内存版（单机）。
+        # - 6：Redis 4.0内存版（标准架构）。
+        # - 7：Redis 4.0内存版（集群架构）。
+        # - 8：Redis 5.0内存版（标准架构）。
+        # - 9：Redis 5.0内存版（集群架构）。
+        # - 15：Redis 6.2内存版（标准架构）。
+        # - 16：Redis 6.2内存版（集群架构）。
         # @type Type: Integer
         # @param AutoRenewFlag: 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
         # @type AutoRenewFlag: Integer
@@ -4843,7 +4866,7 @@ module TencentCloud
 
       # 复制组实例
       class Instances < TencentCloud::Common::AbstractModel
-        # @param AppId: 用户AppID。
+        # @param AppId: 用户APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         # @type AppId: Integer
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
@@ -4879,7 +4902,17 @@ module TencentCloud
         # @type Status: Integer
         # @param GrocerySysId: 仓库ID。
         # @type GrocerySysId: Integer
-        # @param ProductType: 实例类型。<ul><li>1：Redis 2.8 内存版（集群架构）。</li><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li></ul>
+        # @param ProductType: 实例类型。
+        # - 2：Redis 2.8内存版（标准架构）。
+        # - 3：CKV 3.2内存版（标准架构）。
+        # - 4：CKV 3.2内存版（集群架构）。
+        # - 5：Redis 2.8内存版（单机）。
+        # - 6：Redis 4.0内存版（标准架构）。
+        # - 7：Redis 4.0内存版（集群架构）。
+        # - 8：Redis 5.0内存版（标准架构）。
+        # - 9：Redis 5.0内存版（集群架构）。
+        # - 15：Redis 6.2内存版（标准架构）。
+        # - 16：Redis 6.2内存版（集群架构）。
         # @type ProductType: Integer
         # @param CreateTime: 实例加入复制组的时间。
         # @type CreateTime: String
@@ -5756,13 +5789,21 @@ module TencentCloud
 
       # 参数模板信息
       class ParamTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模板ID
+        # @param TemplateId: 参数模板 ID。
         # @type TemplateId: String
-        # @param Name: 参数模板名称
+        # @param Name: 参数模板名称。
         # @type Name: String
-        # @param Description: 参数模板描述
+        # @param Description: 参数模板描述。
         # @type Description: String
-        # @param ProductType: 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @param ProductType: 实例类型。
+        # - 2：Redis 2.8内存版（标准架构）。
+        # - 3：CKV 3.2内存版（标准架构）。
+        # - 4：CKV 3.2内存版（集群架构）。
+        # - 5：Redis 2.8内存版（单机）。
+        # - 6：Redis 4.0内存版（标准架构）。
+        # - 7：Redis 4.0内存版（集群架构）。
+        # - 8：Redis 5.0内存版（标准架构）。
+        # - 9：Redis 5.0内存版（集群架构）。
         # @type ProductType: Integer
 
         attr_accessor :TemplateId, :Name, :Description, :ProductType
@@ -5784,25 +5825,27 @@ module TencentCloud
 
       # Redis参数模板参数详情
       class ParameterDetail < TencentCloud::Common::AbstractModel
-        # @param Name: 参数名称
+        # @param Name: 参数名称。
         # @type Name: String
-        # @param ParamType: 参数类型
+        # @param ParamType: 参数类型。
         # @type ParamType: String
-        # @param Default: 参数默认值
+        # @param Default: 参数默认值。
         # @type Default: String
-        # @param Description: 参数描述
+        # @param Description: 参数描述。
         # @type Description: String
-        # @param CurrentValue: 参数当前值
+        # @param CurrentValue: 参数当前值。
         # @type CurrentValue: String
-        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。可能的值包括：0-不需要重启；1-需要重启
+        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。
+        # - 0：不需要重启。
+        # - 1：需要重启。
         # @type NeedReboot: Integer
-        # @param Max: 参数允许的最大值
+        # @param Max: 参数允许的最大值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: String
-        # @param Min: 参数允许的最小值
+        # @param Min: 参数允许的最小值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: String
-        # @param EnumValue: 参数的可选枚举值。如果为非枚举参数，则为空
+        # @param EnumValue: 参数可选枚举值。如果为非枚举参数，则为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
 
@@ -6008,33 +6051,42 @@ module TencentCloud
 
       # 单个实例信息
       class RedisCommonInstanceList < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称
+        # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param AppId: 用户id
+        # @param AppId: 用户APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         # @type AppId: Integer
-        # @param ProjectId: 实例所属项目id
+        # @param ProjectId: 实例所属项目 ID。
         # @type ProjectId: Integer
-        # @param Region: 实例接入区域
+        # @param Region: 实例接入区域。
         # @type Region: String
-        # @param Zone: 实例接入zone
+        # @param Zone: 实例接入可用区。
         # @type Zone: String
-        # @param VpcId: 实例网络id
+        # @param VpcId: 实例私有网络 ID。
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: 私有网络所属子网 ID。
         # @type SubnetId: String
-        # @param Status: 实例状态信息，1-流程中 ,2-运行中, -2-实例已隔离 ,-3-实例待回收, -4-实例已删除
+        # @param Status: 实例状态信息。
+        # - 1-流程中。
+        # - 2-运行中。
+        # - -2-实例已隔离。
+        # - -3-实例待回收。
+        # - -4-实例已删除。
         # @type Status: String
-        # @param Vips: 实例网络ip
+        # @param Vips: 实例私有网络 IP 地址。
         # @type Vips: Array
-        # @param Vport: 实例网络端口
+        # @param Vport: 实例网络端口。
         # @type Vport: Integer
-        # @param Createtime: 实例创建时间
+        # @param Createtime: 实例创建时间。
         # @type Createtime: String
-        # @param PayMode: 计费类型，0-按量计费，1-包年包月
+        # @param PayMode: 计费类型。
+        # - 0：按量计费。
+        # - 1：包年包月。
         # @type PayMode: Integer
-        # @param NetType: 网络类型，0-基础网络，1-VPC网络
+        # @param NetType: 网络类型。
+        # - 0：基础网络。
+        # - 1：VPC 网络。
         # @type NetType: Integer
 
         attr_accessor :InstanceName, :InstanceId, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vips, :Vport, :Createtime, :PayMode, :NetType
@@ -6414,9 +6466,9 @@ module TencentCloud
 
       # API购买实例绑定标签
       class ResourceTag < TencentCloud::Common::AbstractModel
-        # @param TagKey: 标签key
+        # @param TagKey: 标签Key。
         # @type TagKey: String
-        # @param TagValue: 标签value
+        # @param TagValue: 标签 Key 对应的 Value。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

@@ -1085,7 +1085,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询参数模板详情。
+        # 本接口（DescribeParamTemplateInfo）用于查询参数模板详情。
 
         # @param request: Request instance for DescribeParamTemplateInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplateInfoRequest`

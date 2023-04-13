@@ -273,7 +273,7 @@ module TencentCloud
       class CreatePPTCheckTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
         # @type SdkAppId: Integer
-        # @param Url: 经过URL编码后的PPT文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pptx，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pptx。为了提高URL解析的成功率，请对URL进行编码。
+        # @param Url: 经过URL编码后的PPT文件地址。URL 编码会将字符转换为可通过因特网传输的格式，例如文档地址为http://example.com/测试.pptx，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pptx。为了提高URL解析的成功率，请对URL进行编码。
         # @type Url: String
         # @param AutoHandleUnsupportedElement: 是否对不支持元素开启自动处理的功能。默认不开启。
 
@@ -3357,7 +3357,7 @@ module TencentCloud
       class SetPPTCheckCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
         # @type SdkAppId: Integer
-        # @param Callback: 进度回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持http或https协议，即回调地址以http://或https://开头。 回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+        # @param Callback: 进度回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持http或https协议，即回调地址以http://或https://开头。 回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260#c9cbe05f-fe1a-4410-b4dc-40cc301c7b81
         # @type Callback: String
 
         attr_accessor :SdkAppId, :Callback

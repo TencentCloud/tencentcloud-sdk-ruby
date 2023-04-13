@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除手工备份
+
+        # @param request: Request instance for DeleteBackupRecords.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteBackupRecordsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteBackupRecordsResponse`
+        def DeleteBackupRecords(request)
+          body = send_request('DeleteBackupRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackupRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
 
         # @param request: Request instance for DeleteCluster.
@@ -375,6 +399,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份记录
+
+        # 查询集群级别时， 将TableGroupId设置为"-1", 将TableName设置为"-1"
+        # 查询集群+表格组级别时， 将TableName设置为"-1"
+        # 查询集群+表格组+表格级别时， 都不能设置为“-1”
+
+        # @param request: Request instance for DescribeBackupRecords.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DescribeBackupRecordsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DescribeBackupRecordsResponse`
+        def DescribeBackupRecords(request)
+          body = send_request('DescribeBackupRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupRecordsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1119,6 +1171,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RollbackTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增、删除、修改备份过期策略， ClusterId必须为具体的集群Id（appid）
+
+        # @param request: Request instance for SetBackupExpireRule.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::SetBackupExpireRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::SetBackupExpireRuleResponse`
+        def SetBackupExpireRule(request)
+          body = send_request('SetBackupExpireRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetBackupExpireRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
