@@ -1367,16 +1367,20 @@ module TencentCloud
 
       # DescribeTrtcRoomUsage返回参数结构体
       class DescribeTrtcRoomUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 房间维度用量数据，csv文件格式。
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end

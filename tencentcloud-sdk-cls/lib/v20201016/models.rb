@@ -1817,10 +1817,12 @@ module TencentCloud
         # @param HotPeriod: 0：关闭日志沉降。
         # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
         # @type HotPeriod: Integer
+        # @param IsWebTracking: webtracking开关； false: 关闭 true： 开启
+        # @type IsWebTracking: Boolean
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :IsWebTracking
         
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -1831,6 +1833,7 @@ module TencentCloud
           @Period = period
           @Describes = describes
           @HotPeriod = hotperiod
+          @IsWebTracking = iswebtracking
         end
 
         def deserialize(params)
@@ -1851,6 +1854,7 @@ module TencentCloud
           @Period = params['Period']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @IsWebTracking = params['IsWebTracking']
         end
       end
 
@@ -5215,10 +5219,12 @@ module TencentCloud
         # @param HotPeriod: 0：关闭日志沉降。
         # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
         # @type HotPeriod: Integer
+        # @param IsWebTracking: webtracking开关； false: 关闭 true: 开启
+        # @type IsWebTracking: Boolean
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking
         
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -5228,6 +5234,7 @@ module TencentCloud
           @Period = period
           @Describes = describes
           @HotPeriod = hotperiod
+          @IsWebTracking = iswebtracking
         end
 
         def deserialize(params)
@@ -5247,6 +5254,7 @@ module TencentCloud
           @Period = params['Period']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @IsWebTracking = params['IsWebTracking']
         end
       end
 
