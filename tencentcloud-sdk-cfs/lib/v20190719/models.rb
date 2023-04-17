@@ -267,6 +267,27 @@ module TencentCloud
         end
       end
 
+      # 对象存储桶
+      class BucketInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 桶名称
+        # @type Name: String
+        # @param Region: 桶所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :Name, :Region
+        
+        def initialize(name=nil, region=nil)
+          @Name = name
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Region = params['Region']
+        end
+      end
+
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Hour: 快照重复时间点
@@ -625,6 +646,98 @@ module TencentCloud
         end
       end
 
+      # CreateMigrationTask请求参数结构体
+      class CreateMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: 迁移任务名称
+        # @type TaskName: String
+        # @param MigrationType: 迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移
+        # @type MigrationType: Integer
+        # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
+        # @type MigrationMode: Integer
+        # @param SrcSecretId: 数据源账号的SecretId
+        # @type SrcSecretId: String
+        # @param SrcSecretKey: 数据源账号的SecretKey
+        # @type SrcSecretKey: String
+        # @param FileSystemId: 文件系统实例Id
+        # @type FileSystemId: String
+        # @param FsPath: 文件系统路径
+        # @type FsPath: String
+        # @param CoverType: 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
+        # @type CoverType: Integer
+        # @param SrcService: 数据源服务商。COS: 腾讯云COS，OSS: 阿里云OSS，OBS:华为云OBS
+        # @type SrcService: String
+        # @param BucketName: 数据源桶名称，名称和地址至少有一个
+        # @type BucketName: String
+        # @param BucketRegion: 数据源桶地域
+        # @type BucketRegion: String
+        # @param BucketAddress: 数据源桶地址，名称和地址至少有一个
+        # @type BucketAddress: String
+        # @param ListAddress: 清单地址，迁移方式为清单迁移时必填
+        # @type ListAddress: String
+        # @param FsName: 目标文件系统名称
+        # @type FsName: String
+        # @param BucketPath: 源桶路径，默认为/
+        # @type BucketPath: String
+
+        attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath
+        
+        def initialize(taskname=nil, migrationtype=nil, migrationmode=nil, srcsecretid=nil, srcsecretkey=nil, filesystemid=nil, fspath=nil, covertype=nil, srcservice=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, bucketpath=nil)
+          @TaskName = taskname
+          @MigrationType = migrationtype
+          @MigrationMode = migrationmode
+          @SrcSecretId = srcsecretid
+          @SrcSecretKey = srcsecretkey
+          @FileSystemId = filesystemid
+          @FsPath = fspath
+          @CoverType = covertype
+          @SrcService = srcservice
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketAddress = bucketaddress
+          @ListAddress = listaddress
+          @FsName = fsname
+          @BucketPath = bucketpath
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @MigrationType = params['MigrationType']
+          @MigrationMode = params['MigrationMode']
+          @SrcSecretId = params['SrcSecretId']
+          @SrcSecretKey = params['SrcSecretKey']
+          @FileSystemId = params['FileSystemId']
+          @FsPath = params['FsPath']
+          @CoverType = params['CoverType']
+          @SrcService = params['SrcService']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketAddress = params['BucketAddress']
+          @ListAddress = params['ListAddress']
+          @FsName = params['FsName']
+          @BucketPath = params['BucketPath']
+        end
+      end
+
+      # CreateMigrationTask返回参数结构体
+      class CreateMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAutoSnapshotPolicy请求参数结构体
       class DeleteAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID
@@ -817,6 +930,38 @@ module TencentCloud
         end
       end
 
+      # DeleteMigrationTask请求参数结构体
+      class DeleteMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteMigrationTask返回参数结构体
+      class DeleteMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteMountTarget请求参数结构体
       class DeleteMountTargetRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID
@@ -999,6 +1144,61 @@ module TencentCloud
               availableregion_tmp = AvailableRegion.new
               availableregion_tmp.deserialize(i)
               @RegionZones << availableregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBucketList请求参数结构体
+      class DescribeBucketListRequest < TencentCloud::Common::AbstractModel
+        # @param SrcService: 数据源服务商。COS: 腾讯云COS，OSS: 阿里云OSS，OBS:华为云OBS
+        # @type SrcService: String
+        # @param SrcSecretId: 数据源账号的SecretId
+        # @type SrcSecretId: String
+        # @param SrcSecretKey: 数据源账号的SecretKey
+        # @type SrcSecretKey: String
+
+        attr_accessor :SrcService, :SrcSecretId, :SrcSecretKey
+        
+        def initialize(srcservice=nil, srcsecretid=nil, srcsecretkey=nil)
+          @SrcService = srcservice
+          @SrcSecretId = srcsecretid
+          @SrcSecretKey = srcsecretkey
+        end
+
+        def deserialize(params)
+          @SrcService = params['SrcService']
+          @SrcSecretId = params['SrcSecretId']
+          @SrcSecretKey = params['SrcSecretKey']
+        end
+      end
+
+      # DescribeBucketList返回参数结构体
+      class DescribeBucketListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 桶的数量
+        # @type TotalCount: Integer
+        # @param BucketList: 桶列表
+        # @type BucketList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BucketList, :RequestId
+        
+        def initialize(totalcount=nil, bucketlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BucketList = bucketlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BucketList'].nil?
+            @BucketList = []
+            params['BucketList'].each do |i|
+              bucketinfo_tmp = BucketInfo.new
+              bucketinfo_tmp.deserialize(i)
+              @BucketList << bucketinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1331,6 +1531,82 @@ module TencentCloud
             end
           end
           @TotalSize = params['TotalSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMigrationTasks请求参数结构体
+      class DescribeMigrationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+        # @param Filters: <br><li> taskId
+
+        # 按照【迁移任务id】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> taskName
+
+        # 按照【迁移任务名字】进行模糊搜索过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeMigrationTasks返回参数结构体
+      class DescribeMigrationTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 迁移任务的数量
+        # @type TotalCount: Integer
+        # @param MigrationTasks: 迁移任务详情
+        # @type MigrationTasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MigrationTasks, :RequestId
+        
+        def initialize(totalcount=nil, migrationtasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MigrationTasks = migrationtasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MigrationTasks'].nil?
+            @MigrationTasks = []
+            params['MigrationTasks'].each do |i|
+              migrationtaskinfo_tmp = MigrationTaskInfo.new
+              migrationtaskinfo_tmp.deserialize(i)
+              @MigrationTasks << migrationtaskinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1721,6 +1997,134 @@ module TencentCloud
         end
       end
 
+      # CFS数据迁移任务信息
+      class MigrationTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskName: 迁移任务名称
+        # @type TaskName: String
+        # @param TaskId: 迁移任务id
+        # @type TaskId: String
+        # @param MigrationType: 迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移
+        # @type MigrationType: Integer
+        # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
+        # @type MigrationMode: Integer
+        # @param BucketName: 数据源桶名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketName: String
+        # @param BucketRegion: 数据源桶地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketRegion: String
+        # @param BucketAddress: 数据源桶地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketAddress: String
+        # @param ListAddress: 清单地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListAddress: String
+        # @param FsName: 文件系统实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FsName: String
+        # @param FileSystemId: 文件系统实例Id
+        # @type FileSystemId: String
+        # @param FsPath: 文件系统路径
+        # @type FsPath: String
+        # @param CoverType: 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
+        # @type CoverType: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param EndTime: 完成/终止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param Status: 迁移状态。0: 已完成；1: 进行中；2: 已终止
+        # @type Status: Integer
+        # @param FileTotalCount: 文件数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTotalCount: Integer
+        # @param FileMigratedCount: 已迁移文件数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMigratedCount: Integer
+        # @param FileFailedCount: 迁移失败文件数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileFailedCount: Integer
+        # @param FileTotalSize: 文件容量，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTotalSize: Integer
+        # @param FileMigratedSize: 已迁移文件容量，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMigratedSize: Integer
+        # @param FileFailedSize: 迁移失败文件容量，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileFailedSize: Integer
+        # @param FileTotalList: 全部清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTotalList: String
+        # @param FileCompletedList: 已完成文件清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileCompletedList: String
+        # @param FileFailedList: 失败文件清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileFailedList: String
+        # @param BucketPath: 源桶路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketPath: String
+
+        attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath
+        
+        def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil)
+          @TaskName = taskname
+          @TaskId = taskid
+          @MigrationType = migrationtype
+          @MigrationMode = migrationmode
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketAddress = bucketaddress
+          @ListAddress = listaddress
+          @FsName = fsname
+          @FileSystemId = filesystemid
+          @FsPath = fspath
+          @CoverType = covertype
+          @CreateTime = createtime
+          @EndTime = endtime
+          @Status = status
+          @FileTotalCount = filetotalcount
+          @FileMigratedCount = filemigratedcount
+          @FileFailedCount = filefailedcount
+          @FileTotalSize = filetotalsize
+          @FileMigratedSize = filemigratedsize
+          @FileFailedSize = filefailedsize
+          @FileTotalList = filetotallist
+          @FileCompletedList = filecompletedlist
+          @FileFailedList = filefailedlist
+          @BucketPath = bucketpath
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @TaskId = params['TaskId']
+          @MigrationType = params['MigrationType']
+          @MigrationMode = params['MigrationMode']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketAddress = params['BucketAddress']
+          @ListAddress = params['ListAddress']
+          @FsName = params['FsName']
+          @FileSystemId = params['FileSystemId']
+          @FsPath = params['FsPath']
+          @CoverType = params['CoverType']
+          @CreateTime = params['CreateTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @FileTotalCount = params['FileTotalCount']
+          @FileMigratedCount = params['FileMigratedCount']
+          @FileFailedCount = params['FileFailedCount']
+          @FileTotalSize = params['FileTotalSize']
+          @FileMigratedSize = params['FileMigratedSize']
+          @FileFailedSize = params['FileFailedSize']
+          @FileTotalList = params['FileTotalList']
+          @FileCompletedList = params['FileCompletedList']
+          @FileFailedList = params['FileFailedList']
+          @BucketPath = params['BucketPath']
+        end
+      end
+
       # 挂载点信息
       class MountInfo < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID
@@ -2068,6 +2472,46 @@ module TencentCloud
           @Region = params['Region']
           @SnapshotNumber = params['SnapshotNumber']
           @SnapshotSize = params['SnapshotSize']
+        end
+      end
+
+      # StopMigrationTask请求参数结构体
+      class StopMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务名称
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopMigrationTask返回参数结构体
+      class StopMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务Id
+        # @type TaskId: String
+        # @param Status: 迁移状态。0: 已完成；1: 进行中；2: 已终止
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :RequestId
+        
+        def initialize(taskid=nil, status=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
         end
       end
 

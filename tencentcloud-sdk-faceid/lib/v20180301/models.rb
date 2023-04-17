@@ -2210,10 +2210,31 @@ module TencentCloud
 
       # 意愿核身问答模式结果
       class IntentionQuestionResult < TencentCloud::Common::AbstractModel
-        # @param FinalResultCode: 意愿核身最终结果：
-        # 0：认证通过，-1：认证未通过，-2：浏览器内核不兼容，无法进行意愿校验
+        # @param FinalResultDetailCode: 意愿核身错误码：
+        # 0: "成功"
+        # -1: "参数错误"
+        # -2: "系统异常"
+        # -101: "请保持人脸在框内"
+        # -102: "检测到多张人脸"
+        # -103: "人脸检测失败"
+        # -104: "人脸检测不完整"
+        # -105: "请勿遮挡眼睛"
+        # -106: "请勿遮挡嘴巴"
+        # -107: "请勿遮挡鼻子"
+        # -201: "人脸比对相似度低"
+        # -202: "人脸比对失败"
+        # -301: "意愿核验不通过"
+        # -800: "前端不兼容错误"
+        # -801: "用户未授权摄像头和麦克风权限"
+        # -802: "获取视频流失败"
+        # -803: "用户主动关闭链接/异常断开链接"
+        # -998: "系统数据异常"
+        # -999: "系统未知错误，请联系人工核实"
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FinalResultCode: String
+        # @type FinalResultDetailCode: Integer
+        # @param FinalResultMessage: 意愿核身错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalResultMessage: String
         # @param Video: 视频base64（其中包含全程问题和回答音频，mp4格式）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Video: String
@@ -2230,25 +2251,33 @@ module TencentCloud
         # @param Audios: 答案录音音频
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Audios: Array
+        # @param FinalResultCode: 意愿核身最终结果：
+        # 0：认证通过，-1：认证未通过，-2：浏览器内核不兼容，无法进行意愿校验。建议使用“FinalResultDetailCode”参数获取详细的错误码信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalResultCode: String
 
-        attr_accessor :FinalResultCode, :Video, :ScreenShot, :ResultCode, :AsrResult, :Audios
+        attr_accessor :FinalResultDetailCode, :FinalResultMessage, :Video, :ScreenShot, :ResultCode, :AsrResult, :Audios, :FinalResultCode
         
-        def initialize(finalresultcode=nil, video=nil, screenshot=nil, resultcode=nil, asrresult=nil, audios=nil)
-          @FinalResultCode = finalresultcode
+        def initialize(finalresultdetailcode=nil, finalresultmessage=nil, video=nil, screenshot=nil, resultcode=nil, asrresult=nil, audios=nil, finalresultcode=nil)
+          @FinalResultDetailCode = finalresultdetailcode
+          @FinalResultMessage = finalresultmessage
           @Video = video
           @ScreenShot = screenshot
           @ResultCode = resultcode
           @AsrResult = asrresult
           @Audios = audios
+          @FinalResultCode = finalresultcode
         end
 
         def deserialize(params)
-          @FinalResultCode = params['FinalResultCode']
+          @FinalResultDetailCode = params['FinalResultDetailCode']
+          @FinalResultMessage = params['FinalResultMessage']
           @Video = params['Video']
           @ScreenShot = params['ScreenShot']
           @ResultCode = params['ResultCode']
           @AsrResult = params['AsrResult']
           @Audios = params['Audios']
+          @FinalResultCode = params['FinalResultCode']
         end
       end
 

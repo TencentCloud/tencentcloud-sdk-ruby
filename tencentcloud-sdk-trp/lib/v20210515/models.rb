@@ -2315,6 +2315,49 @@ module TencentCloud
         end
       end
 
+      # DescribeTraceDataById请求参数结构体
+      class DescribeTraceDataByIdRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 溯源ID
+        # @type Id: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :Id, :CorpId
+        
+        def initialize(id=nil, corpid=nil)
+          @Id = id
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeTraceDataById返回参数结构体
+      class DescribeTraceDataByIdResponse < TencentCloud::Common::AbstractModel
+        # @param TraceData: 无
+        # @type TraceData: :class:`Tencentcloud::Trp.v20210515.models.TraceData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TraceData, :RequestId
+        
+        def initialize(tracedata=nil, requestid=nil)
+          @TraceData = tracedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TraceData'].nil?
+            @TraceData = TraceData.new
+            @TraceData.deserialize(params['TraceData'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTraceDataList请求参数结构体
       class DescribeTraceDataListRequest < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID

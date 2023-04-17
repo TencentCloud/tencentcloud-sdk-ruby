@@ -173,6 +173,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建迁移任务。
+        # 此接口需提交工单，开启白名单之后才能使用。
+
+        # @param request: Request instance for CreateMigrationTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateMigrationTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateMigrationTaskResponse`
+        def CreateMigrationTask(request)
+          body = send_request('CreateMigrationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMigrationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除快照定期策略
 
         # @param request: Request instance for DeleteAutoSnapshotPolicy.
@@ -293,6 +318,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于删除迁移任务。
+        # 此接口需提交工单，开启白名单之后才能使用。
+
+        # @param request: Request instance for DeleteMigrationTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteMigrationTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteMigrationTaskResponse`
+        def DeleteMigrationTask(request)
+          body = send_request('DeleteMigrationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMigrationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteMountTarget）用于删除挂载点
 
         # @param request: Request instance for DeleteMountTarget.
@@ -375,6 +425,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAvailableZoneInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于获取数据源桶列表。
+        # 此接口需提交工单，开启白名单之后才能使用。
+
+        # @param request: Request instance for DescribeBucketList.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeBucketListRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeBucketListResponse`
+        def DescribeBucketList(request)
+          body = send_request('DescribeBucketList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBucketListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,6 +632,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于获取迁移任务列表。
+        # 此接口需提交工单，开启白名单之后才能使用。
+
+        # @param request: Request instance for DescribeMigrationTasks.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeMigrationTasksRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeMigrationTasksResponse`
+        def DescribeMigrationTasks(request)
+          body = send_request('DescribeMigrationTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigrationTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
 
         # @param request: Request instance for DescribeMountTargets.
@@ -663,6 +763,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SignUpCfsServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于终止迁移任务。
+        # 此接口需提交工单，开启白名单之后才能使用。
+
+        # @param request: Request instance for StopMigrationTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::StopMigrationTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::StopMigrationTaskResponse`
+        def StopMigrationTask(request)
+          body = send_request('StopMigrationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopMigrationTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
