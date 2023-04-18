@@ -2051,6 +2051,152 @@ module TencentCloud
         end
       end
 
+      # DescribePeakPoints请求参数结构体
+      class DescribePeakPointsRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 查询起始时间
+        # @type FromTime: String
+        # @param ToTime: 查询终止时间
+        # @type ToTime: String
+        # @param Domain: 查询的域名，如果查询所有域名数据，该参数不填写
+        # @type Domain: String
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
+        # @param MetricName: 六个值可选：
+        # access-峰值qps趋势图
+        # botAccess- bot峰值qps趋势图
+        # down-下行峰值带宽趋势图
+        # up-上行峰值带宽趋势图
+        # attack-Web攻击总数趋势图
+        # cc-CC攻击总数趋势图
+        # @type MetricName: String
+
+        attr_accessor :FromTime, :ToTime, :Domain, :Edition, :InstanceID, :MetricName
+        
+        def initialize(fromtime=nil, totime=nil, domain=nil, edition=nil, instanceid=nil, metricname=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @Domain = domain
+          @Edition = edition
+          @InstanceID = instanceid
+          @MetricName = metricname
+        end
+
+        def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+          @MetricName = params['MetricName']
+        end
+      end
+
+      # DescribePeakPoints返回参数结构体
+      class DescribePeakPointsResponse < TencentCloud::Common::AbstractModel
+        # @param Points: 数据点
+        # @type Points: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Points, :RequestId
+        
+        def initialize(points=nil, requestid=nil)
+          @Points = points
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              peakpointsitem_tmp = PeakPointsItem.new
+              peakpointsitem_tmp.deserialize(i)
+              @Points << peakpointsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePeakValue请求参数结构体
+      class DescribePeakValueRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 查询起始时间
+        # @type FromTime: String
+        # @param ToTime: 查询结束时间
+        # @type ToTime: String
+        # @param Domain: 需要查询的域名，当前用户所有域名可以不传
+        # @type Domain: String
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
+        # @param MetricName: 五个值可选：
+        # access-峰值qps
+        # down-下行峰值带宽
+        # up-上行峰值带宽
+        # attack-Web攻击总数
+        # cc-CC攻击总数趋势图
+        # @type MetricName: String
+
+        attr_accessor :FromTime, :ToTime, :Domain, :Edition, :InstanceID, :MetricName
+        
+        def initialize(fromtime=nil, totime=nil, domain=nil, edition=nil, instanceid=nil, metricname=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @Domain = domain
+          @Edition = edition
+          @InstanceID = instanceid
+          @MetricName = metricname
+        end
+
+        def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+          @MetricName = params['MetricName']
+        end
+      end
+
+      # DescribePeakValue返回参数结构体
+      class DescribePeakValueResponse < TencentCloud::Common::AbstractModel
+        # @param Access: QPS峰值
+        # @type Access: Integer
+        # @param Up: 上行带宽峰值，单位B
+        # @type Up: Integer
+        # @param Down: 下行带宽峰值，单位B
+        # @type Down: Integer
+        # @param Attack: Web攻击总数
+        # @type Attack: Integer
+        # @param Cc: CC攻击总数
+        # @type Cc: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Access, :Up, :Down, :Attack, :Cc, :RequestId
+        
+        def initialize(access=nil, up=nil, down=nil, attack=nil, cc=nil, requestid=nil)
+          @Access = access
+          @Up = up
+          @Down = down
+          @Attack = attack
+          @Cc = cc
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Access = params['Access']
+          @Up = params['Up']
+          @Down = params['Down']
+          @Attack = params['Attack']
+          @Cc = params['Cc']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePolicyStatus请求参数结构体
       class DescribePolicyStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3662,6 +3808,47 @@ module TencentCloud
             @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # PeakPoints数组项
+      class PeakPointsItem < TencentCloud::Common::AbstractModel
+        # @param Time: 秒级别时间戳
+        # @type Time: Integer
+        # @param Access: QPS
+        # @type Access: Integer
+        # @param Up: 上行带宽峰值，单位B
+        # @type Up: Integer
+        # @param Down: 下行带宽峰值，单位B
+        # @type Down: Integer
+        # @param Attack: Web攻击次数
+        # @type Attack: Integer
+        # @param Cc: CC攻击次数
+        # @type Cc: Integer
+        # @param BotAccess: Bot qps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotAccess: Integer
+
+        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess
+        
+        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil)
+          @Time = time
+          @Access = access
+          @Up = up
+          @Down = down
+          @Attack = attack
+          @Cc = cc
+          @BotAccess = botaccess
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Access = params['Access']
+          @Up = params['Up']
+          @Down = params['Down']
+          @Attack = params['Attack']
+          @Cc = params['Cc']
+          @BotAccess = params['BotAccess']
         end
       end
 

@@ -397,6 +397,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询 app 监控多维分析数据
+
+        # @param request: Request instance for DescribeAppDimensionMetrics.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeAppDimensionMetricsRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeAppDimensionMetricsResponse`
+        def DescribeAppDimensionMetrics(request)
+          body = send_request('DescribeAppDimensionMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppDimensionMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 app 监控指标数据
+
+        # @param request: Request instance for DescribeAppMetricsData.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeAppMetricsDataRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeAppMetricsDataResponse`
+        def DescribeAppMetricsData(request)
+          body = send_request('DescribeAppMetricsData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppMetricsDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 app 监控个例样本详情列表
+
+        # @param request: Request instance for DescribeAppSingleCaseDetailList.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeAppSingleCaseDetailListRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeAppSingleCaseDetailListResponse`
+        def DescribeAppSingleCaseDetailList(request)
+          body = send_request('DescribeAppSingleCaseDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppSingleCaseDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 app 监控个例聚合列表
+
+        # @param request: Request instance for DescribeAppSingleCaseList.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeAppSingleCaseListRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeAppSingleCaseListResponse`
+        def DescribeAppSingleCaseList(request)
+          body = send_request('DescribeAppSingleCaseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppSingleCaseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 转发monitor查询
 
         # @param request: Request instance for DescribeData.

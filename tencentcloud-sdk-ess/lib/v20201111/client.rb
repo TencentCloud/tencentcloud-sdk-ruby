@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 将电子签系统员工userId与客户系统员工openId进行绑定
+
+        # @param request: Request instance for BindEmployeeUserIdWithClientOpenId.
+        # @type request: :class:`Tencentcloud::ess::V20201111::BindEmployeeUserIdWithClientOpenIdRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::BindEmployeeUserIdWithClientOpenIdResponse`
+        def BindEmployeeUserIdWithClientOpenId(request)
+          body = send_request('BindEmployeeUserIdWithClientOpenId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindEmployeeUserIdWithClientOpenIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于撤销签署流程
         # 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
         # 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
@@ -1020,6 +1044,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将存在绑定关系的电子签系统员工userId与客户系统员工openId进行解绑
+
+        # @param request: Request instance for UnbindEmployeeUserIdWithClientOpenId.
+        # @type request: :class:`Tencentcloud::ess::V20201111::UnbindEmployeeUserIdWithClientOpenIdRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::UnbindEmployeeUserIdWithClientOpenIdResponse`
+        def UnbindEmployeeUserIdWithClientOpenId(request)
+          body = send_request('UnbindEmployeeUserIdWithClientOpenId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindEmployeeUserIdWithClientOpenIdResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 接收客户侧的用户已授权的号码。
+
+        # @param request: Request instance for AuthorizedTransfer.
+        # @type request: :class:`Tencentcloud::trp::V20210515::AuthorizedTransferRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::AuthorizedTransferResponse`
+        def AuthorizedTransfer(request)
+          body = send_request('AuthorizedTransfer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AuthorizedTransferResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增批次
 
         # @param request: Request instance for CreateCodeBatch.
@@ -894,6 +918,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接收客户反馈的各环节数据
+
+        # @param request: Request instance for EffectFeedback.
+        # @type request: :class:`Tencentcloud::trp::V20210515::EffectFeedbackRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::EffectFeedbackResponse`
+        def EffectFeedback(request)
+          body = send_request('EffectFeedback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EffectFeedbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改批次
 
         # @param request: Request instance for ModifyCodeBatch.
@@ -1097,6 +1145,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTraceDataRanksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接收离线筛选包回执，用于效果统计和分析。
+
+        # @param request: Request instance for ReportBatchCallbackStatus.
+        # @type request: :class:`Tencentcloud::trp::V20210515::ReportBatchCallbackStatusRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::ReportBatchCallbackStatusResponse`
+        def ReportBatchCallbackStatus(request)
+          body = send_request('ReportBatchCallbackStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReportBatchCallbackStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

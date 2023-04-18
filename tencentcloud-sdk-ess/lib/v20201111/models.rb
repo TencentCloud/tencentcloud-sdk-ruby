@@ -271,6 +271,53 @@ module TencentCloud
         end
       end
 
+      # BindEmployeeUserIdWithClientOpenId请求参数结构体
+      class BindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: OpenId与UserId二选一必填一个，当传入客户系统openId，传入的openId需与电子签员工userId绑定，且渠道channel必填，channel值为INTEGRATE，否则传入userId
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserId: 电子签系统员工UserId
+        # @type UserId: String
+        # @param OpenId: 客户系统OpenId
+        # @type OpenId: String
+
+        attr_accessor :Operator, :UserId, :OpenId
+        
+        def initialize(operator=nil, userid=nil, openid=nil)
+          @Operator = operator
+          @UserId = userid
+          @OpenId = openid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserId = params['UserId']
+          @OpenId = params['OpenId']
+        end
+      end
+
+      # BindEmployeeUserIdWithClientOpenId返回参数结构体
+      class BindEmployeeUserIdWithClientOpenIdResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 绑定是否成功，1表示成功，0表示失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 应用回调信息
       class CallbackInfo < TencentCloud::Common::AbstractModel
         # @param CallbackUrl: 回调url
@@ -4914,6 +4961,53 @@ module TencentCloud
           @PreviewUrl = params['PreviewUrl']
           @TemplateVersion = params['TemplateVersion']
           @Published = params['Published']
+        end
+      end
+
+      # UnbindEmployeeUserIdWithClientOpenId请求参数结构体
+      class UnbindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: OpenId与UserId二选一必填一个，当传入客户系统openId，传入的openId需与电子签员工userId绑定，且渠道channel必填，channel值为INTEGRATE，否则传入userId
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserId: 电子签系统员工UserId
+        # @type UserId: String
+        # @param OpenId: 客户系统OpenId
+        # @type OpenId: String
+
+        attr_accessor :Operator, :UserId, :OpenId
+        
+        def initialize(operator=nil, userid=nil, openid=nil)
+          @Operator = operator
+          @UserId = userid
+          @OpenId = openid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserId = params['UserId']
+          @OpenId = params['OpenId']
+        end
+      end
+
+      # UnbindEmployeeUserIdWithClientOpenId返回参数结构体
+      class UnbindEmployeeUserIdWithClientOpenIdResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 解绑是否成功，1表示成功，0表示失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
         end
       end
 

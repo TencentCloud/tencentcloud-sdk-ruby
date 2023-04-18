@@ -606,6 +606,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询业务和攻击概要趋势
+
+        # @param request: Request instance for DescribePeakPoints.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribePeakPointsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribePeakPointsResponse`
+        def DescribePeakPoints(request)
+          body = send_request('DescribePeakPoints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePeakPointsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取业务和攻击概览峰值
+
+        # @param request: Request instance for DescribePeakValue.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribePeakValueRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribePeakValueResponse`
+        def DescribePeakValue(request)
+          body = send_request('DescribePeakValue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePeakValueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取防护状态以及生效的实例id
 
         # @param request: Request instance for DescribePolicyStatus.

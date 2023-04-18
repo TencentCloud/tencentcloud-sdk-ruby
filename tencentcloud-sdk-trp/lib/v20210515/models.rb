@@ -17,6 +17,48 @@
 module TencentCloud
   module Trp
     module V20210515
+      # AuthorizedTransfer请求参数结构体
+      class AuthorizedTransferRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务加密入参。
+        # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputEncryptData.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # AuthorizedTransfer返回参数结构体
+      class AuthorizedTransferResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参。
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.OutputAuthorizedTransfer`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputAuthorizedTransfer.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 上链数据
       class ChainData < TencentCloud::Common::AbstractModel
         # @param BlockHash: 区块hash
@@ -2429,6 +2471,48 @@ module TencentCloud
         end
       end
 
+      # EffectFeedback请求参数结构体
+      class EffectFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务加密入参。
+        # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputEncryptData.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # EffectFeedback返回参数结构体
+      class EffectFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参。
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.OutputAuthorizedTransfer`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputAuthorizedTransfer.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 预留字段
       class Ext < TencentCloud::Common::AbstractModel
 
@@ -2437,6 +2521,39 @@ module TencentCloud
         end
 
         def deserialize(params)
+        end
+      end
+
+      # 业务加密入参
+      class InputEncryptData < TencentCloud::Common::AbstractModel
+        # @param EncryptMethod: 加密方式，0：AES加密；
+        # @type EncryptMethod: Integer
+        # @param EncryptMode: 加密算法中的块处理模式，1：CBC模式； 目前只支持CBC模式
+        # @type EncryptMode: Integer
+        # @param PaddingType: 填充模式，0：ZeroPadding；1：PKCS5Padding；2：
+        # PKCS7Padding。
+        # @type PaddingType: Integer
+        # @param EncryptData: 加密数据，将AuthorizedData结构体数组（数组最大长度不超过20）序列化成JSON字符串，对得到的字符串加密并填充到该字段。
+        # @type EncryptData: String
+        # @param IsAuthorized: 用户是否授权，本接口取值：1，已授权。
+        # @type IsAuthorized: Integer
+
+        attr_accessor :EncryptMethod, :EncryptMode, :PaddingType, :EncryptData, :IsAuthorized
+        
+        def initialize(encryptmethod=nil, encryptmode=nil, paddingtype=nil, encryptdata=nil, isauthorized=nil)
+          @EncryptMethod = encryptmethod
+          @EncryptMode = encryptmode
+          @PaddingType = paddingtype
+          @EncryptData = encryptdata
+          @IsAuthorized = isauthorized
+        end
+
+        def deserialize(params)
+          @EncryptMethod = params['EncryptMethod']
+          @EncryptMode = params['EncryptMode']
+          @PaddingType = params['PaddingType']
+          @EncryptData = params['EncryptData']
+          @IsAuthorized = params['IsAuthorized']
         end
       end
 
@@ -3054,6 +3171,33 @@ module TencentCloud
         end
       end
 
+      # 业务出参
+      class OutputAuthorizedTransfer < TencentCloud::Common::AbstractModel
+        # @param Code: 推送状态，0表示成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 错误码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 错误信息描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Code, :Message, :Value
+        
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
+        end
+      end
+
       # 层级码配置
       class PackSpec < TencentCloud::Common::AbstractModel
         # @param Level: 层级
@@ -3272,6 +3416,48 @@ module TencentCloud
           @RiskQuota = params['RiskQuota']
           @TrackType = params['TrackType']
           @Version = params['Version']
+        end
+      end
+
+      # ReportBatchCallbackStatus请求参数结构体
+      class ReportBatchCallbackStatusRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务加密入参。
+        # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputEncryptData.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # ReportBatchCallbackStatus返回参数结构体
+      class ReportBatchCallbackStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参。
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.OutputAuthorizedTransfer`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputAuthorizedTransfer.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

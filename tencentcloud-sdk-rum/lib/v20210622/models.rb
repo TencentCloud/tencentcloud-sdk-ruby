@@ -718,6 +718,286 @@ module TencentCloud
         end
       end
 
+      # DescribeAppDimensionMetrics请求参数结构体
+      class DescribeAppDimensionMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectID: app 项目ID
+        # @type ProjectID: Integer
+        # @param From: 查询的表名
+        # @type From: String
+        # @param Fields: 查询指标 fields
+        # @type Fields: String
+        # @param Filter: 查询的过滤条件
+        # @type Filter: String
+        # @param FilterSimple: 查询简单过滤条件
+        # @type FilterSimple: String
+        # @param GroupBy: group by 条件
+        # @type GroupBy: Array
+        # @param OrderBy: order by 条件
+        # @type OrderBy: Array
+        # @param Limit: limit 参数
+        # @type Limit: Integer
+        # @param Offset: offset 参数
+        # @type Offset: Integer
+        # @param BusinessContext: 业务上下文参数
+        # @type BusinessContext: String
+
+        attr_accessor :ProjectID, :From, :Fields, :Filter, :FilterSimple, :GroupBy, :OrderBy, :Limit, :Offset, :BusinessContext
+        
+        def initialize(projectid=nil, from=nil, fields=nil, filter=nil, filtersimple=nil, groupby=nil, orderby=nil, limit=nil, offset=nil, businesscontext=nil)
+          @ProjectID = projectid
+          @From = from
+          @Fields = fields
+          @Filter = filter
+          @FilterSimple = filtersimple
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+          @BusinessContext = businesscontext
+        end
+
+        def deserialize(params)
+          @ProjectID = params['ProjectID']
+          @From = params['From']
+          @Fields = params['Fields']
+          @Filter = params['Filter']
+          @FilterSimple = params['FilterSimple']
+          @GroupBy = params['GroupBy']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @BusinessContext = params['BusinessContext']
+        end
+      end
+
+      # DescribeAppDimensionMetrics返回参数结构体
+      class DescribeAppDimensionMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询数据返回
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppMetricsData请求参数结构体
+      class DescribeAppMetricsDataRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectID: app 项目ID
+        # @type ProjectID: Integer
+        # @param From: 查询的表名
+        # @type From: String
+        # @param Fields: 查询指标 field
+        # @type Fields: String
+        # @param Filter: 查询的过滤条件
+        # @type Filter: String
+        # @param FilterSimple: 查询简单过滤条件
+        # @type FilterSimple: String
+        # @param GroupBy: group by 条件
+        # @type GroupBy: Array
+        # @param OrderBy: order by 条件
+        # @type OrderBy: Array
+        # @param Limit: limit 参数
+        # @type Limit: Integer
+        # @param Offset: offset 参数
+        # @type Offset: Integer
+        # @param GroupByModifier: group by 参数
+        # @type GroupByModifier: String
+
+        attr_accessor :ProjectID, :From, :Fields, :Filter, :FilterSimple, :GroupBy, :OrderBy, :Limit, :Offset, :GroupByModifier
+        
+        def initialize(projectid=nil, from=nil, fields=nil, filter=nil, filtersimple=nil, groupby=nil, orderby=nil, limit=nil, offset=nil, groupbymodifier=nil)
+          @ProjectID = projectid
+          @From = from
+          @Fields = fields
+          @Filter = filter
+          @FilterSimple = filtersimple
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+          @GroupByModifier = groupbymodifier
+        end
+
+        def deserialize(params)
+          @ProjectID = params['ProjectID']
+          @From = params['From']
+          @Fields = params['Fields']
+          @Filter = params['Filter']
+          @FilterSimple = params['FilterSimple']
+          @GroupBy = params['GroupBy']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @GroupByModifier = params['GroupByModifier']
+        end
+      end
+
+      # DescribeAppMetricsData返回参数结构体
+      class DescribeAppMetricsDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询数据返回
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppSingleCaseDetailList请求参数结构体
+      class DescribeAppSingleCaseDetailListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectID: app 项目ID
+        # @type ProjectID: Integer
+        # @param From: 查询的表名
+        # @type From: String
+        # @param Fields: 查询指标 field
+        # @type Fields: String
+        # @param Filter: 查询的过滤条件
+        # @type Filter: String
+        # @param FilterSimple: 查询简单过滤条件
+        # @type FilterSimple: String
+        # @param GroupBy: group by 条件
+        # @type GroupBy: Array
+        # @param OrderBy: order by 条件
+        # @type OrderBy: Array
+        # @param Limit: limit 参数
+        # @type Limit: Integer
+        # @param Offset: offset 参数
+        # @type Offset: Integer
+
+        attr_accessor :ProjectID, :From, :Fields, :Filter, :FilterSimple, :GroupBy, :OrderBy, :Limit, :Offset
+        
+        def initialize(projectid=nil, from=nil, fields=nil, filter=nil, filtersimple=nil, groupby=nil, orderby=nil, limit=nil, offset=nil)
+          @ProjectID = projectid
+          @From = from
+          @Fields = fields
+          @Filter = filter
+          @FilterSimple = filtersimple
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ProjectID = params['ProjectID']
+          @From = params['From']
+          @Fields = params['Fields']
+          @Filter = params['Filter']
+          @FilterSimple = params['FilterSimple']
+          @GroupBy = params['GroupBy']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAppSingleCaseDetailList返回参数结构体
+      class DescribeAppSingleCaseDetailListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询数据返回
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppSingleCaseList请求参数结构体
+      class DescribeAppSingleCaseListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectID: app 项目 ID
+        # @type ProjectID: Integer
+        # @param From: 查询的表名
+        # @type From: String
+        # @param Fields: 查询指标 field
+        # @type Fields: String
+        # @param Filter: 查询的过滤条件
+        # @type Filter: String
+        # @param FilterSimple: 查询简单过滤条件
+        # @type FilterSimple: String
+        # @param GroupBy: group by 条件
+        # @type GroupBy: Array
+        # @param OrderBy: order by 条件
+        # @type OrderBy: Array
+        # @param Limit: limit 参数
+        # @type Limit: Integer
+        # @param Offset: offset 参数
+        # @type Offset: Integer
+
+        attr_accessor :ProjectID, :From, :Fields, :Filter, :FilterSimple, :GroupBy, :OrderBy, :Limit, :Offset
+        
+        def initialize(projectid=nil, from=nil, fields=nil, filter=nil, filtersimple=nil, groupby=nil, orderby=nil, limit=nil, offset=nil)
+          @ProjectID = projectid
+          @From = from
+          @Fields = fields
+          @Filter = filter
+          @FilterSimple = filtersimple
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ProjectID = params['ProjectID']
+          @From = params['From']
+          @Fields = params['Fields']
+          @Filter = params['Filter']
+          @FilterSimple = params['FilterSimple']
+          @GroupBy = params['GroupBy']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAppSingleCaseList返回参数结构体
+      class DescribeAppSingleCaseListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询数据返回
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataCustomUrl请求参数结构体
       class DescribeDataCustomUrlRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
