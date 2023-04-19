@@ -3376,6 +3376,74 @@ module TencentCloud
         end
       end
 
+      # CreateConfigWithDetailResp请求参数结构体
+      class CreateConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # @type ConfigVersion: String
+        # @param ConfigValue: 配置项值
+        # @type ConfigValue: String
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param ConfigVersionDesc: 配置项版本描述
+        # @type ConfigVersionDesc: String
+        # @param ConfigType: 配置项值类型
+        # @type ConfigType: String
+        # @param EncodeWithBase64: Base64编码的配置项
+        # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
+
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ApplicationId, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
+        
+        def initialize(configname=nil, configversion=nil, configvalue=nil, applicationid=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil, programidlist=nil)
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ConfigValue = configvalue
+          @ApplicationId = applicationid
+          @ConfigVersionDesc = configversiondesc
+          @ConfigType = configtype
+          @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
+        end
+
+        def deserialize(params)
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ConfigValue = params['ConfigValue']
+          @ApplicationId = params['ApplicationId']
+          @ConfigVersionDesc = params['ConfigVersionDesc']
+          @ConfigType = params['ConfigType']
+          @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
+        end
+      end
+
+      # CreateConfigWithDetailResp返回参数结构体
+      class CreateConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = Config.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateContainGroup请求参数结构体
       class CreateContainGroupRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 分组所属应用ID
@@ -3584,6 +3652,86 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFileConfigWithDetailResp请求参数结构体
+      class CreateFileConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # @type ConfigVersion: String
+        # @param ConfigFileName: 配置项文件名
+        # @type ConfigFileName: String
+        # @param ConfigFileValue: 配置项文件内容（原始内容编码需要 utf-8 格式，如果 ConfigFileCode 为 gbk，后台会进行转换）
+        # @type ConfigFileValue: String
+        # @param ApplicationId: 配置项关联应用ID
+        # @type ApplicationId: String
+        # @param ConfigFilePath: 发布路径
+        # @type ConfigFilePath: String
+        # @param ConfigVersionDesc: 配置项版本描述
+        # @type ConfigVersionDesc: String
+        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持
+        # @type ConfigFileCode: String
+        # @param ConfigPostCmd: 后置命令
+        # @type ConfigPostCmd: String
+        # @param EncodeWithBase64: Base64编码的配置项
+        # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
+
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64, :ProgramIdList
+        
+        def initialize(configname=nil, configversion=nil, configfilename=nil, configfilevalue=nil, applicationid=nil, configfilepath=nil, configversiondesc=nil, configfilecode=nil, configpostcmd=nil, encodewithbase64=nil, programidlist=nil)
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ConfigFileName = configfilename
+          @ConfigFileValue = configfilevalue
+          @ApplicationId = applicationid
+          @ConfigFilePath = configfilepath
+          @ConfigVersionDesc = configversiondesc
+          @ConfigFileCode = configfilecode
+          @ConfigPostCmd = configpostcmd
+          @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
+        end
+
+        def deserialize(params)
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ConfigFileName = params['ConfigFileName']
+          @ConfigFileValue = params['ConfigFileValue']
+          @ApplicationId = params['ApplicationId']
+          @ConfigFilePath = params['ConfigFilePath']
+          @ConfigVersionDesc = params['ConfigVersionDesc']
+          @ConfigFileCode = params['ConfigFileCode']
+          @ConfigPostCmd = params['ConfigPostCmd']
+          @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
+        end
+      end
+
+      # CreateFileConfigWithDetailResp返回参数结构体
+      class CreateFileConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 文件配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.FileConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = FileConfig.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end

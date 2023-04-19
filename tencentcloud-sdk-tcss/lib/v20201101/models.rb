@@ -14898,7 +14898,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # @param Filters: 过滤参数
+        # InnerNetAlarmShow- int - 是否必填：1 - 内网告警展示 0 - 不展示
         # @type Filters: Array
         # @param Order: 升序降序,asc desc
         # @type Order: String

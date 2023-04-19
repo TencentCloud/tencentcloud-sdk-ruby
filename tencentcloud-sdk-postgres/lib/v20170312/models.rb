@@ -157,6 +157,38 @@ module TencentCloud
         end
       end
 
+      # 备份下载限制信息
+      class BackupDownloadRestriction < TencentCloud::Common::AbstractModel
+        # @param RestrictionType: 备份文件下载限制类型，NONE 无限制，内外网都可以下载；INTRANET 只允许内网下载；CUSTOMIZE 自定义限制下载的vpc或ip。
+        # @type RestrictionType: String
+        # @param VpcRestrictionEffect: vpc限制效力，ALLOW 允许；DENY 拒绝。
+        # @type VpcRestrictionEffect: String
+        # @param VpcIdSet: 允许或拒绝下载备份文件的vpcId列表。
+        # @type VpcIdSet: Array
+        # @param IpRestrictionEffect: ip限制效力，ALLOW 允许；DENY 拒绝。
+        # @type IpRestrictionEffect: String
+        # @param IpSet: 允许或拒绝下载备份文件的ip列表。
+        # @type IpSet: Array
+
+        attr_accessor :RestrictionType, :VpcRestrictionEffect, :VpcIdSet, :IpRestrictionEffect, :IpSet
+        
+        def initialize(restrictiontype=nil, vpcrestrictioneffect=nil, vpcidset=nil, iprestrictioneffect=nil, ipset=nil)
+          @RestrictionType = restrictiontype
+          @VpcRestrictionEffect = vpcrestrictioneffect
+          @VpcIdSet = vpcidset
+          @IpRestrictionEffect = iprestrictioneffect
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @RestrictionType = params['RestrictionType']
+          @VpcRestrictionEffect = params['VpcRestrictionEffect']
+          @VpcIdSet = params['VpcIdSet']
+          @IpRestrictionEffect = params['IpRestrictionEffect']
+          @IpSet = params['IpSet']
+        end
+      end
+
       # 备份计划
       class BackupPlan < TencentCloud::Common::AbstractModel
         # @param BackupPeriod: 备份周期
@@ -2024,14 +2056,17 @@ module TencentCloud
         # @type BackupId: String
         # @param URLExpireTime: 链接的有效时间，默认为12小时。
         # @type URLExpireTime: Integer
+        # @param BackupDownloadRestriction: 备份下载限制
+        # @type BackupDownloadRestriction: :class:`Tencentcloud::Postgres.v20170312.models.BackupDownloadRestriction`
 
-        attr_accessor :DBInstanceId, :BackupType, :BackupId, :URLExpireTime
+        attr_accessor :DBInstanceId, :BackupType, :BackupId, :URLExpireTime, :BackupDownloadRestriction
         
-        def initialize(dbinstanceid=nil, backuptype=nil, backupid=nil, urlexpiretime=nil)
+        def initialize(dbinstanceid=nil, backuptype=nil, backupid=nil, urlexpiretime=nil, backupdownloadrestriction=nil)
           @DBInstanceId = dbinstanceid
           @BackupType = backuptype
           @BackupId = backupid
           @URLExpireTime = urlexpiretime
+          @BackupDownloadRestriction = backupdownloadrestriction
         end
 
         def deserialize(params)
@@ -2039,6 +2074,10 @@ module TencentCloud
           @BackupType = params['BackupType']
           @BackupId = params['BackupId']
           @URLExpireTime = params['URLExpireTime']
+          unless params['BackupDownloadRestriction'].nil?
+            @BackupDownloadRestriction = BackupDownloadRestriction.new
+            @BackupDownloadRestriction.deserialize(params['BackupDownloadRestriction'])
+          end
         end
       end
 

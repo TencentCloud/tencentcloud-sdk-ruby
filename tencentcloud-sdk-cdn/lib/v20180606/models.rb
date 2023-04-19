@@ -7175,15 +7175,19 @@ module TencentCloud
         # @type Area: String
         # @param LogName: 日志包文件名
         # @type LogName: String
+        # @param FileSize: 文件大小，单位: Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
 
-        attr_accessor :StartTime, :EndTime, :LogPath, :Area, :LogName
+        attr_accessor :StartTime, :EndTime, :LogPath, :Area, :LogName, :FileSize
         
-        def initialize(starttime=nil, endtime=nil, logpath=nil, area=nil, logname=nil)
+        def initialize(starttime=nil, endtime=nil, logpath=nil, area=nil, logname=nil, filesize=nil)
           @StartTime = starttime
           @EndTime = endtime
           @LogPath = logpath
           @Area = area
           @LogName = logname
+          @FileSize = filesize
         end
 
         def deserialize(params)
@@ -7192,6 +7196,7 @@ module TencentCloud
           @LogPath = params['LogPath']
           @Area = params['Area']
           @LogName = params['LogName']
+          @FileSize = params['FileSize']
         end
       end
 

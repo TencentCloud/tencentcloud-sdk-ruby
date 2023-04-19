@@ -310,6 +310,120 @@ module TencentCloud
         end
       end
 
+      # 告警通知渠道组详情
+      class AlertHistoryNotice < TencentCloud::Common::AbstractModel
+        # @param Name: 通知渠道组名称
+        # @type Name: String
+        # @param AlarmNoticeId: 通知渠道组ID
+        # @type AlarmNoticeId: String
+
+        attr_accessor :Name, :AlarmNoticeId
+        
+        def initialize(name=nil, alarmnoticeid=nil)
+          @Name = name
+          @AlarmNoticeId = alarmnoticeid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AlarmNoticeId = params['AlarmNoticeId']
+        end
+      end
+
+      # 告警历史详情
+      class AlertHistoryRecord < TencentCloud::Common::AbstractModel
+        # @param RecordId: 告警历史ID
+        # @type RecordId: String
+        # @param AlarmId: 告警策略ID
+        # @type AlarmId: String
+        # @param AlarmName: 告警策略名称
+        # @type AlarmName: String
+        # @param TopicId: 监控对象ID
+        # @type TopicId: String
+        # @param TopicName: 监控对象名称
+        # @type TopicName: String
+        # @param Region: 监控对象所属地域
+        # @type Region: String
+        # @param Trigger: 触发条件
+        # @type Trigger: String
+        # @param TriggerCount: 持续周期，持续满足触发条件TriggerCount个周期后，再进行告警
+        # @type TriggerCount: Integer
+        # @param AlarmPeriod: 告警通知发送频率，单位为分钟
+        # @type AlarmPeriod: Integer
+        # @param Notices: 通知渠道组
+        # @type Notices: Array
+        # @param Duration: 告警持续时间，单位为分钟
+        # @type Duration: Integer
+        # @param Status: 告警状态，0代表未恢复，1代表已恢复，2代表已失效
+        # @type Status: Integer
+        # @param CreateTime: 告警发生时间，毫秒级Unix时间戳
+        # @type CreateTime: Integer
+        # @param GroupTriggerCondition: 告警分组触发时对应的分组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupTriggerCondition: Array
+        # @param AlarmLevel: 告警级别，0代表警告(Warn)，1代表提醒(Info)，2代表紧急 (Critical)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: Integer
+        # @param MonitorObjectType: 监控对象类型。
+        # 0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorObjectType: Integer
+
+        attr_accessor :RecordId, :AlarmId, :AlarmName, :TopicId, :TopicName, :Region, :Trigger, :TriggerCount, :AlarmPeriod, :Notices, :Duration, :Status, :CreateTime, :GroupTriggerCondition, :AlarmLevel, :MonitorObjectType
+        
+        def initialize(recordid=nil, alarmid=nil, alarmname=nil, topicid=nil, topicname=nil, region=nil, trigger=nil, triggercount=nil, alarmperiod=nil, notices=nil, duration=nil, status=nil, createtime=nil, grouptriggercondition=nil, alarmlevel=nil, monitorobjecttype=nil)
+          @RecordId = recordid
+          @AlarmId = alarmid
+          @AlarmName = alarmname
+          @TopicId = topicid
+          @TopicName = topicname
+          @Region = region
+          @Trigger = trigger
+          @TriggerCount = triggercount
+          @AlarmPeriod = alarmperiod
+          @Notices = notices
+          @Duration = duration
+          @Status = status
+          @CreateTime = createtime
+          @GroupTriggerCondition = grouptriggercondition
+          @AlarmLevel = alarmlevel
+          @MonitorObjectType = monitorobjecttype
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @AlarmId = params['AlarmId']
+          @AlarmName = params['AlarmName']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Region = params['Region']
+          @Trigger = params['Trigger']
+          @TriggerCount = params['TriggerCount']
+          @AlarmPeriod = params['AlarmPeriod']
+          unless params['Notices'].nil?
+            @Notices = []
+            params['Notices'].each do |i|
+              alerthistorynotice_tmp = AlertHistoryNotice.new
+              alerthistorynotice_tmp.deserialize(i)
+              @Notices << alerthistorynotice_tmp
+            end
+          end
+          @Duration = params['Duration']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          unless params['GroupTriggerCondition'].nil?
+            @GroupTriggerCondition = []
+            params['GroupTriggerCondition'].each do |i|
+              grouptriggerconditioninfo_tmp = GroupTriggerConditionInfo.new
+              grouptriggerconditioninfo_tmp.deserialize(i)
+              @GroupTriggerCondition << grouptriggerconditioninfo_tmp
+            end
+          end
+          @AlarmLevel = params['AlarmLevel']
+          @MonitorObjectType = params['MonitorObjectType']
+        end
+      end
+
       # 多维分析的分析维度
       class AnalysisDimensional < TencentCloud::Common::AbstractModel
         # @param Name: 分析名称
@@ -2513,6 +2627,81 @@ module TencentCloud
         end
       end
 
+      # DescribeAlertRecordHistory请求参数结构体
+      class DescribeAlertRecordHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param From: 查询时间范围启始时间，毫秒级unix时间戳
+        # @type From: Integer
+        # @param To: 查询时间范围结束时间，毫秒级unix时间戳
+        # @type To: Integer
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，最大值100。
+        # @type Limit: Integer
+        # @param Filters: - alertId：按照告警策略ID进行过滤。类型：String 必选：否
+        # - topicId：按照监控对象ID进行过滤。类型：String 必选：否
+        # - status：按照告警状态进行过滤。类型：String 必选：否，0代表未恢复，1代表已恢复，2代表已失效
+        # - alarmLevel：按照告警等级进行过滤。类型：String 必选：否，0代表警告，1代表提醒，2代表紧急
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+
+        attr_accessor :From, :To, :Offset, :Limit, :Filters
+        
+        def initialize(from=nil, to=nil, offset=nil, limit=nil, filters=nil)
+          @From = from
+          @To = to
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @From = params['From']
+          @To = params['To']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAlertRecordHistory返回参数结构体
+      class DescribeAlertRecordHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 告警历史总数
+        # @type TotalCount: Integer
+        # @param Records: 告警历史详情
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Records, :RequestId
+        
+        def initialize(totalcount=nil, records=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              alerthistoryrecord_tmp = AlertHistoryRecord.new
+              alerthistoryrecord_tmp.deserialize(i)
+              @Records << alerthistoryrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConfigExtras请求参数结构体
       class DescribeConfigExtrasRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 支持的key： topicId,name, configExtraId, machineGroupId
@@ -3993,6 +4182,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 分组触发条件
+      class GroupTriggerConditionInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 分组触发字段名称
+        # @type Key: String
+        # @param Value: 分组触发字段值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

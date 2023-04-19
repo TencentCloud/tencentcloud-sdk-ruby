@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建配置项，返回详细信息
+
+        # @param request: Request instance for CreateConfigWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateConfigWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateConfigWithDetailRespResponse`
+        def CreateConfigWithDetailResp(request)
+          body = send_request('CreateConfigWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigWithDetailRespResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
 
         # @param request: Request instance for CreateContainGroup.
@@ -471,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateFileConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建文件配置项，返回详细信息
+
+        # @param request: Request instance for CreateFileConfigWithDetailResp.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateFileConfigWithDetailRespRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateFileConfigWithDetailRespResponse`
+        def CreateFileConfigWithDetailResp(request)
+          body = send_request('CreateFileConfigWithDetailResp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFileConfigWithDetailRespResponse.new
             model.deserialize(response['Response'])
             model
           else

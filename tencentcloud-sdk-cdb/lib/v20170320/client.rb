@@ -1084,6 +1084,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已经废弃，请使用+DescribeCdbProxyInfo+进行替换。
+
         # 查询数据库代理（待下线，替换接口QueryCDBProxy）
 
         # @param request: Request instance for DescribeCDBProxy.
@@ -1710,6 +1712,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 当前接口已经废弃，请使用+DescribeCdbProxyInfo+替代。
 
         # 获取数据库代理连接池相关规格配置
 
@@ -2437,6 +2441,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当前接口已经废弃，请使用+AdjustCdbProxyAddress+进行替代。
+
         # 请求该接口配置数据库连接池；支持的连接池配置请求DescribeProxyConnectionPoolConf接口获取。
 
         # @param request: Request instance for ModifyCDBProxyConnectionPool.
@@ -2461,6 +2467,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当前接口已经废弃，请使用+ModifyCdbProxyAddressDesc+进行替代。
+
         # 修改数据库代理描述
 
         # @param request: Request instance for ModifyCDBProxyDesc.
@@ -2484,6 +2492,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 当前接口已经废弃，请使用+ModifyCdbProxyAddressVipAndVPort+进行替代。
 
         # 修改数据库代理VIP或端口
 
@@ -2956,6 +2966,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 当前接口已经废弃，请使用+DescribeCdbProxyInfo+进行替代。
 
         # 查询代理详情
 

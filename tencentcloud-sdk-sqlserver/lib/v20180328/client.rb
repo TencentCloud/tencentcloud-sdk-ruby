@@ -917,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBInstancesAttribute）用于查询实例附属属性
+
+        # @param request: Request instance for DescribeDBInstancesAttribute.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBInstancesAttributeRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBInstancesAttributeResponse`
+        def DescribeDBInstancesAttribute(request)
+          body = send_request('DescribeDBInstancesAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstancesAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
 
         # @param request: Request instance for DescribeDBSecurityGroups.
@@ -1455,6 +1479,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUploadIncrementalInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeXEvents）用于查询扩展事件列表。
+
+        # @param request: Request instance for DescribeXEvents.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeXEventsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeXEventsResponse`
+        def DescribeXEvents(request)
+          body = send_request('DescribeXEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeXEventsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2418,6 +2466,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartIncrementalMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（StartInstanceXEvent）用于开启、关闭扩展事件。
+
+        # @param request: Request instance for StartInstanceXEvent.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::StartInstanceXEventRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::StartInstanceXEventResponse`
+        def StartInstanceXEvent(request)
+          body = send_request('StartInstanceXEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartInstanceXEventResponse.new
             model.deserialize(response['Response'])
             model
           else

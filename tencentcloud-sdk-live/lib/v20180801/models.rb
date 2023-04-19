@@ -439,10 +439,13 @@ module TencentCloud
         # @param PushExceptionNotifyUrl: 推流异常回调 URL。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushExceptionNotifyUrl: String
+        # @param AudioAuditNotifyUrl: 音频审核回调 URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioAuditNotifyUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -454,6 +457,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
+          @AudioAuditNotifyUrl = audioauditnotifyurl
         end
 
         def deserialize(params)
@@ -468,6 +472,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
+          @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
         end
       end
 
@@ -7648,10 +7653,19 @@ module TencentCloud
         # 4: 已耗尽。
         # 5: 已退款
         # @type Status: Integer
+        # @param WillRenew: 是否自动续购。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WillRenew: Integer
+        # @param RenewalResult: 续购状态。
+        # 1 ：续购成功。
+        # 0 ：尚未续购。
+        # <0  : 续购失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewalResult: Integer
 
-        attr_accessor :Id, :Total, :Used, :Left, :BuyTime, :ExpireTime, :Type, :Status
+        attr_accessor :Id, :Total, :Used, :Left, :BuyTime, :ExpireTime, :Type, :Status, :WillRenew, :RenewalResult
         
-        def initialize(id=nil, total=nil, used=nil, left=nil, buytime=nil, expiretime=nil, type=nil, status=nil)
+        def initialize(id=nil, total=nil, used=nil, left=nil, buytime=nil, expiretime=nil, type=nil, status=nil, willrenew=nil, renewalresult=nil)
           @Id = id
           @Total = total
           @Used = used
@@ -7660,6 +7674,8 @@ module TencentCloud
           @ExpireTime = expiretime
           @Type = type
           @Status = status
+          @WillRenew = willrenew
+          @RenewalResult = renewalresult
         end
 
         def deserialize(params)
@@ -7671,6 +7687,8 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Type = params['Type']
           @Status = params['Status']
+          @WillRenew = params['WillRenew']
+          @RenewalResult = params['RenewalResult']
         end
       end
 

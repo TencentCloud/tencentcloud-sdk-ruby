@@ -11303,6 +11303,7 @@ module TencentCloud
         # <li>ModifyTime - String - 是否必填：否 - 最近发生时间</li>
         # <li>Uuid- String - 是否必填：否 - 主机uuid查询</li>
         # <li>RuleCategory- string - 是否必填：否 - 规则类别 0 系统规则 1 自定义规则</li>
+        # <li>FileAction- string - 是否必填：否 - 威胁行为 read 读取文件 write 写文件</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -18747,10 +18748,15 @@ module TencentCloud
         # @param MachineExtraInfo:  主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param FileAction: 文件威胁行为
+        # <li>read 读取文件</li>
+        # <li>write 修改文件</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileAction: String
 
-        attr_accessor :HostName, :HostIp, :CreateTime, :ModifyTime, :Id, :Uuid, :Quuid, :Type, :ProcessExe, :ProcessArgv, :Target, :Status, :EventCount, :RuleId, :RuleName, :Pstree, :RuleCategory, :MachineStatus, :Description, :Suggestion, :PrivateIp, :ExePermission, :UserName, :UserGroup, :ExeMd5, :ExeSize, :ExeTime, :TargetSize, :TargetPermission, :TargetModifyTime, :TargetCreatTime, :ExePid, :TargetName, :Reference, :Level, :ExeName, :MachineExtraInfo
+        attr_accessor :HostName, :HostIp, :CreateTime, :ModifyTime, :Id, :Uuid, :Quuid, :Type, :ProcessExe, :ProcessArgv, :Target, :Status, :EventCount, :RuleId, :RuleName, :Pstree, :RuleCategory, :MachineStatus, :Description, :Suggestion, :PrivateIp, :ExePermission, :UserName, :UserGroup, :ExeMd5, :ExeSize, :ExeTime, :TargetSize, :TargetPermission, :TargetModifyTime, :TargetCreatTime, :ExePid, :TargetName, :Reference, :Level, :ExeName, :MachineExtraInfo, :FileAction
         
-        def initialize(hostname=nil, hostip=nil, createtime=nil, modifytime=nil, id=nil, uuid=nil, quuid=nil, type=nil, processexe=nil, processargv=nil, target=nil, status=nil, eventcount=nil, ruleid=nil, rulename=nil, pstree=nil, rulecategory=nil, machinestatus=nil, description=nil, suggestion=nil, privateip=nil, exepermission=nil, username=nil, usergroup=nil, exemd5=nil, exesize=nil, exetime=nil, targetsize=nil, targetpermission=nil, targetmodifytime=nil, targetcreattime=nil, exepid=nil, targetname=nil, reference=nil, level=nil, exename=nil, machineextrainfo=nil)
+        def initialize(hostname=nil, hostip=nil, createtime=nil, modifytime=nil, id=nil, uuid=nil, quuid=nil, type=nil, processexe=nil, processargv=nil, target=nil, status=nil, eventcount=nil, ruleid=nil, rulename=nil, pstree=nil, rulecategory=nil, machinestatus=nil, description=nil, suggestion=nil, privateip=nil, exepermission=nil, username=nil, usergroup=nil, exemd5=nil, exesize=nil, exetime=nil, targetsize=nil, targetpermission=nil, targetmodifytime=nil, targetcreattime=nil, exepid=nil, targetname=nil, reference=nil, level=nil, exename=nil, machineextrainfo=nil, fileaction=nil)
           @HostName = hostname
           @HostIp = hostip
           @CreateTime = createtime
@@ -18788,6 +18794,7 @@ module TencentCloud
           @Level = level
           @ExeName = exename
           @MachineExtraInfo = machineextrainfo
+          @FileAction = fileaction
         end
 
         def deserialize(params)
@@ -18831,6 +18838,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @FileAction = params['FileAction']
         end
       end
 

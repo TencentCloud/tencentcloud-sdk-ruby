@@ -478,7 +478,7 @@ module TencentCloud
         # @type HttpsRewrite: Integer
         # @param Ports: 服务有多端口需要设置此字段
         # @type Ports: Array
-        # @param Edition: 版本：sparta-waf、clb-waf、cdn-waf
+        # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF，cdn-waf表示CDN上的Web防护能力
         # @type Edition: String
         # @param IsKeepAlive: 是否开启长连接，仅IP回源时可以用填次参数，域名回源时这个参数无效
         # @type IsKeepAlive: String
@@ -500,10 +500,16 @@ module TencentCloud
         # @type ProxyReadTimeout: Integer
         # @param ProxySendTimeout: 300s
         # @type ProxySendTimeout: Integer
+        # @param SniType: 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        # @type SniType: Integer
+        # @param SniHost: SniType=3时，需要填此参数，表示自定义的host；
+        # @type SniHost: String
+        # @param IpHeaders: is_cdn=3时，需要填此参数，表示自定义header
+        # @type IpHeaders: Array
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders
         
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -534,6 +540,9 @@ module TencentCloud
           @CipherTemplate = ciphertemplate
           @ProxyReadTimeout = proxyreadtimeout
           @ProxySendTimeout = proxysendtimeout
+          @SniType = snitype
+          @SniHost = snihost
+          @IpHeaders = ipheaders
         end
 
         def deserialize(params)
@@ -574,6 +583,9 @@ module TencentCloud
           @CipherTemplate = params['CipherTemplate']
           @ProxyReadTimeout = params['ProxyReadTimeout']
           @ProxySendTimeout = params['ProxySendTimeout']
+          @SniType = params['SniType']
+          @SniHost = params['SniHost']
+          @IpHeaders = params['IpHeaders']
         end
       end
 
@@ -2063,13 +2075,20 @@ module TencentCloud
         # @type Edition: String
         # @param InstanceID: WAF实例ID，不传则不过滤
         # @type InstanceID: String
-        # @param MetricName: 六个值可选：
+        # @param MetricName: 十三个值可选：
         # access-峰值qps趋势图
         # botAccess- bot峰值qps趋势图
         # down-下行峰值带宽趋势图
         # up-上行峰值带宽趋势图
         # attack-Web攻击总数趋势图
         # cc-CC攻击总数趋势图
+        # StatusServerError-WAF返回给客户端状态码次数趋势图
+        # StatusClientError-WAF返回给客户端状态码次数趋势图
+        # StatusRedirect-WAF返回给客户端状态码次数趋势图
+        # StatusOk-WAF返回给客户端状态码次数趋势图
+        # UpstreamServerError-源站返回给WAF状态码次数趋势图
+        # UpstreamClientError-源站返回给WAF状态码次数趋势图
+        # UpstreamRedirect-源站返回给WAF状态码次数趋势图
         # @type MetricName: String
 
         attr_accessor :FromTime, :ToTime, :Domain, :Edition, :InstanceID, :MetricName
@@ -2727,10 +2746,22 @@ module TencentCloud
         # @param ProxySendTimeout: 300s
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxySendTimeout: Integer
+        # @param SniType: 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SniType: Integer
+        # @param SniHost: SniType=3时，需要填此参数，表示自定义的host；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SniHost: String
+        # @param Weights: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weights: Array
+        # @param IpHeaders: IsCdn=3时，表示自定义header
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpHeaders: Array
 
-        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout
+        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders
         
-        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil)
+        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil)
           @HttpsRewrite = httpsrewrite
           @HttpsUpstreamPort = httpsupstreamport
           @IsCdn = iscdn
@@ -2756,6 +2787,10 @@ module TencentCloud
           @CipherTemplate = ciphertemplate
           @ProxyReadTimeout = proxyreadtimeout
           @ProxySendTimeout = proxysendtimeout
+          @SniType = snitype
+          @SniHost = snihost
+          @Weights = weights
+          @IpHeaders = ipheaders
         end
 
         def deserialize(params)
@@ -2791,6 +2826,10 @@ module TencentCloud
           @CipherTemplate = params['CipherTemplate']
           @ProxyReadTimeout = params['ProxyReadTimeout']
           @ProxySendTimeout = params['ProxySendTimeout']
+          @SniType = params['SniType']
+          @SniHost = params['SniHost']
+          @Weights = params['Weights']
+          @IpHeaders = params['IpHeaders']
         end
       end
 
@@ -3062,10 +3101,16 @@ module TencentCloud
         # @param AlbType: 应用型负载均衡类型: clb或者apisix，默认clb
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
+        # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpHeaders: Array
+        # @param EngineType: 规则引擎类型， 1: menshen,   2:tiga
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: Integer
 
-        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType
+        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType
         
-        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil)
+        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil)
           @Domain = domain
           @DomainId = domainid
           @MainDomain = maindomain
@@ -3082,6 +3127,8 @@ module TencentCloud
           @Level = level
           @CdcClusters = cdcclusters
           @AlbType = albtype
+          @IpHeaders = ipheaders
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -3108,6 +3155,8 @@ module TencentCloud
           @Level = params['Level']
           @CdcClusters = params['CdcClusters']
           @AlbType = params['AlbType']
+          @IpHeaders = params['IpHeaders']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -3826,12 +3875,32 @@ module TencentCloud
         # @param Cc: CC攻击次数
         # @type Cc: Integer
         # @param BotAccess: Bot qps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotAccess: Integer
+        # @param StatusServerError: WAF返回给客户端状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusServerError: Integer
+        # @param StatusClientError: WAF返回给客户端状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusClientError: Integer
+        # @param StatusRedirect: WAF返回给客户端状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusRedirect: Integer
+        # @param StatusOk: WAF返回给客户端状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusOk: Integer
+        # @param UpstreamServerError: 源站返回给WAF状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamServerError: Integer
+        # @param UpstreamClientError: 源站返回给WAF状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamClientError: Integer
+        # @param UpstreamRedirect: 源站返回给WAF状态码次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamRedirect: Integer
 
-        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess
+        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect
         
-        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil)
+        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil)
           @Time = time
           @Access = access
           @Up = up
@@ -3839,6 +3908,13 @@ module TencentCloud
           @Attack = attack
           @Cc = cc
           @BotAccess = botaccess
+          @StatusServerError = statusservererror
+          @StatusClientError = statusclienterror
+          @StatusRedirect = statusredirect
+          @StatusOk = statusok
+          @UpstreamServerError = upstreamservererror
+          @UpstreamClientError = upstreamclienterror
+          @UpstreamRedirect = upstreamredirect
         end
 
         def deserialize(params)
@@ -3849,17 +3925,45 @@ module TencentCloud
           @Attack = params['Attack']
           @Cc = params['Cc']
           @BotAccess = params['BotAccess']
+          @StatusServerError = params['StatusServerError']
+          @StatusClientError = params['StatusClientError']
+          @StatusRedirect = params['StatusRedirect']
+          @StatusOk = params['StatusOk']
+          @UpstreamServerError = params['UpstreamServerError']
+          @UpstreamClientError = params['UpstreamClientError']
+          @UpstreamRedirect = params['UpstreamRedirect']
         end
       end
 
-      # 防护域名端口配置信息
+      # 服务端口配置
       class PortInfo < TencentCloud::Common::AbstractModel
+        # @param NginxServerId: Nginx的服务器id
+        # @type NginxServerId: Integer
+        # @param Port: 监听端口配置
+        # @type Port: String
+        # @param Protocol: 与端口对应的协议
+        # @type Protocol: String
+        # @param UpstreamPort: 回源端口
+        # @type UpstreamPort: String
+        # @param UpstreamProtocol: 回源协议
+        # @type UpstreamProtocol: String
 
+        attr_accessor :NginxServerId, :Port, :Protocol, :UpstreamPort, :UpstreamProtocol
         
-        def initialize()
+        def initialize(nginxserverid=nil, port=nil, protocol=nil, upstreamport=nil, upstreamprotocol=nil)
+          @NginxServerId = nginxserverid
+          @Port = port
+          @Protocol = protocol
+          @UpstreamPort = upstreamport
+          @UpstreamProtocol = upstreamprotocol
         end
 
         def deserialize(params)
+          @NginxServerId = params['NginxServerId']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @UpstreamPort = params['UpstreamPort']
+          @UpstreamProtocol = params['UpstreamProtocol']
         end
       end
 

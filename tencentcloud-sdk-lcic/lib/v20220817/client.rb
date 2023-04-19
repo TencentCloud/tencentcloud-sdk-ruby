@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除巡课
+
+        # @param request: Request instance for DeleteSupervisor.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteSupervisorRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteSupervisorResponse`
+        def DeleteSupervisor(request)
+          body = send_request('DeleteSupervisor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSupervisorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间答题详情
 
         # @param request: Request instance for DescribeAnswerList.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量获取文档信息
+
+        # @param request: Request instance for DescribeDocuments.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentsRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentsResponse`
+        def DescribeDocuments(request)
+          body = send_request('DescribeDocuments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDocumentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -831,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 结束房间的直播
+
+        # @param request: Request instance for EndRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::EndRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::EndRoomResponse`
+        def EndRoom(request)
+          body = send_request('EndRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EndRoomResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1143,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetWatermarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开始房间的直播
+
+        # @param request: Request instance for StartRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::StartRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::StartRoomResponse`
+        def StartRoom(request)
+          body = send_request('StartRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartRoomResponse.new
             model.deserialize(response['Response'])
             model
           else

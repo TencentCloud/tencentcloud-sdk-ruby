@@ -1061,6 +1061,42 @@ module TencentCloud
         end
       end
 
+      # DeleteSupervisor请求参数结构体
+      class DeleteSupervisorRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param Users: 用户ID列表
+        # @type Users: Array
+
+        attr_accessor :SdkAppId, :Users
+        
+        def initialize(sdkappid=nil, users=nil)
+          @SdkAppId = sdkappid
+          @Users = users
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Users = params['Users']
+        end
+      end
+
+      # DeleteSupervisor返回参数结构体
+      class DeleteSupervisorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAnswerList请求参数结构体
       class DescribeAnswerListRequest < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
@@ -1418,6 +1454,78 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDocuments请求参数结构体
+      class DescribeDocumentsRequest < TencentCloud::Common::AbstractModel
+        # @param SchoolId: 学校id
+        # @type SchoolId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增
+        # @type Page: Integer
+        # @param Limit: 每页数据量，最大1000
+        # @type Limit: Integer
+        # @param Permission: 课件权限。[0]：获取owner的私有课件；[1]：获取owner的公开课件; [0,1]：则获取owner的私有课件和公开课件；[2]：获取owner的私有课件和所有人(包括owner)的公开课件
+        # @type Permission: Array
+        # @param Owner: 课件所有者的user_id，不填默认获取school_id下所有课件
+        # @type Owner: String
+        # @param Keyword: 课件名称搜索词
+        # @type Keyword: String
+        # @param DocumentId: 课件id列表，从列表中查询，忽略错误的id
+        # @type DocumentId: Array
+
+        attr_accessor :SchoolId, :Page, :Limit, :Permission, :Owner, :Keyword, :DocumentId
+        
+        def initialize(schoolid=nil, page=nil, limit=nil, permission=nil, owner=nil, keyword=nil, documentid=nil)
+          @SchoolId = schoolid
+          @Page = page
+          @Limit = limit
+          @Permission = permission
+          @Owner = owner
+          @Keyword = keyword
+          @DocumentId = documentid
+        end
+
+        def deserialize(params)
+          @SchoolId = params['SchoolId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @Permission = params['Permission']
+          @Owner = params['Owner']
+          @Keyword = params['Keyword']
+          @DocumentId = params['DocumentId']
+        end
+      end
+
+      # DescribeDocuments返回参数结构体
+      class DescribeDocumentsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件文档总数
+        # @type Total: Integer
+        # @param Documents: 文档信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Documents: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Documents, :RequestId
+        
+        def initialize(total=nil, documents=nil, requestid=nil)
+          @Total = total
+          @Documents = documents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Documents'].nil?
+            @Documents = []
+            params['Documents'].each do |i|
+              documentinfo_tmp = DocumentInfo.new
+              documentinfo_tmp.deserialize(i)
+              @Documents << documentinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2048,10 +2156,22 @@ module TencentCloud
         # @param UpdateTime: 更新的UNIX时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
+        # @param Pages: 课件页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pages: Integer
+        # @param Width: 宽，仅在静态转码的课件有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 高，仅在静态转码的课件有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Cover: 封面，仅转码的课件会生成封面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cover: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover
         
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, width=nil, height=nil, cover=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -2066,6 +2186,10 @@ module TencentCloud
           @DocumentType = documenttype
           @DocumentSize = documentsize
           @UpdateTime = updatetime
+          @Pages = pages
+          @Width = width
+          @Height = height
+          @Cover = cover
         end
 
         def deserialize(params)
@@ -2083,6 +2207,42 @@ module TencentCloud
           @DocumentType = params['DocumentType']
           @DocumentSize = params['DocumentSize']
           @UpdateTime = params['UpdateTime']
+          @Pages = params['Pages']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Cover = params['Cover']
+        end
+      end
+
+      # EndRoom请求参数结构体
+      class EndRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+
+        attr_accessor :RoomId
+        
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # EndRoom返回参数结构体
+      class EndRoomResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2565,10 +2725,20 @@ module TencentCloud
         # @type PerMemberMicCount: Integer
         # @param PerMemberMessageCount: 每个成员发送消息数量。
         # @type PerMemberMessageCount: Integer
+        # @param Role: 用户角色。0代表学生；1代表老师； 2助教；3巡课。
+        # @type Role: Integer
+        # @param GroupId: 上课班号
+        # @type GroupId: String
+        # @param SubGroupId: 子上课班号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubGroupId: Array
+        # @param Stage: 用户的上台状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stage: Integer
 
-        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount
+        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount, :Role, :GroupId, :SubGroupId, :Stage
         
-        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil, permembermiccount=nil, permembermessagecount=nil)
+        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil, permembermiccount=nil, permembermessagecount=nil, role=nil, groupid=nil, subgroupid=nil, stage=nil)
           @UserId = userid
           @UserName = username
           @PresentTime = presenttime
@@ -2585,6 +2755,10 @@ module TencentCloud
           @Device = device
           @PerMemberMicCount = permembermiccount
           @PerMemberMessageCount = permembermessagecount
+          @Role = role
+          @GroupId = groupid
+          @SubGroupId = subgroupid
+          @Stage = stage
         end
 
         def deserialize(params)
@@ -2604,6 +2778,10 @@ module TencentCloud
           @Device = params['Device']
           @PerMemberMicCount = params['PerMemberMicCount']
           @PerMemberMessageCount = params['PerMemberMessageCount']
+          @Role = params['Role']
+          @GroupId = params['GroupId']
+          @SubGroupId = params['SubGroupId']
+          @Stage = params['Stage']
         end
       end
 
@@ -3260,6 +3438,38 @@ module TencentCloud
 
       # SetWatermark返回参数结构体
       class SetWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartRoom请求参数结构体
+      class StartRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+
+        attr_accessor :RoomId
+        
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # StartRoom返回参数结构体
+      class StartRoomResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

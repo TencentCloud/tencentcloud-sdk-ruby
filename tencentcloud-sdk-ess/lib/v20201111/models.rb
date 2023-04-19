@@ -273,7 +273,7 @@ module TencentCloud
 
       # BindEmployeeUserIdWithClientOpenId请求参数结构体
       class BindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: OpenId与UserId二选一必填一个，当传入客户系统openId，传入的openId需与电子签员工userId绑定，且渠道channel必填，channel值为INTEGRATE，否则传入userId
+        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param UserId: 电子签系统员工UserId
         # @type UserId: String
@@ -838,7 +838,7 @@ module TencentCloud
         # @type FlowId: String
         # @param TemplateId: 用户上传的模板ID
         # @type TemplateId: String
-        # @param FileNames: 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起
+        # @param FileNames: 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起。设置后流程对应的文件名称当前设置的值。
         # @type FileNames: Array
         # @param FormFields: 内容控件信息数组
         # @type FormFields: Array
@@ -2112,14 +2112,20 @@ module TencentCloud
         # @type AutoSignConfig: :class:`Tencentcloud::Ess.v20201111.models.AutoSignConfig`
         # @param UrlType: 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
         # @type UrlType: String
+        # @param NotifyType: 通知类型，默认不填为不通知开通方，填写 SMS 为短息通知。
+        # @type NotifyType: String
+        # @param NotifyAddress: 若上方填写为 SMS，则此处为手机号
+        # @type NotifyAddress: String
 
-        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType
+        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress
         
-        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil)
+        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil)
           @Operator = operator
           @SceneKey = scenekey
           @AutoSignConfig = autosignconfig
           @UrlType = urltype
+          @NotifyType = notifytype
+          @NotifyAddress = notifyaddress
         end
 
         def deserialize(params)
@@ -2133,6 +2139,8 @@ module TencentCloud
             @AutoSignConfig.deserialize(params['AutoSignConfig'])
           end
           @UrlType = params['UrlType']
+          @NotifyType = params['NotifyType']
+          @NotifyAddress = params['NotifyAddress']
         end
       end
 
@@ -2182,7 +2190,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个
         # @type Employees: Array
-        # @param Agent: 代理信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :Employees, :Agent
@@ -2673,8 +2681,6 @@ module TencentCloud
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Organization: 企业组织相关信息，一般不用填
-        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Offset: 查询偏移位置，默认0
@@ -2691,34 +2697,32 @@ module TencentCloud
         # @param IsChannel: 默认为false，查询SaaS模板库列表；
         # 为true，查询第三方应用集成平台企业模板库管理列表
         # @type IsChannel: Boolean
-        # @param GenerateSource: 暂未开放
-        # @type GenerateSource: Integer
         # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
         # @type ContentType: Integer
+        # @param Organization: 暂未开放
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
+        # @param GenerateSource: 暂未开放
+        # @type GenerateSource: Integer
 
-        attr_accessor :Operator, :Organization, :Agent, :Offset, :Limit, :Filters, :ApplicationId, :IsChannel, :GenerateSource, :ContentType
+        attr_accessor :Operator, :Agent, :Offset, :Limit, :Filters, :ApplicationId, :IsChannel, :ContentType, :Organization, :GenerateSource
         
-        def initialize(operator=nil, organization=nil, agent=nil, offset=nil, limit=nil, filters=nil, applicationid=nil, ischannel=nil, generatesource=nil, contenttype=nil)
+        def initialize(operator=nil, agent=nil, offset=nil, limit=nil, filters=nil, applicationid=nil, ischannel=nil, contenttype=nil, organization=nil, generatesource=nil)
           @Operator = operator
-          @Organization = organization
           @Agent = agent
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @ApplicationId = applicationid
           @IsChannel = ischannel
-          @GenerateSource = generatesource
           @ContentType = contenttype
+          @Organization = organization
+          @GenerateSource = generatesource
         end
 
         def deserialize(params)
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
-          end
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
           end
           unless params['Agent'].nil?
             @Agent = Agent.new
@@ -2736,8 +2740,12 @@ module TencentCloud
           end
           @ApplicationId = params['ApplicationId']
           @IsChannel = params['IsChannel']
-          @GenerateSource = params['GenerateSource']
           @ContentType = params['ContentType']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          @GenerateSource = params['GenerateSource']
         end
       end
 
@@ -2994,7 +3002,7 @@ module TencentCloud
         # @type Name: String
         # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
         # @type Status: Integer
-        # @param Export: 是否到处当前成员企业数据
+        # @param Export: 是否导出当前成员企业数据
         # @type Export: Boolean
         # @param Id: 成员企业id
         # @type Id: String
@@ -4060,7 +4068,7 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param Status: 成员企业状态
+        # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsMainOrganization: 是否为集团主企业
@@ -4298,15 +4306,15 @@ module TencentCloud
 
       # 机构信息
       class OrganizationInfo < TencentCloud::Common::AbstractModel
-        # @param OrganizationId: 机构在平台的编号
+        # @param OrganizationId: 机构在平台的编号，内部字段，暂未开放
         # @type OrganizationId: String
-        # @param Channel: 用户渠道
+        # @param Channel: 用户渠道，内部字段，暂未开放
         # @type Channel: String
-        # @param OrganizationOpenId: 用户在渠道的机构编号
+        # @param OrganizationOpenId: 用户在渠道的机构编号，内部字段，暂未开放
         # @type OrganizationOpenId: String
-        # @param ClientIp: 用户真实的IP
+        # @param ClientIp: 用户真实的IP，内部字段，暂未开放
         # @type ClientIp: String
-        # @param ProxyIp: 机构的代理IP
+        # @param ProxyIp: 机构的代理IP，内部字段，暂未开放
         # @type ProxyIp: String
 
         attr_accessor :OrganizationId, :Channel, :OrganizationOpenId, :ClientIp, :ProxyIp
@@ -4330,9 +4338,9 @@ module TencentCloud
 
       # 合同文件验签单个结果结构体
       class PdfVerifyResult < TencentCloud::Common::AbstractModel
-        # @param VerifyResult: 验签结果
+        # @param VerifyResult: 验签结果。0-签名域未签名；1-验签成功； 3-验签失败；4-未找到签名域：文件内没有签名域；5-签名值格式不正确。
         # @type VerifyResult: Integer
-        # @param SignPlatform: 签署平台
+        # @param SignPlatform: 签署平台，如果文件是在腾讯电子签平台签署，则返回腾讯电子签，如果文件不在腾讯电子签平台签署，则返回其他平台。
         # @type SignPlatform: String
         # @param SignerName: 签署人名称
         # @type SignerName: String
@@ -4396,7 +4404,7 @@ module TencentCloud
       class Recipient < TencentCloud::Common::AbstractModel
         # @param RecipientId: 签署参与者ID
         # @type RecipientId: String
-        # @param RecipientType: 参与者类型（ENTERPRISE/INDIVIDUAL）
+        # @param RecipientType: 参与者类型。默认为空。ENTERPRISE-企业；INDIVIDUAL-个人；PROMOTER-发起方
         # @type RecipientType: String
         # @param Description: 描述信息
         # @type Description: String
@@ -4416,7 +4424,7 @@ module TencentCloud
         # @type Mobile: String
         # @param UserId: 关联的用户ID
         # @type UserId: String
-        # @param DeliveryMethod: 发送方式（EMAIL/MOBILE）
+        # @param DeliveryMethod: 发送方式。默认为EMAIL。EMAIL-邮件；MOBILE-手机短信；WECHAT-微信通知
         # @type DeliveryMethod: String
         # @param RecipientExtra: 附属信息
         # @type RecipientExtra: String
@@ -4872,7 +4880,7 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param Promoter: 发起人角色信息
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
-        # @param Available: 模板可用状态，取值：0未知，但默认会被转成启用；1启用（默认），2停用
+        # @param Available: 模板可用状态，取值：1启用（默认），2停用
         # @type Available: Integer
         # @param OrganizationId: 模板创建组织id
         # @type OrganizationId: String
@@ -4966,7 +4974,7 @@ module TencentCloud
 
       # UnbindEmployeeUserIdWithClientOpenId请求参数结构体
       class UnbindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: OpenId与UserId二选一必填一个，当传入客户系统openId，传入的openId需与电子签员工userId绑定，且渠道channel必填，channel值为INTEGRATE，否则传入userId
+        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param UserId: 电子签系统员工UserId
         # @type UserId: String
@@ -5015,27 +5023,23 @@ module TencentCloud
       class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 代理信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Employees: 员工信息
         # @type Employees: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Agent, :Employees
+        attr_accessor :Operator, :Employees, :Agent
         
-        def initialize(operator=nil, agent=nil, employees=nil)
+        def initialize(operator=nil, employees=nil, agent=nil)
           @Operator = operator
-          @Agent = agent
           @Employees = employees
+          @Agent = agent
         end
 
         def deserialize(params)
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
-          end
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
           end
           unless params['Employees'].nil?
             @Employees = []
@@ -5044,6 +5048,10 @@ module TencentCloud
               staff_tmp.deserialize(i)
               @Employees << staff_tmp
             end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -5190,13 +5198,13 @@ module TencentCloud
       class UserInfo < TencentCloud::Common::AbstractModel
         # @param UserId: 用户在平台的编号
         # @type UserId: String
-        # @param Channel: 用户的来源渠道
+        # @param Channel: 用户的来源渠道，一般不用传，特定场景根据接口说明传值
         # @type Channel: String
-        # @param OpenId: 用户在渠道的编号
+        # @param OpenId: 用户在渠道的编号，一般不用传，特定场景根据接口说明传值
         # @type OpenId: String
-        # @param ClientIp: 用户真实IP
+        # @param ClientIp: 用户真实IP，内部字段，暂未开放
         # @type ClientIp: String
-        # @param ProxyIp: 用户代理IP
+        # @param ProxyIp: 用户代理IP，内部字段，暂未开放
         # @type ProxyIp: String
 
         attr_accessor :UserId, :Channel, :OpenId, :ClientIp, :ProxyIp

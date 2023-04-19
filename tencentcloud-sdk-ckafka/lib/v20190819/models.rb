@@ -9382,6 +9382,48 @@ module TencentCloud
         end
       end
 
+      # RenewCkafkaInstance请求参数结构体
+      class RenewCkafkaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param TimeSpan: 续费时长, 默认为1, 单位是月
+        # @type TimeSpan: Integer
+
+        attr_accessor :InstanceId, :TimeSpan
+        
+        def initialize(instanceid=nil, timespan=nil)
+          @InstanceId = instanceid
+          @TimeSpan = timespan
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TimeSpan = params['TimeSpan']
+        end
+      end
+
+      # RenewCkafkaInstance接口出参bigDealIds
+      class RenewCkafkaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealId: String
+        # @param DealName: 子订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+
+        attr_accessor :BigDealId, :DealName
+        
+        def initialize(bigdealid=nil, dealname=nil)
+          @BigDealId = bigdealid
+          @DealName = dealname
+        end
+
+        def deserialize(params)
+          @BigDealId = params['BigDealId']
+          @DealName = params['DealName']
+        end
+      end
+
       # 数据处理——Value处理参数——替换参数
       class ReplaceParam < TencentCloud::Common::AbstractModel
         # @param OldValue: 被替换值

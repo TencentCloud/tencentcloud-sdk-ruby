@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateInstances)用于创建redis实例。
+        # 本接口（CreateInstances）用于创建 Redis 实例。
 
         # @param request: Request instance for CreateInstances.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateInstancesRequest`

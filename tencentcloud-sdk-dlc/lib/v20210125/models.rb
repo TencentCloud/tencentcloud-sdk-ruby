@@ -1730,10 +1730,12 @@ module TencentCloud
         # @type SparkImageVersion: String
         # @param AppExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums
         # @type AppExecutorMaxNumbers: Integer
+        # @param SessionId: 关联dlc查询脚本id
+        # @type SessionId: String
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -1760,6 +1762,7 @@ module TencentCloud
           @SparkImage = sparkimage
           @SparkImageVersion = sparkimageversion
           @AppExecutorMaxNumbers = appexecutormaxnumbers
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -1789,6 +1792,7 @@ module TencentCloud
           @SparkImage = params['SparkImage']
           @SparkImageVersion = params['SparkImageVersion']
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
+          @SessionId = params['SessionId']
         end
       end
 
@@ -2760,10 +2764,16 @@ module TencentCloud
         # @param StartStandbyCluster: 是否开启备集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartStandbyCluster: Boolean
+        # @param ElasticSwitch: spark jar 包年包月集群是否开启弹性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticSwitch: Boolean
+        # @param ElasticLimit: spark jar 包年包月集群弹性上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticLimit: Integer
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit
         
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -2801,6 +2811,8 @@ module TencentCloud
           @ChildImageVersionId = childimageversionid
           @ImageVersionName = imageversionname
           @StartStandbyCluster = startstandbycluster
+          @ElasticSwitch = elasticswitch
+          @ElasticLimit = elasticlimit
         end
 
         def deserialize(params)
@@ -2858,6 +2870,8 @@ module TencentCloud
           @ChildImageVersionId = params['ChildImageVersionId']
           @ImageVersionName = params['ImageVersionName']
           @StartStandbyCluster = params['StartStandbyCluster']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticLimit = params['ElasticLimit']
         end
       end
 
@@ -4055,17 +4069,21 @@ module TencentCloud
         # @type SessionId: String
         # @param StatementId: Session Statement唯一标识
         # @type StatementId: String
+        # @param TaskId: 任务唯一标识
+        # @type TaskId: String
 
-        attr_accessor :SessionId, :StatementId
+        attr_accessor :SessionId, :StatementId, :TaskId
         
-        def initialize(sessionid=nil, statementid=nil)
+        def initialize(sessionid=nil, statementid=nil, taskid=nil)
           @SessionId = sessionid
           @StatementId = statementid
+          @TaskId = taskid
         end
 
         def deserialize(params)
           @SessionId = params['SessionId']
           @StatementId = params['StatementId']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -4473,13 +4491,13 @@ module TencentCloud
         # @type Sorting: String
         # @param Filters: 按照该参数过滤,支持spark-job-name
         # @type Filters: Array
-        # @param StartTime: 更新时间起始点
+        # @param StartTime: 更新时间起始点，支持格式：yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 更新时间截止点
+        # @param EndTime: 更新时间截止点，支持格式：yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
-        # @param Offset: 查询列表偏移量
+        # @param Offset: 查询列表偏移量, 默认值0
         # @type Offset: Integer
-        # @param Limit: 查询列表限制数量
+        # @param Limit: 查询列表限制数量, 默认值100
         # @type Limit: Integer
 
         attr_accessor :SortBy, :Sorting, :Filters, :StartTime, :EndTime, :Offset, :Limit
@@ -5538,14 +5556,18 @@ module TencentCloud
         # @param LogJson: 日志内容，json字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogJson: String
+        # @param PkgLogId: 日志ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgLogId: String
 
-        attr_accessor :Time, :TopicId, :TopicName, :LogJson
+        attr_accessor :Time, :TopicId, :TopicName, :LogJson, :PkgLogId
         
-        def initialize(time=nil, topicid=nil, topicname=nil, logjson=nil)
+        def initialize(time=nil, topicid=nil, topicname=nil, logjson=nil, pkglogid=nil)
           @Time = time
           @TopicId = topicid
           @TopicName = topicname
           @LogJson = logjson
+          @PkgLogId = pkglogid
         end
 
         def deserialize(params)
@@ -5553,6 +5575,7 @@ module TencentCloud
           @TopicId = params['TopicId']
           @TopicName = params['TopicName']
           @LogJson = params['LogJson']
+          @PkgLogId = params['PkgLogId']
         end
       end
 
@@ -5594,10 +5617,12 @@ module TencentCloud
         # @type Asc: Boolean
         # @param Filters: 预览日志的通用过滤条件
         # @type Filters: Array
+        # @param BatchId: SparkSQL任务唯一ID
+        # @type BatchId: String
 
-        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context, :Asc, :Filters
+        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context, :Asc, :Filters, :BatchId
         
-        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil, asc=nil, filters=nil)
+        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil, asc=nil, filters=nil, batchid=nil)
           @TaskId = taskid
           @StartTime = starttime
           @EndTime = endtime
@@ -5605,6 +5630,7 @@ module TencentCloud
           @Context = context
           @Asc = asc
           @Filters = filters
+          @BatchId = batchid
         end
 
         def deserialize(params)
@@ -5622,6 +5648,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @BatchId = params['BatchId']
         end
       end
 
@@ -5636,15 +5663,19 @@ module TencentCloud
         # @param Results: 日志详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
+        # @param LogUrl: 日志url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Context, :ListOver, :Results, :RequestId
+        attr_accessor :Context, :ListOver, :Results, :LogUrl, :RequestId
         
-        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+        def initialize(context=nil, listover=nil, results=nil, logurl=nil, requestid=nil)
           @Context = context
           @ListOver = listover
           @Results = results
+          @LogUrl = logurl
           @RequestId = requestid
         end
 
@@ -5659,6 +5690,7 @@ module TencentCloud
               @Results << joblogresult_tmp
             end
           end
+          @LogUrl = params['LogUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -5853,10 +5885,12 @@ module TencentCloud
         # @type SparkImageVersion: String
         # @param AppExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums
         # @type AppExecutorMaxNumbers: Integer
+        # @param SessionId: 关联dlc查询脚本
+        # @type SessionId: String
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -5884,6 +5918,7 @@ module TencentCloud
           @SparkImage = sparkimage
           @SparkImageVersion = sparkimageversion
           @AppExecutorMaxNumbers = appexecutormaxnumbers
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -5914,6 +5949,7 @@ module TencentCloud
           @SparkImage = params['SparkImage']
           @SparkImageVersion = params['SparkImageVersion']
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
+          @SessionId = params['SessionId']
         end
       end
 
@@ -6746,10 +6782,13 @@ module TencentCloud
         # @param SparkImageVersion: 镜像版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkImageVersion: String
+        # @param SessionId: 查询脚本关联id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId
         
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -6786,6 +6825,7 @@ module TencentCloud
           @DataEngineStatus = dataenginestatus
           @JobExecutorMaxNumbers = jobexecutormaxnumbers
           @SparkImageVersion = sparkimageversion
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -6828,6 +6868,7 @@ module TencentCloud
           @DataEngineStatus = params['DataEngineStatus']
           @JobExecutorMaxNumbers = params['JobExecutorMaxNumbers']
           @SparkImageVersion = params['SparkImageVersion']
+          @SessionId = params['SessionId']
         end
       end
 

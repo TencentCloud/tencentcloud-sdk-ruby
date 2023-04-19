@@ -15236,6 +15236,47 @@ module TencentCloud
         end
       end
 
+      # UpdateClusterKubeconfig请求参数结构体
+      class UpdateClusterKubeconfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SubAccounts: 子账户Uin列表，传空默认为调用此接口的SubUin
+        # @type SubAccounts: Array
+
+        attr_accessor :ClusterId, :SubAccounts
+        
+        def initialize(clusterid=nil, subaccounts=nil)
+          @ClusterId = clusterid
+          @SubAccounts = subaccounts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SubAccounts = params['SubAccounts']
+        end
+      end
+
+      # UpdateClusterKubeconfig返回参数结构体
+      class UpdateClusterKubeconfigResponse < TencentCloud::Common::AbstractModel
+        # @param UpdatedSubAccounts: 已更新的子账户Uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedSubAccounts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpdatedSubAccounts, :RequestId
+        
+        def initialize(updatedsubaccounts=nil, requestid=nil)
+          @UpdatedSubAccounts = updatedsubaccounts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UpdatedSubAccounts = params['UpdatedSubAccounts']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateClusterVersion请求参数结构体
       class UpdateClusterVersionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 Id

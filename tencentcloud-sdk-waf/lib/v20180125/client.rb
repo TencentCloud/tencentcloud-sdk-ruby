@@ -870,7 +870,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于修改访问日志保存期限
+        # 本接口用于修改访问日志保存期限及大字段是否存储
 
         # @param request: Request instance for ModifyAccessPeriod.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAccessPeriodRequest`

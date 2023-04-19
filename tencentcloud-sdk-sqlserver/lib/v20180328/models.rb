@@ -3233,6 +3233,70 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstancesAttribute请求参数结构体
+      class DescribeDBInstancesAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBInstancesAttribute返回参数结构体
+      class DescribeDBInstancesAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RegularBackupEnable: 定期备份状态 enable-开启，disable-关闭
+        # @type RegularBackupEnable: String
+        # @param RegularBackupSaveDays: 定期备份保留天数 [90 - 3650]天
+        # @type RegularBackupSaveDays: Integer
+        # @param RegularBackupStrategy: 定期备份策略 years-每年，quarters-每季度，months-每月
+        # @type RegularBackupStrategy: String
+        # @param RegularBackupCounts: 定期备份保留个数
+        # @type RegularBackupCounts: Integer
+        # @param RegularBackupStartTime: 定期备份开始日期，格式-YYYY-MM-DD 默认当前日期
+        # @type RegularBackupStartTime: String
+        # @param BlockedThreshold: 阻塞进程阈值，单位毫秒
+        # @type BlockedThreshold: Integer
+        # @param EventSaveDays: 慢SQL、阻塞、死锁扩展事件文件保留时长
+        # @type EventSaveDays: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :RequestId
+        
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RegularBackupEnable = regularbackupenable
+          @RegularBackupSaveDays = regularbackupsavedays
+          @RegularBackupStrategy = regularbackupstrategy
+          @RegularBackupCounts = regularbackupcounts
+          @RegularBackupStartTime = regularbackupstarttime
+          @BlockedThreshold = blockedthreshold
+          @EventSaveDays = eventsavedays
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RegularBackupEnable = params['RegularBackupEnable']
+          @RegularBackupSaveDays = params['RegularBackupSaveDays']
+          @RegularBackupStrategy = params['RegularBackupStrategy']
+          @RegularBackupCounts = params['RegularBackupCounts']
+          @RegularBackupStartTime = params['RegularBackupStartTime']
+          @BlockedThreshold = params['BlockedThreshold']
+          @EventSaveDays = params['EventSaveDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -4721,6 +4785,73 @@ module TencentCloud
         end
       end
 
+      # DescribeXEvents请求参数结构体
+      class DescribeXEventsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param EventType: 事件类型，slow-慢SQL事件，blocked-阻塞事件，deadlock-死锁事件
+        # @type EventType: String
+        # @param StartTime: 扩展文件生成开始时间
+        # @type StartTime: String
+        # @param EndTime: 扩展文件生成结束时间
+        # @type EndTime: String
+        # @param Offset: 分页返回，页编号，默认值为第0页
+        # @type Offset: Integer
+        # @param Limit: 分页返回，每页返回的数目，取值为1~100，默认值为20
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :EventType, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(instanceid=nil, eventtype=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @EventType = eventtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EventType = params['EventType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeXEvents返回参数结构体
+      class DescribeXEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 扩展事件列表
+        # @type Events: Array
+        # @param TotalCount: 扩展事件总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :TotalCount, :RequestId
+        
+        def initialize(events=nil, totalcount=nil, requestid=nil)
+          @Events = events
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              events_tmp = Events.new
+              events_tmp.deserialize(i)
+              @Events << events_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
 
@@ -4796,6 +4927,74 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设置实例扩展事件阈值
+      class EventConfig < TencentCloud::Common::AbstractModel
+        # @param EventType: 事件类型，slow-设置慢SQL阈值，blocked-设置阻塞、死锁阈值
+        # @type EventType: String
+        # @param Threshold: 阈值，单位毫秒。0表示关闭，大于0表示开启
+        # @type Threshold: Integer
+
+        attr_accessor :EventType, :Threshold
+        
+        def initialize(eventtype=nil, threshold=nil)
+          @EventType = eventtype
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @Threshold = params['Threshold']
+        end
+      end
+
+      # 实例扩展事件详情
+      class Events < TencentCloud::Common::AbstractModel
+        # @param Id: ID
+        # @type Id: Integer
+        # @param FileName: 扩展事件文件名称
+        # @type FileName: String
+        # @param Size: 扩展事件文件大小
+        # @type Size: Integer
+        # @param EventType: 事件类型，slow-慢SQL事件，blocked-阻塞事件，deadlock-死锁事件
+        # @type EventType: String
+        # @param Status: 事件记录状态，1-成功，2-失败
+        # @type Status: Integer
+        # @param StartTime: 扩展文件生成开始时间
+        # @type StartTime: String
+        # @param EndTime: 扩展文件生成开始时间
+        # @type EndTime: String
+        # @param InternalAddr: 内网下载地址
+        # @type InternalAddr: String
+        # @param ExternalAddr: 外网下载地址
+        # @type ExternalAddr: String
+
+        attr_accessor :Id, :FileName, :Size, :EventType, :Status, :StartTime, :EndTime, :InternalAddr, :ExternalAddr
+        
+        def initialize(id=nil, filename=nil, size=nil, eventtype=nil, status=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil)
+          @Id = id
+          @FileName = filename
+          @Size = size
+          @EventType = eventtype
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @InternalAddr = internaladdr
+          @ExternalAddr = externaladdr
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @FileName = params['FileName']
+          @Size = params['Size']
+          @EventType = params['EventType']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InternalAddr = params['InternalAddr']
+          @ExternalAddr = params['ExternalAddr']
         end
       end
 
@@ -7808,6 +8007,49 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartInstanceXEvent请求参数结构体
+      class StartInstanceXEventRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param EventConfig: 开启、关闭扩展事件
+        # @type EventConfig: Array
+
+        attr_accessor :InstanceId, :EventConfig
+        
+        def initialize(instanceid=nil, eventconfig=nil)
+          @InstanceId = instanceid
+          @EventConfig = eventconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['EventConfig'].nil?
+            @EventConfig = []
+            params['EventConfig'].each do |i|
+              eventconfig_tmp = EventConfig.new
+              eventconfig_tmp.deserialize(i)
+              @EventConfig << eventconfig_tmp
+            end
+          end
+        end
+      end
+
+      # StartInstanceXEvent返回参数结构体
+      class StartInstanceXEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
