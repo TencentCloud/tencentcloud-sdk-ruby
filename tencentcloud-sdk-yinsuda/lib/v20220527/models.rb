@@ -394,16 +394,20 @@ module TencentCloud
         # <li>Play：可播；</li>
         # <li>Sing：可唱。</li>
         # @type RightFilters: Array
+        # @param PlayScene: 播放场景。默认为Chat
+        # <li>Live：直播</li><li>Chat：语聊</li>
+        # @type PlayScene: String
 
-        attr_accessor :AppName, :UserId, :PlaylistId, :ScrollToken, :Limit, :RightFilters
+        attr_accessor :AppName, :UserId, :PlaylistId, :ScrollToken, :Limit, :RightFilters, :PlayScene
         
-        def initialize(appname=nil, userid=nil, playlistid=nil, scrolltoken=nil, limit=nil, rightfilters=nil)
+        def initialize(appname=nil, userid=nil, playlistid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil)
           @AppName = appname
           @UserId = userid
           @PlaylistId = playlistid
           @ScrollToken = scrolltoken
           @Limit = limit
           @RightFilters = rightfilters
+          @PlayScene = playscene
         end
 
         def deserialize(params)
@@ -413,6 +417,7 @@ module TencentCloud
           @ScrollToken = params['ScrollToken']
           @Limit = params['Limit']
           @RightFilters = params['RightFilters']
+          @PlayScene = params['PlayScene']
         end
       end
 
@@ -1443,16 +1448,20 @@ module TencentCloud
         # <li>Play：可播；</li>
         # <li>Sing：可唱。</li>
         # @type RightFilters: Array
+        # @param PlayScene: 播放场景。默认为Chat
+        # <li>Live：直播</li><li>Chat：语聊</li>
+        # @type PlayScene: String
 
-        attr_accessor :AppName, :UserId, :KeyWord, :ScrollToken, :Limit, :RightFilters
+        attr_accessor :AppName, :UserId, :KeyWord, :ScrollToken, :Limit, :RightFilters, :PlayScene
         
-        def initialize(appname=nil, userid=nil, keyword=nil, scrolltoken=nil, limit=nil, rightfilters=nil)
+        def initialize(appname=nil, userid=nil, keyword=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil)
           @AppName = appname
           @UserId = userid
           @KeyWord = keyword
           @ScrollToken = scrolltoken
           @Limit = limit
           @RightFilters = rightfilters
+          @PlayScene = playscene
         end
 
         def deserialize(params)
@@ -1462,6 +1471,7 @@ module TencentCloud
           @ScrollToken = params['ScrollToken']
           @Limit = params['Limit']
           @RightFilters = params['RightFilters']
+          @PlayScene = params['PlayScene']
         end
       end
 
