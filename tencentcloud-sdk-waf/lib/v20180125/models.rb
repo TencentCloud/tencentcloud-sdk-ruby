@@ -386,6 +386,77 @@ module TencentCloud
         end
       end
 
+      # AddCustomWhiteRule请求参数结构体
+      class AddCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param SortId: 优先级
+        # @type SortId: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param Strategies: 策略详情
+        # @type Strategies: Array
+        # @param Domain: 需要添加策略的域名
+        # @type Domain: String
+        # @param Bypass: 放行的详情
+        # @type Bypass: String
+
+        attr_accessor :Name, :SortId, :ExpireTime, :Strategies, :Domain, :Bypass
+        
+        def initialize(name=nil, sortid=nil, expiretime=nil, strategies=nil, domain=nil, bypass=nil)
+          @Name = name
+          @SortId = sortid
+          @ExpireTime = expiretime
+          @Strategies = strategies
+          @Domain = domain
+          @Bypass = bypass
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SortId = params['SortId']
+          @ExpireTime = params['ExpireTime']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Domain = params['Domain']
+          @Bypass = params['Bypass']
+        end
+      end
+
+      # AddCustomWhiteRule返回参数结构体
+      class AddCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RuleId: 添加成功的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RuleId, :RequestId
+        
+        def initialize(success=nil, ruleid=nil, requestid=nil)
+          @Success = success
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddDomainWhiteRule请求参数结构体
       class AddDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要添加的域名
@@ -997,6 +1068,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomWhiteRule请求参数结构体
+      class DeleteCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 删除的域名
+        # @type Domain: String
+        # @param RuleId: 删除的规则ID
+        # @type RuleId: Integer
+
+        attr_accessor :Domain, :RuleId
+        
+        def initialize(domain=nil, ruleid=nil)
+          @Domain = domain
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DeleteCustomWhiteRule返回参数结构体
+      class DeleteCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3669,6 +3783,76 @@ module TencentCloud
         end
       end
 
+      # ModifyCustomWhiteRule请求参数结构体
+      class ModifyCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 编辑的域名
+        # @type Domain: String
+        # @param RuleId: 编辑的规则ID
+        # @type RuleId: Integer
+        # @param RuleName: 编辑的规则名称
+        # @type RuleName: String
+        # @param Bypass: 放行时是否继续执行其它检查逻辑，继续执行地域封禁防护：geoip、继续执行CC策略防护：cc、继续执行WEB应用防护：owasp、继续执行AI引擎防护：ai、继续执行信息防泄漏防护：antileakage。如果多个勾选那么以,串接。
+        # @type Bypass: String
+        # @param SortId: 优先级，1~100的整数，数字越小，代表这条规则的执行优先级越高。
+        # @type SortId: Integer
+        # @param ExpireTime: 规则生效截止时间，0：永久生效，其它值为对应时间的时间戳。
+        # @type ExpireTime: Integer
+        # @param Strategies: 匹配条件数组
+        # @type Strategies: Array
+
+        attr_accessor :Domain, :RuleId, :RuleName, :Bypass, :SortId, :ExpireTime, :Strategies
+        
+        def initialize(domain=nil, ruleid=nil, rulename=nil, bypass=nil, sortid=nil, expiretime=nil, strategies=nil)
+          @Domain = domain
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Bypass = bypass
+          @SortId = sortid
+          @ExpireTime = expiretime
+          @Strategies = strategies
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Bypass = params['Bypass']
+          @SortId = params['SortId']
+          @ExpireTime = params['ExpireTime']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCustomWhiteRule返回参数结构体
+      class ModifyCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainWhiteRule请求参数结构体
       class ModifyDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要更改的规则的域名
@@ -4406,7 +4590,7 @@ module TencentCloud
         # @type Items: Array
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
-        # @param SourceType: 是否为多域名黑白名单，当为多域名的黑白名单时，取值为batch，佛祖饿为空
+        # @param SourceType: 是否为多域名黑白名单，当为多域名的黑白名单时，取值为batch，否则为空
         # @type SourceType: String
 
         attr_accessor :Domain, :Items, :Edition, :SourceType

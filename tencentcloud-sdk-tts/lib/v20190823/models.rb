@@ -255,10 +255,14 @@ module TencentCloud
         # @type EnableSubtitle: Boolean
         # @param SegmentRate: 断句敏感阈值，默认值为：0，取值范围：[0,1,2]。该值越大越不容易断句，模型会更倾向于仅按照标点符号断句。此参数建议不要随意调整，可能会影响合成效果。
         # @type SegmentRate: Integer
+        # @param EmotionCategory: 控制合成音频的情感，仅支持情绪音色使用。取值: peaceful、exciting、thrill、neutral、sad、angry、cute、fear、poetry、happy、regretful、exciting_strong、aojiao、sajiao、story、raido、call、jieshuo等等；
+        # @type EmotionCategory: String
+        # @param EmotionIntensity: 控制合成音频情感程度，取值范围为[50,200],默认为100，不填写为默认值；只有EmotionCategory不为空时生效；
+        # @type EmotionIntensity: Integer
 
-        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate
+        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate, :EmotionCategory, :EmotionIntensity
         
-        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil, segmentrate=nil)
+        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil, segmentrate=nil, emotioncategory=nil, emotionintensity=nil)
           @Text = text
           @SessionId = sessionid
           @Volume = volume
@@ -271,6 +275,8 @@ module TencentCloud
           @Codec = codec
           @EnableSubtitle = enablesubtitle
           @SegmentRate = segmentrate
+          @EmotionCategory = emotioncategory
+          @EmotionIntensity = emotionintensity
         end
 
         def deserialize(params)
@@ -286,6 +292,8 @@ module TencentCloud
           @Codec = params['Codec']
           @EnableSubtitle = params['EnableSubtitle']
           @SegmentRate = params['SegmentRate']
+          @EmotionCategory = params['EmotionCategory']
+          @EmotionIntensity = params['EmotionIntensity']
         end
       end
 

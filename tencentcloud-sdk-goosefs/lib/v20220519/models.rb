@@ -103,20 +103,28 @@ module TencentCloud
         # @type TaskId: String
         # @param Status: 任务状态 0(初始化中), 1(运行中), 2(已完成), 3(任务失败)
         # @type Status: Integer
+        # @param FinishedFileNumber: 已完成的文件数量
+        # @type FinishedFileNumber: Integer
+        # @param FinishedCapacity: 已完成的数据量
+        # @type FinishedCapacity: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :RequestId
+        attr_accessor :TaskId, :Status, :FinishedFileNumber, :FinishedCapacity, :RequestId
         
-        def initialize(taskid=nil, status=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, finishedfilenumber=nil, finishedcapacity=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
+          @FinishedFileNumber = finishedfilenumber
+          @FinishedCapacity = finishedcapacity
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @Status = params['Status']
+          @FinishedFileNumber = params['FinishedFileNumber']
+          @FinishedCapacity = params['FinishedCapacity']
           @RequestId = params['RequestId']
         end
       end

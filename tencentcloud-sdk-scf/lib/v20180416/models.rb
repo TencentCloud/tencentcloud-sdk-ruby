@@ -2397,10 +2397,13 @@ module TencentCloud
         # @type LayerName: String
         # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
+        # @param Stamp: Stamp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stamp: String
 
-        attr_accessor :CompatibleRuntimes, :AddTime, :Description, :LicenseInfo, :LayerVersion, :LayerName, :Status
+        attr_accessor :CompatibleRuntimes, :AddTime, :Description, :LicenseInfo, :LayerVersion, :LayerName, :Status, :Stamp
         
-        def initialize(compatibleruntimes=nil, addtime=nil, description=nil, licenseinfo=nil, layerversion=nil, layername=nil, status=nil)
+        def initialize(compatibleruntimes=nil, addtime=nil, description=nil, licenseinfo=nil, layerversion=nil, layername=nil, status=nil, stamp=nil)
           @CompatibleRuntimes = compatibleruntimes
           @AddTime = addtime
           @Description = description
@@ -2408,6 +2411,7 @@ module TencentCloud
           @LayerVersion = layerversion
           @LayerName = layername
           @Status = status
+          @Stamp = stamp
         end
 
         def deserialize(params)
@@ -2418,6 +2422,7 @@ module TencentCloud
           @LayerVersion = params['LayerVersion']
           @LayerName = params['LayerName']
           @Status = params['Status']
+          @Stamp = params['Stamp']
         end
       end
 
@@ -3624,7 +3629,7 @@ module TencentCloud
         # @type BillDuration: Integer
         # @param FunctionRequestId: 此次函数执行的Id
         # @type FunctionRequestId: String
-        # @param InvokeResult: 0为正确，异步调用返回为空
+        # @param InvokeResult: 请求 Invoke 接口，该参数已弃用。请求 InvokeFunction 接口，该参数值为请求执行[状态码](https://cloud.tencent.com/document/product/583/42611)。
         # @type InvokeResult: Integer
 
         attr_accessor :Log, :RetMsg, :ErrMsg, :MemUsage, :Duration, :BillDuration, :FunctionRequestId, :InvokeResult

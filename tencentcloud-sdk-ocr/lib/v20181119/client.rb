@@ -1609,6 +1609,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 菲律宾SSSID识别
+
+        # @param request: Request instance for RecognizePhilippinesSssIDOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesSssIDOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesSssIDOCRResponse`
+        def RecognizePhilippinesSssIDOCR(request)
+          body = send_request('RecognizePhilippinesSssIDOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizePhilippinesSssIDOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 菲律宾TinID识别
+
+        # @param request: Request instance for RecognizePhilippinesTinIDOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesTinIDOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesTinIDOCRResponse`
+        def RecognizePhilippinesTinIDOCR(request)
+          body = send_request('RecognizePhilippinesTinIDOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizePhilippinesTinIDOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
 
         # 默认接口请求频率限制：20次/秒。

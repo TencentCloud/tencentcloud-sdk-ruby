@@ -307,6 +307,22 @@ module TencentCloud
         end
       end
 
+      # 语音转文本配置数据
+      class AsrConf < TencentCloud::Common::AbstractModel
+        # @param Status: 语音转文本服务开关，取值：open/close
+        # @type Status: String
+
+        attr_accessor :Status
+        
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # 录音转文本用量统计数据
       class AudioTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
@@ -451,14 +467,16 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param RealtimeSpeechConf: 实时语音服务配置数据
         # @type RealtimeSpeechConf: :class:`Tencentcloud::Gme.v20180711.models.RealtimeSpeechConf`
-        # @param VoiceMessageConf: 语音消息及转文本服务配置数据
+        # @param VoiceMessageConf: 语音消息服务配置数据
         # @type VoiceMessageConf: :class:`Tencentcloud::Gme.v20180711.models.VoiceMessageConf`
         # @param VoiceFilterConf: 语音分析服务配置数据
         # @type VoiceFilterConf: :class:`Tencentcloud::Gme.v20180711.models.VoiceFilterConf`
+        # @param AsrConf: 语音转文本服务配置数据
+        # @type AsrConf: :class:`Tencentcloud::Gme.v20180711.models.AsrConf`
 
-        attr_accessor :BizId, :AppName, :ProjectId, :SecretKey, :CreateTime, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf
+        attr_accessor :BizId, :AppName, :ProjectId, :SecretKey, :CreateTime, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf, :AsrConf
         
-        def initialize(bizid=nil, appname=nil, projectid=nil, secretkey=nil, createtime=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil)
+        def initialize(bizid=nil, appname=nil, projectid=nil, secretkey=nil, createtime=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil, asrconf=nil)
           @BizId = bizid
           @AppName = appname
           @ProjectId = projectid
@@ -467,6 +485,7 @@ module TencentCloud
           @RealtimeSpeechConf = realtimespeechconf
           @VoiceMessageConf = voicemessageconf
           @VoiceFilterConf = voicefilterconf
+          @AsrConf = asrconf
         end
 
         def deserialize(params)
@@ -486,6 +505,10 @@ module TencentCloud
           unless params['VoiceFilterConf'].nil?
             @VoiceFilterConf = VoiceFilterConf.new
             @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
+          end
+          unless params['AsrConf'].nil?
+            @AsrConf = AsrConf.new
+            @AsrConf.deserialize(params['AsrConf'])
           end
         end
       end
@@ -1861,7 +1884,7 @@ module TencentCloud
       class RealtimeSpeechConf < TencentCloud::Common::AbstractModel
         # @param Status: 实时语音服务开关，取值：open/close
         # @type Status: String
-        # @param Quality: 实时语音音质类型，取值：high-高音质
+        # @param Quality: 实时语音音质类型，取值：high-高音质 ordinary-普通音质
         # @type Quality: String
 
         attr_accessor :Status, :Quality
@@ -2143,6 +2166,20 @@ module TencentCloud
         def deserialize(params)
           @DataId = params['DataId']
           @TaskId = params['TaskId']
+        end
+      end
+
+      # SceneInfo场景信息
+      # 'RealTime','实时语音分析',
+      # 'VoiceMessage','语音消息',
+      # 'GMECloudApi':'GME云API接口'
+      class SceneInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -2527,15 +2564,27 @@ module TencentCloud
       class VoiceFilterConf < TencentCloud::Common::AbstractModel
         # @param Status: 语音过滤服务开关，取值：open/close
         # @type Status: String
+        # @param SceneInfos: 场景配置信息，如开关状态，回调地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneInfos: Array
 
-        attr_accessor :Status
+        attr_accessor :Status, :SceneInfos
         
-        def initialize(status=nil)
+        def initialize(status=nil, sceneinfos=nil)
           @Status = status
+          @SceneInfos = sceneinfos
         end
 
         def deserialize(params)
           @Status = params['Status']
+          unless params['SceneInfos'].nil?
+            @SceneInfos = []
+            params['SceneInfos'].each do |i|
+              sceneinfo_tmp = SceneInfo.new
+              sceneinfo_tmp.deserialize(i)
+              @SceneInfos << sceneinfo_tmp
+            end
+          end
         end
       end
 

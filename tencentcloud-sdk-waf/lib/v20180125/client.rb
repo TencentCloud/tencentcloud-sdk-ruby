@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 增加精准白名单规则
+
+        # @param request: Request instance for AddCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddCustomWhiteRuleResponse`
+        def AddCustomWhiteRule(request)
+          body = send_request('AddCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCustomWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加域名规则白名单
 
         # @param request: Request instance for AddDomainWhiteRule.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAttackDownloadRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除精准白名单规则
+
+        # @param request: Request instance for DeleteCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteCustomWhiteRuleResponse`
+        def DeleteCustomWhiteRule(request)
+          body = send_request('DeleteCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -928,6 +976,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑精准白名单
+
+        # @param request: Request instance for ModifyCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyCustomWhiteRuleResponse`
+        def ModifyCustomWhiteRule(request)
+          body = send_request('ModifyCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

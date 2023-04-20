@@ -4312,10 +4312,12 @@ module TencentCloud
         # @type BetaBatchNum: Integer
         # @param MinAvailable: 发布过程中保障的最小可用实例数
         # @type MinAvailable: Integer
+        # @param Force: 是否强制发布
+        # @type Force: Boolean
 
-        attr_accessor :ApplicationId, :EnvironmentId, :DeployVersion, :PackageName, :From, :DeployStrategyType, :TotalBatchCount, :BatchInterval, :BetaBatchNum, :MinAvailable
+        attr_accessor :ApplicationId, :EnvironmentId, :DeployVersion, :PackageName, :From, :DeployStrategyType, :TotalBatchCount, :BatchInterval, :BetaBatchNum, :MinAvailable, :Force
         
-        def initialize(applicationid=nil, environmentid=nil, deployversion=nil, packagename=nil, from=nil, deploystrategytype=nil, totalbatchcount=nil, batchinterval=nil, betabatchnum=nil, minavailable=nil)
+        def initialize(applicationid=nil, environmentid=nil, deployversion=nil, packagename=nil, from=nil, deploystrategytype=nil, totalbatchcount=nil, batchinterval=nil, betabatchnum=nil, minavailable=nil, force=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
           @DeployVersion = deployversion
@@ -4326,6 +4328,7 @@ module TencentCloud
           @BatchInterval = batchinterval
           @BetaBatchNum = betabatchnum
           @MinAvailable = minavailable
+          @Force = force
         end
 
         def deserialize(params)
@@ -4339,6 +4342,7 @@ module TencentCloud
           @BatchInterval = params['BatchInterval']
           @BetaBatchNum = params['BetaBatchNum']
           @MinAvailable = params['MinAvailable']
+          @Force = params['Force']
         end
       end
 

@@ -57,7 +57,7 @@ module TencentCloud
         end
       end
 
-      # 房间问答问题详情
+      # 房间问答答案详情
       class AnswerInfo < TencentCloud::Common::AbstractModel
         # @param Name: 用户名
         # @type Name: String
@@ -3077,7 +3077,7 @@ module TencentCloud
         end
       end
 
-      # 房间问答答案详情
+      # 房间问答问题详情
       class QuestionInfo < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
         # @type QuestionId: String

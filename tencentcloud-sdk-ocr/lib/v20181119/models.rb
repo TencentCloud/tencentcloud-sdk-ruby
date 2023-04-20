@@ -5244,6 +5244,170 @@ module TencentCloud
         end
       end
 
+      # RecognizePhilippinesSssIDOCR请求参数结构体
+      class RecognizePhilippinesSssIDOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ReturnHeadImage: 是否返回人像照片。
+        # @type ReturnHeadImage: Boolean
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
+        
+        def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
+          @ReturnHeadImage = returnheadimage
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ReturnHeadImage = params['ReturnHeadImage']
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizePhilippinesSssIDOCR返回参数结构体
+      class RecognizePhilippinesSssIDOCRResponse < TencentCloud::Common::AbstractModel
+        # @param HeadPortrait: 人像照片Base64后的结果
+        # @type HeadPortrait: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param LicenseNumber: 编号
+        # @type LicenseNumber: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param FullName: 姓名
+        # @type FullName: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Birthday: 生日
+        # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Birthday, :RequestId
+        
+        def initialize(headportrait=nil, licensenumber=nil, fullname=nil, birthday=nil, requestid=nil)
+          @HeadPortrait = headportrait
+          @LicenseNumber = licensenumber
+          @FullName = fullname
+          @Birthday = birthday
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HeadPortrait'].nil?
+            @HeadPortrait = TextDetectionResult.new
+            @HeadPortrait.deserialize(params['HeadPortrait'])
+          end
+          unless params['LicenseNumber'].nil?
+            @LicenseNumber = TextDetectionResult.new
+            @LicenseNumber.deserialize(params['LicenseNumber'])
+          end
+          unless params['FullName'].nil?
+            @FullName = TextDetectionResult.new
+            @FullName.deserialize(params['FullName'])
+          end
+          unless params['Birthday'].nil?
+            @Birthday = TextDetectionResult.new
+            @Birthday.deserialize(params['Birthday'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizePhilippinesTinIDOCR请求参数结构体
+      class RecognizePhilippinesTinIDOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ReturnHeadImage: 是否返回人像照片。
+        # @type ReturnHeadImage: Boolean
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
+        
+        def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
+          @ReturnHeadImage = returnheadimage
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ReturnHeadImage = params['ReturnHeadImage']
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizePhilippinesTinIDOCR返回参数结构体
+      class RecognizePhilippinesTinIDOCRResponse < TencentCloud::Common::AbstractModel
+        # @param HeadPortrait: 人像照片Base64后的结果
+        # @type HeadPortrait: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param LicenseNumber: 编码
+        # @type LicenseNumber: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param FullName: 姓名
+        # @type FullName: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Address: 地址
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Birthday: 生日
+        # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param IssueDate: 发证日期
+        # @type IssueDate: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Address, :Birthday, :IssueDate, :RequestId
+        
+        def initialize(headportrait=nil, licensenumber=nil, fullname=nil, address=nil, birthday=nil, issuedate=nil, requestid=nil)
+          @HeadPortrait = headportrait
+          @LicenseNumber = licensenumber
+          @FullName = fullname
+          @Address = address
+          @Birthday = birthday
+          @IssueDate = issuedate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HeadPortrait'].nil?
+            @HeadPortrait = TextDetectionResult.new
+            @HeadPortrait.deserialize(params['HeadPortrait'])
+          end
+          unless params['LicenseNumber'].nil?
+            @LicenseNumber = TextDetectionResult.new
+            @LicenseNumber.deserialize(params['LicenseNumber'])
+          end
+          unless params['FullName'].nil?
+            @FullName = TextDetectionResult.new
+            @FullName.deserialize(params['FullName'])
+          end
+          unless params['Address'].nil?
+            @Address = TextDetectionResult.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['Birthday'].nil?
+            @Birthday = TextDetectionResult.new
+            @Birthday.deserialize(params['Birthday'])
+          end
+          unless params['IssueDate'].nil?
+            @IssueDate = TextDetectionResult.new
+            @IssueDate.deserialize(params['IssueDate'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizePhilippinesVoteIDOCR请求参数结构体
       class RecognizePhilippinesVoteIDOCRRequest < TencentCloud::Common::AbstractModel
         # @param ReturnHeadImage: 是否返回人像照片。
