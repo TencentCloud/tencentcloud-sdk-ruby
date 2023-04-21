@@ -2360,7 +2360,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（RestoreInstance）用于根据备份文件恢复实例。
+        # 本接口（RestoreInstance）用于按照备份集回档数据库。
 
         # @param request: Request instance for RestoreInstance.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::RestoreInstanceRequest`
@@ -2384,7 +2384,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（RollbackInstance）用于回档实例
+        # 本接口（RollbackInstance）用于按照时间点回档实例
 
         # @param request: Request instance for RollbackInstance.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::RollbackInstanceRequest`

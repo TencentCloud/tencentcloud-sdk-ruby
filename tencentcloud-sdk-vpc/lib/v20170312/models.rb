@@ -307,10 +307,16 @@ module TencentCloud
         # @param TagSet: 弹性公网IP关联的标签列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
+        # @param DeadlineDate: 到期时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadlineDate: String
+        # @param InstanceType: EIP绑定的实例类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType
         
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -330,6 +336,8 @@ module TencentCloud
           @Bandwidth = bandwidth
           @InternetChargeType = internetchargetype
           @TagSet = tagset
+          @DeadlineDate = deadlinedate
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -362,6 +370,8 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @DeadlineDate = params['DeadlineDate']
+          @InstanceType = params['InstanceType']
         end
       end
 

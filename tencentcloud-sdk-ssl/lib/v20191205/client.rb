@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询公司列表
+
+        # @param request: Request instance for DescribeCompanies.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeCompaniesRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeCompaniesResponse`
+        def DescribeCompanies(request)
+          body = send_request('DescribeCompanies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCompaniesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 证书查询关联资源
 
         # @param request: Request instance for DescribeDeployedResources.

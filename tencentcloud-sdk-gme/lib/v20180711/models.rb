@@ -400,21 +400,25 @@ module TencentCloud
         # @param ProjectId: 腾讯云项目ID，默认为0，表示默认项目
         # @type ProjectId: Integer
         # @param EngineList: 需要支持的引擎列表，默认全选。
+        # 取值：android/ios/unity/cocos/unreal/windows
         # @type EngineList: Array
         # @param RegionList: 服务区域列表，默认全选。
+        # 取值：mainland-大陆地区，hmt-港澳台，sea-东南亚，na-北美，eu-欧洲，jpkr-日韩亚太，sa-南美，oc-澳洲，me-中东
         # @type RegionList: Array
         # @param RealtimeSpeechConf: 实时语音服务配置数据
         # @type RealtimeSpeechConf: :class:`Tencentcloud::Gme.v20180711.models.RealtimeSpeechConf`
-        # @param VoiceMessageConf: 语音消息及转文本服务配置数据
+        # @param VoiceMessageConf: 语音消息服务配置数据
         # @type VoiceMessageConf: :class:`Tencentcloud::Gme.v20180711.models.VoiceMessageConf`
         # @param VoiceFilterConf: 语音分析服务配置数据
         # @type VoiceFilterConf: :class:`Tencentcloud::Gme.v20180711.models.VoiceFilterConf`
+        # @param AsrConf: 语音转文本配置数据
+        # @type AsrConf: :class:`Tencentcloud::Gme.v20180711.models.AsrConf`
         # @param Tags: 需要添加的标签列表
         # @type Tags: Array
 
-        attr_accessor :AppName, :ProjectId, :EngineList, :RegionList, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf, :Tags
+        attr_accessor :AppName, :ProjectId, :EngineList, :RegionList, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf, :AsrConf, :Tags
         
-        def initialize(appname=nil, projectid=nil, enginelist=nil, regionlist=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil, tags=nil)
+        def initialize(appname=nil, projectid=nil, enginelist=nil, regionlist=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil, asrconf=nil, tags=nil)
           @AppName = appname
           @ProjectId = projectid
           @EngineList = enginelist
@@ -422,6 +426,7 @@ module TencentCloud
           @RealtimeSpeechConf = realtimespeechconf
           @VoiceMessageConf = voicemessageconf
           @VoiceFilterConf = voicefilterconf
+          @AsrConf = asrconf
           @Tags = tags
         end
 
@@ -441,6 +446,10 @@ module TencentCloud
           unless params['VoiceFilterConf'].nil?
             @VoiceFilterConf = VoiceFilterConf.new
             @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
+          end
+          unless params['AsrConf'].nil?
+            @AsrConf = AsrConf.new
+            @AsrConf.deserialize(params['AsrConf'])
           end
           unless params['Tags'].nil?
             @Tags = []

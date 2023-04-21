@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量获取文档详情
+
+        # @param request: Request instance for BatchDescribeDocument.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchDescribeDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchDescribeDocumentResponse`
+        def BatchDescribeDocument(request)
+          body = send_request('BatchDescribeDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDescribeDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
 
         # @param request: Request instance for BatchRegister.
@@ -629,7 +653,9 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量获取文档信息
+        # 有新接口替换
+
+        # 批量获取文档信息（已废弃，替代接口BatchDescribeDocument）
 
         # @param request: Request instance for DescribeDocuments.
         # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDocumentsRequest`
@@ -1229,7 +1255,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开始房间的直播
+        # 开始房间的直播。 说明：开始房间接口调用之前需要有用户进入课堂初始化课堂信息。
 
         # @param request: Request instance for StartRoom.
         # @type request: :class:`Tencentcloud::lcic::V20220817::StartRoomRequest`

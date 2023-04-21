@@ -388,6 +388,78 @@ module TencentCloud
         end
       end
 
+      # BatchDescribeDocument请求参数结构体
+      class BatchDescribeDocumentRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增
+        # @type Page: Integer
+        # @param Limit: 每页数据量，最大1000
+        # @type Limit: Integer
+        # @param Permission: 课件权限。[0]：获取owner的私有课件；[1]：获取owner的公开课件; [0,1]：则获取owner的私有课件和公开课件；[2]：获取owner的私有课件和所有人(包括owner)的公开课件
+        # @type Permission: Array
+        # @param Owner: 课件所有者的user_id，不填默认获取SdkAppId下所有课件
+        # @type Owner: String
+        # @param Keyword: 课件名称搜索词
+        # @type Keyword: String
+        # @param DocumentId: 课件id列表，从列表中查询，忽略错误的id
+        # @type DocumentId: Array
+
+        attr_accessor :SdkAppId, :Page, :Limit, :Permission, :Owner, :Keyword, :DocumentId
+        
+        def initialize(sdkappid=nil, page=nil, limit=nil, permission=nil, owner=nil, keyword=nil, documentid=nil)
+          @SdkAppId = sdkappid
+          @Page = page
+          @Limit = limit
+          @Permission = permission
+          @Owner = owner
+          @Keyword = keyword
+          @DocumentId = documentid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @Permission = params['Permission']
+          @Owner = params['Owner']
+          @Keyword = params['Keyword']
+          @DocumentId = params['DocumentId']
+        end
+      end
+
+      # BatchDescribeDocument返回参数结构体
+      class BatchDescribeDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件文档总数
+        # @type Total: Integer
+        # @param Documents: 文档信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Documents: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Documents, :RequestId
+        
+        def initialize(total=nil, documents=nil, requestid=nil)
+          @Total = total
+          @Documents = documents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Documents'].nil?
+            @Documents = []
+            params['Documents'].each do |i|
+              documentinfo_tmp = DocumentInfo.new
+              documentinfo_tmp.deserialize(i)
+              @Documents << documentinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchRegister请求参数结构体
       class BatchRegisterRequest < TencentCloud::Common::AbstractModel
         # @param Users: 批量注册用户信息列表

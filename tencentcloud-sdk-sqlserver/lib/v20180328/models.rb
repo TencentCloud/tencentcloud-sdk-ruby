@@ -1809,10 +1809,16 @@ module TencentCloud
         # @param SlaveZones: 备可用区信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: :class:`Tencentcloud::Sqlserver.v20180328.models.SlaveZones`
+        # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点 TRIPLE-三节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Architecture: String
+        # @param Style: 类型标识，EXCLUSIVE-独享型，SHARED-共享型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Style: String
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones, :Architecture, :Style
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil, architecture=nil, style=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1865,6 +1871,8 @@ module TencentCloud
           @TimeZone = timezone
           @IsDrZone = isdrzone
           @SlaveZones = slavezones
+          @Architecture = architecture
+          @Style = style
         end
 
         def deserialize(params)
@@ -1930,6 +1938,8 @@ module TencentCloud
             @SlaveZones = SlaveZones.new
             @SlaveZones.deserialize(params['SlaveZones'])
           end
+          @Architecture = params['Architecture']
+          @Style = params['Style']
         end
       end
 
@@ -7551,16 +7561,22 @@ module TencentCloud
         # @type TargetInstanceId: String
         # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。
         # @type RenameRestore: Array
-        # @param GroupId: 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
+        # @param Type: 回档类型，0-覆盖方式；1-重命名方式，默认1
+        # @type Type: Integer
+        # @param DBList: 需要覆盖回档的数据库，只有覆盖回档时必填
+        # @type DBList: Array
+        # @param GroupId: 备份任务组ID，在单库备份文件模式下
         # @type GroupId: String
 
-        attr_accessor :InstanceId, :BackupId, :TargetInstanceId, :RenameRestore, :GroupId
+        attr_accessor :InstanceId, :BackupId, :TargetInstanceId, :RenameRestore, :Type, :DBList, :GroupId
         
-        def initialize(instanceid=nil, backupid=nil, targetinstanceid=nil, renamerestore=nil, groupid=nil)
+        def initialize(instanceid=nil, backupid=nil, targetinstanceid=nil, renamerestore=nil, type=nil, dblist=nil, groupid=nil)
           @InstanceId = instanceid
           @BackupId = backupid
           @TargetInstanceId = targetinstanceid
           @RenameRestore = renamerestore
+          @Type = type
+          @DBList = dblist
           @GroupId = groupid
         end
 
@@ -7576,6 +7592,8 @@ module TencentCloud
               @RenameRestore << renamerestoredatabase_tmp
             end
           end
+          @Type = params['Type']
+          @DBList = params['DBList']
           @GroupId = params['GroupId']
         end
       end
@@ -7606,22 +7624,22 @@ module TencentCloud
         # @type InstanceId: String
         # @param Type: 回档类型，0-回档的数据库覆盖原库；1-回档的数据库以重命名的形式生成，不覆盖原库
         # @type Type: Integer
-        # @param DBs: 需要回档的数据库
-        # @type DBs: Array
         # @param Time: 回档目标时间点
         # @type Time: String
+        # @param DBs: 需要回档的数据库
+        # @type DBs: Array
         # @param TargetInstanceId: 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
         # @type TargetInstanceId: String
         # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行重命名，仅在Type = 1重命名回档方式有效；不填则按照默认方式命名库，DBs参数确定要恢复的库
         # @type RenameRestore: Array
 
-        attr_accessor :InstanceId, :Type, :DBs, :Time, :TargetInstanceId, :RenameRestore
+        attr_accessor :InstanceId, :Type, :Time, :DBs, :TargetInstanceId, :RenameRestore
         
-        def initialize(instanceid=nil, type=nil, dbs=nil, time=nil, targetinstanceid=nil, renamerestore=nil)
+        def initialize(instanceid=nil, type=nil, time=nil, dbs=nil, targetinstanceid=nil, renamerestore=nil)
           @InstanceId = instanceid
           @Type = type
-          @DBs = dbs
           @Time = time
+          @DBs = dbs
           @TargetInstanceId = targetinstanceid
           @RenameRestore = renamerestore
         end
@@ -7629,8 +7647,8 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Type = params['Type']
-          @DBs = params['DBs']
           @Time = params['Time']
+          @DBs = params['DBs']
           @TargetInstanceId = params['TargetInstanceId']
           unless params['RenameRestore'].nil?
             @RenameRestore = []

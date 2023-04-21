@@ -4617,6 +4617,127 @@ module TencentCloud
         end
       end
 
+      # DescribePulsarProInstanceDetail请求参数结构体
+      class DescribePulsarProInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribePulsarProInstanceDetail返回参数结构体
+      class DescribePulsarProInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfo: 集群信息
+        # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PulsarProClusterInfo`
+        # @param NetworkAccessPointInfos: 集群网络接入点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccessPointInfos: Array
+        # @param ClusterSpecInfo: 集群规格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterSpecInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PulsarProClusterSpecInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfo, :NetworkAccessPointInfos, :ClusterSpecInfo, :RequestId
+        
+        def initialize(clusterinfo=nil, networkaccesspointinfos=nil, clusterspecinfo=nil, requestid=nil)
+          @ClusterInfo = clusterinfo
+          @NetworkAccessPointInfos = networkaccesspointinfos
+          @ClusterSpecInfo = clusterspecinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = PulsarProClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
+          unless params['NetworkAccessPointInfos'].nil?
+            @NetworkAccessPointInfos = []
+            params['NetworkAccessPointInfos'].each do |i|
+              pulsarnetworkaccesspointinfo_tmp = PulsarNetworkAccessPointInfo.new
+              pulsarnetworkaccesspointinfo_tmp.deserialize(i)
+              @NetworkAccessPointInfos << pulsarnetworkaccesspointinfo_tmp
+            end
+          end
+          unless params['ClusterSpecInfo'].nil?
+            @ClusterSpecInfo = PulsarProClusterSpecInfo.new
+            @ClusterSpecInfo.deserialize(params['ClusterSpecInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePulsarProInstances请求参数结构体
+      class DescribePulsarProInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询条件过滤器
+        # @type Filters: Array
+        # @param Limit: 查询数目上限，默认20
+        # @type Limit: Integer
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Limit, :Offset
+        
+        def initialize(filters=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePulsarProInstances返回参数结构体
+      class DescribePulsarProInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 未分页的总数目
+        # @type TotalCount: Integer
+        # @param Instances: 实例信息列表
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Instances, :RequestId
+        
+        def initialize(totalcount=nil, instances=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              pulsarproinstance_tmp = PulsarProInstance.new
+              pulsarproinstance_tmp.deserialize(i)
+              @Instances << pulsarproinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRabbitMQNodeList请求参数结构体
       class DescribeRabbitMQNodeListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: rabbitmq集群ID
@@ -6916,6 +7037,212 @@ module TencentCloud
           @AverageMsgSize = params['AverageMsgSize']
           @ConnectedSince = params['ConnectedSince']
           @Partition = params['Partition']
+        end
+      end
+
+      # Pulsar 网络接入点信息
+      class PulsarNetworkAccessPointInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的id，支撑网和公网接入点，该字段为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网id，支撑网和公网接入点，该字段为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Endpoint: 接入地址
+        # @type Endpoint: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param RouteType: 接入点类型：
+        # 0：支撑网接入点
+        # 1：VPC接入点
+        # 2：公网接入点
+        # @type RouteType: Integer
+
+        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType
+        
+        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Endpoint = endpoint
+          @InstanceId = instanceid
+          @RouteType = routetype
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Endpoint = params['Endpoint']
+          @InstanceId = params['InstanceId']
+          @RouteType = params['RouteType']
+        end
+      end
+
+      # Pulsar专业版集群信息
+      class PulsarProClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称。
+        # @type ClusterName: String
+        # @param Remark: 说明信息。
+        # @type Remark: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Status: 集群状态，0:创建中，1:正常，2:隔离
+        # @type Status: Integer
+        # @param Version: 集群版本
+        # @type Version: String
+        # @param NodeDistribution: 节点分布情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeDistribution: Array
+        # @param MaxStorage: 最大储存容量，单位：MB
+        # @type MaxStorage: Integer
+
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage
+        
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Remark = remark
+          @CreateTime = createtime
+          @Status = status
+          @Version = version
+          @NodeDistribution = nodedistribution
+          @MaxStorage = maxstorage
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @Version = params['Version']
+          unless params['NodeDistribution'].nil?
+            @NodeDistribution = []
+            params['NodeDistribution'].each do |i|
+              instancenodedistribution_tmp = InstanceNodeDistribution.new
+              instancenodedistribution_tmp.deserialize(i)
+              @NodeDistribution << instancenodedistribution_tmp
+            end
+          end
+          @MaxStorage = params['MaxStorage']
+        end
+      end
+
+      # Pulsar专业版集群规格信息
+      class PulsarProClusterSpecInfo < TencentCloud::Common::AbstractModel
+        # @param SpecName: 集群规格名称
+        # @type SpecName: String
+        # @param MaxTps: 峰值tps
+        # @type MaxTps: Integer
+        # @param MaxBandWidth: 峰值带宽。单位：mbps
+        # @type MaxBandWidth: Integer
+        # @param MaxNamespaces: 最大命名空间个数
+        # @type MaxNamespaces: Integer
+        # @param MaxTopics: 最大主题分区数
+        # @type MaxTopics: Integer
+        # @param ScalableTps: 规格外弹性TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalableTps: Integer
+
+        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps
+        
+        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil)
+          @SpecName = specname
+          @MaxTps = maxtps
+          @MaxBandWidth = maxbandwidth
+          @MaxNamespaces = maxnamespaces
+          @MaxTopics = maxtopics
+          @ScalableTps = scalabletps
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @MaxTps = params['MaxTps']
+          @MaxBandWidth = params['MaxBandWidth']
+          @MaxNamespaces = params['MaxNamespaces']
+          @MaxTopics = params['MaxTopics']
+          @ScalableTps = params['ScalableTps']
+        end
+      end
+
+      # Pulsar专业版实例信息
+      class PulsarProInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceVersion: 实例版本
+        # @type InstanceVersion: String
+        # @param Status: 实例状态，0-创建中，1-正常，2-隔离中，3-已销毁，4 - 异常, 5 - 发货失败，6-变配中，7-变配失败
+        # @type Status: Integer
+        # @param ConfigDisplay: 实例配置规格名称
+        # @type ConfigDisplay: String
+        # @param MaxTps: 峰值TPS
+        # @type MaxTps: Integer
+        # @param MaxStorage: 存储容量，GB为单位
+        # @type MaxStorage: Integer
+        # @param ExpireTime: 实例到期时间，毫秒为单位
+        # @type ExpireTime: Integer
+        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @type AutoRenewFlag: Integer
+        # @param PayMode: 0-后付费，1-预付费
+        # @type PayMode: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param SpecName: 实例配置ID
+        # @type SpecName: String
+        # @param ScalableTps: 规格外弹性TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalableTps: Integer
+        # @param VpcId: VPC的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param MaxBandWidth: 峰值带宽。单位：mbps
+        # @type MaxBandWidth: Integer
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth
+        
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceVersion = instanceversion
+          @Status = status
+          @ConfigDisplay = configdisplay
+          @MaxTps = maxtps
+          @MaxStorage = maxstorage
+          @ExpireTime = expiretime
+          @AutoRenewFlag = autorenewflag
+          @PayMode = paymode
+          @Remark = remark
+          @SpecName = specname
+          @ScalableTps = scalabletps
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @MaxBandWidth = maxbandwidth
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceVersion = params['InstanceVersion']
+          @Status = params['Status']
+          @ConfigDisplay = params['ConfigDisplay']
+          @MaxTps = params['MaxTps']
+          @MaxStorage = params['MaxStorage']
+          @ExpireTime = params['ExpireTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @PayMode = params['PayMode']
+          @Remark = params['Remark']
+          @SpecName = params['SpecName']
+          @ScalableTps = params['ScalableTps']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @MaxBandWidth = params['MaxBandWidth']
         end
       end
 

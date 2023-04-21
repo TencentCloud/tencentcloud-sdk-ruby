@@ -1621,6 +1621,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Pulsar专业版集群实例信息
+
+        # @param request: Request instance for DescribePulsarProInstanceDetail.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstanceDetailResponse`
+        def DescribePulsarProInstanceDetail(request)
+          body = send_request('DescribePulsarProInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePulsarProInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户已购的Pulsar专业版实例列表
+
+        # @param request: Request instance for DescribePulsarProInstances.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstancesResponse`
+        def DescribePulsarProInstances(request)
+          body = send_request('DescribePulsarProInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePulsarProInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # RabbitMQ专享版查询节点列表
 
         # @param request: Request instance for DescribeRabbitMQNodeList.

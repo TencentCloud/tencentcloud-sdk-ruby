@@ -61,6 +61,96 @@ module TencentCloud
         end
       end
 
+      # 审计日志文件
+      class AuditLogFile < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 审计日志文件生成异步任务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: Integer
+        # @param FileName: 审计日志文件名称。
+        # @type FileName: String
+        # @param CreateTime: 审计日志文件创建时间。格式为 : "2019-03-20 17:09:13"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 文件状态值。可能返回的值为：
+        # "creating" - 生成中;
+        # "failed" - 创建失败;
+        # "success" - 已生成;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param FileSize: 文件大小，单位为 KB。
+        # @type FileSize: Float
+        # @param DownloadUrl: 审计日志下载地址。
+        # @type DownloadUrl: String
+        # @param ErrMsg: 错误信息。
+        # @type ErrMsg: String
+        # @param Progress: 文件生成进度。
+        # @type Progress: Float
+        # @param FinishTime: 文件生成成功时间。
+        # @type FinishTime: String
+
+        attr_accessor :AsyncRequestId, :FileName, :CreateTime, :Status, :FileSize, :DownloadUrl, :ErrMsg, :Progress, :FinishTime
+        
+        def initialize(asyncrequestid=nil, filename=nil, createtime=nil, status=nil, filesize=nil, downloadurl=nil, errmsg=nil, progress=nil, finishtime=nil)
+          @AsyncRequestId = asyncrequestid
+          @FileName = filename
+          @CreateTime = createtime
+          @Status = status
+          @FileSize = filesize
+          @DownloadUrl = downloadurl
+          @ErrMsg = errmsg
+          @Progress = progress
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @FileName = params['FileName']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @FileSize = params['FileSize']
+          @DownloadUrl = params['DownloadUrl']
+          @ErrMsg = params['ErrMsg']
+          @Progress = params['Progress']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 过滤条件。可按设置的过滤条件过滤日志。
+      class AuditLogFilter < TencentCloud::Common::AbstractModel
+        # @param Host: 客户端地址。
+        # @type Host: Array
+        # @param DBName: 数据库名称。
+        # @type DBName: Array
+        # @param User: 用户名。
+        # @type User: Array
+        # @param SentRows: 返回行数。表示筛选返回行数大于该值的审计日志。
+        # @type SentRows: Integer
+        # @param AffectRows: 影响行数。表示筛选影响行数大于该值的审计日志。
+        # @type AffectRows: Integer
+        # @param ExecTime: 执行时间。单位为：µs。表示筛选执行时间大于该值的审计日志。
+        # @type ExecTime: Integer
+
+        attr_accessor :Host, :DBName, :User, :SentRows, :AffectRows, :ExecTime
+        
+        def initialize(host=nil, dbname=nil, user=nil, sentrows=nil, affectrows=nil, exectime=nil)
+          @Host = host
+          @DBName = dbname
+          @User = user
+          @SentRows = sentrows
+          @AffectRows = affectrows
+          @ExecTime = exectime
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @DBName = params['DBName']
+          @User = params['User']
+          @SentRows = params['SentRows']
+          @AffectRows = params['AffectRows']
+          @ExecTime = params['ExecTime']
+        end
+      end
+
       # CancelKillTask请求参数结构体
       class CancelKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -122,6 +212,65 @@ module TencentCloud
           @Id = params['Id']
           @Name = params['Name']
           @Mail = params['Mail']
+        end
+      end
+
+      # CreateAuditLogFile请求参数结构体
+      class CreateAuditLogFileRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
+        # @type StartTime: String
+        # @param EndTime: 截止时间，如“2019-09-11 10:13:14”。
+        # @type EndTime: String
+        # @param Filter: 过滤条件。可按设置的过滤条件过滤日志。
+        # @type Filter: :class:`Tencentcloud::Dbbrain.v20210527.models.AuditLogFilter`
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId, :StartTime, :EndTime, :Filter
+        
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil, starttime=nil, endtime=nil, filter=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filter'].nil?
+            @Filter = AuditLogFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # CreateAuditLogFile返回参数结构体
+      class CreateAuditLogFileResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 审计日志文件下载的任务ID
+        # @type AsyncRequestId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -560,6 +709,50 @@ module TencentCloud
         end
       end
 
+      # DeleteAuditLogFile请求参数结构体
+      class DeleteAuditLogFileRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param AsyncRequestId: 审计日志文件生成异步任务ID。
+        # @type AsyncRequestId: Integer
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId, :AsyncRequestId
+        
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil, asyncrequestid=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+          @AsyncRequestId = asyncrequestid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+          @AsyncRequestId = params['AsyncRequestId']
+        end
+      end
+
+      # DeleteAuditLogFile返回参数结构体
+      class DeleteAuditLogFileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDBDiagReportTasks请求参数结构体
       class DeleteDBDiagReportTasksRequest < TencentCloud::Common::AbstractModel
         # @param AsyncRequestIds: 需要删除的任务id列表
@@ -783,6 +976,71 @@ module TencentCloud
               groupitem_tmp = GroupItem.new
               groupitem_tmp.deserialize(i)
               @Groups << groupitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditLogFiles请求参数结构体
+      class DescribeAuditLogFilesRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 查询数目，默认为20，最大为100。
+        # @type Limit: Integer
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId, :Offset, :Limit
+        
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil, offset=nil, limit=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAuditLogFiles返回参数结构体
+      class DescribeAuditLogFilesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的审计日志文件个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 审计日志文件详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditlogfile_tmp = AuditLogFile.new
+              auditlogfile_tmp.deserialize(i)
+              @Items << auditlogfile_tmp
             end
           end
           @RequestId = params['RequestId']

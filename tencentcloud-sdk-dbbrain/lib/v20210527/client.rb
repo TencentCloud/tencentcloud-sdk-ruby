@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建云数据库实例的审计日志文件，最多下载600w审计日志。
+
+        # @param request: Request instance for CreateAuditLogFile.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateAuditLogFileRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateAuditLogFileResponse`
+        def CreateAuditLogFile(request)
+          body = send_request('CreateAuditLogFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建健康报告，并可以选择是否发送邮件。
 
         # @param request: Request instance for CreateDBDiagReportTask.
@@ -269,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于删除云数据库实例的审计日志文件。
+
+        # @param request: Request instance for DeleteAuditLogFile.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DeleteAuditLogFileRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DeleteAuditLogFileResponse`
+        def DeleteAuditLogFile(request)
+          body = send_request('DeleteAuditLogFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据任务id删除健康报告生成任务
 
         # @param request: Request instance for DeleteDBDiagReportTasks.
@@ -375,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAllUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于创建云数据库实例的审计日志文件
+
+        # @param request: Request instance for DescribeAuditLogFiles.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeAuditLogFilesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeAuditLogFilesResponse`
+        def DescribeAuditLogFiles(request)
+          body = send_request('DescribeAuditLogFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditLogFilesResponse.new
             model.deserialize(response['Response'])
             model
           else

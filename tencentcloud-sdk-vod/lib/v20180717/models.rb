@@ -10912,10 +10912,13 @@ module TencentCloud
         # @param CreateTime: 域名添加到腾讯云点播系统中的时间。
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
         # @type CreateTime: String
+        # @param QUICConfig: 域名 QUIC 配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
 
-        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime
+        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig
         
-        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil)
+        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil, quicconfig=nil)
           @Domain = domain
           @AccelerateAreaInfos = accelerateareainfos
           @DeployStatus = deploystatus
@@ -10923,6 +10926,7 @@ module TencentCloud
           @UrlSignatureAuthPolicy = urlsignatureauthpolicy
           @RefererAuthPolicy = refererauthpolicy
           @CreateTime = createtime
+          @QUICConfig = quicconfig
         end
 
         def deserialize(params)
@@ -10949,6 +10953,10 @@ module TencentCloud
             @RefererAuthPolicy.deserialize(params['RefererAuthPolicy'])
           end
           @CreateTime = params['CreateTime']
+          unless params['QUICConfig'].nil?
+            @QUICConfig = DomainQUICConfig.new
+            @QUICConfig.deserialize(params['QUICConfig'])
+          end
         end
       end
 
@@ -10966,6 +10974,24 @@ module TencentCloud
 
         def deserialize(params)
           @CertExpireTime = params['CertExpireTime']
+        end
+      end
+
+      # 域名 QUIC 配置信息
+      class DomainQUICConfig < TencentCloud::Common::AbstractModel
+        # @param Status: QUIC 配置状态，可选值：
+        # <li>Enabled: 启用；</li>
+        # <li>Disabled: 禁用。</li>
+        # @type Status: String
+
+        attr_accessor :Status
+        
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 
@@ -16925,14 +16951,17 @@ module TencentCloud
         # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
         # @param UrlSignatureAuthPolicy: [Key 防盗链](/document/product/266/14047)规则。
         # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
+        # @param QUICConfig: QUIC 配置。
+        # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
 
-        attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy
+        attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :QUICConfig
         
-        def initialize(domain=nil, subappid=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil)
+        def initialize(domain=nil, subappid=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil, quicconfig=nil)
           @Domain = domain
           @SubAppId = subappid
           @RefererAuthPolicy = refererauthpolicy
           @UrlSignatureAuthPolicy = urlsignatureauthpolicy
+          @QUICConfig = quicconfig
         end
 
         def deserialize(params)
@@ -16945,6 +16974,10 @@ module TencentCloud
           unless params['UrlSignatureAuthPolicy'].nil?
             @UrlSignatureAuthPolicy = UrlSignatureAuthPolicy.new
             @UrlSignatureAuthPolicy.deserialize(params['UrlSignatureAuthPolicy'])
+          end
+          unless params['QUICConfig'].nil?
+            @QUICConfig = DomainQUICConfig.new
+            @QUICConfig.deserialize(params['QUICConfig'])
           end
         end
       end
@@ -20320,20 +20353,32 @@ module TencentCloud
 
       # 智能去除水印任务的输出。
       class RemoveWaterMarkTaskOutput < TencentCloud::Common::AbstractModel
-        # @param FileId: 视频 ID。
+        # @param FileId: 媒体文件 ID。
         # @type FileId: String
+        # @param FileType: 文件类型，例如 mp4、mp3 等。
+        # @type FileType: String
+        # @param FileUrl: 媒体文件播放地址。
+        # @type FileUrl: String
+        # @param MediaName: 文件名称，最长 64 个字符。
+        # @type MediaName: String
         # @param MetaData: 元信息。包括大小、时长、视频流信息、音频流信息等。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
 
-        attr_accessor :FileId, :MetaData
+        attr_accessor :FileId, :FileType, :FileUrl, :MediaName, :MetaData
         
-        def initialize(fileid=nil, metadata=nil)
+        def initialize(fileid=nil, filetype=nil, fileurl=nil, medianame=nil, metadata=nil)
           @FileId = fileid
+          @FileType = filetype
+          @FileUrl = fileurl
+          @MediaName = medianame
           @MetaData = metadata
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @MediaName = params['MediaName']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])

@@ -1368,6 +1368,61 @@ module TencentCloud
         end
       end
 
+      # DescribeCompanies请求参数结构体
+      class DescribeCompaniesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页每页限制数
+        # @type Limit: Integer
+        # @param CompanyId: 公司ID
+        # @type CompanyId: Integer
+
+        attr_accessor :Offset, :Limit, :CompanyId
+        
+        def initialize(offset=nil, limit=nil, companyid=nil)
+          @Offset = offset
+          @Limit = limit
+          @CompanyId = companyid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @CompanyId = params['CompanyId']
+        end
+      end
+
+      # DescribeCompanies返回参数结构体
+      class DescribeCompaniesResponse < TencentCloud::Common::AbstractModel
+        # @param Companies: 公司列表
+        # @type Companies: Array
+        # @param TotalCount: 公司总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Companies, :TotalCount, :RequestId
+        
+        def initialize(companies=nil, totalcount=nil, requestid=nil)
+          @Companies = companies
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Companies'].nil?
+            @Companies = []
+            params['Companies'].each do |i|
+              companyinfo_tmp = CompanyInfo.new
+              companyinfo_tmp.deserialize(i)
+              @Companies << companyinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeployedResources请求参数结构体
       class DescribeDeployedResourcesRequest < TencentCloud::Common::AbstractModel
         # @param CertificateIds: 证书ID

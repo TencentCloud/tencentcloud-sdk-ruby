@@ -230,10 +230,16 @@ module TencentCloud
         # @param TotalCount: 该实例已上报的总应用数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
+        # @param LogSet: CLS日志集 | ES集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSet: String
+        # @param MetricDuration: Metric数据保存时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDuration: Integer
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration
         
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -258,6 +264,8 @@ module TencentCloud
           @LogTopicID = logtopicid
           @ClientCount = clientcount
           @TotalCount = totalcount
+          @LogSet = logset
+          @MetricDuration = metricduration
         end
 
         def deserialize(params)
@@ -292,6 +300,8 @@ module TencentCloud
           @LogTopicID = params['LogTopicID']
           @ClientCount = params['ClientCount']
           @TotalCount = params['TotalCount']
+          @LogSet = params['LogSet']
+          @MetricDuration = params['MetricDuration']
         end
       end
 

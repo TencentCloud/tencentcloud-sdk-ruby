@@ -375,6 +375,56 @@ module TencentCloud
         end
       end
 
+      # 仓储仓库信息
+      class BackupStorageLocation < TencentCloud::Common::AbstractModel
+        # @param Name: 备份仓库名称
+        # @type Name: String
+        # @param StorageRegion: 存储仓库所属地域，比如COS广州(ap-guangzhou)
+        # @type StorageRegion: String
+        # @param Provider: 存储服务提供方，默认腾讯云
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Provider: String
+        # @param Bucket: 对象存储桶名称，如果是COS必须是tke-backup-前缀开头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param Path: 对象存储桶路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param State: 存储仓库状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Message: 详细状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param LastValidationTime: 最后一次检查时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastValidationTime: String
+
+        attr_accessor :Name, :StorageRegion, :Provider, :Bucket, :Path, :State, :Message, :LastValidationTime
+        
+        def initialize(name=nil, storageregion=nil, provider=nil, bucket=nil, path=nil, state=nil, message=nil, lastvalidationtime=nil)
+          @Name = name
+          @StorageRegion = storageregion
+          @Provider = provider
+          @Bucket = bucket
+          @Path = path
+          @State = state
+          @Message = message
+          @LastValidationTime = lastvalidationtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StorageRegion = params['StorageRegion']
+          @Provider = params['Provider']
+          @Bucket = params['Bucket']
+          @Path = params['Path']
+          @State = params['State']
+          @Message = params['Message']
+          @LastValidationTime = params['LastValidationTime']
+        end
+      end
+
       # cuDNN的版本信息
       class CUDNN < TencentCloud::Common::AbstractModel
         # @param Version: cuDNN的版本
@@ -1711,6 +1761,54 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Enabled = params['Enabled']
+        end
+      end
+
+      # CreateBackupStorageLocation请求参数结构体
+      class CreateBackupStorageLocationRequest < TencentCloud::Common::AbstractModel
+        # @param StorageRegion: 存储仓库所属地域，比如COS广州(ap-guangzhou)
+        # @type StorageRegion: String
+        # @param Bucket: 对象存储桶名称，如果是COS必须是tke-backup前缀开头
+        # @type Bucket: String
+        # @param Name: 备份仓库名称
+        # @type Name: String
+        # @param Provider: 存储服务提供方，默认腾讯云
+        # @type Provider: String
+        # @param Path: 对象存储桶路径
+        # @type Path: String
+
+        attr_accessor :StorageRegion, :Bucket, :Name, :Provider, :Path
+        
+        def initialize(storageregion=nil, bucket=nil, name=nil, provider=nil, path=nil)
+          @StorageRegion = storageregion
+          @Bucket = bucket
+          @Name = name
+          @Provider = provider
+          @Path = path
+        end
+
+        def deserialize(params)
+          @StorageRegion = params['StorageRegion']
+          @Bucket = params['Bucket']
+          @Name = params['Name']
+          @Provider = params['Provider']
+          @Path = params['Path']
+        end
+      end
+
+      # CreateBackupStorageLocation返回参数结构体
+      class CreateBackupStorageLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3553,6 +3651,38 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupStorageLocation请求参数结构体
+      class DeleteBackupStorageLocationRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 备份仓库名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteBackupStorageLocation返回参数结构体
+      class DeleteBackupStorageLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClusterAsGroups请求参数结构体
       class DeleteClusterAsGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID，通过[DescribeClusters](https://cloud.tencent.com/document/api/457/31862)接口获取。
@@ -4651,6 +4781,50 @@ module TencentCloud
           @Versions = params['Versions']
           @EdgeVersionLatest = params['EdgeVersionLatest']
           @EdgeVersionCurrent = params['EdgeVersionCurrent']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupStorageLocations请求参数结构体
+      class DescribeBackupStorageLocationsRequest < TencentCloud::Common::AbstractModel
+        # @param Names: 多个备份仓库名称，如果不填写，默认返回当前地域所有存储仓库名称
+        # @type Names: Array
+
+        attr_accessor :Names
+        
+        def initialize(names=nil)
+          @Names = names
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+        end
+      end
+
+      # DescribeBackupStorageLocations返回参数结构体
+      class DescribeBackupStorageLocationsResponse < TencentCloud::Common::AbstractModel
+        # @param BackupStorageLocationSet: 详细备份仓库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStorageLocationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupStorageLocationSet, :RequestId
+        
+        def initialize(backupstoragelocationset=nil, requestid=nil)
+          @BackupStorageLocationSet = backupstoragelocationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupStorageLocationSet'].nil?
+            @BackupStorageLocationSet = []
+            params['BackupStorageLocationSet'].each do |i|
+              backupstoragelocation_tmp = BackupStorageLocation.new
+              backupstoragelocation_tmp.deserialize(i)
+              @BackupStorageLocationSet << backupstoragelocation_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9250,10 +9424,13 @@ module TencentCloud
         # @param ChargeType: 集群付费模式，支持POSTPAID_BY_HOUR或者PREPAID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
+        # @param EdgeVersion: 边缘集群组件的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level, :AutoUpgradeClusterLevel, :ChargeType
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion
         
-        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil, autoupgradeclusterlevel=nil, chargetype=nil)
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @VpcId = vpcid
@@ -9269,6 +9446,7 @@ module TencentCloud
           @Level = level
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @ChargeType = chargetype
+          @EdgeVersion = edgeversion
         end
 
         def deserialize(params)
@@ -9290,6 +9468,7 @@ module TencentCloud
           @Level = params['Level']
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
           @ChargeType = params['ChargeType']
+          @EdgeVersion = params['EdgeVersion']
         end
       end
 
@@ -9843,15 +10022,18 @@ module TencentCloud
         # @type Subnets: Array
         # @param ExpiredSeconds: 在固定IP模式下，Pod销毁后退还IP的时间，传参必须大于300；不传默认IP永不销毁。
         # @type ExpiredSeconds: Integer
+        # @param SkipAddingNonMasqueradeCIDRs: 是否同步添加 vpc 网段到 ip-masq-agent-config 的 NonMasqueradeCIDRs 字段，默认 false 会同步添加
+        # @type SkipAddingNonMasqueradeCIDRs: Boolean
 
-        attr_accessor :ClusterId, :VpcCniType, :EnableStaticIp, :Subnets, :ExpiredSeconds
+        attr_accessor :ClusterId, :VpcCniType, :EnableStaticIp, :Subnets, :ExpiredSeconds, :SkipAddingNonMasqueradeCIDRs
         
-        def initialize(clusterid=nil, vpccnitype=nil, enablestaticip=nil, subnets=nil, expiredseconds=nil)
+        def initialize(clusterid=nil, vpccnitype=nil, enablestaticip=nil, subnets=nil, expiredseconds=nil, skipaddingnonmasqueradecidrs=nil)
           @ClusterId = clusterid
           @VpcCniType = vpccnitype
           @EnableStaticIp = enablestaticip
           @Subnets = subnets
           @ExpiredSeconds = expiredseconds
+          @SkipAddingNonMasqueradeCIDRs = skipaddingnonmasqueradecidrs
         end
 
         def deserialize(params)
@@ -9860,6 +10042,7 @@ module TencentCloud
           @EnableStaticIp = params['EnableStaticIp']
           @Subnets = params['Subnets']
           @ExpiredSeconds = params['ExpiredSeconds']
+          @SkipAddingNonMasqueradeCIDRs = params['SkipAddingNonMasqueradeCIDRs']
         end
       end
 

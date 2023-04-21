@@ -230,9 +230,9 @@ module TencentCloud
         # "deblocking"：解封中
         # "isolate"：回收隔离中
         # @type Status: String
-        # @param ExpiredTime: 购买时间
+        # @param ExpiredTime: 到期时间
         # @type ExpiredTime: String
-        # @param CreatedTime: 到期时间
+        # @param CreatedTime: 购买时间
         # @type CreatedTime: String
         # @param Name: 资产实例的名称
         # @type Name: String
@@ -516,10 +516,13 @@ module TencentCloud
         # @type ElasticServiceBandwidth: Integer
         # @param GiftServiceBandWidth: 赠送的业务带宽
         # @type GiftServiceBandWidth: Integer
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth, :GiftServiceBandWidth
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -539,6 +542,7 @@ module TencentCloud
           @Line = line
           @ElasticServiceBandwidth = elasticservicebandwidth
           @GiftServiceBandWidth = giftservicebandwidth
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -590,6 +594,7 @@ module TencentCloud
           @Line = params['Line']
           @ElasticServiceBandwidth = params['ElasticServiceBandwidth']
           @GiftServiceBandWidth = params['GiftServiceBandWidth']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -3164,10 +3169,14 @@ module TencentCloud
         # @type Domain: String
         # @param ProtoInfo: 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
         # @type ProtoInfo: Array
+        # @param BusinessType: 业务类型可取值domain, port
+        # port：端口业务
+        # domain：域名业务
+        # @type BusinessType: String
 
-        attr_accessor :Statistics, :Business, :Period, :StartTime, :EndTime, :Id, :MetricName, :Domain, :ProtoInfo
+        attr_accessor :Statistics, :Business, :Period, :StartTime, :EndTime, :Id, :MetricName, :Domain, :ProtoInfo, :BusinessType
         
-        def initialize(statistics=nil, business=nil, period=nil, starttime=nil, endtime=nil, id=nil, metricname=nil, domain=nil, protoinfo=nil)
+        def initialize(statistics=nil, business=nil, period=nil, starttime=nil, endtime=nil, id=nil, metricname=nil, domain=nil, protoinfo=nil, businesstype=nil)
           @Statistics = statistics
           @Business = business
           @Period = period
@@ -3177,6 +3186,7 @@ module TencentCloud
           @MetricName = metricname
           @Domain = domain
           @ProtoInfo = protoinfo
+          @BusinessType = businesstype
         end
 
         def deserialize(params)
@@ -3196,6 +3206,7 @@ module TencentCloud
               @ProtoInfo << protocolport_tmp
             end
           end
+          @BusinessType = params['BusinessType']
         end
       end
 
@@ -3205,20 +3216,25 @@ module TencentCloud
         # @type DataList: Array
         # @param MetricName: 统计纬度
         # @type MetricName: String
+        # @param MaxData: 返回DataList中的最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxData: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataList, :MetricName, :RequestId
+        attr_accessor :DataList, :MetricName, :MaxData, :RequestId
         
-        def initialize(datalist=nil, metricname=nil, requestid=nil)
+        def initialize(datalist=nil, metricname=nil, maxdata=nil, requestid=nil)
           @DataList = datalist
           @MetricName = metricname
+          @MaxData = maxdata
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DataList = params['DataList']
           @MetricName = params['MetricName']
+          @MaxData = params['MaxData']
           @RequestId = params['RequestId']
         end
       end
@@ -4276,10 +4292,12 @@ module TencentCloud
         # @type FilterConvoy: Integer
         # @param ExcludeAdvancedInfo: 默认false；接口传true，返回数据中不包含高级信息，高级信息包含：InstanceList[0].Usage。
         # @type ExcludeAdvancedInfo: Boolean
+        # @param FilterAssetIpList: 资产IP数组
+        # @type FilterAssetIpList: Array
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo, :FilterAssetIpList
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil, excludeadvancedinfo=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil, excludeadvancedinfo=nil, filterassetiplist=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4297,6 +4315,7 @@ module TencentCloud
           @FilterTrialFlag = filtertrialflag
           @FilterConvoy = filterconvoy
           @ExcludeAdvancedInfo = excludeadvancedinfo
+          @FilterAssetIpList = filterassetiplist
         end
 
         def deserialize(params)
@@ -4320,6 +4339,7 @@ module TencentCloud
           @FilterTrialFlag = params['FilterTrialFlag']
           @FilterConvoy = params['FilterConvoy']
           @ExcludeAdvancedInfo = params['ExcludeAdvancedInfo']
+          @FilterAssetIpList = params['FilterAssetIpList']
         end
       end
 
@@ -4961,19 +4981,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param FilterDomain: 调度域名搜索
         # @type FilterDomain: String
+        # @param Status: 运行状态 0 代表未运行  1 正在运行  2 运行异常
+        # @type Status: String
 
-        attr_accessor :Offset, :Limit, :FilterDomain
+        attr_accessor :Offset, :Limit, :FilterDomain, :Status
         
-        def initialize(offset=nil, limit=nil, filterdomain=nil)
+        def initialize(offset=nil, limit=nil, filterdomain=nil, status=nil)
           @Offset = offset
           @Limit = limit
           @FilterDomain = filterdomain
+          @Status = status
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @FilterDomain = params['FilterDomain']
+          @Status = params['Status']
         end
       end
 
@@ -5278,8 +5302,6 @@ module TencentCloud
 
       # DescribeOverviewCCTrend请求参数结构体
       class DescribeOverviewCCTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
-        # @type Business: String
         # @param Period: 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
         # @type Period: Integer
         # @param StartTime: 统计开始时间
@@ -5288,29 +5310,31 @@ module TencentCloud
         # @type EndTime: String
         # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
         # @type MetricName: String
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
+        # @type Business: String
         # @param IpList: 资源的IP
         # @type IpList: Array
         # @param Id: 资源实例ID
         # @type Id: String
 
-        attr_accessor :Business, :Period, :StartTime, :EndTime, :MetricName, :IpList, :Id
+        attr_accessor :Period, :StartTime, :EndTime, :MetricName, :Business, :IpList, :Id
         
-        def initialize(business=nil, period=nil, starttime=nil, endtime=nil, metricname=nil, iplist=nil, id=nil)
-          @Business = business
+        def initialize(period=nil, starttime=nil, endtime=nil, metricname=nil, business=nil, iplist=nil, id=nil)
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
           @MetricName = metricname
+          @Business = business
           @IpList = iplist
           @Id = id
         end
 
         def deserialize(params)
-          @Business = params['Business']
           @Period = params['Period']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @MetricName = params['MetricName']
+          @Business = params['Business']
           @IpList = params['IpList']
           @Id = params['Id']
         end
@@ -5405,8 +5429,6 @@ module TencentCloud
 
       # DescribeOverviewDDoSTrend请求参数结构体
       class DescribeOverviewDDoSTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
-        # @type Business: String
         # @param Period: 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
         # @type Period: Integer
         # @param StartTime: 统计开始时间
@@ -5415,29 +5437,31 @@ module TencentCloud
         # @type EndTime: String
         # @param MetricName: 指标，取值[bps(攻击流量带宽，pps(攻击包速率))]
         # @type MetricName: String
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
+        # @type Business: String
         # @param IpList: 资源实例的IP列表
         # @type IpList: Array
         # @param Id: 资源实例ID
         # @type Id: String
 
-        attr_accessor :Business, :Period, :StartTime, :EndTime, :MetricName, :IpList, :Id
+        attr_accessor :Period, :StartTime, :EndTime, :MetricName, :Business, :IpList, :Id
         
-        def initialize(business=nil, period=nil, starttime=nil, endtime=nil, metricname=nil, iplist=nil, id=nil)
-          @Business = business
+        def initialize(period=nil, starttime=nil, endtime=nil, metricname=nil, business=nil, iplist=nil, id=nil)
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
           @MetricName = metricname
+          @Business = business
           @IpList = iplist
           @Id = id
         end
 
         def deserialize(params)
-          @Business = params['Business']
           @Period = params['Period']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @MetricName = params['MetricName']
+          @Business = params['Business']
           @IpList = params['IpList']
           @Id = params['Id']
         end
@@ -5707,14 +5731,18 @@ module TencentCloud
         # @type DeviceType: String
         # @param InstanceId: IP所属的云产品实例ID，例如是弹性网卡的IP，InstanceId为弹性网卡的ID(eni-*); 如果是托管IP没有对应的资源实例ID,InstanceId为""
         # @type InstanceId: String
+        # @param Domain: 域名化资产对应的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :Ip, :BizType, :DeviceType, :InstanceId
+        attr_accessor :Ip, :BizType, :DeviceType, :InstanceId, :Domain
         
-        def initialize(ip=nil, biztype=nil, devicetype=nil, instanceid=nil)
+        def initialize(ip=nil, biztype=nil, devicetype=nil, instanceid=nil, domain=nil)
           @Ip = ip
           @BizType = biztype
           @DeviceType = devicetype
           @InstanceId = instanceid
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -5722,6 +5750,7 @@ module TencentCloud
           @BizType = params['BizType']
           @DeviceType = params['DeviceType']
           @InstanceId = params['InstanceId']
+          @Domain = params['Domain']
         end
       end
 
@@ -5854,14 +5883,18 @@ module TencentCloud
         # @type Cname: String
         # @param ResourceFlag: 资源flag，0：高防包资源，1：高防IP资源，2：非高防资源IP
         # @type ResourceFlag: Integer
+        # @param Domain: 域名化资产对应的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :Type, :Eip, :Cname, :ResourceFlag
+        attr_accessor :Type, :Eip, :Cname, :ResourceFlag, :Domain
         
-        def initialize(type=nil, eip=nil, cname=nil, resourceflag=nil)
+        def initialize(type=nil, eip=nil, cname=nil, resourceflag=nil, domain=nil)
           @Type = type
           @Eip = eip
           @Cname = cname
           @ResourceFlag = resourceflag
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -5869,6 +5902,7 @@ module TencentCloud
           @Eip = params['Eip']
           @Cname = params['Cname']
           @ResourceFlag = params['ResourceFlag']
+          @Domain = params['Domain']
         end
       end
 

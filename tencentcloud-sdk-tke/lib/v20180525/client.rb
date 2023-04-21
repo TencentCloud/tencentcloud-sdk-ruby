@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建备份仓库，指定了存储仓库类型（如COS）、COS桶地区、名称等信息，当前最多允许创建100个仓库， 注意此接口当前是全局接口，多个地域的TKE集群如果要备份到相同的备份仓库中，不需要重复创建备份仓库
+
+        # @param request: Request instance for CreateBackupStorageLocation.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateBackupStorageLocationRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateBackupStorageLocationResponse`
+        def CreateBackupStorageLocation(request)
+          body = send_request('CreateBackupStorageLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupStorageLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建集群
 
         # @param request: Request instance for CreateCluster.
@@ -831,6 +855,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTKEEdgeClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除备份仓库
+
+        # @param request: Request instance for DeleteBackupStorageLocation.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteBackupStorageLocationRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteBackupStorageLocationResponse`
+        def DeleteBackupStorageLocation(request)
+          body = send_request('DeleteBackupStorageLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackupStorageLocationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1503,6 +1551,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAvailableTKEEdgeVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份仓库信息
+
+        # @param request: Request instance for DescribeBackupStorageLocations.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeBackupStorageLocationsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeBackupStorageLocationsResponse`
+        def DescribeBackupStorageLocations(request)
+          body = send_request('DescribeBackupStorageLocations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupStorageLocationsResponse.new
             model.deserialize(response['Response'])
             model
           else
