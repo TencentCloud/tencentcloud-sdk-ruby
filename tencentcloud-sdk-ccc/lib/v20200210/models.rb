@@ -1127,19 +1127,23 @@ module TencentCloud
         # @type EnabledSkillGroup: Boolean
         # @param EnabledNumber: 是否返回线路维度信息，默认“否”
         # @type EnabledNumber: Boolean
+        # @param GroupIdList: 筛选技能组列表
+        # @type GroupIdList: Array
 
-        attr_accessor :SdkAppId, :EnabledSkillGroup, :EnabledNumber
+        attr_accessor :SdkAppId, :EnabledSkillGroup, :EnabledNumber, :GroupIdList
         
-        def initialize(sdkappid=nil, enabledskillgroup=nil, enablednumber=nil)
+        def initialize(sdkappid=nil, enabledskillgroup=nil, enablednumber=nil, groupidlist=nil)
           @SdkAppId = sdkappid
           @EnabledSkillGroup = enabledskillgroup
           @EnabledNumber = enablednumber
+          @GroupIdList = groupidlist
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @EnabledSkillGroup = params['EnabledSkillGroup']
           @EnabledNumber = params['EnabledNumber']
+          @GroupIdList = params['GroupIdList']
         end
       end
 
@@ -1839,17 +1843,25 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param StaffList: 筛选坐席列表，默认不传返回全部坐席信息
         # @type StaffList: Array
+        # @param GroupIdList: 筛选技能组ID列表
+        # @type GroupIdList: Array
+        # @param StatusList: 筛选坐席状态列表
+        # @type StatusList: Array
 
-        attr_accessor :SdkAppId, :StaffList
+        attr_accessor :SdkAppId, :StaffList, :GroupIdList, :StatusList
         
-        def initialize(sdkappid=nil, stafflist=nil)
+        def initialize(sdkappid=nil, stafflist=nil, groupidlist=nil, statuslist=nil)
           @SdkAppId = sdkappid
           @StaffList = stafflist
+          @GroupIdList = groupidlist
+          @StatusList = statuslist
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @StaffList = params['StaffList']
+          @GroupIdList = params['GroupIdList']
+          @StatusList = params['StatusList']
         end
       end
 

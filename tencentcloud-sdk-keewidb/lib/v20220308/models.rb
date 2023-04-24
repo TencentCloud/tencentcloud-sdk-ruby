@@ -474,6 +474,50 @@ module TencentCloud
         end
       end
 
+      # DescribeConnectionConfig请求参数结构体
+      class DescribeConnectionConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，如：kee-6ubh****。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeConnectionConfig返回参数结构体
+      class DescribeConnectionConfigResponse < TencentCloud::Common::AbstractModel
+        # @param InNetLimit: 单分片入流量带宽限制，单位：MB。
+        # @type InNetLimit: Integer
+        # @param OutNetLimit: 单分片出流量带宽限制，单位：MB。
+        # @type OutNetLimit: Integer
+        # @param ClientLimit: 单分片连接数限制。
+        # @type ClientLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InNetLimit, :OutNetLimit, :ClientLimit, :RequestId
+        
+        def initialize(innetlimit=nil, outnetlimit=nil, clientlimit=nil, requestid=nil)
+          @InNetLimit = innetlimit
+          @OutNetLimit = outnetlimit
+          @ClientLimit = clientlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InNetLimit = params['InNetLimit']
+          @OutNetLimit = params['OutNetLimit']
+          @ClientLimit = params['ClientLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBSecurityGroups请求参数结构体
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称：keewidb。

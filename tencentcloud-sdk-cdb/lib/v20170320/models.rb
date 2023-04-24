@@ -455,10 +455,16 @@ module TencentCloud
         # @type IoWaitTimeSection: String
         # @param TransactionLivingTimeSection: 事务持续时间，格式为M-N，例如：10-200
         # @type TransactionLivingTimeSection: String
+        # @param ThreadId: 线程ID
+        # @type ThreadId: Array
+        # @param SentRows: 返回行数。表示筛选返回行数大于该值的审计日志。
+        # @type SentRows: Integer
+        # @param ErrCode: mysql错误码
+        # @type ErrCode: Array
 
-        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls, :AffectRowsSection, :SentRowsSection, :ExecTimeSection, :LockWaitTimeSection, :IoWaitTimeSection, :TransactionLivingTimeSection
+        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls, :AffectRowsSection, :SentRowsSection, :ExecTimeSection, :LockWaitTimeSection, :IoWaitTimeSection, :TransactionLivingTimeSection, :ThreadId, :SentRows, :ErrCode
         
-        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil, affectrowssection=nil, sentrowssection=nil, exectimesection=nil, lockwaittimesection=nil, iowaittimesection=nil, transactionlivingtimesection=nil)
+        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil, affectrowssection=nil, sentrowssection=nil, exectimesection=nil, lockwaittimesection=nil, iowaittimesection=nil, transactionlivingtimesection=nil, threadid=nil, sentrows=nil, errcode=nil)
           @Host = host
           @User = user
           @DBName = dbname
@@ -476,6 +482,9 @@ module TencentCloud
           @LockWaitTimeSection = lockwaittimesection
           @IoWaitTimeSection = iowaittimesection
           @TransactionLivingTimeSection = transactionlivingtimesection
+          @ThreadId = threadid
+          @SentRows = sentrows
+          @ErrCode = errcode
         end
 
         def deserialize(params)
@@ -496,6 +505,9 @@ module TencentCloud
           @LockWaitTimeSection = params['LockWaitTimeSection']
           @IoWaitTimeSection = params['IoWaitTimeSection']
           @TransactionLivingTimeSection = params['TransactionLivingTimeSection']
+          @ThreadId = params['ThreadId']
+          @SentRows = params['SentRows']
+          @ErrCode = params['ErrCode']
         end
       end
 
@@ -600,6 +612,30 @@ module TencentCloud
             end
           end
           @AuditAll = params['AuditAll']
+        end
+      end
+
+      # 审计规则的过滤条件
+      class AuditRuleFilters < TencentCloud::Common::AbstractModel
+        # @param RuleFilters: 单条审计规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleFilters: Array
+
+        attr_accessor :RuleFilters
+        
+        def initialize(rulefilters=nil)
+          @RuleFilters = rulefilters
+        end
+
+        def deserialize(params)
+          unless params['RuleFilters'].nil?
+            @RuleFilters = []
+            params['RuleFilters'].each do |i|
+              rulefilters_tmp = RuleFilters.new
+              rulefilters_tmp.deserialize(i)
+              @RuleFilters << rulefilters_tmp
+            end
+          end
         end
       end
 
@@ -1989,7 +2025,7 @@ module TencentCloud
         # @type MasterInstanceId: String
         # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，dr - 表示灾备实例，ro - 表示只读实例。
         # @type InstanceRole: String
-        # @param MasterRegion: 主实例的可用区信息，购买灾备、RO实例时必填。
+        # @param MasterRegion: 主实例地域信息，购买灾备、RO实例时，该字段必填。
         # @type MasterRegion: String
         # @param Port: 自定义端口，端口支持范围：[ 1024-65535 ] 。
         # @type Port: Integer
@@ -8935,6 +8971,7 @@ module TencentCloud
         # @param LogExpireDay: 审计日志保存时长。支持值包括：
         # 7 - 一周
         # 30 - 一个月；
+        # 90 - 三个月；
         # 180 - 六个月；
         # 365 - 一年；
         # 1095 - 三年；
@@ -8943,24 +8980,35 @@ module TencentCloud
         # @param HighLogExpireDay: 高频审计日志保存时长。支持值包括：
         # 7 - 一周
         # 30 - 一个月；
-        # 180 - 六个月；
-        # 365 - 一年；
-        # 1095 - 三年；
-        # 1825 - 五年；
         # @type HighLogExpireDay: Integer
+        # @param AuditRuleFilters: 审计规则。同RuleTemplateIds都不填是全审计。
+        # @type AuditRuleFilters: Array
+        # @param RuleTemplateIds: 规则模版ID。同AuditRuleFilters都不填是全审计。
+        # @type RuleTemplateIds: Array
 
-        attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay
+        attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds
         
-        def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil)
+        def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
           @LogExpireDay = logexpireday
           @HighLogExpireDay = highlogexpireday
+          @AuditRuleFilters = auditrulefilters
+          @RuleTemplateIds = ruletemplateids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @LogExpireDay = params['LogExpireDay']
           @HighLogExpireDay = params['HighLogExpireDay']
+          unless params['AuditRuleFilters'].nil?
+            @AuditRuleFilters = []
+            params['AuditRuleFilters'].each do |i|
+              auditrulefilters_tmp = AuditRuleFilters.new
+              auditrulefilters_tmp.deserialize(i)
+              @AuditRuleFilters << auditrulefilters_tmp
+            end
+          end
+          @RuleTemplateIds = params['RuleTemplateIds']
         end
       end
 
@@ -10398,6 +10446,30 @@ module TencentCloud
         def deserialize(params)
           @LessThan = params['LessThan']
           @Weight = params['Weight']
+        end
+      end
+
+      # 审计规则的规则过滤条件
+      class RuleFilters < TencentCloud::Common::AbstractModel
+        # @param Type: 审计规则过滤条件的参数名称。可选值：host – 客户端 IP；user – 数据库账户；dbName – 数据库名称；sqlType-SQL类型；sql-sql语句；affectRows -影响行数；sentRows-返回行数；checkRows-扫描行数；execTime-执行时间。
+        # @type Type: String
+        # @param Compare: 审计规则过滤条件的匹配类型。可选值：INC – 包含；EXC – 不包含；EQS – 等于；NEQ – 不等于；REG-正则；GT-大于；LT-小于。
+        # @type Compare: String
+        # @param Value: 审计规则过滤条件的匹配值。sqlType条件的Value需在一下选择"alter", "changeuser", "create", "delete", "drop", "execute", "insert", "login", "logout", "other", "replace", "select", "set", "update"。
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+        
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
         end
       end
 

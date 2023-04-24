@@ -970,13 +970,23 @@ module TencentCloud
         # @type CorpId: Integer
         # @param Codes: 码
         # @type Codes: Array
+        # @param CodeType: 码绑定激活策略，默认  0
+        # 0: 传什么码就激活什么码
+        # 1: 层级码 + 层级子码
+        # @type CodeType: Integer
+        # @param CheckType: 错误检查类型，默认 0
+        # 0: 没有新导入码时正常返回
+        # 1: 没有新导入码时报错，并返回没有导入成功的原因
+        # @type CheckType: Integer
 
-        attr_accessor :BatchId, :CorpId, :Codes
+        attr_accessor :BatchId, :CorpId, :Codes, :CodeType, :CheckType
         
-        def initialize(batchid=nil, corpid=nil, codes=nil)
+        def initialize(batchid=nil, corpid=nil, codes=nil, codetype=nil, checktype=nil)
           @BatchId = batchid
           @CorpId = corpid
           @Codes = codes
+          @CodeType = codetype
+          @CheckType = checktype
         end
 
         def deserialize(params)
@@ -990,6 +1000,8 @@ module TencentCloud
               @Codes << codeitem_tmp
             end
           end
+          @CodeType = params['CodeType']
+          @CheckType = params['CheckType']
         end
       end
 
@@ -3070,12 +3082,16 @@ module TencentCloud
         # @type TraceItems: Array
         # @param PhaseName: 溯源阶段名称
         # @type PhaseName: String
+        # @param PhaseData: 环节数据
+        # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
+        # @param Status: 溯源状态 0: 无效, 1: 有效
+        # @type Status: Integer
+        # @param Rank: 排序
+        # @type Rank: Integer
         # @param Type: [无效] 类型
         # @type Type: Integer
         # @param Code: [无效] 溯源码
         # @type Code: String
-        # @param Rank: [无效] 排序
-        # @type Rank: Integer
         # @param Phase: [无效] 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         # @type Phase: Integer
         # @param TraceTime: [无效] 溯源时间
@@ -3090,22 +3106,20 @@ module TencentCloud
         # @type ChainData: :class:`Tencentcloud::Trp.v20210515.models.ChainData`
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param Status: 溯源状态 0: 无效, 1: 有效
-        # @type Status: Integer
-        # @param PhaseData: 环节数据
-        # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
 
-        attr_accessor :TraceId, :BatchId, :TaskId, :TraceItems, :PhaseName, :Type, :Code, :Rank, :Phase, :TraceTime, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :CorpId, :Status, :PhaseData
+        attr_accessor :TraceId, :BatchId, :TaskId, :TraceItems, :PhaseName, :PhaseData, :Status, :Rank, :Type, :Code, :Phase, :TraceTime, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :CorpId
         
-        def initialize(traceid=nil, batchid=nil, taskid=nil, traceitems=nil, phasename=nil, type=nil, code=nil, rank=nil, phase=nil, tracetime=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, corpid=nil, status=nil, phasedata=nil)
+        def initialize(traceid=nil, batchid=nil, taskid=nil, traceitems=nil, phasename=nil, phasedata=nil, status=nil, rank=nil, type=nil, code=nil, phase=nil, tracetime=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, corpid=nil)
           @TraceId = traceid
           @BatchId = batchid
           @TaskId = taskid
           @TraceItems = traceitems
           @PhaseName = phasename
+          @PhaseData = phasedata
+          @Status = status
+          @Rank = rank
           @Type = type
           @Code = code
-          @Rank = rank
           @Phase = phase
           @TraceTime = tracetime
           @CreateTime = createtime
@@ -3113,8 +3127,6 @@ module TencentCloud
           @ChainTime = chaintime
           @ChainData = chaindata
           @CorpId = corpid
-          @Status = status
-          @PhaseData = phasedata
         end
 
         def deserialize(params)
@@ -3130,9 +3142,14 @@ module TencentCloud
             end
           end
           @PhaseName = params['PhaseName']
+          unless params['PhaseData'].nil?
+            @PhaseData = PhaseData.new
+            @PhaseData.deserialize(params['PhaseData'])
+          end
+          @Status = params['Status']
+          @Rank = params['Rank']
           @Type = params['Type']
           @Code = params['Code']
-          @Rank = params['Rank']
           @Phase = params['Phase']
           @TraceTime = params['TraceTime']
           @CreateTime = params['CreateTime']
@@ -3143,11 +3160,6 @@ module TencentCloud
             @ChainData.deserialize(params['ChainData'])
           end
           @CorpId = params['CorpId']
-          @Status = params['Status']
-          unless params['PhaseData'].nil?
-            @PhaseData = PhaseData.new
-            @PhaseData.deserialize(params['PhaseData'])
-          end
         end
       end
 
@@ -3676,31 +3688,24 @@ module TencentCloud
       # 溯源数据
       class TraceData < TencentCloud::Common::AbstractModel
         # @param TraceId: 溯源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param Type: 码类型 0: 批次, 1: 码, 2: 生产任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Code: 码值，跟码类型一一对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Rank: 排序，在Phase相同情况下，值越小排名靠前
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rank: Integer
         # @param Phase: 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phase: Integer
         # @param PhaseName: 溯源环节名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhaseName: String
         # @param TraceTime: 溯源时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceTime: String
         # @param TraceItems: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceItems: Array
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3718,7 +3723,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
         # @param Status: 溯源阶段状态 0: 无效, 1: 有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :TraceId, :CorpId, :Type, :Code, :Rank, :Phase, :PhaseName, :TraceTime, :TraceItems, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :PhaseData, :Status
@@ -3773,45 +3777,46 @@ module TencentCloud
         end
       end
 
-      # 溯源数据项
-      # Type的枚举值
+      # 溯源数据项 Type 的枚举值
+
       # text:文本类型, longtext:长文本类型, banner:单图片类型, image:多图片类型, video:视频类型, mp:小程序类型
+
       # 具体组合如下
-      # Type: "text" 文本类型, 对应值 Value: "文本字符串"
-      # Type: "longtext" 长文本类型, 对应值 Value: "长文本字符串, 支持换行\n"
-      # Type: "banner" 单图片类型, 对应图片地址 Value: "https://sample.cdn.com/xxx.jpg"
-      # Type: "image" 多图片类型, 对应图片地址 Values: ["https://sample.cdn.com/1.jpg", "https://sample.cdn.com/2.jpg"]
-      # Type: "video" 视频类型, 对应视频地址 Value: "https://sample.cdn.com/xxx.mp4"
-      # Type: "mp" 小程序类型, 对应配置 Values: ["WXAPPID", "WXAPP_PATH", "跳转说明"]
+      # - Type: "text" 文本类型, 对应值 Value: "文本字符串"
+      # - Type: "longtext" 长文本类型, 对应值 Value: "长文本字符串, 支持换行\n"
+      # - Type: "banner" 单图片类型, 对应图片地址 Value: "https://sample.cdn.com/xxx.jpg"
+      # - Type: "image" 多图片类型, 对应图片地址 Values: ["https://sample.cdn.com/1.jpg", "https://sample.cdn.com/2.jpg"]
+      # - Type: "video" 视频类型, 对应视频地址 Value: "https://sample.cdn.com/xxx.mp4"
+      # - Type: "mp" 小程序类型, 对应配置 Values: ["WXAPPID", "WXAPP_PATH", "跳转说明"]
       class TraceItem < TencentCloud::Common::AbstractModel
         # @param Name: 字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 字段值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
-        # @param Type: 类型 text:文本类型, longtext:长文本类型, banner:单图片类型, image:多图片类型, video:视频类型, mp:小程序类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Type: 字段类型
+        # text:文本类型,
+        # longtext:长文本类型, banner:单图片类型, image:多图片类型,
+        # video:视频类型,
+        # mp:小程序类型
         # @type Type: String
         # @param ReadOnly: 只读
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param Hidden: 扫码展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hidden: Boolean
         # @param Values: 多个值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param Key: 类型标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Ext: 扩展字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: String
+        # @param Attrs: 额外属性
+        # @type Attrs: Array
+        # @param List: 子页面，只读
+        # @type List: Array
 
-        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key, :Ext
+        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key, :Ext, :Attrs, :List
         
-        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil, ext=nil)
+        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil, ext=nil, attrs=nil, list=nil)
           @Name = name
           @Value = value
           @Type = type
@@ -3820,6 +3825,8 @@ module TencentCloud
           @Values = values
           @Key = key
           @Ext = ext
+          @Attrs = attrs
+          @List = list
         end
 
         def deserialize(params)
@@ -3831,6 +3838,22 @@ module TencentCloud
           @Values = params['Values']
           @Key = params['Key']
           @Ext = params['Ext']
+          unless params['Attrs'].nil?
+            @Attrs = []
+            params['Attrs'].each do |i|
+              traceitem_tmp = TraceItem.new
+              traceitem_tmp.deserialize(i)
+              @Attrs << traceitem_tmp
+            end
+          end
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              tracedata_tmp = TraceData.new
+              tracedata_tmp.deserialize(i)
+              @List << tracedata_tmp
+            end
+          end
         end
       end
 

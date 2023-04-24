@@ -6453,15 +6453,18 @@ module TencentCloud
         # 若客户只想返回姓名、性别两个字段的识别结果，则输入
         # ItemNames=["姓名","性别"]
         # @type ItemNames: Array
+        # @param ReturnFullText: 是否开启全文字段识别
+        # @type ReturnFullText: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText
         
-        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil)
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
           @ItemNames = itemnames
+          @ReturnFullText = returnfulltext
         end
 
         def deserialize(params)
@@ -6470,6 +6473,7 @@ module TencentCloud
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
           @ItemNames = params['ItemNames']
+          @ReturnFullText = params['ReturnFullText']
         end
       end
 
@@ -6480,14 +6484,17 @@ module TencentCloud
         # @type Angle: Float
         # @param StructuralList: 配置结构化文本信息
         # @type StructuralList: Array
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Angle, :StructuralList, :RequestId
+        attr_accessor :Angle, :StructuralList, :WordList, :RequestId
         
-        def initialize(angle=nil, structurallist=nil, requestid=nil)
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
           @Angle = angle
           @StructuralList = structurallist
+          @WordList = wordlist
           @RequestId = requestid
         end
 
@@ -6499,6 +6506,14 @@ module TencentCloud
               groupinfo_tmp = GroupInfo.new
               groupinfo_tmp.deserialize(i)
               @StructuralList << groupinfo_tmp
+            end
+          end
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9459,6 +9474,29 @@ module TencentCloud
               coord_tmp.deserialize(i)
               @WordCoordinate << coord_tmp
             end
+          end
+        end
+      end
+
+      # 还原文本信息
+      class WordItem < TencentCloud::Common::AbstractModel
+        # @param DetectedText: 文本块内容
+        # @type DetectedText: String
+        # @param Coord: 四点坐标
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+
+        attr_accessor :DetectedText, :Coord
+        
+        def initialize(detectedtext=nil, coord=nil)
+          @DetectedText = detectedtext
+          @Coord = coord
+        end
+
+        def deserialize(params)
+          @DetectedText = params['DetectedText']
+          unless params['Coord'].nil?
+            @Coord = Polygon.new
+            @Coord.deserialize(params['Coord'])
           end
         end
       end

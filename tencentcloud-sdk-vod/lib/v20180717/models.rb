@@ -3894,19 +3894,28 @@ module TencentCloud
         # <li>srt：生成 SRT 字幕文件。</li>
         # <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         # @type SubtitleFormat: String
+        # @param SrcLanguage: 媒体源语言，取值范围：
+        # <li>zh：中文普通话；</li>
+        # <li>en：英语；</li>
+        # <li>ja：日语；</li>
+        # <li>zh-ca：粤语。</li>
+        # <font color=red>注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
+        # @type SrcLanguage: String
 
-        attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage
         
-        def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil)
           @Switch = switch
           @SubtitleFormats = subtitleformats
           @SubtitleFormat = subtitleformat
+          @SrcLanguage = srclanguage
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @SubtitleFormats = params['SubtitleFormats']
           @SubtitleFormat = params['SubtitleFormat']
+          @SrcLanguage = params['SrcLanguage']
         end
       end
 
@@ -3923,13 +3932,20 @@ module TencentCloud
         # <li>srt：生成 SRT 字幕文件。</li>
         # <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
         # @type SubtitleFormat: String
+        # @param SrcLanguage: 媒体源语言，取值范围：
+        # <li>zh：中文普通话；</li>
+        # <li>en：英语；</li>
+        # <li>ja：日语；</li>
+        # <li>zh-ca：粤语。</li>
+        # @type SrcLanguage: String
 
-        attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage
         
-        def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil)
           @Switch = switch
           @SubtitleFormatsOperation = subtitleformatsoperation
           @SubtitleFormat = subtitleformat
+          @SrcLanguage = srclanguage
         end
 
         def deserialize(params)
@@ -3939,6 +3955,7 @@ module TencentCloud
             @SubtitleFormatsOperation.deserialize(params['SubtitleFormatsOperation'])
           end
           @SubtitleFormat = params['SubtitleFormat']
+          @SrcLanguage = params['SrcLanguage']
         end
       end
 

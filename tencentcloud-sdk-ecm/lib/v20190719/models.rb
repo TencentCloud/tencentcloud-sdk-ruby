@@ -9327,10 +9327,12 @@ module TencentCloud
         # @type RouteType: String
         # @param RouteId: 路由策略ID。IPv4路由策略ID是有意义的值，IPv6路由策略是无意义的值0。后续建议完全使用字符串唯一ID `RouteItemId`操作路由策略
         # @type RouteId: Integer
+        # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
+        # @type RouteTableId: String
 
-        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteItemId, :RouteDescription, :Enabled, :RouteType, :RouteId
+        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteItemId, :RouteDescription, :Enabled, :RouteType, :RouteId, :RouteTableId
         
-        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeitemid=nil, routedescription=nil, enabled=nil, routetype=nil, routeid=nil)
+        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeitemid=nil, routedescription=nil, enabled=nil, routetype=nil, routeid=nil, routetableid=nil)
           @DestinationCidrBlock = destinationcidrblock
           @GatewayType = gatewaytype
           @GatewayId = gatewayid
@@ -9339,6 +9341,7 @@ module TencentCloud
           @Enabled = enabled
           @RouteType = routetype
           @RouteId = routeid
+          @RouteTableId = routetableid
         end
 
         def deserialize(params)
@@ -9350,6 +9353,7 @@ module TencentCloud
           @Enabled = params['Enabled']
           @RouteType = params['RouteType']
           @RouteId = params['RouteId']
+          @RouteTableId = params['RouteTableId']
         end
       end
 

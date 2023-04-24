@@ -1427,18 +1427,18 @@ module TencentCloud
         # @type FlowId: String
         # @param FlowApproverInfos: 流程签署人，其中ApproverName，ApproverMobile和ApproverType必传，其他可不传，ApproverType目前只支持个人类型的签署人。还需注意签署人只能有手写签名和时间类型的签署控件，其他类型的填写控件和签署控件暂时都未支持。
         # @type FlowApproverInfos: Array
-        # @param Organization: 机构信息，暂未开放
-        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
         # @param Operator: 用户信息，此结构体UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Organization: 机构信息，暂未开放
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
-        attr_accessor :FlowId, :FlowApproverInfos, :Organization, :Operator
+        attr_accessor :FlowId, :FlowApproverInfos, :Operator, :Organization
         
-        def initialize(flowid=nil, flowapproverinfos=nil, organization=nil, operator=nil)
+        def initialize(flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil)
           @FlowId = flowid
           @FlowApproverInfos = flowapproverinfos
-          @Organization = organization
           @Operator = operator
+          @Organization = organization
         end
 
         def deserialize(params)
@@ -1451,13 +1451,13 @@ module TencentCloud
               @FlowApproverInfos << flowcreateapprover_tmp
             end
           end
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
           end
         end
       end
@@ -3651,10 +3651,13 @@ module TencentCloud
         # @param FlowMessage: 拒签或者取消的原因描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMessage: String
+        # @param Creator:  合同发起人userId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
 
-        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage
+        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator
         
-        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil)
+        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil, creator=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -3662,6 +3665,7 @@ module TencentCloud
           @FlowStatus = flowstatus
           @CreatedOn = createdon
           @FlowMessage = flowmessage
+          @Creator = creator
         end
 
         def deserialize(params)
@@ -3672,6 +3676,7 @@ module TencentCloud
           @FlowStatus = params['FlowStatus']
           @CreatedOn = params['CreatedOn']
           @FlowMessage = params['FlowMessage']
+          @Creator = params['Creator']
         end
       end
 
@@ -3801,10 +3806,13 @@ module TencentCloud
         # @type FlowApproverInfos: Array
         # @param CcInfos: 合同(流程)的关注方信息列表
         # @type CcInfos: Array
+        # @param Creator: 合同发起人UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator
         
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil)
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil, creator=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -3814,6 +3822,7 @@ module TencentCloud
           @CreatedOn = createdon
           @FlowApproverInfos = flowapproverinfos
           @CcInfos = ccinfos
+          @Creator = creator
         end
 
         def deserialize(params)
@@ -3840,6 +3849,7 @@ module TencentCloud
               @CcInfos << flowapproverdetail_tmp
             end
           end
+          @Creator = params['Creator']
         end
       end
 

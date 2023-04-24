@@ -6623,6 +6623,59 @@ module TencentCloud
         end
       end
 
+      # ModifyRocketMQInstanceSpec请求参数结构体
+      class ModifyRocketMQInstanceSpecRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 专享实例ID
+        # @type InstanceId: String
+        # @param Specification: 实例规格，
+        # rocket-vip-basic-1 基础型
+        # rocket-vip-basic-2 标准型
+        # rocket-vip-basic-3 高阶Ⅰ型
+        # rocket-vip-basic-4 高阶Ⅱ型
+        # @type Specification: String
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param StorageSize: 存储空间，GB为单位
+        # @type StorageSize: Integer
+
+        attr_accessor :InstanceId, :Specification, :NodeCount, :StorageSize
+        
+        def initialize(instanceid=nil, specification=nil, nodecount=nil, storagesize=nil)
+          @InstanceId = instanceid
+          @Specification = specification
+          @NodeCount = nodecount
+          @StorageSize = storagesize
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Specification = params['Specification']
+          @NodeCount = params['NodeCount']
+          @StorageSize = params['StorageSize']
+        end
+      end
+
+      # ModifyRocketMQInstanceSpec返回参数结构体
+      class ModifyRocketMQInstanceSpecResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :RequestId
+        
+        def initialize(orderid=nil, requestid=nil)
+          @OrderId = orderid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRocketMQNamespace请求参数结构体
       class ModifyRocketMQNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

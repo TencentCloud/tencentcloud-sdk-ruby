@@ -2909,8 +2909,9 @@ module TencentCloud
         # @type OrderBy: String
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC，默认DESC
         # @type Order: String
-        # @param Filters: * Qualifier:
-        # 函数版本，别名
+        # @param Filters: * Qualifier: 函数版本，别名
+        # * TriggerName: 函数触发器名称
+        # * Description: 函数触发器描述
         # @type Filters: Array
 
         attr_accessor :FunctionName, :Namespace, :Offset, :Limit, :OrderBy, :Order, :Filters
@@ -4011,10 +4012,13 @@ module TencentCloud
         # @type BindStatus: String
         # @param TriggerAttribute: 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
         # @type TriggerAttribute: String
+        # @param Description: 客户自定义触发器描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute
+        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         
-        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil)
+        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable
           @Qualifier = qualifier
           @TriggerName = triggername
@@ -4027,6 +4031,7 @@ module TencentCloud
           @ResourceId = resourceid
           @BindStatus = bindstatus
           @TriggerAttribute = triggerattribute
+          @Description = description
         end
 
         def deserialize(params)
@@ -4042,6 +4047,7 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @BindStatus = params['BindStatus']
           @TriggerAttribute = params['TriggerAttribute']
+          @Description = params['Description']
         end
       end
 

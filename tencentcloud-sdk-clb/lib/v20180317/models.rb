@@ -5741,10 +5741,12 @@ module TencentCloud
         # @type SnatPro: Boolean
         # @param DeleteProtect: 是否开启删除保护
         # @type DeleteProtect: Boolean
+        # @param ModifyClassicDomain: 将负载均衡二级域名由mycloud.com改为tencentclb.com，子域名也会变换。修改后mycloud.com域名将失效。
+        # @type ModifyClassicDomain: Boolean
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :TargetRegionInfo, :InternetChargeInfo, :LoadBalancerPassToTarget, :SnatPro, :DeleteProtect
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :TargetRegionInfo, :InternetChargeInfo, :LoadBalancerPassToTarget, :SnatPro, :DeleteProtect, :ModifyClassicDomain
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, targetregioninfo=nil, internetchargeinfo=nil, loadbalancerpasstotarget=nil, snatpro=nil, deleteprotect=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, targetregioninfo=nil, internetchargeinfo=nil, loadbalancerpasstotarget=nil, snatpro=nil, deleteprotect=nil, modifyclassicdomain=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @TargetRegionInfo = targetregioninfo
@@ -5752,6 +5754,7 @@ module TencentCloud
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @SnatPro = snatpro
           @DeleteProtect = deleteprotect
+          @ModifyClassicDomain = modifyclassicdomain
         end
 
         def deserialize(params)
@@ -5768,6 +5771,7 @@ module TencentCloud
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @SnatPro = params['SnatPro']
           @DeleteProtect = params['DeleteProtect']
+          @ModifyClassicDomain = params['ModifyClassicDomain']
         end
       end
 

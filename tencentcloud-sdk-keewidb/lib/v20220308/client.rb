@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeConnectionConfig）用于查询实例连接配置，包括出流量和入流量带宽、最大连接数限制。
+
+        # @param request: Request instance for DescribeConnectionConfig.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::DescribeConnectionConfigRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::DescribeConnectionConfigResponse`
+        def DescribeConnectionConfig(request)
+          body = send_request('DescribeConnectionConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConnectionConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
 
         # @param request: Request instance for DescribeDBSecurityGroups.

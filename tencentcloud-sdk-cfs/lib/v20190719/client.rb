@@ -729,6 +729,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于对turbo 文件系统扩容使用
+
+        # @param request: Request instance for ScaleUpFileSystem.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ScaleUpFileSystemRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ScaleUpFileSystemResponse`
+        def ScaleUpFileSystem(request)
+          body = send_request('ScaleUpFileSystem', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleUpFileSystemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置文件系统配额，提供UID/GID的配额设置的接口
 
         # @param request: Request instance for SetUserQuota.

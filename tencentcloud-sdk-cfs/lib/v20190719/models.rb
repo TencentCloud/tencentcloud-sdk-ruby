@@ -2269,6 +2269,50 @@ module TencentCloud
         end
       end
 
+      # ScaleUpFileSystem请求参数结构体
+      class ScaleUpFileSystemRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统Id
+        # @type FileSystemId: String
+        # @param TargetCapacity: 扩容的目标容量
+        # @type TargetCapacity: Integer
+
+        attr_accessor :FileSystemId, :TargetCapacity
+        
+        def initialize(filesystemid=nil, targetcapacity=nil)
+          @FileSystemId = filesystemid
+          @TargetCapacity = targetcapacity
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @TargetCapacity = params['TargetCapacity']
+        end
+      end
+
+      # ScaleUpFileSystem返回参数结构体
+      class ScaleUpFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统Id
+        # @type FileSystemId: String
+        # @param TargetCapacity: 扩容的目标容量
+        # @type TargetCapacity: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileSystemId, :TargetCapacity, :RequestId
+        
+        def initialize(filesystemid=nil, targetcapacity=nil, requestid=nil)
+          @FileSystemId = filesystemid
+          @TargetCapacity = targetcapacity
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @TargetCapacity = params['TargetCapacity']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetUserQuota请求参数结构体
       class SetUserQuotaRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID

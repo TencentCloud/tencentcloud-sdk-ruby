@@ -305,7 +305,7 @@ module TencentCloud
         # @type Name: String
         # @param SortId: 优先级
         # @type SortId: String
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: 过期时间，单位为秒级时间戳，例如1677254399表示过期时间为2023-02-24 23:59:59. 0表示永不过期
         # @type ExpireTime: String
         # @param Strategies: 策略详情
         # @type Strategies: Array
@@ -1479,17 +1479,20 @@ module TencentCloud
         # @type CCCount: Integer
         # @param BotCount: Bot攻击总数
         # @type BotCount: Integer
+        # @param ApiAssetsCount: api资产总数
+        # @type ApiAssetsCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :RequestId
+        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :RequestId
         
-        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, requestid=nil)
+        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, requestid=nil)
           @AccessCount = accesscount
           @AttackCount = attackcount
           @ACLCount = aclcount
           @CCCount = cccount
           @BotCount = botcount
+          @ApiAssetsCount = apiassetscount
           @RequestId = requestid
         end
 
@@ -1499,6 +1502,7 @@ module TencentCloud
           @ACLCount = params['ACLCount']
           @CCCount = params['CCCount']
           @BotCount = params['BotCount']
+          @ApiAssetsCount = params['ApiAssetsCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1608,10 +1612,13 @@ module TencentCloud
         # @type Status: String
         # @param Strategies: 策略详情
         # @type Strategies: Array
+        # @param EventId: 事件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: String
 
-        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId
         
-        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil)
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil)
           @ActionType = actiontype
           @Bypass = bypass
           @CreateTime = createtime
@@ -1622,6 +1629,7 @@ module TencentCloud
           @SortId = sortid
           @Status = status
           @Strategies = strategies
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -1642,6 +1650,7 @@ module TencentCloud
               @Strategies << strategy_tmp
             end
           end
+          @EventId = params['EventId']
         end
       end
 
@@ -3069,7 +3078,7 @@ module TencentCloud
         end
       end
 
-      # 实例入参过滤器
+      # 过滤数组
       class FiltersItemNew < TencentCloud::Common::AbstractModel
         # @param Name: 字段名
         # @type Name: String
@@ -3278,7 +3287,7 @@ module TencentCloud
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: id
         # @type InstanceId: String
-        # @param InstanceName: name
+        # @param InstanceName: Name
         # @type InstanceName: String
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
@@ -3332,10 +3341,24 @@ module TencentCloud
         # @param MaxBandwidth: 带宽峰值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxBandwidth: Integer
+        # @param APISecurity: api安全是否购买
+        # @type APISecurity: Integer
+        # @param QpsStandard: 购买的qps规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QpsStandard: Integer
+        # @param BandwidthStandard: 购买的带宽规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthStandard: Integer
+        # @param Status: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SandboxQps: 实例沙箱值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SandboxQps: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps
         
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -3361,6 +3384,11 @@ module TencentCloud
           @ElasticBilling = elasticbilling
           @AttackLogPost = attacklogpost
           @MaxBandwidth = maxbandwidth
+          @APISecurity = apisecurity
+          @QpsStandard = qpsstandard
+          @BandwidthStandard = bandwidthstandard
+          @Status = status
+          @SandboxQps = sandboxqps
         end
 
         def deserialize(params)
@@ -3404,6 +3432,11 @@ module TencentCloud
           @ElasticBilling = params['ElasticBilling']
           @AttackLogPost = params['AttackLogPost']
           @MaxBandwidth = params['MaxBandwidth']
+          @APISecurity = params['APISecurity']
+          @QpsStandard = params['QpsStandard']
+          @BandwidthStandard = params['BandwidthStandard']
+          @Status = params['Status']
+          @SandboxQps = params['SandboxQps']
         end
       end
 
@@ -4513,12 +4546,16 @@ module TencentCloud
       # 自定义规则的匹配条件结构体
       class Strategy < TencentCloud::Common::AbstractModel
         # @param Field: 匹配字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Field: String
         # @param CompareFunc: 逻辑符号
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareFunc: String
         # @param Content: 匹配内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Arg: 匹配参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arg: String
 
         attr_accessor :Field, :CompareFunc, :Content, :Arg

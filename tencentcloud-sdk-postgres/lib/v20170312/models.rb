@@ -2046,6 +2046,57 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDownloadRestriction请求参数结构体
+      class DescribeBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBackupDownloadRestriction返回参数结构体
+      class DescribeBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RestrictionType: 备份文件下载限制类型，NONE 无限制，内外网都可以下载；INTRANET 只允许内网下载；CUSTOMIZE 自定义限制下载的vpc或ip。
+        # @type RestrictionType: String
+        # @param VpcRestrictionEffect: vpc限制效力，ALLOW 允许；DENY 拒绝。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcRestrictionEffect: String
+        # @param VpcIdSet: 允许或拒绝下载备份文件的vpcId列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcIdSet: Array
+        # @param IpRestrictionEffect: ip限制效力，ALLOW 允许；DENY 拒绝。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpRestrictionEffect: String
+        # @param IpSet: 允许或拒绝下载备份文件的ip列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RestrictionType, :VpcRestrictionEffect, :VpcIdSet, :IpRestrictionEffect, :IpSet, :RequestId
+        
+        def initialize(restrictiontype=nil, vpcrestrictioneffect=nil, vpcidset=nil, iprestrictioneffect=nil, ipset=nil, requestid=nil)
+          @RestrictionType = restrictiontype
+          @VpcRestrictionEffect = vpcrestrictioneffect
+          @VpcIdSet = vpcidset
+          @IpRestrictionEffect = iprestrictioneffect
+          @IpSet = ipset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RestrictionType = params['RestrictionType']
+          @VpcRestrictionEffect = params['VpcRestrictionEffect']
+          @VpcIdSet = params['VpcIdSet']
+          @IpRestrictionEffect = params['IpRestrictionEffect']
+          @IpSet = params['IpSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupDownloadURL请求参数结构体
       class DescribeBackupDownloadURLRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -4527,6 +4578,54 @@ module TencentCloud
         end
       end
 
+      # ModifyBackupDownloadRestriction请求参数结构体
+      class ModifyBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param RestrictionType: 备份文件下载限制类型，NONE 无限制，内外网都可以下载；INTRANET 只允许内网下载；CUSTOMIZE 自定义限制下载的vpc或ip。
+        # @type RestrictionType: String
+        # @param VpcRestrictionEffect: vpc限制效力，ALLOW 允许；DENY 拒绝。
+        # @type VpcRestrictionEffect: String
+        # @param VpcIdSet: 允许或拒绝下载备份文件的vpcId列表。
+        # @type VpcIdSet: Array
+        # @param IpRestrictionEffect: ip限制效力，ALLOW 允许；DENY 拒绝。
+        # @type IpRestrictionEffect: String
+        # @param IpSet: 允许或拒绝下载备份文件的ip列表。
+        # @type IpSet: Array
+
+        attr_accessor :RestrictionType, :VpcRestrictionEffect, :VpcIdSet, :IpRestrictionEffect, :IpSet
+        
+        def initialize(restrictiontype=nil, vpcrestrictioneffect=nil, vpcidset=nil, iprestrictioneffect=nil, ipset=nil)
+          @RestrictionType = restrictiontype
+          @VpcRestrictionEffect = vpcrestrictioneffect
+          @VpcIdSet = vpcidset
+          @IpRestrictionEffect = iprestrictioneffect
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @RestrictionType = params['RestrictionType']
+          @VpcRestrictionEffect = params['VpcRestrictionEffect']
+          @VpcIdSet = params['VpcIdSet']
+          @IpRestrictionEffect = params['IpRestrictionEffect']
+          @IpSet = params['IpSet']
+        end
+      end
+
+      # ModifyBackupDownloadRestriction返回参数结构体
+      class ModifyBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBackupPlan请求参数结构体
       class ModifyBackupPlanRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID
@@ -4611,6 +4710,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceChargeType请求参数结构体
+      class ModifyDBInstanceChargeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如postgres-6fego161
+        # @type DBInstanceId: String
+        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。
+        # @type InstanceChargeType: String
+        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @type Period: Integer
+        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
+        # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用
+        # @type AutoVoucher: Integer
+
+        attr_accessor :DBInstanceId, :InstanceChargeType, :Period, :AutoRenewFlag, :AutoVoucher
+        
+        def initialize(dbinstanceid=nil, instancechargetype=nil, period=nil, autorenewflag=nil, autovoucher=nil)
+          @DBInstanceId = dbinstanceid
+          @InstanceChargeType = instancechargetype
+          @Period = period
+          @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @InstanceChargeType = params['InstanceChargeType']
+          @Period = params['Period']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # ModifyDBInstanceChargeType返回参数结构体
+      class ModifyDBInstanceChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单名
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+        
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end

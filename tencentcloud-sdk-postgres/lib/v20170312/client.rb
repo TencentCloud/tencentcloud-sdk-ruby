@@ -557,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBackupDownloadRestriction）用于查询备份文件下载限制。
+
+        # @param request: Request instance for DescribeBackupDownloadRestriction.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupDownloadRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBackupDownloadRestrictionResponse`
+        def DescribeBackupDownloadRestriction(request)
+          body = send_request('DescribeBackupDownloadRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
 
         # @param request: Request instance for DescribeBackupDownloadURL.
@@ -1493,6 +1517,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyBackupDownloadRestriction）用于修改备份文件下载限制。
+
+        # @param request: Request instance for ModifyBackupDownloadRestriction.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyBackupDownloadRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyBackupDownloadRestrictionResponse`
+        def ModifyBackupDownloadRestriction(request)
+          body = send_request('ModifyBackupDownloadRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupDownloadRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
 
         # @param request: Request instance for ModifyBackupPlan.
@@ -1527,6 +1575,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBaseBackupExpireTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 支持实例的计费类型转换（目前仅支持按量计费转包年包月）
+
+        # @param request: Request instance for ModifyDBInstanceChargeType.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceChargeTypeRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceChargeTypeResponse`
+        def ModifyDBInstanceChargeType(request)
+          body = send_request('ModifyDBInstanceChargeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceChargeTypeResponse.new
             model.deserialize(response['Response'])
             model
           else

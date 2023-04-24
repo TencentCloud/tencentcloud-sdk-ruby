@@ -9806,7 +9806,7 @@ module TencentCloud
         # @type GroupBy: Array
         # @param LogAlarmReqInfo: 日志告警创建请求参数信息
         # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
-        # @param NoticeIds: 模版id，专供prom使用
+        # @param NoticeIds: 模板id，专供prom使用
         # @type NoticeIds: Array
         # @param Enable: 启停状态，0=停用，1=启用
         # @type Enable: Integer
