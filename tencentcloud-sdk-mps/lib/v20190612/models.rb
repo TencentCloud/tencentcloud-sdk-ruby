@@ -224,22 +224,31 @@ module TencentCloud
       # 编排原子任务
       class ActivityPara < TencentCloud::Common::AbstractModel
         # @param TranscodeTask: 视频转码任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeTask: :class:`Tencentcloud::Mps.v20190612.models.TranscodeTaskInput`
         # @param AnimatedGraphicTask: 视频转动图任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.AnimatedGraphicTaskInput`
         # @param SnapshotByTimeOffsetTask: 视频按时间点截图任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.SnapshotByTimeOffsetTaskInput`
         # @param SampleSnapshotTask: 视频采样截图任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.SampleSnapshotTaskInput`
         # @param ImageSpriteTask: 视频截雪碧图任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSpriteTask: :class:`Tencentcloud::Mps.v20190612.models.ImageSpriteTaskInput`
         # @param AdaptiveDynamicStreamingTask: 转自适应码流任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdaptiveDynamicStreamingTask: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingTaskInput`
         # @param AiContentReviewTask: 视频内容审核类型任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: 视频内容分析类型任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
         # @param AiRecognitionTask: 视频内容识别类型任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
 
         attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask
@@ -15617,7 +15626,7 @@ module TencentCloud
         # Enabled：已启用，
         # Disabled：已禁用。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Array
+        # @type Status: String
         # @param Trigger: 编排绑定的触发规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`

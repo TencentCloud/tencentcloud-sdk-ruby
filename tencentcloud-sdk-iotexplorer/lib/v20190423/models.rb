@@ -5242,10 +5242,13 @@ module TencentCloud
         # @param DeviceCount: 设备注册总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCount: Integer
+        # @param EnableOpenState: 是否开通物联使能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableOpenState: Integer
 
-        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount, :InstanceId, :ApplicationCount, :DeviceCount
+        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount, :InstanceId, :ApplicationCount, :DeviceCount, :EnableOpenState
         
-        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil, instanceid=nil, applicationcount=nil, devicecount=nil)
+        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil, instanceid=nil, applicationcount=nil, devicecount=nil, enableopenstate=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @ProjectDesc = projectdesc
@@ -5257,6 +5260,7 @@ module TencentCloud
           @InstanceId = instanceid
           @ApplicationCount = applicationcount
           @DeviceCount = devicecount
+          @EnableOpenState = enableopenstate
         end
 
         def deserialize(params)
@@ -5271,6 +5275,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @ApplicationCount = params['ApplicationCount']
           @DeviceCount = params['DeviceCount']
+          @EnableOpenState = params['EnableOpenState']
         end
       end
 

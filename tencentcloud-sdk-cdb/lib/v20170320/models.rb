@@ -178,6 +178,155 @@ module TencentCloud
         end
       end
 
+      # AdjustCdbProxyAddress请求参数结构体
+      class AdjustCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param WeightMode: 权重分配模式，
+        # 系统自动分配："system"， 自定义："custom"
+        # @type WeightMode: String
+        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # @type IsKickOut: Boolean
+        # @param MinCount: 最小保留数量，最小取值：0
+        # @type MinCount: Integer
+        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # @type MaxDelay: Integer
+        # @param FailOver: 是否开启故障转移，取值："true" | "false"
+        # @type FailOver: Boolean
+        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # @type AutoAddRo: Boolean
+        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # @type ReadOnly: Boolean
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
+        # @param TransSplit: 是否开启事务分离，取值："true" | "false"
+        # @type TransSplit: Boolean
+        # @param ConnectionPool: 是否开启连接池
+        # @type ConnectionPool: Boolean
+        # @param ProxyAllocation: 读写权重分配。如果 WeightMode 传的是 system ，则传入的权重不生效，由系统分配默认权重。
+        # @type ProxyAllocation: Array
+
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation
+        
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, proxyaddressid=nil, transsplit=nil, connectionpool=nil, proxyallocation=nil)
+          @ProxyGroupId = proxygroupid
+          @WeightMode = weightmode
+          @IsKickOut = iskickout
+          @MinCount = mincount
+          @MaxDelay = maxdelay
+          @FailOver = failover
+          @AutoAddRo = autoaddro
+          @ReadOnly = readonly
+          @ProxyAddressId = proxyaddressid
+          @TransSplit = transsplit
+          @ConnectionPool = connectionpool
+          @ProxyAllocation = proxyallocation
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @WeightMode = params['WeightMode']
+          @IsKickOut = params['IsKickOut']
+          @MinCount = params['MinCount']
+          @MaxDelay = params['MaxDelay']
+          @FailOver = params['FailOver']
+          @AutoAddRo = params['AutoAddRo']
+          @ReadOnly = params['ReadOnly']
+          @ProxyAddressId = params['ProxyAddressId']
+          @TransSplit = params['TransSplit']
+          @ConnectionPool = params['ConnectionPool']
+          unless params['ProxyAllocation'].nil?
+            @ProxyAllocation = []
+            params['ProxyAllocation'].each do |i|
+              proxyallocation_tmp = ProxyAllocation.new
+              proxyallocation_tmp.deserialize(i)
+              @ProxyAllocation << proxyallocation_tmp
+            end
+          end
+        end
+      end
+
+      # AdjustCdbProxyAddress返回参数结构体
+      class AdjustCdbProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AdjustCdbProxy请求参数结构体
+      class AdjustCdbProxyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ProxyNodeCustom: 节点规格配置
+        # @type ProxyNodeCustom: Array
+        # @param ReloadBalance: 重新负载均衡：auto(自动),manual(手动)
+        # @type ReloadBalance: String
+        # @param UpgradeTime: 升级切换时间：nowTime(升级完成时),timeWindow(维护时间内)
+        # @type UpgradeTime: String
+
+        attr_accessor :InstanceId, :ProxyGroupId, :ProxyNodeCustom, :ReloadBalance, :UpgradeTime
+        
+        def initialize(instanceid=nil, proxygroupid=nil, proxynodecustom=nil, reloadbalance=nil, upgradetime=nil)
+          @InstanceId = instanceid
+          @ProxyGroupId = proxygroupid
+          @ProxyNodeCustom = proxynodecustom
+          @ReloadBalance = reloadbalance
+          @UpgradeTime = upgradetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+          unless params['ProxyNodeCustom'].nil?
+            @ProxyNodeCustom = []
+            params['ProxyNodeCustom'].each do |i|
+              proxynodecustom_tmp = ProxyNodeCustom.new
+              proxynodecustom_tmp.deserialize(i)
+              @ProxyNodeCustom << proxynodecustom_tmp
+            end
+          end
+          @ReloadBalance = params['ReloadBalance']
+          @UpgradeTime = params['UpgradeTime']
+        end
+      end
+
+      # AdjustCdbProxy返回参数结构体
+      class AdjustCdbProxyResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 审计日志聚合条件
       class AggregationCondition < TencentCloud::Common::AbstractModel
         # @param AggregationField: 聚合字段。目前仅支持host-源IP、user-用户名、dbName-数据库名、sqlType-sql类型。
@@ -1394,6 +1543,42 @@ module TencentCloud
         end
       end
 
+      # CloseCdbProxyAddress请求参数结构体
+      class CloseCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
+
+        attr_accessor :ProxyGroupId, :ProxyAddressId
+        
+        def initialize(proxygroupid=nil, proxyaddressid=nil)
+          @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
+        end
+      end
+
+      # CloseCdbProxyAddress返回参数结构体
+      class CloseCdbProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseWanService请求参数结构体
       class CloseWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -1820,6 +2005,183 @@ module TencentCloud
 
         def deserialize(params)
           @BackupId = params['BackupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCdbProxyAddress请求参数结构体
+      class CreateCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param WeightMode: 权重分配模式，
+        # 系统自动分配："system"， 自定义："custom"
+        # @type WeightMode: String
+        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # @type IsKickOut: Boolean
+        # @param MinCount: 最小保留数量，最小取值：0
+        # @type MinCount: Integer
+        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # @type MaxDelay: Integer
+        # @param FailOver: 是否开启故障转移，取值："true" | "false"
+        # @type FailOver: Boolean
+        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # @type AutoAddRo: Boolean
+        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # @type ReadOnly: Boolean
+        # @param TransSplit: 是否开启事务分离，取值："true" | "false"
+        # @type TransSplit: Boolean
+        # @param ProxyAllocation: 读写权重分配
+        # @type ProxyAllocation: Array
+        # @param UniqVpcId: 私有网络ID
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有子网ID
+        # @type UniqSubnetId: String
+        # @param ConnectionPool: 是否开启连接池
+        # @type ConnectionPool: Boolean
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Vip: IP地址
+        # @type Vip: String
+        # @param VPort: 端口
+        # @type VPort: Integer
+        # @param SecurityGroup: 安全组
+        # @type SecurityGroup: Array
+
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup
+        
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, transsplit=nil, proxyallocation=nil, uniqvpcid=nil, uniqsubnetid=nil, connectionpool=nil, desc=nil, vip=nil, vport=nil, securitygroup=nil)
+          @ProxyGroupId = proxygroupid
+          @WeightMode = weightmode
+          @IsKickOut = iskickout
+          @MinCount = mincount
+          @MaxDelay = maxdelay
+          @FailOver = failover
+          @AutoAddRo = autoaddro
+          @ReadOnly = readonly
+          @TransSplit = transsplit
+          @ProxyAllocation = proxyallocation
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @ConnectionPool = connectionpool
+          @Desc = desc
+          @Vip = vip
+          @VPort = vport
+          @SecurityGroup = securitygroup
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @WeightMode = params['WeightMode']
+          @IsKickOut = params['IsKickOut']
+          @MinCount = params['MinCount']
+          @MaxDelay = params['MaxDelay']
+          @FailOver = params['FailOver']
+          @AutoAddRo = params['AutoAddRo']
+          @ReadOnly = params['ReadOnly']
+          @TransSplit = params['TransSplit']
+          unless params['ProxyAllocation'].nil?
+            @ProxyAllocation = []
+            params['ProxyAllocation'].each do |i|
+              proxyallocation_tmp = ProxyAllocation.new
+              proxyallocation_tmp.deserialize(i)
+              @ProxyAllocation << proxyallocation_tmp
+            end
+          end
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @ConnectionPool = params['ConnectionPool']
+          @Desc = params['Desc']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @SecurityGroup = params['SecurityGroup']
+        end
+      end
+
+      # CreateCdbProxyAddress返回参数结构体
+      class CreateCdbProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCdbProxy请求参数结构体
+      class CreateCdbProxyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param UniqVpcId: 私有网络ID
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有子网ID
+        # @type UniqSubnetId: String
+        # @param ProxyNodeCustom: 节点规格配置
+        # @type ProxyNodeCustom: Array
+        # @param SecurityGroup: 安全组
+        # @type SecurityGroup: Array
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param ConnectionPoolLimit: 连接池阈值
+        # @type ConnectionPoolLimit: Integer
+
+        attr_accessor :InstanceId, :UniqVpcId, :UniqSubnetId, :ProxyNodeCustom, :SecurityGroup, :Desc, :ConnectionPoolLimit
+        
+        def initialize(instanceid=nil, uniqvpcid=nil, uniqsubnetid=nil, proxynodecustom=nil, securitygroup=nil, desc=nil, connectionpoollimit=nil)
+          @InstanceId = instanceid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @ProxyNodeCustom = proxynodecustom
+          @SecurityGroup = securitygroup
+          @Desc = desc
+          @ConnectionPoolLimit = connectionpoollimit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          unless params['ProxyNodeCustom'].nil?
+            @ProxyNodeCustom = []
+            params['ProxyNodeCustom'].each do |i|
+              proxynodecustom_tmp = ProxyNodeCustom.new
+              proxynodecustom_tmp.deserialize(i)
+              @ProxyNodeCustom << proxynodecustom_tmp
+            end
+          end
+          @SecurityGroup = params['SecurityGroup']
+          @Desc = params['Desc']
+          @ConnectionPoolLimit = params['ConnectionPoolLimit']
+        end
+      end
+
+      # CreateCdbProxy返回参数结构体
+      class CreateCdbProxyResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end
@@ -4175,6 +4537,59 @@ module TencentCloud
         end
       end
 
+      # DescribeCdbProxyInfo请求参数结构体
+      class DescribeCdbProxyInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+
+        attr_accessor :InstanceId, :ProxyGroupId
+        
+        def initialize(instanceid=nil, proxygroupid=nil)
+          @InstanceId = instanceid
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # DescribeCdbProxyInfo返回参数结构体
+      class DescribeCdbProxyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 代理组数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param ProxyInfos: 代理组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :ProxyInfos, :RequestId
+        
+        def initialize(count=nil, proxyinfos=nil, requestid=nil)
+          @Count = count
+          @ProxyInfos = proxyinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['ProxyInfos'].nil?
+            @ProxyInfos = []
+            params['ProxyInfos'].each do |i|
+              proxygroupinfo_tmp = ProxyGroupInfo.new
+              proxygroupinfo_tmp.deserialize(i)
+              @ProxyInfos << proxygroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCdbZoneConfig请求参数结构体
       class DescribeCdbZoneConfigRequest < TencentCloud::Common::AbstractModel
 
@@ -5846,6 +6261,78 @@ module TencentCloud
             @WeightRule = Rule.new
             @WeightRule.deserialize(params['WeightRule'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProxySupportParam请求参数结构体
+      class DescribeProxySupportParamRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeProxySupportParam返回参数结构体
+      class DescribeProxySupportParamResponse < TencentCloud::Common::AbstractModel
+        # @param ProxyVersion: 支持最大代理版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyVersion: String
+        # @param SupportPool: 是否支持连接池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportPool: Boolean
+        # @param PoolMin: 连接池最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PoolMin: Integer
+        # @param PoolMax: 连接池最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PoolMax: Integer
+        # @param SupportTransSplit: 是否支持事务拆分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportTransSplit: Boolean
+        # @param SupportPoolMinVersion: 支持连接池的最小代理版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportPoolMinVersion: String
+        # @param SupportTransSplitMinVersion: 支持事务拆分的最小代理版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportTransSplitMinVersion: String
+        # @param SupportReadOnly: 是否支持设置只读
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportReadOnly: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxyVersion, :SupportPool, :PoolMin, :PoolMax, :SupportTransSplit, :SupportPoolMinVersion, :SupportTransSplitMinVersion, :SupportReadOnly, :RequestId
+        
+        def initialize(proxyversion=nil, supportpool=nil, poolmin=nil, poolmax=nil, supporttranssplit=nil, supportpoolminversion=nil, supporttranssplitminversion=nil, supportreadonly=nil, requestid=nil)
+          @ProxyVersion = proxyversion
+          @SupportPool = supportpool
+          @PoolMin = poolmin
+          @PoolMax = poolmax
+          @SupportTransSplit = supporttranssplit
+          @SupportPoolMinVersion = supportpoolminversion
+          @SupportTransSplitMinVersion = supporttranssplitminversion
+          @SupportReadOnly = supportreadonly
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProxyVersion = params['ProxyVersion']
+          @SupportPool = params['SupportPool']
+          @PoolMin = params['PoolMin']
+          @PoolMax = params['PoolMax']
+          @SupportTransSplit = params['SupportTransSplit']
+          @SupportPoolMinVersion = params['SupportPoolMinVersion']
+          @SupportTransSplitMinVersion = params['SupportTransSplitMinVersion']
+          @SupportReadOnly = params['SupportReadOnly']
           @RequestId = params['RequestId']
         end
       end
@@ -8313,6 +8800,142 @@ module TencentCloud
         end
       end
 
+      # ModifyCdbProxyAddressDesc请求参数结构体
+      class ModifyCdbProxyAddressDescRequest < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
+        # @param Desc: 描述
+        # @type Desc: String
+
+        attr_accessor :ProxyGroupId, :ProxyAddressId, :Desc
+        
+        def initialize(proxygroupid=nil, proxyaddressid=nil, desc=nil)
+          @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
+          @Desc = params['Desc']
+        end
+      end
+
+      # ModifyCdbProxyAddressDesc返回参数结构体
+      class ModifyCdbProxyAddressDescResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCdbProxyAddressVipAndVPort请求参数结构体
+      class ModifyCdbProxyAddressVipAndVPortRequest < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
+        # @param UniqVpcId: 私有网络ID
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有子网ID
+        # @type UniqSubnetId: String
+        # @param Vip: IP地址
+        # @type Vip: String
+        # @param VPort: 端口
+        # @type VPort: Integer
+        # @param ReleaseDuration: 旧IP地址回收时间
+        # @type ReleaseDuration: Integer
+
+        attr_accessor :ProxyGroupId, :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :ReleaseDuration
+        
+        def initialize(proxygroupid=nil, proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, releaseduration=nil)
+          @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Vip = vip
+          @VPort = vport
+          @ReleaseDuration = releaseduration
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @ReleaseDuration = params['ReleaseDuration']
+        end
+      end
+
+      # ModifyCdbProxyAddressVipAndVPort返回参数结构体
+      class ModifyCdbProxyAddressVipAndVPortResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCdbProxyParam请求参数结构体
+      class ModifyCdbProxyParamRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ConnectionPoolLimit: 连接池阈值
+        # @type ConnectionPoolLimit: Integer
+
+        attr_accessor :InstanceId, :ProxyGroupId, :ConnectionPoolLimit
+        
+        def initialize(instanceid=nil, proxygroupid=nil, connectionpoollimit=nil)
+          @InstanceId = instanceid
+          @ProxyGroupId = proxygroupid
+          @ConnectionPoolLimit = connectionpoollimit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+          @ConnectionPoolLimit = params['ConnectionPoolLimit']
+        end
+      end
+
+      # ModifyCdbProxyParam返回参数结构体
+      class ModifyCdbProxyParamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -9367,6 +9990,132 @@ module TencentCloud
         end
       end
 
+      # 数据库代理地址信息
+      class ProxyAddress < TencentCloud::Common::AbstractModel
+        # @param ProxyAddressId: 代理组地址ID
+        # @type ProxyAddressId: String
+        # @param UniqVpcId: 私有网络ID
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有子网ID
+        # @type UniqSubnetId: String
+        # @param Vip: IP地址
+        # @type Vip: String
+        # @param VPort: 端口
+        # @type VPort: Integer
+        # @param WeightMode: 权重分配模式；
+        # 系统自动分配："system"， 自定义："custom"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeightMode: String
+        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsKickOut: Boolean
+        # @param MinCount: 最小保留数量，最小取值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinCount: Integer
+        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDelay: Integer
+        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoAddRo: Boolean
+        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadOnly: Boolean
+        # @param TransSplit: 是否开启事务分离
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransSplit: Boolean
+        # @param FailOver: 是否开启故障转移
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailOver: Boolean
+        # @param ConnectionPool: 是否开启连接池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionPool: Boolean
+        # @param Desc: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param ProxyAllocation: 实例读权重分配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyAllocation: Array
+
+        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation
+        
+        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil)
+          @ProxyAddressId = proxyaddressid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Vip = vip
+          @VPort = vport
+          @WeightMode = weightmode
+          @IsKickOut = iskickout
+          @MinCount = mincount
+          @MaxDelay = maxdelay
+          @AutoAddRo = autoaddro
+          @ReadOnly = readonly
+          @TransSplit = transsplit
+          @FailOver = failover
+          @ConnectionPool = connectionpool
+          @Desc = desc
+          @ProxyAllocation = proxyallocation
+        end
+
+        def deserialize(params)
+          @ProxyAddressId = params['ProxyAddressId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @WeightMode = params['WeightMode']
+          @IsKickOut = params['IsKickOut']
+          @MinCount = params['MinCount']
+          @MaxDelay = params['MaxDelay']
+          @AutoAddRo = params['AutoAddRo']
+          @ReadOnly = params['ReadOnly']
+          @TransSplit = params['TransSplit']
+          @FailOver = params['FailOver']
+          @ConnectionPool = params['ConnectionPool']
+          @Desc = params['Desc']
+          unless params['ProxyAllocation'].nil?
+            @ProxyAllocation = []
+            params['ProxyAllocation'].each do |i|
+              proxyallocation_tmp = ProxyAllocation.new
+              proxyallocation_tmp.deserialize(i)
+              @ProxyAllocation << proxyallocation_tmp
+            end
+          end
+        end
+      end
+
+      # 代理节点权重分布
+      class ProxyAllocation < TencentCloud::Common::AbstractModel
+        # @param Region: 代理节点所属地域
+        # @type Region: String
+        # @param Zone: 代理节点所属可用区
+        # @type Zone: String
+        # @param ProxyInstance: 代理实例分布
+        # @type ProxyInstance: Array
+
+        attr_accessor :Region, :Zone, :ProxyInstance
+        
+        def initialize(region=nil, zone=nil, proxyinstance=nil)
+          @Region = region
+          @Zone = zone
+          @ProxyInstance = proxyinstance
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
+          unless params['ProxyInstance'].nil?
+            @ProxyInstance = []
+            params['ProxyInstance'].each do |i|
+              proxyinst_tmp = ProxyInst.new
+              proxyinst_tmp.deserialize(i)
+              @ProxyInstance << proxyinst_tmp
+            end
+          end
+        end
+      end
+
       # 数据代理组信息
       class ProxyGroup < TencentCloud::Common::AbstractModel
         # @param BaseGroup: 代理基本信息
@@ -9427,6 +10176,81 @@ module TencentCloud
         end
       end
 
+      # 代理组详情
+      class ProxyGroupInfo < TencentCloud::Common::AbstractModel
+        # @param ProxyGroupId: 代理组ID
+        # @type ProxyGroupId: String
+        # @param ProxyVersion: 代理版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyVersion: String
+        # @param SupportUpgradeProxyVersion: 代理支持升级版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportUpgradeProxyVersion: String
+        # @param Status: 代理状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param TaskStatus: 代理任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+        # @param ProxyNode: 代理组节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyNode: Array
+        # @param ProxyAddress: 代理组地址信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyAddress: Array
+        # @param ConnectionPoolLimit: 连接池阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionPoolLimit: Integer
+        # @param SupportCreateProxyAddress: 支持创建地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportCreateProxyAddress: Boolean
+        # @param SupportUpgradeProxyMysqlVersion: 支持升级代理版本所需的cdb版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportUpgradeProxyMysqlVersion: String
+
+        attr_accessor :ProxyGroupId, :ProxyVersion, :SupportUpgradeProxyVersion, :Status, :TaskStatus, :ProxyNode, :ProxyAddress, :ConnectionPoolLimit, :SupportCreateProxyAddress, :SupportUpgradeProxyMysqlVersion
+        
+        def initialize(proxygroupid=nil, proxyversion=nil, supportupgradeproxyversion=nil, status=nil, taskstatus=nil, proxynode=nil, proxyaddress=nil, connectionpoollimit=nil, supportcreateproxyaddress=nil, supportupgradeproxymysqlversion=nil)
+          @ProxyGroupId = proxygroupid
+          @ProxyVersion = proxyversion
+          @SupportUpgradeProxyVersion = supportupgradeproxyversion
+          @Status = status
+          @TaskStatus = taskstatus
+          @ProxyNode = proxynode
+          @ProxyAddress = proxyaddress
+          @ConnectionPoolLimit = connectionpoollimit
+          @SupportCreateProxyAddress = supportcreateproxyaddress
+          @SupportUpgradeProxyMysqlVersion = supportupgradeproxymysqlversion
+        end
+
+        def deserialize(params)
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyVersion = params['ProxyVersion']
+          @SupportUpgradeProxyVersion = params['SupportUpgradeProxyVersion']
+          @Status = params['Status']
+          @TaskStatus = params['TaskStatus']
+          unless params['ProxyNode'].nil?
+            @ProxyNode = []
+            params['ProxyNode'].each do |i|
+              proxynode_tmp = ProxyNode.new
+              proxynode_tmp.deserialize(i)
+              @ProxyNode << proxynode_tmp
+            end
+          end
+          unless params['ProxyAddress'].nil?
+            @ProxyAddress = []
+            params['ProxyAddress'].each do |i|
+              proxyaddress_tmp = ProxyAddress.new
+              proxyaddress_tmp.deserialize(i)
+              @ProxyAddress << proxyaddress_tmp
+            end
+          end
+          @ConnectionPoolLimit = params['ConnectionPoolLimit']
+          @SupportCreateProxyAddress = params['SupportCreateProxyAddress']
+          @SupportUpgradeProxyMysqlVersion = params['SupportUpgradeProxyMysqlVersion']
+        end
+      end
+
       # 数据代理组信息
       class ProxyGroups < TencentCloud::Common::AbstractModel
         # @param BaseGroup: 代理基本信息
@@ -9484,6 +10308,132 @@ module TencentCloud
             @RWInstInfo = RWInfos.new
             @RWInstInfo.deserialize(params['RWInstInfo'])
           end
+        end
+      end
+
+      # 代理实例
+      class ProxyInst < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InstanceType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param Status: 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Weight: 只读权重,如果权重为系统自动分配，改值不生效，只代表是否启用该实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param Region: 实例所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 实例所属可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :Status, :Weight, :Region, :Zone
+        
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, status=nil, weight=nil, region=nil, zone=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @Status = status
+          @Weight = weight
+          @Region = region
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @Status = params['Status']
+          @Weight = params['Weight']
+          @Region = params['Region']
+          @Zone = params['Zone']
+        end
+      end
+
+      # 代理节点
+      class ProxyNode < TencentCloud::Common::AbstractModel
+        # @param ProxyId: 代理节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param Cpu: CPU核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Mem: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Integer
+        # @param Status: 节点状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Zone: 代理节点可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Region: 代理节点地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Connection: 连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Connection: Integer
+
+        attr_accessor :ProxyId, :Cpu, :Mem, :Status, :Zone, :Region, :Connection
+        
+        def initialize(proxyid=nil, cpu=nil, mem=nil, status=nil, zone=nil, region=nil, connection=nil)
+          @ProxyId = proxyid
+          @Cpu = cpu
+          @Mem = mem
+          @Status = status
+          @Zone = zone
+          @Region = region
+          @Connection = connection
+        end
+
+        def deserialize(params)
+          @ProxyId = params['ProxyId']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @Status = params['Status']
+          @Zone = params['Zone']
+          @Region = params['Region']
+          @Connection = params['Connection']
+        end
+      end
+
+      # 节点规格配置
+      class ProxyNodeCustom < TencentCloud::Common::AbstractModel
+        # @param NodeCount: 节点个数
+        # @type NodeCount: Integer
+        # @param Cpu: CPU核数
+        # @type Cpu: Integer
+        # @param Mem: 内存大小
+        # @type Mem: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :NodeCount, :Cpu, :Mem, :Region, :Zone
+        
+        def initialize(nodecount=nil, cpu=nil, mem=nil, region=nil, zone=nil)
+          @NodeCount = nodecount
+          @Cpu = cpu
+          @Mem = mem
+          @Region = region
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @NodeCount = params['NodeCount']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @Region = params['Region']
+          @Zone = params['Zone']
         end
       end
 

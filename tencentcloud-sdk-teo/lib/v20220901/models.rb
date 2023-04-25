@@ -4877,7 +4877,7 @@ module TencentCloud
         # <li>l7Flow_inBandwidth_hy: 源站响应带宽；</li>
         # <li>l7Flow_request_hy: 回源请求数；</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 待查询的站点列表，此参数必填。
         # @type ZoneIds: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>

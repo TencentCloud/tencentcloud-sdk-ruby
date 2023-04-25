@@ -2125,6 +2125,66 @@ module TencentCloud
         end
       end
 
+      # ModifyFileSystemAutoScaleUpRule请求参数结构体
+      class ModifyFileSystemAutoScaleUpRuleRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
+        # @type ScaleUpThreshold: Integer
+        # @param TargetThreshold: 扩容后目标阈值,范围[10-90],该值要小于ScaleUpThreshold
+        # @type TargetThreshold: Integer
+        # @param Status: 规则状态0:关闭，1 开启
+        # @type Status: Integer
+
+        attr_accessor :FileSystemId, :ScaleUpThreshold, :TargetThreshold, :Status
+        
+        def initialize(filesystemid=nil, scaleupthreshold=nil, targetthreshold=nil, status=nil)
+          @FileSystemId = filesystemid
+          @ScaleUpThreshold = scaleupthreshold
+          @TargetThreshold = targetthreshold
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ScaleUpThreshold = params['ScaleUpThreshold']
+          @TargetThreshold = params['TargetThreshold']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyFileSystemAutoScaleUpRule返回参数结构体
+      class ModifyFileSystemAutoScaleUpRuleResponse < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param Status: 规则状态0:关闭，1 开启
+        # @type Status: Integer
+        # @param ScaleUpThreshold: 扩容阈值,范围[10-90]
+        # @type ScaleUpThreshold: Integer
+        # @param TargetThreshold: 扩容后达到阈值,范围[10-90]
+        # @type TargetThreshold: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileSystemId, :Status, :ScaleUpThreshold, :TargetThreshold, :RequestId
+        
+        def initialize(filesystemid=nil, status=nil, scaleupthreshold=nil, targetthreshold=nil, requestid=nil)
+          @FileSystemId = filesystemid
+          @Status = status
+          @ScaleUpThreshold = scaleupthreshold
+          @TargetThreshold = targetthreshold
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Status = params['Status']
+          @ScaleUpThreshold = params['ScaleUpThreshold']
+          @TargetThreshold = params['TargetThreshold']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 挂载点信息
       class MountInfo < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID

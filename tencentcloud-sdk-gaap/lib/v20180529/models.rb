@@ -7340,16 +7340,20 @@ module TencentCloud
         # 第7个bit，支持接入段Qos加速。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
+        # @param SupportFeature: 接入区域支持的能力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportFeature: :class:`Tencentcloud::Gaap.v20180529.models.SupportFeature`
 
-        attr_accessor :RegionId, :RegionName, :RegionArea, :RegionAreaName, :IDCType, :FeatureBitmap
+        attr_accessor :RegionId, :RegionName, :RegionArea, :RegionAreaName, :IDCType, :FeatureBitmap, :SupportFeature
         
-        def initialize(regionid=nil, regionname=nil, regionarea=nil, regionareaname=nil, idctype=nil, featurebitmap=nil)
+        def initialize(regionid=nil, regionname=nil, regionarea=nil, regionareaname=nil, idctype=nil, featurebitmap=nil, supportfeature=nil)
           @RegionId = regionid
           @RegionName = regionname
           @RegionArea = regionarea
           @RegionAreaName = regionareaname
           @IDCType = idctype
           @FeatureBitmap = featurebitmap
+          @SupportFeature = supportfeature
         end
 
         def deserialize(params)
@@ -7359,6 +7363,10 @@ module TencentCloud
           @RegionAreaName = params['RegionAreaName']
           @IDCType = params['IDCType']
           @FeatureBitmap = params['FeatureBitmap']
+          unless params['SupportFeature'].nil?
+            @SupportFeature = SupportFeature.new
+            @SupportFeature.deserialize(params['SupportFeature'])
+          end
         end
       end
 
@@ -7730,6 +7738,22 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Data = params['Data']
+        end
+      end
+
+      # 加速区域支持的能力，包括支持的网络类型等等。
+      class SupportFeature < TencentCloud::Common::AbstractModel
+        # @param NetworkType: 接入区域支持的网络类型列表，normal表示支持常规BGP，cn2表示精品BGP，triple表示三网，secure_eip表示定制安全eip。
+        # @type NetworkType: Array
+
+        attr_accessor :NetworkType
+        
+        def initialize(networktype=nil)
+          @NetworkType = networktype
+        end
+
+        def deserialize(params)
+          @NetworkType = params['NetworkType']
         end
       end
 

@@ -7629,10 +7629,13 @@ module TencentCloud
         # @param ExceptionInformation: 集群异常。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionInformation: String
+        # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # 为了和计费区分开，额外开启一个状态位，用于显示。
+        # @type ClusterStatus: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus
         
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -7648,6 +7651,7 @@ module TencentCloud
           @Remark = remark
           @SpecName = specname
           @ExceptionInformation = exceptioninformation
+          @ClusterStatus = clusterstatus
         end
 
         def deserialize(params)
@@ -7666,6 +7670,7 @@ module TencentCloud
           @Remark = params['Remark']
           @SpecName = params['SpecName']
           @ExceptionInformation = params['ExceptionInformation']
+          @ClusterStatus = params['ClusterStatus']
         end
       end
 
@@ -8043,10 +8048,16 @@ module TencentCloud
         # @param HttpVpcEndpoint: HTTP协议VPC接入地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpVpcEndpoint: String
+        # @param InternalEndpoint: TCP内部接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalEndpoint: String
+        # @param HttpInternalEndpoint: HTTP协议内部接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpInternalEndpoint: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -8062,6 +8073,8 @@ module TencentCloud
           @IsolateTime = isolatetime
           @HttpPublicEndpoint = httppublicendpoint
           @HttpVpcEndpoint = httpvpcendpoint
+          @InternalEndpoint = internalendpoint
+          @HttpInternalEndpoint = httpinternalendpoint
         end
 
         def deserialize(params)
@@ -8087,6 +8100,8 @@ module TencentCloud
           @IsolateTime = params['IsolateTime']
           @HttpPublicEndpoint = params['HttpPublicEndpoint']
           @HttpVpcEndpoint = params['HttpVpcEndpoint']
+          @InternalEndpoint = params['InternalEndpoint']
+          @HttpInternalEndpoint = params['HttpInternalEndpoint']
         end
       end
 
@@ -8274,7 +8289,7 @@ module TencentCloud
       class RocketMQNamespace < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         # @type NamespaceId: String
-        # @param Ttl: 未消费消息的保留时间，以毫秒单位，范围60秒到15天
+        # @param Ttl: 已废弃，未消费消息的保留时间，以毫秒单位，范围60秒到15天
         # @type Ttl: Integer
         # @param RetentionTime: 消息持久化后保留的时间，以毫秒单位
         # @type RetentionTime: Integer
@@ -8287,16 +8302,20 @@ module TencentCloud
         # @param VpcEndpoint: VPC接入点地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcEndpoint: String
+        # @param InternalEndpoint: 内部接入点地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalEndpoint: String
 
-        attr_accessor :NamespaceId, :Ttl, :RetentionTime, :Remark, :PublicEndpoint, :VpcEndpoint
+        attr_accessor :NamespaceId, :Ttl, :RetentionTime, :Remark, :PublicEndpoint, :VpcEndpoint, :InternalEndpoint
         
-        def initialize(namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil)
+        def initialize(namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, internalendpoint=nil)
           @NamespaceId = namespaceid
           @Ttl = ttl
           @RetentionTime = retentiontime
           @Remark = remark
           @PublicEndpoint = publicendpoint
           @VpcEndpoint = vpcendpoint
+          @InternalEndpoint = internalendpoint
         end
 
         def deserialize(params)
@@ -8306,6 +8325,7 @@ module TencentCloud
           @Remark = params['Remark']
           @PublicEndpoint = params['PublicEndpoint']
           @VpcEndpoint = params['VpcEndpoint']
+          @InternalEndpoint = params['InternalEndpoint']
         end
       end
 
@@ -8402,10 +8422,19 @@ module TencentCloud
         # @type Remark: String
         # @param SpecName: 实例配置ID
         # @type SpecName: String
+        # @param MaxRetention: 最大可设置消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetention: Integer
+        # @param MinRetention: 最小可设置消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinRetention: Integer
+        # @param Retention: 实例消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Retention: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :MaxRetention, :MinRetention, :Retention
         
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, maxretention=nil, minretention=nil, retention=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -8420,6 +8449,9 @@ module TencentCloud
           @PayMode = paymode
           @Remark = remark
           @SpecName = specname
+          @MaxRetention = maxretention
+          @MinRetention = minretention
+          @Retention = retention
         end
 
         def deserialize(params)
@@ -8437,6 +8469,9 @@ module TencentCloud
           @PayMode = params['PayMode']
           @Remark = params['Remark']
           @SpecName = params['SpecName']
+          @MaxRetention = params['MaxRetention']
+          @MinRetention = params['MinRetention']
+          @Retention = params['Retention']
         end
       end
 

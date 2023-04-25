@@ -1508,24 +1508,24 @@ module TencentCloud
         # <li>snapshot-type- Array of String - 是否必填：否 -（过滤条件）根据snapshot-type指定的快照类型查询对应的快照。
         # (SHARED_SNAPSHOT：表示共享过来的快照 | PRIVATE_SNAPSHOT：表示自己私有快照。)
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
-        # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         # @type Limit: Integer
-        # @param Order: 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
-        # @type Order: String
         # @param OrderField: 快照列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据快照的创建时间排序<br>默认按创建时间排序。
         # @type OrderField: String
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
+        # @type Offset: Integer
+        # @param Order: 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        # @type Order: String
 
-        attr_accessor :SnapshotIds, :Filters, :Offset, :Limit, :Order, :OrderField
+        attr_accessor :SnapshotIds, :Filters, :Limit, :OrderField, :Offset, :Order
         
-        def initialize(snapshotids=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+        def initialize(snapshotids=nil, filters=nil, limit=nil, orderfield=nil, offset=nil, order=nil)
           @SnapshotIds = snapshotids
           @Filters = filters
-          @Offset = offset
           @Limit = limit
-          @Order = order
           @OrderField = orderfield
+          @Offset = offset
+          @Order = order
         end
 
         def deserialize(params)
@@ -1538,10 +1538,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @Offset = params['Offset']
           @Limit = params['Limit']
-          @Order = params['Order']
           @OrderField = params['OrderField']
+          @Offset = params['Offset']
+          @Order = params['Order']
         end
       end
 

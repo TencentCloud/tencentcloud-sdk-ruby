@@ -729,6 +729,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用来设置文件系统扩容策略
+
+        # @param request: Request instance for ModifyFileSystemAutoScaleUpRule.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyFileSystemAutoScaleUpRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ModifyFileSystemAutoScaleUpRuleResponse`
+        def ModifyFileSystemAutoScaleUpRule(request)
+          body = send_request('ModifyFileSystemAutoScaleUpRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFileSystemAutoScaleUpRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于对turbo 文件系统扩容使用
 
         # @param request: Request instance for ScaleUpFileSystem.
