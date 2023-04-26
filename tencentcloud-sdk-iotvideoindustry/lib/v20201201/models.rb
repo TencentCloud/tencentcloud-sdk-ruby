@@ -5846,16 +5846,20 @@ module TencentCloud
         # @param Devices: 绑定的设备列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Devices: Array
+        # @param RecordStorageTime: 录像存储天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordStorageTime: Integer
 
-        attr_accessor :PlanId, :Name, :TimeTemplateId, :TimeTemplateName, :EventId, :Devices
+        attr_accessor :PlanId, :Name, :TimeTemplateId, :TimeTemplateName, :EventId, :Devices, :RecordStorageTime
         
-        def initialize(planid=nil, name=nil, timetemplateid=nil, timetemplatename=nil, eventid=nil, devices=nil)
+        def initialize(planid=nil, name=nil, timetemplateid=nil, timetemplatename=nil, eventid=nil, devices=nil, recordstoragetime=nil)
           @PlanId = planid
           @Name = name
           @TimeTemplateId = timetemplateid
           @TimeTemplateName = timetemplatename
           @EventId = eventid
           @Devices = devices
+          @RecordStorageTime = recordstoragetime
         end
 
         def deserialize(params)
@@ -5872,6 +5876,7 @@ module TencentCloud
               @Devices << deviceitem_tmp
             end
           end
+          @RecordStorageTime = params['RecordStorageTime']
         end
       end
 

@@ -2876,17 +2876,21 @@ module TencentCloud
         # @type Id: Integer
         # @param DomainAlias: 域名别名
         # @type DomainAlias: String
+        # @param Status: 别名状态：1-DNS不正确；2-正常；3-封禁。
+        # @type Status: Integer
 
-        attr_accessor :Id, :DomainAlias
+        attr_accessor :Id, :DomainAlias, :Status
         
-        def initialize(id=nil, domainalias=nil)
+        def initialize(id=nil, domainalias=nil, status=nil)
           @Id = id
           @DomainAlias = domainalias
+          @Status = status
         end
 
         def deserialize(params)
           @Id = params['Id']
           @DomainAlias = params['DomainAlias']
+          @Status = params['Status']
         end
       end
 
@@ -4741,19 +4745,30 @@ module TencentCloud
         # @type SnapshotId: String
         # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         # @type DomainId: Integer
+        # @param RecordList: 指定需要回滚的记录
+        # @type RecordList: Array
 
-        attr_accessor :Domain, :SnapshotId, :DomainId
+        attr_accessor :Domain, :SnapshotId, :DomainId, :RecordList
         
-        def initialize(domain=nil, snapshotid=nil, domainid=nil)
+        def initialize(domain=nil, snapshotid=nil, domainid=nil, recordlist=nil)
           @Domain = domain
           @SnapshotId = snapshotid
           @DomainId = domainid
+          @RecordList = recordlist
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @SnapshotId = params['SnapshotId']
           @DomainId = params['DomainId']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              snapshotrecord_tmp = SnapshotRecord.new
+              snapshotrecord_tmp.deserialize(i)
+              @RecordList << snapshotrecord_tmp
+            end
+          end
         end
       end
 
@@ -4886,10 +4901,16 @@ module TencentCloud
         # @param MX: MX优先级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: String
+        # @param Weight: 权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: String
+        # @param Reason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
 
-        attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :RecordId, :MX
+        attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :RecordId, :MX, :Weight, :Reason
         
-        def initialize(subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, recordid=nil, mx=nil)
+        def initialize(subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, recordid=nil, mx=nil, weight=nil, reason=nil)
           @SubDomain = subdomain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -4897,6 +4918,8 @@ module TencentCloud
           @TTL = ttl
           @RecordId = recordid
           @MX = mx
+          @Weight = weight
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -4907,6 +4930,8 @@ module TencentCloud
           @TTL = params['TTL']
           @RecordId = params['RecordId']
           @MX = params['MX']
+          @Weight = params['Weight']
+          @Reason = params['Reason']
         end
       end
 

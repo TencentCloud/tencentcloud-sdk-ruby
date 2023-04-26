@@ -270,6 +270,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过计算句子间的语义相似性，帮助您快速找到文本中重复或相似的句子，用于文本聚类、相似问题检索等应用场景。
+
+        # @param request: Request instance for EvaluateSentenceSimilarity.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::EvaluateSentenceSimilarityRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::EvaluateSentenceSimilarityResponse`
+        def EvaluateSentenceSimilarity(request)
+          body = send_request('EvaluateSentenceSimilarity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EvaluateSentenceSimilarityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 评估两个词语在语义空间的相似程度，为您的场景应用提供有力支持，如关键词过滤、热门话题挖掘等。（目前仅支持中文）
+
+        # @param request: Request instance for EvaluateWordSimilarity.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::EvaluateWordSimilarityRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::EvaluateWordSimilarityResponse`
+        def EvaluateWordSimilarity(request)
+          body = send_request('EvaluateWordSimilarity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EvaluateWordSimilarityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据用户输入的命题关键词自动生成一副春联，包括上联、下联和横批。（如需开通请联系商务）
 
         # @param request: Request instance for GenerateCouplet.
@@ -280,6 +328,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GenerateCoupletResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提取文本中的关键信息，生成简洁明了的关键句子，便于用户快速获取核心观点。
+
+        # @param request: Request instance for GenerateKeywordSentence.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::GenerateKeywordSentenceRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::GenerateKeywordSentenceResponse`
+        def GenerateKeywordSentence(request)
+          body = send_request('GenerateKeywordSentence', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateKeywordSentenceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -374,6 +446,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过精准地对文本进行分词、词性标注、命名实体识别等功能，助您更好地理解文本内容，挖掘出潜在的价值信息。
+
+        # @param request: Request instance for ParseWords.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::ParseWordsRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::ParseWordsResponse`
+        def ParseWords(request)
+          body = send_request('ParseWords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ParseWordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 基于大数据和深度学习技术，可以快速地找到与给定词语高度相似的其他词语，有助于提高搜索和推荐的准确性。（目前仅支持中文）
+
+        # @param request: Request instance for RetrieveSimilarWords.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::RetrieveSimilarWordsRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::RetrieveSimilarWordsResponse`
+        def RetrieveSimilarWords(request)
+          body = send_request('RetrieveSimilarWords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RetrieveSimilarWordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定自定义词库中的词条是否存在。
 
         # @param request: Request instance for SearchWordItems.
@@ -384,6 +504,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchWordItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 智能识别并纠正句子中的语法、拼写、用词等错误，确保文本的准确性和可读性。
+
+        # @param request: Request instance for SentenceCorrection.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::SentenceCorrectionRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::SentenceCorrectionResponse`
+        def SentenceCorrection(request)
+          body = send_request('SentenceCorrection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SentenceCorrectionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -556,6 +700,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 运用先进的自然语言处理技术，对原始文本进行优化润色，提升文本的通顺性、表达力和语言质量。
+
+        # @param request: Request instance for TextEmbellish.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::TextEmbellishRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::TextEmbellishResponse`
+        def TextEmbellish(request)
+          body = send_request('TextEmbellish', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextEmbellishResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 句子相似度接口能够基于深度学习技术来计算一个源句子和多个目标句子的相似度，相似度分值越大的两个句子在语义上越相似。目前仅支持短文本（不超过500字符）的相似度计算，长文本的相似度计算也即将推出。
 
         # 鉴于句子相似度是一个应用非常广泛的功能，腾讯云自然语言处理团队在Bert等领先的深度神经网络模型的基础上，专门针对文本相似任务进行了优化，并持续迭代更新。基于句子相似度，可以轻松实现诸如文本去重、相似推荐等功能。
@@ -598,6 +766,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TextSimilarityProResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过自动补全文本片段，帮助用户快速生成高质量、连贯的完整文本，提高创作效率。
+
+        # @param request: Request instance for TextWriting.
+        # @type request: :class:`Tencentcloud::nlp::V20190408::TextWritingRequest`
+        # @rtype: :class:`Tencentcloud::nlp::V20190408::TextWritingResponse`
+        def TextWriting(request)
+          body = send_request('TextWriting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextWritingResponse.new
             model.deserialize(response['Response'])
             model
           else

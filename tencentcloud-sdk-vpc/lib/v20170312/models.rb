@@ -13222,6 +13222,46 @@ module TencentCloud
         end
       end
 
+      # GenerateVpnConnectionDefaultHealthCheckIp请求参数结构体
+      class GenerateVpnConnectionDefaultHealthCheckIpRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: VPN网关id， 例如：vpngw-1w9tue3d
+        # @type VpnGatewayId: String
+
+        attr_accessor :VpnGatewayId
+        
+        def initialize(vpngatewayid=nil)
+          @VpnGatewayId = vpngatewayid
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+        end
+      end
+
+      # GenerateVpnConnectionDefaultHealthCheckIp返回参数结构体
+      class GenerateVpnConnectionDefaultHealthCheckIpResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckLocalIp: VPN通道健康检查本端ip
+        # @type HealthCheckLocalIp: String
+        # @param HealthCheckRemoteIp: VPN通道健康检查对端ip
+        # @type HealthCheckRemoteIp: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckLocalIp, :HealthCheckRemoteIp, :RequestId
+        
+        def initialize(healthchecklocalip=nil, healthcheckremoteip=nil, requestid=nil)
+          @HealthCheckLocalIp = healthchecklocalip
+          @HealthCheckRemoteIp = healthcheckremoteip
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HealthCheckLocalIp = params['HealthCheckLocalIp']
+          @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetCcnRegionBandwidthLimits请求参数结构体
       class GetCcnRegionBandwidthLimitsRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。

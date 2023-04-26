@@ -3472,10 +3472,12 @@ module TencentCloud
         # @type EdgeVersion: String
         # @param RegistryPrefix: 边缘组件镜像仓库前缀
         # @type RegistryPrefix: String
+        # @param TagSpecification: 集群绑定的云标签
+        # @type TagSpecification: :class:`Tencentcloud::Tke.v20180525.models.TagSpecification`
 
-        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB, :ClusterLevel, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion, :RegistryPrefix
+        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB, :ClusterLevel, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion, :RegistryPrefix, :TagSpecification
         
-        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil, registryprefix=nil)
+        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil, registryprefix=nil, tagspecification=nil)
           @K8SVersion = k8sversion
           @VpcId = vpcid
           @ClusterName = clustername
@@ -3490,6 +3492,7 @@ module TencentCloud
           @ChargeType = chargetype
           @EdgeVersion = edgeversion
           @RegistryPrefix = registryprefix
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -3513,6 +3516,10 @@ module TencentCloud
           @ChargeType = params['ChargeType']
           @EdgeVersion = params['EdgeVersion']
           @RegistryPrefix = params['RegistryPrefix']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
+          end
         end
       end
 
@@ -8630,12 +8637,14 @@ module TencentCloud
         # @type Health: String
         # @param GridDaemon: 是否部署GridDaemon以支持headless service
         # @type GridDaemon: String
+        # @param UnitCluster: 公网访问kins集群
+        # @type UnitCluster: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :CoreDns, :HealthRegion, :Health, :GridDaemon, :RequestId
+        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :CoreDns, :HealthRegion, :Health, :GridDaemon, :UnitCluster, :RequestId
         
-        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, coredns=nil, healthregion=nil, health=nil, griddaemon=nil, requestid=nil)
+        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, coredns=nil, healthregion=nil, health=nil, griddaemon=nil, unitcluster=nil, requestid=nil)
           @Addresses = addresses
           @Credential = credential
           @PublicLB = publiclb
@@ -8644,6 +8653,7 @@ module TencentCloud
           @HealthRegion = healthregion
           @Health = health
           @GridDaemon = griddaemon
+          @UnitCluster = unitcluster
           @RequestId = requestid
         end
 
@@ -8672,6 +8682,7 @@ module TencentCloud
           @HealthRegion = params['HealthRegion']
           @Health = params['Health']
           @GridDaemon = params['GridDaemon']
+          @UnitCluster = params['UnitCluster']
           @RequestId = params['RequestId']
         end
       end

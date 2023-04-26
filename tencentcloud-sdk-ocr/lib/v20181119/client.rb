@@ -1609,7 +1609,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 菲律宾SSSID识别
+        # 菲律宾SSSID/UMID识别
 
         # @param request: Request instance for RecognizePhilippinesSssIDOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesSssIDOCRRequest`

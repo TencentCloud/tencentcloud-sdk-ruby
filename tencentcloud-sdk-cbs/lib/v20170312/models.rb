@@ -756,6 +756,7 @@ module TencentCloud
       # CreateSnapshot返回参数结构体
       class CreateSnapshotResponse < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 新创建的快照ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1777,10 +1778,13 @@ module TencentCloud
         # @param ErrorPrompt: 云硬盘最后一次操作错误提示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorPrompt: String
+        # @param BurstPerformance: 云盘是否开启性能突发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BurstPerformance: Boolean
 
-        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt
+        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt, :BurstPerformance
         
-        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil)
+        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil, burstperformance=nil)
           @DeleteWithInstance = deletewithinstance
           @RenewFlag = renewflag
           @DiskType = disktype
@@ -1822,6 +1826,7 @@ module TencentCloud
           @InstanceType = instancetype
           @LastAttachInsId = lastattachinsid
           @ErrorPrompt = errorprompt
+          @BurstPerformance = burstperformance
         end
 
         def deserialize(params)
@@ -1876,6 +1881,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @LastAttachInsId = params['LastAttachInsId']
           @ErrorPrompt = params['ErrorPrompt']
+          @BurstPerformance = params['BurstPerformance']
         end
       end
 

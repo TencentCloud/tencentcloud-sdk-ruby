@@ -5343,6 +5343,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（GenerateVpnConnectionDefaultHealthCheckIp）用于获取一对VPN通道健康检查地址。
+
+        # @param request: Request instance for GenerateVpnConnectionDefaultHealthCheckIp.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::GenerateVpnConnectionDefaultHealthCheckIpRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::GenerateVpnConnectionDefaultHealthCheckIpResponse`
+        def GenerateVpnConnectionDefaultHealthCheckIp(request)
+          body = send_request('GenerateVpnConnectionDefaultHealthCheckIp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateVpnConnectionDefaultHealthCheckIpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
 
         # @param request: Request instance for GetCcnRegionBandwidthLimits.

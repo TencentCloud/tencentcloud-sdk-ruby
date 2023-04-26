@@ -296,10 +296,12 @@ module TencentCloud
         # @type ResourcePackageType: Integer
         # @param ResourcePackageNum: 预付费资源包数量(仅预付费需要)
         # @type ResourcePackageNum: Integer
+        # @param InstanceType: 实例类型 1:原web相关类型 2:app端类型
+        # @type InstanceType: Integer
 
-        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel, :ResourcePackageType, :ResourcePackageNum
+        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel, :ResourcePackageType, :ResourcePackageNum, :InstanceType
         
-        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil, resourcepackagetype=nil, resourcepackagenum=nil)
+        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil, resourcepackagetype=nil, resourcepackagenum=nil, instancetype=nil)
           @AreaId = areaid
           @ChargeType = chargetype
           @DataRetentionDays = dataretentiondays
@@ -311,6 +313,7 @@ module TencentCloud
           @BuyingChannel = buyingchannel
           @ResourcePackageType = resourcepackagetype
           @ResourcePackageNum = resourcepackagenum
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -332,6 +335,7 @@ module TencentCloud
           @BuyingChannel = params['BuyingChannel']
           @ResourcePackageType = params['ResourcePackageType']
           @ResourcePackageNum = params['ResourcePackageNum']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -4546,10 +4550,13 @@ module TencentCloud
         # @type InstanceName: String
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
+        # @param InstanceType: 实例类型 1:原web相关类型 2:app端类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
 
-        attr_accessor :InstanceStatus, :AreaId, :Tags, :InstanceId, :ClusterId, :InstanceDesc, :ChargeStatus, :ChargeType, :UpdatedAt, :DataRetentionDays, :InstanceName, :CreatedAt
+        attr_accessor :InstanceStatus, :AreaId, :Tags, :InstanceId, :ClusterId, :InstanceDesc, :ChargeStatus, :ChargeType, :UpdatedAt, :DataRetentionDays, :InstanceName, :CreatedAt, :InstanceType
         
-        def initialize(instancestatus=nil, areaid=nil, tags=nil, instanceid=nil, clusterid=nil, instancedesc=nil, chargestatus=nil, chargetype=nil, updatedat=nil, dataretentiondays=nil, instancename=nil, createdat=nil)
+        def initialize(instancestatus=nil, areaid=nil, tags=nil, instanceid=nil, clusterid=nil, instancedesc=nil, chargestatus=nil, chargetype=nil, updatedat=nil, dataretentiondays=nil, instancename=nil, createdat=nil, instancetype=nil)
           @InstanceStatus = instancestatus
           @AreaId = areaid
           @Tags = tags
@@ -4562,6 +4569,7 @@ module TencentCloud
           @DataRetentionDays = dataretentiondays
           @InstanceName = instancename
           @CreatedAt = createdat
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -4584,6 +4592,7 @@ module TencentCloud
           @DataRetentionDays = params['DataRetentionDays']
           @InstanceName = params['InstanceName']
           @CreatedAt = params['CreatedAt']
+          @InstanceType = params['InstanceType']
         end
       end
 

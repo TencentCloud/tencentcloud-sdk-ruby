@@ -168,7 +168,7 @@ module TencentCloud
       # 返回结果配置
       class ResultConfig < TencentCloud::Common::AbstractModel
         # @param Resolution: 生成图分辨率
-        # 支持生成以下不同分辨率的图片，对应1:1方图、3:4竖图、4:3横图三种尺寸规格，不传默认为"768:768"
+        # 支持生成以下不同分辨率的图片，对应1:1方图、3:4竖图、4:3横图三种尺寸规格。
         # 取值：
         # ● 768:768
         # ● 768:1024

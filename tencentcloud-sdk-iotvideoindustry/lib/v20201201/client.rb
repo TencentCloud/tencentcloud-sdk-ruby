@@ -1048,7 +1048,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+        # 本接口(DescribeDeviceList) 用于获取设备列表，支持模糊搜索
 
         # @param request: Request instance for DescribeDeviceList.
         # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeDeviceListRequest`

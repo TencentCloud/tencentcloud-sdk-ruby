@@ -2758,7 +2758,7 @@ module TencentCloud
       class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 枚举值：TRAIN、NOTEBOOK、INFERENCE
         # @type TaskType: String
-        # @param ChargeType: 付费模式：POSTPAID_BY_HOUR按量付费、PREPAID包年包月
+        # @param ChargeType: 付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月
         # @type ChargeType: String
         # @param ResourceType: 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘
         # @type ResourceType: String

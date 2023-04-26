@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安全 IP 组
+
+        # @param request: Request instance for CreateSecurityIPGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateSecurityIPGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateSecurityIPGroupResponse`
+        def CreateSecurityIPGroup(request)
+          body = send_request('CreateSecurityIPGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSecurityIPGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对用户指定的域名进行一次站点拨测
 
         # @param request: Request instance for CreateSpeedTesting.
@@ -519,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定 IP 组，如果有规则引用了 IP 组情况，则不允许删除。
+
+        # @param request: Request instance for DeleteSecurityIPGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteSecurityIPGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteSecurityIPGroupResponse`
+        def DeleteSecurityIPGroup(request)
+          body = send_request('DeleteSecurityIPGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSecurityIPGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1935,6 +1983,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRulePriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改安全 IP 组。
+
+        # @param request: Request instance for ModifySecurityIPGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifySecurityIPGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifySecurityIPGroupResponse`
+        def ModifySecurityIPGroup(request)
+          body = send_request('ModifySecurityIPGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySecurityIPGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
