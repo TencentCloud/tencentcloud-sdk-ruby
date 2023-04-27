@@ -10977,6 +10977,62 @@ module TencentCloud
         end
       end
 
+      # DescribeUnitRulesV2请求参数结构体
+      class DescribeUnitRulesV2Request < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param SearchWord: 根据规则名或备注内容模糊查询
+        # @type SearchWord: String
+        # @param Status: 启用状态, disabled: 未发布， enabled: 发布
+        # @type Status: String
+        # @param Offset: 翻页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 翻页查询每页记录数
+        # @type Limit: Integer
+
+        attr_accessor :GatewayInstanceId, :SearchWord, :Status, :Offset, :Limit
+        
+        def initialize(gatewayinstanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @SearchWord = searchword
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @SearchWord = params['SearchWord']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUnitRulesV2返回参数结构体
+      class DescribeUnitRulesV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 分页列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageUnitRuleV2`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageUnitRuleV2.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUploadInfo请求参数结构体
       class DescribeUploadInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -18937,6 +18993,35 @@ module TencentCloud
         # @param TotalCount: 记录总数
         # @type TotalCount: Integer
         # @param Content: 记录实体列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              unitrule_tmp = UnitRule.new
+              unitrule_tmp.deserialize(i)
+              @Content << unitrule_tmp
+            end
+          end
+        end
+      end
+
+      # 单元化规则翻页对象
+      class TsfPageUnitRuleV2 < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 记录实体列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
 
         attr_accessor :TotalCount, :Content

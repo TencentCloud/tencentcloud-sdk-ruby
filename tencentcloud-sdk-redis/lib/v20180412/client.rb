@@ -1565,7 +1565,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 模拟故障
+        # 本接口（KillMasterGroup）模拟故障。
 
         # @param request: Request instance for KillMasterGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::KillMasterGroupRequest`

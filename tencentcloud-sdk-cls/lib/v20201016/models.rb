@@ -1765,10 +1765,12 @@ module TencentCloud
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
+        # @param MetaTags: 机器组元数据信息列表
+        # @type MetaTags: Array
 
-        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging
+        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
         
-        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil)
+        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
           @Tags = tags
@@ -1776,6 +1778,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @MetaTags = metatags
         end
 
         def deserialize(params)
@@ -1796,6 +1799,14 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          unless params['MetaTags'].nil?
+            @MetaTags = []
+            params['MetaTags'].each do |i|
+              metataginfo_tmp = MetaTagInfo.new
+              metataginfo_tmp.deserialize(i)
+              @MetaTags << metataginfo_tmp
+            end
+          end
         end
       end
 
@@ -3897,10 +3908,17 @@ module TencentCloud
         # 该字段适用于：创建采集规则配置、修改采集规则配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParseProtocol: String
+        # @param MetadataType: 元数据类型，0: 不使用元数据信息，1:使用机器组元数据，2:使用用户自定义元数据，3:使用采集配置路径，
+        # @type MetadataType: Integer
+        # @param PathRegex: 采集配置路径正则表达式，MetadataType为1时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathRegex: String
+        # @param MetaTags: 用户自定义元数据信息，MetadataType为2时必填
+        # @type MetaTags: Array
 
-        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol
+        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags
         
-        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil)
+        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil, metadatatype=nil, pathregex=nil, metatags=nil)
           @TimeKey = timekey
           @TimeFormat = timeformat
           @Delimiter = delimiter
@@ -3916,6 +3934,9 @@ module TencentCloud
           @Protocol = protocol
           @Address = address
           @ParseProtocol = parseprotocol
+          @MetadataType = metadatatype
+          @PathRegex = pathregex
+          @MetaTags = metatags
         end
 
         def deserialize(params)
@@ -3941,6 +3962,16 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Address = params['Address']
           @ParseProtocol = params['ParseProtocol']
+          @MetadataType = params['MetadataType']
+          @PathRegex = params['PathRegex']
+          unless params['MetaTags'].nil?
+            @MetaTags = []
+            params['MetaTags'].each do |i|
+              metataginfo_tmp = MetaTagInfo.new
+              metataginfo_tmp.deserialize(i)
+              @MetaTags << metataginfo_tmp
+            end
+          end
         end
       end
 
@@ -4492,10 +4523,12 @@ module TencentCloud
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceLogging: Boolean
+        # @param MetaTags: 机器组元数据信息列表
+        # @type MetaTags: Array
 
-        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging
+        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
         
-        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil)
+        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
           @GroupId = groupid
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
@@ -4505,6 +4538,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @MetaTags = metatags
         end
 
         def deserialize(params)
@@ -4527,6 +4561,14 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          unless params['MetaTags'].nil?
+            @MetaTags = []
+            params['MetaTags'].each do |i|
+              metataginfo_tmp = MetaTagInfo.new
+              metataginfo_tmp.deserialize(i)
+              @MetaTags << metataginfo_tmp
+            end
+          end
         end
       end
 
@@ -4638,6 +4680,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 元数据信息
+      class MetaTagInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 元数据key
+        # @type Key: String
+        # @param Value: 元数据value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -5210,10 +5272,12 @@ module TencentCloud
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
+        # @param MetaTags: 机器组元数据信息列表
+        # @type MetaTags: Array
 
-        attr_accessor :GroupId, :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging
+        attr_accessor :GroupId, :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
         
-        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil)
+        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
           @GroupId = groupid
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
@@ -5222,6 +5286,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @MetaTags = metatags
         end
 
         def deserialize(params)
@@ -5243,6 +5308,14 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          unless params['MetaTags'].nil?
+            @MetaTags = []
+            params['MetaTags'].each do |i|
+              metataginfo_tmp = MetaTagInfo.new
+              metataginfo_tmp.deserialize(i)
+              @MetaTags << metataginfo_tmp
+            end
+          end
         end
       end
 

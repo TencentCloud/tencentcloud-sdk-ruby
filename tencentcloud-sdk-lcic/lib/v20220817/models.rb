@@ -821,10 +821,12 @@ module TencentCloud
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
         # @type GroupId: String
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @type EnableDirectControl: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl
         
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -842,6 +844,7 @@ module TencentCloud
           @AudienceType = audiencetype
           @RecordLayout = recordlayout
           @GroupId = groupid
+          @EnableDirectControl = enabledirectcontrol
         end
 
         def deserialize(params)
@@ -862,6 +865,7 @@ module TencentCloud
           @AudienceType = params['AudienceType']
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
+          @EnableDirectControl = params['EnableDirectControl']
         end
       end
 
@@ -1899,12 +1903,14 @@ module TencentCloud
         # @param GroupId: 房间绑定的群组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @type EnableDirectControl: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :RequestId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1920,6 +1926,7 @@ module TencentCloud
           @RecordUrl = recordurl
           @Status = status
           @GroupId = groupid
+          @EnableDirectControl = enabledirectcontrol
           @RequestId = requestid
         end
 
@@ -1939,6 +1946,7 @@ module TencentCloud
           @RecordUrl = params['RecordUrl']
           @Status = params['Status']
           @GroupId = params['GroupId']
+          @EnableDirectControl = params['EnableDirectControl']
           @RequestId = params['RequestId']
         end
       end
@@ -3055,10 +3063,12 @@ module TencentCloud
         # @type Assistants: Array
         # @param GroupId: 房间绑定的群组ID
         # @type GroupId: String
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @type EnableDirectControl: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl
         
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3073,6 +3083,7 @@ module TencentCloud
           @DisableRecord = disablerecord
           @Assistants = assistants
           @GroupId = groupid
+          @EnableDirectControl = enabledirectcontrol
         end
 
         def deserialize(params)
@@ -3090,6 +3101,7 @@ module TencentCloud
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
           @GroupId = params['GroupId']
+          @EnableDirectControl = params['EnableDirectControl']
         end
       end
 
@@ -3275,10 +3287,12 @@ module TencentCloud
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID
         # @type GroupId: String
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @type EnableDirectControl: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl
         
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -3295,6 +3309,7 @@ module TencentCloud
           @AudienceType = audiencetype
           @RecordLayout = recordlayout
           @GroupId = groupid
+          @EnableDirectControl = enabledirectcontrol
         end
 
         def deserialize(params)
@@ -3314,6 +3329,7 @@ module TencentCloud
           @AudienceType = params['AudienceType']
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
+          @EnableDirectControl = params['EnableDirectControl']
         end
       end
 
@@ -3354,10 +3370,16 @@ module TencentCloud
         # @param RecordUrl: 录制地址（协议为https)。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
+        # @param MaxMicNumber: 最高房间内人数（包括老师），0表示不限制，默认为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMicNumber: Integer
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDirectControl: Integer
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl
         
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -3369,6 +3391,8 @@ module TencentCloud
           @MaxRTCMember = maxrtcmember
           @ReplayUrl = replayurl
           @RecordUrl = recordurl
+          @MaxMicNumber = maxmicnumber
+          @EnableDirectControl = enabledirectcontrol
         end
 
         def deserialize(params)
@@ -3383,6 +3407,8 @@ module TencentCloud
           @MaxRTCMember = params['MaxRTCMember']
           @ReplayUrl = params['ReplayUrl']
           @RecordUrl = params['RecordUrl']
+          @MaxMicNumber = params['MaxMicNumber']
+          @EnableDirectControl = params['EnableDirectControl']
         end
       end
 

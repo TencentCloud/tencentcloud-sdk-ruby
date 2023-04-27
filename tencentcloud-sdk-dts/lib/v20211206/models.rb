@@ -868,9 +868,9 @@ module TencentCloud
 
       # CreateMigrationService请求参数结构体
       class CreateMigrationServiceRequest < TencentCloud::Common::AbstractModel
-        # @param SrcDatabaseType: 源实例数据库类型，mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb
+        # @param SrcDatabaseType: 源实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql
         # @type SrcDatabaseType: String
-        # @param DstDatabaseType: 目标实例数据库类型，mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb
+        # @param DstDatabaseType: 目标实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql
         # @type DstDatabaseType: String
         # @param SrcRegion: 源实例地域，如：ap-guangzhou
         # @type SrcRegion: String

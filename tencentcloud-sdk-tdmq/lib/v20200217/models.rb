@@ -2044,9 +2044,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         # @type NamespaceId: String
-        # @param Ttl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @param Ttl: 已废弃
         # @type Ttl: Integer
-        # @param RetentionTime: 消息持久化后保留的时间，以毫秒为单位
+        # @param RetentionTime: 已废弃
         # @type RetentionTime: Integer
         # @param Remark: 说明，最大128个字符
         # @type Remark: String
@@ -6682,9 +6682,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         # @type NamespaceId: String
-        # @param Ttl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @param Ttl: 已废弃
         # @type Ttl: Integer
-        # @param RetentionTime: 消息持久化后保留的时间，以毫秒为单位
+        # @param RetentionTime: 已废弃
         # @type RetentionTime: Integer
         # @param Remark: 说明，最大128个字符
         # @type Remark: String

@@ -4114,31 +4114,38 @@ module TencentCloud
 
       # 实例节点类型
       class InstanceClusterNode < TencentCloud::Common::AbstractModel
-        # @param Name: 节点名称
+        # @param Name: 节点名称。
         # @type Name: String
-        # @param RunId: 实例运行时节点Id
+        # @param RunId: 实例运行时节点 ID。
         # @type RunId: String
-        # @param Role: 集群角色：0-master；1-slave
+        # @param Role: 集群角色。
+        # - 0：master。
+        # - 1：slave。
         # @type Role: Integer
-        # @param Status: 节点状态：0-readwrite, 1-read, 2-backup
+        # @param Status: 节点状态。
+        # - 0：readwrite,。
+        # - 1：read。
+        # - 2：backup。
         # @type Status: Integer
-        # @param Connected: 服务状态：0-down；1-on
+        # @param Connected: 服务状态。
+        # 0-down。
+        # 1-on
         # @type Connected: Integer
-        # @param CreateTime: 节点创建时间
+        # @param CreateTime: 节点创建时间。
         # @type CreateTime: String
-        # @param DownTime: 节点下线时间
+        # @param DownTime: 节点下线时间。
         # @type DownTime: String
-        # @param Slots: 节点slot分布
+        # @param Slots: 节点 Slot 分布区间。
         # @type Slots: String
-        # @param Keys: 节点key分布
+        # @param Keys: 节点 Key分布。
         # @type Keys: Integer
-        # @param Qps: 节点qps
+        # @param Qps: 节点 QPS。分片节点每秒执行次数。单位：次/秒。
         # @type Qps: Integer
-        # @param QpsSlope: 节点qps倾斜度
+        # @param QpsSlope: 节点 QPS 倾斜度。
         # @type QpsSlope: Float
-        # @param Storage: 节点存储
+        # @param Storage: 节点存储。
         # @type Storage: Integer
-        # @param StorageSlope: 节点存储倾斜度
+        # @param StorageSlope: 节点存储倾斜度。
         # @type StorageSlope: Float
 
         attr_accessor :Name, :RunId, :Role, :Status, :Connected, :CreateTime, :DownTime, :Slots, :Keys, :Qps, :QpsSlope, :Storage, :StorageSlope
@@ -4371,9 +4378,9 @@ module TencentCloud
 
       # 实例节点
       class InstanceNode < TencentCloud::Common::AbstractModel
-        # @param Id: Id
+        # @param Id: 实例 ID。
         # @type Id: Integer
-        # @param InstanceClusterNode: 节点详细信息
+        # @param InstanceClusterNode: 节点详细信息。
         # @type InstanceClusterNode: Array
 
         attr_accessor :Id, :InstanceClusterNode
@@ -4833,9 +4840,9 @@ module TencentCloud
 
       # 实例标签信息
       class InstanceTagInfo < TencentCloud::Common::AbstractModel
-        # @param TagKey: 标签键
+        # @param TagKey: 标签键。
         # @type TagKey: String
-        # @param TagValue: 标签值
+        # @param TagValue: 标签值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -5001,17 +5008,14 @@ module TencentCloud
 
       # KillMasterGroup请求参数结构体
       class KillMasterGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Password: 1.长度8-30位,推荐使用12位以上的密码
-        # 2.不能以"/"开头
-        # 3.至少包含两项
-        #     a.小写字母a-z
-        #     b.大写字母A-Z
-        #     c.数字0-9
-        #     d.()`~!@#$%^&*-+=_|{}[]:;<>,.?/
+        # @param Password: 该参数用于配置指定实例的访问密码。若为免密认证，该参数则无需配置。密码复杂度要求如下所示。
+        # - 长度8-30位,推荐使用12位以上的密码
+        # - 不能以"/"开头
+        # - 至少包含小写字母a-z、大写字母A-Z、数字0-9及其 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
         # @type Password: String
-        # @param ShardIds: 单AZ实例节点信息
+        # @param ShardIds: 分片集群的分片 ID。
         # @type ShardIds: Array
 
         attr_accessor :InstanceId, :Password, :ShardIds
@@ -5031,7 +5035,7 @@ module TencentCloud
 
       # KillMasterGroup返回参数结构体
       class KillMasterGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID
+        # @param TaskId: 异步任务ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

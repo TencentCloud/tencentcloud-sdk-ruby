@@ -943,6 +943,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为了防止在下单、询价、后付费开通等过程中确保来源合法以及订单参数没有被篡改过，各个业务方使用下单、询价等场景需调用计费签名接口获取签名，获取签名的请求需带上签名以验证身份，本接口可以获取计费签名。
+
+        # @param request: Request instance for DescribeAuthSignature.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeAuthSignatureRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeAuthSignatureResponse`
+        def DescribeAuthSignature(request)
+          body = send_request('DescribeAuthSignature', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuthSignatureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBlackHeader）用于查询禁用的自定义header 名称
 
         # @param request: Request instance for DescribeBlackHeader.

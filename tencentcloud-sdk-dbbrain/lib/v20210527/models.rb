@@ -759,8 +759,7 @@ module TencentCloud
         # @type AsyncRequestIds: Array
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB for MySQL， "mongodb" - 云数据库 CynosDB for MySQL，
-        # 默认值为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :AsyncRequestIds, :InstanceId, :Product

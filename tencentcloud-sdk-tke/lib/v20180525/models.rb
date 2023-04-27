@@ -8743,7 +8743,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 最大输出条数，默认20
         # @type Limit: Integer
-        # @param Filters: 过滤条件,当前只支持按照单个条件ClusterName进行过滤
+        # @param Filters: 过滤条件,当前只支持按照ClusterName和云标签进行过滤
         # @type Filters: Array
 
         attr_accessor :ClusterIds, :Offset, :Limit, :Filters

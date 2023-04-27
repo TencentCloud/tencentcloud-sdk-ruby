@@ -1299,10 +1299,19 @@ module TencentCloud
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetUin: Integer
+        # @param RotationFrequency: 轮转的频率，以天作为单位，在轮转开启状态下生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationFrequency: Integer
+        # @param ResourceID: 云产品凭据对应的云产品实例 ID 号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceID: String
+        # @param RotationBeginTime: 用户指定的轮转开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationBeginTime: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -1319,6 +1328,9 @@ module TencentCloud
           @ProjectID = projectid
           @AssociatedInstanceIDs = associatedinstanceids
           @TargetUin = targetuin
+          @RotationFrequency = rotationfrequency
+          @ResourceID = resourceid
+          @RotationBeginTime = rotationbegintime
         end
 
         def deserialize(params)
@@ -1338,6 +1350,9 @@ module TencentCloud
           @ProjectID = params['ProjectID']
           @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
           @TargetUin = params['TargetUin']
+          @RotationFrequency = params['RotationFrequency']
+          @ResourceID = params['ResourceID']
+          @RotationBeginTime = params['RotationBeginTime']
         end
       end
 

@@ -1421,7 +1421,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取spark应用列表
+        # 获取spark应用列表。
 
         # @param request: Request instance for DescribeSparkAppJobs.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobsRequest`
