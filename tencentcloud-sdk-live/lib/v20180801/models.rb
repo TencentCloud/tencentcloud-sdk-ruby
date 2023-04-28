@@ -1038,7 +1038,7 @@ module TencentCloud
         # @param SnapshotNotifyUrl: 截图回调 URL，
         # 相关协议文档：[事件消息通知](/document/product/267/32744)。
         # @type SnapshotNotifyUrl: String
-        # @param PornCensorshipNotifyUrl: 鉴黄回调 URL，
+        # @param PornCensorshipNotifyUrl: 鉴黄回调 URL ，
         # 相关协议文档：[事件消息通知](/document/product/267/32741)。
         # @type PornCensorshipNotifyUrl: String
         # @param CallbackKey: 回调 Key，回调 URL 公用，回调签名详见事件消息通知文档。
@@ -1048,10 +1048,12 @@ module TencentCloud
         # @type StreamMixNotifyUrl: String
         # @param PushExceptionNotifyUrl: 推流异常回调 URL。
         # @type PushExceptionNotifyUrl: String
+        # @param AudioAuditNotifyUrl: 音频审核回调 URL。
+        # @type AudioAuditNotifyUrl: String
 
-        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl
+        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
         
-        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil)
+        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
@@ -1062,6 +1064,7 @@ module TencentCloud
           @CallbackKey = callbackkey
           @StreamMixNotifyUrl = streammixnotifyurl
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
+          @AudioAuditNotifyUrl = audioauditnotifyurl
         end
 
         def deserialize(params)
@@ -1075,6 +1078,7 @@ module TencentCloud
           @CallbackKey = params['CallbackKey']
           @StreamMixNotifyUrl = params['StreamMixNotifyUrl']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
+          @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
         end
       end
 

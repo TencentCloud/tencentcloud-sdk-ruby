@@ -14274,20 +14274,23 @@ module TencentCloud
         # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
         # @param AiRecognitionTask: 视频内容识别类型任务参数。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
+        # @param AiAnalysisTask: 视频内容分析类型任务参数。
+        # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :SessionId, :SessionContext
+        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :SessionId, :SessionContext
         
-        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, sessionid=nil, sessioncontext=nil)
           @Url = url
           @TaskNotifyConfig = tasknotifyconfig
           @OutputStorage = outputstorage
           @OutputDir = outputdir
           @AiContentReviewTask = aicontentreviewtask
           @AiRecognitionTask = airecognitiontask
+          @AiAnalysisTask = aianalysistask
           @SessionId = sessionid
           @SessionContext = sessioncontext
         end
@@ -14310,6 +14313,10 @@ module TencentCloud
           unless params['AiRecognitionTask'].nil?
             @AiRecognitionTask = AiRecognitionTaskInput.new
             @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
+          end
+          unless params['AiAnalysisTask'].nil?
+            @AiAnalysisTask = AiAnalysisTaskInput.new
+            @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']

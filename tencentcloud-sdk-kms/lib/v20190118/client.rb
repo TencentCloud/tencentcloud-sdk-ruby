@@ -1038,6 +1038,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口使用后量子密码算法密钥，解密密文，并得到明文数据。
+
+        # @param request: Request instance for PostQuantumCryptoDecrypt.
+        # @type request: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoDecryptRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoDecryptResponse`
+        def PostQuantumCryptoDecrypt(request)
+          body = send_request('PostQuantumCryptoDecrypt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PostQuantumCryptoDecryptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口使用后量子密码算法密钥，可加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作。
+
+        # @param request: Request instance for PostQuantumCryptoEncrypt.
+        # @type request: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoEncryptRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoEncryptResponse`
+        def PostQuantumCryptoEncrypt(request)
+          body = send_request('PostQuantumCryptoEncrypt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PostQuantumCryptoEncryptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用后量子密码算法签名验签密钥进行签名。
+
+        # @param request: Request instance for PostQuantumCryptoSign.
+        # @type request: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoSignRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoSignResponse`
+        def PostQuantumCryptoSign(request)
+          body = send_request('PostQuantumCryptoSign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PostQuantumCryptoSignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用后量子密码算法密钥对签名进行验证。
+
+        # @param request: Request instance for PostQuantumCryptoVerify.
+        # @type request: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoVerifyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::PostQuantumCryptoVerifyResponse`
+        def PostQuantumCryptoVerify(request)
+          body = send_request('PostQuantumCryptoVerify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PostQuantumCryptoVerifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用指定CMK对密文重新加密。
 
         # @param request: Request instance for ReEncrypt.

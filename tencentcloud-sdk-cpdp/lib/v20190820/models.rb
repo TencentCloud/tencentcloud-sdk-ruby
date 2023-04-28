@@ -14149,10 +14149,13 @@ module TencentCloud
         # @param FailReason: 失败原因。当Status为FAILED时，改字段为失败的原因。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
+        # @param FundingAccountSubType: 资金账户字类型: WECHATPAY_ACCOUNT 微信零钱, BANK_ACCOUNT 银行卡
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FundingAccountSubType: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem, :FailReason
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem, :FailReason, :FundingAccountSubType
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil, failreason=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil, failreason=nil, fundingaccountsubtype=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -14172,6 +14175,7 @@ module TencentCloud
           @AdditionalTaxSum = additionaltaxsum
           @AdditionalTaxItem = additionaltaxitem
           @FailReason = failreason
+          @FundingAccountSubType = fundingaccountsubtype
         end
 
         def deserialize(params)
@@ -14194,6 +14198,7 @@ module TencentCloud
           @AdditionalTaxSum = params['AdditionalTaxSum']
           @AdditionalTaxItem = params['AdditionalTaxItem']
           @FailReason = params['FailReason']
+          @FundingAccountSubType = params['FundingAccountSubType']
         end
       end
 

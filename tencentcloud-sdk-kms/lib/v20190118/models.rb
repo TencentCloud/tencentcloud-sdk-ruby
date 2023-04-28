@@ -2032,6 +2032,183 @@ module TencentCloud
         end
       end
 
+      # PostQuantumCryptoDecrypt请求参数结构体
+      class PostQuantumCryptoDecryptRequest < TencentCloud::Common::AbstractModel
+        # @param CiphertextBlob: 待解密的密文数据
+        # @type CiphertextBlob: String
+        # @param EncryptionPublicKey: PEM 格式公钥字符串，支持 RSA2048 和 SM2 公钥，用于对返回数据中的 Plaintext 值进行加密。若为空，则不对 Plaintext 值加密。
+        # @type EncryptionPublicKey: String
+        # @param EncryptionAlgorithm: 非对称加密算法，配合 EncryptionPublicKey 对返回数据进行加密。目前支持：SM2（以 C1C3C2 格式返回密文），SM2_C1C3C2_ASN1 （以 C1C3C2 ASN1 格式返回密文），RSAES_PKCS1_V1_5，RSAES_OAEP_SHA_1，RSAES_OAEP_SHA_256。若为空，则默认为 SM2。
+        # @type EncryptionAlgorithm: String
+
+        attr_accessor :CiphertextBlob, :EncryptionPublicKey, :EncryptionAlgorithm
+        
+        def initialize(ciphertextblob=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
+          @CiphertextBlob = ciphertextblob
+          @EncryptionPublicKey = encryptionpublickey
+          @EncryptionAlgorithm = encryptionalgorithm
+        end
+
+        def deserialize(params)
+          @CiphertextBlob = params['CiphertextBlob']
+          @EncryptionPublicKey = params['EncryptionPublicKey']
+          @EncryptionAlgorithm = params['EncryptionAlgorithm']
+        end
+      end
+
+      # PostQuantumCryptoDecrypt返回参数结构体
+      class PostQuantumCryptoDecryptResponse < TencentCloud::Common::AbstractModel
+        # @param KeyId: CMK的全局唯一标识
+        # @type KeyId: String
+        # @param PlainText: 若调用时未提供 EncryptionPublicKey，该字段值为 Base64 编码的明文，需进行 Base64 解码以获取明文。
+        # 若调用时提供了 EncryptionPublicKey，则该字段值为使用 EncryptionPublicKey 公钥进行非对称加密后的 Base64 编码的密文。需在 Base64 解码后，使用用户上传的公钥对应的私钥进行进一步解密，以获取明文。
+        # @type PlainText: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyId, :PlainText, :RequestId
+        
+        def initialize(keyid=nil, plaintext=nil, requestid=nil)
+          @KeyId = keyid
+          @PlainText = plaintext
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @PlainText = params['PlainText']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PostQuantumCryptoEncrypt请求参数结构体
+      class PostQuantumCryptoEncryptRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: 调用CreateKey生成的CMK全局唯一标识符
+        # @type KeyId: String
+        # @param PlainText: 被加密的明文数据，该字段必须使用base64编码，原文最大长度支持4K
+        # @type PlainText: String
+
+        attr_accessor :KeyId, :PlainText
+        
+        def initialize(keyid=nil, plaintext=nil)
+          @KeyId = keyid
+          @PlainText = plaintext
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @PlainText = params['PlainText']
+        end
+      end
+
+      # PostQuantumCryptoEncrypt返回参数结构体
+      class PostQuantumCryptoEncryptResponse < TencentCloud::Common::AbstractModel
+        # @param CiphertextBlob: 加密后的密文，base64编码。注意：本字段中打包了密文和密钥的相关信息，不是对明文的直接加密结果，只有将该字段作为PostQuantumCryptoDecrypt接口的输入参数，才可以解密出原文。
+        # @type CiphertextBlob: String
+        # @param KeyId: 加密使用的CMK的全局唯一标识
+        # @type KeyId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CiphertextBlob, :KeyId, :RequestId
+        
+        def initialize(ciphertextblob=nil, keyid=nil, requestid=nil)
+          @CiphertextBlob = ciphertextblob
+          @KeyId = keyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CiphertextBlob = params['CiphertextBlob']
+          @KeyId = params['KeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PostQuantumCryptoSign请求参数结构体
+      class PostQuantumCryptoSignRequest < TencentCloud::Common::AbstractModel
+        # @param Message: Base64 编码的消息原文。消息原文的长度（Base64编码前的长度）不超过4096字节。
+        # @type Message: String
+        # @param KeyId: 密钥的唯一标识
+        # @type KeyId: String
+
+        attr_accessor :Message, :KeyId
+        
+        def initialize(message=nil, keyid=nil)
+          @Message = message
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @KeyId = params['KeyId']
+        end
+      end
+
+      # PostQuantumCryptoSign返回参数结构体
+      class PostQuantumCryptoSignResponse < TencentCloud::Common::AbstractModel
+        # @param Signature: 签名值，Base64编码。可使用 PostQuantumCryptoVerify接口对签名值进行验证。
+        # @type Signature: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Signature, :RequestId
+        
+        def initialize(signature=nil, requestid=nil)
+          @Signature = signature
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Signature = params['Signature']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PostQuantumCryptoVerify请求参数结构体
+      class PostQuantumCryptoVerifyRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: 密钥的唯一标识
+        # @type KeyId: String
+        # @param SignatureValue: 签名值，通过调用KMS PostQuantumCryptoSign签名接口生成
+        # @type SignatureValue: String
+        # @param Message: Base64 编码的消息原文，消息原文的长度（Base64编码前的长度）不超过4096字节。
+        # @type Message: String
+
+        attr_accessor :KeyId, :SignatureValue, :Message
+        
+        def initialize(keyid=nil, signaturevalue=nil, message=nil)
+          @KeyId = keyid
+          @SignatureValue = signaturevalue
+          @Message = message
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @SignatureValue = params['SignatureValue']
+          @Message = params['Message']
+        end
+      end
+
+      # PostQuantumCryptoVerify返回参数结构体
+      class PostQuantumCryptoVerifyResponse < TencentCloud::Common::AbstractModel
+        # @param SignatureValid: 签名是否有效。true：签名有效，false：签名无效。
+        # @type SignatureValid: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignatureValid, :RequestId
+        
+        def initialize(signaturevalid=nil, requestid=nil)
+          @SignatureValid = signaturevalid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignatureValid = params['SignatureValid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReEncrypt请求参数结构体
       class ReEncryptRequest < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 需要重新加密的密文

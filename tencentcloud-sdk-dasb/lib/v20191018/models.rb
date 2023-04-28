@@ -476,14 +476,58 @@ module TencentCloud
         # @type TimeOffset: Integer
         # @param Action: 命令执行情况，1--允许，2--拒绝，3--确认
         # @type Action: Integer
+        # @param Sid: 会话id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sid: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Account: 设备account
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Account: String
+        # @param InstanceId: 设备ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param FromIp: source ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromIp: String
+        # @param SessTime: 该命令所属会话的会话开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessTime: String
+        # @param ConfirmTime: 复核时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfirmTime: String
+        # @param UserDepartmentId: 用户部门id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDepartmentId: String
+        # @param UserDepartmentName: 用户部门name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDepartmentName: String
+        # @param DeviceDepartmentId: 设备部门id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceDepartmentId: String
+        # @param DeviceDepartmentName: 设备部门name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceDepartmentName: String
 
-        attr_accessor :Cmd, :Time, :TimeOffset, :Action
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
         
-        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil)
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
           @Cmd = cmd
           @Time = time
           @TimeOffset = timeoffset
           @Action = action
+          @Sid = sid
+          @UserName = username
+          @Account = account
+          @InstanceId = instanceid
+          @FromIp = fromip
+          @SessTime = sesstime
+          @ConfirmTime = confirmtime
+          @UserDepartmentId = userdepartmentid
+          @UserDepartmentName = userdepartmentname
+          @DeviceDepartmentId = devicedepartmentid
+          @DeviceDepartmentName = devicedepartmentname
         end
 
         def deserialize(params)
@@ -491,6 +535,17 @@ module TencentCloud
           @Time = params['Time']
           @TimeOffset = params['TimeOffset']
           @Action = params['Action']
+          @Sid = params['Sid']
+          @UserName = params['UserName']
+          @Account = params['Account']
+          @InstanceId = params['InstanceId']
+          @FromIp = params['FromIp']
+          @SessTime = params['SessTime']
+          @ConfirmTime = params['ConfirmTime']
+          @UserDepartmentId = params['UserDepartmentId']
+          @UserDepartmentName = params['UserDepartmentName']
+          @DeviceDepartmentId = params['DeviceDepartmentId']
+          @DeviceDepartmentName = params['DeviceDepartmentName']
         end
       end
 
@@ -666,17 +721,23 @@ module TencentCloud
         # @type Name: String
         # @param CmdList: 命令列表，\n分隔，最大长度32768字节
         # @type CmdList: String
+        # @param Encoding: 标识cmdlist字段前端是否为base64加密传值.
+        # 0:表示非base64加密
+        # 1:表示是base64加密
+        # @type Encoding: Integer
 
-        attr_accessor :Name, :CmdList
+        attr_accessor :Name, :CmdList, :Encoding
         
-        def initialize(name=nil, cmdlist=nil)
+        def initialize(name=nil, cmdlist=nil, encoding=nil)
           @Name = name
           @CmdList = cmdlist
+          @Encoding = encoding
         end
 
         def deserialize(params)
           @Name = params['Name']
           @CmdList = params['CmdList']
+          @Encoding = params['Encoding']
         end
       end
 
@@ -3127,6 +3188,9 @@ module TencentCloud
         # @type Sid: String
         # @param Cmd: 命令，可模糊搜索
         # @type Cmd: String
+        # @param Encoding: Cmd字段是前端传值是否进行base64.
+        # 0:否，1：是
+        # @type Encoding: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 每页容量，默认20，最大200
@@ -3134,11 +3198,12 @@ module TencentCloud
         # @param AuditAction: 根据拦截状态进行过滤
         # @type AuditAction: Array
 
-        attr_accessor :Sid, :Cmd, :Offset, :Limit, :AuditAction
+        attr_accessor :Sid, :Cmd, :Encoding, :Offset, :Limit, :AuditAction
         
-        def initialize(sid=nil, cmd=nil, offset=nil, limit=nil, auditaction=nil)
+        def initialize(sid=nil, cmd=nil, encoding=nil, offset=nil, limit=nil, auditaction=nil)
           @Sid = sid
           @Cmd = cmd
+          @Encoding = encoding
           @Offset = offset
           @Limit = limit
           @AuditAction = auditaction
@@ -3147,6 +3212,7 @@ module TencentCloud
         def deserialize(params)
           @Sid = params['Sid']
           @Cmd = params['Cmd']
+          @Encoding = params['Encoding']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @AuditAction = params['AuditAction']
@@ -3204,6 +3270,9 @@ module TencentCloud
         # @type PrivateIp: String
         # @param Cmd: 执行的命令
         # @type Cmd: String
+        # @param Encoding: Cmd字段是前端传值是否进行base64.
+        # 0:否，1：是
+        # @type Encoding: Integer
         # @param AuditAction: 根据拦截状态进行过滤：1 - 已执行，2 - 被阻断
         # @type AuditAction: Array
         # @param Limit: 每页容量，默认20，最大200
@@ -3211,9 +3280,9 @@ module TencentCloud
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
 
-        attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :AuditAction, :Limit, :Offset
+        attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Encoding, :AuditAction, :Limit, :Offset
         
-        def initialize(starttime=nil, endtime=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, auditaction=nil, limit=nil, offset=nil)
+        def initialize(starttime=nil, endtime=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, encoding=nil, auditaction=nil, limit=nil, offset=nil)
           @StartTime = starttime
           @EndTime = endtime
           @UserName = username
@@ -3223,6 +3292,7 @@ module TencentCloud
           @PublicIp = publicip
           @PrivateIp = privateip
           @Cmd = cmd
+          @Encoding = encoding
           @AuditAction = auditaction
           @Limit = limit
           @Offset = offset
@@ -3238,6 +3308,7 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @PrivateIp = params['PrivateIp']
           @Cmd = params['Cmd']
+          @Encoding = params['Encoding']
           @AuditAction = params['AuditAction']
           @Limit = params['Limit']
           @Offset = params['Offset']
@@ -3299,10 +3370,34 @@ module TencentCloud
         # @type Sid: String
         # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
         # @type TimeOffset: Integer
+        # @param Account: 账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Account: String
+        # @param FromIp: source ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromIp: String
+        # @param SessTime: 该命令所属会话的会话开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessTime: String
+        # @param ConfirmTime: 复核时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfirmTime: String
+        # @param UserDepartmentId: 部门id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDepartmentId: String
+        # @param UserDepartmentName: 用户部门名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDepartmentName: String
+        # @param DeviceDepartmentId: 设备部门id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceDepartmentId: String
+        # @param DeviceDepartmentName: 设备部门名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceDepartmentName: String
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
         
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -3314,6 +3409,14 @@ module TencentCloud
           @Action = action
           @Sid = sid
           @TimeOffset = timeoffset
+          @Account = account
+          @FromIp = fromip
+          @SessTime = sesstime
+          @ConfirmTime = confirmtime
+          @UserDepartmentId = userdepartmentid
+          @UserDepartmentName = userdepartmentname
+          @DeviceDepartmentId = devicedepartmentid
+          @DeviceDepartmentName = devicedepartmentname
         end
 
         def deserialize(params)
@@ -3328,6 +3431,14 @@ module TencentCloud
           @Action = params['Action']
           @Sid = params['Sid']
           @TimeOffset = params['TimeOffset']
+          @Account = params['Account']
+          @FromIp = params['FromIp']
+          @SessTime = params['SessTime']
+          @ConfirmTime = params['ConfirmTime']
+          @UserDepartmentId = params['UserDepartmentId']
+          @UserDepartmentName = params['UserDepartmentName']
+          @DeviceDepartmentId = params['DeviceDepartmentId']
+          @DeviceDepartmentName = params['DeviceDepartmentName']
         end
       end
 
@@ -3634,16 +3745,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 默认值为20，最大200
         # @type Limit: Integer
+        # @param Encoding: Cmd字段前端是否做base64加密
+        # 0：否，1：是
+        # @type Encoding: Integer
         # @param EndTime: 结束时间
         # @type EndTime: String
 
-        attr_accessor :Cmd, :StartTime, :Offset, :Limit, :EndTime
+        attr_accessor :Cmd, :StartTime, :Offset, :Limit, :Encoding, :EndTime
         
-        def initialize(cmd=nil, starttime=nil, offset=nil, limit=nil, endtime=nil)
+        def initialize(cmd=nil, starttime=nil, offset=nil, limit=nil, encoding=nil, endtime=nil)
           @Cmd = cmd
           @StartTime = starttime
           @Offset = offset
           @Limit = limit
+          @Encoding = encoding
           @EndTime = endtime
         end
 
@@ -3652,6 +3767,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Encoding = params['Encoding']
           @EndTime = params['EndTime']
         end
       end

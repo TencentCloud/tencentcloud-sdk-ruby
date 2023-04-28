@@ -125,16 +125,20 @@ module TencentCloud
         # @param Operator: 实时任务告警需要的参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: Integer
+        # @param AlarmIndicatorUnit: 告警指标阈值单位：ms(毫秒)、s(秒)、min(分钟)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmIndicatorUnit: String
 
-        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator
+        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit
         
-        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil)
+        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil)
           @Id = id
           @AlarmIndicator = alarmindicator
           @AlarmIndicatorDesc = alarmindicatordesc
           @TriggerType = triggertype
           @EstimatedTime = estimatedtime
           @Operator = operator
+          @AlarmIndicatorUnit = alarmindicatorunit
         end
 
         def deserialize(params)
@@ -144,6 +148,7 @@ module TencentCloud
           @TriggerType = params['TriggerType']
           @EstimatedTime = params['EstimatedTime']
           @Operator = params['Operator']
+          @AlarmIndicatorUnit = params['AlarmIndicatorUnit']
         end
       end
 
@@ -3036,10 +3041,13 @@ module TencentCloud
         # @param BizParamsString: BizParams json字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizParamsString: String
+        # @param ModifiedTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: Integer
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime
         
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -3069,6 +3077,7 @@ module TencentCloud
           @CreateTime = createtime
           @ParamsString = paramsstring
           @BizParamsString = bizparamsstring
+          @ModifiedTime = modifiedtime
         end
 
         def deserialize(params)
@@ -3101,6 +3110,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ParamsString = params['ParamsString']
           @BizParamsString = params['BizParamsString']
+          @ModifiedTime = params['ModifiedTime']
         end
       end
 
@@ -4434,16 +4444,27 @@ module TencentCloud
 
       # DescribeDatabaseInfoList请求参数结构体
       class DescribeDatabaseInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤参数
+        # @type Filters: Array
         # @param ConnectionType: 如果是hive这里写rpc，如果是其他类型不传
         # @type ConnectionType: String
 
-        attr_accessor :ConnectionType
+        attr_accessor :Filters, :ConnectionType
         
-        def initialize(connectiontype=nil)
+        def initialize(filters=nil, connectiontype=nil)
+          @Filters = filters
           @ConnectionType = connectiontype
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           @ConnectionType = params['ConnectionType']
         end
       end
@@ -6264,6 +6285,101 @@ module TencentCloud
         end
       end
 
+      # DescribeOperateTasks请求参数结构体
+      class DescribeOperateTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param FolderIdList: 文件夹id，多个文件夹以逗号分隔
+        # @type FolderIdList: String
+        # @param WorkFlowIdList: 工作流id，多个工作流id之间以英文字符逗号分隔
+        # @type WorkFlowIdList: String
+        # @param WorkFlowNameList: 工作流名称，多个工作流名称之间以英文字符逗号分隔
+        # @type WorkFlowNameList: String
+        # @param TaskNameList: 任务名称，多个任务名称之间以英文字符逗号分隔
+        # @type TaskNameList: String
+        # @param TaskIdList: 任务id，多个任务id之间以英文字符逗号分隔
+        # @type TaskIdList: String
+        # @param PageNumber: 页号
+        # @type PageNumber: String
+        # @param PageSize: 分页大小
+        # @type PageSize: String
+        # @param SortItem: 排序字段，支持字段为FirstSubmitTime和FirstRunTime，标识最近提交和首次执行事件
+        # @type SortItem: String
+        # @param SortType: 排序类型。两种取值 DESC、ASC
+        # @type SortType: String
+        # @param InChargeList: 责任人，多个责任人之间以英文字符逗号分隔
+        # @type InChargeList: String
+        # @param TaskTypeIdList: 任务类型Id字符串，多个任务类型id之间以英文字符逗号分隔
+        # @type TaskTypeIdList: String
+        # @param StatusList: 任务状态字符串，多个任务状态之间以英文字符逗号分隔
+        # @type StatusList: String
+        # @param TaskCycleUnitList: 任务周期类型字符串，多个任务周期之间以英文字符逗号分隔
+        # @type TaskCycleUnitList: String
+        # @param ProductNameList: 任务所属产品类型
+        # @type ProductNameList: String
+
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList
+        
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil)
+          @ProjectId = projectid
+          @FolderIdList = folderidlist
+          @WorkFlowIdList = workflowidlist
+          @WorkFlowNameList = workflownamelist
+          @TaskNameList = tasknamelist
+          @TaskIdList = taskidlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortItem = sortitem
+          @SortType = sorttype
+          @InChargeList = inchargelist
+          @TaskTypeIdList = tasktypeidlist
+          @StatusList = statuslist
+          @TaskCycleUnitList = taskcycleunitlist
+          @ProductNameList = productnamelist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FolderIdList = params['FolderIdList']
+          @WorkFlowIdList = params['WorkFlowIdList']
+          @WorkFlowNameList = params['WorkFlowNameList']
+          @TaskNameList = params['TaskNameList']
+          @TaskIdList = params['TaskIdList']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortItem = params['SortItem']
+          @SortType = params['SortType']
+          @InChargeList = params['InChargeList']
+          @TaskTypeIdList = params['TaskTypeIdList']
+          @StatusList = params['StatusList']
+          @TaskCycleUnitList = params['TaskCycleUnitList']
+          @ProductNameList = params['ProductNameList']
+        end
+      end
+
+      # DescribeOperateTasks返回参数结构体
+      class DescribeOperateTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务列表信息
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskInfoPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TaskInfoPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationalFunctions请求参数结构体
       class DescribeOrganizationalFunctionsRequest < TencentCloud::Common::AbstractModel
         # @param Type: 场景类型：开发、使用
@@ -6590,21 +6706,29 @@ module TencentCloud
 
       # DescribeRealTimeTaskMetricOverview请求参数结构体
       class DescribeRealTimeTaskMetricOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 无
+        # @param TaskId: 要查看的实时任务的任务Id
         # @type TaskId: String
         # @param ProjectId: 无
         # @type ProjectId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
 
-        attr_accessor :TaskId, :ProjectId
+        attr_accessor :TaskId, :ProjectId, :StartTime, :EndTime
         
-        def initialize(taskid=nil, projectid=nil)
+        def initialize(taskid=nil, projectid=nil, starttime=nil, endtime=nil)
           @TaskId = taskid
           @ProjectId = projectid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ProjectId = params['ProjectId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -9936,10 +10060,12 @@ module TencentCloud
         # @type AddPositionDeletes: Integer
         # @param AddDeleteFiles: 增加的delete file数量阈值
         # @type AddDeleteFiles: Integer
+        # @param TargetDatasourceId: 下游节点数据源ID
+        # @type TargetDatasourceId: String
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId
         
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -9960,6 +10086,7 @@ module TencentCloud
           @AddEqualityDeletes = addequalitydeletes
           @AddPositionDeletes = addpositiondeletes
           @AddDeleteFiles = adddeletefiles
+          @TargetDatasourceId = targetdatasourceid
         end
 
         def deserialize(params)
@@ -10004,6 +10131,7 @@ module TencentCloud
           @AddEqualityDeletes = params['AddEqualityDeletes']
           @AddPositionDeletes = params['AddPositionDeletes']
           @AddDeleteFiles = params['AddDeleteFiles']
+          @TargetDatasourceId = params['TargetDatasourceId']
         end
       end
 
@@ -17067,6 +17195,41 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 任务分页查询
+      class TaskInfoPage < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页号
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param Items: 工作流列表信息
+        # @type Items: Array
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Items, :TotalPage
+        
+        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalpage=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Items = items
+          @TotalPage = totalpage
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              taskcanvasinfo_tmp = TaskCanvasInfo.new
+              taskcanvasinfo_tmp.deserialize(i)
+              @Items << taskcanvasinfo_tmp
+            end
+          end
+          @TotalPage = params['TotalPage']
         end
       end
 

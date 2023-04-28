@@ -4993,27 +4993,35 @@ module TencentCloud
         # @param Area: 指定服务地域查询
         # mainland：境内计费方式查询
         # overseas：境外计费方式查询
-        # 未填充时默认为 mainland
+        # global：全球计费方式查询
+        # 未填充时，默认为 mainland
         # @type Area: String
         # @param Product: 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         # @type Product: String
+        # @param Type: 指定资源包查询
+        # flux：流量包
+        # https：HTTPS请求包
+        # 未填充时，默认为 flux
+        # @type Type: String
 
-        attr_accessor :Area, :Product
+        attr_accessor :Area, :Product, :Type
         
-        def initialize(area=nil, product=nil)
+        def initialize(area=nil, product=nil, type=nil)
           @Area = area
           @Product = product
+          @Type = type
         end
 
         def deserialize(params)
           @Area = params['Area']
           @Product = params['Product']
+          @Type = params['Type']
         end
       end
 
       # DescribePayType返回参数结构体
       class DescribePayTypeResponse < TencentCloud::Common::AbstractModel
-        # @param PayType: 计费类型：
+        # @param PayType: 计费类型
         # flux：流量计费
         # bandwidth：带宽计费
         # request：请求数计费
@@ -5021,22 +5029,23 @@ module TencentCloud
         # bandwidth_sep：动静分离带宽计费
         # 日结计费方式切换时，若当日产生消耗，则此字段表示第二天即将生效的计费方式，若未产生消耗，则表示已经生效的计费方式。
         # @type PayType: String
-        # @param BillingCycle: 计费周期：
+        # @param BillingCycle: 计费周期
         # day：日结计费
         # month：月结计费
         # hour：小时结计费
         # @type BillingCycle: String
-        # @param StatType: monthMax：日峰值月平均，月结模式
+        # @param StatType: 统计类型
+        # monthMax：日峰值月平均，月结模式
         # day95：日 95 带宽，月结模式
         # month95：月95带宽，月结模式
         # sum：总流量/总请求数，日结或月结模式
         # max：峰值带宽，日结模式
         # @type StatType: String
-        # @param RegionType: 境外计费类型：
+        # @param RegionType: 计费区域
         # all：全地区统一计费
         # multiple：分地区计费
         # @type RegionType: String
-        # @param CurrentPayType: 当前生效计费类型：
+        # @param CurrentPayType: 当前生效计费类型
         # flux：流量计费
         # bandwidth：带宽计费
         # request：请求数计费

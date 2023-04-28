@@ -462,10 +462,13 @@ module TencentCloud
         # @param Country: 国家
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
+        # @param Comment: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
 
-        attr_accessor :Domain, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country
+        attr_accessor :Domain, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment
         
-        def initialize(domain=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil)
+        def initialize(domain=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil)
           @Domain = domain
           @Ioc = ioc
           @Level = level
@@ -481,6 +484,7 @@ module TencentCloud
           @UniqueId = uniqueid
           @MatchTimes = matchtimes
           @Country = country
+          @Comment = comment
         end
 
         def deserialize(params)
@@ -499,6 +503,7 @@ module TencentCloud
           @UniqueId = params['UniqueId']
           @MatchTimes = params['MatchTimes']
           @Country = params['Country']
+          @Comment = params['Comment']
         end
       end
 
@@ -1726,9 +1731,9 @@ module TencentCloud
         # @type Direction: String
         # @param RuleType: 规则类型：1封禁，2放通
         # @type RuleType: Integer
-        # @param Order: 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
+        # @param Order: 排序类型：desc降序，asc正序
         # @type Order: String
-        # @param By: 排序类型：desc降序，asc正序
+        # @param By: 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
         # @type By: String
         # @param SearchValue: 搜索参数，json格式字符串，空则传"{}"，域名：domain，危险等级：level，放通原因：ignore_reason，安全事件来源：rule_source，地理位置：address，模糊搜索：common
         # @type SearchValue: String

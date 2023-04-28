@@ -101,6 +101,8 @@ module TencentCloud
         # @type BrandName: String
         # @param CompanyName: 企业名称
         # @type CompanyName: String
+        # @param BrandLogo: 品牌logo
+        # @type BrandLogo: String
         # @param Phone: 联系电话
         # @type Phone: String
         # @param License: 营业执照
@@ -124,11 +126,12 @@ module TencentCloud
         # @param ProtectMiniPrograms: 保护小程序
         # @type ProtectMiniPrograms: Array
 
-        attr_accessor :BrandName, :CompanyName, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms
+        attr_accessor :BrandName, :CompanyName, :BrandLogo, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms
         
-        def initialize(brandname=nil, companyname=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil)
+        def initialize(brandname=nil, companyname=nil, brandlogo=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil)
           @BrandName = brandname
           @CompanyName = companyname
+          @BrandLogo = brandlogo
           @Phone = phone
           @License = license
           @Authorization = authorization
@@ -145,6 +148,7 @@ module TencentCloud
         def deserialize(params)
           @BrandName = params['BrandName']
           @CompanyName = params['CompanyName']
+          @BrandLogo = params['BrandLogo']
           @Phone = params['Phone']
           @License = params['License']
           @Authorization = params['Authorization']
@@ -804,10 +808,13 @@ module TencentCloud
         # @param Snapshot: 网址截图
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Snapshot: String
+        # @param AccountStatus: 账户资源状态：0-不可用 1-可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountStatus: Integer
 
-        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus
         
-        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil)
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
           @Origin = origin
@@ -829,6 +836,7 @@ module TencentCloud
           @InsertTime = inserttime
           @CertificationStatus = certificationstatus
           @Snapshot = snapshot
+          @AccountStatus = accountstatus
         end
 
         def deserialize(params)
@@ -853,6 +861,7 @@ module TencentCloud
           @InsertTime = params['InsertTime']
           @CertificationStatus = params['CertificationStatus']
           @Snapshot = params['Snapshot']
+          @AccountStatus = params['AccountStatus']
         end
       end
 

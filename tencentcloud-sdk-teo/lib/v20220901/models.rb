@@ -11769,12 +11769,13 @@ module TencentCloud
         # @param IsFake: 是否伪站点，取值有：
         # <li> 0：非伪站点；</li>
         # <li> 1：伪站点。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFake: Integer
+        # @param LockStatus: 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作。</li>
+        # @type LockStatus: String
 
-        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake
+        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake, :LockStatus
         
-        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil)
+        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil, lockstatus=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @OriginalNameServers = originalnameservers
@@ -11794,6 +11795,7 @@ module TencentCloud
           @ActiveStatus = activestatus
           @AliasZoneName = aliaszonename
           @IsFake = isfake
+          @LockStatus = lockstatus
         end
 
         def deserialize(params)
@@ -11840,6 +11842,7 @@ module TencentCloud
           @ActiveStatus = params['ActiveStatus']
           @AliasZoneName = params['AliasZoneName']
           @IsFake = params['IsFake']
+          @LockStatus = params['LockStatus']
         end
       end
 

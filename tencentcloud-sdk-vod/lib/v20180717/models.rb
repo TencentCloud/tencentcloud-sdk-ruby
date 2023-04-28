@@ -8935,15 +8935,19 @@ module TencentCloud
       class DescribeFileAttributesTaskOutput < TencentCloud::Common::AbstractModel
         # @param Md5: 媒体文件的 Md5 值。
         # @type Md5: String
+        # @param Sha1: 媒体文件的 Sha1 值。
+        # @type Sha1: String
 
-        attr_accessor :Md5
+        attr_accessor :Md5, :Sha1
         
-        def initialize(md5=nil)
+        def initialize(md5=nil, sha1=nil)
           @Md5 = md5
+          @Sha1 = sha1
         end
 
         def deserialize(params)
           @Md5 = params['Md5']
+          @Sha1 = params['Sha1']
         end
       end
 
@@ -12490,8 +12494,9 @@ module TencentCloud
       # 单个图片处理操作。
       class ImageOperation < TencentCloud::Common::AbstractModel
         # @param Type: 图片处理类型。可选类型有：
-        # <li>Scale : 图片缩略处理。</li>
-        # <li>CenterCut : 图片裁剪处理。</li>
+        # <li>Scale : 图片缩略处理；</li>
+        # <li>CenterCut : 图片裁剪处理；</li>
+        # <li>Blur : 图片模糊处理。</li>
         # @type Type: String
         # @param Scale: 图片缩略处理，仅当 Type 为 Scale 时有效。
         # @type Scale: :class:`Tencentcloud::Vod.v20180717.models.ImageScale`

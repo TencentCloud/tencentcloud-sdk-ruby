@@ -325,16 +325,21 @@ module TencentCloud
         # <li>Play：可播；</li>
         # <li>Sing：可唱。</li>
         # @type RightFilters: Array
+        # @param MaterialFilters: 物料过滤，取值有：
+        # <li>Lyrics：含有歌词；</li>
+        # <li>Midi：含有音高线。</li>
+        # @type MaterialFilters: Array
 
-        attr_accessor :AppName, :UserId, :TagId, :ScrollToken, :Limit, :RightFilters
+        attr_accessor :AppName, :UserId, :TagId, :ScrollToken, :Limit, :RightFilters, :MaterialFilters
         
-        def initialize(appname=nil, userid=nil, tagid=nil, scrolltoken=nil, limit=nil, rightfilters=nil)
+        def initialize(appname=nil, userid=nil, tagid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
           @TagId = tagid
           @ScrollToken = scrolltoken
           @Limit = limit
           @RightFilters = rightfilters
+          @MaterialFilters = materialfilters
         end
 
         def deserialize(params)
@@ -344,6 +349,7 @@ module TencentCloud
           @ScrollToken = params['ScrollToken']
           @Limit = params['Limit']
           @RightFilters = params['RightFilters']
+          @MaterialFilters = params['MaterialFilters']
         end
       end
 
@@ -397,10 +403,14 @@ module TencentCloud
         # @param PlayScene: 播放场景。默认为Chat
         # <li>Live：直播</li><li>Chat：语聊</li>
         # @type PlayScene: String
+        # @param MaterialFilters: 物料过滤，取值有：
+        # <li>Lyrics：含有歌词；</li>
+        # <li>Midi：含有音高线。</li>
+        # @type MaterialFilters: Array
 
-        attr_accessor :AppName, :UserId, :PlaylistId, :ScrollToken, :Limit, :RightFilters, :PlayScene
+        attr_accessor :AppName, :UserId, :PlaylistId, :ScrollToken, :Limit, :RightFilters, :PlayScene, :MaterialFilters
         
-        def initialize(appname=nil, userid=nil, playlistid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil)
+        def initialize(appname=nil, userid=nil, playlistid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
           @PlaylistId = playlistid
@@ -408,6 +418,7 @@ module TencentCloud
           @Limit = limit
           @RightFilters = rightfilters
           @PlayScene = playscene
+          @MaterialFilters = materialfilters
         end
 
         def deserialize(params)
@@ -418,6 +429,7 @@ module TencentCloud
           @Limit = params['Limit']
           @RightFilters = params['RightFilters']
           @PlayScene = params['PlayScene']
+          @MaterialFilters = params['MaterialFilters']
         end
       end
 
@@ -1451,10 +1463,14 @@ module TencentCloud
         # @param PlayScene: 播放场景。默认为Chat
         # <li>Live：直播</li><li>Chat：语聊</li>
         # @type PlayScene: String
+        # @param MaterialFilters: 物料过滤，取值有：
+        # <li>Lyrics：含有歌词；</li>
+        # <li>Midi：含有音高线。</li>
+        # @type MaterialFilters: Array
 
-        attr_accessor :AppName, :UserId, :KeyWord, :ScrollToken, :Limit, :RightFilters, :PlayScene
+        attr_accessor :AppName, :UserId, :KeyWord, :ScrollToken, :Limit, :RightFilters, :PlayScene, :MaterialFilters
         
-        def initialize(appname=nil, userid=nil, keyword=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil)
+        def initialize(appname=nil, userid=nil, keyword=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
           @KeyWord = keyword
@@ -1462,6 +1478,7 @@ module TencentCloud
           @Limit = limit
           @RightFilters = rightfilters
           @PlayScene = playscene
+          @MaterialFilters = materialfilters
         end
 
         def deserialize(params)
@@ -1472,6 +1489,7 @@ module TencentCloud
           @Limit = params['Limit']
           @RightFilters = params['RightFilters']
           @PlayScene = params['PlayScene']
+          @MaterialFilters = params['MaterialFilters']
         end
       end
 

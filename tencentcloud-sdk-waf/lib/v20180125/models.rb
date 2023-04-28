@@ -766,10 +766,13 @@ module TencentCloud
         # @param Type: 子产品code
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag
         
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil, renewflag=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -778,6 +781,7 @@ module TencentCloud
           @InquireNum = inquirenum
           @UsedNum = usednum
           @Type = type
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -789,6 +793,7 @@ module TencentCloud
           @InquireNum = params['InquireNum']
           @UsedNum = params['UsedNum']
           @Type = params['Type']
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -804,15 +809,19 @@ module TencentCloud
         # @type Region: String
         # @param MaxBotQPS: 使用qps的最大值
         # @type MaxBotQPS: Integer
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :ResourceIds, :ValidTime, :Count, :Region, :MaxBotQPS
+        attr_accessor :ResourceIds, :ValidTime, :Count, :Region, :MaxBotQPS, :RenewFlag
         
-        def initialize(resourceids=nil, validtime=nil, count=nil, region=nil, maxbotqps=nil)
+        def initialize(resourceids=nil, validtime=nil, count=nil, region=nil, maxbotqps=nil, renewflag=nil)
           @ResourceIds = resourceids
           @ValidTime = validtime
           @Count = count
           @Region = region
           @MaxBotQPS = maxbotqps
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -821,6 +830,7 @@ module TencentCloud
           @Count = params['Count']
           @Region = params['Region']
           @MaxBotQPS = params['MaxBotQPS']
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -3125,10 +3135,13 @@ module TencentCloud
         # @param UsedNum: 使用数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
         
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -3136,6 +3149,7 @@ module TencentCloud
           @EndTime = endtime
           @InquireNum = inquirenum
           @UsedNum = usednum
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -3146,6 +3160,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @InquireNum = params['InquireNum']
           @UsedNum = params['UsedNum']
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -4759,27 +4774,27 @@ module TencentCloud
         end
       end
 
-      # Waf 威胁情报封禁模块配置详情
+      # 当前WAF威胁情报封禁模块详情
       class WafThreatenIntelligenceDetails < TencentCloud::Common::AbstractModel
-        # @param DefenseStatus: 封禁模组启用状态
-        # @type DefenseStatus: Integer
         # @param Tags: 封禁属性标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param DefenseStatus: 封禁模组启用状态
+        # @type DefenseStatus: Integer
         # @param LastUpdateTime: 最后更新时间
         # @type LastUpdateTime: String
 
-        attr_accessor :DefenseStatus, :Tags, :LastUpdateTime
+        attr_accessor :Tags, :DefenseStatus, :LastUpdateTime
         
-        def initialize(defensestatus=nil, tags=nil, lastupdatetime=nil)
-          @DefenseStatus = defensestatus
+        def initialize(tags=nil, defensestatus=nil, lastupdatetime=nil)
           @Tags = tags
+          @DefenseStatus = defensestatus
           @LastUpdateTime = lastupdatetime
         end
 
         def deserialize(params)
-          @DefenseStatus = params['DefenseStatus']
           @Tags = params['Tags']
+          @DefenseStatus = params['DefenseStatus']
           @LastUpdateTime = params['LastUpdateTime']
         end
       end
