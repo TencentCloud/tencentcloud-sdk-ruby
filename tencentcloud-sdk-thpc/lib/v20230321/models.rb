@@ -565,10 +565,12 @@ module TencentCloud
         # @type Tags: Array
         # @param AutoScalingType: 弹性伸缩类型。默认值：THPC_AS<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
         # @type AutoScalingType: String
+        # @param InitNodeScripts: 节点初始化脚本信息列表。
+        # @type InitNodeScripts: Array
 
-        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType
+        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts
         
-        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil)
+        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil)
           @Placement = placement
           @ManagerNode = managernode
           @ManagerNodeCount = managernodecount
@@ -588,6 +590,7 @@ module TencentCloud
           @LoginNodeCount = loginnodecount
           @Tags = tags
           @AutoScalingType = autoscalingtype
+          @InitNodeScripts = initnodescripts
         end
 
         def deserialize(params)
@@ -638,6 +641,14 @@ module TencentCloud
             end
           end
           @AutoScalingType = params['AutoScalingType']
+          unless params['InitNodeScripts'].nil?
+            @InitNodeScripts = []
+            params['InitNodeScripts'].each do |i|
+              nodescript_tmp = NodeScript.new
+              nodescript_tmp.deserialize(i)
+              @InitNodeScripts << nodescript_tmp
+            end
+          end
         end
       end
 
@@ -1605,6 +1616,49 @@ module TencentCloud
         end
       end
 
+      # ModifyInitNodeScripts请求参数结构体
+      class ModifyInitNodeScriptsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param InitNodeScripts: 节点初始化脚本信息列表。
+        # @type InitNodeScripts: Array
+
+        attr_accessor :ClusterId, :InitNodeScripts
+        
+        def initialize(clusterid=nil, initnodescripts=nil)
+          @ClusterId = clusterid
+          @InitNodeScripts = initnodescripts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['InitNodeScripts'].nil?
+            @InitNodeScripts = []
+            params['InitNodeScripts'].each do |i|
+              nodescript_tmp = NodeScript.new
+              nodescript_tmp.deserialize(i)
+              @InitNodeScripts << nodescript_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyInitNodeScripts返回参数结构体
+      class ModifyInitNodeScriptsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点活动信息。
       class NodeActivity < TencentCloud::Common::AbstractModel
         # @param NodeInstanceId: 节点活动所在的实例ID。
@@ -1683,6 +1737,29 @@ module TencentCloud
         end
       end
 
+      # 描述节点执行脚本信息。
+      class NodeScript < TencentCloud::Common::AbstractModel
+        # @param ScriptPath: 节点执行脚本获取地址。
+        # 目前仅支持cos地址。地址最大长度：255。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptPath: String
+        # @param Timeout: 脚本执行超时时间（包含拉取脚本的时间）。单位秒，默认值：30。取值范围：10～1200。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+
+        attr_accessor :ScriptPath, :Timeout
+        
+        def initialize(scriptpath=nil, timeout=nil)
+          @ScriptPath = scriptpath
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          @ScriptPath = params['ScriptPath']
+          @Timeout = params['Timeout']
+        end
+      end
+
       # 描述了实例的抽象位置
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
@@ -1722,10 +1799,12 @@ module TencentCloud
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20230321.models.InternetAccessible`
         # @param ExpansionNodeConfigs: 扩容节点配置信息。
         # @type ExpansionNodeConfigs: Array
+        # @param DesiredIdleNodeCapacity: 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
+        # @type DesiredIdleNodeCapacity: Integer
 
-        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ImageId, :SystemDisk, :DataDisks, :InternetAccessible, :ExpansionNodeConfigs
+        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ImageId, :SystemDisk, :DataDisks, :InternetAccessible, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity
         
-        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, imageid=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, expansionnodeconfigs=nil)
+        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, imageid=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil)
           @QueueName = queuename
           @MinSize = minsize
           @MaxSize = maxsize
@@ -1736,6 +1815,7 @@ module TencentCloud
           @DataDisks = datadisks
           @InternetAccessible = internetaccessible
           @ExpansionNodeConfigs = expansionnodeconfigs
+          @DesiredIdleNodeCapacity = desiredidlenodecapacity
         end
 
         def deserialize(params)
@@ -1769,6 +1849,7 @@ module TencentCloud
               @ExpansionNodeConfigs << expansionnodeconfig_tmp
             end
           end
+          @DesiredIdleNodeCapacity = params['DesiredIdleNodeCapacity']
         end
       end
 
@@ -1786,16 +1867,20 @@ module TencentCloud
         # @type EnableAutoShrink: Boolean
         # @param ExpansionNodeConfigs: 扩容节点配置信息。
         # @type ExpansionNodeConfigs: Array
+        # @param DesiredIdleNodeCapacity: 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredIdleNodeCapacity: Integer
 
-        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs
+        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity
         
-        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil)
+        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil)
           @QueueName = queuename
           @MinSize = minsize
           @MaxSize = maxsize
           @EnableAutoExpansion = enableautoexpansion
           @EnableAutoShrink = enableautoshrink
           @ExpansionNodeConfigs = expansionnodeconfigs
+          @DesiredIdleNodeCapacity = desiredidlenodecapacity
         end
 
         def deserialize(params)
@@ -1812,6 +1897,7 @@ module TencentCloud
               @ExpansionNodeConfigs << expansionnodeconfigoverview_tmp
             end
           end
+          @DesiredIdleNodeCapacity = params['DesiredIdleNodeCapacity']
         end
       end
 

@@ -923,13 +923,16 @@ module TencentCloud
         # @type PrivateIpAddresses: Array
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，与PrivateIpAddresses至少提供一个。内网IP地址个数总和不能超过配额数，详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
         # @type SecondaryPrivateIpAddressCount: Integer
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        # @type QosLevel: String
 
-        attr_accessor :NetworkInterfaceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount
+        attr_accessor :NetworkInterfaceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :QosLevel
         
-        def initialize(networkinterfaceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil)
+        def initialize(networkinterfaceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, qoslevel=nil)
           @NetworkInterfaceId = networkinterfaceid
           @PrivateIpAddresses = privateipaddresses
           @SecondaryPrivateIpAddressCount = secondaryprivateipaddresscount
+          @QosLevel = qoslevel
         end
 
         def deserialize(params)
@@ -943,6 +946,7 @@ module TencentCloud
             end
           end
           @SecondaryPrivateIpAddressCount = params['SecondaryPrivateIpAddressCount']
+          @QosLevel = params['QosLevel']
         end
       end
 
@@ -2520,6 +2524,8 @@ module TencentCloud
         # @type PrivateIpAddresses: Array
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # @type SecondaryPrivateIpAddressCount: Integer
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        # @type QosLevel: String
         # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
         # @type SecurityGroupIds: Array
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
@@ -2529,15 +2535,16 @@ module TencentCloud
         # @param AttachType: 绑定类型：0 标准型 1 扩展型。
         # @type AttachType: Integer
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags, :AttachType
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags, :AttachType
         
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil, attachtype=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil, attachtype=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
           @InstanceId = instanceid
           @PrivateIpAddresses = privateipaddresses
           @SecondaryPrivateIpAddressCount = secondaryprivateipaddresscount
+          @QosLevel = qoslevel
           @SecurityGroupIds = securitygroupids
           @NetworkInterfaceDescription = networkinterfacedescription
           @Tags = tags
@@ -2558,6 +2565,7 @@ module TencentCloud
             end
           end
           @SecondaryPrivateIpAddressCount = params['SecondaryPrivateIpAddressCount']
+          @QosLevel = params['QosLevel']
           @SecurityGroupIds = params['SecurityGroupIds']
           @NetworkInterfaceDescription = params['NetworkInterfaceDescription']
           unless params['Tags'].nil?
@@ -3700,6 +3708,8 @@ module TencentCloud
         # @type NetworkInterfaceDescription: String
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # @type SecondaryPrivateIpAddressCount: Integer
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        # @type QosLevel: String
         # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
         # @type SecurityGroupIds: Array
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
@@ -3709,14 +3719,15 @@ module TencentCloud
         # @param TrunkingFlag: 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         # @type TrunkingFlag: String
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :PrivateIpAddresses, :Tags, :TrunkingFlag
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :PrivateIpAddresses, :Tags, :TrunkingFlag
         
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil, trunkingflag=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil, trunkingflag=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
           @NetworkInterfaceDescription = networkinterfacedescription
           @SecondaryPrivateIpAddressCount = secondaryprivateipaddresscount
+          @QosLevel = qoslevel
           @SecurityGroupIds = securitygroupids
           @PrivateIpAddresses = privateipaddresses
           @Tags = tags
@@ -3729,6 +3740,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @NetworkInterfaceDescription = params['NetworkInterfaceDescription']
           @SecondaryPrivateIpAddressCount = params['SecondaryPrivateIpAddressCount']
+          @QosLevel = params['QosLevel']
           @SecurityGroupIds = params['SecurityGroupIds']
           unless params['PrivateIpAddresses'].nil?
             @PrivateIpAddresses = []
@@ -17260,10 +17272,12 @@ module TencentCloud
         # DELETING：删除中
         # AVAILABLE：可用的
         # @type State: String
+        # @param QosLevel: IP服务质量等级，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        # @type QosLevel: String
 
-        attr_accessor :PrivateIpAddress, :Primary, :PublicIpAddress, :AddressId, :Description, :IsWanIpBlocked, :State
+        attr_accessor :PrivateIpAddress, :Primary, :PublicIpAddress, :AddressId, :Description, :IsWanIpBlocked, :State, :QosLevel
         
-        def initialize(privateipaddress=nil, primary=nil, publicipaddress=nil, addressid=nil, description=nil, iswanipblocked=nil, state=nil)
+        def initialize(privateipaddress=nil, primary=nil, publicipaddress=nil, addressid=nil, description=nil, iswanipblocked=nil, state=nil, qoslevel=nil)
           @PrivateIpAddress = privateipaddress
           @Primary = primary
           @PublicIpAddress = publicipaddress
@@ -17271,6 +17285,7 @@ module TencentCloud
           @Description = description
           @IsWanIpBlocked = iswanipblocked
           @State = state
+          @QosLevel = qoslevel
         end
 
         def deserialize(params)
@@ -17281,6 +17296,7 @@ module TencentCloud
           @Description = params['Description']
           @IsWanIpBlocked = params['IsWanIpBlocked']
           @State = params['State']
+          @QosLevel = params['QosLevel']
         end
       end
 

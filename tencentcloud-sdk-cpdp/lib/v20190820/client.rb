@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 微工卡开通预核身接口
+
+        # @param request: Request instance for ApplyFlexWechatPreAuth.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexWechatPreAuthRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexWechatPreAuthResponse`
+        def ApplyFlexWechatPreAuth(request)
+          body = send_request('ApplyFlexWechatPreAuth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyFlexWechatPreAuthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 云企付-申请单笔交易回单
 
         # @param request: Request instance for ApplyOpenBankOrderDetailReceipt.
@@ -3265,6 +3289,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryFlexSettlementOrderListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询微工卡核身结果
+
+        # @param request: Request instance for QueryFlexWechatAuthResult.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexWechatAuthResultRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexWechatAuthResultResponse`
+        def QueryFlexWechatAuthResult(request)
+          body = send_request('QueryFlexWechatAuthResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexWechatAuthResultResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1457,6 +1457,95 @@ module TencentCloud
         end
       end
 
+      # ApplyFlexWechatPreAuth请求参数结构体
+      class ApplyFlexWechatPreAuthRequest < TencentCloud::Common::AbstractModel
+        # @param AuthNo: 商家核身单号
+        # @type AuthNo: String
+        # @param OpenId: 微信用户标识
+        # @type OpenId: String
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param EmployerName: 用工单位名称
+        # @type EmployerName: String
+        # @param UserName: 用户姓名
+        # @type UserName: String
+        # @param IdNo: 用户证件号
+        # @type IdNo: String
+        # @param EmploymentType: 用工类型
+        # LONG_TERM_EMPLOYMENT：长期用工，
+        # SHORT_TERM_EMPLOYMENT： 短期用工，
+        # COOPERATION_EMPLOYMENT：合作关系
+        # @type EmploymentType: String
+        # @param AuthType: 核身类型
+        # SIGN_IN：考勤、签到打卡类型
+        # INSURANCE：投保类型
+        # CONTRACT：签约类型
+        # @type AuthType: String
+        # @param Environment: 环境类型
+        # test 测试
+        # release 生产
+        # sandbox 沙箱
+        # @type Environment: String
+
+        attr_accessor :AuthNo, :OpenId, :ProjectName, :EmployerName, :UserName, :IdNo, :EmploymentType, :AuthType, :Environment
+        
+        def initialize(authno=nil, openid=nil, projectname=nil, employername=nil, username=nil, idno=nil, employmenttype=nil, authtype=nil, environment=nil)
+          @AuthNo = authno
+          @OpenId = openid
+          @ProjectName = projectname
+          @EmployerName = employername
+          @UserName = username
+          @IdNo = idno
+          @EmploymentType = employmenttype
+          @AuthType = authtype
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @AuthNo = params['AuthNo']
+          @OpenId = params['OpenId']
+          @ProjectName = params['ProjectName']
+          @EmployerName = params['EmployerName']
+          @UserName = params['UserName']
+          @IdNo = params['IdNo']
+          @EmploymentType = params['EmploymentType']
+          @AuthType = params['AuthType']
+          @Environment = params['Environment']
+        end
+      end
+
+      # ApplyFlexWechatPreAuth返回参数结构体
+      class ApplyFlexWechatPreAuthResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误信息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.WechatPreAuthResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = WechatPreAuthResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyOpenBankOrderDetailReceipt请求参数结构体
       class ApplyOpenBankOrderDetailReceiptRequest < TencentCloud::Common::AbstractModel
         # @param OutApplyId: 外部回单申请编号
@@ -17847,6 +17936,61 @@ module TencentCloud
         end
       end
 
+      # QueryFlexWechatAuthResult请求参数结构体
+      class QueryFlexWechatAuthResultRequest < TencentCloud::Common::AbstractModel
+        # @param AuthNo: 商户核身单号
+        # @type AuthNo: String
+        # @param Environment: 环境类型
+        # test 测试
+        # release 生产
+        # sandbox 沙箱
+        # @type Environment: String
+
+        attr_accessor :AuthNo, :Environment
+        
+        def initialize(authno=nil, environment=nil)
+          @AuthNo = authno
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @AuthNo = params['AuthNo']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryFlexWechatAuthResult返回参数结构体
+      class QueryFlexWechatAuthResultResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryWechatAuthResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryWechatAuthResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryFundsTransactionDetails请求参数结构体
       class QueryFundsTransactionDetailsRequest < TencentCloud::Common::AbstractModel
         # @param QueryDateType: 查询的交易发生时间类型。
@@ -23541,6 +23685,82 @@ module TencentCloud
         end
       end
 
+      # 查询用户微工卡核身结果
+      class QueryWechatAuthResult < TencentCloud::Common::AbstractModel
+        # @param AuthNo: 商户核身单号
+        # @type AuthNo: String
+        # @param OpenId: 微信用户标识
+        # @type OpenId: String
+        # @param MchId: 商户号
+        # @type MchId: String
+        # @param SubMchId: 子商户号
+        # @type SubMchId: String
+        # @param AuthScene: 核身渠道
+        # FROM_MINI_APP：来自小程序方式核身
+        # FROM_HARDWARE：来自硬件设备方式核身
+        # @type AuthScene: String
+        # @param AuthSource: 核身渠道标识
+
+        # 用于定位渠道具体来源，如果是扫码打卡渠道标识就是具体的小程序appid，若是硬件设备，则是设备的序列号等
+        # @type AuthSource: String
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param EmployerName: 所属单位名称
+        # @type EmployerName: String
+        # @param AuthTime: 核身时间
+        # yyyy-MM-DDTHH:mm:ss+TIMEZONE
+
+        # 示例值：2015-05-20T13:29:35+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthTime: String
+        # @param AuthType: 核身类型
+
+        # SIGN_IN：考勤、签到打卡类型
+        # INSURANCE：投保类型
+        # CONTRACT：签约类型
+        # @type AuthType: String
+        # @param AuthState: 核身状态
+        # AUTHENTICATE_PROCESSING：核身中
+        # AUTHENTICATE_SUCCESS：核身成功
+        # AUTHENTICATE_FAILED：核身失败
+        # @type AuthState: String
+        # @param AuthFailReason: 核身失败原因描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthFailReason: String
+
+        attr_accessor :AuthNo, :OpenId, :MchId, :SubMchId, :AuthScene, :AuthSource, :ProjectName, :EmployerName, :AuthTime, :AuthType, :AuthState, :AuthFailReason
+        
+        def initialize(authno=nil, openid=nil, mchid=nil, submchid=nil, authscene=nil, authsource=nil, projectname=nil, employername=nil, authtime=nil, authtype=nil, authstate=nil, authfailreason=nil)
+          @AuthNo = authno
+          @OpenId = openid
+          @MchId = mchid
+          @SubMchId = submchid
+          @AuthScene = authscene
+          @AuthSource = authsource
+          @ProjectName = projectname
+          @EmployerName = employername
+          @AuthTime = authtime
+          @AuthType = authtype
+          @AuthState = authstate
+          @AuthFailReason = authfailreason
+        end
+
+        def deserialize(params)
+          @AuthNo = params['AuthNo']
+          @OpenId = params['OpenId']
+          @MchId = params['MchId']
+          @SubMchId = params['SubMchId']
+          @AuthScene = params['AuthScene']
+          @AuthSource = params['AuthSource']
+          @ProjectName = params['ProjectName']
+          @EmployerName = params['EmployerName']
+          @AuthTime = params['AuthTime']
+          @AuthType = params['AuthType']
+          @AuthState = params['AuthState']
+          @AuthFailReason = params['AuthFailReason']
+        end
+      end
+
       # RechargeByThirdPay请求参数结构体
       class RechargeByThirdPayRequest < TencentCloud::Common::AbstractModel
         # @param RequestType: 请求类型 此接口固定填：MemberRechargeThirdPayReq
@@ -28640,6 +28860,42 @@ module TencentCloud
           @Telephone = params['Telephone']
           @OutShopId = params['OutShopId']
           @CityId = params['CityId']
+        end
+      end
+
+      # 微工卡预核身结果
+      class WechatPreAuthResult < TencentCloud::Common::AbstractModel
+        # @param AuthNo: 商户核身单号
+        # @type AuthNo: String
+        # @param OpenId: 微信用户标识
+        # @type OpenId: String
+        # @param MchId: 商户号
+        # @type MchId: String
+        # @param SubMchId: 子商户号
+        # @type SubMchId: String
+        # @param Token: 预核身token值
+        # @type Token: String
+        # @param Expire: token有效期时间，单位：秒
+        # @type Expire: Integer
+
+        attr_accessor :AuthNo, :OpenId, :MchId, :SubMchId, :Token, :Expire
+        
+        def initialize(authno=nil, openid=nil, mchid=nil, submchid=nil, token=nil, expire=nil)
+          @AuthNo = authno
+          @OpenId = openid
+          @MchId = mchid
+          @SubMchId = submchid
+          @Token = token
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @AuthNo = params['AuthNo']
+          @OpenId = params['OpenId']
+          @MchId = params['MchId']
+          @SubMchId = params['SubMchId']
+          @Token = params['Token']
+          @Expire = params['Expire']
         end
       end
 

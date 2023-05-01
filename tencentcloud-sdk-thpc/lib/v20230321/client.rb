@@ -372,6 +372,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyInitNodeScripts) 用于修改节点初始化脚本。
+
+        # @param request: Request instance for ModifyInitNodeScripts.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyInitNodeScriptsRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyInitNodeScriptsResponse`
+        def ModifyInitNodeScripts(request)
+          body = send_request('ModifyInitNodeScripts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInitNodeScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
 
         # @param request: Request instance for SetAutoScalingConfiguration.
