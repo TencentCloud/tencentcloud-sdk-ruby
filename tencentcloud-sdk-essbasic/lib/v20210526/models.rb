@@ -3530,29 +3530,34 @@ module TencentCloud
 
       # 签署人签署链接信息
       class FlowApproverUrlInfo < TencentCloud::Common::AbstractModel
-        # @param SignUrl: 签署链接，注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # @param SignUrl: 签署链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
         # @type SignUrl: String
-        # @param Mobile: 签署人手机号
-        # @type Mobile: String
-        # @param Name: 签署人姓名
-        # @type Name: String
         # @param ApproverType: 签署人类型 PERSON-个人
         # @type ApproverType: String
+        # @param Name: 签署人姓名
+        # @type Name: String
+        # @param Mobile: 签署人手机号
+        # @type Mobile: String
+        # @param LongUrl: 签署长链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongUrl: String
 
-        attr_accessor :SignUrl, :Mobile, :Name, :ApproverType
+        attr_accessor :SignUrl, :ApproverType, :Name, :Mobile, :LongUrl
         
-        def initialize(signurl=nil, mobile=nil, name=nil, approvertype=nil)
+        def initialize(signurl=nil, approvertype=nil, name=nil, mobile=nil, longurl=nil)
           @SignUrl = signurl
-          @Mobile = mobile
-          @Name = name
           @ApproverType = approvertype
+          @Name = name
+          @Mobile = mobile
+          @LongUrl = longurl
         end
 
         def deserialize(params)
           @SignUrl = params['SignUrl']
-          @Mobile = params['Mobile']
-          @Name = params['Name']
           @ApproverType = params['ApproverType']
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          @LongUrl = params['LongUrl']
         end
       end
 

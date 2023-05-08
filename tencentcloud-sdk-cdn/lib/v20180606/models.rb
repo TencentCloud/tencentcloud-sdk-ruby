@@ -8012,10 +8012,13 @@ module TencentCloud
         # 2：用完续订
         # 3：到期或用完续订
         # @type ExtensionMode: Integer
+        # @param AutoExtension: HTTPS请求包是否自动续订
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoExtension: Boolean
 
-        attr_accessor :Id, :Type, :Size, :SizeUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :Channel, :LifeTimeMonth, :RefundAvailable, :ConfigId, :TrueEnableTime, :TrueExpireTime, :Area, :ContractExtension, :ExtensionAvailable, :ExtensionMode
+        attr_accessor :Id, :Type, :Size, :SizeUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :Channel, :LifeTimeMonth, :RefundAvailable, :ConfigId, :TrueEnableTime, :TrueExpireTime, :Area, :ContractExtension, :ExtensionAvailable, :ExtensionMode, :AutoExtension
         
-        def initialize(id=nil, type=nil, size=nil, sizeused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, channel=nil, lifetimemonth=nil, refundavailable=nil, configid=nil, trueenabletime=nil, trueexpiretime=nil, area=nil, contractextension=nil, extensionavailable=nil, extensionmode=nil)
+        def initialize(id=nil, type=nil, size=nil, sizeused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, channel=nil, lifetimemonth=nil, refundavailable=nil, configid=nil, trueenabletime=nil, trueexpiretime=nil, area=nil, contractextension=nil, extensionavailable=nil, extensionmode=nil, autoextension=nil)
           @Id = id
           @Type = type
           @Size = size
@@ -8034,6 +8037,7 @@ module TencentCloud
           @ContractExtension = contractextension
           @ExtensionAvailable = extensionavailable
           @ExtensionMode = extensionmode
+          @AutoExtension = autoextension
         end
 
         def deserialize(params)
@@ -8055,6 +8059,7 @@ module TencentCloud
           @ContractExtension = params['ContractExtension']
           @ExtensionAvailable = params['ExtensionAvailable']
           @ExtensionMode = params['ExtensionMode']
+          @AutoExtension = params['AutoExtension']
         end
       end
 

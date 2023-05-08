@@ -2912,17 +2912,27 @@ module TencentCloud
         # @type UserId: String
         # @param Role: 用户角色 1所有者，0：其他分享者
         # @type Role: Integer
+        # @param FamilyId: 家庭ID，所有者带该参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FamilyId: String
+        # @param FamilyName: 家庭名称，所有者带该参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FamilyName: String
 
-        attr_accessor :UserId, :Role
+        attr_accessor :UserId, :Role, :FamilyId, :FamilyName
         
-        def initialize(userid=nil, role=nil)
+        def initialize(userid=nil, role=nil, familyid=nil, familyname=nil)
           @UserId = userid
           @Role = role
+          @FamilyId = familyid
+          @FamilyName = familyname
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @Role = params['Role']
+          @FamilyId = params['FamilyId']
+          @FamilyName = params['FamilyName']
         end
       end
 

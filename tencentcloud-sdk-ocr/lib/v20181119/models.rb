@@ -104,6 +104,121 @@ module TencentCloud
         end
       end
 
+      # 机票行程单
+      class AirTransport < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Number: 电子客票号码
+        # @type Number: String
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param SerialNumber: 印刷序号
+        # @type SerialNumber: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param AgentCode: 销售单位代号
+        # @type AgentCode: String
+        # @param AgentCodeFirst: 销售单位代号第一行
+        # @type AgentCodeFirst: String
+        # @param AgentCodeSecond: 销售单位代号第二行
+        # @type AgentCodeSecond: String
+        # @param UserName: 姓名
+        # @type UserName: String
+        # @param UserID: 身份证号
+        # @type UserID: String
+        # @param Issuer: 填开单位
+        # @type Issuer: String
+        # @param Fare: 票价
+        # @type Fare: String
+        # @param Tax: 合计税额
+        # @type Tax: String
+        # @param FuelSurcharge: 燃油附加费
+        # @type FuelSurcharge: String
+        # @param AirDevelopmentFund: 民航发展基金
+        # @type AirDevelopmentFund: String
+        # @param Insurance: 保险费
+        # @type Insurance: String
+        # @param Total: 合计金额（小写）
+        # @type Total: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param DomesticInternationalTag: 国内国际标签
+        # @type DomesticInternationalTag: String
+        # @param DateStart: 客票生效日期
+        # @type DateStart: String
+        # @param DateEnd: 有效截至日期
+        # @type DateEnd: String
+        # @param Endorsement: 签注
+        # @type Endorsement: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param FlightItems: 条目
+        # @type FlightItems: Array
+
+        attr_accessor :Title, :Number, :CheckCode, :SerialNumber, :Date, :AgentCode, :AgentCodeFirst, :AgentCodeSecond, :UserName, :UserID, :Issuer, :Fare, :Tax, :FuelSurcharge, :AirDevelopmentFund, :Insurance, :Total, :Kind, :DomesticInternationalTag, :DateStart, :DateEnd, :Endorsement, :QRCodeMark, :FlightItems
+        
+        def initialize(title=nil, number=nil, checkcode=nil, serialnumber=nil, date=nil, agentcode=nil, agentcodefirst=nil, agentcodesecond=nil, username=nil, userid=nil, issuer=nil, fare=nil, tax=nil, fuelsurcharge=nil, airdevelopmentfund=nil, insurance=nil, total=nil, kind=nil, domesticinternationaltag=nil, datestart=nil, dateend=nil, endorsement=nil, qrcodemark=nil, flightitems=nil)
+          @Title = title
+          @Number = number
+          @CheckCode = checkcode
+          @SerialNumber = serialnumber
+          @Date = date
+          @AgentCode = agentcode
+          @AgentCodeFirst = agentcodefirst
+          @AgentCodeSecond = agentcodesecond
+          @UserName = username
+          @UserID = userid
+          @Issuer = issuer
+          @Fare = fare
+          @Tax = tax
+          @FuelSurcharge = fuelsurcharge
+          @AirDevelopmentFund = airdevelopmentfund
+          @Insurance = insurance
+          @Total = total
+          @Kind = kind
+          @DomesticInternationalTag = domesticinternationaltag
+          @DateStart = datestart
+          @DateEnd = dateend
+          @Endorsement = endorsement
+          @QRCodeMark = qrcodemark
+          @FlightItems = flightitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Number = params['Number']
+          @CheckCode = params['CheckCode']
+          @SerialNumber = params['SerialNumber']
+          @Date = params['Date']
+          @AgentCode = params['AgentCode']
+          @AgentCodeFirst = params['AgentCodeFirst']
+          @AgentCodeSecond = params['AgentCodeSecond']
+          @UserName = params['UserName']
+          @UserID = params['UserID']
+          @Issuer = params['Issuer']
+          @Fare = params['Fare']
+          @Tax = params['Tax']
+          @FuelSurcharge = params['FuelSurcharge']
+          @AirDevelopmentFund = params['AirDevelopmentFund']
+          @Insurance = params['Insurance']
+          @Total = params['Total']
+          @Kind = params['Kind']
+          @DomesticInternationalTag = params['DomesticInternationalTag']
+          @DateStart = params['DateStart']
+          @DateEnd = params['DateEnd']
+          @Endorsement = params['Endorsement']
+          @QRCodeMark = params['QRCodeMark']
+          unless params['FlightItems'].nil?
+            @FlightItems = []
+            params['FlightItems'].each do |i|
+              flightitem_tmp = FlightItem.new
+              flightitem_tmp.deserialize(i)
+              @FlightItems << flightitem_tmp
+            end
+          end
+        end
+      end
+
       # ArithmeticOCR请求参数结构体
       class ArithmeticOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -506,6 +621,102 @@ module TencentCloud
           @RegNum = params['RegNum']
           @Name = params['Name']
           @Address = params['Address']
+        end
+      end
+
+      # 汽车票
+      class BusInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param TimeGetOn: 乘车时间
+        # @type TimeGetOn: String
+        # @param DateGetOn: 乘车日期
+        # @type DateGetOn: String
+        # @param StationGetOn: 出发车站
+        # @type StationGetOn: String
+        # @param StationGetOff: 到达车站
+        # @type StationGetOff: String
+        # @param Total: 票价
+        # @type Total: String
+        # @param UserName: 姓名
+        # @type UserName: String
+        # @param Kind: 消费类型
+        # @type Kind: String
+        # @param UserID: 身份证号
+        # @type UserID: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param PlaceGetOn: 乘车地点
+        # @type PlaceGetOn: String
+        # @param GateNumber: 检票口
+        # @type GateNumber: String
+        # @param TicketType: 客票类型
+        # @type TicketType: String
+        # @param VehicleType: 车型
+        # @type VehicleType: String
+        # @param SeatNumber: 座位号
+        # @type SeatNumber: String
+        # @param TrainNumber: 车次
+        # @type TrainNumber: String
+
+        attr_accessor :Title, :QRCodeMark, :Number, :Code, :Date, :TimeGetOn, :DateGetOn, :StationGetOn, :StationGetOff, :Total, :UserName, :Kind, :UserID, :Province, :City, :PlaceGetOn, :GateNumber, :TicketType, :VehicleType, :SeatNumber, :TrainNumber
+        
+        def initialize(title=nil, qrcodemark=nil, number=nil, code=nil, date=nil, timegeton=nil, dategeton=nil, stationgeton=nil, stationgetoff=nil, total=nil, username=nil, kind=nil, userid=nil, province=nil, city=nil, placegeton=nil, gatenumber=nil, tickettype=nil, vehicletype=nil, seatnumber=nil, trainnumber=nil)
+          @Title = title
+          @QRCodeMark = qrcodemark
+          @Number = number
+          @Code = code
+          @Date = date
+          @TimeGetOn = timegeton
+          @DateGetOn = dategeton
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @Total = total
+          @UserName = username
+          @Kind = kind
+          @UserID = userid
+          @Province = province
+          @City = city
+          @PlaceGetOn = placegeton
+          @GateNumber = gatenumber
+          @TicketType = tickettype
+          @VehicleType = vehicletype
+          @SeatNumber = seatnumber
+          @TrainNumber = trainnumber
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @QRCodeMark = params['QRCodeMark']
+          @Number = params['Number']
+          @Code = params['Code']
+          @Date = params['Date']
+          @TimeGetOn = params['TimeGetOn']
+          @DateGetOn = params['DateGetOn']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @Total = params['Total']
+          @UserName = params['UserName']
+          @Kind = params['Kind']
+          @UserID = params['UserID']
+          @Province = params['Province']
+          @City = params['City']
+          @PlaceGetOn = params['PlaceGetOn']
+          @GateNumber = params['GateNumber']
+          @TicketType = params['TicketType']
+          @VehicleType = params['VehicleType']
+          @SeatNumber = params['SeatNumber']
+          @TrainNumber = params['TrainNumber']
         end
       end
 
@@ -1871,6 +2082,62 @@ module TencentCloud
         end
       end
 
+      # 机票行程卡条目
+      class FlightItem < TencentCloud::Common::AbstractModel
+        # @param TerminalGetOn: 出发航站楼
+        # @type TerminalGetOn: String
+        # @param TerminalGetOff: 到达航站楼
+        # @type TerminalGetOff: String
+        # @param Carrier: 承运人
+        # @type Carrier: String
+        # @param FlightNumber: 航班号
+        # @type FlightNumber: String
+        # @param Seat: 座位等级
+        # @type Seat: String
+        # @param DateGetOn: 乘机日期
+        # @type DateGetOn: String
+        # @param TimeGetOn: 乘机时间
+        # @type TimeGetOn: String
+        # @param StationGetOn: 出发站
+        # @type StationGetOn: String
+        # @param StationGetOff: 到达站
+        # @type StationGetOff: String
+        # @param Allow: 免费行李
+        # @type Allow: String
+        # @param FareBasis: 客票级别/客票类别
+        # @type FareBasis: String
+
+        attr_accessor :TerminalGetOn, :TerminalGetOff, :Carrier, :FlightNumber, :Seat, :DateGetOn, :TimeGetOn, :StationGetOn, :StationGetOff, :Allow, :FareBasis
+        
+        def initialize(terminalgeton=nil, terminalgetoff=nil, carrier=nil, flightnumber=nil, seat=nil, dategeton=nil, timegeton=nil, stationgeton=nil, stationgetoff=nil, allow=nil, farebasis=nil)
+          @TerminalGetOn = terminalgeton
+          @TerminalGetOff = terminalgetoff
+          @Carrier = carrier
+          @FlightNumber = flightnumber
+          @Seat = seat
+          @DateGetOn = dategeton
+          @TimeGetOn = timegeton
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @Allow = allow
+          @FareBasis = farebasis
+        end
+
+        def deserialize(params)
+          @TerminalGetOn = params['TerminalGetOn']
+          @TerminalGetOff = params['TerminalGetOff']
+          @Carrier = params['Carrier']
+          @FlightNumber = params['FlightNumber']
+          @Seat = params['Seat']
+          @DateGetOn = params['DateGetOn']
+          @TimeGetOn = params['TimeGetOn']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @Allow = params['Allow']
+          @FareBasis = params['FareBasis']
+        end
+      end
+
       # FormulaOCR请求参数结构体
       class FormulaOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -2307,6 +2574,50 @@ module TencentCloud
           end
           @Angel = params['Angel']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 通用机打发票条目
+      class GeneralMachineItem < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名称
+        # @type Name: String
+        # @param Specification: 规格型号
+        # @type Specification: String
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Price: 单价
+        # @type Price: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param TaxRate: 税率
+        # @type TaxRate: String
+        # @param Tax: 税额
+        # @type Tax: String
+
+        attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax
+        
+        def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil)
+          @Name = name
+          @Specification = specification
+          @Unit = unit
+          @Quantity = quantity
+          @Price = price
+          @Total = total
+          @TaxRate = taxrate
+          @Tax = tax
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Specification = params['Specification']
+          @Unit = params['Unit']
+          @Quantity = params['Quantity']
+          @Price = params['Price']
+          @Total = params['Total']
+          @TaxRate = params['TaxRate']
+          @Tax = params['Tax']
         end
       end
 
@@ -3055,6 +3366,81 @@ module TencentCloud
         end
       end
 
+      # 混贴票据单张发票识别信息
+      class InvoiceItem < TencentCloud::Common::AbstractModel
+        # @param Code: 识别结果。
+        # OK：表示识别成功；FailedOperation.UnsupportedInvioce：表示不支持识别；
+        # FailedOperation.UnKnowError：表示识别失败；
+        # 其它错误码见各个票据接口的定义。
+        # @type Code: String
+        # @param Type: 识别出的图片所属的票据类型。
+        # -1：未知类型
+        # 0：出租车发票
+        # 1：定额发票
+        # 2：火车票
+        # 3：增值税发票
+        # 5：机票行程单
+        # 8：通用机打发票
+        # 9：汽车票
+        # 10：轮船票
+        # 11：增值税发票（卷票）
+        # 12：购车发票
+        # 13：过路过桥费发票
+        # 15：非税发票
+        # 16：全电发票
+        # @type Type: Integer
+        # @param Polygon: 旋转后的图片四点坐标。
+        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param Angle: 识别出的图片在混贴票据图片中的旋转角度。
+        # @type Angle: Float
+        # @param SingleInvoiceInfos: 识别到的内容。
+        # @type SingleInvoiceInfos: :class:`Tencentcloud::Ocr.v20181119.models.SingleInvoiceItem`
+        # @param Page: 发票处于识别图片或PDF文件中的页教，默认从1开始。
+        # @type Page: Integer
+        # @param SubType: 发票详细类型，详见下方 SubType 返回值说明
+        # @type SubType: String
+        # @param TypeDescription: 发票类型描述，详见下方 TypeDescription  返回值说明
+        # @type TypeDescription: String
+        # @param CutImage: 切割单图文件，Base64编码后的切图后的图片文件，开启 EnableCutImage 后进行返回
+        # @type CutImage: String
+        # @param SubTypeDescription: 发票详细类型描述，详见下方 SubType 返回值说明
+        # @type SubTypeDescription: String
+
+        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription
+        
+        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil)
+          @Code = code
+          @Type = type
+          @Polygon = polygon
+          @Angle = angle
+          @SingleInvoiceInfos = singleinvoiceinfos
+          @Page = page
+          @SubType = subtype
+          @TypeDescription = typedescription
+          @CutImage = cutimage
+          @SubTypeDescription = subtypedescription
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Type = params['Type']
+          unless params['Polygon'].nil?
+            @Polygon = Polygon.new
+            @Polygon.deserialize(params['Polygon'])
+          end
+          @Angle = params['Angle']
+          unless params['SingleInvoiceInfos'].nil?
+            @SingleInvoiceInfos = SingleInvoiceItem.new
+            @SingleInvoiceInfos.deserialize(params['SingleInvoiceInfos'])
+          end
+          @Page = params['Page']
+          @SubType = params['SubType']
+          @TypeDescription = params['TypeDescription']
+          @CutImage = params['CutImage']
+          @SubTypeDescription = params['SubTypeDescription']
+        end
+      end
+
       # 文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）
       class ItemCoord < TencentCloud::Common::AbstractModel
         # @param X: 左上角x
@@ -3458,6 +3844,169 @@ module TencentCloud
         end
       end
 
+      # 通用机打发票
+      class MachinePrintedInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param Time: 时间
+        # @type Time: String
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param Ciphertext: 密码区
+        # @type Ciphertext: String
+        # @param Category: 种类
+        # @type Category: String
+        # @param PretaxAmount: 税前金额
+        # @type PretaxAmount: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Tax: 合计税额
+        # @type Tax: String
+        # @param IndustryClass: 行业分类
+        # @type IndustryClass: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param SellerTaxID: 销售方纳税人识别号
+        # @type SellerTaxID: String
+        # @param SellerAddrTel: 销售方地址电话
+        # @type SellerAddrTel: String
+        # @param SellerBankAccount: 销售方银行账号
+        # @type SellerBankAccount: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 购买方纳税人识别号
+        # @type BuyerTaxID: String
+        # @param BuyerAddrTel: 购买方地址电话
+        # @type BuyerAddrTel: String
+        # @param BuyerBankAccount: 购买方银行账号
+        # @type BuyerBankAccount: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+        # @param ElectronicMark: 是否为浙江/广东通用机打发票（0：没有，1：有）
+        # @type ElectronicMark: Integer
+        # @param Issuer: 开票人
+        # @type Issuer: String
+        # @param Receiptor: 收款人
+        # @type Receiptor: String
+        # @param Reviewer: 复核人
+        # @type Reviewer: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PaymentInfo: 经办人支付信息
+        # @type PaymentInfo: String
+        # @param TicketPickupUser: 经办人取票用户
+        # @type TicketPickupUser: String
+        # @param MerchantNumber: 经办人商户号
+        # @type MerchantNumber: String
+        # @param OrderNumber: 经办人订单号
+        # @type OrderNumber: String
+        # @param GeneralMachineItems: 条目
+        # @type GeneralMachineItems: Array
+
+        attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Time, :CheckCode, :Ciphertext, :Category, :PretaxAmount, :Total, :TotalCn, :Tax, :IndustryClass, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerAddrTel, :BuyerBankAccount, :Kind, :Province, :City, :CompanySealMark, :ElectronicMark, :Issuer, :Receiptor, :Reviewer, :Remark, :PaymentInfo, :TicketPickupUser, :MerchantNumber, :OrderNumber, :GeneralMachineItems
+        
+        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, time=nil, checkcode=nil, ciphertext=nil, category=nil, pretaxamount=nil, total=nil, totalcn=nil, tax=nil, industryclass=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyeraddrtel=nil, buyerbankaccount=nil, kind=nil, province=nil, city=nil, companysealmark=nil, electronicmark=nil, issuer=nil, receiptor=nil, reviewer=nil, remark=nil, paymentinfo=nil, ticketpickupuser=nil, merchantnumber=nil, ordernumber=nil, generalmachineitems=nil)
+          @Title = title
+          @QRCodeMark = qrcodemark
+          @Code = code
+          @Number = number
+          @Date = date
+          @Time = time
+          @CheckCode = checkcode
+          @Ciphertext = ciphertext
+          @Category = category
+          @PretaxAmount = pretaxamount
+          @Total = total
+          @TotalCn = totalcn
+          @Tax = tax
+          @IndustryClass = industryclass
+          @Seller = seller
+          @SellerTaxID = sellertaxid
+          @SellerAddrTel = selleraddrtel
+          @SellerBankAccount = sellerbankaccount
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @BuyerAddrTel = buyeraddrtel
+          @BuyerBankAccount = buyerbankaccount
+          @Kind = kind
+          @Province = province
+          @City = city
+          @CompanySealMark = companysealmark
+          @ElectronicMark = electronicmark
+          @Issuer = issuer
+          @Receiptor = receiptor
+          @Reviewer = reviewer
+          @Remark = remark
+          @PaymentInfo = paymentinfo
+          @TicketPickupUser = ticketpickupuser
+          @MerchantNumber = merchantnumber
+          @OrderNumber = ordernumber
+          @GeneralMachineItems = generalmachineitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @QRCodeMark = params['QRCodeMark']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @Time = params['Time']
+          @CheckCode = params['CheckCode']
+          @Ciphertext = params['Ciphertext']
+          @Category = params['Category']
+          @PretaxAmount = params['PretaxAmount']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Tax = params['Tax']
+          @IndustryClass = params['IndustryClass']
+          @Seller = params['Seller']
+          @SellerTaxID = params['SellerTaxID']
+          @SellerAddrTel = params['SellerAddrTel']
+          @SellerBankAccount = params['SellerBankAccount']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @BuyerAddrTel = params['BuyerAddrTel']
+          @BuyerBankAccount = params['BuyerBankAccount']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @CompanySealMark = params['CompanySealMark']
+          @ElectronicMark = params['ElectronicMark']
+          @Issuer = params['Issuer']
+          @Receiptor = params['Receiptor']
+          @Reviewer = params['Reviewer']
+          @Remark = params['Remark']
+          @PaymentInfo = params['PaymentInfo']
+          @TicketPickupUser = params['TicketPickupUser']
+          @MerchantNumber = params['MerchantNumber']
+          @OrderNumber = params['OrderNumber']
+          unless params['GeneralMachineItems'].nil?
+            @GeneralMachineItems = []
+            params['GeneralMachineItems'].each do |i|
+              generalmachineitem_tmp = GeneralMachineItem.new
+              generalmachineitem_tmp.deserialize(i)
+              @GeneralMachineItems << generalmachineitem_tmp
+            end
+          end
+        end
+      end
+
       # MainlandPermitOCR请求参数结构体
       class MainlandPermitOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -3829,6 +4378,341 @@ module TencentCloud
         end
       end
 
+      # 机动车销售统一发票
+      class MotorVehicleSaleInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param PretaxAmount: 税前金额
+        # @type PretaxAmount: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param SellerTaxID: 销售方单位代码
+        # @type SellerTaxID: String
+        # @param SellerTel: 销售方电话
+        # @type SellerTel: String
+        # @param SellerAddress: 销售方地址
+        # @type SellerAddress: String
+        # @param SellerBank: 销售方开户行
+        # @type SellerBank: String
+        # @param SellerBankAccount: 销售方银行账号
+        # @type SellerBankAccount: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 购买方纳税人识别号
+        # @type BuyerTaxID: String
+        # @param BuyerID: 购买方身份证号码/组织机构代码
+        # @type BuyerID: String
+        # @param TaxAuthorities: 主管税务机关
+        # @type TaxAuthorities: String
+        # @param TaxAuthoritiesCode: 主管税务机关代码
+        # @type TaxAuthoritiesCode: String
+        # @param VIN: 车辆识别代码
+        # @type VIN: String
+        # @param VehicleModel: 厂牌型号
+        # @type VehicleModel: String
+        # @param VehicleEngineCode: 发动机号码
+        # @type VehicleEngineCode: String
+        # @param CertificateNumber: 合格证号
+        # @type CertificateNumber: String
+        # @param InspectionNumber: 商检单号
+        # @type InspectionNumber: String
+        # @param MachineID: 机器编号
+        # @type MachineID: String
+        # @param VehicleType: 车辆类型
+        # @type VehicleType: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param Tax: 合计税额
+        # @type Tax: String
+        # @param TaxRate: 税率
+        # @type TaxRate: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+        # @param Tonnage: 吨位
+        # @type Tonnage: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param FormType: 发票联次
+        # @type FormType: String
+        # @param FormName: 发票联名
+        # @type FormName: String
+        # @param Issuer: 开票人
+        # @type Issuer: String
+        # @param TaxNum: 完税凭证号码
+        # @type TaxNum: String
+        # @param MaxPeopleNum: 限乘人数
+        # @type MaxPeopleNum: String
+        # @param Origin: 产地
+        # @type Origin: String
+        # @param MachineCode: 机打发票代码
+        # @type MachineCode: String
+        # @param MachineNumber: 机打发票号码
+        # @type MachineNumber: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+
+        attr_accessor :Title, :Code, :Number, :Date, :PretaxAmount, :Total, :TotalCn, :Seller, :SellerTaxID, :SellerTel, :SellerAddress, :SellerBank, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerID, :TaxAuthorities, :TaxAuthoritiesCode, :VIN, :VehicleModel, :VehicleEngineCode, :CertificateNumber, :InspectionNumber, :MachineID, :VehicleType, :Kind, :Province, :City, :Tax, :TaxRate, :CompanySealMark, :Tonnage, :Remark, :FormType, :FormName, :Issuer, :TaxNum, :MaxPeopleNum, :Origin, :MachineCode, :MachineNumber, :QRCodeMark
+        
+        def initialize(title=nil, code=nil, number=nil, date=nil, pretaxamount=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, sellertel=nil, selleraddress=nil, sellerbank=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyerid=nil, taxauthorities=nil, taxauthoritiescode=nil, vin=nil, vehiclemodel=nil, vehicleenginecode=nil, certificatenumber=nil, inspectionnumber=nil, machineid=nil, vehicletype=nil, kind=nil, province=nil, city=nil, tax=nil, taxrate=nil, companysealmark=nil, tonnage=nil, remark=nil, formtype=nil, formname=nil, issuer=nil, taxnum=nil, maxpeoplenum=nil, origin=nil, machinecode=nil, machinenumber=nil, qrcodemark=nil)
+          @Title = title
+          @Code = code
+          @Number = number
+          @Date = date
+          @PretaxAmount = pretaxamount
+          @Total = total
+          @TotalCn = totalcn
+          @Seller = seller
+          @SellerTaxID = sellertaxid
+          @SellerTel = sellertel
+          @SellerAddress = selleraddress
+          @SellerBank = sellerbank
+          @SellerBankAccount = sellerbankaccount
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @BuyerID = buyerid
+          @TaxAuthorities = taxauthorities
+          @TaxAuthoritiesCode = taxauthoritiescode
+          @VIN = vin
+          @VehicleModel = vehiclemodel
+          @VehicleEngineCode = vehicleenginecode
+          @CertificateNumber = certificatenumber
+          @InspectionNumber = inspectionnumber
+          @MachineID = machineid
+          @VehicleType = vehicletype
+          @Kind = kind
+          @Province = province
+          @City = city
+          @Tax = tax
+          @TaxRate = taxrate
+          @CompanySealMark = companysealmark
+          @Tonnage = tonnage
+          @Remark = remark
+          @FormType = formtype
+          @FormName = formname
+          @Issuer = issuer
+          @TaxNum = taxnum
+          @MaxPeopleNum = maxpeoplenum
+          @Origin = origin
+          @MachineCode = machinecode
+          @MachineNumber = machinenumber
+          @QRCodeMark = qrcodemark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @PretaxAmount = params['PretaxAmount']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Seller = params['Seller']
+          @SellerTaxID = params['SellerTaxID']
+          @SellerTel = params['SellerTel']
+          @SellerAddress = params['SellerAddress']
+          @SellerBank = params['SellerBank']
+          @SellerBankAccount = params['SellerBankAccount']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @BuyerID = params['BuyerID']
+          @TaxAuthorities = params['TaxAuthorities']
+          @TaxAuthoritiesCode = params['TaxAuthoritiesCode']
+          @VIN = params['VIN']
+          @VehicleModel = params['VehicleModel']
+          @VehicleEngineCode = params['VehicleEngineCode']
+          @CertificateNumber = params['CertificateNumber']
+          @InspectionNumber = params['InspectionNumber']
+          @MachineID = params['MachineID']
+          @VehicleType = params['VehicleType']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @Tax = params['Tax']
+          @TaxRate = params['TaxRate']
+          @CompanySealMark = params['CompanySealMark']
+          @Tonnage = params['Tonnage']
+          @Remark = params['Remark']
+          @FormType = params['FormType']
+          @FormName = params['FormName']
+          @Issuer = params['Issuer']
+          @TaxNum = params['TaxNum']
+          @MaxPeopleNum = params['MaxPeopleNum']
+          @Origin = params['Origin']
+          @MachineCode = params['MachineCode']
+          @MachineNumber = params['MachineNumber']
+          @QRCodeMark = params['QRCodeMark']
+        end
+      end
+
+      # 非税收入
+      class NonTaxIncomeBill < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Buyer: 交款人名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 交款人纳税人识别号
+        # @type BuyerTaxID: String
+        # @param Seller: 收款人名称
+        # @type Seller: String
+        # @param SellerCompany: 收款单位名称
+        # @type SellerCompany: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CurrencyCode: 币种
+        # @type CurrencyCode: String
+        # @param Reviewer: 复核人
+        # @type Reviewer: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param OtherInfo: 其他信息
+        # @type OtherInfo: String
+        # @param PaymentCode: 缴款码
+        # @type PaymentCode: String
+        # @param ReceiveUnitCode: 执收单位编码
+        # @type ReceiveUnitCode: String
+        # @param Receiver: 执收单位名称
+        # @type Receiver: String
+        # @param Operator: 经办人
+        # @type Operator: String
+        # @param PayerAccount: 付款人账号
+        # @type PayerAccount: String
+        # @param PayerBank: 付款人开户银行
+        # @type PayerBank: String
+        # @param ReceiverAccount: 收款人账号
+        # @type ReceiverAccount: String
+        # @param ReceiverBank: 收款人开户银行
+        # @type ReceiverBank: String
+        # @param NonTaxItems: 条目
+        # @type NonTaxItems: Array
+
+        attr_accessor :Title, :Number, :Code, :CheckCode, :Date, :Total, :TotalCn, :Buyer, :BuyerTaxID, :Seller, :SellerCompany, :Remark, :CurrencyCode, :Reviewer, :QRCodeMark, :OtherInfo, :PaymentCode, :ReceiveUnitCode, :Receiver, :Operator, :PayerAccount, :PayerBank, :ReceiverAccount, :ReceiverBank, :NonTaxItems
+        
+        def initialize(title=nil, number=nil, code=nil, checkcode=nil, date=nil, total=nil, totalcn=nil, buyer=nil, buyertaxid=nil, seller=nil, sellercompany=nil, remark=nil, currencycode=nil, reviewer=nil, qrcodemark=nil, otherinfo=nil, paymentcode=nil, receiveunitcode=nil, receiver=nil, operator=nil, payeraccount=nil, payerbank=nil, receiveraccount=nil, receiverbank=nil, nontaxitems=nil)
+          @Title = title
+          @Number = number
+          @Code = code
+          @CheckCode = checkcode
+          @Date = date
+          @Total = total
+          @TotalCn = totalcn
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @Seller = seller
+          @SellerCompany = sellercompany
+          @Remark = remark
+          @CurrencyCode = currencycode
+          @Reviewer = reviewer
+          @QRCodeMark = qrcodemark
+          @OtherInfo = otherinfo
+          @PaymentCode = paymentcode
+          @ReceiveUnitCode = receiveunitcode
+          @Receiver = receiver
+          @Operator = operator
+          @PayerAccount = payeraccount
+          @PayerBank = payerbank
+          @ReceiverAccount = receiveraccount
+          @ReceiverBank = receiverbank
+          @NonTaxItems = nontaxitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Number = params['Number']
+          @Code = params['Code']
+          @CheckCode = params['CheckCode']
+          @Date = params['Date']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @Seller = params['Seller']
+          @SellerCompany = params['SellerCompany']
+          @Remark = params['Remark']
+          @CurrencyCode = params['CurrencyCode']
+          @Reviewer = params['Reviewer']
+          @QRCodeMark = params['QRCodeMark']
+          @OtherInfo = params['OtherInfo']
+          @PaymentCode = params['PaymentCode']
+          @ReceiveUnitCode = params['ReceiveUnitCode']
+          @Receiver = params['Receiver']
+          @Operator = params['Operator']
+          @PayerAccount = params['PayerAccount']
+          @PayerBank = params['PayerBank']
+          @ReceiverAccount = params['ReceiverAccount']
+          @ReceiverBank = params['ReceiverBank']
+          unless params['NonTaxItems'].nil?
+            @NonTaxItems = []
+            params['NonTaxItems'].each do |i|
+              nontaxitem_tmp = NonTaxItem.new
+              nontaxitem_tmp.deserialize(i)
+              @NonTaxItems << nontaxitem_tmp
+            end
+          end
+        end
+      end
+
+      # 非税收入条目
+      class NonTaxItem < TencentCloud::Common::AbstractModel
+        # @param ItemID: 项目编码
+        # @type ItemID: String
+        # @param Name: 项目名称
+        # @type Name: String
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Standard: 标准
+        # @type Standard: String
+        # @param Total: 金额
+        # @type Total: String
+
+        attr_accessor :ItemID, :Name, :Unit, :Quantity, :Standard, :Total
+        
+        def initialize(itemid=nil, name=nil, unit=nil, quantity=nil, standard=nil, total=nil)
+          @ItemID = itemid
+          @Name = name
+          @Unit = unit
+          @Quantity = quantity
+          @Standard = standard
+          @Total = total
+        end
+
+        def deserialize(params)
+          @ItemID = params['ItemID']
+          @Name = params['Name']
+          @Unit = params['Unit']
+          @Quantity = params['Quantity']
+          @Standard = params['Standard']
+          @Total = params['Total']
+        end
+      end
+
       # 网约车行程单识别结果
       class OnlineTaxiItineraryInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
@@ -3910,6 +4794,91 @@ module TencentCloud
           @Address = params['Address']
           @ValidDate = params['ValidDate']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 其他发票
+      class OtherInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param OtherInvoiceListItems: 列表
+        # @type OtherInvoiceListItems: Array
+        # @param OtherInvoiceTableItems: 表格
+        # @type OtherInvoiceTableItems: Array
+
+        attr_accessor :Title, :Total, :OtherInvoiceListItems, :OtherInvoiceTableItems
+        
+        def initialize(title=nil, total=nil, otherinvoicelistitems=nil, otherinvoicetableitems=nil)
+          @Title = title
+          @Total = total
+          @OtherInvoiceListItems = otherinvoicelistitems
+          @OtherInvoiceTableItems = otherinvoicetableitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Total = params['Total']
+          unless params['OtherInvoiceListItems'].nil?
+            @OtherInvoiceListItems = []
+            params['OtherInvoiceListItems'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @OtherInvoiceListItems << otherinvoiceitem_tmp
+            end
+          end
+          unless params['OtherInvoiceTableItems'].nil?
+            @OtherInvoiceTableItems = []
+            params['OtherInvoiceTableItems'].each do |i|
+              otherinvoicelist_tmp = OtherInvoiceList.new
+              otherinvoicelist_tmp.deserialize(i)
+              @OtherInvoiceTableItems << otherinvoicelist_tmp
+            end
+          end
+        end
+      end
+
+      # OtherInvoiceItem
+      class OtherInvoiceItem < TencentCloud::Common::AbstractModel
+        # @param Name: 票面key值
+        # @type Name: String
+        # @param Value: 票面value值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 其他票Table
+      class OtherInvoiceList < TencentCloud::Common::AbstractModel
+        # @param OtherInvoiceItemList: 列表
+        # @type OtherInvoiceItemList: Array
+
+        attr_accessor :OtherInvoiceItemList
+        
+        def initialize(otherinvoiceitemlist=nil)
+          @OtherInvoiceItemList = otherinvoiceitemlist
+        end
+
+        def deserialize(params)
+          unless params['OtherInvoiceItemList'].nil?
+            @OtherInvoiceItemList = []
+            params['OtherInvoiceItemList'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @OtherInvoiceItemList << otherinvoiceitem_tmp
+            end
+          end
         end
       end
 
@@ -4588,6 +5557,58 @@ module TencentCloud
         end
       end
 
+      # 定额发票
+      class QuotaInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+
+        attr_accessor :Title, :Code, :Number, :Total, :TotalCn, :Kind, :Province, :City, :QRCodeMark, :CompanySealMark
+        
+        def initialize(title=nil, code=nil, number=nil, total=nil, totalcn=nil, kind=nil, province=nil, city=nil, qrcodemark=nil, companysealmark=nil)
+          @Title = title
+          @Code = code
+          @Number = number
+          @Total = total
+          @TotalCn = totalcn
+          @Kind = kind
+          @Province = province
+          @City = city
+          @QRCodeMark = qrcodemark
+          @CompanySealMark = companysealmark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @QRCodeMark = params['QRCodeMark']
+          @CompanySealMark = params['CompanySealMark']
+        end
+      end
+
       # QuotaInvoiceOCR请求参数结构体
       class QuotaInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -4759,6 +5780,103 @@ module TencentCloud
           @Warn = params['Warn']
           @TareKG = params['TareKG']
           @TareLB = params['TareLB']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeGeneralInvoice请求参数结构体
+      class RecognizeGeneralInvoiceRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param Types: 需要识别的票据类型列表，为空或不填表示识别全部类型。
+        # 0：出租车发票
+        # 1：定额发票
+        # 2：火车票
+        # 3：增值税发票
+        # 5：机票行程单
+        # 8：通用机打发票
+        # 9：汽车票
+        # 10：轮船票
+        # 11：增值税发票（卷票 ）
+        # 12：购车发票
+        # 13：过路过桥费发票
+        # 15：非税发票
+        # 16：全电发票
+        # ----------------------
+        # -1：其他发票,（只传入此类型时，图片均采用其他票类型进行识别）
+        # @type Types: Array
+        # @param EnableOther: 是否开启其他票识别，默认值为true，开启后可支持其他发票的智能识别。
+        # @type EnableOther: Boolean
+        # @param EnablePdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type EnablePdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param EnableMultiplePage: 是否开启PDF多页识别，默认值为false，开启后可同时支持多页PDF的识别返回，仅支持返回文件前30页。开启后EnablePdf和PdfPageNumber入参不进行控制。
+        # @type EnableMultiplePage: Boolean
+        # @param EnableCutImage: 是否返回切割图片base64，默认值为false。
+        # @type EnableCutImage: Boolean
+
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage
+        
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @Types = types
+          @EnableOther = enableother
+          @EnablePdf = enablepdf
+          @PdfPageNumber = pdfpagenumber
+          @EnableMultiplePage = enablemultiplepage
+          @EnableCutImage = enablecutimage
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @Types = params['Types']
+          @EnableOther = params['EnableOther']
+          @EnablePdf = params['EnablePdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @EnableMultiplePage = params['EnableMultiplePage']
+          @EnableCutImage = params['EnableCutImage']
+        end
+      end
+
+      # RecognizeGeneralInvoice返回参数结构体
+      class RecognizeGeneralInvoiceResponse < TencentCloud::Common::AbstractModel
+        # @param MixedInvoiceItems: 混贴票据识别结果，具体内容请点击左侧链接。
+        # @type MixedInvoiceItems: Array
+        # @param TotalPDFCount: PDF文件总页码
+        # @type TotalPDFCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MixedInvoiceItems, :TotalPDFCount, :RequestId
+        
+        def initialize(mixedinvoiceitems=nil, totalpdfcount=nil, requestid=nil)
+          @MixedInvoiceItems = mixedinvoiceitems
+          @TotalPDFCount = totalpdfcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MixedInvoiceItems'].nil?
+            @MixedInvoiceItems = []
+            params['MixedInvoiceItems'].each do |i|
+              invoiceitem_tmp = InvoiceItem.new
+              invoiceitem_tmp.deserialize(i)
+              @MixedInvoiceItems << invoiceitem_tmp
+            end
+          end
+          @TotalPDFCount = params['TotalPDFCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6311,6 +7429,74 @@ module TencentCloud
         end
       end
 
+      # 轮船票
+      class ShippingInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param UserName: 姓名
+        # @type UserName: String
+        # @param Date: 日期
+        # @type Date: String
+        # @param Time: 时间
+        # @type Time: String
+        # @param StationGetOn: 出发车站
+        # @type StationGetOn: String
+        # @param StationGetOff: 到达车站
+        # @type StationGetOff: String
+        # @param Total: 票价
+        # @type Total: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param CurrencyCode: 币种
+        # @type CurrencyCode: String
+
+        attr_accessor :Title, :QRCodeMark, :Code, :Number, :UserName, :Date, :Time, :StationGetOn, :StationGetOff, :Total, :Kind, :Province, :City, :CurrencyCode
+        
+        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, username=nil, date=nil, time=nil, stationgeton=nil, stationgetoff=nil, total=nil, kind=nil, province=nil, city=nil, currencycode=nil)
+          @Title = title
+          @QRCodeMark = qrcodemark
+          @Code = code
+          @Number = number
+          @UserName = username
+          @Date = date
+          @Time = time
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @Total = total
+          @Kind = kind
+          @Province = province
+          @City = city
+          @CurrencyCode = currencycode
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @QRCodeMark = params['QRCodeMark']
+          @Code = params['Code']
+          @Number = params['Number']
+          @UserName = params['UserName']
+          @Date = params['Date']
+          @Time = params['Time']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @Total = params['Total']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @CurrencyCode = params['CurrencyCode']
+        end
+      end
+
       # 混贴票据中单张发票的内容
       class SingleInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称
@@ -6332,6 +7518,194 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           @Row = params['Row']
+        end
+      end
+
+      # 混贴票据中单张发票的内容
+      class SingleInvoiceItem < TencentCloud::Common::AbstractModel
+        # @param VatSpecialInvoice: 增值税专用发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatSpecialInvoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatCommonInvoice: 增值税普通发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatCommonInvoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatElectronicCommonInvoice: 增值税电子普通发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicCommonInvoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatElectronicSpecialInvoice: 增值税电子专用发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicSpecialInvoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatElectronicInvoiceBlockchain: 区块链电子发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicInvoiceBlockchain: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatElectronicInvoiceToll: 增值税电子普通发票(通行费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicInvoiceToll: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param VatElectronicSpecialInvoiceFull: 电子发票(专用发票)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicSpecialInvoiceFull: :class:`Tencentcloud::Ocr.v20181119.models.VatElectronicInfo`
+        # @param VatElectronicInvoiceFull: 电子发票(普通发票)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatElectronicInvoiceFull: :class:`Tencentcloud::Ocr.v20181119.models.VatElectronicInfo`
+        # @param MachinePrintedInvoice: 通用机打发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachinePrintedInvoice: :class:`Tencentcloud::Ocr.v20181119.models.MachinePrintedInvoice`
+        # @param BusInvoice: 汽车票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusInvoice: :class:`Tencentcloud::Ocr.v20181119.models.BusInvoice`
+        # @param ShippingInvoice: 轮船票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShippingInvoice: :class:`Tencentcloud::Ocr.v20181119.models.ShippingInvoice`
+        # @param TollInvoice: 过路过桥费发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TollInvoice: :class:`Tencentcloud::Ocr.v20181119.models.TollInvoice`
+        # @param OtherInvoice: 其他发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherInvoice: :class:`Tencentcloud::Ocr.v20181119.models.OtherInvoice`
+        # @param MotorVehicleSaleInvoice: 机动车销售统一发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MotorVehicleSaleInvoice: :class:`Tencentcloud::Ocr.v20181119.models.MotorVehicleSaleInvoice`
+        # @param UsedCarPurchaseInvoice: 二手车销售统一发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedCarPurchaseInvoice: :class:`Tencentcloud::Ocr.v20181119.models.UsedCarPurchaseInvoice`
+        # @param VatInvoiceRoll: 增值税普通发票(卷票)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatInvoiceRoll: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceRoll`
+        # @param TaxiTicket: 出租车发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxiTicket: :class:`Tencentcloud::Ocr.v20181119.models.TaxiTicket`
+        # @param QuotaInvoice: 定额发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaInvoice: :class:`Tencentcloud::Ocr.v20181119.models.QuotaInvoice`
+        # @param AirTransport: 机票行程单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AirTransport: :class:`Tencentcloud::Ocr.v20181119.models.AirTransport`
+        # @param NonTaxIncomeGeneralBill: 非税收入通用票据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonTaxIncomeGeneralBill: :class:`Tencentcloud::Ocr.v20181119.models.NonTaxIncomeBill`
+        # @param NonTaxIncomeElectronicBill: 非税收入一般缴款书(电子)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonTaxIncomeElectronicBill: :class:`Tencentcloud::Ocr.v20181119.models.NonTaxIncomeBill`
+        # @param TrainTicket: 火车票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainTicket: :class:`Tencentcloud::Ocr.v20181119.models.TrainTicket`
+
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket
+        
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil)
+          @VatSpecialInvoice = vatspecialinvoice
+          @VatCommonInvoice = vatcommoninvoice
+          @VatElectronicCommonInvoice = vatelectroniccommoninvoice
+          @VatElectronicSpecialInvoice = vatelectronicspecialinvoice
+          @VatElectronicInvoiceBlockchain = vatelectronicinvoiceblockchain
+          @VatElectronicInvoiceToll = vatelectronicinvoicetoll
+          @VatElectronicSpecialInvoiceFull = vatelectronicspecialinvoicefull
+          @VatElectronicInvoiceFull = vatelectronicinvoicefull
+          @MachinePrintedInvoice = machineprintedinvoice
+          @BusInvoice = businvoice
+          @ShippingInvoice = shippinginvoice
+          @TollInvoice = tollinvoice
+          @OtherInvoice = otherinvoice
+          @MotorVehicleSaleInvoice = motorvehiclesaleinvoice
+          @UsedCarPurchaseInvoice = usedcarpurchaseinvoice
+          @VatInvoiceRoll = vatinvoiceroll
+          @TaxiTicket = taxiticket
+          @QuotaInvoice = quotainvoice
+          @AirTransport = airtransport
+          @NonTaxIncomeGeneralBill = nontaxincomegeneralbill
+          @NonTaxIncomeElectronicBill = nontaxincomeelectronicbill
+          @TrainTicket = trainticket
+        end
+
+        def deserialize(params)
+          unless params['VatSpecialInvoice'].nil?
+            @VatSpecialInvoice = VatInvoiceInfo.new
+            @VatSpecialInvoice.deserialize(params['VatSpecialInvoice'])
+          end
+          unless params['VatCommonInvoice'].nil?
+            @VatCommonInvoice = VatInvoiceInfo.new
+            @VatCommonInvoice.deserialize(params['VatCommonInvoice'])
+          end
+          unless params['VatElectronicCommonInvoice'].nil?
+            @VatElectronicCommonInvoice = VatInvoiceInfo.new
+            @VatElectronicCommonInvoice.deserialize(params['VatElectronicCommonInvoice'])
+          end
+          unless params['VatElectronicSpecialInvoice'].nil?
+            @VatElectronicSpecialInvoice = VatInvoiceInfo.new
+            @VatElectronicSpecialInvoice.deserialize(params['VatElectronicSpecialInvoice'])
+          end
+          unless params['VatElectronicInvoiceBlockchain'].nil?
+            @VatElectronicInvoiceBlockchain = VatInvoiceInfo.new
+            @VatElectronicInvoiceBlockchain.deserialize(params['VatElectronicInvoiceBlockchain'])
+          end
+          unless params['VatElectronicInvoiceToll'].nil?
+            @VatElectronicInvoiceToll = VatInvoiceInfo.new
+            @VatElectronicInvoiceToll.deserialize(params['VatElectronicInvoiceToll'])
+          end
+          unless params['VatElectronicSpecialInvoiceFull'].nil?
+            @VatElectronicSpecialInvoiceFull = VatElectronicInfo.new
+            @VatElectronicSpecialInvoiceFull.deserialize(params['VatElectronicSpecialInvoiceFull'])
+          end
+          unless params['VatElectronicInvoiceFull'].nil?
+            @VatElectronicInvoiceFull = VatElectronicInfo.new
+            @VatElectronicInvoiceFull.deserialize(params['VatElectronicInvoiceFull'])
+          end
+          unless params['MachinePrintedInvoice'].nil?
+            @MachinePrintedInvoice = MachinePrintedInvoice.new
+            @MachinePrintedInvoice.deserialize(params['MachinePrintedInvoice'])
+          end
+          unless params['BusInvoice'].nil?
+            @BusInvoice = BusInvoice.new
+            @BusInvoice.deserialize(params['BusInvoice'])
+          end
+          unless params['ShippingInvoice'].nil?
+            @ShippingInvoice = ShippingInvoice.new
+            @ShippingInvoice.deserialize(params['ShippingInvoice'])
+          end
+          unless params['TollInvoice'].nil?
+            @TollInvoice = TollInvoice.new
+            @TollInvoice.deserialize(params['TollInvoice'])
+          end
+          unless params['OtherInvoice'].nil?
+            @OtherInvoice = OtherInvoice.new
+            @OtherInvoice.deserialize(params['OtherInvoice'])
+          end
+          unless params['MotorVehicleSaleInvoice'].nil?
+            @MotorVehicleSaleInvoice = MotorVehicleSaleInvoice.new
+            @MotorVehicleSaleInvoice.deserialize(params['MotorVehicleSaleInvoice'])
+          end
+          unless params['UsedCarPurchaseInvoice'].nil?
+            @UsedCarPurchaseInvoice = UsedCarPurchaseInvoice.new
+            @UsedCarPurchaseInvoice.deserialize(params['UsedCarPurchaseInvoice'])
+          end
+          unless params['VatInvoiceRoll'].nil?
+            @VatInvoiceRoll = VatInvoiceRoll.new
+            @VatInvoiceRoll.deserialize(params['VatInvoiceRoll'])
+          end
+          unless params['TaxiTicket'].nil?
+            @TaxiTicket = TaxiTicket.new
+            @TaxiTicket.deserialize(params['TaxiTicket'])
+          end
+          unless params['QuotaInvoice'].nil?
+            @QuotaInvoice = QuotaInvoice.new
+            @QuotaInvoice.deserialize(params['QuotaInvoice'])
+          end
+          unless params['AirTransport'].nil?
+            @AirTransport = AirTransport.new
+            @AirTransport.deserialize(params['AirTransport'])
+          end
+          unless params['NonTaxIncomeGeneralBill'].nil?
+            @NonTaxIncomeGeneralBill = NonTaxIncomeBill.new
+            @NonTaxIncomeGeneralBill.deserialize(params['NonTaxIncomeGeneralBill'])
+          end
+          unless params['NonTaxIncomeElectronicBill'].nil?
+            @NonTaxIncomeElectronicBill = NonTaxIncomeBill.new
+            @NonTaxIncomeElectronicBill.deserialize(params['NonTaxIncomeElectronicBill'])
+          end
+          unless params['TrainTicket'].nil?
+            @TrainTicket = TrainTicket.new
+            @TrainTicket.deserialize(params['TrainTicket'])
+          end
         end
       end
 
@@ -6946,6 +8320,90 @@ module TencentCloud
           @Province = params['Province']
           @City = params['City']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 出租车发票
+      class TaxiTicket < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param TimeGetOn: 上车时间
+        # @type TimeGetOn: String
+        # @param TimeGetOff: 下车时间
+        # @type TimeGetOff: String
+        # @param Price: 单价
+        # @type Price: String
+        # @param Mileage: 里程
+        # @type Mileage: String
+        # @param Total: 总金额
+        # @type Total: String
+        # @param Place: 发票所在地
+        # @type Place: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param LicensePlate: 车牌号
+        # @type LicensePlate: String
+        # @param FuelFee: 燃油附加费
+        # @type FuelFee: String
+        # @param BookingCallFee: 预约叫车服务费
+        # @type BookingCallFee: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+
+        attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :TimeGetOn, :TimeGetOff, :Price, :Mileage, :Total, :Place, :Province, :City, :Kind, :LicensePlate, :FuelFee, :BookingCallFee, :CompanySealMark
+        
+        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, timegeton=nil, timegetoff=nil, price=nil, mileage=nil, total=nil, place=nil, province=nil, city=nil, kind=nil, licenseplate=nil, fuelfee=nil, bookingcallfee=nil, companysealmark=nil)
+          @Title = title
+          @QRCodeMark = qrcodemark
+          @Code = code
+          @Number = number
+          @Date = date
+          @TimeGetOn = timegeton
+          @TimeGetOff = timegetoff
+          @Price = price
+          @Mileage = mileage
+          @Total = total
+          @Place = place
+          @Province = province
+          @City = city
+          @Kind = kind
+          @LicensePlate = licenseplate
+          @FuelFee = fuelfee
+          @BookingCallFee = bookingcallfee
+          @CompanySealMark = companysealmark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @QRCodeMark = params['QRCodeMark']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @TimeGetOn = params['TimeGetOn']
+          @TimeGetOff = params['TimeGetOff']
+          @Price = params['Price']
+          @Mileage = params['Mileage']
+          @Total = params['Total']
+          @Place = params['Place']
+          @Province = params['Province']
+          @City = params['City']
+          @Kind = params['Kind']
+          @LicensePlate = params['LicensePlate']
+          @FuelFee = params['FuelFee']
+          @BookingCallFee = params['BookingCallFee']
+          @CompanySealMark = params['CompanySealMark']
         end
       end
 
@@ -7591,6 +9049,62 @@ module TencentCloud
         end
       end
 
+      # 过路过桥费发票
+      class TollInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Date: 日期
+        # @type Date: String
+        # @param Time: 时间
+        # @type Time: String
+        # @param Entrance: 入口
+        # @type Entrance: String
+        # @param Exit: 出口
+        # @type Exit: String
+        # @param HighwayMark: 高速标志（0：没有，1：有）
+        # @type HighwayMark: Integer
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+
+        attr_accessor :Title, :Code, :Number, :Total, :Kind, :Date, :Time, :Entrance, :Exit, :HighwayMark, :QRCodeMark
+        
+        def initialize(title=nil, code=nil, number=nil, total=nil, kind=nil, date=nil, time=nil, entrance=nil, exit=nil, highwaymark=nil, qrcodemark=nil)
+          @Title = title
+          @Code = code
+          @Number = number
+          @Total = total
+          @Kind = kind
+          @Date = date
+          @Time = time
+          @Entrance = entrance
+          @Exit = exit
+          @HighwayMark = highwaymark
+          @QRCodeMark = qrcodemark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Total = params['Total']
+          @Kind = params['Kind']
+          @Date = params['Date']
+          @Time = params['Time']
+          @Entrance = params['Entrance']
+          @Exit = params['Exit']
+          @HighwayMark = params['HighwayMark']
+          @QRCodeMark = params['QRCodeMark']
+        end
+      end
+
       # 过路过桥费字段信息
       class TollInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称（关键字）。支持以下字段的识别：
@@ -7682,6 +9196,114 @@ module TencentCloud
           end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 火车票
+      class TrainTicket < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param DateGetOn: 乘车日期
+        # @type DateGetOn: String
+        # @param TimeGetOn: 乘车时间
+        # @type TimeGetOn: String
+        # @param Name: 乘车人姓名
+        # @type Name: String
+        # @param StationGetOn: 出发车站
+        # @type StationGetOn: String
+        # @param StationGetOff: 到达车站
+        # @type StationGetOff: String
+        # @param Seat: 座位类型
+        # @type Seat: String
+        # @param Total: 总金额
+        # @type Total: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param SerialNumber: 序列号
+        # @type SerialNumber: String
+        # @param UserID: 身份证号
+        # @type UserID: String
+        # @param GateNumber: 检票口
+        # @type GateNumber: String
+        # @param TrainNumber: 车次
+        # @type TrainNumber: String
+        # @param HandlingFee: 手续费
+        # @type HandlingFee: String
+        # @param OriginalFare: 原票价
+        # @type OriginalFare: String
+        # @param TotalCn: 大写金额
+        # @type TotalCn: String
+        # @param SeatNumber: 座位号
+        # @type SeatNumber: String
+        # @param PickUpAddress: 取票地址
+        # @type PickUpAddress: String
+        # @param TicketChange: 是否始发改签
+        # @type TicketChange: String
+        # @param AdditionalFare: 加收票价
+        # @type AdditionalFare: String
+        # @param ReceiptNumber: 收据号码
+        # @type ReceiptNumber: String
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param ReimburseOnlyMark: 是否仅供报销使用（0：没有，1：有）
+        # @type ReimburseOnlyMark: Integer
+
+        attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark
+        
+        def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil)
+          @Title = title
+          @Number = number
+          @DateGetOn = dategeton
+          @TimeGetOn = timegeton
+          @Name = name
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @Seat = seat
+          @Total = total
+          @Kind = kind
+          @SerialNumber = serialnumber
+          @UserID = userid
+          @GateNumber = gatenumber
+          @TrainNumber = trainnumber
+          @HandlingFee = handlingfee
+          @OriginalFare = originalfare
+          @TotalCn = totalcn
+          @SeatNumber = seatnumber
+          @PickUpAddress = pickupaddress
+          @TicketChange = ticketchange
+          @AdditionalFare = additionalfare
+          @ReceiptNumber = receiptnumber
+          @QRCodeMark = qrcodemark
+          @ReimburseOnlyMark = reimburseonlymark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Number = params['Number']
+          @DateGetOn = params['DateGetOn']
+          @TimeGetOn = params['TimeGetOn']
+          @Name = params['Name']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @Seat = params['Seat']
+          @Total = params['Total']
+          @Kind = params['Kind']
+          @SerialNumber = params['SerialNumber']
+          @UserID = params['UserID']
+          @GateNumber = params['GateNumber']
+          @TrainNumber = params['TrainNumber']
+          @HandlingFee = params['HandlingFee']
+          @OriginalFare = params['OriginalFare']
+          @TotalCn = params['TotalCn']
+          @SeatNumber = params['SeatNumber']
+          @PickUpAddress = params['PickUpAddress']
+          @TicketChange = params['TicketChange']
+          @AdditionalFare = params['AdditionalFare']
+          @ReceiptNumber = params['ReceiptNumber']
+          @QRCodeMark = params['QRCodeMark']
+          @ReimburseOnlyMark = params['ReimburseOnlyMark']
         end
       end
 
@@ -7816,6 +9438,150 @@ module TencentCloud
         end
       end
 
+      # 二手车销售统一发票
+      class UsedCarPurchaseInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param QRCodeMark: 是否存在二维码（0：没有，1：有）
+        # @type QRCodeMark: Integer
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Seller: 销货单位名称
+        # @type Seller: String
+        # @param SellerTel: 销售方电话
+        # @type SellerTel: String
+        # @param SellerTaxID: 销售方单位代码/个人身份证号
+        # @type SellerTaxID: String
+        # @param SellerAddress: 销售方地址
+        # @type SellerAddress: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerID: 购买方单位代码/个人身份证号
+        # @type BuyerID: String
+        # @param BuyerAddress: 购买方地址
+        # @type BuyerAddress: String
+        # @param BuyerTel: 购买方电话
+        # @type BuyerTel: String
+        # @param CompanyName: 二手车市场
+        # @type CompanyName: String
+        # @param CompanyTaxID: 二手车市场纳税人识别号
+        # @type CompanyTaxID: String
+        # @param CompanyBankAccount: 二手车市场开户银行和账号
+        # @type CompanyBankAccount: String
+        # @param CompanyTel: 二手车市场电话
+        # @type CompanyTel: String
+        # @param CompanyAddress: 二手车市场地址
+        # @type CompanyAddress: String
+        # @param TransferAdministrationName: 转入地车辆管理所名称
+        # @type TransferAdministrationName: String
+        # @param LicensePlate: 车牌号
+        # @type LicensePlate: String
+        # @param RegistrationNumber: 登记证号
+        # @type RegistrationNumber: String
+        # @param VIN: 车辆识别代码
+        # @type VIN: String
+        # @param VehicleModel: 厂牌型号
+        # @type VehicleModel: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param VehicleType: 车辆类型
+        # @type VehicleType: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param FormType: 发票联次
+        # @type FormType: String
+        # @param FormName: 发票联名
+        # @type FormName: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+
+        attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Total, :TotalCn, :Seller, :SellerTel, :SellerTaxID, :SellerAddress, :Buyer, :BuyerID, :BuyerAddress, :BuyerTel, :CompanyName, :CompanyTaxID, :CompanyBankAccount, :CompanyTel, :CompanyAddress, :TransferAdministrationName, :LicensePlate, :RegistrationNumber, :VIN, :VehicleModel, :Kind, :Province, :City, :VehicleType, :Remark, :FormType, :FormName, :CompanySealMark
+        
+        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, total=nil, totalcn=nil, seller=nil, sellertel=nil, sellertaxid=nil, selleraddress=nil, buyer=nil, buyerid=nil, buyeraddress=nil, buyertel=nil, companyname=nil, companytaxid=nil, companybankaccount=nil, companytel=nil, companyaddress=nil, transferadministrationname=nil, licenseplate=nil, registrationnumber=nil, vin=nil, vehiclemodel=nil, kind=nil, province=nil, city=nil, vehicletype=nil, remark=nil, formtype=nil, formname=nil, companysealmark=nil)
+          @Title = title
+          @QRCodeMark = qrcodemark
+          @Code = code
+          @Number = number
+          @Date = date
+          @Total = total
+          @TotalCn = totalcn
+          @Seller = seller
+          @SellerTel = sellertel
+          @SellerTaxID = sellertaxid
+          @SellerAddress = selleraddress
+          @Buyer = buyer
+          @BuyerID = buyerid
+          @BuyerAddress = buyeraddress
+          @BuyerTel = buyertel
+          @CompanyName = companyname
+          @CompanyTaxID = companytaxid
+          @CompanyBankAccount = companybankaccount
+          @CompanyTel = companytel
+          @CompanyAddress = companyaddress
+          @TransferAdministrationName = transferadministrationname
+          @LicensePlate = licenseplate
+          @RegistrationNumber = registrationnumber
+          @VIN = vin
+          @VehicleModel = vehiclemodel
+          @Kind = kind
+          @Province = province
+          @City = city
+          @VehicleType = vehicletype
+          @Remark = remark
+          @FormType = formtype
+          @FormName = formname
+          @CompanySealMark = companysealmark
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @QRCodeMark = params['QRCodeMark']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Seller = params['Seller']
+          @SellerTel = params['SellerTel']
+          @SellerTaxID = params['SellerTaxID']
+          @SellerAddress = params['SellerAddress']
+          @Buyer = params['Buyer']
+          @BuyerID = params['BuyerID']
+          @BuyerAddress = params['BuyerAddress']
+          @BuyerTel = params['BuyerTel']
+          @CompanyName = params['CompanyName']
+          @CompanyTaxID = params['CompanyTaxID']
+          @CompanyBankAccount = params['CompanyBankAccount']
+          @CompanyTel = params['CompanyTel']
+          @CompanyAddress = params['CompanyAddress']
+          @TransferAdministrationName = params['TransferAdministrationName']
+          @LicensePlate = params['LicensePlate']
+          @RegistrationNumber = params['RegistrationNumber']
+          @VIN = params['VIN']
+          @VehicleModel = params['VehicleModel']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @VehicleType = params['VehicleType']
+          @Remark = params['Remark']
+          @FormType = params['FormType']
+          @FormName = params['FormName']
+          @CompanySealMark = params['CompanySealMark']
+        end
+      end
+
       # 二手车销售统一发票信息
       class UsedVehicleInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param TaxBureau: 所属税局
@@ -7945,6 +9711,169 @@ module TencentCloud
             @Coord = Polygon.new
             @Coord.deserialize(params['Coord'])
           end
+        end
+      end
+
+      # 电子发票返回值
+      class VatElectronicInfo < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param PretaxAmount: 税前金额
+        # @type PretaxAmount: String
+        # @param Tax: 合计税额
+        # @type Tax: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param SellerTaxID: 销售方纳税人识别号
+        # @type SellerTaxID: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 购买方纳税人识别号
+        # @type BuyerTaxID: String
+        # @param Issuer: 开票人
+        # @type Issuer: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param SubTotal: 小计金额
+        # @type SubTotal: String
+        # @param SubTax: 小计税额
+        # @type SubTax: String
+        # @param VatElectronicItems: 电子发票详细条目信息
+        # @type VatElectronicItems: Array
+
+        attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems
+        
+        def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil)
+          @Title = title
+          @Number = number
+          @Date = date
+          @PretaxAmount = pretaxamount
+          @Tax = tax
+          @Total = total
+          @TotalCn = totalcn
+          @Seller = seller
+          @SellerTaxID = sellertaxid
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @Issuer = issuer
+          @Remark = remark
+          @SubTotal = subtotal
+          @SubTax = subtax
+          @VatElectronicItems = vatelectronicitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Number = params['Number']
+          @Date = params['Date']
+          @PretaxAmount = params['PretaxAmount']
+          @Tax = params['Tax']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Seller = params['Seller']
+          @SellerTaxID = params['SellerTaxID']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @Issuer = params['Issuer']
+          @Remark = params['Remark']
+          @SubTotal = params['SubTotal']
+          @SubTax = params['SubTax']
+          unless params['VatElectronicItems'].nil?
+            @VatElectronicItems = []
+            params['VatElectronicItems'].each do |i|
+              vatelectroniciteminfo_tmp = VatElectronicItemInfo.new
+              vatelectroniciteminfo_tmp.deserialize(i)
+              @VatElectronicItems << vatelectroniciteminfo_tmp
+            end
+          end
+        end
+      end
+
+      # 电子发票详细条目信息
+      class VatElectronicItemInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名称
+        # @type Name: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Specification: 规格型号
+        # @type Specification: String
+        # @param Price: 单价
+        # @type Price: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param TaxRate: 税率
+        # @type TaxRate: String
+        # @param Tax: 税额
+        # @type Tax: String
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param VehicleType: 运输工具类型
+        # @type VehicleType: String
+        # @param VehicleBrand: 运输工具牌号
+        # @type VehicleBrand: String
+        # @param DeparturePlace: 起始地
+        # @type DeparturePlace: String
+        # @param ArrivalPlace: 到达地
+        # @type ArrivalPlace: String
+        # @param TransportItemsName: 运输货物名称，仅货物运输服务发票返回
+        # @type TransportItemsName: String
+        # @param PlaceOfBuildingService: 建筑服务发生地，仅建筑发票返回
+        # @type PlaceOfBuildingService: String
+        # @param BuildingName: 建筑项目名称，仅建筑发票返回
+        # @type BuildingName: String
+        # @param EstateNumber: 产权证书/不动产权证号，仅不动产经营租赁服务发票返回
+        # @type EstateNumber: String
+        # @param AreaUnit: 面积单位，仅不动产经营租赁服务发票返回
+        # @type AreaUnit: String
+
+        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit
+        
+        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil)
+          @Name = name
+          @Quantity = quantity
+          @Specification = specification
+          @Price = price
+          @Total = total
+          @TaxRate = taxrate
+          @Tax = tax
+          @Unit = unit
+          @VehicleType = vehicletype
+          @VehicleBrand = vehiclebrand
+          @DeparturePlace = departureplace
+          @ArrivalPlace = arrivalplace
+          @TransportItemsName = transportitemsname
+          @PlaceOfBuildingService = placeofbuildingservice
+          @BuildingName = buildingname
+          @EstateNumber = estatenumber
+          @AreaUnit = areaunit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Quantity = params['Quantity']
+          @Specification = params['Specification']
+          @Price = params['Price']
+          @Total = params['Total']
+          @TaxRate = params['TaxRate']
+          @Tax = params['Tax']
+          @Unit = params['Unit']
+          @VehicleType = params['VehicleType']
+          @VehicleBrand = params['VehicleBrand']
+          @DeparturePlace = params['DeparturePlace']
+          @ArrivalPlace = params['ArrivalPlace']
+          @TransportItemsName = params['TransportItemsName']
+          @PlaceOfBuildingService = params['PlaceOfBuildingService']
+          @BuildingName = params['BuildingName']
+          @EstateNumber = params['EstateNumber']
+          @AreaUnit = params['AreaUnit']
         end
       end
 
@@ -8125,6 +10054,181 @@ module TencentCloud
         end
       end
 
+      # 增值税发票返回值
+      class VatInvoiceInfo < TencentCloud::Common::AbstractModel
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param FormType: 发票联次
+        # @type FormType: String
+        # @param TravelTax: 车船税
+        # @type TravelTax: String
+        # @param BuyerAddrTel: 购买方地址电话
+        # @type BuyerAddrTel: String
+        # @param BuyerBankAccount: 购买方银行账号
+        # @type BuyerBankAccount: String
+        # @param CompanySealContent: 公司印章内容
+        # @type CompanySealContent: String
+        # @param TaxSealContent: 税务局章内容
+        # @type TaxSealContent: String
+        # @param ServiceName: 服务类型
+        # @type ServiceName: String
+        # @param City: 市
+        # @type City: String
+        # @param QRCodeMark: 是否存在二维码（0：没有，1：有）
+        # @type QRCodeMark: Integer
+        # @param AgentMark: 是否有代开标记（0：没有，1：有）
+        # @type AgentMark: Integer
+        # @param TransitMark: 是否有通行费标记（0：没有，1：有）
+        # @type TransitMark: Integer
+        # @param OilMark: 是否有成品油标记（0：没有，1：有）
+        # @type OilMark: Integer
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param NumberConfirm: 机打发票号码
+        # @type NumberConfirm: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param PretaxAmount: 税前金额
+        # @type PretaxAmount: String
+        # @param Tax: 合计税额
+        # @type Tax: String
+        # @param MachineCode: 机器编号
+        # @type MachineCode: String
+        # @param Ciphertext: 密码区
+        # @type Ciphertext: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param SellerTaxID: 销售方纳税人识别号
+        # @type SellerTaxID: String
+        # @param SellerAddrTel: 销售方地址电话
+        # @type SellerAddrTel: String
+        # @param SellerBankAccount: 销售方银行账号
+        # @type SellerBankAccount: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 购买方纳税人识别号
+        # @type BuyerTaxID: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+        # @param Issuer: 开票人
+        # @type Issuer: String
+        # @param Reviewer: 复核人
+        # @type Reviewer: String
+        # @param Province: 省
+        # @type Province: String
+        # @param VatInvoiceItemInfos: 增值税发票项目信息
+        # @type VatInvoiceItemInfos: Array
+        # @param CodeConfirm: 机打发票代码
+        # @type CodeConfirm: String
+        # @param Receiptor: 收款人
+        # @type Receiptor: String
+
+        attr_accessor :CheckCode, :FormType, :TravelTax, :BuyerAddrTel, :BuyerBankAccount, :CompanySealContent, :TaxSealContent, :ServiceName, :City, :QRCodeMark, :AgentMark, :TransitMark, :OilMark, :Title, :Kind, :Code, :Number, :NumberConfirm, :Date, :Total, :TotalCn, :PretaxAmount, :Tax, :MachineCode, :Ciphertext, :Remark, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :CompanySealMark, :Issuer, :Reviewer, :Province, :VatInvoiceItemInfos, :CodeConfirm, :Receiptor
+        
+        def initialize(checkcode=nil, formtype=nil, traveltax=nil, buyeraddrtel=nil, buyerbankaccount=nil, companysealcontent=nil, taxsealcontent=nil, servicename=nil, city=nil, qrcodemark=nil, agentmark=nil, transitmark=nil, oilmark=nil, title=nil, kind=nil, code=nil, number=nil, numberconfirm=nil, date=nil, total=nil, totalcn=nil, pretaxamount=nil, tax=nil, machinecode=nil, ciphertext=nil, remark=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, companysealmark=nil, issuer=nil, reviewer=nil, province=nil, vatinvoiceiteminfos=nil, codeconfirm=nil, receiptor=nil)
+          @CheckCode = checkcode
+          @FormType = formtype
+          @TravelTax = traveltax
+          @BuyerAddrTel = buyeraddrtel
+          @BuyerBankAccount = buyerbankaccount
+          @CompanySealContent = companysealcontent
+          @TaxSealContent = taxsealcontent
+          @ServiceName = servicename
+          @City = city
+          @QRCodeMark = qrcodemark
+          @AgentMark = agentmark
+          @TransitMark = transitmark
+          @OilMark = oilmark
+          @Title = title
+          @Kind = kind
+          @Code = code
+          @Number = number
+          @NumberConfirm = numberconfirm
+          @Date = date
+          @Total = total
+          @TotalCn = totalcn
+          @PretaxAmount = pretaxamount
+          @Tax = tax
+          @MachineCode = machinecode
+          @Ciphertext = ciphertext
+          @Remark = remark
+          @Seller = seller
+          @SellerTaxID = sellertaxid
+          @SellerAddrTel = selleraddrtel
+          @SellerBankAccount = sellerbankaccount
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @CompanySealMark = companysealmark
+          @Issuer = issuer
+          @Reviewer = reviewer
+          @Province = province
+          @VatInvoiceItemInfos = vatinvoiceiteminfos
+          @CodeConfirm = codeconfirm
+          @Receiptor = receiptor
+        end
+
+        def deserialize(params)
+          @CheckCode = params['CheckCode']
+          @FormType = params['FormType']
+          @TravelTax = params['TravelTax']
+          @BuyerAddrTel = params['BuyerAddrTel']
+          @BuyerBankAccount = params['BuyerBankAccount']
+          @CompanySealContent = params['CompanySealContent']
+          @TaxSealContent = params['TaxSealContent']
+          @ServiceName = params['ServiceName']
+          @City = params['City']
+          @QRCodeMark = params['QRCodeMark']
+          @AgentMark = params['AgentMark']
+          @TransitMark = params['TransitMark']
+          @OilMark = params['OilMark']
+          @Title = params['Title']
+          @Kind = params['Kind']
+          @Code = params['Code']
+          @Number = params['Number']
+          @NumberConfirm = params['NumberConfirm']
+          @Date = params['Date']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @PretaxAmount = params['PretaxAmount']
+          @Tax = params['Tax']
+          @MachineCode = params['MachineCode']
+          @Ciphertext = params['Ciphertext']
+          @Remark = params['Remark']
+          @Seller = params['Seller']
+          @SellerTaxID = params['SellerTaxID']
+          @SellerAddrTel = params['SellerAddrTel']
+          @SellerBankAccount = params['SellerBankAccount']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @CompanySealMark = params['CompanySealMark']
+          @Issuer = params['Issuer']
+          @Reviewer = params['Reviewer']
+          @Province = params['Province']
+          unless params['VatInvoiceItemInfos'].nil?
+            @VatInvoiceItemInfos = []
+            params['VatInvoiceItemInfos'].each do |i|
+              vatinvoiceiteminfo_tmp = VatInvoiceItemInfo.new
+              vatinvoiceiteminfo_tmp.deserialize(i)
+              @VatInvoiceItemInfos << vatinvoiceiteminfo_tmp
+            end
+          end
+          @CodeConfirm = params['CodeConfirm']
+          @Receiptor = params['Receiptor']
+        end
+      end
+
       # 增值税发票项目明细
       class VatInvoiceItem < TencentCloud::Common::AbstractModel
         # @param LineNo: 行号
@@ -8174,6 +10278,66 @@ module TencentCloud
           @TaxRate = params['TaxRate']
           @TaxAmount = params['TaxAmount']
           @TaxClassifyCode = params['TaxClassifyCode']
+        end
+      end
+
+      # 增值税发票项目信息
+      class VatInvoiceItemInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名称
+        # @type Name: String
+        # @param Specification: 规格型号
+        # @type Specification: String
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Price: 单价
+        # @type Price: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param TaxRate: 税率
+        # @type TaxRate: String
+        # @param Tax: 税额
+        # @type Tax: String
+        # @param DateStart: 通行日期起
+        # @type DateStart: String
+        # @param DateEnd: 通行日期止
+        # @type DateEnd: String
+        # @param LicensePlate: 车牌号
+        # @type LicensePlate: String
+        # @param VehicleType: 车辆类型
+        # @type VehicleType: String
+
+        attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax, :DateStart, :DateEnd, :LicensePlate, :VehicleType
+        
+        def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil, datestart=nil, dateend=nil, licenseplate=nil, vehicletype=nil)
+          @Name = name
+          @Specification = specification
+          @Unit = unit
+          @Quantity = quantity
+          @Price = price
+          @Total = total
+          @TaxRate = taxrate
+          @Tax = tax
+          @DateStart = datestart
+          @DateEnd = dateend
+          @LicensePlate = licenseplate
+          @VehicleType = vehicletype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Specification = params['Specification']
+          @Unit = params['Unit']
+          @Quantity = params['Quantity']
+          @Price = params['Price']
+          @Total = params['Total']
+          @TaxRate = params['TaxRate']
+          @Tax = params['Tax']
+          @DateStart = params['DateStart']
+          @DateEnd = params['DateEnd']
+          @LicensePlate = params['LicensePlate']
+          @VehicleType = params['VehicleType']
         end
       end
 
@@ -8255,6 +10419,113 @@ module TencentCloud
           @PdfPageSize = params['PdfPageSize']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 增值税普通发票(卷票)
+      class VatInvoiceRoll < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param NumberConfirm: 机打发票号码
+        # @type NumberConfirm: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param SellerTaxID: 销售方纳税人识别号
+        # @type SellerTaxID: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 购买方纳税人识别号
+        # @type BuyerTaxID: String
+        # @param Category: 种类
+        # @type Category: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Kind: 发票消费类型
+        # @type Kind: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 市
+        # @type City: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
+        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @type QRCodeMark: Integer
+        # @param ServiceName: 服务类型
+        # @type ServiceName: String
+        # @param CompanySealContent: 公司印章内容
+        # @type CompanySealContent: String
+        # @param TaxSealContent: 税务局章内容
+        # @type TaxSealContent: String
+        # @param VatRollItems: 条目
+        # @type VatRollItems: Array
+
+        attr_accessor :Title, :Code, :Number, :NumberConfirm, :Date, :CheckCode, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Category, :Total, :TotalCn, :Kind, :Province, :City, :CompanySealMark, :QRCodeMark, :ServiceName, :CompanySealContent, :TaxSealContent, :VatRollItems
+        
+        def initialize(title=nil, code=nil, number=nil, numberconfirm=nil, date=nil, checkcode=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, category=nil, total=nil, totalcn=nil, kind=nil, province=nil, city=nil, companysealmark=nil, qrcodemark=nil, servicename=nil, companysealcontent=nil, taxsealcontent=nil, vatrollitems=nil)
+          @Title = title
+          @Code = code
+          @Number = number
+          @NumberConfirm = numberconfirm
+          @Date = date
+          @CheckCode = checkcode
+          @Seller = seller
+          @SellerTaxID = sellertaxid
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @Category = category
+          @Total = total
+          @TotalCn = totalcn
+          @Kind = kind
+          @Province = province
+          @City = city
+          @CompanySealMark = companysealmark
+          @QRCodeMark = qrcodemark
+          @ServiceName = servicename
+          @CompanySealContent = companysealcontent
+          @TaxSealContent = taxsealcontent
+          @VatRollItems = vatrollitems
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Code = params['Code']
+          @Number = params['Number']
+          @NumberConfirm = params['NumberConfirm']
+          @Date = params['Date']
+          @CheckCode = params['CheckCode']
+          @Seller = params['Seller']
+          @SellerTaxID = params['SellerTaxID']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @Category = params['Category']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Kind = params['Kind']
+          @Province = params['Province']
+          @City = params['City']
+          @CompanySealMark = params['CompanySealMark']
+          @QRCodeMark = params['QRCodeMark']
+          @ServiceName = params['ServiceName']
+          @CompanySealContent = params['CompanySealContent']
+          @TaxSealContent = params['TaxSealContent']
+          unless params['VatRollItems'].nil?
+            @VatRollItems = []
+            params['VatRollItems'].each do |i|
+              vatrollitem_tmp = VatRollItem.new
+              vatrollitem_tmp.deserialize(i)
+              @VatRollItems << vatrollitem_tmp
+            end
+          end
         end
       end
 
@@ -8552,6 +10823,34 @@ module TencentCloud
           end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 增值税普通发票（卷票）条目
+      class VatRollItem < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名称
+        # @type Name: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Price: 单价
+        # @type Price: String
+        # @param Total: 金额
+        # @type Total: String
+
+        attr_accessor :Name, :Quantity, :Price, :Total
+        
+        def initialize(name=nil, quantity=nil, price=nil, total=nil)
+          @Name = name
+          @Quantity = quantity
+          @Price = price
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Quantity = params['Quantity']
+          @Price = params['Price']
+          @Total = params['Total']
         end
       end
 

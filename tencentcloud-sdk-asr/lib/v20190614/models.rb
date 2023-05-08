@@ -816,6 +816,45 @@ module TencentCloud
         end
       end
 
+      # GetModelInfo请求参数结构体
+      class GetModelInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型id
+        # @type ModelId: String
+
+        attr_accessor :ModelId
+        
+        def initialize(modelid=nil)
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # GetModelInfo返回参数结构体
+      class GetModelInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 模型信息
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.Model`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = Model.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 热词的词和权重
       class HotWord < TencentCloud::Common::AbstractModel
         # @param Word: 热词

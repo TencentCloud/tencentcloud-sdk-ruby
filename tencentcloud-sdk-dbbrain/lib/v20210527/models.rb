@@ -845,19 +845,23 @@ module TencentCloud
         # @type SessionToken: String
         # @param FilterIds: 限流任务ID列表。
         # @type FilterIds: Array
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :SessionToken, :FilterIds
+        attr_accessor :InstanceId, :SessionToken, :FilterIds, :Product
         
-        def initialize(instanceid=nil, sessiontoken=nil, filterids=nil)
+        def initialize(instanceid=nil, sessiontoken=nil, filterids=nil, product=nil)
           @InstanceId = instanceid
           @SessionToken = sessiontoken
           @FilterIds = filterids
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SessionToken = params['SessionToken']
           @FilterIds = params['FilterIds']
+          @Product = params['Product']
         end
       end
 
@@ -2402,15 +2406,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :FilterIds, :Statuses, :Offset, :Limit
+        attr_accessor :InstanceId, :FilterIds, :Statuses, :Offset, :Limit, :Product
         
-        def initialize(instanceid=nil, filterids=nil, statuses=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, filterids=nil, statuses=nil, offset=nil, limit=nil, product=nil)
           @InstanceId = instanceid
           @FilterIds = filterids
           @Statuses = statuses
           @Offset = offset
           @Limit = limit
+          @Product = product
         end
 
         def deserialize(params)
@@ -2419,6 +2426,7 @@ module TencentCloud
           @Statuses = params['Statuses']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Product = params['Product']
         end
       end
 
@@ -3324,15 +3332,18 @@ module TencentCloud
         # @type SqlExecId: String
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         # @type Product: String
+        # @param RecordHistory: 默认是ture, 记录下kill的记录，为了加快kill，可设置为false。
+        # @type RecordHistory: Boolean
 
-        attr_accessor :InstanceId, :Stage, :Threads, :SqlExecId, :Product
+        attr_accessor :InstanceId, :Stage, :Threads, :SqlExecId, :Product, :RecordHistory
         
-        def initialize(instanceid=nil, stage=nil, threads=nil, sqlexecid=nil, product=nil)
+        def initialize(instanceid=nil, stage=nil, threads=nil, sqlexecid=nil, product=nil, recordhistory=nil)
           @InstanceId = instanceid
           @Stage = stage
           @Threads = threads
           @SqlExecId = sqlexecid
           @Product = product
+          @RecordHistory = recordhistory
         end
 
         def deserialize(params)
@@ -3341,6 +3352,7 @@ module TencentCloud
           @Threads = params['Threads']
           @SqlExecId = params['SqlExecId']
           @Product = params['Product']
+          @RecordHistory = params['RecordHistory']
         end
       end
 

@@ -11911,10 +11911,13 @@ module TencentCloud
         # @param ImageOptimize: 图片优化相关配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageOptimize: :class:`Tencentcloud::Teo.v20220901.models.ImageOptimize`
+        # @param AccelerateMainland: 中国大陆加速优化配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccelerateMainland: :class:`Tencentcloud::Teo.v20220901.models.AccelerateMainland`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize, :AccelerateMainland
         
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, acceleratemainland=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -11936,6 +11939,7 @@ module TencentCloud
           @ClientIpCountry = clientipcountry
           @Grpc = grpc
           @ImageOptimize = imageoptimize
+          @AccelerateMainland = acceleratemainland
         end
 
         def deserialize(params)
@@ -12016,6 +12020,10 @@ module TencentCloud
           unless params['ImageOptimize'].nil?
             @ImageOptimize = ImageOptimize.new
             @ImageOptimize.deserialize(params['ImageOptimize'])
+          end
+          unless params['AccelerateMainland'].nil?
+            @AccelerateMainland = AccelerateMainland.new
+            @AccelerateMainland.deserialize(params['AccelerateMainland'])
           end
         end
       end

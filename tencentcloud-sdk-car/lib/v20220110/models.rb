@@ -71,20 +71,30 @@ module TencentCloud
         # @type UserId: String
         # @param UserIp: 用户IP，用户客户端的公网IP，用于就近调度
         # @type UserIp: String
-        # @param ClientSession: 客户端session信息，从SDK请求中获得
+        # @param ClientSession: 客户端session信息，从SDK请求中获得。特殊的，当 RunMode 参数为 RunWithoutClient 时，该字段可以为空
         # @type ClientSession: String
         # @param RunMode: 云端运行模式。
         # RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
         # 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         # @type RunMode: String
+        # @param HostUserId: 【多人互动】房主用户ID，在多人互动模式下为必填字段。
+        # 如果该用户是房主，HostUserId需要和UserId保持一致；
+        # 如果该用户非房主，HostUserId需要填写房主的HostUserId。
+        # @type HostUserId: String
+        # @param Role: 【多人互动】角色。
+        # Player：玩家（可通过键鼠等操作应用）
+        # Viewer：观察者（只能观看，无法操作）
+        # @type Role: String
 
-        attr_accessor :UserId, :UserIp, :ClientSession, :RunMode
+        attr_accessor :UserId, :UserIp, :ClientSession, :RunMode, :HostUserId, :Role
         
-        def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil)
+        def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil, hostuserid=nil, role=nil)
           @UserId = userid
           @UserIp = userip
           @ClientSession = clientsession
           @RunMode = runmode
+          @HostUserId = hostuserid
+          @Role = role
         end
 
         def deserialize(params)
@@ -92,6 +102,8 @@ module TencentCloud
           @UserIp = params['UserIp']
           @ClientSession = params['ClientSession']
           @RunMode = params['RunMode']
+          @HostUserId = params['HostUserId']
+          @Role = params['Role']
         end
       end
 

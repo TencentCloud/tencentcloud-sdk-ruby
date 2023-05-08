@@ -2918,6 +2918,9 @@ module TencentCloud
         # @param TransferFrom: 转接来源坐席信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferFrom: String
+        # @param TransferFromType: 转接来源参与者类型，取值与 Type 一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferFromType: String
         # @param TransferTo: 转接去向坐席信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferTo: String
@@ -2946,9 +2949,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRecordURL: String
 
-        attr_accessor :Mail, :Phone, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :RecordId, :Type, :TransferFrom, :TransferTo, :TransferToType, :SkillGroupId, :EndStatusString, :RecordURL, :Sequence, :StartTimestamp, :SkillGroupName, :CustomRecordURL
+        attr_accessor :Mail, :Phone, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :RecordId, :Type, :TransferFrom, :TransferFromType, :TransferTo, :TransferToType, :SkillGroupId, :EndStatusString, :RecordURL, :Sequence, :StartTimestamp, :SkillGroupName, :CustomRecordURL
         
-        def initialize(mail=nil, phone=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, recordid=nil, type=nil, transferfrom=nil, transferto=nil, transfertotype=nil, skillgroupid=nil, endstatusstring=nil, recordurl=nil, sequence=nil, starttimestamp=nil, skillgroupname=nil, customrecordurl=nil)
+        def initialize(mail=nil, phone=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, recordid=nil, type=nil, transferfrom=nil, transferfromtype=nil, transferto=nil, transfertotype=nil, skillgroupid=nil, endstatusstring=nil, recordurl=nil, sequence=nil, starttimestamp=nil, skillgroupname=nil, customrecordurl=nil)
           @Mail = mail
           @Phone = phone
           @RingTimestamp = ringtimestamp
@@ -2957,6 +2960,7 @@ module TencentCloud
           @RecordId = recordid
           @Type = type
           @TransferFrom = transferfrom
+          @TransferFromType = transferfromtype
           @TransferTo = transferto
           @TransferToType = transfertotype
           @SkillGroupId = skillgroupid
@@ -2977,6 +2981,7 @@ module TencentCloud
           @RecordId = params['RecordId']
           @Type = params['Type']
           @TransferFrom = params['TransferFrom']
+          @TransferFromType = params['TransferFromType']
           @TransferTo = params['TransferTo']
           @TransferToType = params['TransferToType']
           @SkillGroupId = params['SkillGroupId']

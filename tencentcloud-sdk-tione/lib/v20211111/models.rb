@@ -1381,7 +1381,8 @@ module TencentCloud
       class CreateTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Name: 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         # @type Name: String
-        # @param ChargeType: 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
+        # @param ChargeType: 计费模式，eg：PREPAID 包年包月（资源组）;
+        # POSTPAID_BY_HOUR 按量计费
         # @type ChargeType: String
         # @param ResourceConfigInfos: 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]
         # @type ResourceConfigInfos: Array
@@ -1696,16 +1697,20 @@ module TencentCloud
         # @param HDFSSource: 来自HDFS的数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HDFSSource: :class:`Tencentcloud::Tione.v20211111.models.HDFSConfig`
+        # @param GooseFSSource: 配饰GooseFS的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GooseFSSource: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
 
-        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource
+        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource
         
-        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil)
+        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil)
           @MappingPath = mappingpath
           @DataSourceType = datasourcetype
           @DataSetSource = datasetsource
           @COSSource = cossource
           @CFSSource = cfssource
           @HDFSSource = hdfssource
+          @GooseFSSource = goosefssource
         end
 
         def deserialize(params)
@@ -1726,6 +1731,10 @@ module TencentCloud
           unless params['HDFSSource'].nil?
             @HDFSSource = HDFSConfig.new
             @HDFSSource.deserialize(params['HDFSSource'])
+          end
+          unless params['GooseFSSource'].nil?
+            @GooseFSSource = GooseFS.new
+            @GooseFSSource.deserialize(params['GooseFSSource'])
           end
         end
       end
@@ -4559,6 +4568,23 @@ module TencentCloud
         end
       end
 
+      # 配置GooseFS参数
+      class GooseFS < TencentCloud::Common::AbstractModel
+        # @param Id: goosefs实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
       # gpu 详情
       class GpuDetail < TencentCloud::Common::AbstractModel
         # @param Name: GPU 显卡类型；枚举值: V100 A100 T4
@@ -5797,6 +5823,23 @@ module TencentCloud
         end
       end
 
+      # RDMA配置
+      class RDMAConfig < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启RDMA
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+
+        attr_accessor :Enable
+        
+        def initialize(enable=nil)
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+        end
+      end
+
       # 资源配置
       class ResourceConfigInfo < TencentCloud::Common::AbstractModel
         # @param Role: 角色，eg：PS、WORKER、DRIVER、EXECUTOR
@@ -5849,10 +5892,13 @@ module TencentCloud
         # 40C160G T4*2
         # 80C32
         # @type InstanceTypeAlias: String
+        # @param RDMAConfig: RDMA配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RDMAConfig: :class:`Tencentcloud::Tione.v20211111.models.RDMAConfig`
 
-        attr_accessor :Role, :Cpu, :Memory, :GpuType, :Gpu, :InstanceType, :InstanceNum, :InstanceTypeAlias
+        attr_accessor :Role, :Cpu, :Memory, :GpuType, :Gpu, :InstanceType, :InstanceNum, :InstanceTypeAlias, :RDMAConfig
         
-        def initialize(role=nil, cpu=nil, memory=nil, gputype=nil, gpu=nil, instancetype=nil, instancenum=nil, instancetypealias=nil)
+        def initialize(role=nil, cpu=nil, memory=nil, gputype=nil, gpu=nil, instancetype=nil, instancenum=nil, instancetypealias=nil, rdmaconfig=nil)
           @Role = role
           @Cpu = cpu
           @Memory = memory
@@ -5861,6 +5907,7 @@ module TencentCloud
           @InstanceType = instancetype
           @InstanceNum = instancenum
           @InstanceTypeAlias = instancetypealias
+          @RDMAConfig = rdmaconfig
         end
 
         def deserialize(params)
@@ -5872,6 +5919,10 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @InstanceNum = params['InstanceNum']
           @InstanceTypeAlias = params['InstanceTypeAlias']
+          unless params['RDMAConfig'].nil?
+            @RDMAConfig = RDMAConfig.new
+            @RDMAConfig.deserialize(params['RDMAConfig'])
+          end
         end
       end
 

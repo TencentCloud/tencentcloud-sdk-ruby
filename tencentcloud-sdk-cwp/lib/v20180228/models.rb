@@ -12223,12 +12223,14 @@ module TencentCloud
         # @type AutoRepurchaseSwitch: Boolean
         # @param AutoRepurchaseRenewSwitch: 自动加购订单是否自动续费 ,true 开启, false 关闭
         # @type AutoRepurchaseRenewSwitch: Boolean
+        # @param DestroyOrderNum: 已销毁订单数
+        # @type DestroyOrderNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :RequestId
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RequestId
         
-        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, requestid=nil)
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, requestid=nil)
           @LicenseCnt = licensecnt
           @AvailableLicenseCnt = availablelicensecnt
           @AvailableProVersionLicenseCnt = availableproversionlicensecnt
@@ -12246,6 +12248,7 @@ module TencentCloud
           @AvailableLHLicenseCnt = availablelhlicensecnt
           @AutoRepurchaseSwitch = autorepurchaseswitch
           @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
+          @DestroyOrderNum = destroyordernum
           @RequestId = requestid
         end
 
@@ -12267,6 +12270,7 @@ module TencentCloud
           @AvailableLHLicenseCnt = params['AvailableLHLicenseCnt']
           @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
           @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
+          @DestroyOrderNum = params['DestroyOrderNum']
           @RequestId = params['RequestId']
         end
       end
@@ -19628,10 +19632,12 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Uuid: 服务器Uuid
         # @type Uuid: String
+        # @param Locations: 登陆地
+        # @type Locations: String
 
-        attr_accessor :Places, :UserName, :SrcIp, :Locale, :Remark, :StartTime, :EndTime, :IsGlobal, :Name, :Desc, :Id, :CreateTime, :ModifyTime, :Uuid
+        attr_accessor :Places, :UserName, :SrcIp, :Locale, :Remark, :StartTime, :EndTime, :IsGlobal, :Name, :Desc, :Id, :CreateTime, :ModifyTime, :Uuid, :Locations
         
-        def initialize(places=nil, username=nil, srcip=nil, locale=nil, remark=nil, starttime=nil, endtime=nil, isglobal=nil, name=nil, desc=nil, id=nil, createtime=nil, modifytime=nil, uuid=nil)
+        def initialize(places=nil, username=nil, srcip=nil, locale=nil, remark=nil, starttime=nil, endtime=nil, isglobal=nil, name=nil, desc=nil, id=nil, createtime=nil, modifytime=nil, uuid=nil, locations=nil)
           @Places = places
           @UserName = username
           @SrcIp = srcip
@@ -19646,6 +19652,7 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Uuid = uuid
+          @Locations = locations
         end
 
         def deserialize(params)
@@ -19670,6 +19677,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Uuid = params['Uuid']
+          @Locations = params['Locations']
         end
       end
 
@@ -21535,10 +21543,22 @@ module TencentCloud
         # @type ProtectException: Integer
         # @param AutoRestoreSwitchStatus: 自动恢复开关 (Filters 过滤Quuid 时 返回) 默认0
         # @type AutoRestoreSwitchStatus: Integer
+        # @param FirstProtectTime: 首次开启防护时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstProtectTime: String
+        # @param LatestProtectTime: 最近开启防护时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestProtectTime: String
+        # @param ProtectFileType: 防护文件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectFileType: String
+        # @param ProtectFilesCount: 防护文件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectFilesCount: Integer
 
-        attr_accessor :DirName, :DirPath, :RelatedServerNum, :ProtectServerNum, :NoProtectServerNum, :Id, :ProtectStatus, :ProtectException, :AutoRestoreSwitchStatus
+        attr_accessor :DirName, :DirPath, :RelatedServerNum, :ProtectServerNum, :NoProtectServerNum, :Id, :ProtectStatus, :ProtectException, :AutoRestoreSwitchStatus, :FirstProtectTime, :LatestProtectTime, :ProtectFileType, :ProtectFilesCount
         
-        def initialize(dirname=nil, dirpath=nil, relatedservernum=nil, protectservernum=nil, noprotectservernum=nil, id=nil, protectstatus=nil, protectexception=nil, autorestoreswitchstatus=nil)
+        def initialize(dirname=nil, dirpath=nil, relatedservernum=nil, protectservernum=nil, noprotectservernum=nil, id=nil, protectstatus=nil, protectexception=nil, autorestoreswitchstatus=nil, firstprotecttime=nil, latestprotecttime=nil, protectfiletype=nil, protectfilescount=nil)
           @DirName = dirname
           @DirPath = dirpath
           @RelatedServerNum = relatedservernum
@@ -21548,6 +21568,10 @@ module TencentCloud
           @ProtectStatus = protectstatus
           @ProtectException = protectexception
           @AutoRestoreSwitchStatus = autorestoreswitchstatus
+          @FirstProtectTime = firstprotecttime
+          @LatestProtectTime = latestprotecttime
+          @ProtectFileType = protectfiletype
+          @ProtectFilesCount = protectfilescount
         end
 
         def deserialize(params)
@@ -21560,6 +21584,10 @@ module TencentCloud
           @ProtectStatus = params['ProtectStatus']
           @ProtectException = params['ProtectException']
           @AutoRestoreSwitchStatus = params['AutoRestoreSwitchStatus']
+          @FirstProtectTime = params['FirstProtectTime']
+          @LatestProtectTime = params['LatestProtectTime']
+          @ProtectFileType = params['ProtectFileType']
+          @ProtectFilesCount = params['ProtectFilesCount']
         end
       end
 
@@ -21658,10 +21686,13 @@ module TencentCloud
         # @param MachineExtraInfo: 主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Quuid: 机器实例uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quuid: String
 
-        attr_accessor :HostName, :HostIp, :EventDir, :EventType, :EventStatus, :CreateTime, :RestoreTime, :Id, :FileType, :MachineExtraInfo
+        attr_accessor :HostName, :HostIp, :EventDir, :EventType, :EventStatus, :CreateTime, :RestoreTime, :Id, :FileType, :MachineExtraInfo, :Quuid
         
-        def initialize(hostname=nil, hostip=nil, eventdir=nil, eventtype=nil, eventstatus=nil, createtime=nil, restoretime=nil, id=nil, filetype=nil, machineextrainfo=nil)
+        def initialize(hostname=nil, hostip=nil, eventdir=nil, eventtype=nil, eventstatus=nil, createtime=nil, restoretime=nil, id=nil, filetype=nil, machineextrainfo=nil, quuid=nil)
           @HostName = hostname
           @HostIp = hostip
           @EventDir = eventdir
@@ -21672,6 +21703,7 @@ module TencentCloud
           @Id = id
           @FileType = filetype
           @MachineExtraInfo = machineextrainfo
+          @Quuid = quuid
         end
 
         def deserialize(params)
@@ -21688,6 +21720,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Quuid = params['Quuid']
         end
       end
 

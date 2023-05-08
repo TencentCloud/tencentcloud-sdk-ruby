@@ -69,6 +69,28 @@ module TencentCloud
         end
       end
 
+      # 空Aggregations结构体
+      class AlertListAggregations < TencentCloud::Common::AbstractModel
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 告警列表响应数据
       class AlertListData < TencentCloud::Common::AbstractModel
         # @param Total: 总数
@@ -77,12 +99,16 @@ module TencentCloud
         # @param AlertList: 返回列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertList: Array
+        # @param Aggregations: 聚合参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Aggregations: :class:`Tencentcloud::Ssa.v20180608.models.AlertListAggregations`
 
-        attr_accessor :Total, :AlertList
+        attr_accessor :Total, :AlertList, :Aggregations
         
-        def initialize(total=nil, alertlist=nil)
+        def initialize(total=nil, alertlist=nil, aggregations=nil)
           @Total = total
           @AlertList = alertlist
+          @Aggregations = aggregations
         end
 
         def deserialize(params)
@@ -94,6 +120,10 @@ module TencentCloud
               alerttype_tmp.deserialize(i)
               @AlertList << alerttype_tmp
             end
+          end
+          unless params['Aggregations'].nil?
+            @Aggregations = AlertListAggregations.new
+            @Aggregations.deserialize(params['Aggregations'])
           end
         end
       end
@@ -175,10 +205,31 @@ module TencentCloud
         # @param VictimAssetSub: 资产子网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VictimAssetSub: String
+        # @param VictimAssetVpc: 资产vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetVpc: String
+        # @param Timestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param AssetGroupName: 资产组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetGroupName: Array
+        # @param AssetProjectName: 资产项目名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetProjectName: String
+        # @param VictimAssetContent: 失陷资产内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetContent: Array
+        # @param WrongReportStatus: 错误报告状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WrongReportStatus: Integer
+        # @param WrongReportConditionId: 错误报告Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WrongReportConditionId: Integer
 
-        attr_accessor :AlertTime, :AlertId, :AssetId, :AssetPrivateIp, :AlertName, :Level, :Type, :Source, :AttackChain, :AttackId, :Concerns, :Action, :AttackResult, :EventStatus, :EventId, :Status, :AssetName, :ConcernMaliciousCount, :ConcernVictimCount, :VictimAssetType, :SubType, :AttackName, :AssetPublicIp, :AttackTactic, :VictimAssetSub
+        attr_accessor :AlertTime, :AlertId, :AssetId, :AssetPrivateIp, :AlertName, :Level, :Type, :Source, :AttackChain, :AttackId, :Concerns, :Action, :AttackResult, :EventStatus, :EventId, :Status, :AssetName, :ConcernMaliciousCount, :ConcernVictimCount, :VictimAssetType, :SubType, :AttackName, :AssetPublicIp, :AttackTactic, :VictimAssetSub, :VictimAssetVpc, :Timestamp, :AssetGroupName, :AssetProjectName, :VictimAssetContent, :WrongReportStatus, :WrongReportConditionId
         
-        def initialize(alerttime=nil, alertid=nil, assetid=nil, assetprivateip=nil, alertname=nil, level=nil, type=nil, source=nil, attackchain=nil, attackid=nil, concerns=nil, action=nil, attackresult=nil, eventstatus=nil, eventid=nil, status=nil, assetname=nil, concernmaliciouscount=nil, concernvictimcount=nil, victimassettype=nil, subtype=nil, attackname=nil, assetpublicip=nil, attacktactic=nil, victimassetsub=nil)
+        def initialize(alerttime=nil, alertid=nil, assetid=nil, assetprivateip=nil, alertname=nil, level=nil, type=nil, source=nil, attackchain=nil, attackid=nil, concerns=nil, action=nil, attackresult=nil, eventstatus=nil, eventid=nil, status=nil, assetname=nil, concernmaliciouscount=nil, concernvictimcount=nil, victimassettype=nil, subtype=nil, attackname=nil, assetpublicip=nil, attacktactic=nil, victimassetsub=nil, victimassetvpc=nil, timestamp=nil, assetgroupname=nil, assetprojectname=nil, victimassetcontent=nil, wrongreportstatus=nil, wrongreportconditionid=nil)
           @AlertTime = alerttime
           @AlertId = alertid
           @AssetId = assetid
@@ -204,6 +255,13 @@ module TencentCloud
           @AssetPublicIp = assetpublicip
           @AttackTactic = attacktactic
           @VictimAssetSub = victimassetsub
+          @VictimAssetVpc = victimassetvpc
+          @Timestamp = timestamp
+          @AssetGroupName = assetgroupname
+          @AssetProjectName = assetprojectname
+          @VictimAssetContent = victimassetcontent
+          @WrongReportStatus = wrongreportstatus
+          @WrongReportConditionId = wrongreportconditionid
         end
 
         def deserialize(params)
@@ -239,6 +297,13 @@ module TencentCloud
           @AssetPublicIp = params['AssetPublicIp']
           @AttackTactic = params['AttackTactic']
           @VictimAssetSub = params['VictimAssetSub']
+          @VictimAssetVpc = params['VictimAssetVpc']
+          @Timestamp = params['Timestamp']
+          @AssetGroupName = params['AssetGroupName']
+          @AssetProjectName = params['AssetProjectName']
+          @VictimAssetContent = params['VictimAssetContent']
+          @WrongReportStatus = params['WrongReportStatus']
+          @WrongReportConditionId = params['WrongReportConditionId']
         end
       end
 
@@ -524,10 +589,28 @@ module TencentCloud
         # @param AssetVulNum: 漏洞数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetVulNum: Integer
+        # @param AssetEventNum: 资产事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetEventNum: Integer
+        # @param AssetCspmRiskNum: cspm风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetCspmRiskNum: Integer
+        # @param SsaAssetDeleteTime: 资产删除时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetDeleteTime: String
+        # @param ChargeType: 费用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param AssetRegionName: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetRegionName: String
+        # @param AssetVpcid: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetVpcid: String
 
-        attr_accessor :AssetType, :Name, :Region, :VpcId, :InstanceType, :InstanceState, :PublicIpAddresses, :EngineVersion, :Id, :Tag, :Vip, :Status, :LoadBalancerVips, :Uin, :CreationDate, :Domain, :AssetUniqid, :InstanceId, :DiskType, :DiskSize, :AssetStatus, :CertType, :ProjectName, :CertEndTime, :ProductType, :PrivateIpAddresses, :ValidityPeriod, :GroupName, :Port, :RiskConfig, :Event, :Vul, :SsaAssetDiscoverTime, :AssetSubnetId, :AssetSubnetName, :AssetVpcName, :ClusterType, :NameSpace, :AssetCreateTime, :LoadBalancerType, :AssetIpv6, :SSHRisk, :RDPRisk, :EventRisk, :AssetVulNum
+        attr_accessor :AssetType, :Name, :Region, :VpcId, :InstanceType, :InstanceState, :PublicIpAddresses, :EngineVersion, :Id, :Tag, :Vip, :Status, :LoadBalancerVips, :Uin, :CreationDate, :Domain, :AssetUniqid, :InstanceId, :DiskType, :DiskSize, :AssetStatus, :CertType, :ProjectName, :CertEndTime, :ProductType, :PrivateIpAddresses, :ValidityPeriod, :GroupName, :Port, :RiskConfig, :Event, :Vul, :SsaAssetDiscoverTime, :AssetSubnetId, :AssetSubnetName, :AssetVpcName, :ClusterType, :NameSpace, :AssetCreateTime, :LoadBalancerType, :AssetIpv6, :SSHRisk, :RDPRisk, :EventRisk, :AssetVulNum, :AssetEventNum, :AssetCspmRiskNum, :SsaAssetDeleteTime, :ChargeType, :AssetRegionName, :AssetVpcid
         
-        def initialize(assettype=nil, name=nil, region=nil, vpcid=nil, instancetype=nil, instancestate=nil, publicipaddresses=nil, engineversion=nil, id=nil, tag=nil, vip=nil, status=nil, loadbalancervips=nil, uin=nil, creationdate=nil, domain=nil, assetuniqid=nil, instanceid=nil, disktype=nil, disksize=nil, assetstatus=nil, certtype=nil, projectname=nil, certendtime=nil, producttype=nil, privateipaddresses=nil, validityperiod=nil, groupname=nil, port=nil, riskconfig=nil, event=nil, vul=nil, ssaassetdiscovertime=nil, assetsubnetid=nil, assetsubnetname=nil, assetvpcname=nil, clustertype=nil, namespace=nil, assetcreatetime=nil, loadbalancertype=nil, assetipv6=nil, sshrisk=nil, rdprisk=nil, eventrisk=nil, assetvulnum=nil)
+        def initialize(assettype=nil, name=nil, region=nil, vpcid=nil, instancetype=nil, instancestate=nil, publicipaddresses=nil, engineversion=nil, id=nil, tag=nil, vip=nil, status=nil, loadbalancervips=nil, uin=nil, creationdate=nil, domain=nil, assetuniqid=nil, instanceid=nil, disktype=nil, disksize=nil, assetstatus=nil, certtype=nil, projectname=nil, certendtime=nil, producttype=nil, privateipaddresses=nil, validityperiod=nil, groupname=nil, port=nil, riskconfig=nil, event=nil, vul=nil, ssaassetdiscovertime=nil, assetsubnetid=nil, assetsubnetname=nil, assetvpcname=nil, clustertype=nil, namespace=nil, assetcreatetime=nil, loadbalancertype=nil, assetipv6=nil, sshrisk=nil, rdprisk=nil, eventrisk=nil, assetvulnum=nil, asseteventnum=nil, assetcspmrisknum=nil, ssaassetdeletetime=nil, chargetype=nil, assetregionname=nil, assetvpcid=nil)
           @AssetType = assettype
           @Name = name
           @Region = region
@@ -573,6 +656,12 @@ module TencentCloud
           @RDPRisk = rdprisk
           @EventRisk = eventrisk
           @AssetVulNum = assetvulnum
+          @AssetEventNum = asseteventnum
+          @AssetCspmRiskNum = assetcspmrisknum
+          @SsaAssetDeleteTime = ssaassetdeletetime
+          @ChargeType = chargetype
+          @AssetRegionName = assetregionname
+          @AssetVpcid = assetvpcid
         end
 
         def deserialize(params)
@@ -628,6 +717,12 @@ module TencentCloud
           @RDPRisk = params['RDPRisk']
           @EventRisk = params['EventRisk']
           @AssetVulNum = params['AssetVulNum']
+          @AssetEventNum = params['AssetEventNum']
+          @AssetCspmRiskNum = params['AssetCspmRiskNum']
+          @SsaAssetDeleteTime = params['SsaAssetDeleteTime']
+          @ChargeType = params['ChargeType']
+          @AssetRegionName = params['AssetRegionName']
+          @AssetVpcid = params['AssetVpcid']
         end
       end
 
@@ -985,6 +1080,84 @@ module TencentCloud
         # @param StatisticsCount: 最近数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticsCount: Integer
+        # @param IpCountry: IP国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCountry: String
+        # @param IpProvince: IP省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpProvince: String
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param Confidence: 置信度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Confidence: Integer
+        # @param IpIsp: 服务商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpIsp: String
+        # @param IpInfrastructure: 是否基础设施
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpInfrastructure: String
+        # @param ThreatType: 威胁类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThreatType: Array
+        # @param Groups: 威胁团伙
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param Status: 状态威胁情报接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Tags: 恶意标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param VictimAssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetType: String
+        # @param VictimAssetName: 资产名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetName: String
+        # @param DomainRegistrant: 注册者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainRegistrant: String
+        # @param DomainRegisteredInstitution: 注册机构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainRegisteredInstitution: String
+        # @param DomainRegistrationTime: 注册时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainRegistrationTime: String
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileMd5: MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMd5: String
+        # @param VirusName: 病毒名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusName: String
+        # @param FilePath: 文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePath: String
+        # @param FileSize: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: String
+        # @param ProcName: 进程名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcName: String
+        # @param Pid: 进程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: String
+        # @param ProcPath: 进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcPath: String
+        # @param ProcUser: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcUser: String
+        # @param DefendedCount: 已防御
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefendedCount: Integer
+        # @param DetectedCount: 仅检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectedCount: Integer
         # @param SearchData: 可疑关注点字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchData: String
@@ -1001,13 +1174,39 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventSubType: String
 
-        attr_accessor :ConcernType, :EntityType, :Concern, :StatisticsCount, :SearchData, :IpCountryIso, :IpProvinceIso, :IpCity, :EventSubType
+        attr_accessor :ConcernType, :EntityType, :Concern, :StatisticsCount, :IpCountry, :IpProvince, :Result, :Confidence, :IpIsp, :IpInfrastructure, :ThreatType, :Groups, :Status, :Tags, :VictimAssetType, :VictimAssetName, :DomainRegistrant, :DomainRegisteredInstitution, :DomainRegistrationTime, :FileName, :FileMd5, :VirusName, :FilePath, :FileSize, :ProcName, :Pid, :ProcPath, :ProcUser, :DefendedCount, :DetectedCount, :SearchData, :IpCountryIso, :IpProvinceIso, :IpCity, :EventSubType
         
-        def initialize(concerntype=nil, entitytype=nil, concern=nil, statisticscount=nil, searchdata=nil, ipcountryiso=nil, ipprovinceiso=nil, ipcity=nil, eventsubtype=nil)
+        def initialize(concerntype=nil, entitytype=nil, concern=nil, statisticscount=nil, ipcountry=nil, ipprovince=nil, result=nil, confidence=nil, ipisp=nil, ipinfrastructure=nil, threattype=nil, groups=nil, status=nil, tags=nil, victimassettype=nil, victimassetname=nil, domainregistrant=nil, domainregisteredinstitution=nil, domainregistrationtime=nil, filename=nil, filemd5=nil, virusname=nil, filepath=nil, filesize=nil, procname=nil, pid=nil, procpath=nil, procuser=nil, defendedcount=nil, detectedcount=nil, searchdata=nil, ipcountryiso=nil, ipprovinceiso=nil, ipcity=nil, eventsubtype=nil)
           @ConcernType = concerntype
           @EntityType = entitytype
           @Concern = concern
           @StatisticsCount = statisticscount
+          @IpCountry = ipcountry
+          @IpProvince = ipprovince
+          @Result = result
+          @Confidence = confidence
+          @IpIsp = ipisp
+          @IpInfrastructure = ipinfrastructure
+          @ThreatType = threattype
+          @Groups = groups
+          @Status = status
+          @Tags = tags
+          @VictimAssetType = victimassettype
+          @VictimAssetName = victimassetname
+          @DomainRegistrant = domainregistrant
+          @DomainRegisteredInstitution = domainregisteredinstitution
+          @DomainRegistrationTime = domainregistrationtime
+          @FileName = filename
+          @FileMd5 = filemd5
+          @VirusName = virusname
+          @FilePath = filepath
+          @FileSize = filesize
+          @ProcName = procname
+          @Pid = pid
+          @ProcPath = procpath
+          @ProcUser = procuser
+          @DefendedCount = defendedcount
+          @DetectedCount = detectedcount
           @SearchData = searchdata
           @IpCountryIso = ipcountryiso
           @IpProvinceIso = ipprovinceiso
@@ -1020,6 +1219,32 @@ module TencentCloud
           @EntityType = params['EntityType']
           @Concern = params['Concern']
           @StatisticsCount = params['StatisticsCount']
+          @IpCountry = params['IpCountry']
+          @IpProvince = params['IpProvince']
+          @Result = params['Result']
+          @Confidence = params['Confidence']
+          @IpIsp = params['IpIsp']
+          @IpInfrastructure = params['IpInfrastructure']
+          @ThreatType = params['ThreatType']
+          @Groups = params['Groups']
+          @Status = params['Status']
+          @Tags = params['Tags']
+          @VictimAssetType = params['VictimAssetType']
+          @VictimAssetName = params['VictimAssetName']
+          @DomainRegistrant = params['DomainRegistrant']
+          @DomainRegisteredInstitution = params['DomainRegisteredInstitution']
+          @DomainRegistrationTime = params['DomainRegistrationTime']
+          @FileName = params['FileName']
+          @FileMd5 = params['FileMd5']
+          @VirusName = params['VirusName']
+          @FilePath = params['FilePath']
+          @FileSize = params['FileSize']
+          @ProcName = params['ProcName']
+          @Pid = params['Pid']
+          @ProcPath = params['ProcPath']
+          @ProcUser = params['ProcUser']
+          @DefendedCount = params['DefendedCount']
+          @DetectedCount = params['DetectedCount']
           @SearchData = params['SearchData']
           @IpCountryIso = params['IpCountryIso']
           @IpProvinceIso = params['IpProvinceIso']
@@ -2975,10 +3200,16 @@ module TencentCloud
         # @param SecurityStatus: 安全防护状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityStatus: Array
+        # @param DisposalRecommendation: 处置建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisposalRecommendation: Integer
+        # @param MappingType: 测绘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MappingType: String
 
-        attr_accessor :AssetName, :AssetIp, :PrivateIp, :AssetId, :Protocol, :Port, :Service, :Component, :Process, :OS, :LastMappingTime, :DisposalRecommendations, :DisposalRecommendationDetails, :AssetType, :Domain, :MappingStatus, :Region, :SecurityStatus
+        attr_accessor :AssetName, :AssetIp, :PrivateIp, :AssetId, :Protocol, :Port, :Service, :Component, :Process, :OS, :LastMappingTime, :DisposalRecommendations, :DisposalRecommendationDetails, :AssetType, :Domain, :MappingStatus, :Region, :SecurityStatus, :DisposalRecommendation, :MappingType
         
-        def initialize(assetname=nil, assetip=nil, privateip=nil, assetid=nil, protocol=nil, port=nil, service=nil, component=nil, process=nil, os=nil, lastmappingtime=nil, disposalrecommendations=nil, disposalrecommendationdetails=nil, assettype=nil, domain=nil, mappingstatus=nil, region=nil, securitystatus=nil)
+        def initialize(assetname=nil, assetip=nil, privateip=nil, assetid=nil, protocol=nil, port=nil, service=nil, component=nil, process=nil, os=nil, lastmappingtime=nil, disposalrecommendations=nil, disposalrecommendationdetails=nil, assettype=nil, domain=nil, mappingstatus=nil, region=nil, securitystatus=nil, disposalrecommendation=nil, mappingtype=nil)
           @AssetName = assetname
           @AssetIp = assetip
           @PrivateIp = privateip
@@ -2997,6 +3228,8 @@ module TencentCloud
           @MappingStatus = mappingstatus
           @Region = region
           @SecurityStatus = securitystatus
+          @DisposalRecommendation = disposalrecommendation
+          @MappingType = mappingtype
         end
 
         def deserialize(params)
@@ -3025,6 +3258,8 @@ module TencentCloud
               @SecurityStatus << securitystatus_tmp
             end
           end
+          @DisposalRecommendation = params['DisposalRecommendation']
+          @MappingType = params['MappingType']
         end
       end
 
@@ -3673,7 +3908,7 @@ module TencentCloud
       class Tag < TencentCloud::Common::AbstractModel
         # @param Fid: 数据库标识
         # @type Fid: Integer
-        # @param Fname: 标签名称
+        # @param Fname: 标签名称字段
         # @type Fname: String
 
         attr_accessor :Fid, :Fname

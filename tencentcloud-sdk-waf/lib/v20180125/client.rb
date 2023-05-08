@@ -247,7 +247,6 @@ module TencentCloud
 
         # 删除域名规则白名单
 
-
         # @param request: Request instance for DeleteDomainWhiteRules.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteDomainWhiteRulesRequest`
         # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteDomainWhiteRulesResponse`

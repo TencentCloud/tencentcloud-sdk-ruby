@@ -6014,10 +6014,30 @@ module TencentCloud
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilenameMode: Integer
+        # @param StartTime: 投递数据范围的开始时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param EndTime: 投递数据范围的结束时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param Progress: 历史数据投递的进度（仅当用户选择的数据内中历史数据时才有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Float
+        # @param RemainTime: 历史数据全部投递完成剩余的时间（仅当用户选择的数据中有历史数据时才有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainTime: Integer
+        # @param HistoryStatus: 历史任务状态：
+        # 0：实时任务
+        # 1：任务准备中
+        # 2：任务运行中
+        # 3：任务运行异常
+        # 4：任务运行结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HistoryStatus: Integer
 
-        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode
+        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus
         
-        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil)
+        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil, starttime=nil, endtime=nil, progress=nil, remaintime=nil, historystatus=nil)
           @ShipperId = shipperid
           @TopicId = topicid
           @Bucket = bucket
@@ -6032,6 +6052,11 @@ module TencentCloud
           @Content = content
           @CreateTime = createtime
           @FilenameMode = filenamemode
+          @StartTime = starttime
+          @EndTime = endtime
+          @Progress = progress
+          @RemainTime = remaintime
+          @HistoryStatus = historystatus
         end
 
         def deserialize(params)
@@ -6062,6 +6087,11 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @FilenameMode = params['FilenameMode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Progress = params['Progress']
+          @RemainTime = params['RemainTime']
+          @HistoryStatus = params['HistoryStatus']
         end
       end
 

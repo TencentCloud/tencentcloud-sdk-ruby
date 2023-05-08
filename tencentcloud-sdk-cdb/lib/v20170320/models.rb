@@ -9931,10 +9931,13 @@ module TencentCloud
         # @type MaxFunc: String
         # @param MinFunc: 参数是公式类型时，该字段有效，表示公式类型最小值
         # @type MinFunc: String
+        # @param IsNotSupportEdit: 参数是否不支持修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNotSupportEdit: Boolean
 
-        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :MaxFunc, :MinFunc
+        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :MaxFunc, :MinFunc, :IsNotSupportEdit
         
-        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, maxfunc=nil, minfunc=nil)
+        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, maxfunc=nil, minfunc=nil, isnotsupportedit=nil)
           @Name = name
           @ParamType = paramtype
           @Default = default
@@ -9946,6 +9949,7 @@ module TencentCloud
           @EnumValue = enumvalue
           @MaxFunc = maxfunc
           @MinFunc = minfunc
+          @IsNotSupportEdit = isnotsupportedit
         end
 
         def deserialize(params)
@@ -9960,6 +9964,7 @@ module TencentCloud
           @EnumValue = params['EnumValue']
           @MaxFunc = params['MaxFunc']
           @MinFunc = params['MinFunc']
+          @IsNotSupportEdit = params['IsNotSupportEdit']
         end
       end
 

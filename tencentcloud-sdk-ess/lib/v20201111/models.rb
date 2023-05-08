@@ -1429,15 +1429,18 @@ module TencentCloud
         # @type FlowApproverInfos: Array
         # @param Operator: 用户信息，此结构体UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Organization: 机构信息，暂未开放
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
-        attr_accessor :FlowId, :FlowApproverInfos, :Operator, :Organization
+        attr_accessor :FlowId, :FlowApproverInfos, :Operator, :Agent, :Organization
         
-        def initialize(flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil)
+        def initialize(flowid=nil, flowapproverinfos=nil, operator=nil, agent=nil, organization=nil)
           @FlowId = flowid
           @FlowApproverInfos = flowapproverinfos
           @Operator = operator
+          @Agent = agent
           @Organization = organization
         end
 
@@ -1454,6 +1457,10 @@ module TencentCloud
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
           unless params['Organization'].nil?
             @Organization = OrganizationInfo.new
@@ -3591,33 +3598,38 @@ module TencentCloud
 
       # 签署链接信息
       class FlowApproverUrlInfo < TencentCloud::Common::AbstractModel
-        # @param SignUrl: 签署链接，注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # @param SignUrl: 签署链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUrl: String
-        # @param ApproverMobile: 签署人手机号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ApproverMobile: String
-        # @param ApproverName: 签署人姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ApproverName: String
         # @param ApproverType: 签署人类型 1-个人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverType: Integer
+        # @param ApproverName: 签署人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverName: String
+        # @param ApproverMobile: 签署人手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverMobile: String
+        # @param LongUrl: 签署长链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongUrl: String
 
-        attr_accessor :SignUrl, :ApproverMobile, :ApproverName, :ApproverType
+        attr_accessor :SignUrl, :ApproverType, :ApproverName, :ApproverMobile, :LongUrl
         
-        def initialize(signurl=nil, approvermobile=nil, approvername=nil, approvertype=nil)
+        def initialize(signurl=nil, approvertype=nil, approvername=nil, approvermobile=nil, longurl=nil)
           @SignUrl = signurl
-          @ApproverMobile = approvermobile
-          @ApproverName = approvername
           @ApproverType = approvertype
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
+          @LongUrl = longurl
         end
 
         def deserialize(params)
           @SignUrl = params['SignUrl']
-          @ApproverMobile = params['ApproverMobile']
-          @ApproverName = params['ApproverName']
           @ApproverType = params['ApproverType']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
+          @LongUrl = params['LongUrl']
         end
       end
 
@@ -3723,10 +3735,12 @@ module TencentCloud
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
         # @param ApproverOption: 签署人个性化能力值
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
+        # @param JumpUrl: 签署完前端跳转的url，暂未使用
+        # @type JumpUrl: String
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl
         
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -3744,6 +3758,7 @@ module TencentCloud
           @CustomApproverTag = customapprovertag
           @RegisterInfo = registerinfo
           @ApproverOption = approveroption
+          @JumpUrl = jumpurl
         end
 
         def deserialize(params)
@@ -3770,6 +3785,7 @@ module TencentCloud
             @ApproverOption = ApproverOption.new
             @ApproverOption.deserialize(params['ApproverOption'])
           end
+          @JumpUrl = params['JumpUrl']
         end
       end
 

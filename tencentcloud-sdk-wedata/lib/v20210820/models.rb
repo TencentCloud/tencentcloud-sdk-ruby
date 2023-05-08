@@ -4471,16 +4471,27 @@ module TencentCloud
 
       # DescribeDatabaseInfoList返回参数结构体
       class DescribeDatabaseInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DatabaseInfo: 数据库列表
+        # @type DatabaseInfo: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DatabaseInfo, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(databaseinfo=nil, requestid=nil)
+          @DatabaseInfo = databaseinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DatabaseInfo'].nil?
+            @DatabaseInfo = []
+            params['DatabaseInfo'].each do |i|
+              databaseinfo_tmp = DatabaseInfo.new
+              databaseinfo_tmp.deserialize(i)
+              @DatabaseInfo << databaseinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

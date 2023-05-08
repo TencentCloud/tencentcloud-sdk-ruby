@@ -9448,10 +9448,16 @@ module TencentCloud
         # @param ProductId: 集成中心产品ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
+        # @param Operators: 匹配运算符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operators: Array
+        # @param Periods: 指标触发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Periods: Array
 
-        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig, :IsAdvanced, :IsOpen, :ProductId
+        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig, :IsAdvanced, :IsOpen, :ProductId, :Operators, :Periods
         
-        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil, isadvanced=nil, isopen=nil, productid=nil)
+        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil, isadvanced=nil, isopen=nil, productid=nil, operators=nil, periods=nil)
           @Namespace = namespace
           @MetricName = metricname
           @Description = description
@@ -9463,6 +9469,8 @@ module TencentCloud
           @IsAdvanced = isadvanced
           @IsOpen = isopen
           @ProductId = productid
+          @Operators = operators
+          @Periods = periods
         end
 
         def deserialize(params)
@@ -9480,6 +9488,15 @@ module TencentCloud
           @IsAdvanced = params['IsAdvanced']
           @IsOpen = params['IsOpen']
           @ProductId = params['ProductId']
+          unless params['Operators'].nil?
+            @Operators = []
+            params['Operators'].each do |i|
+              operator_tmp = Operator.new
+              operator_tmp.deserialize(i)
+              @Operators << operator_tmp
+            end
+          end
+          @Periods = params['Periods']
         end
       end
 

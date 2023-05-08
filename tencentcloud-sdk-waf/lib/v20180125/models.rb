@@ -3913,7 +3913,7 @@ module TencentCloud
         # @type Url: String
         # @param Function: 规则匹配方法
         # @type Function: String
-        # @param Status: 规则的开关状态
+        # @param Status: 规则的开关状态，0表示关闭开关，1表示打开开关
         # @type Status: Integer
 
         attr_accessor :Domain, :Id, :Rules, :Url, :Function, :Status

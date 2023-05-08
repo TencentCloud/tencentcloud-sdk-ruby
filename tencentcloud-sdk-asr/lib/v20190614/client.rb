@@ -391,6 +391,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过自学习模型id获取自学习模型详细信息
+
+        # @param request: Request instance for GetModelInfo.
+        # @type request: :class:`Tencentcloud::asr::V20190614::GetModelInfoRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::GetModelInfoResponse`
+        def GetModelInfo(request)
+          body = send_request('GetModelInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetModelInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
 
         # @param request: Request instance for ModifyCustomization.
