@@ -815,13 +815,15 @@ module TencentCloud
         # @type Assistants: Array
         # @param RTCAudienceNumber: rtc人数。
         # @type RTCAudienceNumber: Integer
-        # @param AudienceType: 观看类型。0未知，1互动，2cdn或直播。 目前仅支持互动类型
+        # @param AudienceType: 观看类型，互动直播（默认）。
         # @type AudienceType: Integer
         # @param RecordLayout: 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
         # @type GroupId: String
-        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @param EnableDirectControl: 是否允许老师/助教直接控制学生的摄像头/麦克风。可以有以下取值：
+        # 0 不允许直接控制（需同意，默认值）
+        # 1 允许直接控制（无需同意）
         # @type EnableDirectControl: Integer
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl
@@ -1355,7 +1357,7 @@ module TencentCloud
 
       # DescribeDeveloper返回参数结构体
       class DescribeDeveloperResponse < TencentCloud::Common::AbstractModel
-        # @param DeveloperId: 服务商ID
+        # @param DeveloperId: 开发商ID
         # @type DeveloperId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1860,6 +1860,67 @@ module TencentCloud
         end
       end
 
+      # CreateRabbitMQUser请求参数结构体
+      class CreateRabbitMQUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param User: 用户名，登录时使用
+        # @type User: String
+        # @param Password: 密码，登录时使用
+        # @type Password: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Tags: 用户标签，用于决定改用户访问RabbitMQ Management的权限范围
+        # management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户
+        # @type Tags: Array
+        # @param MaxConnections: 该用户的最大连接数，不填写则不限制
+        # @type MaxConnections: Integer
+        # @param MaxChannels: 该用户的最大channel数，不填写则不限制
+        # @type MaxChannels: Integer
+
+        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :MaxConnections, :MaxChannels
+        
+        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, maxconnections=nil, maxchannels=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Password = password
+          @Description = description
+          @Tags = tags
+          @MaxConnections = maxconnections
+          @MaxChannels = maxchannels
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Password = params['Password']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @MaxConnections = params['MaxConnections']
+          @MaxChannels = params['MaxChannels']
+        end
+      end
+
+      # CreateRabbitMQUser返回参数结构体
+      class CreateRabbitMQUserResponse < TencentCloud::Common::AbstractModel
+        # @param User: 用户名，登录时使用
+        # @type User: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :User, :RequestId
+        
+        def initialize(user=nil, requestid=nil)
+          @User = user
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRabbitMQVipInstance请求参数结构体
       class CreateRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ZoneIds: 可用区
@@ -1934,6 +1995,54 @@ module TencentCloud
         def deserialize(params)
           @TranId = params['TranId']
           @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRabbitMQVirtualHost请求参数结构体
+      class CreateRabbitMQVirtualHostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: vhost名
+        # @type VirtualHost: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param TraceFlag: 消息轨迹开关,true打开,false关闭,默认关闭
+        # @type TraceFlag: Boolean
+
+        attr_accessor :InstanceId, :VirtualHost, :Description, :TraceFlag
+        
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, traceflag=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Description = description
+          @TraceFlag = traceflag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Description = params['Description']
+          @TraceFlag = params['TraceFlag']
+        end
+      end
+
+      # CreateRabbitMQVirtualHost返回参数结构体
+      class CreateRabbitMQVirtualHostResponse < TencentCloud::Common::AbstractModel
+        # @param VirtualHost: vhost名
+        # @type VirtualHost: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VirtualHost, :RequestId
+        
+        def initialize(virtualhost=nil, requestid=nil)
+          @VirtualHost = virtualhost
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VirtualHost = params['VirtualHost']
           @RequestId = params['RequestId']
         end
       end

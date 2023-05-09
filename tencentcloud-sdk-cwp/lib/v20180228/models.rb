@@ -5822,19 +5822,23 @@ module TencentCloud
         # @type AlarmVid: String
         # @param AlarmTime: 告警时间
         # @type AlarmTime: Integer
+        # @param TableId: 告警来源表ID
+        # @type TableId: Integer
 
-        attr_accessor :Uuid, :AlarmVid, :AlarmTime
+        attr_accessor :Uuid, :AlarmVid, :AlarmTime, :TableId
         
-        def initialize(uuid=nil, alarmvid=nil, alarmtime=nil)
+        def initialize(uuid=nil, alarmvid=nil, alarmtime=nil, tableid=nil)
           @Uuid = uuid
           @AlarmVid = alarmvid
           @AlarmTime = alarmtime
+          @TableId = tableid
         end
 
         def deserialize(params)
           @Uuid = params['Uuid']
           @AlarmVid = params['AlarmVid']
           @AlarmTime = params['AlarmTime']
+          @TableId = params['TableId']
         end
       end
 

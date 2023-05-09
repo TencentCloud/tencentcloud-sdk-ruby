@@ -1039,6 +1039,50 @@ module TencentCloud
         end
       end
 
+      # DescribeInitNodeScripts请求参数结构体
+      class DescribeInitNodeScriptsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeInitNodeScripts返回参数结构体
+      class DescribeInitNodeScriptsResponse < TencentCloud::Common::AbstractModel
+        # @param InitNodeScriptSet: 节点初始化脚本列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitNodeScriptSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InitNodeScriptSet, :RequestId
+        
+        def initialize(initnodescriptset=nil, requestid=nil)
+          @InitNodeScriptSet = initnodescriptset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InitNodeScriptSet'].nil?
+            @InitNodeScriptSet = []
+            params['InitNodeScriptSet'].each do |i|
+              nodescript_tmp = NodeScript.new
+              nodescript_tmp.deserialize(i)
+              @InitNodeScriptSet << nodescript_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNodes请求参数结构体
       class DescribeNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。

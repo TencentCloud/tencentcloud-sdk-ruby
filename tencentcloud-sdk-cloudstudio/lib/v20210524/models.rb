@@ -172,17 +172,21 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
         # @param TemplateId: 模板ID
         # @type TemplateId: Integer
+        # @param Name: 工作空间名称
+        # @type Name: String
 
-        attr_accessor :CloudStudioSessionTeam, :TemplateId
+        attr_accessor :CloudStudioSessionTeam, :TemplateId, :Name
         
-        def initialize(cloudstudiosessionteam=nil, templateid=nil)
+        def initialize(cloudstudiosessionteam=nil, templateid=nil, name=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @TemplateId = templateid
+          @Name = name
         end
 
         def deserialize(params)
           @CloudStudioSessionTeam = params['CloudStudioSessionTeam']
           @TemplateId = params['TemplateId']
+          @Name = params['Name']
         end
       end
 
@@ -1358,17 +1362,22 @@ module TencentCloud
         # @param SpaceKey: 工作空间标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceKey: String
+        # @param Name: 工作空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :WorkspaceId, :SpaceKey
+        attr_accessor :WorkspaceId, :SpaceKey, :Name
         
-        def initialize(workspaceid=nil, spacekey=nil)
+        def initialize(workspaceid=nil, spacekey=nil, name=nil)
           @WorkspaceId = workspaceid
           @SpaceKey = spacekey
+          @Name = name
         end
 
         def deserialize(params)
           @WorkspaceId = params['WorkspaceId']
           @SpaceKey = params['SpaceKey']
+          @Name = params['Name']
         end
       end
 

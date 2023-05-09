@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 服务商信息获取
+        # 开发商信息获取
 
         # @param request: Request instance for DescribeDeveloper.
         # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeDeveloperRequest`

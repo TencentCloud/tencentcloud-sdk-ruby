@@ -7805,7 +7805,7 @@ module TencentCloud
         # @param EndTime: 训练结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (按量计费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfo: String
         # @param ResourceGroupName: 预付费专用资源组名称
@@ -7990,7 +7990,7 @@ module TencentCloud
         # @type FailureReason: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (按量计费)
         # @type BillingInfo: String
         # @param ResourceGroupName: 预付费专用资源组名称
         # @type ResourceGroupName: String

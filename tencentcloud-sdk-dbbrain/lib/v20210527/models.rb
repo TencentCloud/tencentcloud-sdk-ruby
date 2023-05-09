@@ -2325,7 +2325,7 @@ module TencentCloud
         # @type Key: Array
         # @param User: 用户
         # @type User: Array
-        # @param Ip: ip
+        # @param Ip: IP
         # @type Ip: Array
         # @param Time: 耗时区间,耗时区间的左右边界分别对应数组的第0个元素和第一个元素
         # @type Time: Array

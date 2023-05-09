@@ -225,6 +225,30 @@ module TencentCloud
         end
       end
 
+      # 自动挂载并初始化该数据盘。
+      class AutoMountConfiguration < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 待挂载的实例ID。指定的实例必须处于“运行中”状态。
+        # @type InstanceId: String
+        # @param MountPoint: 实例内的挂载点。仅Linux操作系统的实例可传入该参数, 不传则默认挂载在“/data/disk”路径下。
+        # @type MountPoint: String
+        # @param FileSystemType: 文件系统类型。取值: “ext4”、“xfs”。仅Linux操作系统的实例可传入该参数, 不传则默认为“ext4”。
+        # @type FileSystemType: String
+
+        attr_accessor :InstanceId, :MountPoint, :FileSystemType
+        
+        def initialize(instanceid=nil, mountpoint=nil, filesystemtype=nil)
+          @InstanceId = instanceid
+          @MountPoint = mountpoint
+          @FileSystemType = filesystemtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MountPoint = params['MountPoint']
+          @FileSystemType = params['FileSystemType']
+        end
+      end
+
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -628,6 +652,82 @@ module TencentCloud
 
         def deserialize(params)
           @DiskBackupId = params['DiskBackupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDisks请求参数结构体
+      class CreateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区。可通过[DescribeZones](https://cloud.tencent.com/document/product/1207/57513)返回值中的Zone获取。
+        # @type Zone: String
+        # @param DiskSize: 云硬盘大小, 单位: GB。
+        # @type DiskSize: Integer
+        # @param DiskType: 云硬盘介质类型。取值: "CLOUD_PREMIUM"(高性能云盘), "CLOUD_SSD"(SSD云硬盘)。
+        # @type DiskType: String
+        # @param DiskChargePrepaid: 云硬盘包年包月相关参数设置。
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskChargePrepaid`
+        # @param DiskName: 云硬盘名称。最大长度60。
+        # @type DiskName: String
+        # @param DiskCount: 云硬盘个数。取值范围: [1, 30]。默认值: 1。
+        # @type DiskCount: Integer
+        # @param DiskBackupQuota: 指定云硬盘备份点配额，不传时默认为不带备份点配额。目前只支持不带或设置1个云硬盘备份点配额。
+        # @type DiskBackupQuota: Integer
+        # @param AutoVoucher: 是否自动使用代金券。默认不使用。
+        # @type AutoVoucher: Boolean
+        # @param AutoMountConfiguration: 自动挂载并初始化数据盘。
+        # @type AutoMountConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.AutoMountConfiguration`
+
+        attr_accessor :Zone, :DiskSize, :DiskType, :DiskChargePrepaid, :DiskName, :DiskCount, :DiskBackupQuota, :AutoVoucher, :AutoMountConfiguration
+        
+        def initialize(zone=nil, disksize=nil, disktype=nil, diskchargeprepaid=nil, diskname=nil, diskcount=nil, diskbackupquota=nil, autovoucher=nil, automountconfiguration=nil)
+          @Zone = zone
+          @DiskSize = disksize
+          @DiskType = disktype
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskName = diskname
+          @DiskCount = diskcount
+          @DiskBackupQuota = diskbackupquota
+          @AutoVoucher = autovoucher
+          @AutoMountConfiguration = automountconfiguration
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DiskName = params['DiskName']
+          @DiskCount = params['DiskCount']
+          @DiskBackupQuota = params['DiskBackupQuota']
+          @AutoVoucher = params['AutoVoucher']
+          unless params['AutoMountConfiguration'].nil?
+            @AutoMountConfiguration = AutoMountConfiguration.new
+            @AutoMountConfiguration.deserialize(params['AutoMountConfiguration'])
+          end
+        end
+      end
+
+      # CreateDisks返回参数结构体
+      class CreateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param DiskIdSet: 当通过本接口来创建云硬盘时会返回该参数，表示一个或多个云硬盘ID。返回云硬盘ID列表并不代表云硬盘创建成功。
+
+        # 可根据 [DescribeDisks](https://cloud.tencent.com/document/product/1207/66093) 接口查询返回的DiskSet中对应云硬盘的ID的状态来判断创建是否完成；如果云硬盘状态由“PENDING”变为“UNATTACHED”或“ATTACHED”，则为创建成功。
+        # @type DiskIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskIdSet, :RequestId
+        
+        def initialize(diskidset=nil, requestid=nil)
+          @DiskIdSet = diskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DiskIdSet = params['DiskIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -4940,11 +5040,11 @@ module TencentCloud
       # 折扣详情信息。
       class PolicyDetail < TencentCloud::Common::AbstractModel
         # @param UserDiscount: 用户折扣。
-        # @type UserDiscount: Integer
+        # @type UserDiscount: Float
         # @param CommonDiscount: 公共折扣。
-        # @type CommonDiscount: Integer
+        # @type CommonDiscount: Float
         # @param FinalDiscount: 最终折扣。
-        # @type FinalDiscount: Integer
+        # @type FinalDiscount: Float
         # @param ActivityDiscount: 活动折扣。取值为null，表示无有效值，即没有折扣。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityDiscount: Float

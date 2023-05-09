@@ -375,6 +375,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建RabbitMQ的用户
+
+        # @param request: Request instance for CreateRabbitMQUser.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQUserRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQUserResponse`
+        def CreateRabbitMQUser(request)
+          body = send_request('CreateRabbitMQUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRabbitMQUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建RabbitMQ专享版实例
 
         # @param request: Request instance for CreateRabbitMQVipInstance.
@@ -385,6 +409,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateRabbitMQVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建RabbitMQ的vhost
+
+        # @param request: Request instance for CreateRabbitMQVirtualHost.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQVirtualHostRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQVirtualHostResponse`
+        def CreateRabbitMQVirtualHost(request)
+          body = send_request('CreateRabbitMQVirtualHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRabbitMQVirtualHostResponse.new
             model.deserialize(response['Response'])
             model
           else

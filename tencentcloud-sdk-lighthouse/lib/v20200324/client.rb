@@ -212,6 +212,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateDisks)用于创建一个或多个云硬盘。
+
+        # @param request: Request instance for CreateDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateDisksResponse`
+        def CreateDisks(request)
+          body = send_request('CreateDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
 
 

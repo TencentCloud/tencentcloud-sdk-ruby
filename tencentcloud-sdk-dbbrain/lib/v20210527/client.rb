@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取指定时间内某个sql模版的慢日志明细
+        # 获取指定时间内某个sql模板的慢日志明细
 
         # @param request: Request instance for DescribeSlowLogs.
         # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeSlowLogsRequest`

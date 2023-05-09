@@ -499,16 +499,20 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
         # @param SubLabel: 该参数用于返回命中的实体二级标签。
         # @type SubLabel: String
+        # @param ObjectId: 该参数用于返回命中的人脸id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectId: String
 
-        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel
+        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel, :ObjectId
         
-        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil)
+        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil, objectid=nil)
           @Id = id
           @Name = name
           @Value = value
           @Score = score
           @Location = location
           @SubLabel = sublabel
+          @ObjectId = objectid
         end
 
         def deserialize(params)
@@ -521,6 +525,7 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @SubLabel = params['SubLabel']
+          @ObjectId = params['ObjectId']
         end
       end
 

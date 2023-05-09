@@ -5562,10 +5562,13 @@ module TencentCloud
         # @param WanStatus: 外网状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanStatus: String
+        # @param InstanceGroupId: 实例组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupId: String
 
-        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description, :WanIP, :WanStatus
+        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description, :WanIP, :WanStatus, :InstanceGroupId
         
-        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, description=nil, wanip=nil, wanstatus=nil)
+        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, description=nil, wanip=nil, wanstatus=nil, instancegroupid=nil)
           @Vip = vip
           @Vport = vport
           @WanDomain = wandomain
@@ -5576,6 +5579,7 @@ module TencentCloud
           @Description = description
           @WanIP = wanip
           @WanStatus = wanstatus
+          @InstanceGroupId = instancegroupid
         end
 
         def deserialize(params)
@@ -5589,6 +5593,7 @@ module TencentCloud
           @Description = params['Description']
           @WanIP = params['WanIP']
           @WanStatus = params['WanStatus']
+          @InstanceGroupId = params['InstanceGroupId']
         end
       end
 

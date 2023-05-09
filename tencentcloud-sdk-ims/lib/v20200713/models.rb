@@ -148,12 +148,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
+        # @param RecognitionResults: 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecognitionResults: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :HitFlag, :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :RequestId
+        attr_accessor :HitFlag, :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :RecognitionResults, :RequestId
         
-        def initialize(hitflag=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, requestid=nil)
+        def initialize(hitflag=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, recognitionresults=nil, requestid=nil)
           @HitFlag = hitflag
           @Suggestion = suggestion
           @Label = label
@@ -166,6 +169,7 @@ module TencentCloud
           @DataId = dataid
           @BizType = biztype
           @Extra = extra
+          @RecognitionResults = recognitionresults
           @RequestId = requestid
         end
 
@@ -210,6 +214,14 @@ module TencentCloud
           @DataId = params['DataId']
           @BizType = params['BizType']
           @Extra = params['Extra']
+          unless params['RecognitionResults'].nil?
+            @RecognitionResults = []
+            params['RecognitionResults'].each do |i|
+              recognitionresult_tmp = RecognitionResult.new
+              recognitionresult_tmp.deserialize(i)
+              @RecognitionResults << recognitionresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -425,16 +437,24 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ims.v20200713.models.Location`
         # @param SubLabel: 二级标签名称
         # @type SubLabel: String
+        # @param GroupId: 图库或人脸库id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param ObjectId: 图或人脸id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectId: String
 
-        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel
+        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel, :GroupId, :ObjectId
         
-        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil)
+        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil, groupid=nil, objectid=nil)
           @Id = id
           @Name = name
           @Value = value
           @Score = score
           @Location = location
           @SubLabel = sublabel
+          @GroupId = groupid
+          @ObjectId = objectid
         end
 
         def deserialize(params)
@@ -447,6 +467,8 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @SubLabel = params['SubLabel']
+          @GroupId = params['GroupId']
+          @ObjectId = params['ObjectId']
         end
       end
 
@@ -604,6 +626,65 @@ module TencentCloud
           end
           @Rate = params['Rate']
           @SubLabel = params['SubLabel']
+        end
+      end
+
+      # 识别类型标签结果信息
+      class RecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Label: 当前可能的取值：Scene（图片场景模型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Tags: Label对应模型下的识别标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Label, :Tags
+        
+        def initialize(label=nil, tags=nil)
+          @Label = label
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              recognitiontag_tmp = RecognitionTag.new
+              recognitiontag_tmp.deserialize(i)
+              @Tags << recognitiontag_tmp
+            end
+          end
+        end
+      end
+
+      # 识别类型标签信息
+      class RecognitionTag < TencentCloud::Common::AbstractModel
+        # @param Name: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Score: 置信分：0～100，数值越大表示置信度越高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param Location: 标签位置信息，若模型无位置信息，则可能为零值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Ims.v20200713.models.Location`
+
+        attr_accessor :Name, :Score, :Location
+        
+        def initialize(name=nil, score=nil, location=nil)
+          @Name = name
+          @Score = score
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Score = params['Score']
+          unless params['Location'].nil?
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
+          end
         end
       end
 

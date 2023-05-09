@@ -324,6 +324,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeInitNodeScripts) 用于查询节点初始化脚本列表。
+
+        # @param request: Request instance for DescribeInitNodeScripts.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeInitNodeScriptsRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeInitNodeScriptsResponse`
+        def DescribeInitNodeScripts(request)
+          body = send_request('DescribeInitNodeScripts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInitNodeScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeNodes) 用于查询指定集群节点概览信息列表。
 
         # @param request: Request instance for DescribeNodes.
