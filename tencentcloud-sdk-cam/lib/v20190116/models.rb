@@ -1571,15 +1571,19 @@ module TencentCloud
         # @type ActionFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlag`
         # @param OffsiteFlag: 异地登录保护设置
         # @type OffsiteFlag: :class:`Tencentcloud::Cam.v20190116.models.OffsiteFlag`
+        # @param PromptTrust: 是否提示信任设备1 ：提示 0: 不提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTrust: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LoginFlag, :ActionFlag, :OffsiteFlag, :RequestId
+        attr_accessor :LoginFlag, :ActionFlag, :OffsiteFlag, :PromptTrust, :RequestId
         
-        def initialize(loginflag=nil, actionflag=nil, offsiteflag=nil, requestid=nil)
+        def initialize(loginflag=nil, actionflag=nil, offsiteflag=nil, prompttrust=nil, requestid=nil)
           @LoginFlag = loginflag
           @ActionFlag = actionflag
           @OffsiteFlag = offsiteflag
+          @PromptTrust = prompttrust
           @RequestId = requestid
         end
 
@@ -1596,6 +1600,7 @@ module TencentCloud
             @OffsiteFlag = OffsiteFlag.new
             @OffsiteFlag.deserialize(params['OffsiteFlag'])
           end
+          @PromptTrust = params['PromptTrust']
           @RequestId = params['RequestId']
         end
       end

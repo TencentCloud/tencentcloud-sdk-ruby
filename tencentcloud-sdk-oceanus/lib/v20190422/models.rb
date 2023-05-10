@@ -315,23 +315,94 @@ module TencentCloud
 
       # 复制作业单条明细
       class CopyJobItem < TencentCloud::Common::AbstractModel
+        # @param SourceId: 需要复制的作业serial id
+        # @type SourceId: String
+        # @param TargetClusterId: 目标集群的cluster serial id
+        # @type TargetClusterId: String
+        # @param SourceName: 需要复制的作业名称
+        # @type SourceName: String
+        # @param TargetName: 新作业的名称
+        # @type TargetName: String
+        # @param TargetFolderId: 新作业的目录id
+        # @type TargetFolderId: String
+        # @param JobType: 源作业类型
+        # @type JobType: Integer
 
+        attr_accessor :SourceId, :TargetClusterId, :SourceName, :TargetName, :TargetFolderId, :JobType
         
-        def initialize()
+        def initialize(sourceid=nil, targetclusterid=nil, sourcename=nil, targetname=nil, targetfolderid=nil, jobtype=nil)
+          @SourceId = sourceid
+          @TargetClusterId = targetclusterid
+          @SourceName = sourcename
+          @TargetName = targetname
+          @TargetFolderId = targetfolderid
+          @JobType = jobtype
         end
 
         def deserialize(params)
+          @SourceId = params['SourceId']
+          @TargetClusterId = params['TargetClusterId']
+          @SourceName = params['SourceName']
+          @TargetName = params['TargetName']
+          @TargetFolderId = params['TargetFolderId']
+          @JobType = params['JobType']
         end
       end
 
       # 复制作业单条明细结果
       class CopyJobResult < TencentCloud::Common::AbstractModel
+        # @param JobId: 原作业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
+        # @param JobName: 原作业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobName: String
+        # @param TargetJobName: 新作业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetJobName: String
+        # @param TargetJobId: 新作业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetJobId: String
+        # @param Message: 失败时候的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Result: 0 成功  -1 失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Integer
+        # @param ClusterName: 目标集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterId: 目标集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param JobType: 作业类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: Integer
 
+        attr_accessor :JobId, :JobName, :TargetJobName, :TargetJobId, :Message, :Result, :ClusterName, :ClusterId, :JobType
         
-        def initialize()
+        def initialize(jobid=nil, jobname=nil, targetjobname=nil, targetjobid=nil, message=nil, result=nil, clustername=nil, clusterid=nil, jobtype=nil)
+          @JobId = jobid
+          @JobName = jobname
+          @TargetJobName = targetjobname
+          @TargetJobId = targetjobid
+          @Message = message
+          @Result = result
+          @ClusterName = clustername
+          @ClusterId = clusterid
+          @JobType = jobtype
         end
 
         def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+          @TargetJobName = params['TargetJobName']
+          @TargetJobId = params['TargetJobId']
+          @Message = params['Message']
+          @Result = params['Result']
+          @ClusterName = params['ClusterName']
+          @ClusterId = params['ClusterId']
+          @JobType = params['JobType']
         end
       end
 

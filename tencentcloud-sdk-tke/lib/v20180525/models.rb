@@ -9438,10 +9438,13 @@ module TencentCloud
         # @param EdgeVersion: 边缘集群组件的版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EdgeVersion: String
+        # @param TagSpecification: 集群绑定的云标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: :class:`Tencentcloud::Tke.v20180525.models.TagSpecification`
 
-        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion, :TagSpecification
         
-        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil)
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil, tagspecification=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @VpcId = vpcid
@@ -9458,6 +9461,7 @@ module TencentCloud
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @ChargeType = chargetype
           @EdgeVersion = edgeversion
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -9480,6 +9484,10 @@ module TencentCloud
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
           @ChargeType = params['ChargeType']
           @EdgeVersion = params['EdgeVersion']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
+          end
         end
       end
 

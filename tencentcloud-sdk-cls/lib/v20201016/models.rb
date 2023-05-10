@@ -1854,10 +1854,14 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         # @type FilenameMode: Integer
+        # @param StartTime: 投递数据范围的开始时间点，不能超出日志主题的生命周期起点。如果用户不填写，默认为用户新建投递任务的时间。
+        # @type StartTime: Integer
+        # @param EndTime: 投递数据范围的结束时间点，不能填写未来时间。如果用户不填写，默认为持续投递，即无限。
+        # @type EndTime: Integer
 
-        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode
+        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime
         
-        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil)
+        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, starttime=nil, endtime=nil)
           @TopicId = topicid
           @Bucket = bucket
           @Prefix = prefix
@@ -1869,6 +1873,8 @@ module TencentCloud
           @Compress = compress
           @Content = content
           @FilenameMode = filenamemode
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -1896,6 +1902,8 @@ module TencentCloud
             @Content.deserialize(params['Content'])
           end
           @FilenameMode = params['FilenameMode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

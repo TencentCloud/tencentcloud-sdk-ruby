@@ -12338,16 +12338,22 @@ module TencentCloud
         # <li> black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         # 默认值：stretch 。
         # @type FillType: String
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
 
-        attr_accessor :Definition, :Name, :Comment, :HeadCandidateSet, :TailCandidateSet, :FillType
+        attr_accessor :Definition, :Name, :Comment, :HeadCandidateSet, :TailCandidateSet, :FillType, :CreateTime, :UpdateTime
         
-        def initialize(definition=nil, name=nil, comment=nil, headcandidateset=nil, tailcandidateset=nil, filltype=nil)
+        def initialize(definition=nil, name=nil, comment=nil, headcandidateset=nil, tailcandidateset=nil, filltype=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
           @HeadCandidateSet = headcandidateset
           @TailCandidateSet = tailcandidateset
           @FillType = filltype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -12357,6 +12363,8 @@ module TencentCloud
           @HeadCandidateSet = params['HeadCandidateSet']
           @TailCandidateSet = params['TailCandidateSet']
           @FillType = params['FillType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -14246,10 +14254,14 @@ module TencentCloud
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AdaptiveDynamicStreamingTaskInput`
         # @param Output: 对视频转自适应码流任务的输出。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AdaptiveDynamicStreamingInfoItem`
+        # @param BeginProcessTime: 转自适应码流任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 转自适应码流任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Progress, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Progress, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14257,6 +14269,8 @@ module TencentCloud
           @Progress = progress
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14273,6 +14287,8 @@ module TencentCloud
             @Output = AdaptiveDynamicStreamingInfoItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -14293,10 +14309,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MediaAnimatedGraphicsItem`
         # @param Progress: 转动图任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 转动图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 转动图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14304,6 +14324,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14320,6 +14342,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -14339,10 +14363,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.CoverBySnapshotTaskOutput`
         # @param Progress: 对视频截图做封面任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 截图做封面任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 截图做封面任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14350,6 +14378,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14366,6 +14396,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -14386,10 +14418,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MediaImageSpriteItem`
         # @param Progress: 对视频截雪碧图任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 截雪碧图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 截雪碧图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14397,6 +14433,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14413,6 +14451,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -14601,10 +14641,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MediaSampleSnapshotItem`
         # @param Progress: 对视频做采样截图任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 采样截图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 采样截图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14612,6 +14656,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14628,6 +14674,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -14648,10 +14696,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MediaSnapshotByTimeOffsetItem`
         # @param Progress: 对视频按指定时间点截图任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 时间点截图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 时间点截图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -14659,6 +14711,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -14675,6 +14729,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 

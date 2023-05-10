@@ -17,6 +17,215 @@
 module TencentCloud
   module Omics
     module V20221128
+      # 云服务器配置。
+      class CVMOption < TencentCloud::Common::AbstractModel
+        # @param Zone: 云服务器可用区。
+        # @type Zone: String
+        # @param InstanceType: 云服务器实例规格。
+        # @type InstanceType: String
+
+        attr_accessor :Zone, :InstanceType
+        
+        def initialize(zone=nil, instancetype=nil)
+          @Zone = zone
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 计算集群配置。
+      class ClusterOption < TencentCloud::Common::AbstractModel
+        # @param Zone: 计算集群可用区。
+        # @type Zone: String
+        # @param Type: 计算集群类型，取值范围：
+        # - KUBERNETES
+        # @type Type: String
+
+        attr_accessor :Zone, :Type
+        
+        def initialize(zone=nil, type=nil)
+          @Zone = zone
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @Type = params['Type']
+        end
+      end
+
+      # CreateEnvironment请求参数结构体
+      class CreateEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 环境名称。
+        # @type Name: String
+        # @param Config: 环境配置信息。
+        # @type Config: :class:`Tencentcloud::Omics.v20221128.models.EnvironmentConfig`
+        # @param Description: 环境描述。
+        # @type Description: String
+
+        attr_accessor :Name, :Config, :Description
+        
+        def initialize(name=nil, config=nil, description=nil)
+          @Name = name
+          @Config = config
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Config'].nil?
+            @Config = EnvironmentConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # CreateEnvironment返回参数结构体
+      class CreateEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境ID。
+        # @type EnvironmentId: String
+        # @param WorkflowUuid: 工作流UUID。
+        # @type WorkflowUuid: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvironmentId, :WorkflowUuid, :RequestId
+        
+        def initialize(environmentid=nil, workflowuuid=nil, requestid=nil)
+          @EnvironmentId = environmentid
+          @WorkflowUuid = workflowuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @WorkflowUuid = params['WorkflowUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据库配置。
+      class DatabaseOption < TencentCloud::Common::AbstractModel
+        # @param Zone: 数据库可用区。
+        # @type Zone: String
+
+        attr_accessor :Zone
+        
+        def initialize(zone=nil)
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+        end
+      end
+
+      # DeleteEnvironment请求参数结构体
+      class DeleteEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境ID。
+        # @type EnvironmentId: String
+
+        attr_accessor :EnvironmentId
+        
+        def initialize(environmentid=nil)
+          @EnvironmentId = environmentid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+        end
+      end
+
+      # DeleteEnvironment返回参数结构体
+      class DeleteEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param WorkflowUuid: 工作流UUID。
+        # @type WorkflowUuid: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkflowUuid, :RequestId
+        
+        def initialize(workflowuuid=nil, requestid=nil)
+          @WorkflowUuid = workflowuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkflowUuid = params['WorkflowUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnvironments请求参数结构体
+      class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - EnvironmentId：环境ID
+        # - Name：名称
+        # - Status：环境状态
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeEnvironments返回参数结构体
+      class DescribeEnvironmentsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的数量。
+        # @type TotalCount: Integer
+        # @param Environments: 环境详情列表。
+        # @type Environments: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Environments, :RequestId
+        
+        def initialize(totalcount=nil, environments=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Environments = environments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Environments'].nil?
+            @Environments = []
+            params['Environments'].each do |i|
+              environment_tmp = Environment.new
+              environment_tmp.deserialize(i)
+              @Environments << environment_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRunGroups请求参数结构体
       class DescribeRunGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID。
@@ -153,6 +362,122 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 组学平台环境详情。
+      class Environment < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境ID。
+        # @type EnvironmentId: String
+        # @param Name: 环境名称。
+        # @type Name: String
+        # @param Description: 环境描述信息。
+        # @type Description: String
+        # @param Region: 环境地域。
+        # @type Region: String
+        # @param Type: 环境类型，取值范围：
+        # - KUBERNETES：Kubernetes容器集群
+        # - HPC：HPC高性能计算集群
+        # @type Type: String
+        # @param Status: 环境状态，取值范围：
+        # - INITIALIZING：创建中
+        # - INITIALIZATION_ERROR：创建失败
+        # - RUNNING：运行中
+        # - ERROR：异常
+        # - DELETING：正在删除
+        # - DELETE_ERROR：删除失败
+        # @type Status: String
+        # @param Available: 环境是否可用。环境需要可用才能投递计算任务。
+        # @type Available: Boolean
+        # @param Message: 环境信息。
+        # @type Message: String
+        # @param ResourceIds: 云资源ID。
+        # @type ResourceIds: :class:`Tencentcloud::Omics.v20221128.models.ResourceIds`
+        # @param LastWorkflowUuid: 上个工作流UUID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastWorkflowUuid: String
+        # @param CreationTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: String
+
+        attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime
+        
+        def initialize(environmentid=nil, name=nil, description=nil, region=nil, type=nil, status=nil, available=nil, message=nil, resourceids=nil, lastworkflowuuid=nil, creationtime=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @Description = description
+          @Region = region
+          @Type = type
+          @Status = status
+          @Available = available
+          @Message = message
+          @ResourceIds = resourceids
+          @LastWorkflowUuid = lastworkflowuuid
+          @CreationTime = creationtime
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Region = params['Region']
+          @Type = params['Type']
+          @Status = params['Status']
+          @Available = params['Available']
+          @Message = params['Message']
+          unless params['ResourceIds'].nil?
+            @ResourceIds = ResourceIds.new
+            @ResourceIds.deserialize(params['ResourceIds'])
+          end
+          @LastWorkflowUuid = params['LastWorkflowUuid']
+          @CreationTime = params['CreationTime']
+        end
+      end
+
+      # 环境配置。
+      class EnvironmentConfig < TencentCloud::Common::AbstractModel
+        # @param VPCOption: 私有网络配置。
+        # @type VPCOption: :class:`Tencentcloud::Omics.v20221128.models.VPCOption`
+        # @param ClusterOption: 计算集群配置。
+        # @type ClusterOption: :class:`Tencentcloud::Omics.v20221128.models.ClusterOption`
+        # @param DatabaseOption: 数据库配置。
+        # @type DatabaseOption: :class:`Tencentcloud::Omics.v20221128.models.DatabaseOption`
+        # @param StorageOption: 存储配置。
+        # @type StorageOption: :class:`Tencentcloud::Omics.v20221128.models.StorageOption`
+        # @param CVMOption: 云服务器配置。
+        # @type CVMOption: :class:`Tencentcloud::Omics.v20221128.models.CVMOption`
+
+        attr_accessor :VPCOption, :ClusterOption, :DatabaseOption, :StorageOption, :CVMOption
+        
+        def initialize(vpcoption=nil, clusteroption=nil, databaseoption=nil, storageoption=nil, cvmoption=nil)
+          @VPCOption = vpcoption
+          @ClusterOption = clusteroption
+          @DatabaseOption = databaseoption
+          @StorageOption = storageoption
+          @CVMOption = cvmoption
+        end
+
+        def deserialize(params)
+          unless params['VPCOption'].nil?
+            @VPCOption = VPCOption.new
+            @VPCOption.deserialize(params['VPCOption'])
+          end
+          unless params['ClusterOption'].nil?
+            @ClusterOption = ClusterOption.new
+            @ClusterOption.deserialize(params['ClusterOption'])
+          end
+          unless params['DatabaseOption'].nil?
+            @DatabaseOption = DatabaseOption.new
+            @DatabaseOption.deserialize(params['DatabaseOption'])
+          end
+          unless params['StorageOption'].nil?
+            @StorageOption = StorageOption.new
+            @StorageOption.deserialize(params['StorageOption'])
+          end
+          unless params['CVMOption'].nil?
+            @CVMOption = CVMOption.new
+            @CVMOption.deserialize(params['CVMOption'])
+          end
         end
       end
 
@@ -350,6 +675,62 @@ module TencentCloud
         def deserialize(params)
           @TableId = params['TableId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云资源ID。
+      class ResourceIds < TencentCloud::Common::AbstractModel
+        # @param VPCId: 私有网络ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VPCId: String
+        # @param SubnetId: 子网ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param SecurityGroupId: 安全组ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupId: String
+        # @param TDSQLCId: TDSQL-C Mysql版数据库ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TDSQLCId: String
+        # @param CFSId: 文件存储ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSId: String
+        # @param CFSStorageType: 文件存储类型：取值范围：
+        # - SD：通用标准型
+        # - HP：通用性能型
+        # - TB：turbo标准型
+        # - TP：turbo性能型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSStorageType: String
+        # @param CVMId: 云服务器ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMId: String
+        # @param EKSId: 弹性容器集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EKSId: String
+
+        attr_accessor :VPCId, :SubnetId, :SecurityGroupId, :TDSQLCId, :CFSId, :CFSStorageType, :CVMId, :EKSId
+        
+        def initialize(vpcid=nil, subnetid=nil, securitygroupid=nil, tdsqlcid=nil, cfsid=nil, cfsstoragetype=nil, cvmid=nil, eksid=nil)
+          @VPCId = vpcid
+          @SubnetId = subnetid
+          @SecurityGroupId = securitygroupid
+          @TDSQLCId = tdsqlcid
+          @CFSId = cfsid
+          @CFSStorageType = cfsstoragetype
+          @CVMId = cvmid
+          @EKSId = eksid
+        end
+
+        def deserialize(params)
+          @VPCId = params['VPCId']
+          @SubnetId = params['SubnetId']
+          @SecurityGroupId = params['SecurityGroupId']
+          @TDSQLCId = params['TDSQLCId']
+          @CFSId = params['CFSId']
+          @CFSStorageType = params['CFSStorageType']
+          @CVMId = params['CVMId']
+          @EKSId = params['EKSId']
         end
       end
 
@@ -770,6 +1151,60 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Count = params['Count']
+        end
+      end
+
+      # 文件存储配置。
+      class StorageOption < TencentCloud::Common::AbstractModel
+        # @param StorageType: 文件存储类型，取值范围：
+        # - SD：通用标准型
+        # - HP：通用性能型
+        # - TB：turbo标准型
+        # - TP：turbo性能型
+        # @type StorageType: String
+        # @param Zone: 文件存储可用区。
+        # @type Zone: String
+        # @param Capacity: 文件系统容量，turbo系列必填，单位为GiB。
+        # - turbo标准型起售40TiB，即40960GiB；扩容步长20TiB，即20480 GiB。
+        # - turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，即10240 GiB。
+        # @type Capacity: Integer
+
+        attr_accessor :StorageType, :Zone, :Capacity
+        
+        def initialize(storagetype=nil, zone=nil, capacity=nil)
+          @StorageType = storagetype
+          @Zone = zone
+          @Capacity = capacity
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          @Zone = params['Zone']
+          @Capacity = params['Capacity']
+        end
+      end
+
+      # 私有网络配置。
+      class VPCOption < TencentCloud::Common::AbstractModel
+        # @param SubnetZone: 子网可用区。
+        # @type SubnetZone: String
+        # @param VPCCIDRBlock: 私有网络CIDR。
+        # @type VPCCIDRBlock: String
+        # @param SubnetCIDRBlock: 子网CIDR。
+        # @type SubnetCIDRBlock: String
+
+        attr_accessor :SubnetZone, :VPCCIDRBlock, :SubnetCIDRBlock
+        
+        def initialize(subnetzone=nil, vpccidrblock=nil, subnetcidrblock=nil)
+          @SubnetZone = subnetzone
+          @VPCCIDRBlock = vpccidrblock
+          @SubnetCIDRBlock = subnetcidrblock
+        end
+
+        def deserialize(params)
+          @SubnetZone = params['SubnetZone']
+          @VPCCIDRBlock = params['VPCCIDRBlock']
+          @SubnetCIDRBlock = params['SubnetCIDRBlock']
         end
       end
 

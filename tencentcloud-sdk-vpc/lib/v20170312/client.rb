@@ -2033,7 +2033,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteFlowLog）用于删除流日志
+        # 本接口（DeleteFlowLog）用于删除流日志。
 
         # @param request: Request instance for DeleteFlowLog.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteFlowLogRequest`
@@ -3299,7 +3299,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeFlowLog）用于查询流日志实例信息
+        # 本接口（DescribeFlowLog）用于查询流日志实例信息。
 
         # @param request: Request instance for DescribeFlowLog.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeFlowLogRequest`
@@ -5959,7 +5959,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyFlowLogAttribute）用于修改流日志属性
+        # 本接口（ModifyFlowLogAttribute）用于修改流日志属性。
 
         # @param request: Request instance for ModifyFlowLogAttribute.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyFlowLogAttributeRequest`

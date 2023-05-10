@@ -2309,7 +2309,7 @@ module TencentCloud
         # @type Product: String
         # @param InstanceId: 实例id。
         # @type InstanceId: String
-        # @param Md5: sql模版的md5值
+        # @param Md5: sql模板的md5值
         # @type Md5: String
         # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
         # @type StartTime: String

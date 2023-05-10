@@ -5824,6 +5824,62 @@ module TencentCloud
         end
       end
 
+      # OpenReadOnlyInstanceExclusiveAccess请求参数结构体
+      class OpenReadOnlyInstanceExclusiveAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 需要开通独有访问的只读实例ID
+        # @type InstanceId: String
+        # @param VpcId: 指定的vpc ID
+        # @type VpcId: String
+        # @param SubnetId: 指定的子网ID
+        # @type SubnetId: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param SecurityGroupIds: 安全组
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :ClusterId, :InstanceId, :VpcId, :SubnetId, :Port, :SecurityGroupIds
+        
+        def initialize(clusterid=nil, instanceid=nil, vpcid=nil, subnetid=nil, port=nil, securitygroupids=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Port = port
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Port = params['Port']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # OpenReadOnlyInstanceExclusiveAccess返回参数结构体
+      class OpenReadOnlyInstanceExclusiveAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开通流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 参数信息
       class ParamInfo < TencentCloud::Common::AbstractModel
         # @param CurrentValue: 当前值

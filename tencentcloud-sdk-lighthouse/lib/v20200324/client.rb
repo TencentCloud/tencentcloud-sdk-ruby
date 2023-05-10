@@ -1456,6 +1456,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(IsolateDisks)用于退还一个或多个轻量应用服务器云硬盘。
+
+        # 只有状态为 UNATTACHED 的数据盘才可以进行此操作。
+        # 接口调用成功后，云硬盘会进入SHUTDOWN 状态。
+        # 支持批量操作。每次请求批量资源的上限为 20。
+        # 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。云硬盘操作结果可以通过调用 [DescribeDisks](https://cloud.tencent.com/document/product/1207/66093) 接口查询，如果云硬盘的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+
+        # @param request: Request instance for IsolateDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::IsolateDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::IsolateDisksResponse`
+        def IsolateDisks(request)
+          body = send_request('IsolateDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(IsolateInstances)用于退还一个或多个轻量应用服务器实例。
         # * 只有状态为 RUNNING 或 STOPPED 的实例才可以进行此操作。
         # * 接口调用成功后，实例会进入SHUTDOWN 状态。
@@ -1793,6 +1822,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebootInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(RenewDisks)用于续费一个或多个轻量应用服务器云硬盘。
+
+        # 只有状态为 ATTACHED，UNATTACHED 或 SHUTDOWN 的数据盘才可以进行此操作。
+        # 支持批量操作。每次请求批量云硬盘的上限为 50。
+        # 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。云硬盘操作结果可以通过调用 [DescribeDisks](https://cloud.tencent.com/document/product/1207/66093) 接口查询，如果云硬盘的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+
+        # @param request: Request instance for RenewDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RenewDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RenewDisksResponse`
+        def RenewDisks(request)
+          body = send_request('RenewDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewDisksResponse.new
             model.deserialize(response['Response'])
             model
           else

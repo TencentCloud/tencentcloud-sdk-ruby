@@ -5546,6 +5546,64 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveXP2PDetailInfoList请求参数结构体
+      class DescribeLiveXP2PDetailInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param QueryTime: utc分钟粒度查询时间，查询某一分钟的用量数据，格式为：yyyy-mm-ddTHH:MM:00Z，参考https://cloud.tencent.com/document/product/266/11732#I，
+        # 例如：北京时间2019-01-08 10:00:00，对应utc时间为：2019-01-08T10:00:00+08:00。
+
+        # 支持最近六个月的查询。
+        # @type QueryTime: String
+        # @param Type: 类型数组，分直播live和点播vod，不传默认查全部。
+        # @type Type: Array
+        # @param StreamNames: 查询流数组，不传默认查所有流。
+        # @type StreamNames: Array
+        # @param Dimension: 查询维度，不传该参数则默认查询流维度的数据，传递该参数则只查对应维度的数据，和返回值的字段相关，目前支持AppId维度查询。
+        # @type Dimension: Array
+
+        attr_accessor :QueryTime, :Type, :StreamNames, :Dimension
+        
+        def initialize(querytime=nil, type=nil, streamnames=nil, dimension=nil)
+          @QueryTime = querytime
+          @Type = type
+          @StreamNames = streamnames
+          @Dimension = dimension
+        end
+
+        def deserialize(params)
+          @QueryTime = params['QueryTime']
+          @Type = params['Type']
+          @StreamNames = params['StreamNames']
+          @Dimension = params['Dimension']
+        end
+      end
+
+      # DescribeLiveXP2PDetailInfoList返回参数结构体
+      class DescribeLiveXP2PDetailInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: P2P流统计信息。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              xp2pdetailinfo_tmp = XP2PDetailInfo.new
+              xp2pdetailinfo_tmp.deserialize(i)
+              @DataInfoList << xp2pdetailinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogDownloadList请求参数结构体
       class DescribeLogDownloadListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，北京时间。
@@ -10775,6 +10833,65 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Width = params['Width']
           @Height = params['Height']
+        end
+      end
+
+      # 央视P2P流信息。
+      class XP2PDetailInfo < TencentCloud::Common::AbstractModel
+        # @param CdnBytes: CDN流量。
+        # @type CdnBytes: Integer
+        # @param P2pBytes: P2P流量。
+        # @type P2pBytes: Integer
+        # @param StuckPeople: 卡播人数。
+        # @type StuckPeople: Integer
+        # @param StuckTimes: 卡播次数。
+        # @type StuckTimes: Integer
+        # @param OnlinePeople: 在线人数。
+        # @type OnlinePeople: Integer
+        # @param Request: 起播请求次数
+        # @type Request: Integer
+        # @param RequestSuccess: 起播成功次数
+        # @type RequestSuccess: Integer
+        # @param Time: 时间，一分钟粒度，utc格式：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I。。
+        # @type Time: String
+        # @param Type: 类型，分live和vod两种。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param StreamName: 流ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamName: String
+        # @param AppId: AppId。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+
+        attr_accessor :CdnBytes, :P2pBytes, :StuckPeople, :StuckTimes, :OnlinePeople, :Request, :RequestSuccess, :Time, :Type, :StreamName, :AppId
+        
+        def initialize(cdnbytes=nil, p2pbytes=nil, stuckpeople=nil, stucktimes=nil, onlinepeople=nil, request=nil, requestsuccess=nil, time=nil, type=nil, streamname=nil, appid=nil)
+          @CdnBytes = cdnbytes
+          @P2pBytes = p2pbytes
+          @StuckPeople = stuckpeople
+          @StuckTimes = stucktimes
+          @OnlinePeople = onlinepeople
+          @Request = request
+          @RequestSuccess = requestsuccess
+          @Time = time
+          @Type = type
+          @StreamName = streamname
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @CdnBytes = params['CdnBytes']
+          @P2pBytes = params['P2pBytes']
+          @StuckPeople = params['StuckPeople']
+          @StuckTimes = params['StuckTimes']
+          @OnlinePeople = params['OnlinePeople']
+          @Request = params['Request']
+          @RequestSuccess = params['RequestSuccess']
+          @Time = params['Time']
+          @Type = params['Type']
+          @StreamName = params['StreamName']
+          @AppId = params['AppId']
         end
       end
 

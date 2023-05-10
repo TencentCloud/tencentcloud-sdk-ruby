@@ -29,6 +29,78 @@ module TencentCloud
         end
 
 
+        # 创建组学平台计算环境。
+
+        # @param request: Request instance for CreateEnvironment.
+        # @type request: :class:`Tencentcloud::omics::V20221128::CreateEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::CreateEnvironmentResponse`
+        def CreateEnvironment(request)
+          body = send_request('CreateEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除环境。
+
+        # @param request: Request instance for DeleteEnvironment.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DeleteEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DeleteEnvironmentResponse`
+        def DeleteEnvironment(request)
+          body = send_request('DeleteEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询环境列表。
+
+        # @param request: Request instance for DescribeEnvironments.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeEnvironmentsResponse`
+        def DescribeEnvironments(request)
+          body = send_request('DescribeEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询任务批次列表。
 
         # @param request: Request instance for DescribeRunGroups.

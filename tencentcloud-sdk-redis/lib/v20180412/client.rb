@@ -893,7 +893,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例节点信息
+        # 本接口（DescribeInstanceNodeInfo）用于查询实例节点信息。
 
         # @param request: Request instance for DescribeInstanceNodeInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceNodeInfoRequest`

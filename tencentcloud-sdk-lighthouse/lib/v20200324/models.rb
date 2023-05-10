@@ -4454,6 +4454,38 @@ module TencentCloud
         end
       end
 
+      # IsolateDisks请求参数结构体
+      class IsolateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 云硬盘ID列表。一个或多个待操作的云硬盘ID。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。每次请求退还数据盘数量总计上限为20。
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # IsolateDisks返回参数结构体
+      class IsolateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # IsolateInstances请求参数结构体
       class IsolateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求退还实例和数据盘数量总计上限为20。
@@ -5153,13 +5185,17 @@ module TencentCloud
 
       # 续费云硬盘包年包月相关参数设置
       class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 新购周期。
+        # @param Period: 续费周期。
         # @type Period: Integer
-        # @param RenewFlag: 续费标识。
+        # @param RenewFlag: 续费标识。取值范围：
+
+        # NOTIFY_AND_AUTO_RENEW：通知过期且自动续费。 NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费。 DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知。
+
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
         # @type RenewFlag: String
-        # @param TimeUnit: 周期单位. 默认值: "m"。
+        # @param TimeUnit: 周期单位。取值范围：“m”(月)。默认值: "m"。
         # @type TimeUnit: String
-        # @param CurInstanceDeadline: 当前实例到期时间。
+        # @param CurInstanceDeadline: 当前实例到期时间。如“2018-01-01 00:00:00”。指定该参数即可对齐云硬盘所挂载的实例到期时间。该参数与Period必须指定其一，且不支持同时指定。
         # @type CurInstanceDeadline: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit, :CurInstanceDeadline
@@ -5176,6 +5212,49 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @TimeUnit = params['TimeUnit']
           @CurInstanceDeadline = params['CurInstanceDeadline']
+        end
+      end
+
+      # RenewDisks请求参数结构体
+      class RenewDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 云硬盘ID列表。一个或多个待操作的云硬盘ID。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。每次请求续费数据盘数量总计上限为50。
+        # @type DiskIds: Array
+        # @param RenewDiskChargePrepaid: 续费云硬盘包年包月相关参数设置。
+        # @type RenewDiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.RenewDiskChargePrepaid`
+        # @param AutoVoucher: 是否自动使用代金券。默认不使用。
+        # @type AutoVoucher: Boolean
+
+        attr_accessor :DiskIds, :RenewDiskChargePrepaid, :AutoVoucher
+        
+        def initialize(diskids=nil, renewdiskchargeprepaid=nil, autovoucher=nil)
+          @DiskIds = diskids
+          @RenewDiskChargePrepaid = renewdiskchargeprepaid
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          unless params['RenewDiskChargePrepaid'].nil?
+            @RenewDiskChargePrepaid = RenewDiskChargePrepaid.new
+            @RenewDiskChargePrepaid.deserialize(params['RenewDiskChargePrepaid'])
+          end
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # RenewDisks返回参数结构体
+      class RenewDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

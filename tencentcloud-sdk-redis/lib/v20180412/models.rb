@@ -2303,11 +2303,11 @@ module TencentCloud
 
       # DescribeInstanceNodeInfo请求参数结构体
       class DescribeInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Limit: 列表大小
+        # @param Limit: 列表大小。每页输出的节点信息大小。默认为 20，最多输出1000条。该字段已不再使用，请忽略。
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。该字段已不再使用，请忽略。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
@@ -2327,19 +2327,19 @@ module TencentCloud
 
       # DescribeInstanceNodeInfo返回参数结构体
       class DescribeInstanceNodeInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ProxyCount: proxy节点数量
+        # @param ProxyCount: Proxy节点数量。
         # @type ProxyCount: Integer
-        # @param Proxy: proxy节点信息
+        # @param Proxy: Proxy节点信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proxy: Array
-        # @param RedisCount: redis节点数量
+        # @param RedisCount: Redis节点数量。
         # @type RedisCount: Integer
-        # @param Redis: redis节点信息
+        # @param Redis: Redis节点信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Redis: Array
-        # @param TendisCount: tendis节点数量
+        # @param TendisCount: 该参数不再使用，请忽略。
         # @type TendisCount: Integer
-        # @param Tendis: tendis节点信息
+        # @param Tendis: 该参数不再使用，请忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tendis: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -6274,13 +6274,13 @@ module TencentCloud
 
       # Redis节点信息
       class RedisNodes < TencentCloud::Common::AbstractModel
-        # @param NodeId: 节点ID
+        # @param NodeId: 节点 ID。
         # @type NodeId: String
-        # @param NodeRole: 节点角色
+        # @param NodeRole: 节点角色。
         # @type NodeRole: String
-        # @param ClusterId: 分片ID
+        # @param ClusterId: 分片 ID。
         # @type ClusterId: Integer
-        # @param ZoneId: 可用区ID
+        # @param ZoneId: 可用区 ID。
         # @type ZoneId: Integer
 
         attr_accessor :NodeId, :NodeRole, :ClusterId, :ZoneId
