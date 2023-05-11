@@ -2319,14 +2319,17 @@ module TencentCloud
         # @type Ip: String
         # @param Message: 日志内容
         # @type Message: String
+        # @param NodeID: 集群节点ID
+        # @type NodeID: String
 
-        attr_accessor :Time, :Level, :Ip, :Message
+        attr_accessor :Time, :Level, :Ip, :Message, :NodeID
         
-        def initialize(time=nil, level=nil, ip=nil, message=nil)
+        def initialize(time=nil, level=nil, ip=nil, message=nil, nodeid=nil)
           @Time = time
           @Level = level
           @Ip = ip
           @Message = message
+          @NodeID = nodeid
         end
 
         def deserialize(params)
@@ -2334,6 +2337,7 @@ module TencentCloud
           @Level = params['Level']
           @Ip = params['Ip']
           @Message = params['Message']
+          @NodeID = params['NodeID']
         end
       end
 
@@ -2411,10 +2415,12 @@ module TencentCloud
         # @type CpuUsage: Float
         # @param Zone: 可用区
         # @type Zone: String
+        # @param NodeId: ts-0noqayxu-az6-hot-03222010-0
+        # @type NodeId: String
 
-        attr_accessor :Ip, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone
+        attr_accessor :Ip, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeId
         
-        def initialize(ip=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil)
+        def initialize(ip=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, nodeid=nil)
           @Ip = ip
           @DiskSize = disksize
           @DiskUsage = diskusage
@@ -2423,6 +2429,7 @@ module TencentCloud
           @CpuNum = cpunum
           @CpuUsage = cpuusage
           @Zone = zone
+          @NodeId = nodeid
         end
 
         def deserialize(params)
@@ -2434,6 +2441,7 @@ module TencentCloud
           @CpuNum = params['CpuNum']
           @CpuUsage = params['CpuUsage']
           @Zone = params['Zone']
+          @NodeId = params['NodeId']
         end
       end
 

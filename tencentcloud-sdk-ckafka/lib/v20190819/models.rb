@@ -5082,6 +5082,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskStatus请求参数结构体
+      class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务唯一标记
+        # @type FlowId: Integer
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeTaskStatus返回参数结构体
+      class DescribeTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TaskStatusResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TaskStatusResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicAttributes请求参数结构体
       class DescribeTopicAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -9970,6 +10009,30 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 任务状态返回对象
+      class TaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态:
+        # 0 成功
+        # 1 失败
+        # 2 进行中
+        # @type Status: Integer
+        # @param Output: 输出信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: String
+
+        attr_accessor :Status, :Output
+        
+        def initialize(status=nil, output=nil)
+          @Status = status
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Output = params['Output']
         end
       end
 

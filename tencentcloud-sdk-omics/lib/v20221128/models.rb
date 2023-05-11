@@ -1118,19 +1118,29 @@ module TencentCloud
         # @type UseCallCache: Boolean
         # @param UseErrorOnHold: 是否使用错误挂起功能。
         # @type UseErrorOnHold: Boolean
+        # @param FinalWorkflowOutputsDir: 输出归档COS路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalWorkflowOutputsDir: String
+        # @param UseRelativeOutputPaths: 是否使用相对目录归档输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseRelativeOutputPaths: Boolean
 
-        attr_accessor :FailureMode, :UseCallCache, :UseErrorOnHold
+        attr_accessor :FailureMode, :UseCallCache, :UseErrorOnHold, :FinalWorkflowOutputsDir, :UseRelativeOutputPaths
         
-        def initialize(failuremode=nil, usecallcache=nil, useerroronhold=nil)
+        def initialize(failuremode=nil, usecallcache=nil, useerroronhold=nil, finalworkflowoutputsdir=nil, userelativeoutputpaths=nil)
           @FailureMode = failuremode
           @UseCallCache = usecallcache
           @UseErrorOnHold = useerroronhold
+          @FinalWorkflowOutputsDir = finalworkflowoutputsdir
+          @UseRelativeOutputPaths = userelativeoutputpaths
         end
 
         def deserialize(params)
           @FailureMode = params['FailureMode']
           @UseCallCache = params['UseCallCache']
           @UseErrorOnHold = params['UseErrorOnHold']
+          @FinalWorkflowOutputsDir = params['FinalWorkflowOutputsDir']
+          @UseRelativeOutputPaths = params['UseRelativeOutputPaths']
         end
       end
 

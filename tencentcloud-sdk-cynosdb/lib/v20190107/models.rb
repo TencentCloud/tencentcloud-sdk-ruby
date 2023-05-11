@@ -1820,6 +1820,33 @@ module TencentCloud
         end
       end
 
+      # 实例错误日志返回类型
+      class CynosdbErrorLogItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 日志时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Level: 日志等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param Content: 日志内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Timestamp, :Level, :Content
+        
+        def initialize(timestamp=nil, level=nil, content=nil)
+          @Timestamp = timestamp
+          @Level = level
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Level = params['Level']
+          @Content = params['Content']
+        end
+      end
+
       # 实例信息
       class CynosdbInstance < TencentCloud::Common::AbstractModel
         # @param Uin: 用户Uin
@@ -3623,6 +3650,87 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceErrorLogs请求参数结构体
+      class DescribeInstanceErrorLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Limit: 日志条数限制
+        # @type Limit: Integer
+        # @param Offset: 日志条数偏移量
+        # @type Offset: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param OrderBy: 排序字段，有Timestamp枚举值
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，有ASC,DESC枚举值
+        # @type OrderByType: String
+        # @param LogLevels: 日志等级，有error、warning、note三种，支持多个等级同时搜索
+        # @type LogLevels: Array
+        # @param KeyWords: 关键字，支持模糊搜索
+        # @type KeyWords: Array
+
+        attr_accessor :InstanceId, :Limit, :Offset, :StartTime, :EndTime, :OrderBy, :OrderByType, :LogLevels, :KeyWords
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, orderby=nil, orderbytype=nil, loglevels=nil, keywords=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @LogLevels = loglevels
+          @KeyWords = keywords
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @LogLevels = params['LogLevels']
+          @KeyWords = params['KeyWords']
+        end
+      end
+
+      # DescribeInstanceErrorLogs返回参数结构体
+      class DescribeInstanceErrorLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ErrorLogs: 错误日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorLogs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ErrorLogs, :RequestId
+        
+        def initialize(totalcount=nil, errorlogs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ErrorLogs = errorlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ErrorLogs'].nil?
+            @ErrorLogs = []
+            params['ErrorLogs'].each do |i|
+              cynosdberrorlogitem_tmp = CynosdbErrorLogItem.new
+              cynosdberrorlogitem_tmp.deserialize(i)
+              @ErrorLogs << cynosdberrorlogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSlowQueries请求参数结构体
       class DescribeInstanceSlowQueriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -4276,6 +4384,113 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 错误日志导出格式
+      class ErrorLogItemExport < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param Level: 日志等级，可选值note, warning，error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param Content: 日志内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Timestamp, :Level, :Content
+        
+        def initialize(timestamp=nil, level=nil, content=nil)
+          @Timestamp = timestamp
+          @Level = level
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Level = params['Level']
+          @Content = params['Content']
+        end
+      end
+
+      # ExportInstanceErrorLogs请求参数结构体
+      class ExportInstanceErrorLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 日志最早时间
+        # @type StartTime: String
+        # @param EndTime: 日志最晚时间
+        # @type EndTime: String
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param LogLevels: 日志等级
+        # @type LogLevels: Array
+        # @param KeyWords: 关键字
+        # @type KeyWords: Array
+        # @param FileType: 文件类型，可选值：csv, original
+        # @type FileType: String
+        # @param OrderBy: 可选值Timestamp
+        # @type OrderBy: String
+        # @param OrderByType: ASC或DESC
+        # @type OrderByType: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :LogLevels, :KeyWords, :FileType, :OrderBy, :OrderByType
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, loglevels=nil, keywords=nil, filetype=nil, orderby=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @LogLevels = loglevels
+          @KeyWords = keywords
+          @FileType = filetype
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @LogLevels = params['LogLevels']
+          @KeyWords = params['KeyWords']
+          @FileType = params['FileType']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # ExportInstanceErrorLogs返回参数结构体
+      class ExportInstanceErrorLogsResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorLogItems: 错误日志导出内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorLogItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorLogItems, :RequestId
+        
+        def initialize(errorlogitems=nil, requestid=nil)
+          @ErrorLogItems = errorlogitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorLogItems'].nil?
+            @ErrorLogItems = []
+            params['ErrorLogItems'].each do |i|
+              errorlogitemexport_tmp = ErrorLogItemExport.new
+              errorlogitemexport_tmp.deserialize(i)
+              @ErrorLogItems << errorlogitemexport_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

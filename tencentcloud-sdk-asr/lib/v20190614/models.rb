@@ -152,12 +152,14 @@ module TencentCloud
       # CreateAsyncRecognitionTask请求参数结构体
       class CreateAsyncRecognitionTaskRequest < TencentCloud::Common::AbstractModel
         # @param EngineType: 引擎模型类型。
-        # • 16k_zh：16k 中文普通话通用；
-        # • 16k_zh_video：16k 音视频领域；
-        # • 16k_en：16k 英语；
-        # • 16k_ca：16k 粤语；
-        # • 16k_id：16k 印度尼西亚语；
-        # • 16k_fil：16k 菲律宾语；
+        # • 16k_zh：中文普通话通用；
+        # • 16k_en：英语；
+        # • 16k_ca：粤语；
+        # • 16k_id：印度尼西亚语；
+        # • 16k_fil：菲律宾语；
+        # • 16k_th：泰语；
+        # • 16k_pt：葡萄牙语；
+        # • 16k_tr：土耳其语；
         # @type EngineType: String
         # @param Url: 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls, m3u8)
         # @type Url: String
@@ -286,23 +288,24 @@ module TencentCloud
       class CreateRecTaskRequest < TencentCloud::Common::AbstractModel
         # @param EngineModelType: 引擎模型类型。注意：非电话场景请务必使用16k的引擎。
         # 电话场景：
-        # • 8k_en：电话 8k 英语；
-        # • 8k_zh：电话 8k 中文普通话通用；
+        # • 8k_zh：中文电话通用；
+        # • 8k_en：英文电话通用；
+
         # 非电话场景：
-        # • 16k_zh：16k 中文普通话通用；
-        # • 16k_zh_video：16k 音视频领域；
-        # • 16k_en：16k 英语；
-        # • 16k_ca：16k 粤语；
-        # • 16k_ja：16k 日语；
-        # • 16k_vi：16k 越南语；
-        # • 16k_ms：16k 马来语；
-        # • 16k_id：16k 印度尼西亚语；
-        # • 16k_fil：16k 菲律宾语；
-        # • 16k_zh_edu 中文教育；
-        # • 16k_en_edu 英文教育；
-        # • 16k_zh_medical  医疗；
-        # • 16k_th 泰语；
-        # • 16k_zh-PY 中英粤;
+        # • 16k_zh：中文通用；
+        # • 16k_zh-PY：中英粤;
+        # • 16k_zh_medical：中文医疗；
+        # • 16k_en：英语；
+        # • 16k_ca：粤语；
+        # • 16k_ja：日语；
+        # • 16k_ko：韩语；
+        # • 16k_vi：越南语；
+        # • 16k_ms：马来语；
+        # • 16k_id：印度尼西亚语；
+        # • 16k_fil：菲律宾语；
+        # • 16k_th：泰语；
+        # • 16k_pt：葡萄牙语；
+        # • 16k_tr：土耳其语；
         # • 16k_zh_dialect：多方言，支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
         # @type EngineModelType: String
         # @param ChannelNum: 识别声道数。1：单声道（非电话场景，直接选择单声道即可，忽略音频声道数）；2：双声道（仅支持8k_zh电话场景，双声道应分别对应通话双方）。注意：双声道的电话音频已物理分离说话人，无需再开启说话人分离功能。
@@ -1093,7 +1096,7 @@ module TencentCloud
 
         # 非电话场景：
         # • 16k_zh：中文通用；
-        # • 16k_zh-PY 中英粤;
+        # • 16k_zh-PY：中英粤;
         # • 16k_zh_medical：中文医疗；
         # • 16k_en：英语；
         # • 16k_ca：粤语；
@@ -1104,6 +1107,8 @@ module TencentCloud
         # • 16k_id：印度尼西亚语；
         # • 16k_fil：菲律宾语；
         # • 16k_th：泰语；
+        # • 16k_pt：葡萄牙语；
+        # • 16k_tr：土耳其语；
         # • 16k_zh_dialect：多方言，支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
         # @type EngSerViceType: String
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
@@ -1138,10 +1143,13 @@ module TencentCloud
         # @type CustomizationId: String
         # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”、“蜜汁”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         # @type ReinforceHotword: Integer
+        # @param HotwordList: 临时热词：用于提升识别准确率，临时热词规则：“热词|权重”，热词不超过30个字符（最多10个汉字），权重1-10，最多传入128个热词。举例："腾讯云|10,语音识别|5,ASR|10"。
+        # “临时热词”和“热词id”的区别：热词id需要先在控制台或通过接口创建热词表，得到热词表id后才可以使用热词功能，本字段可以在每次请求时直接传入热词使用，但每次请求后云端不会保留相关的热词数据，需要客户自行维护相关数据
+        # @type HotwordList: String
 
-        attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword
+        attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList
         
-        def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil)
+        def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil)
           @EngSerViceType = engservicetype
           @SourceType = sourcetype
           @VoiceFormat = voiceformat
@@ -1159,6 +1167,7 @@ module TencentCloud
           @HotwordId = hotwordid
           @CustomizationId = customizationid
           @ReinforceHotword = reinforcehotword
+          @HotwordList = hotwordlist
         end
 
         def deserialize(params)
@@ -1179,6 +1188,7 @@ module TencentCloud
           @HotwordId = params['HotwordId']
           @CustomizationId = params['CustomizationId']
           @ReinforceHotword = params['ReinforceHotword']
+          @HotwordList = params['HotwordList']
         end
       end
 

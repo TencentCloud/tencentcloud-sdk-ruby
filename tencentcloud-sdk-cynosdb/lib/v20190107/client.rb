@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例错误日志列表
+
+        # @param request: Request instance for DescribeInstanceErrorLogs.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceErrorLogsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceErrorLogsResponse`
+        def DescribeInstanceErrorLogs(request)
+          body = send_request('DescribeInstanceErrorLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceErrorLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
 
         # @param request: Request instance for DescribeInstanceSlowQueries.
@@ -1071,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisassociateSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（ExportInstanceErrorLogs）用于导出实例错误日志。
+
+        # @param request: Request instance for ExportInstanceErrorLogs.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ExportInstanceErrorLogsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ExportInstanceErrorLogsResponse`
+        def ExportInstanceErrorLogs(request)
+          body = send_request('ExportInstanceErrorLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportInstanceErrorLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

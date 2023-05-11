@@ -4240,17 +4240,22 @@ module TencentCloud
         # @param MetaFields: 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__、__HOSTNAME__。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
+        # @param JsonType: 投递Json格式，0：字符串方式投递；1:以结构化方式投递
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonType: Integer
 
-        attr_accessor :EnableTag, :MetaFields
+        attr_accessor :EnableTag, :MetaFields, :JsonType
         
-        def initialize(enabletag=nil, metafields=nil)
+        def initialize(enabletag=nil, metafields=nil, jsontype=nil)
           @EnableTag = enabletag
           @MetaFields = metafields
+          @JsonType = jsontype
         end
 
         def deserialize(params)
           @EnableTag = params['EnableTag']
           @MetaFields = params['MetaFields']
+          @JsonType = params['JsonType']
         end
       end
 

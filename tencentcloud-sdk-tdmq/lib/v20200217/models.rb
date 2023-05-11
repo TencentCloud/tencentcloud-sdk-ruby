@@ -5683,6 +5683,8 @@ module TencentCloud
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
         # @param TopicName: 主题名模糊匹配。
         # @type TopicName: String
         # @param Offset: 起始下标，不填默认为0。
@@ -5695,8 +5697,6 @@ module TencentCloud
         # 2：持久非分区主题类型；
         # 3：持久分区主题类型；
         # @type TopicType: Integer
-        # @param ClusterId: Pulsar 集群的ID
-        # @type ClusterId: String
         # @param Filters: * TopicName
         # 按照主题名字查询，精确查询。
         # 类型：String
@@ -5707,26 +5707,26 @@ module TencentCloud
         # 2：系统创建
         # @type TopicCreator: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId, :Filters, :TopicCreator
+        attr_accessor :EnvironmentId, :ClusterId, :TopicName, :Offset, :Limit, :TopicType, :Filters, :TopicCreator
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil, filters=nil, topiccreator=nil)
+        def initialize(environmentid=nil, clusterid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, filters=nil, topiccreator=nil)
           @EnvironmentId = environmentid
+          @ClusterId = clusterid
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @TopicType = topictype
-          @ClusterId = clusterid
           @Filters = filters
           @TopicCreator = topiccreator
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
+          @ClusterId = params['ClusterId']
           @TopicName = params['TopicName']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TopicType = params['TopicType']
-          @ClusterId = params['ClusterId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|

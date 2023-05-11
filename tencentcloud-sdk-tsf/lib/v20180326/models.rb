@@ -5004,6 +5004,46 @@ module TencentCloud
         end
       end
 
+      # DeleteGatewayApi请求参数结构体
+      class DeleteGatewayApiRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param ApiList: Api ID 数组
+        # @type ApiList: Array
+
+        attr_accessor :GroupId, :ApiList
+        
+        def initialize(groupid=nil, apilist=nil)
+          @GroupId = groupid
+          @ApiList = apilist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @ApiList = params['ApiList']
+        end
+      end
+
+      # DeleteGatewayApi返回参数结构体
+      class DeleteGatewayApiResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteGroup请求参数结构体
       class DeleteGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
