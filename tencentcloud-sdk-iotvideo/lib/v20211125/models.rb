@@ -4316,16 +4316,20 @@ module TencentCloud
         # @type EnableState: Integer
         # @param ExpireTime: 设备过期时间
         # @type ExpireTime: Integer
+        # @param LogLevel: 设备的sdk日志等级，0：关闭，1：错误，2：告警，3：信息，4：调试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogLevel: Integer
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :DevicePsk, :EnableState, :ExpireTime
+        attr_accessor :DeviceName, :Online, :LoginTime, :DevicePsk, :EnableState, :ExpireTime, :LogLevel
         
-        def initialize(devicename=nil, online=nil, logintime=nil, devicepsk=nil, enablestate=nil, expiretime=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, devicepsk=nil, enablestate=nil, expiretime=nil, loglevel=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
           @DevicePsk = devicepsk
           @EnableState = enablestate
           @ExpireTime = expiretime
+          @LogLevel = loglevel
         end
 
         def deserialize(params)
@@ -4335,6 +4339,7 @@ module TencentCloud
           @DevicePsk = params['DevicePsk']
           @EnableState = params['EnableState']
           @ExpireTime = params['ExpireTime']
+          @LogLevel = params['LogLevel']
         end
       end
 

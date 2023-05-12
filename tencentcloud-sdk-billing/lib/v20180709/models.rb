@@ -244,7 +244,7 @@ module TencentCloud
         # @type TimeUnitName: String
         # @param Cost: 组件原价
         # @type Cost: String
-        # @param Discount: 折扣率
+        # @param Discount: 折扣率，本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
         # @type Discount: String
         # @param ReduceType: 优惠类型
         # @type ReduceType: String
@@ -262,7 +262,7 @@ module TencentCloud
         # @param ComponentCode: 组件名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
-        # @param ContractPrice: 合同价
+        # @param ContractPrice: 组件单价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContractPrice: String
         # @param InstanceType: 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
@@ -271,19 +271,19 @@ module TencentCloud
         # @param RiTimeSpan: 预留实例抵扣的使用时长，时长单位与被抵扣的时长单位保持一致
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiTimeSpan: String
-        # @param OriginalCostWithRI: 按组件原价的口径换算的预留实例抵扣金额
+        # @param OriginalCostWithRI: 预留实例抵扣组件原价，本产品或服务使用预留实例抵扣的组件原价金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCostWithRI: String
-        # @param SPDeductionRate: 节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
+        # @param SPDeductionRate: 节省计划抵扣率，节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeductionRate: String
-        # @param SPDeduction: 节省计划抵扣的SP包面值
+        # @param SPDeduction: 节省计划抵扣金额，节省计划抵扣的SP包面值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeduction: String
-        # @param OriginalCostWithSP: 按组件原价的口径换算的节省计划抵扣金额
+        # @param OriginalCostWithSP: 节省计划抵扣组件原价，节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCostWithSP: String
-        # @param BlendedDiscount: 综合了官网折扣、预留实例抵扣、节省计划抵扣的混合折扣率。若没有预留实例抵扣、节省计划抵扣,混合折扣率等于折扣率
+        # @param BlendedDiscount: 混合折扣率，综合各类折扣抵扣信息后的最终折扣率，混合折扣率 = 优惠后总价 / 组件原价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlendedDiscount: String
 
@@ -1537,17 +1537,17 @@ module TencentCloud
 
       # DescribeBillDetail请求参数结构体
       class DescribeBillDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
         # @type Offset: Integer
         # @param Limit: 数量，最大值为100
         # @type Limit: Integer
         # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
         # @type PeriodType: String
-        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。
+        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         # @type Month: String
-        # @param BeginTime: 周期开始时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。(不支持跨月查询)
+        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。(不支持跨月查询)
         # @type BeginTime: String
-        # @param EndTime: 周期结束时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。（不支持跨月查询）
+        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。（不支持跨月查询）
         # @type EndTime: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
@@ -1591,10 +1591,12 @@ module TencentCloud
         # @param BusinessCode: 产品名称代码
         # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         # @type BusinessCode: String
+        # @param Context: 上一次请求返回的上下文信息，翻页查询Month>=2023-05的月份的数据可加快查询速度，数据量10万级别以上的用户建议使用，查询速度可提升2~10倍
+        # @type Context: String
 
-        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode
+        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
         
-        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil)
+        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
           @Limit = limit
           @PeriodType = periodtype
@@ -1608,6 +1610,7 @@ module TencentCloud
           @ActionType = actiontype
           @ProjectId = projectid
           @BusinessCode = businesscode
+          @Context = context
         end
 
         def deserialize(params)
@@ -1624,6 +1627,7 @@ module TencentCloud
           @ActionType = params['ActionType']
           @ProjectId = params['ProjectId']
           @BusinessCode = params['BusinessCode']
+          @Context = params['Context']
         end
       end
 
@@ -1631,17 +1635,21 @@ module TencentCloud
       class DescribeBillDetailResponse < TencentCloud::Common::AbstractModel
         # @param DetailSet: 详情列表
         # @type DetailSet: Array
-        # @param Total: 总记录数
+        # @param Total: 总记录数，24小时缓存一次，可能比实际总记录数少
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
+        # @param Context: 本次请求的上下文信息，可用于下一次请求的请求参数中，加快查询速度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DetailSet, :Total, :RequestId
+        attr_accessor :DetailSet, :Total, :Context, :RequestId
         
-        def initialize(detailset=nil, total=nil, requestid=nil)
+        def initialize(detailset=nil, total=nil, context=nil, requestid=nil)
           @DetailSet = detailset
           @Total = total
+          @Context = context
           @RequestId = requestid
         end
 
@@ -1655,6 +1663,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @Context = params['Context']
           @RequestId = params['RequestId']
         end
       end

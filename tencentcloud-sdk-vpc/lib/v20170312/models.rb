@@ -18733,15 +18733,24 @@ module TencentCloud
         # @type SecurityGroupInstanceLimit: Integer
         # @param InstanceSecurityGroupLimit: 实例关联安全组数
         # @type InstanceSecurityGroupLimit: Integer
+        # @param SecurityGroupExtendedPolicyLimit: 安全组展开后的规则数限制
+        # @type SecurityGroupExtendedPolicyLimit: Integer
+        # @param SecurityGroupReferedCvmAndEniLimit: 被引用的安全组关联CVM、ENI的实例配额
+        # @type SecurityGroupReferedCvmAndEniLimit: Integer
+        # @param SecurityGroupReferedSvcLimit: 被引用的安全组关联数据库、LB等服务实例配额
+        # @type SecurityGroupReferedSvcLimit: Integer
 
-        attr_accessor :SecurityGroupLimit, :SecurityGroupPolicyLimit, :ReferedSecurityGroupLimit, :SecurityGroupInstanceLimit, :InstanceSecurityGroupLimit
+        attr_accessor :SecurityGroupLimit, :SecurityGroupPolicyLimit, :ReferedSecurityGroupLimit, :SecurityGroupInstanceLimit, :InstanceSecurityGroupLimit, :SecurityGroupExtendedPolicyLimit, :SecurityGroupReferedCvmAndEniLimit, :SecurityGroupReferedSvcLimit
         
-        def initialize(securitygrouplimit=nil, securitygrouppolicylimit=nil, referedsecuritygrouplimit=nil, securitygroupinstancelimit=nil, instancesecuritygrouplimit=nil)
+        def initialize(securitygrouplimit=nil, securitygrouppolicylimit=nil, referedsecuritygrouplimit=nil, securitygroupinstancelimit=nil, instancesecuritygrouplimit=nil, securitygroupextendedpolicylimit=nil, securitygroupreferedcvmandenilimit=nil, securitygroupreferedsvclimit=nil)
           @SecurityGroupLimit = securitygrouplimit
           @SecurityGroupPolicyLimit = securitygrouppolicylimit
           @ReferedSecurityGroupLimit = referedsecuritygrouplimit
           @SecurityGroupInstanceLimit = securitygroupinstancelimit
           @InstanceSecurityGroupLimit = instancesecuritygrouplimit
+          @SecurityGroupExtendedPolicyLimit = securitygroupextendedpolicylimit
+          @SecurityGroupReferedCvmAndEniLimit = securitygroupreferedcvmandenilimit
+          @SecurityGroupReferedSvcLimit = securitygroupreferedsvclimit
         end
 
         def deserialize(params)
@@ -18750,6 +18759,9 @@ module TencentCloud
           @ReferedSecurityGroupLimit = params['ReferedSecurityGroupLimit']
           @SecurityGroupInstanceLimit = params['SecurityGroupInstanceLimit']
           @InstanceSecurityGroupLimit = params['InstanceSecurityGroupLimit']
+          @SecurityGroupExtendedPolicyLimit = params['SecurityGroupExtendedPolicyLimit']
+          @SecurityGroupReferedCvmAndEniLimit = params['SecurityGroupReferedCvmAndEniLimit']
+          @SecurityGroupReferedSvcLimit = params['SecurityGroupReferedSvcLimit']
         end
       end
 
@@ -18764,7 +18776,7 @@ module TencentCloud
         # @type Port: String
         # @param ServiceTemplate: 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
         # @type ServiceTemplate: :class:`Tencentcloud::Vpc.v20170312.models.ServiceTemplateSpecification`
-        # @param CidrBlock: 网段或IP(互斥)。
+        # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。
         # @type CidrBlock: String
         # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
         # @type Ipv6CidrBlock: String
@@ -18819,10 +18831,13 @@ module TencentCloud
       # 安全组规则集合
       class SecurityGroupPolicySet < TencentCloud::Common::AbstractModel
         # @param Version: 安全组规则当前版本。用户每次更新安全规则版本会自动加1，防止更新的路由规则已过期，不填不考虑冲突。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Egress: 出站规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Egress: Array
         # @param Ingress: 入站规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ingress: Array
 
         attr_accessor :Version, :Egress, :Ingress

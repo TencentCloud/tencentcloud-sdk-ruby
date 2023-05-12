@@ -22839,10 +22839,13 @@ module TencentCloud
         # @type AppId: Integer
         # @param Uin: 操作人uin
         # @type Uin: String
+        # @param PolicyId: 策略id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Action, :Operation, :NetworkPolicyName, :OperationTime, :AppId, :Uin
+        attr_accessor :ClusterId, :ClusterName, :Region, :Action, :Operation, :NetworkPolicyName, :OperationTime, :AppId, :Uin, :PolicyId
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, action=nil, operation=nil, networkpolicyname=nil, operationtime=nil, appid=nil, uin=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, action=nil, operation=nil, networkpolicyname=nil, operationtime=nil, appid=nil, uin=nil, policyid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -22852,6 +22855,7 @@ module TencentCloud
           @OperationTime = operationtime
           @AppId = appid
           @Uin = uin
+          @PolicyId = policyid
         end
 
         def deserialize(params)
@@ -22864,6 +22868,7 @@ module TencentCloud
           @OperationTime = params['OperationTime']
           @AppId = params['AppId']
           @Uin = params['Uin']
+          @PolicyId = params['PolicyId']
         end
       end
 

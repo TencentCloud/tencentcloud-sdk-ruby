@@ -10988,15 +10988,18 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序字段 PublishDate  LastScanTime HostCount
         # @type By: String
+        # @param HotspotAttack: 是否热点漏洞
+        # @type HotspotAttack: Boolean
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :HotspotAttack
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, hotspotattack=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @Order = order
           @By = by
+          @HotspotAttack = hotspotattack
         end
 
         def deserialize(params)
@@ -11012,6 +11015,7 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @HotspotAttack = params['HotspotAttack']
         end
       end
 
@@ -17031,10 +17035,19 @@ module TencentCloud
         # @param DefenseAttackCount: 已防御的攻击次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseAttackCount: Integer
+        # @param Method: 检测规则 0 - 版本比对, 1 - POC验证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: Integer
+        # @param AttackLevel: 攻击热度级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackLevel: Integer
+        # @param DefenseState: 是否有漏洞主机开启漏洞防御
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenseState: Boolean
 
-        attr_accessor :VulId, :Level, :VulName, :PublishDate, :Category, :Status, :LastScanTime, :Progress, :CveId, :CvssScore, :Labels, :HostCount, :IsSupportDefense, :DefenseAttackCount
+        attr_accessor :VulId, :Level, :VulName, :PublishDate, :Category, :Status, :LastScanTime, :Progress, :CveId, :CvssScore, :Labels, :HostCount, :IsSupportDefense, :DefenseAttackCount, :Method, :AttackLevel, :DefenseState
         
-        def initialize(vulid=nil, level=nil, vulname=nil, publishdate=nil, category=nil, status=nil, lastscantime=nil, progress=nil, cveid=nil, cvssscore=nil, labels=nil, hostcount=nil, issupportdefense=nil, defenseattackcount=nil)
+        def initialize(vulid=nil, level=nil, vulname=nil, publishdate=nil, category=nil, status=nil, lastscantime=nil, progress=nil, cveid=nil, cvssscore=nil, labels=nil, hostcount=nil, issupportdefense=nil, defenseattackcount=nil, method=nil, attacklevel=nil, defensestate=nil)
           @VulId = vulid
           @Level = level
           @VulName = vulname
@@ -17049,6 +17062,9 @@ module TencentCloud
           @HostCount = hostcount
           @IsSupportDefense = issupportdefense
           @DefenseAttackCount = defenseattackcount
+          @Method = method
+          @AttackLevel = attacklevel
+          @DefenseState = defensestate
         end
 
         def deserialize(params)
@@ -17066,6 +17082,9 @@ module TencentCloud
           @HostCount = params['HostCount']
           @IsSupportDefense = params['IsSupportDefense']
           @DefenseAttackCount = params['DefenseAttackCount']
+          @Method = params['Method']
+          @AttackLevel = params['AttackLevel']
+          @DefenseState = params['DefenseState']
         end
       end
 

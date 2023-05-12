@@ -4635,10 +4635,13 @@ module TencentCloud
         # @param ProjectStatus: 项目状态(1 创建中，2 运行中，3 异常，4 重启中，5 停止中，6 已停止， 7 销毁中，8 已销毁)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectStatus: Integer
+        # @param AccessPoint: 日志接入点，用户忽略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPoint: String
 
-        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus
+        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus, :AccessPoint
         
-        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil, projectstatus=nil)
+        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil, projectstatus=nil, accesspoint=nil)
           @Name = name
           @Creator = creator
           @InstanceID = instanceid
@@ -4655,6 +4658,7 @@ module TencentCloud
           @Desc = desc
           @IsStar = isstar
           @ProjectStatus = projectstatus
+          @AccessPoint = accesspoint
         end
 
         def deserialize(params)
@@ -4674,6 +4678,7 @@ module TencentCloud
           @Desc = params['Desc']
           @IsStar = params['IsStar']
           @ProjectStatus = params['ProjectStatus']
+          @AccessPoint = params['AccessPoint']
         end
       end
 

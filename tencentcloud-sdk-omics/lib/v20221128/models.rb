@@ -365,6 +365,146 @@ module TencentCloud
         end
       end
 
+      # DescribeTables请求参数结构体
+      class DescribeTablesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - Name：表格名称
+        # - TableId：表格ID
+        # @type Filters: Array
+
+        attr_accessor :ProjectId, :Limit, :Offset, :Filters
+        
+        def initialize(projectid=nil, limit=nil, offset=nil, filters=nil)
+          @ProjectId = projectid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTables返回参数结构体
+      class DescribeTablesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 结果总数。
+        # @type TotalCount: Integer
+        # @param Tables: 表格列表。
+        # @type Tables: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tables, :RequestId
+        
+        def initialize(totalcount=nil, tables=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tables = tables
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              table_tmp = Table.new
+              table_tmp.deserialize(i)
+              @Tables << table_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTablesRows请求参数结构体
+      class DescribeTablesRowsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: String
+        # @param TableId: 表格ID。
+        # @type TableId: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - Tr：表格数据，支持模糊查询
+        # - TableRowUuid：表格行UUID
+        # @type Filters: Array
+
+        attr_accessor :ProjectId, :TableId, :Limit, :Offset, :Filters
+        
+        def initialize(projectid=nil, tableid=nil, limit=nil, offset=nil, filters=nil)
+          @ProjectId = projectid
+          @TableId = tableid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TableId = params['TableId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTablesRows返回参数结构体
+      class DescribeTablesRowsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 结果总数。
+        # @type TotalCount: Integer
+        # @param Rows: 表格行列表。
+        # @type Rows: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Rows, :RequestId
+        
+        def initialize(totalcount=nil, rows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Rows = rows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              tablerow_tmp = TableRow.new
+              tablerow_tmp.deserialize(i)
+              @Rows << tablerow_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 组学平台环境详情。
       class Environment < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境ID。
@@ -731,6 +871,42 @@ module TencentCloud
           @CFSStorageType = params['CFSStorageType']
           @CVMId = params['CVMId']
           @EKSId = params['EKSId']
+        end
+      end
+
+      # RetryRuns请求参数结构体
+      class RetryRunsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 关联项目ID。
+        # @type ProjectId: String
+        # @param RunUuids: 任务UUID。
+        # @type RunUuids: Array
+
+        attr_accessor :ProjectId, :RunUuids
+        
+        def initialize(projectid=nil, runuuids=nil)
+          @ProjectId = projectid
+          @RunUuids = runuuids
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @RunUuids = params['RunUuids']
+        end
+      end
+
+      # RetryRuns返回参数结构体
+      class RetryRunsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1191,6 +1367,104 @@ module TencentCloud
           @StorageType = params['StorageType']
           @Zone = params['Zone']
           @Capacity = params['Capacity']
+        end
+      end
+
+      # 表格。
+      class Table < TencentCloud::Common::AbstractModel
+        # @param TableId: 表格ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param ProjectId: 关联项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param Name: 表格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 表格描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Columns: 表格列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Creator: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+
+        attr_accessor :TableId, :ProjectId, :Name, :Description, :Columns, :CreateTime, :Creator
+        
+        def initialize(tableid=nil, projectid=nil, name=nil, description=nil, columns=nil, createtime=nil, creator=nil)
+          @TableId = tableid
+          @ProjectId = projectid
+          @Name = name
+          @Description = description
+          @Columns = columns
+          @CreateTime = createtime
+          @Creator = creator
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @ProjectId = params['ProjectId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tablecolumn_tmp = TableColumn.new
+              tablecolumn_tmp.deserialize(i)
+              @Columns << tablecolumn_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @Creator = params['Creator']
+        end
+      end
+
+      # 表格列。
+      class TableColumn < TencentCloud::Common::AbstractModel
+        # @param Header: 列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Header: String
+        # @param DataType: 列数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataType: String
+
+        attr_accessor :Header, :DataType
+        
+        def initialize(header=nil, datatype=nil)
+          @Header = header
+          @DataType = datatype
+        end
+
+        def deserialize(params)
+          @Header = params['Header']
+          @DataType = params['DataType']
+        end
+      end
+
+      # 表格行。
+      class TableRow < TencentCloud::Common::AbstractModel
+        # @param TableRowUuid: 表格行UUID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableRowUuid: String
+        # @param Content: 表格行内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TableRowUuid, :Content
+        
+        def initialize(tablerowuuid=nil, content=nil)
+          @TableRowUuid = tablerowuuid
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TableRowUuid = params['TableRowUuid']
+          @Content = params['Content']
         end
       end
 

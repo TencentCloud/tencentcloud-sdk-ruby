@@ -149,6 +149,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询表格。
+
+        # @param request: Request instance for DescribeTables.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeTablesRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeTablesResponse`
+        def DescribeTables(request)
+          body = send_request('DescribeTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询表格行数据。
+
+        # @param request: Request instance for DescribeTablesRows.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeTablesRowsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeTablesRowsResponse`
+        def DescribeTablesRows(request)
+          body = send_request('DescribeTablesRows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTablesRowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询作业详情。
 
         # @param request: Request instance for GetRunCalls.
@@ -207,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImportTableFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重试任务。
+
+        # @param request: Request instance for RetryRuns.
+        # @type request: :class:`Tencentcloud::omics::V20221128::RetryRunsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::RetryRunsResponse`
+        def RetryRuns(request)
+          body = send_request('RetryRuns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RetryRunsResponse.new
             model.deserialize(response['Response'])
             model
           else

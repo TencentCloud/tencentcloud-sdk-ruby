@@ -534,10 +534,16 @@ module TencentCloud
         # @type CompanyAddress: String
         # @param CompanyPhone: 公司电话
         # @type CompanyPhone: String
+        # @param IdType: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdType: String
+        # @param IdNumber: ID号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdNumber: String
 
-        attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone
+        attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone, :IdType, :IdNumber
         
-        def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil)
+        def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil, idtype=nil, idnumber=nil)
           @CompanyName = companyname
           @CompanyId = companyid
           @CompanyCountry = companycountry
@@ -545,6 +551,8 @@ module TencentCloud
           @CompanyCity = companycity
           @CompanyAddress = companyaddress
           @CompanyPhone = companyphone
+          @IdType = idtype
+          @IdNumber = idnumber
         end
 
         def deserialize(params)
@@ -555,6 +563,8 @@ module TencentCloud
           @CompanyCity = params['CompanyCity']
           @CompanyAddress = params['CompanyAddress']
           @CompanyPhone = params['CompanyPhone']
+          @IdType = params['IdType']
+          @IdNumber = params['IdNumber']
         end
       end
 
@@ -1177,12 +1187,21 @@ module TencentCloud
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param CAEncryptAlgorithms: CA证书的所有加密方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CAEncryptAlgorithms: Array
+        # @param CACommonNames: CA证书的所有通用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CACommonNames: Array
+        # @param CAEndTimes: CA证书所有的到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CAEndTimes: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :CAEncryptAlgorithms, :CACommonNames, :CAEndTimes, :RequestId
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, caencryptalgorithms=nil, cacommonnames=nil, caendtimes=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1215,6 +1234,9 @@ module TencentCloud
           @SubmittedData = submitteddata
           @Deployable = deployable
           @Tags = tags
+          @CAEncryptAlgorithms = caencryptalgorithms
+          @CACommonNames = cacommonnames
+          @CAEndTimes = caendtimes
           @RequestId = requestid
         end
 
@@ -1267,6 +1289,9 @@ module TencentCloud
               @Tags << tags_tmp
             end
           end
+          @CAEncryptAlgorithms = params['CAEncryptAlgorithms']
+          @CACommonNames = params['CACommonNames']
+          @CAEndTimes = params['CAEndTimes']
           @RequestId = params['RequestId']
         end
       end

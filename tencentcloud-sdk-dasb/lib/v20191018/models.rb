@@ -585,6 +585,8 @@ module TencentCloud
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
+        # @param ACTemplateIdSet: 关联高危DB模版ID
+        # @type ACTemplateIdSet: Array
         # @param AllowDiskFileUp: 是否开启rdp磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean
         # @param AllowDiskFileDown: 是否开启rdp磁盘映射文件下载
@@ -604,9 +606,9 @@ module TencentCloud
         # @param DepartmentId: 访问权限所属部门的ID
         # @type DepartmentId: String
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
         
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -624,6 +626,7 @@ module TencentCloud
           @DeviceGroupIdSet = devicegroupidset
           @AccountSet = accountset
           @CmdTemplateIdSet = cmdtemplateidset
+          @ACTemplateIdSet = actemplateidset
           @AllowDiskFileUp = allowdiskfileup
           @AllowDiskFileDown = allowdiskfiledown
           @AllowShellFileUp = allowshellfileup
@@ -652,6 +655,7 @@ module TencentCloud
           @DeviceGroupIdSet = params['DeviceGroupIdSet']
           @AccountSet = params['AccountSet']
           @CmdTemplateIdSet = params['CmdTemplateIdSet']
+          @ACTemplateIdSet = params['ACTemplateIdSet']
           @AllowDiskFileUp = params['AllowDiskFileUp']
           @AllowDiskFileDown = params['AllowDiskFileDown']
           @AllowShellFileUp = params['AllowShellFileUp']
@@ -2608,6 +2612,8 @@ module TencentCloud
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
+        # @param ACTemplateIdSet: 关联高危DB模版ID
+        # @type ACTemplateIdSet: Array
         # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean
         # @param AllowDiskFileDown: 是否开启 RDP 磁盘映射文件下载
@@ -2627,9 +2633,9 @@ module TencentCloud
         # @param DepartmentId: 权限所属部门的ID，如：1.2.3
         # @type DepartmentId: String
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
         
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -2648,6 +2654,7 @@ module TencentCloud
           @DeviceGroupIdSet = devicegroupidset
           @AccountSet = accountset
           @CmdTemplateIdSet = cmdtemplateidset
+          @ACTemplateIdSet = actemplateidset
           @AllowDiskFileUp = allowdiskfileup
           @AllowDiskFileDown = allowdiskfiledown
           @AllowShellFileUp = allowshellfileup
@@ -2677,6 +2684,7 @@ module TencentCloud
           @DeviceGroupIdSet = params['DeviceGroupIdSet']
           @AccountSet = params['AccountSet']
           @CmdTemplateIdSet = params['CmdTemplateIdSet']
+          @ACTemplateIdSet = params['ACTemplateIdSet']
           @AllowDiskFileUp = params['AllowDiskFileUp']
           @AllowDiskFileDown = params['AllowDiskFileDown']
           @AllowShellFileUp = params['AllowShellFileUp']

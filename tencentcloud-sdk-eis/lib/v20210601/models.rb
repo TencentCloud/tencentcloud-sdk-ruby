@@ -190,12 +190,25 @@ module TencentCloud
 
       # ListDeployableRuntimesMC请求参数结构体
       class ListDeployableRuntimesMCRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 应用id
+        # @type ProjectId: Integer
+        # @param InstanceId: 实例id
+        # @type InstanceId: Integer
+        # @param PlanType: 版本类型 0-pro 1-lite
+        # @type PlanType: Integer
 
+        attr_accessor :ProjectId, :InstanceId, :PlanType
         
-        def initialize()
+        def initialize(projectid=nil, instanceid=nil, plantype=nil)
+          @ProjectId = projectid
+          @InstanceId = instanceid
+          @PlanType = plantype
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @InstanceId = params['InstanceId']
+          @PlanType = params['PlanType']
         end
       end
 

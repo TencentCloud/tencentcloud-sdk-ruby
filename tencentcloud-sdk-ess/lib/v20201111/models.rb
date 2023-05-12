@@ -775,6 +775,53 @@ module TencentCloud
         end
       end
 
+      # CreateChannelSubOrganizationModifyQrCode请求参数结构体
+      class CreateChannelSubOrganizationModifyQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ApplicationId: 应用编号
+        # @type ApplicationId: String
+
+        attr_accessor :Operator, :ApplicationId
+        
+        def initialize(operator=nil, applicationid=nil)
+          @Operator = operator
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # CreateChannelSubOrganizationModifyQrCode返回参数结构体
+      class CreateChannelSubOrganizationModifyQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrCodeUrl: 二维码下载链接
+        # @type QrCodeUrl: String
+        # @param ExpiredTime: 二维码失效时间 unix 时间戳 精确到秒
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrCodeUrl, :ExpiredTime, :RequestId
+        
+        def initialize(qrcodeurl=nil, expiredtime=nil, requestid=nil)
+          @QrCodeUrl = qrcodeurl
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrCodeUrl = params['QrCodeUrl']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型 取值范围doc,docx,html,xls,xlsx之一

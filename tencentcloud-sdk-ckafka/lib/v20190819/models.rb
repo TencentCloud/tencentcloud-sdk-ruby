@@ -1235,6 +1235,26 @@ module TencentCloud
         end
       end
 
+      # 消费者组消费速度排行
+      class ConsumerGroupSpeed < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroupName: 消费者组名称
+        # @type ConsumerGroupName: String
+        # @param Speed: 消费速度 Count/Minute
+        # @type Speed: Integer
+
+        attr_accessor :ConsumerGroupName, :Speed
+        
+        def initialize(consumergroupname=nil, speed=nil)
+          @ConsumerGroupName = consumergroupname
+          @Speed = speed
+        end
+
+        def deserialize(params)
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @Speed = params['Speed']
+        end
+      end
+
       # 消费组主题对象
       class ConsumerGroupTopic < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题ID
@@ -5213,6 +5233,57 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TopicDetailResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicFlowRanking请求参数结构体
+      class DescribeTopicFlowRankingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RankingType: 排行类别(PRO-Topic生产流量/CON-Topic消费流量)
+        # @type RankingType: String
+        # @param BeginDate: 排行起始日期
+        # @type BeginDate: String
+        # @param EndDate: 排行结束日期
+        # @type EndDate: String
+
+        attr_accessor :InstanceId, :RankingType, :BeginDate, :EndDate
+        
+        def initialize(instanceid=nil, rankingtype=nil, begindate=nil, enddate=nil)
+          @InstanceId = instanceid
+          @RankingType = rankingtype
+          @BeginDate = begindate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RankingType = params['RankingType']
+          @BeginDate = params['BeginDate']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # DescribeTopicFlowRanking返回参数结构体
+      class DescribeTopicFlowRankingResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 流量排行
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicFlowRankingResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TopicFlowRankingResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -10297,6 +10368,88 @@ module TencentCloud
         end
       end
 
+      # topic 流量排行
+      class TopicFlowRanking < TencentCloud::Common::AbstractModel
+        # @param TopicId: 主题Id
+        # @type TopicId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param PartitionNum: 分区数
+        # @type PartitionNum: Integer
+        # @param ReplicaNum: 副本数
+        # @type ReplicaNum: Integer
+        # @param TopicTraffic: Topic 流量
+        # @type TopicTraffic: String
+        # @param MessageHeap: Topic 消息堆积
+        # @type MessageHeap: Integer
+
+        attr_accessor :TopicId, :TopicName, :PartitionNum, :ReplicaNum, :TopicTraffic, :MessageHeap
+        
+        def initialize(topicid=nil, topicname=nil, partitionnum=nil, replicanum=nil, topictraffic=nil, messageheap=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+          @PartitionNum = partitionnum
+          @ReplicaNum = replicanum
+          @TopicTraffic = topictraffic
+          @MessageHeap = messageheap
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @PartitionNum = params['PartitionNum']
+          @ReplicaNum = params['ReplicaNum']
+          @TopicTraffic = params['TopicTraffic']
+          @MessageHeap = params['MessageHeap']
+        end
+      end
+
+      # topic 生产消息数据，消费者数据
+      class TopicFlowRankingResult < TencentCloud::Common::AbstractModel
+        # @param TopicFlow: Topic 流量数组
+        # @type TopicFlow: Array
+        # @param ConsumeSpeed: 消费者组消费速度排行速度
+        # @type ConsumeSpeed: Array
+        # @param TopicMessageHeap: Topic 消息堆积/占用磁盘排行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicMessageHeap: Array
+
+        attr_accessor :TopicFlow, :ConsumeSpeed, :TopicMessageHeap
+        
+        def initialize(topicflow=nil, consumespeed=nil, topicmessageheap=nil)
+          @TopicFlow = topicflow
+          @ConsumeSpeed = consumespeed
+          @TopicMessageHeap = topicmessageheap
+        end
+
+        def deserialize(params)
+          unless params['TopicFlow'].nil?
+            @TopicFlow = []
+            params['TopicFlow'].each do |i|
+              topicflowranking_tmp = TopicFlowRanking.new
+              topicflowranking_tmp.deserialize(i)
+              @TopicFlow << topicflowranking_tmp
+            end
+          end
+          unless params['ConsumeSpeed'].nil?
+            @ConsumeSpeed = []
+            params['ConsumeSpeed'].each do |i|
+              consumergroupspeed_tmp = ConsumerGroupSpeed.new
+              consumergroupspeed_tmp.deserialize(i)
+              @ConsumeSpeed << consumergroupspeed_tmp
+            end
+          end
+          unless params['TopicMessageHeap'].nil?
+            @TopicMessageHeap = []
+            params['TopicMessageHeap'].each do |i|
+              topicmessageheapranking_tmp = TopicMessageHeapRanking.new
+              topicmessageheapranking_tmp.deserialize(i)
+              @TopicMessageHeap << topicmessageheapranking_tmp
+            end
+          end
+        end
+      end
+
       # topic副本及详细信息
       class TopicInSyncReplicaInfo < TencentCloud::Common::AbstractModel
         # @param Partition: 分区名称
@@ -10369,6 +10522,48 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # topic消息堆积、占用磁盘排行
+      class TopicMessageHeapRanking < TencentCloud::Common::AbstractModel
+        # @param TopicId: 主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param PartitionNum: 分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionNum: Integer
+        # @param ReplicaNum: 副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaNum: Integer
+        # @param TopicTraffic: Topic 流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicTraffic: String
+        # @param MessageHeap: topic消息堆积/占用磁盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageHeap: Integer
+
+        attr_accessor :TopicId, :TopicName, :PartitionNum, :ReplicaNum, :TopicTraffic, :MessageHeap
+        
+        def initialize(topicid=nil, topicname=nil, partitionnum=nil, replicanum=nil, topictraffic=nil, messageheap=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+          @PartitionNum = partitionnum
+          @ReplicaNum = replicanum
+          @TopicTraffic = topictraffic
+          @MessageHeap = messageheap
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @PartitionNum = params['PartitionNum']
+          @ReplicaNum = params['ReplicaNum']
+          @TopicTraffic = params['TopicTraffic']
+          @MessageHeap = params['MessageHeap']
         end
       end
 

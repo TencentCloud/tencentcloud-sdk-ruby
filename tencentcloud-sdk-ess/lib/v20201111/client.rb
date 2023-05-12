@@ -129,6 +129,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成子客编辑企业信息二维码
+
+        # @param request: Request instance for CreateChannelSubOrganizationModifyQrCode.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateChannelSubOrganizationModifyQrCodeRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateChannelSubOrganizationModifyQrCodeResponse`
+        def CreateChannelSubOrganizationModifyQrCode(request)
+          body = send_request('CreateChannelSubOrganizationModifyQrCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChannelSubOrganizationModifyQrCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 上传了word、excel文件后，通过该接口发起文件转换任务，将word、excel文件转换为pdf文件。
 
         # @param request: Request instance for CreateConvertTaskApi.

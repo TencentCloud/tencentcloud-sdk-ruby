@@ -1405,6 +1405,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取prom实例中集群详细的关联状态
+
+        # @param request: Request instance for DescribeClusterAgentCreatingProgress.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeClusterAgentCreatingProgressRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeClusterAgentCreatingProgressResponse`
+        def DescribeClusterAgentCreatingProgress(request)
+          body = send_request('DescribeClusterAgentCreatingProgress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterAgentCreatingProgressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取条件模板列表
 
         # @param request: Request instance for DescribeConditionsTemplateList.

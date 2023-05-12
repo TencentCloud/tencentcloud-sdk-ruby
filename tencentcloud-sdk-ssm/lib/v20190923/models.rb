@@ -225,28 +225,34 @@ module TencentCloud
       class CreateSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。
         # @type SecretName: String
-        # @param VersionId: 凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。
+        # @param VersionId: 凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。若为空，则使用默认的初始凭据版本号。可选，若为空或该凭据为云产品类凭据，则该版本号默认为 SSM_Current。
         # @type VersionId: String
         # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
         # @type Description: String
         # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。您也可以指定在同region 下自行创建的KMS CMK进行加密。
         # @type KmsKeyId: String
+        # @param SecretType: 凭据类型，默认为自定义凭据。
+        # @type SecretType: Integer
         # @param SecretBinary: 二进制凭据信息base64编码后的明文。SecretBinary 和 SecretString 必须且只能设置一个，最大支持4096字节。
         # @type SecretBinary: String
         # @param SecretString: 文本类型凭据信息明文（不需要进行base64编码）。SecretBinary 和 SecretString 必须且只能设置一个，，最大支持4096字节。
         # @type SecretString: String
+        # @param AdditionalConfig: JSON 格式字符串，用于指定特定凭据类型的额外配置。
+        # @type AdditionalConfig: String
         # @param Tags: 标签列表
         # @type Tags: Array
 
-        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretBinary, :SecretString, :Tags
+        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags
         
-        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secretbinary=nil, secretstring=nil, tags=nil)
+        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil)
           @SecretName = secretname
           @VersionId = versionid
           @Description = description
           @KmsKeyId = kmskeyid
+          @SecretType = secrettype
           @SecretBinary = secretbinary
           @SecretString = secretstring
+          @AdditionalConfig = additionalconfig
           @Tags = tags
         end
 
@@ -255,8 +261,10 @@ module TencentCloud
           @VersionId = params['VersionId']
           @Description = params['Description']
           @KmsKeyId = params['KmsKeyId']
+          @SecretType = params['SecretType']
           @SecretBinary = params['SecretBinary']
           @SecretString = params['SecretString']
+          @AdditionalConfig = params['AdditionalConfig']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -587,12 +595,15 @@ module TencentCloud
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetUin: Integer
+        # @param AdditionalConfig: 凭据额外配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalConfig: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :RequestId
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -609,6 +620,7 @@ module TencentCloud
           @ProjectID = projectid
           @AssociatedInstanceIDs = associatedinstanceids
           @TargetUin = targetuin
+          @AdditionalConfig = additionalconfig
           @RequestId = requestid
         end
 
@@ -629,6 +641,7 @@ module TencentCloud
           @ProjectID = params['ProjectID']
           @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
           @TargetUin = params['TargetUin']
+          @AdditionalConfig = params['AdditionalConfig']
           @RequestId = params['RequestId']
         end
       end
