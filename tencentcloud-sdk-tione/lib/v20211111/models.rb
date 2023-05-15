@@ -158,10 +158,10 @@ module TencentCloud
         # @type Region: String
         # @param ChargeType: 计费模式
         # @type ChargeType: String
-        # @param ResourceGroupId: 预付费专用资源组id
+        # @param ResourceGroupId: 包年包月资源组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 预付费专用资源组名称
+        # @param ResourceGroupName: 包年包月资源组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
         # @param ResourceConfigInfo: 资源配置
@@ -229,10 +229,13 @@ module TencentCloud
         # @param PodList: 运行中的Pod的名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodList: Array
+        # @param ModelInferenceCodeInfo: 模型推理代码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInferenceCodeInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
 
-        attr_accessor :BatchTaskId, :BatchTaskName, :Uin, :SubUin, :Region, :ChargeType, :ResourceGroupId, :ResourceGroupName, :ResourceConfigInfo, :Tags, :ModelInfo, :ImageInfo, :CodePackagePath, :StartCmd, :DataConfigs, :Outputs, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :UpdateTime, :StartTime, :EndTime, :ChargeStatus, :LatestInstanceId, :Remark, :FailureReason, :BillingInfo, :PodList
+        attr_accessor :BatchTaskId, :BatchTaskName, :Uin, :SubUin, :Region, :ChargeType, :ResourceGroupId, :ResourceGroupName, :ResourceConfigInfo, :Tags, :ModelInfo, :ImageInfo, :CodePackagePath, :StartCmd, :DataConfigs, :Outputs, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :UpdateTime, :StartTime, :EndTime, :ChargeStatus, :LatestInstanceId, :Remark, :FailureReason, :BillingInfo, :PodList, :ModelInferenceCodeInfo
         
-        def initialize(batchtaskid=nil, batchtaskname=nil, uin=nil, subuin=nil, region=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, resourceconfiginfo=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackagepath=nil, startcmd=nil, dataconfigs=nil, outputs=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, chargestatus=nil, latestinstanceid=nil, remark=nil, failurereason=nil, billinginfo=nil, podlist=nil)
+        def initialize(batchtaskid=nil, batchtaskname=nil, uin=nil, subuin=nil, region=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, resourceconfiginfo=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackagepath=nil, startcmd=nil, dataconfigs=nil, outputs=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, chargestatus=nil, latestinstanceid=nil, remark=nil, failurereason=nil, billinginfo=nil, podlist=nil, modelinferencecodeinfo=nil)
           @BatchTaskId = batchtaskid
           @BatchTaskName = batchtaskname
           @Uin = uin
@@ -265,6 +268,7 @@ module TencentCloud
           @FailureReason = failurereason
           @BillingInfo = billinginfo
           @PodList = podlist
+          @ModelInferenceCodeInfo = modelinferencecodeinfo
         end
 
         def deserialize(params)
@@ -336,6 +340,10 @@ module TencentCloud
           @FailureReason = params['FailureReason']
           @BillingInfo = params['BillingInfo']
           @PodList = params['PodList']
+          unless params['ModelInferenceCodeInfo'].nil?
+            @ModelInferenceCodeInfo = CosPathInfo.new
+            @ModelInferenceCodeInfo.deserialize(params['ModelInferenceCodeInfo'])
+          end
         end
       end
 
@@ -389,7 +397,7 @@ module TencentCloud
         # @type ChargeType: String
         # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
         # @type ChargeStatus: String
-        # @param ResourceGroupId: 预付费专用资源组
+        # @param ResourceGroupId: 包年包月资源组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
         # @param ResourceConfigInfo: 资源配置
@@ -415,12 +423,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param Outputs: 输出
         # @type Outputs: Array
-        # @param ResourceGroupName: 预付费专用资源组名称
+        # @param ResourceGroupName: 包年包月资源组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
         # @param FailureReason: 失败原因
         # @type FailureReason: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for 按量计费)
         # @type BillingInfo: String
 
         attr_accessor :BatchTaskId, :BatchTaskName, :ModelInfo, :ImageInfo, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfo, :Tags, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :UpdateTime, :Outputs, :ResourceGroupName, :FailureReason, :BillingInfo
@@ -697,7 +705,7 @@ module TencentCloud
       class CreateBatchTaskRequest < TencentCloud::Common::AbstractModel
         # @param BatchTaskName: 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         # @type BatchTaskName: String
-        # @param ChargeType: 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
+        # @param ChargeType: 计费模式，eg：PREPAID 包年包月；POSTPAID_BY_HOUR 按量计费
         # @type ChargeType: String
         # @param ResourceConfigInfo: 资源配置
         # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
@@ -709,7 +717,7 @@ module TencentCloud
         # @type JobType: Integer
         # @param CronInfo: 任务周期描述
         # @type CronInfo: :class:`Tencentcloud::Tione.v20211111.models.CronInfo`
-        # @param ResourceGroupId: 预付费专用资源组
+        # @param ResourceGroupId: 包年包月资源组ID
         # @type ResourceGroupId: String
         # @param Tags: 标签配置
         # @type Tags: Array
@@ -2540,7 +2548,7 @@ module TencentCloud
         # Name（名称）：task1
         # Id（task ID）：train-23091792777383936
         # Status（状态）：STARTING / RUNNING / STOPPING / STOPPED / FAILED / SUCCEED / SUBMIT_FAILED
-        # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
+        # ChargeType（计费类型）：PREPAID 包年包月 / POSTPAID_BY_HOUR 按量计费
         # CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
         # @type Filters: Array
         # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]

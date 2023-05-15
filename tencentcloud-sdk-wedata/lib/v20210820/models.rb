@@ -3234,10 +3234,13 @@ module TencentCloud
         # @param ClusterId: 数据源所属的集群id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
+        # @param Version: 数据源版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
 
-        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId
+        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version
         
-        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil)
+        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil)
           @DatabaseNames = databasenames
           @Description = description
           @ID = id
@@ -3246,6 +3249,7 @@ module TencentCloud
           @Region = region
           @Type = type
           @ClusterId = clusterid
+          @Version = version
         end
 
         def deserialize(params)
@@ -3257,6 +3261,7 @@ module TencentCloud
           @Region = params['Region']
           @Type = params['Type']
           @ClusterId = params['ClusterId']
+          @Version = params['Version']
         end
       end
 

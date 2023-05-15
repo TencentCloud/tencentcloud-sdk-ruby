@@ -2623,7 +2623,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DeleteVpnConnection)用于删除VPN通道。
+        # 本接口（DeleteVpnConnection）用于删除VPN通道。
 
         # @param request: Request instance for DeleteVpnConnection.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteVpnConnectionRequest`
@@ -4563,7 +4563,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  本接口（DescribeVpnConnections）查询VPN通道列表。
+        # 本接口（DescribeVpnConnections）用于查询VPN通道列表。
 
         # @param request: Request instance for DescribeVpnConnections.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpnConnectionsRequest`
@@ -7208,7 +7208,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ResetVpnConnection)用于重置VPN通道。
+        # 本接口（ResetVpnConnection）用于重置VPN通道。
 
         # @param request: Request instance for ResetVpnConnection.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ResetVpnConnectionRequest`
@@ -7232,7 +7232,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限。目前支持升级配置，如果是包年包月VPN网关需要在有效期内。
+        # 本接口（ResetVpnGatewayInternetMaxBandwidth）用于调整VPN网关带宽上限。VPN网关带宽目前仅支持部分带宽范围内升降配，如【5,100】Mbps和【200,1000】Mbps，在各自带宽范围内可提升配额，跨范围提升配额和降配暂不支持，如果是包年包月VPN网关需要在有效期内。
 
         # @param request: Request instance for ResetVpnGatewayInternetMaxBandwidth.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ResetVpnGatewayInternetMaxBandwidthRequest`

@@ -667,10 +667,12 @@ module TencentCloud
         # @type Enable: String
         # @param CustomArgument: 用户自定义参数，仅支持timer触发器
         # @type CustomArgument: String
+        # @param Description: 触发器描述
+        # @type Description: String
 
-        attr_accessor :FunctionName, :TriggerName, :Type, :TriggerDesc, :Namespace, :Qualifier, :Enable, :CustomArgument
+        attr_accessor :FunctionName, :TriggerName, :Type, :TriggerDesc, :Namespace, :Qualifier, :Enable, :CustomArgument, :Description
         
-        def initialize(functionname=nil, triggername=nil, type=nil, triggerdesc=nil, namespace=nil, qualifier=nil, enable=nil, customargument=nil)
+        def initialize(functionname=nil, triggername=nil, type=nil, triggerdesc=nil, namespace=nil, qualifier=nil, enable=nil, customargument=nil, description=nil)
           @FunctionName = functionname
           @TriggerName = triggername
           @Type = type
@@ -679,6 +681,7 @@ module TencentCloud
           @Qualifier = qualifier
           @Enable = enable
           @CustomArgument = customargument
+          @Description = description
         end
 
         def deserialize(params)
@@ -690,6 +693,7 @@ module TencentCloud
           @Qualifier = params['Qualifier']
           @Enable = params['Enable']
           @CustomArgument = params['CustomArgument']
+          @Description = params['Description']
         end
       end
 
@@ -3858,10 +3862,12 @@ module TencentCloud
         # @type TriggerAttribute: String
         # @param Qualifier: 触发器绑定的别名或版本
         # @type Qualifier: String
+        # @param Description: 触发器描述
+        # @type Description: String
 
-        attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier
+        attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         
-        def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil)
+        def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
           @Type = type
           @TriggerDesc = triggerdesc
@@ -3874,6 +3880,7 @@ module TencentCloud
           @BindStatus = bindstatus
           @TriggerAttribute = triggerattribute
           @Qualifier = qualifier
+          @Description = description
         end
 
         def deserialize(params)
@@ -3889,6 +3896,7 @@ module TencentCloud
           @BindStatus = params['BindStatus']
           @TriggerAttribute = params['TriggerAttribute']
           @Qualifier = params['Qualifier']
+          @Description = params['Description']
         end
       end
 

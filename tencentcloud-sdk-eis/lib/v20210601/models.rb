@@ -325,15 +325,19 @@ module TencentCloud
       class ListRuntimesMCRequest < TencentCloud::Common::AbstractModel
         # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
         # @type RuntimeClass: Integer
+        # @param PlanType: 计划类型：0-pro 1-lite
+        # @type PlanType: Integer
 
-        attr_accessor :RuntimeClass
+        attr_accessor :RuntimeClass, :PlanType
         
-        def initialize(runtimeclass=nil)
+        def initialize(runtimeclass=nil, plantype=nil)
           @RuntimeClass = runtimeclass
+          @PlanType = plantype
         end
 
         def deserialize(params)
           @RuntimeClass = params['RuntimeClass']
+          @PlanType = params['PlanType']
         end
       end
 

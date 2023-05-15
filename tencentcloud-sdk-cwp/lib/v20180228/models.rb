@@ -16316,6 +16316,10 @@ module TencentCloud
         # <li>VulCategory- string - 是否必填：否 - 漏洞类别 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞</li>
         # <li>IsSupportDefense - int- 是否必填：否 - 是否支持防御 0:不支持 1:支持</li>
         # <li>Labels- string- 是否必填：否 - 标签搜索</li>
+        # <li>IsSupportAutoFix- string- 是否必填：否 - 是否支持自动修复 0:不支持 1:支持</li>
+        # <li>CvssScore- string- 是否必填：否 - CvssScore大于多少</li>
+        # <li>AttackLevel- string- 是否必填：否 - 攻击热度大于多少</li>
+
         # @type Filters: Array
         # @param By: 可选排序字段 Level，LastTime，HostCount
         # @type By: String
@@ -24148,10 +24152,19 @@ module TencentCloud
         # @param VulCategory: 漏洞类别 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCategory: Integer
+        # @param AttackLevel: 攻击热度级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackLevel: Integer
+        # @param FixNoNeedRestart: 漏洞修复后是否需要重启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixNoNeedRestart: Boolean
+        # @param Method: 检测方式0 - 版本比对, 1 - POC验证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: Integer
 
-        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory
+        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory, :AttackLevel, :FixNoNeedRestart, :Method
         
-        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil)
+        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil, attacklevel=nil, fixnoneedrestart=nil, method=nil)
           @Ids = ids
           @Name = name
           @Status = status
@@ -24175,6 +24188,9 @@ module TencentCloud
           @DefenseAttackCount = defenseattackcount
           @FirstAppearTime = firstappeartime
           @VulCategory = vulcategory
+          @AttackLevel = attacklevel
+          @FixNoNeedRestart = fixnoneedrestart
+          @Method = method
         end
 
         def deserialize(params)
@@ -24201,6 +24217,9 @@ module TencentCloud
           @DefenseAttackCount = params['DefenseAttackCount']
           @FirstAppearTime = params['FirstAppearTime']
           @VulCategory = params['VulCategory']
+          @AttackLevel = params['AttackLevel']
+          @FixNoNeedRestart = params['FixNoNeedRestart']
+          @Method = params['Method']
         end
       end
 

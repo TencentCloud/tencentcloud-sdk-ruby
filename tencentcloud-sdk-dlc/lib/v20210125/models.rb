@@ -2937,12 +2937,23 @@ module TencentCloud
 
       # 数据治理规则
       class DataGovernPolicy < TencentCloud::Common::AbstractModel
+        # @param RuleType: 治理规则类型，Customize: 自定义；Intelligence: 智能治理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param GovernEngine: 治理引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernEngine: String
 
+        attr_accessor :RuleType, :GovernEngine
         
-        def initialize()
+        def initialize(ruletype=nil, governengine=nil)
+          @RuleType = ruletype
+          @GovernEngine = governengine
         end
 
         def deserialize(params)
+          @RuleType = params['RuleType']
+          @GovernEngine = params['GovernEngine']
         end
       end
 
@@ -5477,14 +5488,17 @@ module TencentCloud
         # @type Partitions: Array
         # @param Properties: 表属性信息
         # @type Properties: Array
+        # @param UpsertKeys: V2 upsert表 upsert键
+        # @type UpsertKeys: Array
 
-        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties, :UpsertKeys
         
-        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil)
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil, upsertkeys=nil)
           @TableBaseInfo = tablebaseinfo
           @Columns = columns
           @Partitions = partitions
           @Properties = properties
+          @UpsertKeys = upsertkeys
         end
 
         def deserialize(params)
@@ -5516,6 +5530,7 @@ module TencentCloud
               @Properties << property_tmp
             end
           end
+          @UpsertKeys = params['UpsertKeys']
         end
       end
 
@@ -7171,10 +7186,13 @@ module TencentCloud
         # @param GovernPolicy: 数据治理配置项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
+        # @param DbGovernPolicyIsDisable: 库数据治理是否关闭，关闭：true，开启：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbGovernPolicyIsDisable: String
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable
         
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
@@ -7184,6 +7202,7 @@ module TencentCloud
           @UserAlias = useralias
           @UserSubUin = usersubuin
           @GovernPolicy = governpolicy
+          @DbGovernPolicyIsDisable = dbgovernpolicyisdisable
         end
 
         def deserialize(params)
@@ -7199,6 +7218,7 @@ module TencentCloud
             @GovernPolicy = DataGovernPolicy.new
             @GovernPolicy.deserialize(params['GovernPolicy'])
           end
+          @DbGovernPolicyIsDisable = params['DbGovernPolicyIsDisable']
         end
       end
 
