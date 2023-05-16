@@ -158,7 +158,7 @@ module TencentCloud
         # @type Region: String
         # @param ChargeType: 计费模式
         # @type ChargeType: String
-        # @param ResourceGroupId: 包年包月资源组id
+        # @param ResourceGroupId: 包年包月资源组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
         # @param ResourceGroupName: 包年包月资源组名称
@@ -223,7 +223,7 @@ module TencentCloud
         # @param FailureReason: 失败原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureReason: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for 按量计费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfo: String
         # @param PodList: 运行中的Pod的名字
@@ -4729,10 +4729,13 @@ module TencentCloud
         # @param MinBlockSizeTf: FROZEN_GRAPH、SAVED_MODEL格式在进行优化时切分子图的最小算子数目，一般无需进行改动，默认为10
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinBlockSizeTf: String
+        # @param PipelineArgs: Stable Diffusion 模型优化参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineArgs: String
 
-        attr_accessor :MaxNNZ, :SlotNum, :CpuCachePercentage, :GpuCachePercentage, :EnableDistributed, :MinBlockSizePt, :MinBlockSizeTf
+        attr_accessor :MaxNNZ, :SlotNum, :CpuCachePercentage, :GpuCachePercentage, :EnableDistributed, :MinBlockSizePt, :MinBlockSizeTf, :PipelineArgs
         
-        def initialize(maxnnz=nil, slotnum=nil, cpucachepercentage=nil, gpucachepercentage=nil, enabledistributed=nil, minblocksizept=nil, minblocksizetf=nil)
+        def initialize(maxnnz=nil, slotnum=nil, cpucachepercentage=nil, gpucachepercentage=nil, enabledistributed=nil, minblocksizept=nil, minblocksizetf=nil, pipelineargs=nil)
           @MaxNNZ = maxnnz
           @SlotNum = slotnum
           @CpuCachePercentage = cpucachepercentage
@@ -4740,6 +4743,7 @@ module TencentCloud
           @EnableDistributed = enabledistributed
           @MinBlockSizePt = minblocksizept
           @MinBlockSizeTf = minblocksizetf
+          @PipelineArgs = pipelineargs
         end
 
         def deserialize(params)
@@ -4750,6 +4754,7 @@ module TencentCloud
           @EnableDistributed = params['EnableDistributed']
           @MinBlockSizePt = params['MinBlockSizePt']
           @MinBlockSizeTf = params['MinBlockSizeTf']
+          @PipelineArgs = params['PipelineArgs']
         end
       end
 

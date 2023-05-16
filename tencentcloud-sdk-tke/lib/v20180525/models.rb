@@ -5238,6 +5238,80 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterInspectionResultsOverview请求参数结构体
+      class DescribeClusterInspectionResultsOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: Array of String	目标集群列表，为空查询用户所有集群
+        # @type ClusterIds: Array
+        # @param GroupBy: 聚合字段信息，概览结果按照 GroupBy 信息聚合后返回，可选参数：
+        # catalogue.first：按一级分类聚合
+        # catalogue.second：按二级分类聚合
+        # @type GroupBy: Array
+
+        attr_accessor :ClusterIds, :GroupBy
+        
+        def initialize(clusterids=nil, groupby=nil)
+          @ClusterIds = clusterids
+          @GroupBy = groupby
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @GroupBy = params['GroupBy']
+        end
+      end
+
+      # DescribeClusterInspectionResultsOverview返回参数结构体
+      class DescribeClusterInspectionResultsOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+        # @param Diagnostics: 诊断结果概览
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Diagnostics: Array
+        # @param InspectionOverview: 集群诊断结果概览
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InspectionOverview: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Statistics, :Diagnostics, :InspectionOverview, :RequestId
+        
+        def initialize(statistics=nil, diagnostics=nil, inspectionoverview=nil, requestid=nil)
+          @Statistics = statistics
+          @Diagnostics = diagnostics
+          @InspectionOverview = inspectionoverview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+          unless params['Diagnostics'].nil?
+            @Diagnostics = []
+            params['Diagnostics'].each do |i|
+              kubejarvisstatediagnosticoverview_tmp = KubeJarvisStateDiagnosticOverview.new
+              kubejarvisstatediagnosticoverview_tmp.deserialize(i)
+              @Diagnostics << kubejarvisstatediagnosticoverview_tmp
+            end
+          end
+          unless params['InspectionOverview'].nil?
+            @InspectionOverview = []
+            params['InspectionOverview'].each do |i|
+              kubejarvisstateinspectionoverview_tmp = KubeJarvisStateInspectionOverview.new
+              kubejarvisstateinspectionoverview_tmp.deserialize(i)
+              @InspectionOverview << kubejarvisstateinspectionoverview_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterInstances请求参数结构体
       class DescribeClusterInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -11402,6 +11476,368 @@ module TencentCloud
         end
       end
 
+      # 集群巡检诊断的默认目录类型
+      class KubeJarvisStateCatalogue < TencentCloud::Common::AbstractModel
+        # @param CatalogueLevel: 目录级别，支持参数：
+        # first：一级目录
+        # second：二级目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogueLevel: String
+        # @param CatalogueName: 目录名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogueName: String
+
+        attr_accessor :CatalogueLevel, :CatalogueName
+        
+        def initialize(cataloguelevel=nil, cataloguename=nil)
+          @CatalogueLevel = cataloguelevel
+          @CatalogueName = cataloguename
+        end
+
+        def deserialize(params)
+          @CatalogueLevel = params['CatalogueLevel']
+          @CatalogueName = params['CatalogueName']
+        end
+      end
+
+      # 集群巡检诊断结果
+      class KubeJarvisStateDiagnostic < TencentCloud::Common::AbstractModel
+        # @param StartTime: 诊断开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 诊断结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Catalogues: 诊断目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalogues: Array
+        # @param Type: 诊断类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 诊断名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Desc: 诊断描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Results: 诊断结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+
+        attr_accessor :StartTime, :EndTime, :Catalogues, :Type, :Name, :Desc, :Results, :Statistics
+        
+        def initialize(starttime=nil, endtime=nil, catalogues=nil, type=nil, name=nil, desc=nil, results=nil, statistics=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Catalogues = catalogues
+          @Type = type
+          @Name = name
+          @Desc = desc
+          @Results = results
+          @Statistics = statistics
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Catalogues'].nil?
+            @Catalogues = []
+            params['Catalogues'].each do |i|
+              kubejarvisstatecatalogue_tmp = KubeJarvisStateCatalogue.new
+              kubejarvisstatecatalogue_tmp.deserialize(i)
+              @Catalogues << kubejarvisstatecatalogue_tmp
+            end
+          end
+          @Type = params['Type']
+          @Name = params['Name']
+          @Desc = params['Desc']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              kubejarvisstateresultsitem_tmp = KubeJarvisStateResultsItem.new
+              kubejarvisstateresultsitem_tmp.deserialize(i)
+              @Results << kubejarvisstateresultsitem_tmp
+            end
+          end
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+        end
+      end
+
+      # 集群巡检诊断概览
+      class KubeJarvisStateDiagnosticOverview < TencentCloud::Common::AbstractModel
+        # @param Catalogues: 诊断目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalogues: Array
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+
+        attr_accessor :Catalogues, :Statistics
+        
+        def initialize(catalogues=nil, statistics=nil)
+          @Catalogues = catalogues
+          @Statistics = statistics
+        end
+
+        def deserialize(params)
+          unless params['Catalogues'].nil?
+            @Catalogues = []
+            params['Catalogues'].each do |i|
+              kubejarvisstatecatalogue_tmp = KubeJarvisStateCatalogue.new
+              kubejarvisstatecatalogue_tmp.deserialize(i)
+              @Catalogues << kubejarvisstatecatalogue_tmp
+            end
+          end
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+        end
+      end
+
+      # 集群巡检检查结果概览
+      class KubeJarvisStateInspectionOverview < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+        # @param Diagnostics: 诊断结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Diagnostics: Array
+
+        attr_accessor :ClusterId, :Statistics, :Diagnostics
+        
+        def initialize(clusterid=nil, statistics=nil, diagnostics=nil)
+          @ClusterId = clusterid
+          @Statistics = statistics
+          @Diagnostics = diagnostics
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+          unless params['Diagnostics'].nil?
+            @Diagnostics = []
+            params['Diagnostics'].each do |i|
+              kubejarvisstatediagnosticoverview_tmp = KubeJarvisStateDiagnosticOverview.new
+              kubejarvisstatediagnosticoverview_tmp.deserialize(i)
+              @Diagnostics << kubejarvisstatediagnosticoverview_tmp
+            end
+          end
+        end
+      end
+
+      # 集群巡检检查结果
+      class KubeJarvisStateInspectionResult < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param StartTime: 诊断开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 诊断结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+        # @param Diagnostics: 诊断结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Diagnostics: Array
+        # @param Error: 查询巡检报告相关报错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+
+        attr_accessor :ClusterId, :StartTime, :EndTime, :Statistics, :Diagnostics, :Error
+        
+        def initialize(clusterid=nil, starttime=nil, endtime=nil, statistics=nil, diagnostics=nil, error=nil)
+          @ClusterId = clusterid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Statistics = statistics
+          @Diagnostics = diagnostics
+          @Error = error
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+          unless params['Diagnostics'].nil?
+            @Diagnostics = []
+            params['Diagnostics'].each do |i|
+              kubejarvisstatediagnostic_tmp = KubeJarvisStateDiagnostic.new
+              kubejarvisstatediagnostic_tmp.deserialize(i)
+              @Diagnostics << kubejarvisstatediagnostic_tmp
+            end
+          end
+          @Error = params['Error']
+        end
+      end
+
+      # 集群巡检结果历史列表
+      class KubeJarvisStateInspectionResultsItem < TencentCloud::Common::AbstractModel
+        # @param Name: 巡检结果名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Statistics: 诊断结果统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+
+        attr_accessor :Name, :Statistics
+        
+        def initialize(name=nil, statistics=nil)
+          @Name = name
+          @Statistics = statistics
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              kubejarvisstatestatistic_tmp = KubeJarvisStateStatistic.new
+              kubejarvisstatestatistic_tmp.deserialize(i)
+              @Statistics << kubejarvisstatestatistic_tmp
+            end
+          end
+        end
+      end
+
+      # 集群巡检诊断对象信息
+      class KubeJarvisStateResultObjInfo < TencentCloud::Common::AbstractModel
+        # @param PropertyName: 对象属性名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PropertyName: String
+        # @param PropertyValue: 对象属性值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PropertyValue: String
+
+        attr_accessor :PropertyName, :PropertyValue
+        
+        def initialize(propertyname=nil, propertyvalue=nil)
+          @PropertyName = propertyname
+          @PropertyValue = propertyvalue
+        end
+
+        def deserialize(params)
+          @PropertyName = params['PropertyName']
+          @PropertyValue = params['PropertyValue']
+        end
+      end
+
+      # 集群巡检诊断结果详情信息
+      class KubeJarvisStateResultsItem < TencentCloud::Common::AbstractModel
+        # @param Level: 诊断结果级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param ObjName: 诊断对象名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjName: String
+        # @param ObjInfo: 诊断对象信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjInfo: Array
+        # @param Title: 诊断项标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Desc: 诊断项描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Proposal: 诊断建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proposal: String
+        # @param ProposalDocUrl: 诊断建议文档链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProposalDocUrl: String
+        # @param ProposalDocName: 诊断建议文档名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProposalDocName: String
+
+        attr_accessor :Level, :ObjName, :ObjInfo, :Title, :Desc, :Proposal, :ProposalDocUrl, :ProposalDocName
+        
+        def initialize(level=nil, objname=nil, objinfo=nil, title=nil, desc=nil, proposal=nil, proposaldocurl=nil, proposaldocname=nil)
+          @Level = level
+          @ObjName = objname
+          @ObjInfo = objinfo
+          @Title = title
+          @Desc = desc
+          @Proposal = proposal
+          @ProposalDocUrl = proposaldocurl
+          @ProposalDocName = proposaldocname
+        end
+
+        def deserialize(params)
+          @Level = params['Level']
+          @ObjName = params['ObjName']
+          unless params['ObjInfo'].nil?
+            @ObjInfo = []
+            params['ObjInfo'].each do |i|
+              kubejarvisstateresultobjinfo_tmp = KubeJarvisStateResultObjInfo.new
+              kubejarvisstateresultobjinfo_tmp.deserialize(i)
+              @ObjInfo << kubejarvisstateresultobjinfo_tmp
+            end
+          end
+          @Title = params['Title']
+          @Desc = params['Desc']
+          @Proposal = params['Proposal']
+          @ProposalDocUrl = params['ProposalDocUrl']
+          @ProposalDocName = params['ProposalDocName']
+        end
+      end
+
+      # 集群巡检统计结果
+      class KubeJarvisStateStatistic < TencentCloud::Common::AbstractModel
+        # @param HealthyLevel: 诊断结果的健康水平
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyLevel: String
+        # @param Count: 诊断结果的统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :HealthyLevel, :Count
+        
+        def initialize(healthylevel=nil, count=nil)
+          @HealthyLevel = healthylevel
+          @Count = count
+        end
+
+        def deserialize(params)
+          @HealthyLevel = params['HealthyLevel']
+          @Count = params['Count']
+        end
+      end
+
       # k8s中标签，一般以数组的方式存在
       class Label < TencentCloud::Common::AbstractModel
         # @param Name: map表中的Name
@@ -11419,6 +11855,110 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # ListClusterInspectionResultsItems请求参数结构体
+      class ListClusterInspectionResultsItemsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 目标集群ID
+        # @type ClusterId: String
+        # @param StartTime: 查询历史结果的开始时间，Unix时间戳
+        # @type StartTime: String
+        # @param EndTime: 查询历史结果的结束时间，默认当前距离开始时间3天，Unix时间戳
+        # @type EndTime: String
+
+        attr_accessor :ClusterId, :StartTime, :EndTime
+        
+        def initialize(clusterid=nil, starttime=nil, endtime=nil)
+          @ClusterId = clusterid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ListClusterInspectionResultsItems返回参数结构体
+      class ListClusterInspectionResultsItemsResponse < TencentCloud::Common::AbstractModel
+        # @param InspectionResultsItems: 巡检结果历史列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InspectionResultsItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InspectionResultsItems, :RequestId
+        
+        def initialize(inspectionresultsitems=nil, requestid=nil)
+          @InspectionResultsItems = inspectionresultsitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InspectionResultsItems'].nil?
+            @InspectionResultsItems = []
+            params['InspectionResultsItems'].each do |i|
+              kubejarvisstateinspectionresultsitem_tmp = KubeJarvisStateInspectionResultsItem.new
+              kubejarvisstateinspectionresultsitem_tmp.deserialize(i)
+              @InspectionResultsItems << kubejarvisstateinspectionresultsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListClusterInspectionResults请求参数结构体
+      class ListClusterInspectionResultsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 目标集群列表，为空查询用户所有集群
+        # @type ClusterIds: Array
+        # @param Hide: 隐藏的字段信息，为了减少无效的字段返回，隐藏字段不会在返回值中返回。可选值：results
+        # @type Hide: Array
+        # @param Name: 指定查询结果的报告名称，默认查询最新的每个集群只查询最新的一条
+        # @type Name: String
+
+        attr_accessor :ClusterIds, :Hide, :Name
+        
+        def initialize(clusterids=nil, hide=nil, name=nil)
+          @ClusterIds = clusterids
+          @Hide = hide
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @Hide = params['Hide']
+          @Name = params['Name']
+        end
+      end
+
+      # ListClusterInspectionResults返回参数结构体
+      class ListClusterInspectionResultsResponse < TencentCloud::Common::AbstractModel
+        # @param InspectionResults: 集群诊断结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InspectionResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InspectionResults, :RequestId
+        
+        def initialize(inspectionresults=nil, requestid=nil)
+          @InspectionResults = inspectionresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InspectionResults'].nil?
+            @InspectionResults = []
+            params['InspectionResults'].each do |i|
+              kubejarvisstateinspectionresult_tmp = KubeJarvisStateInspectionResult.new
+              kubejarvisstateinspectionresult_tmp.deserialize(i)
+              @InspectionResults << kubejarvisstateinspectionresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

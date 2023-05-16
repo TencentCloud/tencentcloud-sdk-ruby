@@ -3700,7 +3700,9 @@ module TencentCloud
       class AwsS3FileUploadTrigger < TencentCloud::Common::AbstractModel
         # @param S3Bucket: 绑定的 AWS S3 存储桶。
         # @type S3Bucket: String
-        # @param S3Region: 绑定的桶所在 AWS 区域。
+        # @param S3Region: 绑定的桶所在 AWS 区域，目前支持：
+        # us-east-1
+        # eu-west-3
         # @type S3Region: String
         # @param Dir: 绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
         # @type Dir: String
@@ -15133,7 +15135,9 @@ module TencentCloud
       class S3InputInfo < TencentCloud::Common::AbstractModel
         # @param S3Bucket: S3 bucket。
         # @type S3Bucket: String
-        # @param S3Region: S3 bucket 对应的区域。
+        # @param S3Region: S3 bucket 对应的区域，目前支持：
+        # us-east-1
+        # eu-west-3
         # @type S3Region: String
         # @param S3Object: S3 bucket 中的媒体资源路径。
         # @type S3Object: String

@@ -5292,6 +5292,95 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQMsg请求参数结构体
+      class DescribeRocketMQMsgRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param EnvironmentId: 命名空间
+        # @type EnvironmentId: String
+        # @param TopicName: 主题，查询死信时传groupId
+        # @type TopicName: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param PulsarMsgId: pulsar消息id
+        # @type PulsarMsgId: String
+        # @param QueryDlqMsg: 查询死信时该值为true，只对Rocketmq有效
+        # @type QueryDlqMsg: Boolean
+
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg
+        
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil)
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @MsgId = msgid
+          @PulsarMsgId = pulsarmsgid
+          @QueryDlqMsg = querydlqmsg
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @MsgId = params['MsgId']
+          @PulsarMsgId = params['PulsarMsgId']
+          @QueryDlqMsg = params['QueryDlqMsg']
+        end
+      end
+
+      # DescribeRocketMQMsg返回参数结构体
+      class DescribeRocketMQMsgResponse < TencentCloud::Common::AbstractModel
+        # @param Body: 消息体
+        # @type Body: String
+        # @param Properties: 详情参数
+        # @type Properties: String
+        # @param ProduceTime: 生产时间
+        # @type ProduceTime: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param ProducerAddr: 生产者地址
+        # @type ProducerAddr: String
+        # @param MessageTracks: 消费组消费情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageTracks: Array
+        # @param ShowTopicName: 详情页展示的topic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShowTopicName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Body, :Properties, :ProduceTime, :MsgId, :ProducerAddr, :MessageTracks, :ShowTopicName, :RequestId
+        
+        def initialize(body=nil, properties=nil, producetime=nil, msgid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, requestid=nil)
+          @Body = body
+          @Properties = properties
+          @ProduceTime = producetime
+          @MsgId = msgid
+          @ProducerAddr = produceraddr
+          @MessageTracks = messagetracks
+          @ShowTopicName = showtopicname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Body = params['Body']
+          @Properties = params['Properties']
+          @ProduceTime = params['ProduceTime']
+          @MsgId = params['MsgId']
+          @ProducerAddr = params['ProducerAddr']
+          unless params['MessageTracks'].nil?
+            @MessageTracks = []
+            params['MessageTracks'].each do |i|
+              rocketmqmessagetrack_tmp = RocketMQMessageTrack.new
+              rocketmqmessagetrack_tmp.deserialize(i)
+              @MessageTracks << rocketmqmessagetrack_tmp
+            end
+          end
+          @ShowTopicName = params['ShowTopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQNamespaces请求参数结构体
       class DescribeRocketMQNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -8391,6 +8480,35 @@ module TencentCloud
             end
           end
           @MaxQueuesPerTopic = params['MaxQueuesPerTopic']
+        end
+      end
+
+      # Rocketmq消息消费track信息
+      class RocketMQMessageTrack < TencentCloud::Common::AbstractModel
+        # @param Group: 消费者组
+        # @type Group: String
+        # @param ConsumeStatus: 消费状态
+        # @type ConsumeStatus: String
+        # @param TrackType: 消息track类型
+        # @type TrackType: String
+        # @param ExceptionDesc: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptionDesc: String
+
+        attr_accessor :Group, :ConsumeStatus, :TrackType, :ExceptionDesc
+        
+        def initialize(group=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil)
+          @Group = group
+          @ConsumeStatus = consumestatus
+          @TrackType = tracktype
+          @ExceptionDesc = exceptiondesc
+        end
+
+        def deserialize(params)
+          @Group = params['Group']
+          @ConsumeStatus = params['ConsumeStatus']
+          @TrackType = params['TrackType']
+          @ExceptionDesc = params['ExceptionDesc']
         end
       end
 

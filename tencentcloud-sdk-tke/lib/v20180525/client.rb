@@ -1781,6 +1781,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户单个Region下的所有集群巡检结果概览信息
+
+        # @param request: Request instance for DescribeClusterInspectionResultsOverview.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterInspectionResultsOverviewRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterInspectionResultsOverviewResponse`
+        def DescribeClusterInspectionResultsOverview(request)
+          body = send_request('DescribeClusterInspectionResultsOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterInspectionResultsOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群下节点实例信息
 
         # @param request: Request instance for DescribeClusterInstances.
@@ -3711,6 +3735,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InstallLogAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定集群的巡检结果信息
+
+        # @param request: Request instance for ListClusterInspectionResults.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ListClusterInspectionResultsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ListClusterInspectionResultsResponse`
+        def ListClusterInspectionResults(request)
+          body = send_request('ListClusterInspectionResults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListClusterInspectionResultsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群巡检结果历史列表
+
+        # @param request: Request instance for ListClusterInspectionResultsItems.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ListClusterInspectionResultsItemsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ListClusterInspectionResultsItemsResponse`
+        def ListClusterInspectionResultsItems(request)
+          body = send_request('ListClusterInspectionResultsItems', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListClusterInspectionResultsItemsResponse.new
             model.deserialize(response['Response'])
             model
           else

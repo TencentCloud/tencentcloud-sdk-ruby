@@ -19479,19 +19479,31 @@ module TencentCloud
         # @type ErrMsg: String
         # @param Status: 0 执行中, 1 成功,2失败
         # @type Status: Integer
+        # @param FixMessage: 修复建议
+        # @type FixMessage: String
+        # @param MachineExtraInfo: 机器额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Quuid, :ErrMsg, :Status
+        attr_accessor :Quuid, :ErrMsg, :Status, :FixMessage, :MachineExtraInfo
         
-        def initialize(quuid=nil, errmsg=nil, status=nil)
+        def initialize(quuid=nil, errmsg=nil, status=nil, fixmessage=nil, machineextrainfo=nil)
           @Quuid = quuid
           @ErrMsg = errmsg
           @Status = status
+          @FixMessage = fixmessage
+          @MachineExtraInfo = machineextrainfo
         end
 
         def deserialize(params)
           @Quuid = params['Quuid']
           @ErrMsg = params['ErrMsg']
           @Status = params['Status']
+          @FixMessage = params['FixMessage']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
         end
       end
 

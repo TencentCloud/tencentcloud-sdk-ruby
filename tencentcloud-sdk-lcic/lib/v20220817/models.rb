@@ -2356,6 +2356,14 @@ module TencentCloud
         # @type Timestamp: Integer
         # @param EventType: 事件类型,有以下值:
         # RoomStart:房间开始 RoomEnd:房间结束 MemberJoin:成员加入 MemberQuit:成员退出 RecordFinish:录制结束
+        # Camera0n: 摄像头打开
+        # Camera0ff: 摄像头关闭
+        # MicOn: 麦克风打开
+        # MicOff: 麦克风关闭
+        # ScreenOn: 屏幕共享打开
+        # ScreenOff: 屏幕共享关闭
+        # VisibleOn: 页面可见
+        # VisibleOff: 页面不可见
         # @type EventType: String
         # @param EventData: 事件详细内容，包含房间号,成员类型事件包含用户Id。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2686,6 +2694,56 @@ module TencentCloud
           @TeacherId = params['TeacherId']
           @GroupType = params['GroupType']
           @SubGroupIds = params['SubGroupIds']
+        end
+      end
+
+      # KickUserFromRoom请求参数结构体
+      class KickUserFromRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param SdkAppId: 低代码平台的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param UserId: 需要踢出成员Id
+        # @type UserId: String
+        # @param KickType: 踢出类型：
+        # 1：临时踢出，可以使用Duration参数指定污点时间，污点时间间隔内用户无法进入房间。
+        # 2：永久踢出
+        # @type KickType: Integer
+        # @param Duration: 污点时间(单位秒)，KickType = 1时生效，默认为0
+        # @type Duration: Integer
+
+        attr_accessor :RoomId, :SdkAppId, :UserId, :KickType, :Duration
+        
+        def initialize(roomid=nil, sdkappid=nil, userid=nil, kicktype=nil, duration=nil)
+          @RoomId = roomid
+          @SdkAppId = sdkappid
+          @UserId = userid
+          @KickType = kicktype
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
+          @KickType = params['KickType']
+          @Duration = params['Duration']
+        end
+      end
+
+      # KickUserFromRoom返回参数结构体
+      class KickUserFromRoomResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

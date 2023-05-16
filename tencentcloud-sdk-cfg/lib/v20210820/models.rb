@@ -629,10 +629,16 @@ module TencentCloud
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param TaskPlanId: 关联的演练计划ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPlanId: Integer
+        # @param TaskPlanTitle: 关联的演练计划名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPlanTitle: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle
         
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -654,6 +660,8 @@ module TencentCloud
           @TaskMonitors = taskmonitors
           @TaskPolicy = taskpolicy
           @Tags = tags
+          @TaskPlanId = taskplanid
+          @TaskPlanTitle = taskplantitle
         end
 
         def deserialize(params)
@@ -702,6 +710,8 @@ module TencentCloud
               @Tags << tagwithdescribe_tmp
             end
           end
+          @TaskPlanId = params['TaskPlanId']
+          @TaskPlanTitle = params['TaskPlanTitle']
         end
       end
 

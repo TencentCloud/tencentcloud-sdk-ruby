@@ -10634,6 +10634,71 @@ module TencentCloud
         end
       end
 
+      # DescribeUsedIpAddress请求参数结构体
+      class DescribeUsedIpAddressRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网实例ID。
+        # @type SubnetId: String
+        # @param IpAddresses: 查询是否占用的ip列表
+        # @type IpAddresses: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+
+        attr_accessor :VpcId, :SubnetId, :IpAddresses, :Offset, :Limit
+        
+        def initialize(vpcid=nil, subnetid=nil, ipaddresses=nil, offset=nil, limit=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @IpAddresses = ipaddresses
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @IpAddresses = params['IpAddresses']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUsedIpAddress返回参数结构体
+      class DescribeUsedIpAddressResponse < TencentCloud::Common::AbstractModel
+        # @param IpAddressStates: 占用ip地址的资源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpAddressStates: Array
+        # @param TotalCount: 返回占用资源的个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IpAddressStates, :TotalCount, :RequestId
+        
+        def initialize(ipaddressstates=nil, totalcount=nil, requestid=nil)
+          @IpAddressStates = ipaddressstates
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IpAddressStates'].nil?
+            @IpAddressStates = []
+            params['IpAddressStates'].each do |i|
+              ipaddressstates_tmp = IpAddressStates.new
+              ipaddressstates_tmp.deserialize(i)
+              @IpAddressStates << ipaddressstates_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcEndPoint请求参数结构体
       class DescribeVpcEndPointRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -13918,6 +13983,38 @@ module TencentCloud
               @IP6RuleSet << ip6rule_tmp
             end
           end
+        end
+      end
+
+      # 占用ip的资源信息
+      class IpAddressStates < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网实例ID。
+        # @type SubnetId: String
+        # @param IpAddress: IP地址。
+        # @type IpAddress: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+
+        attr_accessor :VpcId, :SubnetId, :IpAddress, :ResourceType, :ResourceId
+        
+        def initialize(vpcid=nil, subnetid=nil, ipaddress=nil, resourcetype=nil, resourceid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @IpAddress = ipaddress
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @IpAddress = params['IpAddress']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -17230,7 +17327,7 @@ module TencentCloud
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格。
         # @type InstancePrice: :class:`Tencentcloud::Vpc.v20170312.models.ItemPrice`
-        # @param BandwidthPrice: 网络价格。
+        # @param BandwidthPrice: 带宽价格。
         # @type BandwidthPrice: :class:`Tencentcloud::Vpc.v20170312.models.ItemPrice`
 
         attr_accessor :InstancePrice, :BandwidthPrice

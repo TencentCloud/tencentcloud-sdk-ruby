@@ -976,10 +976,13 @@ module TencentCloud
         # @type EnvDesc: String
         # @param ClientBandWidth: 客户端带宽
         # @type ClientBandWidth: Integer
+        # @param EnableConfigIntranet: 客户端内网开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableConfigIntranet: Boolean
 
-        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName, :EnvDesc, :ClientBandWidth
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName, :EnvDesc, :ClientBandWidth, :EnableConfigIntranet
         
-        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil, envdesc=nil, clientbandwidth=nil)
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil, envdesc=nil, clientbandwidth=nil, enableconfigintranet=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
           @StorageCapacity = storagecapacity
@@ -994,6 +997,7 @@ module TencentCloud
           @AliasEnvName = aliasenvname
           @EnvDesc = envdesc
           @ClientBandWidth = clientbandwidth
+          @EnableConfigIntranet = enableconfigintranet
         end
 
         def deserialize(params)
@@ -1018,6 +1022,7 @@ module TencentCloud
           @AliasEnvName = params['AliasEnvName']
           @EnvDesc = params['EnvDesc']
           @ClientBandWidth = params['ClientBandWidth']
+          @EnableConfigIntranet = params['EnableConfigIntranet']
         end
       end
 

@@ -30,7 +30,7 @@ module TencentCloud
         # @type Url: String
         # @param Whitening: 美白程度，取值范围[0,100]。0不美白，100代表最高程度。默认值30。
         # @type Whitening: Integer
-        # @param Smoothing: 磨皮程度，取值范围[0,100]。0不磨皮，100代表最高程度。默认值10。
+        # @param Smoothing: 磨皮程度，取值范围[0,30]。0不磨皮，30代表最高程度。默认值10。
         # @type Smoothing: Integer
         # @param FaceLifting: 瘦脸程度，取值范围[0,100]。0不瘦脸，100代表最高程度。默认值70。
         # @type FaceLifting: Integer

@@ -585,7 +585,7 @@ module TencentCloud
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
-        # @param ACTemplateIdSet: 关联高危DB模版ID
+        # @param ACTemplateIdSet: 关联高危DB模板ID
         # @type ACTemplateIdSet: Array
         # @param AllowDiskFileUp: 是否开启rdp磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean
@@ -2612,7 +2612,7 @@ module TencentCloud
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
-        # @param ACTemplateIdSet: 关联高危DB模版ID
+        # @param ACTemplateIdSet: 关联高危DB模板ID
         # @type ACTemplateIdSet: Array
         # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean

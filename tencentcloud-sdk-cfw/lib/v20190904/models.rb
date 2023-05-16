@@ -5154,10 +5154,25 @@ module TencentCloud
         # @type Direction: Integer
         # @param ProtocolPortType: 是否使用端口协议模板，0：否，1：是
         # @type ProtocolPortType: Integer
+        # @param Uuid: Uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param AssetGroupNameIn: 资产分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetGroupNameIn: String
+        # @param AssetGroupNameOut: 资产分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetGroupNameOut: String
+        # @param ParameterName: 模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterName: String
 
-        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction, :ProtocolPortType
+        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction, :ProtocolPortType, :Uuid, :Region, :AssetGroupNameIn, :AssetGroupNameOut, :ParameterName
         
-        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil, protocolporttype=nil)
+        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil, protocolporttype=nil, uuid=nil, region=nil, assetgroupnamein=nil, assetgroupnameout=nil, parametername=nil)
           @OrderIndex = orderindex
           @SourceId = sourceid
           @SourceType = sourcetype
@@ -5181,6 +5196,11 @@ module TencentCloud
           @BothWayInfo = bothwayinfo
           @Direction = direction
           @ProtocolPortType = protocolporttype
+          @Uuid = uuid
+          @Region = region
+          @AssetGroupNameIn = assetgroupnamein
+          @AssetGroupNameOut = assetgroupnameout
+          @ParameterName = parametername
         end
 
         def deserialize(params)
@@ -5214,6 +5234,11 @@ module TencentCloud
           end
           @Direction = params['Direction']
           @ProtocolPortType = params['ProtocolPortType']
+          @Uuid = params['Uuid']
+          @Region = params['Region']
+          @AssetGroupNameIn = params['AssetGroupNameIn']
+          @AssetGroupNameOut = params['AssetGroupNameOut']
+          @ParameterName = params['ParameterName']
         end
       end
 
