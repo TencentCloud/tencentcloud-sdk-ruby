@@ -1290,7 +1290,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrFullTextTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskOcrFullTextResult`
         # @param TransTextTask: 翻译结果，当 Type 为
-        #  TransTextRecognition 时有效。
+
+        # TransTextRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResult`
 
@@ -8875,12 +8876,16 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param Path: 编辑后的视频文件路径。
         # @type Path: String
+        # @param MetaData: 编辑后的视频文件元信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaData: :class:`Tencentcloud::Mps.v20190612.models.MediaMetaData`
 
-        attr_accessor :OutputStorage, :Path
+        attr_accessor :OutputStorage, :Path, :MetaData
         
-        def initialize(outputstorage=nil, path=nil)
+        def initialize(outputstorage=nil, path=nil, metadata=nil)
           @OutputStorage = outputstorage
           @Path = path
+          @MetaData = metadata
         end
 
         def deserialize(params)
@@ -8889,6 +8894,10 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @Path = params['Path']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
         end
       end
 
@@ -11068,14 +11077,22 @@ module TencentCloud
         # @param Channel: 音频声道数，例如 2。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channel: Integer
+        # @param Codecs: 音频Codecs。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Codecs: String
+        # @param Loudness: 音频响度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Loudness: Float
 
-        attr_accessor :Bitrate, :SamplingRate, :Codec, :Channel
+        attr_accessor :Bitrate, :SamplingRate, :Codec, :Channel, :Codecs, :Loudness
         
-        def initialize(bitrate=nil, samplingrate=nil, codec=nil, channel=nil)
+        def initialize(bitrate=nil, samplingrate=nil, codec=nil, channel=nil, codecs=nil, loudness=nil)
           @Bitrate = bitrate
           @SamplingRate = samplingrate
           @Codec = codec
           @Channel = channel
+          @Codecs = codecs
+          @Loudness = loudness
         end
 
         def deserialize(params)
@@ -11083,6 +11100,8 @@ module TencentCloud
           @SamplingRate = params['SamplingRate']
           @Codec = params['Codec']
           @Channel = params['Channel']
+          @Codecs = params['Codecs']
+          @Loudness = params['Loudness']
         end
       end
 
@@ -11458,16 +11477,24 @@ module TencentCloud
         # @param Output: 对视频转自适应码流任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingInfoItem`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -11483,6 +11510,8 @@ module TencentCloud
             @Output = AdaptiveDynamicStreamingInfoItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -11501,16 +11530,24 @@ module TencentCloud
         # @param Output: 转动图任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaAnimatedGraphicsItem`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -11526,6 +11563,8 @@ module TencentCloud
             @Output = MediaAnimatedGraphicsItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -11544,16 +11583,24 @@ module TencentCloud
         # @param Output: 对视频截雪碧图任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaImageSpriteItem`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -11569,6 +11616,8 @@ module TencentCloud
             @Output = MediaImageSpriteItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -11736,16 +11785,24 @@ module TencentCloud
         # @param Output: 对视频做采样截图任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSampleSnapshotItem`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -11761,6 +11818,8 @@ module TencentCloud
             @Output = MediaSampleSnapshotItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -11779,16 +11838,24 @@ module TencentCloud
         # @param Output: 对视频按指定时间点截图任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSnapshotByTimeOffsetItem`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -11804,6 +11871,8 @@ module TencentCloud
             @Output = MediaSnapshotByTimeOffsetItem.new
             @Output.deserialize(params['Output'])
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -12057,10 +12126,13 @@ module TencentCloud
         # @param HdrType: HDR类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HdrType: String
+        # @param Codecs: 视频Codecs。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Codecs: String
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType, :Codecs
         
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil, codecs=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
@@ -12070,6 +12142,7 @@ module TencentCloud
           @ColorSpace = colorspace
           @ColorTransfer = colortransfer
           @HdrType = hdrtype
+          @Codecs = codecs
         end
 
         def deserialize(params)
@@ -12082,6 +12155,7 @@ module TencentCloud
           @ColorSpace = params['ColorSpace']
           @ColorTransfer = params['ColorTransfer']
           @HdrType = params['HdrType']
+          @Codecs = params['Codecs']
         end
       end
 
@@ -15399,16 +15473,24 @@ module TencentCloud
         # @param Output: 分析任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -15428,6 +15510,8 @@ module TencentCloud
               @Output << aianalysisresult_tmp
             end
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -15489,16 +15573,24 @@ module TencentCloud
         # @param Output: 识别任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -15518,6 +15610,8 @@ module TencentCloud
               @Output << airecognitionresult_tmp
             end
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -15536,16 +15630,24 @@ module TencentCloud
         # @param Output: 审核任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -15565,6 +15667,8 @@ module TencentCloud
               @Output << aicontentreviewresult_tmp
             end
           end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -16128,7 +16232,8 @@ module TencentCloud
       # 极速高清参数配置。
       class TEHDConfig < TencentCloud::Common::AbstractModel
         # @param Type: 极速高清类型，可选值：
-        # <li>TEHD-100：极速高清-100。</li>
+        # <li>TEHD-100：极速高清-100（视频极速高清）。</li>
+        # <li>TEHD-200：极速高清-200（音频极速高清）。</li>
         # 不填代表不启用极速高清。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，当 Type 指定了极速高清类型时有效。
@@ -16151,7 +16256,8 @@ module TencentCloud
       # 极速高清参数配置。
       class TEHDConfigForUpdate < TencentCloud::Common::AbstractModel
         # @param Type: 极速高清类型，可选值：
-        # <li>TEHD-100：极速高清-100。</li>
+        # <li>TEHD-100：极速高清-100（视频极速高清）。</li>
+        # <li>TEHD-200：极速高清-200（音频极速高清）。</li>
         # 不填代表不修改。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，不填代表不修改。

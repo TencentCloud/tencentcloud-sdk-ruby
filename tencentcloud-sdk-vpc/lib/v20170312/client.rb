@@ -2525,6 +2525,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除共享带宽包（仅非活动状态的流量包可删除）。
+
+        # @param request: Request instance for DeleteTrafficPackages.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficPackagesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficPackagesResponse`
+        def DeleteTrafficPackages(request)
+          body = send_request('DeleteTrafficPackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTrafficPackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteVpc）用于删除私有网络。
         # * 删除前请确保 VPC 内已经没有相关资源，例如云服务器、云数据库、NoSQL、VPN网关、专线网关、负载均衡、对等连接、与之互通的基础网络设备等。
         # * 删除私有网络是不可逆的操作，请谨慎处理。
@@ -4154,6 +4178,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSnapshotPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeSubnetResourceDashboard)用于查看Subnet资源信息。
+
+        # @param request: Request instance for DescribeSubnetResourceDashboard.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSubnetResourceDashboardRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSubnetResourceDashboardResponse`
+        def DescribeSubnetResourceDashboard(request)
+          body = send_request('DescribeSubnetResourceDashboard', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSubnetResourceDashboardResponse.new
             model.deserialize(response['Response'])
             model
           else

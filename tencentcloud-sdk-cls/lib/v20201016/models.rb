@@ -244,16 +244,21 @@ module TencentCloud
         # @type EndTimeOffset: Integer
         # @param LogsetId: 日志集ID。
         # @type LogsetId: String
+        # @param SyntaxRule: 检索语法规则，默认值为0。
+        # 0：Lucene语法，1：CQL语法。
+        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # @type SyntaxRule: Integer
 
-        attr_accessor :TopicId, :Query, :Number, :StartTimeOffset, :EndTimeOffset, :LogsetId
+        attr_accessor :TopicId, :Query, :Number, :StartTimeOffset, :EndTimeOffset, :LogsetId, :SyntaxRule
         
-        def initialize(topicid=nil, query=nil, number=nil, starttimeoffset=nil, endtimeoffset=nil, logsetid=nil)
+        def initialize(topicid=nil, query=nil, number=nil, starttimeoffset=nil, endtimeoffset=nil, logsetid=nil, syntaxrule=nil)
           @TopicId = topicid
           @Query = query
           @Number = number
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @LogsetId = logsetid
+          @SyntaxRule = syntaxrule
         end
 
         def deserialize(params)
@@ -263,6 +268,7 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @LogsetId = params['LogsetId']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 

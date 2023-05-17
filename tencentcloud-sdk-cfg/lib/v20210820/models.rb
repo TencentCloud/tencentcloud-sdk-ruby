@@ -175,7 +175,7 @@ module TencentCloud
         # @type TaskTitle: String
         # @param TaskTag: 标签键
         # @type TaskTag: Array
-        # @param TaskStatus: 状态
+        # @param TaskStatus: 任务状态(1001 -- 未开始 1002 -- 进行中 1003 -- 暂停中 1004 -- 任务结束)
         # @type TaskStatus: Integer
         # @param TaskStartTime: 开始时间，固定格式%Y-%m-%d %H:%M:%S
         # @type TaskStartTime: String

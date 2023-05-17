@@ -1010,6 +1010,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeBackupDecryptionKey)用于查询备份文件解密密钥。
+
+        # @param request: Request instance for DescribeBackupDecryptionKey.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeBackupDecryptionKeyRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeBackupDecryptionKeyResponse`
+        def DescribeBackupDecryptionKey(request)
+          body = send_request('DescribeBackupDecryptionKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDecryptionKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用户查询当前地域用户设置的默认备份下载来源限制。
 
         # @param request: Request instance for DescribeBackupDownloadRestriction.

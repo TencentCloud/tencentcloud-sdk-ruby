@@ -3987,6 +3987,46 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDecryptionKey请求参数结构体
+      class DescribeBackupDecryptionKeyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-XXXX。与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param BackupId: 实例的备份ID，可通过DescribeBackups接口查询备份的ID。
+        # @type BackupId: Integer
+
+        attr_accessor :InstanceId, :BackupId
+        
+        def initialize(instanceid=nil, backupid=nil)
+          @InstanceId = instanceid
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupId = params['BackupId']
+        end
+      end
+
+      # DescribeBackupDecryptionKey返回参数结构体
+      class DescribeBackupDecryptionKeyResponse < TencentCloud::Common::AbstractModel
+        # @param DecryptionKey: 备份文件解密密钥。
+        # @type DecryptionKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DecryptionKey, :RequestId
+        
+        def initialize(decryptionkey=nil, requestid=nil)
+          @DecryptionKey = decryptionkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DecryptionKey = params['DecryptionKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupDownloadRestriction请求参数结构体
       class DescribeBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
 
@@ -9875,15 +9915,19 @@ module TencentCloud
         # @type EngineVersion: String
         # @param TemplateType: 参数模板类型
         # @type TemplateType: String
+        # @param EngineType: 参数模板引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
 
-        attr_accessor :TemplateId, :Name, :Description, :EngineVersion, :TemplateType
+        attr_accessor :TemplateId, :Name, :Description, :EngineVersion, :TemplateType, :EngineType
         
-        def initialize(templateid=nil, name=nil, description=nil, engineversion=nil, templatetype=nil)
+        def initialize(templateid=nil, name=nil, description=nil, engineversion=nil, templatetype=nil, enginetype=nil)
           @TemplateId = templateid
           @Name = name
           @Description = description
           @EngineVersion = engineversion
           @TemplateType = templatetype
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -9892,6 +9936,7 @@ module TencentCloud
           @Description = params['Description']
           @EngineVersion = params['EngineVersion']
           @TemplateType = params['TemplateType']
+          @EngineType = params['EngineType']
         end
       end
 

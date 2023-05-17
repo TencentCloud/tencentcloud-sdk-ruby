@@ -3248,6 +3248,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取日志存储配置
+
+        # @param request: Request instance for DescribeLogStorageConfig.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLogStorageConfigRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLogStorageConfigResponse`
+        def DescribeLogStorageConfig(request)
+          body = send_request('DescribeLogStorageConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogStorageConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取日志存储量记录
+
+        # @param request: Request instance for DescribeLogStorageRecord.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLogStorageRecordRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLogStorageRecordResponse`
+        def DescribeLogStorageRecord(request)
+          body = send_request('DescribeLogStorageRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogStorageRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取日志检索容量使用统计
 
         # @param request: Request instance for DescribeLogStorageStatistic.
@@ -5972,6 +6020,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLicenseUnBindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改日志存储配置
+
+        # @param request: Request instance for ModifyLogStorageConfig.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyLogStorageConfigRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyLogStorageConfigResponse`
+        def ModifyLogStorageConfig(request)
+          body = send_request('ModifyLogStorageConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLogStorageConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

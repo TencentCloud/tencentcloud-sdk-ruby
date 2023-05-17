@@ -253,18 +253,30 @@ module TencentCloud
       class AddEnterpriseSecurityGroupRulesResponse < TencentCloud::Common::AbstractModel
         # @param Status: 状态值，0：添加成功，非0：添加失败
         # @type Status: Integer
+        # @param Rules: 规则uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :Rules, :RequestId
         
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, rules=nil, requestid=nil)
           @Status = status
+          @Rules = rules
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              securitygroupsimplifyrule_tmp = SecurityGroupSimplifyRule.new
+              securitygroupsimplifyrule_tmp.deserialize(i)
+              @Rules << securitygroupsimplifyrule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -547,12 +559,10 @@ module TencentCloud
       class CommonFilter < TencentCloud::Common::AbstractModel
         # @param Name: 检索的键值
         # @type Name: String
-        # @param Values: 检索的值
+        # @param Values: 检索的值，各检索值间为OR关系
         # @type Values: Array
-        # @param OperatorType: 枚举类型，代表name与values之间的匹配关系
+        # @param OperatorType: 枚举类型，代表Name与Values之间的匹配关系
         # enum FilterOperatorType {
-        #     //INVALID
-        #     FILTER_OPERATOR_TYPE_INVALID = 0;
         #     //等于
         #     FILTER_OPERATOR_TYPE_EQUAL = 1;
         #     //大于
@@ -565,18 +575,10 @@ module TencentCloud
         #     FILTER_OPERATOR_TYPE_LESS_EQ = 5;
         #     //不等于
         #     FILTER_OPERATOR_TYPE_NO_EQ = 6;
-        #     //in，数组中包含
-        #     FILTER_OPERATOR_TYPE_IN = 7;
         #     //not in
         #     FILTER_OPERATOR_TYPE_NOT_IN = 8;
         #     //模糊匹配
         #     FILTER_OPERATOR_TYPE_FUZZINESS = 9;
-        #     //存在
-        #     FILTER_OPERATOR_TYPE_EXIST = 10;
-        #     //不存在
-        #     FILTER_OPERATOR_TYPE_NOT_EXIST = 11;
-        #     //正则
-        #     FILTER_OPERATOR_TYPE_REGULAR = 12;
         # }
         # @type OperatorType: Integer
 
@@ -2010,10 +2012,12 @@ module TencentCloud
         # @type Protocol: String
         # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         # @type ServiceTemplateId: String
+        # @param RuleUuid: 规则的uuid
+        # @type RuleUuid: Integer
 
-        attr_accessor :PageNo, :PageSize, :SourceContent, :DestContent, :Description, :RuleAction, :Enable, :Port, :Protocol, :ServiceTemplateId
+        attr_accessor :PageNo, :PageSize, :SourceContent, :DestContent, :Description, :RuleAction, :Enable, :Port, :Protocol, :ServiceTemplateId, :RuleUuid
         
-        def initialize(pageno=nil, pagesize=nil, sourcecontent=nil, destcontent=nil, description=nil, ruleaction=nil, enable=nil, port=nil, protocol=nil, servicetemplateid=nil)
+        def initialize(pageno=nil, pagesize=nil, sourcecontent=nil, destcontent=nil, description=nil, ruleaction=nil, enable=nil, port=nil, protocol=nil, servicetemplateid=nil, ruleuuid=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @SourceContent = sourcecontent
@@ -2024,6 +2028,7 @@ module TencentCloud
           @Port = port
           @Protocol = protocol
           @ServiceTemplateId = servicetemplateid
+          @RuleUuid = ruleuuid
         end
 
         def deserialize(params)
@@ -2037,6 +2042,7 @@ module TencentCloud
           @Port = params['Port']
           @Protocol = params['Protocol']
           @ServiceTemplateId = params['ServiceTemplateId']
+          @RuleUuid = params['RuleUuid']
         end
       end
 
@@ -5338,6 +5344,60 @@ module TencentCloud
           @ServiceTemplateId = params['ServiceTemplateId']
           @Id = params['Id']
           @Enable = params['Enable']
+        end
+      end
+
+      # 安全组规则
+      class SecurityGroupSimplifyRule < TencentCloud::Common::AbstractModel
+        # @param SourceContent: 访问源示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceContent: String
+        # @param DestContent: 访问目的示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestContent: String
+        # @param Protocol: 协议；TCP/UDP/ICMP/ANY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RuleUuid: 规则对应的唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleUuid: Integer
+        # @param Sequence: 规则序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sequence: Integer
+
+        attr_accessor :SourceContent, :DestContent, :Protocol, :Description, :RuleUuid, :Sequence
+        
+        def initialize(sourcecontent=nil, destcontent=nil, protocol=nil, description=nil, ruleuuid=nil, sequence=nil)
+          @SourceContent = sourcecontent
+          @DestContent = destcontent
+          @Protocol = protocol
+          @Description = description
+          @RuleUuid = ruleuuid
+          @Sequence = sequence
+        end
+
+        def deserialize(params)
+          @SourceContent = params['SourceContent']
+          @DestContent = params['DestContent']
+          @Protocol = params['Protocol']
+          @Description = params['Description']
+          @RuleUuid = params['RuleUuid']
+          @Sequence = params['Sequence']
         end
       end
 

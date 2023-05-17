@@ -235,7 +235,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
         # @type FlowIds: Array
-        # @param CancelMessage: 撤销理由
+        # @param CancelMessage: 撤销理由,不超过200个字符
         # @type CancelMessage: String
         # @param CancelMessageFormat: 撤销理由自定义格式；选项：
         # 0 默认格式

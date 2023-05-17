@@ -12364,6 +12364,87 @@ module TencentCloud
         end
       end
 
+      # DescribeLogStorageConfig请求参数结构体
+      class DescribeLogStorageConfigRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogStorageConfig返回参数结构体
+      class DescribeLogStorageConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 存储类型，string数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Array
+        # @param Period: 日志存储天数，3640表示不限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param PeriodModifyCount: 本月Period的修改次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodModifyCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :Period, :PeriodModifyCount, :RequestId
+        
+        def initialize(type=nil, period=nil, periodmodifycount=nil, requestid=nil)
+          @Type = type
+          @Period = period
+          @PeriodModifyCount = periodmodifycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Period = params['Period']
+          @PeriodModifyCount = params['PeriodModifyCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogStorageRecord请求参数结构体
+      class DescribeLogStorageRecordRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogStorageRecord返回参数结构体
+      class DescribeLogStorageRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 存储量记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :RequestId
+        
+        def initialize(records=nil, requestid=nil)
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              logstoragerecord_tmp = LogStorageRecord.new
+              logstoragerecord_tmp.deserialize(i)
+              @Records << logstoragerecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogStorageStatistic请求参数结构体
       class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
 
@@ -19640,6 +19721,33 @@ module TencentCloud
         end
       end
 
+      # 日志存储量记录
+      class LogStorageRecord < TencentCloud::Common::AbstractModel
+        # @param Month: 年月份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Month: String
+        # @param UsedSize: 存储量，字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedSize: Integer
+        # @param InquireSize: 总量，字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireSize: Integer
+
+        attr_accessor :Month, :UsedSize, :InquireSize
+        
+        def initialize(month=nil, usedsize=nil, inquiresize=nil)
+          @Month = month
+          @UsedSize = usedsize
+          @InquireSize = inquiresize
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          @UsedSize = params['UsedSize']
+          @InquireSize = params['InquireSize']
+        end
+      end
+
       # 异地登录合并后白名单
       class LoginWhiteCombinedInfo < TencentCloud::Common::AbstractModel
         # @param Places: 白名单地域
@@ -20823,6 +20931,46 @@ module TencentCloud
               @ErrMsg << licenseunbindrsp_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLogStorageConfig请求参数结构体
+      class ModifyLogStorageConfigRequest < TencentCloud::Common::AbstractModel
+        # @param IsModifyPeriod: 是否修改有效期
+        # @type IsModifyPeriod: Boolean
+        # @param Type: 存储类型，string数组
+        # @type Type: Array
+        # @param Period: 日志存储天数，3640表示不限
+        # @type Period: Integer
+
+        attr_accessor :IsModifyPeriod, :Type, :Period
+        
+        def initialize(ismodifyperiod=nil, type=nil, period=nil)
+          @IsModifyPeriod = ismodifyperiod
+          @Type = type
+          @Period = period
+        end
+
+        def deserialize(params)
+          @IsModifyPeriod = params['IsModifyPeriod']
+          @Type = params['Type']
+          @Period = params['Period']
+        end
+      end
+
+      # ModifyLogStorageConfig返回参数结构体
+      class ModifyLogStorageConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

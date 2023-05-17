@@ -6281,6 +6281,38 @@ module TencentCloud
         end
       end
 
+      # DeleteTrafficPackages请求参数结构体
+      class DeleteTrafficPackagesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageIds: 待删除的流量包唯一ID数组
+        # @type TrafficPackageIds: Array
+
+        attr_accessor :TrafficPackageIds
+        
+        def initialize(trafficpackageids=nil)
+          @TrafficPackageIds = trafficpackageids
+        end
+
+        def deserialize(params)
+          @TrafficPackageIds = params['TrafficPackageIds']
+        end
+      end
+
+      # DeleteTrafficPackages返回参数结构体
+      class DeleteTrafficPackagesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteVpcEndPoint请求参数结构体
       class DeleteVpcEndPointRequest < TencentCloud::Common::AbstractModel
         # @param EndPointId: 终端节点ID。
@@ -10339,6 +10371,49 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubnetResourceDashboard请求参数结构体
+      class DescribeSubnetResourceDashboardRequest < TencentCloud::Common::AbstractModel
+        # @param SubnetIds: Subnet实例ID，例如：subnet-f1xjkw1b。
+        # @type SubnetIds: Array
+
+        attr_accessor :SubnetIds
+        
+        def initialize(subnetids=nil)
+          @SubnetIds = subnetids
+        end
+
+        def deserialize(params)
+          @SubnetIds = params['SubnetIds']
+        end
+      end
+
+      # DescribeSubnetResourceDashboard返回参数结构体
+      class DescribeSubnetResourceDashboardResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceStatisticsSet: 资源统计结果。
+        # @type ResourceStatisticsSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceStatisticsSet, :RequestId
+        
+        def initialize(resourcestatisticsset=nil, requestid=nil)
+          @ResourceStatisticsSet = resourcestatisticsset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceStatisticsSet'].nil?
+            @ResourceStatisticsSet = []
+            params['ResourceStatisticsSet'].each do |i|
+              resourcestatistics_tmp = ResourceStatistics.new
+              resourcestatistics_tmp.deserialize(i)
+              @ResourceStatisticsSet << resourcestatistics_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -18436,6 +18511,65 @@ module TencentCloud
           @CynosDBMySQL = params['CynosDBMySQL']
           @Subnet = params['Subnet']
           @RouteTable = params['RouteTable']
+        end
+      end
+
+      # 资源统计信息
+      class ResourceStatistics < TencentCloud::Common::AbstractModel
+        # @param VpcId: Vpc实例ID，例如：vpc-f1xjkw1b。
+        # @type VpcId: String
+        # @param SubnetId: 子网实例ID，例如：subnet-bthucmmy。
+        # @type SubnetId: String
+        # @param Ip: 当前已使用的IP总数。
+        # @type Ip: Integer
+        # @param ResourceStatisticsItemSet: 资源统计信息。
+        # @type ResourceStatisticsItemSet: Array
+
+        attr_accessor :VpcId, :SubnetId, :Ip, :ResourceStatisticsItemSet
+        
+        def initialize(vpcid=nil, subnetid=nil, ip=nil, resourcestatisticsitemset=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Ip = ip
+          @ResourceStatisticsItemSet = resourcestatisticsitemset
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Ip = params['Ip']
+          unless params['ResourceStatisticsItemSet'].nil?
+            @ResourceStatisticsItemSet = []
+            params['ResourceStatisticsItemSet'].each do |i|
+              resourcestatisticsitem_tmp = ResourceStatisticsItem.new
+              resourcestatisticsitem_tmp.deserialize(i)
+              @ResourceStatisticsItemSet << resourcestatisticsitem_tmp
+            end
+          end
+        end
+      end
+
+      # 资源统计项。
+      class ResourceStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型。比如，CVM，ENI等。
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称。
+        # @type ResourceName: String
+        # @param ResourceCount: 资源个数。
+        # @type ResourceCount: Integer
+
+        attr_accessor :ResourceType, :ResourceName, :ResourceCount
+        
+        def initialize(resourcetype=nil, resourcename=nil, resourcecount=nil)
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceCount = resourcecount
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceCount = params['ResourceCount']
         end
       end
 

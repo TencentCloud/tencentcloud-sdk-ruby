@@ -1020,15 +1020,19 @@ module TencentCloud
       class CreateUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
         # @param SAMLMetadataDocument: SAML元数据文档，需要base64 encode
         # @type SAMLMetadataDocument: String
+        # @param AuxiliaryDomain: 辅助域名
+        # @type AuxiliaryDomain: String
 
-        attr_accessor :SAMLMetadataDocument
+        attr_accessor :SAMLMetadataDocument, :AuxiliaryDomain
         
-        def initialize(samlmetadatadocument=nil)
+        def initialize(samlmetadatadocument=nil, auxiliarydomain=nil)
           @SAMLMetadataDocument = samlmetadatadocument
+          @AuxiliaryDomain = auxiliarydomain
         end
 
         def deserialize(params)
           @SAMLMetadataDocument = params['SAMLMetadataDocument']
+          @AuxiliaryDomain = params['AuxiliaryDomain']
         end
       end
 
@@ -1836,20 +1840,24 @@ module TencentCloud
         # @type SAMLMetadata: String
         # @param Status: 状态：0:未设置，1:已开启，2:已禁用
         # @type Status: Integer
+        # @param AuxiliaryDomain: 辅助域名
+        # @type AuxiliaryDomain: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SAMLMetadata, :Status, :RequestId
+        attr_accessor :SAMLMetadata, :Status, :AuxiliaryDomain, :RequestId
         
-        def initialize(samlmetadata=nil, status=nil, requestid=nil)
+        def initialize(samlmetadata=nil, status=nil, auxiliarydomain=nil, requestid=nil)
           @SAMLMetadata = samlmetadata
           @Status = status
+          @AuxiliaryDomain = auxiliarydomain
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SAMLMetadata = params['SAMLMetadata']
           @Status = params['Status']
+          @AuxiliaryDomain = params['AuxiliaryDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -5034,17 +5042,21 @@ module TencentCloud
         # @type Operate: String
         # @param SAMLMetadataDocument: 元数据文档，需要base64 encode，仅当Operate为updateSAML时需要此参数
         # @type SAMLMetadataDocument: String
+        # @param AuxiliaryDomain: 辅助域名
+        # @type AuxiliaryDomain: String
 
-        attr_accessor :Operate, :SAMLMetadataDocument
+        attr_accessor :Operate, :SAMLMetadataDocument, :AuxiliaryDomain
         
-        def initialize(operate=nil, samlmetadatadocument=nil)
+        def initialize(operate=nil, samlmetadatadocument=nil, auxiliarydomain=nil)
           @Operate = operate
           @SAMLMetadataDocument = samlmetadatadocument
+          @AuxiliaryDomain = auxiliarydomain
         end
 
         def deserialize(params)
           @Operate = params['Operate']
           @SAMLMetadataDocument = params['SAMLMetadataDocument']
+          @AuxiliaryDomain = params['AuxiliaryDomain']
         end
       end
 

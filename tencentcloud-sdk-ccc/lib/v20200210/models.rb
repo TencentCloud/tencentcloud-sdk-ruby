@@ -311,6 +311,37 @@ module TencentCloud
         end
       end
 
+      # 被叫属性
+      class CalleeAttribute < TencentCloud::Common::AbstractModel
+        # @param Callee: 被叫号码
+        # @type Callee: String
+        # @param UUI: 随路数据
+        # @type UUI: String
+        # @param Variables: 参数
+        # @type Variables: Array
+
+        attr_accessor :Callee, :UUI, :Variables
+        
+        def initialize(callee=nil, uui=nil, variables=nil)
+          @Callee = callee
+          @UUI = uui
+          @Variables = variables
+        end
+
+        def deserialize(params)
+          @Callee = params['Callee']
+          @UUI = params['UUI']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+        end
+      end
+
       # 运营商白名单号码申请单
       class CarrierPrivilegeNumberApplicant < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 实例Id
@@ -378,10 +409,14 @@ module TencentCloud
         # @type Tries: Integer
         # @param Variables: 自定义变量（仅高级版支持）
         # @type Variables: Array
+        # @param UUI: UUI
+        # @type UUI: String
+        # @param CalleeAttributes: 被叫属性
+        # @type CalleeAttributes: Array
 
-        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes
         
-        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil)
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
           @Callees = callees
@@ -392,6 +427,8 @@ module TencentCloud
           @NotAfter = notafter
           @Tries = tries
           @Variables = variables
+          @UUI = uui
+          @CalleeAttributes = calleeattributes
         end
 
         def deserialize(params)
@@ -410,6 +447,15 @@ module TencentCloud
               variable_tmp = Variable.new
               variable_tmp.deserialize(i)
               @Variables << variable_tmp
+            end
+          end
+          @UUI = params['UUI']
+          unless params['CalleeAttributes'].nil?
+            @CalleeAttributes = []
+            params['CalleeAttributes'].each do |i|
+              calleeattribute_tmp = CalleeAttribute.new
+              calleeattribute_tmp.deserialize(i)
+              @CalleeAttributes << calleeattribute_tmp
             end
           end
         end

@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加nat访问控制规则
+        # 添加nat访问控制规则(地域必填)
 
         # @param request: Request instance for AddNatAcRule.
         # @type request: :class:`Tencentcloud::cfw::V20190904::AddNatAcRuleRequest`

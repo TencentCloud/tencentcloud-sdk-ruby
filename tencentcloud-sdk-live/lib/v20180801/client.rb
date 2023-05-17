@@ -2646,7 +2646,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 直播上行路数查询
+        # 直播上行路数查询。
 
         # @param request: Request instance for DescribeUploadStreamNums.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeUploadStreamNumsRequest`

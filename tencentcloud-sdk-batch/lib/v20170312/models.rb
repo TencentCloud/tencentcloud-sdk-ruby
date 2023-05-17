@@ -3796,6 +3796,7 @@ module TencentCloud
         # @param DiskSize: 系统盘大小，单位：GB。默认值为 50
         # @type DiskSize: Integer
         # @param CdcId: 所属的独享集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
 
         attr_accessor :DiskType, :DiskId, :DiskSize, :CdcId
