@@ -711,10 +711,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param ApplicationProxyRules: 规则列表。
         # @type ApplicationProxyRules: Array
+        # @param AccelerateMainland: 中国大陆加速优化配置。
+        # @type AccelerateMainland: :class:`Tencentcloud::Teo.v20220901.models.AccelerateMainland`
 
-        attr_accessor :ZoneId, :ZoneName, :ProxyId, :ProxyName, :ProxyType, :PlatType, :Area, :SecurityType, :AccelerateType, :SessionPersistTime, :Status, :BanStatus, :ScheduleValue, :HostId, :Ipv6, :UpdateTime, :ApplicationProxyRules
+        attr_accessor :ZoneId, :ZoneName, :ProxyId, :ProxyName, :ProxyType, :PlatType, :Area, :SecurityType, :AccelerateType, :SessionPersistTime, :Status, :BanStatus, :ScheduleValue, :HostId, :Ipv6, :UpdateTime, :ApplicationProxyRules, :AccelerateMainland
         
-        def initialize(zoneid=nil, zonename=nil, proxyid=nil, proxyname=nil, proxytype=nil, plattype=nil, area=nil, securitytype=nil, acceleratetype=nil, sessionpersisttime=nil, status=nil, banstatus=nil, schedulevalue=nil, hostid=nil, ipv6=nil, updatetime=nil, applicationproxyrules=nil)
+        def initialize(zoneid=nil, zonename=nil, proxyid=nil, proxyname=nil, proxytype=nil, plattype=nil, area=nil, securitytype=nil, acceleratetype=nil, sessionpersisttime=nil, status=nil, banstatus=nil, schedulevalue=nil, hostid=nil, ipv6=nil, updatetime=nil, applicationproxyrules=nil, acceleratemainland=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @ProxyId = proxyid
@@ -732,6 +734,7 @@ module TencentCloud
           @Ipv6 = ipv6
           @UpdateTime = updatetime
           @ApplicationProxyRules = applicationproxyrules
+          @AccelerateMainland = acceleratemainland
         end
 
         def deserialize(params)
@@ -761,6 +764,10 @@ module TencentCloud
               applicationproxyrule_tmp.deserialize(i)
               @ApplicationProxyRules << applicationproxyrule_tmp
             end
+          end
+          unless params['AccelerateMainland'].nil?
+            @AccelerateMainland = AccelerateMainland.new
+            @AccelerateMainland.deserialize(params['AccelerateMainland'])
           end
         end
       end

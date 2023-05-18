@@ -1653,7 +1653,9 @@ module TencentCloud
 
       # Bot cookie策略
       class BotCookie < TencentCloud::Common::AbstractModel
-        # @param Switch: on|off
+        # @param Switch: Bot cookie策略配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param RuleType: 规则类型，当前只有all
         # @type RuleType: String
@@ -1691,7 +1693,9 @@ module TencentCloud
 
       # Bot js策略
       class BotJavaScript < TencentCloud::Common::AbstractModel
-        # @param Switch: on|off
+        # @param Switch: Bot js策略配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param RuleType: 规则类型，当前只有file
         # @type RuleType: String
@@ -8235,7 +8239,7 @@ module TencentCloud
 
       # 单节点单 IP 访问限频配置，默认为关闭状态
       class IpFreqLimit < TencentCloud::Common::AbstractModel
-        # @param Switch: IP 限频配置开关
+        # @param Switch: IP 限频配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -8296,9 +8300,11 @@ module TencentCloud
         end
       end
 
-      # Ipv6启用配置，不可更改
+      # Ipv6源站启用配置，不可更改
       class Ipv6 < TencentCloud::Common::AbstractModel
-        # @param Switch: 域名是否开启ipv6功能，on或off。
+        # @param Switch: 域名开启源站ipv6配置开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
 
@@ -8315,7 +8321,9 @@ module TencentCloud
 
       # Ipv6访问配置
       class Ipv6Access < TencentCloud::Common::AbstractModel
-        # @param Switch: 域名是否开启ipv6访问功能，on或off。
+        # @param Switch: 域名开启ipv6访问配置开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
 
@@ -9663,7 +9671,7 @@ module TencentCloud
 
       # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
       class MaxAge < TencentCloud::Common::AbstractModel
-        # @param Switch: 浏览器缓存配置开关
+        # @param Switch: 浏览器缓存配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9810,7 +9818,9 @@ module TencentCloud
 
       # 离线缓存是否开启
       class OfflineCache < TencentCloud::Common::AbstractModel
-        # @param Switch: on | off, 离线缓存是否开启
+        # @param Switch: 离线缓存配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
 
         attr_accessor :Switch
@@ -9971,7 +9981,10 @@ module TencentCloud
 
       # 回源鉴权高级配置
       class OriginAuthentication < TencentCloud::Common::AbstractModel
-        # @param Switch: 鉴权开关，on或off
+        # @param Switch: 回源鉴权高级配置开关，取值有：
+        # on：开启
+        # off：关闭
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param TypeA: 鉴权类型A配置
@@ -10013,7 +10026,9 @@ module TencentCloud
 
       # 合并回源配置项
       class OriginCombine < TencentCloud::Common::AbstractModel
-        # @param Switch: on|off 是否开启合并回源
+        # @param Switch: 合并回源配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
 
         attr_accessor :Switch
@@ -10045,7 +10060,7 @@ module TencentCloud
 
       # 跨国回源优化配置，默认为关闭状态 (已下线)
       class OriginPullOptimization < TencentCloud::Common::AbstractModel
-        # @param Switch: 跨国回源优化配置开关
+        # @param Switch: 跨国回源优化配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -10092,7 +10107,9 @@ module TencentCloud
 
       # oss回源鉴权
       class OssPrivateAccess < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关， on/off。
+        # @param Switch: oss回源鉴权配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10128,7 +10145,9 @@ module TencentCloud
 
       # 其他厂商对象存储回源鉴权
       class OthersPrivateAccess < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关， on/off。
+        # @param Switch: 其他厂商对象存储回源鉴权配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10799,7 +10818,9 @@ module TencentCloud
 
       # 七牛元对象存储回源鉴权配置
       class QnPrivateAccess < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关 on/off
+        # @param Switch: 七牛元对象存储回源鉴权配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessKey: 访问 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10862,7 +10883,9 @@ module TencentCloud
 
       # Quic配置项
       class Quic < TencentCloud::Common::AbstractModel
-        # @param Switch: 是否启动Quic配置
+        # @param Switch: Quic功能配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
 
         attr_accessor :Switch
@@ -10906,7 +10929,7 @@ module TencentCloud
 
       # 分片回源配置，默认为开启状态
       class RangeOriginPull < TencentCloud::Common::AbstractModel
-        # @param Switch: 分片回源配置开关
+        # @param Switch: 分片回源配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -10936,7 +10959,9 @@ module TencentCloud
 
       # 分路径分片回源配置
       class RangeOriginPullRule < TencentCloud::Common::AbstractModel
-        # @param Switch: 分片回源配置开关
+        # @param Switch: 分片回源配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param RuleType: 规则类型：
         # file：指定文件后缀生效
@@ -10968,7 +10993,9 @@ module TencentCloud
 
       # 自定义回源302 follow请求host配置
       class RedirectConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 配置开关
+        # @param Switch: 自定义回源302 follow请求host配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param FollowRedirectHost: 主源站follow302请求时带的自定义的host头部
         # @type FollowRedirectHost: String
@@ -10992,7 +11019,7 @@ module TencentCloud
 
       # Referer 黑白名单配置，默认为关闭状态
       class Referer < TencentCloud::Common::AbstractModel
-        # @param Switch: referer 黑白名单配置开关
+        # @param Switch: referer 黑白名单配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11088,9 +11115,9 @@ module TencentCloud
       # RemoteAuthenticationRules和Server 互斥，只需要配置其中一个。
       # 若只配置Server ，RemoteAuthenticationRules中详细规则参数将采用默认参数；默认参数值见各个配置项中说明；
       class RemoteAuthentication < TencentCloud::Common::AbstractModel
-        # @param Switch: 远程鉴权开关；
-        # on : 开启;
-        # off: 关闭；
+        # @param Switch: 远程鉴权配置开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param RemoteAuthenticationRules: 远程鉴权规则配置
@@ -11215,7 +11242,7 @@ module TencentCloud
 
       # 自定义请求头配置，默认为关闭状态
       class RequestHeader < TencentCloud::Common::AbstractModel
-        # @param Switch: 自定义请求头配置开关
+        # @param Switch: 自定义请求头配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11338,7 +11365,7 @@ module TencentCloud
 
       # 自定义响应头配置，默认为关闭状态
       class ResponseHeader < TencentCloud::Common::AbstractModel
-        # @param Switch: 自定义响应头开关
+        # @param Switch: 自定义响应头配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11368,7 +11395,7 @@ module TencentCloud
 
       # 源站头部缓存配置，默认为开启状态，缓存所有头部信息
       class ResponseHeaderCache < TencentCloud::Common::AbstractModel
-        # @param Switch: 源站头部缓存开关
+        # @param Switch: 源站头部缓存配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11486,7 +11513,7 @@ module TencentCloud
 
       # 规则引擎配置
       class RuleEngine < TencentCloud::Common::AbstractModel
-        # @param Switch: 规则引擎配置开关
+        # @param Switch: 规则引擎配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11536,7 +11563,9 @@ module TencentCloud
 
       # SCDN访问控制
       class ScdnAclConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 是否开启，on | off
+        # @param Switch: SCDN访问控制配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param ScriptData: 新版本请使用AdvancedScriptData
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11651,7 +11680,9 @@ module TencentCloud
 
       # bot配置类型
       class ScdnBotConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: on|off
+        # @param Switch: Scdn bot配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param BotCookie: Bot cookie策略
         # 注意：此字段可能返回 null，表示取不到有效值。

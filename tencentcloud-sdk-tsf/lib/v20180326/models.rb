@@ -4565,6 +4565,54 @@ module TencentCloud
         end
       end
 
+      # CreateUnitNamespaces请求参数结构体
+      class CreateUnitNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param UnitNamespaceList: 单元化命名空间对象列表
+        # @type UnitNamespaceList: Array
+
+        attr_accessor :GatewayInstanceId, :UnitNamespaceList
+        
+        def initialize(gatewayinstanceid=nil, unitnamespacelist=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @UnitNamespaceList = unitnamespacelist
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          unless params['UnitNamespaceList'].nil?
+            @UnitNamespaceList = []
+            params['UnitNamespaceList'].each do |i|
+              unitnamespace_tmp = UnitNamespace.new
+              unitnamespace_tmp.deserialize(i)
+              @UnitNamespaceList << unitnamespace_tmp
+            end
+          end
+        end
+      end
+
+      # CreateUnitNamespaces返回参数结构体
+      class CreateUnitNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUnitRule请求参数结构体
       class CreateUnitRuleRequest < TencentCloud::Common::AbstractModel
         # @param GatewayInstanceId: 网关实体ID

@@ -869,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量创建单元化命名空间
+
+        # @param request: Request instance for CreateUnitNamespaces.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateUnitNamespacesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateUnitNamespacesResponse`
+        def CreateUnitNamespaces(request)
+          body = send_request('CreateUnitNamespaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUnitNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建单元化规则
 
         # @param request: Request instance for CreateUnitRule.

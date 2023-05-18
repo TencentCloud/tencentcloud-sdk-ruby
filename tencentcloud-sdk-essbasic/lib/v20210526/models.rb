@@ -647,7 +647,7 @@ module TencentCloud
         # @type FlowDescription: String
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
-        # @param CustomerData: 业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @param CustomerData: 业务信息，最大长度1000个字符。
         # @type CustomerData: String
         # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。  注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
@@ -664,10 +664,12 @@ module TencentCloud
         # @type CcInfos: Array
         # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
         # @type CcNotifyType: Integer
+        # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @type AutoSignScene: String
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator, :CcInfos, :CcNotifyType
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator, :CcInfos, :CcNotifyType, :AutoSignScene
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil, ccinfos=nil, ccnotifytype=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -686,6 +688,7 @@ module TencentCloud
           @Operator = operator
           @CcInfos = ccinfos
           @CcNotifyType = ccnotifytype
+          @AutoSignScene = autosignscene
         end
 
         def deserialize(params)
@@ -734,6 +737,7 @@ module TencentCloud
             end
           end
           @CcNotifyType = params['CcNotifyType']
+          @AutoSignScene = params['AutoSignScene']
         end
       end
 
@@ -3841,7 +3845,7 @@ module TencentCloud
         # @type FlowType: String
         # @param FlowDescription: 合同描述，最大长度1000个字符
         # @type FlowDescription: String
-        # @param CustomerData:  第三方应用平台的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @param CustomerData:  第三方应用平台的业务信息，最大长度1000个字符。
         # @type CustomerData: String
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
@@ -3854,10 +3858,12 @@ module TencentCloud
         # @type NeedSignReview: Boolean
         # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
         # @type CcNotifyType: Integer
+        # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @type AutoSignScene: String
 
-        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType
+        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType, :AutoSignScene
         
-        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil)
+        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil, autosignscene=nil)
           @FlowName = flowname
           @Deadline = deadline
           @TemplateId = templateid
@@ -3871,6 +3877,7 @@ module TencentCloud
           @CcInfos = ccinfos
           @NeedSignReview = needsignreview
           @CcNotifyType = ccnotifytype
+          @AutoSignScene = autosignscene
         end
 
         def deserialize(params)
@@ -3908,6 +3915,7 @@ module TencentCloud
           end
           @NeedSignReview = params['NeedSignReview']
           @CcNotifyType = params['CcNotifyType']
+          @AutoSignScene = params['AutoSignScene']
         end
       end
 

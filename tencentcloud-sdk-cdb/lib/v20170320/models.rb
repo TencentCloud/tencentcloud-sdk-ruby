@@ -6050,12 +6050,15 @@ module TencentCloud
         # @type Description: String
         # @param TemplateType: 参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
+        # @param EngineType: 参数模板引擎。支持值包括："InnoDB"，"RocksDB"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :Description, :TemplateType, :RequestId
+        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :Description, :TemplateType, :EngineType, :RequestId
         
-        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, description=nil, templatetype=nil, requestid=nil)
+        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, description=nil, templatetype=nil, enginetype=nil, requestid=nil)
           @TemplateId = templateid
           @Name = name
           @EngineVersion = engineversion
@@ -6063,6 +6066,7 @@ module TencentCloud
           @Items = items
           @Description = description
           @TemplateType = templatetype
+          @EngineType = enginetype
           @RequestId = requestid
         end
 
@@ -6081,6 +6085,7 @@ module TencentCloud
           end
           @Description = params['Description']
           @TemplateType = params['TemplateType']
+          @EngineType = params['EngineType']
           @RequestId = params['RequestId']
         end
       end

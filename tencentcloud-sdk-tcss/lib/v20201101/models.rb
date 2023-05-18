@@ -12980,12 +12980,15 @@ module TencentCloud
         # @param Id: 自动以扫描镜像Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Array
+        # @param Latest: 是否扫描最新版本镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Latest: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :RequestId
         
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -12993,6 +12996,7 @@ module TencentCloud
           @All = all
           @Images = images
           @Id = id
+          @Latest = latest
           @RequestId = requestid
         end
 
@@ -13011,6 +13015,7 @@ module TencentCloud
             end
           end
           @Id = params['Id']
+          @Latest = params['Latest']
           @RequestId = params['RequestId']
         end
       end
@@ -25433,10 +25438,12 @@ module TencentCloud
         # @type All: Boolean
         # @param Id: 扫描镜像Id
         # @type Id: Array
+        # @param Latest: 是否扫描最新版本
+        # @type Latest: Boolean
 
-        attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id
+        attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest
         
-        def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil)
+        def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil)
           @ScanPeriod = scanperiod
           @Enable = enable
           @ScanTime = scantime
@@ -25444,6 +25451,7 @@ module TencentCloud
           @Images = images
           @All = all
           @Id = id
+          @Latest = latest
         end
 
         def deserialize(params)
@@ -25461,6 +25469,7 @@ module TencentCloud
           end
           @All = params['All']
           @Id = params['Id']
+          @Latest = params['Latest']
         end
       end
 

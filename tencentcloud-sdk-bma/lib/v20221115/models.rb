@@ -125,10 +125,12 @@ module TencentCloud
         # @type ProtectOfficialAccounts: Array
         # @param ProtectMiniPrograms: 保护小程序
         # @type ProtectMiniPrograms: Array
+        # @param APISource: 请求来源：0-反钓鱼 2-反假冒
+        # @type APISource: Integer
 
-        attr_accessor :BrandName, :CompanyName, :BrandLogo, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms
+        attr_accessor :BrandName, :CompanyName, :BrandLogo, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms, :APISource
         
-        def initialize(brandname=nil, companyname=nil, brandlogo=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil)
+        def initialize(brandname=nil, companyname=nil, brandlogo=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil, apisource=nil)
           @BrandName = brandname
           @CompanyName = companyname
           @BrandLogo = brandlogo
@@ -143,6 +145,7 @@ module TencentCloud
           @ProtectAPPs = protectapps
           @ProtectOfficialAccounts = protectofficialaccounts
           @ProtectMiniPrograms = protectminiprograms
+          @APISource = apisource
         end
 
         def deserialize(params)
@@ -160,6 +163,7 @@ module TencentCloud
           @ProtectAPPs = params['ProtectAPPs']
           @ProtectOfficialAccounts = params['ProtectOfficialAccounts']
           @ProtectMiniPrograms = params['ProtectMiniPrograms']
+          @APISource = params['APISource']
         end
       end
 

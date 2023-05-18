@@ -1234,7 +1234,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (AttachCcn) 用于解除与云联网的关联。
+        # 本接口 (DetachCcn) 用于解除与云联网的关联。
 
         # @param request: Request instance for DetachCcn.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::DetachCcnRequest`

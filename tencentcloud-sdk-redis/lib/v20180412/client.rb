@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取备份配置
+        # 本接口（DescribeAutoBackupConfig）用于获取自动备份配置规则。
 
         # @param request: Request instance for DescribeAutoBackupConfig.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeAutoBackupConfigRequest`

@@ -1218,7 +1218,7 @@ module TencentCloud
 
       # DescribeAutoBackupConfig请求参数结构体
       class DescribeAutoBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1234,15 +1234,15 @@ module TencentCloud
 
       # DescribeAutoBackupConfig返回参数结构体
       class DescribeAutoBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param AutoBackupType: 备份类型。自动备份类型： 1 “定时回档”
+        # @param AutoBackupType: 该参数因兼容性问题暂时保留，请忽略。
         # @type AutoBackupType: Integer
-        # @param WeekDays: Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
+        # @param WeekDays: 备份周期，默认为每天自动备份，Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         # @type WeekDays: Array
-        # @param TimePeriod: 时间段。
+        # @param TimePeriod: 备份任务发起时间段。
         # @type TimePeriod: String
-        # @param BackupStorageDays: 全量备份文件保存天数
+        # @param BackupStorageDays: 全量备份文件保存天数。默认为7天。如需保存更多天数，请[提交工单](https://console.cloud.tencent.com/workorder/category)申请。
         # @type BackupStorageDays: Integer
-        # @param BinlogStorageDays: tendis binlog备份文件保存天数
+        # @param BinlogStorageDays: 该参数不再使用，请忽略。
         # @type BinlogStorageDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6081,7 +6081,7 @@ module TencentCloud
         # @param BackupId: 备份任务ID。
         # @type BackupId: String
         # @param BackupType: 备份类型。
-        # - 1：凌晨系统发起的备份。
+        # - 1：凌晨系统发起的自动备份。
         # - 0：用户发起的手动备份。
         # @type BackupType: String
         # @param Status: 备份状态。

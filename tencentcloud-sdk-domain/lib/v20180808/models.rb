@@ -123,6 +123,9 @@ module TencentCloud
         # @type CertificateType: String
         # @param ImgUrl: 证件照片地址。
         # @type ImgUrl: String
+        # @param OriginImgUrl: 原始照片地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginImgUrl: String
         # @param RegistrantCertificateCode: 联系人证件号码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistrantCertificateCode: String
@@ -133,12 +136,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistrantImgUrl: String
 
-        attr_accessor :CertificateCode, :CertificateType, :ImgUrl, :RegistrantCertificateCode, :RegistrantCertificateType, :RegistrantImgUrl
+        attr_accessor :CertificateCode, :CertificateType, :ImgUrl, :OriginImgUrl, :RegistrantCertificateCode, :RegistrantCertificateType, :RegistrantImgUrl
         
-        def initialize(certificatecode=nil, certificatetype=nil, imgurl=nil, registrantcertificatecode=nil, registrantcertificatetype=nil, registrantimgurl=nil)
+        def initialize(certificatecode=nil, certificatetype=nil, imgurl=nil, originimgurl=nil, registrantcertificatecode=nil, registrantcertificatetype=nil, registrantimgurl=nil)
           @CertificateCode = certificatecode
           @CertificateType = certificatetype
           @ImgUrl = imgurl
+          @OriginImgUrl = originimgurl
           @RegistrantCertificateCode = registrantcertificatecode
           @RegistrantCertificateType = registrantcertificatetype
           @RegistrantImgUrl = registrantimgurl
@@ -148,6 +152,7 @@ module TencentCloud
           @CertificateCode = params['CertificateCode']
           @CertificateType = params['CertificateType']
           @ImgUrl = params['ImgUrl']
+          @OriginImgUrl = params['OriginImgUrl']
           @RegistrantCertificateCode = params['RegistrantCertificateCode']
           @RegistrantCertificateType = params['RegistrantCertificateType']
           @RegistrantImgUrl = params['RegistrantImgUrl']

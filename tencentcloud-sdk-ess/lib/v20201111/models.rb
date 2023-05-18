@@ -1082,10 +1082,12 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
         # @type CcNotifyType: Integer
+        # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @type AutoSignScene: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent, :CcNotifyType
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent, :CcNotifyType, :AutoSignScene
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil, ccnotifytype=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil, ccnotifytype=nil, autosignscene=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -1105,6 +1107,7 @@ module TencentCloud
           @SignBeanTag = signbeantag
           @Agent = agent
           @CcNotifyType = ccnotifytype
+          @AutoSignScene = autosignscene
         end
 
         def deserialize(params)
@@ -1154,6 +1157,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @CcNotifyType = params['CcNotifyType']
+          @AutoSignScene = params['AutoSignScene']
         end
       end
 
@@ -1331,10 +1335,12 @@ module TencentCloud
         # @param CcInfos: 被抄送人的信息列表。
         # 注: 此功能为白名单功能，若有需要，请联系电子签客服开白使用。
         # @type CcInfos: Array
+        # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @type AutoSignScene: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent, :CcInfos
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent, :CcInfos, :AutoSignScene
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil, ccinfos=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil, ccinfos=nil, autosignscene=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -1350,6 +1356,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @Agent = agent
           @CcInfos = ccinfos
+          @AutoSignScene = autosignscene
         end
 
         def deserialize(params)
@@ -1388,6 +1395,7 @@ module TencentCloud
               @CcInfos << ccinfo_tmp
             end
           end
+          @AutoSignScene = params['AutoSignScene']
         end
       end
 
