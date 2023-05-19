@@ -1845,10 +1845,17 @@ module TencentCloud
         # @type ExpansionNodeConfigs: Array
         # @param DesiredIdleNodeCapacity: 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
         # @type DesiredIdleNodeCapacity: Integer
+        # @param ScaleOutRatio: 扩容比例。默认值：100。取值范围：1～100。
+        # 如果扩容比例为50，那么每轮只会扩容当前作业负载所需的50%数量的节点。
+        # @type ScaleOutRatio: Integer
+        # @param ScaleOutNodeThreshold: 比例扩容阈值。默认值：0。取值范围：0～200。
+        # 当作业负载需要扩容节点数量大于此值，当前扩容轮次按照ScaleOutRatio配置的的比例进行扩容。当作业负载需要扩容节点数量小于此值，当前扩容轮次扩容当前作业负载所需数量的节点。
+        # 此参数配合ScaleOutRatio参数进行使用，用于比例扩容场景下，在作业负载所需节点数量较小时，加快收敛速度。
+        # @type ScaleOutNodeThreshold: Integer
 
-        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ImageId, :SystemDisk, :DataDisks, :InternetAccessible, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity
+        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ImageId, :SystemDisk, :DataDisks, :InternetAccessible, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity, :ScaleOutRatio, :ScaleOutNodeThreshold
         
-        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, imageid=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil)
+        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, imageid=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil, scaleoutratio=nil, scaleoutnodethreshold=nil)
           @QueueName = queuename
           @MinSize = minsize
           @MaxSize = maxsize
@@ -1860,6 +1867,8 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @ExpansionNodeConfigs = expansionnodeconfigs
           @DesiredIdleNodeCapacity = desiredidlenodecapacity
+          @ScaleOutRatio = scaleoutratio
+          @ScaleOutNodeThreshold = scaleoutnodethreshold
         end
 
         def deserialize(params)
@@ -1894,6 +1903,8 @@ module TencentCloud
             end
           end
           @DesiredIdleNodeCapacity = params['DesiredIdleNodeCapacity']
+          @ScaleOutRatio = params['ScaleOutRatio']
+          @ScaleOutNodeThreshold = params['ScaleOutNodeThreshold']
         end
       end
 
@@ -1914,10 +1925,19 @@ module TencentCloud
         # @param DesiredIdleNodeCapacity: 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredIdleNodeCapacity: Integer
+        # @param ScaleOutRatio: 扩容比例。默认值：100。取值范围：1～100。
+        # 如果扩容比例为50，那么每轮只会扩容当前作业负载所需的50%数量的节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleOutRatio: Integer
+        # @param ScaleOutNodeThreshold: 比例扩容阈值。默认值：0。取值范围：0～200。
+        # 当作业负载需要扩容节点数量大于此值，当前扩容轮次按照ScaleOutRatio配置的的比例进行扩容。当作业负载需要扩容节点数量小于此值，当前扩容轮次扩容当前作业负载所需数量的节点。
+        # 此参数配合ScaleOutRatio参数进行使用，用于比例扩容场景下，在作业负载所需节点数量较小时，加快收敛速度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleOutNodeThreshold: Integer
 
-        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity
+        attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity, :ScaleOutRatio, :ScaleOutNodeThreshold
         
-        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil)
+        def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil, scaleoutratio=nil, scaleoutnodethreshold=nil)
           @QueueName = queuename
           @MinSize = minsize
           @MaxSize = maxsize
@@ -1925,6 +1945,8 @@ module TencentCloud
           @EnableAutoShrink = enableautoshrink
           @ExpansionNodeConfigs = expansionnodeconfigs
           @DesiredIdleNodeCapacity = desiredidlenodecapacity
+          @ScaleOutRatio = scaleoutratio
+          @ScaleOutNodeThreshold = scaleoutnodethreshold
         end
 
         def deserialize(params)
@@ -1942,6 +1964,8 @@ module TencentCloud
             end
           end
           @DesiredIdleNodeCapacity = params['DesiredIdleNodeCapacity']
+          @ScaleOutRatio = params['ScaleOutRatio']
+          @ScaleOutNodeThreshold = params['ScaleOutNodeThreshold']
         end
       end
 

@@ -2719,7 +2719,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除SSL-VPN-CLIENT
+        # 本接口（DeleteVpnGatewaySslClient）用于删除SSL-VPN-CLIENT。
 
         # @param request: Request instance for DeleteVpnGatewaySslClient.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteVpnGatewaySslClientRequest`
@@ -5222,7 +5222,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下载SSL-VPN-CLIENT 客户端证书
+        # 本接口（DownloadVpnGatewaySslClientCert）用于下载SSL-VPN-CLIENT 客户端证书。
 
         # @param request: Request instance for DownloadVpnGatewaySslClientCert.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DownloadVpnGatewaySslClientCertRequest`
@@ -5392,7 +5392,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启用SSL-VPN-CLIENT 证书
+        # 本接口（EnableVpnGatewaySslClientCert）用于启用SSL-VPN-CLIENT 证书。
 
         # @param request: Request instance for EnableVpnGatewaySslClientCert.
         # @type request: :class:`Tencentcloud::vpc::V20170312::EnableVpnGatewaySslClientCertRequest`

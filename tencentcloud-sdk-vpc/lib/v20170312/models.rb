@@ -4875,19 +4875,23 @@ module TencentCloud
       class CreateVpnGatewaySslClientRequest < TencentCloud::Common::AbstractModel
         # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
         # @type SslVpnServerId: String
-        # @param SslVpnClientName: name
+        # @param SslVpnClientName: SSL-VPN-CLIENT实例Name。不可和SslVpnClientNames同时使用。
         # @type SslVpnClientName: String
+        # @param SslVpnClientNames: SSL-VPN-CLIENT实例Name数字。批量创建时使用。不可和SslVpnClientName同时使用。
+        # @type SslVpnClientNames: Array
 
-        attr_accessor :SslVpnServerId, :SslVpnClientName
+        attr_accessor :SslVpnServerId, :SslVpnClientName, :SslVpnClientNames
         
-        def initialize(sslvpnserverid=nil, sslvpnclientname=nil)
+        def initialize(sslvpnserverid=nil, sslvpnclientname=nil, sslvpnclientnames=nil)
           @SslVpnServerId = sslvpnserverid
           @SslVpnClientName = sslvpnclientname
+          @SslVpnClientNames = sslvpnclientnames
         end
 
         def deserialize(params)
           @SslVpnServerId = params['SslVpnServerId']
           @SslVpnClientName = params['SslVpnClientName']
+          @SslVpnClientNames = params['SslVpnClientNames']
         end
       end
 
@@ -6551,17 +6555,21 @@ module TencentCloud
 
       # DeleteVpnGatewaySslClient请求参数结构体
       class DeleteVpnGatewaySslClientRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。不可和SslVpnClientIds同时使用。
         # @type SslVpnClientId: String
+        # @param SslVpnClientIds: SSL-VPN-CLIENT 实例ID列表。批量删除时使用。不可和SslVpnClientId同时使用。
+        # @type SslVpnClientIds: Array
 
-        attr_accessor :SslVpnClientId
+        attr_accessor :SslVpnClientId, :SslVpnClientIds
         
-        def initialize(sslvpnclientid=nil)
+        def initialize(sslvpnclientid=nil, sslvpnclientids=nil)
           @SslVpnClientId = sslvpnclientid
+          @SslVpnClientIds = sslvpnclientids
         end
 
         def deserialize(params)
           @SslVpnClientId = params['SslVpnClientId']
+          @SslVpnClientIds = params['SslVpnClientIds']
         end
       end
 
@@ -12386,17 +12394,21 @@ module TencentCloud
 
       # DisableVpnGatewaySslClientCert请求参数结构体
       class DisableVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。不可和SslVpnClientIds同时使用。
         # @type SslVpnClientId: String
+        # @param SslVpnClientIds: SSL-VPN-CLIENT 实例ID列表。批量禁用时使用。不可和SslVpnClientId同时使用。
+        # @type SslVpnClientIds: Array
 
-        attr_accessor :SslVpnClientId
+        attr_accessor :SslVpnClientId, :SslVpnClientIds
         
-        def initialize(sslvpnclientid=nil)
+        def initialize(sslvpnclientid=nil, sslvpnclientids=nil)
           @SslVpnClientId = sslvpnclientid
+          @SslVpnClientIds = sslvpnclientids
         end
 
         def deserialize(params)
           @SslVpnClientId = params['SslVpnClientId']
+          @SslVpnClientIds = params['SslVpnClientIds']
         end
       end
 
@@ -12729,35 +12741,39 @@ module TencentCloud
 
       # DownloadVpnGatewaySslClientCert请求参数结构体
       class DownloadVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。不可以和SslVpnClientIds同时使用。
         # @type SslVpnClientId: String
-        # @param SamlToken: SAML-TOKEN
+        # @param SamlToken: SAML Token（SAML令牌）。
         # @type SamlToken: String
-        # @param IsVpnPortal: VPN门户网站使用。默认Flase
+        # @param IsVpnPortal: VPN门户网站使用。默认False
         # @type IsVpnPortal: Boolean
+        # @param SslVpnClientIds: SSL-VPN-CLIENT 实例ID列表。批量下载时使用。不可以和SslVpnClientId同时使用。
+        # @type SslVpnClientIds: Array
 
-        attr_accessor :SslVpnClientId, :SamlToken, :IsVpnPortal
+        attr_accessor :SslVpnClientId, :SamlToken, :IsVpnPortal, :SslVpnClientIds
         
-        def initialize(sslvpnclientid=nil, samltoken=nil, isvpnportal=nil)
+        def initialize(sslvpnclientid=nil, samltoken=nil, isvpnportal=nil, sslvpnclientids=nil)
           @SslVpnClientId = sslvpnclientid
           @SamlToken = samltoken
           @IsVpnPortal = isvpnportal
+          @SslVpnClientIds = sslvpnclientids
         end
 
         def deserialize(params)
           @SslVpnClientId = params['SslVpnClientId']
           @SamlToken = params['SamlToken']
           @IsVpnPortal = params['IsVpnPortal']
+          @SslVpnClientIds = params['SslVpnClientIds']
         end
       end
 
       # DownloadVpnGatewaySslClientCert返回参数结构体
       class DownloadVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
-        # @param SslClientConfigsSet: 无
+        # @param SslClientConfigsSet: SSL-VPN 客户端配置。
         # @type SslClientConfigsSet: String
-        # @param SslClientConfig: SSL-VPN client配置
+        # @param SslClientConfig: SSL-VPN 客户端配置。
         # @type SslClientConfig: Array
-        # @param Authenticated: 是否鉴权成功 只有传入SamlToken 才生效
+        # @param Authenticated: 是否鉴权成功 只有传入SamlToken 才生效，1为成功，0为失败。
         # @type Authenticated: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13004,17 +13020,21 @@ module TencentCloud
 
       # EnableVpnGatewaySslClientCert请求参数结构体
       class EnableVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。不可和SslVpnClientIds同时使用。
         # @type SslVpnClientId: String
+        # @param SslVpnClientIds: SSL-VPN-CLIENT 实例ID列表。批量启用时使用。不可和SslVpnClientId同时使用。
+        # @type SslVpnClientIds: Array
 
-        attr_accessor :SslVpnClientId
+        attr_accessor :SslVpnClientId, :SslVpnClientIds
         
-        def initialize(sslvpnclientid=nil)
+        def initialize(sslvpnclientid=nil, sslvpnclientids=nil)
           @SslVpnClientId = sslvpnclientid
+          @SslVpnClientIds = sslvpnclientids
         end
 
         def deserialize(params)
           @SslVpnClientId = params['SslVpnClientId']
+          @SslVpnClientIds = params['SslVpnClientIds']
         end
       end
 
@@ -17444,7 +17464,7 @@ module TencentCloud
         # DELETING：删除中
         # AVAILABLE：可用的
         # @type State: String
-        # @param QosLevel: IP服务质量等级，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        # @param QosLevel: IP服务质量等级，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
         # @type QosLevel: String
 
         attr_accessor :PrivateIpAddress, :Primary, :PublicIpAddress, :AddressId, :Description, :IsWanIpBlocked, :State, :QosLevel
@@ -19515,14 +19535,17 @@ module TencentCloud
         # @type SslVpnKey: String
         # @param SslVpnCert: 客户端证书
         # @type SslVpnCert: String
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @type SslVpnClientId: String
 
-        attr_accessor :SslVpnClientConfiguration, :SslVpnRootCert, :SslVpnKey, :SslVpnCert
+        attr_accessor :SslVpnClientConfiguration, :SslVpnRootCert, :SslVpnKey, :SslVpnCert, :SslVpnClientId
         
-        def initialize(sslvpnclientconfiguration=nil, sslvpnrootcert=nil, sslvpnkey=nil, sslvpncert=nil)
+        def initialize(sslvpnclientconfiguration=nil, sslvpnrootcert=nil, sslvpnkey=nil, sslvpncert=nil, sslvpnclientid=nil)
           @SslVpnClientConfiguration = sslvpnclientconfiguration
           @SslVpnRootCert = sslvpnrootcert
           @SslVpnKey = sslvpnkey
           @SslVpnCert = sslvpncert
+          @SslVpnClientId = sslvpnclientid
         end
 
         def deserialize(params)
@@ -19530,6 +19553,7 @@ module TencentCloud
           @SslVpnRootCert = params['SslVpnRootCert']
           @SslVpnKey = params['SslVpnKey']
           @SslVpnCert = params['SslVpnCert']
+          @SslVpnClientId = params['SslVpnClientId']
         end
       end
 

@@ -565,10 +565,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskClassificationOutput`
         # @param Progress: 智能分类任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 智能分类任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 智能分类任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -576,6 +580,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -592,6 +598,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -660,10 +668,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskCoverOutput`
         # @param Progress: 智能封面任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 智能封面任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 智能封面任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -671,6 +683,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -687,6 +701,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -755,10 +771,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskFrameTagOutput`
         # @param Progress: 智能按帧标签任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 智能按帧标签任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 智能按帧标签任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -766,6 +786,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -782,6 +804,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -850,10 +874,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskHighlightOutput`
         # @param Progress: 智能精彩片段任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 智能精彩片段任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 智能精彩片段任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -861,6 +889,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -877,6 +907,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -961,10 +993,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskTagOutput`
         # @param Progress: 智能标签任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 智能标签任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 智能标签任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -972,6 +1008,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -988,6 +1026,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1223,12 +1263,16 @@ module TencentCloud
         # @param Output: 语音全文识别任务输出信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResultOutput`
-        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @param Progress: 语音全文识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 语音全文识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 语音全文识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1236,6 +1280,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1252,6 +1298,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1385,10 +1433,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrWordsResultOutput`
         # @param Progress: 语音关键词识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 语音关键词识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 语音关键词识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1396,6 +1448,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1412,6 +1466,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1531,10 +1587,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskFaceResultOutput`
         # @param Progress: 人脸识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 人脸识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 人脸识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1542,6 +1602,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1558,6 +1620,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1691,10 +1755,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskHeadTailResultOutput`
         # @param Progress: 视频片头片尾识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 视频片头片尾识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 视频片头片尾识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1702,6 +1770,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1718,6 +1788,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1798,10 +1870,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskObjectResultOutput`
         # @param Progress: 物体识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 物体识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 物体识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1809,6 +1885,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1825,6 +1903,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1948,10 +2028,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrFullTextResultOutput`
         # @param Progress: 文本全文识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 文本全文识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 文本全文识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -1959,6 +2043,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -1975,6 +2061,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -2098,10 +2186,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrWordsResultOutput`
         # @param Progress: 文本关键词识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 文本关键词识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 文本关键词识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -2109,6 +2201,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -2125,6 +2219,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -2249,10 +2345,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskSegmentResultOutput`
         # @param Progress: 视频拆条任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 视频拆条任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 视频拆条任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -2260,6 +2360,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -2276,6 +2378,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -2916,16 +3020,19 @@ module TencentCloud
         # @param Output: 音视频审核 Ocr 文字涉及令人不适宜信息的任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPoliticalOcrTaskOutput`
+        # @param Progress: 音视频审核 Ocr 文字涉及令人不适宜信息的任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -2941,6 +3048,7 @@ module TencentCloud
             @Output = AiReviewPoliticalOcrTaskOutput.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 
@@ -11887,15 +11995,19 @@ module TencentCloud
       class ExtractTraceWatermarkTaskInput < TencentCloud::Common::AbstractModel
         # @param Url: 需要提取水印的媒体 URL。
         # @type Url: String
+        # @param FileId: 媒体文件 ID。Url 对应的原始媒体文件 ID。
+        # @type FileId: String
 
-        attr_accessor :Url
+        attr_accessor :Url, :FileId
         
-        def initialize(url=nil)
+        def initialize(url=nil, fileid=nil)
           @Url = url
+          @FileId = fileid
         end
 
         def deserialize(params)
           @Url = params['Url']
+          @FileId = params['FileId']
         end
       end
 

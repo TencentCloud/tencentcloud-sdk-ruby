@@ -358,10 +358,13 @@ module TencentCloud
         # @param Os: os全称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Os: String
+        # @param RiskExposure: 风险服务暴露
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskExposure: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure
         
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -410,6 +413,7 @@ module TencentCloud
           @Tag = tag
           @MemberId = memberid
           @Os = os
+          @RiskExposure = riskexposure
         end
 
         def deserialize(params)
@@ -468,6 +472,7 @@ module TencentCloud
           end
           @MemberId = params['MemberId']
           @Os = params['Os']
+          @RiskExposure = params['RiskExposure']
         end
       end
 
@@ -765,12 +770,15 @@ module TencentCloud
         # @param ZoneList: 可用区列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneList: Array
+        # @param OsList: os列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :RequestId
+        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :RequestId
         
-        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, requestid=nil)
+        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, requestid=nil)
           @Total = total
           @Data = data
           @RegionList = regionlist
@@ -781,6 +789,7 @@ module TencentCloud
           @IpTypeList = iptypelist
           @AppIdList = appidlist
           @ZoneList = zonelist
+          @OsList = oslist
           @RequestId = requestid
         end
 
@@ -856,6 +865,14 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @ZoneList << filterdataobject_tmp
+            end
+          end
+          unless params['OsList'].nil?
+            @OsList = []
+            params['OsList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @OsList << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1241,9 +1258,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 查询偏移位置
         # @type Offset: Integer
-        # @param Order: 需排序的字段
+        # @param Order: 排序采用升序还是降序 升:asc 降 desc
         # @type Order: String
-        # @param By: 排序采用升序还是降序 升:asc 降 desc
+        # @param By: 需排序的字段
         # @type By: String
         # @param Filters: 过滤的列及内容
         # @type Filters: Array

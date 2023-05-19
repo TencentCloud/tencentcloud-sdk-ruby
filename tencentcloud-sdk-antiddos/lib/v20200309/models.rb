@@ -739,15 +739,19 @@ module TencentCloud
         # @type DeviceType: String
         # @param IspCode: 运营商，绑定操作为必填项，解绑操作可不填。0：电信；1：联通；2：移动；5：BGP
         # @type IspCode: Integer
+        # @param Domain: 域名化资产对应的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :Ip, :BizType, :InstanceId, :DeviceType, :IspCode
+        attr_accessor :Ip, :BizType, :InstanceId, :DeviceType, :IspCode, :Domain
         
-        def initialize(ip=nil, biztype=nil, instanceid=nil, devicetype=nil, ispcode=nil)
+        def initialize(ip=nil, biztype=nil, instanceid=nil, devicetype=nil, ispcode=nil, domain=nil)
           @Ip = ip
           @BizType = biztype
           @InstanceId = instanceid
           @DeviceType = devicetype
           @IspCode = ispcode
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -756,6 +760,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @DeviceType = params['DeviceType']
           @IspCode = params['IspCode']
+          @Domain = params['Domain']
         end
       end
 
@@ -1309,15 +1314,18 @@ module TencentCloud
         # @type UnBoundDevList: Array
         # @param CopyPolicy: 已弃用，不填
         # @type CopyPolicy: String
+        # @param FilterRegion: 如果该资源实例为域名化资产则，该参数必填
+        # @type FilterRegion: String
 
-        attr_accessor :Business, :Id, :BoundDevList, :UnBoundDevList, :CopyPolicy
+        attr_accessor :Business, :Id, :BoundDevList, :UnBoundDevList, :CopyPolicy, :FilterRegion
         
-        def initialize(business=nil, id=nil, bounddevlist=nil, unbounddevlist=nil, copypolicy=nil)
+        def initialize(business=nil, id=nil, bounddevlist=nil, unbounddevlist=nil, copypolicy=nil, filterregion=nil)
           @Business = business
           @Id = id
           @BoundDevList = bounddevlist
           @UnBoundDevList = unbounddevlist
           @CopyPolicy = copypolicy
+          @FilterRegion = filterregion
         end
 
         def deserialize(params)
@@ -1340,6 +1348,7 @@ module TencentCloud
             end
           end
           @CopyPolicy = params['CopyPolicy']
+          @FilterRegion = params['FilterRegion']
         end
       end
 
@@ -2965,15 +2974,23 @@ module TencentCloud
       class DescribeBasicDeviceStatusRequest < TencentCloud::Common::AbstractModel
         # @param IpList: IP 资源列表
         # @type IpList: Array
+        # @param IdList: 域名化资源传id
+        # @type IdList: Array
+        # @param FilterRegion: 地域名称
+        # @type FilterRegion: Integer
 
-        attr_accessor :IpList
+        attr_accessor :IpList, :IdList, :FilterRegion
         
-        def initialize(iplist=nil)
+        def initialize(iplist=nil, idlist=nil, filterregion=nil)
           @IpList = iplist
+          @IdList = idlist
+          @FilterRegion = filterregion
         end
 
         def deserialize(params)
           @IpList = params['IpList']
+          @IdList = params['IdList']
+          @FilterRegion = params['FilterRegion']
         end
       end
 
@@ -2984,13 +3001,17 @@ module TencentCloud
         # 2 - 正常状态
         # 3 - 攻击状态
         # @type Data: Array
+        # @param CLBData: 域名化资产的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBData: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :CLBData, :RequestId
         
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, clbdata=nil, requestid=nil)
           @Data = data
+          @CLBData = clbdata
           @RequestId = requestid
         end
 
@@ -3001,6 +3022,14 @@ module TencentCloud
               keyvalue_tmp = KeyValue.new
               keyvalue_tmp.deserialize(i)
               @Data << keyvalue_tmp
+            end
+          end
+          unless params['CLBData'].nil?
+            @CLBData = []
+            params['CLBData'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @CLBData << keyvalue_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5160,10 +5189,12 @@ module TencentCloud
         # @type ProtocolList: Array
         # @param Cname: 高防IP实例的Cname
         # @type Cname: String
+        # @param Export: 默认为false，当为true时，将不对各个规则做策略检查，直接导出所有规则
+        # @type Export: Boolean
 
-        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname
+        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname, :Export
         
-        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil)
+        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil, export=nil)
           @Business = business
           @StatusList = statuslist
           @Domain = domain
@@ -5172,6 +5203,7 @@ module TencentCloud
           @Offset = offset
           @ProtocolList = protocollist
           @Cname = cname
+          @Export = export
         end
 
         def deserialize(params)
@@ -5183,6 +5215,7 @@ module TencentCloud
           @Offset = params['Offset']
           @ProtocolList = params['ProtocolList']
           @Cname = params['Cname']
+          @Export = params['Export']
         end
       end
 

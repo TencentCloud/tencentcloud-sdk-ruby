@@ -221,6 +221,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 证书部署到云资源实例列表
+
+        # @param request: Request instance for DeployCertificateInstance.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DeployCertificateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DeployCertificateInstanceResponse`
+        def DeployCertificateInstance(request)
+          body = send_request('DeployCertificateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployCertificateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源部署重试部署记录
+
+        # @param request: Request instance for DeployCertificateRecordRetry.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DeployCertificateRecordRetryRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DeployCertificateRecordRetryResponse`
+        def DeployCertificateRecordRetry(request)
+          body = send_request('DeployCertificateRecordRetry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployCertificateRecordRetryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源部署一键回滚
+
+        # @param request: Request instance for DeployCertificateRecordRollback.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DeployCertificateRecordRollbackRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DeployCertificateRecordRollbackResponse`
+        def DeployCertificateRecordRollback(request)
+          body = send_request('DeployCertificateRecordRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployCertificateRecordRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeCertificate）用于获取证书信息。
 
         # @param request: Request instance for DescribeCertificate.
@@ -351,6 +423,366 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeployedResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书apiGateway云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostApiGatewayInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostApiGatewayInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostApiGatewayInstanceListResponse`
+        def DescribeHostApiGatewayInstanceList(request)
+          body = send_request('DescribeHostApiGatewayInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostApiGatewayInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书cdn云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostCdnInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostCdnInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostCdnInstanceListResponse`
+        def DescribeHostCdnInstanceList(request)
+          body = send_request('DescribeHostCdnInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostCdnInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书clb云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostClbInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostClbInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostClbInstanceListResponse`
+        def DescribeHostClbInstanceList(request)
+          body = send_request('DescribeHostClbInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostClbInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书cos云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostCosInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostCosInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostCosInstanceListResponse`
+        def DescribeHostCosInstanceList(request)
+          body = send_request('DescribeHostCosInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostCosInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书ddos云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostDdosInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostDdosInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostDdosInstanceListResponse`
+        def DescribeHostDdosInstanceList(request)
+          body = send_request('DescribeHostDdosInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostDdosInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书云资源部署记录列表
+
+        # @param request: Request instance for DescribeHostDeployRecord.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostDeployRecordRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostDeployRecordResponse`
+        def DescribeHostDeployRecord(request)
+          body = send_request('DescribeHostDeployRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostDeployRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书云资源部署记录详情列表
+
+        # @param request: Request instance for DescribeHostDeployRecordDetail.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostDeployRecordDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostDeployRecordDetailResponse`
+        def DescribeHostDeployRecordDetail(request)
+          body = send_request('DescribeHostDeployRecordDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostDeployRecordDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书Lighthouse云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostLighthouseInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostLighthouseInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostLighthouseInstanceListResponse`
+        def DescribeHostLighthouseInstanceList(request)
+          body = send_request('DescribeHostLighthouseInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostLighthouseInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书live云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostLiveInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostLiveInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostLiveInstanceListResponse`
+        def DescribeHostLiveInstanceList(request)
+          body = send_request('DescribeHostLiveInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostLiveInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书EdgeOne云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostTeoInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostTeoInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostTeoInstanceListResponse`
+        def DescribeHostTeoInstanceList(request)
+          body = send_request('DescribeHostTeoInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostTeoInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书tke云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostTkeInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostTkeInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostTkeInstanceListResponse`
+        def DescribeHostTkeInstanceList(request)
+          body = send_request('DescribeHostTkeInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostTkeInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书云资源更新记录列表
+
+        # @param request: Request instance for DescribeHostUpdateRecord.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostUpdateRecordRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostUpdateRecordResponse`
+        def DescribeHostUpdateRecord(request)
+          body = send_request('DescribeHostUpdateRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostUpdateRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书云资源更新记录详情列表
+
+        # @param request: Request instance for DescribeHostUpdateRecordDetail.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostUpdateRecordDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostUpdateRecordDetailResponse`
+        def DescribeHostUpdateRecordDetail(request)
+          body = send_request('DescribeHostUpdateRecordDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostUpdateRecordDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书Vod云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostVodInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostVodInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostVodInstanceListResponse`
+        def DescribeHostVodInstanceList(request)
+          body = send_request('DescribeHostVodInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVodInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书waf云资源部署实例列表
+
+        # @param request: Request instance for DescribeHostWafInstanceList.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostWafInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostWafInstanceListResponse`
+        def DescribeHostWafInstanceList(request)
+          body = send_request('DescribeHostWafInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostWafInstanceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -639,6 +1071,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitCertificateInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 一键更新旧证书资源
+
+        # @param request: Request instance for UpdateCertificateInstance.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateInstanceResponse`
+        def UpdateCertificateInstance(request)
+          body = send_request('UpdateCertificateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCertificateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源更新重试部署记录
+
+        # @param request: Request instance for UpdateCertificateRecordRetry.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateRecordRetryRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateRecordRetryResponse`
+        def UpdateCertificateRecordRetry(request)
+          body = send_request('UpdateCertificateRecordRetry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCertificateRecordRetryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源更新一键回滚
+
+        # @param request: Request instance for UpdateCertificateRecordRollback.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateRecordRollbackRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UpdateCertificateRecordRollbackResponse`
+        def UpdateCertificateRecordRollback(request)
+          body = send_request('UpdateCertificateRecordRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCertificateRecordRollbackResponse.new
             model.deserialize(response['Response'])
             model
           else

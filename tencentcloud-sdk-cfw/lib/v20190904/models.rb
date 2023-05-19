@@ -2170,6 +2170,85 @@ module TencentCloud
         end
       end
 
+      # DescribeLogs请求参数结构体
+      class DescribeLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Index: 日志类型标识
+        # 流量日志：互联网边界防火墙netflow_border，NAT边界防火墙netflow_nat，VPC间防火墙vpcnetflow，内网流量日志netflow_fl
+        # 入侵防御日志rule_threatinfo
+        # 访问控制日志：互联网边界规则rule_acl，NAT边界规则rule_acl，内网间规则rule_vpcacl，企业安全组rule_sg
+        # 操作日志：防火墙开关-开关操作operate_switch，防火墙开关-实例配置operate_instance，资产中心操作operate_assetgroup，访问控制操作operate_acl，零信任防护操作operate_identity，入侵防御操作-入侵防御operate_ids，入侵防御操作-安全基线operate_baseline，常用工具操作operate_tool，网络蜜罐操作operate_honeypot，日志投递操作operate_logdelivery，通用设置操作operate_logstorage，登录日志operate_login
+        # @type Index: String
+        # @param Limit: 每页条数，最大支持2000
+        # @type Limit: Integer
+        # @param Offset: 偏移值，最大支持60000
+        # @type Offset: Integer
+        # @param StartTime: 筛选开始时间
+        # @type StartTime: String
+        # @param EndTime: 筛选结束时间
+        # @type EndTime: String
+        # @param Filters: 过滤条件组合，各数组元素间为AND关系，查询字段名Name参考文档https://cloud.tencent.com/document/product/1132/87894，数值类型字段不支持模糊匹配
+        # @type Filters: Array
+
+        attr_accessor :Index, :Limit, :Offset, :StartTime, :EndTime, :Filters
+        
+        def initialize(index=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, filters=nil)
+          @Index = index
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLogs返回参数结构体
+      class DescribeLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 日志列表
+        # @type Data: String
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Total = params['Total']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatAcRule请求参数结构体
       class DescribeNatAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 每页条数

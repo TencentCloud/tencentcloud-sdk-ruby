@@ -8894,10 +8894,13 @@ module TencentCloud
         # @param TotalQuasiMass: 准牵引总质量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalQuasiMass: String
+        # @param SubPageCode: 副页编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubPageCode: String
 
-        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass
+        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode
         
-        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil)
+        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil)
           @PlateNo = plateno
           @FileNo = fileno
           @AllowNum = allownum
@@ -8908,6 +8911,7 @@ module TencentCloud
           @Marks = marks
           @Record = record
           @TotalQuasiMass = totalquasimass
+          @SubPageCode = subpagecode
         end
 
         def deserialize(params)
@@ -8921,6 +8925,7 @@ module TencentCloud
           @Marks = params['Marks']
           @Record = params['Record']
           @TotalQuasiMass = params['TotalQuasiMass']
+          @SubPageCode = params['SubPageCode']
         end
       end
 

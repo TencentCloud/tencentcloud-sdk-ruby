@@ -858,22 +858,25 @@ module TencentCloud
 
       # ListOrganizationIdentity请求参数结构体
       class ListOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
         # @type Offset: Integer
-        # @param Limit: 限制数目。最大50
+        # @param Limit: 限制数目。取值范围：1~50。默认值：10。
         # @type Limit: Integer
         # @param SearchKey: 名称搜索关键字。
         # @type SearchKey: String
         # @param IdentityId: 身份ID搜索。
         # @type IdentityId: Integer
+        # @param IdentityType: 身份类型。取值范围 1-预设, 2-自定义
+        # @type IdentityType: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :IdentityId
+        attr_accessor :Offset, :Limit, :SearchKey, :IdentityId, :IdentityType
         
-        def initialize(offset=nil, limit=nil, searchkey=nil, identityid=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, identityid=nil, identitytype=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
           @IdentityId = identityid
+          @IdentityType = identitytype
         end
 
         def deserialize(params)
@@ -881,6 +884,7 @@ module TencentCloud
           @Limit = params['Limit']
           @SearchKey = params['SearchKey']
           @IdentityId = params['IdentityId']
+          @IdentityType = params['IdentityType']
         end
       end
 

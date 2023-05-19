@@ -731,7 +731,7 @@ module TencentCloud
         # @param Text: 润色后的文本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
-        # @param EmbellishType: 润色类型。类型列表
+        # @param EmbellishType: 润色类型。类型如下：
         # expansion：扩写
         # rewriting：改写
         # translation_m2a：从现代文改写为古文
@@ -924,7 +924,7 @@ module TencentCloud
         # @param Number: 返回生成句子的个数。数量需>=1且<=5。
         # （注意实际结果可能小于指定个数）
         # @type Number: Integer
-        # @param Domain: 指定生成句子的领域，支持领域列表
+        # @param Domain: 指定生成句子的领域，支持领域如下：
         # general：通用领域，支持中英文
         # academic：学术领域，仅支持英文
         # 默认为general（通用领域）。
@@ -1800,14 +1800,14 @@ module TencentCloud
       class TextEmbellishRequest < TencentCloud::Common::AbstractModel
         # @param Text: 待润色的文本。中文文本长度需<=50字符；英文文本长度需<=30个单词。
         # @type Text: String
-        # @param SourceLang: 待润色文本的语言类型，支持语言列表
+        # @param SourceLang: 待润色文本的语言类型，支持语言如下：
         # zh：中文
         # en：英文
         # @type SourceLang: String
         # @param Number: 返回润色结果的个数。数量需>=1且<=5。
         # （注意实际结果可能小于指定个数）
         # @type Number: Integer
-        # @param Style: 控制润色类型，类型列表
+        # @param Style: 控制润色类型，类型如下：
         # both：同时返回改写和扩写
         # expansion：扩写
         # rewriting：改写
@@ -1958,19 +1958,19 @@ module TencentCloud
       class TextWritingRequest < TencentCloud::Common::AbstractModel
         # @param Text: 待续写的句子，文本统一使用utf-8格式编码，长度不超过200字符。
         # @type Text: String
-        # @param SourceLang: 待续写文本的语言类型，支持语言列表
+        # @param SourceLang: 待续写文本的语言类型，支持语言如下：
         # zh：中文
         # en：英文
         # @type SourceLang: String
         # @param Number: 返回续写结果的个数。数量需>=1且<=5。
         # （注意实际结果可能小于指定个数）
         # @type Number: Integer
-        # @param Domain: 指定续写领域，支持领域列表
+        # @param Domain: 指定续写领域，支持领域如下：
         # general：通用领域，支持中英文补全
         # academic：学术领域，仅支持英文补全
         # 默认为general（通用领域）。
         # @type Domain: String
-        # @param Style: 指定续写风格，支持风格列表
+        # @param Style: 指定续写风格，支持风格如下：
         # science_fiction：科幻
         # military_history：军事
         # xuanhuan_wuxia：武侠

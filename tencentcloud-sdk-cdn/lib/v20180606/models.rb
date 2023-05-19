@@ -19,7 +19,9 @@ module TencentCloud
     module V20180606
       # 请求头部及请求url访问控制
       class AccessControl < TencentCloud::Common::AbstractModel
-        # @param Switch: on | off 是否启用请求头部及请求url访问控制
+        # @param Switch: 启用请求头部及请求url访问控制开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessControlRules: 请求头部及请求url访问规则
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -560,7 +562,10 @@ module TencentCloud
 
       # 时间戳防盗链高级版配置，白名单功能
       class AdvancedAuthentication < TencentCloud::Common::AbstractModel
-        # @param Switch: 防盗链配置开关，on或off，开启时必须且只能配置一种模式，其余模式为null。
+        # @param Switch: 防盗链配置开关，取值有：
+        # on：开启
+        # off：关闭
+        # 开启时必须且只配置一种模式，其余模式需要设置为 null
         # @type Switch: String
         # @param TypeA: 时间戳防盗链高级版模式A配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1284,7 +1289,7 @@ module TencentCloud
 
       # 时间戳防盗链配置
       class Authentication < TencentCloud::Common::AbstractModel
-        # @param Switch: 防盗链配置开关
+        # @param Switch: 防盗链配置开关，取值有：
         # on：开启
         # off：关闭
         # 开启时必须且只配置一种模式，其余模式需要设置为 null
@@ -1530,7 +1535,9 @@ module TencentCloud
 
       # 图片优化-AvifAdapter配置
       class AvifAdapter < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关，"on/off"
+        # @param Switch: 图片优化AvifAdapter配置项开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
 
@@ -1547,7 +1554,9 @@ module TencentCloud
 
       # s3源站回源鉴权。
       class AwsPrivateAccess < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关，on/off。
+        # @param Switch: s3源站回源鉴权配置项开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1583,7 +1592,7 @@ module TencentCloud
 
       # 带宽封顶配置，默认为关闭状态
       class BandwidthAlert < TencentCloud::Common::AbstractModel
-        # @param Switch: 用量封顶配置开关
+        # @param Switch: 用量封顶配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -1597,7 +1606,7 @@ module TencentCloud
         # @param LastTriggerTime: 境内区域上次触发用量封顶阈值的时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTriggerTime: String
-        # @param AlertSwitch: 用量封顶提醒开关
+        # @param AlertSwitch: 用量封顶提醒配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2060,8 +2069,9 @@ module TencentCloud
 
       # 启发式自定义时间缓存配置
       class CacheConfig < TencentCloud::Common::AbstractModel
-        # @param HeuristicCacheTimeSwitch: on 代表开启自定义启发式缓存时间
-        # off 代表关闭自定义启发式缓存时间
+        # @param HeuristicCacheTimeSwitch: 启发式自定义时间缓存配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type HeuristicCacheTimeSwitch: String
         # @param HeuristicCacheTime: 单位 秒.
         # @type HeuristicCacheTime: Integer
@@ -2081,7 +2091,7 @@ module TencentCloud
 
       # 路径缓存缓存配置
       class CacheConfigCache < TencentCloud::Common::AbstractModel
-        # @param Switch: 缓存配置开关
+        # @param Switch: 路径缓存配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2130,7 +2140,7 @@ module TencentCloud
 
       # 路径缓存遵循源站配置
       class CacheConfigFollowOrigin < TencentCloud::Common::AbstractModel
-        # @param Switch: 遵循源站配置开关
+        # @param Switch: 路径缓存遵循源站配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -2156,7 +2166,7 @@ module TencentCloud
 
       # 路径缓存不缓存配置
       class CacheConfigNoCache < TencentCloud::Common::AbstractModel
-        # @param Switch: 不缓存配置开关
+        # @param Switch: 路径缓存不缓存配置配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2280,7 +2290,9 @@ module TencentCloud
 
       # 组成CacheKey的一部分
       class CacheTagKey < TencentCloud::Common::AbstractModel
-        # @param Switch: 是否使用CacheTag作为CacheKey的一部分
+        # @param Switch: 使用CacheTag作为CacheKey的一部分配置开关，取值有
+        # on：开启，使用CacheTag作为CacheKey的一部分
+        # off：关闭，不使用CacheTag作为CacheKey的一部分
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param Value: 自定义CacheTag的值
@@ -2668,7 +2680,7 @@ module TencentCloud
 
       # 智能压缩配置，默认对 js、html、css、xml、json、shtml、htm 后缀且大小为 256 ~ 2097152 字节的文件进行 GZIP 压缩
       class Compression < TencentCloud::Common::AbstractModel
-        # @param Switch: 智能压缩配置开关
+        # @param Switch: 智能压缩配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -2760,7 +2772,9 @@ module TencentCloud
 
       # 组成CacheKey的一部分
       class CookieKey < TencentCloud::Common::AbstractModel
-        # @param Switch: on | off 是否使用Cookie作为Cache的一部分
+        # @param Switch: 使用Cookie作为Cache的一部分配置开关，取值有：
+        # on：开启，使用Cookie作为Cache的一部分
+        # off：关闭，不使用Cookie作为Cache的一部分
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param Value: 使用的cookie，';' 分割
@@ -7217,7 +7231,7 @@ module TencentCloud
 
       # 单链接下行限速配置，默认为关闭状态
       class DownstreamCapping < TencentCloud::Common::AbstractModel
-        # @param Switch: 下行速度配置开关
+        # @param Switch: 下行速度配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -7439,7 +7453,7 @@ module TencentCloud
 
       # 状态码重定向配置，默认为关闭状态
       class ErrorPage < TencentCloud::Common::AbstractModel
-        # @param Switch: 状态码重定向配置开关
+        # @param Switch: 状态码重定向配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7549,7 +7563,7 @@ module TencentCloud
 
       # 回源 301/302 状态码自动跟随配置，默认为关闭状态
       class FollowRedirect < TencentCloud::Common::AbstractModel
-        # @param Switch: 回源跟随开关
+        # @param Switch: 回源跟随配置开关，取值有：
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -7575,7 +7589,7 @@ module TencentCloud
 
       # 访问协议强制跳转配置，默认为关闭状态
       class ForceRedirect < TencentCloud::Common::AbstractModel
-        # @param Switch: 访问强制跳转配置开关
+        # @param Switch: 访问强制跳转配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7687,7 +7701,9 @@ module TencentCloud
 
       # 图片优化-GuetzliAdapter配置
       class GuetzliAdapter < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关，"on/off"
+        # @param Switch: 图片优化-GuetzliAdapter配置开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
 
@@ -7724,7 +7740,9 @@ module TencentCloud
 
       # 组成CacheKey
       class HeaderKey < TencentCloud::Common::AbstractModel
-        # @param Switch: 是否组成Cachekey
+        # @param Switch: 组成Cachekey配置开关，取值有：
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param Value: 组成CacheKey的header数组，';' 分割
@@ -7746,8 +7764,9 @@ module TencentCloud
 
       # 启发式缓存配置
       class HeuristicCache < TencentCloud::Common::AbstractModel
-        # @param Switch: on 代表开启启发式缓存
-        # off 代表关闭启发式缓存
+        # @param Switch: 启发式缓存配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param CacheConfig: 自定义启发式缓存时间配置
         # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfig`
@@ -7770,7 +7789,9 @@ module TencentCloud
 
       # HSTS 配置。
       class Hsts < TencentCloud::Common::AbstractModel
-        # @param Switch: 是否开启，on或off。
+        # @param Switch: HSTS 配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param MaxAge: MaxAge数值。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7870,7 +7891,7 @@ module TencentCloud
 
       # 域名 https 加速配置，默认为关闭状态
       class Https < TencentCloud::Common::AbstractModel
-        # @param Switch: https 配置开关
+        # @param Switch: https 配置开关，取值有：
         # on：开启
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7958,7 +7979,9 @@ module TencentCloud
 
       # HTTPS服务，若关闭，下发配置拦截https请求，开启时会产生计费
       class HttpsBilling < TencentCloud::Common::AbstractModel
-        # @param Switch: HTTPS服务，缺省时默认开启【会产生计费】
+        # @param Switch: HTTPS服务配置开关，取值有：
+        # on：开启，缺省时默认开启【会产生计费】
+        # off：关闭，拦截https请求
         # @type Switch: String
 
         attr_accessor :Switch
@@ -8069,9 +8092,11 @@ module TencentCloud
         end
       end
 
-      #  华为云对象存储回源鉴权
+      # 华为云对象存储回源鉴权
       class HwPrivateAccess < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关 on/off
+        # @param Switch:  华为云对象存储回源鉴权配置开关，取值有：
+        # on：开启
+        # off：关闭
         # @type Switch: String
         # @param AccessKey: 访问 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8146,7 +8171,7 @@ module TencentCloud
 
       # IP 黑白名单配置，默认为关闭状态
       class IpFilter < TencentCloud::Common::AbstractModel
-        # @param Switch: IP 黑白名单配置开关
+        # @param Switch: IP 黑白名单配置开关，取值有
         # on：开启
         # off：关闭
         # @type Switch: String
@@ -11413,7 +11438,10 @@ module TencentCloud
 
       # 是否回源站校验
       class Revalidate < TencentCloud::Common::AbstractModel
-        # @param Switch: on | off 是否总是回源校验
+        # @param Switch: 总是回源校验配置开关，取值有：
+        # on：开启
+        # off：关闭
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param Path: 只在特定请求路径回源站校验
@@ -11536,7 +11564,10 @@ module TencentCloud
 
       # 路径保留参数配置
       class RuleQueryString < TencentCloud::Common::AbstractModel
-        # @param Switch: on | off CacheKey是否由QueryString组成
+        # @param Switch: 路径保留参数配置开关，取值有：
+        # on：开启，CacheKey由QueryString组成
+        # off：关闭，CacheKey不由QueryString组成
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param Action: includeCustom 包含部分url参数
