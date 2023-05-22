@@ -7849,10 +7849,12 @@ module TencentCloud
         # @type CallbackKey: String
         # @param PushExceptionNotifyUrl: 推流异常回调 URL。
         # @type PushExceptionNotifyUrl: String
+        # @param AudioAuditNotifyUrl: 音频审核回调 URL。
+        # @type AudioAuditNotifyUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
         
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -7863,6 +7865,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
+          @AudioAuditNotifyUrl = audioauditnotifyurl
         end
 
         def deserialize(params)
@@ -7876,6 +7879,7 @@ module TencentCloud
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
+          @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
         end
       end
 

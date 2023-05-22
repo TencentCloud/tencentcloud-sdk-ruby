@@ -1230,9 +1230,9 @@ module TencentCloud
         end
       end
 
-      # 告警条件模版
+      # 告警条件模板
       class ConditionsTemp < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param Condition: 指标触发条件
@@ -3806,10 +3806,12 @@ module TencentCloud
         # @type NoticeIds: Array
         # @param Tags: 模板根据标签过滤
         # @type Tags: Array
+        # @param OnCallFormIDs: 值班列表
+        # @type OnCallFormIDs: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds, :Tags
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds, :Tags, :OnCallFormIDs
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil, noticeids=nil, tags=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil, noticeids=nil, tags=nil, oncallformids=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3821,6 +3823,7 @@ module TencentCloud
           @GroupIds = groupids
           @NoticeIds = noticeids
           @Tags = tags
+          @OnCallFormIDs = oncallformids
         end
 
         def deserialize(params)
@@ -3842,6 +3845,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @OnCallFormIDs = params['OnCallFormIDs']
         end
       end
 
@@ -3912,7 +3916,7 @@ module TencentCloud
         # @param ProjectIds: 策略所属项目的id数组，可在此页面查看
         # [项目管理](https://console.cloud.tencent.com/project)
         # @type ProjectIds: Array
-        # @param NoticeIds: 通知模版的id列表，可查询通知模版列表获取。
+        # @param NoticeIds: 通知模板的id列表，可查询通知模板列表获取。
         # 可使用 [查询通知模板列表](https://cloud.tencent.com/document/product/248/51280) 接口查询。
         # @type NoticeIds: Array
         # @param RuleTypes: 根据触发条件筛选 不传展示全部策略 STATIC=展示静态阈值策略 DYNAMIC=展示动态阈值策略
@@ -3929,16 +3933,20 @@ module TencentCloud
         # @type TriggerTasks: Array
         # @param OneClickPolicyType: 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
         # @type OneClickPolicyType: Array
-        # @param NotBindAll: 根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+        # @param NotBindAll: 返回结果过滤掉绑定全部对象的策略，1代表需要过滤，0则无需过滤
         # @type NotBindAll: Integer
-        # @param NotInstanceGroup: 根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+        # @param NotInstanceGroup: 返回结果过滤掉关联实例为实例分组的策略，1代表需要过滤，0则无需过滤
         # @type NotInstanceGroup: Integer
         # @param Tags: 策略根据标签过滤
         # @type Tags: Array
+        # @param PromInsId: prom实例id，自定义指标策略时会用到
+        # @type PromInsId: String
+        # @param ReceiverOnCallFormIDs: 根据排班表搜索
+        # @type ReceiverOnCallFormIDs: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil, prominsid=nil, receiveroncallformids=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3963,6 +3971,8 @@ module TencentCloud
           @NotBindAll = notbindall
           @NotInstanceGroup = notinstancegroup
           @Tags = tags
+          @PromInsId = prominsid
+          @ReceiverOnCallFormIDs = receiveroncallformids
         end
 
         def deserialize(params)
@@ -4004,6 +4014,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @PromInsId = params['PromInsId']
+          @ReceiverOnCallFormIDs = params['ReceiverOnCallFormIDs']
         end
       end
 
@@ -14093,10 +14105,13 @@ module TencentCloud
         # @param Weekday: 通知周期 1-7表示周一到周日
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weekday: Array
+        # @param OnCallFormIDs: 值班表id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormIDs: Array
 
-        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType, :Weekday
+        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType, :Weekday, :OnCallFormIDs
         
-        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil, weekday=nil)
+        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil, weekday=nil, oncallformids=nil)
           @ReceiverType = receivertype
           @StartTime = starttime
           @EndTime = endtime
@@ -14110,6 +14125,7 @@ module TencentCloud
           @NeedPhoneArriveNotice = needphonearrivenotice
           @PhoneCallType = phonecalltype
           @Weekday = weekday
+          @OnCallFormIDs = oncallformids
         end
 
         def deserialize(params)
@@ -14126,6 +14142,7 @@ module TencentCloud
           @NeedPhoneArriveNotice = params['NeedPhoneArriveNotice']
           @PhoneCallType = params['PhoneCallType']
           @Weekday = params['Weekday']
+          @OnCallFormIDs = params['OnCallFormIDs']
         end
       end
 

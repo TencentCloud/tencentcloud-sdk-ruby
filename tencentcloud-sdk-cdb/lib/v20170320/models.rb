@@ -4243,73 +4243,6 @@ module TencentCloud
         end
       end
 
-      # DescribeBackupTables请求参数结构体
-      class DescribeBackupTablesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
-        # @type InstanceId: String
-        # @param StartTime: 开始时间，格式为：2017-07-12 10:29:20。
-        # @type StartTime: String
-        # @param DatabaseName: 指定的数据库名。
-        # @type DatabaseName: String
-        # @param SearchTable: 要查询的数据表名前缀。
-        # @type SearchTable: String
-        # @param Offset: 分页偏移。
-        # @type Offset: Integer
-        # @param Limit: 分页大小，最小值为1，最大值为2000。
-        # @type Limit: Integer
-
-        attr_accessor :InstanceId, :StartTime, :DatabaseName, :SearchTable, :Offset, :Limit
-        
-        def initialize(instanceid=nil, starttime=nil, databasename=nil, searchtable=nil, offset=nil, limit=nil)
-          @InstanceId = instanceid
-          @StartTime = starttime
-          @DatabaseName = databasename
-          @SearchTable = searchtable
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @StartTime = params['StartTime']
-          @DatabaseName = params['DatabaseName']
-          @SearchTable = params['SearchTable']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeBackupTables返回参数结构体
-      class DescribeBackupTablesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 返回的数据个数。
-        # @type TotalCount: Integer
-        # @param Items: 符合条件的数据表数组。
-        # @type Items: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Items, :RequestId
-        
-        def initialize(totalcount=nil, items=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Items = items
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              tablename_tmp = TableName.new
-              tablename_tmp.deserialize(i)
-              @Items << tablename_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeBackups请求参数结构体
       class DescribeBackupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
@@ -12091,22 +12024,6 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 表名
-      class TableName < TencentCloud::Common::AbstractModel
-        # @param TableName: 表名
-        # @type TableName: String
-
-        attr_accessor :TableName
-        
-        def initialize(tablename=nil)
-          @TableName = tablename
-        end
-
-        def deserialize(params)
-          @TableName = params['TableName']
         end
       end
 

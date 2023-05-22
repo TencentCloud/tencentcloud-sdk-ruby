@@ -19327,10 +19327,19 @@ module TencentCloud
         # @param UnitRuleTagList: 规则标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitRuleTagList: Array
+        # @param ItemIndex: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemIndex: Integer
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
 
-        attr_accessor :Relationship, :DestNamespaceId, :DestNamespaceName, :Name, :Id, :UnitRuleId, :Priority, :Description, :UnitRuleTagList
+        attr_accessor :Relationship, :DestNamespaceId, :DestNamespaceName, :Name, :Id, :UnitRuleId, :Priority, :Description, :UnitRuleTagList, :ItemIndex, :CreatedTime, :UpdatedTime
         
-        def initialize(relationship=nil, destnamespaceid=nil, destnamespacename=nil, name=nil, id=nil, unitruleid=nil, priority=nil, description=nil, unitruletaglist=nil)
+        def initialize(relationship=nil, destnamespaceid=nil, destnamespacename=nil, name=nil, id=nil, unitruleid=nil, priority=nil, description=nil, unitruletaglist=nil, itemindex=nil, createdtime=nil, updatedtime=nil)
           @Relationship = relationship
           @DestNamespaceId = destnamespaceid
           @DestNamespaceName = destnamespacename
@@ -19340,6 +19349,9 @@ module TencentCloud
           @Priority = priority
           @Description = description
           @UnitRuleTagList = unitruletaglist
+          @ItemIndex = itemindex
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
@@ -19359,6 +19371,9 @@ module TencentCloud
               @UnitRuleTagList << unitruletag_tmp
             end
           end
+          @ItemIndex = params['ItemIndex']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

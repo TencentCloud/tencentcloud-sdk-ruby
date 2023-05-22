@@ -1871,7 +1871,7 @@ module TencentCloud
         # FOREIGN_ID_CARD 境外身份
         # HONGKONG_MACAO_AND_TAIWAN 中国台湾
         # @type IdCardType: String
-        # @param Mobile: 手机号码
+        # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
         # @type Mobile: String
         # @param EnableAutoSign: 是否开通自动签，该功能需联系运营工作人员开通后使用
         # @type EnableAutoSign: Boolean
@@ -3306,20 +3306,28 @@ module TencentCloud
 
       # DescribeUserAutoSignStatus返回参数结构体
       class DescribeUserAutoSignStatusResponse < TencentCloud::Common::AbstractModel
-        # @param IsOpen: 是否开通
+        # @param IsOpen: 是否已开通自动签
         # @type IsOpen: Boolean
+        # @param LicenseFrom: 自动签许可生效时间。当且仅当已开通自动签时有值。
+        # @type LicenseFrom: Integer
+        # @param LicenseTo: 自动签许可到期时间。当且仅当已开通自动签时有值。
+        # @type LicenseTo: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsOpen, :RequestId
+        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :RequestId
         
-        def initialize(isopen=nil, requestid=nil)
+        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, requestid=nil)
           @IsOpen = isopen
+          @LicenseFrom = licensefrom
+          @LicenseTo = licenseto
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IsOpen = params['IsOpen']
+          @LicenseFrom = params['LicenseFrom']
+          @LicenseTo = params['LicenseTo']
           @RequestId = params['RequestId']
         end
       end

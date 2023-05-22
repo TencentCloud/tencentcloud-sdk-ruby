@@ -293,6 +293,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateCloudDBInstances）用于创建高可用实例(虚拟机版本)。
+
+        # @param request: Request instance for CreateCloudDBInstances.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudDBInstancesResponse`
+        def CreateCloudDBInstances(request)
+          body = send_request('CreateCloudDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateCloudReadOnlyDBInstances）用于添加只读副本实例(虚拟机版本)。
+
+        # @param request: Request instance for CreateCloudReadOnlyDBInstances.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudReadOnlyDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudReadOnlyDBInstancesResponse`
+        def CreateCloudReadOnlyDBInstances(request)
+          body = send_request('CreateCloudReadOnlyDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudReadOnlyDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateDB）用于创建数据库。
 
         # @param request: Request instance for CreateDB.
