@@ -20130,10 +20130,12 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID
         
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -20151,6 +20153,7 @@ module TencentCloud
           @RegionID = regionid
           @Project = project
           @Tags = tags
+          @ClusterID = clusterid
         end
 
         def deserialize(params)
@@ -20181,6 +20184,7 @@ module TencentCloud
               @Tags << taginfo_tmp
             end
           end
+          @ClusterID = params['ClusterID']
         end
       end
 

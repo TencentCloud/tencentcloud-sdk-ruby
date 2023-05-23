@@ -10260,7 +10260,7 @@ module TencentCloud
         # @type EndDate: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大为200。
+        # @param Limit: 返回数量，默认为20，最大为100。
         # @type Limit: Integer
 
         attr_accessor :BusinessType, :InstanceId, :StartDate, :EndDate, :Offset, :Limit
@@ -10854,7 +10854,7 @@ module TencentCloud
 
       # DescribeVpcEndPointService请求参数结构体
       class DescribeVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
+        # @param Filters: 过滤条件。不支持同时传入参数 EndPointServiceIds and Filters。
         # <li> service-id - String - （过滤条件）终端节点服务唯一ID。</li>
         # <li>service-name - String - （过滤条件）终端节点实例名称。</li>
         # <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
@@ -10864,7 +10864,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 单页返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param EndPointServiceIds: 终端节点服务ID。
+        # @param EndPointServiceIds: 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         # @type EndPointServiceIds: Array
 
         attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds

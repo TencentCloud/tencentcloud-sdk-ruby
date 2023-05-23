@@ -222,6 +222,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建独享集群DCDB实例
+
+        # @param request: Request instance for CreateDedicatedClusterDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateDedicatedClusterDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::CreateDedicatedClusterDCDBInstanceResponse`
+        def CreateDedicatedClusterDCDBInstance(request)
+          body = send_request('CreateDedicatedClusterDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDedicatedClusterDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建DCDB后付费实例
 
         # @param request: Request instance for CreateHourDCDBInstance.
@@ -329,6 +353,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeDBEncryptAttributes)用于查询实例数据加密状态。
+
+        # @param request: Request instance for DescribeDBEncryptAttributes.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeDBEncryptAttributesRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeDBEncryptAttributesResponse`
+        def DescribeDBEncryptAttributes(request)
+          body = send_request('DescribeDBEncryptAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBEncryptAttributesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -895,6 +943,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 已废弃接口
 
         # 本接口（DescribeSqlLogs）用于获取实例SQL日志。
 
@@ -1591,6 +1641,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpgradeDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpgradeDedicatedDCDBInstance）用于升级独享DCDB实例
+
+        # @param request: Request instance for UpgradeDedicatedDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::UpgradeDedicatedDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::UpgradeDedicatedDCDBInstanceResponse`
+        def UpgradeDedicatedDCDBInstance(request)
+          body = send_request('UpgradeDedicatedDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeDedicatedDCDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

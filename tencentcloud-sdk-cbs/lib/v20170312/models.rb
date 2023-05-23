@@ -636,10 +636,12 @@ module TencentCloud
         # @type AutoMountConfiguration: :class:`Tencentcloud::Cbs.v20170312.models.AutoMountConfiguration`
         # @param DiskBackupQuota: 指定云硬盘备份点配额。
         # @type DiskBackupQuota: Integer
+        # @param BurstPerformance: 创建云盘时是否开启性能突发
+        # @type BurstPerformance: Boolean
 
-        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota, :BurstPerformance
         
-        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil)
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil, burstperformance=nil)
           @Placement = placement
           @DiskChargeType = diskchargetype
           @DiskType = disktype
@@ -656,6 +658,7 @@ module TencentCloud
           @DeleteSnapshot = deletesnapshot
           @AutoMountConfiguration = automountconfiguration
           @DiskBackupQuota = diskbackupquota
+          @BurstPerformance = burstperformance
         end
 
         def deserialize(params)
@@ -691,6 +694,7 @@ module TencentCloud
             @AutoMountConfiguration.deserialize(params['AutoMountConfiguration'])
           end
           @DiskBackupQuota = params['DiskBackupQuota']
+          @BurstPerformance = params['BurstPerformance']
         end
       end
 
@@ -2523,16 +2527,19 @@ module TencentCloud
         # @type DeleteWithInstance: Boolean
         # @param DiskType: 变更云盘类型时，可传入该参数，表示变更的目标类型，取值范围：<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘。<br>当前不支持批量变更类型，即传入DiskType时，DiskIds仅支持传入一块云盘；<br>变更云盘类型时不支持同时变更其他属性。
         # @type DiskType: String
+        # @param BurstPerformanceOperation: 开启/关闭云盘性能突发功能
+        # @type BurstPerformanceOperation: String
 
-        attr_accessor :DiskIds, :DiskName, :Portable, :ProjectId, :DeleteWithInstance, :DiskType
+        attr_accessor :DiskIds, :DiskName, :Portable, :ProjectId, :DeleteWithInstance, :DiskType, :BurstPerformanceOperation
         
-        def initialize(diskids=nil, diskname=nil, portable=nil, projectid=nil, deletewithinstance=nil, disktype=nil)
+        def initialize(diskids=nil, diskname=nil, portable=nil, projectid=nil, deletewithinstance=nil, disktype=nil, burstperformanceoperation=nil)
           @DiskIds = diskids
           @DiskName = diskname
           @Portable = portable
           @ProjectId = projectid
           @DeleteWithInstance = deletewithinstance
           @DiskType = disktype
+          @BurstPerformanceOperation = burstperformanceoperation
         end
 
         def deserialize(params)
@@ -2542,6 +2549,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @DeleteWithInstance = params['DeleteWithInstance']
           @DiskType = params['DiskType']
+          @BurstPerformanceOperation = params['BurstPerformanceOperation']
         end
       end
 

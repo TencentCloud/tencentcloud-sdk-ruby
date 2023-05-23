@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本就口（DescribeSecurityGroup）用于查询实例绑定的安全组。
+        # 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
 
         # @param request: Request instance for DescribeSecurityGroup.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeSecurityGroupRequest`

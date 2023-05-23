@@ -626,6 +626,160 @@ module TencentCloud
         end
       end
 
+      # CreateDedicatedClusterDCDBInstance请求参数结构体
+      class CreateDedicatedClusterDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 分配实例个数
+        # @type GoodsNum: Integer
+        # @param ShardNum: 分片数量
+        # @type ShardNum: Integer
+        # @param ShardMemory: 分片內存大小, 单位GB
+        # @type ShardMemory: Integer
+        # @param ShardStorage: 分片磁盘大小, 单位GB
+        # @type ShardStorage: Integer
+        # @param ClusterId: 独享集群集群uuid
+        # @type ClusterId: String
+        # @param Zone: （废弃）可用区
+        # @type Zone: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param Cpu: （废弃）cpu大小，单位：核
+        # @type Cpu: Integer
+        # @param VpcId: 网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param ShardMachine: （废弃）分片机型
+        # @type ShardMachine: String
+        # @param ShardNodeNum: 分片的节点个数
+        # @type ShardNodeNum: Integer
+        # @param ShardNodeCpu: （废弃）节点cpu核数，单位：1/100核
+        # @type ShardNodeCpu: Integer
+        # @param ShardNodeMemory: （废弃）节点內存大小，单位：GB
+        # @type ShardNodeMemory: Integer
+        # @param ShardNodeStorage: （废弃）节点磁盘大小，单位：GB
+        # @type ShardNodeStorage: Integer
+        # @param DbVersionId: db版本
+        # @type DbVersionId: String
+        # @param SecurityGroupId: 安全组ID
+        # @type SecurityGroupId: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
+        # @param DcnRegion: DCN源实例地域名
+        # @type DcnRegion: String
+        # @param InstanceName: 自定义实例名称
+        # @type InstanceName: String
+        # @param ResourceTags: 标签
+        # @type ResourceTags: Array
+        # @param Ipv6Flag: 支持IPv6标志：1 支持， 0 不支持
+        # @type Ipv6Flag: Integer
+        # @param Pid: （废弃）Pid，可通过获取独享集群售卖配置接口得到
+        # @type Pid: Integer
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: Array
+        # @param MasterHostId: 指定主节点uuid，不填随机分配
+        # @type MasterHostId: String
+        # @param SlaveHostIds: 指定从节点uuid，不填随机分配
+        # @type SlaveHostIds: Array
+        # @param RollbackInstanceId: 需要回档的源实例ID
+        # @type RollbackInstanceId: String
+        # @param RollbackTime: 回档时间
+        # @type RollbackTime: String
+
+        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime
+        
+        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil)
+          @GoodsNum = goodsnum
+          @ShardNum = shardnum
+          @ShardMemory = shardmemory
+          @ShardStorage = shardstorage
+          @ClusterId = clusterid
+          @Zone = zone
+          @ProjectId = projectid
+          @Cpu = cpu
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ShardMachine = shardmachine
+          @ShardNodeNum = shardnodenum
+          @ShardNodeCpu = shardnodecpu
+          @ShardNodeMemory = shardnodememory
+          @ShardNodeStorage = shardnodestorage
+          @DbVersionId = dbversionid
+          @SecurityGroupId = securitygroupid
+          @DcnInstanceId = dcninstanceid
+          @DcnRegion = dcnregion
+          @InstanceName = instancename
+          @ResourceTags = resourcetags
+          @Ipv6Flag = ipv6flag
+          @Pid = pid
+          @InitParams = initparams
+          @MasterHostId = masterhostid
+          @SlaveHostIds = slavehostids
+          @RollbackInstanceId = rollbackinstanceid
+          @RollbackTime = rollbacktime
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          @ShardNum = params['ShardNum']
+          @ShardMemory = params['ShardMemory']
+          @ShardStorage = params['ShardStorage']
+          @ClusterId = params['ClusterId']
+          @Zone = params['Zone']
+          @ProjectId = params['ProjectId']
+          @Cpu = params['Cpu']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ShardMachine = params['ShardMachine']
+          @ShardNodeNum = params['ShardNodeNum']
+          @ShardNodeCpu = params['ShardNodeCpu']
+          @ShardNodeMemory = params['ShardNodeMemory']
+          @ShardNodeStorage = params['ShardNodeStorage']
+          @DbVersionId = params['DbVersionId']
+          @SecurityGroupId = params['SecurityGroupId']
+          @DcnInstanceId = params['DcnInstanceId']
+          @DcnRegion = params['DcnRegion']
+          @InstanceName = params['InstanceName']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @Ipv6Flag = params['Ipv6Flag']
+          @Pid = params['Pid']
+          unless params['InitParams'].nil?
+            @InitParams = []
+            params['InitParams'].each do |i|
+              dbparamvalue_tmp = DBParamValue.new
+              dbparamvalue_tmp.deserialize(i)
+              @InitParams << dbparamvalue_tmp
+            end
+          end
+          @MasterHostId = params['MasterHostId']
+          @SlaveHostIds = params['SlaveHostIds']
+          @RollbackInstanceId = params['RollbackInstanceId']
+          @RollbackTime = params['RollbackTime']
+        end
+      end
+
+      # CreateDedicatedClusterDCDBInstance返回参数结构体
+      class CreateDedicatedClusterDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateHourDCDBInstance请求参数结构体
       class CreateHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ShardMemory: 分片内存大小，单位：GB，可以通过 DescribeShardSpec
@@ -1647,6 +1801,50 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBEncryptAttributes请求参数结构体
+      class DescribeDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，形如：tdsqlshard-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBEncryptAttributes返回参数结构体
+      class DescribeDBEncryptAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param EncryptStatus: 是否启用加密，1-已开启；0-未开启。
+        # @type EncryptStatus: Integer
+        # @param CipherText: DEK密钥
+        # @type CipherText: String
+        # @param ExpireDate: DEK密钥过期日期。
+        # @type ExpireDate: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EncryptStatus, :CipherText, :ExpireDate, :RequestId
+        
+        def initialize(encryptstatus=nil, ciphertext=nil, expiredate=nil, requestid=nil)
+          @EncryptStatus = encryptstatus
+          @CipherText = ciphertext
+          @ExpireDate = expiredate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EncryptStatus = params['EncryptStatus']
+          @CipherText = params['CipherText']
+          @ExpireDate = params['ExpireDate']
           @RequestId = params['RequestId']
         end
       end
@@ -5488,6 +5686,79 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeDedicatedDCDBInstance请求参数结构体
+      class UpgradeDedicatedDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param UpgradeType: 升级类型，取值为ADD，SPLIT和EXPAND。ADD-添加分片；SPLIT-切分某个分片；EXPAND-垂直扩容某个分片
+        # @type UpgradeType: String
+        # @param InstanceId: 实例ID，形如 dcdbt-mlfjm74h
+        # @type InstanceId: String
+        # @param AddShardConfig: 当UpgradeType取值为ADD时，添加分片的配置参数
+        # @type AddShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.AddShardConfig`
+        # @param ExpandShardConfig: 当UpgradeType取值为EXPAND时，垂直扩容分片的配置参数
+        # @type ExpandShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.ExpandShardConfig`
+        # @param SplitShardConfig: 当UpgradeType取值为SPLIT时，切分分片的配置参数
+        # @type SplitShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.SplitShardConfig`
+        # @param SwitchAutoRetry: 错过切换时间窗口时，是否自动重试一次，0-否，1-是
+        # @type SwitchAutoRetry: Integer
+        # @param SwitchStartTime: 切换时间窗口开始时间
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换时间窗口结束时间
+        # @type SwitchEndTime: String
+
+        attr_accessor :UpgradeType, :InstanceId, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime
+        
+        def initialize(upgradetype=nil, instanceid=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil)
+          @UpgradeType = upgradetype
+          @InstanceId = instanceid
+          @AddShardConfig = addshardconfig
+          @ExpandShardConfig = expandshardconfig
+          @SplitShardConfig = splitshardconfig
+          @SwitchAutoRetry = switchautoretry
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+        end
+
+        def deserialize(params)
+          @UpgradeType = params['UpgradeType']
+          @InstanceId = params['InstanceId']
+          unless params['AddShardConfig'].nil?
+            @AddShardConfig = AddShardConfig.new
+            @AddShardConfig.deserialize(params['AddShardConfig'])
+          end
+          unless params['ExpandShardConfig'].nil?
+            @ExpandShardConfig = ExpandShardConfig.new
+            @ExpandShardConfig.deserialize(params['ExpandShardConfig'])
+          end
+          unless params['SplitShardConfig'].nil?
+            @SplitShardConfig = SplitShardConfig.new
+            @SplitShardConfig.deserialize(params['SplitShardConfig'])
+          end
+          @SwitchAutoRetry = params['SwitchAutoRetry']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+        end
+      end
+
+      # UpgradeDedicatedDCDBInstance返回参数结构体
+      class UpgradeDedicatedDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

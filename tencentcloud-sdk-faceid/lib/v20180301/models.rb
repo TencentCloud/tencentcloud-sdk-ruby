@@ -1606,16 +1606,19 @@ module TencentCloud
         # @type IntentionQuestions: Array
         # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         # @type IntentionRecognition: Boolean
+        # @param IsSupportHMTResidentPermitOCR: 是否支持港澳台居住证识别
+        # @type IsSupportHMTResidentPermitOCR: Boolean
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionRecognition
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR
         
-        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionrecognition=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
           @IntentionMode = intentionmode
           @IntentionVerifyText = intentionverifytext
           @IntentionQuestions = intentionquestions
           @IntentionRecognition = intentionrecognition
+          @IsSupportHMTResidentPermitOCR = issupporthmtresidentpermitocr
         end
 
         def deserialize(params)
@@ -1632,6 +1635,7 @@ module TencentCloud
             end
           end
           @IntentionRecognition = params['IntentionRecognition']
+          @IsSupportHMTResidentPermitOCR = params['IsSupportHMTResidentPermitOCR']
         end
       end
 
