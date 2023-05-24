@@ -19,54 +19,54 @@ module TencentCloud
     module V20180709
       # 按交易类型汇总消费详情
       class ActionSummaryOverviewItem < TencentCloud::Common::AbstractModel
-        # @param ActionType: 交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型
+        # @param ActionType: 交易类型编码
         # @type ActionType: String
-        # @param ActionTypeName: 交易类型名称
+        # @param ActionTypeName: 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
         # @type ActionTypeName: String
-        # @param RealTotalCost: 实际花费
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # @type RealTotalCostRatio: String
-        # @param CashPayAmount: 现金金额
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TransferPayAmount: String
 
-        attr_accessor :ActionType, :ActionTypeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost, :TransferPayAmount
+        attr_accessor :ActionType, :ActionTypeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
         
-        def initialize(actiontype=nil, actiontypename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(actiontype=nil, actiontypename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @ActionType = actiontype
           @ActionTypeName = actiontypename
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
+          @TransferPayAmount = transferpayamount
           @BillMonth = billmonth
           @TotalCost = totalcost
-          @TransferPayAmount = transferpayamount
         end
 
         def deserialize(params)
           @ActionType = params['ActionType']
           @ActionTypeName = params['ActionTypeName']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @RealTotalCost = params['RealTotalCost']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
-          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
@@ -92,58 +92,58 @@ module TencentCloud
 
       # 账单明细数据对象
       class BillDetail < TencentCloud::Common::AbstractModel
-        # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         # @type BusinessCodeName: String
-        # @param ProductCodeName: 子产品名称：云产品子类，如云服务器CVM-标准型S1
+        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
         # @type ProductCodeName: String
-        # @param PayModeName: 计费模式：包年包月和按量计费
+        # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
         # @type PayModeName: String
-        # @param ProjectName: 项目:资源所属项目
+        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         # @type ProjectName: String
-        # @param RegionName: 区域：资源所属地域，如华南地区（广州）
+        # @param RegionName: 地域：资源所属地域，如华南地区（广州）
         # @type RegionName: String
         # @param ZoneName: 可用区：资源所属可用区，如广州三区
         # @type ZoneName: String
-        # @param ResourceId: 资源实例ID
+        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
         # @type ResourceId: String
-        # @param ResourceName: 实例名称
+        # @param ResourceName: 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
         # @type ResourceName: String
-        # @param ActionTypeName: 交易类型
+        # @param ActionTypeName: 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
         # @type ActionTypeName: String
-        # @param OrderId: 订单ID
+        # @param OrderId: 订单ID：包年包月计费模式下订购的订单号
         # @type OrderId: String
-        # @param BillId: 交易ID
+        # @param BillId: 交易ID：结算扣费单号
         # @type BillId: String
-        # @param PayTime: 扣费时间
+        # @param PayTime: 扣费时间：结算扣费时间
         # @type PayTime: String
-        # @param FeeBeginTime: 开始使用时间
+        # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
         # @type FeeBeginTime: String
-        # @param FeeEndTime: 结束使用时间
+        # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
         # @type FeeEndTime: String
         # @param ComponentSet: 组件列表
         # @type ComponentSet: Array
-        # @param PayerUin: 支付者UIN
+        # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
         # @type PayerUin: String
-        # @param OwnerUin: 使用者UIN
+        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
         # @type OwnerUin: String
-        # @param OperateUin: 操作者UIN
+        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
         # @type OperateUin: String
-        # @param Tags: Tag 信息
+        # @param Tags: 标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: 产品编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
-        # @param ProductCode: 子产品名称代码
+        # @param ProductCode: 子产品编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
-        # @param ActionType: 交易类型代码
+        # @param ActionType: 交易类型编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
-        # @param RegionId: 区域ID
+        # @param RegionId: 地域ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
-        # @param ProjectId: 项目ID:资源所属项目ID
+        # @param ProjectId: 项目ID
         # @type ProjectId: Integer
         # @param PriceInfo: 价格属性
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -224,72 +224,75 @@ module TencentCloud
 
       # 账单明细组件对象
       class BillDetailComponent < TencentCloud::Common::AbstractModel
-        # @param ComponentCodeName: 组件类型:资源组件类型的名称，如内存、硬盘等
+        # @param ComponentCodeName: 组件类型：用户购买的产品或服务对应的组件大类，例如：云服务器 CVM 的组件：CPU、内存等
         # @type ComponentCodeName: String
-        # @param ItemCodeName: 组件名称:资源组件的名称，如云数据库MySQL-内存等
+        # @param ItemCodeName: 组件名称：用户购买的产品或服务，所包含的具体组件
         # @type ItemCodeName: String
-        # @param SinglePrice: 组件刊例价:资源组件的原始价格，保持原始粒度
+        # @param SinglePrice: 组件刊例价：组件的官网原始单价（如果客户享受一口价/合同价则默认不展示）
         # @type SinglePrice: String
-        # @param SpecifiedPrice: 组件指定价
+        # @param SpecifiedPrice: 组件指定价（已废弃）
         # @type SpecifiedPrice: String
-        # @param PriceUnit: 价格单位
+        # @param PriceUnit: 组件价格单位：组件价格的单位，单位构成：元/用量单位/时长单位
         # @type PriceUnit: String
-        # @param UsedAmount: 组件用量
+        # @param UsedAmount: 组件用量：该组件实际结算用量，组件用量 = 组件原始用量 - 抵扣用量（含资源包
         # @type UsedAmount: String
-        # @param UsedAmountUnit: 组件用量单位
+        # @param UsedAmountUnit: 组件用量单位：组件用量对应的单位
         # @type UsedAmountUnit: String
-        # @param TimeSpan: 使用时长
+        # @param TimeSpan: 使用时长：资源使用的时长
         # @type TimeSpan: String
-        # @param TimeUnitName: 时长单位
+        # @param TimeUnitName: 时长单位：资源使用时长的单位
         # @type TimeUnitName: String
-        # @param Cost: 组件原价
+        # @param Cost: 组件原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
         # @type Cost: String
-        # @param Discount: 折扣率，本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
+        # @param Discount: 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
         # @type Discount: String
         # @param ReduceType: 优惠类型
         # @type ReduceType: String
-        # @param RealCost: 优惠后总价
+        # @param RealCost: 优惠后总价：优惠后总价=（原价 - 预留实例抵扣原价 - 节省计划抵扣原价）* 折扣率
         # @type RealCost: String
-        # @param VoucherPayAmount: 代金券支付金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
-        # @param CashPayAmount: 现金支付金额
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送账户支付金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param ItemCode: 组件类型代码
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
+        # @param ItemCode: 组件类型编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemCode: String
-        # @param ComponentCode: 组件名称代码
+        # @param ComponentCode: 组件名称编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
-        # @param ContractPrice: 组件单价
+        # @param ContractPrice: 组件单价：组件的折后单价，组件单价 = 刊例价 * 折扣
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContractPrice: String
-        # @param InstanceType: 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
+        # @param InstanceType: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
-        # @param RiTimeSpan: 预留实例抵扣的使用时长，时长单位与被抵扣的时长单位保持一致
+        # @param RiTimeSpan: 预留实例抵扣的使用时长：本产品或服务使用预留实例抵扣的使用时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiTimeSpan: String
-        # @param OriginalCostWithRI: 预留实例抵扣组件原价，本产品或服务使用预留实例抵扣的组件原价金额
+        # @param OriginalCostWithRI: 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCostWithRI: String
-        # @param SPDeductionRate: 节省计划抵扣率，节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
+        # @param SPDeductionRate: 节省计划抵扣率：节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeductionRate: String
-        # @param SPDeduction: 节省计划抵扣金额，节省计划抵扣的SP包面值
+        # @param SPDeduction: 节省计划抵扣金额（已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeduction: String
-        # @param OriginalCostWithSP: 节省计划抵扣组件原价，节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
+        # @param OriginalCostWithSP: 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCostWithSP: String
-        # @param BlendedDiscount: 混合折扣率，综合各类折扣抵扣信息后的最终折扣率，混合折扣率 = 优惠后总价 / 组件原价
+        # @param BlendedDiscount: 混合折扣率：综合各类折扣抵扣信息后的最终折扣率，混合折扣率 = 优惠后总价 / 组件原价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlendedDiscount: String
 
-        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
+        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
         
-        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
+        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
           @SinglePrice = singleprice
@@ -306,6 +309,7 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
+          @TransferPayAmount = transferpayamount
           @ItemCode = itemcode
           @ComponentCode = componentcode
           @ContractPrice = contractprice
@@ -335,6 +339,7 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @ItemCode = params['ItemCode']
           @ComponentCode = params['ComponentCode']
           @ContractPrice = params['ContractPrice']
@@ -350,94 +355,88 @@ module TencentCloud
 
       # 账单资源汇总数据对象
       class BillResourceSummary < TencentCloud::Common::AbstractModel
-        # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         # @type BusinessCodeName: String
-        # @param ProductCodeName: 子产品名称：云产品子类，如云服务器CVM-标准型S1， 当没有获取到子产品名称时，返回"-"
+        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
         # @type ProductCodeName: String
-        # @param PayModeName: 计费模式：包年包月和按量计费
+        # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
         # @type PayModeName: String
-        # @param ProjectName: 项目
+        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         # @type ProjectName: String
-        # @param RegionName: 地域
+        # @param RegionName: 地域：资源所属地域，如华南地区（广州）
         # @type RegionName: String
-        # @param ZoneName: 可用区
+        # @param ZoneName: 可用区：资源所属可用区，如广州三区
         # @type ZoneName: String
-        # @param ResourceId: 资源实例ID
+        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
         # @type ResourceId: String
-        # @param ResourceName: 资源实例名称
+        # @param ResourceName: 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
         # @type ResourceName: String
-        # @param ActionTypeName: 交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型
+        # @param ActionTypeName: 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
         # @type ActionTypeName: String
-        # @param OrderId: 订单ID
+        # @param OrderId: 订单ID：包年包月计费模式下订购的订单号
         # @type OrderId: String
-        # @param PayTime: 扣费时间
+        # @param PayTime: 扣费时间：结算扣费时间
         # @type PayTime: String
-        # @param FeeBeginTime: 开始使用时间
+        # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
         # @type FeeBeginTime: String
-        # @param FeeEndTime: 结束使用时间
+        # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
         # @type FeeEndTime: String
-        # @param ConfigDesc: 配置描述
+        # @param ConfigDesc: 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
         # @type ConfigDesc: String
-        # @param ExtendField1: 扩展字段1
+        # @param ExtendField1: 扩展字段1：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField1: String
-        # @param ExtendField2: 扩展字段2
+        # @param ExtendField2: 扩展字段2：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField2: String
-        # @param TotalCost: 原价，单位为元
+        # @param TotalCost: 原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
         # @type TotalCost: String
-        # @param Discount: 折扣率
-        # 当聚合之后折扣不唯一或者合同价的情况下，返回“-”
+        # @param Discount: 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
         # @type Discount: String
         # @param ReduceType: 优惠类型
         # @type ReduceType: String
-        # @param RealTotalCost: 优惠后总价，单位为元
+        # @param RealTotalCost: 优惠后总价
         # @type RealTotalCost: String
-        # @param VoucherPayAmount: 代金券支付金额，单位为元
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
-        # @param CashPayAmount: 现金账户支付金额，单位为元
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送账户支付金额，单位为元
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param ExtendField3: 扩展字段3
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
+        # @param ExtendField3: 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField3: String
-        # @param ExtendField4: 扩展字段4
+        # @param ExtendField4: 扩展字段4：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField4: String
-        # @param ExtendField5: 扩展字段5
+        # @param ExtendField5: 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField5: String
-        # @param Tags: Tag 信息
+        # @param Tags: 标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param PayerUin: 付款方uin
+        # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
         # @type PayerUin: String
-        # @param OwnerUin: 资源所有者uin,无值则返回"-"
+        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
         # @type OwnerUin: String
-        # @param OperateUin: 操作者uin,无值则返回"-"
+        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
         # @type OperateUin: String
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: 产品编码
         # @type BusinessCode: String
-        # @param ProductCode: 子产品名称代码
+        # @param ProductCode: 子产品编码
         # @type ProductCode: String
-        # @param RegionId: 区域ID
+        # @param RegionId: 地域ID
         # @type RegionId: Integer
-        # @param InstanceType: 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
-
-        # ri=Standard RI
-
-        # svp=Savings Plan
-
-        # si=Spot Instances
-
-        # rp=Resource Pack
+        # @param InstanceType: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
         # @type InstanceType: String
-        # @param OriginalCostWithRI: 按组件原价的口径换算的预留实例抵扣金额
+        # @param OriginalCostWithRI: 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
         # @type OriginalCostWithRI: String
-        # @param SPDeduction: 节省计划抵扣的SP包面值
+        # @param SPDeduction: 节省计划抵扣金额（已废弃）
         # @type SPDeduction: String
-        # @param OriginalCostWithSP: 按组件原价的口径换算的节省计划抵扣金额
+        # @param OriginalCostWithSP: 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         # @type OriginalCostWithSP: String
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
         
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -461,6 +460,7 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
+          @TransferPayAmount = transferpayamount
           @ExtendField3 = extendfield3
           @ExtendField4 = extendfield4
           @ExtendField5 = extendfield5
@@ -501,6 +501,7 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @ExtendField3 = params['ExtendField3']
           @ExtendField4 = params['ExtendField4']
           @ExtendField5 = params['ExtendField5']
@@ -603,81 +604,81 @@ module TencentCloud
 
       # 按产品汇总产品详情
       class BusinessSummaryOverviewItem < TencentCloud::Common::AbstractModel
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: 产品编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
-        # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         # @type BusinessCodeName: String
-        # @param RealTotalCost: 实际花费
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # @type RealTotalCostRatio: String
-        # @param CashPayAmount: 现金金额
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # @type TransferPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # @type TransferPayAmount: String
 
-        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost, :TransferPayAmount
+        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
         
-        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(businesscode=nil, businesscodename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
+          @TransferPayAmount = transferpayamount
           @BillMonth = billmonth
           @TotalCost = totalcost
-          @TransferPayAmount = transferpayamount
         end
 
         def deserialize(params)
           @BusinessCode = params['BusinessCode']
           @BusinessCodeName = params['BusinessCodeName']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @RealTotalCost = params['RealTotalCost']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
-          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
       # 按产品汇总总费用
       class BusinessSummaryTotal < TencentCloud::Common::AbstractModel
-        # @param RealTotalCost: 总花费
+        # @param RealTotalCost: 优惠后总价
         # @type RealTotalCost: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param CashPayAmount: 现金金额
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # @type TransferPayAmount: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # @type TransferPayAmount: String
 
-        attr_accessor :RealTotalCost, :VoucherPayAmount, :IncentivePayAmount, :CashPayAmount, :TotalCost, :TransferPayAmount
+        attr_accessor :RealTotalCost, :VoucherPayAmount, :IncentivePayAmount, :CashPayAmount, :TransferPayAmount, :TotalCost
         
-        def initialize(realtotalcost=nil, voucherpayamount=nil, incentivepayamount=nil, cashpayamount=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(realtotalcost=nil, voucherpayamount=nil, incentivepayamount=nil, cashpayamount=nil, transferpayamount=nil, totalcost=nil)
           @RealTotalCost = realtotalcost
           @VoucherPayAmount = voucherpayamount
           @IncentivePayAmount = incentivepayamount
           @CashPayAmount = cashpayamount
-          @TotalCost = totalcost
           @TransferPayAmount = transferpayamount
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -685,8 +686,8 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @CashPayAmount = params['CashPayAmount']
-          @TotalCost = params['TotalCost']
           @TransferPayAmount = params['TransferPayAmount']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -1804,30 +1805,30 @@ module TencentCloud
 
       # DescribeBillResourceSummary请求参数结构体
       class DescribeBillResourceSummaryRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
         # @type Offset: Integer
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param Month: 月份，格式为yyyy-mm。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。
+        # @param Month: 月份，格式为yyyy-mm。不能早于开通账单2.0的月份
         # @type Month: String
         # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
         # @type PeriodType: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
-        # @param ActionType: 查询交易类型，如下：
+        # @param ActionType: 查询交易类型（请使用交易类型名称入参），入参示例枚举如下：
         # 包年包月新购
         # 包年包月续费
         # 包年包月配置变更
         # 包年包月退款
         # 按量计费扣费
-        # 按量计费小时结
-        # 按量计费日结
-        # 按量计费月结
         # 线下项目扣费
         # 线下产品扣费
         # 调账扣费
         # 调账补偿
+        # 按量计费小时结
+        # 按量计费日结
+        # 按量计费月结
         # 竞价实例小时结
         # 线下项目调账补偿
         # 线下产品调账补偿
@@ -1842,6 +1843,8 @@ module TencentCloud
         # 预留实例退款
         # 按量计费冲正
         # 包年包月转按量
+        # 保底扣款
+        # 节省计划小时费用
         # @type ActionType: String
         # @param ResourceId: 查询指定资源信息
         # @type ResourceId: String
@@ -1882,7 +1885,7 @@ module TencentCloud
       class DescribeBillResourceSummaryResponse < TencentCloud::Common::AbstractModel
         # @param ResourceSummarySet: 资源汇总列表
         # @type ResourceSummarySet: Array
-        # @param Total: 资源汇总列表总数
+        # @param Total: 资源汇总列表总数，入参NeedRecordNum为0时不返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1936,7 +1939,8 @@ module TencentCloud
 
       # DescribeBillSummaryByPayMode返回参数结构体
       class DescribeBillSummaryByPayModeResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # @param Ready: 数据是否准备好，0未准备好，1准备好。
+        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
         # @type Ready: Integer
         # @param SummaryOverview: 各付费模式花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2001,7 +2005,8 @@ module TencentCloud
 
       # DescribeBillSummaryByProduct返回参数结构体
       class DescribeBillSummaryByProductResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # @param Ready: 数据是否准备好，0未准备好，1准备好。
+        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
         # @type Ready: Integer
         # @param SummaryTotal: 总花费详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2066,6 +2071,7 @@ module TencentCloud
       # DescribeBillSummaryByProject返回参数结构体
       class DescribeBillSummaryByProjectResponse < TencentCloud::Common::AbstractModel
         # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
         # @type Ready: Integer
         # @param SummaryOverview: 各项目花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2122,6 +2128,7 @@ module TencentCloud
       # DescribeBillSummaryByRegion返回参数结构体
       class DescribeBillSummaryByRegionResponse < TencentCloud::Common::AbstractModel
         # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
         # @type Ready: Integer
         # @param SummaryOverview: 各地域花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2186,6 +2193,7 @@ module TencentCloud
       # DescribeBillSummaryByTag返回参数结构体
       class DescribeBillSummaryByTagResponse < TencentCloud::Common::AbstractModel
         # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
         # @type Ready: Integer
         # @param SummaryOverview: 各标签值花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3174,49 +3182,54 @@ module TencentCloud
         end
       end
 
-      # 按付费模式汇总消费详情
+      # 按计费模式汇总消费详情
       class PayModeSummaryOverviewItem < TencentCloud::Common::AbstractModel
-        # @param PayMode: 付费模式
+        # @param PayMode: 计费模式编码
         # @type PayMode: String
-        # @param PayModeName: 付费模式名称
+        # @param PayModeName: 计费模式：区分为包年包月和按量计费
         # @type PayModeName: String
-        # @param RealTotalCost: 实际花费
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # @type RealTotalCostRatio: String
-        # @param Detail: 按交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型汇总消费详情
-        # @type Detail: Array
-        # @param CashPayAmount: 现金金额
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # @type TransferPayAmount: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # @type TransferPayAmount: String
+        # @param Detail: 按交易类型汇总消费详情
+        # @type Detail: Array
 
-        attr_accessor :PayMode, :PayModeName, :RealTotalCost, :RealTotalCostRatio, :Detail, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TotalCost, :TransferPayAmount
+        attr_accessor :PayMode, :PayModeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :TotalCost, :Detail
         
-        def initialize(paymode=nil, paymodename=nil, realtotalcost=nil, realtotalcostratio=nil, detail=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(paymode=nil, paymodename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, totalcost=nil, detail=nil)
           @PayMode = paymode
           @PayModeName = paymodename
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
-          @Detail = detail
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
-          @TotalCost = totalcost
           @TransferPayAmount = transferpayamount
+          @TotalCost = totalcost
+          @Detail = detail
         end
 
         def deserialize(params)
           @PayMode = params['PayMode']
           @PayModeName = params['PayModeName']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @RealTotalCost = params['RealTotalCost']
+          @CashPayAmount = params['CashPayAmount']
+          @IncentivePayAmount = params['IncentivePayAmount']
+          @VoucherPayAmount = params['VoucherPayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
+          @TotalCost = params['TotalCost']
           unless params['Detail'].nil?
             @Detail = []
             params['Detail'].each do |i|
@@ -3225,11 +3238,6 @@ module TencentCloud
               @Detail << actionsummaryoverviewitem_tmp
             end
           end
-          @CashPayAmount = params['CashPayAmount']
-          @IncentivePayAmount = params['IncentivePayAmount']
-          @VoucherPayAmount = params['VoucherPayAmount']
-          @TotalCost = params['TotalCost']
-          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
@@ -3257,51 +3265,51 @@ module TencentCloud
       class ProjectSummaryOverviewItem < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         # @type ProjectName: String
-        # @param RealTotalCost: 实际花费
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # @type RealTotalCostRatio: String
-        # @param CashPayAmount: 现金金额
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # @type TransferPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # @type TransferPayAmount: String
 
-        attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost, :TransferPayAmount
+        attr_accessor :ProjectId, :ProjectName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
         
-        def initialize(projectid=nil, projectname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(projectid=nil, projectname=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @ProjectId = projectid
           @ProjectName = projectname
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
+          @TransferPayAmount = transferpayamount
           @BillMonth = billmonth
           @TotalCost = totalcost
-          @TransferPayAmount = transferpayamount
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @RealTotalCost = params['RealTotalCost']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
-          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
@@ -3310,57 +3318,57 @@ module TencentCloud
         # @param RegionId: 地域ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
-        # @param RegionName: 地域名称
+        # @param RegionName: 地域名称：资源所属地域，例如华南地区（广州）
         # @type RegionName: String
-        # @param RealTotalCost: 实际花费
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # @type RealTotalCostRatio: String
-        # @param CashPayAmount: 现金金额
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # @type TransferPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # @type TotalCost: String
-        # @param TransferPayAmount: 分成金金额
-        # @type TransferPayAmount: String
 
-        attr_accessor :RegionId, :RegionName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost, :TransferPayAmount
+        attr_accessor :RegionId, :RegionName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
         
-        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil, transferpayamount=nil)
+        def initialize(regionid=nil, regionname=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @RegionId = regionid
           @RegionName = regionname
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
+          @TransferPayAmount = transferpayamount
           @BillMonth = billmonth
           @TotalCost = totalcost
-          @TransferPayAmount = transferpayamount
         end
 
         def deserialize(params)
           @RegionId = params['RegionId']
           @RegionName = params['RegionName']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @RealTotalCost = params['RealTotalCost']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
-          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
       # 总数
       class SummaryTotal < TencentCloud::Common::AbstractModel
-        # @param RealTotalCost: 总数
+        # @param RealTotalCost: 优惠后总价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
@@ -3385,50 +3393,50 @@ module TencentCloud
         # @param TagValue: 标签值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
-        # @param RealTotalCost: 实际花费
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealTotalCost: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCostRatio: String
+        # @param RealTotalCost: 优惠后总价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTotalCost: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CashPayAmount: String
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncentivePayAmount: String
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoucherPayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: String
-        # @param CashPayAmount: 现金金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VoucherPayAmount: String
-        # @param TransferPayAmount: 分成金金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TransferPayAmount: String
 
-        attr_accessor :TagValue, :RealTotalCost, :RealTotalCostRatio, :TotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
+        attr_accessor :TagValue, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :TotalCost
         
-        def initialize(tagvalue=nil, realtotalcost=nil, realtotalcostratio=nil, totalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
+        def initialize(tagvalue=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, totalcost=nil)
           @TagValue = tagvalue
-          @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
-          @TotalCost = totalcost
+          @RealTotalCost = realtotalcost
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @TransferPayAmount = transferpayamount
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
           @TagValue = params['TagValue']
-          @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
-          @TotalCost = params['TotalCost']
+          @RealTotalCost = params['RealTotalCost']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @TransferPayAmount = params['TransferPayAmount']
+          @TotalCost = params['TotalCost']
         end
       end
 

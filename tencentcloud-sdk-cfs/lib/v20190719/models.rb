@@ -348,13 +348,13 @@ module TencentCloud
       class CreateCfsFileSystemRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区名称，例如ap-beijing-1，请参考 [概览](https://cloud.tencent.com/document/product/582/13225) 文档中的地域与可用区列表
         # @type Zone: String
-        # @param NetInterface: 网络类型，可选值为 VPC，BASIC，CCN；其中 VPC 为私有网络，BASIC 为基础网络, CCN 为云联网，Turbo系列当前必须选择云联网。目前基础网络已逐渐淘汰，不推荐使用。
+        # @param NetInterface: 网络类型，可选值为 VPC，CCN；其中 VPC 为私有网络， CCN 为云联网。通用标准型/性能型请选择VPC，Turbo标准型/性能型请选择CCN。
         # @type NetInterface: String
-        # @param PGroupId: 权限组 ID，通用标准型和性能型必填，turbo系列请填写pgroupbasic
+        # @param PGroupId: 权限组 ID
         # @type PGroupId: String
         # @param Protocol: 文件系统协议类型， 值为 NFS、CIFS、TURBO ; 若留空则默认为 NFS协议，turbo系列必须选择turbo，不支持NFS、CIFS
         # @type Protocol: String
-        # @param StorageType: 文件系统存储类型，默认值为 SD ；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
+        # @param StorageType: 文件系统存储类型，默认值为 SD ；其中 SD 为通用标准型存储， HP为通用性能型存储， TB为Turbo标准型， TP 为Turbo性能型。
         # @type StorageType: String
         # @param VpcId: 私有网络（VPC） ID，若网络类型选择的是VPC，该字段为必填。
         # @type VpcId: String
@@ -2480,10 +2480,13 @@ module TencentCloud
         # @type FsName: String
         # @param Tags: 快照标签
         # @type Tags: Array
+        # @param SnapshotType: 快照类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotType: String
 
-        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags
+        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType
         
-        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil)
+        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil)
           @CreationTime = creationtime
           @SnapshotName = snapshotname
           @SnapshotId = snapshotid
@@ -2497,6 +2500,7 @@ module TencentCloud
           @DeleteTime = deletetime
           @FsName = fsname
           @Tags = tags
+          @SnapshotType = snapshottype
         end
 
         def deserialize(params)
@@ -2520,6 +2524,7 @@ module TencentCloud
               @Tags << taginfo_tmp
             end
           end
+          @SnapshotType = params['SnapshotType']
         end
       end
 

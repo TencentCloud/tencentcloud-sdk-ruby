@@ -1578,16 +1578,21 @@ module TencentCloud
 
       # CreateCosRecharge返回参数结构体
       class CreateCosRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param Id: cos_recharge记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Id, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(id=nil, requestid=nil)
+          @Id = id
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end

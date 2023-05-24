@@ -1786,7 +1786,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建 Server端
+        # 本接口（CreateVpnGatewaySslServer）用于创建SSL-VPN Server端。
 
         # @param request: Request instance for CreateVpnGatewaySslServer.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateVpnGatewaySslServerRequest`

@@ -1175,16 +1175,22 @@ module TencentCloud
         # @type Status: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param Summary: 生命周期规则当前路径具体存储量
+        # @type Summary: :class:`Tencentcloud::Chdfs.v20201112.models.Summary`
+        # @param LastSummaryTime: Summary更新时间
+        # @type LastSummaryTime: String
 
-        attr_accessor :LifeCycleRuleId, :LifeCycleRuleName, :Path, :Transitions, :Status, :CreateTime
+        attr_accessor :LifeCycleRuleId, :LifeCycleRuleName, :Path, :Transitions, :Status, :CreateTime, :Summary, :LastSummaryTime
         
-        def initialize(lifecycleruleid=nil, lifecyclerulename=nil, path=nil, transitions=nil, status=nil, createtime=nil)
+        def initialize(lifecycleruleid=nil, lifecyclerulename=nil, path=nil, transitions=nil, status=nil, createtime=nil, summary=nil, lastsummarytime=nil)
           @LifeCycleRuleId = lifecycleruleid
           @LifeCycleRuleName = lifecyclerulename
           @Path = path
           @Transitions = transitions
           @Status = status
           @CreateTime = createtime
+          @Summary = summary
+          @LastSummaryTime = lastsummarytime
         end
 
         def deserialize(params)
@@ -1201,6 +1207,11 @@ module TencentCloud
           end
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          unless params['Summary'].nil?
+            @Summary = Summary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          @LastSummaryTime = params['LastSummaryTime']
         end
       end
 
@@ -1535,6 +1546,48 @@ module TencentCloud
           @Days = params['Days']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 生命周期规则当前路径具体存储量信息
+      class Summary < TencentCloud::Common::AbstractModel
+        # @param CapacityUsed: 总存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapacityUsed: Integer
+        # @param StandardCapacityUsed: 标准存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardCapacityUsed: Integer
+        # @param DegradeCapacityUsed: 低频存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DegradeCapacityUsed: Integer
+        # @param ArchiveCapacityUsed: 归档存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchiveCapacityUsed: Integer
+        # @param DeepArchiveCapacityUsed: 深度归档存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeepArchiveCapacityUsed: Integer
+        # @param IntelligentCapacityUsed: 智能分层存储量（单位byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntelligentCapacityUsed: Integer
+
+        attr_accessor :CapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :ArchiveCapacityUsed, :DeepArchiveCapacityUsed, :IntelligentCapacityUsed
+        
+        def initialize(capacityused=nil, standardcapacityused=nil, degradecapacityused=nil, archivecapacityused=nil, deeparchivecapacityused=nil, intelligentcapacityused=nil)
+          @CapacityUsed = capacityused
+          @StandardCapacityUsed = standardcapacityused
+          @DegradeCapacityUsed = degradecapacityused
+          @ArchiveCapacityUsed = archivecapacityused
+          @DeepArchiveCapacityUsed = deeparchivecapacityused
+          @IntelligentCapacityUsed = intelligentcapacityused
+        end
+
+        def deserialize(params)
+          @CapacityUsed = params['CapacityUsed']
+          @StandardCapacityUsed = params['StandardCapacityUsed']
+          @DegradeCapacityUsed = params['DegradeCapacityUsed']
+          @ArchiveCapacityUsed = params['ArchiveCapacityUsed']
+          @DeepArchiveCapacityUsed = params['DeepArchiveCapacityUsed']
+          @IntelligentCapacityUsed = params['IntelligentCapacityUsed']
         end
       end
 

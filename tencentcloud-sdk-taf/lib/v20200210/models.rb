@@ -271,19 +271,29 @@ module TencentCloud
         # @param Score: 返回分值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Float
+        # @param ModelType: 模型类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: Integer
+        # @param Uid: 入参Uid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uid: String
 
-        attr_accessor :ModelId, :IsFound, :Score
+        attr_accessor :ModelId, :IsFound, :Score, :ModelType, :Uid
         
-        def initialize(modelid=nil, isfound=nil, score=nil)
+        def initialize(modelid=nil, isfound=nil, score=nil, modeltype=nil, uid=nil)
           @ModelId = modelid
           @IsFound = isfound
           @Score = score
+          @ModelType = modeltype
+          @Uid = uid
         end
 
         def deserialize(params)
           @ModelId = params['ModelId']
           @IsFound = params['IsFound']
           @Score = params['Score']
+          @ModelType = params['ModelType']
+          @Uid = params['Uid']
         end
       end
 

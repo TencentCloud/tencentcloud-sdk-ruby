@@ -4921,29 +4921,29 @@ module TencentCloud
 
       # CreateVpnGatewaySslServer请求参数结构体
       class CreateVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN实例ID
+        # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param SslVpnServerName: SSL_VPN_SERVER 实例名
+        # @param SslVpnServerName: SSL-VPN-SERVER 实例名称，长度不超过60个字节。
         # @type SslVpnServerName: String
-        # @param LocalAddress: 本端地址网段
+        # @param LocalAddress: 云端地址（CIDR）列表。
         # @type LocalAddress: Array
-        # @param RemoteAddress: 客户端地址网段
+        # @param RemoteAddress: 客户端地址网段。
         # @type RemoteAddress: String
-        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP
+        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP，默认UDP。
         # @type SslVpnProtocol: String
-        # @param SslVpnPort: SSL VPN服务端监听协议端口。默认1194。
+        # @param SslVpnPort: SSL VPN服务端监听协议端口，默认1194。
         # @type SslVpnPort: Integer
-        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
+        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'，默认NONE。
         # @type IntegrityAlgorithm: String
-        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'NONE'。默认NONE
+        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 'NONE'，默认NONE。
         # @type EncryptAlgorithm: String
-        # @param Compress: 是否支持压缩。当前仅支持不支持压缩。默认False
+        # @param Compress: 是否支持压缩。当前仅支持不支持压缩，默认False。
         # @type Compress: Boolean
-        # @param SsoEnabled: 是否开启SSO认证
+        # @param SsoEnabled: 是否开启SSO认证。默认为False
         # @type SsoEnabled: Boolean
-        # @param AccessPolicyEnabled: 是否开启策略访问控制
+        # @param AccessPolicyEnabled: 是否开启策略访问控制。默认为False
         # @type AccessPolicyEnabled: Boolean
-        # @param SamlData: SAML-DATA
+        # @param SamlData: SAML-DATA，开启SSO时传。
         # @type SamlData: String
 
         attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData
@@ -4981,9 +4981,9 @@ module TencentCloud
 
       # CreateVpnGatewaySslServer返回参数结构体
       class CreateVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 创建SSL-VPN server 异步任务ID
+        # @param TaskId: 创建SSL-VPN server 异步任务ID。
         # @type TaskId: Integer
-        # @param SslVpnServerId: SSL-VPN server 唯一ID
+        # @param SslVpnServerId: SSL-VPN-SERVER 唯一ID。
         # @type SslVpnServerId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7736,7 +7736,7 @@ module TencentCloud
         # @type CcnId: String
         # @param CcnUin: 云联网所属账号。
         # @type CcnUin: String
-        # @param Period: 时间粒度。
+        # @param Period: 时间粒度。单位为:秒，如60为60s的时间粒度
         # @type Period: Integer
         # @param StartTime: 开始时间。
         # @type StartTime: String

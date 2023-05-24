@@ -128,7 +128,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取按付费模式汇总费用分布
+        # 获取按计费模式汇总费用分布
 
         # @param request: Request instance for DescribeBillSummaryByPayMode.
         # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillSummaryByPayModeRequest`

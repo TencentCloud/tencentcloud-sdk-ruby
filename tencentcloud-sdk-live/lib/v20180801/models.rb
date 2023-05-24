@@ -3186,9 +3186,15 @@ module TencentCloud
 
       # DescribeCallbackRecordsList请求参数结构体
       class DescribeCallbackRecordsListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @param StartTime: 起始时间点，接口查询支持两种时间格式：
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过1天。
+        # @param EndTime: 结束时间点，接口查询支持两种时间格式：
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+
+        # 查询的起始和结束时间跨度不支持超过1天。仅支持查询最近14天的数据。
         # @type EndTime: String
         # @param StreamName: 流名称，精确匹配。
         # @type StreamName: String

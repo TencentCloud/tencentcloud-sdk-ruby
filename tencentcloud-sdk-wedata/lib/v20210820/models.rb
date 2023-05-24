@@ -1599,15 +1599,18 @@ module TencentCloud
         # @type ExecConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleExecConfig`
         # @param ProjectId: 项目ID
         # @type ProjectId: String
+        # @param EngineType: 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @type EngineType: String
 
-        attr_accessor :RuleGroupId, :TriggerType, :ExecRuleConfig, :ExecConfig, :ProjectId
+        attr_accessor :RuleGroupId, :TriggerType, :ExecRuleConfig, :ExecConfig, :ProjectId, :EngineType
         
-        def initialize(rulegroupid=nil, triggertype=nil, execruleconfig=nil, execconfig=nil, projectid=nil)
+        def initialize(rulegroupid=nil, triggertype=nil, execruleconfig=nil, execconfig=nil, projectid=nil, enginetype=nil)
           @RuleGroupId = rulegroupid
           @TriggerType = triggertype
           @ExecRuleConfig = execruleconfig
           @ExecConfig = execconfig
           @ProjectId = projectid
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -1626,6 +1629,7 @@ module TencentCloud
             @ExecConfig.deserialize(params['ExecConfig'])
           end
           @ProjectId = params['ProjectId']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -2559,10 +2563,12 @@ module TencentCloud
         # @type FieldConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleFieldConfig`
         # @param TargetObjectValue: 目标字段名称  CITY
         # @type TargetObjectValue: String
+        # @param SourceEngineTypes: 该规则支持的执行引擎列表
+        # @type SourceEngineTypes: Array
 
-        attr_accessor :ProjectId, :RuleGroupId, :Name, :TableId, :RuleTemplateId, :Type, :QualityDim, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :DatasourceId, :DatabaseId, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue
+        attr_accessor :ProjectId, :RuleGroupId, :Name, :TableId, :RuleTemplateId, :Type, :QualityDim, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :DatasourceId, :DatabaseId, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue, :SourceEngineTypes
         
-        def initialize(projectid=nil, rulegroupid=nil, name=nil, tableid=nil, ruletemplateid=nil, type=nil, qualitydim=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, datasourceid=nil, databaseid=nil, targetdatabaseid=nil, targettableid=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, targetobjectvalue=nil)
+        def initialize(projectid=nil, rulegroupid=nil, name=nil, tableid=nil, ruletemplateid=nil, type=nil, qualitydim=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, datasourceid=nil, databaseid=nil, targetdatabaseid=nil, targettableid=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, targetobjectvalue=nil, sourceenginetypes=nil)
           @ProjectId = projectid
           @RuleGroupId = rulegroupid
           @Name = name
@@ -2586,6 +2592,7 @@ module TencentCloud
           @RelConditionExpr = relconditionexpr
           @FieldConfig = fieldconfig
           @TargetObjectValue = targetobjectvalue
+          @SourceEngineTypes = sourceenginetypes
         end
 
         def deserialize(params)
@@ -2618,6 +2625,7 @@ module TencentCloud
             @FieldConfig.deserialize(params['FieldConfig'])
           end
           @TargetObjectValue = params['TargetObjectValue']
+          @SourceEngineTypes = params['SourceEngineTypes']
         end
       end
 
@@ -8186,17 +8194,21 @@ module TencentCloud
         # @type ProjectId: String
         # @param RuleGroupId: 规则组id
         # @type RuleGroupId: Integer
+        # @param EngineType: 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @type EngineType: String
 
-        attr_accessor :ProjectId, :RuleGroupId
+        attr_accessor :ProjectId, :RuleGroupId, :EngineType
         
-        def initialize(projectid=nil, rulegroupid=nil)
+        def initialize(projectid=nil, rulegroupid=nil, enginetype=nil)
           @ProjectId = projectid
           @RuleGroupId = rulegroupid
+          @EngineType = enginetype
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @RuleGroupId = params['RuleGroupId']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -11771,10 +11783,12 @@ module TencentCloud
         # @type DatasourceId: String
         # @param TableId: 数据表Id
         # @type TableId: String
+        # @param ExecEngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @type ExecEngineType: String
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :ProjectId, :StartTime, :EndTime, :CycleType, :CycleStep, :TaskAction, :DelayTime, :DatabaseId, :DatasourceId, :TableId
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :ProjectId, :StartTime, :EndTime, :CycleType, :CycleStep, :TaskAction, :DelayTime, :DatabaseId, :DatasourceId, :TableId, :ExecEngineType
         
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, projectid=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, taskaction=nil, delaytime=nil, databaseid=nil, datasourceid=nil, tableid=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, projectid=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, taskaction=nil, delaytime=nil, databaseid=nil, datasourceid=nil, tableid=nil, execenginetype=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -11791,6 +11805,7 @@ module TencentCloud
           @DatabaseId = databaseid
           @DatasourceId = datasourceid
           @TableId = tableid
+          @ExecEngineType = execenginetype
         end
 
         def deserialize(params)
@@ -11817,6 +11832,7 @@ module TencentCloud
           @DatabaseId = params['DatabaseId']
           @DatasourceId = params['DatasourceId']
           @TableId = params['TableId']
+          @ExecEngineType = params['ExecEngineType']
         end
       end
 
@@ -12162,10 +12178,12 @@ module TencentCloud
         # @type FieldConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleFieldConfig`
         # @param TargetObjectValue: 目标字段名称  CITY
         # @type TargetObjectValue: String
+        # @param SourceEngineTypes: 该规则适配的执行引擎
+        # @type SourceEngineTypes: Array
 
-        attr_accessor :ProjectId, :RuleId, :RuleGroupId, :Name, :TableId, :RuleTemplateId, :Type, :QualityDim, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue
+        attr_accessor :ProjectId, :RuleId, :RuleGroupId, :Name, :TableId, :RuleTemplateId, :Type, :QualityDim, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue, :SourceEngineTypes
         
-        def initialize(projectid=nil, ruleid=nil, rulegroupid=nil, name=nil, tableid=nil, ruletemplateid=nil, type=nil, qualitydim=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, targetdatabaseid=nil, targettableid=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, targetobjectvalue=nil)
+        def initialize(projectid=nil, ruleid=nil, rulegroupid=nil, name=nil, tableid=nil, ruletemplateid=nil, type=nil, qualitydim=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, targetdatabaseid=nil, targettableid=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, targetobjectvalue=nil, sourceenginetypes=nil)
           @ProjectId = projectid
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
@@ -12188,6 +12206,7 @@ module TencentCloud
           @RelConditionExpr = relconditionexpr
           @FieldConfig = fieldconfig
           @TargetObjectValue = targetobjectvalue
+          @SourceEngineTypes = sourceenginetypes
         end
 
         def deserialize(params)
@@ -12219,6 +12238,7 @@ module TencentCloud
             @FieldConfig.deserialize(params['FieldConfig'])
           end
           @TargetObjectValue = params['TargetObjectValue']
+          @SourceEngineTypes = params['SourceEngineTypes']
         end
       end
 
@@ -14067,10 +14087,13 @@ module TencentCloud
         # @param TargetObjectValue: 目标字段名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectValue: String
+        # @param SourceEngineTypes: 源端对应的引擎类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceEngineTypes: Array
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes
         
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -14105,6 +14128,7 @@ module TencentCloud
           @TargetObjectDataType = targetobjectdatatype
           @TargetObjectDataTypeName = targetobjectdatatypename
           @TargetObjectValue = targetobjectvalue
+          @SourceEngineTypes = sourceenginetypes
         end
 
         def deserialize(params)
@@ -14148,6 +14172,7 @@ module TencentCloud
           @TargetObjectDataType = params['TargetObjectDataType']
           @TargetObjectDataTypeName = params['TargetObjectDataTypeName']
           @TargetObjectValue = params['TargetObjectValue']
+          @SourceEngineTypes = params['SourceEngineTypes']
         end
       end
 
@@ -14238,17 +14263,22 @@ module TencentCloud
         # @param ExecutorGroupId: 执行资源组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupId: String
+        # @param EngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
 
-        attr_accessor :QueueName, :ExecutorGroupId
+        attr_accessor :QueueName, :ExecutorGroupId, :EngineType
         
-        def initialize(queuename=nil, executorgroupid=nil)
+        def initialize(queuename=nil, executorgroupid=nil, enginetype=nil)
           @QueueName = queuename
           @ExecutorGroupId = executorgroupid
+          @EngineType = enginetype
         end
 
         def deserialize(params)
           @QueueName = params['QueueName']
           @ExecutorGroupId = params['ExecutorGroupId']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -14795,10 +14825,13 @@ module TencentCloud
         # @param ExecDetail: 执行详情，调度计划或者关联生产任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecDetail: String
+        # @param EngineType: 实际执行引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
 
-        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail
+        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail, :EngineType
         
-        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil)
+        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil, enginetype=nil)
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
           @TriggerType = triggertype
@@ -14813,6 +14846,7 @@ module TencentCloud
           @DatasourceId = datasourceid
           @Permission = permission
           @ExecDetail = execdetail
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -14830,6 +14864,7 @@ module TencentCloud
           @DatasourceId = params['DatasourceId']
           @Permission = params['Permission']
           @ExecDetail = params['ExecDetail']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -14900,10 +14935,16 @@ module TencentCloud
         # @param TaskAction: 时间指定
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAction: String
+        # @param ExecEngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecEngineType: String
+        # @param ExecPlan: 执行计划
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecPlan: String
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan
         
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -14916,6 +14957,8 @@ module TencentCloud
           @DelayTime = delaytime
           @CycleStep = cyclestep
           @TaskAction = taskaction
+          @ExecEngineType = execenginetype
+          @ExecPlan = execplan
         end
 
         def deserialize(params)
@@ -14938,6 +14981,8 @@ module TencentCloud
           @DelayTime = params['DelayTime']
           @CycleStep = params['CycleStep']
           @TaskAction = params['TaskAction']
+          @ExecEngineType = params['ExecEngineType']
+          @ExecPlan = params['ExecPlan']
         end
       end
 

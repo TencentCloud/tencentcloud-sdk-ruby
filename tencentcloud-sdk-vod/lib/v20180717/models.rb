@@ -11575,19 +11575,25 @@ module TencentCloud
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
         # @type Height: Integer
+        # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
+        # 当取值为0，将自动为视频设置帧率。
+        # 默认值为 0。
+        # @type Fps: Integer
 
-        attr_accessor :ResolutionAdaptive, :Width, :Height
+        attr_accessor :ResolutionAdaptive, :Width, :Height, :Fps
         
-        def initialize(resolutionadaptive=nil, width=nil, height=nil)
+        def initialize(resolutionadaptive=nil, width=nil, height=nil, fps=nil)
           @ResolutionAdaptive = resolutionadaptive
           @Width = width
           @Height = height
+          @Fps = fps
         end
 
         def deserialize(params)
           @ResolutionAdaptive = params['ResolutionAdaptive']
           @Width = params['Width']
           @Height = params['Height']
+          @Fps = params['Fps']
         end
       end
 
