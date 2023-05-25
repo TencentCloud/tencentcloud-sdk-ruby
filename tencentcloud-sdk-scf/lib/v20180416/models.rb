@@ -1132,6 +1132,7 @@ module TencentCloud
         # @param AddTime: 创建时间
         # @type AddTime: String
         # @param Runtime: 运行时
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Runtime: String
         # @param FunctionName: 函数名称
         # @type FunctionName: String
@@ -1719,6 +1720,7 @@ module TencentCloud
         # @param MemorySize: 函数的最大可用内存
         # @type MemorySize: Integer
         # @param Runtime: 函数的运行环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Runtime: String
         # @param FunctionName: 函数的名称
         # @type FunctionName: String
@@ -3389,6 +3391,7 @@ module TencentCloud
         # @param Timeout: 函数的超时时间
         # @type Timeout: Integer
         # @param Runtime: 函数的运行环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Runtime: String
         # @param Namespace: 函数的命名空间
         # @type Namespace: String

@@ -751,6 +751,78 @@ module TencentCloud
         end
       end
 
+      # CloseClusterPasswordComplexity请求参数结构体
+      class CloseClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID数组
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+        
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # CloseClusterPasswordComplexity返回参数结构体
+      class CloseClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CloseWan请求参数结构体
+      class CloseWanRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceGrpId: 实例组id
+        # @type InstanceGrpId: String
+
+        attr_accessor :InstanceGrpId
+        
+        def initialize(instancegrpid=nil)
+          @InstanceGrpId = instancegrpid
+        end
+
+        def deserialize(params)
+          @InstanceGrpId = params['InstanceGrpId']
+        end
+      end
+
+      # CloseWan返回参数结构体
+      class CloseWanResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群实例信息
       class ClusterInstanceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -840,6 +912,46 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @ClusterId = params['ClusterId']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CopyClusterPasswordComplexity请求参数结构体
+      class CopyClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 复制集群ID数组
+        # @type ClusterIds: Array
+        # @param SourceClusterId: 集群id
+        # @type SourceClusterId: String
+
+        attr_accessor :ClusterIds, :SourceClusterId
+        
+        def initialize(clusterids=nil, sourceclusterid=nil)
+          @ClusterIds = clusterids
+          @SourceClusterId = sourceclusterid
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @SourceClusterId = params['SourceClusterId']
+        end
+      end
+
+      # CopyClusterPasswordComplexity返回参数结构体
+      class CopyClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1055,6 +1167,65 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateClusterDatabase请求参数结构体
+      class CreateClusterDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param DbName: 数据库名
+        # @type DbName: String
+        # @param CharacterSet: 字符集类型
+        # @type CharacterSet: String
+        # @param CollateRule: 排序规则
+        # @type CollateRule: String
+        # @param UserHostPrivileges: 授权用户主机权限
+        # @type UserHostPrivileges: Array
+        # @param Description: 备注
+        # @type Description: String
+
+        attr_accessor :ClusterId, :DbName, :CharacterSet, :CollateRule, :UserHostPrivileges, :Description
+        
+        def initialize(clusterid=nil, dbname=nil, characterset=nil, collaterule=nil, userhostprivileges=nil, description=nil)
+          @ClusterId = clusterid
+          @DbName = dbname
+          @CharacterSet = characterset
+          @CollateRule = collaterule
+          @UserHostPrivileges = userhostprivileges
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DbName = params['DbName']
+          @CharacterSet = params['CharacterSet']
+          @CollateRule = params['CollateRule']
+          unless params['UserHostPrivileges'].nil?
+            @UserHostPrivileges = []
+            params['UserHostPrivileges'].each do |i|
+              userhostprivilege_tmp = UserHostPrivilege.new
+              userhostprivilege_tmp.deserialize(i)
+              @UserHostPrivileges << userhostprivilege_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # CreateClusterDatabase返回参数结构体
+      class CreateClusterDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1314,6 +1485,69 @@ module TencentCloud
           @ResourceIds = params['ResourceIds']
           @ClusterIds = params['ClusterIds']
           @BigDealIds = params['BigDealIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateParamTemplate请求参数结构体
+      class CreateParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模版名称
+        # @type TemplateName: String
+        # @param EngineVersion: mysql版本号
+        # @type EngineVersion: String
+        # @param TemplateDescription: 模版描述
+        # @type TemplateDescription: String
+        # @param TemplateId: 可选参数，需要复制的模版ID
+        # @type TemplateId: Integer
+        # @param DbMode: 数据库类型，可选值：NORMAL（默认值），SERVERLESS
+        # @type DbMode: String
+        # @param ParamList: 参数列表
+        # @type ParamList: Array
+
+        attr_accessor :TemplateName, :EngineVersion, :TemplateDescription, :TemplateId, :DbMode, :ParamList
+        
+        def initialize(templatename=nil, engineversion=nil, templatedescription=nil, templateid=nil, dbmode=nil, paramlist=nil)
+          @TemplateName = templatename
+          @EngineVersion = engineversion
+          @TemplateDescription = templatedescription
+          @TemplateId = templateid
+          @DbMode = dbmode
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @EngineVersion = params['EngineVersion']
+          @TemplateDescription = params['TemplateDescription']
+          @TemplateId = params['TemplateId']
+          @DbMode = params['DbMode']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              paramitem_tmp = ParamItem.new
+              paramitem_tmp.deserialize(i)
+              @ParamList << paramitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateParamTemplate返回参数结构体
+      class CreateParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版ID
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
           @RequestId = params['RequestId']
         end
       end
@@ -2398,6 +2632,81 @@ module TencentCloud
         end
       end
 
+      # 数据库详细信息
+      class DbInfo < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param CharacterSet: 字符集类型
+        # @type CharacterSet: String
+        # @param Status: 数据库状态
+        # @type Status: String
+        # @param CollateRule: 拍讯规则
+        # @type CollateRule: String
+        # @param Description: 数据库备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param UserHostPrivileges: 用户权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserHostPrivileges: Array
+        # @param DbId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbId: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param AppId: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param ClusterId: 集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+
+        attr_accessor :DbName, :CharacterSet, :Status, :CollateRule, :Description, :UserHostPrivileges, :DbId, :CreateTime, :UpdateTime, :AppId, :Uin, :ClusterId
+        
+        def initialize(dbname=nil, characterset=nil, status=nil, collaterule=nil, description=nil, userhostprivileges=nil, dbid=nil, createtime=nil, updatetime=nil, appid=nil, uin=nil, clusterid=nil)
+          @DbName = dbname
+          @CharacterSet = characterset
+          @Status = status
+          @CollateRule = collaterule
+          @Description = description
+          @UserHostPrivileges = userhostprivileges
+          @DbId = dbid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AppId = appid
+          @Uin = uin
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @CharacterSet = params['CharacterSet']
+          @Status = params['Status']
+          @CollateRule = params['CollateRule']
+          @Description = params['Description']
+          unless params['UserHostPrivileges'].nil?
+            @UserHostPrivileges = []
+            params['UserHostPrivileges'].each do |i|
+              userhostprivilege_tmp = UserHostPrivilege.new
+              userhostprivilege_tmp.deserialize(i)
+              @UserHostPrivileges << userhostprivilege_tmp
+            end
+          end
+          @DbId = params['DbId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
       # 数据库表
       class DbTable < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名称
@@ -2415,6 +2724,49 @@ module TencentCloud
         def deserialize(params)
           @Db = params['Db']
           @TableName = params['TableName']
+        end
+      end
+
+      # DeleteAccounts请求参数结构体
+      class DeleteAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Accounts: 账号数组，包含account和host
+        # @type Accounts: Array
+
+        attr_accessor :ClusterId, :Accounts
+        
+        def initialize(clusterid=nil, accounts=nil)
+          @ClusterId = clusterid
+          @Accounts = accounts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              inputaccount_tmp = InputAccount.new
+              inputaccount_tmp.deserialize(i)
+              @Accounts << inputaccount_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteAccounts返回参数结构体
+      class DeleteAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2526,6 +2878,74 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterDatabase请求参数结构体
+      class DeleteClusterDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param DbNames: 数据库名
+        # @type DbNames: Array
+
+        attr_accessor :ClusterId, :DbNames
+        
+        def initialize(clusterid=nil, dbnames=nil)
+          @ClusterId = clusterid
+          @DbNames = dbnames
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DbNames = params['DbNames']
+        end
+      end
+
+      # DeleteClusterDatabase返回参数结构体
+      class DeleteClusterDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteParamTemplate请求参数结构体
+      class DeleteParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模版ID
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteParamTemplate返回参数结构体
+      class DeleteParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAccountAllGrantPrivileges请求参数结构体
       class DescribeAccountAllGrantPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -2595,6 +3015,62 @@ module TencentCloud
               @TablePrivileges << tableprivileges_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountPrivileges请求参数结构体
+      class DescribeAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param AccountName: 账户名
+        # @type AccountName: String
+        # @param Host: 主机
+        # @type Host: String
+        # @param Db: 数据库名，为*时，忽略Type/TableName, 表示修改用户全局权限；
+        # @type Db: String
+        # @param Type: 指定数据库下的对象类型，可选"table"，"*"
+        # @type Type: String
+        # @param TableName: 当Type="table"时，用来指定表名
+        # @type TableName: String
+
+        attr_accessor :ClusterId, :AccountName, :Host, :Db, :Type, :TableName
+        
+        def initialize(clusterid=nil, accountname=nil, host=nil, db=nil, type=nil, tablename=nil)
+          @ClusterId = clusterid
+          @AccountName = accountname
+          @Host = host
+          @Db = db
+          @Type = type
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AccountName = params['AccountName']
+          @Host = params['Host']
+          @Db = params['Db']
+          @Type = params['Type']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeAccountPrivileges返回参数结构体
+      class DescribeAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param Privileges: 权限列表，示例值为：["select","update","delete","create","drop","references","index","alter","show_db","create_tmp_table","lock_tables","execute","create_view","show_view","create_routine","alter_routine","event","trigger"]
+        # @type Privileges: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Privileges, :RequestId
+        
+        def initialize(privileges=nil, requestid=nil)
+          @Privileges = privileges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Privileges = params['Privileges']
           @RequestId = params['RequestId']
         end
       end
@@ -3248,6 +3724,66 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterDetailDatabases请求参数结构体
+      class DescribeClusterDetailDatabasesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20,最大100
+        # @type Limit: Integer
+        # @param DbName: 数据库名称
+        # @type DbName: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :DbName
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, dbname=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @DbName = dbname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DbName = params['DbName']
+        end
+      end
+
+      # DescribeClusterDetailDatabases返回参数结构体
+      class DescribeClusterDetailDatabasesResponse < TencentCloud::Common::AbstractModel
+        # @param DbInfos: 数据库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbInfos: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DbInfos, :TotalCount, :RequestId
+        
+        def initialize(dbinfos=nil, totalcount=nil, requestid=nil)
+          @DbInfos = dbinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DbInfos'].nil?
+            @DbInfos = []
+            params['DbInfos'].each do |i|
+              dbinfo_tmp = DbInfo.new
+              dbinfo_tmp.deserialize(i)
+              @DbInfos << dbinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterDetail请求参数结构体
       class DescribeClusterDetailRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -3449,6 +3985,86 @@ module TencentCloud
               paraminfo_tmp.deserialize(i)
               @Items << paraminfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterPasswordComplexity请求参数结构体
+      class DescribeClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterPasswordComplexity返回参数结构体
+      class DescribeClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param ValidatePasswordDictionary: 数据字典参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordDictionary: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param ValidatePasswordLength: 密码长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordLength: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param ValidatePasswordMixedCaseCount: 大小写敏感字符个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordMixedCaseCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param ValidatePasswordNumberCount: 数字个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordNumberCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param ValidatePasswordPolicy: 密码等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordPolicy: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param ValidatePasswordSpecialCharCount: 特殊字符个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidatePasswordSpecialCharCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ValidatePasswordDictionary, :ValidatePasswordLength, :ValidatePasswordMixedCaseCount, :ValidatePasswordNumberCount, :ValidatePasswordPolicy, :ValidatePasswordSpecialCharCount, :RequestId
+        
+        def initialize(validatepassworddictionary=nil, validatepasswordlength=nil, validatepasswordmixedcasecount=nil, validatepasswordnumbercount=nil, validatepasswordpolicy=nil, validatepasswordspecialcharcount=nil, requestid=nil)
+          @ValidatePasswordDictionary = validatepassworddictionary
+          @ValidatePasswordLength = validatepasswordlength
+          @ValidatePasswordMixedCaseCount = validatepasswordmixedcasecount
+          @ValidatePasswordNumberCount = validatepasswordnumbercount
+          @ValidatePasswordPolicy = validatepasswordpolicy
+          @ValidatePasswordSpecialCharCount = validatepasswordspecialcharcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ValidatePasswordDictionary'].nil?
+            @ValidatePasswordDictionary = ParamInfo.new
+            @ValidatePasswordDictionary.deserialize(params['ValidatePasswordDictionary'])
+          end
+          unless params['ValidatePasswordLength'].nil?
+            @ValidatePasswordLength = ParamInfo.new
+            @ValidatePasswordLength.deserialize(params['ValidatePasswordLength'])
+          end
+          unless params['ValidatePasswordMixedCaseCount'].nil?
+            @ValidatePasswordMixedCaseCount = ParamInfo.new
+            @ValidatePasswordMixedCaseCount.deserialize(params['ValidatePasswordMixedCaseCount'])
+          end
+          unless params['ValidatePasswordNumberCount'].nil?
+            @ValidatePasswordNumberCount = ParamInfo.new
+            @ValidatePasswordNumberCount.deserialize(params['ValidatePasswordNumberCount'])
+          end
+          unless params['ValidatePasswordPolicy'].nil?
+            @ValidatePasswordPolicy = ParamInfo.new
+            @ValidatePasswordPolicy.deserialize(params['ValidatePasswordPolicy'])
+          end
+          unless params['ValidatePasswordSpecialCharCount'].nil?
+            @ValidatePasswordSpecialCharCount = ParamInfo.new
+            @ValidatePasswordSpecialCharCount.deserialize(params['ValidatePasswordSpecialCharCount'])
           end
           @RequestId = params['RequestId']
         end
@@ -3731,6 +4347,57 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceParams请求参数结构体
+      class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 实例ID，支持批量查询
+        # @type InstanceIds: Array
+        # @param ParamKeyword: 参数名搜索条件，支持模糊匹配
+        # @type ParamKeyword: String
+
+        attr_accessor :ClusterId, :InstanceIds, :ParamKeyword
+        
+        def initialize(clusterid=nil, instanceids=nil, paramkeyword=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @ParamKeyword = paramkeyword
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          @ParamKeyword = params['ParamKeyword']
+        end
+      end
+
+      # DescribeInstanceParams返回参数结构体
+      class DescribeInstanceParamsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 实例参数列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+        
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              instanceparamitem_tmp = InstanceParamItem.new
+              instanceparamitem_tmp.deserialize(i)
+              @Items << instanceparamitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSlowQueries请求参数结构体
       class DescribeInstanceSlowQueriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -3995,6 +4662,73 @@ module TencentCloud
           @MaintainWeekDays = params['MaintainWeekDays']
           @MaintainStartTime = params['MaintainStartTime']
           @MaintainDuration = params['MaintainDuration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParamTemplateDetail请求参数结构体
+      class DescribeParamTemplateDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模版ID
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeParamTemplateDetail返回参数结构体
+      class DescribeParamTemplateDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模版ID
+        # @type TemplateId: Integer
+        # @param TemplateName: 参数模版名称
+        # @type TemplateName: String
+        # @param TemplateDescription: 参数模版描述
+        # @type TemplateDescription: String
+        # @param EngineVersion: 引擎版本
+        # @type EngineVersion: String
+        # @param TotalCount: 参数总条数
+        # @type TotalCount: Integer
+        # @param Items: 参数列表
+        # @type Items: Array
+        # @param DbMode: 数据库类型，可选值：NORMAL，SERVERLESS
+        # @type DbMode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :TemplateName, :TemplateDescription, :EngineVersion, :TotalCount, :Items, :DbMode, :RequestId
+        
+        def initialize(templateid=nil, templatename=nil, templatedescription=nil, engineversion=nil, totalcount=nil, items=nil, dbmode=nil, requestid=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @TemplateDescription = templatedescription
+          @EngineVersion = engineversion
+          @TotalCount = totalcount
+          @Items = items
+          @DbMode = dbmode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @TemplateDescription = params['TemplateDescription']
+          @EngineVersion = params['EngineVersion']
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paramdetail_tmp = ParamDetail.new
+              paramdetail_tmp.deserialize(i)
+              @Items << paramdetail_tmp
+            end
+          end
+          @DbMode = params['DbMode']
           @RequestId = params['RequestId']
         end
       end
@@ -4914,6 +5648,33 @@ module TencentCloud
         end
       end
 
+      # 实例参数信息
+      class InstanceParamItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ParamsItems: 实例参数列表
+        # @type ParamsItems: Array
+
+        attr_accessor :InstanceId, :ParamsItems
+        
+        def initialize(instanceid=nil, paramsitems=nil)
+          @InstanceId = instanceid
+          @ParamsItems = paramsitems
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ParamsItems'].nil?
+            @ParamsItems = []
+            params['ParamsItems'].each do |i|
+              paramitemdetail_tmp = ParamItemDetail.new
+              paramitemdetail_tmp.deserialize(i)
+              @ParamsItems << paramitemdetail_tmp
+            end
+          end
+        end
+      end
+
       # 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Cpu: 实例CPU，单位：核
@@ -5081,6 +5842,93 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountDescription请求参数结构体
+      class ModifyAccountDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param AccountName: 数据库账号名
+        # @type AccountName: String
+        # @param Description: 数据库账号描述信息
+        # @type Description: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Host: 主机，默认为"%"
+        # @type Host: String
+
+        attr_accessor :AccountName, :Description, :ClusterId, :Host
+        
+        def initialize(accountname=nil, description=nil, clusterid=nil, host=nil)
+          @AccountName = accountname
+          @Description = description
+          @ClusterId = clusterid
+          @Host = host
+        end
+
+        def deserialize(params)
+          @AccountName = params['AccountName']
+          @Description = params['Description']
+          @ClusterId = params['ClusterId']
+          @Host = params['Host']
+        end
+      end
+
+      # ModifyAccountDescription返回参数结构体
+      class ModifyAccountDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccountHost请求参数结构体
+      class ModifyAccountHostRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NewHost: 新主机
+        # @type NewHost: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+
+        attr_accessor :ClusterId, :NewHost, :Account
+        
+        def initialize(clusterid=nil, newhost=nil, account=nil)
+          @ClusterId = clusterid
+          @NewHost = newhost
+          @Account = account
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NewHost = params['NewHost']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+        end
+      end
+
+      # ModifyAccountHost返回参数结构体
+      class ModifyAccountHostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAccountParams请求参数结构体
       class ModifyAccountParamsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id，不超过32个字符
@@ -5117,6 +5965,71 @@ module TencentCloud
 
       # ModifyAccountParams返回参数结构体
       class ModifyAccountParamsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccountPrivileges请求参数结构体
+      class ModifyAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param GlobalPrivileges: 全局权限数组
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库权限数组
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 表权限数组
+        # @type TablePrivileges: Array
+
+        attr_accessor :ClusterId, :Account, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges
+        
+        def initialize(clusterid=nil, account=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivileges_tmp = DatabasePrivileges.new
+              databaseprivileges_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivileges_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivileges_tmp = TablePrivileges.new
+              tableprivileges_tmp.deserialize(i)
+              @TablePrivileges << tableprivileges_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAccountPrivileges返回参数结构体
+      class ModifyAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5333,6 +6246,104 @@ module TencentCloud
         end
       end
 
+      # ModifyBinlogSaveDays请求参数结构体
+      class ModifyBinlogSaveDaysRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BinlogSaveDays: Binlog保留天数
+        # @type BinlogSaveDays: Integer
+
+        attr_accessor :ClusterId, :BinlogSaveDays
+        
+        def initialize(clusterid=nil, binlogsavedays=nil)
+          @ClusterId = clusterid
+          @BinlogSaveDays = binlogsavedays
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @BinlogSaveDays = params['BinlogSaveDays']
+        end
+      end
+
+      # ModifyBinlogSaveDays返回参数结构体
+      class ModifyBinlogSaveDaysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterDatabase请求参数结构体
+      class ModifyClusterDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param DbName: 数据库名
+        # @type DbName: String
+        # @param NewUserHostPrivileges: 新授权用户主机权限
+        # @type NewUserHostPrivileges: Array
+        # @param Description: 备注
+        # @type Description: String
+        # @param OldUserHostPrivileges: 历史授权用户主机权限
+        # @type OldUserHostPrivileges: Array
+
+        attr_accessor :ClusterId, :DbName, :NewUserHostPrivileges, :Description, :OldUserHostPrivileges
+        
+        def initialize(clusterid=nil, dbname=nil, newuserhostprivileges=nil, description=nil, olduserhostprivileges=nil)
+          @ClusterId = clusterid
+          @DbName = dbname
+          @NewUserHostPrivileges = newuserhostprivileges
+          @Description = description
+          @OldUserHostPrivileges = olduserhostprivileges
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DbName = params['DbName']
+          unless params['NewUserHostPrivileges'].nil?
+            @NewUserHostPrivileges = []
+            params['NewUserHostPrivileges'].each do |i|
+              userhostprivilege_tmp = UserHostPrivilege.new
+              userhostprivilege_tmp.deserialize(i)
+              @NewUserHostPrivileges << userhostprivilege_tmp
+            end
+          end
+          @Description = params['Description']
+          unless params['OldUserHostPrivileges'].nil?
+            @OldUserHostPrivileges = []
+            params['OldUserHostPrivileges'].each do |i|
+              userhostprivilege_tmp = UserHostPrivilege.new
+              userhostprivilege_tmp.deserialize(i)
+              @OldUserHostPrivileges << userhostprivilege_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterDatabase返回参数结构体
+      class ModifyClusterDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterName请求参数结构体
       class ModifyClusterNameRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5416,6 +6427,66 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterPasswordComplexity请求参数结构体
+      class ModifyClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ValidatePasswordLength: 密码长度
+        # @type ValidatePasswordLength: Integer
+        # @param ValidatePasswordMixedCaseCount: 大小写字符个数
+        # @type ValidatePasswordMixedCaseCount: Integer
+        # @param ValidatePasswordSpecialCharCount: 特殊字符个数
+        # @type ValidatePasswordSpecialCharCount: Integer
+        # @param ValidatePasswordNumberCount: 数字个数
+        # @type ValidatePasswordNumberCount: Integer
+        # @param ValidatePasswordPolicy: 密码强度（"MEDIUM", "STRONG"）
+        # @type ValidatePasswordPolicy: String
+        # @param ValidatePasswordDictionary: 数据字典
+        # @type ValidatePasswordDictionary: Array
+
+        attr_accessor :ClusterId, :ValidatePasswordLength, :ValidatePasswordMixedCaseCount, :ValidatePasswordSpecialCharCount, :ValidatePasswordNumberCount, :ValidatePasswordPolicy, :ValidatePasswordDictionary
+        
+        def initialize(clusterid=nil, validatepasswordlength=nil, validatepasswordmixedcasecount=nil, validatepasswordspecialcharcount=nil, validatepasswordnumbercount=nil, validatepasswordpolicy=nil, validatepassworddictionary=nil)
+          @ClusterId = clusterid
+          @ValidatePasswordLength = validatepasswordlength
+          @ValidatePasswordMixedCaseCount = validatepasswordmixedcasecount
+          @ValidatePasswordSpecialCharCount = validatepasswordspecialcharcount
+          @ValidatePasswordNumberCount = validatepasswordnumbercount
+          @ValidatePasswordPolicy = validatepasswordpolicy
+          @ValidatePasswordDictionary = validatepassworddictionary
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ValidatePasswordLength = params['ValidatePasswordLength']
+          @ValidatePasswordMixedCaseCount = params['ValidatePasswordMixedCaseCount']
+          @ValidatePasswordSpecialCharCount = params['ValidatePasswordSpecialCharCount']
+          @ValidatePasswordNumberCount = params['ValidatePasswordNumberCount']
+          @ValidatePasswordPolicy = params['ValidatePasswordPolicy']
+          @ValidatePasswordDictionary = params['ValidatePasswordDictionary']
+        end
+      end
+
+      # ModifyClusterPasswordComplexity返回参数结构体
+      class ModifyClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -5599,6 +6670,72 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceParam请求参数结构体
+      class ModifyInstanceParamRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 实例ID
+        # @type InstanceIds: Array
+        # @param ClusterParamList: 集群参数列表
+        # @type ClusterParamList: Array
+        # @param InstanceParamList: 实例参数列表
+        # @type InstanceParamList: Array
+        # @param IsInMaintainPeriod: yes：在运维时间窗内修改，no：立即执行（默认值）
+        # @type IsInMaintainPeriod: String
+
+        attr_accessor :ClusterId, :InstanceIds, :ClusterParamList, :InstanceParamList, :IsInMaintainPeriod
+        
+        def initialize(clusterid=nil, instanceids=nil, clusterparamlist=nil, instanceparamlist=nil, isinmaintainperiod=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @ClusterParamList = clusterparamlist
+          @InstanceParamList = instanceparamlist
+          @IsInMaintainPeriod = isinmaintainperiod
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          unless params['ClusterParamList'].nil?
+            @ClusterParamList = []
+            params['ClusterParamList'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @ClusterParamList << modifyparamitem_tmp
+            end
+          end
+          unless params['InstanceParamList'].nil?
+            @InstanceParamList = []
+            params['InstanceParamList'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @InstanceParamList << modifyparamitem_tmp
+            end
+          end
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
+        end
+      end
+
+      # ModifyInstanceParam返回参数结构体
+      class ModifyInstanceParamResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintainPeriodConfig请求参数结构体
       class ModifyMaintainPeriodConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5665,6 +6802,57 @@ module TencentCloud
           @ParamName = params['ParamName']
           @CurrentValue = params['CurrentValue']
           @OldValue = params['OldValue']
+        end
+      end
+
+      # ModifyParamTemplate请求参数结构体
+      class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版ID
+        # @type TemplateId: Integer
+        # @param TemplateName: 模版名
+        # @type TemplateName: String
+        # @param TemplateDescription: 模版描述
+        # @type TemplateDescription: String
+        # @param ParamList: 参数列表
+        # @type ParamList: Array
+
+        attr_accessor :TemplateId, :TemplateName, :TemplateDescription, :ParamList
+        
+        def initialize(templateid=nil, templatename=nil, templatedescription=nil, paramlist=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @TemplateDescription = templatedescription
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @TemplateDescription = params['TemplateDescription']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @ParamList << modifyparamitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyParamTemplate返回参数结构体
+      class ModifyParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6039,6 +7227,66 @@ module TencentCloud
         end
       end
 
+      # OpenClusterPasswordComplexity请求参数结构体
+      class OpenClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ValidatePasswordLength: 密码长度
+        # @type ValidatePasswordLength: Integer
+        # @param ValidatePasswordMixedCaseCount: 大小写字符个数
+        # @type ValidatePasswordMixedCaseCount: Integer
+        # @param ValidatePasswordSpecialCharCount: 特殊字符个数
+        # @type ValidatePasswordSpecialCharCount: Integer
+        # @param ValidatePasswordNumberCount: 数字个数
+        # @type ValidatePasswordNumberCount: Integer
+        # @param ValidatePasswordPolicy: 密码强度（"MEDIUM", "STRONG"）
+        # @type ValidatePasswordPolicy: String
+        # @param ValidatePasswordDictionary: 数据字典
+        # @type ValidatePasswordDictionary: Array
+
+        attr_accessor :ClusterId, :ValidatePasswordLength, :ValidatePasswordMixedCaseCount, :ValidatePasswordSpecialCharCount, :ValidatePasswordNumberCount, :ValidatePasswordPolicy, :ValidatePasswordDictionary
+        
+        def initialize(clusterid=nil, validatepasswordlength=nil, validatepasswordmixedcasecount=nil, validatepasswordspecialcharcount=nil, validatepasswordnumbercount=nil, validatepasswordpolicy=nil, validatepassworddictionary=nil)
+          @ClusterId = clusterid
+          @ValidatePasswordLength = validatepasswordlength
+          @ValidatePasswordMixedCaseCount = validatepasswordmixedcasecount
+          @ValidatePasswordSpecialCharCount = validatepasswordspecialcharcount
+          @ValidatePasswordNumberCount = validatepasswordnumbercount
+          @ValidatePasswordPolicy = validatepasswordpolicy
+          @ValidatePasswordDictionary = validatepassworddictionary
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ValidatePasswordLength = params['ValidatePasswordLength']
+          @ValidatePasswordMixedCaseCount = params['ValidatePasswordMixedCaseCount']
+          @ValidatePasswordSpecialCharCount = params['ValidatePasswordSpecialCharCount']
+          @ValidatePasswordNumberCount = params['ValidatePasswordNumberCount']
+          @ValidatePasswordPolicy = params['ValidatePasswordPolicy']
+          @ValidatePasswordDictionary = params['ValidatePasswordDictionary']
+        end
+      end
+
+      # OpenClusterPasswordComplexity返回参数结构体
+      class OpenClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenReadOnlyInstanceExclusiveAccess请求参数结构体
       class OpenReadOnlyInstanceExclusiveAccessRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6092,6 +7340,125 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenWan请求参数结构体
+      class OpenWanRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceGrpId: 实例组id
+        # @type InstanceGrpId: String
+
+        attr_accessor :InstanceGrpId
+        
+        def initialize(instancegrpid=nil)
+          @InstanceGrpId = instancegrpid
+        end
+
+        def deserialize(params)
+          @InstanceGrpId = params['InstanceGrpId']
+        end
+      end
+
+      # OpenWan返回参数结构体
+      class OpenWanResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例参数详细描述
+      class ParamDetail < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param ParamType: 参数类型：integer，enum，float，string，func
+        # @type ParamType: String
+        # @param SupportFunc: true-支持"func"，false-不支持公式
+        # @type SupportFunc: Boolean
+        # @param Default: 默认值
+        # @type Default: String
+        # @param Description: 参数描述
+        # @type Description: String
+        # @param CurrentValue: 参数当前值
+        # @type CurrentValue: String
+        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。
+        # @type NeedReboot: Integer
+        # @param Max: 参数容许的最大值
+        # @type Max: String
+        # @param Min: 参数容许的最小值
+        # @type Min: String
+        # @param EnumValue: 参数的可选枚举值。如果为非枚举值，则为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+        # @param IsGlobal: 1：全局参数，0：非全局参数
+        # @type IsGlobal: Integer
+        # @param MatchType: 匹配类型，multiVal
+        # @type MatchType: String
+        # @param MatchValue: 匹配目标值，当multiVal时，各个key用，分割
+        # @type MatchValue: String
+        # @param IsFunc: true-为公式，false-非公式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFunc: Boolean
+        # @param Func: 参数设置为公式时，Func返回设置的公式内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Func: String
+        # @param ModifiableInfo: 参数是否可修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
+
+        attr_accessor :ParamName, :ParamType, :SupportFunc, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :IsGlobal, :MatchType, :MatchValue, :IsFunc, :Func, :ModifiableInfo
+        
+        def initialize(paramname=nil, paramtype=nil, supportfunc=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, isglobal=nil, matchtype=nil, matchvalue=nil, isfunc=nil, func=nil, modifiableinfo=nil)
+          @ParamName = paramname
+          @ParamType = paramtype
+          @SupportFunc = supportfunc
+          @Default = default
+          @Description = description
+          @CurrentValue = currentvalue
+          @NeedReboot = needreboot
+          @Max = max
+          @Min = min
+          @EnumValue = enumvalue
+          @IsGlobal = isglobal
+          @MatchType = matchtype
+          @MatchValue = matchvalue
+          @IsFunc = isfunc
+          @Func = func
+          @ModifiableInfo = modifiableinfo
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @ParamType = params['ParamType']
+          @SupportFunc = params['SupportFunc']
+          @Default = params['Default']
+          @Description = params['Description']
+          @CurrentValue = params['CurrentValue']
+          @NeedReboot = params['NeedReboot']
+          @Max = params['Max']
+          @Min = params['Min']
+          @EnumValue = params['EnumValue']
+          @IsGlobal = params['IsGlobal']
+          @MatchType = params['MatchType']
+          @MatchValue = params['MatchValue']
+          @IsFunc = params['IsFunc']
+          @Func = params['Func']
+          unless params['ModifiableInfo'].nil?
+            @ModifiableInfo = ModifiableInfo.new
+            @ModifiableInfo.deserialize(params['ModifiableInfo'])
+          end
         end
       end
 
@@ -6196,6 +7563,68 @@ module TencentCloud
           @ParamName = params['ParamName']
           @CurrentValue = params['CurrentValue']
           @OldValue = params['OldValue']
+        end
+      end
+
+      # 实例参数信息
+      class ParamItemDetail < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param Default: 默认值
+        # @type Default: String
+        # @param EnumValue: 参数的可选枚举值。如果为非枚举值，则为空
+        # @type EnumValue: Array
+        # @param IsGlobal: 1：全局参数，0：非全局参数
+        # @type IsGlobal: Integer
+        # @param Max: 最大值
+        # @type Max: String
+        # @param Min: 最小值
+        # @type Min: String
+        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。
+        # @type NeedReboot: Integer
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param ParamType: 参数类型：integer，enum，float，string，func
+        # @type ParamType: String
+        # @param Description: 参数描述
+        # @type Description: String
+        # @param IsFunc: 类型是否为公式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFunc: Boolean
+        # @param Func: 参数配置公式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Func: String
+
+        attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :Description, :IsFunc, :Func
+        
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, isglobal=nil, max=nil, min=nil, needreboot=nil, paramname=nil, paramtype=nil, description=nil, isfunc=nil, func=nil)
+          @CurrentValue = currentvalue
+          @Default = default
+          @EnumValue = enumvalue
+          @IsGlobal = isglobal
+          @Max = max
+          @Min = min
+          @NeedReboot = needreboot
+          @ParamName = paramname
+          @ParamType = paramtype
+          @Description = description
+          @IsFunc = isfunc
+          @Func = func
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @Default = params['Default']
+          @EnumValue = params['EnumValue']
+          @IsGlobal = params['IsGlobal']
+          @Max = params['Max']
+          @Min = params['Min']
+          @NeedReboot = params['NeedReboot']
+          @ParamName = params['ParamName']
+          @ParamType = params['ParamType']
+          @Description = params['Description']
+          @IsFunc = params['IsFunc']
+          @Func = params['Func']
         end
       end
 
@@ -7396,6 +8825,50 @@ module TencentCloud
         end
       end
 
+      # UpgradeClusterVersion请求参数结构体
+      class UpgradeClusterVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param CynosVersion: 内核版本
+        # @type CynosVersion: String
+        # @param UpgradeType: 升级时间类型，可选：upgradeImmediate,upgradeInMaintain
+        # @type UpgradeType: String
+
+        attr_accessor :ClusterId, :CynosVersion, :UpgradeType
+        
+        def initialize(clusterid=nil, cynosversion=nil, upgradetype=nil)
+          @ClusterId = clusterid
+          @CynosVersion = cynosversion
+          @UpgradeType = upgradetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @CynosVersion = params['CynosVersion']
+          @UpgradeType = params['UpgradeType']
+        end
+      end
+
+      # UpgradeClusterVersion返回参数结构体
+      class UpgradeClusterVersionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeInstance请求参数结构体
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -7471,6 +8944,32 @@ module TencentCloud
           @BigDealIds = params['BigDealIds']
           @DealNames = params['DealNames']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户主机权限
+      class UserHostPrivilege < TencentCloud::Common::AbstractModel
+        # @param DbUserName: 授权用户
+        # @type DbUserName: String
+        # @param DbHost: 客户端ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbHost: String
+        # @param DbPrivilege: 用户权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbPrivilege: String
+
+        attr_accessor :DbUserName, :DbHost, :DbPrivilege
+        
+        def initialize(dbusername=nil, dbhost=nil, dbprivilege=nil)
+          @DbUserName = dbusername
+          @DbHost = dbhost
+          @DbPrivilege = dbprivilege
+        end
+
+        def deserialize(params)
+          @DbUserName = params['DbUserName']
+          @DbHost = params['DbHost']
+          @DbPrivilege = params['DbPrivilege']
         end
       end
 

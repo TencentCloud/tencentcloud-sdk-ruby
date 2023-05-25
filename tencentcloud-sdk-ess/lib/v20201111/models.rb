@@ -803,7 +803,7 @@ module TencentCloud
       class CreateChannelSubOrganizationModifyQrCodeResponse < TencentCloud::Common::AbstractModel
         # @param QrCodeUrl: 二维码下载链接
         # @type QrCodeUrl: String
-        # @param ExpiredTime: 二维码失效时间 unix 时间戳 精确到秒
+        # @param ExpiredTime: 二维码失效时间 UNIX 时间戳 精确到秒
         # @type ExpiredTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2189,16 +2189,19 @@ module TencentCloud
         # @type NotifyType: String
         # @param NotifyAddress: 若上方填写为 SMS，则此处为手机号
         # @type NotifyAddress: String
+        # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为30天。如果不传，默认有效期为7天。
+        # @type ExpiredTime: Integer
 
-        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress
+        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime
         
-        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil)
+        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil)
           @Operator = operator
           @SceneKey = scenekey
           @AutoSignConfig = autosignconfig
           @UrlType = urltype
           @NotifyType = notifytype
           @NotifyAddress = notifyaddress
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
@@ -2214,6 +2217,7 @@ module TencentCloud
           @UrlType = params['UrlType']
           @NotifyType = params['NotifyType']
           @NotifyAddress = params['NotifyAddress']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

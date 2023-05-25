@@ -6357,15 +6357,21 @@ module TencentCloud
         # @type Name: String
         # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
         # @type Desc: String
+        # @param PlayBackMode: 播放模式，可选值：
+        # <li>Loop：循环播放播单；</li>
+        # <li>Linear：单次播放，播单播放完停止播放。</li>
+        # 默认值：Loop。
+        # @type PlayBackMode: String
 
-        attr_accessor :StartTime, :RoundPlaylist, :SubAppId, :Name, :Desc
+        attr_accessor :StartTime, :RoundPlaylist, :SubAppId, :Name, :Desc, :PlayBackMode
         
-        def initialize(starttime=nil, roundplaylist=nil, subappid=nil, name=nil, desc=nil)
+        def initialize(starttime=nil, roundplaylist=nil, subappid=nil, name=nil, desc=nil, playbackmode=nil)
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
           @SubAppId = subappid
           @Name = name
           @Desc = desc
+          @PlayBackMode = playbackmode
         end
 
         def deserialize(params)
@@ -6381,6 +6387,7 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Desc = params['Desc']
+          @PlayBackMode = params['PlayBackMode']
         end
       end
 
@@ -16606,16 +16613,25 @@ module TencentCloud
         # @type Name: String
         # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
         # @type Desc: String
+        # @param Status: 播放状态，可选值：
+        # <li>Disabled：结束播放，结束后轮播任务不能再次启动。</li>
+        # @type Status: String
+        # @param PlayBackMode: 播放模式，可选值：
+        # <li>Loop：循环播放播单；</li>
+        # <li>Linear：单次播放，播单播放完停止播放。</li>
+        # @type PlayBackMode: String
 
-        attr_accessor :RoundPlayId, :SubAppId, :StartTime, :RoundPlaylist, :Name, :Desc
+        attr_accessor :RoundPlayId, :SubAppId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode
         
-        def initialize(roundplayid=nil, subappid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil)
+        def initialize(roundplayid=nil, subappid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil)
           @RoundPlayId = roundplayid
           @SubAppId = subappid
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
           @Name = name
           @Desc = desc
+          @Status = status
+          @PlayBackMode = playbackmode
         end
 
         def deserialize(params)
@@ -16632,6 +16648,8 @@ module TencentCloud
           end
           @Name = params['Name']
           @Desc = params['Desc']
+          @Status = params['Status']
+          @PlayBackMode = params['PlayBackMode']
         end
       end
 
@@ -21491,15 +21509,30 @@ module TencentCloud
         # @type Name: String
         # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
         # @type Desc: String
+        # @param Status: 播放状态，可选值：
+        # <li>Enabled：启动状态；</li>
+        # <li>Disabled：停止状态。</li>
+        # 默认值：Enabled。
+        # @type Status: String
+        # @param PlayBackMode: 播放模式，可选值：
+        # <li>Loop：循环播放播单；</li>
+        # <li>Linear：单次播放，播单播放完停止播放。</li>
+        # 默认值：Loop。
+        # @type PlayBackMode: String
+        # @param Url: 轮播播放地址。
+        # @type Url: String
 
-        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc
+        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :Url
         
-        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil)
+        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, url=nil)
           @RoundPlayId = roundplayid
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
           @Name = name
           @Desc = desc
+          @Status = status
+          @PlayBackMode = playbackmode
+          @Url = url
         end
 
         def deserialize(params)
@@ -21515,6 +21548,9 @@ module TencentCloud
           end
           @Name = params['Name']
           @Desc = params['Desc']
+          @Status = params['Status']
+          @PlayBackMode = params['PlayBackMode']
+          @Url = params['Url']
         end
       end
 

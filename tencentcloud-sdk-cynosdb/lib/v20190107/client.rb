@@ -149,6 +149,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CloseClusterPasswordComplexity）用于关闭集群密码复杂度
+
+        # @param request: Request instance for CloseClusterPasswordComplexity.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseClusterPasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseClusterPasswordComplexityResponse`
+        def CloseClusterPasswordComplexity(request)
+          body = send_request('CloseClusterPasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseClusterPasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CloseWan）用于关闭外网
+
+        # @param request: Request instance for CloseWan.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseWanRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseWanResponse`
+        def CloseWan(request)
+          body = send_request('CloseWan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseWanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CopyClusterPasswordComplexity）用于复制集群密码复杂度
+
+        # @param request: Request instance for CopyClusterPasswordComplexity.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CopyClusterPasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CopyClusterPasswordComplexityResponse`
+        def CopyClusterPasswordComplexity(request)
+          body = send_request('CopyClusterPasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyClusterPasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建账号
 
         # @param request: Request instance for CreateAccounts.
@@ -245,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据库
+
+        # @param request: Request instance for CreateClusterDatabase.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateClusterDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateClusterDatabaseResponse`
+        def CreateClusterDatabase(request)
+          body = send_request('CreateClusterDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建集群
 
         # @param request: Request instance for CreateClusters.
@@ -255,6 +351,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateParamTemplate）用于创建参数模版
+
+        # @param request: Request instance for CreateParamTemplate.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateParamTemplateResponse`
+        def CreateParamTemplate(request)
+          body = send_request('CreateParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除账号
+
+        # @param request: Request instance for DeleteAccounts.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAccountsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteAccountsResponse`
+        def DeleteAccounts(request)
+          body = send_request('DeleteAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +485,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除数据库
+
+        # @param request: Request instance for DeleteClusterDatabase.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterDatabaseResponse`
+        def DeleteClusterDatabase(request)
+          body = send_request('DeleteClusterDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteParamTemplate）用于删除用户创建的参数模版。
+
+        # @param request: Request instance for DeleteParamTemplate.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteParamTemplateResponse`
+        def DeleteParamTemplate(request)
+          body = send_request('DeleteParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 账号所有权限
 
         # @param request: Request instance for DescribeAccountAllGrantPrivileges.
@@ -351,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAccountAllGrantPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询账号已有权限
+
+        # @param request: Request instance for DescribeAccountPrivileges.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeAccountPrivilegesResponse`
+        def DescribeAccountPrivileges(request)
+          body = send_request('DescribeAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -653,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据库列表
+
+        # @param request: Request instance for DescribeClusterDetailDatabases.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDetailDatabasesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDetailDatabasesResponse`
+        def DescribeClusterDetailDatabases(request)
+          body = send_request('DescribeClusterDetailDatabases', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterDetailDatabasesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
 
         # @param request: Request instance for DescribeClusterInstanceGrps.
@@ -711,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeClusterPasswordComplexity）用于查看集群密码复杂度详情
+
+        # @param request: Request instance for DescribeClusterPasswordComplexity.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterPasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterPasswordComplexityResponse`
+        def DescribeClusterPasswordComplexity(request)
+          body = send_request('DescribeClusterPasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterPasswordComplexityResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -845,6 +1109,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口(DescribeInstanceParams)查询实例参数列表
+
+        # @param request: Request instance for DescribeInstanceParams.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceParamsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceParamsResponse`
+        def DescribeInstanceParams(request)
+          body = send_request('DescribeInstanceParams', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
 
         # @param request: Request instance for DescribeInstanceSlowQueries.
@@ -927,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMaintainPeriodResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeParamTemplateDetail）用于查询用户参数模版详情
+
+        # @param request: Request instance for DescribeParamTemplateDetail.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplateDetailRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplateDetailResponse`
+        def DescribeParamTemplateDetail(request)
+          body = send_request('DescribeParamTemplateDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParamTemplateDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1277,6 +1589,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyAccountDescription)用于修改数据库账号描述信息。
+
+        # @param request: Request instance for ModifyAccountDescription.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountDescriptionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountDescriptionResponse`
+        def ModifyAccountDescription(request)
+          body = send_request('ModifyAccountDescription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改账号主机
+
+        # @param request: Request instance for ModifyAccountHost.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountHostRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountHostResponse`
+        def ModifyAccountHost(request)
+          body = send_request('ModifyAccountHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改账号参数
 
         # @param request: Request instance for ModifyAccountParams.
@@ -1287,6 +1647,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAccountParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改账号权限
+
+        # @param request: Request instance for ModifyAccountPrivileges.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountPrivilegesResponse`
+        def ModifyAccountPrivileges(request)
+          body = send_request('ModifyAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1397,6 +1781,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（ModifyBinlogSaveDays）用于修改集群Binlog保留天数。
+
+        # @param request: Request instance for ModifyBinlogSaveDays.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyBinlogSaveDaysRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyBinlogSaveDaysResponse`
+        def ModifyBinlogSaveDays(request)
+          body = send_request('ModifyBinlogSaveDays', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBinlogSaveDaysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改数据库
+
+        # @param request: Request instance for ModifyClusterDatabase.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterDatabaseResponse`
+        def ModifyClusterDatabase(request)
+          body = send_request('ModifyClusterDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改集群名称
 
         # @param request: Request instance for ModifyClusterName.
@@ -1431,6 +1863,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterParamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyClusterPasswordComplexity）用于修改/开启集群密码复杂度
+
+        # @param request: Request instance for ModifyClusterPasswordComplexity.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterPasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterPasswordComplexityResponse`
+        def ModifyClusterPasswordComplexity(request)
+          body = send_request('ModifyClusterPasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterPasswordComplexityResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1541,6 +1997,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyInstanceParam）用于修改实例参数。
+
+        # @param request: Request instance for ModifyInstanceParam.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyInstanceParamRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyInstanceParamResponse`
+        def ModifyInstanceParam(request)
+          body = send_request('ModifyInstanceParam', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceParamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改维护时间配置
 
         # @param request: Request instance for ModifyMaintainPeriodConfig.
@@ -1551,6 +2031,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMaintainPeriodConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyParamTemplate）用于修改用户参数模版。
+
+        # @param request: Request instance for ModifyParamTemplate.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyParamTemplateResponse`
+        def ModifyParamTemplate(request)
+          body = send_request('ModifyParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyParamTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1661,6 +2165,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+
+        # @param request: Request instance for OpenClusterPasswordComplexity.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenClusterPasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::OpenClusterPasswordComplexityResponse`
+        def OpenClusterPasswordComplexity(request)
+          body = send_request('OpenClusterPasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenClusterPasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通只读实例独有访问接入组
 
         # @param request: Request instance for OpenReadOnlyInstanceExclusiveAccess.
@@ -1671,6 +2199,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenReadOnlyInstanceExclusiveAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（OpenWan）用于开通外网
+
+        # @param request: Request instance for OpenWan.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenWanRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::OpenWanResponse`
+        def OpenWan(request)
+          body = send_request('OpenWan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenWanResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1983,6 +2535,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchProxyVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新集群Cynos内核版本
+
+        # @param request: Request instance for UpgradeClusterVersion.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeClusterVersionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::UpgradeClusterVersionResponse`
+        def UpgradeClusterVersion(request)
+          body = send_request('UpgradeClusterVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeClusterVersionResponse.new
             model.deserialize(response['Response'])
             model
           else

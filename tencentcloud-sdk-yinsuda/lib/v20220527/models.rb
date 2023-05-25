@@ -108,14 +108,20 @@ module TencentCloud
         # @param PlayScene: 播放场景。默认为Chat
         # <li>Live：直播</li><li>Chat：语聊</li>
         # @type PlayScene: String
+        # @param GuestUserId: 玩家用户标识
+        # @type GuestUserId: String
+        # @param RoomId: 房间Id
+        # @type RoomId: String
 
-        attr_accessor :AppName, :UserId, :MusicIds, :PlayScene
+        attr_accessor :AppName, :UserId, :MusicIds, :PlayScene, :GuestUserId, :RoomId
         
-        def initialize(appname=nil, userid=nil, musicids=nil, playscene=nil)
+        def initialize(appname=nil, userid=nil, musicids=nil, playscene=nil, guestuserid=nil, roomid=nil)
           @AppName = appname
           @UserId = userid
           @MusicIds = musicids
           @PlayScene = playscene
+          @GuestUserId = guestuserid
+          @RoomId = roomid
         end
 
         def deserialize(params)
@@ -123,6 +129,8 @@ module TencentCloud
           @UserId = params['UserId']
           @MusicIds = params['MusicIds']
           @PlayScene = params['PlayScene']
+          @GuestUserId = params['GuestUserId']
+          @RoomId = params['RoomId']
         end
       end
 
@@ -1401,15 +1409,22 @@ module TencentCloud
         # <li>186</li>
         # <li>372</li>
         # @type VipDays: Integer
+        # @param GiveType: 充值分类。取值有：room_card-包月房卡; 其他-保留。
+        # @type GiveType: String
+        # @param PlayScene: 播放场景。默认为Live
+        # <li>Live：直播</li><li>Chat：语聊</li>
+        # @type PlayScene: String
 
-        attr_accessor :AppName, :UserId, :TradeSerialNo, :RoomId, :VipDays
+        attr_accessor :AppName, :UserId, :TradeSerialNo, :RoomId, :VipDays, :GiveType, :PlayScene
         
-        def initialize(appname=nil, userid=nil, tradeserialno=nil, roomid=nil, vipdays=nil)
+        def initialize(appname=nil, userid=nil, tradeserialno=nil, roomid=nil, vipdays=nil, givetype=nil, playscene=nil)
           @AppName = appname
           @UserId = userid
           @TradeSerialNo = tradeserialno
           @RoomId = roomid
           @VipDays = vipdays
+          @GiveType = givetype
+          @PlayScene = playscene
         end
 
         def deserialize(params)
@@ -1418,6 +1433,8 @@ module TencentCloud
           @TradeSerialNo = params['TradeSerialNo']
           @RoomId = params['RoomId']
           @VipDays = params['VipDays']
+          @GiveType = params['GiveType']
+          @PlayScene = params['PlayScene']
         end
       end
 

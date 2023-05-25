@@ -3326,7 +3326,7 @@ module TencentCloud
 
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
-        # @param Mode: 迁移对象类型 Partial(部分对象)
+        # @param Mode: 同步对象类型 Partial(部分对象)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Databases: 同步对象，当 Mode 为 Partial 时，不为空

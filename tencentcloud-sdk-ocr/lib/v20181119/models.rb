@@ -6654,11 +6654,14 @@ module TencentCloud
       class RecognizeTableAccurateOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片/PDF的 Base64 值。
         # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        # 图片支持的像素范围：需介于20-10000px之间。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片/PDF的 Url 地址。
         # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # 图片支持的像素范围：需介于20-10000px之间。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定
+        # 性可能受一定影响。
         # @type ImageUrl: String
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
@@ -10270,10 +10273,24 @@ module TencentCloud
         # @type TaxAmount: String
         # @param TaxClassifyCode: 税收分类编码
         # @type TaxClassifyCode: String
+        # @param VehicleType: 运输工具类型
+        # @type VehicleType: String
+        # @param VehicleBrand: 运输工具牌号
+        # @type VehicleBrand: String
+        # @param DeparturePlace: 起始地
+        # @type DeparturePlace: String
+        # @param ArrivalPlace: 到达地
+        # @type ArrivalPlace: String
+        # @param TransportItemsName: 运输货物名称
+        # @type TransportItemsName: String
+        # @param ConstructionPlace: 建筑服务发生地
+        # @type ConstructionPlace: String
+        # @param ConstructionName: 建筑项目名称
+        # @type ConstructionName: String
 
-        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode
+        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :ConstructionPlace, :ConstructionName
         
-        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil)
+        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, constructionplace=nil, constructionname=nil)
           @LineNo = lineno
           @Name = name
           @Spec = spec
@@ -10284,6 +10301,13 @@ module TencentCloud
           @TaxRate = taxrate
           @TaxAmount = taxamount
           @TaxClassifyCode = taxclassifycode
+          @VehicleType = vehicletype
+          @VehicleBrand = vehiclebrand
+          @DeparturePlace = departureplace
+          @ArrivalPlace = arrivalplace
+          @TransportItemsName = transportitemsname
+          @ConstructionPlace = constructionplace
+          @ConstructionName = constructionname
         end
 
         def deserialize(params)
@@ -10297,6 +10321,13 @@ module TencentCloud
           @TaxRate = params['TaxRate']
           @TaxAmount = params['TaxAmount']
           @TaxClassifyCode = params['TaxClassifyCode']
+          @VehicleType = params['VehicleType']
+          @VehicleBrand = params['VehicleBrand']
+          @DeparturePlace = params['DeparturePlace']
+          @ArrivalPlace = params['ArrivalPlace']
+          @TransportItemsName = params['TransportItemsName']
+          @ConstructionPlace = params['ConstructionPlace']
+          @ConstructionName = params['ConstructionName']
         end
       end
 
@@ -10365,11 +10396,13 @@ module TencentCloud
         # @param ImageBase64: 图片/PDF的 Base64 值。
         # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         # 支持的图片/PDF大小：所下载文件经Base64编码后不超过 7M。文件下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
         # 输入参数 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片/PDF的 Url 地址。
         # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         # 支持的图片/PDF大小：所下载文件经 Base64 编码后不超过 7M。文件下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String

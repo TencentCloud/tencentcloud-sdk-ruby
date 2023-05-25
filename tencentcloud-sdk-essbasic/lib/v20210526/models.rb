@@ -154,10 +154,12 @@ module TencentCloud
         # @type UserData: String
         # @param CcInfos: 抄送人信息
         # @type CcInfos: Array
+        # @param NeedCreateReview: 是否需要发起前审核，当指定NeedCreateReview=true，则发起后，需要使用接口：ChannelCreateFlowSignReview，来完成发起前审核，审核通过后，可以继续查看，签署合同
+        # @type NeedCreateReview: Boolean
 
-        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos
+        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview
         
-        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil)
+        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil)
           @FlowName = flowname
           @FlowType = flowtype
           @FlowDescription = flowdescription
@@ -168,6 +170,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @UserData = userdata
           @CcInfos = ccinfos
+          @NeedCreateReview = needcreatereview
         end
 
         def deserialize(params)
@@ -195,6 +198,7 @@ module TencentCloud
               @CcInfos << ccinfo_tmp
             end
           end
+          @NeedCreateReview = params['NeedCreateReview']
         end
       end
 
@@ -1699,21 +1703,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询数量，最大200
         # @type Limit: String
-        # @param Operator: 操作人信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Filters: 查询的关键字段:
-        # Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
+        # Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
         # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
         # @type Filters: Array
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :Offset, :Limit, :Operator, :Filters
+        attr_accessor :Agent, :Offset, :Limit, :Filters, :Operator
         
-        def initialize(agent=nil, offset=nil, limit=nil, operator=nil, filters=nil)
+        def initialize(agent=nil, offset=nil, limit=nil, filters=nil, operator=nil)
           @Agent = agent
           @Offset = offset
           @Limit = limit
-          @Operator = operator
           @Filters = filters
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1723,10 +1727,6 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1734,6 +1734,10 @@ module TencentCloud
               filter_tmp.deserialize(i)
               @Filters << filter_tmp
             end
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
           end
         end
       end
@@ -3609,10 +3613,12 @@ module TencentCloud
         # @type FlowApproverInfos: Array
         # @param CcInfos: 合同(流程)关注方信息列表
         # @type CcInfos: Array
+        # @param NeedCreateReview: 是否需要发起前审批，当NeedCreateReview为true，表明当前流程是需要发起前审核的合同，可能无法进行查看，签署操作，需要等审核完成后，才可以继续后续流程
+        # @type NeedCreateReview: Boolean
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos, :NeedCreateReview
         
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil)
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil, needcreatereview=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -3623,6 +3629,7 @@ module TencentCloud
           @CustomData = customdata
           @FlowApproverInfos = flowapproverinfos
           @CcInfos = ccinfos
+          @NeedCreateReview = needcreatereview
         end
 
         def deserialize(params)
@@ -3650,6 +3657,7 @@ module TencentCloud
               @CcInfos << flowapproverdetail_tmp
             end
           end
+          @NeedCreateReview = params['NeedCreateReview']
         end
       end
 

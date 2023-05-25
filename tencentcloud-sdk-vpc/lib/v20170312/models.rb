@@ -11573,15 +11573,16 @@ module TencentCloud
         # @param Filters: 过滤条件，参数不支持同时指定SslVpnClientIds和Filters。
         # <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
         # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
-        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
-        # <li>ssl-vpn-client-id - String - （过滤条件）SSL-VPN-CLIENT实例ID形如：vpngwSslClient-123456。</li>
+        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpns-1j2w6xpx。</li>
+        # <li>ssl-vpn-client-id - String - （过滤条件）SSL-VPN-CLIENT实例ID形如：vpnc-3rlxp4nd。</li>
         # <li>ssl-vpn-client-name - String - （过滤条件）SSL-VPN-CLIENT实例名称。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值0。
         # @type Offset: Integer
-        # @param Limit: 请求对象个数
+        # @param Limit: 请求对象个数，默认值20。
         # @type Limit: Integer
-        # @param SslVpnClientIds: SSL-VPN-CLIENT实例ID。形如：vpngwSslClient-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定SslVpnClientIds和Filters。
+        # @param SslVpnClientIds: SSL-VPN-CLIENT实例ID。形如：
+        # vpns-1jww3xpx。每次请求的实例的上限为100。参数不支持同时指定SslVpnClientIds和Filters。
         # @type SslVpnClientIds: Array
         # @param IsVpnPortal: VPN门户网站使用。默认是False。
         # @type IsVpnPortal: Boolean
@@ -11616,7 +11617,7 @@ module TencentCloud
       class DescribeVpnGatewaySslClientsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
-        # @param SslVpnClientSet: 符合条件的实例个数。
+        # @param SslVpnClientSet: SSL-VPN-CLIENT 实例列表。
         # @type SslVpnClientSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19559,24 +19560,24 @@ module TencentCloud
 
       # SSL-VPN-CLIENT 出参
       class SslVpnClient < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID
+        # @param VpcId: VPC实例ID。
         # @type VpcId: String
-        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID
+        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
         # @type SslVpnServerId: String
-        # @param CertStatus: 证书状态.
+        # @param CertStatus: 证书状态。
         # 0:创建中
         # 1:正常
         # 2:已停用
         # 3.已过期
         # 4.创建出错
         # @type CertStatus: Integer
-        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
         # @type SslVpnClientId: String
-        # @param CertBeginTime: 证书开始时间
+        # @param CertBeginTime: 证书开始时间。
         # @type CertBeginTime: String
-        # @param CertEndTime: 证书到期时间
+        # @param CertEndTime: 证书到期时间。
         # @type CertEndTime: String
-        # @param Name: CLIENT NAME
+        # @param Name: CLIENT NAME。
         # @type Name: String
         # @param State: 创建CLIENT 状态。
         # 0 创建中
