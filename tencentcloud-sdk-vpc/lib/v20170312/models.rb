@@ -72,15 +72,19 @@ module TencentCloud
         # @type UserGroupIds: Array
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param Remark: Remark
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :TargetCidr, :VpnGatewayIdSslAccessPolicyId, :ForAllClient, :UserGroupIds, :UpdateTime
+        attr_accessor :TargetCidr, :VpnGatewayIdSslAccessPolicyId, :ForAllClient, :UserGroupIds, :UpdateTime, :Remark
         
-        def initialize(targetcidr=nil, vpngatewayidsslaccesspolicyid=nil, forallclient=nil, usergroupids=nil, updatetime=nil)
+        def initialize(targetcidr=nil, vpngatewayidsslaccesspolicyid=nil, forallclient=nil, usergroupids=nil, updatetime=nil, remark=nil)
           @TargetCidr = targetcidr
           @VpnGatewayIdSslAccessPolicyId = vpngatewayidsslaccesspolicyid
           @ForAllClient = forallclient
           @UserGroupIds = usergroupids
           @UpdateTime = updatetime
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -89,6 +93,7 @@ module TencentCloud
           @ForAllClient = params['ForAllClient']
           @UserGroupIds = params['UserGroupIds']
           @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
         end
       end
 
@@ -11646,18 +11651,18 @@ module TencentCloud
 
       # DescribeVpnGatewaySslServers请求参数结构体
       class DescribeVpnGatewaySslServersRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。
         # @type Offset: Integer
-        # @param Limit: 请求对象个数
+        # @param Limit: 请求对象个数。
         # @type Limit: Integer
         # @param SslVpnServerIds: SSL-VPN-SERVER实例ID。形如：vpngwSslServer-12345678。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
         # @type SslVpnServerIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
-        # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID，形如：vpngw-5aluhh9t。</li>
         # <li>vpn-gateway-name - String - （过滤条件）VPN实例名称。</li>
         # <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
-        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
+        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID，形如：vpns-xxx。</li>
         # @type Filters: Array
         # @param IsVpnPortal: vpn门户使用。 默认Flase
         # @type IsVpnPortal: Boolean

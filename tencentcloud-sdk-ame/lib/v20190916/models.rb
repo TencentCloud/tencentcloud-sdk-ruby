@@ -3098,16 +3098,22 @@ module TencentCloud
         # <li>anchor：主播</li>
         # <li>audience：观众</li>
         # @type Role: String
+        # @param RoomIdType: TRTC房间号的类型：
+        # <li>Integer：数字类型</li>
+        # <li> String：字符串类型</li>
+        # 默认为：Integer 。
+        # @type RoomIdType: String
 
-        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId, :PrivateMapKey, :Role
+        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId, :PrivateMapKey, :Role, :RoomIdType
         
-        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil, privatemapkey=nil, role=nil)
+        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil, privatemapkey=nil, role=nil, roomidtype=nil)
           @Sign = sign
           @RoomId = roomid
           @SdkAppId = sdkappid
           @UserId = userid
           @PrivateMapKey = privatemapkey
           @Role = role
+          @RoomIdType = roomidtype
         end
 
         def deserialize(params)
@@ -3117,6 +3123,7 @@ module TencentCloud
           @UserId = params['UserId']
           @PrivateMapKey = params['PrivateMapKey']
           @Role = params['Role']
+          @RoomIdType = params['RoomIdType']
         end
       end
 

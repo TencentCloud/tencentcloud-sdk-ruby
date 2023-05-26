@@ -4583,17 +4583,26 @@ module TencentCloud
         # @type Host: String
         # @param CertId: 证书ID
         # @type CertId: String
+        # @param ZoneId: 区域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param Status: 域名状态
+        # @type Status: String
 
-        attr_accessor :Host, :CertId
+        attr_accessor :Host, :CertId, :ZoneId, :Status
         
-        def initialize(host=nil, certid=nil)
+        def initialize(host=nil, certid=nil, zoneid=nil, status=nil)
           @Host = host
           @CertId = certid
+          @ZoneId = zoneid
+          @Status = status
         end
 
         def deserialize(params)
           @Host = params['Host']
           @CertId = params['CertId']
+          @ZoneId = params['ZoneId']
+          @Status = params['Status']
         end
       end
 

@@ -119,6 +119,7 @@ module TencentCloud
         # @param CmemId: 实例内置ID
         # @type CmemId: Integer
         # @param Tags: 实例关联的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param InstanceId: 实例ID
         # @type InstanceId: String

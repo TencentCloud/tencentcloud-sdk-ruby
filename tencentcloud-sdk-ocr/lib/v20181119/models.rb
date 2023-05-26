@@ -557,12 +557,16 @@ module TencentCloud
         # WARN_COPY_CARD 黑白复印件告警
         # 注：告警信息可以同时存在多个
         # @type RecognizeWarnMsg: Array
+        # @param IsDuplication: 是否为副本。1为是，-1为不是。
+        # @type IsDuplication: Integer
+        # @param RegistrationDate: 登记日期
+        # @type RegistrationDate: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :RequestId
         
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -575,6 +579,8 @@ module TencentCloud
           @SetDate = setdate
           @RecognizeWarnCode = recognizewarncode
           @RecognizeWarnMsg = recognizewarnmsg
+          @IsDuplication = isduplication
+          @RegistrationDate = registrationdate
           @RequestId = requestid
         end
 
@@ -591,6 +597,8 @@ module TencentCloud
           @SetDate = params['SetDate']
           @RecognizeWarnCode = params['RecognizeWarnCode']
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
+          @IsDuplication = params['IsDuplication']
+          @RegistrationDate = params['RegistrationDate']
           @RequestId = params['RequestId']
         end
       end

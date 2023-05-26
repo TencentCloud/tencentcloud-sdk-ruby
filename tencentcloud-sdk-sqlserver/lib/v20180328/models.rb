@@ -1017,18 +1017,28 @@ module TencentCloud
       class CreateBusinessDBInstancesResponse < TencentCloud::Common::AbstractModel
         # @param DealName: 订单名称
         # @type DealName: String
+        # @param FlowId: 流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param InstanceIdSet: 实例ID集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIdSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealName, :RequestId
+        attr_accessor :DealName, :FlowId, :InstanceIdSet, :RequestId
         
-        def initialize(dealname=nil, requestid=nil)
+        def initialize(dealname=nil, flowid=nil, instanceidset=nil, requestid=nil)
           @DealName = dealname
+          @FlowId = flowid
+          @InstanceIdSet = instanceidset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealName = params['DealName']
+          @FlowId = params['FlowId']
+          @InstanceIdSet = params['InstanceIdSet']
           @RequestId = params['RequestId']
         end
       end

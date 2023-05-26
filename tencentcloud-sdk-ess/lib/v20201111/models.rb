@@ -3735,10 +3735,13 @@ module TencentCloud
         # @param Creator:  合同发起人userId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
+        # @param Deadline: 合同过期时间，时间戳，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deadline: Integer
 
-        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator
+        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator, :Deadline
         
-        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil, creator=nil)
+        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil, creator=nil, deadline=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -3747,6 +3750,7 @@ module TencentCloud
           @CreatedOn = createdon
           @FlowMessage = flowmessage
           @Creator = creator
+          @Deadline = deadline
         end
 
         def deserialize(params)
@@ -3758,6 +3762,7 @@ module TencentCloud
           @CreatedOn = params['CreatedOn']
           @FlowMessage = params['FlowMessage']
           @Creator = params['Creator']
+          @Deadline = params['Deadline']
         end
       end
 

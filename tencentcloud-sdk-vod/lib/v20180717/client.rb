@@ -312,6 +312,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建音画质重生模板。
+
+        # @param request: Request instance for CreateEnhanceMediaTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateEnhanceMediaTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateEnhanceMediaTemplateResponse`
+        def CreateEnhanceMediaTemplate(request)
+          body = send_request('CreateEnhanceMediaTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEnhanceMediaTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建片头片尾模板。
 
         # @param request: Request instance for CreateHeadTailTemplate.
@@ -861,6 +885,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteContentReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除音画质重生模板。
+
+        # @param request: Request instance for DeleteEnhanceMediaTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteEnhanceMediaTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteEnhanceMediaTemplateResponse`
+        def DeleteEnhanceMediaTemplate(request)
+          body = send_request('DeleteEnhanceMediaTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEnhanceMediaTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1641,6 +1689,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDrmKeyProviderInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取音画质重生模板列表。
+
+        # @param request: Request instance for DescribeEnhanceMediaTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeEnhanceMediaTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeEnhanceMediaTemplatesResponse`
+        def DescribeEnhanceMediaTemplates(request)
+          body = send_request('DescribeEnhanceMediaTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnhanceMediaTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2482,6 +2554,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用模板发起音画质重生。
+
+        # @param request: Request instance for EnhanceMediaByTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::EnhanceMediaByTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::EnhanceMediaByTemplateResponse`
+        def EnhanceMediaByTemplate(request)
+          body = send_request('EnhanceMediaByTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnhanceMediaByTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
 
         # @param request: Request instance for ExecuteFunction.
@@ -2783,6 +2879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDefaultStorageRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改音画质重生模板。
+
+        # @param request: Request instance for ModifyEnhanceMediaTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyEnhanceMediaTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyEnhanceMediaTemplateResponse`
+        def ModifyEnhanceMediaTemplate(request)
+          body = send_request('ModifyEnhanceMediaTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEnhanceMediaTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

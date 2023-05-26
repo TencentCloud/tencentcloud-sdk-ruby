@@ -4732,7 +4732,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询SSL-VPN SERVER 列表信息
+        # 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
 
         # @param request: Request instance for DescribeVpnGatewaySslServers.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpnGatewaySslServersRequest`
