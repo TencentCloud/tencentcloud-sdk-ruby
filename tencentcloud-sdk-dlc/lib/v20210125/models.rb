@@ -668,6 +668,38 @@ module TencentCloud
         end
       end
 
+      # CancelSparkSessionBatchSQL请求参数结构体
+      class CancelSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批任务唯一标识
+        # @type BatchId: String
+
+        attr_accessor :BatchId
+        
+        def initialize(batchid=nil)
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # CancelSparkSessionBatchSQL返回参数结构体
+      class CancelSparkSessionBatchSQLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelTask请求参数结构体
       class CancelTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id，全局唯一
@@ -1857,6 +1889,85 @@ module TencentCloud
         def deserialize(params)
           @BatchId = params['BatchId']
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSparkSessionBatchSQL请求参数结构体
+      class CreateSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: DLC Spark作业引擎名称
+        # @type DataEngineName: String
+        # @param ExecuteSQL: 运行sql
+        # @type ExecuteSQL: String
+        # @param DriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # @type DriverSize: String
+        # @param ExecutorSize: 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
+        # @type ExecutorSize: String
+        # @param ExecutorNumbers: 指定的Executor数量，默认为1
+        # @type ExecutorNumbers: Integer
+        # @param ExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
+        # @type ExecutorMaxNumbers: Integer
+        # @param TimeoutInSecond: 指定的Session超时时间，单位秒，默认3600秒
+        # @type TimeoutInSecond: Integer
+        # @param SessionId: Session唯一标识，当指定sessionid，则使用该session运行任务。
+        # @type SessionId: String
+        # @param SessionName: 指定要创建的session名称
+        # @type SessionName: String
+        # @param Arguments: Session相关配置，当前支持：dlc.eni、dlc.role.arn、dlc.sql.set.config以及用户指定的配置，注：roleArn必填；
+        # @type Arguments: Array
+
+        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments
+        
+        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil)
+          @DataEngineName = dataenginename
+          @ExecuteSQL = executesql
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNumbers = executornumbers
+          @ExecutorMaxNumbers = executormaxnumbers
+          @TimeoutInSecond = timeoutinsecond
+          @SessionId = sessionid
+          @SessionName = sessionname
+          @Arguments = arguments
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @ExecuteSQL = params['ExecuteSQL']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNumbers = params['ExecutorNumbers']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          @TimeoutInSecond = params['TimeoutInSecond']
+          @SessionId = params['SessionId']
+          @SessionName = params['SessionName']
+          unless params['Arguments'].nil?
+            @Arguments = []
+            params['Arguments'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Arguments << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSparkSessionBatchSQL返回参数结构体
+      class CreateSparkSessionBatchSQLResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批任务唯一标识
+        # @type BatchId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :RequestId
+        
+        def initialize(batchid=nil, requestid=nil)
+          @BatchId = batchid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
           @RequestId = params['RequestId']
         end
       end
@@ -4659,6 +4770,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSparkSessionBatchSqlLog请求参数结构体
+      class DescribeSparkSessionBatchSqlLogRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: SparkSQL唯一标识
+        # @type BatchId: String
+
+        attr_accessor :BatchId
+        
+        def initialize(batchid=nil)
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # DescribeSparkSessionBatchSqlLog返回参数结构体
+      class DescribeSparkSessionBatchSqlLogResponse < TencentCloud::Common::AbstractModel
+        # @param State: 状态：0：初始化、1：成功、2：失败、3：取消、4：异常；
+        # @type State: Integer
+        # @param LogSet: 日志信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :State, :LogSet, :RequestId
+        
+        def initialize(state=nil, logset=nil, requestid=nil)
+          @State = state
+          @LogSet = logset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          unless params['LogSet'].nil?
+            @LogSet = []
+            params['LogSet'].each do |i|
+              sparksessionbatchlog_tmp = SparkSessionBatchLog.new
+              sparksessionbatchlog_tmp.deserialize(i)
+              @LogSet << sparksessionbatchlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStoreLocation请求参数结构体
       class DescribeStoreLocationRequest < TencentCloud::Common::AbstractModel
 
@@ -6894,6 +7053,79 @@ module TencentCloud
           @SessionId = params['SessionId']
           @DataEngineClusterType = params['DataEngineClusterType']
           @DataEngineImageVersion = params['DataEngineImageVersion']
+        end
+      end
+
+      # SparkSQL批任务运行日志
+      class SparkSessionBatchLog < TencentCloud::Common::AbstractModel
+        # @param Step: 日志步骤：BEG/CS/DS/DSS/DSF/FINF/RTO/CANCEL/CT/DT/DTS/DTF/FINT/EXCE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: String
+        # @param Time: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Message: 日志提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Operate: 日志操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operate: Array
+
+        attr_accessor :Step, :Time, :Message, :Operate
+        
+        def initialize(step=nil, time=nil, message=nil, operate=nil)
+          @Step = step
+          @Time = time
+          @Message = message
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          @Step = params['Step']
+          @Time = params['Time']
+          @Message = params['Message']
+          unless params['Operate'].nil?
+            @Operate = []
+            params['Operate'].each do |i|
+              sparksessionbatchlogoperate_tmp = SparkSessionBatchLogOperate.new
+              sparksessionbatchlogoperate_tmp.deserialize(i)
+              @Operate << sparksessionbatchlogoperate_tmp
+            end
+          end
+        end
+      end
+
+      # SparkSQL批任务日志操作信息。
+      class SparkSessionBatchLogOperate < TencentCloud::Common::AbstractModel
+        # @param Text: 操作提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Operate: 操作类型：COPY、LOG、UI、RESULT、List、TAB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operate: String
+        # @param Supplement: 补充信息：如：taskid、sessionid、sparkui等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Supplement: Array
+
+        attr_accessor :Text, :Operate, :Supplement
+        
+        def initialize(text=nil, operate=nil, supplement=nil)
+          @Text = text
+          @Operate = operate
+          @Supplement = supplement
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Operate = params['Operate']
+          unless params['Supplement'].nil?
+            @Supplement = []
+            params['Supplement'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Supplement << kvpair_tmp
+            end
+          end
         end
       end
 

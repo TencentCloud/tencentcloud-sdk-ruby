@@ -3223,15 +3223,20 @@ module TencentCloud
         # @type TopicId: String
         # @param Interval: 时间间隔: 单位ms  限制性条件：(To-From) / interval <= 200
         # @type Interval: Integer
+        # @param SyntaxRule: 检索语法规则，默认值为0。
+        # 0：Lucene语法，1：CQL语法。
+        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # @type SyntaxRule: Integer
 
-        attr_accessor :From, :To, :Query, :TopicId, :Interval
+        attr_accessor :From, :To, :Query, :TopicId, :Interval, :SyntaxRule
         
-        def initialize(from=nil, to=nil, query=nil, topicid=nil, interval=nil)
+        def initialize(from=nil, to=nil, query=nil, topicid=nil, interval=nil, syntaxrule=nil)
           @From = from
           @To = to
           @Query = query
           @TopicId = topicid
           @Interval = interval
+          @SyntaxRule = syntaxrule
         end
 
         def deserialize(params)
@@ -3240,6 +3245,7 @@ module TencentCloud
           @Query = params['Query']
           @TopicId = params['TopicId']
           @Interval = params['Interval']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 

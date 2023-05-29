@@ -906,15 +906,21 @@ module TencentCloud
         # @type ReviewMessage: String
         # @param RecipientId: 签署节点审核时需要指定
         # @type RecipientId: String
+        # @param OperateType: 操作类型，默认：SignReview；SignReview:签署审核，CreateReview：发起审核
+        # 注：接口通过该字段区分操作类型
+        # 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
+        # 若想使用发起审核，请指定该字段为：CreateReview
+        # @type OperateType: String
 
-        attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage, :RecipientId
+        attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage, :RecipientId, :OperateType
         
-        def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, recipientid=nil)
+        def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, recipientid=nil, operatetype=nil)
           @Agent = agent
           @FlowId = flowid
           @ReviewType = reviewtype
           @ReviewMessage = reviewmessage
           @RecipientId = recipientid
+          @OperateType = operatetype
         end
 
         def deserialize(params)
@@ -926,6 +932,7 @@ module TencentCloud
           @ReviewType = params['ReviewType']
           @ReviewMessage = params['ReviewMessage']
           @RecipientId = params['RecipientId']
+          @OperateType = params['OperateType']
         end
       end
 
@@ -1135,7 +1142,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowOption: 合同流程配置信息
         # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
-        # @param FlowId: 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
+        # @param FlowId: 通过flowid快速获得之前成功通过页面发起的合同生成链接
         # @type FlowId: String
         # @param NeedPreview: 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
         # @type NeedPreview: Boolean
@@ -1424,7 +1431,7 @@ module TencentCloud
       class ChannelDeleteRoleUsersRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 代理信息
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param RoleId: 角色Id
+        # @param RoleId: 角色Id（非超管或法人角色Id）
         # @type RoleId: String
         # @param UserIds: 用户列表
         # @type UserIds: Array

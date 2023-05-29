@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CancelSparkSessionBatchSQL）用于取消Spark SQL批任务。
+
+        # @param request: Request instance for CancelSparkSessionBatchSQL.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CancelSparkSessionBatchSQLRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CancelSparkSessionBatchSQLResponse`
+        def CancelSparkSessionBatchSQL(request)
+          body = send_request('CancelSparkSessionBatchSQL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelSparkSessionBatchSQLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CancelTask），用于取消任务执行
 
         # @param request: Request instance for CancelTask.
@@ -639,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSparkAppTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateSparkSessionBatchSQL）用于提交Spark SQL批任务。
+
+        # @param request: Request instance for CreateSparkSessionBatchSQL.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkSessionBatchSQLRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateSparkSessionBatchSQLResponse`
+        def CreateSparkSessionBatchSQL(request)
+          body = send_request('CreateSparkSessionBatchSQL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSparkSessionBatchSQLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1455,6 +1503,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSparkAppTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSparkSessionBatchSqlLog）用于获取SparkSQL批任务日志
+
+        # @param request: Request instance for DescribeSparkSessionBatchSqlLog.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkSessionBatchSqlLogRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSparkSessionBatchSqlLogResponse`
+        def DescribeSparkSessionBatchSqlLog(request)
+          body = send_request('DescribeSparkSessionBatchSqlLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkSessionBatchSqlLogResponse.new
             model.deserialize(response['Response'])
             model
           else

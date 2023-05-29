@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 解隔离DCDB后付费实例
+        # 解隔离TDSQL按量计费实例
 
         # @param request: Request instance for ActiveHourDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::ActiveHourDCDBInstanceRequest`
@@ -198,7 +198,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+        # 本接口（CreateDCDBInstance）用于创建包年包月的TDSQL实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
 
         # @param request: Request instance for CreateDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateDCDBInstanceRequest`
@@ -222,7 +222,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建独享集群DCDB实例
+        # 创建TDSQL独享集群实例
 
         # @param request: Request instance for CreateDedicatedClusterDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateDedicatedClusterDCDBInstanceRequest`
@@ -246,7 +246,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建DCDB后付费实例
+        # 创建TDSQL按量计费实例
 
         # @param request: Request instance for CreateHourDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateHourDCDBInstanceRequest`
@@ -256,6 +256,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateHourDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 回档TDSQL实例
+
+        # @param request: Request instance for CreateTmpDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateTmpDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::CreateTmpDCDBInstanceResponse`
+        def CreateTmpDCDBInstance(request)
+          body = send_request('CreateTmpDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTmpDCDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -511,7 +535,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDCDBInstanceDetail）用于获取DCDB实例详情
+        # 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
 
         # @param request: Request instance for DescribeDCDBInstanceDetail.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeDCDBInstanceDetailRequest`
@@ -994,7 +1018,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+        # 本接口(DestroyDCDBInstance)用于销毁已隔离的TDSQL包年包月实例。
 
         # @param request: Request instance for DestroyDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::DestroyDCDBInstanceRequest`
@@ -1018,7 +1042,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+        # 本接口（DestroyHourDCDBInstance）用于TDSQL销毁按量计费实例。
 
         # @param request: Request instance for DestroyHourDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::DestroyHourDCDBInstanceRequest`
@@ -1163,7 +1187,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 隔离DCDB后付费实例
+        # 隔离TDSQL按量计费实例
 
         # @param request: Request instance for IsolateHourDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::IsolateHourDCDBInstanceRequest`
@@ -1655,7 +1679,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（UpgradeDedicatedDCDBInstance）用于升级独享DCDB实例
+        # 本接口（UpgradeDedicatedDCDBInstance）用于升级TDSQL独享集群实例
 
         # @param request: Request instance for UpgradeDedicatedDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::UpgradeDedicatedDCDBInstanceRequest`
@@ -1679,7 +1703,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（UpgradeHourDCDBInstance）用于升级后付费分布式数据库实例。
+        # 本接口（UpgradeHourDCDBInstance）用于升级分布式数据库TDSQL按量计费实例。
 
         # @param request: Request instance for UpgradeHourDCDBInstance.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::UpgradeHourDCDBInstanceRequest`

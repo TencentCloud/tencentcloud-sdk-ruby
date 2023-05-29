@@ -2665,7 +2665,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 告警修改告警策略绑定的告警通知模板
+        # 修改告警策略绑定的告警通知模板
 
         # @param request: Request instance for ModifyAlarmPolicyNotice.
         # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyAlarmPolicyNoticeRequest`

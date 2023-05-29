@@ -10923,7 +10923,7 @@ module TencentCloud
         # @type MinRoInGroup: Integer
         # @param WeightMode: 读写权重分配模式，可选值：system-系统自动分配；custom-自定义。
         # @type WeightMode: String
-        # @param Weight: 权重值。
+        # @param Weight: 该字段已经废弃，无意义。查看只读实例的权重，请查看 RoInstances 字段里的 Weight 值。
         # @type Weight: Integer
         # @param RoInstances: 只读组中的只读实例详情。
         # @type RoInstances: Array

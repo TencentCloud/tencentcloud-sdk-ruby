@@ -468,7 +468,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param AutoRenewFlag: 自动续费标志，1:自动续费，2:不自动续费
         # @type AutoRenewFlag: Integer
-        # @param Ipv6Flag: 是否支持IPv6
+        # @param Ipv6Flag: 是否支持IPv6，0:不支持，1:支持
         # @type Ipv6Flag: Integer
         # @param ResourceTags: 标签键值对数组
         # @type ResourceTags: Array
@@ -742,7 +742,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param SecurityGroupIds: 安全组ID，不传表示不绑定安全组
         # @type SecurityGroupIds: Array
-        # @param Ipv6Flag: 是否支持IPv6
+        # @param Ipv6Flag: 是否支持IPv6，0:不支持，1:支持
         # @type Ipv6Flag: Integer
         # @param ResourceTags: 标签键值对数组
         # @type ResourceTags: Array
@@ -754,7 +754,7 @@ module TencentCloud
         # character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），
         # innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化，默认为强同步可退化）。
         # @type InitParams: Array
-        # @param RollbackInstanceId: 回档源实例ID
+        # @param RollbackInstanceId: 回档源实例ID，例如“2021-11-22 00:00:00”
         # @type RollbackInstanceId: String
         # @param RollbackTime: 回档时间
         # @type RollbackTime: String
@@ -908,10 +908,12 @@ module TencentCloud
         # @type DelayThresh: Integer
         # @param SlaveConst: 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
         # @type SlaveConst: Integer
+        # @param MaxUserConnections: 用户最大连接数，0代表无限制
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :UserName, :Host, :Description, :CreateTime, :UpdateTime, :ReadOnly, :DelayThresh, :SlaveConst
+        attr_accessor :UserName, :Host, :Description, :CreateTime, :UpdateTime, :ReadOnly, :DelayThresh, :SlaveConst, :MaxUserConnections
         
-        def initialize(username=nil, host=nil, description=nil, createtime=nil, updatetime=nil, readonly=nil, delaythresh=nil, slaveconst=nil)
+        def initialize(username=nil, host=nil, description=nil, createtime=nil, updatetime=nil, readonly=nil, delaythresh=nil, slaveconst=nil, maxuserconnections=nil)
           @UserName = username
           @Host = host
           @Description = description
@@ -920,6 +922,7 @@ module TencentCloud
           @ReadOnly = readonly
           @DelayThresh = delaythresh
           @SlaveConst = slaveconst
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -931,6 +934,7 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @DelayThresh = params['DelayThresh']
           @SlaveConst = params['SlaveConst']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 
@@ -1988,12 +1992,14 @@ module TencentCloud
         # @param RsAccessStrategy: VPC就近访问
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RsAccessStrategy: Integer
+        # @param ReservedNetResources: 尚未回收的网络资源
+        # @type ReservedNetResources: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :RequestId
         
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2049,6 +2055,7 @@ module TencentCloud
           @ReplicaStatus = replicastatus
           @ExclusterType = exclustertype
           @RsAccessStrategy = rsaccessstrategy
+          @ReservedNetResources = reservednetresources
           @RequestId = requestid
         end
 
@@ -2128,6 +2135,14 @@ module TencentCloud
           end
           @ExclusterType = params['ExclusterType']
           @RsAccessStrategy = params['RsAccessStrategy']
+          unless params['ReservedNetResources'].nil?
+            @ReservedNetResources = []
+            params['ReservedNetResources'].each do |i|
+              reservednetresource_tmp = ReservedNetResource.new
+              reservednetresource_tmp.deserialize(i)
+              @ReservedNetResources << reservednetresource_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4840,6 +4855,38 @@ module TencentCloud
         def deserialize(params)
           @DealName = params['DealName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 保留的网络资源信息
+      class ReservedNetResource < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络
+        # @type VpcId: String
+        # @param SubnetId: 子网
+        # @type SubnetId: String
+        # @param Vip: VpcId,SubnetId下保留的内网ip
+        # @type Vip: String
+        # @param Vports: Vip下的端口
+        # @type Vports: Array
+        # @param RecycleTime: vip的回收时间
+        # @type RecycleTime: String
+
+        attr_accessor :VpcId, :SubnetId, :Vip, :Vports, :RecycleTime
+        
+        def initialize(vpcid=nil, subnetid=nil, vip=nil, vports=nil, recycletime=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+          @Vports = vports
+          @RecycleTime = recycletime
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+          @Vports = params['Vports']
+          @RecycleTime = params['RecycleTime']
         end
       end
 

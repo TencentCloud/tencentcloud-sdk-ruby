@@ -684,10 +684,12 @@ module TencentCloud
         # @type FlinkVersion: String
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param Tags: 作业标签
+        # @type Tags: Array
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags
         
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -697,6 +699,7 @@ module TencentCloud
           @FolderId = folderid
           @FlinkVersion = flinkversion
           @WorkSpaceId = workspaceid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -709,6 +712,14 @@ module TencentCloud
           @FolderId = params['FolderId']
           @FlinkVersion = params['FlinkVersion']
           @WorkSpaceId = params['WorkSpaceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1997,10 +2008,13 @@ module TencentCloud
         # @param WorkSpaceName: 工作空间名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkSpaceName: String
+        # @param Tags: 作业标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags
         
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -2032,6 +2046,7 @@ module TencentCloud
           @FlinkVersion = flinkversion
           @WorkSpaceId = workspaceid
           @WorkSpaceName = workspacename
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2066,6 +2081,14 @@ module TencentCloud
           @FlinkVersion = params['FlinkVersion']
           @WorkSpaceId = params['WorkSpaceId']
           @WorkSpaceName = params['WorkSpaceName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2769,16 +2792,20 @@ module TencentCloud
         # @param FolderId: 目录ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
+        # @param RefJobStatusCountSet: 分状态统计关联作业数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefJobStatusCountSet: Array
 
-        attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :FileName, :FolderId
+        attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :FileName, :FolderId, :RefJobStatusCountSet
         
-        def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, filename=nil, folderid=nil)
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, filename=nil, folderid=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @Name = name
           @ResourceType = resourcetype
           @Remark = remark
           @FileName = filename
           @FolderId = folderid
+          @RefJobStatusCountSet = refjobstatuscountset
         end
 
         def deserialize(params)
@@ -2788,6 +2815,14 @@ module TencentCloud
           @Remark = params['Remark']
           @FileName = params['FileName']
           @FolderId = params['FolderId']
+          unless params['RefJobStatusCountSet'].nil?
+            @RefJobStatusCountSet = []
+            params['RefJobStatusCountSet'].each do |i|
+              refjobstatuscountitem_tmp = RefJobStatusCountItem.new
+              refjobstatuscountitem_tmp.deserialize(i)
+              @RefJobStatusCountSet << refjobstatuscountitem_tmp
+            end
+          end
         end
       end
 

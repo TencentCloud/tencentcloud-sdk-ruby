@@ -23227,10 +23227,13 @@ module TencentCloud
         # @param NetworkPolicyPluginError: 集群网络插件错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkPolicyPluginError: String
+        # @param ClusterNetworkSettings: 容器网络插件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterNetworkSettings: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :Region, :NetworkPolicyPlugin, :ClusterStatus, :TotalRuleCount, :EnableRuleCount, :NetworkPolicyPluginStatus, :NetworkPolicyPluginError
+        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :Region, :NetworkPolicyPlugin, :ClusterStatus, :TotalRuleCount, :EnableRuleCount, :NetworkPolicyPluginStatus, :NetworkPolicyPluginError, :ClusterNetworkSettings
         
-        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, region=nil, networkpolicyplugin=nil, clusterstatus=nil, totalrulecount=nil, enablerulecount=nil, networkpolicypluginstatus=nil, networkpolicypluginerror=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, region=nil, networkpolicyplugin=nil, clusterstatus=nil, totalrulecount=nil, enablerulecount=nil, networkpolicypluginstatus=nil, networkpolicypluginerror=nil, clusternetworksettings=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterVersion = clusterversion
@@ -23243,6 +23246,7 @@ module TencentCloud
           @EnableRuleCount = enablerulecount
           @NetworkPolicyPluginStatus = networkpolicypluginstatus
           @NetworkPolicyPluginError = networkpolicypluginerror
+          @ClusterNetworkSettings = clusternetworksettings
         end
 
         def deserialize(params)
@@ -23258,6 +23262,7 @@ module TencentCloud
           @EnableRuleCount = params['EnableRuleCount']
           @NetworkPolicyPluginStatus = params['NetworkPolicyPluginStatus']
           @NetworkPolicyPluginError = params['NetworkPolicyPluginError']
+          @ClusterNetworkSettings = params['ClusterNetworkSettings']
         end
       end
 

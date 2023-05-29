@@ -3734,7 +3734,7 @@ module TencentCloud
       class ModifyBlockIgnoreListRequest < TencentCloud::Common::AbstractModel
         # @param RuleType: 1封禁列表 2 放通列表
         # @type RuleType: Integer
-        # @param IOC: IP、Domain二选一，不能同时为空
+        # @param IOC: IP、Domain二选一（注：封禁列表，只能填写IP），不能同时为空
         # @type IOC: Array
         # @param IocAction: 可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效
         # @type IocAction: String
