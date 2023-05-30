@@ -4245,16 +4245,19 @@ module TencentCloud
         # @type TaskName: String
         # @param Sort: 默认为desc，可以取值desc和asc
         # @type Sort: String
+        # @param Count: 下载的日志条数
+        # @type Count: Integer
 
-        attr_accessor :Domain, :StartTime, :EndTime, :QueryString, :TaskName, :Sort
+        attr_accessor :Domain, :StartTime, :EndTime, :QueryString, :TaskName, :Sort, :Count
         
-        def initialize(domain=nil, starttime=nil, endtime=nil, querystring=nil, taskname=nil, sort=nil)
+        def initialize(domain=nil, starttime=nil, endtime=nil, querystring=nil, taskname=nil, sort=nil, count=nil)
           @Domain = domain
           @StartTime = starttime
           @EndTime = endtime
           @QueryString = querystring
           @TaskName = taskname
           @Sort = sort
+          @Count = count
         end
 
         def deserialize(params)
@@ -4264,6 +4267,7 @@ module TencentCloud
           @QueryString = params['QueryString']
           @TaskName = params['TaskName']
           @Sort = params['Sort']
+          @Count = params['Count']
         end
       end
 
@@ -4299,15 +4303,18 @@ module TencentCloud
         # @type Count: Integer
         # @param Region: 套餐购买地域，clb-waf暂时没有用到
         # @type Region: String
+        # @param BillingItem: 计费项
+        # @type BillingItem: String
 
-        attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region
+        attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region, :BillingItem
         
-        def initialize(resourceids=nil, validtime=nil, renewflag=nil, count=nil, region=nil)
+        def initialize(resourceids=nil, validtime=nil, renewflag=nil, count=nil, region=nil, billingitem=nil)
           @ResourceIds = resourceids
           @ValidTime = validtime
           @RenewFlag = renewflag
           @Count = count
           @Region = region
+          @BillingItem = billingitem
         end
 
         def deserialize(params)
@@ -4316,6 +4323,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @Count = params['Count']
           @Region = params['Region']
+          @BillingItem = params['BillingItem']
         end
       end
 
@@ -4377,7 +4385,7 @@ module TencentCloud
 
       # SearchAccessLog请求参数结构体
       class SearchAccessLogRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题，新版本此字段填空字符串
         # @type TopicId: String
         # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
         # @type From: Integer
@@ -4387,14 +4395,17 @@ module TencentCloud
         # @type Query: String
         # @param Limit: 单次查询返回的日志条数，最大值为100
         # @type Limit: Integer
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
+        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。
+        # 新版本此字段填空填
         # @type Context: String
         # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
+        # @param Page: 第几页，从0开始。新版本接口字段
+        # @type Page: Integer
 
-        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort
+        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort, :Page
         
-        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil)
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil, page=nil)
           @TopicId = topicid
           @From = from
           @To = to
@@ -4402,6 +4413,7 @@ module TencentCloud
           @Limit = limit
           @Context = context
           @Sort = sort
+          @Page = page
         end
 
         def deserialize(params)
@@ -4412,6 +4424,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Context = params['Context']
           @Sort = params['Sort']
+          @Page = params['Page']
         end
       end
 
@@ -4491,10 +4504,12 @@ module TencentCloud
         # @type Count: Integer
         # @param Sort: 默认为desc，可以取值desc和asc
         # @type Sort: String
+        # @param Page: 第几页，从0开始
+        # @type Page: Integer
 
-        attr_accessor :Domain, :StartTime, :EndTime, :Context, :QueryString, :Count, :Sort
+        attr_accessor :Domain, :StartTime, :EndTime, :Context, :QueryString, :Count, :Sort, :Page
         
-        def initialize(domain=nil, starttime=nil, endtime=nil, context=nil, querystring=nil, count=nil, sort=nil)
+        def initialize(domain=nil, starttime=nil, endtime=nil, context=nil, querystring=nil, count=nil, sort=nil, page=nil)
           @Domain = domain
           @StartTime = starttime
           @EndTime = endtime
@@ -4502,6 +4517,7 @@ module TencentCloud
           @QueryString = querystring
           @Count = count
           @Sort = sort
+          @Page = page
         end
 
         def deserialize(params)
@@ -4512,6 +4528,7 @@ module TencentCloud
           @QueryString = params['QueryString']
           @Count = params['Count']
           @Sort = params['Sort']
+          @Page = params['Page']
         end
       end
 

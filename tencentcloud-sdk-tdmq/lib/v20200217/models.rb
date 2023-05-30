@@ -7347,10 +7347,13 @@ module TencentCloud
         # @type NodeDistribution: Array
         # @param MaxStorage: 最大储存容量，单位：MB
         # @type MaxStorage: Integer
+        # @param CanEditRoute: 是否可以修改路由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanEditRoute: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -7359,6 +7362,7 @@ module TencentCloud
           @Version = version
           @NodeDistribution = nodedistribution
           @MaxStorage = maxstorage
+          @CanEditRoute = caneditroute
         end
 
         def deserialize(params)
@@ -7377,6 +7381,7 @@ module TencentCloud
             end
           end
           @MaxStorage = params['MaxStorage']
+          @CanEditRoute = params['CanEditRoute']
         end
       end
 

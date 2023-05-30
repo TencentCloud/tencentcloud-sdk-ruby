@@ -79,8 +79,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
-        # 水印数量上限 100，超过后需要先删除，再添加。
+        # 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。 水印数量上限 100，超过后需要先删除，再添加。
 
         # @param request: Request instance for AddLiveWatermark.
         # @type request: :class:`Tencentcloud::live::V20180801::AddLiveWatermarkRequest`

@@ -940,6 +940,12 @@ module TencentCloud
         # @param IdCard: 本次验证使用的身份证号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCard: String
+        # @param UseIDType: 用户认证时使用的证件号码类型：
+        # 0：二代身份证的证件号码
+        # 1：港澳台居住证的证件号码
+        # 2：其他（核验使用的证件号码非合法身份号码）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseIDType: Integer
         # @param Name: 本次验证使用的姓名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
@@ -1026,12 +1032,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VisaNum: String
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
         
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
+          @UseIDType = useidtype
           @Name = name
           @OcrNation = ocrnation
           @OcrAddress = ocraddress
@@ -1063,6 +1070,7 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @ErrMsg = params['ErrMsg']
           @IdCard = params['IdCard']
+          @UseIDType = params['UseIDType']
           @Name = params['Name']
           @OcrNation = params['OcrNation']
           @OcrAddress = params['OcrAddress']

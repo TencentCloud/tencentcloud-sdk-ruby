@@ -521,6 +521,28 @@ module TencentCloud
         end
       end
 
+      # 配置CFSTurbo参数
+      class CFSTurbo < TencentCloud::Common::AbstractModel
+        # @param Id: CFSTurbo实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Path: CFSTurbo路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+
+        attr_accessor :Id, :Path
+        
+        def initialize(id=nil, path=nil)
+          @Id = id
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Path = params['Path']
+        end
+      end
+
       # 容器信息
       class Container < TencentCloud::Common::AbstractModel
         # @param Name: 名字
@@ -1705,13 +1727,16 @@ module TencentCloud
         # @param HDFSSource: 来自HDFS的数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HDFSSource: :class:`Tencentcloud::Tione.v20211111.models.HDFSConfig`
-        # @param GooseFSSource: 配饰GooseFS的数据
+        # @param GooseFSSource: 配置GooseFS的数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GooseFSSource: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
+        # @param CFSTurboSource: 配置TurboFS的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSTurboSource: :class:`Tencentcloud::Tione.v20211111.models.CFSTurbo`
 
-        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource
+        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource
         
-        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil)
+        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil)
           @MappingPath = mappingpath
           @DataSourceType = datasourcetype
           @DataSetSource = datasetsource
@@ -1719,6 +1744,7 @@ module TencentCloud
           @CFSSource = cfssource
           @HDFSSource = hdfssource
           @GooseFSSource = goosefssource
+          @CFSTurboSource = cfsturbosource
         end
 
         def deserialize(params)
@@ -1743,6 +1769,10 @@ module TencentCloud
           unless params['GooseFSSource'].nil?
             @GooseFSSource = GooseFS.new
             @GooseFSSource.deserialize(params['GooseFSSource'])
+          end
+          unless params['CFSTurboSource'].nil?
+            @CFSTurboSource = CFSTurbo.new
+            @CFSTurboSource.deserialize(params['CFSTurboSource'])
           end
         end
       end
@@ -6027,10 +6057,8 @@ module TencentCloud
         # @param RealGpu: 创建或更新时无需填写，仅展示需要关注
         # 后付费非整卡实例对应的实际的Gpu卡资源, 表示gpu资源对应实际的gpu卡个数.
         # RealGpu=100表示实际使用了一张gpu卡, 对应实际的实例机型, 有可能代表带有1/4卡的实例4个, 或者带有1/2卡的实例2个, 或者带有1卡的实力1个.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealGpu: Integer
         # @param RealGpuDetailSet: 创建或更新时无需填写，仅展示需要关注。详细的GPU使用信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealGpuDetailSet: Array
 
         attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet

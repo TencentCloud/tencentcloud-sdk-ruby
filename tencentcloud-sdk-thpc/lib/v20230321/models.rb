@@ -382,12 +382,14 @@ module TencentCloud
         # @type LoginNodeSet: Array
         # @param LoginNodeCount: 登录节点数量。
         # @type LoginNodeCount: Integer
+        # @param AutoScalingType: 弹性伸缩类型。<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        # @type AutoScalingType: String
         # @param VpcId: 集群所属私有网络ID。
         # @type VpcId: String
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :VpcId
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId
         
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, vpcid=nil)
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
@@ -400,6 +402,7 @@ module TencentCloud
           @ManagerNodeSet = managernodeset
           @LoginNodeSet = loginnodeset
           @LoginNodeCount = loginnodecount
+          @AutoScalingType = autoscalingtype
           @VpcId = vpcid
         end
 
@@ -440,6 +443,7 @@ module TencentCloud
             end
           end
           @LoginNodeCount = params['LoginNodeCount']
+          @AutoScalingType = params['AutoScalingType']
           @VpcId = params['VpcId']
         end
       end

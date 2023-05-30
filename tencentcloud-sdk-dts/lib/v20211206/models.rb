@@ -938,6 +938,38 @@ module TencentCloud
         end
       end
 
+      # CreateModifyCheckSyncJob请求参数结构体
+      class CreateModifyCheckSyncJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 同步任务id
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # CreateModifyCheckSyncJob返回参数结构体
+      class CreateModifyCheckSyncJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSyncJob请求参数结构体
       class CreateSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param PayMode: 付款类型, 如：PrePay(表示包年包月)、PostPay(表示按时按量)
@@ -2184,6 +2216,69 @@ module TencentCloud
         end
       end
 
+      # DescribeModifyCheckSyncJobResult请求参数结构体
+      class DescribeModifyCheckSyncJobResultRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 同步任务id
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeModifyCheckSyncJobResult返回参数结构体
+      class DescribeModifyCheckSyncJobResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
+        # @type Status: String
+        # @param StepCount: 校验的步骤总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepCount: Integer
+        # @param StepCur: 当前所在步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepCur: Integer
+        # @param Progress: 总体进度，范围为[0,100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param StepInfos: 步骤详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :StepCount, :StepCur, :Progress, :StepInfos, :RequestId
+        
+        def initialize(status=nil, stepcount=nil, stepcur=nil, progress=nil, stepinfos=nil, requestid=nil)
+          @Status = status
+          @StepCount = stepcount
+          @StepCur = stepcur
+          @Progress = progress
+          @StepInfos = stepinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @StepCount = params['StepCount']
+          @StepCur = params['StepCur']
+          @Progress = params['Progress']
+          unless params['StepInfos'].nil?
+            @StepInfos = []
+            params['StepInfos'].each do |i|
+              stepinfo_tmp = StepInfo.new
+              stepinfo_tmp.deserialize(i)
+              @StepInfos << stepinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如sync-werwfs23
@@ -2484,6 +2579,48 @@ module TencentCloud
           @UpperBoundary = params['UpperBoundary']
           @CostTime = params['CostTime']
           @FinishedAt = params['FinishedAt']
+        end
+      end
+
+      # 数据同步中的选项
+      class DynamicOptions < TencentCloud::Common::AbstractModel
+        # @param OpTypes: 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)，PartialDDL(自定义,和DdlOptions一起起作用 )；必填、dts会用该值覆盖原有的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpTypes: Array
+        # @param DdlOptions: DDL同步选项，具体描述要同步那些DDL; 当OpTypes取值PartialDDL时、字段不能为空；必填、dts会用该值覆盖原有的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdlOptions: Array
+        # @param ConflictHandleType: 冲突处理选项，ReportError(报错)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖); 目前目标端为kafka的链路不支持修改该配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConflictHandleType: String
+        # @param ConflictHandleOption: 冲突处理的详细选项，如条件覆盖中的条件行和条件操作；不能部分更新该选项的内部字段；有更新时、需要全量更新该字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConflictHandleOption: :class:`Tencentcloud::Dts.v20211206.models.ConflictHandleOption`
+
+        attr_accessor :OpTypes, :DdlOptions, :ConflictHandleType, :ConflictHandleOption
+        
+        def initialize(optypes=nil, ddloptions=nil, conflicthandletype=nil, conflicthandleoption=nil)
+          @OpTypes = optypes
+          @DdlOptions = ddloptions
+          @ConflictHandleType = conflicthandletype
+          @ConflictHandleOption = conflicthandleoption
+        end
+
+        def deserialize(params)
+          @OpTypes = params['OpTypes']
+          unless params['DdlOptions'].nil?
+            @DdlOptions = []
+            params['DdlOptions'].each do |i|
+              ddloption_tmp = DdlOption.new
+              ddloption_tmp.deserialize(i)
+              @DdlOptions << ddloption_tmp
+            end
+          end
+          @ConflictHandleType = params['ConflictHandleType']
+          unless params['ConflictHandleOption'].nil?
+            @ConflictHandleOption = ConflictHandleOption.new
+            @ConflictHandleOption.deserialize(params['ConflictHandleOption'])
+          end
         end
       end
 
@@ -3324,6 +3461,52 @@ module TencentCloud
         end
       end
 
+      # ModifySyncJobConfig请求参数结构体
+      class ModifySyncJobConfigRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 同步任务id
+        # @type JobId: String
+        # @param DynamicObjects: 修改后的同步对象
+        # @type DynamicObjects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
+        # @param DynamicOptions: 修改后的同步任务选项
+        # @type DynamicOptions: :class:`Tencentcloud::Dts.v20211206.models.DynamicOptions`
+
+        attr_accessor :JobId, :DynamicObjects, :DynamicOptions
+        
+        def initialize(jobid=nil, dynamicobjects=nil, dynamicoptions=nil)
+          @JobId = jobid
+          @DynamicObjects = dynamicobjects
+          @DynamicOptions = dynamicoptions
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          unless params['DynamicObjects'].nil?
+            @DynamicObjects = Objects.new
+            @DynamicObjects.deserialize(params['DynamicObjects'])
+          end
+          unless params['DynamicOptions'].nil?
+            @DynamicOptions = DynamicOptions.new
+            @DynamicOptions.deserialize(params['DynamicOptions'])
+          end
+        end
+      end
+
+      # ModifySyncJobConfig返回参数结构体
+      class ModifySyncJobConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
         # @param Mode: 同步对象类型 Partial(部分对象)
@@ -3969,6 +4152,38 @@ module TencentCloud
 
       # StartMigrateJob返回参数结构体
       class StartMigrateJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartModifySyncJob请求参数结构体
+      class StartModifySyncJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 同步任务id
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # StartModifySyncJob返回参数结构体
+      class StartModifySyncJobResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

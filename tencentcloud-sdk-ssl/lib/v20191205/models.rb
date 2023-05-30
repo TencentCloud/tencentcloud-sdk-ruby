@@ -681,15 +681,19 @@ module TencentCloud
       class CommitCertificateInformationRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
+        # @param VerifyType: 域名验证方式
+        # @type VerifyType: String
 
-        attr_accessor :CertificateId
+        attr_accessor :CertificateId, :VerifyType
         
-        def initialize(certificateid=nil)
+        def initialize(certificateid=nil, verifytype=nil)
           @CertificateId = certificateid
+          @VerifyType = verifytype
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
+          @VerifyType = params['VerifyType']
         end
       end
 

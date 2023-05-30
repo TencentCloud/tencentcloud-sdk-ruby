@@ -154,16 +154,22 @@ module TencentCloud
         # @type Width: Integer
         # @param Height: 水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         # @type Height: Integer
+        # @param BackgroundWidth: 背景水印宽度。默认宽度1920。
+        # @type BackgroundWidth: Integer
+        # @param BackgroundHeight: 背景水印高度。默认高度1080。
+        # @type BackgroundHeight: Integer
 
-        attr_accessor :PictureUrl, :WatermarkName, :XPosition, :YPosition, :Width, :Height
+        attr_accessor :PictureUrl, :WatermarkName, :XPosition, :YPosition, :Width, :Height, :BackgroundWidth, :BackgroundHeight
         
-        def initialize(pictureurl=nil, watermarkname=nil, xposition=nil, yposition=nil, width=nil, height=nil)
+        def initialize(pictureurl=nil, watermarkname=nil, xposition=nil, yposition=nil, width=nil, height=nil, backgroundwidth=nil, backgroundheight=nil)
           @PictureUrl = pictureurl
           @WatermarkName = watermarkname
           @XPosition = xposition
           @YPosition = yposition
           @Width = width
           @Height = height
+          @BackgroundWidth = backgroundwidth
+          @BackgroundHeight = backgroundheight
         end
 
         def deserialize(params)
@@ -173,6 +179,8 @@ module TencentCloud
           @YPosition = params['YPosition']
           @Width = params['Width']
           @Height = params['Height']
+          @BackgroundWidth = params['BackgroundWidth']
+          @BackgroundHeight = params['BackgroundHeight']
         end
       end
 
@@ -10802,10 +10810,14 @@ module TencentCloud
         # @type Width: Integer
         # @param Height: 水印高度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         # @type Height: Integer
+        # @param BackgroundWidth: 背景水印宽度。默认宽度1920。
+        # @type BackgroundWidth: Integer
+        # @param BackgroundHeight: 背景水印高度。默认高度1080。
+        # @type BackgroundHeight: Integer
 
-        attr_accessor :WatermarkId, :PictureUrl, :XPosition, :YPosition, :WatermarkName, :Width, :Height
+        attr_accessor :WatermarkId, :PictureUrl, :XPosition, :YPosition, :WatermarkName, :Width, :Height, :BackgroundWidth, :BackgroundHeight
         
-        def initialize(watermarkid=nil, pictureurl=nil, xposition=nil, yposition=nil, watermarkname=nil, width=nil, height=nil)
+        def initialize(watermarkid=nil, pictureurl=nil, xposition=nil, yposition=nil, watermarkname=nil, width=nil, height=nil, backgroundwidth=nil, backgroundheight=nil)
           @WatermarkId = watermarkid
           @PictureUrl = pictureurl
           @XPosition = xposition
@@ -10813,6 +10825,8 @@ module TencentCloud
           @WatermarkName = watermarkname
           @Width = width
           @Height = height
+          @BackgroundWidth = backgroundwidth
+          @BackgroundHeight = backgroundheight
         end
 
         def deserialize(params)
@@ -10823,6 +10837,8 @@ module TencentCloud
           @WatermarkName = params['WatermarkName']
           @Width = params['Width']
           @Height = params['Height']
+          @BackgroundWidth = params['BackgroundWidth']
+          @BackgroundHeight = params['BackgroundHeight']
         end
       end
 
@@ -10863,10 +10879,14 @@ module TencentCloud
         # @type Width: Integer
         # @param Height: 水印高。
         # @type Height: Integer
+        # @param BackgroundWidth: 背景水印宽。
+        # @type BackgroundWidth: Integer
+        # @param BackgroundHeight: 背景水印高。
+        # @type BackgroundHeight: Integer
 
-        attr_accessor :WatermarkId, :PictureUrl, :XPosition, :YPosition, :WatermarkName, :Status, :CreateTime, :Width, :Height
+        attr_accessor :WatermarkId, :PictureUrl, :XPosition, :YPosition, :WatermarkName, :Status, :CreateTime, :Width, :Height, :BackgroundWidth, :BackgroundHeight
         
-        def initialize(watermarkid=nil, pictureurl=nil, xposition=nil, yposition=nil, watermarkname=nil, status=nil, createtime=nil, width=nil, height=nil)
+        def initialize(watermarkid=nil, pictureurl=nil, xposition=nil, yposition=nil, watermarkname=nil, status=nil, createtime=nil, width=nil, height=nil, backgroundwidth=nil, backgroundheight=nil)
           @WatermarkId = watermarkid
           @PictureUrl = pictureurl
           @XPosition = xposition
@@ -10876,6 +10896,8 @@ module TencentCloud
           @CreateTime = createtime
           @Width = width
           @Height = height
+          @BackgroundWidth = backgroundwidth
+          @BackgroundHeight = backgroundheight
         end
 
         def deserialize(params)
@@ -10888,6 +10910,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Width = params['Width']
           @Height = params['Height']
+          @BackgroundWidth = params['BackgroundWidth']
+          @BackgroundHeight = params['BackgroundHeight']
         end
       end
 

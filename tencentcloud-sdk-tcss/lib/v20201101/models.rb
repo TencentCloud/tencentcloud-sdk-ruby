@@ -3346,17 +3346,37 @@ module TencentCloud
         # @param Version: 组件版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param FixedVersion: 可修复版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixedVersion: String
+        # @param Path: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :Component, :Version
+        attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         
-        def initialize(component=nil, version=nil)
+        def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
           @Version = version
+          @FixedVersion = fixedversion
+          @Path = path
+          @Type = type
+          @Name = name
         end
 
         def deserialize(params)
           @Component = params['Component']
           @Version = params['Version']
+          @FixedVersion = params['FixedVersion']
+          @Path = params['Path']
+          @Type = params['Type']
+          @Name = params['Name']
         end
       end
 

@@ -225,6 +225,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在修改同步任务的配置后、通过该接口校验当前任务是否支持修改对象操作
+
+        # @param request: Request instance for CreateModifyCheckSyncJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::CreateModifyCheckSyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::CreateModifyCheckSyncJobResponse`
+        def CreateModifyCheckSyncJob(request)
+          body = send_request('CreateModifyCheckSyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModifyCheckSyncJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个同步任务
 
         # @param request: Request instance for CreateSyncJob.
@@ -429,6 +453,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMigrationJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在创建修改对象的校验任务后、通过该接口查看校验任务的结果
+
+        # @param request: Request instance for DescribeModifyCheckSyncJobResult.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeModifyCheckSyncJobResultRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeModifyCheckSyncJobResultResponse`
+        def DescribeModifyCheckSyncJobResult(request)
+          body = send_request('DescribeModifyCheckSyncJobResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModifyCheckSyncJobResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -669,6 +717,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMigrationJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口支持在同步任务启动后修改任务的配置
+        # 修改同步配置的完整流程：修改同步任务配置->创建修改同步任务配置的校验任务->查询修改配置的校验任务的结果->启动修改配置任务
+
+        # @param request: Request instance for ModifySyncJobConfig.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifySyncJobConfigRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifySyncJobConfigResponse`
+        def ModifySyncJobConfig(request)
+          body = send_request('ModifySyncJobConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySyncJobConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -933,6 +1006,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartMigrateJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在查询修改对象的校验任务的结果中的status为success后、通过该接口开始修改配置流程
+
+        # @param request: Request instance for StartModifySyncJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::StartModifySyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::StartModifySyncJobResponse`
+        def StartModifySyncJob(request)
+          body = send_request('StartModifySyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartModifySyncJobResponse.new
             model.deserialize(response['Response'])
             model
           else

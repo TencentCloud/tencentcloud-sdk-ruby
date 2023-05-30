@@ -8609,6 +8609,48 @@ module TencentCloud
         end
       end
 
+      # 诊断结果项。
+      class DiagnoseResult < TencentCloud::Common::AbstractModel
+        # @param Category: 诊断出的异常类别。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Type: 诊断出的具体异常类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Timestamp: 诊断出异常开始的PTS时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Float
+        # @param Description: 诊断出的异常描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DateTime: 诊断到异常的北京时间，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateTime: String
+        # @param SeverityLevel: 诊断出的异常级别。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SeverityLevel: String
+
+        attr_accessor :Category, :Type, :Timestamp, :Description, :DateTime, :SeverityLevel
+        
+        def initialize(category=nil, type=nil, timestamp=nil, description=nil, datetime=nil, severitylevel=nil)
+          @Category = category
+          @Type = type
+          @Timestamp = timestamp
+          @Description = description
+          @DateTime = datetime
+          @SeverityLevel = severitylevel
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @Type = params['Type']
+          @Timestamp = params['Timestamp']
+          @Description = params['Description']
+          @DateTime = params['DateTime']
+          @SeverityLevel = params['SeverityLevel']
+        end
+      end
+
       # DisableSchedule请求参数结构体
       class DisableScheduleRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleId: 编排唯一表示。
@@ -10105,6 +10147,96 @@ module TencentCloud
         end
       end
 
+      # 直播流分析结果
+      class LiveStreamAiAnalysisResultInfo < TencentCloud::Common::AbstractModel
+        # @param ResultSet: 直播分析子任务结果，暂时只支持直播拆条。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultSet: Array
+
+        attr_accessor :ResultSet
+        
+        def initialize(resultset=nil)
+          @ResultSet = resultset
+        end
+
+        def deserialize(params)
+          unless params['ResultSet'].nil?
+            @ResultSet = []
+            params['ResultSet'].each do |i|
+              livestreamaianalysisresultitem_tmp = LiveStreamAiAnalysisResultItem.new
+              livestreamaianalysisresultitem_tmp.deserialize(i)
+              @ResultSet << livestreamaianalysisresultitem_tmp
+            end
+          end
+        end
+      end
+
+      # 直播流 AI 分析结果
+      class LiveStreamAiAnalysisResultItem < TencentCloud::Common::AbstractModel
+        # @param Type: 结果的类型，取值范围：
+        # <li>SegmentRecognition：拆条。</li>
+        # @type Type: String
+        # @param SegmentResultSet: 拆条结果，当 Type 为
+        # SegmentRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentResultSet: Array
+
+        attr_accessor :Type, :SegmentResultSet
+        
+        def initialize(type=nil, segmentresultset=nil)
+          @Type = type
+          @SegmentResultSet = segmentresultset
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['SegmentResultSet'].nil?
+            @SegmentResultSet = []
+            params['SegmentResultSet'].each do |i|
+              segmentrecognitionitem_tmp = SegmentRecognitionItem.new
+              segmentrecognitionitem_tmp.deserialize(i)
+              @SegmentResultSet << segmentrecognitionitem_tmp
+            end
+          end
+        end
+      end
+
+      # 直播流质检结果
+      class LiveStreamAiQualityControlResultInfo < TencentCloud::Common::AbstractModel
+        # @param QualityControlResults: 质检结果列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlResults: Array
+        # @param DiagnoseResults: 格式诊断结果列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseResults: Array
+
+        attr_accessor :QualityControlResults, :DiagnoseResults
+        
+        def initialize(qualitycontrolresults=nil, diagnoseresults=nil)
+          @QualityControlResults = qualitycontrolresults
+          @DiagnoseResults = diagnoseresults
+        end
+
+        def deserialize(params)
+          unless params['QualityControlResults'].nil?
+            @QualityControlResults = []
+            params['QualityControlResults'].each do |i|
+              qualitycontrolresult_tmp = QualityControlResult.new
+              qualitycontrolresult_tmp.deserialize(i)
+              @QualityControlResults << qualitycontrolresult_tmp
+            end
+          end
+          unless params['DiagnoseResults'].nil?
+            @DiagnoseResults = []
+            params['DiagnoseResults'].each do |i|
+              diagnoseresult_tmp = DiagnoseResult.new
+              diagnoseresult_tmp.deserialize(i)
+              @DiagnoseResults << diagnoseresult_tmp
+            end
+          end
+        end
+      end
+
       # 直播流 AI 识别结果
       class LiveStreamAiRecognitionResultInfo < TencentCloud::Common::AbstractModel
         # @param ResultSet: 内容识别结果列表。
@@ -10508,14 +10640,26 @@ module TencentCloud
         # @type EndPtsTime: Float
         # @param Confidence: 识别片段置信度。取值：0~100。
         # @type Confidence: Float
+        # @param StartTime: 识别开始UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 识别结束UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param SteadyState: 稳态标记。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SteadyState: Boolean
 
-        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence
+        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :StartTime, :EndTime, :SteadyState
         
-        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil)
+        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, starttime=nil, endtime=nil, steadystate=nil)
           @Text = text
           @StartPtsTime = startptstime
           @EndPtsTime = endptstime
           @Confidence = confidence
+          @StartTime = starttime
+          @EndTime = endtime
+          @SteadyState = steadystate
         end
 
         def deserialize(params)
@@ -10523,6 +10667,9 @@ module TencentCloud
           @StartPtsTime = params['StartPtsTime']
           @EndPtsTime = params['EndPtsTime']
           @Confidence = params['Confidence']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SteadyState = params['SteadyState']
         end
       end
 
@@ -10765,15 +10912,27 @@ module TencentCloud
         # @type Confidence: Float
         # @param Trans: 翻译文本。
         # @type Trans: String
+        # @param StartTime: 翻译开始UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 翻译结束UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param SteadyState: 稳态标记。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SteadyState: Boolean
 
-        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :Trans
+        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :Trans, :StartTime, :EndTime, :SteadyState
         
-        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, trans=nil)
+        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, trans=nil, starttime=nil, endtime=nil, steadystate=nil)
           @Text = text
           @StartPtsTime = startptstime
           @EndPtsTime = endptstime
           @Confidence = confidence
           @Trans = trans
+          @StartTime = starttime
+          @EndTime = endtime
+          @SteadyState = steadystate
         end
 
         def deserialize(params)
@@ -10782,6 +10941,9 @@ module TencentCloud
           @EndPtsTime = params['EndPtsTime']
           @Confidence = params['Confidence']
           @Trans = params['Trans']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SteadyState = params['SteadyState']
         end
       end
 
@@ -13740,6 +13902,12 @@ module TencentCloud
         # @param AiRecognitionResultInfo: 内容识别结果，当 NotificationType 为 AiRecognitionResult 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamAiRecognitionResultInfo`
+        # @param AiAnalysisResultInfo: 内容分析结果，当 NotificationType 为 AiAnalysisResult 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiAnalysisResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamAiAnalysisResultInfo`
+        # @param AiQualityControlResultInfo: 媒体质检结果，当 NotificationType 为 AiQualityControlResult 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiQualityControlResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamAiQualityControlResultInfo`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
@@ -13747,14 +13915,16 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :SessionId, :SessionContext, :RequestId
+        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :AiAnalysisResultInfo, :AiQualityControlResultInfo, :SessionId, :SessionContext, :RequestId
         
-        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
+        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, aianalysisresultinfo=nil, aiqualitycontrolresultinfo=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
           @NotificationType = notificationtype
           @TaskId = taskid
           @ProcessEofInfo = processeofinfo
           @AiReviewResultInfo = aireviewresultinfo
           @AiRecognitionResultInfo = airecognitionresultinfo
+          @AiAnalysisResultInfo = aianalysisresultinfo
+          @AiQualityControlResultInfo = aiqualitycontrolresultinfo
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @RequestId = requestid
@@ -13774,6 +13944,14 @@ module TencentCloud
           unless params['AiRecognitionResultInfo'].nil?
             @AiRecognitionResultInfo = LiveStreamAiRecognitionResultInfo.new
             @AiRecognitionResultInfo.deserialize(params['AiRecognitionResultInfo'])
+          end
+          unless params['AiAnalysisResultInfo'].nil?
+            @AiAnalysisResultInfo = LiveStreamAiAnalysisResultInfo.new
+            @AiAnalysisResultInfo.deserialize(params['AiAnalysisResultInfo'])
+          end
+          unless params['AiQualityControlResultInfo'].nil?
+            @AiQualityControlResultInfo = LiveStreamAiQualityControlResultInfo.new
+            @AiQualityControlResultInfo.deserialize(params['AiQualityControlResultInfo'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
@@ -15831,6 +16009,35 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Intensity = params['Intensity']
+        end
+      end
+
+      # 智能拆条片段。
+      class SegmentRecognitionItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 置信度。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 片段起始时间偏移。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 片段结束时间偏移。
+        # @type EndTimeOffset: Float
+        # @param SegmentUrl: 拆条片段URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentUrl: String
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl
+        
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @SegmentUrl = segmenturl
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @SegmentUrl = params['SegmentUrl']
         end
       end
 
