@@ -678,7 +678,7 @@ module TencentCloud
       class CreateSDKLoginTokenRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param SeatUserId: 坐席账号。
+        # @param SeatUserId: 座席账号。
         # @type SeatUserId: String
 
         attr_accessor :SdkAppId, :SeatUserId
@@ -2168,7 +2168,7 @@ module TencentCloud
         end
       end
 
-      # 批量添加客服时，返回出错客服的像个信息
+      # 批量添加客服时，返回出错客服的信息
       class ErrStaffItem < TencentCloud::Common::AbstractModel
         # @param StaffEmail: 坐席邮箱地址
         # @type StaffEmail: String
@@ -2522,13 +2522,13 @@ module TencentCloud
       class ModifyStaffRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID
         # @type SdkAppId: Integer
-        # @param Email: 坐席账户
+        # @param Email: 座席账户
         # @type Email: String
-        # @param Name: 坐席名称
+        # @param Name: 座席名称
         # @type Name: String
-        # @param Phone: 坐席手机号（带0086前缀,示例：008618011111111）
+        # @param Phone: 座席手机号（带0086前缀,示例：008618011111111）
         # @type Phone: String
-        # @param Nick: 坐席昵称
+        # @param Nick: 座席昵称
         # @type Nick: String
         # @param SkillGroupIds: 绑定技能组ID列表
         # @type SkillGroupIds: Array

@@ -102,10 +102,12 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param NodeType: 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。<li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
         # @type NodeType: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType
+        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType, :ProjectId
         
-        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil)
+        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil, projectid=nil)
           @Placement = placement
           @ClusterId = clusterid
           @VirtualPrivateCloud = virtualprivatecloud
@@ -125,6 +127,7 @@ module TencentCloud
           @NodeRole = noderole
           @DryRun = dryrun
           @NodeType = nodetype
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -172,6 +175,7 @@ module TencentCloud
           @NodeRole = params['NodeRole']
           @DryRun = params['DryRun']
           @NodeType = params['NodeType']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -467,10 +471,12 @@ module TencentCloud
         # 不指定节点显示名称则默认显示‘未命名’。
         # 最多支持60个字符。
         # @type InstanceName: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
         
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -478,6 +484,7 @@ module TencentCloud
           @DataDisks = datadisks
           @InternetAccessible = internetaccessible
           @InstanceName = instancename
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -504,6 +511,7 @@ module TencentCloud
             @InternetAccessible.deserialize(params['InternetAccessible'])
           end
           @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -1221,15 +1229,18 @@ module TencentCloud
         # @type InstanceType: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.VirtualPrivateCloud`
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :Placement, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :VirtualPrivateCloud
+        attr_accessor :Placement, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :VirtualPrivateCloud, :ProjectId
         
-        def initialize(placement=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, virtualprivatecloud=nil)
+        def initialize(placement=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, virtualprivatecloud=nil, projectid=nil)
           @Placement = placement
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
           @VirtualPrivateCloud = virtualprivatecloud
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1247,6 +1258,7 @@ module TencentCloud
             @VirtualPrivateCloud = VirtualPrivateCloud.new
             @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
           end
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -1514,10 +1526,12 @@ module TencentCloud
         # 不指定节点显示名称则默认显示‘未命名’。
         # 最多支持60个字符。
         # @type InstanceName: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
         
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -1525,6 +1539,7 @@ module TencentCloud
           @DataDisks = datadisks
           @InternetAccessible = internetaccessible
           @InstanceName = instancename
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1551,6 +1566,7 @@ module TencentCloud
             @InternetAccessible.deserialize(params['InternetAccessible'])
           end
           @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -1607,10 +1623,12 @@ module TencentCloud
         # 购买多个节点，如果不指定模式串，则在节点显示名称添加后缀`1、2...n`，其中`n`表示购买节点的数量，例如`server_`，购买2个时，节点显示名称分别为`server_1`，`server_2`。</li><li>
         # 最多支持60个字符（包含模式串）。
         # @type InstanceName: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
         
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -1618,6 +1636,7 @@ module TencentCloud
           @DataDisks = datadisks
           @InternetAccessible = internetaccessible
           @InstanceName = instancename
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1644,6 +1663,7 @@ module TencentCloud
             @InternetAccessible.deserialize(params['InternetAccessible'])
           end
           @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
         end
       end
 

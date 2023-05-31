@@ -2019,19 +2019,23 @@ module TencentCloud
         # @type PolicyIndex: Integer
         # @param PolicyVersion: 白名单版本
         # @type PolicyVersion: String
+        # @param CidrBlock: 网段或IP(互斥)
+        # @type CidrBlock: String
 
-        attr_accessor :RegistryId, :PolicyIndex, :PolicyVersion
+        attr_accessor :RegistryId, :PolicyIndex, :PolicyVersion, :CidrBlock
         
-        def initialize(registryid=nil, policyindex=nil, policyversion=nil)
+        def initialize(registryid=nil, policyindex=nil, policyversion=nil, cidrblock=nil)
           @RegistryId = registryid
           @PolicyIndex = policyindex
           @PolicyVersion = policyversion
+          @CidrBlock = cidrblock
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @PolicyIndex = params['PolicyIndex']
           @PolicyVersion = params['PolicyVersion']
+          @CidrBlock = params['CidrBlock']
         end
       end
 

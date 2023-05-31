@@ -6341,10 +6341,20 @@ module TencentCloud
         # @type TaskCycleUnitList: String
         # @param ProductNameList: 任务所属产品类型
         # @type ProductNameList: String
+        # @param SourceServiceId: 数据源id或（仅针对离线同步任务）来源数据源id
+        # @type SourceServiceId: String
+        # @param SourceServiceType: 数据源类型或（仅针对离线同步任务）来源数据源类型
+        # @type SourceServiceType: String
+        # @param TargetServiceId: （仅针对离线同步任务）目标数据源id
+        # @type TargetServiceId: String
+        # @param TargetServiceType: （仅针对离线同步任务）目标数据源类型
+        # @type TargetServiceType: String
+        # @param AlarmType: 告警类型，多个类型以逗号分隔
+        # @type AlarmType: String
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType
         
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -6360,6 +6370,11 @@ module TencentCloud
           @StatusList = statuslist
           @TaskCycleUnitList = taskcycleunitlist
           @ProductNameList = productnamelist
+          @SourceServiceId = sourceserviceid
+          @SourceServiceType = sourceservicetype
+          @TargetServiceId = targetserviceid
+          @TargetServiceType = targetservicetype
+          @AlarmType = alarmtype
         end
 
         def deserialize(params)
@@ -6378,6 +6393,11 @@ module TencentCloud
           @StatusList = params['StatusList']
           @TaskCycleUnitList = params['TaskCycleUnitList']
           @ProductNameList = params['ProductNameList']
+          @SourceServiceId = params['SourceServiceId']
+          @SourceServiceType = params['SourceServiceType']
+          @TargetServiceId = params['TargetServiceId']
+          @TargetServiceType = params['TargetServiceType']
+          @AlarmType = params['AlarmType']
         end
       end
 
@@ -16837,10 +16857,37 @@ module TencentCloud
         # @param DelayTime: 延迟时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: Integer
+        # @param ExecutionStartTime: 执行开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionStartTime: String
+        # @param ExecutionEndTime: 执行结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionEndTime: String
+        # @param Layer: 层级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Layer: String
+        # @param SourceServiceId: 来源数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceServiceId: String
+        # @param SourceServiceType: 来源数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceServiceType: String
+        # @param TargetServiceId: 目标数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetServiceId: String
+        # @param TargetServiceType: 目标数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetServiceType: String
+        # @param AlarmType: 任务告警类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmType: String
+        # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime
         
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -16863,6 +16910,15 @@ module TencentCloud
           @VirtualFlag = virtualflag
           @TaskAction = taskaction
           @DelayTime = delaytime
+          @ExecutionStartTime = executionstarttime
+          @ExecutionEndTime = executionendtime
+          @Layer = layer
+          @SourceServiceId = sourceserviceid
+          @SourceServiceType = sourceservicetype
+          @TargetServiceId = targetserviceid
+          @TargetServiceType = targetservicetype
+          @AlarmType = alarmtype
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -16888,6 +16944,15 @@ module TencentCloud
           @VirtualFlag = params['VirtualFlag']
           @TaskAction = params['TaskAction']
           @DelayTime = params['DelayTime']
+          @ExecutionStartTime = params['ExecutionStartTime']
+          @ExecutionEndTime = params['ExecutionEndTime']
+          @Layer = params['Layer']
+          @SourceServiceId = params['SourceServiceId']
+          @SourceServiceType = params['SourceServiceType']
+          @TargetServiceId = params['TargetServiceId']
+          @TargetServiceType = params['TargetServiceType']
+          @AlarmType = params['AlarmType']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -17269,14 +17334,20 @@ module TencentCloud
         # @type Items: Array
         # @param TotalPage: 总页数
         # @type TotalPage: Integer
+        # @param PageCount: 页数
+        # @type PageCount: Integer
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
 
-        attr_accessor :PageNumber, :PageSize, :Items, :TotalPage
+        attr_accessor :PageNumber, :PageSize, :Items, :TotalPage, :PageCount, :TotalCount
         
-        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalpage=nil)
+        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalpage=nil, pagecount=nil, totalcount=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @Items = items
           @TotalPage = totalpage
+          @PageCount = pagecount
+          @TotalCount = totalcount
         end
 
         def deserialize(params)
@@ -17291,6 +17362,8 @@ module TencentCloud
             end
           end
           @TotalPage = params['TotalPage']
+          @PageCount = params['PageCount']
+          @TotalCount = params['TotalCount']
         end
       end
 

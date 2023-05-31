@@ -77,6 +77,11 @@ module TencentCloud
         # RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
         # 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         # @type RunMode: String
+        # @param ApplicationParameters: 应用启动参数。
+        # 如果请求的是多应用共享项目，此参数生效；
+        # 如果请求的是关闭预启动的单应用独享项目，此参数生效；
+        # 如果请求的是开启预启动的单应用独享项目，此参数失效。
+        # @type ApplicationParameters: String
         # @param HostUserId: 【多人互动】房主用户ID，在多人互动模式下为必填字段。
         # 如果该用户是房主，HostUserId需要和UserId保持一致；
         # 如果该用户非房主，HostUserId需要填写房主的HostUserId。
@@ -86,13 +91,14 @@ module TencentCloud
         # Viewer：观察者（只能观看，无法操作）
         # @type Role: String
 
-        attr_accessor :UserId, :UserIp, :ClientSession, :RunMode, :HostUserId, :Role
+        attr_accessor :UserId, :UserIp, :ClientSession, :RunMode, :ApplicationParameters, :HostUserId, :Role
         
-        def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil, hostuserid=nil, role=nil)
+        def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil, applicationparameters=nil, hostuserid=nil, role=nil)
           @UserId = userid
           @UserIp = userip
           @ClientSession = clientsession
           @RunMode = runmode
+          @ApplicationParameters = applicationparameters
           @HostUserId = hostuserid
           @Role = role
         end
@@ -102,6 +108,7 @@ module TencentCloud
           @UserIp = params['UserIp']
           @ClientSession = params['ClientSession']
           @RunMode = params['RunMode']
+          @ApplicationParameters = params['ApplicationParameters']
           @HostUserId = params['HostUserId']
           @Role = params['Role']
         end

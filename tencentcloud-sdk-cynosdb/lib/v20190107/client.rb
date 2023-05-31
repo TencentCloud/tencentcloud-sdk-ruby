@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为集群绑定资源包
+
+        # @param request: Request instance for BindClusterResourcePackages.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::BindClusterResourcePackagesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::BindClusterResourcePackagesResponse`
+        def BindClusterResourcePackages(request)
+          body = send_request('BindClusterResourcePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindClusterResourcePackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # TDSQL-C for MySQL实例关闭审计服务
 
         # @param request: Request instance for CloseAuditService.
@@ -375,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新购资源包
+
+        # @param request: Request instance for CreateResourcePackage.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateResourcePackageRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateResourcePackageResponse`
+        def CreateResourcePackage(request)
+          body = send_request('CreateResourcePackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateResourcePackageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1301,6 +1349,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资源包使用详情
+
+        # @param request: Request instance for DescribeResourcePackageDetail.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageDetailRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageDetailResponse`
+        def DescribeResourcePackageDetail(request)
+          body = send_request('DescribeResourcePackageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePackageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源包列表
+
+        # @param request: Request instance for DescribeResourcePackageList.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageListRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageListResponse`
+        def DescribeResourcePackageList(request)
+          body = send_request('DescribeResourcePackageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePackageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源包规格
+
+        # @param request: Request instance for DescribeResourcePackageSaleSpec.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageSaleSpecRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageSaleSpecResponse`
+        def DescribeResourcePackageSaleSpec(request)
+          body = send_request('DescribeResourcePackageSaleSpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePackageSaleSpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据计费订单id查询资源列表
 
         # @param request: Request instance for DescribeResourcesByDealName.
@@ -2069,6 +2189,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 给资源包绑定集群
+
+        # @param request: Request instance for ModifyResourcePackageClusters.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageClustersRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageClustersResponse`
+        def ModifyResourcePackageClusters(request)
+          body = send_request('ModifyResourcePackageClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourcePackageClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资源包名称
+
+        # @param request: Request instance for ModifyResourcePackageName.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageNameRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageNameResponse`
+        def ModifyResourcePackageName(request)
+          body = send_request('ModifyResourcePackageName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourcePackageNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改实例组ip，端口
 
         # @param request: Request instance for ModifyVipVport.
@@ -2247,6 +2415,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PauseServerlessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 退款资源包
+
+        # @param request: Request instance for RefundResourcePackage.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::RefundResourcePackageRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::RefundResourcePackageResponse`
+        def RefundResourcePackage(request)
+          body = send_request('RefundResourcePackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RefundResourcePackageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2535,6 +2727,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchProxyVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # cynos解绑资源包
+
+        # @param request: Request instance for UnbindClusterResourcePackages.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::UnbindClusterResourcePackagesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::UnbindClusterResourcePackagesResponse`
+        def UnbindClusterResourcePackages(request)
+          body = send_request('UnbindClusterResourcePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindClusterResourcePackagesResponse.new
             model.deserialize(response['Response'])
             model
           else

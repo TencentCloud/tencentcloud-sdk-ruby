@@ -75,32 +75,32 @@ module TencentCloud
         # 3：企业静默签署
         # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         # @type ApproverType: Integer
-        # @param ApproverName: 本环节需要操作人的名字
+        # @param ApproverName: 签署人的姓名
         # @type ApproverName: String
-        # @param ApproverMobile: 本环节需要操作人的手机号
+        # @param ApproverMobile: 签署人的手机号，11位数字
         # @type ApproverMobile: String
-        # @param SignComponents: 本环节操作人签署控件配置
+        # @param SignComponents: 签署人的签署控件列表
         # @type SignComponents: Array
-        # @param OrganizationName: 如果是企业,则为企业的名字
+        # @param OrganizationName: 如果签署方是企业签署方，则为企业名
         # @type OrganizationName: String
-        # @param ApproverIdCardNumber: 身份证号
+        # @param ApproverIdCardNumber: 签署人的身份证号
         # @type ApproverIdCardNumber: String
-        # @param ApproverIdCardType: 证件类型
+        # @param ApproverIdCardType: 签署人的身份证件类型
         # ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
         # @type ApproverIdCardType: String
-        # @param NotifyType: sms--短信，none--不通知
+        # @param NotifyType: 签署通知类型：sms--短信，none--不通知
         # @type NotifyType: String
-        # @param ApproverRole: 1--收款人、2--开具人、3--见证人
+        # @param ApproverRole: 签署人角色类型：1--收款人、2--开具人、3--见证人
         # @type ApproverRole: Integer
-        # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
+        # @param VerifyChannel: 签署意愿确认渠道，默认为WEIXINAPP:人脸识别
         # @type VerifyChannel: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
         # @param UserId: 签署人userId，传此字段则不用传姓名、手机号
         # @type UserId: String
-        # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
+        # @param ApproverSource: 签署人用户来源，企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
         # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一，非企微场景不使用此字段
         # @type CustomApproverTag: String
@@ -192,11 +192,11 @@ module TencentCloud
       class ApproverRestriction < TencentCloud::Common::AbstractModel
         # @param Name: 指定签署人名字
         # @type Name: String
-        # @param Mobile: 指定签署人手机号
+        # @param Mobile: 指定签署人手机号，11位数字
         # @type Mobile: String
-        # @param IdCardType: 指定签署人证件类型
+        # @param IdCardType: 指定签署人证件类型，ID_CARD-身份证
         # @type IdCardType: String
-        # @param IdCardNumber: 指定签署人证件号码
+        # @param IdCardNumber: 指定签署人证件号码，字母大写
         # @type IdCardNumber: String
 
         attr_accessor :Name, :Mobile, :IdCardType, :IdCardNumber
@@ -218,7 +218,7 @@ module TencentCloud
 
       # 授权用户
       class AuthorizedUser < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户id
+        # @param UserId: 电子签系统中的用户id
         # @type UserId: String
 
         attr_accessor :UserId
@@ -236,13 +236,13 @@ module TencentCloud
       class AutoSignConfig < TencentCloud::Common::AbstractModel
         # @param UserInfo: 自动签开通个人用户的三要素
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
-        # @param CallbackUrl: 回调链接
+        # @param CallbackUrl: 接受自动签开启的回调地址。需要保证post返回200
         # @type CallbackUrl: String
-        # @param CertInfoCallback: 是否回调证书信息
+        # @param CertInfoCallback: 是否回调证书信息，默认false-不需要
         # @type CertInfoCallback: Boolean
-        # @param UserDefineSeal: 是否支持用户自定义签名印章
+        # @param UserDefineSeal: 是否支持用户自定义签名印章，默认false-不需要
         # @type UserDefineSeal: Boolean
-        # @param SealImgCallback: 是否需要回调的时候返回印章(签名) 图片的 base64
+        # @param SealImgCallback: 是否需要回调的时候返回印章(签名) 图片的 base64，默认false-不需要
         # @type SealImgCallback: Boolean
         # @param VerifyChannels: 开通时候的验证方式，取值：WEIXINAPP（微信人脸识别），INSIGHT（慧眼人脸认别），TELECOM（运营商三要素验证）。如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
         # @type VerifyChannels: Array
@@ -464,7 +464,7 @@ module TencentCloud
 
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
-        # @param Mobile: 被抄送人手机号
+        # @param Mobile: 被抄送人手机号，11位数字
         # @type Mobile: String
         # @param Name: 被抄送人姓名
         # @type Name: String
@@ -496,7 +496,7 @@ module TencentCloud
 
       # 模板控件信息
       class Component < TencentCloud::Common::AbstractModel
-        # @param ComponentType: 如果是Component控件类型，则可选的字段为：
+        # @param ComponentType: 如果是Component填写控件类型，则可选的字段为：
         # TEXT - 普通文本控件，输入文本字符串；
         # MULTI_LINE_TEXT - 多行文本控件，输入文本字符串；
         # CHECK_BOX - 勾选框控件，若选中填写ComponentValue 填写 true或者 false 字符串；
@@ -507,7 +507,7 @@ module TencentCloud
         # DATE - 日期控件；默认是格式化为xxxx年xx月xx日字符串；
         # DISTRICT - 省市区行政区控件，ComponentValue填写省市区行政区字符串内容；
 
-        # 如果是SignComponent控件类型，则可选的字段为
+        # 如果是SignComponent签署控件类型，则可选的字段为
         # SIGN_SEAL - 签署印章控件；
         # SIGN_DATE - 签署日期控件；
         # SIGN_SIGNATURE - 用户签名控件；
@@ -518,7 +518,7 @@ module TencentCloud
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String
-        # @param FileIndex: 控件所属文件的序号（模板中的resourceId排列序号，取值为：0-N）
+        # @param FileIndex: 控件所属文件的序号（取值为：0-N）。目前单文件的情况下，值是0
         # @type FileIndex: Integer
         # @param ComponentHeight: 参数控件高度，单位pt
         # @type ComponentHeight: Float
@@ -530,9 +530,9 @@ module TencentCloud
         # @type ComponentPosX: Float
         # @param ComponentPosY: 参数控件Y位置，单位pt
         # @type ComponentPosY: Float
-        # @param ComponentId: GenerateMode==KEYWORD 指定关键字
+        # @param ComponentId: 查询时返回控件唯一Id。使用文件发起合同时用于GenerateMode==KEYWORD 指定关键字
         # @type ComponentId: String
-        # @param ComponentName: GenerateMode==FIELD 指定表单域名称
+        # @param ComponentName: 查询时返回控件名。使用文件发起合同时用于GenerateMode==FIELD 指定表单域名称
         # @type ComponentName: String
         # @param ComponentRequired: 是否必选，默认为false
         # @type ComponentRequired: Boolean
@@ -565,7 +565,7 @@ module TencentCloud
         # 特别地，如果extra中Format字段为空或无法被识别，则extra参数会被当作默认值处理（Font，FontSize，Gaps和FontAlign都不会起效）
         # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}",
         # @type ComponentExtra: String
-        # @param IsFormType: 是否是表单域类型，默认不存在
+        # @param IsFormType: 是否是表单域类型，默认不false-不是
         # @type IsFormType: Boolean
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
         # TEXT - 文本内容
@@ -650,13 +650,13 @@ module TencentCloud
         # @type GenerateMode: String
         # @param ComponentDateFontSize: 日期签署控件的字号，默认为 12
         # @type ComponentDateFontSize: Integer
-        # @param ChannelComponentId: 平台模板控件 id 标识
+        # @param ChannelComponentId: 第三方应用集成平台模板控件 id 标识
         # @type ChannelComponentId: String
         # @param OffsetX: 指定关键字时横坐标偏移量，单位pt
         # @type OffsetX: Float
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
-        # @param ChannelComponentSource: //子客控件来源。0-平台指定；1-用户自定义
+        # @param ChannelComponentSource: 第三方应用集成中子客企业控件来源。0-平台指定；1-用户自定义
         # @type ChannelComponentSource: Integer
         # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
         # 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
@@ -1855,14 +1855,14 @@ module TencentCloud
 
       # CreatePreparedPersonalEsign请求参数结构体
       class CreatePreparedPersonalEsignRequest < TencentCloud::Common::AbstractModel
-        # @param UserName: 个人用户名称
+        # @param UserName: 个人用户姓名
         # @type UserName: String
         # @param IdCardNumber: 身份证件号码
         # @type IdCardNumber: String
-        # @param SealImage: 印章图片的base64
-        # @type SealImage: String
         # @param SealName: 印章名称
         # @type SealName: String
+        # @param SealImage: 印章图片的base64，最大不超过 8M
+        # @type SealImage: String
         # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param IdCardType: 身份证件类型:
@@ -1872,36 +1872,56 @@ module TencentCloud
         # FOREIGN_ID_CARD 境外身份
         # HONGKONG_MACAO_AND_TAIWAN 中国台湾
         # @type IdCardType: String
+        # @param SealImageCompress: 是否开启印章图片压缩处理，默认不开启，如需开启请设置为 true。当印章超过 2M 时建议开启，开启后图片的 hash 将发生变化。
+        # @type SealImageCompress: Boolean
         # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
         # @type Mobile: String
         # @param EnableAutoSign: 是否开通自动签，该功能需联系运营工作人员开通后使用
         # @type EnableAutoSign: Boolean
+        # @param SealColor: 印章颜色（参数ProcessSeal=true时生效）
+        # 默认值：BLACK黑色
+        # 取值:
+        # BLACK 黑色,
+        # RED 红色,
+        # BLUE 蓝色。
+        # @type SealColor: String
+        # @param ProcessSeal: 是否处理印章
+        # 默认不做印章处理。
+        # 取值：false：不做任何处理；
+        # true：做透明化处理和颜色增强。
+        # @type ProcessSeal: Boolean
 
-        attr_accessor :UserName, :IdCardNumber, :SealImage, :SealName, :Operator, :IdCardType, :Mobile, :EnableAutoSign
+        attr_accessor :UserName, :IdCardNumber, :SealName, :SealImage, :Operator, :IdCardType, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal
         
-        def initialize(username=nil, idcardnumber=nil, sealimage=nil, sealname=nil, operator=nil, idcardtype=nil, mobile=nil, enableautosign=nil)
+        def initialize(username=nil, idcardnumber=nil, sealname=nil, sealimage=nil, operator=nil, idcardtype=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil)
           @UserName = username
           @IdCardNumber = idcardnumber
-          @SealImage = sealimage
           @SealName = sealname
+          @SealImage = sealimage
           @Operator = operator
           @IdCardType = idcardtype
+          @SealImageCompress = sealimagecompress
           @Mobile = mobile
           @EnableAutoSign = enableautosign
+          @SealColor = sealcolor
+          @ProcessSeal = processseal
         end
 
         def deserialize(params)
           @UserName = params['UserName']
           @IdCardNumber = params['IdCardNumber']
-          @SealImage = params['SealImage']
           @SealName = params['SealName']
+          @SealImage = params['SealImage']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
           @IdCardType = params['IdCardType']
+          @SealImageCompress = params['SealImageCompress']
           @Mobile = params['Mobile']
           @EnableAutoSign = params['EnableAutoSign']
+          @SealColor = params['SealColor']
+          @ProcessSeal = params['ProcessSeal']
         end
       end
 
@@ -3466,7 +3486,7 @@ module TencentCloud
         # @type Reason: String
         # @param UserId: 用户Id
         # @type UserId: String
-        # @param OpenId: 用户OpenId
+        # @param OpenId: 员工在第三方平台的openId
         # @type OpenId: String
 
         attr_accessor :DisplayName, :Mobile, :Reason, :UserId, :OpenId
@@ -3488,7 +3508,7 @@ module TencentCloud
         end
       end
 
-      # 二期接口返回的模板中文件的信息结构
+      # 模板中文件的信息结构
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 文件Id
         # @type FileId: String
@@ -4990,6 +5010,11 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param Promoter: 发起人角色信息
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
+        # @param TemplateType: 模板类型
+        # 取值：
+        # 1  静默签,
+        # 3  普通模板
+        # @type TemplateType: Integer
         # @param Available: 模板可用状态，取值：1启用（默认），2停用
         # @type Available: Integer
         # @param OrganizationId: 模板创建组织id
@@ -5004,9 +5029,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Published: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
         
-        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -5021,6 +5046,7 @@ module TencentCloud
           @Creator = creator
           @CreatedOn = createdon
           @Promoter = promoter
+          @TemplateType = templatetype
           @Available = available
           @OrganizationId = organizationid
           @PreviewUrl = previewurl
@@ -5074,6 +5100,7 @@ module TencentCloud
             @Promoter = Recipient.new
             @Promoter.deserialize(params['Promoter'])
           end
+          @TemplateType = params['TemplateType']
           @Available = params['Available']
           @OrganizationId = params['OrganizationId']
           @PreviewUrl = params['PreviewUrl']

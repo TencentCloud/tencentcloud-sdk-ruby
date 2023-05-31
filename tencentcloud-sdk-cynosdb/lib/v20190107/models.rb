@@ -687,6 +687,69 @@ module TencentCloud
         end
       end
 
+      # BindClusterResourcePackages请求参数结构体
+      class BindClusterResourcePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param PackageIds: 资源包唯一ID
+        # @type PackageIds: Array
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :PackageIds, :ClusterId
+        
+        def initialize(packageids=nil, clusterid=nil)
+          @PackageIds = packageids
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @PackageIds = params['PackageIds']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # BindClusterResourcePackages返回参数结构体
+      class BindClusterResourcePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源包绑定的实例信息
+      class BindInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 绑定的实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceRegion: 绑定的实例所在的地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRegion: String
+        # @param InstanceType: 绑定的实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+
+        attr_accessor :InstanceId, :InstanceRegion, :InstanceType
+        
+        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil)
+          @InstanceId = instanceid
+          @InstanceRegion = instanceregion
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceRegion = params['InstanceRegion']
+          @InstanceType = params['InstanceType']
+        end
+      end
+
       # Binlog描述
       class BinlogItem < TencentCloud::Common::AbstractModel
         # @param FileName: Binlog文件名称
@@ -1552,6 +1615,78 @@ module TencentCloud
         end
       end
 
+      # CreateResourcePackage请求参数结构体
+      class CreateResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param PackageRegion: 资源包使用地域
+        # china-中国内地通用，overseas-港澳台及海外通用
+        # @type PackageRegion: String
+        # @param PackageType: 资源包类型
+
+        # 资源包类型：CCU-计算资源包，DISK-存储资源包
+        # @type PackageType: String
+        # @param PackageVersion: 资源包版本
+        # base-基础版本，common-通用版本，enterprise-企业版本
+        # @type PackageVersion: String
+        # @param PackageSpec: 资源包大小，计算资源单位：万个；存储资源：GB
+        # @type PackageSpec: Float
+        # @param ExpireDay: 资源包有效期，单位:天
+        # @type ExpireDay: Integer
+        # @param PackageCount: 购买资源包个数
+        # @type PackageCount: Integer
+        # @param PackageName: 资源包名称
+        # @type PackageName: String
+
+        attr_accessor :InstanceType, :PackageRegion, :PackageType, :PackageVersion, :PackageSpec, :ExpireDay, :PackageCount, :PackageName
+        
+        def initialize(instancetype=nil, packageregion=nil, packagetype=nil, packageversion=nil, packagespec=nil, expireday=nil, packagecount=nil, packagename=nil)
+          @InstanceType = instancetype
+          @PackageRegion = packageregion
+          @PackageType = packagetype
+          @PackageVersion = packageversion
+          @PackageSpec = packagespec
+          @ExpireDay = expireday
+          @PackageCount = packagecount
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @PackageRegion = params['PackageRegion']
+          @PackageType = params['PackageType']
+          @PackageVersion = params['PackageVersion']
+          @PackageSpec = params['PackageSpec']
+          @ExpireDay = params['ExpireDay']
+          @PackageCount = params['PackageCount']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # CreateResourcePackage返回参数结构体
+      class CreateResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: 付费总订单号
+        # @type BigDealIds: Array
+        # @param DealNames: 每个物品对应一个dealName，业务需要根据dealName保证发货接口幂等
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIds, :DealNames, :RequestId
+        
+        def initialize(bigdealids=nil, dealnames=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群信息
       class CynosdbCluster < TencentCloud::Common::AbstractModel
         # @param Status: 集群状态， 可选值如下:
@@ -1683,10 +1818,13 @@ module TencentCloud
         # @param Ability: 能力
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
+        # @param ResourcePackages: 实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackages: Array
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages
         
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil, resourcepackages=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -1729,6 +1867,7 @@ module TencentCloud
           @IsFreeze = isfreeze
           @OrderSource = ordersource
           @Ability = ability
+          @ResourcePackages = resourcepackages
         end
 
         def deserialize(params)
@@ -1798,6 +1937,14 @@ module TencentCloud
             @Ability = Ability.new
             @Ability.deserialize(params['Ability'])
           end
+          unless params['ResourcePackages'].nil?
+            @ResourcePackages = []
+            params['ResourcePackages'].each do |i|
+              resourcepackage_tmp = ResourcePackage.new
+              resourcepackage_tmp.deserialize(i)
+              @ResourcePackages << resourcepackage_tmp
+            end
+          end
         end
       end
 
@@ -1809,61 +1956,21 @@ module TencentCloud
         # @type ClusterName: String
         # @param Region: 地域
         # @type Region: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param PhysicalZone: 物理可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalZone: String
         # @param Status: 状态
         # @type Status: String
         # @param StatusDesc: 状态描述
         # @type StatusDesc: String
-        # @param VpcName: VPC名称
-        # @type VpcName: String
-        # @param VpcId: vpc唯一id
-        # @type VpcId: String
-        # @param SubnetName: 子网名称
-        # @type SubnetName: String
-        # @param SubnetId: 子网ID
-        # @type SubnetId: String
-        # @param Charset: 字符集
-        # @type Charset: String
-        # @param CreateTime: 创建时间
-        # @type CreateTime: String
-        # @param DbType: 数据库类型
-        # @type DbType: String
-        # @param DbVersion: 数据库版本
-        # @type DbVersion: String
-        # @param UsedStorage: 使用容量
-        # @type UsedStorage: Integer
-        # @param RoAddr: 读写分离Vport
-        # @type RoAddr: Array
-        # @param InstanceSet: 实例信息
-        # @type InstanceSet: Array
-        # @param PayMode: 付费模式
-        # @type PayMode: Integer
-        # @param PeriodEndTime: 到期时间
-        # @type PeriodEndTime: String
-        # @param Vip: vip地址
-        # @type Vip: String
-        # @param Vport: vport端口
-        # @type Vport: Integer
-        # @param ProjectID: 项目id
-        # @type ProjectID: Integer
-        # @param Zone: 可用区
-        # @type Zone: String
-        # @param ResourceTags: 实例绑定的tag数组信息
-        # @type ResourceTags: Array
         # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
         # resume
         # resuming
         # pause
         # pausing
         # @type ServerlessStatus: String
-        # @param LogBin: binlog开关，可选值：ON, OFF
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LogBin: String
-        # @param PitrType: pitr类型，可选值：normal, redo_pitr
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PitrType: String
-        # @param PhysicalZone: 物理可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PhysicalZone: String
         # @param StorageId: 存储Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
@@ -1879,12 +1986,36 @@ module TencentCloud
         # @param StoragePayMode: 存储付费类型，1为包年包月，0为按量计费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePayMode: Integer
+        # @param VpcName: VPC名称
+        # @type VpcName: String
+        # @param VpcId: vpc唯一id
+        # @type VpcId: String
+        # @param SubnetName: 子网名称
+        # @type SubnetName: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param Charset: 字符集
+        # @type Charset: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param DbType: 数据库类型
+        # @type DbType: String
         # @param DbMode: 数据库类型，normal，serverless
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
         # @param StorageLimit: 存储空间上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageLimit: Integer
+        # @param UsedStorage: 使用容量
+        # @type UsedStorage: Integer
+        # @param Vip: vip地址
+        # @type Vip: String
+        # @param Vport: vport端口
+        # @type Vport: Integer
+        # @param RoAddr: 读写分离Vport
+        # @type RoAddr: Array
         # @param Ability: 集群支持的功能
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
@@ -1909,27 +2040,54 @@ module TencentCloud
         # @param SlaveZones: 从可用区列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
+        # @param InstanceSet: 实例信息
+        # @type InstanceSet: Array
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param PeriodEndTime: 到期时间
+        # @type PeriodEndTime: String
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param ResourceTags: 实例绑定的tag数组信息
+        # @type ResourceTags: Array
         # @param ProxyStatus: Proxy状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyStatus: String
+        # @param LogBin: binlog开关，可选值：ON, OFF
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogBin: String
         # @param IsSkipTrade: 是否跳过交易
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSkipTrade: String
+        # @param PitrType: pitr类型，可选值：normal, redo_pitr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PitrType: String
         # @param IsOpenPasswordComplexity: 是否打开密码复杂度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpenPasswordComplexity: String
         # @param NetworkStatus: 网络类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkStatus: String
+        # @param ResourcePackages: 集群绑定的资源包信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackages: Array
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbVersion, :UsedStorage, :RoAddr, :InstanceSet, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :Zone, :ResourceTags, :ServerlessStatus, :LogBin, :PitrType, :PhysicalZone, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :DbMode, :StorageLimit, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :ProxyStatus, :IsSkipTrade, :IsOpenPasswordComplexity, :NetworkStatus
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbversion=nil, usedstorage=nil, roaddr=nil, instanceset=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, zone=nil, resourcetags=nil, serverlessstatus=nil, logbin=nil, pitrtype=nil, physicalzone=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, dbmode=nil, storagelimit=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, proxystatus=nil, isskiptrade=nil, isopenpasswordcomplexity=nil, networkstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
+          @Zone = zone
+          @PhysicalZone = physicalzone
           @Status = status
           @StatusDesc = statusdesc
+          @ServerlessStatus = serverlessstatus
+          @StorageId = storageid
+          @Storage = storage
+          @MaxStorageSize = maxstoragesize
+          @MinStorageSize = minstoragesize
+          @StoragePayMode = storagepaymode
           @VpcName = vpcname
           @VpcId = vpcid
           @SubnetName = subnetname
@@ -1937,28 +2095,13 @@ module TencentCloud
           @Charset = charset
           @CreateTime = createtime
           @DbType = dbtype
+          @DbMode = dbmode
           @DbVersion = dbversion
+          @StorageLimit = storagelimit
           @UsedStorage = usedstorage
-          @RoAddr = roaddr
-          @InstanceSet = instanceset
-          @PayMode = paymode
-          @PeriodEndTime = periodendtime
           @Vip = vip
           @Vport = vport
-          @ProjectID = projectid
-          @Zone = zone
-          @ResourceTags = resourcetags
-          @ServerlessStatus = serverlessstatus
-          @LogBin = logbin
-          @PitrType = pitrtype
-          @PhysicalZone = physicalzone
-          @StorageId = storageid
-          @Storage = storage
-          @MaxStorageSize = maxstoragesize
-          @MinStorageSize = minstoragesize
-          @StoragePayMode = storagepaymode
-          @DbMode = dbmode
-          @StorageLimit = storagelimit
+          @RoAddr = roaddr
           @Ability = ability
           @CynosVersion = cynosversion
           @BusinessType = businesstype
@@ -1967,18 +2110,34 @@ module TencentCloud
           @Tasks = tasks
           @MasterZone = masterzone
           @SlaveZones = slavezones
+          @InstanceSet = instanceset
+          @PayMode = paymode
+          @PeriodEndTime = periodendtime
+          @ProjectID = projectid
+          @ResourceTags = resourcetags
           @ProxyStatus = proxystatus
+          @LogBin = logbin
           @IsSkipTrade = isskiptrade
+          @PitrType = pitrtype
           @IsOpenPasswordComplexity = isopenpasswordcomplexity
           @NetworkStatus = networkstatus
+          @ResourcePackages = resourcepackages
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @Region = params['Region']
+          @Zone = params['Zone']
+          @PhysicalZone = params['PhysicalZone']
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
+          @ServerlessStatus = params['ServerlessStatus']
+          @StorageId = params['StorageId']
+          @Storage = params['Storage']
+          @MaxStorageSize = params['MaxStorageSize']
+          @MinStorageSize = params['MinStorageSize']
+          @StoragePayMode = params['StoragePayMode']
           @VpcName = params['VpcName']
           @VpcId = params['VpcId']
           @SubnetName = params['SubnetName']
@@ -1986,8 +2145,12 @@ module TencentCloud
           @Charset = params['Charset']
           @CreateTime = params['CreateTime']
           @DbType = params['DbType']
+          @DbMode = params['DbMode']
           @DbVersion = params['DbVersion']
+          @StorageLimit = params['StorageLimit']
           @UsedStorage = params['UsedStorage']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
           unless params['RoAddr'].nil?
             @RoAddr = []
             params['RoAddr'].each do |i|
@@ -1996,39 +2159,6 @@ module TencentCloud
               @RoAddr << addr_tmp
             end
           end
-          unless params['InstanceSet'].nil?
-            @InstanceSet = []
-            params['InstanceSet'].each do |i|
-              clusterinstancedetail_tmp = ClusterInstanceDetail.new
-              clusterinstancedetail_tmp.deserialize(i)
-              @InstanceSet << clusterinstancedetail_tmp
-            end
-          end
-          @PayMode = params['PayMode']
-          @PeriodEndTime = params['PeriodEndTime']
-          @Vip = params['Vip']
-          @Vport = params['Vport']
-          @ProjectID = params['ProjectID']
-          @Zone = params['Zone']
-          unless params['ResourceTags'].nil?
-            @ResourceTags = []
-            params['ResourceTags'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @ResourceTags << tag_tmp
-            end
-          end
-          @ServerlessStatus = params['ServerlessStatus']
-          @LogBin = params['LogBin']
-          @PitrType = params['PitrType']
-          @PhysicalZone = params['PhysicalZone']
-          @StorageId = params['StorageId']
-          @Storage = params['Storage']
-          @MaxStorageSize = params['MaxStorageSize']
-          @MinStorageSize = params['MinStorageSize']
-          @StoragePayMode = params['StoragePayMode']
-          @DbMode = params['DbMode']
-          @StorageLimit = params['StorageLimit']
           unless params['Ability'].nil?
             @Ability = Ability.new
             @Ability.deserialize(params['Ability'])
@@ -2047,10 +2177,39 @@ module TencentCloud
           end
           @MasterZone = params['MasterZone']
           @SlaveZones = params['SlaveZones']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              clusterinstancedetail_tmp = ClusterInstanceDetail.new
+              clusterinstancedetail_tmp.deserialize(i)
+              @InstanceSet << clusterinstancedetail_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @PeriodEndTime = params['PeriodEndTime']
+          @ProjectID = params['ProjectID']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @ProxyStatus = params['ProxyStatus']
+          @LogBin = params['LogBin']
           @IsSkipTrade = params['IsSkipTrade']
+          @PitrType = params['PitrType']
           @IsOpenPasswordComplexity = params['IsOpenPasswordComplexity']
           @NetworkStatus = params['NetworkStatus']
+          unless params['ResourcePackages'].nil?
+            @ResourcePackages = []
+            params['ResourcePackages'].each do |i|
+              resourcepackage_tmp = ResourcePackage.new
+              resourcepackage_tmp.deserialize(i)
+              @ResourcePackages << resourcepackage_tmp
+            end
+          end
         end
       end
 
@@ -2105,6 +2264,8 @@ module TencentCloud
         # @type Status: String
         # @param StatusDesc: 实例状态中文描述
         # @type StatusDesc: String
+        # @param DbMode: 实例形态，是否为serverless实例
+        # @type DbMode: String
         # @param DbType: 数据库类型
         # @type DbType: String
         # @param DbVersion: 数据库版本
@@ -2193,10 +2354,13 @@ module TencentCloud
         # @param InstanceNetInfo: 实例网络信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNetInfo: Array
+        # @param ResourcePackages: 实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackages: Array
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -2208,6 +2372,7 @@ module TencentCloud
           @Zone = zone
           @Status = status
           @StatusDesc = statusdesc
+          @DbMode = dbmode
           @DbType = dbtype
           @DbVersion = dbversion
           @Cpu = cpu
@@ -2247,6 +2412,7 @@ module TencentCloud
           @MasterZone = masterzone
           @SlaveZones = slavezones
           @InstanceNetInfo = instancenetinfo
+          @ResourcePackages = resourcepackages
         end
 
         def deserialize(params)
@@ -2261,6 +2427,7 @@ module TencentCloud
           @Zone = params['Zone']
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
+          @DbMode = params['DbMode']
           @DbType = params['DbType']
           @DbVersion = params['DbVersion']
           @Cpu = params['Cpu']
@@ -2319,6 +2486,14 @@ module TencentCloud
               instancenetinfo_tmp = InstanceNetInfo.new
               instancenetinfo_tmp.deserialize(i)
               @InstanceNetInfo << instancenetinfo_tmp
+            end
+          end
+          unless params['ResourcePackages'].nil?
+            @ResourcePackages = []
+            params['ResourcePackages'].each do |i|
+              resourcepackage_tmp = ResourcePackage.new
+              resourcepackage_tmp.deserialize(i)
+              @ResourcePackages << resourcepackage_tmp
             end
           end
         end
@@ -4879,6 +5054,230 @@ module TencentCloud
         end
       end
 
+      # DescribeResourcePackageDetail请求参数结构体
+      class DescribeResourcePackageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包唯一ID
+        # @type PackageId: String
+        # @param ClusterIds: 实例ID
+        # @type ClusterIds: Array
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 偏移量
+        # @type Offset: String
+        # @param Limit: 限制
+        # @type Limit: String
+
+        attr_accessor :PackageId, :ClusterIds, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(packageid=nil, clusterids=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @PackageId = packageid
+          @ClusterIds = clusterids
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @ClusterIds = params['ClusterIds']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeResourcePackageDetail返回参数结构体
+      class DescribeResourcePackageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总使用明细数
+        # @type Total: Integer
+        # @param Detail: 资源包明细说明
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Detail, :RequestId
+        
+        def initialize(total=nil, detail=nil, requestid=nil)
+          @Total = total
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              packagedetail_tmp = PackageDetail.new
+              packagedetail_tmp.deserialize(i)
+              @Detail << packagedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcePackageList请求参数结构体
+      class DescribeResourcePackageListRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包唯一ID
+        # @type PackageId: Array
+        # @param PackageName: 资源包名称
+        # @type PackageName: Array
+        # @param PackageType: 资源包类型
+        # CCU-计算资源包，DISK-存储资源包
+        # @type PackageType: Array
+        # @param PackageRegion: 资源包使用地域
+        # china-中国内地通用，overseas-港澳台及海外通用
+        # @type PackageRegion: Array
+        # @param Status: 资源包状态
+        # creating-创建中；
+        # using-使用中；
+        # expired-已过期；
+        # normal_finish-使用完；
+        # apply_refund-申请退费中；
+        # refund-已退费。
+        # @type Status: Array
+        # @param OrderBy: 排序条件，支持排序条件:startTime-生效时间，
+        # expireTime-过期时间，packageUsedSpec-使用容量，packageTotalSpec-总存储量。
+        # 按照数组顺序排列；
+        # @type OrderBy: Array
+        # @param OrderDirection: 排序方式，DESC-降序，ASC-升序
+        # @type OrderDirection: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制
+        # @type Limit: Integer
+
+        attr_accessor :PackageId, :PackageName, :PackageType, :PackageRegion, :Status, :OrderBy, :OrderDirection, :Offset, :Limit
+        
+        def initialize(packageid=nil, packagename=nil, packagetype=nil, packageregion=nil, status=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil)
+          @PackageId = packageid
+          @PackageName = packagename
+          @PackageType = packagetype
+          @PackageRegion = packageregion
+          @Status = status
+          @OrderBy = orderby
+          @OrderDirection = orderdirection
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @PackageType = params['PackageType']
+          @PackageRegion = params['PackageRegion']
+          @Status = params['Status']
+          @OrderBy = params['OrderBy']
+          @OrderDirection = params['OrderDirection']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeResourcePackageList返回参数结构体
+      class DescribeResourcePackageListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总配置数
+        # @type Total: Integer
+        # @param Detail: 资源包明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Detail, :RequestId
+        
+        def initialize(total=nil, detail=nil, requestid=nil)
+          @Total = total
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              package_tmp = Package.new
+              package_tmp.deserialize(i)
+              @Detail << package_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcePackageSaleSpec请求参数结构体
+      class DescribeResourcePackageSaleSpecRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param PackageRegion: 资源包使用地域
+        # china-中国内地通用，overseas-港澳台及海外通用
+        # @type PackageRegion: String
+        # @param PackageType: 资源包类型
+        # CCU-计算资源包
+        # DISK-存储资源包
+        # @type PackageType: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制
+        # @type Limit: Integer
+
+        attr_accessor :InstanceType, :PackageRegion, :PackageType, :Offset, :Limit
+        
+        def initialize(instancetype=nil, packageregion=nil, packagetype=nil, offset=nil, limit=nil)
+          @InstanceType = instancetype
+          @PackageRegion = packageregion
+          @PackageType = packagetype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @PackageRegion = params['PackageRegion']
+          @PackageType = params['PackageType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeResourcePackageSaleSpec返回参数结构体
+      class DescribeResourcePackageSaleSpecResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 可售卖资源包规格总数
+        # @type Total: Integer
+        # @param Detail: 资源包明细说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Detail, :RequestId
+        
+        def initialize(total=nil, detail=nil, requestid=nil)
+          @Total = total
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              salepackagespec_tmp = SalePackageSpec.new
+              salepackagespec_tmp.deserialize(i)
+              @Detail << salepackagespec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourcesByDealName请求参数结构体
       class DescribeResourcesByDealNameRequest < TencentCloud::Common::AbstractModel
         # @param DealName: 计费订单ID（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
@@ -6856,6 +7255,82 @@ module TencentCloud
         end
       end
 
+      # ModifyResourcePackageClusters请求参数结构体
+      class ModifyResourcePackageClustersRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包唯一ID
+        # @type PackageId: String
+        # @param BindClusterIds: 需要建立绑定关系的集群ID
+        # @type BindClusterIds: Array
+        # @param UnbindClusterIds: 需要解除绑定关系的集群ID
+        # @type UnbindClusterIds: Array
+
+        attr_accessor :PackageId, :BindClusterIds, :UnbindClusterIds
+        
+        def initialize(packageid=nil, bindclusterids=nil, unbindclusterids=nil)
+          @PackageId = packageid
+          @BindClusterIds = bindclusterids
+          @UnbindClusterIds = unbindclusterids
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @BindClusterIds = params['BindClusterIds']
+          @UnbindClusterIds = params['UnbindClusterIds']
+        end
+      end
+
+      # ModifyResourcePackageClusters返回参数结构体
+      class ModifyResourcePackageClustersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResourcePackageName请求参数结构体
+      class ModifyResourcePackageNameRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包唯一ID
+        # @type PackageId: String
+        # @param PackageName: 自定义的资源包名称，最长支持120个字符
+        # @type PackageName: String
+
+        attr_accessor :PackageId, :PackageName
+        
+        def initialize(packageid=nil, packagename=nil)
+          @PackageId = packageid
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # ModifyResourcePackageName返回参数结构体
+      class ModifyResourcePackageNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVipVport请求参数结构体
       class ModifyVipVportRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -7379,6 +7854,145 @@ module TencentCloud
         end
       end
 
+      # 资源包
+      class Package < TencentCloud::Common::AbstractModel
+        # @param AppId: AppID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param PackageId: 资源包唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param PackageName: 资源包名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageType: 资源包类型
+        # CCU-计算资源包，DISK-存储资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+        # @param PackageRegion: 资源包使用地域
+        # china-中国内地通用，overseas-港澳台及海外通用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageRegion: String
+        # @param Status: 资源包状态
+        # creating-创建中；
+        # using-使用中；
+        # expired-已过期；
+        # normal_finish-使用完；
+        # apply_refund-申请退费中；
+        # refund-已退费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param PackageTotalSpec: 资源包总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageTotalSpec: Float
+        # @param PackageUsedSpec: 资源包已使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageUsedSpec: Float
+        # @param HasQuota: 资源包已使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasQuota: Boolean
+        # @param BindInstanceInfos: 绑定实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindInstanceInfos: Array
+        # @param StartTime: 生效时间：2022-07-01 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param ExpireTime: 失效时间：2022-08-01 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+
+        attr_accessor :AppId, :PackageId, :PackageName, :PackageType, :PackageRegion, :Status, :PackageTotalSpec, :PackageUsedSpec, :HasQuota, :BindInstanceInfos, :StartTime, :ExpireTime
+        
+        def initialize(appid=nil, packageid=nil, packagename=nil, packagetype=nil, packageregion=nil, status=nil, packagetotalspec=nil, packageusedspec=nil, hasquota=nil, bindinstanceinfos=nil, starttime=nil, expiretime=nil)
+          @AppId = appid
+          @PackageId = packageid
+          @PackageName = packagename
+          @PackageType = packagetype
+          @PackageRegion = packageregion
+          @Status = status
+          @PackageTotalSpec = packagetotalspec
+          @PackageUsedSpec = packageusedspec
+          @HasQuota = hasquota
+          @BindInstanceInfos = bindinstanceinfos
+          @StartTime = starttime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @PackageType = params['PackageType']
+          @PackageRegion = params['PackageRegion']
+          @Status = params['Status']
+          @PackageTotalSpec = params['PackageTotalSpec']
+          @PackageUsedSpec = params['PackageUsedSpec']
+          @HasQuota = params['HasQuota']
+          unless params['BindInstanceInfos'].nil?
+            @BindInstanceInfos = []
+            params['BindInstanceInfos'].each do |i|
+              bindinstanceinfo_tmp = BindInstanceInfo.new
+              bindinstanceinfo_tmp.deserialize(i)
+              @BindInstanceInfos << bindinstanceinfo_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 资源包明细说明
+      class PackageDetail < TencentCloud::Common::AbstractModel
+        # @param AppId: AppId账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param PackageId: 资源包唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param SuccessDeductSpec: 成功抵扣容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessDeductSpec: Float
+        # @param PackageTotalUsedSpec: 截止当前，资源包已使用的容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageTotalUsedSpec: Float
+        # @param StartTime: 抵扣开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 抵扣结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ExtendInfo: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendInfo: String
+
+        attr_accessor :AppId, :PackageId, :InstanceId, :SuccessDeductSpec, :PackageTotalUsedSpec, :StartTime, :EndTime, :ExtendInfo
+        
+        def initialize(appid=nil, packageid=nil, instanceid=nil, successdeductspec=nil, packagetotalusedspec=nil, starttime=nil, endtime=nil, extendinfo=nil)
+          @AppId = appid
+          @PackageId = packageid
+          @InstanceId = instanceid
+          @SuccessDeductSpec = successdeductspec
+          @PackageTotalUsedSpec = packagetotalusedspec
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExtendInfo = extendinfo
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @PackageId = params['PackageId']
+          @InstanceId = params['InstanceId']
+          @SuccessDeductSpec = params['SuccessDeductSpec']
+          @PackageTotalUsedSpec = params['PackageTotalUsedSpec']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExtendInfo = params['ExtendInfo']
+        end
+      end
+
       # 实例参数详细描述
       class ParamDetail < TencentCloud::Common::AbstractModel
         # @param ParamName: 参数名称
@@ -7788,6 +8402,42 @@ module TencentCloud
         end
       end
 
+      # RefundResourcePackage请求参数结构体
+      class RefundResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包唯一ID
+        # @type PackageId: String
+
+        attr_accessor :PackageId
+        
+        def initialize(packageid=nil)
+          @PackageId = packageid
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+        end
+      end
+
+      # RefundResourcePackage返回参数结构体
+      class RefundResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 每个物品对应一个dealName，业务需要根据dealName保证发货接口幂等
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :RequestId
+        
+        def initialize(dealnames=nil, requestid=nil)
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RemoveClusterSlaveZone请求参数结构体
       class RemoveClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -7869,6 +8519,29 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源包信息
+      class ResourcePackage < TencentCloud::Common::AbstractModel
+        # @param PackageId: 资源包的唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param PackageType: 资源包类型：CCU：计算资源包
+        # DISK：存储资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+
+        attr_accessor :PackageId, :PackageType
+        
+        def initialize(packageid=nil, packagetype=nil)
+          @PackageId = packageid
+          @PackageType = packagetype
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -8184,6 +8857,51 @@ module TencentCloud
           @Type = params['Type']
           @Compare = params['Compare']
           @Value = params['Value']
+        end
+      end
+
+      # 资源包明细说明
+      class SalePackageSpec < TencentCloud::Common::AbstractModel
+        # @param PackageRegion: 资源包使用地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageRegion: String
+        # @param PackageType: 资源包类型
+        # CCU-计算资源包
+        # DISK-存储资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+        # @param PackageVersion: 资源包版本
+        # base-基础版本，common-通用版本，enterprise-企业版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param MinPackageSpec: 当前版本资源包最小资源数，计算资源单位：个；存储资源：GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinPackageSpec: Float
+        # @param MaxPackageSpec: 当前版本资源包最大资源数，计算资源单位：个；存储资源：GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPackageSpec: Float
+        # @param ExpireDay: 资源包有效期，单位:天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireDay: Integer
+
+        attr_accessor :PackageRegion, :PackageType, :PackageVersion, :MinPackageSpec, :MaxPackageSpec, :ExpireDay
+        
+        def initialize(packageregion=nil, packagetype=nil, packageversion=nil, minpackagespec=nil, maxpackagespec=nil, expireday=nil)
+          @PackageRegion = packageregion
+          @PackageType = packagetype
+          @PackageVersion = packageversion
+          @MinPackageSpec = minpackagespec
+          @MaxPackageSpec = maxpackagespec
+          @ExpireDay = expireday
+        end
+
+        def deserialize(params)
+          @PackageRegion = params['PackageRegion']
+          @PackageType = params['PackageType']
+          @PackageVersion = params['PackageVersion']
+          @MinPackageSpec = params['MinPackageSpec']
+          @MaxPackageSpec = params['MaxPackageSpec']
+          @ExpireDay = params['ExpireDay']
         end
       end
 
@@ -8822,6 +9540,42 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @UnitPriceDiscount = params['UnitPriceDiscount']
           @ChargeUnit = params['ChargeUnit']
+        end
+      end
+
+      # UnbindClusterResourcePackages请求参数结构体
+      class UnbindClusterResourcePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param PackageIds: 资源包唯一ID,如果不传，解绑该实例绑定的所有资源包
+        # @type PackageIds: Array
+
+        attr_accessor :ClusterId, :PackageIds
+        
+        def initialize(clusterid=nil, packageids=nil)
+          @ClusterId = clusterid
+          @PackageIds = packageids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PackageIds = params['PackageIds']
+        end
+      end
+
+      # UnbindClusterResourcePackages返回参数结构体
+      class UnbindClusterResourcePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

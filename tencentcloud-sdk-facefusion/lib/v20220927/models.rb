@@ -308,16 +308,20 @@ module TencentCloud
         # @type MaterialFaceList: Array
         # @param MaterialName: 素材名
         # @type MaterialName: String
+        # @param AuditResult: 审核原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditResult: String
 
-        attr_accessor :MaterialId, :MaterialStatus, :CreateTime, :UpdateTime, :MaterialFaceList, :MaterialName
+        attr_accessor :MaterialId, :MaterialStatus, :CreateTime, :UpdateTime, :MaterialFaceList, :MaterialName, :AuditResult
         
-        def initialize(materialid=nil, materialstatus=nil, createtime=nil, updatetime=nil, materialfacelist=nil, materialname=nil)
+        def initialize(materialid=nil, materialstatus=nil, createtime=nil, updatetime=nil, materialfacelist=nil, materialname=nil, auditresult=nil)
           @MaterialId = materialid
           @MaterialStatus = materialstatus
           @CreateTime = createtime
           @UpdateTime = updatetime
           @MaterialFaceList = materialfacelist
           @MaterialName = materialname
+          @AuditResult = auditresult
         end
 
         def deserialize(params)
@@ -334,6 +338,7 @@ module TencentCloud
             end
           end
           @MaterialName = params['MaterialName']
+          @AuditResult = params['AuditResult']
         end
       end
 

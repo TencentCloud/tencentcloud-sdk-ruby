@@ -1551,22 +1551,22 @@ module TencentCloud
 
       # 生命周期规则当前路径具体存储量信息
       class Summary < TencentCloud::Common::AbstractModel
-        # @param CapacityUsed: 总存储量（单位byte）
+        # @param CapacityUsed: 已使用容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapacityUsed: Integer
-        # @param StandardCapacityUsed: 标准存储量（单位byte）
+        # @param StandardCapacityUsed: 已使用COS标准存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardCapacityUsed: Integer
-        # @param DegradeCapacityUsed: 低频存储量（单位byte）
+        # @param DegradeCapacityUsed: 已使用COS低频存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DegradeCapacityUsed: Integer
-        # @param ArchiveCapacityUsed: 归档存储量（单位byte）
+        # @param ArchiveCapacityUsed: 已使用COS归档存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveCapacityUsed: Integer
-        # @param DeepArchiveCapacityUsed: 深度归档存储量（单位byte）
+        # @param DeepArchiveCapacityUsed: 已使用COS深度归档存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeepArchiveCapacityUsed: Integer
-        # @param IntelligentCapacityUsed: 智能分层存储量（单位byte）
+        # @param IntelligentCapacityUsed: 已使用COS智能分层存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligentCapacityUsed: Integer
 

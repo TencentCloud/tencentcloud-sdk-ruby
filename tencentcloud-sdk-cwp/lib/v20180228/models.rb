@@ -1702,10 +1702,16 @@ module TencentCloud
         # @type FirstTime: String
         # @param IsNew: 是否新增[0:否|1:是]
         # @type IsNew: Integer
+        # @param MachineExtraInfo: 附加信息
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Quuid: 主机Id
+        # @type Quuid: String
+        # @param Uuid: Agent Id
+        # @type Uuid: String
 
-        attr_accessor :Name, :Desc, :Version, :InstallTime, :Type, :MachineName, :MachineIp, :OsInfo, :UpdateTime, :FirstTime, :IsNew
+        attr_accessor :Name, :Desc, :Version, :InstallTime, :Type, :MachineName, :MachineIp, :OsInfo, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo, :Quuid, :Uuid
         
-        def initialize(name=nil, desc=nil, version=nil, installtime=nil, type=nil, machinename=nil, machineip=nil, osinfo=nil, updatetime=nil, firsttime=nil, isnew=nil)
+        def initialize(name=nil, desc=nil, version=nil, installtime=nil, type=nil, machinename=nil, machineip=nil, osinfo=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil, quuid=nil, uuid=nil)
           @Name = name
           @Desc = desc
           @Version = version
@@ -1717,6 +1723,9 @@ module TencentCloud
           @UpdateTime = updatetime
           @FirstTime = firsttime
           @IsNew = isnew
+          @MachineExtraInfo = machineextrainfo
+          @Quuid = quuid
+          @Uuid = uuid
         end
 
         def deserialize(params)
@@ -1731,6 +1740,12 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @FirstTime = params['FirstTime']
           @IsNew = params['IsNew']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
         end
       end
 
