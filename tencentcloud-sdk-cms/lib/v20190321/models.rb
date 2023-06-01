@@ -19,25 +19,57 @@ module TencentCloud
     module V20190321
       # 从图片中检测到的二维码，可能为多个
       class CodeDetail < TencentCloud::Common::AbstractModel
-        # @param CodePosition: 二维码在图片中的位置，由边界点的坐标表示
-        # @type CodePosition: Array
-        # @param CodeCharset: 二维码文本的编码格式
+        # @param StrCharset: 二维码文本的编码格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrCharset: String
+        # @param QrCodePosition: 二维码在图片中的位置，由边界点的坐标表示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QrCodePosition: Array
+        # @param StrQrCodeText: 二维码的文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrQrCodeText: String
+        # @param Uint32QrCodeType: 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uint32QrCodeType: Integer
+        # @param CodeCharset: 二维码文本的编码格式（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeCharset: String
-        # @param CodeText: 二维码的文本内容
+        # @param CodePosition: 二维码在图片中的位置，由边界点的坐标表示（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodePosition: Array
+        # @param CodeText: 二维码的文本内容（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeText: String
-        # @param CodeType: 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX
+        # @param CodeType: 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX（已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeType: Integer
 
-        attr_accessor :CodePosition, :CodeCharset, :CodeText, :CodeType
+        attr_accessor :StrCharset, :QrCodePosition, :StrQrCodeText, :Uint32QrCodeType, :CodeCharset, :CodePosition, :CodeText, :CodeType
         
-        def initialize(codeposition=nil, codecharset=nil, codetext=nil, codetype=nil)
-          @CodePosition = codeposition
+        def initialize(strcharset=nil, qrcodeposition=nil, strqrcodetext=nil, uint32qrcodetype=nil, codecharset=nil, codeposition=nil, codetext=nil, codetype=nil)
+          @StrCharset = strcharset
+          @QrCodePosition = qrcodeposition
+          @StrQrCodeText = strqrcodetext
+          @Uint32QrCodeType = uint32qrcodetype
           @CodeCharset = codecharset
+          @CodePosition = codeposition
           @CodeText = codetext
           @CodeType = codetype
         end
 
         def deserialize(params)
+          @StrCharset = params['StrCharset']
+          unless params['QrCodePosition'].nil?
+            @QrCodePosition = []
+            params['QrCodePosition'].each do |i|
+              codeposition_tmp = CodePosition.new
+              codeposition_tmp.deserialize(i)
+              @QrCodePosition << codeposition_tmp
+            end
+          end
+          @StrQrCodeText = params['StrQrCodeText']
+          @Uint32QrCodeType = params['Uint32QrCodeType']
+          @CodeCharset = params['CodeCharset']
           unless params['CodePosition'].nil?
             @CodePosition = []
             params['CodePosition'].each do |i|
@@ -46,7 +78,6 @@ module TencentCloud
               @CodePosition << codeposition_tmp
             end
           end
-          @CodeCharset = params['CodeCharset']
           @CodeText = params['CodeText']
           @CodeType = params['CodeType']
         end
@@ -54,19 +85,22 @@ module TencentCloud
 
       # 图片二维码详情
       class CodeDetect < TencentCloud::Common::AbstractModel
-        # @param ModerationDetail: 从图片中检测到的二维码，可能为多个
-        # @type ModerationDetail: Array
         # @param ModerationCode: 检测是否成功，0：成功，-1：出错
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModerationCode: Integer
+        # @param ModerationDetail: 从图片中检测到的二维码，可能为多个
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModerationDetail: Array
 
-        attr_accessor :ModerationDetail, :ModerationCode
+        attr_accessor :ModerationCode, :ModerationDetail
         
-        def initialize(moderationdetail=nil, moderationcode=nil)
-          @ModerationDetail = moderationdetail
+        def initialize(moderationcode=nil, moderationdetail=nil)
           @ModerationCode = moderationcode
+          @ModerationDetail = moderationdetail
         end
 
         def deserialize(params)
+          @ModerationCode = params['ModerationCode']
           unless params['ModerationDetail'].nil?
             @ModerationDetail = []
             params['ModerationDetail'].each do |i|
@@ -75,15 +109,16 @@ module TencentCloud
               @ModerationDetail << codedetail_tmp
             end
           end
-          @ModerationCode = params['ModerationCode']
         end
       end
 
       # 二维码在图片中的位置，由边界点的坐标表示
       class CodePosition < TencentCloud::Common::AbstractModel
         # @param FloatX: 二维码边界点X轴坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FloatX: Float
         # @param FloatY: 二维码边界点Y轴坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FloatY: Float
 
         attr_accessor :FloatX, :FloatY
@@ -101,157 +136,104 @@ module TencentCloud
 
       # 坐标
       class Coordinate < TencentCloud::Common::AbstractModel
-        # @param Cx: 左上角横坐标
-        # @type Cx: Integer
-        # @param Cy: 左上角纵坐标
-        # @type Cy: Integer
-        # @param Height: 高度
-        # @type Height: Integer
         # @param Width: 宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
+        # @param Cy: 左上角纵坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cy: Integer
+        # @param Cx: 左上角横坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cx: Integer
+        # @param Height: 高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
 
-        attr_accessor :Cx, :Cy, :Height, :Width
+        attr_accessor :Width, :Cy, :Cx, :Height
         
-        def initialize(cx=nil, cy=nil, height=nil, width=nil)
-          @Cx = cx
-          @Cy = cy
-          @Height = height
+        def initialize(width=nil, cy=nil, cx=nil, height=nil)
           @Width = width
+          @Cy = cy
+          @Cx = cx
+          @Height = height
         end
 
         def deserialize(params)
-          @Cx = params['Cx']
-          @Cy = params['Cy']
-          @Height = params['Height']
           @Width = params['Width']
+          @Cy = params['Cy']
+          @Cx = params['Cx']
+          @Height = params['Height']
         end
       end
 
-      # CreateFileSample请求参数结构体
-      class CreateFileSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Contents: 文件类型结构数组
-        # @type Contents: Array
-        # @param EvilType: 恶意类型
-        # 100：正常
-        # 20001：政治
-        # 20002：色情
-        # 20006：涉毒违法
-        # 20007：谩骂
-        # 24001：暴恐
-        # 20105：广告引流
-        # @type EvilType: Integer
-        # @param FileType: image：图片
-        # @type FileType: String
-        # @param Label: 样本类型
-        # 1：黑库
-        # 2：白库
-        # @type Label: Integer
+      # CreateKeywordsSamples请求参数结构体
+      class CreateKeywordsSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param UserKeywords: 关键词库信息：单次限制写入2000个，词库总容量不可超过10000个。
+        # @type UserKeywords: Array
+        # @param LibID: 词库ID
+        # @type LibID: String
 
-        attr_accessor :Contents, :EvilType, :FileType, :Label
+        attr_accessor :UserKeywords, :LibID
         
-        def initialize(contents=nil, eviltype=nil, filetype=nil, label=nil)
-          @Contents = contents
-          @EvilType = eviltype
-          @FileType = filetype
-          @Label = label
+        def initialize(userkeywords=nil, libid=nil)
+          @UserKeywords = userkeywords
+          @LibID = libid
         end
 
         def deserialize(params)
-          unless params['Contents'].nil?
-            @Contents = []
-            params['Contents'].each do |i|
-              filesample_tmp = FileSample.new
-              filesample_tmp.deserialize(i)
-              @Contents << filesample_tmp
+          unless params['UserKeywords'].nil?
+            @UserKeywords = []
+            params['UserKeywords'].each do |i|
+              userkeyword_tmp = UserKeyword.new
+              userkeyword_tmp.deserialize(i)
+              @UserKeywords << userkeyword_tmp
             end
           end
-          @EvilType = params['EvilType']
-          @FileType = params['FileType']
-          @Label = params['Label']
+          @LibID = params['LibID']
         end
       end
 
-      # CreateFileSample返回参数结构体
-      class CreateFileSampleResponse < TencentCloud::Common::AbstractModel
-        # @param Progress: 任务状态
-        # 1：已完成
-        # 2：处理中
-        # @type Progress: Integer
+      # CreateKeywordsSamples返回参数结构体
+      class CreateKeywordsSamplesResponse < TencentCloud::Common::AbstractModel
+        # @param SampleIDs: 添加成功的关键词ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SampleIDs: Array
+        # @param DupInfos: 重复关键词列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DupInfos: Array
+        # @param InvalidSamples: 无效关键词列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidSamples: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Progress, :RequestId
+        attr_accessor :SampleIDs, :DupInfos, :InvalidSamples, :RequestId
         
-        def initialize(progress=nil, requestid=nil)
-          @Progress = progress
+        def initialize(sampleids=nil, dupinfos=nil, invalidsamples=nil, requestid=nil)
+          @SampleIDs = sampleids
+          @DupInfos = dupinfos
+          @InvalidSamples = invalidsamples
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Progress = params['Progress']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateTextSample请求参数结构体
-      class CreateTextSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Contents: 关键词数组
-        # @type Contents: Array
-        # @param EvilType: 恶意类型
-        # 100：正常
-        # 20001：政治
-        # 20002：色情
-        # 20006：涉毒违法
-        # 20007：谩骂
-        # 24001：暴恐
-        # 20105：广告引流
-        # @type EvilType: Integer
-        # @param Label: 样本类型
-        # 1：黑库
-        # 2：白库
-        # @type Label: Integer
-        # @param Test: 测试修改参数
-        # @type Test: String
-
-        attr_accessor :Contents, :EvilType, :Label, :Test
-        
-        def initialize(contents=nil, eviltype=nil, label=nil, test=nil)
-          @Contents = contents
-          @EvilType = eviltype
-          @Label = label
-          @Test = test
-        end
-
-        def deserialize(params)
-          @Contents = params['Contents']
-          @EvilType = params['EvilType']
-          @Label = params['Label']
-          @Test = params['Test']
-        end
-      end
-
-      # CreateTextSample返回参数结构体
-      class CreateTextSampleResponse < TencentCloud::Common::AbstractModel
-        # @param ErrMsg: 操作样本失败时返回的错误信息示例：  "样本1":错误码，"样本2":错误码
-        # @type ErrMsg: String
-        # @param Progress: 任务状态
-        # 1：已完成
-        # 2：处理中
-        # @type Progress: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ErrMsg, :Progress, :RequestId
-        
-        def initialize(errmsg=nil, progress=nil, requestid=nil)
-          @ErrMsg = errmsg
-          @Progress = progress
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ErrMsg = params['ErrMsg']
-          @Progress = params['Progress']
+          @SampleIDs = params['SampleIDs']
+          unless params['DupInfos'].nil?
+            @DupInfos = []
+            params['DupInfos'].each do |i|
+              userkeywordinfo_tmp = UserKeywordInfo.new
+              userkeywordinfo_tmp.deserialize(i)
+              @DupInfos << userkeywordinfo_tmp
+            end
+          end
+          unless params['InvalidSamples'].nil?
+            @InvalidSamples = []
+            params['InvalidSamples'].each do |i|
+              invalidsample_tmp = InvalidSample.new
+              invalidsample_tmp.deserialize(i)
+              @InvalidSamples << invalidsample_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -260,250 +242,238 @@ module TencentCloud
       class CustomResult < TencentCloud::Common::AbstractModel
         # @param Keywords: 命中的自定义关键词
         # @type Keywords: Array
-        # @param LibId: 自定义库id
-        # @type LibId: String
         # @param LibName: 自定义词库名称
         # @type LibName: String
+        # @param LibId: 自定义库id
+        # @type LibId: String
         # @param Type: 命中的自定义关键词的类型
         # @type Type: String
 
-        attr_accessor :Keywords, :LibId, :LibName, :Type
+        attr_accessor :Keywords, :LibName, :LibId, :Type
         
-        def initialize(keywords=nil, libid=nil, libname=nil, type=nil)
+        def initialize(keywords=nil, libname=nil, libid=nil, type=nil)
           @Keywords = keywords
-          @LibId = libid
           @LibName = libname
+          @LibId = libid
           @Type = type
         end
 
         def deserialize(params)
           @Keywords = params['Keywords']
-          @LibId = params['LibId']
           @LibName = params['LibName']
+          @LibId = params['LibId']
           @Type = params['Type']
         end
       end
 
-      # DeleteFileSample请求参数结构体
-      class DeleteFileSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 唯一标识数组
-        # @type Ids: Array
+      # DeleteLibSamples请求参数结构体
+      class DeleteLibSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param SampleIDs: 关键词ID
+        # @type SampleIDs: Array
+        # @param LibID: 词库ID
+        # @type LibID: String
 
-        attr_accessor :Ids
+        attr_accessor :SampleIDs, :LibID
         
-        def initialize(ids=nil)
-          @Ids = ids
+        def initialize(sampleids=nil, libid=nil)
+          @SampleIDs = sampleids
+          @LibID = libid
         end
 
         def deserialize(params)
-          @Ids = params['Ids']
+          @SampleIDs = params['SampleIDs']
+          @LibID = params['LibID']
         end
       end
 
-      # DeleteFileSample返回参数结构体
-      class DeleteFileSampleResponse < TencentCloud::Common::AbstractModel
-        # @param Progress: 任务状态
-        # 1：已完成
-        # 2：处理中
-        # @type Progress: Integer
+      # DeleteLibSamples返回参数结构体
+      class DeleteLibSamplesResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 删除成功的数量
+        # @type Count: Integer
+        # @param Details: 每个关键词删除的结果
+        # @type Details: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Progress, :RequestId
+        attr_accessor :Count, :Details, :RequestId
         
-        def initialize(progress=nil, requestid=nil)
-          @Progress = progress
+        def initialize(count=nil, details=nil, requestid=nil)
+          @Count = count
+          @Details = details
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Progress = params['Progress']
+          @Count = params['Count']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              deletesampledetails_tmp = DeleteSampleDetails.new
+              deletesampledetails_tmp.deserialize(i)
+              @Details << deletesampledetails_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
 
-      # DeleteTextSample请求参数结构体
-      class DeleteTextSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 唯一标识数组，目前暂时只支持单个删除
-        # @type Ids: Array
+      # 词库关键词删除结果详情
+      class DeleteSampleDetails < TencentCloud::Common::AbstractModel
+        # @param SampleID: 关键词ID
+        # @type SampleID: String
+        # @param Content: 关键词内容
+        # @type Content: String
+        # @param Deleted: 是否删除成功
+        # @type Deleted: Boolean
+        # @param ErrorInfo: 错误信息
+        # @type ErrorInfo: String
 
-        attr_accessor :Ids
+        attr_accessor :SampleID, :Content, :Deleted, :ErrorInfo
         
-        def initialize(ids=nil)
-          @Ids = ids
+        def initialize(sampleid=nil, content=nil, deleted=nil, errorinfo=nil)
+          @SampleID = sampleid
+          @Content = content
+          @Deleted = deleted
+          @ErrorInfo = errorinfo
         end
 
         def deserialize(params)
-          @Ids = params['Ids']
+          @SampleID = params['SampleID']
+          @Content = params['Content']
+          @Deleted = params['Deleted']
+          @ErrorInfo = params['ErrorInfo']
         end
       end
 
-      # DeleteTextSample返回参数结构体
-      class DeleteTextSampleResponse < TencentCloud::Common::AbstractModel
-        # @param Progress: 任务状态
-        # 1：已完成
-        # 2：处理中
-        # @type Progress: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Progress, :RequestId
-        
-        def initialize(progress=nil, requestid=nil)
-          @Progress = progress
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Progress = params['Progress']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeFileSample请求参数结构体
-      class DescribeFileSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 支持通过标签值进行筛选
-        # @type Filters: Array
-        # @param Limit: 数量限制，默认为20，最大值为100
+      # DescribeKeywordsLibs请求参数结构体
+      class DescribeKeywordsLibsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 单页条数，最大为100条
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 条数偏移量
         # @type Offset: Integer
-        # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc
-        # @type OrderDirection: String
-        # @param OrderField: 按某个字段排序，目前仅支持CreatedAt排序
-        # @type OrderField: String
+        # @param Filters: 过滤器(支持LibName模糊查询,CustomLibIDs词库id列表过滤)
+        # @type Filters: Array
 
-        attr_accessor :Filters, :Limit, :Offset, :OrderDirection, :OrderField
+        attr_accessor :Limit, :Offset, :Filters
         
-        def initialize(filters=nil, limit=nil, offset=nil, orderdirection=nil, orderfield=nil)
-          @Filters = filters
+        def initialize(limit=nil, offset=nil, filters=nil)
           @Limit = limit
           @Offset = offset
-          @OrderDirection = orderdirection
-          @OrderField = orderfield
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
             end
           end
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @OrderDirection = params['OrderDirection']
-          @OrderField = params['OrderField']
         end
       end
 
-      # DescribeFileSample返回参数结构体
-      class DescribeFileSampleResponse < TencentCloud::Common::AbstractModel
-        # @param FileSampleSet: 符合要求的样本的信息
-        # @type FileSampleSet: Array
-        # @param TotalCount: 符合要求的样本的数量
+      # DescribeKeywordsLibs返回参数结构体
+      class DescribeKeywordsLibsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 词库记录数
         # @type TotalCount: Integer
+        # @param Infos: 词库详情
+        # @type Infos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileSampleSet, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Infos, :RequestId
         
-        def initialize(filesampleset=nil, totalcount=nil, requestid=nil)
-          @FileSampleSet = filesampleset
+        def initialize(totalcount=nil, infos=nil, requestid=nil)
           @TotalCount = totalcount
+          @Infos = infos
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['FileSampleSet'].nil?
-            @FileSampleSet = []
-            params['FileSampleSet'].each do |i|
-              filesampleinfo_tmp = FileSampleInfo.new
-              filesampleinfo_tmp.deserialize(i)
-              @FileSampleSet << filesampleinfo_tmp
+          @TotalCount = params['TotalCount']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              keywordslibinfo_tmp = KeywordsLibInfo.new
+              keywordslibinfo_tmp.deserialize(i)
+              @Infos << keywordslibinfo_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
-      # DescribeTextSample请求参数结构体
-      class DescribeTextSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 支持通过标签值进行筛选
-        # @type Filters: Array
-        # @param Limit: 数量限制，默认为20，最大值为100
+      # DescribeLibSamples请求参数结构体
+      class DescribeLibSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 单页条数，最大为100条
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 条数偏移量
         # @type Offset: Integer
-        # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc
-        # @type OrderDirection: String
-        # @param OrderField: 按某个字段排序，目前仅支持CreatedAt排序
-        # @type OrderField: String
+        # @param LibID: 词库ID
+        # @type LibID: String
+        # @param Content: 词内容过滤
+        # @type Content: String
+        # @param EvilTypeList: 违规类型列表过滤
+        # @type EvilTypeList: Array
 
-        attr_accessor :Filters, :Limit, :Offset, :OrderDirection, :OrderField
+        attr_accessor :Limit, :Offset, :LibID, :Content, :EvilTypeList
         
-        def initialize(filters=nil, limit=nil, offset=nil, orderdirection=nil, orderfield=nil)
-          @Filters = filters
+        def initialize(limit=nil, offset=nil, libid=nil, content=nil, eviltypelist=nil)
           @Limit = limit
           @Offset = offset
-          @OrderDirection = orderdirection
-          @OrderField = orderfield
+          @LibID = libid
+          @Content = content
+          @EvilTypeList = eviltypelist
         end
 
         def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @OrderDirection = params['OrderDirection']
-          @OrderField = params['OrderField']
+          @LibID = params['LibID']
+          @Content = params['Content']
+          @EvilTypeList = params['EvilTypeList']
         end
       end
 
-      # DescribeTextSample返回参数结构体
-      class DescribeTextSampleResponse < TencentCloud::Common::AbstractModel
-        # @param TextSampleSet: 符合要求的样本的信息
-        # @type TextSampleSet: Array
-        # @param TotalCount: 符合要求的样本的数量
+      # DescribeLibSamples返回参数结构体
+      class DescribeLibSamplesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 词记录数
         # @type TotalCount: Integer
+        # @param Infos: 词详情
+        # @type Infos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextSampleSet, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Infos, :RequestId
         
-        def initialize(textsampleset=nil, totalcount=nil, requestid=nil)
-          @TextSampleSet = textsampleset
+        def initialize(totalcount=nil, infos=nil, requestid=nil)
           @TotalCount = totalcount
+          @Infos = infos
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['TextSampleSet'].nil?
-            @TextSampleSet = []
-            params['TextSampleSet'].each do |i|
-              textsample_tmp = TextSample.new
-              textsample_tmp.deserialize(i)
-              @TextSampleSet << textsample_tmp
+          @TotalCount = params['TotalCount']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              userkeywordinfo_tmp = UserKeywordInfo.new
+              userkeywordinfo_tmp.deserialize(i)
+              @Infos << userkeywordinfo_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # 文本返回的详细结果
       class DetailResult < TencentCloud::Common::AbstractModel
-        # @param EvilLabel: 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
-        # @type EvilLabel: String
+        # @param Keywords: 该标签下命中的关键词
+        # @type Keywords: Array
         # @param EvilType: 恶意类型
         # 100：正常
         # 20001：政治
@@ -513,190 +483,90 @@ module TencentCloud
         # 20105：广告引流
         # 24001：暴恐
         # @type EvilType: Integer
-        # @param Keywords: 该标签下命中的关键词
-        # @type Keywords: Array
         # @param Score: 该标签模型命中的分值
         # @type Score: Integer
+        # @param EvilLabel: 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
+        # @type EvilLabel: String
 
-        attr_accessor :EvilLabel, :EvilType, :Keywords, :Score
+        attr_accessor :Keywords, :EvilType, :Score, :EvilLabel
         
-        def initialize(evillabel=nil, eviltype=nil, keywords=nil, score=nil)
-          @EvilLabel = evillabel
-          @EvilType = eviltype
+        def initialize(keywords=nil, eviltype=nil, score=nil, evillabel=nil)
           @Keywords = keywords
+          @EvilType = eviltype
           @Score = score
+          @EvilLabel = evillabel
         end
 
         def deserialize(params)
-          @EvilLabel = params['EvilLabel']
-          @EvilType = params['EvilType']
           @Keywords = params['Keywords']
+          @EvilType = params['EvilType']
           @Score = params['Score']
+          @EvilLabel = params['EvilLabel']
         end
       end
 
       # 设备信息
       class Device < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备指纹ID
-        # @type DeviceId: String
-        # @param IDFA: IOS设备，Identifier For Advertising（广告标识符）
-        # @type IDFA: String
         # @param IDFV: IOS设备，IDFV - Identifier For Vendor（应用开发商标识符）
         # @type IDFV: String
-        # @param IMEI: 设备序列号
-        # @type IMEI: String
+        # @param TokenId: 设备指纹Token
+        # @type TokenId: String
         # @param IP: 用户IP
         # @type IP: String
         # @param Mac: Mac地址
         # @type Mac: String
-        # @param TokenId: 设备指纹Token
-        # @type TokenId: String
+        # @param IDFA: IOS设备，Identifier For Advertising（广告标识符）
+        # @type IDFA: String
+        # @param DeviceId: 设备指纹ID
+        # @type DeviceId: String
+        # @param IMEI: 设备序列号
+        # @type IMEI: String
 
-        attr_accessor :DeviceId, :IDFA, :IDFV, :IMEI, :IP, :Mac, :TokenId
+        attr_accessor :IDFV, :TokenId, :IP, :Mac, :IDFA, :DeviceId, :IMEI
         
-        def initialize(deviceid=nil, idfa=nil, idfv=nil, imei=nil, ip=nil, mac=nil, tokenid=nil)
-          @DeviceId = deviceid
-          @IDFA = idfa
+        def initialize(idfv=nil, tokenid=nil, ip=nil, mac=nil, idfa=nil, deviceid=nil, imei=nil)
           @IDFV = idfv
-          @IMEI = imei
+          @TokenId = tokenid
           @IP = ip
           @Mac = mac
-          @TokenId = tokenid
+          @IDFA = idfa
+          @DeviceId = deviceid
+          @IMEI = imei
         end
 
         def deserialize(params)
-          @DeviceId = params['DeviceId']
-          @IDFA = params['IDFA']
           @IDFV = params['IDFV']
-          @IMEI = params['IMEI']
+          @TokenId = params['TokenId']
           @IP = params['IP']
           @Mac = params['Mac']
-          @TokenId = params['TokenId']
+          @IDFA = params['IDFA']
+          @DeviceId = params['DeviceId']
+          @IMEI = params['IMEI']
         end
       end
 
-      # 文件类型样本
-      class FileSample < TencentCloud::Common::AbstractModel
-        # @param FileMd5: 文件md5
-        # @type FileMd5: String
-        # @param FileName: 文件名称
-        # @type FileName: String
-        # @param FileUrl: 文件url
-        # @type FileUrl: String
-        # @param CompressFileUrl: 文件压缩后云url
-        # @type CompressFileUrl: String
-
-        attr_accessor :FileMd5, :FileName, :FileUrl, :CompressFileUrl
-        
-        def initialize(filemd5=nil, filename=nil, fileurl=nil, compressfileurl=nil)
-          @FileMd5 = filemd5
-          @FileName = filename
-          @FileUrl = fileurl
-          @CompressFileUrl = compressfileurl
-        end
-
-        def deserialize(params)
-          @FileMd5 = params['FileMd5']
-          @FileName = params['FileName']
-          @FileUrl = params['FileUrl']
-          @CompressFileUrl = params['CompressFileUrl']
-        end
-      end
-
-      # 文件样本返回信息
-      class FileSampleInfo < TencentCloud::Common::AbstractModel
-        # @param Code: 处理错误码
-        # @type Code: Integer
-        # @param CreatedAt: 创建时间戳
-        # @type CreatedAt: Integer
-        # @param EvilType: 恶意类型
-        # 100：正常
-        # 20001：政治
-        # 20002：色情
-        # 20006：涉毒违法
-        # 20007：谩骂
-        # 24001：暴恐
-        # @type EvilType: Integer
-        # @param FileMd5: 文件的md5
-        # @type FileMd5: String
-        # @param FileName: 文件名称
-        # @type FileName: String
-        # @param FileType: 文件类型
-        # @type FileType: String
-        # @param Id: 唯一标识
-        # @type Id: String
-        # @param Label: 样本类型
-        # 1：黑库
-        # 2：白库
-        # @type Label: Integer
-        # @param Status: 任务状态
-        # 1：添加完成
-        # 2：添加处理中
-        # 3：下载中
-        # 4：下载完成
-        # 5：上传完成
-        # 6：步骤完成
-        # @type Status: Integer
-        # @param CompressFileUrl: 文件压缩后云url
-        # @type CompressFileUrl: String
-        # @param FileUrl: 文件的url
-        # @type FileUrl: String
-
-        attr_accessor :Code, :CreatedAt, :EvilType, :FileMd5, :FileName, :FileType, :Id, :Label, :Status, :CompressFileUrl, :FileUrl
-        
-        def initialize(code=nil, createdat=nil, eviltype=nil, filemd5=nil, filename=nil, filetype=nil, id=nil, label=nil, status=nil, compressfileurl=nil, fileurl=nil)
-          @Code = code
-          @CreatedAt = createdat
-          @EvilType = eviltype
-          @FileMd5 = filemd5
-          @FileName = filename
-          @FileType = filetype
-          @Id = id
-          @Label = label
-          @Status = status
-          @CompressFileUrl = compressfileurl
-          @FileUrl = fileurl
-        end
-
-        def deserialize(params)
-          @Code = params['Code']
-          @CreatedAt = params['CreatedAt']
-          @EvilType = params['EvilType']
-          @FileMd5 = params['FileMd5']
-          @FileName = params['FileName']
-          @FileType = params['FileType']
-          @Id = params['Id']
-          @Label = params['Label']
-          @Status = params['Status']
-          @CompressFileUrl = params['CompressFileUrl']
-          @FileUrl = params['FileUrl']
-        end
-      end
-
-      # 筛选数据结构
-      class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 需要过滤的字段
+      # 入参过滤条件
+      class Filters < TencentCloud::Common::AbstractModel
+        # @param Name: 查询字段
         # @type Name: String
-        # @param Value: 需要过滤字段的值
-        # @type Value: String
+        # @param Values: 查询值
+        # @type Values: Array
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Values
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, values=nil)
           @Name = name
-          @Value = value
+          @Values = values
         end
 
         def deserialize(params)
           @Name = params['Name']
-          @Value = params['Value']
+          @Values = params['Values']
         end
       end
 
       # 图片识别结果详情
       class ImageData < TencentCloud::Common::AbstractModel
-        # @param EvilFlag: 是否恶意 0：正常 1：可疑
-        # @type EvilFlag: Integer
         # @param EvilType: 恶意类型
         # 100：正常
         # 20001：政治
@@ -706,121 +576,133 @@ module TencentCloud
         # 20103：性感
         # 24001：暴恐
         # @type EvilType: Integer
-        # @param CodeDetect: 图片二维码详情
-        # @type CodeDetect: :class:`Tencentcloud::Cms.v20190321.models.CodeDetect`
         # @param HotDetect: 图片性感详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HotDetect: :class:`Tencentcloud::Cms.v20190321.models.ImageHotDetect`
-        # @param IllegalDetect: 图片违法详情
-        # @type IllegalDetect: :class:`Tencentcloud::Cms.v20190321.models.ImageIllegalDetect`
-        # @param LogoDetect: logo详情
-        # @type LogoDetect: :class:`Tencentcloud::Cms.v20190321.models.LogoDetail`
-        # @param OCRDetect: 图片OCR详情
-        # @type OCRDetect: :class:`Tencentcloud::Cms.v20190321.models.OCRDetect`
-        # @param PhoneDetect: 手机检测详情
-        # @type PhoneDetect: :class:`Tencentcloud::Cms.v20190321.models.PhoneDetect`
+        # @param EvilFlag: 是否恶意 0：正常 1：可疑
+        # @type EvilFlag: Integer
+        # @param CodeDetect: 图片二维码详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeDetect: :class:`Tencentcloud::Cms.v20190321.models.CodeDetect`
         # @param PolityDetect: 图片涉政详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolityDetect: :class:`Tencentcloud::Cms.v20190321.models.ImagePolityDetect`
+        # @param IllegalDetect: 图片违法详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IllegalDetect: :class:`Tencentcloud::Cms.v20190321.models.ImageIllegalDetect`
         # @param PornDetect: 图片涉黄详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PornDetect: :class:`Tencentcloud::Cms.v20190321.models.ImagePornDetect`
-        # @param Similar: 图片相似度详情
-        # @type Similar: :class:`Tencentcloud::Cms.v20190321.models.Similar`
         # @param TerrorDetect: 图片暴恐详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TerrorDetect: :class:`Tencentcloud::Cms.v20190321.models.ImageTerrorDetect`
+        # @param OCRDetect: 图片OCR详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OCRDetect: :class:`Tencentcloud::Cms.v20190321.models.OCRDetect`
+        # @param LogoDetect: logo详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoDetect: :class:`Tencentcloud::Cms.v20190321.models.LogoDetail`
+        # @param Similar: 图片相似度详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Similar: :class:`Tencentcloud::Cms.v20190321.models.Similar`
+        # @param PhoneDetect: 手机检测详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneDetect: :class:`Tencentcloud::Cms.v20190321.models.PhoneDetect`
 
-        attr_accessor :EvilFlag, :EvilType, :CodeDetect, :HotDetect, :IllegalDetect, :LogoDetect, :OCRDetect, :PhoneDetect, :PolityDetect, :PornDetect, :Similar, :TerrorDetect
+        attr_accessor :EvilType, :HotDetect, :EvilFlag, :CodeDetect, :PolityDetect, :IllegalDetect, :PornDetect, :TerrorDetect, :OCRDetect, :LogoDetect, :Similar, :PhoneDetect
         
-        def initialize(evilflag=nil, eviltype=nil, codedetect=nil, hotdetect=nil, illegaldetect=nil, logodetect=nil, ocrdetect=nil, phonedetect=nil, politydetect=nil, porndetect=nil, similar=nil, terrordetect=nil)
-          @EvilFlag = evilflag
+        def initialize(eviltype=nil, hotdetect=nil, evilflag=nil, codedetect=nil, politydetect=nil, illegaldetect=nil, porndetect=nil, terrordetect=nil, ocrdetect=nil, logodetect=nil, similar=nil, phonedetect=nil)
           @EvilType = eviltype
-          @CodeDetect = codedetect
           @HotDetect = hotdetect
-          @IllegalDetect = illegaldetect
-          @LogoDetect = logodetect
-          @OCRDetect = ocrdetect
-          @PhoneDetect = phonedetect
+          @EvilFlag = evilflag
+          @CodeDetect = codedetect
           @PolityDetect = politydetect
+          @IllegalDetect = illegaldetect
           @PornDetect = porndetect
-          @Similar = similar
           @TerrorDetect = terrordetect
+          @OCRDetect = ocrdetect
+          @LogoDetect = logodetect
+          @Similar = similar
+          @PhoneDetect = phonedetect
         end
 
         def deserialize(params)
-          @EvilFlag = params['EvilFlag']
           @EvilType = params['EvilType']
-          unless params['CodeDetect'].nil?
-            @CodeDetect = CodeDetect.new
-            @CodeDetect.deserialize(params['CodeDetect'])
-          end
           unless params['HotDetect'].nil?
             @HotDetect = ImageHotDetect.new
             @HotDetect.deserialize(params['HotDetect'])
           end
-          unless params['IllegalDetect'].nil?
-            @IllegalDetect = ImageIllegalDetect.new
-            @IllegalDetect.deserialize(params['IllegalDetect'])
-          end
-          unless params['LogoDetect'].nil?
-            @LogoDetect = LogoDetail.new
-            @LogoDetect.deserialize(params['LogoDetect'])
-          end
-          unless params['OCRDetect'].nil?
-            @OCRDetect = OCRDetect.new
-            @OCRDetect.deserialize(params['OCRDetect'])
-          end
-          unless params['PhoneDetect'].nil?
-            @PhoneDetect = PhoneDetect.new
-            @PhoneDetect.deserialize(params['PhoneDetect'])
+          @EvilFlag = params['EvilFlag']
+          unless params['CodeDetect'].nil?
+            @CodeDetect = CodeDetect.new
+            @CodeDetect.deserialize(params['CodeDetect'])
           end
           unless params['PolityDetect'].nil?
             @PolityDetect = ImagePolityDetect.new
             @PolityDetect.deserialize(params['PolityDetect'])
           end
+          unless params['IllegalDetect'].nil?
+            @IllegalDetect = ImageIllegalDetect.new
+            @IllegalDetect.deserialize(params['IllegalDetect'])
+          end
           unless params['PornDetect'].nil?
             @PornDetect = ImagePornDetect.new
             @PornDetect.deserialize(params['PornDetect'])
+          end
+          unless params['TerrorDetect'].nil?
+            @TerrorDetect = ImageTerrorDetect.new
+            @TerrorDetect.deserialize(params['TerrorDetect'])
+          end
+          unless params['OCRDetect'].nil?
+            @OCRDetect = OCRDetect.new
+            @OCRDetect.deserialize(params['OCRDetect'])
+          end
+          unless params['LogoDetect'].nil?
+            @LogoDetect = LogoDetail.new
+            @LogoDetect.deserialize(params['LogoDetect'])
           end
           unless params['Similar'].nil?
             @Similar = Similar.new
             @Similar.deserialize(params['Similar'])
           end
-          unless params['TerrorDetect'].nil?
-            @TerrorDetect = ImageTerrorDetect.new
-            @TerrorDetect.deserialize(params['TerrorDetect'])
+          unless params['PhoneDetect'].nil?
+            @PhoneDetect = PhoneDetect.new
+            @PhoneDetect.deserialize(params['PhoneDetect'])
           end
         end
       end
 
       # 图片性感详情
       class ImageHotDetect < TencentCloud::Common::AbstractModel
+        # @param Keywords: 关键词明细
+        # @type Keywords: Array
         # @param EvilType: 恶意类型
         # 100：正常
         # 20103：性感
         # @type EvilType: Integer
-        # @param HitFlag: 处置判定 0：正常 1：可疑
-        # @type HitFlag: Integer
-        # @param Keywords: 关键词明细
-        # @type Keywords: Array
         # @param Labels: 性感标签：性感特征中文描述
         # @type Labels: Array
         # @param Score: 性感分：分值范围 0-100，分数越高性感倾向越明显
         # @type Score: Integer
+        # @param HitFlag: 处置判定 0：正常 1：可疑
+        # @type HitFlag: Integer
 
-        attr_accessor :EvilType, :HitFlag, :Keywords, :Labels, :Score
+        attr_accessor :Keywords, :EvilType, :Labels, :Score, :HitFlag
         
-        def initialize(eviltype=nil, hitflag=nil, keywords=nil, labels=nil, score=nil)
-          @EvilType = eviltype
-          @HitFlag = hitflag
+        def initialize(keywords=nil, eviltype=nil, labels=nil, score=nil, hitflag=nil)
           @Keywords = keywords
+          @EvilType = eviltype
           @Labels = labels
           @Score = score
+          @HitFlag = hitflag
         end
 
         def deserialize(params)
-          @EvilType = params['EvilType']
-          @HitFlag = params['HitFlag']
           @Keywords = params['Keywords']
+          @EvilType = params['EvilType']
           @Labels = params['Labels']
           @Score = params['Score']
+          @HitFlag = params['HitFlag']
         end
       end
 
@@ -860,51 +742,51 @@ module TencentCloud
 
       # ImageModeration请求参数结构体
       class ImageModerationRequest < TencentCloud::Common::AbstractModel
-        # @param FileContent: 文件内容 Base64,与FileUrl必须二填一
-        # @type FileContent: String
-        # @param FileMD5: 文件MD5值
-        # @type FileMD5: String
         # @param FileUrl: 文件地址
         # @type FileUrl: String
+        # @param FileMD5: 文件MD5值
+        # @type FileMD5: String
+        # @param FileContent: 文件内容 Base64,与FileUrl必须二填一
+        # @type FileContent: String
 
-        attr_accessor :FileContent, :FileMD5, :FileUrl
+        attr_accessor :FileUrl, :FileMD5, :FileContent
         
-        def initialize(filecontent=nil, filemd5=nil, fileurl=nil)
-          @FileContent = filecontent
-          @FileMD5 = filemd5
+        def initialize(fileurl=nil, filemd5=nil, filecontent=nil)
           @FileUrl = fileurl
+          @FileMD5 = filemd5
+          @FileContent = filecontent
         end
 
         def deserialize(params)
-          @FileContent = params['FileContent']
-          @FileMD5 = params['FileMD5']
           @FileUrl = params['FileUrl']
+          @FileMD5 = params['FileMD5']
+          @FileContent = params['FileContent']
         end
       end
 
       # ImageModeration返回参数结构体
       class ImageModerationResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 识别结果
-        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.ImageData`
         # @param BusinessCode: 业务返回码
         # @type BusinessCode: Integer
+        # @param Data: 识别结果
+        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.ImageData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :BusinessCode, :RequestId
+        attr_accessor :BusinessCode, :Data, :RequestId
         
-        def initialize(data=nil, businesscode=nil, requestid=nil)
-          @Data = data
+        def initialize(businesscode=nil, data=nil, requestid=nil)
           @BusinessCode = businesscode
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BusinessCode = params['BusinessCode']
           unless params['Data'].nil?
             @Data = ImageData.new
             @Data.deserialize(params['Data'])
           end
-          @BusinessCode = params['BusinessCode']
           @RequestId = params['RequestId']
         end
       end
@@ -917,32 +799,35 @@ module TencentCloud
         # @type EvilType: Integer
         # @param HitFlag: 处置判定  0：正常 1：可疑
         # @type HitFlag: Integer
-        # @param PolityLogoDetail: 命中的logo标签信息
-        # @type PolityLogoDetail: Array
         # @param FaceNames: 命中的人脸名称
         # @type FaceNames: Array
-        # @param Keywords: 关键词明细
-        # @type Keywords: Array
+        # @param PolityLogoDetail: 命中的logo标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolityLogoDetail: Array
         # @param PolityItems: 命中的政治物品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolityItems: Array
         # @param Score: 政治（人脸）分：分值范围 0-100，分数越高可疑程度越高
         # @type Score: Integer
+        # @param Keywords: 关键词明细
+        # @type Keywords: Array
 
-        attr_accessor :EvilType, :HitFlag, :PolityLogoDetail, :FaceNames, :Keywords, :PolityItems, :Score
+        attr_accessor :EvilType, :HitFlag, :FaceNames, :PolityLogoDetail, :PolityItems, :Score, :Keywords
         
-        def initialize(eviltype=nil, hitflag=nil, politylogodetail=nil, facenames=nil, keywords=nil, polityitems=nil, score=nil)
+        def initialize(eviltype=nil, hitflag=nil, facenames=nil, politylogodetail=nil, polityitems=nil, score=nil, keywords=nil)
           @EvilType = eviltype
           @HitFlag = hitflag
-          @PolityLogoDetail = politylogodetail
           @FaceNames = facenames
-          @Keywords = keywords
+          @PolityLogoDetail = politylogodetail
           @PolityItems = polityitems
           @Score = score
+          @Keywords = keywords
         end
 
         def deserialize(params)
           @EvilType = params['EvilType']
           @HitFlag = params['HitFlag']
+          @FaceNames = params['FaceNames']
           unless params['PolityLogoDetail'].nil?
             @PolityLogoDetail = []
             params['PolityLogoDetail'].each do |i|
@@ -951,10 +836,9 @@ module TencentCloud
               @PolityLogoDetail << logo_tmp
             end
           end
-          @FaceNames = params['FaceNames']
-          @Keywords = params['Keywords']
           @PolityItems = params['PolityItems']
           @Score = params['Score']
+          @Keywords = params['Keywords']
         end
       end
 
@@ -994,68 +878,147 @@ module TencentCloud
 
       # 图片暴恐详情
       class ImageTerrorDetect < TencentCloud::Common::AbstractModel
+        # @param Keywords: 关键词明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keywords: Array
         # @param EvilType: 恶意类型
         # 100：正常
         # 24001：暴恐
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilType: Integer
-        # @param HitFlag: 处置判定 0：正常 1：可疑
-        # @type HitFlag: Integer
-        # @param Keywords: 关键词明细
-        # @type Keywords: Array
         # @param Labels: 暴恐标签：返回暴恐特征中文描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param Score: 暴恐分：分值范围0--100，分数越高暴恐倾向越明显
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
+        # @param HitFlag: 处置判定 0：正常 1：可疑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitFlag: Integer
 
-        attr_accessor :EvilType, :HitFlag, :Keywords, :Labels, :Score
+        attr_accessor :Keywords, :EvilType, :Labels, :Score, :HitFlag
         
-        def initialize(eviltype=nil, hitflag=nil, keywords=nil, labels=nil, score=nil)
-          @EvilType = eviltype
-          @HitFlag = hitflag
+        def initialize(keywords=nil, eviltype=nil, labels=nil, score=nil, hitflag=nil)
           @Keywords = keywords
+          @EvilType = eviltype
           @Labels = labels
           @Score = score
+          @HitFlag = hitflag
         end
 
         def deserialize(params)
-          @EvilType = params['EvilType']
-          @HitFlag = params['HitFlag']
           @Keywords = params['Keywords']
+          @EvilType = params['EvilType']
           @Labels = params['Labels']
           @Score = params['Score']
+          @HitFlag = params['HitFlag']
         end
       end
 
-      # Logo
+      # 无效关键词
+      class InvalidSample < TencentCloud::Common::AbstractModel
+        # @param Content: 关键词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param InvalidCode: 无效代码:1-标签不存在;2-词过长;3-词类型不匹配;4-备注超长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidCode: Integer
+        # @param InvalidMessage: 无效描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidMessage: String
+
+        attr_accessor :Content, :InvalidCode, :InvalidMessage
+        
+        def initialize(content=nil, invalidcode=nil, invalidmessage=nil)
+          @Content = content
+          @InvalidCode = invalidcode
+          @InvalidMessage = invalidmessage
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @InvalidCode = params['InvalidCode']
+          @InvalidMessage = params['InvalidMessage']
+        end
+      end
+
+      # 关键词库信息
+      class KeywordsLibInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 关键词库ID
+        # @type ID: String
+        # @param LibName: 关键词库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibName: String
+        # @param Describe: 关键词库描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param CreateTime: 关键词库创建时间
+        # @type CreateTime: String
+        # @param Suggestion: 审核建议(Review/Block)
+        # @type Suggestion: String
+        # @param MatchType: 匹配模式(ExactMatch/FuzzyMatch)
+        # @type MatchType: String
+        # @param BizTypes: 关联策略BizType列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizTypes: Array
+
+        attr_accessor :ID, :LibName, :Describe, :CreateTime, :Suggestion, :MatchType, :BizTypes
+        
+        def initialize(id=nil, libname=nil, describe=nil, createtime=nil, suggestion=nil, matchtype=nil, biztypes=nil)
+          @ID = id
+          @LibName = libname
+          @Describe = describe
+          @CreateTime = createtime
+          @Suggestion = suggestion
+          @MatchType = matchtype
+          @BizTypes = biztypes
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @LibName = params['LibName']
+          @Describe = params['Describe']
+          @CreateTime = params['CreateTime']
+          @Suggestion = params['Suggestion']
+          @MatchType = params['MatchType']
+          @BizTypes = params['BizTypes']
+        end
+      end
+
+      # Logo审核结果
       class Logo < TencentCloud::Common::AbstractModel
-        # @param RrectF: logo图标坐标信息
-        # @type RrectF: :class:`Tencentcloud::Cms.v20190321.models.RrectF`
         # @param Confidence: logo图标置信度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Confidence: Float
+        # @param RrectF: logo图标坐标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RrectF: :class:`Tencentcloud::Cms.v20190321.models.RrectF`
         # @param Name: logo图标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
-        attr_accessor :RrectF, :Confidence, :Name
+        attr_accessor :Confidence, :RrectF, :Name
         
-        def initialize(rrectf=nil, confidence=nil, name=nil)
-          @RrectF = rrectf
+        def initialize(confidence=nil, rrectf=nil, name=nil)
           @Confidence = confidence
+          @RrectF = rrectf
           @Name = name
         end
 
         def deserialize(params)
+          @Confidence = params['Confidence']
           unless params['RrectF'].nil?
             @RrectF = RrectF.new
             @RrectF.deserialize(params['RrectF'])
           end
-          @Confidence = params['Confidence']
           @Name = params['Name']
         end
       end
 
-      # LogoDetail
+      # Logo命中详情
       class LogoDetail < TencentCloud::Common::AbstractModel
         # @param AppLogoDetail: 命中的Applogo详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppLogoDetail: Array
 
         attr_accessor :AppLogoDetail
@@ -1076,140 +1039,13 @@ module TencentCloud
         end
       end
 
-      # 人审审核数据相关信息
-      class ManualReviewContent < TencentCloud::Common::AbstractModel
-        # @param BatchId: 审核批次号
-        # @type BatchId: String
-        # @param Content: 审核内容
-        # @type Content: String
-        # @param ContentId: 消息Id
-        # @type ContentId: String
-        # @param ContentType: 审核内容类型 1 图片 2 视频 3 文本 4 音频
-        # @type ContentType: Integer
-        # @param UserInfo: 用户信息
-        # @type UserInfo: :class:`Tencentcloud::Cms.v20190321.models.User`
-        # @param AutoDetailCode: 机器审核类型，与腾讯机器审核定义一致
-        # 100 正常
-        # 20001 政治
-        # 20002 色情
-        # 20006 违法
-        # 20007 谩骂
-        # 24001 暴恐
-        # 20105 广告
-        # 20103 性感
-        # @type AutoDetailCode: Integer
-        # @param AutoResult: 机器审核结果 0 放过 1 拦截
-        # @type AutoResult: Integer
-        # @param CallBackInfo: 回调信息标识，回传数据时原样返回
-        # @type CallBackInfo: String
-        # @param CreateTime: 创建时间 格式“2020-01-01 00:00:12”
-        # @type CreateTime: String
-        # @param Priority: 审核优先级，可选值 [1,2,3,4]，其中 1 最高，4 最低
-        # @type Priority: Integer
-        # @param Title: 标题
-        # @type Title: String
-
-        attr_accessor :BatchId, :Content, :ContentId, :ContentType, :UserInfo, :AutoDetailCode, :AutoResult, :CallBackInfo, :CreateTime, :Priority, :Title
-        
-        def initialize(batchid=nil, content=nil, contentid=nil, contenttype=nil, userinfo=nil, autodetailcode=nil, autoresult=nil, callbackinfo=nil, createtime=nil, priority=nil, title=nil)
-          @BatchId = batchid
-          @Content = content
-          @ContentId = contentid
-          @ContentType = contenttype
-          @UserInfo = userinfo
-          @AutoDetailCode = autodetailcode
-          @AutoResult = autoresult
-          @CallBackInfo = callbackinfo
-          @CreateTime = createtime
-          @Priority = priority
-          @Title = title
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-          @Content = params['Content']
-          @ContentId = params['ContentId']
-          @ContentType = params['ContentType']
-          unless params['UserInfo'].nil?
-            @UserInfo = User.new
-            @UserInfo.deserialize(params['UserInfo'])
-          end
-          @AutoDetailCode = params['AutoDetailCode']
-          @AutoResult = params['AutoResult']
-          @CallBackInfo = params['CallBackInfo']
-          @CreateTime = params['CreateTime']
-          @Priority = params['Priority']
-          @Title = params['Title']
-        end
-      end
-
-      # 人工审核接口返回结果，由ContentId和BatchId组成
-      class ManualReviewData < TencentCloud::Common::AbstractModel
-        # @param BatchId: 人审内容批次号
-        # @type BatchId: String
-        # @param ContentId: 人审内容ID
-        # @type ContentId: String
-
-        attr_accessor :BatchId, :ContentId
-        
-        def initialize(batchid=nil, contentid=nil)
-          @BatchId = batchid
-          @ContentId = contentid
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-          @ContentId = params['ContentId']
-        end
-      end
-
-      # ManualReview请求参数结构体
-      class ManualReviewRequest < TencentCloud::Common::AbstractModel
-        # @param ReviewContent: 人工审核信息
-        # @type ReviewContent: :class:`Tencentcloud::Cms.v20190321.models.ManualReviewContent`
-
-        attr_accessor :ReviewContent
-        
-        def initialize(reviewcontent=nil)
-          @ReviewContent = reviewcontent
-        end
-
-        def deserialize(params)
-          unless params['ReviewContent'].nil?
-            @ReviewContent = ManualReviewContent.new
-            @ReviewContent.deserialize(params['ReviewContent'])
-          end
-        end
-      end
-
-      # ManualReview返回参数结构体
-      class ManualReviewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 人审接口同步响应结果
-        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.ManualReviewData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-        
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = ManualReviewData.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # OCR识别结果详情
       class OCRDetect < TencentCloud::Common::AbstractModel
         # @param Item: 识别到的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: Array
         # @param TextInfo: 识别到的文本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextInfo: String
 
         attr_accessor :Item, :TextInfo
@@ -1235,27 +1071,33 @@ module TencentCloud
       # OCR详情
       class OCRItem < TencentCloud::Common::AbstractModel
         # @param TextPosition: 检测到的文本坐标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextPosition: :class:`Tencentcloud::Cms.v20190321.models.Coordinate`
-        # @param EvilLabel: 文本命中具体标签
-        # @type EvilLabel: String
         # @param EvilType: 文本命中恶意违规类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilType: Integer
-        # @param Keywords: 文本命中违规的关键词
-        # @type Keywords: Array
-        # @param Rate: 文本涉嫌违规分值
-        # @type Rate: Integer
         # @param TextContent: 检测到的文本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextContent: String
+        # @param Rate: 文本涉嫌违规分值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rate: Integer
+        # @param EvilLabel: 文本命中具体标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvilLabel: String
+        # @param Keywords: 文本命中违规的关键词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keywords: Array
 
-        attr_accessor :TextPosition, :EvilLabel, :EvilType, :Keywords, :Rate, :TextContent
+        attr_accessor :TextPosition, :EvilType, :TextContent, :Rate, :EvilLabel, :Keywords
         
-        def initialize(textposition=nil, evillabel=nil, eviltype=nil, keywords=nil, rate=nil, textcontent=nil)
+        def initialize(textposition=nil, eviltype=nil, textcontent=nil, rate=nil, evillabel=nil, keywords=nil)
           @TextPosition = textposition
-          @EvilLabel = evillabel
           @EvilType = eviltype
-          @Keywords = keywords
-          @Rate = rate
           @TextContent = textcontent
+          @Rate = rate
+          @EvilLabel = evillabel
+          @Keywords = keywords
         end
 
         def deserialize(params)
@@ -1263,11 +1105,11 @@ module TencentCloud
             @TextPosition = Coordinate.new
             @TextPosition.deserialize(params['TextPosition'])
           end
-          @EvilLabel = params['EvilLabel']
           @EvilType = params['EvilType']
-          @Keywords = params['Keywords']
-          @Rate = params['Rate']
           @TextContent = params['TextContent']
+          @Rate = params['Rate']
+          @EvilLabel = params['EvilLabel']
+          @Keywords = params['Keywords']
         end
       end
 
@@ -1276,28 +1118,32 @@ module TencentCloud
         # @param EvilType: 恶意类型
         # 100：正常
         # 21000：综合
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilType: Integer
-        # @param HitFlag: 处置判定 0：正常 1：可疑
-        # @type HitFlag: Integer
         # @param Labels: 特征中文描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param Score: 分值范围 0-100，分数越高倾向越明显
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
+        # @param HitFlag: 处置判定 0：正常 1：可疑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitFlag: Integer
 
-        attr_accessor :EvilType, :HitFlag, :Labels, :Score
+        attr_accessor :EvilType, :Labels, :Score, :HitFlag
         
-        def initialize(eviltype=nil, hitflag=nil, labels=nil, score=nil)
+        def initialize(eviltype=nil, labels=nil, score=nil, hitflag=nil)
           @EvilType = eviltype
-          @HitFlag = hitflag
           @Labels = labels
           @Score = score
+          @HitFlag = hitflag
         end
 
         def deserialize(params)
           @EvilType = params['EvilType']
-          @HitFlag = params['HitFlag']
           @Labels = params['Labels']
           @Score = params['Score']
+          @HitFlag = params['HitFlag']
         end
       end
 
@@ -1305,59 +1151,64 @@ module TencentCloud
       class RiskDetails < TencentCloud::Common::AbstractModel
         # @param Keywords: 预留字段，暂时不使用
         # @type Keywords: Array
-        # @param Label: 风险类别，RiskAccount，RiskIP, RiskIMEI
-        # @type Label: String
         # @param Lable: 预留字段，暂时不用
         # @type Lable: String
+        # @param Label: 风险类别，RiskAccount，RiskIP, RiskIMEI
+        # @type Label: String
         # @param Level: 风险等级，1:疑似，2：恶意
         # @type Level: Integer
 
-        attr_accessor :Keywords, :Label, :Lable, :Level
+        attr_accessor :Keywords, :Lable, :Label, :Level
         
-        def initialize(keywords=nil, label=nil, lable=nil, level=nil)
+        def initialize(keywords=nil, lable=nil, label=nil, level=nil)
           @Keywords = keywords
-          @Label = label
           @Lable = lable
+          @Label = label
           @Level = level
         end
 
         def deserialize(params)
           @Keywords = params['Keywords']
-          @Label = params['Label']
           @Lable = params['Lable']
+          @Label = params['Label']
           @Level = params['Level']
         end
       end
 
       # logo位置信息
       class RrectF < TencentCloud::Common::AbstractModel
-        # @param Cx: logo横坐标
-        # @type Cx: Float
-        # @param Cy: logo纵坐标
-        # @type Cy: Float
-        # @param Height: logo图标高度
-        # @type Height: Float
-        # @param Rotate: logo图标中心旋转度
-        # @type Rotate: Float
         # @param Width: logo图标宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Float
+        # @param Cy: logo纵坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cy: Float
+        # @param Cx: logo横坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cx: Float
+        # @param Rotate: logo图标中心旋转度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rotate: Float
+        # @param Height: logo图标高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Float
 
-        attr_accessor :Cx, :Cy, :Height, :Rotate, :Width
+        attr_accessor :Width, :Cy, :Cx, :Rotate, :Height
         
-        def initialize(cx=nil, cy=nil, height=nil, rotate=nil, width=nil)
-          @Cx = cx
-          @Cy = cy
-          @Height = height
-          @Rotate = rotate
+        def initialize(width=nil, cy=nil, cx=nil, rotate=nil, height=nil)
           @Width = width
+          @Cy = cy
+          @Cx = cx
+          @Rotate = rotate
+          @Height = height
         end
 
         def deserialize(params)
-          @Cx = params['Cx']
-          @Cy = params['Cy']
-          @Height = params['Height']
-          @Rotate = params['Rotate']
           @Width = params['Width']
+          @Cy = params['Cy']
+          @Cx = params['Cx']
+          @Rotate = params['Rotate']
+          @Height = params['Height']
         end
       end
 
@@ -1374,6 +1225,7 @@ module TencentCloud
         # @param HitFlag: 处置判定 0：未匹配到 1：恶意 2：白样本
         # @type HitFlag: Integer
         # @param SeedUrl: 返回的种子url
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeedUrl: String
 
         attr_accessor :EvilType, :HitFlag, :SeedUrl
@@ -1393,8 +1245,6 @@ module TencentCloud
 
       # 文本识别结果详情
       class TextData < TencentCloud::Common::AbstractModel
-        # @param EvilFlag: 是否恶意 0：正常 1：可疑
-        # @type EvilFlag: Integer
         # @param EvilType: 恶意类型
         # 100：正常
         # 20001：政治
@@ -1404,80 +1254,61 @@ module TencentCloud
         # 20105：广告引流
         # 24001：暴恐
         # @type EvilType: Integer
-        # @param Common: 消息类公共相关参数
-        # @type Common: :class:`Tencentcloud::Cms.v20190321.models.TextOutputComm`
-        # @param CustomResult: 返回的自定义词库结果
-        # @type CustomResult: Array
-        # @param DetailResult: 返回的详细结果
-        # @type DetailResult: Array
-        # @param ID: 消息类ID信息
-        # @type ID: :class:`Tencentcloud::Cms.v20190321.models.TextOutputID`
+        # @param EvilFlag: 是否恶意 0：正常 1：可疑
+        # @type EvilFlag: Integer
+        # @param DataId: 和请求中的DataId一致，原样返回
+        # @type DataId: String
+        # @param Extra: 输出的其他信息，不同客户内容不同
+        # @type Extra: String
+        # @param BizType: 最终使用的BizType
+        # @type BizType: Integer
         # @param Res: 消息类输出结果
         # @type Res: :class:`Tencentcloud::Cms.v20190321.models.TextOutputRes`
         # @param RiskDetails: 账号风险检测结果
         # @type RiskDetails: Array
-        # @param BizType: 最终使用的BizType
-        # @type BizType: Integer
-        # @param DataId: 和请求中的DataId一致，原样返回
-        # @type DataId: String
-        # @param EvilLabel: 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
-        # @type EvilLabel: String
-        # @param Extra: 输出的其他信息，不同客户内容不同
-        # @type Extra: String
-        # @param Keywords: 命中的关键词
-        # @type Keywords: Array
+        # @param ID: 消息类ID信息
+        # @type ID: :class:`Tencentcloud::Cms.v20190321.models.TextOutputID`
         # @param Score: 命中的模型分值
         # @type Score: Integer
+        # @param Common: 消息类公共相关参数
+        # @type Common: :class:`Tencentcloud::Cms.v20190321.models.TextOutputComm`
         # @param Suggestion: 建议值,Block：打击,Review：待复审,Normal：正常
         # @type Suggestion: String
+        # @param Keywords: 命中的关键词
+        # @type Keywords: Array
+        # @param DetailResult: 返回的详细结果
+        # @type DetailResult: Array
+        # @param CustomResult: 返回的自定义词库结果
+        # @type CustomResult: Array
+        # @param EvilLabel: 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
+        # @type EvilLabel: String
 
-        attr_accessor :EvilFlag, :EvilType, :Common, :CustomResult, :DetailResult, :ID, :Res, :RiskDetails, :BizType, :DataId, :EvilLabel, :Extra, :Keywords, :Score, :Suggestion
+        attr_accessor :EvilType, :EvilFlag, :DataId, :Extra, :BizType, :Res, :RiskDetails, :ID, :Score, :Common, :Suggestion, :Keywords, :DetailResult, :CustomResult, :EvilLabel
         
-        def initialize(evilflag=nil, eviltype=nil, common=nil, customresult=nil, detailresult=nil, id=nil, res=nil, riskdetails=nil, biztype=nil, dataid=nil, evillabel=nil, extra=nil, keywords=nil, score=nil, suggestion=nil)
-          @EvilFlag = evilflag
+        def initialize(eviltype=nil, evilflag=nil, dataid=nil, extra=nil, biztype=nil, res=nil, riskdetails=nil, id=nil, score=nil, common=nil, suggestion=nil, keywords=nil, detailresult=nil, customresult=nil, evillabel=nil)
           @EvilType = eviltype
-          @Common = common
-          @CustomResult = customresult
-          @DetailResult = detailresult
-          @ID = id
+          @EvilFlag = evilflag
+          @DataId = dataid
+          @Extra = extra
+          @BizType = biztype
           @Res = res
           @RiskDetails = riskdetails
-          @BizType = biztype
-          @DataId = dataid
-          @EvilLabel = evillabel
-          @Extra = extra
-          @Keywords = keywords
+          @ID = id
           @Score = score
+          @Common = common
           @Suggestion = suggestion
+          @Keywords = keywords
+          @DetailResult = detailresult
+          @CustomResult = customresult
+          @EvilLabel = evillabel
         end
 
         def deserialize(params)
-          @EvilFlag = params['EvilFlag']
           @EvilType = params['EvilType']
-          unless params['Common'].nil?
-            @Common = TextOutputComm.new
-            @Common.deserialize(params['Common'])
-          end
-          unless params['CustomResult'].nil?
-            @CustomResult = []
-            params['CustomResult'].each do |i|
-              customresult_tmp = CustomResult.new
-              customresult_tmp.deserialize(i)
-              @CustomResult << customresult_tmp
-            end
-          end
-          unless params['DetailResult'].nil?
-            @DetailResult = []
-            params['DetailResult'].each do |i|
-              detailresult_tmp = DetailResult.new
-              detailresult_tmp.deserialize(i)
-              @DetailResult << detailresult_tmp
-            end
-          end
-          unless params['ID'].nil?
-            @ID = TextOutputID.new
-            @ID.deserialize(params['ID'])
-          end
+          @EvilFlag = params['EvilFlag']
+          @DataId = params['DataId']
+          @Extra = params['Extra']
+          @BizType = params['BizType']
           unless params['Res'].nil?
             @Res = TextOutputRes.new
             @Res.deserialize(params['Res'])
@@ -1490,13 +1321,34 @@ module TencentCloud
               @RiskDetails << riskdetails_tmp
             end
           end
-          @BizType = params['BizType']
-          @DataId = params['DataId']
-          @EvilLabel = params['EvilLabel']
-          @Extra = params['Extra']
-          @Keywords = params['Keywords']
+          unless params['ID'].nil?
+            @ID = TextOutputID.new
+            @ID.deserialize(params['ID'])
+          end
           @Score = params['Score']
+          unless params['Common'].nil?
+            @Common = TextOutputComm.new
+            @Common.deserialize(params['Common'])
+          end
           @Suggestion = params['Suggestion']
+          @Keywords = params['Keywords']
+          unless params['DetailResult'].nil?
+            @DetailResult = []
+            params['DetailResult'].each do |i|
+              detailresult_tmp = DetailResult.new
+              detailresult_tmp.deserialize(i)
+              @DetailResult << detailresult_tmp
+            end
+          end
+          unless params['CustomResult'].nil?
+            @CustomResult = []
+            params['CustomResult'].each do |i|
+              customresult_tmp = CustomResult.new
+              customresult_tmp.deserialize(i)
+              @CustomResult << customresult_tmp
+            end
+          end
+          @EvilLabel = params['EvilLabel']
         end
       end
 
@@ -1504,95 +1356,96 @@ module TencentCloud
       class TextModerationRequest < TencentCloud::Common::AbstractModel
         # @param Content: 文本内容Base64编码。原文长度需小于15000字节，即5000个汉字以内。
         # @type Content: String
-        # @param Device: 设备相关信息
-        # @type Device: :class:`Tencentcloud::Cms.v20190321.models.Device`
-        # @param User: 用户相关信息
-        # @type User: :class:`Tencentcloud::Cms.v20190321.models.User`
-        # @param BizType: 该字段用于标识业务场景。您可以在内容安全控制台创建对应的ID，配置不同的内容审核策略，通过接口调用，默认不填为0，后端使用默认策略
-        # @type BizType: Integer
         # @param DataId: 数据ID，英文字母、下划线、-组成，不超过64个字符
         # @type DataId: String
+        # @param BizType: 该字段用于标识业务场景。您可以在内容安全控制台创建对应的ID，配置不同的内容审核策略，通过接口调用，默认不填为0，后端使用默认策略
+        # @type BizType: Integer
+        # @param User: 用户相关信息
+        # @type User: :class:`Tencentcloud::Cms.v20190321.models.User`
         # @param SdkAppId: 业务应用ID
         # @type SdkAppId: Integer
+        # @param Device: 设备相关信息
+        # @type Device: :class:`Tencentcloud::Cms.v20190321.models.Device`
 
-        attr_accessor :Content, :Device, :User, :BizType, :DataId, :SdkAppId
+        attr_accessor :Content, :DataId, :BizType, :User, :SdkAppId, :Device
         
-        def initialize(content=nil, device=nil, user=nil, biztype=nil, dataid=nil, sdkappid=nil)
+        def initialize(content=nil, dataid=nil, biztype=nil, user=nil, sdkappid=nil, device=nil)
           @Content = content
-          @Device = device
-          @User = user
-          @BizType = biztype
           @DataId = dataid
+          @BizType = biztype
+          @User = user
           @SdkAppId = sdkappid
+          @Device = device
         end
 
         def deserialize(params)
           @Content = params['Content']
-          unless params['Device'].nil?
-            @Device = Device.new
-            @Device.deserialize(params['Device'])
-          end
+          @DataId = params['DataId']
+          @BizType = params['BizType']
           unless params['User'].nil?
             @User = User.new
             @User.deserialize(params['User'])
           end
-          @BizType = params['BizType']
-          @DataId = params['DataId']
           @SdkAppId = params['SdkAppId']
+          unless params['Device'].nil?
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
+          end
         end
       end
 
       # TextModeration返回参数结构体
       class TextModerationResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 识别结果
-        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.TextData`
         # @param BusinessCode: 业务返回码
         # @type BusinessCode: Integer
+        # @param Data: 识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.TextData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :BusinessCode, :RequestId
+        attr_accessor :BusinessCode, :Data, :RequestId
         
-        def initialize(data=nil, businesscode=nil, requestid=nil)
-          @Data = data
+        def initialize(businesscode=nil, data=nil, requestid=nil)
           @BusinessCode = businesscode
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BusinessCode = params['BusinessCode']
           unless params['Data'].nil?
             @Data = TextData.new
             @Data.deserialize(params['Data'])
           end
-          @BusinessCode = params['BusinessCode']
           @RequestId = params['RequestId']
         end
       end
 
       # 消息类输出公共参数
       class TextOutputComm < TencentCloud::Common::AbstractModel
-        # @param AppID: 接入业务的唯一ID
-        # @type AppID: Integer
         # @param BUCtrlID: 接口唯一ID，旁路调用接口返回有该字段，标识唯一接口
         # @type BUCtrlID: Integer
         # @param SendTime: 消息发送时间
         # @type SendTime: Integer
+        # @param AppID: 接入业务的唯一ID
+        # @type AppID: Integer
         # @param Uin: 请求字段里的Common.Uin
         # @type Uin: Integer
 
-        attr_accessor :AppID, :BUCtrlID, :SendTime, :Uin
+        attr_accessor :BUCtrlID, :SendTime, :AppID, :Uin
         
-        def initialize(appid=nil, buctrlid=nil, sendtime=nil, uin=nil)
-          @AppID = appid
+        def initialize(buctrlid=nil, sendtime=nil, appid=nil, uin=nil)
           @BUCtrlID = buctrlid
           @SendTime = sendtime
+          @AppID = appid
           @Uin = uin
         end
 
         def deserialize(params)
-          @AppID = params['AppID']
           @BUCtrlID = params['BUCtrlID']
           @SendTime = params['SendTime']
+          @AppID = params['AppID']
           @Uin = params['Uin']
         end
       end
@@ -1621,119 +1474,134 @@ module TencentCloud
       class TextOutputRes < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人,信安处理人企业微信ID
         # @type Operator: String
+        # @param ResultType: 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
+        # @type ResultType: Integer
         # @param ResultCode: 恶意操作码，
         # 删除（1）， 通过（2）， 先审后发（100012）
         # @type ResultCode: Integer
         # @param ResultMsg: 操作结果备注说明
         # @type ResultMsg: String
-        # @param ResultType: 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
-        # @type ResultType: Integer
 
-        attr_accessor :Operator, :ResultCode, :ResultMsg, :ResultType
+        attr_accessor :Operator, :ResultType, :ResultCode, :ResultMsg
         
-        def initialize(operator=nil, resultcode=nil, resultmsg=nil, resulttype=nil)
+        def initialize(operator=nil, resulttype=nil, resultcode=nil, resultmsg=nil)
           @Operator = operator
+          @ResultType = resulttype
           @ResultCode = resultcode
           @ResultMsg = resultmsg
-          @ResultType = resulttype
         end
 
         def deserialize(params)
           @Operator = params['Operator']
+          @ResultType = params['ResultType']
           @ResultCode = params['ResultCode']
           @ResultMsg = params['ResultMsg']
-          @ResultType = params['ResultType']
-        end
-      end
-
-      # 文字样本信息
-      class TextSample < TencentCloud::Common::AbstractModel
-        # @param Code: 处理错误码
-        # @type Code: Integer
-        # @param Content: 关键词
-        # @type Content: String
-        # @param CreatedAt: 创建时间戳
-        # @type CreatedAt: Integer
-        # @param EvilType: 恶意类型
-        # 100：正常
-        # 20001：政治
-        # 20002：色情
-        # 20006：涉毒违法
-        # 20007：谩骂
-        # 20105：广告引流
-        # 24001：暴恐
-        # @type EvilType: Integer
-        # @param Id: 唯一标识
-        # @type Id: String
-        # @param Label: 样本类型
-        # 1：黑库
-        # 2：白库
-        # @type Label: Integer
-        # @param Status: 任务状态
-        # 1：已完成
-        # 2：处理中
-        # @type Status: Integer
-
-        attr_accessor :Code, :Content, :CreatedAt, :EvilType, :Id, :Label, :Status
-        
-        def initialize(code=nil, content=nil, createdat=nil, eviltype=nil, id=nil, label=nil, status=nil)
-          @Code = code
-          @Content = content
-          @CreatedAt = createdat
-          @EvilType = eviltype
-          @Id = id
-          @Label = label
-          @Status = status
-        end
-
-        def deserialize(params)
-          @Code = params['Code']
-          @Content = params['Content']
-          @CreatedAt = params['CreatedAt']
-          @EvilType = params['EvilType']
-          @Id = params['Id']
-          @Label = params['Label']
-          @Status = params['Status']
         end
       end
 
       # 用户相关信息
       class User < TencentCloud::Common::AbstractModel
-        # @param AccountType: 账号类别，"1-微信uin 2-QQ号 3-微信群uin 4-qq群号 5-微信openid 6-QQopenid 7-其它string"
-        # @type AccountType: Integer
-        # @param Age: 年龄 默认0 未知
-        # @type Age: Integer
-        # @param Gender: 性别 默认0 未知 1 男性 2 女性
-        # @type Gender: Integer
         # @param Level: 用户等级，默认0 未知 1 低 2 中 3 高
         # @type Level: Integer
-        # @param Nickname: 用户昵称
-        # @type Nickname: String
-        # @param Phone: 手机号
-        # @type Phone: String
+        # @param Gender: 性别 默认0 未知 1 男性 2 女性
+        # @type Gender: Integer
+        # @param Age: 年龄 默认0 未知
+        # @type Age: Integer
         # @param UserId: 用户账号ID，如填写，会根据账号历史恶意情况，判定消息有害结果，特别是有利于可疑恶意情况下的辅助判断。账号可以填写微信uin、QQ号、微信openid、QQopenid、字符串等。该字段和账号类别确定唯一账号。
         # @type UserId: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param AccountType: 账号类别，"1-微信uin 2-QQ号 3-微信群uin 4-qq群号 5-微信openid 6-QQopenid 7-其它string"
+        # @type AccountType: Integer
+        # @param Nickname: 用户昵称
+        # @type Nickname: String
 
-        attr_accessor :AccountType, :Age, :Gender, :Level, :Nickname, :Phone, :UserId
+        attr_accessor :Level, :Gender, :Age, :UserId, :Phone, :AccountType, :Nickname
         
-        def initialize(accounttype=nil, age=nil, gender=nil, level=nil, nickname=nil, phone=nil, userid=nil)
-          @AccountType = accounttype
-          @Age = age
-          @Gender = gender
+        def initialize(level=nil, gender=nil, age=nil, userid=nil, phone=nil, accounttype=nil, nickname=nil)
           @Level = level
-          @Nickname = nickname
-          @Phone = phone
+          @Gender = gender
+          @Age = age
           @UserId = userid
+          @Phone = phone
+          @AccountType = accounttype
+          @Nickname = nickname
         end
 
         def deserialize(params)
-          @AccountType = params['AccountType']
-          @Age = params['Age']
-          @Gender = params['Gender']
           @Level = params['Level']
-          @Nickname = params['Nickname']
-          @Phone = params['Phone']
+          @Gender = params['Gender']
+          @Age = params['Age']
           @UserId = params['UserId']
+          @Phone = params['Phone']
+          @AccountType = params['AccountType']
+          @Nickname = params['Nickname']
+        end
+      end
+
+      # 添加关键词。
+      class UserKeyword < TencentCloud::Common::AbstractModel
+        # @param Content: 关键词内容：最多40个字符，并且符合词类型的规则
+        # @type Content: String
+        # @param Label: 关键词类型，取值范围为："Normal","Polity","Porn","Ad","Illegal","Abuse","Terror","Spam"
+        # @type Label: String
+        # @param Remark: 关键词备注：最多100个字符。
+        # @type Remark: String
+        # @param WordType: 词类型：Default,Pinyin,English,CompoundWord,ExclusionWord,AffixWord
+        # @type WordType: String
+
+        attr_accessor :Content, :Label, :Remark, :WordType
+        
+        def initialize(content=nil, label=nil, remark=nil, wordtype=nil)
+          @Content = content
+          @Label = label
+          @Remark = remark
+          @WordType = wordtype
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Label = params['Label']
+          @Remark = params['Remark']
+          @WordType = params['WordType']
+        end
+      end
+
+      # 关键词信息
+      class UserKeywordInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 关键词条ID
+        # @type ID: String
+        # @param Content: 关键词内容
+        # @type Content: String
+        # @param Label: 关键词标签；取值范围为："Normal","Polity","Porn","Sexy","Ad","Illegal","Abuse","Terror","Spam","Moan"
+        # @type Label: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param WordType: 词类型：Default,Pinyin,English,CompoundWord,ExclusionWord,AffixWord
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordType: String
+
+        attr_accessor :ID, :Content, :Label, :CreateTime, :Remark, :WordType
+        
+        def initialize(id=nil, content=nil, label=nil, createtime=nil, remark=nil, wordtype=nil)
+          @ID = id
+          @Content = content
+          @Label = label
+          @CreateTime = createtime
+          @Remark = remark
+          @WordType = wordtype
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Content = params['Content']
+          @Label = params['Label']
+          @CreateTime = params['CreateTime']
+          @Remark = params['Remark']
+          @WordType = params['WordType']
         end
       end
 

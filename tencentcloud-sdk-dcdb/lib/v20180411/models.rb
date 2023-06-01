@@ -325,6 +325,26 @@ module TencentCloud
         end
       end
 
+      # 配置信息。包含配置项Config，配置值Value
+      class ConfigValue < TencentCloud::Common::AbstractModel
+        # @param Config: 配置项的名称，支持填写max_user_connections
+        # @type Config: String
+        # @param Value: 配置值
+        # @type Value: String
+
+        attr_accessor :Config, :Value
+        
+        def initialize(config=nil, value=nil)
+          @Config = config
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          @Value = params['Value']
+        end
+      end
+
       # 约束类型值的范围
       class ConstraintRange < TencentCloud::Common::AbstractModel
         # @param Min: 约束类型为section时的最小值
@@ -4118,6 +4138,57 @@ module TencentCloud
           @Length = params['Length']
           @Uri = params['Uri']
           @FileName = params['FileName']
+        end
+      end
+
+      # ModifyAccountConfig请求参数结构体
+      class ModifyAccountConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-kpkvq5oj，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param UserName: 账号的名称
+        # @type UserName: String
+        # @param Host: 账号的域名
+        # @type Host: String
+        # @param Configs: 配置列表，每一个元素是Config和Value的组合
+        # @type Configs: Array
+
+        attr_accessor :InstanceId, :UserName, :Host, :Configs
+        
+        def initialize(instanceid=nil, username=nil, host=nil, configs=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Host = host
+          @Configs = configs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Host = params['Host']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              configvalue_tmp = ConfigValue.new
+              configvalue_tmp.deserialize(i)
+              @Configs << configvalue_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAccountConfig返回参数结构体
+      class ModifyAccountConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

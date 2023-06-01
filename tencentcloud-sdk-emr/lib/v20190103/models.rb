@@ -1252,17 +1252,36 @@ module TencentCloud
         # @type InstanceId: String
         # @param UserNameList: 集群用户名列表
         # @type UserNameList: Array
+        # @param TkeClusterId: tke/eks集群id，容器集群传
+        # @type TkeClusterId: String
+        # @param DisplayStrategy: 默认空，容器版传"native"
+        # @type DisplayStrategy: String
+        # @param UserGroupList: 用户组
+        # @type UserGroupList: Array
 
-        attr_accessor :InstanceId, :UserNameList
+        attr_accessor :InstanceId, :UserNameList, :TkeClusterId, :DisplayStrategy, :UserGroupList
         
-        def initialize(instanceid=nil, usernamelist=nil)
+        def initialize(instanceid=nil, usernamelist=nil, tkeclusterid=nil, displaystrategy=nil, usergrouplist=nil)
           @InstanceId = instanceid
           @UserNameList = usernamelist
+          @TkeClusterId = tkeclusterid
+          @DisplayStrategy = displaystrategy
+          @UserGroupList = usergrouplist
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @UserNameList = params['UserNameList']
+          @TkeClusterId = params['TkeClusterId']
+          @DisplayStrategy = params['DisplayStrategy']
+          unless params['UserGroupList'].nil?
+            @UserGroupList = []
+            params['UserGroupList'].each do |i|
+              userandgroup_tmp = UserAndGroup.new
+              userandgroup_tmp.deserialize(i)
+              @UserGroupList << userandgroup_tmp
+            end
+          end
         end
       end
 
@@ -5975,6 +5994,28 @@ module TencentCloud
           @CPUCores = params['CPUCores']
           @ResourceId = params['ResourceId']
           @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 容器集群用户组信息
+      class UserAndGroup < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param UserGroup: 用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroup: String
+
+        attr_accessor :UserName, :UserGroup
+        
+        def initialize(username=nil, usergroup=nil)
+          @UserName = username
+          @UserGroup = usergroup
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
         end
       end
 

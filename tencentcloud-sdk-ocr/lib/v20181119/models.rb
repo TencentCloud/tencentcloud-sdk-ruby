@@ -6548,6 +6548,102 @@ module TencentCloud
         end
       end
 
+      # RecognizePhilippinesUMIDOCR请求参数结构体
+      class RecognizePhilippinesUMIDOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ReturnHeadImage: 是否返回人像照片。
+        # @type ReturnHeadImage: Boolean
+
+        attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage
+        
+        def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ReturnHeadImage = returnheadimage
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @ReturnHeadImage = params['ReturnHeadImage']
+        end
+      end
+
+      # RecognizePhilippinesUMIDOCR返回参数结构体
+      class RecognizePhilippinesUMIDOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Surname: 姓
+        # @type Surname: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param MiddleName: 中间名
+        # @type MiddleName: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param GivenName: 名
+        # @type GivenName: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Address: 地址
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Birthday: 生日
+        # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param CRN: crn码
+        # @type CRN: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param Sex: 性别
+        # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param HeadPortrait: 人像照片Base64后的结果
+        # @type HeadPortrait: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Surname, :MiddleName, :GivenName, :Address, :Birthday, :CRN, :Sex, :HeadPortrait, :RequestId
+        
+        def initialize(surname=nil, middlename=nil, givenname=nil, address=nil, birthday=nil, crn=nil, sex=nil, headportrait=nil, requestid=nil)
+          @Surname = surname
+          @MiddleName = middlename
+          @GivenName = givenname
+          @Address = address
+          @Birthday = birthday
+          @CRN = crn
+          @Sex = sex
+          @HeadPortrait = headportrait
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Surname'].nil?
+            @Surname = TextDetectionResult.new
+            @Surname.deserialize(params['Surname'])
+          end
+          unless params['MiddleName'].nil?
+            @MiddleName = TextDetectionResult.new
+            @MiddleName.deserialize(params['MiddleName'])
+          end
+          unless params['GivenName'].nil?
+            @GivenName = TextDetectionResult.new
+            @GivenName.deserialize(params['GivenName'])
+          end
+          unless params['Address'].nil?
+            @Address = TextDetectionResult.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['Birthday'].nil?
+            @Birthday = TextDetectionResult.new
+            @Birthday.deserialize(params['Birthday'])
+          end
+          unless params['CRN'].nil?
+            @CRN = TextDetectionResult.new
+            @CRN.deserialize(params['CRN'])
+          end
+          unless params['Sex'].nil?
+            @Sex = TextDetectionResult.new
+            @Sex.deserialize(params['Sex'])
+          end
+          unless params['HeadPortrait'].nil?
+            @HeadPortrait = TextDetectionResult.new
+            @HeadPortrait.deserialize(params['HeadPortrait'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizePhilippinesVoteIDOCR请求参数结构体
       class RecognizePhilippinesVoteIDOCRRequest < TencentCloud::Common::AbstractModel
         # @param ReturnHeadImage: 是否返回人像照片。

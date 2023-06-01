@@ -1809,6 +1809,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 菲律宾UMID识别
+
+        # @param request: Request instance for RecognizePhilippinesUMIDOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesUMIDOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesUMIDOCRResponse`
+        def RecognizePhilippinesUMIDOCR(request)
+          body = send_request('RecognizePhilippinesUMIDOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizePhilippinesUMIDOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
 
         # 默认接口请求频率限制：20次/秒。
@@ -1889,6 +1913,8 @@ module TencentCloud
 
         # 本接口支持泰国身份证识别，识别字段包括泰文姓名、英文姓名、地址、出生日期、身份证号码、首次领用日期、签发日期等字段。
         # 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+
+        # 默认接口请求频率限制：10次/秒
 
         # @param request: Request instance for RecognizeThaiIDCardOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeThaiIDCardOCRRequest`
