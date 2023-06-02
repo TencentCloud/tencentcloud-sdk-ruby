@@ -19030,6 +19030,88 @@ module TencentCloud
         end
       end
 
+      # DescribeVulRegistryImageList请求参数结构体
+      class DescribeVulRegistryImageListRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞ID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # OnlyAffectedNewestImage bool 是否影响最新镜像
+        # ImageDigest 镜像Digest，支持模糊查询
+        # ImageId 镜像ID，支持模糊查询
+        # Namespace 命名空间，支持模糊查询
+        # ImageTag 镜像版本，支持模糊查询
+        # InstanceName 实例名称，支持模糊查询
+        # ImageName 镜像名，支持模糊查询
+        # ImageRepoAddress 镜像地址，支持模糊查询
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :PocID, :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulRegistryImageList返回参数结构体
+      class DescribeVulRegistryImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 镜像总数
+        # @type TotalCount: Integer
+        # @param List: 仓库镜像列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulaffectedregistryimageinfo_tmp = VulAffectedRegistryImageInfo.new
+              vulaffectedregistryimageinfo_tmp.deserialize(i)
+              @List << vulaffectedregistryimageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVulScanAuthorizedImageSummary请求参数结构体
       class DescribeVulScanAuthorizedImageSummaryRequest < TencentCloud::Common::AbstractModel
 
@@ -26622,6 +26704,57 @@ module TencentCloud
               @ComponentList << vulaffectedimagecomponentinfo_tmp
             end
           end
+        end
+      end
+
+      # 漏洞影响的仓库镜像列表
+      class VulAffectedRegistryImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ImageTag: 镜像版本
+        # @type ImageTag: String
+        # @param Namespace: 镜像命名空间
+        # @type Namespace: String
+        # @param ImageRepoAddress: 镜像地址
+        # @type ImageRepoAddress: String
+        # @param ComponentList: 组件列表
+        # @type ComponentList: Array
+        # @param IsLatestImage: 是否为镜像的最新版本
+        # @type IsLatestImage: Boolean
+        # @param ImageAssetId: 内部镜像资产ID
+        # @type ImageAssetId: Integer
+
+        attr_accessor :ImageID, :ImageName, :ImageTag, :Namespace, :ImageRepoAddress, :ComponentList, :IsLatestImage, :ImageAssetId
+        
+        def initialize(imageid=nil, imagename=nil, imagetag=nil, namespace=nil, imagerepoaddress=nil, componentlist=nil, islatestimage=nil, imageassetid=nil)
+          @ImageID = imageid
+          @ImageName = imagename
+          @ImageTag = imagetag
+          @Namespace = namespace
+          @ImageRepoAddress = imagerepoaddress
+          @ComponentList = componentlist
+          @IsLatestImage = islatestimage
+          @ImageAssetId = imageassetid
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @ImageTag = params['ImageTag']
+          @Namespace = params['Namespace']
+          @ImageRepoAddress = params['ImageRepoAddress']
+          unless params['ComponentList'].nil?
+            @ComponentList = []
+            params['ComponentList'].each do |i|
+              vulaffectedimagecomponentinfo_tmp = VulAffectedImageComponentInfo.new
+              vulaffectedimagecomponentinfo_tmp.deserialize(i)
+              @ComponentList << vulaffectedimagecomponentinfo_tmp
+            end
+          end
+          @IsLatestImage = params['IsLatestImage']
+          @ImageAssetId = params['ImageAssetId']
         end
       end
 

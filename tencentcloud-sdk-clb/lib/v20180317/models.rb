@@ -1381,7 +1381,7 @@ module TencentCloud
         # @type MasterZoneId: String
         # @param ZoneId: 仅适用于公网负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
         # @type ZoneId: String
-        # @param InternetAccessible: 仅适用于公网负载均衡。负载均衡的网络计费模式。
+        # @param InternetAccessible: 仅对内网属性的性能容量型实例和公网属性的所有实例生效。
         # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
         # @param VipIsp: 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
         # @type VipIsp: String
@@ -1396,7 +1396,7 @@ module TencentCloud
         # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
         # @param SlaType: 创建性能容量型实例。
         # <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示创建按量计费模式下的默认规格的性能容量型实例。
-        # <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
+        # <ul><li>默认为普通规格的性能容量型实例，SLA对应超强型1规格。
         # <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
         # @type SlaType: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
@@ -1414,10 +1414,12 @@ module TencentCloud
         # @type EipAddressId: String
         # @param LoadBalancerPassToTarget: Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
         # @type LoadBalancerPassToTarget: Boolean
+        # @param DynamicVip: 创建域名化负载均衡。
+        # @type DynamicVip: Boolean
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip
         
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1442,6 +1444,7 @@ module TencentCloud
           @SlaveZoneId = slavezoneid
           @EipAddressId = eipaddressid
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
+          @DynamicVip = dynamicvip
         end
 
         def deserialize(params)
@@ -1489,6 +1492,7 @@ module TencentCloud
           @SlaveZoneId = params['SlaveZoneId']
           @EipAddressId = params['EipAddressId']
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
+          @DynamicVip = params['DynamicVip']
         end
       end
 
@@ -4260,7 +4264,7 @@ module TencentCloud
         # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps，仅对公网属性的共享型、性能容量型和独占型 CLB 实例、以及内网属性的性能容量型 CLB 实例生效。
         # - 对于公网属性的共享型和独占型 CLB 实例，最大出带宽的范围为1Mbps-2048Mbps。
         # - 对于公网属性和内网属性的性能容量型 CLB实例
-        #   - 当您开通了普通规格的性能容量型时，最大出带宽的范围为1Mbps-10240Mbps。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。
+        #   - 默认为普通规格的性能容量型实例，SLA对应超强型1规格，最大出带宽的范围为1Mbps-10240Mbps。
         #   - 当您开通了超大型规格的性能容量型时，最大出带宽的范围为1Mbps-61440Mbps。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetMaxBandwidthOut: Integer
@@ -6510,13 +6514,17 @@ module TencentCloud
         # @param AvailabilitySet: 可用资源。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailabilitySet: Array
+        # @param TypeSet: 运营商类型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeSet: Array
 
-        attr_accessor :Type, :Isp, :AvailabilitySet
+        attr_accessor :Type, :Isp, :AvailabilitySet, :TypeSet
         
-        def initialize(type=nil, isp=nil, availabilityset=nil)
+        def initialize(type=nil, isp=nil, availabilityset=nil, typeset=nil)
           @Type = type
           @Isp = isp
           @AvailabilitySet = availabilityset
+          @TypeSet = typeset
         end
 
         def deserialize(params)
@@ -6528,6 +6536,14 @@ module TencentCloud
               resourceavailability_tmp = ResourceAvailability.new
               resourceavailability_tmp.deserialize(i)
               @AvailabilitySet << resourceavailability_tmp
+            end
+          end
+          unless params['TypeSet'].nil?
+            @TypeSet = []
+            params['TypeSet'].each do |i|
+              typeinfo_tmp = TypeInfo.new
+              typeinfo_tmp.deserialize(i)
+              @TypeSet << typeinfo_tmp
             end
           end
         end
@@ -7227,6 +7243,28 @@ module TencentCloud
         end
       end
 
+      # 规格可用性
+      class SpecAvailability < TencentCloud::Common::AbstractModel
+        # @param SpecType: 规格类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecType: String
+        # @param Availability: 规格可用性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Availability: String
+
+        attr_accessor :SpecType, :Availability
+        
+        def initialize(spectype=nil, availability=nil)
+          @SpecType = spectype
+          @Availability = availability
+        end
+
+        def deserialize(params)
+          @SpecType = params['SpecType']
+          @Availability = params['Availability']
+        end
+      end
+
       # 负载均衡的标签信息
       class TagInfo < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签的键
@@ -7506,6 +7544,35 @@ module TencentCloud
         def deserialize(params)
           @Region = params['Region']
           @VpcId = params['VpcId']
+        end
+      end
+
+      # 运营商类型信息
+      class TypeInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 运营商类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SpecAvailabilitySet: 规格可用性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecAvailabilitySet: Array
+
+        attr_accessor :Type, :SpecAvailabilitySet
+        
+        def initialize(type=nil, specavailabilityset=nil)
+          @Type = type
+          @SpecAvailabilitySet = specavailabilityset
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['SpecAvailabilitySet'].nil?
+            @SpecAvailabilitySet = []
+            params['SpecAvailabilitySet'].each do |i|
+              specavailability_tmp = SpecAvailability.new
+              specavailability_tmp.deserialize(i)
+              @SpecAvailabilitySet << specavailability_tmp
+            end
+          end
         end
       end
 

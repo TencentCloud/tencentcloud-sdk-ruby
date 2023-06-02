@@ -344,7 +344,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param OrganizationId: 主机构ID
         # @type OrganizationId: String
-        # @param OperatorId: 经办人的用户ID
+        # @param OperatorId: 经办人的用户ID，同UserId
         # @type OperatorId: String
         # @param SubOrganizationId: 下属机构ID
         # @type SubOrganizationId: String
@@ -3538,9 +3538,9 @@ module TencentCloud
 
       # 下载文件的URL信息
       class FileUrl < TencentCloud::Common::AbstractModel
-        # @param Url: 下载文件的URL
+        # @param Url: 下载文件的URL，有效期为输入的UrlTtl，默认5分钟
         # @type Url: String
-        # @param Option: 下载文件的附加信息
+        # @param Option: 下载文件的附加信息。如果是pdf文件，会返回pdf文件每页的有效高宽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Option: String
 
@@ -3559,12 +3559,12 @@ module TencentCloud
 
       # 补充签署人信息
       class FillApproverInfo < TencentCloud::Common::AbstractModel
-        # @param RecipientId: 签署人签署Id
+        # @param RecipientId: 对应模板中的参与方ID
         # @type RecipientId: String
         # @param ApproverSource: 签署人来源
         # WEWORKAPP: 企业微信
         # @type ApproverSource: String
-        # @param CustomUserId: 企业自定义账号Id
+        # @param CustomUserId: 企业自定义账号ID
         # WEWORKAPP场景下指企业自有应用获取企微明文的userid
         # @type CustomUserId: String
 
@@ -3605,47 +3605,50 @@ module TencentCloud
 
       # 签署人详情信息
       class FlowApproverDetail < TencentCloud::Common::AbstractModel
-        # @param ApproveMessage: 签署人信息
+        # @param ApproveMessage: 签署时的相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveMessage: String
-        # @param ApproveName: 签署人名字
+        # @param ApproveName: 签署方姓名
         # @type ApproveName: String
-        # @param ApproveStatus: 签署人的状态
+        # @param ApproveStatus: 签署方的签署状态
         # 0：还没有发起
         # 1：流程中 没有开始处理
-        # 2：待处理
-        # 3：签署态
-        # 4：拒绝态
-        # 5：过期没人处理
-        # 6：取消态
+        # 2：待签署
+        # 3：已签署
+        # 4：已拒绝
+        # 5：已过期
+        # 6：已撤销
         # 7：还没有预发起
         # 8：待填写
         # 9：因为各种原因而终止
+        # 10：填写完成
+        # 15：已解除
+        # 19：转他人处理
         # @type ApproveStatus: Integer
-        # @param ReceiptId: 模板配置时候的签署人id,与控件绑定
+        # @param ReceiptId: 模板配置中的参与方ID,与控件绑定
         # @type ReceiptId: String
-        # @param CustomUserId: 客户自定义userId
+        # @param CustomUserId: 客户自定义的用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomUserId: String
         # @param Mobile: 签署人手机号
         # @type Mobile: String
-        # @param SignOrder: 签署顺序
+        # @param SignOrder: 签署顺序，如果是有序签署，签署顺序从小到大
         # @type SignOrder: Integer
-        # @param ApproveTime: 签署人签署时间
+        # @param ApproveTime: 签署人签署时间，时间戳，单位秒
         # @type ApproveTime: Integer
-        # @param ApproveType: 参与者类型
+        # @param ApproveType: 签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业静默签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveType: String
-        # @param ApproverSource: 签署人侧用户来源
+        # @param ApproverSource: 签署方侧用户来源，如WEWORKAPP-企业微信等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverSource: String
-        # @param CustomApproverTag: 客户自定义签署人标识
+        # @param CustomApproverTag: 客户自定义签署方标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomApproverTag: String
-        # @param OrganizationId: 签署人企业Id
+        # @param OrganizationId: 签署方企业Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
-        # @param OrganizationName: 签署人企业名称
+        # @param OrganizationName: 签署方企业名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
 
@@ -3723,30 +3726,31 @@ module TencentCloud
 
       # 流程信息摘要
       class FlowBrief < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程的编号
+        # @param FlowId: 流程的编号ID
         # @type FlowId: String
         # @param FlowName: 流程的名称
         # @type FlowName: String
-        # @param FlowDescription: 流程的描述
+        # @param FlowDescription: 流程的描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
         # @param FlowType: 流程的类型
         # @type FlowType: String
         # @param FlowStatus: 流程状态
-        # - `0`  还没有发起
-        # - `1`  未签署
-        # - `2`  部分签署
-        # - `3`  已退回
-        # - `4`  完成签署
-        # - `5`  已过期
-        # - `6`  已取消
-        # - `7`  还没有预发起
-        # - `8`  等待填写
-        # - `9`  部分填写
-        # - `10`  拒填
+        # - 0 还没有发起
+        # - 1 待签署
+        # - 2 部分签署
+        # - 3 已拒签
+        # - 4 已签署
+        # - 5 已过期
+        # - 6 已撤销
+        # - 7 还没有预发起
+        # - 8 等待填写
+        # - 9 部分填写
+        # - 10 拒填
+        # - 21 已解除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowStatus: Integer
-        # @param CreatedOn: 流程创建的时间戳
+        # @param CreatedOn: 流程创建的时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: Integer
         # @param FlowMessage: 拒签或者取消的原因描述
@@ -3792,7 +3796,7 @@ module TencentCloud
         # 0：企业
         # 1：个人
         # 3：企业静默签署
-        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
+        # 注：类型为3（企业静默签署）时，会默认完成该签署方的签署。静默签署仅进行盖章操作，不能是手写签名。
         # @type ApproverType: Integer
         # @param OrganizationName: 如果签署方为企业，需要填入企业全称
         # @type OrganizationName: String
@@ -3806,7 +3810,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 签署方经办人证件号码
         # @type ApproverIdCardNumber: String
-        # @param RecipientId: 签署方经办人在模板中的角色ID
+        # @param RecipientId: 签署方经办人在模板中的参与方ID
         # @type RecipientId: String
         # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
         # @type VerifyChannel: Array
@@ -3884,7 +3888,7 @@ module TencentCloud
 
       # 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
       class FlowDetailInfo < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同(流程)的Id
+        # @param FlowId: 合同(流程)的ID
         # @type FlowId: String
         # @param FlowName: 合同(流程)的名字
         # @type FlowName: String
@@ -3893,16 +3897,17 @@ module TencentCloud
         # @type FlowType: String
         # @param FlowStatus: 流程状态
         # - 0 还没有发起
-        # - 1 未签署
+        # - 1 待签署
         # - 2 部分签署
-        # - 3 已退回
-        # - 4 完成签署
+        # - 3 已拒签
+        # - 4 已签署
         # - 5 已过期
-        # - 6 已取消
+        # - 6 已撤销
         # - 7 还没有预发起
         # - 8 等待填写
         # - 9 部分填写
         # - 10 拒填
+        # - 21 已解除
         # @type FlowStatus: Integer
         # @param FlowMessage: 合同(流程)的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3910,9 +3915,9 @@ module TencentCloud
         # @param FlowDescription: 流程的描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
-        # @param CreatedOn: 合同(流程)的创建时间戳
+        # @param CreatedOn: 合同(流程)的创建时间戳，单位秒
         # @type CreatedOn: Integer
-        # @param FlowApproverInfos: 合同(流程)的签署人数组
+        # @param FlowApproverInfos: 合同(流程)的签署方数组
         # @type FlowApproverInfos: Array
         # @param CcInfos: 合同(流程)的关注方信息列表
         # @type CcInfos: Array

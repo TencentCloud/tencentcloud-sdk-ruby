@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用权益点创建证书
+
+        # @param request: Request instance for CreateCertificateByPackage.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CreateCertificateByPackageRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CreateCertificateByPackageResponse`
+        def CreateCertificateByPackage(request)
+          body = send_request('CreateCertificateByPackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCertificateByPackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteCertificate）用于删除证书。
 
         # @param request: Request instance for DeleteCertificate.

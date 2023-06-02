@@ -843,6 +843,117 @@ module TencentCloud
         end
       end
 
+      # CreateCertificateByPackage请求参数结构体
+      class CreateCertificateByPackageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductPid: 证书产品PID。
+        # @type ProductPid: Integer
+        # @param PackageIds: 要消耗的权益包ID。
+        # @type PackageIds: Array
+        # @param DomainCount: 证书域名数量。
+        # @type DomainCount: String
+        # @param Period: 多年期证书年限。
+        # @type Period: Integer
+        # @param OldCertificateId: 要续费的原证书ID（续费时填写）。
+        # @type OldCertificateId: String
+        # @param RenewGenCsrMethod: 续费时CSR生成方式（original、upload、online）。
+        # @type RenewGenCsrMethod: String
+        # @param RenewCsr: 续费时选择上传CSR时填写CSR。
+        # @type RenewCsr: String
+        # @param RenewAlgorithmType: 续费证书CSR的算法类型。
+        # @type RenewAlgorithmType: String
+        # @param RenewAlgorithmParam: 续费证书CSR的算法参数。
+        # @type RenewAlgorithmParam: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+        # @param Tags: 标签。
+        # @type Tags: Array
+        # @param RenewKeyPass: 续费证书的私钥密码。
+        # @type RenewKeyPass: String
+        # @param DomainNames: 批量购买证书时预填写的域名。
+        # @type DomainNames: String
+        # @param CertificateCount: 批量购买证书数量。
+        # @type CertificateCount: Integer
+        # @param ManagerId: 预填写的管理人ID。
+        # @type ManagerId: Integer
+        # @param CompanyId: 预填写的公司ID。
+        # @type CompanyId: Integer
+        # @param VerifyType: 验证方式
+        # @type VerifyType: String
+
+        attr_accessor :ProductPid, :PackageIds, :DomainCount, :Period, :OldCertificateId, :RenewGenCsrMethod, :RenewCsr, :RenewAlgorithmType, :RenewAlgorithmParam, :ProjectId, :Tags, :RenewKeyPass, :DomainNames, :CertificateCount, :ManagerId, :CompanyId, :VerifyType
+        
+        def initialize(productpid=nil, packageids=nil, domaincount=nil, period=nil, oldcertificateid=nil, renewgencsrmethod=nil, renewcsr=nil, renewalgorithmtype=nil, renewalgorithmparam=nil, projectid=nil, tags=nil, renewkeypass=nil, domainnames=nil, certificatecount=nil, managerid=nil, companyid=nil, verifytype=nil)
+          @ProductPid = productpid
+          @PackageIds = packageids
+          @DomainCount = domaincount
+          @Period = period
+          @OldCertificateId = oldcertificateid
+          @RenewGenCsrMethod = renewgencsrmethod
+          @RenewCsr = renewcsr
+          @RenewAlgorithmType = renewalgorithmtype
+          @RenewAlgorithmParam = renewalgorithmparam
+          @ProjectId = projectid
+          @Tags = tags
+          @RenewKeyPass = renewkeypass
+          @DomainNames = domainnames
+          @CertificateCount = certificatecount
+          @ManagerId = managerid
+          @CompanyId = companyid
+          @VerifyType = verifytype
+        end
+
+        def deserialize(params)
+          @ProductPid = params['ProductPid']
+          @PackageIds = params['PackageIds']
+          @DomainCount = params['DomainCount']
+          @Period = params['Period']
+          @OldCertificateId = params['OldCertificateId']
+          @RenewGenCsrMethod = params['RenewGenCsrMethod']
+          @RenewCsr = params['RenewCsr']
+          @RenewAlgorithmType = params['RenewAlgorithmType']
+          @RenewAlgorithmParam = params['RenewAlgorithmParam']
+          @ProjectId = params['ProjectId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+          @RenewKeyPass = params['RenewKeyPass']
+          @DomainNames = params['DomainNames']
+          @CertificateCount = params['CertificateCount']
+          @ManagerId = params['ManagerId']
+          @CompanyId = params['CompanyId']
+          @VerifyType = params['VerifyType']
+        end
+      end
+
+      # CreateCertificateByPackage返回参数结构体
+      class CreateCertificateByPackageResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID。
+        # @type CertificateId: String
+        # @param CertificateIds: 批量购买证书时返回多个证书ID。
+        # @type CertificateIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :CertificateIds, :RequestId
+        
+        def initialize(certificateid=nil, certificateids=nil, requestid=nil)
+          @CertificateId = certificateid
+          @CertificateIds = certificateids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @CertificateIds = params['CertificateIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCertificate请求参数结构体
       class CreateCertificateRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 证书商品ID，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。

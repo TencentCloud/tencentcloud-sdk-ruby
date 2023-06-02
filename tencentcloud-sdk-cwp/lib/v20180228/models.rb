@@ -2208,7 +2208,6 @@ module TencentCloud
         # @param MachineName: 主机名称
         # @type MachineName: String
         # @param UpdateTime: 数据更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param FirstTime: 首次采集时间
         # @type FirstTime: String
@@ -2217,10 +2216,12 @@ module TencentCloud
         # @param MachineExtraInfo:  附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Path: 应用路径
+        # @type Path: String
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime, :FirstTime, :IsNew, :MachineExtraInfo, :Path
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil, machineextrainfo=nil, path=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -2237,6 +2238,7 @@ module TencentCloud
           @FirstTime = firsttime
           @IsNew = isnew
           @MachineExtraInfo = machineextrainfo
+          @Path = path
         end
 
         def deserialize(params)
@@ -2266,6 +2268,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @Path = params['Path']
         end
       end
 

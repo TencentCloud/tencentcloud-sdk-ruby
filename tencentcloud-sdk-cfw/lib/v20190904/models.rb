@@ -374,10 +374,16 @@ module TencentCloud
         # @param SecurityGroupCount: 关联安全组数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupCount: Integer
+        # @param SecurityGroupRuleCount: 关联安全组规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupRuleCount: Integer
+        # @param CdbId: 关联数据库代理Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdbId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Type, :VpcId, :VpcName, :PublicIp, :Ip, :SecurityGroupCount
+        attr_accessor :InstanceId, :InstanceName, :Type, :VpcId, :VpcName, :PublicIp, :Ip, :SecurityGroupCount, :SecurityGroupRuleCount, :CdbId
         
-        def initialize(instanceid=nil, instancename=nil, type=nil, vpcid=nil, vpcname=nil, publicip=nil, ip=nil, securitygroupcount=nil)
+        def initialize(instanceid=nil, instancename=nil, type=nil, vpcid=nil, vpcname=nil, publicip=nil, ip=nil, securitygroupcount=nil, securitygrouprulecount=nil, cdbid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Type = type
@@ -386,6 +392,8 @@ module TencentCloud
           @PublicIp = publicip
           @Ip = ip
           @SecurityGroupCount = securitygroupcount
+          @SecurityGroupRuleCount = securitygrouprulecount
+          @CdbId = cdbid
         end
 
         def deserialize(params)
@@ -397,6 +405,8 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @Ip = params['Ip']
           @SecurityGroupCount = params['SecurityGroupCount']
+          @SecurityGroupRuleCount = params['SecurityGroupRuleCount']
+          @CdbId = params['CdbId']
         end
       end
 
@@ -3391,10 +3401,13 @@ module TencentCloud
         # @param ResourcePath: [a,b]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePath: Array
+        # @param Server: 扫描结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Server: Array
 
-        attr_accessor :AppId, :Region, :VpcId, :VPCName, :SubnetId, :InstanceId, :InstanceName, :InsType, :PublicIp, :PrivateIp, :PortNum, :LeakNum, :InsSource, :ResourcePath
+        attr_accessor :AppId, :Region, :VpcId, :VPCName, :SubnetId, :InstanceId, :InstanceName, :InsType, :PublicIp, :PrivateIp, :PortNum, :LeakNum, :InsSource, :ResourcePath, :Server
         
-        def initialize(appid=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, instanceid=nil, instancename=nil, instype=nil, publicip=nil, privateip=nil, portnum=nil, leaknum=nil, inssource=nil, resourcepath=nil)
+        def initialize(appid=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, instanceid=nil, instancename=nil, instype=nil, publicip=nil, privateip=nil, portnum=nil, leaknum=nil, inssource=nil, resourcepath=nil, server=nil)
           @AppId = appid
           @Region = region
           @VpcId = vpcid
@@ -3409,6 +3422,7 @@ module TencentCloud
           @LeakNum = leaknum
           @InsSource = inssource
           @ResourcePath = resourcepath
+          @Server = server
         end
 
         def deserialize(params)
@@ -3426,6 +3440,7 @@ module TencentCloud
           @LeakNum = params['LeakNum']
           @InsSource = params['InsSource']
           @ResourcePath = params['ResourcePath']
+          @Server = params['Server']
         end
       end
 

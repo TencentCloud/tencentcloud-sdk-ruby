@@ -6464,6 +6464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询漏洞影响的仓库镜像列表
+
+        # @param request: Request instance for DescribeVulRegistryImageList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeVulRegistryImageListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeVulRegistryImageListResponse`
+        def DescribeVulRegistryImageList(request)
+          body = send_request('DescribeVulRegistryImageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulRegistryImageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 统计漏洞扫描页已授权和未扫描镜像数
 
         # @param request: Request instance for DescribeVulScanAuthorizedImageSummary.
