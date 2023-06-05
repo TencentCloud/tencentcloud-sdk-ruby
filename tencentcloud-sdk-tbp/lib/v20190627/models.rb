@@ -253,12 +253,15 @@ module TencentCloud
         # @param ResultType: 结果类型 {中间逻辑出错:0; 任务型机器人:1; 问答型机器人:2; 闲聊型机器人:3; 未匹配上，返回预设兜底话术:5; 未匹配上，返回相似问题列表:6}。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultType: String
+        # @param ResponseText: 机器人对话的应答文本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseText: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :ResponseMessage, :SessionAttributes, :ResultType, :RequestId
+        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :ResponseMessage, :SessionAttributes, :ResultType, :ResponseText, :RequestId
         
-        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, responsemessage=nil, sessionattributes=nil, resulttype=nil, requestid=nil)
+        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, responsemessage=nil, sessionattributes=nil, resulttype=nil, responsetext=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
           @IntentName = intentname
@@ -267,6 +270,7 @@ module TencentCloud
           @ResponseMessage = responsemessage
           @SessionAttributes = sessionattributes
           @ResultType = resulttype
+          @ResponseText = responsetext
           @RequestId = requestid
         end
 
@@ -289,6 +293,7 @@ module TencentCloud
           end
           @SessionAttributes = params['SessionAttributes']
           @ResultType = params['ResultType']
+          @ResponseText = params['ResponseText']
           @RequestId = params['RequestId']
         end
       end

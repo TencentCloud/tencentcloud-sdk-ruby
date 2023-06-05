@@ -1071,10 +1071,12 @@ module TencentCloud
         # @type ElasticSwitch: Boolean
         # @param ElasticLimit: spark jar 包年包月集群弹性上限
         # @type ElasticLimit: Integer
+        # @param SessionResourceTemplate: spark作业集群session资源配置模板
+        # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
-        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit
+        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate
         
-        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil)
+        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil)
           @EngineType = enginetype
           @DataEngineName = dataenginename
           @ClusterType = clustertype
@@ -1104,6 +1106,7 @@ module TencentCloud
           @MainClusterName = mainclustername
           @ElasticSwitch = elasticswitch
           @ElasticLimit = elasticlimit
+          @SessionResourceTemplate = sessionresourcetemplate
         end
 
         def deserialize(params)
@@ -1153,6 +1156,10 @@ module TencentCloud
           @MainClusterName = params['MainClusterName']
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticLimit = params['ElasticLimit']
+          unless params['SessionResourceTemplate'].nil?
+            @SessionResourceTemplate = SessionResourceTemplate.new
+            @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
         end
       end
 
@@ -1764,10 +1771,12 @@ module TencentCloud
         # @type AppExecutorMaxNumbers: Integer
         # @param SessionId: 关联dlc查询脚本id
         # @type SessionId: String
+        # @param IsInherit: 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        # @type IsInherit: Integer
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -1795,6 +1804,7 @@ module TencentCloud
           @SparkImageVersion = sparkimageversion
           @AppExecutorMaxNumbers = appexecutormaxnumbers
           @SessionId = sessionid
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -1825,6 +1835,7 @@ module TencentCloud
           @SparkImageVersion = params['SparkImageVersion']
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
           @SessionId = params['SessionId']
+          @IsInherit = params['IsInherit']
         end
       end
 
@@ -2881,10 +2892,28 @@ module TencentCloud
         # @param ElasticLimit: spark jar 包年包月集群弹性上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticLimit: Integer
+        # @param DefaultHouse: 是否为默认引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultHouse: Boolean
+        # @param MaxConcurrency: 单个集群任务最大并发数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrency: Integer
+        # @param TolerableQueueTime: 任务排队上限时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TolerableQueueTime: Integer
+        # @param UserAppId: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAppId: Integer
+        # @param UserUin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserUin: String
+        # @param SessionResourceTemplate: SessionResourceTemplate
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate
         
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -2924,6 +2953,12 @@ module TencentCloud
           @StartStandbyCluster = startstandbycluster
           @ElasticSwitch = elasticswitch
           @ElasticLimit = elasticlimit
+          @DefaultHouse = defaulthouse
+          @MaxConcurrency = maxconcurrency
+          @TolerableQueueTime = tolerablequeuetime
+          @UserAppId = userappid
+          @UserUin = useruin
+          @SessionResourceTemplate = sessionresourcetemplate
         end
 
         def deserialize(params)
@@ -2983,6 +3018,15 @@ module TencentCloud
           @StartStandbyCluster = params['StartStandbyCluster']
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticLimit = params['ElasticLimit']
+          @DefaultHouse = params['DefaultHouse']
+          @MaxConcurrency = params['MaxConcurrency']
+          @TolerableQueueTime = params['TolerableQueueTime']
+          @UserAppId = params['UserAppId']
+          @UserUin = params['UserUin']
+          unless params['SessionResourceTemplate'].nil?
+            @SessionResourceTemplate = SessionResourceTemplate.new
+            @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
         end
       end
 
@@ -3134,7 +3178,7 @@ module TencentCloud
         # @param GovernPolicy: 数据治理配置项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
-        # @param DatabaseId: 数据库ID
+        # @param DatabaseId: 数据库ID（无效字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseId: String
 
@@ -6061,10 +6105,12 @@ module TencentCloud
         # @type AppExecutorMaxNumbers: Integer
         # @param SessionId: 关联dlc查询脚本
         # @type SessionId: String
+        # @param IsInherit: 任务资源配置是否继承集群配置模板：0（默认）不继承、1：继承
+        # @type IsInherit: Integer
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -6093,6 +6139,7 @@ module TencentCloud
           @SparkImageVersion = sparkimageversion
           @AppExecutorMaxNumbers = appexecutormaxnumbers
           @SessionId = sessionid
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -6124,6 +6171,7 @@ module TencentCloud
           @SparkImageVersion = params['SparkImageVersion']
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
           @SessionId = params['SessionId']
+          @IsInherit = params['IsInherit']
         end
       end
 
@@ -6870,6 +6918,38 @@ module TencentCloud
         end
       end
 
+      # Spark批作业集群Session资源配置模板；
+      class SessionResourceTemplate < TencentCloud::Common::AbstractModel
+        # @param DriverSize: driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DriverSize: String
+        # @param ExecutorSize: executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorSize: String
+        # @param ExecutorNums: 指定executor数量，最小值为1，最大值小于集群规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorNums: Integer
+        # @param ExecutorMaxNumbers: 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorMaxNumbers: Integer
+
+        attr_accessor :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers
+        
+        def initialize(driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil)
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNums = executornums
+          @ExecutorMaxNumbers = executormaxnumbers
+        end
+
+        def deserialize(params)
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNums = params['ExecutorNums']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+        end
+      end
+
       # spark作业详情。
       class SparkJobInfo < TencentCloud::Common::AbstractModel
         # @param JobId: spark作业ID
@@ -6965,10 +7045,13 @@ module TencentCloud
         # @param DataEngineImageVersion: Spark 3.2-EMR
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineImageVersion: String
+        # @param IsInherit: 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInherit: Integer
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion, :IsInherit
         
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil, isinherit=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -7008,6 +7091,7 @@ module TencentCloud
           @SessionId = sessionid
           @DataEngineClusterType = dataengineclustertype
           @DataEngineImageVersion = dataengineimageversion
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -7053,6 +7137,7 @@ module TencentCloud
           @SessionId = params['SessionId']
           @DataEngineClusterType = params['DataEngineClusterType']
           @DataEngineImageVersion = params['DataEngineImageVersion']
+          @IsInherit = params['IsInherit']
         end
       end
 
@@ -7537,10 +7622,13 @@ module TencentCloud
         # @param RecordCount: 数据表行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordCount: Integer
+        # @param MapMaterializedViewName: xxxx
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MapMaterializedViewName: String
 
-        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount, :MapMaterializedViewName
         
-        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil)
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil, mapmaterializedviewname=nil)
           @TableBaseInfo = tablebaseinfo
           @Columns = columns
           @Partitions = partitions
@@ -7551,6 +7639,7 @@ module TencentCloud
           @InputFormat = inputformat
           @StorageSize = storagesize
           @RecordCount = recordcount
+          @MapMaterializedViewName = mapmaterializedviewname
         end
 
         def deserialize(params)
@@ -7588,6 +7677,7 @@ module TencentCloud
           @InputFormat = params['InputFormat']
           @StorageSize = params['StorageSize']
           @RecordCount = params['RecordCount']
+          @MapMaterializedViewName = params['MapMaterializedViewName']
         end
       end
 
@@ -7722,10 +7812,25 @@ module TencentCloud
         # @param CmdArgs: spark app job执行task的程序入口参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmdArgs: String
+        # @param ImageVersion: 集群镜像大版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageVersion: String
+        # @param DriverSize: driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DriverSize: String
+        # @param ExecutorSize: executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorSize: String
+        # @param ExecutorNums: 指定executor数量，最小值为1，最大值小于集群规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorNums: Integer
+        # @param ExecutorMaxNumbers: 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorMaxNumbers: Integer
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -7758,6 +7863,11 @@ module TencentCloud
           @UiUrl = uiurl
           @TotalTime = totaltime
           @CmdArgs = cmdargs
+          @ImageVersion = imageversion
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNums = executornums
+          @ExecutorMaxNumbers = executormaxnumbers
         end
 
         def deserialize(params)
@@ -7793,6 +7903,11 @@ module TencentCloud
           @UiUrl = params['UiUrl']
           @TotalTime = params['TotalTime']
           @CmdArgs = params['CmdArgs']
+          @ImageVersion = params['ImageVersion']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNums = params['ExecutorNums']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
         end
       end
 

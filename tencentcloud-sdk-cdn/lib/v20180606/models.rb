@@ -9943,6 +9943,9 @@ module TencentCloud
         # @param PathBasedOrigin: 分路径回源配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathBasedOrigin: Array
+        # @param Sni: HTTPS回源SNI配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sni: :class:`Tencentcloud::Cdn.v20180606.models.OriginSni`
         # @param AdvanceHttps: HTTPS回源高级配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvanceHttps: :class:`Tencentcloud::Cdn.v20180606.models.AdvanceHttps`
@@ -9955,9 +9958,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginCompany: String
 
-        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :AdvanceHttps, :OriginCompany
+        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :Sni, :AdvanceHttps, :OriginCompany
         
-        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, advancehttps=nil, origincompany=nil)
+        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, sni=nil, advancehttps=nil, origincompany=nil)
           @Origins = origins
           @OriginType = origintype
           @ServerName = servername
@@ -9969,6 +9972,7 @@ module TencentCloud
           @BasePath = basepath
           @PathRules = pathrules
           @PathBasedOrigin = pathbasedorigin
+          @Sni = sni
           @AdvanceHttps = advancehttps
           @OriginCompany = origincompany
         end
@@ -9998,6 +10002,10 @@ module TencentCloud
               pathbasedoriginrule_tmp.deserialize(i)
               @PathBasedOrigin << pathbasedoriginrule_tmp
             end
+          end
+          unless params['Sni'].nil?
+            @Sni = OriginSni.new
+            @Sni.deserialize(params['Sni'])
           end
           unless params['AdvanceHttps'].nil?
             @AdvanceHttps = AdvanceHttps.new
@@ -10130,6 +10138,29 @@ module TencentCloud
         def deserialize(params)
           @ConnectTimeout = params['ConnectTimeout']
           @ReceiveTimeout = params['ReceiveTimeout']
+        end
+      end
+
+      # HTTPS回源SNI
+      class OriginSni < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否开启HTTPS回源SNI。
+        # 开启：on，
+        # 关闭：off
+        # @type Switch: String
+        # @param ServerName: 回源域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+
+        attr_accessor :Switch, :ServerName
+        
+        def initialize(switch=nil, servername=nil)
+          @Switch = switch
+          @ServerName = servername
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ServerName = params['ServerName']
         end
       end
 

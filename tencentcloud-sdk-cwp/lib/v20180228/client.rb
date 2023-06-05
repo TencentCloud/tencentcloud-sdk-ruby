@@ -4064,32 +4064,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下线
-
-        # 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
-
-        # @param request: Request instance for DescribeSaveOrUpdateWarnings.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeSaveOrUpdateWarningsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeSaveOrUpdateWarningsResponse`
-        def DescribeSaveOrUpdateWarnings(request)
-          body = send_request('DescribeSaveOrUpdateWarnings', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSaveOrUpdateWarningsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询木马扫描进度
 
         # @param request: Request instance for DescribeScanMalwareSchedule.
@@ -4774,6 +4748,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVulListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞库列表
+
+        # @param request: Request instance for DescribeVulStoreList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeVulStoreListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeVulStoreListResponse`
+        def DescribeVulStoreList(request)
+          body = send_request('DescribeVulStoreList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulStoreListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -786,16 +786,24 @@ module TencentCloud
 
       # CreateDedicatedClusterDCDBInstance返回参数结构体
       class CreateDedicatedClusterDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 分配资源ID数组
+        # @type InstanceIds: Array
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceIds, :FlowId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(instanceids=nil, flowid=nil, requestid=nil)
+          @InstanceIds = instanceids
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

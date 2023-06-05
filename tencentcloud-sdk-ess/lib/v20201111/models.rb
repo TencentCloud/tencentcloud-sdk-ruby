@@ -273,7 +273,7 @@ module TencentCloud
 
       # BindEmployeeUserIdWithClientOpenId请求参数结构体
       class BindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定
+        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定。（参数参考示例）
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param UserId: 电子签系统员工UserId
         # @type UserId: String
@@ -322,19 +322,27 @@ module TencentCloud
       class CallbackInfo < TencentCloud::Common::AbstractModel
         # @param CallbackUrl: 回调url
         # @type CallbackUrl: String
-        # @param Token: 回调加密token
+        # @param Token: 回调加密key，已废弃
         # @type Token: String
+        # @param CallbackKey: 回调加密key
+        # @type CallbackKey: String
+        # @param CallbackToken: 回调验签token
+        # @type CallbackToken: String
 
-        attr_accessor :CallbackUrl, :Token
+        attr_accessor :CallbackUrl, :Token, :CallbackKey, :CallbackToken
         
-        def initialize(callbackurl=nil, token=nil)
+        def initialize(callbackurl=nil, token=nil, callbackkey=nil, callbacktoken=nil)
           @CallbackUrl = callbackurl
           @Token = token
+          @CallbackKey = callbackkey
+          @CallbackToken = callbacktoken
         end
 
         def deserialize(params)
           @CallbackUrl = params['CallbackUrl']
           @Token = params['Token']
+          @CallbackKey = params['CallbackKey']
+          @CallbackToken = params['CallbackToken']
         end
       end
 
@@ -374,7 +382,7 @@ module TencentCloud
         # @type FlowId: String
         # @param CancelMessage: 撤销原因，最长200个字符；
         # @type CancelMessage: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :FlowId, :CancelMessage, :Agent
@@ -418,11 +426,11 @@ module TencentCloud
 
       # CancelMultiFlowSignQRCode请求参数结构体
       class CancelMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param QrCodeId: 二维码id
         # @type QrCodeId: String
-        # @param Agent: 应用信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :QrCodeId, :Agent
@@ -778,7 +786,7 @@ module TencentCloud
 
       # CreateChannelSubOrganizationModifyQrCode请求参数结构体
       class CreateChannelSubOrganizationModifyQrCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人
+        # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param ApplicationId: 应用编号
         # @type ApplicationId: String
@@ -1433,7 +1441,7 @@ module TencentCloud
         # @param ReviewMessage: 审核原因
         # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
         # @type ReviewMessage: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :FlowId, :ReviewType, :ReviewMessage, :Agent
@@ -1614,7 +1622,7 @@ module TencentCloud
 
       # CreateIntegrationUserRoles请求参数结构体
       class CreateIntegrationUserRolesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息，UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param UserIds: 绑定角色的用户id列表
         # @type UserIds: Array
@@ -1675,7 +1683,7 @@ module TencentCloud
 
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息
+        # @param Operator: 用户信息，其中UserId为必填参数
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param TemplateId: 模板ID
         # @type TemplateId: String
@@ -1835,7 +1843,7 @@ module TencentCloud
 
       # CreatePrepareFlow返回参数结构体
       class CreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 快速发起预览链接
+        # @param Url: 快速发起预览链接，有效期5分钟
         # @type Url: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1861,8 +1869,6 @@ module TencentCloud
         # @type IdCardNumber: String
         # @param SealName: 印章名称
         # @type SealName: String
-        # @param SealImage: 印章图片的base64，最大不超过 8M
-        # @type SealImage: String
         # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param IdCardType: 身份证件类型:
@@ -1872,6 +1878,10 @@ module TencentCloud
         # FOREIGN_ID_CARD 境外身份
         # HONGKONG_MACAO_AND_TAIWAN 中国台湾
         # @type IdCardType: String
+        # @param SealImage: 印章图片的base64
+        # 注：已废弃
+        # 请先通过UploadFiles接口上传文件，获取 FileId
+        # @type SealImage: String
         # @param SealImageCompress: 是否开启印章图片压缩处理，默认不开启，如需开启请设置为 true。当印章超过 2M 时建议开启，开启后图片的 hash 将发生变化。
         # @type SealImageCompress: Boolean
         # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
@@ -1890,38 +1900,44 @@ module TencentCloud
         # 取值：false：不做任何处理；
         # true：做透明化处理和颜色增强。
         # @type ProcessSeal: Boolean
+        # @param FileId: 印章图片文件 id
+        # 取值：
+        # 填写的FileId通过UploadFiles接口上传文件获取。
+        # @type FileId: String
 
-        attr_accessor :UserName, :IdCardNumber, :SealName, :SealImage, :Operator, :IdCardType, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal
+        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId
         
-        def initialize(username=nil, idcardnumber=nil, sealname=nil, sealimage=nil, operator=nil, idcardtype=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil)
+        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil)
           @UserName = username
           @IdCardNumber = idcardnumber
           @SealName = sealname
-          @SealImage = sealimage
           @Operator = operator
           @IdCardType = idcardtype
+          @SealImage = sealimage
           @SealImageCompress = sealimagecompress
           @Mobile = mobile
           @EnableAutoSign = enableautosign
           @SealColor = sealcolor
           @ProcessSeal = processseal
+          @FileId = fileid
         end
 
         def deserialize(params)
           @UserName = params['UserName']
           @IdCardNumber = params['IdCardNumber']
           @SealName = params['SealName']
-          @SealImage = params['SealImage']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
           @IdCardType = params['IdCardType']
+          @SealImage = params['SealImage']
           @SealImageCompress = params['SealImageCompress']
           @Mobile = params['Mobile']
           @EnableAutoSign = params['EnableAutoSign']
           @SealColor = params['SealColor']
           @ProcessSeal = params['ProcessSeal']
+          @FileId = params['FileId']
         end
       end
 
@@ -2067,7 +2083,7 @@ module TencentCloud
 
       # CreateSchemeUrl返回参数结构体
       class CreateSchemeUrlResponse < TencentCloud::Common::AbstractModel
-        # @param SchemeUrl: 小程序链接地址
+        # @param SchemeUrl: 小程序链接地址，有效期5分钟
         # @type SchemeUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2087,7 +2103,7 @@ module TencentCloud
 
       # CreateSealPolicy请求参数结构体
       class CreateSealPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 授权发起人在平台信息，具体参考UserInfo结构体
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Users: 用户在电子文件签署平台标识信息，具体参考UserInfo结构体。可跟下面的UserIds可叠加起作用
         # @type Users: Array
@@ -2095,23 +2111,23 @@ module TencentCloud
         # @type SealId: String
         # @param Expired: 授权有效期。时间戳秒级
         # @type Expired: Integer
-        # @param Policy: 印章授权内容
-        # @type Policy: String
-        # @param Agent: 应用相关
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param UserIds: 需要授权的用户UserId集合。跟上面的SealId参数配合使用。选填，跟上面的Users同时起作用
         # @type UserIds: Array
+        # @param Policy: 印章授权内容
+        # @type Policy: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Users, :SealId, :Expired, :Policy, :Agent, :UserIds
+        attr_accessor :Operator, :Users, :SealId, :Expired, :UserIds, :Policy, :Agent
         
-        def initialize(operator=nil, users=nil, sealid=nil, expired=nil, policy=nil, agent=nil, userids=nil)
+        def initialize(operator=nil, users=nil, sealid=nil, expired=nil, userids=nil, policy=nil, agent=nil)
           @Operator = operator
           @Users = users
           @SealId = sealid
           @Expired = expired
+          @UserIds = userids
           @Policy = policy
           @Agent = agent
-          @UserIds = userids
         end
 
         def deserialize(params)
@@ -2129,12 +2145,12 @@ module TencentCloud
           end
           @SealId = params['SealId']
           @Expired = params['Expired']
+          @UserIds = params['UserIds']
           @Policy = params['Policy']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @UserIds = params['UserIds']
         end
       end
 
@@ -2196,7 +2212,7 @@ module TencentCloud
 
       # CreateUserAutoSignEnableUrl请求参数结构体
       class CreateUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息,UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签场景:
         # E_PRESCRIPTION_AUTO_SIGN 电子处方
@@ -2343,13 +2359,13 @@ module TencentCloud
 
       # DeleteIntegrationRoleUsers请求参数结构体
       class DeleteIntegrationRoleUsersRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人
+        # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param RoleId: 角色id
         # @type RoleId: String
         # @param Users: 用户信息
         # @type Users: Array
-        # @param Agent: 代理信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :RoleId, :Users, :Agent
@@ -2404,25 +2420,25 @@ module TencentCloud
 
       # DeleteSealPolicies请求参数结构体
       class DeleteSealPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作撤销的用户信息
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param PolicyIds: 印章授权编码数组。这个参数跟下面的SealId其中一个必填，另外一个可选填
         # @type PolicyIds: Array
-        # @param Agent: 应用相关
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param SealId: 印章ID。这个参数跟上面的PolicyIds其中一个必填，另外一个可选填
         # @type SealId: String
         # @param UserIds: 待授权的员工ID
         # @type UserIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :PolicyIds, :Agent, :SealId, :UserIds
+        attr_accessor :Operator, :PolicyIds, :SealId, :UserIds, :Agent
         
-        def initialize(operator=nil, policyids=nil, agent=nil, sealid=nil, userids=nil)
+        def initialize(operator=nil, policyids=nil, sealid=nil, userids=nil, agent=nil)
           @Operator = operator
           @PolicyIds = policyids
-          @Agent = agent
           @SealId = sealid
           @UserIds = userids
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2431,12 +2447,12 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @PolicyIds = params['PolicyIds']
+          @SealId = params['SealId']
+          @UserIds = params['UserIds']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @SealId = params['SealId']
-          @UserIds = params['UserIds']
         end
       end
 
@@ -2615,9 +2631,9 @@ module TencentCloud
       class DescribeFlowBriefsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 需要查询的流程ID列表，限制最大20个
+        # @param FlowIds: 需要查询的流程ID列表，限制最大100个
         # @type FlowIds: Array
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :FlowIds, :Agent
@@ -2722,7 +2738,7 @@ module TencentCloud
       class DescribeFlowInfoRequest < TencentCloud::Common::AbstractModel
         # @param FlowIds: 需要查询的流程ID列表，限制最大100个
         # @type FlowIds: Array
-        # @param Operator: 调用方用户信息
+        # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -2781,12 +2797,14 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
+        # @type ContentType: Integer
+        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
+        # @type Filters: Array
         # @param Offset: 查询偏移位置，默认0
         # @type Offset: Integer
         # @param Limit: 查询个数，默认20，最大200
         # @type Limit: Integer
-        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
-        # @type Filters: Array
         # @param ApplicationId: 这个参数跟下面的IsChannel参数配合使用。
         # IsChannel=false时，ApplicationId参数不起任何作用。
         # IsChannel=true时，ApplicationId为空，查询所有第三方应用集成平台企业模板列表；ApplicationId不为空，查询指定应用下的模板列表
@@ -2795,24 +2813,22 @@ module TencentCloud
         # @param IsChannel: 默认为false，查询SaaS模板库列表；
         # 为true，查询第三方应用集成平台企业模板库管理列表
         # @type IsChannel: Boolean
-        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
-        # @type ContentType: Integer
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
         # @param GenerateSource: 暂未开放
         # @type GenerateSource: Integer
 
-        attr_accessor :Operator, :Agent, :Offset, :Limit, :Filters, :ApplicationId, :IsChannel, :ContentType, :Organization, :GenerateSource
+        attr_accessor :Operator, :Agent, :ContentType, :Filters, :Offset, :Limit, :ApplicationId, :IsChannel, :Organization, :GenerateSource
         
-        def initialize(operator=nil, agent=nil, offset=nil, limit=nil, filters=nil, applicationid=nil, ischannel=nil, contenttype=nil, organization=nil, generatesource=nil)
+        def initialize(operator=nil, agent=nil, contenttype=nil, filters=nil, offset=nil, limit=nil, applicationid=nil, ischannel=nil, organization=nil, generatesource=nil)
           @Operator = operator
           @Agent = agent
+          @ContentType = contenttype
+          @Filters = filters
           @Offset = offset
           @Limit = limit
-          @Filters = filters
           @ApplicationId = applicationid
           @IsChannel = ischannel
-          @ContentType = contenttype
           @Organization = organization
           @GenerateSource = generatesource
         end
@@ -2826,8 +2842,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @Offset = params['Offset']
-          @Limit = params['Limit']
+          @ContentType = params['ContentType']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -2836,9 +2851,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @ApplicationId = params['ApplicationId']
           @IsChannel = params['IsChannel']
-          @ContentType = params['ContentType']
           unless params['Organization'].nil?
             @Organization = OrganizationInfo.new
             @Organization.deserialize(params['Organization'])
@@ -2851,7 +2867,7 @@ module TencentCloud
       class DescribeFlowTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param Templates: 模板详情列表
         # @type Templates: Array
-        # @param TotalCount: 查询到的总个数
+        # @param TotalCount: 查询到的总数
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2884,17 +2900,20 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Limit: 返回最大数量，最大为20
         # @type Limit: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
 
-        attr_accessor :Operator, :Limit, :Filters, :Offset
+        attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
         
-        def initialize(operator=nil, limit=nil, filters=nil, offset=nil)
+        def initialize(operator=nil, limit=nil, agent=nil, filters=nil, offset=nil)
           @Operator = operator
           @Limit = limit
+          @Agent = agent
           @Filters = filters
           @Offset = offset
         end
@@ -2905,6 +2924,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @Limit = params['Limit']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -3300,7 +3323,7 @@ module TencentCloud
 
       # DescribeUserAutoSignStatus请求参数结构体
       class DescribeUserAutoSignStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息，UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签场景:
         # E_PRESCRIPTION_AUTO_SIGN 电子处方
@@ -3359,7 +3382,7 @@ module TencentCloud
 
       # DisableUserAutoSign请求参数结构体
       class DisableUserAutoSignRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息,UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签场景:
         # E_PRESCRIPTION_AUTO_SIGN 电子处方
@@ -4112,7 +4135,7 @@ module TencentCloud
       class GetTaskResultApiRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id，通过CreateConvertTaskApi得到
         # @type TaskId: String
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息,UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -4200,7 +4223,7 @@ module TencentCloud
         # @param OrganizationId: 成员企业id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间，时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
@@ -4218,13 +4241,13 @@ module TencentCloud
         # @param License: 企业许可证
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type License: String
-        # @param LicenseExpireTime: 企业许可证过期时间
+        # @param LicenseExpireTime: 企业许可证过期时间，时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseExpireTime: Integer
-        # @param JoinTime: 成员企业加入集团时间
+        # @param JoinTime: 成员企业加入集团时间，时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTime: Integer
-        # @param FlowEngineEnable: 是否可以使用审批流引擎
+        # @param FlowEngineEnable: 是否使用审批流引擎，true-是，false-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowEngineEnable: Boolean
 
@@ -4275,7 +4298,7 @@ module TencentCloud
         # @param RoleStatus: 角色状态，1-启用，2-禁用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleStatus: Integer
-        # @param IsGroupRole: 是否是集团角色
+        # @param IsGroupRole: 是否是集团角色，true-是，false-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGroupRole: Boolean
         # @param SubOrgIdList: 管辖的子企业列表
@@ -4380,9 +4403,9 @@ module TencentCloud
         # @type SealId: String
         # @param SealName: 电子印章名称
         # @type SealName: String
-        # @param CreateOn: 电子印章授权时间戳
+        # @param CreateOn: 电子印章授权时间戳，单位秒
         # @type CreateOn: Integer
-        # @param Creator: 电子印章授权人
+        # @param Creator: 电子印章授权人的UserId
         # @type Creator: String
         # @param SealPolicyId: 电子印章策略Id
         # @type SealPolicyId: String
@@ -4393,9 +4416,9 @@ module TencentCloud
         # @type FailReason: String
         # @param Url: 印章图片url，5分钟内有效
         # @type Url: String
-        # @param SealType: 印章类型
+        # @param SealType: 印章类型,OFFICIAL-企业公章, CONTRACT-合同专用章,ORGANIZATIONSEAL-企业印章(本地上传印章类型),LEGAL_PERSON_SEAL-法人印章
         # @type SealType: String
-        # @param IsAllTime: 用印申请是否为永久授权
+        # @param IsAllTime: 用印申请是否为永久授权，true-是，false-否
         # @type IsAllTime: Boolean
         # @param AuthorizedUsers: 授权人列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4479,25 +4502,25 @@ module TencentCloud
         # @type SignPlatform: String
         # @param SignerName: 签署人名称
         # @type SignerName: String
-        # @param SignTime: 签署时间
+        # @param SignTime: 签署时间戳，单位秒
         # @type SignTime: Integer
         # @param SignAlgorithm: 签名算法
         # @type SignAlgorithm: String
         # @param CertSn: 签名证书序列号
         # @type CertSn: String
-        # @param CertNotBefore: 证书起始时间
+        # @param CertNotBefore: 证书起始时间戳，单位秒
         # @type CertNotBefore: Integer
-        # @param CertNotAfter: 证书过期时间
+        # @param CertNotAfter: 证书过期时间戳，单位秒
         # @type CertNotAfter: Integer
-        # @param ComponentPosX: 签名域横坐标
+        # @param ComponentPosX: 签名域横坐标，单位pt
         # @type ComponentPosX: Float
-        # @param ComponentPosY: 签名域纵坐标
+        # @param ComponentPosY: 签名域纵坐标，单位pt
         # @type ComponentPosY: Float
-        # @param ComponentWidth: 签名域宽度
+        # @param ComponentWidth: 签名域宽度，单位pt
         # @type ComponentWidth: Float
-        # @param ComponentHeight: 签名域高度
+        # @param ComponentHeight: 签名域高度，单位pt
         # @type ComponentHeight: Float
-        # @param ComponentPage: 签名域所在页码
+        # @param ComponentPage: 签名域所在页码，1～N
         # @type ComponentPage: Integer
 
         attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
@@ -4549,7 +4572,7 @@ module TencentCloud
         # @type RequireValidation: Boolean
         # @param RequireSign: 是否需要签署，默认为true
         # @type RequireSign: Boolean
-        # @param RoutingOrder: 添加序列
+        # @param RoutingOrder: 添加序列，0～N
         # @type RoutingOrder: Integer
         # @param RequireDelivery: 是否需要发送，默认为true
         # @type RequireDelivery: Boolean
@@ -4678,11 +4701,11 @@ module TencentCloud
 
       # 催办接口返回详细信息
       class RemindFlowRecords < TencentCloud::Common::AbstractModel
-        # @param CanRemind: 是否能够催办
+        # @param CanRemind: 是否能够催办，true-是，false-否
         # @type CanRemind: Boolean
         # @param FlowId: 合同id
         # @type FlowId: String
-        # @param RemindMessage: 催办详情
+        # @param RemindMessage: 催办详情信息
         # @type RemindMessage: String
 
         attr_accessor :CanRemind, :FlowId, :RemindMessage
@@ -4706,7 +4729,7 @@ module TencentCloud
         # @type QrCodeId: String
         # @param QrCodeUrl: 二维码url
         # @type QrCodeUrl: String
-        # @param ExpiredTime: 二维码过期时间
+        # @param ExpiredTime: 二维码过期时间戳，单位秒
         # @type ExpiredTime: Integer
 
         attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
@@ -4770,9 +4793,9 @@ module TencentCloud
         # @type Department: :class:`Tencentcloud::Ess.v20201111.models.Department`
         # @param Verified: 员工是否实名
         # @type Verified: Boolean
-        # @param CreatedOn: 员工创建时间戳
+        # @param CreatedOn: 员工创建时间戳，单位秒
         # @type CreatedOn: Integer
-        # @param VerifiedOn: 员工实名时间戳
+        # @param VerifiedOn: 员工实名时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifiedOn: Integer
         # @param QuiteJob: 员工是否离职：0-未离职，1-离职
@@ -4985,7 +5008,7 @@ module TencentCloud
         end
       end
 
-      # 二期接口返回的模板的信息结构
+      # 企业模板的信息结构
       class TemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # @type TemplateId: String
@@ -4993,11 +5016,11 @@ module TencentCloud
         # @type TemplateName: String
         # @param Description: 模板描述信息
         # @type Description: String
-        # @param DocumentResourceIds: 模板关联的资源IDs
+        # @param DocumentResourceIds: 模板关联的资源ID列表
         # @type DocumentResourceIds: Array
         # @param FileInfos: 返回的文件信息结构
         # @type FileInfos: Array
-        # @param AttachmentResourceIds: 附件关联的资源ID是
+        # @param AttachmentResourceIds: 附件关联的资源ID
         # @type AttachmentResourceIds: Array
         # @param SignOrder: 签署顺序
         # @type SignOrder: Array
@@ -5009,9 +5032,9 @@ module TencentCloud
         # @type SignComponents: Array
         # @param Status: 模板状态(-1:不可用；0:草稿态；1:正式态)
         # @type Status: Integer
-        # @param Creator: 模板的创建人
+        # @param Creator: 模板的创建人UserId
         # @type Creator: String
-        # @param CreatedOn: 模板创建的时间戳（精确到秒）
+        # @param CreatedOn: 模板创建的时间戳，单位秒
         # @type CreatedOn: Integer
         # @param Promoter: 发起人角色信息
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
@@ -5022,9 +5045,9 @@ module TencentCloud
         # @type TemplateType: Integer
         # @param Available: 模板可用状态，取值：1启用（默认），2停用
         # @type Available: Integer
-        # @param OrganizationId: 模板创建组织id
+        # @param OrganizationId: 创建模板的机构id
         # @type OrganizationId: String
-        # @param PreviewUrl: 模板预览链接
+        # @param PreviewUrl: 模板预览链接，有效时间5分钟
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param TemplateVersion: 模板版本。默认为空时，全数字字符，初始版本为yyyyMMdd001。

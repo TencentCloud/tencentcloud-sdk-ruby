@@ -14492,45 +14492,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSaveOrUpdateWarnings请求参数结构体
-      class DescribeSaveOrUpdateWarningsRequest < TencentCloud::Common::AbstractModel
-        # @param WarningObjects: 告警设置的修改内容
-        # @type WarningObjects: Array
-
-        attr_accessor :WarningObjects
-        
-        def initialize(warningobjects=nil)
-          @WarningObjects = warningobjects
-        end
-
-        def deserialize(params)
-          unless params['WarningObjects'].nil?
-            @WarningObjects = []
-            params['WarningObjects'].each do |i|
-              warningobject_tmp = WarningObject.new
-              warningobject_tmp.deserialize(i)
-              @WarningObjects << warningobject_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeSaveOrUpdateWarnings返回参数结构体
-      class DescribeSaveOrUpdateWarningsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeScanMalwareSchedule请求参数结构体
       class DescribeScanMalwareScheduleRequest < TencentCloud::Common::AbstractModel
 
@@ -16485,6 +16446,90 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @FollowVulCount = params['FollowVulCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulStoreList请求参数结构体
+      class DescribeVulStoreListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li>VulName- string - 是否必填：否 - 漏洞名称</li>
+        # <li>CveId- string - 是否必填：否 - cveid</li>
+        # <li>VulCategory- string - 是否必填：否 - 漏洞分类  1 Web-CMS漏洞 ,2 应用漏洞 ,4 Linux软件漏洞,5 Windows系统漏洞</li>
+        # <li>Method- string - 是否必填：否 - 检测方法 0版本对比,1 poc检测 </li>
+        # <li>SupportDefense- string - 是否必填：否 - 是否支持防御 0不支持,1支持</li>
+        # <li>FixSwitch- string - 是否必填：否 - 是否支持自动修复 0不支持,1支持</li>
+        # @type Filters: Array
+        # @param Limit: 限制条数,默认10,最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Order: 排序方式: [ASC:升序|DESC:降序]
+        # @type Order: String
+        # @param By: 可选排序列: [PublishDate]
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulStoreList返回参数结构体
+      class DescribeVulStoreListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 漏洞信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Remaining: 今日剩余搜索此时
+        # @type Remaining: Integer
+        # @param FreeSearchTimes: 免费搜索次数
+        # @type FreeSearchTimes: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :Remaining, :FreeSearchTimes, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, remaining=nil, freesearchtimes=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @Remaining = remaining
+          @FreeSearchTimes = freesearchtimes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulstorelistinfo_tmp = VulStoreListInfo.new
+              vulstorelistinfo_tmp.deserialize(i)
+              @List << vulstorelistinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Remaining = params['Remaining']
+          @FreeSearchTimes = params['FreeSearchTimes']
           @RequestId = params['RequestId']
         end
       end
@@ -24438,6 +24483,60 @@ module TencentCloud
         def deserialize(params)
           @VulLevel = params['VulLevel']
           @Count = params['Count']
+        end
+      end
+
+      # 漏洞仓库列表信息
+      class VulStoreListInfo < TencentCloud::Common::AbstractModel
+        # @param VulId: 漏洞ID
+        # @type VulId: Integer
+        # @param Level: 漏洞级别
+        # @type Level: Integer
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param CveId: cve编号
+        # @type CveId: String
+        # @param VulCategory: 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞 0= 应急漏洞
+        # @type VulCategory: Integer
+        # @param PublishDate: 发布时间
+        # @type PublishDate: String
+        # @param Method: 漏洞检测方法 0 - 版本比对, 1 - POC验证
+        # @type Method: Integer
+        # @param AttackLevel: 漏洞攻击热度
+        # @type AttackLevel: Integer
+        # @param FixSwitch: 漏洞是否支持自动修复
+        # 0-windows/linux均关闭; 1-windows/linux均打开; 2-仅linux; 3-仅windows
+        # @type FixSwitch: Integer
+        # @param SupportDefense: 漏洞是否支持防御
+        # 0:不支持 1:支持
+        # @type SupportDefense: Integer
+
+        attr_accessor :VulId, :Level, :Name, :CveId, :VulCategory, :PublishDate, :Method, :AttackLevel, :FixSwitch, :SupportDefense
+        
+        def initialize(vulid=nil, level=nil, name=nil, cveid=nil, vulcategory=nil, publishdate=nil, method=nil, attacklevel=nil, fixswitch=nil, supportdefense=nil)
+          @VulId = vulid
+          @Level = level
+          @Name = name
+          @CveId = cveid
+          @VulCategory = vulcategory
+          @PublishDate = publishdate
+          @Method = method
+          @AttackLevel = attacklevel
+          @FixSwitch = fixswitch
+          @SupportDefense = supportdefense
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @Level = params['Level']
+          @Name = params['Name']
+          @CveId = params['CveId']
+          @VulCategory = params['VulCategory']
+          @PublishDate = params['PublishDate']
+          @Method = params['Method']
+          @AttackLevel = params['AttackLevel']
+          @FixSwitch = params['FixSwitch']
+          @SupportDefense = params['SupportDefense']
         end
       end
 
