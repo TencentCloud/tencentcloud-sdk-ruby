@@ -128,6 +128,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
+
+        # @param request: Request instance for DescribeBillSummary.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillSummaryRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBillSummaryResponse`
+        def DescribeBillSummary(request)
+          body = send_request('DescribeBillSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取按计费模式汇总费用分布
 
         # @param request: Request instance for DescribeBillSummaryByPayMode.

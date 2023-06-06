@@ -5090,19 +5090,28 @@ module TencentCloud
         # @type DiskId: String
         # @param DiskSize: 磁盘大小（GB）
         # @type DiskSize: Integer
+        # @param DeleteWithInstance: 是否随实例删除。
+        # @type DeleteWithInstance: Boolean
+        # @param SnapshotId: 快照ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotId: String
 
-        attr_accessor :DiskType, :DiskId, :DiskSize
+        attr_accessor :DiskType, :DiskId, :DiskSize, :DeleteWithInstance, :SnapshotId
         
-        def initialize(disktype=nil, diskid=nil, disksize=nil)
+        def initialize(disktype=nil, diskid=nil, disksize=nil, deletewithinstance=nil, snapshotid=nil)
           @DiskType = disktype
           @DiskId = diskid
           @DiskSize = disksize
+          @DeleteWithInstance = deletewithinstance
+          @SnapshotId = snapshotid
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskId = params['DiskId']
           @DiskSize = params['DiskSize']
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @SnapshotId = params['SnapshotId']
         end
       end
 
@@ -7792,10 +7801,12 @@ module TencentCloud
         # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
         # @param DataDisks: 数据盘信息。
         # @type DataDisks: Array
+        # @param DisableWanIp: 是否禁止外网ip
+        # @type DisableWanIp: Integer
 
-        attr_accessor :ModuleId, :ModuleName, :ModuleState, :DefaultSystemDiskSize, :DefaultDataDiskSize, :InstanceTypeConfig, :DefaultImage, :CreateTime, :DefaultBandwidth, :TagSet, :CloseIpDirect, :SecurityGroupIds, :DefaultBandwidthIn, :UserData, :SystemDisk, :DataDisks
+        attr_accessor :ModuleId, :ModuleName, :ModuleState, :DefaultSystemDiskSize, :DefaultDataDiskSize, :InstanceTypeConfig, :DefaultImage, :CreateTime, :DefaultBandwidth, :TagSet, :CloseIpDirect, :SecurityGroupIds, :DefaultBandwidthIn, :UserData, :SystemDisk, :DataDisks, :DisableWanIp
         
-        def initialize(moduleid=nil, modulename=nil, modulestate=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, instancetypeconfig=nil, defaultimage=nil, createtime=nil, defaultbandwidth=nil, tagset=nil, closeipdirect=nil, securitygroupids=nil, defaultbandwidthin=nil, userdata=nil, systemdisk=nil, datadisks=nil)
+        def initialize(moduleid=nil, modulename=nil, modulestate=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, instancetypeconfig=nil, defaultimage=nil, createtime=nil, defaultbandwidth=nil, tagset=nil, closeipdirect=nil, securitygroupids=nil, defaultbandwidthin=nil, userdata=nil, systemdisk=nil, datadisks=nil, disablewanip=nil)
           @ModuleId = moduleid
           @ModuleName = modulename
           @ModuleState = modulestate
@@ -7812,6 +7823,7 @@ module TencentCloud
           @UserData = userdata
           @SystemDisk = systemdisk
           @DataDisks = datadisks
+          @DisableWanIp = disablewanip
         end
 
         def deserialize(params)
@@ -7854,6 +7866,7 @@ module TencentCloud
               @DataDisks << datadisk_tmp
             end
           end
+          @DisableWanIp = params['DisableWanIp']
         end
       end
 
@@ -8227,10 +8240,12 @@ module TencentCloud
         # @type ISPSet: Array
         # @param ISPNum: 运营商数量。
         # @type ISPNum: Integer
+        # @param LBSupported: 节点是否支持LB
+        # @type LBSupported: Boolean
 
-        attr_accessor :ZoneInfo, :Country, :Area, :Province, :City, :RegionInfo, :ISPSet, :ISPNum
+        attr_accessor :ZoneInfo, :Country, :Area, :Province, :City, :RegionInfo, :ISPSet, :ISPNum, :LBSupported
         
-        def initialize(zoneinfo=nil, country=nil, area=nil, province=nil, city=nil, regioninfo=nil, ispset=nil, ispnum=nil)
+        def initialize(zoneinfo=nil, country=nil, area=nil, province=nil, city=nil, regioninfo=nil, ispset=nil, ispnum=nil, lbsupported=nil)
           @ZoneInfo = zoneinfo
           @Country = country
           @Area = area
@@ -8239,6 +8254,7 @@ module TencentCloud
           @RegionInfo = regioninfo
           @ISPSet = ispset
           @ISPNum = ispnum
+          @LBSupported = lbsupported
         end
 
         def deserialize(params)
@@ -8275,6 +8291,7 @@ module TencentCloud
             end
           end
           @ISPNum = params['ISPNum']
+          @LBSupported = params['LBSupported']
         end
       end
 

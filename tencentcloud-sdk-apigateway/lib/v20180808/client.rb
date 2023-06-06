@@ -370,7 +370,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于创建创建后端通道
+        # 用于创建后端通道
 
         # @param request: Request instance for CreateUpstream.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::CreateUpstreamRequest`
@@ -1049,7 +1049,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
+        # 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。
 
         # @param request: Request instance for DescribeExclusiveInstances.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstancesRequest`
@@ -2355,7 +2355,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因为开发过程会产生多个版本，此时可调用本接口。
+        # 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因开发过程会产生多个版本，此时可调用本接口。
 
         # @param request: Request instance for UpdateService.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::UpdateServiceRequest`

@@ -61,6 +61,32 @@ module TencentCloud
         end
       end
 
+      # Group是消息组的具体定义，当前包含ContentType、Url、Content三个字段。其中，具体的ContentType字段定义，参考互联网MIME类型标准。
+      class Group < TencentCloud::Common::AbstractModel
+        # @param ContentType: 消息类型参考互联网MIME类型标准，当前仅支持"text/plain"。
+        # @type ContentType: String
+        # @param Url: 返回内容以链接形式提供。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Content: 普通文本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :ContentType, :Url, :Content
+        
+        def initialize(contenttype=nil, url=nil, content=nil)
+          @ContentType = contenttype
+          @Url = url
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ContentType = params['ContentType']
+          @Url = params['Url']
+          @Content = params['Content']
+        end
+      end
+
       # Reset请求参数结构体
       class ResetRequest < TencentCloud::Common::AbstractModel
         # @param BotId: 机器人标识
@@ -156,6 +182,26 @@ module TencentCloud
         end
       end
 
+      # 从TBP-RTS服务v1.3版本起，机器人以消息组列表的形式响应，消息组列表GroupList包含多组消息，用户根据需要对部分或全部消息组进行组合使用。
+      class ResponseMessage < TencentCloud::Common::AbstractModel
+        # @param GroupList: 消息组列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupList: :class:`Tencentcloud::Tbp.v20190311.models.Group`
+
+        attr_accessor :GroupList
+        
+        def initialize(grouplist=nil)
+          @GroupList = grouplist
+        end
+
+        def deserialize(params)
+          unless params['GroupList'].nil?
+            @GroupList = Group.new
+            @GroupList.deserialize(params['GroupList'])
+          end
+        end
+      end
+
       # 槽位信息
       class SlotInfo < TencentCloud::Common::AbstractModel
         # @param SlotName: 槽位名称
@@ -233,12 +279,18 @@ module TencentCloud
         # @param ResponseText: 机器人对话的应答文本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseText: String
+        # @param ResponseMessage: 机器人应答。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseMessage: :class:`Tencentcloud::Tbp.v20190311.models.ResponseMessage`
+        # @param ResultType: 结果类型 {中间逻辑出错:0; 任务型机器人:1; 问答型机器人:2; 闲聊型机器人:3; 未匹配上，返回预设兜底话术:5; 未匹配上，返回相似问题列表:6}。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :RequestId
+        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :ResponseMessage, :ResultType, :RequestId
         
-        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, requestid=nil)
+        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, responsemessage=nil, resulttype=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
           @IntentName = intentname
@@ -246,6 +298,8 @@ module TencentCloud
           @InputText = inputtext
           @SessionAttributes = sessionattributes
           @ResponseText = responsetext
+          @ResponseMessage = responsemessage
+          @ResultType = resulttype
           @RequestId = requestid
         end
 
@@ -264,6 +318,11 @@ module TencentCloud
           @InputText = params['InputText']
           @SessionAttributes = params['SessionAttributes']
           @ResponseText = params['ResponseText']
+          unless params['ResponseMessage'].nil?
+            @ResponseMessage = ResponseMessage.new
+            @ResponseMessage.deserialize(params['ResponseMessage'])
+          end
+          @ResultType = params['ResultType']
           @RequestId = params['RequestId']
         end
       end

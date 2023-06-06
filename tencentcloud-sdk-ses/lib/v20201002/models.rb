@@ -1296,6 +1296,10 @@ module TencentCloud
         # @type Subject: String
         # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         # @type ReplyToAddresses: String
+        # @param Cc: 抄送人邮箱地址，最多支持抄送20人。
+        # @type Cc: Array
+        # @param Bcc: 密送人邮箱地址，最多支持抄送20人。
+        # @type Bcc: Array
         # @param Template: 使用模板发送时，填写的模板相关参数。因 Simple 已经废除使用，Template 为必填项
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
         # @param Simple: 已废弃
@@ -1307,13 +1311,15 @@ module TencentCloud
         # @param TriggerType: 邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道
         # @type TriggerType: Integer
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType
         
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
           @ReplyToAddresses = replytoaddresses
+          @Cc = cc
+          @Bcc = bcc
           @Template = template
           @Simple = simple
           @Attachments = attachments
@@ -1326,6 +1332,8 @@ module TencentCloud
           @Destination = params['Destination']
           @Subject = params['Subject']
           @ReplyToAddresses = params['ReplyToAddresses']
+          @Cc = params['Cc']
+          @Bcc = params['Bcc']
           unless params['Template'].nil?
             @Template = Template.new
             @Template.deserialize(params['Template'])

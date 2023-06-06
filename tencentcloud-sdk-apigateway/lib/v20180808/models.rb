@@ -364,6 +364,7 @@ module TencentCloud
         # @param ApiId: API唯一ID。
         # @type ApiId: String
         # @param ApiDesc: API描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiDesc: String
         # @param Path: API PATH。
         # @type Path: String
@@ -718,9 +719,9 @@ module TencentCloud
           unless params['ServiceParameters'].nil?
             @ServiceParameters = []
             params['ServiceParameters'].each do |i|
-              serviceparameter_tmp = ServiceParameter.new
-              serviceparameter_tmp.deserialize(i)
-              @ServiceParameters << serviceparameter_tmp
+              describeapiresultserviceparametersinfo_tmp = DescribeApiResultServiceParametersInfo.new
+              describeapiresultserviceparametersinfo_tmp.deserialize(i)
+              @ServiceParameters << describeapiresultserviceparametersinfo_tmp
             end
           end
           unless params['ConstantParameters'].nil?
@@ -1013,33 +1014,6 @@ module TencentCloud
               apiusageplan_tmp = ApiUsagePlan.new
               apiusageplan_tmp.deserialize(i)
               @ApiUsagePlanList << apiusageplan_tmp
-            end
-          end
-        end
-      end
-
-      # 描述api列表状态
-      class ApisStatus < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的 API 接口数量。
-        # @type TotalCount: Integer
-        # @param ApiIdStatusSet: API 接口列表。
-        # @type ApiIdStatusSet: Array
-
-        attr_accessor :TotalCount, :ApiIdStatusSet
-        
-        def initialize(totalcount=nil, apiidstatusset=nil)
-          @TotalCount = totalcount
-          @ApiIdStatusSet = apiidstatusset
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['ApiIdStatusSet'].nil?
-            @ApiIdStatusSet = []
-            params['ApiIdStatusSet'].each do |i|
-              desapisstatus_tmp = DesApisStatus.new
-              desapisstatus_tmp.deserialize(i)
-              @ApiIdStatusSet << desapisstatus_tmp
             end
           end
         end
@@ -1585,21 +1559,16 @@ module TencentCloud
 
       # BindSubDomain返回参数结构体
       class BindSubDomainResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 绑定操作是否成功。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :RequestId
         
-        def initialize(result=nil, requestid=nil)
-          @Result = result
+        def initialize(requestid=nil)
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -1643,12 +1612,16 @@ module TencentCloud
       # 常量参数
       class ConstantParameter < TencentCloud::Common::AbstractModel
         # @param Name: 常量参数名称。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Desc: 常量参数描述。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Position: 常量参数位置。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: String
         # @param DefaultValue: 常量参数默认值。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
 
         attr_accessor :Name, :Desc, :Position, :DefaultValue
@@ -2144,7 +2117,7 @@ module TencentCloud
       class CreateApiResponse < TencentCloud::Common::AbstractModel
         # @param Result: api信息
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.CreateApiRsp`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.CreateApiResultInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2157,10 +2130,42 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = CreateApiRsp.new
+            @Result = CreateApiResultInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建api返回
+      class CreateApiResultInfo < TencentCloud::Common::AbstractModel
+        # @param ApiId: api id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiId: String
+        # @param Path: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Method: 请求方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :ApiId, :Path, :Method, :CreatedTime
+        
+        def initialize(apiid=nil, path=nil, method=nil, createdtime=nil)
+          @ApiId = apiid
+          @Path = path
+          @Method = method
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @ApiId = params['ApiId']
+          @Path = params['Path']
+          @Method = params['Method']
+          @CreatedTime = params['CreatedTime']
         end
       end
 
@@ -3756,6 +3761,48 @@ module TencentCloud
         end
       end
 
+      # ServiceParameter
+      class DescribeApiResultServiceParametersInfo < TencentCloud::Common::AbstractModel
+        # @param Name: API的后端服务参数名称。只有ServiceType是HTTP才会用到此参数。前后端参数名称可不同。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Position: API 的后端服务参数位置，如 head。只有 ServiceType 是 HTTP 才会用到此参数。前后端参数位置可配置不同。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: String
+        # @param RelevantRequestParameterPosition: API 的后端服务参数对应的前端参数位置，如 head。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelevantRequestParameterPosition: String
+        # @param RelevantRequestParameterName: API 的后端服务参数对应的前端参数名称。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelevantRequestParameterName: String
+        # @param DefaultValue: API 的后端服务参数默认值。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param RelevantRequestParameterDesc: API 的后端服务参数备注。只有 ServiceType 是 HTTP 才会用到此参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelevantRequestParameterDesc: String
+
+        attr_accessor :Name, :Position, :RelevantRequestParameterPosition, :RelevantRequestParameterName, :DefaultValue, :RelevantRequestParameterDesc
+        
+        def initialize(name=nil, position=nil, relevantrequestparameterposition=nil, relevantrequestparametername=nil, defaultvalue=nil, relevantrequestparameterdesc=nil)
+          @Name = name
+          @Position = position
+          @RelevantRequestParameterPosition = relevantrequestparameterposition
+          @RelevantRequestParameterName = relevantrequestparametername
+          @DefaultValue = defaultvalue
+          @RelevantRequestParameterDesc = relevantrequestparameterdesc
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Position = params['Position']
+          @RelevantRequestParameterPosition = params['RelevantRequestParameterPosition']
+          @RelevantRequestParameterName = params['RelevantRequestParameterName']
+          @DefaultValue = params['DefaultValue']
+          @RelevantRequestParameterDesc = params['RelevantRequestParameterDesc']
+        end
+      end
+
       # DescribeApiUsagePlan请求参数结构体
       class DescribeApiUsagePlanRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 待查询的服务唯一 ID。
@@ -3842,7 +3889,7 @@ module TencentCloud
       # DescribeApisStatus返回参数结构体
       class DescribeApisStatusResponse < TencentCloud::Common::AbstractModel
         # @param Result: API 详情列表。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApisStatus`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.DescribeApisStatusResultInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3855,10 +3902,26 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = ApisStatus.new
+            @Result = DescribeApisStatusResultInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述api列表状态
+      class DescribeApisStatusResultInfo < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的 API 接口数量。
+        # @type TotalCount: Integer
+
+        attr_accessor :TotalCount
+        
+        def initialize(totalcount=nil)
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -3935,7 +3998,7 @@ module TencentCloud
       # DescribeExclusiveInstances返回参数结构体
       class DescribeExclusiveInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 独享实例列表查询结果
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceInfo`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.DescribeExclusiveInstancesResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3948,10 +4011,21 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = InstanceInfo.new
+            @Result = DescribeExclusiveInstancesResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据结构
+      class DescribeExclusiveInstancesResult < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -4884,6 +4958,28 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 服务发布列表详情
+      class DescribeServiceReleaseVersionResultVersionListInfo < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param VersionDesc: 版本描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionDesc: String
+
+        attr_accessor :VersionName, :VersionDesc
+        
+        def initialize(versionname=nil, versiondesc=nil)
+          @VersionName = versionname
+          @VersionDesc = versiondesc
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @VersionDesc = params['VersionDesc']
         end
       end
 
@@ -5857,22 +5953,17 @@ module TencentCloud
         # @type EnvironmentName: String
         # @param Quota: 限流值
         # @type Quota: Integer
-        # @param MaxQuota: 限流最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MaxQuota: Integer
 
-        attr_accessor :EnvironmentName, :Quota, :MaxQuota
+        attr_accessor :EnvironmentName, :Quota
         
-        def initialize(environmentname=nil, quota=nil, maxquota=nil)
+        def initialize(environmentname=nil, quota=nil)
           @EnvironmentName = environmentname
           @Quota = quota
-          @MaxQuota = maxquota
         end
 
         def deserialize(params)
           @EnvironmentName = params['EnvironmentName']
           @Quota = params['Quota']
-          @MaxQuota = params['MaxQuota']
         end
       end
 
@@ -5986,12 +6077,16 @@ module TencentCloud
       # 健康检查配置，包括TsfHealthCheckConf和TargetServicesHealthCheckConf
       class HealthCheckConf < TencentCloud::Common::AbstractModel
         # @param IsHealthCheck: 是否开启健康检查。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsHealthCheck: Boolean
         # @param RequestVolumeThreshold: 健康检查阈值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestVolumeThreshold: Integer
         # @param SleepWindowInMilliseconds: 窗口大小。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SleepWindowInMilliseconds: Integer
         # @param ErrorThresholdPercentage: 阈值百分比。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorThresholdPercentage: Integer
 
         attr_accessor :IsHealthCheck, :RequestVolumeThreshold, :SleepWindowInMilliseconds, :ErrorThresholdPercentage
@@ -7469,7 +7564,7 @@ module TencentCloud
       class ModifyUpstreamResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回修改后的后端通道信息
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamInfo`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ModifyUpstreamResultInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7482,10 +7577,94 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = UpstreamInfo.new
+            @Result = ModifyUpstreamResultInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 后端通道详细信息
+      class ModifyUpstreamResultInfo < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: 后端通道唯一ID
+        # @type UpstreamId: String
+        # @param UpstreamName: 后端通道名字
+        # @type UpstreamName: String
+        # @param UpstreamDescription: 后端通道描述
+        # @type UpstreamDescription: String
+        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS
+        # @type Scheme: String
+        # @param Algorithm: 负载均衡算法，取值范围：ROUND_ROBIN
+        # @type Algorithm: String
+        # @param UniqVpcId: VPC唯一ID
+        # @type UniqVpcId: String
+        # @param Retries: 请求重试次数
+        # @type Retries: Integer
+        # @param Nodes: 后端节点
+        # @type Nodes: Array
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param HealthChecker: 健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthChecker: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamHealthChecker`
+        # @param UpstreamType: 后端的类型，取值范围：IP_PORT, K8S
+        # @type UpstreamType: String
+        # @param K8sServices: K8S容器服务配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type K8sServices: Array
+        # @param UpstreamHost: 网关转发给后端的Host请求头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamHost: String
+
+        attr_accessor :UpstreamId, :UpstreamName, :UpstreamDescription, :Scheme, :Algorithm, :UniqVpcId, :Retries, :Nodes, :CreatedTime, :HealthChecker, :UpstreamType, :K8sServices, :UpstreamHost
+        
+        def initialize(upstreamid=nil, upstreamname=nil, upstreamdescription=nil, scheme=nil, algorithm=nil, uniqvpcid=nil, retries=nil, nodes=nil, createdtime=nil, healthchecker=nil, upstreamtype=nil, k8sservices=nil, upstreamhost=nil)
+          @UpstreamId = upstreamid
+          @UpstreamName = upstreamname
+          @UpstreamDescription = upstreamdescription
+          @Scheme = scheme
+          @Algorithm = algorithm
+          @UniqVpcId = uniqvpcid
+          @Retries = retries
+          @Nodes = nodes
+          @CreatedTime = createdtime
+          @HealthChecker = healthchecker
+          @UpstreamType = upstreamtype
+          @K8sServices = k8sservices
+          @UpstreamHost = upstreamhost
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
+          @UpstreamName = params['UpstreamName']
+          @UpstreamDescription = params['UpstreamDescription']
+          @Scheme = params['Scheme']
+          @Algorithm = params['Algorithm']
+          @UniqVpcId = params['UniqVpcId']
+          @Retries = params['Retries']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              upstreamnode_tmp = UpstreamNode.new
+              upstreamnode_tmp.deserialize(i)
+              @Nodes << upstreamnode_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
+          unless params['HealthChecker'].nil?
+            @HealthChecker = UpstreamHealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
+          end
+          @UpstreamType = params['UpstreamType']
+          unless params['K8sServices'].nil?
+            @K8sServices = []
+            params['K8sServices'].each do |i|
+              k8sservice_tmp = K8sService.new
+              k8sservice_tmp.deserialize(i)
+              @K8sServices << k8sservice_tmp
+            end
+          end
+          @UpstreamHost = params['UpstreamHost']
         end
       end
 
@@ -8380,9 +8559,9 @@ module TencentCloud
           unless params['VersionList'].nil?
             @VersionList = []
             params['VersionList'].each do |i|
-              servicereleasehistoryinfo_tmp = ServiceReleaseHistoryInfo.new
-              servicereleasehistoryinfo_tmp.deserialize(i)
-              @VersionList << servicereleasehistoryinfo_tmp
+              describeservicereleaseversionresultversionlistinfo_tmp = DescribeServiceReleaseVersionResultVersionListInfo.new
+              describeservicereleaseversionresultversionlistinfo_tmp.deserialize(i)
+              @VersionList << describeservicereleaseversionresultversionlistinfo_tmp
             end
           end
         end
@@ -9219,6 +9398,7 @@ module TencentCloud
         # @param UsagePlanName: 使用计划名称。
         # @type UsagePlanName: String
         # @param UsagePlanDesc: 使用计划描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsagePlanDesc: String
         # @param MaxRequestNumPreSec: 使用计划qps，-1表示没有限制。
         # @type MaxRequestNumPreSec: Integer
@@ -9440,18 +9620,12 @@ module TencentCloud
         # @param UsagePlanDesc: 使用计划描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsagePlanDesc: String
-        # @param InitQuota: 初始化调用次数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InitQuota: Integer
         # @param MaxRequestNumPreSec: 每秒请求限制数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestNumPreSec: Integer
         # @param MaxRequestNum: 最大调用次数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestNum: Integer
-        # @param IsHide: 是否隐藏。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsHide: Integer
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
@@ -9471,16 +9645,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindEnvironments: Array
 
-        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :InitQuota, :MaxRequestNumPreSec, :MaxRequestNum, :IsHide, :CreatedTime, :ModifiedTime, :BindSecretIdTotalCount, :BindSecretIds, :BindEnvironmentTotalCount, :BindEnvironments
+        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :MaxRequestNumPreSec, :MaxRequestNum, :CreatedTime, :ModifiedTime, :BindSecretIdTotalCount, :BindSecretIds, :BindEnvironmentTotalCount, :BindEnvironments
         
-        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, initquota=nil, maxrequestnumpresec=nil, maxrequestnum=nil, ishide=nil, createdtime=nil, modifiedtime=nil, bindsecretidtotalcount=nil, bindsecretids=nil, bindenvironmenttotalcount=nil, bindenvironments=nil)
+        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, maxrequestnumpresec=nil, maxrequestnum=nil, createdtime=nil, modifiedtime=nil, bindsecretidtotalcount=nil, bindsecretids=nil, bindenvironmenttotalcount=nil, bindenvironments=nil)
           @UsagePlanId = usageplanid
           @UsagePlanName = usageplanname
           @UsagePlanDesc = usageplandesc
-          @InitQuota = initquota
           @MaxRequestNumPreSec = maxrequestnumpresec
           @MaxRequestNum = maxrequestnum
-          @IsHide = ishide
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
           @BindSecretIdTotalCount = bindsecretidtotalcount
@@ -9493,10 +9665,8 @@ module TencentCloud
           @UsagePlanId = params['UsagePlanId']
           @UsagePlanName = params['UsagePlanName']
           @UsagePlanDesc = params['UsagePlanDesc']
-          @InitQuota = params['InitQuota']
           @MaxRequestNumPreSec = params['MaxRequestNumPreSec']
           @MaxRequestNum = params['MaxRequestNum']
-          @IsHide = params['IsHide']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
           @BindSecretIdTotalCount = params['BindSecretIdTotalCount']

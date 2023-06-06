@@ -2646,12 +2646,18 @@ module TencentCloud
 
       # 分层存储详细信息
       class TieringDetailInfo < TencentCloud::Common::AbstractModel
+        # @param TieringSizeInBytes: 低频存储容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TieringSizeInBytes: Integer
 
+        attr_accessor :TieringSizeInBytes
         
-        def initialize()
+        def initialize(tieringsizeinbytes=nil)
+          @TieringSizeInBytes = tieringsizeinbytes
         end
 
         def deserialize(params)
+          @TieringSizeInBytes = params['TieringSizeInBytes']
         end
       end
 
