@@ -2315,6 +2315,26 @@ module TencentCloud
         end
       end
 
+      # 集群自定义参数
+      class ClusterCustomParameters < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名
+        # @type Name: String
+        # @param Values: 参数值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 集群资产返回的结构体
       class ClusterInfoItem < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -7574,15 +7594,18 @@ module TencentCloud
         # @type VpcId: String
         # @param ExpireDate: 命令有效期，非腾讯云时必填
         # @type ExpireDate: String
+        # @param ClusterCustomParameters: 集群自定义参数
+        # @type ClusterCustomParameters: Array
 
-        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate
+        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate, :ClusterCustomParameters
         
-        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil)
+        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil, clustercustomparameters=nil)
           @IsCloud = iscloud
           @NetType = nettype
           @RegionCode = regioncode
           @VpcId = vpcid
           @ExpireDate = expiredate
+          @ClusterCustomParameters = clustercustomparameters
         end
 
         def deserialize(params)
@@ -7591,6 +7614,14 @@ module TencentCloud
           @RegionCode = params['RegionCode']
           @VpcId = params['VpcId']
           @ExpireDate = params['ExpireDate']
+          unless params['ClusterCustomParameters'].nil?
+            @ClusterCustomParameters = []
+            params['ClusterCustomParameters'].each do |i|
+              clustercustomparameters_tmp = ClusterCustomParameters.new
+              clustercustomparameters_tmp.deserialize(i)
+              @ClusterCustomParameters << clustercustomparameters_tmp
+            end
+          end
         end
       end
 

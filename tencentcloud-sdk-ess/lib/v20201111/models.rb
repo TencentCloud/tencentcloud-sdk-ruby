@@ -4651,19 +4651,25 @@ module TencentCloud
         # @type Mobile: String
         # @param RelievedApproverReceiptId: 要替换的参与人在原合同参与人列表中的签署人编号,通过DescribeFlowInfo 接口获取（即FlowDetailInfos. FlowApproverInfos 结构中的ReceiptId ）
         # @type RelievedApproverReceiptId: String
+        # @param ApproverType: 指定签署人类型，目前仅支持
+        # ORGANIZATION-企业
+        # ENTERPRISESERVER-企业静默签
+        # @type ApproverType: String
 
-        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId
+        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType
         
-        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil)
+        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil)
           @Name = name
           @Mobile = mobile
           @RelievedApproverReceiptId = relievedapproverreceiptid
+          @ApproverType = approvertype
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Mobile = params['Mobile']
           @RelievedApproverReceiptId = params['RelievedApproverReceiptId']
+          @ApproverType = params['ApproverType']
         end
       end
 

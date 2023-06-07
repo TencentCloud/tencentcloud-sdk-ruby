@@ -5313,6 +5313,56 @@ module TencentCloud
         end
       end
 
+      # CreateStreamLinkInput请求参数结构体
+      class CreateStreamLinkInputRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 媒体传输流ID。
+        # @type FlowId: String
+        # @param InputGroup: 流的输入组。
+        # @type InputGroup: Array
+
+        attr_accessor :FlowId, :InputGroup
+        
+        def initialize(flowid=nil, inputgroup=nil)
+          @FlowId = flowid
+          @InputGroup = inputgroup
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['InputGroup'].nil?
+            @InputGroup = []
+            params['InputGroup'].each do |i|
+              createinput_tmp = CreateInput.new
+              createinput_tmp.deserialize(i)
+              @InputGroup << createinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateStreamLinkInput返回参数结构体
+      class CreateStreamLinkInputResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 创建的Flow信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeFlow`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeFlow.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStreamLinkOutputInfo请求参数结构体
       class CreateStreamLinkOutputInfoRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 传输流Id。
@@ -14530,14 +14580,16 @@ module TencentCloud
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
         # @param AiAnalysisTask: 视频内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
+        # @param AiQualityControlTask: 视频内容质检类型任务参数。
+        # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :SessionId, :SessionContext
+        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SessionId, :SessionContext
         
-        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, sessionid=nil, sessioncontext=nil)
           @Url = url
           @TaskNotifyConfig = tasknotifyconfig
           @OutputStorage = outputstorage
@@ -14545,6 +14597,7 @@ module TencentCloud
           @AiContentReviewTask = aicontentreviewtask
           @AiRecognitionTask = airecognitiontask
           @AiAnalysisTask = aianalysistask
+          @AiQualityControlTask = aiqualitycontroltask
           @SessionId = sessionid
           @SessionContext = sessioncontext
         end
@@ -14571,6 +14624,10 @@ module TencentCloud
           unless params['AiAnalysisTask'].nil?
             @AiAnalysisTask = AiAnalysisTaskInput.new
             @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['AiQualityControlTask'].nil?
+            @AiQualityControlTask = AiQualityControlTaskInput.new
+            @AiQualityControlTask.deserialize(params['AiQualityControlTask'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']

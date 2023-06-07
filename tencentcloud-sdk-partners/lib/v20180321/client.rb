@@ -272,6 +272,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
+
         # 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
 
         # @param request: Request instance for DescribeAgentDealsCache.
@@ -295,6 +297,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
 
         # 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
 
@@ -343,6 +347,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
 
         # 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
 

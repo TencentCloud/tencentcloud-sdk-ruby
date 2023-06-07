@@ -2409,7 +2409,7 @@ module TencentCloud
         # @type RoGroup: :class:`Tencentcloud::Cdb.v20170320.models.RoGroup`
         # @param AutoRenewFlag: 购买按量计费实例该字段无意义。
         # @type AutoRenewFlag: Integer
-        # @param InstanceName: 实例名称。一次购买多个实例命名会用后缀数字区分，例instnaceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
+        # @param InstanceName: 实例名称。一次购买多个实例命名会用后缀数字区分，例instanceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
         # @type InstanceName: String
         # @param ResourceTags: 实例标签信息。
         # @type ResourceTags: Array
@@ -2421,7 +2421,7 @@ module TencentCloud
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板id。
         # @type ParamTemplateId: Integer
-        # @param AlarmPolicyList: 告警策略id数组。云监控DescribeAlarmPolicy接口返回的OriginId。
+        # @param AlarmPolicyList: 告警策略id数组。腾讯云可观测平台DescribeAlarmPolicy接口返回的OriginId。
         # @type AlarmPolicyList: Array
         # @param InstanceNodes: 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要购买三节点实例， 请将该值设置为3 或指定 BackupZone 参数。当购买主实例，且未指定该参数和 BackupZone 参数时，该值默认是 2， 即购买两节点实例。
         # @type InstanceNodes: Integer
@@ -6341,7 +6341,7 @@ module TencentCloud
 
       # DescribeRemoteBackupConfig返回参数结构体
       class DescribeRemoteBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param ExpireDays: 异地备份保留天时间，单位为天
+        # @param ExpireDays: 异地备份保留时间，单位为天
         # @type ExpireDays: Integer
         # @param RemoteBackupSave: 异地数据备份开关，off - 关闭异地备份，on-开启异地备份
         # @type RemoteBackupSave: String
@@ -7411,17 +7411,20 @@ module TencentCloud
         # @type IpProtocol: String
         # @param Dir: 规则限定的方向，进站规则为 INPUT
         # @type Dir: String
+        # @param AddressModule: 地址模块
+        # @type AddressModule: String
         # @param Desc: 规则描述
         # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :Desc
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :AddressModule, :Desc
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, desc=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, addressmodule=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
           @Dir = dir
+          @AddressModule = addressmodule
           @Desc = desc
         end
 
@@ -7431,6 +7434,7 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+          @AddressModule = params['AddressModule']
           @Desc = params['Desc']
         end
       end
@@ -9769,17 +9773,20 @@ module TencentCloud
         # @type IpProtocol: String
         # @param Dir: 规则限定的方向，进站规则为 OUTPUT
         # @type Dir: String
+        # @param AddressModule: 地址模块
+        # @type AddressModule: String
         # @param Desc: 规则描述
         # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :Desc
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :AddressModule, :Desc
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, desc=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, addressmodule=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
           @Dir = dir
+          @AddressModule = addressmodule
           @Desc = desc
         end
 
@@ -9789,6 +9796,7 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+          @AddressModule = params['AddressModule']
           @Desc = params['Desc']
         end
       end
@@ -11409,7 +11417,7 @@ module TencentCloud
         # @type Type: String
         # @param Compare: 审计规则过滤条件的匹配类型。可选值：INC – 包含；EXC – 不包含；EQS – 等于；NEQ – 不等于；REG-正则；GT-大于；LT-小于。
         # @type Compare: String
-        # @param Value: 审计规则过滤条件的匹配值。sqlType条件的Value需在一下选择"alter", "changeuser", "create", "delete", "drop", "execute", "insert", "login", "logout", "other", "replace", "select", "set", "update"。
+        # @param Value: 审计规则过滤条件的匹配值。sqlType条件的Value需在以下选择"alter", "changeuser", "create", "delete", "drop", "execute", "insert", "login", "logout", "other", "replace", "select", "set", "update"。
         # @type Value: Array
 
         attr_accessor :Type, :Compare, :Value
@@ -12301,7 +12309,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.6 和 5.7。
         # @type EngineVersion: String
-        # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级中过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
+        # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
         # @type WaitSwitch: Integer
         # @param UpgradeSubversion: 是否是内核子版本升级，支持的值：1 - 升级内核子版本；0 - 升级数据库引擎版本。
         # @type UpgradeSubversion: Integer
@@ -12363,7 +12371,7 @@ module TencentCloud
         # @type SlaveZone: String
         # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.5、5.6 和 5.7。
         # @type EngineVersion: String
-        # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级中过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
+        # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
         # @type WaitSwitch: Integer
         # @param BackupZone: 备库 2 的可用区信息，默认为空，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。
         # @type BackupZone: String

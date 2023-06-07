@@ -70,13 +70,13 @@ module TencentCloud
 
       # 指定签署人限制项
       class ApproverRestriction < TencentCloud::Common::AbstractModel
-        # @param Name: 指定签署人名字
+        # @param Name: 指定签署人姓名
         # @type Name: String
-        # @param Mobile: 指定签署人手机号
+        # @param Mobile: 指定签署人手机号，11位数字
         # @type Mobile: String
-        # @param IdCardType: 指定签署人证件类型
+        # @param IdCardType: 指定签署人证件类型，ID_CARD-身份证，HONGKONG_AND_MACAO-港澳居民来往内地通行证，HONGKONG_MACAO_AND_TAIWAN-港澳台居民居住证
         # @type IdCardType: String
-        # @param IdCardNumber: 指定签署人证件号码
+        # @param IdCardNumber: 指定签署人证件号码，其中字母大写
         # @type IdCardNumber: String
 
         attr_accessor :Name, :Mobile, :IdCardType, :IdCardNumber
@@ -98,9 +98,9 @@ module TencentCloud
 
       # 授权出错信息
       class AuthFailMessage < TencentCloud::Common::AbstractModel
-        # @param ProxyOrganizationOpenId: 合作企业Id
+        # @param ProxyOrganizationOpenId: 第三方应用平台的子客企业OpenId
         # @type ProxyOrganizationOpenId: String
-        # @param Message: 出错信息
+        # @param Message: 错误信息
         # @type Message: String
 
         attr_accessor :ProxyOrganizationOpenId, :Message
@@ -118,7 +118,7 @@ module TencentCloud
 
       # 授权用户
       class AuthorizedUser < TencentCloud::Common::AbstractModel
-        # @param OpenId: 用户openid
+        # @param OpenId: 第三方应用平台的用户openid
         # @type OpenId: String
 
         attr_accessor :OpenId
@@ -140,15 +140,15 @@ module TencentCloud
         # @type FlowType: String
         # @param FlowDescription: 合同流程描述信息
         # @type FlowDescription: String
-        # @param Deadline: 合同流程截止时间，unix时间戳
+        # @param Deadline: 合同流程截止时间，unix时间戳，单位秒
         # @type Deadline: Integer
         # @param Unordered: 是否顺序签署(true:无序签,false:顺序签)
         # @type Unordered: Boolean
-        # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
+        # @param IntelligentStatus: 是否打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
         # @type IntelligentStatus: String
         # @param FormFields: 填写控件内容
         # @type FormFields: Array
-        # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批
+        # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批，true：开启本企业签署审批。使用ChannelCreateFlowSignReview接口提交审批结果，才能继续完成签署
         # @type NeedSignReview: Boolean
         # @param UserData: 用户流程自定义数据参数
         # @type UserData: String
@@ -2533,7 +2533,7 @@ module TencentCloud
 
       # 创建合同配置信息
       class CreateFlowOption < TencentCloud::Common::AbstractModel
-        # @param CanEditFlow: 是否允许修改合同信息
+        # @param CanEditFlow: 是否允许修改合同信息，true-是，false-否
         # @type CanEditFlow: Boolean
 
         attr_accessor :CanEditFlow
@@ -3281,7 +3281,7 @@ module TencentCloud
         #   OVERSEA_SIGN          企业与港澳台居民*签署合同
         #   MOBILE_CHECK_APPROVER 使用手机号验证签署方身份
         #   PAGING_SEAL           骑缝章
-        #   DOWNLOAD_FLOW         授权渠道下载合同
+        #   DOWNLOAD_FLOW         授权平台企业下载合同
         # @type Type: String
         # @param Name: 扩展服务名称
         # @type Name: String
@@ -3289,10 +3289,10 @@ module TencentCloud
         # ENABLE 开启
         # DISABLE 关闭
         # @type Status: String
-        # @param OperatorOpenId: 最近操作人openid（经办人openid）
+        # @param OperatorOpenId: 最近操作人第三方应用平台的用户openid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorOpenId: String
-        # @param OperateOn: 最近操作时间
+        # @param OperateOn: 最近操作时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateOn: Integer
 
@@ -3395,7 +3395,7 @@ module TencentCloud
         # @param ApproveMessage: 签署人信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveMessage: String
-        # @param ApproveTime: 签署人签署时间
+        # @param ApproveTime: 签署人签署时间戳，单位秒
         # @type ApproveTime: Integer
         # @param ApproveType: 参与者类型 (ORGANIZATION企业/PERSON个人)
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3473,7 +3473,7 @@ module TencentCloud
         # @type ApproverType: String
         # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
         # @type RecipientId: String
-        # @param Deadline: 签署截止时间，默认一年
+        # @param Deadline: 签署截止时间戳，默认一年
         # @type Deadline: Integer
         # @param CallbackUrl: 签署完回调url，最大长度1000个字符
         # @type CallbackUrl: String
@@ -3484,7 +3484,7 @@ module TencentCloud
         # @type ComponentLimitType: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
-        # @param JumpUrl: 签署完前端跳转的url，暂未使用
+        # @param JumpUrl: 签署完前端跳转的url，此字段的用法场景请联系客户经理确认
         # @type JumpUrl: String
         # @param ApproverOption: 签署人个性化能力值
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverOption`
@@ -3610,9 +3610,9 @@ module TencentCloud
         # @type FlowStatus: String
         # @param FlowMessage: 合同(流程)的信息
         # @type FlowMessage: String
-        # @param CreateOn: 合同(流程)的创建时间戳
+        # @param CreateOn: 合同(流程)的创建时间戳，单位秒
         # @type CreateOn: Integer
-        # @param DeadLine: 合同(流程)的签署截止时间戳
+        # @param DeadLine: 合同(流程)的签署截止时间戳，单位秒
         # @type DeadLine: Integer
         # @param CustomData: 用户自定义数据
         # @type CustomData: String
@@ -3973,7 +3973,7 @@ module TencentCloud
         # CHECK_BOX - true/false
         # FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
         # SELECTOR - 选项值
-        # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+        # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo
         # @type ComponentValue: String
         # @param ComponentId: 表单域或控件的ID，跟ComponentName二选一，不能全为空；
         # CreateFlowsByTemplates 接口不使用此字段。
@@ -4121,9 +4121,9 @@ module TencentCloud
         # @type SealId: String
         # @param SealName: 电子印章名称
         # @type SealName: String
-        # @param CreateOn: 电子印章授权时间戳
+        # @param CreateOn: 电子印章授权时间戳，单位秒
         # @type CreateOn: Integer
-        # @param Creator: 电子印章授权人
+        # @param Creator: 电子印章授权人，电子签的UserId
         # @type Creator: String
         # @param SealPolicyId: 电子印章策略Id
         # @type SealPolicyId: String
@@ -4134,7 +4134,7 @@ module TencentCloud
         # @type FailReason: String
         # @param Url: 印章图片url，5分钟内有效
         # @type Url: String
-        # @param SealType: 印章类型
+        # @param SealType: 印章类型，OFFICIAL-企业公章，CONTRACT-合同专用章，LEGAL_PERSON_SEAL-法人章
         # @type SealType: String
         # @param IsAllTime: 用印申请是否为永久授权
         # @type IsAllTime: Boolean
@@ -4278,31 +4278,31 @@ module TencentCloud
       class OrganizationInfo < TencentCloud::Common::AbstractModel
         # @param OrganizationOpenId: 用户在渠道的机构编号
         # @type OrganizationOpenId: String
-        # @param ClientIp: 用户真实的IP
-        # @type ClientIp: String
-        # @param ProxyIp: 机构的代理IP
-        # @type ProxyIp: String
         # @param OrganizationId: 机构在平台的编号
         # @type OrganizationId: String
         # @param Channel: 用户渠道
         # @type Channel: String
+        # @param ClientIp: 用户真实的IP
+        # @type ClientIp: String
+        # @param ProxyIp: 机构的代理IP
+        # @type ProxyIp: String
 
-        attr_accessor :OrganizationOpenId, :ClientIp, :ProxyIp, :OrganizationId, :Channel
+        attr_accessor :OrganizationOpenId, :OrganizationId, :Channel, :ClientIp, :ProxyIp
         
-        def initialize(organizationopenid=nil, clientip=nil, proxyip=nil, organizationid=nil, channel=nil)
+        def initialize(organizationopenid=nil, organizationid=nil, channel=nil, clientip=nil, proxyip=nil)
           @OrganizationOpenId = organizationopenid
-          @ClientIp = clientip
-          @ProxyIp = proxyip
           @OrganizationId = organizationid
           @Channel = channel
+          @ClientIp = clientip
+          @ProxyIp = proxyip
         end
 
         def deserialize(params)
           @OrganizationOpenId = params['OrganizationOpenId']
-          @ClientIp = params['ClientIp']
-          @ProxyIp = params['ProxyIp']
           @OrganizationId = params['OrganizationId']
           @Channel = params['Channel']
+          @ClientIp = params['ClientIp']
+          @ProxyIp = params['ProxyIp']
         end
       end
 
@@ -4314,27 +4314,27 @@ module TencentCloud
         # @type SignPlatform: String
         # @param SignerName: 签署人名称
         # @type SignerName: String
-        # @param SignTime: 签署时间
+        # @param SignTime: 签署时间戳，单位秒
         # @type SignTime: Integer
         # @param SignAlgorithm: 签名算法
         # @type SignAlgorithm: String
         # @param CertSn: 签名证书序列号
         # @type CertSn: String
-        # @param CertNotBefore: 证书起始时间
+        # @param CertNotBefore: 证书起始时间戳，单位秒
         # @type CertNotBefore: Integer
-        # @param CertNotAfter: 证书过期时间
+        # @param CertNotAfter: 证书过期时间戳，单位秒
         # @type CertNotAfter: Integer
         # @param SignType: 签名类型
         # @type SignType: Integer
-        # @param ComponentPosX: 签名域横坐标
+        # @param ComponentPosX: 签名域横坐标，单位px
         # @type ComponentPosX: Float
-        # @param ComponentPosY: 签名域纵坐标
+        # @param ComponentPosY: 签名域纵坐标，单位px
         # @type ComponentPosY: Float
-        # @param ComponentWidth: 签名域宽度
+        # @param ComponentWidth: 签名域宽度，单位px
         # @type ComponentWidth: Float
-        # @param ComponentHeight: 签名域高度
+        # @param ComponentHeight: 签名域高度，单位px
         # @type ComponentHeight: Float
-        # @param ComponentPage: 签名域所在页码
+        # @param ComponentPage: 签名域所在页码，1～N
         # @type ComponentPage: Integer
 
         attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :SignType, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
@@ -4479,17 +4479,17 @@ module TencentCloud
 
       # 签署参与者信息
       class Recipient < TencentCloud::Common::AbstractModel
-        # @param RecipientId: 签署人唯一标识
+        # @param RecipientId: 签署人唯一标识，在通过模板发起合同的时候对应签署方Id
         # @type RecipientId: String
         # @param RecipientType: 参与者类型。默认为空。ENTERPRISE-企业；INDIVIDUAL-个人；PROMOTER-发起方
         # @type RecipientType: String
         # @param Description: 描述
         # @type Description: String
-        # @param RoleName: 签署方备注信息
+        # @param RoleName: 签署方备注角色名
         # @type RoleName: String
-        # @param RequireValidation: 是否需要校验
+        # @param RequireValidation: 是否需要校验，true-是，false-否
         # @type RequireValidation: Boolean
-        # @param RequireSign: 是否必须填写
+        # @param RequireSign: 是否必须填写，true-是，false-否
         # @type RequireSign: Boolean
         # @param SignType: 签署类型
         # @type SignType: Integer
@@ -4540,6 +4540,7 @@ module TencentCloud
         # @type ApproverNumber: Integer
         # @param ApproverType: 签署人类型，目前仅支持
         # ORGANIZATION-企业
+        # ENTERPRISESERVER-企业静默签
         # @type ApproverType: String
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
@@ -4619,11 +4620,11 @@ module TencentCloud
 
       # 催办接口返回详细信息
       class RemindFlowRecords < TencentCloud::Common::AbstractModel
-        # @param CanRemind: 是否能够催办
+        # @param CanRemind: 是否能够催办，true-是，false-否
         # @type CanRemind: Boolean
         # @param FlowId: 合同id
         # @type FlowId: String
-        # @param RemindMessage: 催办详情
+        # @param RemindMessage: 催办详情信息
         # @type RemindMessage: String
 
         attr_accessor :CanRemind, :FlowId, :RemindMessage
@@ -4721,7 +4722,7 @@ module TencentCloud
         # @param SignUrl: 签署链接，过期时间为30天
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUrl: String
-        # @param Deadline: 合同过期时间
+        # @param Deadline: 合同过期时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: Integer
         # @param SignOrder: 当流程为顺序签署此参数有效时，数字越小优先级越高，暂不支持并行签署 可选
@@ -4797,7 +4798,7 @@ module TencentCloud
 
       # 企业员工信息
       class Staff < TencentCloud::Common::AbstractModel
-        # @param UserId: 员工在电子签平台的id
+        # @param UserId: 员工在电子签平台的用户ID
         # @type UserId: String
         # @param DisplayName: 显示的员工名
         # @type DisplayName: String
@@ -4806,7 +4807,7 @@ module TencentCloud
         # @param Email: 员工邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param OpenId: 员工在第三方平台id
+        # @param OpenId: 员工在第三方应用平台的用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param Roles: 员工角色
@@ -4817,9 +4818,9 @@ module TencentCloud
         # @type Department: :class:`Tencentcloud::Essbasic.v20210526.models.Department`
         # @param Verified: 员工是否实名
         # @type Verified: Boolean
-        # @param CreatedOn: 员工创建时间戳
+        # @param CreatedOn: 员工创建时间戳，单位秒
         # @type CreatedOn: Integer
-        # @param VerifiedOn: 员工实名时间戳
+        # @param VerifiedOn: 员工实名时间戳，单位秒
         # @type VerifiedOn: Integer
         # @param QuiteJob: 员工是否离职：0-未离职，1-离职
         # @type QuiteJob: Integer
@@ -4889,7 +4890,7 @@ module TencentCloud
 
       # 同步经办人失败原因
       class SyncFailReason < TencentCloud::Common::AbstractModel
-        # @param Id: 经办人Id
+        # @param Id: 对应Agent-ProxyOperator-OpenId。第三方应用平台自定义，对子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要第三方应用平台保存），最大64位字符串
         # @type Id: String
         # @param Message: 失败原因
         # 例如：Id不符合规范、证件号码不合法等
@@ -5074,29 +5075,29 @@ module TencentCloud
         # @type TemplateName: String
         # @param Description: 模板描述信息
         # @type Description: String
-        # @param Components: 模板控件信息结构
+        # @param Components: 模板的填充控件信息结构
         # @type Components: Array
         # @param Recipients: 模板中的流程参与人信息
         # @type Recipients: Array
-        # @param SignComponents: 签署区模板信息结构
+        # @param SignComponents: 模板中的签署控件信息结构
         # @type SignComponents: Array
         # @param TemplateType: 模板类型：1-静默签；3-普通模板
         # @type TemplateType: Integer
         # @param IsPromoter: 是否是发起人 ,已弃用
         # @type IsPromoter: Boolean
-        # @param Creator: 模板的创建者信息
+        # @param Creator: 模板的创建者信息，电子签系统用户ID
         # @type Creator: String
-        # @param CreatedOn: 模板创建的时间戳（精确到秒）
+        # @param CreatedOn: 模板创建的时间戳，单位秒
         # @type CreatedOn: Integer
-        # @param PreviewUrl: 模板的H5预览链接,可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
+        # @param PreviewUrl: 模板的H5预览链接,可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。请求参数WithPreviewUrl=true时返回，有效期5分钟。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
-        # @param PdfUrl: 第三方应用集成-模板PDF文件链接
+        # @param PdfUrl: 第三方应用集成-模板PDF文件链接。请求参数WithPdfUrl=true时返回（此功能开放需要联系客户经理），有效期5分钟。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PdfUrl: String
-        # @param ChannelTemplateId: 关联的平台企业模板ID
+        # @param ChannelTemplateId: 关联的第三方应用平台企业模板ID
         # @type ChannelTemplateId: String
-        # @param ChannelTemplateName: 关联的平台企业模板名称
+        # @param ChannelTemplateName: 关联的三方应用平台平台企业模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelTemplateName: String
         # @param ChannelAutoSave: 0-需要子客企业手动领取平台企业的模板(默认); 1-平台自动设置子客模板

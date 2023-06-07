@@ -6047,6 +6047,62 @@ module TencentCloud
         end
       end
 
+      # ModifySparkAppBatch请求参数结构体
+      class ModifySparkAppBatchRequest < TencentCloud::Common::AbstractModel
+        # @param SparkAppId: 需要批量修改的Spark作业任务ID列表
+        # @type SparkAppId: Array
+        # @param DataEngine: 引擎ID
+        # @type DataEngine: String
+        # @param AppDriverSize: driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # @type AppDriverSize: String
+        # @param AppExecutorSize: executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # @type AppExecutorSize: String
+        # @param AppExecutorNums: 指定executor数量，最小值为1，最大值小于集群规格
+        # @type AppExecutorNums: Integer
+        # @param AppExecutorMaxNumbers: 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        # @type AppExecutorMaxNumbers: Integer
+        # @param IsInherit: 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        # @type IsInherit: Integer
+
+        attr_accessor :SparkAppId, :DataEngine, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :AppExecutorMaxNumbers, :IsInherit
+        
+        def initialize(sparkappid=nil, dataengine=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, appexecutormaxnumbers=nil, isinherit=nil)
+          @SparkAppId = sparkappid
+          @DataEngine = dataengine
+          @AppDriverSize = appdriversize
+          @AppExecutorSize = appexecutorsize
+          @AppExecutorNums = appexecutornums
+          @AppExecutorMaxNumbers = appexecutormaxnumbers
+          @IsInherit = isinherit
+        end
+
+        def deserialize(params)
+          @SparkAppId = params['SparkAppId']
+          @DataEngine = params['DataEngine']
+          @AppDriverSize = params['AppDriverSize']
+          @AppExecutorSize = params['AppExecutorSize']
+          @AppExecutorNums = params['AppExecutorNums']
+          @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
+          @IsInherit = params['IsInherit']
+        end
+      end
+
+      # ModifySparkAppBatch返回参数结构体
+      class ModifySparkAppBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySparkApp请求参数结构体
       class ModifySparkAppRequest < TencentCloud::Common::AbstractModel
         # @param AppName: spark应用名

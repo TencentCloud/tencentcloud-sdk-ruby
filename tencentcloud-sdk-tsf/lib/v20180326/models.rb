@@ -2665,6 +2665,80 @@ module TencentCloud
         end
       end
 
+      # 部署组列表-其它字段
+      class ContainerGroupOther < TencentCloud::Common::AbstractModel
+        # @param InstanceNum: 实例总数
+        # @type InstanceNum: Integer
+        # @param CurrentNum: 已启动实例总数
+        # @type CurrentNum: Integer
+        # @param LbIp: 负载均衡ip
+        # @type LbIp: String
+        # @param ClusterIp: Service ip
+        # @type ClusterIp: String
+        # @param Status: 服务状态，请参考后面的的状态定义
+        # @type Status: String
+        # @param Message: 服务状态，请参考后面的的状态定义
+        # @type Message: String
+        # @param Envs: 环境变量
+        # @type Envs: Array
+        # @param NodePort: Service NodePort
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePort: Integer
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param HealthCheckSettings: 健康检查相关字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckSettings: Array
+        # @param IsNotEqualServiceConfig: 服务配置信息是否匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNotEqualServiceConfig: Boolean
+
+        attr_accessor :InstanceNum, :CurrentNum, :LbIp, :ClusterIp, :Status, :Message, :Envs, :NodePort, :SubnetId, :HealthCheckSettings, :IsNotEqualServiceConfig
+        
+        def initialize(instancenum=nil, currentnum=nil, lbip=nil, clusterip=nil, status=nil, message=nil, envs=nil, nodeport=nil, subnetid=nil, healthchecksettings=nil, isnotequalserviceconfig=nil)
+          @InstanceNum = instancenum
+          @CurrentNum = currentnum
+          @LbIp = lbip
+          @ClusterIp = clusterip
+          @Status = status
+          @Message = message
+          @Envs = envs
+          @NodePort = nodeport
+          @SubnetId = subnetid
+          @HealthCheckSettings = healthchecksettings
+          @IsNotEqualServiceConfig = isnotequalserviceconfig
+        end
+
+        def deserialize(params)
+          @InstanceNum = params['InstanceNum']
+          @CurrentNum = params['CurrentNum']
+          @LbIp = params['LbIp']
+          @ClusterIp = params['ClusterIp']
+          @Status = params['Status']
+          @Message = params['Message']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @Envs << env_tmp
+            end
+          end
+          @NodePort = params['NodePort']
+          @SubnetId = params['SubnetId']
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = []
+            params['HealthCheckSettings'].each do |i|
+              healthchecksetting_tmp = HealthCheckSetting.new
+              healthchecksetting_tmp.deserialize(i)
+              @HealthCheckSettings << healthchecksetting_tmp
+            end
+          end
+          @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
+        end
+      end
+
       # ContinueRunFailedTaskBatch请求参数结构体
       class ContinueRunFailedTaskBatchRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: 批次ID。
@@ -7330,6 +7404,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageContainerEvent.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeContainerGroupAttribute请求参数结构体
+      class DescribeContainerGroupAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeContainerGroupAttribute返回参数结构体
+      class DescribeContainerGroupAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 部署组列表-其它字段
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupOther`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ContainerGroupOther.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

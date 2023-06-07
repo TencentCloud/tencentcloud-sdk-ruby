@@ -2031,11 +2031,11 @@ module TencentCloud
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型: [标准版实例]填写 standard(默认), [专业版实例]填写 profession
         # @type SpecificationsType: String
-        # @param DiskSize: 磁盘大小,专业版不填写默认最小磁盘,填写后根据磁盘带宽分区数弹性计算
+        # @param DiskSize: 磁盘大小，专业版不填写默认最小磁盘，如果跟控制台规格配比不相符，则无法创建成功
         # @type DiskSize: Integer
-        # @param BandWidth: 带宽,专业版不填写默认最小带宽,填写后根据磁盘带宽分区数弹性计算
+        # @param BandWidth: 带宽，专业版不填写默认最小带宽，如果跟控制台规格配比不相符，则无法创建成功
         # @type BandWidth: Integer
-        # @param Partition: 分区大小,专业版不填写默认最小分区数,填写后根据磁盘带宽分区数弹性计算
+        # @param Partition: 分区大小，专业版不填写默认最小分区数，如果跟控制台规格配比不相符，则无法创建成功
         # @type Partition: Integer
         # @param Tags: 标签
         # @type Tags: Array
@@ -5067,15 +5067,19 @@ module TencentCloud
       class DescribeRouteRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例唯一id
         # @type InstanceId: String
+        # @param RouteId: 路由id
+        # @type RouteId: Integer
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :RouteId
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, routeid=nil)
           @InstanceId = instanceid
+          @RouteId = routeid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @RouteId = params['RouteId']
         end
       end
 
