@@ -476,6 +476,42 @@ module TencentCloud
         end
       end
 
+      # CreateDomainAndIp请求参数结构体
+      class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
+        # @param Content: -
+        # @type Content: Array
+
+        attr_accessor :Content
+        
+        def initialize(content=nil)
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+        end
+      end
+
+      # CreateDomainAndIp返回参数结构体
+      class CreateDomainAndIpResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回创建成功的数量
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # db资产输出字段
       class DBAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id

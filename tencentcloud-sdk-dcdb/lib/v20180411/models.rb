@@ -4001,6 +4001,46 @@ module TencentCloud
         end
       end
 
+      # IsolateDCDBInstance请求参数结构体
+      class IsolateDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID，格式如：tdsqlshard-avw0207d，与云数据库控制台页面中显示的实例 ID 相同，可使用 查询实例列表 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # IsolateDCDBInstance返回参数结构体
+      class IsolateDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessInstanceIds: 隔离成功实例ID列表。
+        # @type SuccessInstanceIds: Array
+        # @param FailedInstanceIds: 隔离失败实例ID列表。
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessInstanceIds, :FailedInstanceIds, :RequestId
+        
+        def initialize(successinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SuccessInstanceIds = successinstanceids
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessInstanceIds = params['SuccessInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # IsolateDedicatedDBInstance请求参数结构体
       class IsolateDedicatedDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 Id，形如：dcdbt-ow728lmc。

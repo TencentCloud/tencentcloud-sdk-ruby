@@ -571,39 +571,39 @@ module TencentCloud
 
       # ChannelCreateEmbedWebUrl请求参数结构体
       class ChannelCreateEmbedWebUrlRequest < TencentCloud::Common::AbstractModel
-        # @param EmbedType: WEB嵌入资源类型，取值范围：CREATE_SEAL创建印章，CREATE_TEMPLATE创建模板，MODIFY_TEMPLATE修改模板，PREVIEW_TEMPLATE预览模板，PREVIEW_FLOW预览流程
-        # @type EmbedType: String
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Operator: 渠道操作者信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param EmbedType: WEB嵌入资源类型，取值范围：CREATE_SEAL创建印章，CREATE_TEMPLATE创建模板，MODIFY_TEMPLATE修改模板，PREVIEW_TEMPLATE预览模板，PREVIEW_FLOW预览流程
+        # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID，EmbedType取值MODIFY_TEMPLATE或PREVIEW_TEMPLATE或 PREVIEW_FLOW时BusinessId必填
         # @type BusinessId: String
         # @param HiddenComponents: 是否隐藏控件，只有预览模板时生效
         # @type HiddenComponents: Boolean
+        # @param Operator: 渠道操作者信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :EmbedType, :Agent, :Operator, :BusinessId, :HiddenComponents
+        attr_accessor :Agent, :EmbedType, :BusinessId, :HiddenComponents, :Operator
         
-        def initialize(embedtype=nil, agent=nil, operator=nil, businessid=nil, hiddencomponents=nil)
-          @EmbedType = embedtype
+        def initialize(agent=nil, embedtype=nil, businessid=nil, hiddencomponents=nil, operator=nil)
           @Agent = agent
-          @Operator = operator
+          @EmbedType = embedtype
           @BusinessId = businessid
           @HiddenComponents = hiddencomponents
+          @Operator = operator
         end
 
         def deserialize(params)
-          @EmbedType = params['EmbedType']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @EmbedType = params['EmbedType']
+          @BusinessId = params['BusinessId']
+          @HiddenComponents = params['HiddenComponents']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @BusinessId = params['BusinessId']
-          @HiddenComponents = params['HiddenComponents']
         end
       end
 
@@ -662,18 +662,18 @@ module TencentCloud
         # @type ApproverVerifyType: String
         # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         # @type SignBeanTag: Integer
-        # @param Operator: 操作者的信息，不用传
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param CcInfos: 被抄送人信息列表
         # @type CcInfos: Array
         # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
         # @type CcNotifyType: Integer
         # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # @type AutoSignScene: String
+        # @param Operator: 操作者的信息，不用传
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :Operator, :CcInfos, :CcNotifyType, :AutoSignScene
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, operator=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -689,10 +689,10 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @ApproverVerifyType = approververifytype
           @SignBeanTag = signbeantag
-          @Operator = operator
           @CcInfos = ccinfos
           @CcNotifyType = ccnotifytype
           @AutoSignScene = autosignscene
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -728,10 +728,6 @@ module TencentCloud
           @NeedSignReview = params['NeedSignReview']
           @ApproverVerifyType = params['ApproverVerifyType']
           @SignBeanTag = params['SignBeanTag']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           unless params['CcInfos'].nil?
             @CcInfos = []
             params['CcInfos'].each do |i|
@@ -742,6 +738,10 @@ module TencentCloud
           end
           @CcNotifyType = params['CcNotifyType']
           @AutoSignScene = params['AutoSignScene']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
         end
       end
 
@@ -1311,21 +1311,21 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param SealId: 指定印章ID
         # @type SealId: String
-        # @param UserIds: 指定待授权的用户ID数组
+        # @param UserIds: 指定待授权的用户ID数组,电子签的用户ID
         # @type UserIds: Array
-        # @param Organization: 企业机构信息，不用传
-        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
         # @param Operator: 操作人（用户）信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Organization: 企业机构信息，不用传
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
-        attr_accessor :Agent, :SealId, :UserIds, :Organization, :Operator
+        attr_accessor :Agent, :SealId, :UserIds, :Operator, :Organization
         
-        def initialize(agent=nil, sealid=nil, userids=nil, organization=nil, operator=nil)
+        def initialize(agent=nil, sealid=nil, userids=nil, operator=nil, organization=nil)
           @Agent = agent
           @SealId = sealid
           @UserIds = userids
-          @Organization = organization
           @Operator = operator
+          @Organization = organization
         end
 
         def deserialize(params)
@@ -1335,20 +1335,20 @@ module TencentCloud
           end
           @SealId = params['SealId']
           @UserIds = params['UserIds']
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
           end
         end
       end
 
       # ChannelCreateSealPolicy返回参数结构体
       class ChannelCreateSealPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param UserIds: 最终授权成功的用户ID数组。其他的跳过的是已经授权了的
+        # @param UserIds: 最终授权成功的电子签系统用户ID数组。其他的跳过的是已经授权了的
         # @type UserIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1370,7 +1370,7 @@ module TencentCloud
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param UserIds: 绑定角色的员工id列表
+        # @param UserIds: 绑定角色的员工id列表，电子签的UserId
         # @type UserIds: Array
         # @param RoleIds: 绑定角色的角色id列表
         # @type RoleIds: Array
@@ -1433,7 +1433,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param RoleId: 角色Id（非超管或法人角色Id）
         # @type RoleId: String
-        # @param UserIds: 用户列表
+        # @param UserIds: 用户列表，电子签系统的UserId
         # @type UserIds: Array
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1487,7 +1487,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param SealId: 指定印章ID
         # @type SealId: String
-        # @param UserIds: 指定用户ID数组
+        # @param UserIds: 指定用户ID数组，电子签系统用户ID
         # @type UserIds: Array
         # @param Organization: 组织机构信息，不用传
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
@@ -1911,19 +1911,19 @@ module TencentCloud
         # @type Status: String
         # @param SealId: 印章ID
         # @type SealId: String
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Reason: 更新印章状态原因说明
         # @type Reason: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :Status, :SealId, :Operator, :Reason
+        attr_accessor :Agent, :Status, :SealId, :Reason, :Operator
         
-        def initialize(agent=nil, status=nil, sealid=nil, operator=nil, reason=nil)
+        def initialize(agent=nil, status=nil, sealid=nil, reason=nil, operator=nil)
           @Agent = agent
           @Status = status
           @SealId = sealid
-          @Operator = operator
           @Reason = reason
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1933,11 +1933,11 @@ module TencentCloud
           end
           @Status = params['Status']
           @SealId = params['SealId']
+          @Reason = params['Reason']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @Reason = params['Reason']
         end
       end
 
@@ -2042,7 +2042,7 @@ module TencentCloud
         # @type ApproverType: Integer
         # @param OrganizationId: 企业id
         # @type OrganizationId: String
-        # @param OrganizationOpenId: 企业OpenId，第三方应用集成非静默签子客企业签署人发起合同毕传
+        # @param OrganizationOpenId: 企业OpenId，第三方应用集成非静默签子客企业签署人发起合同必传
         # @type OrganizationOpenId: String
         # @param OrganizationName: 企业名称，第三方应用集成非静默签子客企业签署人必传，saas企业签署人必传
         # @type OrganizationName: String
@@ -2507,7 +2507,7 @@ module TencentCloud
         # 4. 此链接仅单次有效，使用后需要再次创建新的链接（部分聊天软件，如企业微信默认会对链接进行解析，此时需要使用类似“代码片段”的方式或者放到txt文件里发送链接）
         # 5. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
         # @type ConsoleUrl: String
-        # @param IsActivated: 子客企业是否已开通腾讯电子签
+        # @param IsActivated: 子客企业是否已开通腾讯电子签，true-是，false-否
         # @type IsActivated: Boolean
         # @param ProxyOperatorIsVerified: 当前经办人是否已认证（false:未认证 true:已认证）
         # @type ProxyOperatorIsVerified: Boolean
@@ -3088,18 +3088,18 @@ module TencentCloud
         # @type QueryAllComponents: Boolean
         # @param TemplateName: 模糊搜索模板名称，最大长度200
         # @type TemplateName: String
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param WithPreviewUrl: 是否获取模板预览链接
         # @type WithPreviewUrl: Boolean
         # @param WithPdfUrl: 是否获取模板的PDF文件链接- 第三方应用集成需要开启白名单时才能使用。
         # @type WithPdfUrl: Boolean
-        # @param ChannelTemplateId: 模板ID
+        # @param ChannelTemplateId: 对应第三方应用平台企业的模板ID
         # @type ChannelTemplateId: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator, :WithPreviewUrl, :WithPdfUrl, :ChannelTemplateId
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :WithPreviewUrl, :WithPdfUrl, :ChannelTemplateId, :Operator
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil, withpreviewurl=nil, withpdfurl=nil, channeltemplateid=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, withpreviewurl=nil, withpdfurl=nil, channeltemplateid=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
@@ -3107,10 +3107,10 @@ module TencentCloud
           @Offset = offset
           @QueryAllComponents = queryallcomponents
           @TemplateName = templatename
-          @Operator = operator
           @WithPreviewUrl = withpreviewurl
           @WithPdfUrl = withpdfurl
           @ChannelTemplateId = channeltemplateid
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -3124,13 +3124,13 @@ module TencentCloud
           @Offset = params['Offset']
           @QueryAllComponents = params['QueryAllComponents']
           @TemplateName = params['TemplateName']
+          @WithPreviewUrl = params['WithPreviewUrl']
+          @WithPdfUrl = params['WithPdfUrl']
+          @ChannelTemplateId = params['ChannelTemplateId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @WithPreviewUrl = params['WithPreviewUrl']
-          @WithPdfUrl = params['WithPdfUrl']
-          @ChannelTemplateId = params['ChannelTemplateId']
         end
       end
 
@@ -3496,10 +3496,14 @@ module TencentCloud
         # @param ApproverSignTypes: 签署人签署合同时的认证方式
         # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
         # @type ApproverSignTypes: Array
+        # @param SignId: 签署ID
+        # - 发起流程时系统自动补充
+        # - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
+        # @type SignId: String
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId
         
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -3520,6 +3524,7 @@ module TencentCloud
           @ApproverNeedSignReview = approverneedsignreview
           @ApproverVerifyTypes = approververifytypes
           @ApproverSignTypes = approversigntypes
+          @SignId = signid
         end
 
         def deserialize(params)
@@ -3553,6 +3558,7 @@ module TencentCloud
           @ApproverNeedSignReview = params['ApproverNeedSignReview']
           @ApproverVerifyTypes = params['ApproverVerifyTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
+          @SignId = params['SignId']
         end
       end
 

@@ -4177,20 +4177,27 @@ module TencentCloud
         # @type PodNames: Array
         # @param TotalCount: 数量
         # @type TotalCount: Integer
+        # @param PodInfoList: pod详细信息
+        # @type PodInfoList: :class:`Tencentcloud::Tione.v20211111.models.PodInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PodNames, :TotalCount, :RequestId
+        attr_accessor :PodNames, :TotalCount, :PodInfoList, :RequestId
         
-        def initialize(podnames=nil, totalcount=nil, requestid=nil)
+        def initialize(podnames=nil, totalcount=nil, podinfolist=nil, requestid=nil)
           @PodNames = podnames
           @TotalCount = totalcount
+          @PodInfoList = podinfolist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @PodNames = params['PodNames']
           @TotalCount = params['TotalCount']
+          unless params['PodInfoList'].nil?
+            @PodInfoList = PodInfo.new
+            @PodInfoList.deserialize(params['PodInfoList'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5802,6 +5809,28 @@ module TencentCloud
               @ContainerInfos << container_tmp
             end
           end
+        end
+      end
+
+      # 任务建模Pod信息
+      class PodInfo < TencentCloud::Common::AbstractModel
+        # @param Name: pod名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param IP: pod的IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
+
+        attr_accessor :Name, :IP
+        
+        def initialize(name=nil, ip=nil)
+          @Name = name
+          @IP = ip
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IP = params['IP']
         end
       end
 

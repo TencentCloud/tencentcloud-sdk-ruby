@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建域名、ip相关信息
+
+        # @param request: Request instance for CreateDomainAndIp.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDomainAndIpRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDomainAndIpResponse`
+        def CreateDomainAndIp(request)
+          body = send_request('CreateDomainAndIp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainAndIpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # cvm详情
 
         # @param request: Request instance for DescribeCVMAssetInfo.

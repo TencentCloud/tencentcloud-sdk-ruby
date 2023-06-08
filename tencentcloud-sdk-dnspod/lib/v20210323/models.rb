@@ -1570,6 +1570,125 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainFilterList请求参数结构体
+      class DescribeDomainFilterListRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 根据域名分组类型获取域名。可取值为 ALL，MINE，SHARE，RECENT。
+        # ALL：全部
+        # MINE：我的域名
+        # SHARE：共享给我的域名
+        # RECENT：最近操作过的域名
+        # @type Type: String
+        # @param Offset: 记录开始的偏移, 第一条记录为 0, 依次类推。默认值为 0。
+        # @type Offset: Integer
+        # @param Limit: 要获取的域名数量, 比如获取 20 个, 则为 20。默认值为 5000。如果账户中的域名数量超过了 5000, 将会强制分页并且只返回前 5000 条, 这时需要通过 Offset 和 Limit 参数去获取其它域名。
+        # @type Limit: Integer
+        # @param GroupId: 根据域名分组 id 获取域名，可通过 DescribeDomain 或 DescribeDomainList 接口 GroupId 字段获取。
+        # @type GroupId: Array
+        # @param Keyword: 根据关键字获取域名。
+        # @type Keyword: String
+        # @param SortField: 排序字段。可取值为 NAME，STATUS，RECORDS，GRADE，UPDATED_ON。
+        # NAME：域名名称
+        # STATUS：域名状态
+        # RECORDS：记录数量
+        # GRADE：套餐等级
+        # UPDATED_ON：更新时间
+        # @type SortField: String
+        # @param SortType: 排序类型，升序：ASC，降序：DESC。
+        # @type SortType: String
+        # @param Status: 根据域名状态获取域名。可取值为 ENABLE，LOCK，PAUSE，SPAM。
+        # ENABLE：正常
+        # LOCK：锁定
+        # PAUSE：暂停
+        # SPAM：封禁
+        # @type Status: Array
+        # @param Package: 根据套餐获取域名，可通过 DescribeDomain 或 DescribeDomainList 接口 Grade 字段获取。
+        # @type Package: Array
+        # @param Remark: 根据备注信息获取域名。
+        # @type Remark: String
+        # @param UpdatedAtBegin: 要获取域名的更新时间起始时间点，如 '2021-05-01 03:00:00'。
+        # @type UpdatedAtBegin: String
+        # @param UpdatedAtEnd: 要获取域名的更新时间终止时间点，如 '2021-05-10 20:00:00'。
+        # @type UpdatedAtEnd: String
+        # @param RecordCountBegin: 要获取域名的记录数查询区间起点。
+        # @type RecordCountBegin: Integer
+        # @param RecordCountEnd: 要获取域名的记录数查询区间终点。
+        # @type RecordCountEnd: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+
+        attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword, :SortField, :SortType, :Status, :Package, :Remark, :UpdatedAtBegin, :UpdatedAtEnd, :RecordCountBegin, :RecordCountEnd, :ProjectId
+        
+        def initialize(type=nil, offset=nil, limit=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, status=nil, package=nil, remark=nil, updatedatbegin=nil, updatedatend=nil, recordcountbegin=nil, recordcountend=nil, projectid=nil)
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+          @GroupId = groupid
+          @Keyword = keyword
+          @SortField = sortfield
+          @SortType = sorttype
+          @Status = status
+          @Package = package
+          @Remark = remark
+          @UpdatedAtBegin = updatedatbegin
+          @UpdatedAtEnd = updatedatend
+          @RecordCountBegin = recordcountbegin
+          @RecordCountEnd = recordcountend
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @GroupId = params['GroupId']
+          @Keyword = params['Keyword']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @Status = params['Status']
+          @Package = params['Package']
+          @Remark = params['Remark']
+          @UpdatedAtBegin = params['UpdatedAtBegin']
+          @UpdatedAtEnd = params['UpdatedAtEnd']
+          @RecordCountBegin = params['RecordCountBegin']
+          @RecordCountEnd = params['RecordCountEnd']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeDomainFilterList返回参数结构体
+      class DescribeDomainFilterListResponse < TencentCloud::Common::AbstractModel
+        # @param DomainCountInfo: 列表页统计信息
+        # @type DomainCountInfo: :class:`Tencentcloud::Dnspod.v20210323.models.DomainCountInfo`
+        # @param DomainList: 域名列表
+        # @type DomainList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainCountInfo, :DomainList, :RequestId
+        
+        def initialize(domaincountinfo=nil, domainlist=nil, requestid=nil)
+          @DomainCountInfo = domaincountinfo
+          @DomainList = domainlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainCountInfo'].nil?
+            @DomainCountInfo = DomainCountInfo.new
+            @DomainCountInfo.deserialize(params['DomainCountInfo'])
+          end
+          unless params['DomainList'].nil?
+            @DomainList = []
+            params['DomainList'].each do |i|
+              domainlistitem_tmp = DomainListItem.new
+              domainlistitem_tmp.deserialize(i)
+              @DomainList << domainlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainGroupList请求参数结构体
       class DescribeDomainGroupListRequest < TencentCloud::Common::AbstractModel
 

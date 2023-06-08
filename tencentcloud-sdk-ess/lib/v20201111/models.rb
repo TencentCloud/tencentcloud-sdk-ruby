@@ -3857,10 +3857,14 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
         # @param JumpUrl: 签署完前端跳转的url，暂未使用
         # @type JumpUrl: String
+        # @param SignId: 签署ID
+        # - 发起流程时系统自动补充
+        # - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
+        # @type SignId: String
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId
         
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -3879,6 +3883,7 @@ module TencentCloud
           @RegisterInfo = registerinfo
           @ApproverOption = approveroption
           @JumpUrl = jumpurl
+          @SignId = signid
         end
 
         def deserialize(params)
@@ -3906,6 +3911,7 @@ module TencentCloud
             @ApproverOption.deserialize(params['ApproverOption'])
           end
           @JumpUrl = params['JumpUrl']
+          @SignId = params['SignId']
         end
       end
 

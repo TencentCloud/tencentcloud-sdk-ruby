@@ -538,20 +538,23 @@ module TencentCloud
         # @type UserId: String
         # @param Callee: 被叫号码，须带 0086 前缀
         # @type Callee: String
-        # @param Caller: 主叫号码，须带 0086 前缀
+        # @param Caller: 主叫号码（废弃，使用Callers），须带 0086 前缀
         # @type Caller: String
+        # @param Callers: 指定主叫号码列表，如果前面的号码失败了会自动换成下一个号码，须带 0086 前缀
+        # @type Callers: Array
         # @param IsForceUseMobile: 是否强制使用手机外呼，当前只支持 true，若为 true 请确保已配置白名单
         # @type IsForceUseMobile: Boolean
         # @param Uui: 自定义数据，长度限制 1024 字节
         # @type Uui: String
 
-        attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :IsForceUseMobile, :Uui
+        attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui
         
-        def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, isforceusemobile=nil, uui=nil)
+        def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
           @UserId = userid
           @Callee = callee
           @Caller = caller
+          @Callers = callers
           @IsForceUseMobile = isforceusemobile
           @Uui = uui
         end
@@ -561,6 +564,7 @@ module TencentCloud
           @UserId = params['UserId']
           @Callee = params['Callee']
           @Caller = params['Caller']
+          @Callers = params['Callers']
           @IsForceUseMobile = params['IsForceUseMobile']
           @Uui = params['Uui']
         end

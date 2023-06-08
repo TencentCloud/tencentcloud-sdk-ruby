@@ -1760,15 +1760,18 @@ module TencentCloud
         # @type ClusterId: String
         # @param RetentionPolicy: 消息保留策略
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
+        # @param AutoSubscriptionCreation: 是否开启自动创建订阅
+        # @type AutoSubscriptionCreation: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy, :AutoSubscriptionCreation
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @ClusterId = clusterid
           @RetentionPolicy = retentionpolicy
+          @AutoSubscriptionCreation = autosubscriptioncreation
         end
 
         def deserialize(params)
@@ -1780,6 +1783,7 @@ module TencentCloud
             @RetentionPolicy = RetentionPolicy.new
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
+          @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
         end
       end
 
@@ -5889,10 +5893,13 @@ module TencentCloud
         # @param RetentionPolicy: 消息保留策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
+        # @param AutoSubscriptionCreation: 是否自动创建订阅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSubscriptionCreation: Boolean
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation
         
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
@@ -5902,6 +5909,7 @@ module TencentCloud
           @NamespaceName = namespacename
           @TopicNum = topicnum
           @RetentionPolicy = retentionpolicy
+          @AutoSubscriptionCreation = autosubscriptioncreation
         end
 
         def deserialize(params)
@@ -5917,6 +5925,7 @@ module TencentCloud
             @RetentionPolicy = RetentionPolicy.new
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
+          @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
         end
       end
 
@@ -6587,15 +6596,18 @@ module TencentCloud
         # @type ClusterId: String
         # @param RetentionPolicy: 消息保留策略
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
+        # @param AutoSubscriptionCreation: 是否开启自动创建订阅
+        # @type AutoSubscriptionCreation: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy, :AutoSubscriptionCreation
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @ClusterId = clusterid
           @RetentionPolicy = retentionpolicy
+          @AutoSubscriptionCreation = autosubscriptioncreation
         end
 
         def deserialize(params)
@@ -6607,6 +6619,7 @@ module TencentCloud
             @RetentionPolicy = RetentionPolicy.new
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
+          @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
         end
       end
 

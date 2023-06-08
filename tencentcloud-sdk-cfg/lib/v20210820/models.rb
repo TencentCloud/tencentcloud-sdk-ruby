@@ -788,10 +788,18 @@ module TencentCloud
         # @type TaskGroupInstanceList: Array
         # @param TaskGroupMode: 执行模式。1 --- 顺序执行，2 --- 阶段执行
         # @type TaskGroupMode: Integer
+        # @param TaskGroupDiscardInstanceList: 不参演的实例列表
+        # @type TaskGroupDiscardInstanceList: Array
+        # @param TaskGroupSelectedInstanceList: 参演实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupSelectedInstanceList: Array
+        # @param TaskGroupInstancesExecuteRule: 机器选取规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstancesExecuteRule: Array
 
-        attr_accessor :TaskGroupId, :TaskGroupTitle, :TaskGroupDescription, :TaskGroupOrder, :ObjectTypeId, :TaskGroupCreateTime, :TaskGroupUpdateTime, :TaskGroupActions, :TaskGroupInstanceList, :TaskGroupMode
+        attr_accessor :TaskGroupId, :TaskGroupTitle, :TaskGroupDescription, :TaskGroupOrder, :ObjectTypeId, :TaskGroupCreateTime, :TaskGroupUpdateTime, :TaskGroupActions, :TaskGroupInstanceList, :TaskGroupMode, :TaskGroupDiscardInstanceList, :TaskGroupSelectedInstanceList, :TaskGroupInstancesExecuteRule
         
-        def initialize(taskgroupid=nil, taskgrouptitle=nil, taskgroupdescription=nil, taskgrouporder=nil, objecttypeid=nil, taskgroupcreatetime=nil, taskgroupupdatetime=nil, taskgroupactions=nil, taskgroupinstancelist=nil, taskgroupmode=nil)
+        def initialize(taskgroupid=nil, taskgrouptitle=nil, taskgroupdescription=nil, taskgrouporder=nil, objecttypeid=nil, taskgroupcreatetime=nil, taskgroupupdatetime=nil, taskgroupactions=nil, taskgroupinstancelist=nil, taskgroupmode=nil, taskgroupdiscardinstancelist=nil, taskgroupselectedinstancelist=nil, taskgroupinstancesexecuterule=nil)
           @TaskGroupId = taskgroupid
           @TaskGroupTitle = taskgrouptitle
           @TaskGroupDescription = taskgroupdescription
@@ -802,6 +810,9 @@ module TencentCloud
           @TaskGroupActions = taskgroupactions
           @TaskGroupInstanceList = taskgroupinstancelist
           @TaskGroupMode = taskgroupmode
+          @TaskGroupDiscardInstanceList = taskgroupdiscardinstancelist
+          @TaskGroupSelectedInstanceList = taskgroupselectedinstancelist
+          @TaskGroupInstancesExecuteRule = taskgroupinstancesexecuterule
         end
 
         def deserialize(params)
@@ -822,6 +833,16 @@ module TencentCloud
           end
           @TaskGroupInstanceList = params['TaskGroupInstanceList']
           @TaskGroupMode = params['TaskGroupMode']
+          @TaskGroupDiscardInstanceList = params['TaskGroupDiscardInstanceList']
+          @TaskGroupSelectedInstanceList = params['TaskGroupSelectedInstanceList']
+          unless params['TaskGroupInstancesExecuteRule'].nil?
+            @TaskGroupInstancesExecuteRule = []
+            params['TaskGroupInstancesExecuteRule'].each do |i|
+              taskgroupinstancesexecuterules_tmp = TaskGroupInstancesExecuteRules.new
+              taskgroupinstancesexecuterules_tmp.deserialize(i)
+              @TaskGroupInstancesExecuteRule << taskgroupinstancesexecuterules_tmp
+            end
+          end
         end
       end
 
@@ -1057,6 +1078,33 @@ module TencentCloud
           @TaskGroupInstanceEndTime = params['TaskGroupInstanceEndTime']
           @TaskGroupInstanceIsRedo = params['TaskGroupInstanceIsRedo']
           @TaskGroupInstanceExecuteTime = params['TaskGroupInstanceExecuteTime']
+        end
+      end
+
+      # 机器选取规则
+      class TaskGroupInstancesExecuteRules < TencentCloud::Common::AbstractModel
+        # @param TaskGroupInstancesExecuteMode: 实例选取模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstancesExecuteMode: Integer
+        # @param TaskGroupInstancesExecutePercent: 按比例选取模式下选取比例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstancesExecutePercent: Integer
+        # @param TaskGroupInstancesExecuteNum: 按数量选取模式下选取数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstancesExecuteNum: Integer
+
+        attr_accessor :TaskGroupInstancesExecuteMode, :TaskGroupInstancesExecutePercent, :TaskGroupInstancesExecuteNum
+        
+        def initialize(taskgroupinstancesexecutemode=nil, taskgroupinstancesexecutepercent=nil, taskgroupinstancesexecutenum=nil)
+          @TaskGroupInstancesExecuteMode = taskgroupinstancesexecutemode
+          @TaskGroupInstancesExecutePercent = taskgroupinstancesexecutepercent
+          @TaskGroupInstancesExecuteNum = taskgroupinstancesexecutenum
+        end
+
+        def deserialize(params)
+          @TaskGroupInstancesExecuteMode = params['TaskGroupInstancesExecuteMode']
+          @TaskGroupInstancesExecutePercent = params['TaskGroupInstancesExecutePercent']
+          @TaskGroupInstancesExecuteNum = params['TaskGroupInstancesExecuteNum']
         end
       end
 

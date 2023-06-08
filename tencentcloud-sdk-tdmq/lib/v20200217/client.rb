@@ -2681,6 +2681,7 @@ module TencentCloud
         end
 
         # 发送单条消息
+        # 不支持持久topic
 
         # @param request: Request instance for SendMessages.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::SendMessagesRequest`

@@ -2689,7 +2689,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param HealthCheckSettings: 健康检查相关字段
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HealthCheckSettings: Array
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
         # @param IsNotEqualServiceConfig: 服务配置信息是否匹配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNotEqualServiceConfig: Boolean
@@ -2728,12 +2728,8 @@ module TencentCloud
           @NodePort = params['NodePort']
           @SubnetId = params['SubnetId']
           unless params['HealthCheckSettings'].nil?
-            @HealthCheckSettings = []
-            params['HealthCheckSettings'].each do |i|
-              healthchecksetting_tmp = HealthCheckSetting.new
-              healthchecksetting_tmp.deserialize(i)
-              @HealthCheckSettings << healthchecksetting_tmp
-            end
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
           end
           @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
         end

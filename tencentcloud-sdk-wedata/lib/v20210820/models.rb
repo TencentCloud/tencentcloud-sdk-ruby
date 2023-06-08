@@ -16110,6 +16110,157 @@ module TencentCloud
         end
       end
 
+      # 开发空间-脚本相关响应
+      class ScriptInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param FileName: 脚本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileExtensionType: 文件扩展名类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileExtensionType: String
+        # @param Type: 文件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Md5Value: md5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5Value: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Size: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Float
+        # @param LocalPath: 本地路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalPath: String
+        # @param RemotePath: 远程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemotePath: String
+        # @param OwnerName: 用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
+        # @param Owner: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param PathDepth: 路径深度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathDepth: Integer
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param LocalTempPath: 本地临时文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalTempPath: String
+        # @param ZipPath: 本地压缩文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZipPath: String
+        # @param Bucket: cos桶名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param Region: cos地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :ResourceId, :FileName, :FileExtensionType, :Type, :Md5Value, :CreateTime, :UpdateTime, :Size, :LocalPath, :RemotePath, :OwnerName, :Owner, :PathDepth, :ProjectId, :ExtraInfo, :LocalTempPath, :ZipPath, :Bucket, :Region
+        
+        def initialize(resourceid=nil, filename=nil, fileextensiontype=nil, type=nil, md5value=nil, createtime=nil, updatetime=nil, size=nil, localpath=nil, remotepath=nil, ownername=nil, owner=nil, pathdepth=nil, projectid=nil, extrainfo=nil, localtemppath=nil, zippath=nil, bucket=nil, region=nil)
+          @ResourceId = resourceid
+          @FileName = filename
+          @FileExtensionType = fileextensiontype
+          @Type = type
+          @Md5Value = md5value
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Size = size
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @OwnerName = ownername
+          @Owner = owner
+          @PathDepth = pathdepth
+          @ProjectId = projectid
+          @ExtraInfo = extrainfo
+          @LocalTempPath = localtemppath
+          @ZipPath = zippath
+          @Bucket = bucket
+          @Region = region
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @FileName = params['FileName']
+          @FileExtensionType = params['FileExtensionType']
+          @Type = params['Type']
+          @Md5Value = params['Md5Value']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Size = params['Size']
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @OwnerName = params['OwnerName']
+          @Owner = params['Owner']
+          @PathDepth = params['PathDepth']
+          @ProjectId = params['ProjectId']
+          @ExtraInfo = params['ExtraInfo']
+          @LocalTempPath = params['LocalTempPath']
+          @ZipPath = params['ZipPath']
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+        end
+      end
+
+      # 开发空间-上传脚本请求
+      class ScriptRequestInfo < TencentCloud::Common::AbstractModel
+        # @param FilePath: 脚本路径
+        # @type FilePath: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param Version: 脚本版本
+        # @type Version: String
+        # @param Operation: 操作类型
+        # @type Operation: String
+        # @param ExtraInfo: 额外信息
+        # @type ExtraInfo: String
+        # @param BucketName: 桶名称
+        # @type BucketName: String
+        # @param Region: 所属地区
+        # @type Region: String
+        # @param FileExtensionType: 文件扩展类型
+        # @type FileExtensionType: String
+
+        attr_accessor :FilePath, :ProjectId, :Version, :Operation, :ExtraInfo, :BucketName, :Region, :FileExtensionType
+        
+        def initialize(filepath=nil, projectid=nil, version=nil, operation=nil, extrainfo=nil, bucketname=nil, region=nil, fileextensiontype=nil)
+          @FilePath = filepath
+          @ProjectId = projectid
+          @Version = version
+          @Operation = operation
+          @ExtraInfo = extrainfo
+          @BucketName = bucketname
+          @Region = region
+          @FileExtensionType = fileextensiontype
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
+          @ProjectId = params['ProjectId']
+          @Version = params['Version']
+          @Operation = params['Operation']
+          @ExtraInfo = params['ExtraInfo']
+          @BucketName = params['BucketName']
+          @Region = params['Region']
+          @FileExtensionType = params['FileExtensionType']
+        end
+      end
+
       # 查询实例条件
       class SearchCondition < TencentCloud::Common::AbstractModel
         # @param Instance: 查询框架，必选
@@ -18363,6 +18514,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadContent请求参数结构体
+      class UploadContentRequest < TencentCloud::Common::AbstractModel
+        # @param ScriptRequestInfo: 脚本上传信息
+        # @type ScriptRequestInfo: :class:`Tencentcloud::Wedata.v20210820.models.ScriptRequestInfo`
+
+        attr_accessor :ScriptRequestInfo
+        
+        def initialize(scriptrequestinfo=nil)
+          @ScriptRequestInfo = scriptrequestinfo
+        end
+
+        def deserialize(params)
+          unless params['ScriptRequestInfo'].nil?
+            @ScriptRequestInfo = ScriptRequestInfo.new
+            @ScriptRequestInfo.deserialize(params['ScriptRequestInfo'])
+          end
+        end
+      end
+
+      # UploadContent返回参数结构体
+      class UploadContentResponse < TencentCloud::Common::AbstractModel
+        # @param ScriptInfo: 脚本信息响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptInfo: :class:`Tencentcloud::Wedata.v20210820.models.ScriptInfoResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScriptInfo, :RequestId
+        
+        def initialize(scriptinfo=nil, requestid=nil)
+          @ScriptInfo = scriptinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScriptInfo'].nil?
+            @ScriptInfo = ScriptInfoResponse.new
+            @ScriptInfo.deserialize(params['ScriptInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
