@@ -1019,6 +1019,17 @@ module TencentCloud
         end
       end
 
+      # key-value
+      class ApigatewayTags < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # AttachPlugin请求参数结构体
       class AttachPluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginId: 绑定的API网关插件ID。
@@ -3909,19 +3920,145 @@ module TencentCloud
         end
       end
 
+      # api状态详情
+      class DescribeApisStatusResultApiIdStatusSetInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务唯一ID。
+        # @type ServiceId: String
+        # @param ApiId: API唯一ID。
+        # @type ApiId: String
+        # @param ApiDesc: 用户自定义的 API 接口描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiDesc: String
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ModifiedTime: 最后修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
+        # @param ApiName: API 接口的名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiName: String
+        # @param VpcId: VPCID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: Integer
+        # @param UniqVpcId: VPC唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param ApiType: API类型。取值为NORMAL（普通API）和TSF（微服务API）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiType: String
+        # @param Protocol: API协议。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param IsDebugAfterCharge: 是否买后调试。（云市场预留字段）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDebugAfterCharge: Boolean
+        # @param AuthType: API 鉴权类型。取值为SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、EIAM。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthType: String
+        # @param ApiBusinessType: OAUTH API的类型。当AuthType 为 OAUTH时该字段有效， 取值为NORMAL（业务API）和 OAUTH（授权API）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiBusinessType: String
+        # @param AuthRelationApiId: 关联的授权API 唯一 ID，当AuthType为OAUTH且ApiBusinessType为NORMAL时生效。标示业务API绑定的oauth2.0授权API唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthRelationApiId: String
+        # @param OauthConfig: OAUTH 配置信息。当AuthType是OAUTH时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OauthConfig: :class:`Tencentcloud::Apigateway.v20180808.models.OauthConfig`
+        # @param RelationBuniessApiIds: 授权API关联的业务API列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationBuniessApiIds: Array
+        # @param Tags: API关联的标签信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Path: API 的路径，如 /path。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Method: API 的请求方法，如 GET。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+
+        attr_accessor :ServiceId, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :VpcId, :UniqVpcId, :ApiType, :Protocol, :IsDebugAfterCharge, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :RelationBuniessApiIds, :Tags, :Path, :Method
+        
+        def initialize(serviceid=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, vpcid=nil, uniqvpcid=nil, apitype=nil, protocol=nil, isdebugaftercharge=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, relationbuniessapiids=nil, tags=nil, path=nil, method=nil)
+          @ServiceId = serviceid
+          @ApiId = apiid
+          @ApiDesc = apidesc
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+          @ApiName = apiname
+          @VpcId = vpcid
+          @UniqVpcId = uniqvpcid
+          @ApiType = apitype
+          @Protocol = protocol
+          @IsDebugAfterCharge = isdebugaftercharge
+          @AuthType = authtype
+          @ApiBusinessType = apibusinesstype
+          @AuthRelationApiId = authrelationapiid
+          @OauthConfig = oauthconfig
+          @RelationBuniessApiIds = relationbuniessapiids
+          @Tags = tags
+          @Path = path
+          @Method = method
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ApiId = params['ApiId']
+          @ApiDesc = params['ApiDesc']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+          @ApiName = params['ApiName']
+          @VpcId = params['VpcId']
+          @UniqVpcId = params['UniqVpcId']
+          @ApiType = params['ApiType']
+          @Protocol = params['Protocol']
+          @IsDebugAfterCharge = params['IsDebugAfterCharge']
+          @AuthType = params['AuthType']
+          @ApiBusinessType = params['ApiBusinessType']
+          @AuthRelationApiId = params['AuthRelationApiId']
+          unless params['OauthConfig'].nil?
+            @OauthConfig = OauthConfig.new
+            @OauthConfig.deserialize(params['OauthConfig'])
+          end
+          @RelationBuniessApiIds = params['RelationBuniessApiIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apigatewaytags_tmp = ApigatewayTags.new
+              apigatewaytags_tmp.deserialize(i)
+              @Tags << apigatewaytags_tmp
+            end
+          end
+          @Path = params['Path']
+          @Method = params['Method']
+        end
+      end
+
       # 描述api列表状态
       class DescribeApisStatusResultInfo < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的 API 接口数量。
         # @type TotalCount: Integer
+        # @param ApiIdStatusSet: API 接口列表。
+        # @type ApiIdStatusSet: Array
 
-        attr_accessor :TotalCount
+        attr_accessor :TotalCount, :ApiIdStatusSet
         
-        def initialize(totalcount=nil)
+        def initialize(totalcount=nil, apiidstatusset=nil)
           @TotalCount = totalcount
+          @ApiIdStatusSet = apiidstatusset
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['ApiIdStatusSet'].nil?
+            @ApiIdStatusSet = []
+            params['ApiIdStatusSet'].each do |i|
+              describeapisstatusresultapiidstatussetinfo_tmp = DescribeApisStatusResultApiIdStatusSetInfo.new
+              describeapisstatusresultapiidstatussetinfo_tmp.deserialize(i)
+              @ApiIdStatusSet << describeapisstatusresultapiidstatussetinfo_tmp
+            end
+          end
         end
       end
 

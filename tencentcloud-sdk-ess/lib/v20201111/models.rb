@@ -1560,6 +1560,65 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrationDepartment请求参数结构体
+      class CreateIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param DeptName: 部门名称，不超过50个字符
+        # @type DeptName: String
+        # @param ParentDeptId: 电子签父部门ID，与ParentDeptOpenId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        # @type ParentDeptId: String
+        # @param ParentDeptOpenId: 第三方平台中父部门ID,与ParentDeptId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        # @type ParentDeptOpenId: String
+        # @param DeptOpenId: 客户系统部门ID，不超过64个字符
+        # @type DeptOpenId: String
+        # @param OrderNo: 排序号,1~30000范围内
+        # @type OrderNo: Integer
+
+        attr_accessor :Operator, :DeptName, :ParentDeptId, :ParentDeptOpenId, :DeptOpenId, :OrderNo
+        
+        def initialize(operator=nil, deptname=nil, parentdeptid=nil, parentdeptopenid=nil, deptopenid=nil, orderno=nil)
+          @Operator = operator
+          @DeptName = deptname
+          @ParentDeptId = parentdeptid
+          @ParentDeptOpenId = parentdeptopenid
+          @DeptOpenId = deptopenid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @DeptName = params['DeptName']
+          @ParentDeptId = params['ParentDeptId']
+          @ParentDeptOpenId = params['ParentDeptOpenId']
+          @DeptOpenId = params['DeptOpenId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # CreateIntegrationDepartment返回参数结构体
+      class CreateIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
+        # @param DeptId: 电子签部门ID
+        # @type DeptId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeptId, :RequestId
+        
+        def initialize(deptid=nil, requestid=nil)
+          @DeptId = deptid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeptId = params['DeptId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIntegrationEmployees请求参数结构体
       class CreateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
@@ -2297,6 +2356,49 @@ module TencentCloud
         end
       end
 
+      # DeleteIntegrationDepartment请求参数结构体
+      class DeleteIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param DeptId: 电子签中的部门id
+        # @type DeptId: String
+        # @param ReceiveDeptId: 交接部门ID。待删除部门中的合同、印章和模版数据，交接至该部门ID下，未填写交接至公司根部门。
+        # @type ReceiveDeptId: String
+
+        attr_accessor :Operator, :DeptId, :ReceiveDeptId
+        
+        def initialize(operator=nil, deptid=nil, receivedeptid=nil)
+          @Operator = operator
+          @DeptId = deptid
+          @ReceiveDeptId = receivedeptid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @DeptId = params['DeptId']
+          @ReceiveDeptId = params['ReceiveDeptId']
+        end
+      end
+
+      # DeleteIntegrationDepartment返回参数结构体
+      class DeleteIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIntegrationEmployees请求参数结构体
       class DeleteIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
@@ -2890,6 +2992,64 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIntegrationDepartments请求参数结构体
+      class DescribeIntegrationDepartmentsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param QueryType: 查询类型 0-查询单个部门节点 1-单个部门节点及一级子节点部门列表
+        # @type QueryType: Integer
+        # @param DeptId: 部门ID,与DeptOpenId二选一,优先DeptId,都为空时获取根节点数据
+        # @type DeptId: String
+        # @param DeptOpenId: 客户系统部门ID,与DeptId二选一,优先DeptId,都为空时获取根节点数据
+        # @type DeptOpenId: String
+
+        attr_accessor :Operator, :QueryType, :DeptId, :DeptOpenId
+        
+        def initialize(operator=nil, querytype=nil, deptid=nil, deptopenid=nil)
+          @Operator = operator
+          @QueryType = querytype
+          @DeptId = deptid
+          @DeptOpenId = deptopenid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @QueryType = params['QueryType']
+          @DeptId = params['DeptId']
+          @DeptOpenId = params['DeptOpenId']
+        end
+      end
+
+      # DescribeIntegrationDepartments返回参数结构体
+      class DescribeIntegrationDepartmentsResponse < TencentCloud::Common::AbstractModel
+        # @param Departments: 部门列表
+        # @type Departments: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Departments, :RequestId
+        
+        def initialize(departments=nil, requestid=nil)
+          @Departments = departments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Departments'].nil?
+            @Departments = []
+            params['Departments'].each do |i|
+              integrationdepartment_tmp = IntegrationDepartment.new
+              integrationdepartment_tmp.deserialize(i)
+              @Departments << integrationdepartment_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4330,6 +4490,43 @@ module TencentCloud
         end
       end
 
+      # 部门信息
+      class IntegrationDepartment < TencentCloud::Common::AbstractModel
+        # @param DeptId: 部门ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeptId: String
+        # @param DeptName: 部门名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeptName: String
+        # @param ParentDeptId: 父部门ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentDeptId: String
+        # @param DeptOpenId: 客户系统部门ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeptOpenId: String
+        # @param OrderNo: 序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: Integer
+
+        attr_accessor :DeptId, :DeptName, :ParentDeptId, :DeptOpenId, :OrderNo
+        
+        def initialize(deptid=nil, deptname=nil, parentdeptid=nil, deptopenid=nil, orderno=nil)
+          @DeptId = deptid
+          @DeptName = deptname
+          @ParentDeptId = parentdeptid
+          @DeptOpenId = deptopenid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @DeptId = params['DeptId']
+          @DeptName = params['DeptName']
+          @ParentDeptId = params['ParentDeptId']
+          @DeptOpenId = params['DeptOpenId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
       # 主企业员工账号信息
       class IntegrationMainOrganizationUser < TencentCloud::Common::AbstractModel
         # @param MainOrganizationId: 主企业id
@@ -4389,6 +4586,61 @@ module TencentCloud
 
       # ModifyApplicationCallbackInfo返回参数结构体
       class ModifyApplicationCallbackInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIntegrationDepartment请求参数结构体
+      class ModifyIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param DeptId: 电子签部门ID
+        # @type DeptId: String
+        # @param ParentDeptId: 电子签父部门ID
+        # @type ParentDeptId: String
+        # @param DeptName: 部门名称，不超过50个字符
+        # @type DeptName: String
+        # @param DeptOpenId: 客户系统部门ID，不超过64个字符
+        # @type DeptOpenId: String
+        # @param OrderNo: 排序号,1~30000范围内
+        # @type OrderNo: Integer
+
+        attr_accessor :Operator, :DeptId, :ParentDeptId, :DeptName, :DeptOpenId, :OrderNo
+        
+        def initialize(operator=nil, deptid=nil, parentdeptid=nil, deptname=nil, deptopenid=nil, orderno=nil)
+          @Operator = operator
+          @DeptId = deptid
+          @ParentDeptId = parentdeptid
+          @DeptName = deptname
+          @DeptOpenId = deptopenid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @DeptId = params['DeptId']
+          @ParentDeptId = params['ParentDeptId']
+          @DeptName = params['DeptName']
+          @DeptOpenId = params['DeptOpenId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # ModifyIntegrationDepartment返回参数结构体
+      class ModifyIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
