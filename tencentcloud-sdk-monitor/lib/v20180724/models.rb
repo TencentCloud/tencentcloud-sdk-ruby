@@ -946,10 +946,14 @@ module TencentCloud
         # @type InstanceGroupId: Integer
         # @param BatchTag: 批量绑定标签
         # @type BatchTag: Array
+        # @param EbEventFlag: 是否同步eb
+        # @type EbEventFlag: Integer
+        # @param EbSubject: 事件配置的告警
+        # @type EbSubject: String
 
-        attr_accessor :Module, :PolicyId, :GroupId, :ServiceType, :Tag, :InstanceGroupId, :BatchTag
+        attr_accessor :Module, :PolicyId, :GroupId, :ServiceType, :Tag, :InstanceGroupId, :BatchTag, :EbEventFlag, :EbSubject
         
-        def initialize(_module=nil, policyid=nil, groupid=nil, servicetype=nil, tag=nil, instancegroupid=nil, batchtag=nil)
+        def initialize(_module=nil, policyid=nil, groupid=nil, servicetype=nil, tag=nil, instancegroupid=nil, batchtag=nil, ebeventflag=nil, ebsubject=nil)
           @Module = _module
           @PolicyId = policyid
           @GroupId = groupid
@@ -957,6 +961,8 @@ module TencentCloud
           @Tag = tag
           @InstanceGroupId = instancegroupid
           @BatchTag = batchtag
+          @EbEventFlag = ebeventflag
+          @EbSubject = ebsubject
         end
 
         def deserialize(params)
@@ -977,6 +983,8 @@ module TencentCloud
               @BatchTag << policytag_tmp
             end
           end
+          @EbEventFlag = params['EbEventFlag']
+          @EbSubject = params['EbSubject']
         end
       end
 

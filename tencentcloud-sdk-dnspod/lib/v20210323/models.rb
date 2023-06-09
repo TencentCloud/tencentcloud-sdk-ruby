@@ -3209,10 +3209,31 @@ module TencentCloud
         # @param OwnerNick: 域名所有者的账户昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerNick: String
+        # @param IsGracePeriod: 是否在付费套餐宽限期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsGracePeriod: String
+        # @param VipBuffered: 是否在付费套餐缓冲期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipBuffered: String
+        # @param VipStartAt: VIP套餐有效期开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipStartAt: String
+        # @param VipEndAt: VIP套餐有效期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipEndAt: String
+        # @param VipAutoRenew: VIP套餐自动续费标识。可能的值为：default-默认；no-不自动续费；yes-自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipAutoRenew: String
+        # @param VipResourceId: VIP套餐资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipResourceId: String
+        # @param IsSubDomain: 是否是子域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSubDomain: Boolean
 
-        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick
+        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain
         
-        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil)
+        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil)
           @DomainId = domainid
           @Status = status
           @Grade = grade
@@ -3236,6 +3257,13 @@ module TencentCloud
           @ActualNsList = actualnslist
           @RecordCount = recordcount
           @OwnerNick = ownernick
+          @IsGracePeriod = isgraceperiod
+          @VipBuffered = vipbuffered
+          @VipStartAt = vipstartat
+          @VipEndAt = vipendat
+          @VipAutoRenew = vipautorenew
+          @VipResourceId = vipresourceid
+          @IsSubDomain = issubdomain
         end
 
         def deserialize(params)
@@ -3262,6 +3290,13 @@ module TencentCloud
           @ActualNsList = params['ActualNsList']
           @RecordCount = params['RecordCount']
           @OwnerNick = params['OwnerNick']
+          @IsGracePeriod = params['IsGracePeriod']
+          @VipBuffered = params['VipBuffered']
+          @VipStartAt = params['VipStartAt']
+          @VipEndAt = params['VipEndAt']
+          @VipAutoRenew = params['VipAutoRenew']
+          @VipResourceId = params['VipResourceId']
+          @IsSubDomain = params['IsSubDomain']
         end
       end
 

@@ -1372,19 +1372,22 @@ module TencentCloud
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param UserIds: 绑定角色的员工id列表，电子签的UserId
-        # @type UserIds: Array
         # @param RoleIds: 绑定角色的角色id列表
         # @type RoleIds: Array
+        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        # @type UserIds: Array
+        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        # @type OpenIds: Array
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :UserIds, :RoleIds, :Operator
+        attr_accessor :Agent, :RoleIds, :UserIds, :OpenIds, :Operator
         
-        def initialize(agent=nil, userids=nil, roleids=nil, operator=nil)
+        def initialize(agent=nil, roleids=nil, userids=nil, openids=nil, operator=nil)
           @Agent = agent
-          @UserIds = userids
           @RoleIds = roleids
+          @UserIds = userids
+          @OpenIds = openids
           @Operator = operator
         end
 
@@ -1393,8 +1396,9 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @UserIds = params['UserIds']
           @RoleIds = params['RoleIds']
+          @UserIds = params['UserIds']
+          @OpenIds = params['OpenIds']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1435,18 +1439,21 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param RoleId: 角色Id（非超管或法人角色Id）
         # @type RoleId: String
-        # @param UserIds: 用户列表，电子签系统的UserId
+        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
         # @type UserIds: Array
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        # @type OpenIds: Array
 
-        attr_accessor :Agent, :RoleId, :UserIds, :Operator
+        attr_accessor :Agent, :RoleId, :UserIds, :Operator, :OpenIds
         
-        def initialize(agent=nil, roleid=nil, userids=nil, operator=nil)
+        def initialize(agent=nil, roleid=nil, userids=nil, operator=nil, openids=nil)
           @Agent = agent
           @RoleId = roleid
           @UserIds = userids
           @Operator = operator
+          @OpenIds = openids
         end
 
         def deserialize(params)
@@ -1460,6 +1467,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @OpenIds = params['OpenIds']
         end
       end
 

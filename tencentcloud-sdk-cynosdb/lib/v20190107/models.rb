@@ -2071,10 +2071,13 @@ module TencentCloud
         # @param ResourcePackages: 集群绑定的资源包信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
+        # @param RenewFlag: 自动续费标识，1为自动续费，0为到期不续
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -2122,6 +2125,7 @@ module TencentCloud
           @IsOpenPasswordComplexity = isopenpasswordcomplexity
           @NetworkStatus = networkstatus
           @ResourcePackages = resourcepackages
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -2210,6 +2214,7 @@ module TencentCloud
               @ResourcePackages << resourcepackage_tmp
             end
           end
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -4843,7 +4848,7 @@ module TencentCloud
 
       # DescribeParamTemplateDetail请求参数结构体
       class DescribeParamTemplateDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模版ID
+        # @param TemplateId: 参数模板ID
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
@@ -4859,11 +4864,11 @@ module TencentCloud
 
       # DescribeParamTemplateDetail返回参数结构体
       class DescribeParamTemplateDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模版ID
+        # @param TemplateId: 参数模板ID
         # @type TemplateId: Integer
-        # @param TemplateName: 参数模版名称
+        # @param TemplateName: 参数模板名称
         # @type TemplateName: String
-        # @param TemplateDescription: 参数模版描述
+        # @param TemplateDescription: 参数模板描述
         # @type TemplateDescription: String
         # @param EngineVersion: 引擎版本
         # @type EngineVersion: String

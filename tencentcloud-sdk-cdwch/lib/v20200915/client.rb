@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例列表，供外部sdk使用
+
+        # @param request: Request instance for DescribeInstancesNew.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::DescribeInstancesNewRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::DescribeInstancesNewResponse`
+        def DescribeInstancesNew(request)
+          body = send_request('DescribeInstancesNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 购买页拉取集群的数据节点和zookeeper节点的规格列表
 
         # @param request: Request instance for DescribeSpec.

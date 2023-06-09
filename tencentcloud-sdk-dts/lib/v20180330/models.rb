@@ -1844,7 +1844,7 @@ module TencentCloud
         end
       end
 
-      # 数据数据订阅的对象
+      # 数据订阅的对象
       class SubscribeObject < TencentCloud::Common::AbstractModel
         # @param ObjectsType: 数据订阅对象的类型，0-数据库，1-数据库内的表
         # 注意：此字段可能返回 null，表示取不到有效值。

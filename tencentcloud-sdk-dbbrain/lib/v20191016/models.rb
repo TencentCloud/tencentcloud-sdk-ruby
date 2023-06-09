@@ -2540,10 +2540,12 @@ module TencentCloud
         # @type LockTimeAvg: Float
         # @param RowsExaminedAvg: 平均扫描行数
         # @type RowsExaminedAvg: Float
+        # @param Md5: SOL模板的MD5值
+        # @type Md5: String
 
-        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg
+        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg, :Md5
         
-        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil)
+        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil, md5=nil)
           @LockTime = locktime
           @LockTimeMax = locktimemax
           @LockTimeMin = locktimemin
@@ -2568,6 +2570,7 @@ module TencentCloud
           @RowsSentAvg = rowssentavg
           @LockTimeAvg = locktimeavg
           @RowsExaminedAvg = rowsexaminedavg
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -2595,6 +2598,7 @@ module TencentCloud
           @RowsSentAvg = params['RowsSentAvg']
           @LockTimeAvg = params['LockTimeAvg']
           @RowsExaminedAvg = params['RowsExaminedAvg']
+          @Md5 = params['Md5']
         end
       end
 

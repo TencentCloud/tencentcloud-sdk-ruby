@@ -1352,14 +1352,16 @@ module TencentCloud
         # @type NewLevel: String
         # @param TriggerType: 变配触发类型：manual 手动,auto 自动
         # @type TriggerType: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
         # @param StartedAt: 开始时间
         # @type StartedAt: String
         # @param EndedAt: 结束时间
         # @type EndedAt: String
 
-        attr_accessor :ID, :ClusterID, :Status, :Message, :OldLevel, :NewLevel, :TriggerType, :StartedAt, :EndedAt
+        attr_accessor :ID, :ClusterID, :Status, :Message, :OldLevel, :NewLevel, :TriggerType, :CreatedAt, :StartedAt, :EndedAt
         
-        def initialize(id=nil, clusterid=nil, status=nil, message=nil, oldlevel=nil, newlevel=nil, triggertype=nil, startedat=nil, endedat=nil)
+        def initialize(id=nil, clusterid=nil, status=nil, message=nil, oldlevel=nil, newlevel=nil, triggertype=nil, createdat=nil, startedat=nil, endedat=nil)
           @ID = id
           @ClusterID = clusterid
           @Status = status
@@ -1367,6 +1369,7 @@ module TencentCloud
           @OldLevel = oldlevel
           @NewLevel = newlevel
           @TriggerType = triggertype
+          @CreatedAt = createdat
           @StartedAt = startedat
           @EndedAt = endedat
         end
@@ -1379,6 +1382,7 @@ module TencentCloud
           @OldLevel = params['OldLevel']
           @NewLevel = params['NewLevel']
           @TriggerType = params['TriggerType']
+          @CreatedAt = params['CreatedAt']
           @StartedAt = params['StartedAt']
           @EndedAt = params['EndedAt']
         end

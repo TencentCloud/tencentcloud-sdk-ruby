@@ -854,6 +854,76 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesNew请求参数结构体
+      class DescribeInstancesNewRequest < TencentCloud::Common::AbstractModel
+        # @param SearchInstanceId: 搜索的集群id名称
+        # @type SearchInstanceId: String
+        # @param SearchInstanceName: 搜索的集群name
+        # @type SearchInstanceName: String
+        # @param Offset: 分页参数，第一页为0，第二页为10
+        # @type Offset: Integer
+        # @param Limit: 分页参数，分页步长，默认为10
+        # @type Limit: Integer
+        # @param SearchTags: 搜索标签列表
+        # @type SearchTags: Array
+
+        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags
+        
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil)
+          @SearchInstanceId = searchinstanceid
+          @SearchInstanceName = searchinstancename
+          @Offset = offset
+          @Limit = limit
+          @SearchTags = searchtags
+        end
+
+        def deserialize(params)
+          @SearchInstanceId = params['SearchInstanceId']
+          @SearchInstanceName = params['SearchInstanceName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['SearchTags'].nil?
+            @SearchTags = []
+            params['SearchTags'].each do |i|
+              searchtags_tmp = SearchTags.new
+              searchtags_tmp.deserialize(i)
+              @SearchTags << searchtags_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInstancesNew返回参数结构体
+      class DescribeInstancesNewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例总数
+        # @type TotalCount: Integer
+        # @param InstancesList: 实例数组
+        # @type InstancesList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstancesList, :RequestId
+        
+        def initialize(totalcount=nil, instanceslist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstancesList = instanceslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstancesList'].nil?
+            @InstancesList = []
+            params['InstancesList'].each do |i|
+              instanceinfo_tmp = InstanceInfo.new
+              instanceinfo_tmp.deserialize(i)
+              @InstancesList << instanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSpec请求参数结构体
       class DescribeSpecRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 地域信息，例如"ap-guangzhou-1"
@@ -1999,6 +2069,30 @@ module TencentCloud
           @WeekDays = params['WeekDays']
           @ExecuteHour = params['ExecuteHour']
           @ScheduleId = params['ScheduleId']
+        end
+      end
+
+      # 列表页搜索的标记列表
+      class SearchTags < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签的键
+        # @type TagKey: String
+        # @param TagValue: 标签的值
+        # @type TagValue: String
+        # @param AllValue: 1表示只输入标签的键，没有输入值；0表示输入键时且输入值
+        # @type AllValue: Integer
+
+        attr_accessor :TagKey, :TagValue, :AllValue
+        
+        def initialize(tagkey=nil, tagvalue=nil, allvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+          @AllValue = allvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+          @AllValue = params['AllValue']
         end
       end
 

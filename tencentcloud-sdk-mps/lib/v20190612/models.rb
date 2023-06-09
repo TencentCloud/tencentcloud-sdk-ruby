@@ -3507,17 +3507,21 @@ module TencentCloud
         # @param SubtitleFormat: 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
         # <li>vtt：生成 WebVTT 字幕文件。</li>
         # @type SubtitleFormat: String
+        # @param SourceLanguage: 视频源语言。
+        # @type SourceLanguage: String
 
-        attr_accessor :Switch, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormat, :SourceLanguage
         
-        def initialize(switch=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformat=nil, sourcelanguage=nil)
           @Switch = switch
           @SubtitleFormat = subtitleformat
+          @SourceLanguage = sourcelanguage
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @SubtitleFormat = params['SubtitleFormat']
+          @SourceLanguage = params['SourceLanguage']
         end
       end
 
@@ -3530,17 +3534,21 @@ module TencentCloud
         # @param SubtitleFormat: 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
         # <li>vtt：生成 WebVTT 字幕文件。</li>
         # @type SubtitleFormat: String
+        # @param SourceLanguage: 视频源语言。
+        # @type SourceLanguage: String
 
-        attr_accessor :Switch, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormat, :SourceLanguage
         
-        def initialize(switch=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformat=nil, sourcelanguage=nil)
           @Switch = switch
           @SubtitleFormat = subtitleformat
+          @SourceLanguage = sourcelanguage
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @SubtitleFormat = params['SubtitleFormat']
+          @SourceLanguage = params['SourceLanguage']
         end
       end
 
@@ -4111,10 +4119,12 @@ module TencentCloud
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrWordsConfigureInfo`
+        # @param TranslateConfigure: 语音翻译控制参数。
+        # @type TranslateConfigure: :class:`Tencentcloud::Mps.v20190612.models.TranslateConfigureInfo`
 
-        attr_accessor :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure
+        attr_accessor :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :TranslateConfigure
         
-        def initialize(name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil)
+        def initialize(name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, translateconfigure=nil)
           @Name = name
           @Comment = comment
           @FaceConfigure = faceconfigure
@@ -4122,6 +4132,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @TranslateConfigure = translateconfigure
         end
 
         def deserialize(params)
@@ -4146,6 +4157,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfo.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['TranslateConfigure'].nil?
+            @TranslateConfigure = TranslateConfigureInfo.new
+            @TranslateConfigure.deserialize(params['TranslateConfigure'])
           end
         end
       end
@@ -8392,7 +8407,7 @@ module TencentCloud
         # <li>Video：视频格式，可以同时包含视频流和音频流的封装格式板；</li>
         # <li>PureAudio：纯音频格式，只能包含音频流的封装格式。</li>
         # @type ContainerType: String
-        # @param TEHDType: 极速高清过滤条件，用于过滤普通转码或极速高清转码模板，可选值：
+        # @param TEHDType: （建议使用TranscodeType代替）极速高清过滤条件，用于过滤普通转码或极速高清转码模板，可选值：
         # <li>Common：普通转码模板；</li>
         # <li>TEHD：极速高清模板。</li>
         # @type TEHDType: String
@@ -8402,7 +8417,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param TranscodeType: 模板类型（替换旧版本 TEHDType），可选值：
         # <li>Common：普通转码模板；</li>
-        # <li>TEHD：极速高清模板。</li>
+        # <li>TEHD：视频极速高清，老的类型（建议使用 TEHD-100） 。</li>
+        # <li>TEHD-100：视频极速高清</li>
+        # <li>TEHD-200：音频极速高清</li>
         # <li>Enhance：音视频增强模板。</li>
         # 默认空，不限制类型。
         # @type TranscodeType: String
@@ -12457,10 +12474,12 @@ module TencentCloud
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrFullTextConfigureInfoForUpdate`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrWordsConfigureInfoForUpdate`
+        # @param TranslateConfigure: 语音翻译控制参数。
+        # @type TranslateConfigure: :class:`Tencentcloud::Mps.v20190612.models.TranslateConfigureInfoForUpdate`
 
-        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure
+        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :TranslateConfigure
         
-        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil)
+        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, translateconfigure=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -12469,6 +12488,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @TranslateConfigure = translateconfigure
         end
 
         def deserialize(params)
@@ -12494,6 +12514,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfoForUpdate.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['TranslateConfigure'].nil?
+            @TranslateConfigure = TranslateConfigureInfoForUpdate.new
+            @TranslateConfigure.deserialize(params['TranslateConfigure'])
           end
         end
       end
@@ -17142,6 +17166,58 @@ module TencentCloud
             @EnhanceConfig = EnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
+        end
+      end
+
+      # 语音翻译任务控制参数
+      class TranslateConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 语音翻译任务开关，可选值：
+        # <li>ON：开启智能语音翻译任务；</li>
+        # <li>OFF：关闭智能语音翻译任务。</li>
+        # @type Switch: String
+        # @param SourceLanguage: 视频源语言。
+        # @type SourceLanguage: String
+        # @param DestinationLanguage: 翻译目标语言。
+        # @type DestinationLanguage: String
+
+        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage
+        
+        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil)
+          @Switch = switch
+          @SourceLanguage = sourcelanguage
+          @DestinationLanguage = destinationlanguage
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @SourceLanguage = params['SourceLanguage']
+          @DestinationLanguage = params['DestinationLanguage']
+        end
+      end
+
+      # 语音翻译任务控制参数
+      class TranslateConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 语音翻译任务开关，可选值：
+        # <li>ON：开启智能语音翻译任务；</li>
+        # <li>OFF：关闭智能语音翻译任务。</li>
+        # @type Switch: String
+        # @param SourceLanguage: 视频源语言。
+        # @type SourceLanguage: String
+        # @param DestinationLanguage: 翻译目标语言。
+        # @type DestinationLanguage: String
+
+        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage
+        
+        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil)
+          @Switch = switch
+          @SourceLanguage = sourcelanguage
+          @DestinationLanguage = destinationlanguage
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @SourceLanguage = params['SourceLanguage']
+          @DestinationLanguage = params['DestinationLanguage']
         end
       end
 

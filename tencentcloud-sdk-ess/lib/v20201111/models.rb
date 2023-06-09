@@ -470,6 +470,52 @@ module TencentCloud
         end
       end
 
+      # CancelUserAutoSignEnableUrl请求参数结构体
+      class CancelUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，UseId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param SceneKey: 自动签场景: E_PRESCRIPTION_AUTO_SIGN 电子处方
+        # @type SceneKey: String
+        # @param UserInfo: 指定撤销链接的用户指定撤销链接的用户信息，包含姓名、证件类型、证件号码。
+        # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
+
+        attr_accessor :Operator, :SceneKey, :UserInfo
+        
+        def initialize(operator=nil, scenekey=nil, userinfo=nil)
+          @Operator = operator
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+        end
+      end
+
+      # CancelUserAutoSignEnableUrl返回参数结构体
+      class CancelUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号，11位数字
@@ -833,7 +879,7 @@ module TencentCloud
 
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 资源类型 取值范围doc,docx,html,xls,xlsx之一
+        # @param ResourceType: 资源类型 支持doc,docx,html,xls,xlsx,jpg,jpeg,png,bmp文件类型
         # @type ResourceType: String
         # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String

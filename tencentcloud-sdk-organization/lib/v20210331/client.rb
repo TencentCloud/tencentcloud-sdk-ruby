@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加组织成员邮箱
+
+        # @param request: Request instance for AddOrganizationMemberEmail.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AddOrganizationMemberEmailRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AddOrganizationMemberEmailResponse`
+        def AddOrganizationMemberEmail(request)
+          body = send_request('AddOrganizationMemberEmail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddOrganizationMemberEmailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加企业组织节点
 
         # @param request: Request instance for AddOrganizationNode.
@@ -293,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询成员邮箱绑定详细信息
+
+        # @param request: Request instance for DescribeOrganizationMemberEmailBind.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberEmailBindRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberEmailBindResponse`
+        def DescribeOrganizationMemberEmailBind(request)
+          body = send_request('DescribeOrganizationMemberEmailBind', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationMemberEmailBindResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取组织成员的授权策略列表
 
         # @param request: Request instance for DescribeOrganizationMemberPolicies.
@@ -399,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = MoveOrganizationNodeMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改绑定成员邮箱
+
+        # @param request: Request instance for UpdateOrganizationMemberEmailBind.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateOrganizationMemberEmailBindRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateOrganizationMemberEmailBindResponse`
+        def UpdateOrganizationMemberEmailBind(request)
+          body = send_request('UpdateOrganizationMemberEmailBind', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOrganizationMemberEmailBindResponse.new
             model.deserialize(response['Response'])
             model
           else

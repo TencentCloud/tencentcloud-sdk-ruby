@@ -17,6 +17,50 @@
 module TencentCloud
   module Organization
     module V20210331
+      # AddOrganizationMemberEmail请求参数结构体
+      class AddOrganizationMemberEmailRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin
+        # @type MemberUin: Integer
+        # @param Email: 邮箱地址
+        # @type Email: String
+        # @param CountryCode: 国际区号
+        # @type CountryCode: String
+        # @param Phone: 手机号
+        # @type Phone: String
+
+        attr_accessor :MemberUin, :Email, :CountryCode, :Phone
+        
+        def initialize(memberuin=nil, email=nil, countrycode=nil, phone=nil)
+          @MemberUin = memberuin
+          @Email = email
+          @CountryCode = countrycode
+          @Phone = phone
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @Email = params['Email']
+          @CountryCode = params['CountryCode']
+          @Phone = params['Phone']
+        end
+      end
+
+      # AddOrganizationMemberEmail返回参数结构体
+      class AddOrganizationMemberEmailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddOrganizationNode请求参数结构体
       class AddOrganizationNodeRequest < TencentCloud::Common::AbstractModel
         # @param ParentNodeId: 父节点ID。可以调用DescribeOrganizationNodes获取
@@ -528,6 +572,83 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationMemberEmailBind请求参数结构体
+      class DescribeOrganizationMemberEmailBindRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin
+        # @type MemberUin: Integer
+
+        attr_accessor :MemberUin
+        
+        def initialize(memberuin=nil)
+          @MemberUin = memberuin
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+        end
+      end
+
+      # DescribeOrganizationMemberEmailBind返回参数结构体
+      class DescribeOrganizationMemberEmailBindResponse < TencentCloud::Common::AbstractModel
+        # @param BindId: 绑定ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindId: Integer
+        # @param ApplyTime: 申请时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyTime: String
+        # @param Email: 邮箱地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param Phone: 手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param BindStatus: 绑定状态    未绑定：Unbound，待激活：Valid，绑定成功：Success，绑定失败：Failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindStatus: String
+        # @param BindTime: 绑定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindTime: String
+        # @param Description: 失败说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PhoneBind: 安全手机绑定状态  未绑定：0，已绑定：1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneBind: Integer
+        # @param CountryCode: 国际区号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountryCode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BindId, :ApplyTime, :Email, :Phone, :BindStatus, :BindTime, :Description, :PhoneBind, :CountryCode, :RequestId
+        
+        def initialize(bindid=nil, applytime=nil, email=nil, phone=nil, bindstatus=nil, bindtime=nil, description=nil, phonebind=nil, countrycode=nil, requestid=nil)
+          @BindId = bindid
+          @ApplyTime = applytime
+          @Email = email
+          @Phone = phone
+          @BindStatus = bindstatus
+          @BindTime = bindtime
+          @Description = description
+          @PhoneBind = phonebind
+          @CountryCode = countrycode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BindId = params['BindId']
+          @ApplyTime = params['ApplyTime']
+          @Email = params['Email']
+          @Phone = params['Phone']
+          @BindStatus = params['BindStatus']
+          @BindTime = params['BindTime']
+          @Description = params['Description']
+          @PhoneBind = params['PhoneBind']
+          @CountryCode = params['CountryCode']
           @RequestId = params['RequestId']
         end
       end
@@ -1376,6 +1497,54 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
+        end
+      end
+
+      # UpdateOrganizationMemberEmailBind请求参数结构体
+      class UpdateOrganizationMemberEmailBindRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin
+        # @type MemberUin: Integer
+        # @param BindId: 绑定ID
+        # @type BindId: Integer
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param CountryCode: 国际区号
+        # @type CountryCode: String
+        # @param Phone: 手机号
+        # @type Phone: String
+
+        attr_accessor :MemberUin, :BindId, :Email, :CountryCode, :Phone
+        
+        def initialize(memberuin=nil, bindid=nil, email=nil, countrycode=nil, phone=nil)
+          @MemberUin = memberuin
+          @BindId = bindid
+          @Email = email
+          @CountryCode = countrycode
+          @Phone = phone
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @BindId = params['BindId']
+          @Email = params['Email']
+          @CountryCode = params['CountryCode']
+          @Phone = params['Phone']
+        end
+      end
+
+      # UpdateOrganizationMemberEmailBind返回参数结构体
+      class UpdateOrganizationMemberEmailBindResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

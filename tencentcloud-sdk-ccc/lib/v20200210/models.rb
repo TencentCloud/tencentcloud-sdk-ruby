@@ -3127,7 +3127,7 @@ module TencentCloud
         # @type Num: Integer
         # @param BuyTime: 购买时间戳
         # @type BuyTime: Integer
-        # @param EndTime: 截至时间戳
+        # @param EndTime: 截止时间戳
         # @type EndTime: Integer
 
         attr_accessor :Num, :BuyTime, :EndTime

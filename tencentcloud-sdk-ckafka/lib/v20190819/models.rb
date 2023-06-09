@@ -2031,22 +2031,34 @@ module TencentCloud
         # @param DealNames: 订单号列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNameInstanceIdMapping: Array
 
-        attr_accessor :FlowId, :DealNames, :InstanceId
+        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping
         
-        def initialize(flowid=nil, dealnames=nil, instanceid=nil)
+        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil)
           @FlowId = flowid
           @DealNames = dealnames
           @InstanceId = instanceid
+          @DealNameInstanceIdMapping = dealnameinstanceidmapping
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @DealNames = params['DealNames']
           @InstanceId = params['InstanceId']
+          unless params['DealNameInstanceIdMapping'].nil?
+            @DealNameInstanceIdMapping = []
+            params['DealNameInstanceIdMapping'].each do |i|
+              dealinstancedto_tmp = DealInstanceDTO.new
+              dealinstancedto_tmp.deserialize(i)
+              @DealNameInstanceIdMapping << dealinstancedto_tmp
+            end
+          end
         end
       end
 
@@ -2089,10 +2101,12 @@ module TencentCloud
         # @type MultiZoneFlag: Boolean
         # @param ZoneIds: 可用区列表，购买多可用区实例时为必填项
         # @type ZoneIds: Array
+        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 4Mbps 公网带宽，此处传 1。默认值为 0
+        # @type PublicNetworkMonthly: Integer
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly
         
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2111,6 +2125,7 @@ module TencentCloud
           @DiskType = disktype
           @MultiZoneFlag = multizoneflag
           @ZoneIds = zoneids
+          @PublicNetworkMonthly = publicnetworkmonthly
         end
 
         def deserialize(params)
@@ -2139,10 +2154,11 @@ module TencentCloud
           @DiskType = params['DiskType']
           @MultiZoneFlag = params['MultiZoneFlag']
           @ZoneIds = params['ZoneIds']
+          @PublicNetworkMonthly = params['PublicNetworkMonthly']
         end
       end
 
-      # 创建预付费实例返回结构
+      # 预付费实例相关接口返回结构
       class CreateInstancePreResp < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 返回的code，0为正常，非0为错误
         # @type ReturnCode: String
@@ -2151,7 +2167,7 @@ module TencentCloud
         # @param Data: 操作型返回的Data数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreData`
-        # @param DeleteRouteTimestamp: 删除是时间
+        # @param DeleteRouteTimestamp: 删除时间。目前该参数字段已废弃，将会在未来被删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteRouteTimestamp: String
 
@@ -3000,6 +3016,28 @@ module TencentCloud
           @Format = params['Format']
           @TargetType = params['TargetType']
           @TimeZone = params['TimeZone']
+        end
+      end
+
+      # 预付费/后付费接口中，订单和 CKafka 实例映射数据结构
+      class DealInstanceDTO < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单流水
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param InstanceIdList: 订单流水对应购买的 CKafka 实例 id 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIdList: Array
+
+        attr_accessor :DealName, :InstanceIdList
+        
+        def initialize(dealname=nil, instanceidlist=nil)
+          @DealName = dealname
+          @InstanceIdList = instanceidlist
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @InstanceIdList = params['InstanceIdList']
         end
       end
 

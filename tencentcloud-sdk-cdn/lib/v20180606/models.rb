@@ -1296,6 +1296,12 @@ module TencentCloud
         # off：关闭
         # 开启时必须且只配置一种模式，其余模式需要设置为 null
         # @type Switch: String
+        # @param AuthAlgorithm: 鉴权算法，取值有：
+        # md5：按MD5算法取hash值
+        # sha256：按SHA-256算法取hash值
+        # 默认为 md5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthAlgorithm: String
         # @param TypeA: 时间戳防盗链模式 A 配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeA: :class:`Tencentcloud::Cdn.v20180606.models.AuthenticationTypeA`
@@ -1309,10 +1315,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeD: :class:`Tencentcloud::Cdn.v20180606.models.AuthenticationTypeD`
 
-        attr_accessor :Switch, :TypeA, :TypeB, :TypeC, :TypeD
+        attr_accessor :Switch, :AuthAlgorithm, :TypeA, :TypeB, :TypeC, :TypeD
         
-        def initialize(switch=nil, typea=nil, typeb=nil, typec=nil, typed=nil)
+        def initialize(switch=nil, authalgorithm=nil, typea=nil, typeb=nil, typec=nil, typed=nil)
           @Switch = switch
+          @AuthAlgorithm = authalgorithm
           @TypeA = typea
           @TypeB = typeb
           @TypeC = typec
@@ -1321,6 +1328,7 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+          @AuthAlgorithm = params['AuthAlgorithm']
           unless params['TypeA'].nil?
             @TypeA = AuthenticationTypeA.new
             @TypeA.deserialize(params['TypeA'])
