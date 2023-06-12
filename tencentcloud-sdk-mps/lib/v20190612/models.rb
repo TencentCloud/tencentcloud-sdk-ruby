@@ -3782,6 +3782,114 @@ module TencentCloud
         end
       end
 
+      # BatchDeleteStreamLinkFlow请求参数结构体
+      class BatchDeleteStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: EventId。
+        # @type EventId: String
+        # @param FlowIds: Event关联的流Id数组，如果不传默认删除Event下面的所有媒体传输流。
+        # @type FlowIds: Array
+
+        attr_accessor :EventId, :FlowIds
+        
+        def initialize(eventid=nil, flowids=nil)
+          @EventId = eventid
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # BatchDeleteStreamLinkFlow返回参数结构体
+      class BatchDeleteStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchStartStreamLinkFlow请求参数结构体
+      class BatchStartStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: EventId。
+        # @type EventId: String
+        # @param FlowIds: Event关联的流Id数组，如果不传默认启动Event下面的所有媒体传输流。
+        # @type FlowIds: Array
+
+        attr_accessor :EventId, :FlowIds
+        
+        def initialize(eventid=nil, flowids=nil)
+          @EventId = eventid
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # BatchStartStreamLinkFlow返回参数结构体
+      class BatchStartStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchStopStreamLinkFlow请求参数结构体
+      class BatchStopStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: EventId。
+        # @type EventId: String
+        # @param FlowIds: 流Id，如果不传默认停止Event下所有的媒体传输流。
+        # @type FlowIds: Array
+
+        attr_accessor :EventId, :FlowIds
+        
+        def initialize(eventid=nil, flowids=nil)
+          @EventId = eventid
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # BatchStopStreamLinkFlow返回参数结构体
+      class BatchStopStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 智能分类任务控制参数
       class ClassificationConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能分类任务开关，可选值：
@@ -5270,6 +5378,49 @@ module TencentCloud
         end
       end
 
+      # CreateStreamLinkEvent请求参数结构体
+      class CreateStreamLinkEventRequest < TencentCloud::Common::AbstractModel
+        # @param EventName: 事件名称。
+        # @type EventName: String
+        # @param Description: 事件描述。
+        # @type Description: String
+
+        attr_accessor :EventName, :Description
+        
+        def initialize(eventname=nil, description=nil)
+          @EventName = eventname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateStreamLinkEvent返回参数结构体
+      class CreateStreamLinkEventResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 创建的Event信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeEvent`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeEvent.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStreamLinkFlow请求参数结构体
       class CreateStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowName: 流名称。
@@ -6070,6 +6221,38 @@ module TencentCloud
         end
       end
 
+      # DeleteStreamLinkEvent请求参数结构体
+      class DeleteStreamLinkEventRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: 媒体传输事件Id，删除前需要保证该Event关联的所有Flow都已经删除。
+        # @type EventId: String
+
+        attr_accessor :EventId
+        
+        def initialize(eventid=nil)
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+        end
+      end
+
+      # DeleteStreamLinkEvent返回参数结构体
+      class DeleteStreamLinkEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteStreamLinkFlow请求参数结构体
       class DeleteStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 传输流Id。
@@ -6571,6 +6754,52 @@ module TencentCloud
         end
       end
 
+      # 查询Event的配置信息。
+      class DescribeEvent < TencentCloud::Common::AbstractModel
+        # @param EventName: Event的名称。
+        # @type EventName: String
+        # @param EventId: Event的Id，唯一标识一个event。
+        # @type EventId: String
+        # @param CreateTime: Event创建时间，格式为yyyy-MM-ddTHH:mm:ssZ。
+        # @type CreateTime: String
+        # @param Description: Event的描述。
+        # @type Description: String
+        # @param Status: Event的状态信息
+        # 0：未运行
+        # 1：运行中
+        # @type Status: Integer
+        # @param AttachedFlowGroup: Event关联的Flow列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedFlowGroup: Array
+
+        attr_accessor :EventName, :EventId, :CreateTime, :Description, :Status, :AttachedFlowGroup
+        
+        def initialize(eventname=nil, eventid=nil, createtime=nil, description=nil, status=nil, attachedflowgroup=nil)
+          @EventName = eventname
+          @EventId = eventid
+          @CreateTime = createtime
+          @Description = description
+          @Status = status
+          @AttachedFlowGroup = attachedflowgroup
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventId = params['EventId']
+          @CreateTime = params['CreateTime']
+          @Description = params['Description']
+          @Status = params['Status']
+          unless params['AttachedFlowGroup'].nil?
+            @AttachedFlowGroup = []
+            params['AttachedFlowGroup'].each do |i|
+              describeflowid_tmp = DescribeFlowId.new
+              describeflowid_tmp.deserialize(i)
+              @AttachedFlowGroup << describeflowid_tmp
+            end
+          end
+        end
+      end
+
       # 查询Flow的配置信息。
       class DescribeFlow < TencentCloud::Common::AbstractModel
         # @param FlowId: 流Id。
@@ -6626,6 +6855,26 @@ module TencentCloud
             end
           end
           @EventId = params['EventId']
+          @Region = params['Region']
+        end
+      end
+
+      # Event管理的Flow列表
+      class DescribeFlowId < TencentCloud::Common::AbstractModel
+        # @param FlowId: FlowId，唯一标识一个flow。
+        # @type FlowId: String
+        # @param Region: flow所在的区域名称。
+        # @type Region: String
+
+        attr_accessor :FlowId, :Region
+        
+        def initialize(flowid=nil, region=nil)
+          @FlowId = flowid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @Region = params['Region']
         end
       end
@@ -7730,6 +7979,163 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkEventAttachedFlows请求参数结构体
+      class DescribeStreamLinkEventAttachedFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: EventId。
+        # @type EventId: String
+        # @param PageNum: 当前页数，默认1。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，默认10。
+        # @type PageSize: Integer
+
+        attr_accessor :EventId, :PageNum, :PageSize
+        
+        def initialize(eventid=nil, pagenum=nil, pagesize=nil)
+          @EventId = eventid
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamLinkEventAttachedFlows返回参数结构体
+      class DescribeStreamLinkEventAttachedFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 流的配置信息列表。
+        # @type Infos: Array
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :TotalNum, :RequestId
+        
+        def initialize(infos=nil, totalnum=nil, requestid=nil)
+          @Infos = infos
+          @TotalNum = totalnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              describeflow_tmp = DescribeFlow.new
+              describeflow_tmp.deserialize(i)
+              @Infos << describeflow_tmp
+            end
+          end
+          @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkEvent请求参数结构体
+      class DescribeStreamLinkEventRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: 媒体传输事件ID。
+        # @type EventId: String
+
+        attr_accessor :EventId
+        
+        def initialize(eventid=nil)
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+        end
+      end
+
+      # DescribeStreamLinkEvent返回参数结构体
+      class DescribeStreamLinkEventResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 媒体传输事件的配置信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeEvent`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+        
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DescribeEvent.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamLinkEvents请求参数结构体
+      class DescribeStreamLinkEventsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 当前页数，默认1。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，默认10。
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+        
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamLinkEvents返回参数结构体
+      class DescribeStreamLinkEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 媒体传输事件的配置信息列表。
+        # @type Infos: Array
+        # @param PageNum: 当前页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+        
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              describeevent_tmp = DescribeEvent.new
+              describeevent_tmp.deserialize(i)
+              @Infos << describeevent_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
           @RequestId = params['RequestId']
         end
       end
@@ -13306,6 +13712,46 @@ module TencentCloud
 
       # ModifySnapshotByTimeOffsetTemplate返回参数结构体
       class ModifySnapshotByTimeOffsetTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamLinkEvent请求参数结构体
+      class ModifyStreamLinkEventRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: 媒体传输事件Event Id。
+        # @type EventId: String
+        # @param EventName: 需要修改的事件名称。
+        # @type EventName: String
+        # @param Description: Event的描述信息。
+        # @type Description: String
+
+        attr_accessor :EventId, :EventName, :Description
+        
+        def initialize(eventid=nil, eventname=nil, description=nil)
+          @EventId = eventid
+          @EventName = eventname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @EventName = params['EventName']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyStreamLinkEvent返回参数结构体
+      class ModifyStreamLinkEventResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

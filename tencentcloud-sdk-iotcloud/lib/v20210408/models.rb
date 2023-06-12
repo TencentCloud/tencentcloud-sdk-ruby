@@ -3527,15 +3527,23 @@ module TencentCloud
       class ProductMetadata < TencentCloud::Common::AbstractModel
         # @param CreationDate: 产品创建时间
         # @type CreationDate: Integer
+        # @param CreateUserId: 创建者 Uin
+        # @type CreateUserId: Integer
+        # @param UserId: 账号 Uin
+        # @type UserId: Integer
 
-        attr_accessor :CreationDate
+        attr_accessor :CreationDate, :CreateUserId, :UserId
         
-        def initialize(creationdate=nil)
+        def initialize(creationdate=nil, createuserid=nil, userid=nil)
           @CreationDate = creationdate
+          @CreateUserId = createuserid
+          @UserId = userid
         end
 
         def deserialize(params)
           @CreationDate = params['CreationDate']
+          @CreateUserId = params['CreateUserId']
+          @UserId = params['UserId']
         end
       end
 
@@ -3564,7 +3572,7 @@ module TencentCloud
         # @type ProductKey: String
         # @param RegisterType: 动态注册类型 0-关闭, 1-预定义设备名 2-动态定义设备名
         # @type RegisterType: Integer
-        # @param ProductSecret: 动态注册产品秘钥
+        # @param ProductSecret: 动态注册产品密钥
         # @type ProductSecret: String
         # @param RegisterLimit: RegisterType为2时，设备动态创建的限制数量
         # @type RegisterLimit: Integer
@@ -3574,10 +3582,14 @@ module TencentCloud
         # @type PrivateCAName: String
         # @param OriginUserId: 划归的产品，展示为源用户ID，其余为空
         # @type OriginUserId: Integer
+        # @param DeviceLimit: 设备限制
+        # @type DeviceLimit: Integer
+        # @param ForbiddenStatus: 产品禁用状态
+        # @type ForbiddenStatus: Integer
 
-        attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit, :OriginProductId, :PrivateCAName, :OriginUserId
+        attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit, :OriginProductId, :PrivateCAName, :OriginUserId, :DeviceLimit, :ForbiddenStatus
         
-        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil)
+        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil)
           @ProductDescription = productdescription
           @EncryptionType = encryptiontype
           @Region = region
@@ -3594,6 +3606,8 @@ module TencentCloud
           @OriginProductId = originproductid
           @PrivateCAName = privatecaname
           @OriginUserId = originuserid
+          @DeviceLimit = devicelimit
+          @ForbiddenStatus = forbiddenstatus
         end
 
         def deserialize(params)
@@ -3613,6 +3627,8 @@ module TencentCloud
           @OriginProductId = params['OriginProductId']
           @PrivateCAName = params['PrivateCAName']
           @OriginUserId = params['OriginUserId']
+          @DeviceLimit = params['DeviceLimit']
+          @ForbiddenStatus = params['ForbiddenStatus']
         end
       end
 

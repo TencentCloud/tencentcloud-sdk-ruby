@@ -1977,6 +1977,37 @@ module TencentCloud
         end
       end
 
+      # DescribeEnterpriseSGRuleProgress请求参数结构体
+      class DescribeEnterpriseSGRuleProgressRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEnterpriseSGRuleProgress返回参数结构体
+      class DescribeEnterpriseSGRuleProgressResponse < TencentCloud::Common::AbstractModel
+        # @param Progress: 0-100，代表下发进度百分比
+        # @type Progress: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Progress, :RequestId
+        
+        def initialize(progress=nil, requestid=nil)
+          @Progress = progress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Progress = params['Progress']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnterpriseSecurityGroupRule请求参数结构体
       class DescribeEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
         # @param PageNo: 分页查询时，显示的当前页的页码。

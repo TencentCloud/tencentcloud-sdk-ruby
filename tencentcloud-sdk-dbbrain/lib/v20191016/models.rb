@@ -1251,14 +1251,20 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Items: 各来源地址的慢日志占比详情列表。
         # @type Items: Array
+        # @param UserNameItems: 各来源用户名的慢日志占比详情列表。
+        # @type UserNameItems: Array
+        # @param UserTotalCount: 来源用户数目。
+        # @type UserTotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Items, :RequestId
+        attr_accessor :TotalCount, :Items, :UserNameItems, :UserTotalCount, :RequestId
         
-        def initialize(totalcount=nil, items=nil, requestid=nil)
+        def initialize(totalcount=nil, items=nil, usernameitems=nil, usertotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
+          @UserNameItems = usernameitems
+          @UserTotalCount = usertotalcount
           @RequestId = requestid
         end
 
@@ -1272,6 +1278,15 @@ module TencentCloud
               @Items << slowloghost_tmp
             end
           end
+          unless params['UserNameItems'].nil?
+            @UserNameItems = []
+            params['UserNameItems'].each do |i|
+              slowloguser_tmp = SlowLogUser.new
+              slowloguser_tmp.deserialize(i)
+              @UserNameItems << slowloguser_tmp
+            end
+          end
+          @UserTotalCount = params['UserTotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1878,17 +1893,22 @@ module TencentCloud
         # @type DailyInspection: String
         # @param OverviewDisplay: 实例概览开关，Yes/No。
         # @type OverviewDisplay: String
+        # @param KeyDelimiters: redis大key分析的自定义分割符，仅redis使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyDelimiters: Array
 
-        attr_accessor :DailyInspection, :OverviewDisplay
+        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters
         
-        def initialize(dailyinspection=nil, overviewdisplay=nil)
+        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil)
           @DailyInspection = dailyinspection
           @OverviewDisplay = overviewdisplay
+          @KeyDelimiters = keydelimiters
         end
 
         def deserialize(params)
           @DailyInspection = params['DailyInspection']
           @OverviewDisplay = params['OverviewDisplay']
+          @KeyDelimiters = params['KeyDelimiters']
         end
       end
 
@@ -1950,10 +1970,24 @@ module TencentCloud
         # @type AuditPolicyStatus: String
         # @param AuditRunningStatus: 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         # @type AuditRunningStatus: String
+        # @param InternalVip: 内网vip。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalVip: String
+        # @param InternalVport: 内网port。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalVport: Integer
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param ClusterId: 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus
+        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus, :InternalVip, :InternalVport, :CreateTime, :ClusterId, :ClusterName
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil, internalvip=nil, internalvport=nil, createtime=nil, clusterid=nil, clustername=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1982,6 +2016,11 @@ module TencentCloud
           @SecAuditStatus = secauditstatus
           @AuditPolicyStatus = auditpolicystatus
           @AuditRunningStatus = auditrunningstatus
+          @InternalVip = internalvip
+          @InternalVport = internalvport
+          @CreateTime = createtime
+          @ClusterId = clusterid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -2016,6 +2055,11 @@ module TencentCloud
           @SecAuditStatus = params['SecAuditStatus']
           @AuditPolicyStatus = params['AuditPolicyStatus']
           @AuditRunningStatus = params['AuditRunningStatus']
+          @InternalVip = params['InternalVip']
+          @InternalVport = params['InternalVport']
+          @CreateTime = params['CreateTime']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -2599,6 +2643,30 @@ module TencentCloud
           @LockTimeAvg = params['LockTimeAvg']
           @RowsExaminedAvg = params['RowsExaminedAvg']
           @Md5 = params['Md5']
+        end
+      end
+
+      # 慢日志来源用户详情。
+      class SlowLogUser < TencentCloud::Common::AbstractModel
+        # @param UserName: 来源用户名。
+        # @type UserName: String
+        # @param Ratio: 该来源用户名的慢日志数目占总数目的比例，单位%。
+        # @type Ratio: Float
+        # @param Count: 该来源用户名的慢日志数目。
+        # @type Count: Integer
+
+        attr_accessor :UserName, :Ratio, :Count
+        
+        def initialize(username=nil, ratio=nil, count=nil)
+          @UserName = username
+          @Ratio = ratio
+          @Count = count
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Ratio = params['Ratio']
+          @Count = params['Count']
         end
       end
 

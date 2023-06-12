@@ -7329,26 +7329,26 @@ module TencentCloud
       class TargetGroupAssociation < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡ID
         # @type LoadBalancerId: String
-        # @param ListenerId: 监听器ID
-        # @type ListenerId: String
         # @param TargetGroupId: 目标组ID
         # @type TargetGroupId: String
+        # @param ListenerId: 监听器ID
+        # @type ListenerId: String
         # @param LocationId: 转发规则ID
         # @type LocationId: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :TargetGroupId, :LocationId
+        attr_accessor :LoadBalancerId, :TargetGroupId, :ListenerId, :LocationId
         
-        def initialize(loadbalancerid=nil, listenerid=nil, targetgroupid=nil, locationid=nil)
+        def initialize(loadbalancerid=nil, targetgroupid=nil, listenerid=nil, locationid=nil)
           @LoadBalancerId = loadbalancerid
-          @ListenerId = listenerid
           @TargetGroupId = targetgroupid
+          @ListenerId = listenerid
           @LocationId = locationid
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
-          @ListenerId = params['ListenerId']
           @TargetGroupId = params['TargetGroupId']
+          @ListenerId = params['ListenerId']
           @LocationId = params['LocationId']
         end
       end

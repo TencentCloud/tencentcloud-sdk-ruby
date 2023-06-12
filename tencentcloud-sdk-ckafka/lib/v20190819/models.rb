@@ -1944,7 +1944,7 @@ module TencentCloud
         # @type Partition: Integer
         # @param TopicNum: 实例最大 topic 数量，需要满足当前实例的计费规格
         # @type TopicNum: Integer
-        # @param ZoneId: 实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在的子网
+        # @param ZoneId: 实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在子网的可用区 id
         # @type ZoneId: Integer
         # @param MultiZoneFlag: 当前实例是否为多可用区实例。
         # @type MultiZoneFlag: Boolean

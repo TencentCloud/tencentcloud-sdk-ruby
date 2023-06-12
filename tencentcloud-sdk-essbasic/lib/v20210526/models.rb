@@ -508,7 +508,7 @@ module TencentCloud
       class ChannelCreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param ResourceType: 资源类型 取值范围doc,docx,html,xls,xlsx之一
+        # @param ResourceType: 资源类型 支持doc,docx,html,xls,xlsx,jpg,jpeg,png,bmp文件类型
         # @type ResourceType: String
         # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String

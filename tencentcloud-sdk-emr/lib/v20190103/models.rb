@@ -5645,16 +5645,20 @@ module TencentCloud
         # <li>StopService：停止服务</li>
         # <li>StartMonitor：退出维护</li>
         # <li>StopMonitor：进入维护</li>
+        # <li>RestartService：重启服务</li>
         # @type OpType: String
         # @param OpScope: 操作范围
         # @type OpScope: :class:`Tencentcloud::Emr.v20190103.models.OpScope`
+        # @param StrategyConfig: 操作策略
+        # @type StrategyConfig: :class:`Tencentcloud::Emr.v20190103.models.StrategyConfig`
 
-        attr_accessor :InstanceId, :OpType, :OpScope
+        attr_accessor :InstanceId, :OpType, :OpScope, :StrategyConfig
         
-        def initialize(instanceid=nil, optype=nil, opscope=nil)
+        def initialize(instanceid=nil, optype=nil, opscope=nil, strategyconfig=nil)
           @InstanceId = instanceid
           @OpType = optype
           @OpScope = opscope
+          @StrategyConfig = strategyconfig
         end
 
         def deserialize(params)
@@ -5663,6 +5667,10 @@ module TencentCloud
           unless params['OpScope'].nil?
             @OpScope = OpScope.new
             @OpScope.deserialize(params['OpScope'])
+          end
+          unless params['StrategyConfig'].nil?
+            @StrategyConfig = StrategyConfig.new
+            @StrategyConfig.deserialize(params['StrategyConfig'])
           end
         end
       end
@@ -5713,6 +5721,39 @@ module TencentCloud
           end
           @ActionOnFailure = params['ActionOnFailure']
           @User = params['User']
+        end
+      end
+
+      # 重启/停止/启动服务/监控的配置
+      class StrategyConfig < TencentCloud::Common::AbstractModel
+        # @param RollingRestartSwitch: 0:关闭滚动重启
+        # 1:开启滚动启动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollingRestartSwitch: Integer
+        # @param BatchSize: 滚动重启每批次的重启数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchSize: Integer
+        # @param TimeWait: 滚动重启每批停止等待时间 ,最大重启台数为 99999 台，最大间隔为 5 分钟 单位是秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeWait: Integer
+        # @param DealOnFail: 操作失败处理策略，0:失败阻塞, 1:失败自动跳过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealOnFail: Integer
+
+        attr_accessor :RollingRestartSwitch, :BatchSize, :TimeWait, :DealOnFail
+        
+        def initialize(rollingrestartswitch=nil, batchsize=nil, timewait=nil, dealonfail=nil)
+          @RollingRestartSwitch = rollingrestartswitch
+          @BatchSize = batchsize
+          @TimeWait = timewait
+          @DealOnFail = dealonfail
+        end
+
+        def deserialize(params)
+          @RollingRestartSwitch = params['RollingRestartSwitch']
+          @BatchSize = params['BatchSize']
+          @TimeWait = params['TimeWait']
+          @DealOnFail = params['DealOnFail']
         end
       end
 

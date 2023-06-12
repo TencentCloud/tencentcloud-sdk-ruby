@@ -2226,10 +2226,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
+        # @param AsyncCache: 是否异步
+        # @type AsyncCache: Integer
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit
+        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
         
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil)
+        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
           @IsCache = iscache
@@ -2237,6 +2239,7 @@ module TencentCloud
           @OldCertificateId = oldcertificateid
           @Offset = offset
           @Limit = limit
+          @AsyncCache = asynccache
         end
 
         def deserialize(params)
@@ -2254,6 +2257,7 @@ module TencentCloud
           @OldCertificateId = params['OldCertificateId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @AsyncCache = params['AsyncCache']
         end
       end
 
@@ -2265,14 +2269,26 @@ module TencentCloud
         # @param TotalCount: CDN域名总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
+        # @param AsyncTotalNum: 异步刷新总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncTotalNum: Integer
+        # @param AsyncOffset: 异步刷新当前执行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncOffset: Integer
+        # @param AsyncCacheTime: 当前缓存读取时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncCacheTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceList, :TotalCount, :RequestId
+        attr_accessor :InstanceList, :TotalCount, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
         
-        def initialize(instancelist=nil, totalcount=nil, requestid=nil)
+        def initialize(instancelist=nil, totalcount=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @AsyncTotalNum = asynctotalnum
+          @AsyncOffset = asyncoffset
+          @AsyncCacheTime = asynccachetime
           @RequestId = requestid
         end
 
@@ -2286,6 +2302,9 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @AsyncTotalNum = params['AsyncTotalNum']
+          @AsyncOffset = params['AsyncOffset']
+          @AsyncCacheTime = params['AsyncCacheTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2351,16 +2370,20 @@ module TencentCloud
         # @param AsyncOffset: 异步刷新当前执行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
+        # @param AsyncCacheTime: 当前缓存读取时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncCacheTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :RequestId
+        attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
         
-        def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, requestid=nil)
+        def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
           @AsyncTotalNum = asynctotalnum
           @AsyncOffset = asyncoffset
+          @AsyncCacheTime = asynccachetime
           @RequestId = requestid
         end
 
@@ -2376,6 +2399,7 @@ module TencentCloud
           end
           @AsyncTotalNum = params['AsyncTotalNum']
           @AsyncOffset = params['AsyncOffset']
+          @AsyncCacheTime = params['AsyncCacheTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2429,16 +2453,20 @@ module TencentCloud
         # @param AsyncOffset: 异步刷新当前执行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
+        # @param AsyncCacheTime: 当前缓存读取时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncCacheTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceList, :TotalCount, :AsyncTotalNum, :AsyncOffset, :RequestId
+        attr_accessor :InstanceList, :TotalCount, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
         
-        def initialize(instancelist=nil, totalcount=nil, asynctotalnum=nil, asyncoffset=nil, requestid=nil)
+        def initialize(instancelist=nil, totalcount=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
           @AsyncTotalNum = asynctotalnum
           @AsyncOffset = asyncoffset
+          @AsyncCacheTime = asynccachetime
           @RequestId = requestid
         end
 
@@ -2454,6 +2482,7 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @AsyncTotalNum = params['AsyncTotalNum']
           @AsyncOffset = params['AsyncOffset']
+          @AsyncCacheTime = params['AsyncCacheTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2925,16 +2954,20 @@ module TencentCloud
         # @param AsyncOffset: 异步刷新当前执行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
+        # @param AsyncCacheTime: 当前缓存读取时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncCacheTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :RequestId
+        attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
         
-        def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, requestid=nil)
+        def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
           @AsyncTotalNum = asynctotalnum
           @AsyncOffset = asyncoffset
+          @AsyncCacheTime = asynccachetime
           @RequestId = requestid
         end
 
@@ -2950,6 +2983,7 @@ module TencentCloud
           end
           @AsyncTotalNum = params['AsyncTotalNum']
           @AsyncOffset = params['AsyncOffset']
+          @AsyncCacheTime = params['AsyncCacheTime']
           @RequestId = params['RequestId']
         end
       end
