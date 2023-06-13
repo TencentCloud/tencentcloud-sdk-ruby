@@ -25,7 +25,7 @@ module TencentCloud
         # @type Key: String
 
         attr_accessor :Body, :Key
-        
+
         def initialize(body=nil, key=nil)
           @Body = body
           @Key = key
@@ -45,7 +45,7 @@ module TencentCloud
         # @type Message: Array
 
         attr_accessor :DataHubId, :Message
-        
+
         def initialize(datahubid=nil, message=nil)
           @DataHubId = datahubid
           @Message = message
@@ -72,7 +72,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MessageId, :RequestId
-        
+
         def initialize(messageid=nil, requestid=nil)
           @MessageId = messageid
           @RequestId = requestid

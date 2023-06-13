@@ -29,7 +29,7 @@ module TencentCloud
         # @type ProbePort: Integer
 
         attr_accessor :Port, :InstanceId, :Weight, :ProbePort
-        
+
         def initialize(port=nil, instanceid=nil, weight=nil, probeport=nil)
           @Port = port
           @InstanceId = instanceid
@@ -57,7 +57,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :BackendSet, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, backendset=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -88,7 +88,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -110,7 +110,7 @@ module TencentCloud
         # @type Weight: Integer
 
         attr_accessor :Port, :InstanceId, :Weight
-        
+
         def initialize(port=nil, instanceid=nil, weight=nil)
           @Port = port
           @InstanceId = instanceid
@@ -140,7 +140,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationId, :BackendSet, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationid=nil, backendset=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -175,7 +175,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -195,7 +195,7 @@ module TencentCloud
         # @type ListenerIds: Array
 
         attr_accessor :TrafficMirrorId, :ListenerIds
-        
+
         def initialize(trafficmirrorid=nil, listenerids=nil)
           @TrafficMirrorId = trafficmirrorid
           @ListenerIds = listenerids
@@ -215,7 +215,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -237,7 +237,7 @@ module TencentCloud
         # @type Weight: Integer
 
         attr_accessor :Port, :InstanceId, :Weight
-        
+
         def initialize(port=nil, instanceid=nil, weight=nil)
           @Port = port
           @InstanceId = instanceid
@@ -259,7 +259,7 @@ module TencentCloud
         # @type ReceiverSet: Array
 
         attr_accessor :TrafficMirrorId, :ReceiverSet
-        
+
         def initialize(trafficmirrorid=nil, receiverset=nil)
           @TrafficMirrorId = trafficmirrorid
           @ReceiverSet = receiverset
@@ -286,7 +286,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -310,7 +310,7 @@ module TencentCloud
         # @type RegionId: Integer
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :VpcId, :RegionId
-        
+
         def initialize(loadbalancerid=nil, loadbalancername=nil, vpcid=nil, regionid=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
@@ -362,7 +362,7 @@ module TencentCloud
         # @type ToaFlag: Integer
 
         attr_accessor :LoadBalancerPort, :Protocol, :ListenerName, :SessionExpire, :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnhealthNum, :Bandwidth, :CustomHealthSwitch, :InputType, :LineSeparatorType, :HealthRequest, :HealthResponse, :ToaFlag
-        
+
         def initialize(loadbalancerport=nil, protocol=nil, listenername=nil, sessionexpire=nil, healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, bandwidth=nil, customhealthswitch=nil, inputtype=nil, lineseparatortype=nil, healthrequest=nil, healthresponse=nil, toaflag=nil)
           @LoadBalancerPort = loadbalancerport
           @Protocol = protocol
@@ -410,7 +410,7 @@ module TencentCloud
         # @type ListenerSet: Array
 
         attr_accessor :LoadBalancerId, :ListenerSet
-        
+
         def initialize(loadbalancerid=nil, listenerset=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerSet = listenerset
@@ -437,7 +437,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -479,7 +479,7 @@ module TencentCloud
         # @type ForwardProtocol: Integer
 
         attr_accessor :LoadBalancerPort, :Protocol, :ListenerName, :SslMode, :CertId, :CertName, :CertContent, :CertKey, :CertCaId, :CertCaName, :CertCaContent, :Bandwidth, :ForwardProtocol
-        
+
         def initialize(loadbalancerport=nil, protocol=nil, listenername=nil, sslmode=nil, certid=nil, certname=nil, certcontent=nil, certkey=nil, certcaid=nil, certcaname=nil, certcacontent=nil, bandwidth=nil, forwardprotocol=nil)
           @LoadBalancerPort = loadbalancerport
           @Protocol = protocol
@@ -521,7 +521,7 @@ module TencentCloud
         # @type ListenerSet: Array
 
         attr_accessor :LoadBalancerId, :ListenerSet
-        
+
         def initialize(loadbalancerid=nil, listenerset=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerSet = listenerset
@@ -548,7 +548,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerIds, :RequestId
-        
+
         def initialize(listenerids=nil, requestid=nil)
           @ListenerIds = listenerids
           @RequestId = requestid
@@ -586,7 +586,7 @@ module TencentCloud
         # @type BalanceMode: String
 
         attr_accessor :Domain, :Url, :SessionExpire, :HealthSwitch, :IntervalTime, :HealthNum, :UnhealthNum, :HttpCodes, :HttpCheckPath, :HttpCheckDomain, :BalanceMode
-        
+
         def initialize(domain=nil, url=nil, sessionexpire=nil, healthswitch=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcodes=nil, httpcheckpath=nil, httpcheckdomain=nil, balancemode=nil)
           @Domain = domain
           @Url = url
@@ -626,7 +626,7 @@ module TencentCloud
         # @type RuleSet: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :RuleSet
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, ruleset=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -655,7 +655,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -677,7 +677,7 @@ module TencentCloud
         # @type BzL7Metrics: String
 
         attr_accessor :BzPayMode, :BzL4Metrics, :BzL7Metrics
-        
+
         def initialize(bzpaymode=nil, bzl4metrics=nil, bzl7metrics=nil)
           @BzPayMode = bzpaymode
           @BzL4Metrics = bzl4metrics
@@ -717,7 +717,7 @@ module TencentCloud
         # @type IpProtocolType: String
 
         attr_accessor :VpcId, :LoadBalancerType, :SubnetId, :ProjectId, :GoodsNum, :PayMode, :TgwSetType, :Exclusive, :SpecifiedVips, :BzConf, :IpProtocolType
-        
+
         def initialize(vpcid=nil, loadbalancertype=nil, subnetid=nil, projectid=nil, goodsnum=nil, paymode=nil, tgwsettype=nil, exclusive=nil, specifiedvips=nil, bzconf=nil, ipprotocoltype=nil)
           @VpcId = vpcid
           @LoadBalancerType = loadbalancertype
@@ -760,7 +760,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LoadBalancerIds, :TaskId, :RequestId
-        
+
         def initialize(loadbalancerids=nil, taskid=nil, requestid=nil)
           @LoadBalancerIds = loadbalancerids
           @TaskId = taskid
@@ -782,7 +782,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :Alias, :VpcId
-        
+
         def initialize(_alias=nil, vpcid=nil)
           @Alias = _alias
           @VpcId = vpcid
@@ -802,7 +802,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TrafficMirrorId, :RequestId
-        
+
         def initialize(trafficmirrorid=nil, requestid=nil)
           @TrafficMirrorId = trafficmirrorid
           @RequestId = requestid
@@ -824,7 +824,7 @@ module TencentCloud
         # @type DomainIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainIds
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -846,7 +846,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -870,7 +870,7 @@ module TencentCloud
         # @type LocationIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationIds
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -894,7 +894,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -914,7 +914,7 @@ module TencentCloud
         # @type ListenerIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerIds
-        
+
         def initialize(loadbalancerid=nil, listenerids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerIds = listenerids
@@ -934,7 +934,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -952,7 +952,7 @@ module TencentCloud
         # @type LoadBalancerId: String
 
         attr_accessor :LoadBalancerId
-        
+
         def initialize(loadbalancerid=nil)
           @LoadBalancerId = loadbalancerid
         end
@@ -970,7 +970,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -988,7 +988,7 @@ module TencentCloud
         # @type TrafficMirrorIds: Array
 
         attr_accessor :TrafficMirrorIds
-        
+
         def initialize(trafficmirrorids=nil)
           @TrafficMirrorIds = trafficmirrorids
         end
@@ -1006,7 +1006,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1024,7 +1024,7 @@ module TencentCloud
         # @type CertId: String
 
         attr_accessor :CertId
-        
+
         def initialize(certid=nil)
           @CertId = certid
         end
@@ -1060,7 +1060,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertId, :CertName, :CertType, :CertContent, :CertDomain, :CertSubjectDomain, :CertUploadTime, :CertBeginTime, :CertEndTime, :CertLoadBalancerSet, :RequestId
-        
+
         def initialize(certid=nil, certname=nil, certtype=nil, certcontent=nil, certdomain=nil, certsubjectdomain=nil, certuploadtime=nil, certbegintime=nil, certendtime=nil, certloadbalancerset=nil, requestid=nil)
           @CertId = certid
           @CertName = certname
@@ -1105,7 +1105,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :VpcId, :InstanceIds
-        
+
         def initialize(vpcid=nil, instanceids=nil)
           @VpcId = vpcid
           @InstanceIds = instanceids
@@ -1125,7 +1125,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LoadBalancerSet, :RequestId
-        
+
         def initialize(loadbalancerset=nil, requestid=nil)
           @LoadBalancerSet = loadbalancerset
           @RequestId = requestid
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Port, :InstanceId
-        
+
         def initialize(port=nil, instanceid=nil)
           @Port = port
           @InstanceId = instanceid
@@ -1174,7 +1174,7 @@ module TencentCloud
         # @type BackendSet: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :BackendSet
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, backendset=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -1203,7 +1203,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BackendSet, :RequestId
-        
+
         def initialize(backendset=nil, requestid=nil)
           @BackendSet = backendset
           @RequestId = requestid
@@ -1232,7 +1232,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :LoadBalancerId, :SearchKey, :InstanceIds
-        
+
         def initialize(loadbalancerid=nil, searchkey=nil, instanceids=nil)
           @LoadBalancerId = loadbalancerid
           @SearchKey = searchkey
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :RequestId
-        
+
         def initialize(listenerset=nil, requestid=nil)
           @ListenerSet = listenerset
           @RequestId = requestid
@@ -1281,7 +1281,7 @@ module TencentCloud
         # @type ListenerIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerIds
-        
+
         def initialize(loadbalancerid=nil, listenerids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerIds = listenerids
@@ -1301,7 +1301,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :RequestId
-        
+
         def initialize(listenerset=nil, requestid=nil)
           @ListenerSet = listenerset
           @RequestId = requestid
@@ -1334,7 +1334,7 @@ module TencentCloud
         # @type QueryType: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationId, :QueryType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationid=nil, querytype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -1360,7 +1360,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BackendSet, :RequestId
-        
+
         def initialize(backendset=nil, requestid=nil)
           @BackendSet = backendset
           @RequestId = requestid
@@ -1391,7 +1391,7 @@ module TencentCloud
         # @type IfGetBackendInfo: Integer
 
         attr_accessor :LoadBalancerId, :SearchKey, :InstanceIds, :IfGetBackendInfo
-        
+
         def initialize(loadbalancerid=nil, searchkey=nil, instanceids=nil, ifgetbackendinfo=nil)
           @LoadBalancerId = loadbalancerid
           @SearchKey = searchkey
@@ -1415,7 +1415,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :RequestId
-        
+
         def initialize(listenerset=nil, requestid=nil)
           @ListenerSet = listenerset
           @RequestId = requestid
@@ -1455,7 +1455,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :TrafficMirrorId, :VpcId, :Offset, :Limit, :Filters
-        
+
         def initialize(trafficmirrorid=nil, vpcid=nil, offset=nil, limit=nil, filters=nil)
           @TrafficMirrorId = trafficmirrorid
           @VpcId = vpcid
@@ -1490,7 +1490,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ListenerSet, :RequestId
-        
+
         def initialize(totalcount=nil, listenerset=nil, requestid=nil)
           @TotalCount = totalcount
           @ListenerSet = listenerset
@@ -1519,7 +1519,7 @@ module TencentCloud
         # @type ListenerIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerIds
-        
+
         def initialize(loadbalancerid=nil, listenerids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerIds = listenerids
@@ -1539,7 +1539,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :RequestId
-        
+
         def initialize(listenerset=nil, requestid=nil)
           @ListenerSet = listenerset
           @RequestId = requestid
@@ -1568,7 +1568,7 @@ module TencentCloud
         # @type DomainIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainIds
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainids=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -1590,7 +1590,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleSet, :RequestId
-        
+
         def initialize(ruleset=nil, requestid=nil)
           @RuleSet = ruleset
           @RequestId = requestid
@@ -1615,7 +1615,7 @@ module TencentCloud
         # @type LoadBalancerId: String
 
         attr_accessor :LoadBalancerId
-        
+
         def initialize(loadbalancerid=nil)
           @LoadBalancerId = loadbalancerid
         end
@@ -1633,7 +1633,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :RequestId
-        
+
         def initialize(listenerset=nil, requestid=nil)
           @ListenerSet = listenerset
           @RequestId = requestid
@@ -1658,7 +1658,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
-        
+
         def initialize(status=nil, requestid=nil)
           @Status = status
           @RequestId = requestid
@@ -1724,7 +1724,7 @@ module TencentCloud
         # @type ConfId: String
 
         attr_accessor :LoadBalancerIds, :LoadBalancerType, :LoadBalancerName, :Domain, :LoadBalancerVips, :Offset, :Limit, :SearchKey, :OrderBy, :OrderType, :ProjectId, :Exclusive, :TgwSetType, :VpcId, :QueryType, :ConfId
-        
+
         def initialize(loadbalancerids=nil, loadbalancertype=nil, loadbalancername=nil, domain=nil, loadbalancervips=nil, offset=nil, limit=nil, searchkey=nil, orderby=nil, ordertype=nil, projectid=nil, exclusive=nil, tgwsettype=nil, vpcid=nil, querytype=nil, confid=nil)
           @LoadBalancerIds = loadbalancerids
           @LoadBalancerType = loadbalancertype
@@ -1774,7 +1774,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LoadBalancerSet, :TotalCount, :RequestId
-        
+
         def initialize(loadbalancerset=nil, totalcount=nil, requestid=nil)
           @LoadBalancerSet = loadbalancerset
           @TotalCount = totalcount
@@ -1819,7 +1819,7 @@ module TencentCloud
         # @type SearchLoadBalancerPorts: Array
 
         attr_accessor :TrafficMirrorId, :Offset, :Limit, :SearchLoadBalancerIds, :SearchLoadBalancerNames, :SearchVips, :SearchListenerIds, :SearchListenerNames, :SearchProtocols, :SearchLoadBalancerPorts
-        
+
         def initialize(trafficmirrorid=nil, offset=nil, limit=nil, searchloadbalancerids=nil, searchloadbalancernames=nil, searchvips=nil, searchlistenerids=nil, searchlistenernames=nil, searchprotocols=nil, searchloadbalancerports=nil)
           @TrafficMirrorId = trafficmirrorid
           @Offset = offset
@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListenerSet, :TotalCount, :RequestId
-        
+
         def initialize(listenerset=nil, totalcount=nil, requestid=nil)
           @ListenerSet = listenerset
           @TotalCount = totalcount
@@ -1886,7 +1886,7 @@ module TencentCloud
         # @type Port: Integer
 
         attr_accessor :InstanceId, :Port
-        
+
         def initialize(instanceid=nil, port=nil)
           @InstanceId = instanceid
           @Port = port
@@ -1906,7 +1906,7 @@ module TencentCloud
         # @type ReceiverSet: Array
 
         attr_accessor :TrafficMirrorId, :ReceiverSet
-        
+
         def initialize(trafficmirrorid=nil, receiverset=nil)
           @TrafficMirrorId = trafficmirrorid
           @ReceiverSet = receiverset
@@ -1933,7 +1933,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReceiversStatusSet, :RequestId
-        
+
         def initialize(receiversstatusset=nil, requestid=nil)
           @ReceiversStatusSet = receiversstatusset
           @RequestId = requestid
@@ -1972,7 +1972,7 @@ module TencentCloud
         # @type VagueIp: String
 
         attr_accessor :TrafficMirrorId, :InstanceIds, :Ports, :Weights, :Offset, :Limit, :VagueStr, :VagueIp
-        
+
         def initialize(trafficmirrorid=nil, instanceids=nil, ports=nil, weights=nil, offset=nil, limit=nil, vaguestr=nil, vagueip=nil)
           @TrafficMirrorId = trafficmirrorid
           @InstanceIds = instanceids
@@ -2006,7 +2006,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReceiverSet, :TotalCount, :RequestId
-        
+
         def initialize(receiverset=nil, totalcount=nil, requestid=nil)
           @ReceiverSet = receiverset
           @TotalCount = totalcount
@@ -2047,7 +2047,7 @@ module TencentCloud
         # @type SearchKey: String
 
         attr_accessor :TrafficMirrorIds, :Aliases, :VpcIds, :Offset, :Limit, :OrderField, :Order, :SearchKey
-        
+
         def initialize(trafficmirrorids=nil, aliases=nil, vpcids=nil, offset=nil, limit=nil, orderfield=nil, order=nil, searchkey=nil)
           @TrafficMirrorIds = trafficmirrorids
           @Aliases = aliases
@@ -2081,7 +2081,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TrafficMirrorSet, :RequestId
-        
+
         def initialize(totalcount=nil, trafficmirrorset=nil, requestid=nil)
           @TotalCount = totalcount
           @TrafficMirrorSet = trafficmirrorset
@@ -2110,7 +2110,7 @@ module TencentCloud
         # @type Port: Integer
 
         attr_accessor :InstanceId, :Port
-        
+
         def initialize(instanceid=nil, port=nil)
           @InstanceId = instanceid
           @Port = port
@@ -2134,7 +2134,7 @@ module TencentCloud
         # @type BackendSet: Array
 
         attr_accessor :ListenerId, :Protocol, :LoadBalancerPort, :BackendSet
-        
+
         def initialize(listenerid=nil, protocol=nil, loadbalancerport=nil, backendset=nil)
           @ListenerId = listenerid
           @Protocol = protocol
@@ -2169,7 +2169,7 @@ module TencentCloud
         # @type RuleSet: Array
 
         attr_accessor :ListenerId, :Protocol, :LoadBalancerPort, :RuleSet
-        
+
         def initialize(listenerid=nil, protocol=nil, loadbalancerport=nil, ruleset=nil)
           @ListenerId = listenerid
           @Protocol = protocol
@@ -2214,7 +2214,7 @@ module TencentCloud
         # @type L7ListenerSet: Array
 
         attr_accessor :LoadBalancerId, :AppId, :ProjectId, :VpcId, :Vip, :TgwSetType, :Exclusive, :L4ListenerSet, :L7ListenerSet
-        
+
         def initialize(loadbalancerid=nil, appid=nil, projectid=nil, vpcid=nil, vip=nil, tgwsettype=nil, exclusive=nil, l4listenerset=nil, l7listenerset=nil)
           @LoadBalancerId = loadbalancerid
           @AppId = appid
@@ -2264,7 +2264,7 @@ module TencentCloud
         # @type BackendSet: Array
 
         attr_accessor :Url, :LocationId, :BackendSet
-        
+
         def initialize(url=nil, locationid=nil, backendset=nil)
           @Url = url
           @LocationId = locationid
@@ -2295,7 +2295,7 @@ module TencentCloud
         # @type LocationSet: Array
 
         attr_accessor :Domain, :DomainId, :LocationSet
-        
+
         def initialize(domain=nil, domainid=nil, locationset=nil)
           @Domain = domain
           @DomainId = domainid
@@ -2324,7 +2324,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -2358,7 +2358,7 @@ module TencentCloud
         # @type ProbePort: Integer
 
         attr_accessor :BindType, :Port, :Weight, :Status, :InstanceId, :Alias, :LanIp, :Operates, :ProbePort
-        
+
         def initialize(bindtype=nil, port=nil, weight=nil, status=nil, instanceid=nil, _alias=nil, lanip=nil, operates=nil, probeport=nil)
           @BindType = bindtype
           @Port = port
@@ -2430,7 +2430,7 @@ module TencentCloud
         # @type BalanceMode: String
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :ListenerType, :SessionExpire, :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnhealthNum, :CustomHealthSwitch, :InputType, :LineSeparatorType, :HealthRequest, :HealthResponse, :ToaFlag, :Status, :AddTimestamp, :BalanceMode
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, listenertype=nil, sessionexpire=nil, healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, customhealthswitch=nil, inputtype=nil, lineseparatortype=nil, healthrequest=nil, healthresponse=nil, toaflag=nil, status=nil, addtimestamp=nil, balancemode=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2526,7 +2526,7 @@ module TencentCloud
         # @type BalanceMode: String
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :ListenerType, :SessionExpire, :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnhealthNum, :Status, :AddTimestamp, :CustomHealthSwitch, :InputType, :LineSeparatorType, :HealthRequest, :HealthResponse, :ToaFlag, :BalanceMode
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, listenertype=nil, sessionexpire=nil, healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, status=nil, addtimestamp=nil, customhealthswitch=nil, inputtype=nil, lineseparatortype=nil, healthrequest=nil, healthresponse=nil, toaflag=nil, balancemode=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2598,7 +2598,7 @@ module TencentCloud
         # @type Operates: Array
 
         attr_accessor :BindType, :Port, :Weight, :Status, :InstanceId, :Alias, :LanIp, :MgtIp, :Operates
-        
+
         def initialize(bindtype=nil, port=nil, weight=nil, status=nil, instanceid=nil, _alias=nil, lanip=nil, mgtip=nil, operates=nil)
           @BindType = bindtype
           @Port = port
@@ -2666,7 +2666,7 @@ module TencentCloud
         # @type BindTrafficMirror: Boolean
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :MaxBandwidth, :ListenerType, :SslMode, :CertId, :CertCaId, :AddTimestamp, :LoadBalancerId, :VpcName, :VpcCidrBlock, :LoadBalancerVips, :LoadBalancerName, :LoadBalancerVipv6s, :IpProtocolType, :BindTrafficMirror
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, maxbandwidth=nil, listenertype=nil, sslmode=nil, certid=nil, certcaid=nil, addtimestamp=nil, loadbalancerid=nil, vpcname=nil, vpccidrblock=nil, loadbalancervips=nil, loadbalancername=nil, loadbalancervipv6s=nil, ipprotocoltype=nil, bindtrafficmirror=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2740,7 +2740,7 @@ module TencentCloud
         # @type ForwardProtocol: Integer
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :ListenerType, :SslMode, :CertId, :CertCaId, :Status, :AddTimestamp, :ForwardProtocol
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, listenertype=nil, sslmode=nil, certid=nil, certcaid=nil, status=nil, addtimestamp=nil, forwardprotocol=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2802,7 +2802,7 @@ module TencentCloud
         # @type ForwardProtocol: Integer
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :ListenerType, :SslMode, :CertId, :CertCaId, :Status, :AddTimestamp, :RuleSet, :ForwardProtocol
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, listenertype=nil, sslmode=nil, certid=nil, certcaid=nil, status=nil, addtimestamp=nil, ruleset=nil, forwardprotocol=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2861,7 +2861,7 @@ module TencentCloud
         # @type LanIp: String
 
         attr_accessor :BindType, :Port, :Weight, :Status, :InstanceId, :Alias, :LanIp
-        
+
         def initialize(bindtype=nil, port=nil, weight=nil, status=nil, instanceid=nil, _alias=nil, lanip=nil)
           @BindType = bindtype
           @Port = port
@@ -2915,7 +2915,7 @@ module TencentCloud
         # @type BackendSet: Array
 
         attr_accessor :Url, :LocationId, :SessionExpire, :HealthSwitch, :HttpCheckPath, :HttpCheckDomain, :IntervalTime, :HealthNum, :UnhealthNum, :HttpCodes, :BalanceMode, :Status, :AddTimestamp, :BackendSet
-        
+
         def initialize(url=nil, locationid=nil, sessionexpire=nil, healthswitch=nil, httpcheckpath=nil, httpcheckdomain=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcodes=nil, balancemode=nil, status=nil, addtimestamp=nil, backendset=nil)
           @Url = url
           @LocationId = locationid
@@ -2972,7 +2972,7 @@ module TencentCloud
         # @type LocationSet: Array
 
         attr_accessor :Domain, :DomainId, :Status, :AddTimestamp, :LocationSet
-        
+
         def initialize(domain=nil, domainid=nil, status=nil, addtimestamp=nil, locationset=nil)
           @Domain = domain
           @DomainId = domainid
@@ -3011,7 +3011,7 @@ module TencentCloud
         # @type LocationSet: Array
 
         attr_accessor :Domain, :DomainId, :Status, :AddTimestamp, :LocationSet
-        
+
         def initialize(domain=nil, domainid=nil, status=nil, addtimestamp=nil, locationset=nil)
           @Domain = domain
           @DomainId = domainid
@@ -3066,7 +3066,7 @@ module TencentCloud
         # @type AddTimestamp: String
 
         attr_accessor :Url, :LocationId, :SessionExpire, :HealthSwitch, :HttpCheckPath, :HttpCheckDomain, :IntervalTime, :HealthNum, :UnhealthNum, :HttpCodes, :BalanceMode, :Status, :AddTimestamp
-        
+
         def initialize(url=nil, locationid=nil, sessionexpire=nil, healthswitch=nil, httpcheckpath=nil, httpcheckdomain=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcodes=nil, balancemode=nil, status=nil, addtimestamp=nil)
           @Url = url
           @LocationId = locationid
@@ -3161,7 +3161,7 @@ module TencentCloud
         # @type CurVips: Array
 
         attr_accessor :LoadBalancerId, :ProjectId, :LoadBalancerName, :LoadBalancerType, :Exclusive, :TgwSetType, :Domain, :VpcId, :SubnetId, :Status, :PayMode, :LatestPayMode, :CreateTime, :StatusTime, :VpcName, :VpcCidrBlock, :LoadBalancerVips, :SupportListenerTypes, :Bandwidth, :ConfId, :ConfName, :LoadBalancerVipv6s, :IpProtocolType, :BzPayMode, :BzL4Metrics, :BzL7Metrics, :IntVpcId, :CurVips
-        
+
         def initialize(loadbalancerid=nil, projectid=nil, loadbalancername=nil, loadbalancertype=nil, exclusive=nil, tgwsettype=nil, domain=nil, vpcid=nil, subnetid=nil, status=nil, paymode=nil, latestpaymode=nil, createtime=nil, statustime=nil, vpcname=nil, vpccidrblock=nil, loadbalancervips=nil, supportlistenertypes=nil, bandwidth=nil, confid=nil, confname=nil, loadbalancervipv6s=nil, ipprotocoltype=nil, bzpaymode=nil, bzl4metrics=nil, bzl7metrics=nil, intvpcid=nil, curvips=nil)
           @LoadBalancerId = loadbalancerid
           @ProjectId = projectid
@@ -3243,7 +3243,7 @@ module TencentCloud
         # @type Port: Integer
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :Status, :Port
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, status=nil, port=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -3281,7 +3281,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :InstanceId, :Port, :NewPort, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, instanceid=nil, port=nil, newport=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3309,7 +3309,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3337,7 +3337,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :InstanceId, :Port, :ProbePort, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, instanceid=nil, port=nil, probeport=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3365,7 +3365,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3393,7 +3393,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :InstanceId, :Weight, :Port, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, instanceid=nil, weight=nil, port=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3421,7 +3421,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3471,7 +3471,7 @@ module TencentCloud
         # @type BalanceMode: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpire, :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnhealthNum, :Bandwidth, :CustomHealthSwitch, :InputType, :LineSeparatorType, :HealthRequest, :HealthResponse, :ToaFlag, :BalanceMode
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpire=nil, healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, bandwidth=nil, customhealthswitch=nil, inputtype=nil, lineseparatortype=nil, healthrequest=nil, healthresponse=nil, toaflag=nil, balancemode=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3521,7 +3521,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3553,7 +3553,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationId, :InstanceId, :Port, :NewPort, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationid=nil, instanceid=nil, port=nil, newport=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3585,7 +3585,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3617,7 +3617,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationId, :InstanceId, :Weight, :Port, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationid=nil, instanceid=nil, weight=nil, port=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3649,7 +3649,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3691,7 +3691,7 @@ module TencentCloud
         # @type ForwardProtocol: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SslMode, :CertId, :CertName, :CertContent, :CertKey, :CertCaId, :CertCaName, :CertCaContent, :Bandwidth, :ForwardProtocol
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sslmode=nil, certid=nil, certname=nil, certcontent=nil, certkey=nil, certcaid=nil, certcaname=nil, certcacontent=nil, bandwidth=nil, forwardprotocol=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3733,7 +3733,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3775,7 +3775,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :DomainId, :LocationId, :Url, :SessionExpire, :HealthSwitch, :IntervalTime, :HealthNum, :UnhealthNum, :HttpCodes, :HttpCheckPath, :HttpCheckDomain, :BalanceMode, :Domain
-        
+
         def initialize(domainid=nil, locationid=nil, url=nil, sessionexpire=nil, healthswitch=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcodes=nil, httpcheckpath=nil, httpcheckdomain=nil, balancemode=nil, domain=nil)
           @DomainId = domainid
           @LocationId = locationid
@@ -3819,7 +3819,7 @@ module TencentCloud
         # @type RuleSet: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :RuleSet
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, ruleset=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -3848,7 +3848,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3870,7 +3870,7 @@ module TencentCloud
         # @type Bandwidth: Integer
 
         attr_accessor :ListenerId, :Protocol, :Bandwidth
-        
+
         def initialize(listenerid=nil, protocol=nil, bandwidth=nil)
           @ListenerId = listenerid
           @Protocol = protocol
@@ -3894,7 +3894,7 @@ module TencentCloud
         # @type ListenerSet: Array
 
         attr_accessor :LoadBalancerId, :PayMode, :ListenerSet
-        
+
         def initialize(loadbalancerid=nil, paymode=nil, listenerset=nil)
           @LoadBalancerId = loadbalancerid
           @PayMode = paymode
@@ -3921,7 +3921,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3941,7 +3941,7 @@ module TencentCloud
         # @type DomainPrefix: String
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :DomainPrefix
-        
+
         def initialize(loadbalancerid=nil, loadbalancername=nil, domainprefix=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
@@ -3963,7 +3963,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3989,7 +3989,7 @@ module TencentCloud
         # @type DeleteOld: Integer
 
         attr_accessor :OldCertId, :NewCert, :NewAlias, :NewKey, :DeleteOld
-        
+
         def initialize(oldcertid=nil, newcert=nil, newalias=nil, newkey=nil, deleteold=nil)
           @OldCertId = oldcertid
           @NewCert = newcert
@@ -4017,7 +4017,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NewCertId, :OldCertId, :RequestId
-        
+
         def initialize(newcertid=nil, oldcertid=nil, requestid=nil)
           @NewCertId = newcertid
           @OldCertId = oldcertid
@@ -4039,7 +4039,7 @@ module TencentCloud
         # @type Alias: String
 
         attr_accessor :TrafficMirrorId, :Alias
-        
+
         def initialize(trafficmirrorid=nil, _alias=nil)
           @TrafficMirrorId = trafficmirrorid
           @Alias = _alias
@@ -4057,7 +4057,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4087,7 +4087,7 @@ module TencentCloud
         # @type HttpCodes: Array
 
         attr_accessor :TrafficMirrorId, :HealthSwitch, :HealthNum, :UnhealthNum, :IntervalTime, :HttpCheckDomain, :HttpCheckPath, :HttpCodes
-        
+
         def initialize(trafficmirrorid=nil, healthswitch=nil, healthnum=nil, unhealthnum=nil, intervaltime=nil, httpcheckdomain=nil, httpcheckpath=nil, httpcodes=nil)
           @TrafficMirrorId = trafficmirrorid
           @HealthSwitch = healthswitch
@@ -4119,7 +4119,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4163,7 +4163,7 @@ module TencentCloud
         # @type VpcName: String
 
         attr_accessor :TrafficMirrorId, :Alias, :VpcId, :LoadBalancerType, :HealthSwitch, :HealthNum, :UnhealthNum, :IntervalTime, :HttpCheckDomain, :HttpCheckPath, :HttpCodes, :CreateTime, :VpcCidrBlock, :VpcName
-        
+
         def initialize(trafficmirrorid=nil, _alias=nil, vpcid=nil, loadbalancertype=nil, healthswitch=nil, healthnum=nil, unhealthnum=nil, intervaltime=nil, httpcheckdomain=nil, httpcheckpath=nil, httpcodes=nil, createtime=nil, vpccidrblock=nil, vpcname=nil)
           @TrafficMirrorId = trafficmirrorid
           @Alias = _alias
@@ -4239,7 +4239,7 @@ module TencentCloud
         # @type IpProtocolType: String
 
         attr_accessor :ListenerId, :ListenerName, :Protocol, :LoadBalancerPort, :Bandwidth, :MaxBandwidth, :ListenerType, :SslMode, :CertId, :CertCaId, :AddTimestamp, :LoadBalancerId, :VpcName, :VpcCidrBlock, :LoadBalancerVips, :LoadBalancerName, :LoadBalancerVipv6s, :IpProtocolType
-        
+
         def initialize(listenerid=nil, listenername=nil, protocol=nil, loadbalancerport=nil, bandwidth=nil, maxbandwidth=nil, listenertype=nil, sslmode=nil, certid=nil, certcaid=nil, addtimestamp=nil, loadbalancerid=nil, vpcname=nil, vpccidrblock=nil, loadbalancervips=nil, loadbalancername=nil, loadbalancervipv6s=nil, ipprotocoltype=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -4291,7 +4291,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Port, :Status
-        
+
         def initialize(port=nil, status=nil)
           @Port = port
           @Status = status
@@ -4335,7 +4335,7 @@ module TencentCloud
         # @type Operates: Array
 
         attr_accessor :InstanceId, :Port, :Weight, :TrafficMirrorId, :Alias, :LanIp, :SubnetId, :SubnetName, :SubnetCidrBlock, :VpcId, :VpcName, :VpcCidrBlock, :HealthStatus, :Operates
-        
+
         def initialize(instanceid=nil, port=nil, weight=nil, trafficmirrorid=nil, _alias=nil, lanip=nil, subnetid=nil, subnetname=nil, subnetcidrblock=nil, vpcid=nil, vpcname=nil, vpccidrblock=nil, healthstatus=nil, operates=nil)
           @InstanceId = instanceid
           @Port = port
@@ -4379,7 +4379,7 @@ module TencentCloud
         # @type ReceiversPortStatusSet: Array
 
         attr_accessor :LanIp, :ReceiversPortStatusSet
-        
+
         def initialize(lanip=nil, receiversportstatusset=nil)
           @LanIp = lanip
           @ReceiversPortStatusSet = receiversportstatusset
@@ -4406,7 +4406,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Port, :InstanceId
-        
+
         def initialize(port=nil, instanceid=nil)
           @Port = port
           @InstanceId = instanceid
@@ -4430,7 +4430,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :BackendSet, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, backendset=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -4461,7 +4461,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4481,7 +4481,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Port, :InstanceId
-        
+
         def initialize(port=nil, instanceid=nil)
           @Port = port
           @InstanceId = instanceid
@@ -4509,7 +4509,7 @@ module TencentCloud
         # @type BindType: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :DomainId, :LocationId, :BackendSet, :BindType
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil, locationid=nil, backendset=nil, bindtype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -4544,7 +4544,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4564,7 +4564,7 @@ module TencentCloud
         # @type ListenerIds: Array
 
         attr_accessor :TrafficMirrorId, :ListenerIds
-        
+
         def initialize(trafficmirrorid=nil, listenerids=nil)
           @TrafficMirrorId = trafficmirrorid
           @ListenerIds = listenerids
@@ -4584,7 +4584,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4604,7 +4604,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Port, :InstanceId
-        
+
         def initialize(port=nil, instanceid=nil)
           @Port = port
           @InstanceId = instanceid
@@ -4624,7 +4624,7 @@ module TencentCloud
         # @type ReceiverSet: Array
 
         attr_accessor :TrafficMirrorId, :ReceiverSet
-        
+
         def initialize(trafficmirrorid=nil, receiverset=nil)
           @TrafficMirrorId = trafficmirrorid
           @ReceiverSet = receiverset
@@ -4651,7 +4651,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4675,7 +4675,7 @@ module TencentCloud
         # @type Key: String
 
         attr_accessor :CertType, :Cert, :Alias, :Key
-        
+
         def initialize(certtype=nil, cert=nil, _alias=nil, key=nil)
           @CertType = certtype
           @Cert = cert
@@ -4699,7 +4699,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertId, :RequestId
-        
+
         def initialize(certid=nil, requestid=nil)
           @CertId = certid
           @RequestId = requestid

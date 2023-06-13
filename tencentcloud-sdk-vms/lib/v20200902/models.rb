@@ -32,7 +32,7 @@ module TencentCloud
         # @type SessionContext: String
 
         attr_accessor :CodeMessage, :CalledNumber, :VoiceSdkAppid, :PlayTimes, :SessionContext
-        
+
         def initialize(codemessage=nil, callednumber=nil, voicesdkappid=nil, playtimes=nil, sessioncontext=nil)
           @CodeMessage = codemessage
           @CalledNumber = callednumber
@@ -58,7 +58,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SendStatus, :RequestId
-        
+
         def initialize(sendstatus=nil, requestid=nil)
           @SendStatus = sendstatus
           @RequestId = requestid
@@ -82,7 +82,7 @@ module TencentCloud
         # @type SessionContext: String
 
         attr_accessor :CallId, :SessionContext
-        
+
         def initialize(callid=nil, sessioncontext=nil)
           @CallId = callid
           @SessionContext = sessioncontext
@@ -112,7 +112,7 @@ module TencentCloud
         # @type SessionContext: String
 
         attr_accessor :TemplateId, :CalledNumber, :VoiceSdkAppid, :TemplateParamSet, :PlayTimes, :SessionContext
-        
+
         def initialize(templateid=nil, callednumber=nil, voicesdkappid=nil, templateparamset=nil, playtimes=nil, sessioncontext=nil)
           @TemplateId = templateid
           @CalledNumber = callednumber
@@ -140,7 +140,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SendStatus, :RequestId
-        
+
         def initialize(sendstatus=nil, requestid=nil)
           @SendStatus = sendstatus
           @RequestId = requestid

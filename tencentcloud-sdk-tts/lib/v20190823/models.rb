@@ -43,7 +43,7 @@ module TencentCloud
         # @type VoiceoverDialogueSplit: Boolean
 
         attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :VoiceoverDialogueSplit
-        
+
         def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, voiceoverdialoguesplit=nil)
           @Text = text
           @ModelType = modeltype
@@ -79,7 +79,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -97,7 +97,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -118,7 +118,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -142,7 +142,7 @@ module TencentCloud
         # @type ErrorMsg: String
 
         attr_accessor :TaskId, :Status, :StatusStr, :ResultUrl, :ErrorMsg
-        
+
         def initialize(taskid=nil, status=nil, statusstr=nil, resulturl=nil, errormsg=nil)
           @TaskId = taskid
           @Status = status
@@ -168,7 +168,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -200,7 +200,7 @@ module TencentCloud
         # @type Phoneme: String
 
         attr_accessor :Text, :BeginTime, :EndTime, :BeginIndex, :EndIndex, :Phoneme
-        
+
         def initialize(text=nil, begintime=nil, endtime=nil, beginindex=nil, endindex=nil, phoneme=nil)
           @Text = text
           @BeginTime = begintime
@@ -253,7 +253,7 @@ module TencentCloud
         # @type EmotionIntensity: Integer
 
         attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate, :EmotionCategory, :EmotionIntensity
-        
+
         def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil, segmentrate=nil, emotioncategory=nil, emotionintensity=nil)
           @Text = text
           @SessionId = sessionid
@@ -301,7 +301,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Audio, :SessionId, :Subtitles, :RequestId
-        
+
         def initialize(audio=nil, sessionid=nil, subtitles=nil, requestid=nil)
           @Audio = audio
           @SessionId = sessionid

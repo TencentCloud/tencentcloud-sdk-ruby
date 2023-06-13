@@ -25,7 +25,7 @@ module TencentCloud
         # @type CryptoContent: String
 
         attr_accessor :CryptoType, :CryptoContent
-        
+
         def initialize(cryptotype=nil, cryptocontent=nil)
           @CryptoType = cryptotype
           @CryptoContent = cryptocontent
@@ -134,7 +134,7 @@ module TencentCloud
         # @type NameCryptoType: String
 
         attr_accessor :CustomerUin, :CustomerAppid, :IdNumber, :PhoneNumber, :Scene, :CustomerSubUin, :Authorization, :Name, :BankCardNumber, :UserIp, :Imei, :Idfa, :EmailAddress, :Address, :Mac, :Imsi, :AccountType, :Uid, :AppIdU, :WifiMac, :WifiSSID, :WifiBSSID, :ExtensionId, :ExtensionIn, :BusinessId, :IdCryptoType, :PhoneCryptoType, :NameCryptoType
-        
+
         def initialize(customeruin=nil, customerappid=nil, idnumber=nil, phonenumber=nil, scene=nil, customersubuin=nil, authorization=nil, name=nil, bankcardnumber=nil, userip=nil, imei=nil, idfa=nil, emailaddress=nil, address=nil, mac=nil, imsi=nil, accounttype=nil, uid=nil, appidu=nil, wifimac=nil, wifissid=nil, wifibssid=nil, extensionid=nil, extensionin=nil, businessid=nil, idcryptotype=nil, phonecryptotype=nil, namecryptotype=nil)
           @CustomerUin = customeruin
           @CustomerAppid = customerappid
@@ -239,7 +239,7 @@ module TencentCloud
         # @type ExtensionOut: String
 
         attr_accessor :Code, :CodeDesc, :Message, :Found, :IdFound, :RiskScore, :RiskInfo, :OtherModelScores, :PostTime, :ExtensionOut
-        
+
         def initialize(code=nil, codedesc=nil, message=nil, found=nil, idfound=nil, riskscore=nil, riskinfo=nil, othermodelscores=nil, posttime=nil, extensionout=nil)
           @Code = code
           @CodeDesc = codedesc
@@ -294,7 +294,7 @@ module TencentCloud
         # @type BusinessCryptoData: :class:`Tencentcloud::Afc.v20200226.models.AntiFraudVipCryptoFilter`
 
         attr_accessor :BusinessSecurityData, :BusinessCryptoData
-        
+
         def initialize(businesssecuritydata=nil, businesscryptodata=nil)
           @BusinessSecurityData = businesssecuritydata
           @BusinessCryptoData = businesscryptodata
@@ -320,7 +320,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -343,7 +343,7 @@ module TencentCloud
         # @type ModelScore: String
 
         attr_accessor :ModelId, :ModelScore
-        
+
         def initialize(modelid=nil, modelscore=nil)
           @ModelId = modelid
           @ModelScore = modelscore
@@ -417,7 +417,7 @@ module TencentCloud
         # @type NameCryptoType: String
 
         attr_accessor :PhoneNumber, :IdNumber, :BankCardNumber, :UserIp, :Imei, :Idfa, :Scene, :Name, :EmailAddress, :Address, :AccountType, :Uid, :AppIdU, :WifiMac, :WifiSSID, :WifiBSSID, :BusinessId, :IdCryptoType, :PhoneCryptoType, :Mac, :Imsi, :NameCryptoType
-        
+
         def initialize(phonenumber=nil, idnumber=nil, bankcardnumber=nil, userip=nil, imei=nil, idfa=nil, scene=nil, name=nil, emailaddress=nil, address=nil, accounttype=nil, uid=nil, appidu=nil, wifimac=nil, wifissid=nil, wifibssid=nil, businessid=nil, idcryptotype=nil, phonecryptotype=nil, mac=nil, imsi=nil, namecryptotype=nil)
           @PhoneNumber = phonenumber
           @IdNumber = idnumber
@@ -487,7 +487,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Found, :IdFound, :RiskScore, :RiskInfo, :CodeDesc, :RequestId
-        
+
         def initialize(found=nil, idfound=nil, riskscore=nil, riskinfo=nil, codedesc=nil, requestid=nil)
           @Found = found
           @IdFound = idfound
@@ -520,7 +520,7 @@ module TencentCloud
         # @type RiskCode: Integer
 
         attr_accessor :RiskCode
-        
+
         def initialize(riskcode=nil)
           @RiskCode = riskcode
         end
@@ -540,7 +540,7 @@ module TencentCloud
         # @type RiskCodeValue: String
 
         attr_accessor :RiskCode, :RiskCodeValue
-        
+
         def initialize(riskcode=nil, riskcodevalue=nil)
           @RiskCode = riskcode
           @RiskCodeValue = riskcodevalue
@@ -562,7 +562,7 @@ module TencentCloud
         # @type NotarizationSign: String
 
         attr_accessor :InterfaceName, :NotarizationInput, :NotarizationSign
-        
+
         def initialize(interfacename=nil, notarizationinput=nil, notarizationsign=nil)
           @InterfaceName = interfacename
           @NotarizationInput = notarizationinput
@@ -589,7 +589,7 @@ module TencentCloud
         # @type NotarizationData: String
 
         attr_accessor :Code, :Message, :NotarizationData
-        
+
         def initialize(code=nil, message=nil, notarizationdata=nil)
           @Code = code
           @Message = message
@@ -609,7 +609,7 @@ module TencentCloud
         # @type BusinessSecurityData: :class:`Tencentcloud::Afc.v20200226.models.TransportGeneralInterfaceInput`
 
         attr_accessor :BusinessSecurityData
-        
+
         def initialize(businesssecuritydata=nil)
           @BusinessSecurityData = businesssecuritydata
         end
@@ -631,7 +631,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid

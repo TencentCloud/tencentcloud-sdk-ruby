@@ -69,7 +69,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Source, :Target, :DocumentType, :SourceType, :Url, :BasicDocumentType, :CallbackUrl, :Data
-        
+
         def initialize(source=nil, target=nil, documenttype=nil, sourcetype=nil, url=nil, basicdocumenttype=nil, callbackurl=nil, data=nil)
           @Source = source
           @Target = target
@@ -101,7 +101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -133,7 +133,7 @@ module TencentCloud
         # @type Progress: Integer
 
         attr_accessor :TaskId, :Status, :FileData, :Message, :Progress
-        
+
         def initialize(taskid=nil, status=nil, filedata=nil, message=nil, progress=nil)
           @TaskId = taskid
           @Status = status
@@ -157,7 +157,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -175,7 +175,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -196,7 +196,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Value
-        
+
         def initialize(value=nil)
           @Value = value
         end
@@ -243,7 +243,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :SessionUuid, :Scene, :Data, :Source, :Target, :ProjectId
-        
+
         def initialize(sessionuuid=nil, scene=nil, data=nil, source=nil, target=nil, projectid=nil)
           @SessionUuid = sessionuuid
           @Scene = scene
@@ -277,7 +277,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionUuid, :Source, :Target, :ImageRecord, :RequestId
-        
+
         def initialize(sessionuuid=nil, source=nil, target=nil, imagerecord=nil, requestid=nil)
           @SessionUuid = sessionuuid
           @Source = source
@@ -314,7 +314,7 @@ module TencentCloud
         # @type H: Integer
 
         attr_accessor :SourceText, :TargetText, :X, :Y, :W, :H
-        
+
         def initialize(sourcetext=nil, targettext=nil, x=nil, y=nil, w=nil, h=nil)
           @SourceText = sourcetext
           @TargetText = targettext
@@ -342,7 +342,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :Text, :ProjectId
-        
+
         def initialize(text=nil, projectid=nil)
           @Text = text
           @ProjectId = projectid
@@ -363,7 +363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Lang, :RequestId
-        
+
         def initialize(lang=nil, requestid=nil)
           @Lang = lang
           @RequestId = requestid
@@ -399,7 +399,7 @@ module TencentCloud
         # @type TransType: Integer
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
-        
+
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid
           @Source = source
@@ -449,7 +449,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionUuid, :RecognizeStatus, :SourceText, :TargetText, :Seq, :Source, :Target, :VadSeq, :RequestId
-        
+
         def initialize(sessionuuid=nil, recognizestatus=nil, sourcetext=nil, targettext=nil, seq=nil, source=nil, target=nil, vadseq=nil, requestid=nil)
           @SessionUuid = sessionuuid
           @RecognizeStatus = recognizestatus
@@ -481,7 +481,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -541,7 +541,7 @@ module TencentCloud
         # @type SourceTextList: Array
 
         attr_accessor :Source, :Target, :ProjectId, :SourceTextList
-        
+
         def initialize(source=nil, target=nil, projectid=nil, sourcetextlist=nil)
           @Source = source
           @Target = target
@@ -569,7 +569,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Source, :Target, :TargetTextList, :RequestId
-        
+
         def initialize(source=nil, target=nil, targettextlist=nil, requestid=nil)
           @Source = source
           @Target = target
@@ -637,7 +637,7 @@ module TencentCloud
         # @type UntranslatedText: String
 
         attr_accessor :SourceText, :Source, :Target, :ProjectId, :UntranslatedText
-        
+
         def initialize(sourcetext=nil, source=nil, target=nil, projectid=nil, untranslatedtext=nil)
           @SourceText = sourcetext
           @Source = source
@@ -667,7 +667,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TargetText, :Source, :Target, :RequestId
-        
+
         def initialize(targettext=nil, source=nil, target=nil, requestid=nil)
           @TargetText = targettext
           @Source = source

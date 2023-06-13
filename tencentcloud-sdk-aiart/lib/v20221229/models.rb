@@ -58,7 +58,7 @@ module TencentCloud
         # @type Strength: Float
 
         attr_accessor :InputImage, :InputUrl, :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :Strength
-        
+
         def initialize(inputimage=nil, inputurl=nil, prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, strength=nil)
           @InputImage = inputimage
           @InputUrl = inputurl
@@ -98,7 +98,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :RequestId
-        
+
         def initialize(resultimage=nil, requestid=nil)
           @ResultImage = resultimage
           @RequestId = requestid
@@ -120,7 +120,7 @@ module TencentCloud
         # @type LogoRect: :class:`Tencentcloud::Aiart.v20221229.models.LogoRect`
 
         attr_accessor :LogoUrl, :LogoImage, :LogoRect
-        
+
         def initialize(logourl=nil, logoimage=nil, logorect=nil)
           @LogoUrl = logourl
           @LogoImage = logoimage
@@ -149,7 +149,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -176,7 +176,7 @@ module TencentCloud
         # @type Resolution: String
 
         attr_accessor :Resolution
-        
+
         def initialize(resolution=nil)
           @Resolution = resolution
         end
@@ -214,7 +214,7 @@ module TencentCloud
         # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
 
         attr_accessor :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam
-        
+
         def initialize(prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil)
           @Prompt = prompt
           @NegativePrompt = negativeprompt
@@ -248,7 +248,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :RequestId
-        
+
         def initialize(resultimage=nil, requestid=nil)
           @ResultImage = resultimage
           @RequestId = requestid

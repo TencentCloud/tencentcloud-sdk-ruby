@@ -25,7 +25,7 @@ module TencentCloud
         # @type TaskInfos: Array
 
         attr_accessor :MainTaskId, :TaskInfos
-        
+
         def initialize(maintaskid=nil, taskinfos=nil)
           @MainTaskId = maintaskid
           @TaskInfos = taskinfos
@@ -52,7 +52,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubTaskIds, :RequestId
-        
+
         def initialize(subtaskids=nil, requestid=nil)
           @SubTaskIds = subtaskids
           @RequestId = requestid
@@ -72,7 +72,7 @@ module TencentCloud
         # @type FileList: Array
 
         attr_accessor :ReportType, :FileList
-        
+
         def initialize(reporttype=nil, filelist=nil)
           @ReportType = reporttype
           @FileList = filelist
@@ -100,7 +100,7 @@ module TencentCloud
         # @type ThirdClassId: Integer
 
         attr_accessor :FirstClass, :SecondClass, :ThirdClass, :FirstClassId, :SecondClassId, :ThirdClassId
-        
+
         def initialize(firstclass=nil, secondclass=nil, thirdclass=nil, firstclassid=nil, secondclassid=nil, thirdclassid=nil)
           @FirstClass = firstclass
           @SecondClass = secondclass
@@ -142,7 +142,7 @@ module TencentCloud
         # @type LongContentRecall: String
 
         attr_accessor :ShortStructAccuracy, :ShortStructRecall, :LongStructAccuracy, :LongStructRecall, :LongContentAccuracy, :LongContentRecall
-        
+
         def initialize(shortstructaccuracy=nil, shortstructrecall=nil, longstructaccuracy=nil, longstructrecall=nil, longcontentaccuracy=nil, longcontentrecall=nil)
           @ShortStructAccuracy = shortstructaccuracy
           @ShortStructRecall = shortstructrecall
@@ -174,7 +174,7 @@ module TencentCloud
         # @type ImageList: Array
 
         attr_accessor :FileList, :CustomerId, :CustomerName, :ImageList
-        
+
         def initialize(filelist=nil, customerid=nil, customername=nil, imagelist=nil)
           @FileList = filelist
           @CustomerId = customerid
@@ -213,7 +213,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
-        
+
         def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
           @ServiceType = servicetype
           @TaskInfos = taskinfos
@@ -248,7 +248,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MainTaskId, :RequestId
-        
+
         def initialize(maintaskid=nil, requestid=nil)
           @MainTaskId = maintaskid
           @RequestId = requestid
@@ -276,7 +276,7 @@ module TencentCloud
         # @type Year: String
 
         attr_accessor :TaskType, :FileList, :CustomerId, :CustomerName, :ImageList, :Year
-        
+
         def initialize(tasktype=nil, filelist=nil, customerid=nil, customername=nil, imagelist=nil, year=nil)
           @TaskType = tasktype
           @FileList = filelist
@@ -319,7 +319,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
-        
+
         def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
           @ServiceType = servicetype
           @TaskInfos = taskinfos
@@ -354,7 +354,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MainTaskId, :RequestId
-        
+
         def initialize(maintaskid=nil, requestid=nil)
           @MainTaskId = maintaskid
           @RequestId = requestid
@@ -374,7 +374,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :MainTaskIds, :CallbackUrl
-        
+
         def initialize(maintaskids=nil, callbackurl=nil)
           @MainTaskIds = maintaskids
           @CallbackUrl = callbackurl
@@ -394,7 +394,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UnderwriteTaskIds, :RequestId
-        
+
         def initialize(underwritetaskids=nil, requestid=nil)
           @UnderwriteTaskIds = underwritetaskids
           @RequestId = requestid
@@ -412,7 +412,7 @@ module TencentCloud
         # @type UnderwriteTaskId: String
 
         attr_accessor :UnderwriteTaskId
-        
+
         def initialize(underwritetaskid=nil)
           @UnderwriteTaskId = underwritetaskid
         end
@@ -445,7 +445,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Uin, :SubAccountUin, :PolicyId, :MainTaskId, :UnderwriteTaskId, :Status, :UnderwriteResults, :RequestId
-        
+
         def initialize(uin=nil, subaccountuin=nil, policyid=nil, maintaskid=nil, underwritetaskid=nil, status=nil, underwriteresults=nil, requestid=nil)
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -482,7 +482,7 @@ module TencentCloud
         # @type File: String
 
         attr_accessor :File
-        
+
         def initialize(file=nil)
           @File = file
         end
@@ -500,7 +500,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QualityScore, :RequestId
-        
+
         def initialize(qualityscore=nil, requestid=nil)
           @QualityScore = qualityscore
           @RequestId = requestid
@@ -522,7 +522,7 @@ module TencentCloud
         # @type FileList: Array
 
         attr_accessor :ServiceType, :FileList
-        
+
         def initialize(servicetype=nil, filelist=nil)
           @ServiceType = servicetype
           @FileList = filelist
@@ -542,7 +542,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Reports, :RequestId
-        
+
         def initialize(reports=nil, requestid=nil)
           @Reports = reports
           @RequestId = requestid
@@ -569,7 +569,7 @@ module TencentCloud
         # @type SubTaskId: String
 
         attr_accessor :MainTaskId, :SubTaskId
-        
+
         def initialize(maintaskid=nil, subtaskid=nil)
           @MainTaskId = maintaskid
           @SubTaskId = subtaskid
@@ -615,7 +615,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PolicyId, :MainTaskId, :CustomerId, :CustomerName, :ReviewTime, :MachineResult, :ManualResult, :Metrics, :NewItems, :ModifyItems, :SubTaskId, :AllTasks, :TaskType, :RequestId
-        
+
         def initialize(policyid=nil, maintaskid=nil, customerid=nil, customername=nil, reviewtime=nil, machineresult=nil, manualresult=nil, metrics=nil, newitems=nil, modifyitems=nil, subtaskid=nil, alltasks=nil, tasktype=nil, requestid=nil)
           @PolicyId = policyid
           @MainTaskId = maintaskid
@@ -669,7 +669,7 @@ module TencentCloud
         # @type SubTaskId: String
 
         attr_accessor :MainTaskId, :SubTaskId
-        
+
         def initialize(maintaskid=nil, subtaskid=nil)
           @MainTaskId = maintaskid
           @SubTaskId = subtaskid
@@ -697,7 +697,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MainTaskId, :Status, :Results, :RequestId
-        
+
         def initialize(maintaskid=nil, status=nil, results=nil, requestid=nil)
           @MainTaskId = maintaskid
           @Status = status
@@ -726,7 +726,7 @@ module TencentCloud
         # @type MainTaskId: String
 
         attr_accessor :MainTaskId
-        
+
         def initialize(maintaskid=nil)
           @MainTaskId = maintaskid
         end
@@ -751,7 +751,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Results, :MainTaskId, :RequestId
-        
+
         def initialize(status=nil, results=nil, maintaskid=nil, requestid=nil)
           @Status = status
           @Results = results
@@ -780,7 +780,7 @@ module TencentCloud
         # @type MainTaskId: String
 
         attr_accessor :MainTaskId
-        
+
         def initialize(maintaskid=nil)
           @MainTaskId = maintaskid
         end
@@ -804,7 +804,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Results, :RequestId
-        
+
         def initialize(status=nil, results=nil, requestid=nil)
           @Status = status
           @Results = results
@@ -831,7 +831,7 @@ module TencentCloud
         # @type UnderwriteTaskId: String
 
         attr_accessor :UnderwriteTaskId
-        
+
         def initialize(underwritetaskid=nil)
           @UnderwriteTaskId = underwritetaskid
         end
@@ -864,7 +864,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Uin, :SubAccountUin, :PolicyId, :MainTaskId, :UnderwriteTaskId, :Status, :UnderwriteResults, :RequestId
-        
+
         def initialize(uin=nil, subaccountuin=nil, policyid=nil, maintaskid=nil, underwritetaskid=nil, status=nil, underwriteresults=nil, requestid=nil)
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -903,7 +903,7 @@ module TencentCloud
         # @type Result: Array
 
         attr_accessor :InsuranceType, :Result
-        
+
         def initialize(insurancetype=nil, result=nil)
           @InsuranceType = insurancetype
           @Result = result
@@ -928,7 +928,7 @@ module TencentCloud
         # @type Points: Array
 
         attr_accessor :Points
-        
+
         def initialize(points=nil)
           @Points = points
         end
@@ -959,7 +959,7 @@ module TencentCloud
         # @type Laboratory: Array
 
         attr_accessor :Title, :Conclusion, :Explanation, :Disease, :Laboratory
-        
+
         def initialize(title=nil, conclusion=nil, explanation=nil, disease=nil, laboratory=nil)
           @Title = title
           @Conclusion = conclusion
@@ -1008,7 +1008,7 @@ module TencentCloud
         # @type Results: Array
 
         attr_accessor :CustomerId, :CustomerName, :Results
-        
+
         def initialize(customerid=nil, customername=nil, results=nil)
           @CustomerId = customerid
           @CustomerName = customername
@@ -1043,7 +1043,7 @@ module TencentCloud
         # @type Field: String
 
         attr_accessor :OriginalField, :Value, :Confidence, :Location, :Field
-        
+
         def initialize(originalfield=nil, value=nil, confidence=nil, location=nil, field=nil)
           @OriginalField = originalfield
           @Value = value
@@ -1078,7 +1078,7 @@ module TencentCloud
         # @type RemoveItems: Array
 
         attr_accessor :SubTaskId, :TaskType, :ModifyItems, :NewItems, :RemoveItems
-        
+
         def initialize(subtaskid=nil, tasktype=nil, modifyitems=nil, newitems=nil, removeitems=nil)
           @SubTaskId = subtaskid
           @TaskType = tasktype
@@ -1127,7 +1127,7 @@ module TencentCloud
         # @type Page: Integer
 
         attr_accessor :XCoordinate, :YCoordinate, :Page
-        
+
         def initialize(xcoordinate=nil, ycoordinate=nil, page=nil)
           @XCoordinate = xcoordinate
           @YCoordinate = ycoordinate
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type ReportType: Array
 
         attr_accessor :Quality, :StructureResult, :ReportType
-        
+
         def initialize(quality=nil, structureresult=nil, reporttype=nil)
           @Quality = quality
           @StructureResult = structureresult
@@ -1185,7 +1185,7 @@ module TencentCloud
         # @type TaskType: String
 
         attr_accessor :MainTaskId, :SubTaskId, :TaskName, :TaskType
-        
+
         def initialize(maintaskid=nil, subtaskid=nil, taskname=nil, tasktype=nil)
           @MainTaskId = maintaskid
           @SubTaskId = subtaskid
@@ -1214,7 +1214,7 @@ module TencentCloud
         # @type Manual: String
 
         attr_accessor :Path, :Machine, :Manual
-        
+
         def initialize(path=nil, machine=nil, manual=nil)
           @Path = path
           @Machine = machine
@@ -1238,7 +1238,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Path, :Value
-        
+
         def initialize(path=nil, value=nil)
           @Path = path
           @Value = value
@@ -1267,7 +1267,7 @@ module TencentCloud
         # @type ResultFields: Array
 
         attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId, :TaskFiles, :ResultFields
-        
+
         def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil, taskfiles=nil, resultfields=nil)
           @Code = code
           @TaskType = tasktype
@@ -1304,7 +1304,7 @@ module TencentCloud
         # @type Explanation: String
 
         attr_accessor :Type, :Conclusion, :Explanation
-        
+
         def initialize(type=nil, conclusion=nil, explanation=nil)
           @Type = type
           @Conclusion = conclusion
@@ -1349,7 +1349,7 @@ module TencentCloud
         # @type YinYang: String
 
         attr_accessor :Name, :Result, :Value, :Range, :ReportDate, :FileType, :InspectProject, :Unit, :OriginName, :YinYang
-        
+
         def initialize(name=nil, result=nil, value=nil, range=nil, reportdate=nil, filetype=nil, inspectproject=nil, unit=nil, originname=nil, yinyang=nil)
           @Name = name
           @Result = result
@@ -1391,7 +1391,7 @@ module TencentCloud
         # @type ManualDetail: Array
 
         attr_accessor :CustomerId, :CustomerName, :Results, :ReviewTime, :ManualDetail
-        
+
         def initialize(customerid=nil, customername=nil, results=nil, reviewtime=nil, manualdetail=nil)
           @CustomerId = customerid
           @CustomerName = customername
@@ -1431,7 +1431,7 @@ module TencentCloud
         # @type FileURL: String
 
         attr_accessor :File, :FileURL
-        
+
         def initialize(file=nil, fileurl=nil)
           @File = file
           @FileURL = fileurl
@@ -1452,7 +1452,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileKey, :RequestId
-        
+
         def initialize(filekey=nil, requestid=nil)
           @FileKey = filekey
           @RequestId = requestid

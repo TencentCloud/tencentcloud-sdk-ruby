@@ -45,7 +45,7 @@ module TencentCloud
         # @type ClientNum: String
 
         attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum
-        
+
         def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
@@ -97,7 +97,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskIDs, :RequestId
-        
+
         def initialize(taskids=nil, requestid=nil)
           @TaskIDs = taskids
           @RequestId = requestid
@@ -115,7 +115,7 @@ module TencentCloud
         # @type TaskIds: Array
 
         attr_accessor :TaskIds
-        
+
         def initialize(taskids=nil)
           @TaskIds = taskids
         end
@@ -139,7 +139,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :SuccessCount, :Results, :RequestId
-        
+
         def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
           @Total = total
           @SuccessCount = successcount
@@ -219,7 +219,7 @@ module TencentCloud
         # @type City: Array
 
         attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City
-        
+
         def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -263,7 +263,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataSet, :TotalNumber, :RequestId
-        
+
         def initialize(dataset=nil, totalnumber=nil, requestid=nil)
           @DataSet = dataset
           @TotalNumber = totalnumber
@@ -314,7 +314,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :NodeType, :Location, :IsIPv6, :NodeName, :PayMode, :TaskType
-        
+
         def initialize(nodetype=nil, location=nil, isipv6=nil, nodename=nil, paymode=nil, tasktype=nil)
           @NodeType = nodetype
           @Location = location
@@ -343,7 +343,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NodeSet, :RequestId
-        
+
         def initialize(nodeset=nil, requestid=nil)
           @NodeSet = nodeset
           @RequestId = requestid
@@ -384,7 +384,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :AnalyzeTaskType, :MetricType, :Field, :Filter, :GroupBy, :Filters
-        
+
         def initialize(analyzetasktype=nil, metrictype=nil, field=nil, filter=nil, groupby=nil, filters=nil)
           @AnalyzeTaskType = analyzetasktype
           @MetricType = metrictype
@@ -413,7 +413,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MetricSet, :RequestId
-        
+
         def initialize(metricset=nil, requestid=nil)
           @MetricSet = metricset
           @RequestId = requestid
@@ -447,7 +447,7 @@ module TencentCloud
         # @type PayMode: Integer
 
         attr_accessor :NodeType, :Location, :IsIPv6, :NodeName, :PayMode
-        
+
         def initialize(nodetype=nil, location=nil, isipv6=nil, nodename=nil, paymode=nil)
           @NodeType = nodetype
           @Location = location
@@ -474,7 +474,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NodeSet, :RequestId
-        
+
         def initialize(nodeset=nil, requestid=nil)
           @NodeSet = nodeset
           @RequestId = requestid
@@ -545,7 +545,7 @@ module TencentCloud
         # @type TagFilters: Array
 
         attr_accessor :TaskIDs, :TaskName, :TargetAddress, :TaskStatus, :Offset, :Limit, :PayMode, :OrderState, :TaskType, :TaskCategory, :OrderBy, :Ascend, :TagFilters
-        
+
         def initialize(taskids=nil, taskname=nil, targetaddress=nil, taskstatus=nil, offset=nil, limit=nil, paymode=nil, orderstate=nil, tasktype=nil, taskcategory=nil, orderby=nil, ascend=nil, tagfilters=nil)
           @TaskIDs = taskids
           @TaskName = taskname
@@ -597,7 +597,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskSet, :Total, :RequestId
-        
+
         def initialize(taskset=nil, total=nil, requestid=nil)
           @TaskSet = taskset
           @Total = total
@@ -628,7 +628,7 @@ module TencentCloud
         # @type Fields: Array
 
         attr_accessor :ProbeTime, :Labels, :Fields
-        
+
         def initialize(probetime=nil, labels=nil, fields=nil)
           @ProbeTime = probetime
           @Labels = labels
@@ -666,7 +666,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :ID, :Name, :Value
-        
+
         def initialize(id=nil, name=nil, value=nil)
           @ID = id
           @Name = name
@@ -688,7 +688,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -710,7 +710,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :ID, :Name, :Value
-        
+
         def initialize(id=nil, name=nil, value=nil)
           @ID = id
           @Name = name
@@ -760,7 +760,7 @@ module TencentCloud
         # @type NodeDefineStatus: Integer
 
         attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location, :CodeType, :NodeDefineStatus
-        
+
         def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil, codetype=nil, nodedefinestatus=nil)
           @Name = name
           @Code = code
@@ -824,7 +824,7 @@ module TencentCloud
         # @type TaskTypes: Array
 
         attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location, :CodeType, :TaskTypes
-        
+
         def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil, codetype=nil, tasktypes=nil)
           @Name = name
           @Code = code
@@ -916,7 +916,7 @@ module TencentCloud
         # @type TagInfoList: Array
 
         attr_accessor :Name, :TaskId, :TaskType, :Nodes, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList
-        
+
         def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil)
           @Name = name
           @TaskId = taskid
@@ -969,7 +969,7 @@ module TencentCloud
         # @type TargetAddress: String
 
         attr_accessor :Name, :TargetAddress
-        
+
         def initialize(name=nil, targetaddress=nil)
           @Name = name
           @TargetAddress = targetaddress
@@ -987,7 +987,7 @@ module TencentCloud
         # @type TaskIds: Array
 
         attr_accessor :TaskIds
-        
+
         def initialize(taskids=nil)
           @TaskIds = taskids
         end
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :SuccessCount, :Results, :RequestId
-        
+
         def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
           @Total = total
           @SuccessCount = successcount
@@ -1040,7 +1040,7 @@ module TencentCloud
         # @type TaskIds: Array
 
         attr_accessor :TaskIds
-        
+
         def initialize(taskids=nil)
           @TaskIds = taskids
         end
@@ -1064,7 +1064,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :SuccessCount, :Results, :RequestId
-        
+
         def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
           @Total = total
           @SuccessCount = successcount
@@ -1095,7 +1095,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1119,7 +1119,7 @@ module TencentCloud
         # @type ErrorMessage: String
 
         attr_accessor :TaskId, :Success, :ErrorMessage
-        
+
         def initialize(taskid=nil, success=nil, errormessage=nil)
           @TaskId = taskid
           @Success = success
@@ -1141,7 +1141,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :TaskId, :Name
-        
+
         def initialize(taskid=nil, name=nil)
           @TaskId = taskid
           @Name = name
@@ -1159,7 +1159,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1186,7 +1186,7 @@ module TencentCloud
         # @type ResourceIDs: Array
 
         attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs
-        
+
         def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil)
           @TaskIds = taskids
           @Nodes = nodes
@@ -1212,7 +1212,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

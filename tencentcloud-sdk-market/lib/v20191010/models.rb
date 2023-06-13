@@ -33,7 +33,7 @@ module TencentCloud
         # @type FlowUnit: String
 
         attr_accessor :ProviderUin, :SignId, :ResourceId, :TotalFlow, :LeftFlow, :FlowUnit
-        
+
         def initialize(provideruin=nil, signid=nil, resourceid=nil, totalflow=nil, leftflow=nil, flowunit=nil)
           @ProviderUin = provideruin
           @SignId = signid
@@ -66,7 +66,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Success, :FlowId, :Info, :RequestId
-        
+
         def initialize(success=nil, flowid=nil, info=nil, requestid=nil)
           @Success = success
           @FlowId = flowid
@@ -88,7 +88,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -110,7 +110,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaxRequestNum, :InUseRequestNum, :RemainingRequestNum, :RequestId
-        
+
         def initialize(maxrequestnum=nil, inuserequestnum=nil, remainingrequestnum=nil, requestid=nil)
           @MaxRequestNum = maxrequestnum
           @InUseRequestNum = inuserequestnum

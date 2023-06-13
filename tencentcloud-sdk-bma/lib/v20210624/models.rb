@@ -35,7 +35,7 @@ module TencentCloud
         # @type TransferNote: String
 
         attr_accessor :BrandName, :BrandCertificateName, :BrandStatus, :BrandNote, :TransferName, :TransferStatus, :TransferNote
-        
+
         def initialize(brandname=nil, brandcertificatename=nil, brandstatus=nil, brandnote=nil, transfername=nil, transferstatus=nil, transfernote=nil)
           @BrandName = brandname
           @BrandCertificateName = brandcertificatename
@@ -69,7 +69,7 @@ module TencentCloud
         # @type Note: String
 
         attr_accessor :ProtectURLId, :FakeURL, :SnapshotNames, :Note
-        
+
         def initialize(protecturlid=nil, fakeurl=nil, snapshotnames=nil, note=nil)
           @ProtectURLId = protecturlid
           @FakeURL = fakeurl
@@ -91,7 +91,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -107,7 +107,7 @@ module TencentCloud
         # @type FakeURL: String
 
         attr_accessor :FakeURL
-        
+
         def initialize(fakeurl=nil)
           @FakeURL = fakeurl
         end
@@ -123,7 +123,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -145,7 +145,7 @@ module TencentCloud
         # @type AuthorizationName: String
 
         attr_accessor :BrandName, :BrandCertificateName, :TransferName, :AuthorizationName
-        
+
         def initialize(brandname=nil, brandcertificatename=nil, transfername=nil, authorizationname=nil)
           @BrandName = brandname
           @BrandCertificateName = brandcertificatename
@@ -167,7 +167,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -183,7 +183,7 @@ module TencentCloud
         # @type FakeURLId: Integer
 
         attr_accessor :FakeURLId
-        
+
         def initialize(fakeurlid=nil)
           @FakeURLId = fakeurlid
         end
@@ -199,7 +199,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -223,7 +223,7 @@ module TencentCloud
         # @type ProtectWebs: Array
 
         attr_accessor :CompanyName, :Phone, :LicenseName, :ProtectURLs, :ProtectWebs
-        
+
         def initialize(companyname=nil, phone=nil, licensename=nil, protecturls=nil, protectwebs=nil)
           @CompanyName = companyname
           @Phone = phone
@@ -247,7 +247,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -293,7 +293,7 @@ module TencentCloud
         # @type EvidenceValidEndDate: String
 
         attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :BlockUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :TortPic, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
-        
+
         def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, blockurl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, tortpic=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, isproducer=nil, evidencefileurl=nil, evidencevalidstartdate=nil, evidencevalidenddate=nil)
           @WorkId = workid
           @TortUrl = torturl
@@ -343,7 +343,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TortId, :TortNum, :RequestId
-        
+
         def initialize(tortid=nil, tortnum=nil, requestid=nil)
           @TortId = tortid
           @TortNum = tortnum
@@ -377,7 +377,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :CompanyName, :CompanyID, :CompanyLegalName, :ManagerName, :ManagerPhone, :VerificationCode, :CompanyIDType, :Type
-        
+
         def initialize(companyname=nil, companyid=nil, companylegalname=nil, managername=nil, managerphone=nil, verificationcode=nil, companyidtype=nil, type=nil)
           @CompanyName = companyname
           @CompanyID = companyid
@@ -411,7 +411,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Note, :RequestId
-        
+
         def initialize(status=nil, note=nil, requestid=nil)
           @Status = status
           @Note = note
@@ -433,7 +433,7 @@ module TencentCloud
         # @type DesktopCode: String
 
         attr_accessor :TortId, :DesktopCode
-        
+
         def initialize(tortid=nil, desktopcode=nil)
           @TortId = tortid
           @DesktopCode = desktopcode
@@ -451,7 +451,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -469,7 +469,7 @@ module TencentCloud
         # @type FileList: Array
 
         attr_accessor :WorkId, :FileList
-        
+
         def initialize(workid=nil, filelist=nil)
           @WorkId = workid
           @FileList = filelist
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileIds, :RequestId
-        
+
         def initialize(fileids=nil, requestid=nil)
           @FileIds = fileids
           @RequestId = requestid
@@ -548,7 +548,7 @@ module TencentCloud
         # @type EvidenceValidEndDate: String
 
         attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :RightUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :HomeFileUrl, :HomeValidStartDate, :HomeValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
-        
+
         def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, righturl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, homefileurl=nil, homevalidstartdate=nil, homevalidenddate=nil, isproducer=nil, evidencefileurl=nil, evidencevalidstartdate=nil, evidencevalidenddate=nil)
           @WorkId = workid
           @TortUrl = torturl
@@ -602,7 +602,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TortId, :TortNum, :RequestId
-        
+
         def initialize(tortid=nil, tortnum=nil, requestid=nil)
           @TortId = tortid
           @TortNum = tortnum
@@ -628,7 +628,7 @@ module TencentCloud
         # @type TortTitle: String
 
         attr_accessor :WorkId, :TortURL, :TortPlat, :TortTitle
-        
+
         def initialize(workid=nil, torturl=nil, tortplat=nil, torttitle=nil)
           @WorkId = workid
           @TortURL = torturl
@@ -664,7 +664,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WorkId, :TortId, :TortTitle, :TortPlat, :TortURL, :TortDomain, :TortBodyName, :RequestId
-        
+
         def initialize(workid=nil, tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, tortdomain=nil, tortbodyname=nil, requestid=nil)
           @WorkId = workid
           @TortId = tortid
@@ -702,7 +702,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :UserName, :UserID, :UserPhone, :VerificationCode, :Type
-        
+
         def initialize(username=nil, userid=nil, userphone=nil, verificationcode=nil, type=nil)
           @UserName = username
           @UserID = userid
@@ -730,7 +730,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Note, :RequestId
-        
+
         def initialize(status=nil, note=nil, requestid=nil)
           @Status = status
           @Note = note
@@ -812,7 +812,7 @@ module TencentCloud
         # @type IsAutoRenew: String
 
         attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :SamplePublicURL, :GrantType, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName, :IsAutoRenew
-        
+
         def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, samplepublicurl=nil, granttype=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil, isautorenew=nil)
           @WorkName = workname
           @WorkCategory = workcategory
@@ -894,7 +894,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WorkId, :EvidenceId, :RequestId
-        
+
         def initialize(workid=nil, evidenceid=nil, requestid=nil)
           @WorkId = workid
           @EvidenceId = evidenceid
@@ -911,7 +911,7 @@ module TencentCloud
       # DescribeBPCompanyInfo请求参数结构体
       class DescribeBPCompanyInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -945,7 +945,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyName, :Phone, :LicenseName, :LicenseStatus, :LicenseNote, :AuthorizationName, :AuthorizationStatus, :AuthorizationNote, :BrandDatas, :CompanyId, :RequestId
-        
+
         def initialize(companyname=nil, phone=nil, licensename=nil, licensestatus=nil, licensenote=nil, authorizationname=nil, authorizationstatus=nil, authorizationnote=nil, branddatas=nil, companyid=nil, requestid=nil)
           @CompanyName = companyname
           @Phone = phone
@@ -992,7 +992,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -1025,7 +1025,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FakeURLInfos, :TotalCount, :ExportURL, :RequestId
-        
+
         def initialize(fakeurlinfos=nil, totalcount=nil, exporturl=nil, requestid=nil)
           @FakeURLInfos = fakeurlinfos
           @TotalCount = totalcount
@@ -1056,7 +1056,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :PageSize, :PageNumber
-        
+
         def initialize(pagesize=nil, pagenumber=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -1078,7 +1078,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProtectURLInfos, :TotalCount, :RequestId
-        
+
         def initialize(protecturlinfos=nil, totalcount=nil, requestid=nil)
           @ProtectURLInfos = protecturlinfos
           @TotalCount = totalcount
@@ -1109,7 +1109,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -1140,7 +1140,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReportFakeURLInfos, :TotalCount, :RequestId
-        
+
         def initialize(reportfakeurlinfos=nil, totalcount=nil, requestid=nil)
           @ReportFakeURLInfos = reportfakeurlinfos
           @TotalCount = totalcount
@@ -1173,7 +1173,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :WorkId, :PageSize, :PageNumber, :Filters
-        
+
         def initialize(workid=nil, pagesize=nil, pagenumber=nil, filters=nil)
           @WorkId = workid
           @PageSize = pagesize
@@ -1210,7 +1210,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Torts, :TotalCount, :MonitorStatus, :ExportURL, :RequestId
-        
+
         def initialize(torts=nil, totalcount=nil, monitorstatus=nil, exporturl=nil, requestid=nil)
           @Torts = torts
           @TotalCount = totalcount
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -1278,7 +1278,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Monitors, :TotalCount, :ExportURL, :RequestId
-        
+
         def initialize(monitors=nil, totalcount=nil, exporturl=nil, requestid=nil)
           @Monitors = monitors
           @TotalCount = totalcount
@@ -1307,7 +1307,7 @@ module TencentCloud
         # @type TortId: Integer
 
         attr_accessor :TortId
-        
+
         def initialize(tortid=nil)
           @TortId = tortid
         end
@@ -1355,7 +1355,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WorkName, :TortURL, :ObtainTime, :ObtainType, :ObtainNum, :DepositFile, :DepositCert, :WorkType, :WorkCategory, :TortId, :TortNum, :ObtainStatus, :ObtainNote, :ObtainDuration, :ObtainName, :DepositPdfCert, :RequestId
-        
+
         def initialize(workname=nil, torturl=nil, obtaintime=nil, obtaintype=nil, obtainnum=nil, depositfile=nil, depositcert=nil, worktype=nil, workcategory=nil, tortid=nil, tortnum=nil, obtainstatus=nil, obtainnote=nil, obtainduration=nil, obtainname=nil, depositpdfcert=nil, requestid=nil)
           @WorkName = workname
           @TortURL = torturl
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @type WorkId: Integer
 
         attr_accessor :WorkId
-        
+
         def initialize(workid=nil)
           @WorkId = workid
         end
@@ -1463,7 +1463,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WorkName, :MonitorStatus, :AuthStatus, :CommStatus, :IsProducer, :EvidenceStatus, :WorkCategory, :IsOriginal, :IsRelease, :ProducerName, :ProduceTime, :WhiteLists, :WorkDesc, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :Commission, :CommissionStartTime, :CommissionEndTime, :EvidenceUrl, :EvidenceStartTime, :EvidenceEndTime, :RequestId
-        
+
         def initialize(workname=nil, monitorstatus=nil, authstatus=nil, commstatus=nil, isproducer=nil, evidencestatus=nil, workcategory=nil, isoriginal=nil, isrelease=nil, producername=nil, producetime=nil, whitelists=nil, workdesc=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, commission=nil, commissionstarttime=nil, commissionendtime=nil, evidenceurl=nil, evidencestarttime=nil, evidenceendtime=nil, requestid=nil)
           @WorkName = workname
           @MonitorStatus = monitorstatus
@@ -1553,7 +1553,7 @@ module TencentCloud
         # @type FakeURLExpireTime: String
 
         attr_accessor :FakeURLId, :ProtectWeb, :DetectTime, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime
-        
+
         def initialize(fakeurlid=nil, protectweb=nil, detecttime=nil, fakeurl=nil, snapshot=nil, ip=nil, iploc=nil, heat=nil, status=nil, note=nil, fakeurlcompany=nil, fakeurlattr=nil, fakeurlname=nil, fakeurlicp=nil, fakeurlcreatetime=nil, fakeurlexpiretime=nil)
           @FakeURLId = fakeurlid
           @ProtectWeb = protectweb
@@ -1605,7 +1605,7 @@ module TencentCloud
         # @type ValidEndDate: String
 
         attr_accessor :FileUrl, :FileType, :ValidStartDate, :ValidEndDate
-        
+
         def initialize(fileurl=nil, filetype=nil, validstartdate=nil, validenddate=nil)
           @FileUrl = fileurl
           @FileType = filetype
@@ -1624,7 +1624,7 @@ module TencentCloud
       # 过滤参数
       class Filter < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1646,7 +1646,7 @@ module TencentCloud
         # @type TransferName: String
 
         attr_accessor :LicenseName, :AuthorizationName, :BrandName, :BrandCertificateName, :TransferName
-        
+
         def initialize(licensename=nil, authorizationname=nil, brandname=nil, brandcertificatename=nil, transfername=nil)
           @LicenseName = licensename
           @AuthorizationName = authorizationname
@@ -1670,7 +1670,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1688,7 +1688,7 @@ module TencentCloud
         # @type BlockUrl: String
 
         attr_accessor :TortId, :BlockUrl
-        
+
         def initialize(tortid=nil, blockurl=nil)
           @TortId = tortid
           @BlockUrl = blockurl
@@ -1706,7 +1706,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1726,7 +1726,7 @@ module TencentCloud
         # @type MonitorEnd: String
 
         attr_accessor :WorkId, :MonitorStatus, :MonitorEnd
-        
+
         def initialize(workid=nil, monitorstatus=nil, monitorend=nil)
           @WorkId = workid
           @MonitorStatus = monitorstatus
@@ -1746,7 +1746,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1768,7 +1768,7 @@ module TencentCloud
         # @type ObtainUrl: String
 
         attr_accessor :TortId, :ObtainType, :ObtainDuration, :ObtainUrl
-        
+
         def initialize(tortid=nil, obtaintype=nil, obtainduration=nil, obtainurl=nil)
           @TortId = tortid
           @ObtainType = obtaintype
@@ -1790,7 +1790,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1808,7 +1808,7 @@ module TencentCloud
         # @type RightUrl: String
 
         attr_accessor :TortId, :RightUrl
-        
+
         def initialize(tortid=nil, righturl=nil)
           @TortId = tortid
           @RightUrl = righturl
@@ -1826,7 +1826,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1854,7 +1854,7 @@ module TencentCloud
         # @type WhiteSites: String
 
         attr_accessor :WhiteListId, :PlatForm, :PlatUrl, :AuthorId, :WorksId, :WorkId, :WhiteSites
-        
+
         def initialize(whitelistid=nil, platform=nil, platurl=nil, authorid=nil, worksid=nil, workid=nil, whitesites=nil)
           @WhiteListId = whitelistid
           @PlatForm = platform
@@ -1882,7 +1882,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1928,7 +1928,7 @@ module TencentCloud
         # @type AutoRenew: Integer
 
         attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote, :WorkCategoryAll, :EvidenceStatus, :EvidenceNote, :TortSiteNum, :MonitorEndTime, :AutoRenew
-        
+
         def initialize(workid=nil, workname=nil, worktype=nil, tortplatnum=nil, torturlnum=nil, monitortime=nil, monitorstatus=nil, workcategory=nil, inserttime=nil, monitornote=nil, workcategoryall=nil, evidencestatus=nil, evidencenote=nil, tortsitenum=nil, monitorendtime=nil, autorenew=nil)
           @WorkId = workid
           @WorkName = workname
@@ -2024,7 +2024,7 @@ module TencentCloud
         # @type IPLoc: String
 
         attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas, :IPLoc
-        
+
         def initialize(tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, pubtime=nil, author=nil, detecttime=nil, obtainstatus=nil, rightstatus=nil, blockstatus=nil, tortnum=nil, obtainnote=nil, worktitle=nil, tortsite=nil, icp=nil, rightnote=nil, obtaintype=nil, blocknote=nil, workid=nil, workname=nil, authstatus=nil, commstatus=nil, evidencestatus=nil, isproducer=nil, isoverseas=nil, iploc=nil)
           @TortId = tortid
           @TortTitle = torttitle
@@ -2100,7 +2100,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ProtectURLId, :ProtectURL, :ProtectWeb, :ProtectURLStatus, :ProtectURLNote, :CreateTime
-        
+
         def initialize(protecturlid=nil, protecturl=nil, protectweb=nil, protecturlstatus=nil, protecturlnote=nil, createtime=nil)
           @ProtectURLId = protecturlid
           @ProtectURL = protecturl
@@ -2160,7 +2160,7 @@ module TencentCloud
         # @type BlockTime: String
 
         attr_accessor :FakeURLId, :DetectTime, :ProtectURL, :ProtectWeb, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime, :BlockTime
-        
+
         def initialize(fakeurlid=nil, detecttime=nil, protecturl=nil, protectweb=nil, fakeurl=nil, snapshot=nil, ip=nil, iploc=nil, heat=nil, status=nil, note=nil, fakeurlcompany=nil, fakeurlattr=nil, fakeurlname=nil, fakeurlicp=nil, fakeurlcreatetime=nil, fakeurlexpiretime=nil, blocktime=nil)
           @FakeURLId = fakeurlid
           @DetectTime = detecttime
@@ -2216,7 +2216,7 @@ module TencentCloud
         # @type CertType: String
 
         attr_accessor :WorkId, :ContentType, :Content, :CertType
-        
+
         def initialize(workid=nil, contenttype=nil, content=nil, certtype=nil)
           @WorkId = workid
           @ContentType = contenttype
@@ -2242,7 +2242,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WorkId, :EvidenceId, :RequestId
-        
+
         def initialize(workid=nil, evidenceid=nil, requestid=nil)
           @WorkId = workid
           @EvidenceId = evidenceid

@@ -25,7 +25,7 @@ module TencentCloud
         # @type Option: Integer
 
         attr_accessor :Key, :Option
-        
+
         def initialize(key=nil, option=nil)
           @Key = key
           @Option = option
@@ -73,7 +73,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReturnCode, :Result, :Confidence, :ThreatTypes, :Tags, :Intelligences, :Context, :RequestId
-        
+
         def initialize(returncode=nil, result=nil, confidence=nil, threattypes=nil, tags=nil, intelligences=nil, context=nil, requestid=nil)
           @ReturnCode = returncode
           @Result = result
@@ -119,7 +119,7 @@ module TencentCloud
         # @type Option: Integer
 
         attr_accessor :Key, :Option
-        
+
         def initialize(key=nil, option=nil)
           @Key = key
           @Option = option
@@ -153,7 +153,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReturnCode, :Result, :Confidence, :FileInfo, :Tags, :Intelligences, :Context, :RequestId
-        
+
         def initialize(returncode=nil, result=nil, confidence=nil, fileinfo=nil, tags=nil, intelligences=nil, context=nil, requestid=nil)
           @ReturnCode = returncode
           @Result = result
@@ -206,7 +206,7 @@ module TencentCloud
         # @type Option: Integer
 
         attr_accessor :Key, :Option
-        
+
         def initialize(key=nil, option=nil)
           @Key = key
           @Option = option
@@ -254,7 +254,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReturnCode, :Result, :Confidence, :ThreatTypes, :Tags, :Intelligences, :Context, :RequestId
-        
+
         def initialize(returncode=nil, result=nil, confidence=nil, threattypes=nil, tags=nil, intelligences=nil, context=nil, requestid=nil)
           @ReturnCode = returncode
           @Result = result
@@ -302,7 +302,7 @@ module TencentCloud
         # @type Option: Integer
 
         attr_accessor :Key, :Type, :Option
-        
+
         def initialize(key=nil, type=nil, option=nil)
           @Key = key
           @Type = type
@@ -358,7 +358,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReturnCode, :Result, :Confidence, :ThreatTypes, :Tags, :Status, :Context, :RequestId
-        
+
         def initialize(returncode=nil, result=nil, confidence=nil, threattypes=nil, tags=nil, status=nil, context=nil, requestid=nil)
           @ReturnCode = returncode
           @Result = result
@@ -422,7 +422,7 @@ module TencentCloud
         # @type WhiteScore: String
 
         attr_accessor :DetectId, :DetectPriority, :EnginePriority, :FileExist, :FileForceUpload, :FileSize, :FileupTime, :FullVirusName, :IdcPosition, :Md5Type, :PeExist, :PeForceUpload, :SafeLevel, :ScanModiTime, :SubdetectId, :UserDefName, :VirusType, :WhiteScore
-        
+
         def initialize(detectid=nil, detectpriority=nil, enginepriority=nil, fileexist=nil, fileforceupload=nil, filesize=nil, fileuptime=nil, fullvirusname=nil, idcposition=nil, md5type=nil, peexist=nil, peforceupload=nil, safelevel=nil, scanmoditime=nil, subdetectid=nil, userdefname=nil, virustype=nil, whitescore=nil)
           @DetectId = detectid
           @DetectPriority = detectpriority
@@ -476,7 +476,7 @@ module TencentCloud
         # @type Time: Integer
 
         attr_accessor :Source, :Stamp, :Time
-        
+
         def initialize(source=nil, stamp=nil, time=nil)
           @Source = source
           @Stamp = stamp
@@ -498,7 +498,7 @@ module TencentCloud
         # @type Desc: String
 
         attr_accessor :Tag, :Desc
-        
+
         def initialize(tag=nil, desc=nil)
           @Tag = tag
           @Desc = desc

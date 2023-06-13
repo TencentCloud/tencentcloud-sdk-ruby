@@ -31,7 +31,7 @@ module TencentCloud
         # @type Label: String
 
         attr_accessor :LabelType, :Starter, :Order, :Value, :Label
-        
+
         def initialize(labeltype=nil, starter=nil, order=nil, value=nil, label=nil)
           @LabelType = labeltype
           @Starter = starter
@@ -61,7 +61,7 @@ module TencentCloud
         # @type LogFilePrefix: String
 
         attr_accessor :AuditStatus, :CosBucketName, :AuditName, :LogFilePrefix
-        
+
         def initialize(auditstatus=nil, cosbucketname=nil, auditname=nil, logfileprefix=nil)
           @AuditStatus = auditstatus
           @CosBucketName = cosbucketname
@@ -85,7 +85,7 @@ module TencentCloud
         # @type CmqRegion: String
 
         attr_accessor :CmqRegionName, :CmqRegion
-        
+
         def initialize(cmqregionname=nil, cmqregion=nil)
           @CmqRegionName = cmqregionname
           @CmqRegion = cmqregion
@@ -105,7 +105,7 @@ module TencentCloud
         # @type CosRegionName: String
 
         attr_accessor :CosRegion, :CosRegionName
-        
+
         def initialize(cosregion=nil, cosregionname=nil)
           @CosRegion = cosregion
           @CosRegionName = cosregionname
@@ -147,7 +147,7 @@ module TencentCloud
         # @type IsCreateNewQueue: Integer
 
         attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :AuditName, :CosRegion, :IsCreateNewBucket, :CosBucketName, :KeyId, :CmqQueueName, :KmsRegion, :IsEnableKmsEncry, :CmqRegion, :LogFilePrefix, :IsCreateNewQueue
-        
+
         def initialize(isenablecmqnotify=nil, readwriteattribute=nil, auditname=nil, cosregion=nil, iscreatenewbucket=nil, cosbucketname=nil, keyid=nil, cmqqueuename=nil, kmsregion=nil, isenablekmsencry=nil, cmqregion=nil, logfileprefix=nil, iscreatenewqueue=nil)
           @IsEnableCmqNotify = isenablecmqnotify
           @ReadWriteAttribute = readwriteattribute
@@ -189,7 +189,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
-        
+
         def initialize(issuccess=nil, requestid=nil)
           @IsSuccess = issuccess
           @RequestId = requestid
@@ -219,7 +219,7 @@ module TencentCloud
         # @type TrackForAllMembers: Integer
 
         attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
-        
+
         def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, trackforallmembers=nil)
           @Name = name
           @ActionType = actiontype
@@ -252,7 +252,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TrackId, :RequestId
-        
+
         def initialize(trackid=nil, requestid=nil)
           @TrackId = trackid
           @RequestId = requestid
@@ -270,7 +270,7 @@ module TencentCloud
         # @type AuditName: String
 
         attr_accessor :AuditName
-        
+
         def initialize(auditname=nil)
           @AuditName = auditname
         end
@@ -288,7 +288,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
-        
+
         def initialize(issuccess=nil, requestid=nil)
           @IsSuccess = issuccess
           @RequestId = requestid
@@ -306,7 +306,7 @@ module TencentCloud
         # @type TrackId: Integer
 
         attr_accessor :TrackId
-        
+
         def initialize(trackid=nil)
           @TrackId = trackid
         end
@@ -322,7 +322,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -338,7 +338,7 @@ module TencentCloud
         # @type AuditName: String
 
         attr_accessor :AuditName
-        
+
         def initialize(auditname=nil)
           @AuditName = auditname
         end
@@ -380,7 +380,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :KeyId, :AuditStatus, :AuditName, :CosRegion, :CmqQueueName, :KmsAlias, :KmsRegion, :IsEnableKmsEncry, :CosBucketName, :CmqRegion, :LogFilePrefix, :RequestId
-        
+
         def initialize(isenablecmqnotify=nil, readwriteattribute=nil, keyid=nil, auditstatus=nil, auditname=nil, cosregion=nil, cmqqueuename=nil, kmsalias=nil, kmsregion=nil, isenablekmsencry=nil, cosbucketname=nil, cmqregion=nil, logfileprefix=nil, requestid=nil)
           @IsEnableCmqNotify = isenablecmqnotify
           @ReadWriteAttribute = readwriteattribute
@@ -422,7 +422,7 @@ module TencentCloud
         # @type TrackId: Integer
 
         attr_accessor :TrackId
-        
+
         def initialize(trackid=nil)
           @TrackId = trackid
         end
@@ -455,7 +455,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackForAllMembers, :RequestId
-        
+
         def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackforallmembers=nil, requestid=nil)
           @Name = name
           @ActionType = actiontype
@@ -492,7 +492,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :PageNumber, :PageSize
-        
+
         def initialize(pagenumber=nil, pagesize=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -514,7 +514,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Tracks, :TotalCount, :RequestId
-        
+
         def initialize(tracks=nil, totalcount=nil, requestid=nil)
           @Tracks = tracks
           @TotalCount = totalcount
@@ -551,7 +551,7 @@ module TencentCloud
         # @type IsReturnLocation: Integer
 
         attr_accessor :StartTime, :EndTime, :NextToken, :MaxResults, :LookupAttributes, :IsReturnLocation
-        
+
         def initialize(starttime=nil, endtime=nil, nexttoken=nil, maxresults=nil, lookupattributes=nil, isreturnlocation=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -594,7 +594,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ListOver, :NextToken, :Events, :TotalCount, :RequestId
-        
+
         def initialize(listover=nil, nexttoken=nil, events=nil, totalcount=nil, requestid=nil)
           @ListOver = listover
           @NextToken = nexttoken
@@ -659,7 +659,7 @@ module TencentCloud
         # @type Location: String
 
         attr_accessor :EventId, :Username, :EventTime, :CloudAuditEvent, :ResourceTypeCn, :ErrorCode, :EventName, :SecretId, :EventSource, :RequestID, :ResourceRegion, :AccountID, :SourceIPAddress, :EventNameCn, :Resources, :EventRegion, :Location
-        
+
         def initialize(eventid=nil, username=nil, eventtime=nil, cloudauditevent=nil, resourcetypecn=nil, errorcode=nil, eventname=nil, secretid=nil, eventsource=nil, requestid=nil, resourceregion=nil, accountid=nil, sourceipaddress=nil, eventnamecn=nil, resources=nil, eventregion=nil, location=nil)
           @EventId = eventid
           @Username = username
@@ -710,7 +710,7 @@ module TencentCloud
         # @type WebsiteType: String
 
         attr_accessor :WebsiteType
-        
+
         def initialize(websitetype=nil)
           @WebsiteType = websitetype
         end
@@ -728,7 +728,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AttributeKeyDetails, :RequestId
-        
+
         def initialize(attributekeydetails=nil, requestid=nil)
           @AttributeKeyDetails = attributekeydetails
           @RequestId = requestid
@@ -750,7 +750,7 @@ module TencentCloud
       # InquireAuditCredit请求参数结构体
       class InquireAuditCreditRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -766,7 +766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuditAmount, :RequestId
-        
+
         def initialize(auditamount=nil, requestid=nil)
           @AuditAmount = auditamount
           @RequestId = requestid
@@ -786,7 +786,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :Alias, :KeyId
-        
+
         def initialize(_alias=nil, keyid=nil)
           @Alias = _alias
           @KeyId = keyid
@@ -801,7 +801,7 @@ module TencentCloud
       # ListAudits请求参数结构体
       class ListAuditsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -818,7 +818,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuditSummarys, :RequestId
-        
+
         def initialize(auditsummarys=nil, requestid=nil)
           @AuditSummarys = auditsummarys
           @RequestId = requestid
@@ -843,7 +843,7 @@ module TencentCloud
         # @type WebsiteType: String
 
         attr_accessor :WebsiteType
-        
+
         def initialize(websitetype=nil)
           @WebsiteType = websitetype
         end
@@ -861,7 +861,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnableRegions, :RequestId
-        
+
         def initialize(enableregions=nil, requestid=nil)
           @EnableRegions = enableregions
           @RequestId = requestid
@@ -886,7 +886,7 @@ module TencentCloud
         # @type WebsiteType: String
 
         attr_accessor :WebsiteType
-        
+
         def initialize(websitetype=nil)
           @WebsiteType = websitetype
         end
@@ -904,7 +904,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnableRegions, :RequestId
-        
+
         def initialize(enableregions=nil, requestid=nil)
           @EnableRegions = enableregions
           @RequestId = requestid
@@ -933,7 +933,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :KmsRegion, :Limit, :Offset
-        
+
         def initialize(kmsregion=nil, limit=nil, offset=nil)
           @KmsRegion = kmsregion
           @Limit = limit
@@ -957,7 +957,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KeyMetadatas, :RequestId
-        
+
         def initialize(totalcount=nil, keymetadatas=nil, requestid=nil)
           @TotalCount = totalcount
           @KeyMetadatas = keymetadatas
@@ -994,7 +994,7 @@ module TencentCloud
         # @type Mode: String
 
         attr_accessor :StartTime, :EndTime, :LookupAttributes, :NextToken, :MaxResults, :Mode
-        
+
         def initialize(starttime=nil, endtime=nil, lookupattributes=nil, nexttoken=nil, maxresults=nil, mode=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1036,7 +1036,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextToken, :Events, :ListOver, :RequestId
-        
+
         def initialize(nexttoken=nil, events=nil, listover=nil, requestid=nil)
           @NextToken = nexttoken
           @Events = events
@@ -1067,7 +1067,7 @@ module TencentCloud
         # @type AttributeValue: String
 
         attr_accessor :AttributeKey, :AttributeValue
-        
+
         def initialize(attributekey=nil, attributevalue=nil)
           @AttributeKey = attributekey
           @AttributeValue = attributevalue
@@ -1099,7 +1099,7 @@ module TencentCloud
         # @type TrackForAllMembers: Integer
 
         attr_accessor :TrackId, :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
-        
+
         def initialize(trackid=nil, name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, trackforallmembers=nil)
           @TrackId = trackid
           @Name = name
@@ -1132,7 +1132,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type ResourceName: String
 
         attr_accessor :ResourceType, :ResourceName
-        
+
         def initialize(resourcetype=nil, resourcename=nil)
           @ResourceType = resourcetype
           @ResourceName = resourcename
@@ -1168,7 +1168,7 @@ module TencentCloud
         # @type AuditName: String
 
         attr_accessor :AuditName
-        
+
         def initialize(auditname=nil)
           @AuditName = auditname
         end
@@ -1186,7 +1186,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
-        
+
         def initialize(issuccess=nil, requestid=nil)
           @IsSuccess = issuccess
           @RequestId = requestid
@@ -1204,7 +1204,7 @@ module TencentCloud
         # @type AuditName: String
 
         attr_accessor :AuditName
-        
+
         def initialize(auditname=nil)
           @AuditName = auditname
         end
@@ -1222,7 +1222,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
-        
+
         def initialize(issuccess=nil, requestid=nil)
           @IsSuccess = issuccess
           @RequestId = requestid
@@ -1246,7 +1246,7 @@ module TencentCloud
         # @type StoragePrefix: String
 
         attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix
-        
+
         def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil)
           @StorageType = storagetype
           @StorageRegion = storageregion
@@ -1282,7 +1282,7 @@ module TencentCloud
         # @type TrackId: Integer
 
         attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackId
-        
+
         def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackid=nil)
           @Name = name
           @ActionType = actiontype
@@ -1339,7 +1339,7 @@ module TencentCloud
         # @type IsCreateNewQueue: Integer
 
         attr_accessor :AuditName, :IsEnableCmqNotify, :ReadWriteAttribute, :KeyId, :CosRegion, :CmqQueueName, :IsCreateNewBucket, :KmsRegion, :IsEnableKmsEncry, :CosBucketName, :CmqRegion, :LogFilePrefix, :IsCreateNewQueue
-        
+
         def initialize(auditname=nil, isenablecmqnotify=nil, readwriteattribute=nil, keyid=nil, cosregion=nil, cmqqueuename=nil, iscreatenewbucket=nil, kmsregion=nil, isenablekmsencry=nil, cosbucketname=nil, cmqregion=nil, logfileprefix=nil, iscreatenewqueue=nil)
           @AuditName = auditname
           @IsEnableCmqNotify = isenablecmqnotify
@@ -1381,7 +1381,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
-        
+
         def initialize(issuccess=nil, requestid=nil)
           @IsSuccess = issuccess
           @RequestId = requestid

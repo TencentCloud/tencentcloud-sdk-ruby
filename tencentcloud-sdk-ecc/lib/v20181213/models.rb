@@ -27,7 +27,7 @@ module TencentCloud
         # @type Percentage: Float
 
         attr_accessor :Name, :Score, :Percentage
-        
+
         def initialize(name=nil, score=nil, percentage=nil)
           @Name = name
           @Score = score
@@ -56,7 +56,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :Content, :CorrectData, :TaskId, :SessionId
-        
+
         def initialize(content=nil, correctdata=nil, taskid=nil, sessionid=nil)
           @Content = content
           @CorrectData = correctdata
@@ -87,7 +87,7 @@ module TencentCloud
         # @type SentenceComments: Array
 
         attr_accessor :Score, :ScoreCat, :Comment, :SentenceComments
-        
+
         def initialize(score=nil, scorecat=nil, comment=nil, sentencecomments=nil)
           @Score = score
           @ScoreCat = scorecat
@@ -139,7 +139,7 @@ module TencentCloud
         # @type IsAsync: Integer
 
         attr_accessor :Image, :InputType, :EccAppid, :SessionId, :ServerType, :Title, :Grade, :Requirement, :ModelTitle, :ModelContent, :IsAsync
-        
+
         def initialize(image=nil, inputtype=nil, eccappid=nil, sessionid=nil, servertype=nil, title=nil, grade=nil, requirement=nil, modeltitle=nil, modelcontent=nil, isasync=nil)
           @Image = image
           @InputType = inputtype
@@ -177,7 +177,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -200,7 +200,7 @@ module TencentCloud
         # @type EccAppid: String
 
         attr_accessor :TaskId, :EccAppid
-        
+
         def initialize(taskid=nil, eccappid=nil)
           @TaskId = taskid
           @EccAppid = eccappid
@@ -226,7 +226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Content, :CorrectData, :Status, :RequestId
-        
+
         def initialize(content=nil, correctdata=nil, status=nil, requestid=nil)
           @Content = content
           @CorrectData = correctdata
@@ -267,7 +267,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :Content, :Title, :Grade, :Requirement, :ModelTitle, :ModelContent, :EccAppid, :IsAsync, :SessionId
-        
+
         def initialize(content=nil, title=nil, grade=nil, requirement=nil, modeltitle=nil, modelcontent=nil, eccappid=nil, isasync=nil, sessionid=nil)
           @Content = content
           @Title = title
@@ -305,7 +305,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :TaskId, :RequestId
-        
+
         def initialize(data=nil, taskid=nil, requestid=nil)
           @Data = data
           @TaskId = taskid
@@ -348,7 +348,7 @@ module TencentCloud
         # @type IsAsync: Integer
 
         attr_accessor :Image, :InputType, :EccAppid, :SessionId, :ServerType, :Title, :Grade, :Requirement, :ModelTitle, :ModelContent, :IsAsync
-        
+
         def initialize(image=nil, inputtype=nil, eccappid=nil, sessionid=nil, servertype=nil, title=nil, grade=nil, requirement=nil, modeltitle=nil, modelcontent=nil, isasync=nil)
           @Image = image
           @InputType = inputtype
@@ -386,7 +386,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -407,7 +407,7 @@ module TencentCloud
         # @type Coordinate: Array
 
         attr_accessor :Coordinate
-        
+
         def initialize(coordinate=nil)
           @Coordinate = coordinate
         end
@@ -433,7 +433,7 @@ module TencentCloud
         # @type Percentage: Float
 
         attr_accessor :Words, :Sentences, :Structure, :Content, :Score, :Percentage
-        
+
         def initialize(words=nil, sentences=nil, structure=nil, content=nil, score=nil, percentage=nil)
           @Words = words
           @Sentences = sentences
@@ -473,7 +473,7 @@ module TencentCloud
         # @type Sentence: :class:`Tencentcloud::Ecc.v20181213.models.SentenceItem`
 
         attr_accessor :Suggestions, :Sentence
-        
+
         def initialize(suggestions=nil, sentence=nil)
           @Suggestions = suggestions
           @Sentence = sentence
@@ -505,7 +505,7 @@ module TencentCloud
         # @type SentenceID: Integer
 
         attr_accessor :Sentence, :ParaID, :SentenceID
-        
+
         def initialize(sentence=nil, paraid=nil, sentenceid=nil)
           @Sentence = sentence
           @ParaID = paraid
@@ -537,7 +537,7 @@ module TencentCloud
         # @type ErrorCoordinates: Array
 
         attr_accessor :Type, :ErrorType, :Origin, :Replace, :Message, :ErrorPosition, :ErrorCoordinates
-        
+
         def initialize(type=nil, errortype=nil, origin=nil, replace=nil, message=nil, errorposition=nil, errorcoordinates=nil)
           @Type = type
           @ErrorType = errortype

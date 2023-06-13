@@ -32,7 +32,7 @@ module TencentCloud
         # @type Protocol: String
 
         attr_accessor :ServiceId, :ServiceName, :Domain, :CertId, :Protocol
-        
+
         def initialize(serviceid=nil, servicename=nil, domain=nil, certid=nil, protocol=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
@@ -66,9 +66,9 @@ module TencentCloud
         # @type ContactPhone: String
         # @param ValidityPeriod: 有效期，默认12个月，目前仅支持12个月。
         # @type ValidityPeriod: String
-        # @param CsrEncryptAlgo: 加密算法，仅支持 RSA。
+        # @param CsrEncryptAlgo: 加密算法，支持 RSA及ECC。
         # @type CsrEncryptAlgo: String
-        # @param CsrKeyParameter: 密钥对参数，仅支持2048。
+        # @param CsrKeyParameter: 密钥对参数，RSA仅支持2048。ECC仅支持prime256v1
         # @type CsrKeyParameter: String
         # @param CsrKeyPassword: CSR 的加密密码。
         # @type CsrKeyPassword: String
@@ -82,7 +82,7 @@ module TencentCloud
         # @type DeleteDnsAutoRecord: Boolean
 
         attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId, :DeleteDnsAutoRecord
-        
+
         def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil, deletednsautorecord=nil)
           @DvAuthMethod = dvauthmethod
           @DomainName = domainname
@@ -126,7 +126,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -144,7 +144,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -162,7 +162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -184,7 +184,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Domain, :CertId, :Status
-        
+
         def initialize(domain=nil, certid=nil, status=nil)
           @Domain = domain
           @CertId = certid
@@ -213,7 +213,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :CertId, :RenewCertId, :ResourceType, :CreateTime
-        
+
         def initialize(certid=nil, renewcertid=nil, resourcetype=nil, createtime=nil)
           @CertId = certid
           @RenewCertId = renewcertid
@@ -237,7 +237,7 @@ module TencentCloud
         # @type DnsNames: Array
 
         attr_accessor :CertId, :DnsNames
-        
+
         def initialize(certid=nil, dnsnames=nil)
           @CertId = certid
           @DnsNames = dnsnames
@@ -271,7 +271,7 @@ module TencentCloud
         # @type SMCert: Integer
 
         attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert
-        
+
         def initialize(domainnumber=nil, origincertificateid=nil, replacedby=nil, replacedfor=nil, reneworder=nil, smcert=nil)
           @DomainNumber = domainnumber
           @OriginCertificateId = origincertificateid
@@ -411,7 +411,7 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
 
         attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag
-        
+
         def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
@@ -517,7 +517,7 @@ module TencentCloud
         # @type CertificateChain: String
 
         attr_accessor :CertificateChain
-        
+
         def initialize(certificatechain=nil)
           @CertificateChain = certificatechain
         end
@@ -539,7 +539,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsValid, :IsTrustedCA, :Chains, :RequestId
-        
+
         def initialize(isvalid=nil, istrustedca=nil, chains=nil, requestid=nil)
           @IsValid = isvalid
           @IsTrustedCA = istrustedca
@@ -566,7 +566,7 @@ module TencentCloud
         # @type Listeners: Array
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :Listeners
-        
+
         def initialize(loadbalancerid=nil, loadbalancername=nil, listeners=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
@@ -608,7 +608,7 @@ module TencentCloud
         # @type NoMatchDomains: Array
 
         attr_accessor :ListenerId, :ListenerName, :SniSwitch, :Protocol, :Certificate, :Rules, :NoMatchDomains
-        
+
         def initialize(listenerid=nil, listenername=nil, sniswitch=nil, protocol=nil, certificate=nil, rules=nil, nomatchdomains=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -656,7 +656,7 @@ module TencentCloud
         # @type NoMatchDomains: Array
 
         attr_accessor :LocationId, :Domain, :IsMatch, :Certificate, :NoMatchDomains
-        
+
         def initialize(locationid=nil, domain=nil, ismatch=nil, certificate=nil, nomatchdomains=nil)
           @LocationId = locationid
           @Domain = domain
@@ -685,7 +685,7 @@ module TencentCloud
         # @type VerifyType: String
 
         attr_accessor :CertificateId, :VerifyType
-        
+
         def initialize(certificateid=nil, verifytype=nil)
           @CertificateId = certificateid
           @VerifyType = verifytype
@@ -707,7 +707,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderId, :Status, :RequestId
-        
+
         def initialize(orderid=nil, status=nil, requestid=nil)
           @OrderId = orderid
           @Status = status
@@ -745,7 +745,7 @@ module TencentCloud
         # @type IdNumber: String
 
         attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone, :IdType, :IdNumber
-        
+
         def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil, idtype=nil, idnumber=nil)
           @CompanyName = companyname
           @CompanyId = companyid
@@ -777,7 +777,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -795,7 +795,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -825,7 +825,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Domain, :CertId, :Status, :Bucket, :Region
-        
+
         def initialize(domain=nil, certid=nil, status=nil, bucket=nil, region=nil)
           @Domain = domain
           @CertId = certid
@@ -881,7 +881,7 @@ module TencentCloud
         # @type VerifyType: String
 
         attr_accessor :ProductPid, :PackageIds, :DomainCount, :Period, :OldCertificateId, :RenewGenCsrMethod, :RenewCsr, :RenewAlgorithmType, :RenewAlgorithmParam, :ProjectId, :Tags, :RenewKeyPass, :DomainNames, :CertificateCount, :ManagerId, :CompanyId, :VerifyType
-        
+
         def initialize(productpid=nil, packageids=nil, domaincount=nil, period=nil, oldcertificateid=nil, renewgencsrmethod=nil, renewcsr=nil, renewalgorithmtype=nil, renewalgorithmparam=nil, projectid=nil, tags=nil, renewkeypass=nil, domainnames=nil, certificatecount=nil, managerid=nil, companyid=nil, verifytype=nil)
           @ProductPid = productpid
           @PackageIds = packageids
@@ -940,7 +940,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :CertificateIds, :RequestId
-        
+
         def initialize(certificateid=nil, certificateids=nil, requestid=nil)
           @CertificateId = certificateid
           @CertificateIds = certificateids
@@ -964,7 +964,7 @@ module TencentCloud
         # @type TimeSpan: Integer
 
         attr_accessor :ProductId, :DomainNum, :TimeSpan
-        
+
         def initialize(productid=nil, domainnum=nil, timespan=nil)
           @ProductId = productid
           @DomainNum = domainnum
@@ -988,7 +988,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateIds, :DealIds, :RequestId
-        
+
         def initialize(certificateids=nil, dealids=nil, requestid=nil)
           @CertificateIds = certificateids
           @DealIds = dealids
@@ -1017,7 +1017,7 @@ module TencentCloud
         # @type VirtualPort: String
 
         attr_accessor :Domain, :InstanceId, :Protocol, :CertId, :VirtualPort
-        
+
         def initialize(domain=nil, instanceid=nil, protocol=nil, certid=nil, virtualport=nil)
           @Domain = domain
           @InstanceId = instanceid
@@ -1041,7 +1041,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeleteResult, :RequestId
-        
+
         def initialize(deleteresult=nil, requestid=nil)
           @DeleteResult = deleteresult
           @RequestId = requestid
@@ -1077,7 +1077,7 @@ module TencentCloud
         # @type ManagerId: Integer
 
         attr_accessor :ManagerId
-        
+
         def initialize(managerid=nil)
           @ManagerId = managerid
         end
@@ -1095,7 +1095,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ManagerId, :RequestId
-        
+
         def initialize(managerid=nil, requestid=nil)
           @ManagerId = managerid
           @RequestId = requestid
@@ -1123,7 +1123,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :CertificateId, :InstanceIdList, :ResourceType, :Status
-        
+
         def initialize(certificateid=nil, instanceidlist=nil, resourcetype=nil, status=nil)
           @CertificateId = certificateid
           @InstanceIdList = instanceidlist
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeployRecordId, :DeployStatus, :RequestId
-        
+
         def initialize(deployrecordid=nil, deploystatus=nil, requestid=nil)
           @DeployRecordId = deployrecordid
           @DeployStatus = deploystatus
@@ -1172,7 +1172,7 @@ module TencentCloud
         # @type DeployRecordDetailId: Integer
 
         attr_accessor :DeployRecordId, :DeployRecordDetailId
-        
+
         def initialize(deployrecordid=nil, deployrecorddetailid=nil)
           @DeployRecordId = deployrecordid
           @DeployRecordDetailId = deployrecorddetailid
@@ -1190,7 +1190,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1206,7 +1206,7 @@ module TencentCloud
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId
-        
+
         def initialize(deployrecordid=nil)
           @DeployRecordId = deployrecordid
         end
@@ -1224,7 +1224,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeployRecordId, :RequestId
-        
+
         def initialize(deployrecordid=nil, requestid=nil)
           @DeployRecordId = deployrecordid
           @RequestId = requestid
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type Port: Integer
 
         attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port
-        
+
         def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil)
           @Id = id
           @CertId = certid
@@ -1346,7 +1346,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Id, :CertId, :ResourceType, :Region, :Status, :CreateTime, :UpdateTime
-        
+
         def initialize(id=nil, certid=nil, resourcetype=nil, region=nil, status=nil, createtime=nil, updatetime=nil)
           @Id = id
           @CertId = certid
@@ -1384,7 +1384,7 @@ module TencentCloud
         # @type Resources: Array
 
         attr_accessor :CertificateId, :Count, :Type, :ResourceIds, :Resources
-        
+
         def initialize(certificateid=nil, count=nil, type=nil, resourceids=nil, resources=nil)
           @CertificateId = certificateid
           @Count = count
@@ -1408,7 +1408,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -1544,7 +1544,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :RequestId
-        
+
         def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
@@ -1665,7 +1665,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Offset, :Limit, :StartTime, :EndTime
-        
+
         def initialize(offset=nil, limit=nil, starttime=nil, endtime=nil)
           @Offset = offset
           @Limit = limit
@@ -1694,7 +1694,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AllTotal, :TotalCount, :OperateLogs, :RequestId
-        
+
         def initialize(alltotal=nil, totalcount=nil, operatelogs=nil, requestid=nil)
           @AllTotal = alltotal
           @TotalCount = totalcount
@@ -1723,7 +1723,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -1844,7 +1844,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :CAEncryptAlgorithms, :CACommonNames, :CAEndTimes, :RequestId
-        
+
         def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, caencryptalgorithms=nil, cacommonnames=nil, caendtimes=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
@@ -1970,7 +1970,7 @@ module TencentCloud
         # @type FilterExpiring: Integer
 
         attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring
-        
+
         def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil)
           @Offset = offset
           @Limit = limit
@@ -2016,7 +2016,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Certificates, :RequestId
-        
+
         def initialize(totalcount=nil, certificates=nil, requestid=nil)
           @TotalCount = totalcount
           @Certificates = certificates
@@ -2047,7 +2047,7 @@ module TencentCloud
         # @type CompanyId: Integer
 
         attr_accessor :Offset, :Limit, :CompanyId
-        
+
         def initialize(offset=nil, limit=nil, companyid=nil)
           @Offset = offset
           @Limit = limit
@@ -2071,7 +2071,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Companies, :TotalCount, :RequestId
-        
+
         def initialize(companies=nil, totalcount=nil, requestid=nil)
           @Companies = companies
           @TotalCount = totalcount
@@ -2100,7 +2100,7 @@ module TencentCloud
         # @type ResourceType: String
 
         attr_accessor :CertificateIds, :ResourceType
-        
+
         def initialize(certificateids=nil, resourcetype=nil)
           @CertificateIds = certificateids
           @ResourceType = resourcetype
@@ -2120,7 +2120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeployedResources, :RequestId
-        
+
         def initialize(deployedresources=nil, requestid=nil)
           @DeployedResources = deployedresources
           @RequestId = requestid
@@ -2153,7 +2153,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2189,7 +2189,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -2230,7 +2230,7 @@ module TencentCloud
         # @type AsyncCache: Integer
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2282,7 +2282,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -2327,7 +2327,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :Offset, :Limit, :IsCache, :Filters, :AsyncCache, :OldCertificateId
-        
+
         def initialize(certificateid=nil, offset=nil, limit=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @Offset = offset
@@ -2377,7 +2377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
-        
+
         def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
@@ -2416,7 +2416,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2460,7 +2460,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -2501,7 +2501,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2535,7 +2535,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :RequestId
-        
+
         def initialize(instancelist=nil, requestid=nil)
           @InstanceList = instancelist
           @RequestId = requestid
@@ -2564,7 +2564,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :DeployRecordId, :Offset, :Limit
-        
+
         def initialize(deployrecordid=nil, offset=nil, limit=nil)
           @DeployRecordId = deployrecordid
           @Offset = offset
@@ -2599,7 +2599,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DeployRecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :RequestId
-        
+
         def initialize(totalcount=nil, deployrecorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @DeployRecordDetailList = deployrecorddetaillist
@@ -2638,7 +2638,7 @@ module TencentCloud
         # @type ResourceType: String
 
         attr_accessor :CertificateId, :Offset, :Limit, :ResourceType
-        
+
         def initialize(certificateid=nil, offset=nil, limit=nil, resourcetype=nil)
           @CertificateId = certificateid
           @Offset = offset
@@ -2666,7 +2666,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DeployRecordList, :RequestId
-        
+
         def initialize(totalcount=nil, deployrecordlist=nil, requestid=nil)
           @TotalCount = totalcount
           @DeployRecordList = deployrecordlist
@@ -2699,7 +2699,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2734,7 +2734,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -2769,7 +2769,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2803,7 +2803,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :RequestId
-        
+
         def initialize(instancelist=nil, requestid=nil)
           @InstanceList = instancelist
           @RequestId = requestid
@@ -2836,7 +2836,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -2872,7 +2872,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -2911,7 +2911,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :Offset, :Limit, :IsCache, :Filters, :AsyncCache, :OldCertificateId
-        
+
         def initialize(certificateid=nil, offset=nil, limit=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @Offset = offset
@@ -2961,7 +2961,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InstanceList, :AsyncTotalNum, :AsyncOffset, :AsyncCacheTime, :RequestId
-        
+
         def initialize(totalcount=nil, instancelist=nil, asynctotalnum=nil, asyncoffset=nil, asynccachetime=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
@@ -2992,15 +2992,23 @@ module TencentCloud
       class DescribeHostUpdateRecordDetailRequest < TencentCloud::Common::AbstractModel
         # @param DeployRecordId: 待部署的证书ID
         # @type DeployRecordId: String
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: String
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: String
 
-        attr_accessor :DeployRecordId
-        
-        def initialize(deployrecordid=nil)
+        attr_accessor :DeployRecordId, :Limit, :Offset
+
+        def initialize(deployrecordid=nil, limit=nil, offset=nil)
           @DeployRecordId = deployrecordid
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @DeployRecordId = params['DeployRecordId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -3025,7 +3033,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :RequestId
-        
+
         def initialize(totalcount=nil, recorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @RecordDetailList = recorddetaillist
@@ -3064,7 +3072,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :Offset, :Limit, :CertificateId, :OldCertificateId
-        
+
         def initialize(offset=nil, limit=nil, certificateid=nil, oldcertificateid=nil)
           @Offset = offset
           @Limit = limit
@@ -3092,7 +3100,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DeployRecordList, :RequestId
-        
+
         def initialize(totalcount=nil, deployrecordlist=nil, requestid=nil)
           @TotalCount = totalcount
           @DeployRecordList = deployrecordlist
@@ -3127,7 +3135,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -3164,7 +3172,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalCount, :RequestId
-        
+
         def initialize(instancelist=nil, totalcount=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
@@ -3199,7 +3207,7 @@ module TencentCloud
         # @type OldCertificateId: String
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
-        
+
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -3233,7 +3241,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :RequestId
-        
+
         def initialize(instancelist=nil, requestid=nil)
           @InstanceList = instancelist
           @RequestId = requestid
@@ -3262,7 +3270,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :ManagerId, :Limit, :Offset
-        
+
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
           @Limit = limit
@@ -3322,7 +3330,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :RequestId
-        
+
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, requestid=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
@@ -3405,7 +3413,7 @@ module TencentCloud
         # @type SearchKey: String
 
         attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status, :SearchKey
-        
+
         def initialize(companyid=nil, offset=nil, limit=nil, managername=nil, managermail=nil, status=nil, searchkey=nil)
           @CompanyId = companyid
           @Offset = offset
@@ -3437,7 +3445,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Managers, :TotalCount, :RequestId
-        
+
         def initialize(managers=nil, totalcount=nil, requestid=nil)
           @Managers = managers
           @TotalCount = totalcount
@@ -3476,7 +3484,7 @@ module TencentCloud
         # @type Pid: Integer
 
         attr_accessor :Offset, :Limit, :Status, :ExpireTime, :PackageId, :Type, :Pid
-        
+
         def initialize(offset=nil, limit=nil, status=nil, expiretime=nil, packageid=nil, type=nil, pid=nil)
           @Offset = offset
           @Limit = limit
@@ -3510,7 +3518,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Packages, :TotalCount, :TotalBalance, :RequestId
-        
+
         def initialize(packages=nil, totalcount=nil, totalbalance=nil, requestid=nil)
           @Packages = packages
           @TotalCount = totalcount
@@ -3539,7 +3547,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :CertificateId
-        
+
         def initialize(certificateid=nil)
           @CertificateId = certificateid
         end
@@ -3561,7 +3569,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Content, :ContentType, :RequestId
-        
+
         def initialize(content=nil, contenttype=nil, requestid=nil)
           @Content = content
           @ContentType = contenttype
@@ -3597,7 +3605,7 @@ module TencentCloud
         # @type DvAuths: Array
 
         attr_accessor :DvAuthKey, :DvAuthValue, :DvAuthDomain, :DvAuthPath, :DvAuthKeySubDomain, :DvAuths
-        
+
         def initialize(dvauthkey=nil, dvauthvalue=nil, dvauthdomain=nil, dvauthpath=nil, dvauthkeysubdomain=nil, dvauths=nil)
           @DvAuthKey = dvauthkey
           @DvAuthValue = dvauthvalue
@@ -3646,7 +3654,7 @@ module TencentCloud
         # @type DvAuthVerifyType: String
 
         attr_accessor :DvAuthKey, :DvAuthValue, :DvAuthDomain, :DvAuthPath, :DvAuthSubDomain, :DvAuthVerifyType
-        
+
         def initialize(dvauthkey=nil, dvauthvalue=nil, dvauthdomain=nil, dvauthpath=nil, dvauthsubdomain=nil, dvauthverifytype=nil)
           @DvAuthKey = dvauthkey
           @DvAuthValue = dvauthvalue
@@ -3674,7 +3682,7 @@ module TencentCloud
         # @type FilterValue: String
 
         attr_accessor :FilterKey, :FilterValue
-        
+
         def initialize(filterkey=nil, filtervalue=nil)
           @FilterKey = filterkey
           @FilterValue = filtervalue
@@ -3694,7 +3702,7 @@ module TencentCloud
         # @type ResourceType: Array
 
         attr_accessor :CertificateId, :ResourceType
-        
+
         def initialize(certificateid=nil, resourcetype=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
@@ -3714,7 +3722,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertHostingInfo, :RequestId
-        
+
         def initialize(certhostinginfo=nil, requestid=nil)
           @CertHostingInfo = certhostinginfo
           @RequestId = requestid
@@ -3741,7 +3749,7 @@ module TencentCloud
         # @type Domain: Array
 
         attr_accessor :InstanceId, :InstanceName, :IP, :Domain
-        
+
         def initialize(instanceid=nil, instancename=nil, ip=nil, domain=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -3770,7 +3778,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Domain, :CertId, :Status
-        
+
         def initialize(domain=nil, certid=nil, status=nil)
           @Domain = domain
           @CertId = certid
@@ -3823,7 +3831,7 @@ module TencentCloud
         # @type StatusInfo: Array
 
         attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime, :StatusInfo
-        
+
         def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil, statusinfo=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
@@ -3871,7 +3879,7 @@ module TencentCloud
       # 管理人的四种审核状态
       class ManagerStatusInfo < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -3887,7 +3895,7 @@ module TencentCloud
         # @type Alias: String
 
         attr_accessor :CertificateId, :Alias
-        
+
         def initialize(certificateid=nil, _alias=nil)
           @CertificateId = certificateid
           @Alias = _alias
@@ -3907,7 +3915,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -3927,7 +3935,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :CertificateIdList, :ProjectId
-        
+
         def initialize(certificateidlist=nil, projectid=nil)
           @CertificateIdList = certificateidlist
           @ProjectId = projectid
@@ -3951,7 +3959,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessCertificates, :FailCertificates, :RequestId
-        
+
         def initialize(successcertificates=nil, failcertificates=nil, requestid=nil)
           @SuccessCertificates = successcertificates
           @FailCertificates = failcertificates
@@ -3973,7 +3981,7 @@ module TencentCloud
         # @type SwitchStatus: Integer
 
         attr_accessor :CertificateIds, :SwitchStatus
-        
+
         def initialize(certificateids=nil, switchstatus=nil)
           @CertificateIds = certificateids
           @SwitchStatus = switchstatus
@@ -3993,7 +4001,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateIds, :RequestId
-        
+
         def initialize(certificateids=nil, requestid=nil)
           @CertificateIds = certificateids
           @RequestId = requestid
@@ -4013,7 +4021,7 @@ module TencentCloud
         # @type CreatedOn: String
 
         attr_accessor :Action, :CreatedOn
-        
+
         def initialize(action=nil, createdon=nil)
           @Action = action
           @CreatedOn = createdon
@@ -4053,7 +4061,7 @@ module TencentCloud
         # @type TransferOutInfos: Array
 
         attr_accessor :PackageId, :Total, :Balance, :Type, :SourceUin, :Status, :ExpireTime, :UpdateTime, :CreateTime, :SourceType, :TransferOutInfos
-        
+
         def initialize(packageid=nil, total=nil, balance=nil, type=nil, sourceuin=nil, status=nil, expiretime=nil, updatetime=nil, createtime=nil, sourcetype=nil, transferoutinfos=nil)
           @PackageId = packageid
           @Total = total
@@ -4117,7 +4125,7 @@ module TencentCloud
         # @type ReceiveTime: String
 
         attr_accessor :PackageId, :TransferCode, :TransferCount, :ReceivePackageId, :ExpireTime, :CreateTime, :UpdateTime, :TransferStatus, :ReceiverUin, :ReceiveTime
-        
+
         def initialize(packageid=nil, transfercode=nil, transfercount=nil, receivepackageid=nil, expiretime=nil, createtime=nil, updatetime=nil, transferstatus=nil, receiveruin=nil, receivetime=nil)
           @PackageId = packageid
           @TransferCode = transfercode
@@ -4158,7 +4166,7 @@ module TencentCloud
         # @type ManagerId: String
 
         attr_accessor :TotalPeriod, :NowPeriod, :ManagerId
-        
+
         def initialize(totalperiod=nil, nowperiod=nil, managerid=nil)
           @TotalPeriod = totalperiod
           @NowPeriod = nowperiod
@@ -4194,7 +4202,7 @@ module TencentCloud
         # @type ProjectId: String
 
         attr_accessor :ProjectName, :ProjectCreatorUin, :ProjectCreateTime, :ProjectResume, :OwnerUin, :ProjectId
-        
+
         def initialize(projectname=nil, projectcreatoruin=nil, projectcreatetime=nil, projectresume=nil, owneruin=nil, projectid=nil)
           @ProjectName = projectname
           @ProjectCreatorUin = projectcreatoruin
@@ -4230,7 +4238,7 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason
-        
+
         def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil)
           @CertificateId = certificateid
           @ValidType = validtype
@@ -4258,7 +4266,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -4278,7 +4286,7 @@ module TencentCloud
         # @type Regions: Array
 
         attr_accessor :ResourceType, :Regions
-        
+
         def initialize(resourcetype=nil, regions=nil)
           @ResourceType = resourcetype
           @Regions = regions
@@ -4298,7 +4306,7 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :CertificateId, :Reason
-        
+
         def initialize(certificateid=nil, reason=nil)
           @CertificateId = certificateid
           @Reason = reason
@@ -4319,7 +4327,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RevokeDomainValidateAuths, :RequestId
-        
+
         def initialize(revokedomainvalidateauths=nil, requestid=nil)
           @RevokeDomainValidateAuths = revokedomainvalidateauths
           @RequestId = requestid
@@ -4354,7 +4362,7 @@ module TencentCloud
         # @type DomainValidateAuthDomain: String
 
         attr_accessor :DomainValidateAuthPath, :DomainValidateAuthKey, :DomainValidateAuthValue, :DomainValidateAuthDomain
-        
+
         def initialize(domainvalidateauthpath=nil, domainvalidateauthkey=nil, domainvalidateauthvalue=nil, domainvalidateauthdomain=nil)
           @DomainValidateAuthPath = domainvalidateauthpath
           @DomainValidateAuthKey = domainvalidateauthkey
@@ -4383,7 +4391,7 @@ module TencentCloud
         # @type Standard: String
 
         attr_accessor :Sign, :Encrypt, :Standard
-        
+
         def initialize(sign=nil, encrypt=nil, standard=nil)
           @Sign = sign
           @Encrypt = encrypt
@@ -4403,7 +4411,7 @@ module TencentCloud
         # @type ManagerId: Integer
 
         attr_accessor :ManagerId
-        
+
         def initialize(managerid=nil)
           @ManagerId = managerid
         end
@@ -4421,7 +4429,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ManagerId, :RequestId
-        
+
         def initialize(managerid=nil, requestid=nil)
           @ManagerId = managerid
           @RequestId = requestid
@@ -4489,7 +4497,7 @@ module TencentCloud
         # @type ContactPosition: String
 
         attr_accessor :CertificateId, :CsrType, :CsrContent, :CertificateDomain, :DomainList, :KeyPassword, :OrganizationName, :OrganizationDivision, :OrganizationAddress, :OrganizationCountry, :OrganizationCity, :OrganizationRegion, :PostalCode, :PhoneAreaCode, :PhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhoneNum, :AdminEmail, :AdminPosition, :ContactFirstName, :ContactLastName, :ContactEmail, :ContactNumber, :ContactPosition
-        
+
         def initialize(certificateid=nil, csrtype=nil, csrcontent=nil, certificatedomain=nil, domainlist=nil, keypassword=nil, organizationname=nil, organizationdivision=nil, organizationaddress=nil, organizationcountry=nil, organizationcity=nil, organizationregion=nil, postalcode=nil, phoneareacode=nil, phonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphonenum=nil, adminemail=nil, adminposition=nil, contactfirstname=nil, contactlastname=nil, contactemail=nil, contactnumber=nil, contactposition=nil)
           @CertificateId = certificateid
           @CsrType = csrtype
@@ -4557,7 +4565,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RequestId
-        
+
         def initialize(certificateid=nil, requestid=nil)
           @CertificateId = certificateid
           @RequestId = requestid
@@ -4648,7 +4656,7 @@ module TencentCloud
         # @type VerifyType: String
 
         attr_accessor :CsrType, :CsrContent, :CertificateDomain, :DomainList, :KeyPassword, :OrganizationName, :OrganizationDivision, :OrganizationAddress, :OrganizationCountry, :OrganizationCity, :OrganizationRegion, :PostalCode, :PhoneAreaCode, :PhoneNumber, :AdminFirstName, :AdminLastName, :AdminPhoneNum, :AdminEmail, :AdminPosition, :ContactFirstName, :ContactLastName, :ContactNumber, :ContactEmail, :ContactPosition, :VerifyType
-        
+
         def initialize(csrtype=nil, csrcontent=nil, certificatedomain=nil, domainlist=nil, keypassword=nil, organizationname=nil, organizationdivision=nil, organizationaddress=nil, organizationcountry=nil, organizationcity=nil, organizationregion=nil, postalcode=nil, phoneareacode=nil, phonenumber=nil, adminfirstname=nil, adminlastname=nil, adminphonenum=nil, adminemail=nil, adminposition=nil, contactfirstname=nil, contactlastname=nil, contactnumber=nil, contactemail=nil, contactposition=nil, verifytype=nil)
           @CsrType = csrtype
           @CsrContent = csrcontent
@@ -4714,7 +4722,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -4739,7 +4747,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Host, :CertId, :ZoneId, :Status
-        
+
         def initialize(host=nil, certid=nil, zoneid=nil, status=nil)
           @Host = host
           @CertId = certid
@@ -4765,7 +4773,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :IngressName, :TlsDomains, :Domains
-        
+
         def initialize(ingressname=nil, tlsdomains=nil, domains=nil)
           @IngressName = ingressname
           @TlsDomains = tlsdomains
@@ -4789,7 +4797,7 @@ module TencentCloud
         # @type NamespaceList: Array
 
         attr_accessor :ClusterId, :ClusterName, :NamespaceList
-        
+
         def initialize(clusterid=nil, clustername=nil, namespacelist=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
@@ -4818,7 +4826,7 @@ module TencentCloud
         # @type SecretList: Array
 
         attr_accessor :Name, :SecretList
-        
+
         def initialize(name=nil, secretlist=nil)
           @Name = name
           @SecretList = secretlist
@@ -4850,7 +4858,7 @@ module TencentCloud
         # @type NoMatchDomains: Array
 
         attr_accessor :Name, :CertId, :IngressList, :NoMatchDomains
-        
+
         def initialize(name=nil, certid=nil, ingresslist=nil, nomatchdomains=nil)
           @Name = name
           @CertId = certid
@@ -4887,7 +4895,7 @@ module TencentCloud
         # @type ResourceTypesRegions: Array
 
         attr_accessor :CertificateId, :OldCertificateId, :ResourceTypes, :Regions, :ResourceTypesRegions
-        
+
         def initialize(certificateid=nil, oldcertificateid=nil, resourcetypes=nil, regions=nil, resourcetypesregions=nil)
           @CertificateId = certificateid
           @OldCertificateId = oldcertificateid
@@ -4923,7 +4931,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeployRecordId, :DeployStatus, :RequestId
-        
+
         def initialize(deployrecordid=nil, deploystatus=nil, requestid=nil)
           @DeployRecordId = deployrecordid
           @DeployStatus = deploystatus
@@ -4945,7 +4953,7 @@ module TencentCloud
         # @type DeployRecordDetailId: Integer
 
         attr_accessor :DeployRecordId, :DeployRecordDetailId
-        
+
         def initialize(deployrecordid=nil, deployrecorddetailid=nil)
           @DeployRecordId = deployrecordid
           @DeployRecordDetailId = deployrecorddetailid
@@ -4963,7 +4971,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4979,7 +4987,7 @@ module TencentCloud
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId
-        
+
         def initialize(deployrecordid=nil)
           @DeployRecordId = deployrecordid
         end
@@ -4997,7 +5005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeployRecordId, :RequestId
-        
+
         def initialize(deployrecordid=nil, requestid=nil)
           @DeployRecordId = deployrecordid
           @RequestId = requestid
@@ -5040,25 +5048,34 @@ module TencentCloud
         # @param InstanceName: 部署实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param ListenerId: 部署监听器ID
+        # @param ListenerId: 部署监听器ID（CLB专用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
-        # @param ListenerName: 部署监听器名称
+        # @param ListenerName: 部署监听器名称（CLB专用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerName: String
         # @param Protocol: 协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
-        # @param SniSwitch: 是否开启SNI
+        # @param SniSwitch: 是否开启SNI（CLB专用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SniSwitch: Integer
-        # @param Bucket: bucket名称
+        # @param Bucket: bucket名称（COS专用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param Namespace: 命名空间（TKE专用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param SecretName: secret名称（TKE专用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket
-        
-        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil)
+        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName
+
+        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -5076,6 +5093,9 @@ module TencentCloud
           @Protocol = protocol
           @SniSwitch = sniswitch
           @Bucket = bucket
+          @Port = port
+          @Namespace = namespace
+          @SecretName = secretname
         end
 
         def deserialize(params)
@@ -5096,6 +5116,9 @@ module TencentCloud
           @Protocol = params['Protocol']
           @SniSwitch = params['SniSwitch']
           @Bucket = params['Bucket']
+          @Port = params['Port']
+          @Namespace = params['Namespace']
+          @SecretName = params['SecretName']
         end
       end
 
@@ -5105,12 +5128,15 @@ module TencentCloud
         # @type ResourceType: String
         # @param List: 部署资源详情列表
         # @type List: Array
+        # @param TotalCount: 该部署资源总数
+        # @type TotalCount: Integer
 
-        attr_accessor :ResourceType, :List
-        
-        def initialize(resourcetype=nil, list=nil)
+        attr_accessor :ResourceType, :List, :TotalCount
+
+        def initialize(resourcetype=nil, list=nil, totalcount=nil)
           @ResourceType = resourcetype
           @List = list
+          @TotalCount = totalcount
         end
 
         def deserialize(params)
@@ -5123,6 +5149,7 @@ module TencentCloud
               @List << updaterecorddetail_tmp
             end
           end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -5147,7 +5174,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Id, :CertId, :OldCertId, :ResourceTypes, :Regions, :Status, :CreateTime, :UpdateTime
-        
+
         def initialize(id=nil, certid=nil, oldcertid=nil, resourcetypes=nil, regions=nil, status=nil, createtime=nil, updatetime=nil)
           @Id = id
           @CertId = certid
@@ -5189,7 +5216,7 @@ module TencentCloud
         # @type Repeatable: Boolean
 
         attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Repeatable
-        
+
         def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, repeatable=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
@@ -5222,7 +5249,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :RepeatCertId, :RequestId
-        
+
         def initialize(certificateid=nil, repeatcertid=nil, requestid=nil)
           @CertificateId = certificateid
           @RepeatCertId = repeatcertid
@@ -5244,7 +5271,7 @@ module TencentCloud
         # @type ConfirmLetter: String
 
         attr_accessor :CertificateId, :ConfirmLetter
-        
+
         def initialize(certificateid=nil, confirmletter=nil)
           @CertificateId = certificateid
           @ConfirmLetter = confirmletter
@@ -5266,7 +5293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :IsSuccess, :RequestId
-        
+
         def initialize(certificateid=nil, issuccess=nil, requestid=nil)
           @CertificateId = certificateid
           @IsSuccess = issuccess
@@ -5288,7 +5315,7 @@ module TencentCloud
         # @type RevokeLetter: String
 
         attr_accessor :CertificateId, :RevokeLetter
-        
+
         def initialize(certificateid=nil, revokeletter=nil)
           @CertificateId = certificateid
           @RevokeLetter = revokeletter
@@ -5310,7 +5337,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateId, :IsSuccess, :RequestId
-        
+
         def initialize(certificateid=nil, issuccess=nil, requestid=nil)
           @CertificateId = certificateid
           @IsSuccess = issuccess
@@ -5330,7 +5357,7 @@ module TencentCloud
         # @type ManagerId: Integer
 
         attr_accessor :ManagerId
-        
+
         def initialize(managerid=nil)
           @ManagerId = managerid
         end
@@ -5348,7 +5375,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ManagerId, :RequestId
-        
+
         def initialize(managerid=nil, requestid=nil)
           @ManagerId = managerid
           @RequestId = requestid
@@ -5368,7 +5395,7 @@ module TencentCloud
         # @type CertId: String
 
         attr_accessor :Domain, :CertId
-        
+
         def initialize(domain=nil, certid=nil)
           @Domain = domain
           @CertId = certid

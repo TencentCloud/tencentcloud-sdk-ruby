@@ -26,7 +26,7 @@ module TencentCloud
         # @type FaceRect: :class:`Tencentcloud::Ft.v20200304.models.FaceRect`
 
         attr_accessor :Age, :FaceRect
-        
+
         def initialize(age=nil, facerect=nil)
           @Age = age
           @FaceRect = facerect
@@ -47,7 +47,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -63,7 +63,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -91,7 +91,7 @@ module TencentCloud
         # @type RspImgType: String
 
         attr_accessor :AgeInfos, :Image, :Url, :RspImgType
-        
+
         def initialize(ageinfos=nil, image=nil, url=nil, rspimgtype=nil)
           @AgeInfos = ageinfos
           @Image = image
@@ -124,7 +124,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
-        
+
         def initialize(resultimage=nil, resulturl=nil, requestid=nil)
           @ResultImage = resultimage
           @ResultUrl = resulturl
@@ -155,7 +155,7 @@ module TencentCloud
         # @type DisableGlobalEffect: String
 
         attr_accessor :Image, :Url, :RspImgType, :DisableGlobalEffect
-        
+
         def initialize(image=nil, url=nil, rspimgtype=nil, disableglobaleffect=nil)
           @Image = image
           @Url = url
@@ -181,7 +181,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
-        
+
         def initialize(resultimage=nil, resulturl=nil, requestid=nil)
           @ResultImage = resultimage
           @ResultUrl = resulturl
@@ -208,7 +208,7 @@ module TencentCloud
         # @type CoverImage: String
 
         attr_accessor :MorphUrl, :MorphMd5, :CoverImage
-        
+
         def initialize(morphurl=nil, morphmd5=nil, coverimage=nil)
           @MorphUrl = morphurl
           @MorphMd5 = morphmd5
@@ -234,7 +234,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :Y, :X, :Width, :Height
-        
+
         def initialize(y=nil, x=nil, width=nil, height=nil)
           @Y = y
           @X = x
@@ -259,7 +259,7 @@ module TencentCloud
         # @type FaceRect: :class:`Tencentcloud::Ft.v20200304.models.FaceRect`
 
         attr_accessor :Gender, :FaceRect
-        
+
         def initialize(gender=nil, facerect=nil)
           @Gender = gender
           @FaceRect = facerect
@@ -282,7 +282,7 @@ module TencentCloud
         # @type MorphTime: Float
 
         attr_accessor :Tempo, :MorphTime
-        
+
         def initialize(tempo=nil, morphtime=nil)
           @Tempo = tempo
           @MorphTime = morphtime
@@ -321,7 +321,7 @@ module TencentCloud
         # @type OutputHeight: Integer
 
         attr_accessor :Images, :Urls, :GradientInfos, :Fps, :OutputType, :OutputWidth, :OutputHeight
-        
+
         def initialize(images=nil, urls=nil, gradientinfos=nil, fps=nil, outputtype=nil, outputwidth=nil, outputheight=nil)
           @Images = images
           @Urls = urls
@@ -360,7 +360,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :EstimatedProcessTime, :RequestId
-        
+
         def initialize(jobid=nil, estimatedprocesstime=nil, requestid=nil)
           @JobId = jobid
           @EstimatedProcessTime = estimatedprocesstime
@@ -380,7 +380,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -404,7 +404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobStatus, :FaceMorphOutput, :JobStatusCode, :RequestId
-        
+
         def initialize(jobstatus=nil, facemorphoutput=nil, jobstatuscode=nil, requestid=nil)
           @JobStatus = jobstatus
           @FaceMorphOutput = facemorphoutput
@@ -441,7 +441,7 @@ module TencentCloud
         # @type RspImgType: String
 
         attr_accessor :GenderInfos, :Image, :Url, :RspImgType
-        
+
         def initialize(genderinfos=nil, image=nil, url=nil, rspimgtype=nil)
           @GenderInfos = genderinfos
           @Image = image
@@ -474,7 +474,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
-        
+
         def initialize(resultimage=nil, resulturl=nil, requestid=nil)
           @ResultImage = resultimage
           @ResultUrl = resulturl

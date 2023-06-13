@@ -27,7 +27,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Name, :BankCard, :Encryption
-        
+
         def initialize(name=nil, bankcard=nil, encryption=nil)
           @Name = name
           @BankCard = bankcard
@@ -73,7 +73,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -104,7 +104,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Name, :BankCard, :Phone, :IdCard, :CertType, :Encryption
-        
+
         def initialize(name=nil, bankcard=nil, phone=nil, idcard=nil, certtype=nil, encryption=nil)
           @Name = name
           @BankCard = bankcard
@@ -158,7 +158,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -187,7 +187,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :BankCard, :CertType, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, bankcard=nil, certtype=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -238,7 +238,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -274,7 +274,7 @@ module TencentCloud
         # @type ErrorMessage: String
 
         attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
-        
+
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
           @Seq = seq
@@ -308,7 +308,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :BankCard, :Encryption
-        
+
         def initialize(bankcard=nil, encryption=nil)
           @BankCard = bankcard
           @Encryption = encryption
@@ -343,7 +343,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :AccountBank, :AccountType, :RequestId
-        
+
         def initialize(result=nil, description=nil, accountbank=nil, accounttype=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -367,7 +367,7 @@ module TencentCloud
         # @type EidToken: String
 
         attr_accessor :EidToken
-        
+
         def initialize(eidtoken=nil)
           @EidToken = eidtoken
         end
@@ -389,7 +389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
-        
+
         def initialize(status=nil, requestid=nil)
           @Status = status
           @RequestId = requestid
@@ -433,7 +433,7 @@ module TencentCloud
         # @type IsEncrypt: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :Config, :IsEncrypt
-        
+
         def initialize(imagebase64=nil, imageurl=nil, config=nil, isencrypt=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -491,7 +491,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :Encryption, :RequestId
-        
+
         def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, encryption=nil, requestid=nil)
           @Sim = sim
           @Result = result
@@ -544,7 +544,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Name, :IdCard, :ValidityBegin, :ValidityEnd, :Encryption
-        
+
         def initialize(name=nil, idcard=nil, validitybegin=nil, validityend=nil, encryption=nil)
           @Name = name
           @IdCard = idcard
@@ -585,7 +585,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -609,7 +609,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Name, :Encryption
-        
+
         def initialize(mobile=nil, name=nil, encryption=nil)
           @Mobile = mobile
           @Name = name
@@ -643,7 +643,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -685,7 +685,7 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.RuleIdConfig`
 
         attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions, :Config
-        
+
         def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil, config=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
@@ -739,7 +739,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :BizToken, :RequestId
-        
+
         def initialize(url=nil, biztoken=nil, requestid=nil)
           @Url = url
           @BizToken = biztoken
@@ -808,7 +808,7 @@ module TencentCloud
         # @type LivenessMode: Integer
 
         attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :Errcode, :Errmsg, :Livestatus, :Livemsg, :Comparestatus, :Comparemsg, :CompareLibType, :LivenessMode
-        
+
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, errcode=nil, errmsg=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, comparelibtype=nil, livenessmode=nil)
           @ReqTime = reqtime
           @Seq = seq
@@ -854,7 +854,7 @@ module TencentCloud
         # @type BestFrames: Array
 
         attr_accessor :BestFrame, :BestFrames
-        
+
         def initialize(bestframe=nil, bestframes=nil)
           @BestFrame = bestframe
           @BestFrames = bestframes
@@ -907,7 +907,7 @@ module TencentCloud
         # @type BackWarnInfos: Array
 
         attr_accessor :OcrFront, :OcrBack, :ProcessedFrontImage, :ProcessedBackImage, :Avatar, :WarnInfos, :BackWarnInfos
-        
+
         def initialize(ocrfront=nil, ocrback=nil, processedfrontimage=nil, processedbackimage=nil, avatar=nil, warninfos=nil, backwarninfos=nil)
           @OcrFront = ocrfront
           @OcrBack = ocrback
@@ -1033,7 +1033,7 @@ module TencentCloud
         # @type VisaNum: String
 
         attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
-        
+
         def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type LivenessVideo: String
 
         attr_accessor :LivenessVideo
-        
+
         def initialize(livenessvideo=nil)
           @LivenessVideo = livenessvideo
         end
@@ -1135,7 +1135,7 @@ module TencentCloud
         # @type UserInfo: String
 
         attr_accessor :EidCode, :EidSign, :DesKey, :UserInfo
-        
+
         def initialize(eidcode=nil, eidsign=nil, deskey=nil, userinfo=nil)
           @EidCode = eidcode
           @EidSign = eidsign
@@ -1167,7 +1167,7 @@ module TencentCloud
         # @type EncryptionMode: String
 
         attr_accessor :IdCard, :Name, :Phone, :EncryptionMode
-        
+
         def initialize(idcard=nil, name=nil, phone=nil, encryptionmode=nil)
           @IdCard = idcard
           @Name = name
@@ -1205,7 +1205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :ISP, :RequestId
-        
+
         def initialize(result=nil, description=nil, isp=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -1235,7 +1235,7 @@ module TencentCloud
         # @type TagList: Array
 
         attr_accessor :EncryptList, :CiphertextBlob, :Iv, :Algorithm, :TagList
-        
+
         def initialize(encryptlist=nil, ciphertextblob=nil, iv=nil, algorithm=nil, taglist=nil)
           @EncryptList = encryptlist
           @CiphertextBlob = ciphertextblob
@@ -1259,7 +1259,7 @@ module TencentCloud
         # @type ActionType: String
 
         attr_accessor :ActionType
-        
+
         def initialize(actiontype=nil)
           @ActionType = actiontype
         end
@@ -1277,7 +1277,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActionSequence, :RequestId
-        
+
         def initialize(actionsequence=nil, requestid=nil)
           @ActionSequence = actionsequence
           @RequestId = requestid
@@ -1311,7 +1311,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption
-        
+
         def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil)
           @BizToken = biztoken
           @RuleId = ruleid
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
-        
+
         def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
@@ -1422,7 +1422,7 @@ module TencentCloud
         # @type InfoType: String
 
         attr_accessor :BizToken, :RuleId, :InfoType
-        
+
         def initialize(biztoken=nil, ruleid=nil, infotype=nil)
           @BizToken = biztoken
           @RuleId = ruleid
@@ -1492,7 +1492,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DetectInfo, :RequestId
-        
+
         def initialize(detectinfo=nil, requestid=nil)
           @DetectInfo = detectinfo
           @RequestId = requestid
@@ -1516,7 +1516,7 @@ module TencentCloud
         # @type BestFramesCount: Integer
 
         attr_accessor :EidToken, :InfoType, :BestFramesCount
-        
+
         def initialize(eidtoken=nil, infotype=nil, bestframescount=nil)
           @EidToken = eidtoken
           @InfoType = infotype
@@ -1554,7 +1554,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
-        
+
         def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
@@ -1618,7 +1618,7 @@ module TencentCloud
         # @type IsSupportHMTResidentPermitOCR: Boolean
 
         attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR
-        
+
         def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
@@ -1666,7 +1666,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config, :RedirectUrl, :Encryption
-        
+
         def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil, redirecturl=nil, encryption=nil)
           @MerchantId = merchantid
           @IdCard = idcard
@@ -1705,7 +1705,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EidToken, :Url, :RequestId
-        
+
         def initialize(eidtoken=nil, url=nil, requestid=nil)
           @EidToken = eidtoken
           @Url = url
@@ -1729,7 +1729,7 @@ module TencentCloud
         # @type IsNeedBestFrame: Boolean
 
         attr_accessor :FaceIdToken, :IsNeedVideo, :IsNeedBestFrame
-        
+
         def initialize(faceidtoken=nil, isneedvideo=nil, isneedbestframe=nil)
           @FaceIdToken = faceidtoken
           @IsNeedVideo = isneedvideo
@@ -1781,7 +1781,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :DeviceInfoTag, :RiskInfoTag, :RequestId
-        
+
         def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, deviceinfotag=nil, riskinfotag=nil, requestid=nil)
           @IdCard = idcard
           @Name = name
@@ -1833,7 +1833,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption
-        
+
         def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil)
           @CompareLib = comparelib
           @IdCard = idcard
@@ -1868,7 +1868,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceIdToken, :RequestId
-        
+
         def initialize(faceidtoken=nil, requestid=nil)
           @FaceIdToken = faceidtoken
           @RequestId = requestid
@@ -1883,7 +1883,7 @@ module TencentCloud
       # GetLiveCode请求参数结构体
       class GetLiveCodeRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LiveCode, :RequestId
-        
+
         def initialize(livecode=nil, requestid=nil)
           @LiveCode = livecode
           @RequestId = requestid
@@ -1921,7 +1921,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :Date, :Cursor, :RuleId
-        
+
         def initialize(date=nil, cursor=nil, ruleid=nil)
           @Date = date
           @Cursor = cursor
@@ -1947,7 +1947,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HasNextPage, :NextCursor, :WeChatBillDetails, :RequestId
-        
+
         def initialize(hasnextpage=nil, nextcursor=nil, wechatbilldetails=nil, requestid=nil)
           @HasNextPage = hasnextpage
           @NextCursor = nextcursor
@@ -1991,7 +1991,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :ImageBase64, :ImageUrl, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, imagebase64=nil, imageurl=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -2048,7 +2048,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :Name, :IdCard, :Sex, :Nation, :Birth, :Address, :RequestId
-        
+
         def initialize(result=nil, description=nil, name=nil, idcard=nil, sex=nil, nation=nil, birth=nil, address=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -2084,7 +2084,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -2121,7 +2121,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -2151,7 +2151,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :ImageBase64, :Optional, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -2184,7 +2184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Sim, :Result, :Description, :RequestId
-        
+
         def initialize(sim=nil, result=nil, description=nil, requestid=nil)
           @Sim = sim
           @Result = result
@@ -2208,7 +2208,7 @@ module TencentCloud
         # @type Answers: Array
 
         attr_accessor :Question, :Answers
-        
+
         def initialize(question=nil, answers=nil)
           @Question = question
           @Answers = answers
@@ -2269,7 +2269,7 @@ module TencentCloud
         # @type FinalResultCode: String
 
         attr_accessor :FinalResultDetailCode, :FinalResultMessage, :Video, :ScreenShot, :ResultCode, :AsrResult, :Audios, :FinalResultCode
-        
+
         def initialize(finalresultdetailcode=nil, finalresultmessage=nil, video=nil, screenshot=nil, resultcode=nil, asrresult=nil, audios=nil, finalresultcode=nil)
           @FinalResultDetailCode = finalresultdetailcode
           @FinalResultMessage = finalresultmessage
@@ -2315,7 +2315,7 @@ module TencentCloud
         # @type AsrResultSimilarity: String
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
-        
+
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
           @AsrResult = asrresult
@@ -2375,7 +2375,7 @@ module TencentCloud
         # @type VideoUrl: String
 
         attr_accessor :LivenessType, :ImageBase64, :ImageUrl, :ValidateData, :Optional, :VideoBase64, :VideoUrl
-        
+
         def initialize(livenesstype=nil, imagebase64=nil, imageurl=nil, validatedata=nil, optional=nil, videobase64=nil, videourl=nil)
           @LivenessType = livenesstype
           @ImageBase64 = imagebase64
@@ -2415,7 +2415,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BestFrameBase64, :Sim, :Result, :Description, :BestFrameList, :RequestId
-        
+
         def initialize(bestframebase64=nil, sim=nil, result=nil, description=nil, bestframelist=nil, requestid=nil)
           @BestFrameBase64 = bestframebase64
           @Sim = sim
@@ -2466,7 +2466,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :LivenessType, :VideoBase64, :VideoUrl, :ValidateData, :Optional, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, livenesstype=nil, videobase64=nil, videourl=nil, validatedata=nil, optional=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -2511,7 +2511,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BestFrameBase64, :Sim, :Result, :Description, :BestFrameList, :RequestId
-        
+
         def initialize(bestframebase64=nil, sim=nil, result=nil, description=nil, bestframelist=nil, requestid=nil)
           @BestFrameBase64 = bestframebase64
           @Sim = sim
@@ -2550,7 +2550,7 @@ module TencentCloud
         # @type Optional: String
 
         attr_accessor :VideoBase64, :LivenessType, :ValidateData, :Optional
-        
+
         def initialize(videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil)
           @VideoBase64 = videobase64
           @LivenessType = livenesstype
@@ -2582,7 +2582,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BestFrameBase64, :Result, :Description, :BestFrameList, :RequestId
-        
+
         def initialize(bestframebase64=nil, result=nil, description=nil, bestframelist=nil, requestid=nil)
           @BestFrameBase64 = bestframebase64
           @Result = result
@@ -2618,7 +2618,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Type, :Mobile, :IdCard, :Name, :Encryption
-        
+
         def initialize(type=nil, mobile=nil, idcard=nil, name=nil, encryption=nil)
           @Type = type
           @Mobile = mobile
@@ -2667,7 +2667,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :AgeRange, :RequestId
-        
+
         def initialize(result=nil, description=nil, agerange=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -2691,7 +2691,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Encryption
-        
+
         def initialize(mobile=nil, encryption=nil)
           @Mobile = mobile
           @Encryption = encryption
@@ -2726,7 +2726,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :Range, :RequestId
-        
+
         def initialize(result=nil, description=nil, range=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -2750,7 +2750,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Encryption
-        
+
         def initialize(mobile=nil, encryption=nil)
           @Mobile = mobile
           @Encryption = encryption
@@ -2789,7 +2789,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :StatusCode, :RequestId
-        
+
         def initialize(result=nil, description=nil, statuscode=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -2811,7 +2811,7 @@ module TencentCloud
         # @type ReqId: String
 
         attr_accessor :ReqId
-        
+
         def initialize(reqid=nil)
           @ReqId = reqid
         end
@@ -2889,7 +2889,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultCode, :IdNum, :Name, :Picture, :BirthDate, :BeginTime, :EndTime, :Address, :Nation, :Sex, :IdType, :EnName, :SigningOrganization, :OtherIdNum, :Nationality, :PersonalNumber, :CheckMRTD, :ImageA, :ImageB, :ResultDescription, :RequestId
-        
+
         def initialize(resultcode=nil, idnum=nil, name=nil, picture=nil, birthdate=nil, begintime=nil, endtime=nil, address=nil, nation=nil, sex=nil, idtype=nil, enname=nil, signingorganization=nil, otheridnum=nil, nationality=nil, personalnumber=nil, checkmrtd=nil, imagea=nil, imageb=nil, resultdescription=nil, requestid=nil)
           @ResultCode = resultcode
           @IdNum = idnum
@@ -2951,7 +2951,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -2993,7 +2993,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Isp, :Description, :RequestId
-        
+
         def initialize(result=nil, isp=nil, description=nil, requestid=nil)
           @Result = result
           @Isp = isp
@@ -3021,7 +3021,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -3063,7 +3063,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Isp, :Description, :RequestId
-        
+
         def initialize(result=nil, isp=nil, description=nil, requestid=nil)
           @Result = result
           @Isp = isp
@@ -3091,7 +3091,7 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
-        
+
         def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
@@ -3133,7 +3133,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Isp, :Description, :RequestId
-        
+
         def initialize(result=nil, isp=nil, description=nil, requestid=nil)
           @Result = result
           @Isp = isp
@@ -3165,7 +3165,7 @@ module TencentCloud
         # @type Iv: String
 
         attr_accessor :IdCard, :Name, :Phone, :CiphertextBlob, :EncryptList, :Iv
-        
+
         def initialize(idcard=nil, name=nil, phone=nil, ciphertextblob=nil, encryptlist=nil, iv=nil)
           @IdCard = idcard
           @Name = name
@@ -3207,7 +3207,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :Isp, :RequestId
-        
+
         def initialize(result=nil, description=nil, isp=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -3229,7 +3229,7 @@ module TencentCloud
         # @type IntentionRecognition: Boolean
 
         attr_accessor :IntentionRecognition
-        
+
         def initialize(intentionrecognition=nil)
           @IntentionRecognition = intentionrecognition
         end
@@ -3251,7 +3251,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :BizToken, :ChargeCount, :ChargeDetails, :RuleId
-        
+
         def initialize(biztoken=nil, chargecount=nil, chargedetails=nil, ruleid=nil)
           @BizToken = biztoken
           @ChargeCount = chargecount

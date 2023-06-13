@@ -20,7 +20,7 @@ module TencentCloud
       # DescribeSdkAppid请求参数结构体
       class DescribeSdkAppidRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -36,7 +36,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SdkAppids, :RequestId
-        
+
         def initialize(sdkappids=nil, requestid=nil)
           @SdkAppids = sdkappids
           @RequestId = requestid

@@ -38,7 +38,7 @@ module TencentCloud
         # @type EnvDesc: String
 
         attr_accessor :Name, :EngineResourceSpec, :EngineNodeNum, :StorageCapacity, :VpcId, :SubnetId, :EnvDesc
-        
+
         def initialize(name=nil, engineresourcespec=nil, enginenodenum=nil, storagecapacity=nil, vpcid=nil, subnetid=nil, envdesc=nil)
           @Name = name
           @EngineResourceSpec = engineresourcespec
@@ -72,7 +72,7 @@ module TencentCloud
         # @type SyncMode: String
 
         attr_accessor :BoundClusterId, :BoundClusterType, :SyncMode
-        
+
         def initialize(boundclusterid=nil, boundclustertype=nil, syncmode=nil)
           @BoundClusterId = boundclusterid
           @BoundClusterType = boundclustertype
@@ -109,7 +109,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status
-        
+
         def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
@@ -223,7 +223,7 @@ module TencentCloud
         # @type EngineRegionInfos: Array
 
         attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos
-        
+
         def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil)
           @EngineType = enginetype
           @EngineVersion = engineversion
@@ -295,7 +295,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceId, :RequestId
-        
+
         def initialize(instanceid=nil, requestid=nil)
           @InstanceId = instanceid
           @RequestId = requestid
@@ -313,7 +313,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -329,7 +329,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -351,7 +351,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :GatewayId, :GroupId, :Limit, :Offset
-        
+
         def initialize(gatewayid=nil, groupid=nil, limit=nil, offset=nil)
           @GatewayId = gatewayid
           @GroupId = groupid
@@ -375,7 +375,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -398,7 +398,7 @@ module TencentCloud
         # @type NodeList: Array
 
         attr_accessor :TotalCount, :NodeList
-        
+
         def initialize(totalcount=nil, nodelist=nil)
           @TotalCount = totalcount
           @NodeList = nodelist
@@ -436,7 +436,7 @@ module TencentCloud
         # @type EnableClientInternet: Boolean
 
         attr_accessor :EngineRegion, :Replica, :SpecId, :IntranetVpcInfos, :EnableClientInternet
-        
+
         def initialize(engineregion=nil, replica=nil, specid=nil, intranetvpcinfos=nil, enableclientinternet=nil)
           @EngineRegion = engineregion
           @Replica = replica
@@ -471,7 +471,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
-        
+
         def initialize(instanceid=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Limit = limit
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Replicas, :TotalCount, :RequestId
-        
+
         def initialize(replicas=nil, totalcount=nil, requestid=nil)
           @Replicas = replicas
           @TotalCount = totalcount
@@ -527,7 +527,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
-        
+
         def initialize(instanceid=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Limit = limit
@@ -551,7 +551,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Content, :RequestId
-        
+
         def initialize(totalcount=nil, content=nil, requestid=nil)
           @TotalCount = totalcount
           @Content = content
@@ -586,7 +586,7 @@ module TencentCloud
         # @type EngineRegion: String
 
         attr_accessor :InstanceId, :VpcId, :SubnetId, :Workload, :EngineRegion
-        
+
         def initialize(instanceid=nil, vpcid=nil, subnetid=nil, workload=nil, engineregion=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
@@ -631,7 +631,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :LimiterAddressInfos, :RequestId
-        
+
         def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, limiteraddressinfos=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
@@ -685,7 +685,7 @@ module TencentCloud
         # @type QuerySource: String
 
         attr_accessor :Filters, :Limit, :Offset, :QueryType, :QuerySource
-        
+
         def initialize(filters=nil, limit=nil, offset=nil, querytype=nil, querysource=nil)
           @Filters = filters
           @Limit = limit
@@ -720,7 +720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Content, :RequestId
-        
+
         def initialize(totalcount=nil, content=nil, requestid=nil)
           @TotalCount = totalcount
           @Content = content
@@ -751,7 +751,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
-        
+
         def initialize(instanceid=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Limit = limit
@@ -776,7 +776,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Replicas, :TotalCount, :RequestId
-        
+
         def initialize(replicas=nil, totalcount=nil, requestid=nil)
           @Replicas = replicas
           @TotalCount = totalcount
@@ -807,7 +807,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Limit, :Offset
-        
+
         def initialize(instanceid=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Limit = limit
@@ -831,7 +831,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Content, :RequestId
-        
+
         def initialize(totalcount=nil, content=nil, requestid=nil)
           @TotalCount = totalcount
           @Content = content
@@ -862,7 +862,7 @@ module TencentCloud
         # @type Token: String
 
         attr_accessor :Name, :Password, :Token
-        
+
         def initialize(name=nil, password=nil, token=nil)
           @Name = name
           @Password = password
@@ -886,7 +886,7 @@ module TencentCloud
         # @type VpcInfos: Array
 
         attr_accessor :EngineRegion, :Replica, :VpcInfos
-        
+
         def initialize(engineregion=nil, replica=nil, vpcinfos=nil)
           @EngineRegion = engineregion
           @Replica = replica
@@ -926,7 +926,7 @@ module TencentCloud
         # @type InternetBandWidth: Integer
 
         attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet, :InternetBandWidth
-        
+
         def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil, internetbandwidth=nil)
           @EnvName = envname
           @EnableConfigInternet = enableconfiginternet
@@ -981,7 +981,7 @@ module TencentCloud
         # @type EnableConfigIntranet: Boolean
 
         attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName, :EnvDesc, :ClientBandWidth, :EnableConfigIntranet
-        
+
         def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil, envdesc=nil, clientbandwidth=nil, enableconfigintranet=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
@@ -1034,7 +1034,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1054,7 +1054,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1074,7 +1074,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1108,7 +1108,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :VpcId
-        
+
         def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, vpcid=nil)
           @Name = name
           @Role = role
@@ -1137,7 +1137,7 @@ module TencentCloud
         # @type Interface: String
 
         attr_accessor :Interface
-        
+
         def initialize(interface=nil)
           @Interface = interface
         end
@@ -1154,7 +1154,7 @@ module TencentCloud
         # @type IntranetAddress: String
 
         attr_accessor :IntranetAddress
-        
+
         def initialize(intranetaddress=nil)
           @IntranetAddress = intranetaddress
         end
@@ -1259,7 +1259,7 @@ module TencentCloud
         # @type EnableClientIntranet: Boolean
 
         attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet
-        
+
         def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil)
           @InstanceId = instanceid
           @Name = name
@@ -1388,7 +1388,7 @@ module TencentCloud
         # @type LimiterVpcInfos: Array
 
         attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos
-        
+
         def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
@@ -1450,7 +1450,7 @@ module TencentCloud
         # @type EnableClientInternetAccess: Boolean
 
         attr_accessor :InstanceId, :EngineType, :EnableClientInternetAccess
-        
+
         def initialize(instanceid=nil, enginetype=nil, enableclientinternetaccess=nil)
           @InstanceId = instanceid
           @EngineType = enginetype
@@ -1470,7 +1470,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1491,7 +1491,7 @@ module TencentCloud
         # @type IntranetAddress: String
 
         attr_accessor :VpcId, :SubnetId, :IntranetAddress
-        
+
         def initialize(vpcid=nil, subnetid=nil, intranetaddress=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1530,7 +1530,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :AliasName, :VpcId
-        
+
         def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, aliasname=nil, vpcid=nil)
           @Name = name
           @Role = role
@@ -1561,7 +1561,7 @@ module TencentCloud
         # @type Interface: String
 
         attr_accessor :Interface
-        
+
         def initialize(interface=nil)
           @Interface = interface
         end

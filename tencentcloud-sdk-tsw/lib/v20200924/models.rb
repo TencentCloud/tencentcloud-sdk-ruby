@@ -45,7 +45,7 @@ module TencentCloud
         # @type JaegerPort: String
 
         attr_accessor :Token, :EtlIp, :EtlPort, :ByHandAccess, :ByShellAccess, :SkyWalkingPort, :ZipkinPort, :JaegerPort
-        
+
         def initialize(token=nil, etlip=nil, etlport=nil, byhandaccess=nil, byshellaccess=nil, skywalkingport=nil, zipkinport=nil, jaegerport=nil)
           @Token = token
           @EtlIp = etlip
@@ -72,7 +72,7 @@ module TencentCloud
       # DescribeAgentShell请求参数结构体
       class DescribeAgentShellRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -89,7 +89,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid

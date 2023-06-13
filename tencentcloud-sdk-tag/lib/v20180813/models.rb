@@ -25,7 +25,7 @@ module TencentCloud
         # @type Info: String
 
         attr_accessor :ProjectName, :Info
-        
+
         def initialize(projectname=nil, info=nil)
           @ProjectName = projectname
           @Info = info
@@ -47,7 +47,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProjectId, :IsNew, :RequestId
-        
+
         def initialize(projectid=nil, isnew=nil, requestid=nil)
           @ProjectId = projectid
           @IsNew = isnew
@@ -71,7 +71,7 @@ module TencentCloud
         # @type Resource: String
 
         attr_accessor :TagKey, :TagValue, :Resource
-        
+
         def initialize(tagkey=nil, tagvalue=nil, resource=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -91,7 +91,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -117,7 +117,7 @@ module TencentCloud
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix
-        
+
         def initialize(servicetype=nil, resourceids=nil, tagkey=nil, tagvalue=nil, resourceregion=nil, resourceprefix=nil)
           @ServiceType = servicetype
           @ResourceIds = resourceids
@@ -143,7 +143,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -161,7 +161,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -179,7 +179,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -196,7 +196,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Tags
-        
+
         def initialize(tags=nil)
           @Tags = tags
         end
@@ -219,7 +219,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -237,7 +237,7 @@ module TencentCloud
         # @type Resource: String
 
         attr_accessor :TagKey, :Resource
-        
+
         def initialize(tagkey=nil, resource=nil)
           @TagKey = tagkey
           @Resource = resource
@@ -255,7 +255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -273,7 +273,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -291,7 +291,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -308,7 +308,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Tags
-        
+
         def initialize(tags=nil)
           @Tags = tags
         end
@@ -331,7 +331,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -351,7 +351,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :AllList, :Limit, :Offset
-        
+
         def initialize(alllist=nil, limit=nil, offset=nil)
           @AllList = alllist
           @Limit = limit
@@ -375,7 +375,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Projects, :RequestId
-        
+
         def initialize(total=nil, projects=nil, requestid=nil)
           @Total = total
           @Projects = projects
@@ -412,7 +412,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ServiceType, :ResourcePrefix, :ResourceIds, :ResourceRegion, :Offset, :Limit
-        
+
         def initialize(servicetype=nil, resourceprefix=nil, resourceids=nil, resourceregion=nil, offset=nil, limit=nil)
           @ServiceType = servicetype
           @ResourcePrefix = resourceprefix
@@ -446,7 +446,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -487,7 +487,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ServiceType, :ResourcePrefix, :ResourceIds, :ResourceRegion, :Offset, :Limit
-        
+
         def initialize(servicetype=nil, resourceprefix=nil, resourceids=nil, resourceregion=nil, offset=nil, limit=nil)
           @ServiceType = servicetype
           @ResourcePrefix = resourceprefix
@@ -521,7 +521,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -564,7 +564,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :ServiceType, :ResourcePrefix, :ResourceRegion, :ResourceIds, :TagKeys, :Limit, :Offset
-        
+
         def initialize(servicetype=nil, resourceprefix=nil, resourceregion=nil, resourceids=nil, tagkeys=nil, limit=nil, offset=nil)
           @ServiceType = servicetype
           @ResourcePrefix = resourceprefix
@@ -600,7 +600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Rows, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, rows=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -645,7 +645,7 @@ module TencentCloud
         # @type CosResourceId: Integer
 
         attr_accessor :CreateUin, :ResourceRegion, :ServiceType, :ResourcePrefix, :ResourceId, :Offset, :Limit, :CosResourceId
-        
+
         def initialize(createuin=nil, resourceregion=nil, servicetype=nil, resourceprefix=nil, resourceid=nil, offset=nil, limit=nil, cosresourceid=nil)
           @CreateUin = createuin
           @ResourceRegion = resourceregion
@@ -684,7 +684,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Rows, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, rows=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -729,7 +729,7 @@ module TencentCloud
         # @type ServiceType: String
 
         attr_accessor :TagFilters, :CreateUin, :Offset, :Limit, :ResourcePrefix, :ResourceId, :ResourceRegion, :ServiceType
-        
+
         def initialize(tagfilters=nil, createuin=nil, offset=nil, limit=nil, resourceprefix=nil, resourceid=nil, resourceregion=nil, servicetype=nil)
           @TagFilters = tagfilters
           @CreateUin = createuin
@@ -775,7 +775,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Rows, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, rows=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -820,7 +820,7 @@ module TencentCloud
         # @type ServiceType: String
 
         attr_accessor :TagFilters, :CreateUin, :Offset, :Limit, :ResourcePrefix, :ResourceId, :ResourceRegion, :ServiceType
-        
+
         def initialize(tagfilters=nil, createuin=nil, offset=nil, limit=nil, resourceprefix=nil, resourceid=nil, resourceregion=nil, servicetype=nil)
           @TagFilters = tagfilters
           @CreateUin = createuin
@@ -865,7 +865,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Rows, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, rows=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -902,7 +902,7 @@ module TencentCloud
         # @type ShowProject: Integer
 
         attr_accessor :CreateUin, :Offset, :Limit, :ShowProject
-        
+
         def initialize(createuin=nil, offset=nil, limit=nil, showproject=nil)
           @CreateUin = createuin
           @Offset = offset
@@ -932,7 +932,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -962,7 +962,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :TagKeys, :CreateUin, :Offset, :Limit
-        
+
         def initialize(tagkeys=nil, createuin=nil, offset=nil, limit=nil)
           @TagKeys = tagkeys
           @CreateUin = createuin
@@ -992,7 +992,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -1029,7 +1029,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :TagKeys, :CreateUin, :Offset, :Limit
-        
+
         def initialize(tagkeys=nil, createuin=nil, offset=nil, limit=nil)
           @TagKeys = tagkeys
           @CreateUin = createuin
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -1102,7 +1102,7 @@ module TencentCloud
         # @type ShowProject: Integer
 
         attr_accessor :TagKey, :TagValue, :Offset, :Limit, :CreateUin, :TagKeys, :ShowProject
-        
+
         def initialize(tagkey=nil, tagvalue=nil, offset=nil, limit=nil, createuin=nil, tagkeys=nil, showproject=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1138,7 +1138,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type ShowProject: Integer
 
         attr_accessor :TagKey, :TagValue, :Offset, :Limit, :CreateUin, :TagKeys, :ShowProject
-        
+
         def initialize(tagkey=nil, tagvalue=nil, offset=nil, limit=nil, createuin=nil, tagkeys=nil, showproject=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1217,7 +1217,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Offset, :Limit, :Tags, :RequestId
-        
+
         def initialize(totalcount=nil, offset=nil, limit=nil, tags=nil, requestid=nil)
           @TotalCount = totalcount
           @Offset = offset
@@ -1256,7 +1256,7 @@ module TencentCloud
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :ResourceRegion, :ResourcePrefix
-        
+
         def initialize(servicetype=nil, resourceids=nil, tagkey=nil, resourceregion=nil, resourceprefix=nil)
           @ServiceType = servicetype
           @ResourceIds = resourceids
@@ -1280,7 +1280,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1301,7 +1301,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Resource, :Code, :Message
-        
+
         def initialize(resource=nil, code=nil, message=nil)
           @Resource = resource
           @Code = code
@@ -1335,7 +1335,7 @@ module TencentCloud
         # @type MaxResults: Integer
 
         attr_accessor :ResourceList, :TagFilters, :PaginationToken, :MaxResults
-        
+
         def initialize(resourcelist=nil, tagfilters=nil, paginationtoken=nil, maxresults=nil)
           @ResourceList = resourcelist
           @TagFilters = tagfilters
@@ -1368,7 +1368,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PaginationToken, :ResourceTagMappingList, :RequestId
-        
+
         def initialize(paginationtoken=nil, resourcetagmappinglist=nil, requestid=nil)
           @PaginationToken = paginationtoken
           @ResourceTagMappingList = resourcetagmappinglist
@@ -1399,7 +1399,7 @@ module TencentCloud
         # @type MaxResults: Integer
 
         attr_accessor :PaginationToken, :MaxResults
-        
+
         def initialize(paginationtoken=nil, maxresults=nil)
           @PaginationToken = paginationtoken
           @MaxResults = maxresults
@@ -1421,7 +1421,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PaginationToken, :TagKeys, :RequestId
-        
+
         def initialize(paginationtoken=nil, tagkeys=nil, requestid=nil)
           @PaginationToken = paginationtoken
           @TagKeys = tagkeys
@@ -1449,7 +1449,7 @@ module TencentCloud
         # @type MaxResults: Integer
 
         attr_accessor :TagKeys, :PaginationToken, :MaxResults
-        
+
         def initialize(tagkeys=nil, paginationtoken=nil, maxresults=nil)
           @TagKeys = tagkeys
           @PaginationToken = paginationtoken
@@ -1473,7 +1473,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PaginationToken, :Tags, :RequestId
-        
+
         def initialize(paginationtoken=nil, tags=nil, requestid=nil)
           @PaginationToken = paginationtoken
           @Tags = tags
@@ -1508,7 +1508,7 @@ module TencentCloud
         # @type TagKeys: Array
 
         attr_accessor :PaginationToken, :MaxResults, :TagKeys
-        
+
         def initialize(paginationtoken=nil, maxresults=nil, tagkeys=nil)
           @PaginationToken = paginationtoken
           @MaxResults = maxresults
@@ -1532,7 +1532,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PaginationToken, :Tags, :RequestId
-        
+
         def initialize(paginationtoken=nil, tags=nil, requestid=nil)
           @PaginationToken = paginationtoken
           @Tags = tags
@@ -1563,7 +1563,7 @@ module TencentCloud
         # @type DeleteTags: Array
 
         attr_accessor :Resource, :ReplaceTags, :DeleteTags
-        
+
         def initialize(resource=nil, replacetags=nil, deletetags=nil)
           @Resource = resource
           @ReplaceTags = replacetags
@@ -1597,7 +1597,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1623,7 +1623,7 @@ module TencentCloud
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix
-        
+
         def initialize(servicetype=nil, resourceids=nil, tagkey=nil, tagvalue=nil, resourceregion=nil, resourceprefix=nil)
           @ServiceType = servicetype
           @ResourceIds = resourceids
@@ -1649,7 +1649,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1673,7 +1673,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ProjectId, :ProjectName, :CreatorUin, :ProjectInfo, :CreateTime
-        
+
         def initialize(projectid=nil, projectname=nil, creatoruin=nil, projectinfo=nil, createtime=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1701,7 +1701,7 @@ module TencentCloud
         # @type TagKeyValues: Array
 
         attr_accessor :ResourceId, :TagKeyValues
-        
+
         def initialize(resourceid=nil, tagkeyvalues=nil)
           @ResourceId = resourceid
           @TagKeyValues = tagkeyvalues
@@ -1739,7 +1739,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :ResourceRegion, :ServiceType, :ResourcePrefix, :ResourceId, :Tags
-        
+
         def initialize(resourceregion=nil, servicetype=nil, resourceprefix=nil, resourceid=nil, tags=nil)
           @ResourceRegion = resourceregion
           @ServiceType = servicetype
@@ -1773,7 +1773,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Resource, :Tags
-        
+
         def initialize(resource=nil, tags=nil)
           @Resource = resource
           @Tags = tags
@@ -1800,7 +1800,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1820,7 +1820,7 @@ module TencentCloud
         # @type TagValue: Array
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1838,7 +1838,7 @@ module TencentCloud
         # @type TagKey: String
 
         attr_accessor :TagKey
-        
+
         def initialize(tagkey=nil)
           @TagKey = tagkey
         end
@@ -1865,7 +1865,7 @@ module TencentCloud
         # @type ServiceType: String
 
         attr_accessor :TagKey, :TagValue, :ResourceId, :TagKeyMd5, :TagValueMd5, :ServiceType
-        
+
         def initialize(tagkey=nil, tagvalue=nil, resourceid=nil, tagkeymd5=nil, tagvaluemd5=nil, servicetype=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :ResourceList, :Tags
-        
+
         def initialize(resourcelist=nil, tags=nil)
           @ResourceList = resourcelist
           @Tags = tags
@@ -1928,7 +1928,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedResources, :RequestId
-        
+
         def initialize(failedresources=nil, requestid=nil)
           @FailedResources = failedresources
           @RequestId = requestid
@@ -1957,7 +1957,7 @@ module TencentCloud
         # @type CanDelete: Integer
 
         attr_accessor :TagKey, :TagValue, :CanDelete
-        
+
         def initialize(tagkey=nil, tagvalue=nil, candelete=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1982,7 +1982,7 @@ module TencentCloud
         # @type TagKeys: Array
 
         attr_accessor :ResourceList, :TagKeys
-        
+
         def initialize(resourcelist=nil, tagkeys=nil)
           @ResourceList = resourcelist
           @TagKeys = tagkeys
@@ -2004,7 +2004,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedResources, :RequestId
-        
+
         def initialize(failedresources=nil, requestid=nil)
           @FailedResources = failedresources
           @RequestId = requestid
@@ -2035,7 +2035,7 @@ module TencentCloud
         # @type Info: String
 
         attr_accessor :ProjectId, :ProjectName, :Disable, :Info
-        
+
         def initialize(projectid=nil, projectname=nil, disable=nil, info=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -2057,7 +2057,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2077,7 +2077,7 @@ module TencentCloud
         # @type Resource: String
 
         attr_accessor :TagKey, :TagValue, :Resource
-        
+
         def initialize(tagkey=nil, tagvalue=nil, resource=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2097,7 +2097,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

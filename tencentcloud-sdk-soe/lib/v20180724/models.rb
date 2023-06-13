@@ -76,7 +76,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :IsLongLifeSession, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :TextMode, :Keyword
-        
+
         def initialize(sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, islonglifesession=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, textmode=nil, keyword=nil)
           @SessionId = sessionid
           @RefText = reftext
@@ -118,7 +118,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :RequestId
-        
+
         def initialize(sessionid=nil, requestid=nil)
           @SessionId = sessionid
           @RequestId = requestid
@@ -145,7 +145,7 @@ module TencentCloud
         # @type TextMode: Integer
 
         attr_accessor :RefText, :EvalMode, :ScoreCoeff, :ServerType, :TextMode
-        
+
         def initialize(reftext=nil, evalmode=nil, scorecoeff=nil, servertype=nil, textmode=nil)
           @RefText = reftext
           @EvalMode = evalmode
@@ -194,7 +194,7 @@ module TencentCloud
         # @type IsQuery: Integer
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :Keywords, :SoeAppId, :IsQuery
-        
+
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, keywords=nil, soeappid=nil, isquery=nil)
           @SeqId = seqid
           @IsEnd = isend
@@ -237,7 +237,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeywordScores, :SessionId, :RequestId
-        
+
         def initialize(keywordscores=nil, sessionid=nil, requestid=nil)
           @KeywordScores = keywordscores
           @SessionId = sessionid
@@ -275,7 +275,7 @@ module TencentCloud
         # @type SuggestedScore: Float
 
         attr_accessor :Keyword, :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SuggestedScore
-        
+
         def initialize(keyword=nil, pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, suggestedscore=nil)
           @Keyword = keyword
           @PronAccuracy = pronaccuracy
@@ -324,7 +324,7 @@ module TencentCloud
         # @type ReferenceLetter: String
 
         attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :DetectedStress, :Phone, :Stress, :ReferencePhone, :MatchTag, :ReferenceLetter
-        
+
         def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, detectedstress=nil, phone=nil, stress=nil, referencephone=nil, matchtag=nil, referenceletter=nil)
           @MemBeginTime = membegintime
           @MemEndTime = memendtime
@@ -375,7 +375,7 @@ module TencentCloud
         # @type UnKeyWordHits: Array
 
         attr_accessor :SentenceId, :Words, :PronAccuracy, :PronFluency, :PronCompletion, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits
-        
+
         def initialize(sentenceid=nil, words=nil, pronaccuracy=nil, pronfluency=nil, proncompletion=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil)
           @SentenceId = sentenceid
           @Words = words
@@ -438,7 +438,7 @@ module TencentCloud
         # @type IsQuery: Integer
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :SoeAppId, :IsLongLifeSession, :IsQuery
-        
+
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, soeappid=nil, islonglifesession=nil, isquery=nil)
           @SeqId = seqid
           @IsEnd = isend
@@ -497,7 +497,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
-        
+
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency
@@ -625,7 +625,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword
-        
+
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil)
           @SeqId = seqid
           @IsEnd = isend
@@ -702,7 +702,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
-        
+
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency
@@ -773,7 +773,7 @@ module TencentCloud
         # @type KeywordTag: Integer
 
         attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :PronFluency, :Word, :MatchTag, :PhoneInfos, :ReferenceWord, :KeywordTag
-        
+
         def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, pronfluency=nil, word=nil, matchtag=nil, phoneinfos=nil, referenceword=nil, keywordtag=nil)
           @MemBeginTime = membegintime
           @MemEndTime = memendtime

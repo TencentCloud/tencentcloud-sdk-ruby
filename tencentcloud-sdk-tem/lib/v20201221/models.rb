@@ -39,7 +39,7 @@ module TencentCloud
         # @type FullPath: String
 
         attr_accessor :RequestId, :Bucket, :Region, :TmpSecretId, :TmpSecretKey, :SessionToken, :StartTime, :ExpiredTime, :FullPath
-        
+
         def initialize(requestid=nil, bucket=nil, region=nil, tmpsecretid=nil, tmpsecretkey=nil, sessiontoken=nil, starttime=nil, expiredtime=nil, fullpath=nil)
           @RequestId = requestid
           @Bucket = bucket
@@ -79,7 +79,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :ServiceId, :VersionId, :PkgName, :OptType, :SourceChannel
-        
+
         def initialize(serviceid=nil, versionid=nil, pkgname=nil, opttype=nil, sourcechannel=nil)
           @ServiceId = serviceid
           @VersionId = versionid
@@ -106,7 +106,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -135,7 +135,7 @@ module TencentCloud
         # @type TimeVersion: String
 
         attr_accessor :ServiceId, :PkgName, :OptType, :SourceChannel, :TimeVersion
-        
+
         def initialize(serviceid=nil, pkgname=nil, opttype=nil, sourcechannel=nil, timeversion=nil)
           @ServiceId = serviceid
           @PkgName = pkgname
@@ -162,7 +162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -195,7 +195,7 @@ module TencentCloud
         # @type EnableTswTraceService: Boolean
 
         attr_accessor :NamespaceName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService
-        
+
         def initialize(namespacename=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil)
           @NamespaceName = namespacename
           @Vpc = vpc
@@ -226,7 +226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -250,7 +250,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :ResourceType, :ResourceId, :SourceChannel
-        
+
         def initialize(namespaceid=nil, resourcetype=nil, resourceid=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @ResourceType = resourcetype
@@ -275,7 +275,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -318,7 +318,7 @@ module TencentCloud
         # @type DeployMode: String
 
         attr_accessor :ServiceName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode
-        
+
         def initialize(servicename=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil)
           @ServiceName = servicename
           @Description = description
@@ -356,7 +356,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -380,7 +380,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :EksNamespace, :Name, :SourceChannel
-        
+
         def initialize(namespaceid=nil, eksnamespace=nil, name=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
@@ -404,7 +404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -494,7 +494,7 @@ module TencentCloud
         # @type Readiness: :class:`Tencentcloud::Tem.v20201221.models.HealthCheckConfig`
 
         attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService, :VersionId, :PostStart, :PreStop, :DeployStrategyConf, :Liveness, :Readiness
-        
+
         def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil, versionid=nil, poststart=nil, prestop=nil, deploystrategyconf=nil, liveness=nil, readiness=nil)
           @ServiceId = serviceid
           @ContainerPort = containerport
@@ -631,7 +631,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -655,7 +655,7 @@ module TencentCloud
         # @type BatchInterval: Integer
 
         attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval
-        
+
         def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil)
           @TotalBatchCount = totalbatchcount
           @BetaBatchNum = betabatchnum
@@ -683,7 +683,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :EksNamespace, :Name, :SourceChannel
-        
+
         def initialize(namespaceid=nil, eksnamespace=nil, name=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
@@ -707,7 +707,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -734,7 +734,7 @@ module TencentCloud
         # @type Names: Array
 
         attr_accessor :NamespaceId, :EksNamespace, :SourceChannel, :Names
-        
+
         def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil, names=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
@@ -759,7 +759,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -788,7 +788,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :Limit, :Offset, :SourceChannel
-        
+
         def initialize(limit=nil, offset=nil, sourcechannel=nil)
           @Limit = limit
           @Offset = offset
@@ -810,7 +810,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -837,7 +837,7 @@ module TencentCloud
         # @type ServiceId: String
 
         attr_accessor :NamespaceId, :EksNamespace, :SourceChannel, :ServiceId
-        
+
         def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil, serviceid=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
@@ -862,7 +862,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -895,7 +895,7 @@ module TencentCloud
         # @type PodList: Array
 
         attr_accessor :Offset, :Limit, :TotalCount, :RequestId, :PodList
-        
+
         def initialize(offset=nil, limit=nil, totalcount=nil, requestid=nil, podlist=nil)
           @Offset = offset
           @Limit = limit
@@ -941,7 +941,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :ServiceId, :Limit, :Offset, :Status, :PodName, :SourceChannel
-        
+
         def initialize(namespaceid=nil, serviceid=nil, limit=nil, offset=nil, status=nil, podname=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @ServiceId = serviceid
@@ -971,7 +971,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1023,7 +1023,7 @@ module TencentCloud
         # @type PortMappings: Array
 
         attr_accessor :Name, :Ports, :Yaml, :ServiceName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings
-        
+
         def initialize(name=nil, ports=nil, yaml=nil, servicename=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil)
           @Name = name
           @Ports = ports
@@ -1074,7 +1074,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :MinAliveInstances, :MaxAliveInstances, :EsStrategy, :Threshold, :VersionId
-        
+
         def initialize(minaliveinstances=nil, maxaliveinstances=nil, esstrategy=nil, threshold=nil, versionid=nil)
           @MinAliveInstances = minaliveinstances
           @MaxAliveInstances = maxaliveinstances
@@ -1104,7 +1104,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :ServiceId, :PkgName, :DeployVersion, :SourceChannel
-        
+
         def initialize(serviceid=nil, pkgname=nil, deployversion=nil, sourcechannel=nil)
           @ServiceId = serviceid
           @PkgName = pkgname
@@ -1129,7 +1129,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1161,7 +1161,7 @@ module TencentCloud
         # @type PeriodSeconds: Integer
 
         attr_accessor :Type, :Protocol, :Path, :Exec, :Port, :InitialDelaySeconds, :TimeoutSeconds, :PeriodSeconds
-        
+
         def initialize(type=nil, protocol=nil, path=nil, exec=nil, port=nil, initialdelayseconds=nil, timeoutseconds=nil, periodseconds=nil)
           @Type = type
           @Protocol = protocol
@@ -1217,7 +1217,7 @@ module TencentCloud
         # @type Mixed: Boolean
 
         attr_accessor :NamespaceId, :EksNamespace, :AddressIPVersion, :Name, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed
-        
+
         def initialize(namespaceid=nil, eksnamespace=nil, addressipversion=nil, name=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
@@ -1272,7 +1272,7 @@ module TencentCloud
         # @type Protocol: String
 
         attr_accessor :Http, :Host, :Protocol
-        
+
         def initialize(http=nil, host=nil, protocol=nil)
           @Http = http
           @Host = host
@@ -1297,7 +1297,7 @@ module TencentCloud
         # @type ServicePort: Integer
 
         attr_accessor :ServiceName, :ServicePort
-        
+
         def initialize(servicename=nil, serviceport=nil)
           @ServiceName = servicename
           @ServicePort = serviceport
@@ -1317,7 +1317,7 @@ module TencentCloud
         # @type Backend: :class:`Tencentcloud::Tem.v20201221.models.IngressRuleBackend`
 
         attr_accessor :Path, :Backend
-        
+
         def initialize(path=nil, backend=nil)
           @Path = path
           @Backend = backend
@@ -1338,7 +1338,7 @@ module TencentCloud
         # @type Paths: Array
 
         attr_accessor :Paths
-        
+
         def initialize(paths=nil)
           @Paths = paths
         end
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type CertificateId: String
 
         attr_accessor :Hosts, :SecretName, :CertificateId
-        
+
         def initialize(hosts=nil, secretname=nil, certificateid=nil)
           @Hosts = hosts
           @SecretName = secretname
@@ -1393,7 +1393,7 @@ module TencentCloud
         # @type ClsLogTopicName: String
 
         attr_accessor :OutputType, :ClsLogsetName, :ClsLogTopicId, :ClsLogsetId, :ClsLogTopicName
-        
+
         def initialize(outputtype=nil, clslogsetname=nil, clslogtopicid=nil, clslogsetid=nil, clslogtopicname=nil)
           @OutputType = outputtype
           @ClsLogsetName = clslogsetname
@@ -1419,7 +1419,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :Ingress, :SourceChannel
-        
+
         def initialize(ingress=nil, sourcechannel=nil)
           @Ingress = ingress
           @SourceChannel = sourcechannel
@@ -1443,7 +1443,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1471,7 +1471,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :NamespaceName, :Description, :Vpc, :SubnetIds, :SourceChannel
-        
+
         def initialize(namespaceid=nil, namespacename=nil, description=nil, vpc=nil, subnetids=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
@@ -1500,7 +1500,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1522,7 +1522,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :ServiceId, :Description, :SourceChannel
-        
+
         def initialize(serviceid=nil, description=nil, sourcechannel=nil)
           @ServiceId = serviceid
           @Description = description
@@ -1545,7 +1545,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1567,7 +1567,7 @@ module TencentCloud
         # @type Data: Array
 
         attr_accessor :ConfigDataName, :MountedPath, :Data
-        
+
         def initialize(configdataname=nil, mountedpath=nil, data=nil)
           @ConfigDataName = configdataname
           @MountedPath = mountedpath
@@ -1600,7 +1600,7 @@ module TencentCloud
         # @type Pages: Integer
 
         attr_accessor :Records, :Total, :Size, :Pages
-        
+
         def initialize(records=nil, total=nil, size=nil, pages=nil)
           @Records = records
           @Total = total
@@ -1631,7 +1631,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1653,7 +1653,7 @@ module TencentCloud
         # @type Protocol: String
 
         attr_accessor :Port, :TargetPort, :Protocol
-        
+
         def initialize(port=nil, targetport=nil, protocol=nil)
           @Port = port
           @TargetPort = targetport
@@ -1685,7 +1685,7 @@ module TencentCloud
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :ServiceId, :PodName, :Limit, :Offset, :Status, :SourceChannel
-        
+
         def initialize(namespaceid=nil, serviceid=nil, podname=nil, limit=nil, offset=nil, status=nil, sourcechannel=nil)
           @NamespaceId = namespaceid
           @ServiceId = serviceid
@@ -1716,7 +1716,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1751,7 +1751,7 @@ module TencentCloud
         # @type RestartCount: Integer
 
         attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion, :RestartCount
-        
+
         def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil, restartcount=nil)
           @Webshell = webshell
           @PodId = podid
@@ -1786,7 +1786,7 @@ module TencentCloud
         # @type StorageVolIp: String
 
         attr_accessor :StorageVolName, :StorageVolPath, :StorageVolIp
-        
+
         def initialize(storagevolname=nil, storagevolpath=nil, storagevolip=nil)
           @StorageVolName = storagevolname
           @StorageVolPath = storagevolpath
@@ -1808,7 +1808,7 @@ module TencentCloud
         # @type MountPath: String
 
         attr_accessor :VolumeName, :MountPath
-        
+
         def initialize(volumename=nil, mountpath=nil)
           @VolumeName = volumename
           @MountPath = mountpath
@@ -1859,7 +1859,7 @@ module TencentCloud
         # @type EnableTswTraceService: Boolean
 
         attr_accessor :NamespaceId, :Channel, :NamespaceName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ServiceNum, :RunInstancesNum, :SubnetId, :TcbEnvStatus, :ClusterStatus, :EnableTswTraceService
-        
+
         def initialize(namespaceid=nil, channel=nil, namespacename=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, servicenum=nil, runinstancesnum=nil, subnetid=nil, tcbenvstatus=nil, clusterstatus=nil, enabletswtraceservice=nil)
           @NamespaceId = namespaceid
           @Channel = channel

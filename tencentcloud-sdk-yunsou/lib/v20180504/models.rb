@@ -29,7 +29,7 @@ module TencentCloud
         # @type ResourceId: Integer
 
         attr_accessor :OpType, :Encoding, :Contents, :ResourceId
-        
+
         def initialize(optype=nil, encoding=nil, contents=nil, resourceid=nil)
           @OpType = optype
           @Encoding = encoding
@@ -53,7 +53,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RetMsg, :RequestId
-        
+
         def initialize(retmsg=nil, requestid=nil)
           @RetMsg = retmsg
           @RequestId = requestid
@@ -115,7 +115,7 @@ module TencentCloud
         # @type MultiFilter: Array
 
         attr_accessor :ResourceId, :SearchQuery, :PageId, :NumPerPage, :SearchId, :QueryEncode, :RankType, :NumFilter, :ClFilter, :Extra, :SourceId, :SecondSearch, :MaxDocReturn, :IsSmartbox, :EnableAbsHighlight, :QcBid, :GroupBy, :Distinct, :L4RankExpression, :MatchValue, :Longitude, :Latitude, :MultiFilter
-        
+
         def initialize(resourceid=nil, searchquery=nil, pageid=nil, numperpage=nil, searchid=nil, queryencode=nil, ranktype=nil, numfilter=nil, clfilter=nil, extra=nil, sourceid=nil, secondsearch=nil, maxdocreturn=nil, issmartbox=nil, enableabshighlight=nil, qcbid=nil, groupby=nil, distinct=nil, l4rankexpression=nil, matchvalue=nil, longitude=nil, latitude=nil, multifilter=nil)
           @ResourceId = resourceid
           @SearchQuery = searchquery
@@ -177,7 +177,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RetMsg, :RequestId
-        
+
         def initialize(retmsg=nil, requestid=nil)
           @RetMsg = retmsg
           @RequestId = requestid

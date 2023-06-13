@@ -49,7 +49,7 @@ module TencentCloud
         # @type Uin: String
 
         attr_accessor :CompanyId, :CompanyName, :BrandName, :Phone, :License, :LicenseStatus, :LicenseNote, :Authorization, :AuthorizationStatus, :AuthorizationNote, :Trademarks, :InsertTime, :Services, :Uin
-        
+
         def initialize(companyid=nil, companyname=nil, brandname=nil, phone=nil, license=nil, licensestatus=nil, licensenote=nil, authorization=nil, authorizationstatus=nil, authorizationnote=nil, trademarks=nil, inserttime=nil, services=nil, uin=nil)
           @CompanyId = companyid
           @CompanyName = companyname
@@ -129,7 +129,7 @@ module TencentCloud
         # @type APISource: Integer
 
         attr_accessor :BrandName, :CompanyName, :BrandLogo, :Phone, :License, :Authorization, :TrademarkNames, :Trademarks, :IsTransfers, :Transfers, :ProtectURLs, :ProtectAPPs, :ProtectOfficialAccounts, :ProtectMiniPrograms, :APISource
-        
+
         def initialize(brandname=nil, companyname=nil, brandlogo=nil, phone=nil, license=nil, authorization=nil, trademarknames=nil, trademarks=nil, istransfers=nil, transfers=nil, protecturls=nil, protectapps=nil, protectofficialaccounts=nil, protectminiprograms=nil, apisource=nil)
           @BrandName = brandname
           @CompanyName = companyname
@@ -175,7 +175,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :RequestId
-        
+
         def initialize(companyid=nil, requestid=nil)
           @CompanyId = companyid
           @RequestId = requestid
@@ -193,7 +193,7 @@ module TencentCloud
         # @type FakeAPPs: String
 
         attr_accessor :FakeAPPs
-        
+
         def initialize(fakeapps=nil)
           @FakeAPPs = fakeapps
         end
@@ -209,7 +209,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -239,7 +239,7 @@ module TencentCloud
         # @type Note: String
 
         attr_accessor :CompanyId, :FakeAPPName, :APPChan, :FakeAPPPackageName, :FakeAPPCert, :FakeAPPSize, :FakeAPPSnapshots, :Note
-        
+
         def initialize(companyid=nil, fakeappname=nil, appchan=nil, fakeapppackagename=nil, fakeappcert=nil, fakeappsize=nil, fakeappsnapshots=nil, note=nil)
           @CompanyId = companyid
           @FakeAPPName = fakeappname
@@ -269,7 +269,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -291,7 +291,7 @@ module TencentCloud
         # @type Note: String
 
         attr_accessor :CompanyId, :FakeURL, :FakeURLSnapshots, :Note
-        
+
         def initialize(companyid=nil, fakeurl=nil, fakeurlsnapshots=nil, note=nil)
           @CompanyId = companyid
           @FakeURL = fakeurl
@@ -313,7 +313,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -329,7 +329,7 @@ module TencentCloud
         # @type FakeURLs: String
 
         attr_accessor :FakeURLs
-        
+
         def initialize(fakeurls=nil)
           @FakeURLs = fakeurls
         end
@@ -345,7 +345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -365,7 +365,7 @@ module TencentCloud
         # @type WhiteLists: Array
 
         attr_accessor :CompanyId, :WhiteListType, :WhiteLists
-        
+
         def initialize(companyid=nil, whitelisttype=nil, whitelists=nil)
           @CompanyId = companyid
           @WhiteListType = whitelisttype
@@ -385,7 +385,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -401,7 +401,7 @@ module TencentCloud
         # @type WhiteListId: Integer
 
         attr_accessor :WhiteListId
-        
+
         def initialize(whitelistid=nil)
           @WhiteListId = whitelistid
         end
@@ -417,7 +417,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -430,7 +430,7 @@ module TencentCloud
       # DescribeBPBrands请求参数结构体
       class DescribeBPBrandsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -448,7 +448,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Brands, :NoticeStatus, :RequestId
-        
+
         def initialize(brands=nil, noticestatus=nil, requestid=nil)
           @Brands = brands
           @NoticeStatus = noticestatus
@@ -479,7 +479,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -510,7 +510,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FakeAPPList, :TotalCount, :RequestId
-        
+
         def initialize(fakeapplist=nil, totalcount=nil, requestid=nil)
           @FakeAPPList = fakeapplist
           @TotalCount = totalcount
@@ -541,7 +541,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -572,7 +572,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FakeURLs, :TotalCount, :RequestId
-        
+
         def initialize(fakeurls=nil, totalcount=nil, requestid=nil)
           @FakeURLs = fakeurls
           @TotalCount = totalcount
@@ -603,7 +603,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
-        
+
         def initialize(filters=nil, pagesize=nil, pagenumber=nil)
           @Filters = filters
           @PageSize = pagesize
@@ -634,7 +634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WhiteLists, :TotalCount, :RequestId
-        
+
         def initialize(whitelists=nil, totalcount=nil, requestid=nil)
           @WhiteLists = whitelists
           @TotalCount = totalcount
@@ -707,7 +707,7 @@ module TencentCloud
         # @type CertificationStatus: Integer
 
         attr_accessor :FakeAPPId, :BrandName, :Origin, :FakeAPPName, :FakeAPPPackageName, :FakeAPPCert, :FakeAPPSize, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :DownloadWay, :InsertTime, :DownloadCosURL, :CertificationStatus
-        
+
         def initialize(fakeappid=nil, brandname=nil, origin=nil, fakeappname=nil, fakeapppackagename=nil, fakeappcert=nil, fakeappsize=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, downloadway=nil, inserttime=nil, downloadcosurl=nil, certificationstatus=nil)
           @FakeAPPId = fakeappid
           @BrandName = brandname
@@ -817,7 +817,7 @@ module TencentCloud
         # @type AccountStatus: Integer
 
         attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus
-        
+
         def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
@@ -877,7 +877,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -911,7 +911,7 @@ module TencentCloud
         # @type OfflineCount: Integer
 
         attr_accessor :ProtectURLCount, :ProtectURLExpireTime, :ProtectAPPCount, :ProtectAPPExpireTime, :ProtectOfficialAccountCount, :ProtectOfficialAccountExpireTime, :ProtectMiniProgramCount, :ProtectMiniProgramExpireTime, :OfflineCount
-        
+
         def initialize(protecturlcount=nil, protecturlexpiretime=nil, protectappcount=nil, protectappexpiretime=nil, protectofficialaccountcount=nil, protectofficialaccountexpiretime=nil, protectminiprogramcount=nil, protectminiprogramexpiretime=nil, offlinecount=nil)
           @ProtectURLCount = protecturlcount
           @ProtectURLExpireTime = protecturlexpiretime
@@ -957,7 +957,7 @@ module TencentCloud
         # @type TrademarkName: String
 
         attr_accessor :Trademark, :TrademarkStatus, :TrademarkNote, :TrademarkId, :Transfer, :TransferStatus, :TransferNote, :TrademarkName
-        
+
         def initialize(trademark=nil, trademarkstatus=nil, trademarknote=nil, trademarkid=nil, transfer=nil, transferstatus=nil, transfernote=nil, trademarkname=nil)
           @Trademark = trademark
           @TrademarkStatus = trademarkstatus
@@ -1003,7 +1003,7 @@ module TencentCloud
         # @type InsertTime: String
 
         attr_accessor :WhiteListId, :CompanyId, :BrandName, :AssetsType, :WhiteList, :InsertTime
-        
+
         def initialize(whitelistid=nil, companyid=nil, brandname=nil, assetstype=nil, whitelist=nil, inserttime=nil)
           @WhiteListId = whitelistid
           @CompanyId = companyid

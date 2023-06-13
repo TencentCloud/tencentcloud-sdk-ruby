@@ -47,7 +47,7 @@ module TencentCloud
         # @type SalePlan: String
 
         attr_accessor :Name, :Type, :IsActive, :Notice, :Email, :Url, :DataThreshold, :District, :Distance, :SignalStrength, :LostDay, :TagIDs, :SalePlan
-        
+
         def initialize(name=nil, type=nil, isactive=nil, notice=nil, email=nil, url=nil, datathreshold=nil, district=nil, distance=nil, signalstrength=nil, lostday=nil, tagids=nil, saleplan=nil)
           @Name = name
           @Type = type
@@ -87,7 +87,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -137,7 +137,7 @@ module TencentCloud
         # @type IsBestSignal: Integer
 
         attr_accessor :Name, :IsAuto, :PingInterval, :IsWeak, :WeakThreshold, :IsDelay, :DelayThreshold, :IsFake, :FakeIP, :FakeInterval, :IsNet, :Network, :IsMove, :IsPriorityTele, :PriorityTele, :IsBottomTele, :BottomTele, :IsBestSignal
-        
+
         def initialize(name=nil, isauto=nil, pinginterval=nil, isweak=nil, weakthreshold=nil, isdelay=nil, delaythreshold=nil, isfake=nil, fakeip=nil, fakeinterval=nil, isnet=nil, network=nil, ismove=nil, isprioritytele=nil, prioritytele=nil, isbottomtele=nil, bottomtele=nil, isbestsignal=nil)
           @Name = name
           @IsAuto = isauto
@@ -187,7 +187,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -205,7 +205,7 @@ module TencentCloud
         # @type Comment: String
 
         attr_accessor :Name, :Comment
-        
+
         def initialize(name=nil, comment=nil)
           @Name = name
           @Comment = comment
@@ -223,7 +223,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -239,7 +239,7 @@ module TencentCloud
         # @type RuleID: Integer
 
         attr_accessor :RuleID
-        
+
         def initialize(ruleid=nil)
           @RuleID = ruleid
         end
@@ -255,7 +255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -271,7 +271,7 @@ module TencentCloud
         # @type TacticID: Integer
 
         attr_accessor :TacticID
-        
+
         def initialize(tacticid=nil)
           @TacticID = tacticid
         end
@@ -287,7 +287,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -303,7 +303,7 @@ module TencentCloud
         # @type TagID: Integer
 
         attr_accessor :TagID
-        
+
         def initialize(tagid=nil)
           @TagID = tagid
         end
@@ -319,7 +319,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -337,7 +337,7 @@ module TencentCloud
         # @type UinAccount: String
 
         attr_accessor :LinkID, :UinAccount
-        
+
         def initialize(linkid=nil, uinaccount=nil)
           @LinkID = linkid
           @UinAccount = uinaccount
@@ -357,7 +357,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -398,7 +398,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :LinkID, :ICCID, :IMEI, :Status, :TeleOperator, :TagID, :TacticID, :LinkedState, :TagIDs, :Limit, :Offset
-        
+
         def initialize(linkid=nil, iccid=nil, imei=nil, status=nil, teleoperator=nil, tagid=nil, tacticid=nil, linkedstate=nil, tagids=nil, limit=nil, offset=nil)
           @LinkID = linkid
           @ICCID = iccid
@@ -437,7 +437,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -468,7 +468,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :DealName, :AuditStatus, :Limit, :Offset, :BeginTime, :EndTime
-        
+
         def initialize(dealname=nil, auditstatus=nil, limit=nil, offset=nil, begintime=nil, endtime=nil)
           @DealName = dealname
           @AuditStatus = auditstatus
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -517,7 +517,7 @@ module TencentCloud
         # @type RuleID: Integer
 
         attr_accessor :RuleID
-        
+
         def initialize(ruleid=nil)
           @RuleID = ruleid
         end
@@ -535,7 +535,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -568,7 +568,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :RuleID, :RuleIDs, :Name, :Type, :IsActive, :Limit, :Offset
-        
+
         def initialize(ruleid=nil, ruleids=nil, name=nil, type=nil, isactive=nil, limit=nil, offset=nil)
           @RuleID = ruleid
           @RuleIDs = ruleids
@@ -599,7 +599,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -620,7 +620,7 @@ module TencentCloud
         # @type TacticID: Integer
 
         attr_accessor :TacticID
-        
+
         def initialize(tacticid=nil)
           @TacticID = tacticid
         end
@@ -638,7 +638,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -661,7 +661,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :TacticID, :Name
-        
+
         def initialize(tacticid=nil, name=nil)
           @TacticID = tacticid
           @Name = name
@@ -681,7 +681,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -702,7 +702,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Name
-        
+
         def initialize(name=nil)
           @Name = name
         end
@@ -720,7 +720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -792,7 +792,7 @@ module TencentCloud
         # @type MonthFirstTime: String
 
         attr_accessor :Imei, :Lng, :Lat, :Lac, :Cell, :Iccid, :Rss, :Tele, :Tid, :Ping, :Delay, :Log, :DevType, :DevModel, :Version, :UploadTime, :Status, :MonthFirstTime
-        
+
         def initialize(imei=nil, lng=nil, lat=nil, lac=nil, cell=nil, iccid=nil, rss=nil, tele=nil, tid=nil, ping=nil, delay=nil, log=nil, devtype=nil, devmodel=nil, version=nil, uploadtime=nil, status=nil, monthfirsttime=nil)
           @Imei = imei
           @Lng = lng
@@ -891,7 +891,7 @@ module TencentCloud
         # @type CardID: String
 
         attr_accessor :ID, :Status, :ActiveTime, :ExpireTime, :DataUse, :AudioUse, :SmsUse, :LinkedState, :TacticID, :TacticStatus, :TacticExpireTime, :IsActiveLog, :TeleOperator, :Report, :Tags, :Cards, :CardID
-        
+
         def initialize(id=nil, status=nil, activetime=nil, expiretime=nil, datause=nil, audiouse=nil, smsuse=nil, linkedstate=nil, tacticid=nil, tacticstatus=nil, tacticexpiretime=nil, isactivelog=nil, teleoperator=nil, report=nil, tags=nil, cards=nil, cardid=nil)
           @ID = id
           @Status = status
@@ -996,7 +996,7 @@ module TencentCloud
         # @type Report: :class:`Tencentcloud::Hasim.v20210716.models.DeviceReport`
 
         attr_accessor :ID, :Status, :ActiveTime, :ExpireTime, :DataUse, :AudioUse, :SmsUse, :LinkedState, :TacticID, :TacticStatus, :TacticExpireTime, :IsActiveLog, :TeleOperator, :Report
-        
+
         def initialize(id=nil, status=nil, activetime=nil, expiretime=nil, datause=nil, audiouse=nil, smsuse=nil, linkedstate=nil, tacticid=nil, tacticstatus=nil, tacticexpiretime=nil, isactivelog=nil, teleoperator=nil, report=nil)
           @ID = id
           @Status = status
@@ -1044,7 +1044,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1071,7 +1071,7 @@ module TencentCloud
         # @type IsAdLog: Integer
 
         attr_accessor :LinkID, :IsAdLog
-        
+
         def initialize(linkid=nil, isadlog=nil)
           @LinkID = linkid
           @IsAdLog = isadlog
@@ -1089,7 +1089,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1107,7 +1107,7 @@ module TencentCloud
         # @type TacticID: Integer
 
         attr_accessor :LinkID, :TacticID
-        
+
         def initialize(linkid=nil, tacticid=nil)
           @LinkID = linkid
           @TacticID = tacticid
@@ -1125,7 +1125,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1143,7 +1143,7 @@ module TencentCloud
         # @type TeleOperator: Integer
 
         attr_accessor :LinkID, :TeleOperator
-        
+
         def initialize(linkid=nil, teleoperator=nil)
           @LinkID = linkid
           @TeleOperator = teleoperator
@@ -1161,7 +1161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1203,7 +1203,7 @@ module TencentCloud
         # @type UinAccount: String
 
         attr_accessor :Name, :Type, :IsActive, :Notice, :RuleID, :Email, :Url, :DataThreshold, :District, :Distance, :SignalStrength, :TagIDs, :SalePlan, :UinAccount
-        
+
         def initialize(name=nil, type=nil, isactive=nil, notice=nil, ruleid=nil, email=nil, url=nil, datathreshold=nil, district=nil, distance=nil, signalstrength=nil, tagids=nil, saleplan=nil, uinaccount=nil)
           @Name = name
           @Type = type
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1263,7 +1263,7 @@ module TencentCloud
         # @type IsActive: Boolean
 
         attr_accessor :RuleID, :IsActive
-        
+
         def initialize(ruleid=nil, isactive=nil)
           @RuleID = ruleid
           @IsActive = isactive
@@ -1281,7 +1281,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1333,7 +1333,7 @@ module TencentCloud
         # @type FakeIP: String
 
         attr_accessor :Name, :IsAuto, :PingInterval, :IsWeak, :WeakThreshold, :IsDelay, :DelayThreshold, :IsFake, :FakeInterval, :IsNet, :Network, :IsMove, :TacticID, :IsPriorityTele, :PriorityTele, :IsBottomTele, :BottomTele, :IsBestSignal, :FakeIP
-        
+
         def initialize(name=nil, isauto=nil, pinginterval=nil, isweak=nil, weakthreshold=nil, isdelay=nil, delaythreshold=nil, isfake=nil, fakeinterval=nil, isnet=nil, network=nil, ismove=nil, tacticid=nil, isprioritytele=nil, prioritytele=nil, isbottomtele=nil, bottomtele=nil, isbestsignal=nil, fakeip=nil)
           @Name = name
           @IsAuto = isauto
@@ -1385,7 +1385,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1405,7 +1405,7 @@ module TencentCloud
         # @type Comment: String
 
         attr_accessor :Name, :TagID, :Comment
-        
+
         def initialize(name=nil, tagid=nil, comment=nil)
           @Name = name
           @TagID = tagid
@@ -1425,7 +1425,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1482,7 +1482,7 @@ module TencentCloud
         # @type RefundBigDealId: String
 
         attr_accessor :DealName, :CreatedAt, :Uin, :BuyNum, :IndustryCode, :Address, :Contact, :Msisdn, :Specification, :Comment, :BigDealId, :AuditStatus, :FlowStatus, :Remark, :RefundBigDealId
-        
+
         def initialize(dealname=nil, createdat=nil, uin=nil, buynum=nil, industrycode=nil, address=nil, contact=nil, msisdn=nil, specification=nil, comment=nil, bigdealid=nil, auditstatus=nil, flowstatus=nil, remark=nil, refundbigdealid=nil)
           @DealName = dealname
           @CreatedAt = createdat
@@ -1529,7 +1529,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1556,7 +1556,7 @@ module TencentCloud
         # @type UinAccount: String
 
         attr_accessor :LinkID, :UinAccount
-        
+
         def initialize(linkid=nil, uinaccount=nil)
           @LinkID = linkid
           @UinAccount = uinaccount
@@ -1574,7 +1574,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1637,7 +1637,7 @@ module TencentCloud
         # @type SalePlan: String
 
         attr_accessor :Name, :ID, :CreatedAt, :UpdatedAt, :DeletedAt, :Type, :IsActive, :Notice, :Email, :Url, :DataThreshold, :District, :Distance, :SignalStrength, :LostDay, :TagIDs, :SalePlan
-        
+
         def initialize(name=nil, id=nil, createdat=nil, updatedat=nil, deletedat=nil, type=nil, isactive=nil, notice=nil, email=nil, url=nil, datathreshold=nil, district=nil, distance=nil, signalstrength=nil, lostday=nil, tagids=nil, saleplan=nil)
           @Name = name
           @ID = id
@@ -1732,7 +1732,7 @@ module TencentCloud
         # @type SalePlan: String
 
         attr_accessor :Name, :ID, :CreatedAt, :UpdatedAt, :DeletedAt, :Type, :IsActive, :Notice, :Email, :Url, :DataThreshold, :District, :Distance, :SignalStrength, :LostDay, :TagIDs, :SalePlan
-        
+
         def initialize(name=nil, id=nil, createdat=nil, updatedat=nil, deletedat=nil, type=nil, isactive=nil, notice=nil, email=nil, url=nil, datathreshold=nil, district=nil, distance=nil, signalstrength=nil, lostday=nil, tagids=nil, saleplan=nil)
           @Name = name
           @ID = id
@@ -1783,7 +1783,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1863,7 +1863,7 @@ module TencentCloud
         # @type IsBestSignal: Integer
 
         attr_accessor :ID, :CreatedAt, :IsAuto, :PingInterval, :IsWeak, :WeakThreshold, :IsDelay, :DelayThreshold, :IsFake, :FakeIP, :FakeInterval, :IsNet, :Network, :IsMove, :Name, :IsPriorityTele, :PriorityTele, :IsBottomTele, :BottomTele, :IsBestSignal
-        
+
         def initialize(id=nil, createdat=nil, isauto=nil, pinginterval=nil, isweak=nil, weakthreshold=nil, isdelay=nil, delaythreshold=nil, isfake=nil, fakeip=nil, fakeinterval=nil, isnet=nil, network=nil, ismove=nil, name=nil, isprioritytele=nil, prioritytele=nil, isbottomtele=nil, bottomtele=nil, isbestsignal=nil)
           @ID = id
           @CreatedAt = createdat
@@ -1920,7 +1920,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1956,7 +1956,7 @@ module TencentCloud
         # @type UpdatedAt: String
 
         attr_accessor :Name, :ID, :Comment, :CreatedAt, :UpdatedAt
-        
+
         def initialize(name=nil, id=nil, comment=nil, createdat=nil, updatedat=nil)
           @Name = name
           @ID = id
@@ -1983,7 +1983,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -2024,7 +2024,7 @@ module TencentCloud
         # @type TeleOperator: Integer
 
         attr_accessor :AccountTime, :ActiveTime, :ICCID, :LinkID, :Msisdn, :IMSI, :TeleOperator
-        
+
         def initialize(accounttime=nil, activetime=nil, iccid=nil, linkid=nil, msisdn=nil, imsi=nil, teleoperator=nil)
           @AccountTime = accounttime
           @ActiveTime = activetime

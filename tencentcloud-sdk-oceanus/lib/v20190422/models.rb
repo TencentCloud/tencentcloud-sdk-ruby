@@ -27,7 +27,7 @@ module TencentCloud
         # @type CcnId: String
 
         attr_accessor :VpcId, :SubnetId, :CcnId
-        
+
         def initialize(vpcid=nil, subnetid=nil, ccnid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -55,7 +55,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :SerialId, :RecordType, :SavepointPath, :WorkSpaceId
-        
+
         def initialize(jobid=nil, serialid=nil, recordtype=nil, savepointpath=nil, workspaceid=nil)
           @JobId = jobid
           @SerialId = serialid
@@ -83,7 +83,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SerialId, :SavepointStatus, :RequestId
-        
+
         def initialize(serialid=nil, savepointstatus=nil, requestid=nil)
           @SerialId = serialid
           @SavepointStatus = savepointstatus
@@ -192,7 +192,7 @@ module TencentCloud
         # @type ClusterSessions: Array
 
         attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions
-        
+
         def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil)
           @ClusterId = clusterid
           @Name = name
@@ -306,7 +306,7 @@ module TencentCloud
       # session集群信息
       class ClusterSession < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -324,7 +324,7 @@ module TencentCloud
         # @type SupportedFlink: Array
 
         attr_accessor :Flink, :SupportedFlink
-        
+
         def initialize(flink=nil, supportedflink=nil)
           @Flink = flink
           @SupportedFlink = supportedflink
@@ -352,7 +352,7 @@ module TencentCloud
         # @type JobType: Integer
 
         attr_accessor :SourceId, :TargetClusterId, :SourceName, :TargetName, :TargetFolderId, :JobType
-        
+
         def initialize(sourceid=nil, targetclusterid=nil, sourcename=nil, targetname=nil, targetfolderid=nil, jobtype=nil)
           @SourceId = sourceid
           @TargetClusterId = targetclusterid
@@ -403,7 +403,7 @@ module TencentCloud
         # @type JobType: Integer
 
         attr_accessor :JobId, :JobName, :TargetJobName, :TargetJobId, :Message, :Result, :ClusterName, :ClusterId, :JobType
-        
+
         def initialize(jobid=nil, jobname=nil, targetjobname=nil, targetjobid=nil, message=nil, result=nil, clustername=nil, clusterid=nil, jobtype=nil)
           @JobId = jobid
           @JobName = jobname
@@ -437,7 +437,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobItems, :WorkSpaceId
-        
+
         def initialize(jobitems=nil, workspaceid=nil)
           @JobItems = jobitems
           @WorkSpaceId = workspaceid
@@ -471,7 +471,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessCount, :FailCount, :CopyJobsResults, :RequestId
-        
+
         def initialize(successcount=nil, failcount=nil, copyjobsresults=nil, requestid=nil)
           @SuccessCount = successcount
           @FailCount = failcount
@@ -506,7 +506,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :FolderName, :ParentId, :FolderType, :WorkSpaceId
-        
+
         def initialize(foldername=nil, parentid=nil, foldertype=nil, workspaceid=nil)
           @FolderName = foldername
           @ParentId = parentid
@@ -530,7 +530,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FolderId, :RequestId
-        
+
         def initialize(folderid=nil, requestid=nil)
           @FolderId = folderid
           @RequestId = requestid
@@ -584,7 +584,7 @@ module TencentCloud
         # @type AutoRecover: Integer
 
         attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover
-        
+
         def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
@@ -652,7 +652,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Version, :RequestId
-        
+
         def initialize(version=nil, requestid=nil)
           @Version = version
           @RequestId = requestid
@@ -688,7 +688,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags
-        
+
         def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil)
           @Name = name
           @JobType = jobtype
@@ -731,7 +731,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -757,7 +757,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceId, :ResourceLoc, :Remark, :AutoDelete, :WorkSpaceId
-        
+
         def initialize(resourceid=nil, resourceloc=nil, remark=nil, autodelete=nil, workspaceid=nil)
           @ResourceId = resourceid
           @ResourceLoc = resourceloc
@@ -786,7 +786,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Version, :RequestId
-        
+
         def initialize(version=nil, requestid=nil)
           @Version = version
           @RequestId = requestid
@@ -816,7 +816,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceLoc, :ResourceType, :Remark, :Name, :ResourceConfigRemark, :FolderId, :WorkSpaceId
-        
+
         def initialize(resourceloc=nil, resourcetype=nil, remark=nil, name=nil, resourceconfigremark=nil, folderid=nil, workspaceid=nil)
           @ResourceLoc = resourceloc
           @ResourceType = resourcetype
@@ -851,7 +851,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceId, :Version, :RequestId
-        
+
         def initialize(resourceid=nil, version=nil, requestid=nil)
           @ResourceId = resourceid
           @Version = version
@@ -873,7 +873,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobIds, :WorkSpaceId
-        
+
         def initialize(jobids=nil, workspaceid=nil)
           @JobIds = jobids
           @WorkSpaceId = workspaceid
@@ -891,7 +891,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -911,7 +911,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceId, :ResourceConfigVersions, :WorkSpaceId
-        
+
         def initialize(resourceid=nil, resourceconfigversions=nil, workspaceid=nil)
           @ResourceId = resourceid
           @ResourceConfigVersions = resourceconfigversions
@@ -931,7 +931,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -949,7 +949,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceIds, :WorkSpaceId
-        
+
         def initialize(resourceids=nil, workspaceid=nil)
           @ResourceIds = resourceids
           @WorkSpaceId = workspaceid
@@ -967,7 +967,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -989,7 +989,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :DebugId, :TableName, :WorkSpaceId
-        
+
         def initialize(jobid=nil, debugid=nil, tablename=nil, workspaceid=nil)
           @JobId = jobid
           @DebugId = debugid
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1037,7 +1037,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ClusterIds, :Offset, :Limit, :OrderType, :Filters, :WorkSpaceId
-        
+
         def initialize(clusterids=nil, offset=nil, limit=nil, ordertype=nil, filters=nil, workspaceid=nil)
           @ClusterIds = clusterids
           @Offset = offset
@@ -1074,7 +1074,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ClusterSet, :RequestId
-        
+
         def initialize(totalcount=nil, clusterset=nil, requestid=nil)
           @TotalCount = totalcount
           @ClusterSet = clusterset
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :JobConfigVersions, :Offset, :Limit, :Filters, :OnlyDraft, :WorkSpaceId
-        
+
         def initialize(jobid=nil, jobconfigversions=nil, offset=nil, limit=nil, filters=nil, onlydraft=nil, workspaceid=nil)
           @JobId = jobid
           @JobConfigVersions = jobconfigversions
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :JobConfigSet, :RequestId
-        
+
         def initialize(totalcount=nil, jobconfigset=nil, requestid=nil)
           @TotalCount = totalcount
           @JobConfigSet = jobconfigset
@@ -1185,7 +1185,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :Limit, :Offset, :WorkSpaceId
-        
+
         def initialize(jobid=nil, limit=nil, offset=nil, workspaceid=nil)
           @JobId = jobid
           @Limit = limit
@@ -1219,7 +1219,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalNumber, :Savepoint, :RunningSavepoint, :RunningTotalNumber, :RequestId
-        
+
         def initialize(totalnumber=nil, savepoint=nil, runningsavepoint=nil, runningtotalnumber=nil, requestid=nil)
           @TotalNumber = totalnumber
           @Savepoint = savepoint
@@ -1265,7 +1265,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId
-        
+
         def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil)
           @JobIds = jobids
           @Filters = filters
@@ -1300,7 +1300,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :JobSet, :RequestId
-        
+
         def initialize(totalcount=nil, jobset=nil, requestid=nil)
           @TotalCount = totalcount
           @JobSet = jobset
@@ -1339,7 +1339,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceId, :Offset, :Limit, :ResourceConfigVersions, :JobConfigVersion, :JobId, :WorkSpaceId
-        
+
         def initialize(resourceid=nil, offset=nil, limit=nil, resourceconfigversions=nil, jobconfigversion=nil, jobid=nil, workspaceid=nil)
           @ResourceId = resourceid
           @Offset = offset
@@ -1371,7 +1371,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceConfigSet, :TotalCount, :RequestId
-        
+
         def initialize(resourceconfigset=nil, totalcount=nil, requestid=nil)
           @ResourceConfigSet = resourceconfigset
           @TotalCount = totalcount
@@ -1408,7 +1408,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit, :ResourceConfigVersion, :WorkSpaceId
-        
+
         def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil, resourceconfigversion=nil, workspaceid=nil)
           @ResourceId = resourceid
           @DESCByJobConfigCreateTime = descbyjobconfigcreatetime
@@ -1438,7 +1438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RefJobInfos, :RequestId
-        
+
         def initialize(totalcount=nil, refjobinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @RefJobInfos = refjobinfos
@@ -1474,7 +1474,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :WorkSpaceId
-        
+
         def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, workspaceid=nil)
           @ResourceIds = resourceids
           @Offset = offset
@@ -1509,7 +1509,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceSet, :TotalCount, :RequestId
-        
+
         def initialize(resourceset=nil, totalcount=nil, requestid=nil)
           @ResourceSet = resourceset
           @TotalCount = totalcount
@@ -1546,7 +1546,7 @@ module TencentCloud
         # @type FlinkVersion: String
 
         attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :ClusterId, :FlinkVersion
-        
+
         def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, clusterid=nil, flinkversion=nil)
           @ResourceIds = resourceids
           @Offset = offset
@@ -1583,7 +1583,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceSet, :TotalCount, :RequestId
-        
+
         def initialize(resourceset=nil, totalcount=nil, requestid=nil)
           @ResourceSet = resourceset
           @TotalCount = totalcount
@@ -1610,7 +1610,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :WorkSpaceId
-        
+
         def initialize(workspaceid=nil)
           @WorkSpaceId = workspaceid
         end
@@ -1626,7 +1626,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1642,7 +1642,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :WorkSpaceId
-        
+
         def initialize(workspaceid=nil)
           @WorkSpaceId = workspaceid
         end
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ParentId, :Id, :Name, :Items, :Children, :TotalCount, :RequestId
-        
+
         def initialize(parentid=nil, id=nil, name=nil, items=nil, children=nil, totalcount=nil, requestid=nil)
           @ParentId = parentid
           @Id = id
@@ -1731,7 +1731,7 @@ module TencentCloud
         # @type TotalCount: Integer
 
         attr_accessor :ParentId, :Id, :Name, :Items, :Children, :TotalCount
-        
+
         def initialize(parentid=nil, id=nil, name=nil, items=nil, children=nil, totalcount=nil)
           @ParentId = parentid
           @Id = id
@@ -1773,7 +1773,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1849,7 +1849,7 @@ module TencentCloud
         # @type LogLevel: String
 
         attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel
-        
+
         def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
@@ -2013,7 +2013,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags
-        
+
         def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil)
           @JobId = jobid
           @Region = region
@@ -2106,7 +2106,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId
-        
+
         def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil)
           @JobId = jobid
           @Name = name
@@ -2130,7 +2130,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2148,7 +2148,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -2170,7 +2170,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :JobStatus, :Count
-        
+
         def initialize(jobstatus=nil, count=nil)
           @JobStatus = jobstatus
           @Count = count
@@ -2215,7 +2215,7 @@ module TencentCloud
         # @type RefJobStatusCountSet: Array
 
         attr_accessor :ResourceId, :ResourceType, :Region, :AppId, :OwnerUin, :CreatorUin, :ResourceLoc, :CreateTime, :Version, :Remark, :Status, :RefJobCount, :RefJobStatusCountSet
-        
+
         def initialize(resourceid=nil, resourcetype=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, resourceloc=nil, createtime=nil, version=nil, remark=nil, status=nil, refjobcount=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
@@ -2306,7 +2306,7 @@ module TencentCloud
         # @type RefJobStatusCountSet: Array
 
         attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount, :IsJobRun, :FileName, :WorkSpaceId, :RefJobStatusCountSet
-        
+
         def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil, isjobrun=nil, filename=nil, workspaceid=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @Name = name
@@ -2368,7 +2368,7 @@ module TencentCloud
         # @type Param: :class:`Tencentcloud::Oceanus.v20190422.models.ResourceLocParam`
 
         attr_accessor :StorageType, :Param
-        
+
         def initialize(storagetype=nil, param=nil)
           @StorageType = storagetype
           @Param = param
@@ -2394,7 +2394,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Bucket, :Path, :Region
-        
+
         def initialize(bucket=nil, path=nil, region=nil)
           @Bucket = bucket
           @Path = path
@@ -2418,7 +2418,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :ResourceId, :Version, :Type
-        
+
         def initialize(resourceid=nil, version=nil, type=nil)
           @ResourceId = resourceid
           @Version = version
@@ -2446,7 +2446,7 @@ module TencentCloud
         # @type SystemProvide: Integer
 
         attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide
-        
+
         def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil)
           @ResourceId = resourceid
           @Version = version
@@ -2474,7 +2474,7 @@ module TencentCloud
         # @type ResourceVersion: Integer
 
         attr_accessor :JobId, :JobConfigVersion, :ResourceVersion
-        
+
         def initialize(jobid=nil, jobconfigversion=nil, resourceversion=nil)
           @JobId = jobid
           @JobConfigVersion = jobconfigversion
@@ -2506,7 +2506,7 @@ module TencentCloud
         # @type UseOldSystemConnector: Boolean
 
         attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector
-        
+
         def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil)
           @JobId = jobid
           @RunType = runtype
@@ -2536,7 +2536,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :RunJobDescriptions, :WorkSpaceId
-        
+
         def initialize(runjobdescriptions=nil, workspaceid=nil)
           @RunJobDescriptions = runjobdescriptions
           @WorkSpaceId = workspaceid
@@ -2561,7 +2561,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2617,7 +2617,7 @@ module TencentCloud
         # @type PathStatus: Integer
 
         attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId, :TimeConsuming, :PathStatus
-        
+
         def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil, timeconsuming=nil, pathstatus=nil)
           @Id = id
           @VersionId = versionid
@@ -2661,7 +2661,7 @@ module TencentCloud
         # @type StopType: Integer
 
         attr_accessor :JobId, :StopType
-        
+
         def initialize(jobid=nil, stoptype=nil)
           @JobId = jobid
           @StopType = stoptype
@@ -2681,7 +2681,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :StopJobDescriptions, :WorkSpaceId
-        
+
         def initialize(stopjobdescriptions=nil, workspaceid=nil)
           @StopJobDescriptions = stopjobdescriptions
           @WorkSpaceId = workspaceid
@@ -2706,7 +2706,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2732,7 +2732,7 @@ module TencentCloud
         # @type LatestResourceConfigVersion: Integer
 
         attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :Region, :LatestResourceConfigVersion
-        
+
         def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, region=nil, latestresourceconfigversion=nil)
           @ResourceId = resourceid
           @Name = name
@@ -2762,7 +2762,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2797,7 +2797,7 @@ module TencentCloud
         # @type RefJobStatusCountSet: Array
 
         attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :FileName, :FolderId, :RefJobStatusCountSet
-        
+
         def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, filename=nil, folderid=nil, refjobstatuscountset=nil)
           @ResourceId = resourceid
           @Name = name
@@ -2836,7 +2836,7 @@ module TencentCloud
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :Description, :WorkSpaceId
-        
+
         def initialize(jobid=nil, description=nil, workspaceid=nil)
           @JobId = jobid
           @Description = description
@@ -2867,7 +2867,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SavepointTrigger, :ErrorMsg, :FinalSavepointPath, :SavepointId, :RequestId
-        
+
         def initialize(savepointtrigger=nil, errormsg=nil, finalsavepointpath=nil, savepointid=nil, requestid=nil)
           @SavepointTrigger = savepointtrigger
           @ErrorMsg = errormsg
@@ -2906,7 +2906,7 @@ module TencentCloud
         # @type ProjectIdStr: String
 
         attr_accessor :ClusterGroupId, :ClusterGroupSerialId, :ClusterName, :WorkSpaceId, :WorkSpaceName, :Status, :ProjectId, :ProjectIdStr
-        
+
         def initialize(clustergroupid=nil, clustergroupserialid=nil, clustername=nil, workspaceid=nil, workspacename=nil, status=nil, projectid=nil, projectidstr=nil)
           @ClusterGroupId = clustergroupid
           @ClusterGroupSerialId = clustergroupserialid

@@ -35,7 +35,7 @@ module TencentCloud
         # @type TextLocation: String
 
         attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :RepositoryType, :TextLocation
-        
+
         def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, repositorytype=nil, textlocation=nil)
           @TaskType = tasktype
           @Bucket = bucket
@@ -65,7 +65,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -85,7 +85,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :TaskId, :FileSystemId
-        
+
         def initialize(taskid=nil, filesystemid=nil)
           @TaskId = taskid
           @FileSystemId = filesystemid
@@ -111,7 +111,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :Status, :FinishedFileNumber, :FinishedCapacity, :RequestId
-        
+
         def initialize(taskid=nil, status=nil, finishedfilenumber=nil, finishedcapacity=nil, requestid=nil)
           @TaskId = taskid
           @Status = status

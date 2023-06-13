@@ -23,7 +23,7 @@ module TencentCloud
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
-        
+
         def initialize(directconnecttunnelid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
         end
@@ -39,7 +39,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -80,7 +80,7 @@ module TencentCloud
         # @type AccessPointType: String
 
         attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType
-        
+
         def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
@@ -127,7 +127,7 @@ module TencentCloud
         # @type AddrProto: Integer
 
         attr_accessor :MaskLen, :AddrType, :AddrProto
-        
+
         def initialize(masklen=nil, addrtype=nil, addrproto=nil)
           @MaskLen = masklen
           @AddrType = addrtype
@@ -150,7 +150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceId, :RequestId
-        
+
         def initialize(instanceid=nil, requestid=nil)
           @InstanceId = instanceid
           @RequestId = requestid
@@ -170,7 +170,7 @@ module TencentCloud
         # @type Interval: Integer
 
         attr_accessor :ProbeFailedTimes, :Interval
-        
+
         def initialize(probefailedtimes=nil, interval=nil)
           @ProbeFailedTimes = probefailedtimes
           @Interval = interval
@@ -190,7 +190,7 @@ module TencentCloud
         # @type TencentBackupAddressBgpState: String
 
         attr_accessor :TencentAddressBgpState, :TencentBackupAddressBgpState
-        
+
         def initialize(tencentaddressbgpstate=nil, tencentbackupaddressbgpstate=nil)
           @TencentAddressBgpState = tencentaddressbgpstate
           @TencentBackupAddressBgpState = tencentbackupaddressbgpstate
@@ -210,7 +210,7 @@ module TencentCloud
         # @type AuthKey: String
 
         attr_accessor :Asn, :AuthKey
-        
+
         def initialize(asn=nil, authkey=nil)
           @Asn = asn
           @AuthKey = authkey
@@ -230,7 +230,7 @@ module TencentCloud
         # @type Lng: Float
 
         attr_accessor :Lat, :Lng
-        
+
         def initialize(lat=nil, lng=nil)
           @Lat = lat
           @Lng = lng
@@ -292,7 +292,7 @@ module TencentCloud
         # @type SignLaw: Boolean
 
         attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw
-        
+
         def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil)
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -342,7 +342,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DirectConnectIdSet, :RequestId
-        
+
         def initialize(directconnectidset=nil, requestid=nil)
           @DirectConnectIdSet = directconnectidset
           @RequestId = requestid
@@ -407,7 +407,7 @@ module TencentCloud
         # @type NqaInfo: :class:`Tencentcloud::Dc.v20180410.models.NQAInfo`
 
         attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo
-        
+
         def initialize(directconnectid=nil, directconnecttunnelname=nil, directconnectowneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, bandwidth=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, tencentbackupaddress=nil, cloudattachid=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil)
           @DirectConnectId = directconnectid
           @DirectConnectTunnelName = directconnecttunnelname
@@ -479,7 +479,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelIdSet, :RequestId
-        
+
         def initialize(directconnecttunnelidset=nil, requestid=nil)
           @DirectConnectTunnelIdSet = directconnecttunnelidset
           @RequestId = requestid
@@ -497,7 +497,7 @@ module TencentCloud
         # @type DirectConnectId: String
 
         attr_accessor :DirectConnectId
-        
+
         def initialize(directconnectid=nil)
           @DirectConnectId = directconnectid
         end
@@ -513,7 +513,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -529,7 +529,7 @@ module TencentCloud
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
-        
+
         def initialize(directconnecttunnelid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
         end
@@ -545,7 +545,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -567,7 +567,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :RegionId, :Offset, :Limit
-        
+
         def initialize(regionid=nil, offset=nil, limit=nil)
           @RegionId = regionid
           @Offset = offset
@@ -591,7 +591,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessPointSet, :TotalCount, :RequestId
-        
+
         def initialize(accesspointset=nil, totalcount=nil, requestid=nil)
           @AccessPointSet = accesspointset
           @TotalCount = totalcount
@@ -618,7 +618,7 @@ module TencentCloud
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
-        
+
         def initialize(directconnecttunnelid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
         end
@@ -636,7 +636,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelExtra, :RequestId
-        
+
         def initialize(directconnecttunnelextra=nil, requestid=nil)
           @DirectConnectTunnelExtra = directconnecttunnelextra
           @RequestId = requestid
@@ -667,7 +667,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Filters, :DirectConnectTunnelIds, :Offset, :Limit
-        
+
         def initialize(filters=nil, directconnecttunnelids=nil, offset=nil, limit=nil)
           @Filters = filters
           @DirectConnectTunnelIds = directconnecttunnelids
@@ -700,7 +700,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelSet, :TotalCount, :RequestId
-        
+
         def initialize(directconnecttunnelset=nil, totalcount=nil, requestid=nil)
           @DirectConnectTunnelSet = directconnecttunnelset
           @TotalCount = totalcount
@@ -733,7 +733,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Filters, :DirectConnectIds, :Offset, :Limit
-        
+
         def initialize(filters=nil, directconnectids=nil, offset=nil, limit=nil)
           @Filters = filters
           @DirectConnectIds = directconnectids
@@ -769,7 +769,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DirectConnectSet, :TotalCount, :AllSignLaw, :RequestId
-        
+
         def initialize(directconnectset=nil, totalcount=nil, allsignlaw=nil, requestid=nil)
           @DirectConnectSet = directconnectset
           @TotalCount = totalcount
@@ -795,7 +795,7 @@ module TencentCloud
       # DescribeInternetAddressQuota请求参数结构体
       class DescribeInternetAddressQuotaRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -824,7 +824,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ipv6PrefixLen, :Ipv4BgpQuota, :Ipv4OtherQuota, :Ipv4BgpNum, :Ipv4OtherNum, :RequestId
-        
+
         def initialize(ipv6prefixlen=nil, ipv4bgpquota=nil, ipv4otherquota=nil, ipv4bgpnum=nil, ipv4othernum=nil, requestid=nil)
           @Ipv6PrefixLen = ipv6prefixlen
           @Ipv4BgpQuota = ipv4bgpquota
@@ -859,7 +859,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
-        
+
         def initialize(offset=nil, limit=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -891,7 +891,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Subnets, :RequestId
-        
+
         def initialize(totalcount=nil, subnets=nil, requestid=nil)
           @TotalCount = totalcount
           @Subnets = subnets
@@ -915,7 +915,7 @@ module TencentCloud
       # DescribeInternetAddressStatistics请求参数结构体
       class DescribeInternetAddressStatisticsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -934,7 +934,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InternetAddressStatistics, :RequestId
-        
+
         def initialize(totalcount=nil, internetaddressstatistics=nil, requestid=nil)
           @TotalCount = totalcount
           @InternetAddressStatistics = internetaddressstatistics
@@ -969,7 +969,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :DirectConnectTunnelId, :Filters, :Offset, :Limit
-        
+
         def initialize(directconnecttunnelid=nil, filters=nil, offset=nil, limit=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Filters = filters
@@ -1002,7 +1002,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Routes, :TotalCount, :RequestId
-        
+
         def initialize(routes=nil, totalcount=nil, requestid=nil)
           @Routes = routes
           @TotalCount = totalcount
@@ -1119,7 +1119,7 @@ module TencentCloud
         # @type MinBandwidth: Integer
 
         attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth
-        
+
         def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
@@ -1283,7 +1283,7 @@ module TencentCloud
         # @type CloudAttachId: String
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId
-        
+
         def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, tagset=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, tencentbackupaddress=nil, signlaw=nil, cloudattachid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectId = directconnectid
@@ -1469,7 +1469,7 @@ module TencentCloud
         # @type HighPrecisionBFDEnable: Integer
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :PublicAddresses, :Vlan, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :NqaEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :SignLaw, :BfdInfo, :NqaInfo, :BgpStatus, :IPv6Enable, :TencentIPv6Address, :TencentBackupIPv6Address, :BgpIPv6Status, :CustomerIPv6Address, :JumboEnable, :HighPrecisionBFDEnable
-        
+
         def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, publicaddresses=nil, vlan=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, nqaenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, signlaw=nil, bfdinfo=nil, nqainfo=nil, bgpstatus=nil, ipv6enable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, bgpipv6status=nil, customeripv6address=nil, jumboenable=nil, highprecisionbfdenable=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectId = directconnectid
@@ -1602,7 +1602,7 @@ module TencentCloud
         # @type NextHop: String
 
         attr_accessor :RouteId, :DestinationCidrBlock, :RouteType, :Status, :ASPath, :NextHop
-        
+
         def initialize(routeid=nil, destinationcidrblock=nil, routetype=nil, status=nil, aspath=nil, nexthop=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
@@ -1628,7 +1628,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -1644,7 +1644,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1660,7 +1660,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1694,7 +1694,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1750,7 +1750,7 @@ module TencentCloud
         # @type ReserveTime: Integer
 
         attr_accessor :InstanceId, :Subnet, :MaskLen, :AddrType, :Status, :ApplyTime, :StopTime, :ReleaseTime, :Region, :AppId, :AddrProto, :ReserveTime
-        
+
         def initialize(instanceid=nil, subnet=nil, masklen=nil, addrtype=nil, status=nil, applytime=nil, stoptime=nil, releasetime=nil, region=nil, appid=nil, addrproto=nil, reservetime=nil)
           @InstanceId = instanceid
           @Subnet = subnet
@@ -1792,7 +1792,7 @@ module TencentCloud
         # @type SubnetNum: Integer
 
         attr_accessor :Region, :SubnetNum
-        
+
         def initialize(region=nil, subnetnum=nil)
           @Region = region
           @SubnetNum = subnetnum
@@ -1834,7 +1834,7 @@ module TencentCloud
         # @type Bandwidth: Integer
 
         attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Bandwidth
-        
+
         def initialize(directconnectid=nil, directconnectname=nil, circuitcode=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, bandwidth=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
@@ -1874,7 +1874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1904,7 +1904,7 @@ module TencentCloud
         # @type TencentBackupAddress: String
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectTunnelName, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :CustomerAddress, :Bandwidth, :TencentBackupAddress
-        
+
         def initialize(directconnecttunnelid=nil, directconnecttunnelname=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, customeraddress=nil, bandwidth=nil, tencentbackupaddress=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectTunnelName = directconnecttunnelname
@@ -1944,7 +1944,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1993,7 +1993,7 @@ module TencentCloud
         # @type JumboEnable: Integer
 
         attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable
-        
+
         def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Vlan = vlan
@@ -2058,7 +2058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2078,7 +2078,7 @@ module TencentCloud
         # @type DestinationIp: String
 
         attr_accessor :ProbeFailedTimes, :Interval, :DestinationIp
-        
+
         def initialize(probefailedtimes=nil, interval=nil, destinationip=nil)
           @ProbeFailedTimes = probefailedtimes
           @Interval = interval
@@ -2098,7 +2098,7 @@ module TencentCloud
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
-        
+
         def initialize(directconnecttunnelid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
         end
@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2130,7 +2130,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -2146,7 +2146,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2162,7 +2162,7 @@ module TencentCloud
         # @type Cidr: String
 
         attr_accessor :Cidr
-        
+
         def initialize(cidr=nil)
           @Cidr = cidr
         end
@@ -2182,7 +2182,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value

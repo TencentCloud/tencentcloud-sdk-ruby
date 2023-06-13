@@ -25,7 +25,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :SDKAppid, :Type
-        
+
         def initialize(sdkappid=nil, type=nil)
           @SDKAppid = sdkappid
           @Type = type
@@ -49,7 +49,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Exist, :HasError, :Msg, :RequestId
-        
+
         def initialize(exist=nil, haserror=nil, msg=nil, requestid=nil)
           @Exist = exist
           @HasError = haserror
@@ -81,7 +81,7 @@ module TencentCloud
         # @type GoodsNum: Integer
 
         attr_accessor :ProductCode, :SubProductCode, :Type, :GoodsNum
-        
+
         def initialize(productcode=nil, subproductcode=nil, type=nil, goodsnum=nil)
           @ProductCode = productcode
           @SubProductCode = subproductcode
@@ -103,7 +103,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -122,7 +122,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Resource, :RequestId
-        
+
         def initialize(resource=nil, requestid=nil)
           @Resource = resource
           @RequestId = requestid
@@ -147,7 +147,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :Type, :PageNumber, :PageSize
-        
+
         def initialize(type=nil, pagenumber=nil, pagesize=nil)
           @Type = type
           @PageNumber = pagenumber
@@ -173,7 +173,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Resources, :Total, :RequestId
-        
+
         def initialize(resources=nil, total=nil, requestid=nil)
           @Resources = resources
           @Total = total
@@ -258,7 +258,7 @@ module TencentCloud
         # @type Key: String
 
         attr_accessor :UIN, :AppId, :ResourceId, :ZoneId, :Status, :IsolatedTimestamp, :CreateTime, :PayMode, :Alias, :GoodsDetail, :RenewFlag, :ExpireTime, :Region, :SdkAppId, :AppName, :PackageName, :URL, :Entry, :InstType, :Key
-        
+
         def initialize(uin=nil, appid=nil, resourceid=nil, zoneid=nil, status=nil, isolatedtimestamp=nil, createtime=nil, paymode=nil, _alias=nil, goodsdetail=nil, renewflag=nil, expiretime=nil, region=nil, sdkappid=nil, appname=nil, packagename=nil, url=nil, entry=nil, insttype=nil, key=nil)
           @UIN = uin
           @AppId = appid

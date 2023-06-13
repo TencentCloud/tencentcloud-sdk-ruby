@@ -25,7 +25,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :GameId, :RoomId
-        
+
         def initialize(gameid=nil, roomid=nil)
           @GameId = gameid
           @RoomId = roomid
@@ -43,7 +43,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

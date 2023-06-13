@@ -55,7 +55,7 @@ module TencentCloud
         # @type PrivacyTextMD5: String
 
         attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount, :PrivacyTextName, :SoftwareMD5, :PrivacyTextMD5
-        
+
         def initialize(apppackage=nil, appname=nil, appversion=nil, platform=nil, reporturl=nil, reporttitle=nil, behaviorurl=nil, behaviortitle=nil, highriskcount=nil, privacytextname=nil, softwaremd5=nil, privacytextmd5=nil)
           @AppPackage = apppackage
           @AppName = appname
@@ -111,7 +111,7 @@ module TencentCloud
         # @type ContactName: String
 
         attr_accessor :TaskID, :TaskType, :TaskStatus, :TaskErrMsg, :Source, :AppInfo, :StartTime, :EndTime, :ContactName
-        
+
         def initialize(taskid=nil, tasktype=nil, taskstatus=nil, taskerrmsg=nil, source=nil, appinfo=nil, starttime=nil, endtime=nil, contactname=nil)
           @TaskID = taskid
           @TaskType = tasktype
@@ -154,7 +154,7 @@ module TencentCloud
         # @type OrgTaskID: String
 
         attr_accessor :TaskType, :Source, :AppPackage, :Platform, :OrgTaskID
-        
+
         def initialize(tasktype=nil, source=nil, apppackage=nil, platform=nil, orgtaskid=nil)
           @TaskType = tasktype
           @Source = source
@@ -182,7 +182,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :TaskID, :RequestId
-        
+
         def initialize(result=nil, taskid=nil, requestid=nil)
           @Result = result
           @TaskID = taskid
@@ -222,7 +222,7 @@ module TencentCloud
         # @type Email: String
 
         attr_accessor :TaskType, :Source, :AppPackage, :Platform, :AppName, :AppVersion, :ContactName, :TelNumber, :CorpName, :SalesPerson, :Email
-        
+
         def initialize(tasktype=nil, source=nil, apppackage=nil, platform=nil, appname=nil, appversion=nil, contactname=nil, telnumber=nil, corpname=nil, salesperson=nil, email=nil)
           @TaskType = tasktype
           @Source = source
@@ -262,7 +262,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :TaskID, :RequestId
-        
+
         def initialize(result=nil, taskid=nil, requestid=nil)
           @Result = result
           @TaskID = taskid
@@ -294,7 +294,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :MiniAppID, :MiniAppName, :Mode, :CorpName, :Mobile, :Email, :Remark
-        
+
         def initialize(miniappid=nil, miniappname=nil, mode=nil, corpname=nil, mobile=nil, email=nil, remark=nil)
           @MiniAppID = miniappid
           @MiniAppName = miniappname
@@ -324,7 +324,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :RequestId
-        
+
         def initialize(ret=nil, requestid=nil)
           @Ret = ret
           @RequestId = requestid
@@ -352,7 +352,7 @@ module TencentCloud
         # @type ScanVersion: Integer
 
         attr_accessor :MiniAppID, :Mode, :OrgTaskID, :MiniAppTestAccount, :MiniAppTestPwd, :ScanVersion
-        
+
         def initialize(miniappid=nil, mode=nil, orgtaskid=nil, miniapptestaccount=nil, miniapptestpwd=nil, scanversion=nil)
           @MiniAppID = miniappid
           @Mode = mode
@@ -382,7 +382,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :TaskID, :RequestId
-        
+
         def initialize(ret=nil, taskid=nil, requestid=nil)
           @Ret = ret
           @TaskID = taskid
@@ -420,7 +420,7 @@ module TencentCloud
         # @type ScanVersion: Integer
 
         attr_accessor :MiniAppID, :Mode, :MiniAppTestAccount, :MiniAppTestPwd, :Industry, :SurveyContent, :Mobile, :Email, :SalesPerson, :ScanVersion
-        
+
         def initialize(miniappid=nil, mode=nil, miniapptestaccount=nil, miniapptestpwd=nil, industry=nil, surveycontent=nil, mobile=nil, email=nil, salesperson=nil, scanversion=nil)
           @MiniAppID = miniappid
           @Mode = mode
@@ -458,7 +458,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :TaskID, :RequestId
-        
+
         def initialize(ret=nil, taskid=nil, requestid=nil)
           @Ret = ret
           @TaskID = taskid
@@ -478,7 +478,7 @@ module TencentCloud
         # @type Mode: Integer
 
         attr_accessor :Mode
-        
+
         def initialize(mode=nil)
           @Mode = mode
         end
@@ -502,7 +502,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :ResourceName, :Total, :UnusedCount, :RequestId
-        
+
         def initialize(ret=nil, resourcename=nil, total=nil, unusedcount=nil, requestid=nil)
           @Ret = ret
           @ResourceName = resourcename
@@ -532,7 +532,7 @@ module TencentCloud
         # @type ReportType: Integer
 
         attr_accessor :TaskID, :MiniAppID, :Mode, :ReportType
-        
+
         def initialize(taskid=nil, miniappid=nil, mode=nil, reporttype=nil)
           @TaskID = taskid
           @MiniAppID = miniappid
@@ -559,7 +559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :Url, :RequestId
-        
+
         def initialize(ret=nil, url=nil, requestid=nil)
           @Ret = ret
           @Url = url
@@ -587,7 +587,7 @@ module TencentCloud
         # @type MiniAppVersion: String
 
         attr_accessor :MiniAppID, :Mode, :Status, :Size, :MiniAppVersion
-        
+
         def initialize(miniappid=nil, mode=nil, status=nil, size=nil, miniappversion=nil)
           @MiniAppID = miniappid
           @Mode = mode
@@ -619,7 +619,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :Data, :Total, :RequestId
-        
+
         def initialize(ret=nil, data=nil, total=nil, requestid=nil)
           @Ret = ret
           @Data = data
@@ -654,7 +654,7 @@ module TencentCloud
         # @type MiniAppID: String
 
         attr_accessor :Mode, :Status, :Size, :MiniAppID
-        
+
         def initialize(mode=nil, status=nil, size=nil, miniappid=nil)
           @Mode = mode
           @Status = status
@@ -684,7 +684,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :Data, :Total, :RequestId
-        
+
         def initialize(ret=nil, data=nil, total=nil, requestid=nil)
           @Ret = ret
           @Data = data
@@ -713,7 +713,7 @@ module TencentCloud
         # @type TaskID: String
 
         attr_accessor :TaskID
-        
+
         def initialize(taskid=nil)
           @TaskID = taskid
         end
@@ -744,7 +744,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :MiniAppID, :Mode, :MiniAppTestAccount, :MiniAppTestPwd, :ScanVersion, :RequestId
-        
+
         def initialize(ret=nil, miniappid=nil, mode=nil, miniapptestaccount=nil, miniapptestpwd=nil, scanversion=nil, requestid=nil)
           @Ret = ret
           @MiniAppID = miniappid
@@ -772,7 +772,7 @@ module TencentCloud
         # @type TaskID: String
 
         attr_accessor :TaskID
-        
+
         def initialize(taskid=nil)
           @TaskID = taskid
         end
@@ -801,7 +801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :Status, :Errno, :MiniAppName, :MiniAppVersion, :RequestId
-        
+
         def initialize(ret=nil, status=nil, errno=nil, miniappname=nil, miniappversion=nil, requestid=nil)
           @Ret = ret
           @Status = status
@@ -824,7 +824,7 @@ module TencentCloud
       # DescribeResourceUsageInfo请求参数结构体
       class DescribeResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -844,7 +844,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ret, :Data, :Total, :RequestId
-        
+
         def initialize(ret=nil, data=nil, total=nil, requestid=nil)
           @Ret = ret
           @Data = data
@@ -889,7 +889,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Source, :Platform, :TaskStatuses, :TaskTypes, :PageNo, :PageSize, :AppName, :StartTime, :EndTime
-        
+
         def initialize(source=nil, platform=nil, taskstatuses=nil, tasktypes=nil, pageno=nil, pagesize=nil, appname=nil, starttime=nil, endtime=nil)
           @Source = source
           @Platform = platform
@@ -929,7 +929,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Data, :Total, :RequestId
-        
+
         def initialize(result=nil, data=nil, total=nil, requestid=nil)
           @Result = result
           @Data = data
@@ -966,7 +966,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :Source, :TaskID, :Platform, :ReportType, :TaskType
-        
+
         def initialize(source=nil, taskid=nil, platform=nil, reporttype=nil, tasktype=nil)
           @Source = source
           @TaskID = taskid
@@ -1000,7 +1000,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :ReportUrl, :ReportTitle, :ReportResult, :RequestId
-        
+
         def initialize(result=nil, reporturl=nil, reporttitle=nil, reportresult=nil, requestid=nil)
           @Result = result
           @ReportUrl = reporturl
@@ -1030,7 +1030,7 @@ module TencentCloud
         # @type Platform: Integer
 
         attr_accessor :TaskType, :Source, :TaskID, :Platform
-        
+
         def initialize(tasktype=nil, source=nil, taskid=nil, platform=nil)
           @TaskType = tasktype
           @Source = source
@@ -1062,7 +1062,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Status, :ErrMsg, :FlowSteps, :RequestId
-        
+
         def initialize(result=nil, status=nil, errmsg=nil, flowsteps=nil, requestid=nil)
           @Result = result
           @Status = status
@@ -1111,7 +1111,7 @@ module TencentCloud
         # @type RiskItems: :class:`Tencentcloud::Mmps.v20200710.models.FlySecMiniAppRiskItems`
 
         attr_accessor :TaskID, :MiniAppID, :MiniAppName, :MiniAppVersion, :Mode, :Status, :CreateTime, :RiskScore, :RiskLevel, :RiskItems
-        
+
         def initialize(taskid=nil, miniappid=nil, miniappname=nil, miniappversion=nil, mode=nil, status=nil, createtime=nil, riskscore=nil, risklevel=nil, riskitems=nil)
           @TaskID = taskid
           @MiniAppID = miniappid
@@ -1162,7 +1162,7 @@ module TencentCloud
         # @type RiskItem8Score: Integer
 
         attr_accessor :RiskItem1Score, :RiskItem2Score, :RiskItem3Score, :RiskItem4Score, :RiskItem5Score, :RiskItem6Score, :RiskItem7Score, :RiskItem8Score
-        
+
         def initialize(riskitem1score=nil, riskitem2score=nil, riskitem3score=nil, riskitem4score=nil, riskitem5score=nil, riskitem6score=nil, riskitem7score=nil, riskitem8score=nil)
           @RiskItem1Score = riskitem1score
           @RiskItem2Score = riskitem2score
@@ -1206,7 +1206,7 @@ module TencentCloud
         # @type Error: Integer
 
         attr_accessor :TaskID, :MiniAppID, :MiniAppName, :MiniAppVersion, :Mode, :CreateTime, :Status, :Error
-        
+
         def initialize(taskid=nil, miniappid=nil, miniappname=nil, miniappversion=nil, mode=nil, createtime=nil, status=nil, error=nil)
           @TaskID = taskid
           @MiniAppID = miniappid
@@ -1240,7 +1240,7 @@ module TencentCloud
         # @type UnusedCount: Integer
 
         attr_accessor :ResourceName, :Total, :UnusedCount
-        
+
         def initialize(resourcename=nil, total=nil, unusedcount=nil)
           @ResourceName = resourcename
           @Total = total
@@ -1274,7 +1274,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :FlowNo, :FlowName, :FlowStatus, :FlowStateDesc, :StartTime, :EndTime
-        
+
         def initialize(flowno=nil, flowname=nil, flowstatus=nil, flowstatedesc=nil, starttime=nil, endtime=nil)
           @FlowNo = flowno
           @FlowName = flowname

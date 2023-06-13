@@ -25,7 +25,7 @@ module TencentCloud
         # @type Algorithm: String
 
         attr_accessor :KeyUsage, :Algorithm
-        
+
         def initialize(keyusage=nil, algorithm=nil)
           @KeyUsage = keyusage
           @Algorithm = algorithm
@@ -43,7 +43,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -59,7 +59,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -79,7 +79,7 @@ module TencentCloud
         # @type Algorithm: String
 
         attr_accessor :KeyId, :Ciphertext, :Algorithm
-        
+
         def initialize(keyid=nil, ciphertext=nil, algorithm=nil)
           @KeyId = keyid
           @Ciphertext = ciphertext
@@ -103,7 +103,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
-        
+
         def initialize(keyid=nil, plaintext=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
@@ -125,7 +125,7 @@ module TencentCloud
         # @type Ciphertext: String
 
         attr_accessor :KeyId, :Ciphertext
-        
+
         def initialize(keyid=nil, ciphertext=nil)
           @KeyId = keyid
           @Ciphertext = ciphertext
@@ -147,7 +147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
-        
+
         def initialize(keyid=nil, plaintext=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
@@ -171,7 +171,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :KeyId, :ProductId, :ResourceId
-        
+
         def initialize(keyid=nil, productid=nil, resourceid=nil)
           @KeyId = keyid
           @ProductId = productid
@@ -191,7 +191,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -207,7 +207,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -223,7 +223,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -239,7 +239,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -257,7 +257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :RequestId
-        
+
         def initialize(keyid=nil, requestid=nil)
           @KeyId = keyid
           @RequestId = requestid
@@ -285,7 +285,7 @@ module TencentCloud
         # @type HsmClusterId: String
 
         attr_accessor :Alias, :Description, :KeyUsage, :Type, :Tags, :HsmClusterId
-        
+
         def initialize(_alias=nil, description=nil, keyusage=nil, type=nil, tags=nil, hsmclusterid=nil)
           @Alias = _alias
           @Description = description
@@ -340,7 +340,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :TagCode, :TagMsg, :HsmClusterId, :RequestId
-        
+
         def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, tagcode=nil, tagmsg=nil, hsmclusterid=nil, requestid=nil)
           @KeyId = keyid
           @Alias = _alias
@@ -380,7 +380,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Alias, :Algorithm, :Description, :Tags
-        
+
         def initialize(_alias=nil, algorithm=nil, description=nil, tags=nil)
           @Alias = _alias
           @Algorithm = algorithm
@@ -421,7 +421,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EncryptKey, :DecryptKey, :KeyId, :TagCode, :TagMsg, :RequestId
-        
+
         def initialize(encryptkey=nil, decryptkey=nil, keyid=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @EncryptKey = encryptkey
           @DecryptKey = decryptkey
@@ -453,7 +453,7 @@ module TencentCloud
         # @type EncryptionAlgorithm: String
 
         attr_accessor :CiphertextBlob, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm
-        
+
         def initialize(ciphertextblob=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
           @CiphertextBlob = ciphertextblob
           @EncryptionContext = encryptioncontext
@@ -480,7 +480,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
-        
+
         def initialize(keyid=nil, plaintext=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
@@ -500,7 +500,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -516,7 +516,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -532,7 +532,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -548,7 +548,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -564,7 +564,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -583,7 +583,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyMetadata, :RequestId
-        
+
         def initialize(keymetadata=nil, requestid=nil)
           @KeyMetadata = keymetadata
           @RequestId = requestid
@@ -604,7 +604,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -623,7 +623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyMetadatas, :RequestId
-        
+
         def initialize(keymetadatas=nil, requestid=nil)
           @KeyMetadatas = keymetadatas
           @RequestId = requestid
@@ -648,7 +648,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -666,7 +666,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DecryptKey, :RequestId
-        
+
         def initialize(decryptkey=nil, requestid=nil)
           @DecryptKey = decryptkey
           @RequestId = requestid
@@ -684,7 +684,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -702,7 +702,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceFingerprints, :RequestId
-        
+
         def initialize(devicefingerprints=nil, requestid=nil)
           @DeviceFingerprints = devicefingerprints
           @RequestId = requestid
@@ -733,7 +733,7 @@ module TencentCloud
         # @type TagFilters: Array
 
         attr_accessor :KeyStatus, :Offset, :Limit, :TagFilters
-        
+
         def initialize(keystatus=nil, offset=nil, limit=nil, tagfilters=nil)
           @KeyStatus = keystatus
           @Offset = offset
@@ -767,7 +767,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyInfos, :TotalCount, :RequestId
-        
+
         def initialize(keyinfos=nil, totalcount=nil, requestid=nil)
           @KeyInfos = keyinfos
           @TotalCount = totalcount
@@ -794,7 +794,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -812,7 +812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyInfo, :RequestId
-        
+
         def initialize(keyinfo=nil, requestid=nil)
           @KeyInfo = keyinfo
           @RequestId = requestid
@@ -830,7 +830,7 @@ module TencentCloud
       # DescribeWhiteBoxServiceStatus请求参数结构体
       class DescribeWhiteBoxServiceStatusRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -846,7 +846,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServiceEnabled, :RequestId
-        
+
         def initialize(serviceenabled=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @RequestId = requestid
@@ -867,7 +867,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :Identity, :Description
-        
+
         def initialize(identity=nil, description=nil)
           @Identity = identity
           @Description = description
@@ -885,7 +885,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -901,7 +901,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -917,7 +917,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -933,7 +933,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -949,7 +949,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -965,7 +965,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -981,7 +981,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -997,7 +997,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1013,7 +1013,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -1029,7 +1029,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1045,7 +1045,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -1061,7 +1061,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1079,7 +1079,7 @@ module TencentCloud
         # @type RotateDays: Integer
 
         attr_accessor :KeyId, :RotateDays
-        
+
         def initialize(keyid=nil, rotatedays=nil)
           @KeyId = keyid
           @RotateDays = rotatedays
@@ -1097,7 +1097,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -1129,7 +1129,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1145,7 +1145,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -1161,7 +1161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1177,7 +1177,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -1193,7 +1193,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1213,7 +1213,7 @@ module TencentCloud
         # @type InitializationVector: String
 
         attr_accessor :KeyId, :PlainText, :InitializationVector
-        
+
         def initialize(keyid=nil, plaintext=nil, initializationvector=nil)
           @KeyId = keyid
           @PlainText = plaintext
@@ -1237,7 +1237,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InitializationVector, :CipherText, :RequestId
-        
+
         def initialize(initializationvector=nil, ciphertext=nil, requestid=nil)
           @InitializationVector = initializationvector
           @CipherText = ciphertext
@@ -1261,7 +1261,7 @@ module TencentCloud
         # @type EncryptionContext: String
 
         attr_accessor :KeyId, :Plaintext, :EncryptionContext
-        
+
         def initialize(keyid=nil, plaintext=nil, encryptioncontext=nil)
           @KeyId = keyid
           @Plaintext = plaintext
@@ -1285,7 +1285,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :RequestId
-        
+
         def initialize(ciphertextblob=nil, keyid=nil, requestid=nil)
           @CiphertextBlob = ciphertextblob
           @KeyId = keyid
@@ -1315,7 +1315,7 @@ module TencentCloud
         # @type EncryptionAlgorithm: String
 
         attr_accessor :KeyId, :KeySpec, :NumberOfBytes, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm
-        
+
         def initialize(keyid=nil, keyspec=nil, numberofbytes=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
           @KeyId = keyid
           @KeySpec = keyspec
@@ -1348,7 +1348,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :RequestId
-        
+
         def initialize(keyid=nil, plaintext=nil, ciphertextblob=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
@@ -1370,7 +1370,7 @@ module TencentCloud
         # @type NumberOfBytes: Integer
 
         attr_accessor :NumberOfBytes
-        
+
         def initialize(numberofbytes=nil)
           @NumberOfBytes = numberofbytes
         end
@@ -1388,7 +1388,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Plaintext, :RequestId
-        
+
         def initialize(plaintext=nil, requestid=nil)
           @Plaintext = plaintext
           @RequestId = requestid
@@ -1406,7 +1406,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -1424,7 +1424,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyRotationEnabled, :RequestId
-        
+
         def initialize(keyrotationenabled=nil, requestid=nil)
           @KeyRotationEnabled = keyrotationenabled
           @RequestId = requestid
@@ -1446,7 +1446,7 @@ module TencentCloud
         # @type WrappingKeySpec: String
 
         attr_accessor :KeyId, :WrappingAlgorithm, :WrappingKeySpec
-        
+
         def initialize(keyid=nil, wrappingalgorithm=nil, wrappingkeyspec=nil)
           @KeyId = keyid
           @WrappingAlgorithm = wrappingalgorithm
@@ -1474,7 +1474,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :ImportToken, :PublicKey, :ParametersValidTo, :RequestId
-        
+
         def initialize(keyid=nil, importtoken=nil, publickey=nil, parametersvalidto=nil, requestid=nil)
           @KeyId = keyid
           @ImportToken = importtoken
@@ -1498,7 +1498,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -1520,7 +1520,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :PublicKey, :PublicKeyPem, :RequestId
-        
+
         def initialize(keyid=nil, publickey=nil, publickeypem=nil, requestid=nil)
           @KeyId = keyid
           @PublicKey = publickey
@@ -1539,7 +1539,7 @@ module TencentCloud
       # GetRegions请求参数结构体
       class GetRegionsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1556,7 +1556,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Regions, :RequestId
-        
+
         def initialize(regions=nil, requestid=nil)
           @Regions = regions
           @RequestId = requestid
@@ -1571,7 +1571,7 @@ module TencentCloud
       # GetServiceStatus请求参数结构体
       class GetServiceStatusRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1610,7 +1610,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :RequestId
-        
+
         def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
@@ -1650,7 +1650,7 @@ module TencentCloud
         # @type ValidTo: Integer
 
         attr_accessor :EncryptedKeyMaterial, :ImportToken, :KeyId, :ValidTo
-        
+
         def initialize(encryptedkeymaterial=nil, importtoken=nil, keyid=nil, validto=nil)
           @EncryptedKeyMaterial = encryptedkeymaterial
           @ImportToken = importtoken
@@ -1672,7 +1672,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1688,7 +1688,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :KeyId
-        
+
         def initialize(keyid=nil)
           @KeyId = keyid
         end
@@ -1738,7 +1738,7 @@ module TencentCloud
         # @type HsmClusterId: String
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId
-        
+
         def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil)
           @KeyId = keyid
           @Alias = _alias
@@ -1781,7 +1781,7 @@ module TencentCloud
       # ListAlgorithms请求参数结构体
       class ListAlgorithmsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1801,7 +1801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SymmetricAlgorithms, :AsymmetricAlgorithms, :AsymmetricSignVerifyAlgorithms, :RequestId
-        
+
         def initialize(symmetricalgorithms=nil, asymmetricalgorithms=nil, asymmetricsignverifyalgorithms=nil, requestid=nil)
           @SymmetricAlgorithms = symmetricalgorithms
           @AsymmetricAlgorithms = asymmetricalgorithms
@@ -1862,7 +1862,7 @@ module TencentCloud
         # @type HsmClusterId: String
 
         attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters, :HsmClusterId
-        
+
         def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil, hsmclusterid=nil)
           @Offset = offset
           @Limit = limit
@@ -1908,7 +1908,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KeyMetadatas, :RequestId
-        
+
         def initialize(totalcount=nil, keymetadatas=nil, requestid=nil)
           @TotalCount = totalcount
           @KeyMetadatas = keymetadatas
@@ -1941,7 +1941,7 @@ module TencentCloud
         # @type HsmClusterId: String
 
         attr_accessor :Offset, :Limit, :Role, :HsmClusterId
-        
+
         def initialize(offset=nil, limit=nil, role=nil, hsmclusterid=nil)
           @Offset = offset
           @Limit = limit
@@ -1968,7 +1968,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Keys, :TotalCount, :RequestId
-        
+
         def initialize(keys=nil, totalcount=nil, requestid=nil)
           @Keys = keys
           @TotalCount = totalcount
@@ -1997,7 +1997,7 @@ module TencentCloud
         # @type DeviceFingerprints: Array
 
         attr_accessor :KeyId, :DeviceFingerprints
-        
+
         def initialize(keyid=nil, devicefingerprints=nil)
           @KeyId = keyid
           @DeviceFingerprints = devicefingerprints
@@ -2022,7 +2022,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2042,7 +2042,7 @@ module TencentCloud
         # @type EncryptionAlgorithm: String
 
         attr_accessor :CiphertextBlob, :EncryptionPublicKey, :EncryptionAlgorithm
-        
+
         def initialize(ciphertextblob=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
           @CiphertextBlob = ciphertextblob
           @EncryptionPublicKey = encryptionpublickey
@@ -2067,7 +2067,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :PlainText, :RequestId
-        
+
         def initialize(keyid=nil, plaintext=nil, requestid=nil)
           @KeyId = keyid
           @PlainText = plaintext
@@ -2089,7 +2089,7 @@ module TencentCloud
         # @type PlainText: String
 
         attr_accessor :KeyId, :PlainText
-        
+
         def initialize(keyid=nil, plaintext=nil)
           @KeyId = keyid
           @PlainText = plaintext
@@ -2111,7 +2111,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :RequestId
-        
+
         def initialize(ciphertextblob=nil, keyid=nil, requestid=nil)
           @CiphertextBlob = ciphertextblob
           @KeyId = keyid
@@ -2133,7 +2133,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :Message, :KeyId
-        
+
         def initialize(message=nil, keyid=nil)
           @Message = message
           @KeyId = keyid
@@ -2153,7 +2153,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Signature, :RequestId
-        
+
         def initialize(signature=nil, requestid=nil)
           @Signature = signature
           @RequestId = requestid
@@ -2175,7 +2175,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :KeyId, :SignatureValue, :Message
-        
+
         def initialize(keyid=nil, signaturevalue=nil, message=nil)
           @KeyId = keyid
           @SignatureValue = signaturevalue
@@ -2197,7 +2197,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignatureValid, :RequestId
-        
+
         def initialize(signaturevalid=nil, requestid=nil)
           @SignatureValid = signaturevalid
           @RequestId = requestid
@@ -2221,7 +2221,7 @@ module TencentCloud
         # @type DestinationEncryptionContext: String
 
         attr_accessor :CiphertextBlob, :DestinationKeyId, :SourceEncryptionContext, :DestinationEncryptionContext
-        
+
         def initialize(ciphertextblob=nil, destinationkeyid=nil, sourceencryptioncontext=nil, destinationencryptioncontext=nil)
           @CiphertextBlob = ciphertextblob
           @DestinationKeyId = destinationkeyid
@@ -2251,7 +2251,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :SourceKeyId, :ReEncrypted, :RequestId
-        
+
         def initialize(ciphertextblob=nil, keyid=nil, sourcekeyid=nil, reencrypted=nil, requestid=nil)
           @CiphertextBlob = ciphertextblob
           @KeyId = keyid
@@ -2277,7 +2277,7 @@ module TencentCloud
         # @type PendingWindowInDays: Integer
 
         attr_accessor :KeyId, :PendingWindowInDays
-        
+
         def initialize(keyid=nil, pendingwindowindays=nil)
           @KeyId = keyid
           @PendingWindowInDays = pendingwindowindays
@@ -2299,7 +2299,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeletionDate, :KeyId, :RequestId
-        
+
         def initialize(deletiondate=nil, keyid=nil, requestid=nil)
           @DeletionDate = deletiondate
           @KeyId = keyid
@@ -2325,7 +2325,7 @@ module TencentCloud
         # @type MessageType: String
 
         attr_accessor :Algorithm, :Message, :KeyId, :MessageType
-        
+
         def initialize(algorithm=nil, message=nil, keyid=nil, messagetype=nil)
           @Algorithm = algorithm
           @Message = message
@@ -2349,7 +2349,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Signature, :RequestId
-        
+
         def initialize(signature=nil, requestid=nil)
           @Signature = signature
           @RequestId = requestid
@@ -2369,7 +2369,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2389,7 +2389,7 @@ module TencentCloud
         # @type TagValue: Array
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :KeyId, :ProductId, :ResourceId
-        
+
         def initialize(keyid=nil, productid=nil, resourceid=nil)
           @KeyId = keyid
           @ProductId = productid
@@ -2431,7 +2431,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2449,7 +2449,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :Alias, :KeyId
-        
+
         def initialize(_alias=nil, keyid=nil)
           @Alias = _alias
           @KeyId = keyid
@@ -2467,7 +2467,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2485,7 +2485,7 @@ module TencentCloud
         # @type KeyId: String
 
         attr_accessor :Description, :KeyId
-        
+
         def initialize(description=nil, keyid=nil)
           @Description = description
           @KeyId = keyid
@@ -2503,7 +2503,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2527,7 +2527,7 @@ module TencentCloud
         # @type MessageType: String
 
         attr_accessor :KeyId, :SignatureValue, :Message, :Algorithm, :MessageType
-        
+
         def initialize(keyid=nil, signaturevalue=nil, message=nil, algorithm=nil, messagetype=nil)
           @KeyId = keyid
           @SignatureValue = signaturevalue
@@ -2553,7 +2553,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignatureValid, :RequestId
-        
+
         def initialize(signaturevalid=nil, requestid=nil)
           @SignatureValid = signaturevalid
           @RequestId = requestid
@@ -2594,7 +2594,7 @@ module TencentCloud
         # @type DeviceFingerprintBind: Boolean
 
         attr_accessor :KeyId, :Alias, :CreatorUin, :Description, :CreateTime, :Status, :OwnerUin, :Algorithm, :EncryptKey, :DecryptKey, :ResourceId, :DeviceFingerprintBind
-        
+
         def initialize(keyid=nil, _alias=nil, creatoruin=nil, description=nil, createtime=nil, status=nil, owneruin=nil, algorithm=nil, encryptkey=nil, decryptkey=nil, resourceid=nil, devicefingerprintbind=nil)
           @KeyId = keyid
           @Alias = _alias

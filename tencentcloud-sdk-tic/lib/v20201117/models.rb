@@ -25,7 +25,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :StackId, :VersionId
-        
+
         def initialize(stackid=nil, versionid=nil)
           @StackId = stackid
           @VersionId = versionid
@@ -45,7 +45,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventId, :RequestId
-        
+
         def initialize(eventid=nil, requestid=nil)
           @EventId = eventid
           @RequestId = requestid
@@ -69,7 +69,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :StackName, :StackRegion, :TemplateUrl, :Description
-        
+
         def initialize(stackname=nil, stackregion=nil, templateurl=nil, description=nil)
           @StackName = stackname
           @StackRegion = stackregion
@@ -95,7 +95,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StackId, :VersionId, :RequestId
-        
+
         def initialize(stackid=nil, versionid=nil, requestid=nil)
           @StackId = stackid
           @VersionId = versionid
@@ -121,7 +121,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :StackId, :TemplateUrl, :VersionName, :Description
-        
+
         def initialize(stackid=nil, templateurl=nil, versionname=nil, description=nil)
           @StackId = stackid
           @TemplateUrl = templateurl
@@ -145,7 +145,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VersionId, :RequestId
-        
+
         def initialize(versionid=nil, requestid=nil)
           @VersionId = versionid
           @RequestId = requestid
@@ -163,7 +163,7 @@ module TencentCloud
         # @type StackId: String
 
         attr_accessor :StackId
-        
+
         def initialize(stackid=nil)
           @StackId = stackid
         end
@@ -179,7 +179,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -195,7 +195,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :VersionId
-        
+
         def initialize(versionid=nil)
           @VersionId = versionid
         end
@@ -211,7 +211,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -227,7 +227,7 @@ module TencentCloud
         # @type EventId: String
 
         attr_accessor :EventId
-        
+
         def initialize(eventid=nil)
           @EventId = eventid
         end
@@ -259,7 +259,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventId, :VersionId, :StackId, :Type, :Status, :EventMessage, :CreateTime, :ConsoleLog, :RequestId
-        
+
         def initialize(eventid=nil, versionid=nil, stackid=nil, type=nil, status=nil, eventmessage=nil, createtime=nil, consolelog=nil, requestid=nil)
           @EventId = eventid
           @VersionId = versionid
@@ -311,7 +311,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :EventIds, :Filters, :Offset, :Limit
-        
+
         def initialize(eventids=nil, filters=nil, offset=nil, limit=nil)
           @EventIds = eventids
           @Filters = filters
@@ -344,7 +344,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Events, :RequestId
-        
+
         def initialize(totalcount=nil, events=nil, requestid=nil)
           @TotalCount = totalcount
           @Events = events
@@ -387,7 +387,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :VersionIds, :Offset, :Limit, :Filters
-        
+
         def initialize(versionids=nil, offset=nil, limit=nil, filters=nil)
           @VersionIds = versionids
           @Offset = offset
@@ -420,7 +420,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Versions, :RequestId
-        
+
         def initialize(totalcount=nil, versions=nil, requestid=nil)
           @TotalCount = totalcount
           @Versions = versions
@@ -451,7 +451,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :StackIds, :Offset, :Limit
-        
+
         def initialize(stackids=nil, offset=nil, limit=nil)
           @StackIds = stackids
           @Offset = offset
@@ -475,7 +475,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Stacks, :RequestId
-        
+
         def initialize(totalcount=nil, stacks=nil, requestid=nil)
           @TotalCount = totalcount
           @Stacks = stacks
@@ -504,7 +504,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :StackId, :VersionId
-        
+
         def initialize(stackid=nil, versionid=nil)
           @StackId = stackid
           @VersionId = versionid
@@ -524,7 +524,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventId, :RequestId
-        
+
         def initialize(eventid=nil, requestid=nil)
           @EventId = eventid
           @RequestId = requestid
@@ -554,7 +554,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :EventId, :VersionId, :StackId, :Type, :Status, :Message, :CreateTime
-        
+
         def initialize(eventid=nil, versionid=nil, stackid=nil, type=nil, status=nil, message=nil, createtime=nil)
           @EventId = eventid
           @VersionId = versionid
@@ -584,7 +584,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -604,7 +604,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :StackId, :VersionId
-        
+
         def initialize(stackid=nil, versionid=nil)
           @StackId = stackid
           @VersionId = versionid
@@ -624,7 +624,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventId, :RequestId
-        
+
         def initialize(eventid=nil, requestid=nil)
           @EventId = eventid
           @RequestId = requestid
@@ -652,7 +652,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :StackId, :StackName, :Description, :Region, :Status, :CreateTime
-        
+
         def initialize(stackid=nil, stackname=nil, description=nil, region=nil, status=nil, createtime=nil)
           @StackId = stackid
           @StackName = stackname
@@ -682,7 +682,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :StackId, :StackName, :Description
-        
+
         def initialize(stackid=nil, stackname=nil, description=nil)
           @StackId = stackid
           @StackName = stackname
@@ -702,7 +702,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -724,7 +724,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :VersionId, :TemplateUrl, :VersionName, :Description
-        
+
         def initialize(versionid=nil, templateurl=nil, versionname=nil, description=nil)
           @VersionId = versionid
           @TemplateUrl = templateurl
@@ -746,7 +746,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -772,7 +772,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :VersionId, :VersionName, :Description, :StackId, :Status, :CreateTime
-        
+
         def initialize(versionid=nil, versionname=nil, description=nil, stackid=nil, status=nil, createtime=nil)
           @VersionId = versionid
           @VersionName = versionname

@@ -27,7 +27,7 @@ module TencentCloud
         # @type SingerSet: Array
 
         attr_accessor :MusicId, :Name, :SingerSet
-        
+
         def initialize(musicid=nil, name=nil, singerset=nil)
           @MusicId = musicid
           @Name = name
@@ -57,7 +57,7 @@ module TencentCloud
         # @type ChorusUserIds: Array
 
         attr_accessor :AppName, :UserId, :RoomId, :MusicId, :MaxChorusNum, :ChorusUserIds
-        
+
         def initialize(appname=nil, userid=nil, roomid=nil, musicid=nil, maxchorusnum=nil, chorususerids=nil)
           @AppName = appname
           @UserId = userid
@@ -85,7 +85,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ChorusToken, :RequestId
-        
+
         def initialize(chorustoken=nil, requestid=nil)
           @ChorusToken = chorustoken
           @RequestId = requestid
@@ -114,7 +114,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :AppName, :UserId, :MusicIds, :PlayScene, :GuestUserId, :RoomId
-        
+
         def initialize(appname=nil, userid=nil, musicids=nil, playscene=nil, guestuserid=nil, roomid=nil)
           @AppName = appname
           @UserId = userid
@@ -144,7 +144,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KTVMusicDetailInfoSet, :NotExistMusicIdSet, :RequestId
-        
+
         def initialize(ktvmusicdetailinfoset=nil, notexistmusicidset=nil, requestid=nil)
           @KTVMusicDetailInfoSet = ktvmusicdetailinfoset
           @NotExistMusicIdSet = notexistmusicidset
@@ -173,7 +173,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :StartTime, :EndTime
-        
+
         def initialize(starttime=nil, endtime=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -200,7 +200,7 @@ module TencentCloud
         # @type SyncRobotCommands: Array
 
         attr_accessor :AppName, :UserId, :RTCSystem, :JoinRoomInput, :SyncRobotCommands
-        
+
         def initialize(appname=nil, userid=nil, rtcsystem=nil, joinroominput=nil, syncrobotcommands=nil)
           @AppName = appname
           @UserId = userid
@@ -236,7 +236,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RobotId, :RequestId
-        
+
         def initialize(robotid=nil, requestid=nil)
           @RobotId = robotid
           @RequestId = requestid
@@ -258,7 +258,7 @@ module TencentCloud
         # @type Rules: Array
 
         attr_accessor :AppName, :UserId, :Rules
-        
+
         def initialize(appname=nil, userid=nil, rules=nil)
           @AppName = appname
           @UserId = userid
@@ -289,7 +289,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchMusicSet, :NotMatchRuleSet, :RequestId
-        
+
         def initialize(matchmusicset=nil, notmatchruleset=nil, requestid=nil)
           @MatchMusicSet = matchmusicset
           @NotMatchRuleSet = notmatchruleset
@@ -339,7 +339,7 @@ module TencentCloud
         # @type MaterialFilters: Array
 
         attr_accessor :AppName, :UserId, :TagId, :ScrollToken, :Limit, :RightFilters, :MaterialFilters
-        
+
         def initialize(appname=nil, userid=nil, tagid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
@@ -371,7 +371,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
-        
+
         def initialize(ktvmusicinfoset=nil, scrolltoken=nil, requestid=nil)
           @KTVMusicInfoSet = ktvmusicinfoset
           @ScrollToken = scrolltoken
@@ -417,7 +417,7 @@ module TencentCloud
         # @type MaterialFilters: Array
 
         attr_accessor :AppName, :UserId, :PlaylistId, :ScrollToken, :Limit, :RightFilters, :PlayScene, :MaterialFilters
-        
+
         def initialize(appname=nil, userid=nil, playlistid=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
@@ -451,7 +451,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
-        
+
         def initialize(ktvmusicinfoset=nil, scrolltoken=nil, requestid=nil)
           @KTVMusicInfoSet = ktvmusicinfoset
           @ScrollToken = scrolltoken
@@ -489,7 +489,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :AppName, :UserId, :Types, :Offset, :Limit
-        
+
         def initialize(appname=nil, userid=nil, types=nil, offset=nil, limit=nil)
           @AppName = appname
           @UserId = userid
@@ -517,7 +517,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PlaylistBaseInfoSet, :TotalCount, :RequestId
-        
+
         def initialize(playlistbaseinfoset=nil, totalcount=nil, requestid=nil)
           @PlaylistBaseInfoSet = playlistbaseinfoset
           @TotalCount = totalcount
@@ -560,7 +560,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :AppName, :UserId, :RobotIds, :Statuses, :CreateTime, :Offset, :Limit
-        
+
         def initialize(appname=nil, userid=nil, robotids=nil, statuses=nil, createtime=nil, offset=nil, limit=nil)
           @AppName = appname
           @UserId = userid
@@ -595,7 +595,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KTVRobotInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, ktvrobotinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @KTVRobotInfoSet = ktvrobotinfoset
@@ -626,7 +626,7 @@ module TencentCloud
         # @type KeyWord: String
 
         attr_accessor :AppName, :UserId, :KeyWord
-        
+
         def initialize(appname=nil, userid=nil, keyword=nil)
           @AppName = appname
           @UserId = userid
@@ -648,7 +648,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KTVSuggestionInfoSet, :RequestId
-        
+
         def initialize(ktvsuggestioninfoset=nil, requestid=nil)
           @KTVSuggestionInfoSet = ktvsuggestioninfoset
           @RequestId = requestid
@@ -675,7 +675,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :AppName, :UserId
-        
+
         def initialize(appname=nil, userid=nil)
           @AppName = appname
           @UserId = userid
@@ -695,7 +695,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TagGroupInfoSet, :RequestId
-        
+
         def initialize(taggroupinfoset=nil, requestid=nil)
           @TagGroupInfoSet = taggroupinfoset
           @RequestId = requestid
@@ -734,7 +734,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :AppName, :StartTime, :EndTime, :TradeSerialNos, :UserIds, :Offset, :Limit
-        
+
         def initialize(appname=nil, starttime=nil, endtime=nil, tradeserialnos=nil, userids=nil, offset=nil, limit=nil)
           @AppName = appname
           @StartTime = starttime
@@ -766,7 +766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LiveVipTradeInfoSet, :TotalCount, :RequestId
-        
+
         def initialize(liveviptradeinfoset=nil, totalcount=nil, requestid=nil)
           @LiveVipTradeInfoSet = liveviptradeinfoset
           @TotalCount = totalcount
@@ -795,7 +795,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :AppName, :UserId
-        
+
         def initialize(appname=nil, userid=nil)
           @AppName = appname
           @UserId = userid
@@ -815,7 +815,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserInfo, :RequestId
-        
+
         def initialize(userinfo=nil, requestid=nil)
           @UserInfo = userinfo
           @RequestId = requestid
@@ -840,7 +840,7 @@ module TencentCloud
         # @type RobotId: String
 
         attr_accessor :AppName, :UserId, :RobotId
-        
+
         def initialize(appname=nil, userid=nil, robotid=nil)
           @AppName = appname
           @UserId = userid
@@ -860,7 +860,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -876,7 +876,7 @@ module TencentCloud
         # @type TRTCJoinRoomInput: :class:`Tencentcloud::Yinsuda.v20220527.models.TRTCJoinRoomInput`
 
         attr_accessor :TRTCJoinRoomInput
-        
+
         def initialize(trtcjoinroominput=nil)
           @TRTCJoinRoomInput = trtcjoinroominput
         end
@@ -901,7 +901,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -924,7 +924,7 @@ module TencentCloud
         # @type AMEMusicBaseInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.AMEMusicBaseInfo`
 
         attr_accessor :KTVMusicBaseInfo, :MatchRule, :AMEMusicBaseInfo
-        
+
         def initialize(ktvmusicbaseinfo=nil, matchrule=nil, amemusicbaseinfo=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @MatchRule = matchrule
@@ -958,7 +958,7 @@ module TencentCloud
         # @type MusicIdToMatchAME: String
 
         attr_accessor :AMEMusicId, :MusicInfo, :MusicIdToMatchAME
-        
+
         def initialize(amemusicid=nil, musicinfo=nil, musicidtomatchame=nil)
           @AMEMusicId = amemusicid
           @MusicInfo = musicinfo
@@ -983,7 +983,7 @@ module TencentCloud
         # @type SingerSet: Array
 
         attr_accessor :MusicName, :SingerSet
-        
+
         def initialize(musicname=nil, singerset=nil)
           @MusicName = musicname
           @SingerSet = singerset
@@ -1020,7 +1020,7 @@ module TencentCloud
         # @type RecommendType: String
 
         attr_accessor :MusicId, :Name, :SingerSet, :Duration, :SingerImageUrl, :AlbumInfo, :RightSet, :RecommendType
-        
+
         def initialize(musicid=nil, name=nil, singerset=nil, duration=nil, singerimageurl=nil, albuminfo=nil, rightset=nil, recommendtype=nil)
           @MusicId = musicid
           @Name = name
@@ -1068,7 +1068,7 @@ module TencentCloud
         # @type BPMInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVBPMInfo`
 
         attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :MidiUrl, :ChorusClipSet, :PreludeInterval, :GenreSet, :BPMInfo
-        
+
         def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, midiurl=nil, chorusclipset=nil, preludeinterval=nil, genreset=nil, bpminfo=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type Title: String
 
         attr_accessor :PlaylistId, :Title
-        
+
         def initialize(playlistid=nil, title=nil)
           @PlaylistId = playlistid
           @Title = title
@@ -1155,7 +1155,7 @@ module TencentCloud
         # @type SetPlayModeInput: :class:`Tencentcloud::Yinsuda.v20220527.models.SetPlayModeCommandInput`
 
         attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem, :SetPlayModeInput
-        
+
         def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil, setplaymodeinput=nil)
           @RobotId = robotid
           @Status = status
@@ -1196,7 +1196,7 @@ module TencentCloud
         # @type Suggestion: String
 
         attr_accessor :Suggestion
-        
+
         def initialize(suggestion=nil)
           @Suggestion = suggestion
         end
@@ -1216,7 +1216,7 @@ module TencentCloud
         # @type TagInfoSet: Array
 
         attr_accessor :GroupId, :Name, :TagInfoSet
-        
+
         def initialize(groupid=nil, name=nil, taginfoset=nil)
           @GroupId = groupid
           @Name = name
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :TagId, :Name
-        
+
         def initialize(tagid=nil, name=nil)
           @TagId = tagid
           @Name = name
@@ -1279,7 +1279,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :TradeSerialNo, :AppName, :UserId, :RoomId, :VipDays, :Status, :CreateTime
-        
+
         def initialize(tradeserialno=nil, appname=nil, userid=nil, roomid=nil, vipdays=nil, status=nil, createtime=nil)
           @TradeSerialNo = tradeserialno
           @AppName = appname
@@ -1312,7 +1312,7 @@ module TencentCloud
         # @type LiveVipStatus: String
 
         attr_accessor :RoomId, :LiveVipEndTime, :LiveVipStatus
-        
+
         def initialize(roomid=nil, livevipendtime=nil, livevipstatus=nil)
           @RoomId = roomid
           @LiveVipEndTime = livevipendtime
@@ -1337,7 +1337,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :Dimension, :Url
-        
+
         def initialize(dimension=nil, url=nil)
           @Dimension = dimension
           @Url = url
@@ -1357,7 +1357,7 @@ module TencentCloud
         # @type CoverInfoSet: Array
 
         attr_accessor :Name, :CoverInfoSet
-        
+
         def initialize(name=nil, coverinfoset=nil)
           @Name = name
           @CoverInfoSet = coverinfoset
@@ -1382,7 +1382,7 @@ module TencentCloud
         # @type Index: Integer
 
         attr_accessor :Index
-        
+
         def initialize(index=nil)
           @Index = index
         end
@@ -1416,7 +1416,7 @@ module TencentCloud
         # @type PlayScene: String
 
         attr_accessor :AppName, :UserId, :TradeSerialNo, :RoomId, :VipDays, :GiveType, :PlayScene
-        
+
         def initialize(appname=nil, userid=nil, tradeserialno=nil, roomid=nil, vipdays=nil, givetype=nil, playscene=nil)
           @AppName = appname
           @UserId = userid
@@ -1446,7 +1446,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LiveVipUserInfo, :RequestId
-        
+
         def initialize(livevipuserinfo=nil, requestid=nil)
           @LiveVipUserInfo = livevipuserinfo
           @RequestId = requestid
@@ -1486,7 +1486,7 @@ module TencentCloud
         # @type MaterialFilters: Array
 
         attr_accessor :AppName, :UserId, :KeyWord, :ScrollToken, :Limit, :RightFilters, :PlayScene, :MaterialFilters
-        
+
         def initialize(appname=nil, userid=nil, keyword=nil, scrolltoken=nil, limit=nil, rightfilters=nil, playscene=nil, materialfilters=nil)
           @AppName = appname
           @UserId = userid
@@ -1520,7 +1520,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
-        
+
         def initialize(ktvmusicinfoset=nil, scrolltoken=nil, requestid=nil)
           @KTVMusicInfoSet = ktvmusicinfoset
           @ScrollToken = scrolltoken
@@ -1547,7 +1547,7 @@ module TencentCloud
         # @type Position: Integer
 
         attr_accessor :Position
-        
+
         def initialize(position=nil)
           @Position = position
         end
@@ -1565,7 +1565,7 @@ module TencentCloud
         # @type Repeat: Integer
 
         attr_accessor :Message, :Repeat
-        
+
         def initialize(message=nil, repeat=nil)
           @Message = message
           @Repeat = repeat
@@ -1585,7 +1585,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Type
-        
+
         def initialize(type=nil)
           @Type = type
         end
@@ -1606,7 +1606,7 @@ module TencentCloud
         # @type DestroyExpireTime: Integer
 
         attr_accessor :DestroyMode, :DestroyExpireTime
-        
+
         def initialize(destroymode=nil, destroyexpiretime=nil)
           @DestroyMode = destroymode
           @DestroyExpireTime = destroyexpiretime
@@ -1628,7 +1628,7 @@ module TencentCloud
         # @type PlayMode: String
 
         attr_accessor :PlayMode
-        
+
         def initialize(playmode=nil)
           @PlayMode = playmode
         end
@@ -1657,7 +1657,7 @@ module TencentCloud
         # @type MusicIds: Array
 
         attr_accessor :Type, :Index, :ChangedIndex, :MusicIds
-        
+
         def initialize(type=nil, index=nil, changedindex=nil, musicids=nil)
           @Type = type
           @Index = index
@@ -1685,7 +1685,7 @@ module TencentCloud
         # @type SyncRobotCommands: Array
 
         attr_accessor :AppName, :UserId, :RobotId, :SyncRobotCommands
-        
+
         def initialize(appname=nil, userid=nil, robotid=nil, syncrobotcommands=nil)
           @AppName = appname
           @UserId = userid
@@ -1714,7 +1714,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1754,7 +1754,7 @@ module TencentCloud
         # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Yinsuda.v20220527.models.SetDestroyModeCommandInput`
 
         attr_accessor :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput
-        
+
         def initialize(command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil)
           @Command = command
           @PlayCommandInput = playcommandinput
@@ -1811,7 +1811,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :Sign, :RoomId, :SdkAppId, :UserId
-        
+
         def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil)
           @Sign = sign
           @RoomId = roomid
@@ -1837,7 +1837,7 @@ module TencentCloud
         # @type After: String
 
         attr_accessor :Before, :After
-        
+
         def initialize(before=nil, after=nil)
           @Before = before
           @After = after
@@ -1864,7 +1864,7 @@ module TencentCloud
         # @type UserType: String
 
         attr_accessor :AppName, :UserId, :LiveVipUserInfo, :UserType
-        
+
         def initialize(appname=nil, userid=nil, livevipuserinfo=nil, usertype=nil)
           @AppName = appname
           @UserId = userid

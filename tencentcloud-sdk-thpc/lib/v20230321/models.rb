@@ -25,7 +25,7 @@ module TencentCloud
         # @type StorageOption: :class:`Tencentcloud::Thpc.v20230321.models.StorageOption`
 
         attr_accessor :ClusterId, :StorageOption
-        
+
         def initialize(clusterid=nil, storageoption=nil)
           @ClusterId = clusterid
           @StorageOption = storageoption
@@ -46,7 +46,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -106,7 +106,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType, :ProjectId
-        
+
         def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil, projectid=nil)
           @Placement = placement
           @ClusterId = clusterid
@@ -185,7 +185,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -203,7 +203,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :ClusterId, :QueueName
-        
+
         def initialize(clusterid=nil, queuename=nil)
           @ClusterId = clusterid
           @QueueName = queuename
@@ -221,7 +221,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -246,7 +246,7 @@ module TencentCloud
         # @type StorageType: String
 
         attr_accessor :LocalPath, :RemotePath, :Protocol, :StorageType
-        
+
         def initialize(localpath=nil, remotepath=nil, protocol=nil, storagetype=nil)
           @LocalPath = localpath
           @RemotePath = remotepath
@@ -277,7 +277,7 @@ module TencentCloud
         # @type StorageType: String
 
         attr_accessor :LocalPath, :RemotePath, :Protocol, :StorageType
-        
+
         def initialize(localpath=nil, remotepath=nil, protocol=nil, storagetype=nil)
           @LocalPath = localpath
           @RemotePath = remotepath
@@ -323,7 +323,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
-        
+
         def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil)
           @ClusterId = clusterid
           @ActivityId = activityid
@@ -392,7 +392,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId
-        
+
         def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
@@ -475,7 +475,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
-        
+
         def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
@@ -522,7 +522,7 @@ module TencentCloud
         # @type NodeId: String
 
         attr_accessor :NodeId
-        
+
         def initialize(nodeid=nil)
           @NodeId = nodeid
         end
@@ -581,7 +581,7 @@ module TencentCloud
         # @type InitNodeScripts: Array
 
         attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts
-        
+
         def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil)
           @Placement = placement
           @ManagerNode = managernode
@@ -673,7 +673,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
-        
+
         def initialize(clusterid=nil, requestid=nil)
           @ClusterId = clusterid
           @RequestId = requestid
@@ -695,7 +695,7 @@ module TencentCloud
         # @type DiskType: String
 
         attr_accessor :DiskSize, :DiskType
-        
+
         def initialize(disksize=nil, disktype=nil)
           @DiskSize = disksize
           @DiskType = disktype
@@ -713,7 +713,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -729,7 +729,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -747,7 +747,7 @@ module TencentCloud
         # @type LocalPath: String
 
         attr_accessor :ClusterId, :LocalPath
-        
+
         def initialize(clusterid=nil, localpath=nil)
           @ClusterId = clusterid
           @LocalPath = localpath
@@ -765,7 +765,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -783,7 +783,7 @@ module TencentCloud
         # @type NodeIds: Array
 
         attr_accessor :ClusterId, :NodeIds
-        
+
         def initialize(clusterid=nil, nodeids=nil)
           @ClusterId = clusterid
           @NodeIds = nodeids
@@ -801,7 +801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -819,7 +819,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :ClusterId, :QueueName
-        
+
         def initialize(clusterid=nil, queuename=nil)
           @ClusterId = clusterid
           @QueueName = queuename
@@ -837,7 +837,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -853,7 +853,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -877,7 +877,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterId, :ExpansionBusyTime, :ShrinkIdleTime, :QueueConfigs, :RequestId
-        
+
         def initialize(clusterid=nil, expansionbusytime=nil, shrinkidletime=nil, queueconfigs=nil, requestid=nil)
           @ClusterId = clusterid
           @ExpansionBusyTime = expansionbusytime
@@ -912,7 +912,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @Offset = offset
@@ -936,7 +936,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterActivitySet, :TotalCount, :RequestId
-        
+
         def initialize(clusteractivityset=nil, totalcount=nil, requestid=nil)
           @ClusterActivitySet = clusteractivityset
           @TotalCount = totalcount
@@ -963,7 +963,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -981,7 +981,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StorageOption, :RequestId
-        
+
         def initialize(storageoption=nil, requestid=nil)
           @StorageOption = storageoption
           @RequestId = requestid
@@ -1006,7 +1006,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterIds, :Offset, :Limit
-        
+
         def initialize(clusterids=nil, offset=nil, limit=nil)
           @ClusterIds = clusterids
           @Offset = offset
@@ -1030,7 +1030,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterSet, :TotalCount, :RequestId
-        
+
         def initialize(clusterset=nil, totalcount=nil, requestid=nil)
           @ClusterSet = clusterset
           @TotalCount = totalcount
@@ -1057,7 +1057,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -1076,7 +1076,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InitNodeScriptSet, :RequestId
-        
+
         def initialize(initnodescriptset=nil, requestid=nil)
           @InitNodeScriptSet = initnodescriptset
           @RequestId = requestid
@@ -1107,7 +1107,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :Filters, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, filters=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @Filters = filters
@@ -1140,7 +1140,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NodeSet, :TotalCount, :RequestId
-        
+
         def initialize(nodeset=nil, totalcount=nil, requestid=nil)
           @NodeSet = nodeset
           @TotalCount = totalcount
@@ -1171,7 +1171,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @Offset = offset
@@ -1195,7 +1195,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QueueSet, :TotalCount, :RequestId
-        
+
         def initialize(queueset=nil, totalcount=nil, requestid=nil)
           @QueueSet = queueset
           @TotalCount = totalcount
@@ -1233,7 +1233,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :Placement, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :VirtualPrivateCloud, :ProjectId
-        
+
         def initialize(placement=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, virtualprivatecloud=nil, projectid=nil)
           @Placement = placement
           @InstanceChargeType = instancechargetype
@@ -1293,7 +1293,7 @@ module TencentCloud
         # @type DataDisks: Array
 
         attr_accessor :InstanceType, :Placement, :InstanceChargeType, :InstanceChargePrepaid, :VirtualPrivateCloud, :ImageId, :InternetAccessible, :SystemDisk, :DataDisks
-        
+
         def initialize(instancetype=nil, placement=nil, instancechargetype=nil, instancechargeprepaid=nil, virtualprivatecloud=nil, imageid=nil, internetaccessible=nil, systemdisk=nil, datadisks=nil)
           @InstanceType = instancetype
           @Placement = placement
@@ -1351,7 +1351,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1373,7 +1373,7 @@ module TencentCloud
         # @type Masters: Array
 
         attr_accessor :LocalPath, :RemotePath, :Masters
-        
+
         def initialize(localpath=nil, remotepath=nil, masters=nil)
           @LocalPath = localpath
           @RemotePath = remotepath
@@ -1397,7 +1397,7 @@ module TencentCloud
         # @type Masters: Array
 
         attr_accessor :LocalPath, :RemotePath, :Masters
-        
+
         def initialize(localpath=nil, remotepath=nil, masters=nil)
           @LocalPath = localpath
           @RemotePath = remotepath
@@ -1419,7 +1419,7 @@ module TencentCloud
         # @type LocalPath: String
 
         attr_accessor :Masters, :LocalPath
-        
+
         def initialize(masters=nil, localpath=nil)
           @Masters = masters
           @LocalPath = localpath
@@ -1441,7 +1441,7 @@ module TencentCloud
         # @type LocalPath: String
 
         attr_accessor :Masters, :LocalPath
-        
+
         def initialize(masters=nil, localpath=nil)
           @Masters = masters
           @LocalPath = localpath
@@ -1468,7 +1468,7 @@ module TencentCloud
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
-        
+
         def initialize(period=nil, renewflag=nil)
           @Period = period
           @RenewFlag = renewflag
@@ -1495,7 +1495,7 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :InternetChargeType, :InternetMaxBandwidthOut
-        
+
         def initialize(internetchargetype=nil, internetmaxbandwidthout=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -1530,7 +1530,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
-        
+
         def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
@@ -1576,7 +1576,7 @@ module TencentCloud
         # @type NodeId: String
 
         attr_accessor :NodeId
-        
+
         def initialize(nodeid=nil)
           @NodeId = nodeid
         end
@@ -1592,7 +1592,7 @@ module TencentCloud
         # @type Password: String
 
         attr_accessor :Password
-        
+
         def initialize(password=nil)
           @Password = password
         end
@@ -1627,7 +1627,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
-        
+
         def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
@@ -1674,7 +1674,7 @@ module TencentCloud
         # @type NodeId: String
 
         attr_accessor :NodeId
-        
+
         def initialize(nodeid=nil)
           @NodeId = nodeid
         end
@@ -1692,7 +1692,7 @@ module TencentCloud
         # @type InitNodeScripts: Array
 
         attr_accessor :ClusterId, :InitNodeScripts
-        
+
         def initialize(clusterid=nil, initnodescripts=nil)
           @ClusterId = clusterid
           @InitNodeScripts = initnodescripts
@@ -1717,7 +1717,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1742,7 +1742,7 @@ module TencentCloud
         # @type NodeActivityStatusReason: String
 
         attr_accessor :NodeInstanceId, :NodeActivityStatus, :NodeActivityStatusCode, :NodeActivityStatusReason
-        
+
         def initialize(nodeinstanceid=nil, nodeactivitystatus=nil, nodeactivitystatuscode=nil, nodeactivitystatusreason=nil)
           @NodeInstanceId = nodeinstanceid
           @NodeActivityStatus = nodeactivitystatus
@@ -1783,7 +1783,7 @@ module TencentCloud
         # @type NodeType: String
 
         attr_accessor :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType
-        
+
         def initialize(instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil)
           @InstanceId = instanceid
           @Zone = zone
@@ -1816,7 +1816,7 @@ module TencentCloud
         # @type Timeout: Integer
 
         attr_accessor :ScriptPath, :Timeout
-        
+
         def initialize(scriptpath=nil, timeout=nil)
           @ScriptPath = scriptpath
           @Timeout = timeout
@@ -1835,7 +1835,7 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :Zone
-        
+
         def initialize(zone=nil)
           @Zone = zone
         end
@@ -1880,7 +1880,7 @@ module TencentCloud
         # @type MaxNodesPerCycle: Integer
 
         attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ImageId, :SystemDisk, :DataDisks, :InternetAccessible, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity, :ScaleOutRatio, :ScaleOutNodeThreshold, :MaxNodesPerCycle
-        
+
         def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, imageid=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil, scaleoutratio=nil, scaleoutnodethreshold=nil, maxnodespercycle=nil)
           @QueueName = queuename
           @MinSize = minsize
@@ -1967,7 +1967,7 @@ module TencentCloud
         # @type MaxNodesPerCycle: Integer
 
         attr_accessor :QueueName, :MinSize, :MaxSize, :EnableAutoExpansion, :EnableAutoShrink, :ExpansionNodeConfigs, :DesiredIdleNodeCapacity, :ScaleOutRatio, :ScaleOutNodeThreshold, :MaxNodesPerCycle
-        
+
         def initialize(queuename=nil, minsize=nil, maxsize=nil, enableautoexpansion=nil, enableautoshrink=nil, expansionnodeconfigs=nil, desiredidlenodecapacity=nil, scaleoutratio=nil, scaleoutnodethreshold=nil, maxnodespercycle=nil)
           @QueueName = queuename
           @MinSize = minsize
@@ -2009,7 +2009,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :QueueName
-        
+
         def initialize(queuename=nil)
           @QueueName = queuename
         end
@@ -2037,7 +2037,7 @@ module TencentCloud
         # @type DryRun: Boolean
 
         attr_accessor :ClusterId, :ExpansionBusyTime, :ShrinkIdleTime, :QueueConfigs, :DryRun
-        
+
         def initialize(clusterid=nil, expansionbusytime=nil, shrinkidletime=nil, queueconfigs=nil, dryrun=nil)
           @ClusterId = clusterid
           @ExpansionBusyTime = expansionbusytime
@@ -2068,7 +2068,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2088,7 +2088,7 @@ module TencentCloud
         # @type GooseFSxOptions: Array
 
         attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions
-        
+
         def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil)
           @CFSOptions = cfsoptions
           @GooseFSOptions = goosefsoptions
@@ -2133,7 +2133,7 @@ module TencentCloud
         # @type GooseFSxOptions: Array
 
         attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions
-        
+
         def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil)
           @CFSOptions = cfsoptions
           @GooseFSOptions = goosefsoptions
@@ -2183,7 +2183,7 @@ module TencentCloud
         # @type DiskSize: Integer
 
         attr_accessor :DiskType, :DiskSize
-        
+
         def initialize(disktype=nil, disksize=nil)
           @DiskType = disktype
           @DiskSize = disksize
@@ -2203,7 +2203,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -2225,7 +2225,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :VpcId, :SubnetId
-        
+
         def initialize(vpcid=nil, subnetid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid

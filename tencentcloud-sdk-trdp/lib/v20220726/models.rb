@@ -29,7 +29,7 @@ module TencentCloud
         # @type UniversalAccount: :class:`Tencentcloud::Trdp.v20220726.models.UniversalAccountInfo`
 
         attr_accessor :AccountType, :UniversalAccount
-        
+
         def initialize(accounttype=nil, universalaccount=nil)
           @AccountType = accounttype
           @UniversalAccount = universalaccount
@@ -159,7 +159,7 @@ module TencentCloud
         # @type Lat: String
 
         attr_accessor :MacAddress, :Model, :OsSystem, :OsSystemVersion, :BidFloor, :DeviceVersion, :Maker, :DeviceType, :Carrier, :AccessMode, :PhoneChipInfo, :CpuModel, :CpuCore, :Memory, :Language, :Volume, :BatteryPower, :ResolutionWidth, :ResolutionHeight, :Ua, :App, :AppPackageName, :SerialNumber, :MobileCountryAndNetworkCode, :VendorId, :AndroidApiLevel, :Brightness, :BluetoothAddress, :BaseBandVersion, :KernelVersion, :Storage, :PackageName, :AppVersion, :AppName, :IsDebug, :IsRoot, :IsProxy, :IsEmulator, :ChargeStatus, :NetworkType, :WifiMac, :DeviceName, :StartupTime, :Lon, :Lat
-        
+
         def initialize(macaddress=nil, model=nil, ossystem=nil, ossystemversion=nil, bidfloor=nil, deviceversion=nil, maker=nil, devicetype=nil, carrier=nil, accessmode=nil, phonechipinfo=nil, cpumodel=nil, cpucore=nil, memory=nil, language=nil, volume=nil, batterypower=nil, resolutionwidth=nil, resolutionheight=nil, ua=nil, app=nil, apppackagename=nil, serialnumber=nil, mobilecountryandnetworkcode=nil, vendorid=nil, androidapilevel=nil, brightness=nil, bluetoothaddress=nil, basebandversion=nil, kernelversion=nil, storage=nil, packagename=nil, appversion=nil, appname=nil, isdebug=nil, isroot=nil, isproxy=nil, isemulator=nil, chargestatus=nil, networktype=nil, wifimac=nil, devicename=nil, startuptime=nil, lon=nil, lat=nil)
           @MacAddress = macaddress
           @Model = model
@@ -265,7 +265,7 @@ module TencentCloud
         # @type SdkChannel: String
 
         attr_accessor :DeviceToken, :SdkChannel
-        
+
         def initialize(devicetoken=nil, sdkchannel=nil)
           @DeviceToken = devicetoken
           @SdkChannel = sdkchannel
@@ -298,7 +298,7 @@ module TencentCloud
         # @type Marketing: :class:`Tencentcloud::Trdp.v20220726.models.MarketingInfo`
 
         attr_accessor :Account, :User, :ModelId, :DeviceFingerprint, :SceneCode, :DeviceDetail, :Marketing
-        
+
         def initialize(account=nil, user=nil, modelid=nil, devicefingerprint=nil, scenecode=nil, devicedetail=nil, marketing=nil)
           @Account = account
           @User = user
@@ -344,7 +344,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EvaluationResult, :RequestId
-        
+
         def initialize(evaluationresult=nil, requestid=nil)
           @EvaluationResult = evaluationresult
           @RequestId = requestid
@@ -449,7 +449,7 @@ module TencentCloud
         # @type RiskLabels: Array
 
         attr_accessor :SSID, :Score, :RiskLabels
-        
+
         def initialize(ssid=nil, score=nil, risklabels=nil)
           @SSID = ssid
           @Score = score
@@ -479,7 +479,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :DeliveryMode, :AdvertisingType, :FullScreen, :AdvertisingSpaceWidth, :AdvertisingSpaceHeight, :Url
-        
+
         def initialize(deliverymode=nil, advertisingtype=nil, fullscreen=nil, advertisingspacewidth=nil, advertisingspaceheight=nil, url=nil)
           @DeliveryMode = deliverymode
           @AdvertisingType = advertisingtype
@@ -507,7 +507,7 @@ module TencentCloud
         # @type AccountId: String
 
         attr_accessor :AccountId
-        
+
         def initialize(accountid=nil)
           @AccountId = accountid
         end
@@ -543,7 +543,7 @@ module TencentCloud
         # @type Nickname: String
 
         attr_accessor :Ip, :ChannelSource, :Platform, :Name, :Age, :Gender, :ResidentIdentityCard, :Email, :Address, :Nickname
-        
+
         def initialize(ip=nil, channelsource=nil, platform=nil, name=nil, age=nil, gender=nil, residentidentitycard=nil, email=nil, address=nil, nickname=nil)
           @Ip = ip
           @ChannelSource = channelsource

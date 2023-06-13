@@ -27,7 +27,7 @@ module TencentCloud
         # @type CustomProfile: String
 
         attr_accessor :GameId, :PlayerId, :CustomProfile
-        
+
         def initialize(gameid=nil, playerid=nil, customprofile=nil)
           @GameId = gameid
           @PlayerId = playerid
@@ -49,7 +49,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Room, :RequestId
-        
+
         def initialize(room=nil, requestid=nil)
           @Room = room
           @RequestId = requestid
@@ -74,7 +74,7 @@ module TencentCloud
         # @type PlayerId: String
 
         attr_accessor :GameId, :CustomStatus, :PlayerId
-        
+
         def initialize(gameid=nil, customstatus=nil, playerid=nil)
           @GameId = gameid
           @CustomStatus = customstatus
@@ -96,7 +96,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Room, :RequestId
-        
+
         def initialize(room=nil, requestid=nil)
           @Room = room
           @RequestId = requestid
@@ -121,7 +121,7 @@ module TencentCloud
         # @type PlayerId: String
 
         attr_accessor :GameId, :OpenId, :PlayerId
-        
+
         def initialize(gameid=nil, openid=nil, playerid=nil)
           @GameId = gameid
           @OpenId = openid
@@ -143,7 +143,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Player, :RequestId
-        
+
         def initialize(player=nil, requestid=nil)
           @Player = player
           @RequestId = requestid
@@ -168,7 +168,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :GameId, :PlayerId, :RoomId
-        
+
         def initialize(gameid=nil, playerid=nil, roomid=nil)
           @GameId = gameid
           @PlayerId = playerid
@@ -190,7 +190,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Room, :RequestId
-        
+
         def initialize(room=nil, requestid=nil)
           @Room = room
           @RequestId = requestid
@@ -213,7 +213,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :GameId, :RoomId
-        
+
         def initialize(gameid=nil, roomid=nil)
           @GameId = gameid
           @RoomId = roomid
@@ -231,7 +231,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -267,7 +267,7 @@ module TencentCloud
         # @type IsForbidJoin: Boolean
 
         attr_accessor :GameId, :RoomId, :PlayerId, :ChangeRoomOptionList, :RoomName, :Owner, :IsViewed, :IsInvited, :IsPrivate, :CustomProperties, :IsForbidJoin
-        
+
         def initialize(gameid=nil, roomid=nil, playerid=nil, changeroomoptionlist=nil, roomname=nil, owner=nil, isviewed=nil, isinvited=nil, isprivate=nil, customproperties=nil, isforbidjoin=nil)
           @GameId = gameid
           @RoomId = roomid
@@ -305,7 +305,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Room, :RequestId
-        
+
         def initialize(room=nil, requestid=nil)
           @Room = room
           @RequestId = requestid
@@ -338,7 +338,7 @@ module TencentCloud
         # @type CustomProfile: String
 
         attr_accessor :OpenId, :Name, :TeamId, :IsRobot, :PlayerId, :CustomPlayerStatus, :CustomProfile
-        
+
         def initialize(openid=nil, name=nil, teamid=nil, isrobot=nil, playerid=nil, customplayerstatus=nil, customprofile=nil)
           @OpenId = openid
           @Name = name
@@ -368,7 +368,7 @@ module TencentCloud
         # @type RemovePlayerId: String
 
         attr_accessor :GameId, :RemovePlayerId
-        
+
         def initialize(gameid=nil, removeplayerid=nil)
           @GameId = gameid
           @RemovePlayerId = removeplayerid
@@ -388,7 +388,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Room, :RequestId
-        
+
         def initialize(room=nil, requestid=nil)
           @Room = room
           @RequestId = requestid
@@ -441,7 +441,7 @@ module TencentCloud
         # @type Owner: String
 
         attr_accessor :Name, :MaxPlayers, :OwnerOpenId, :IsPrivate, :Players, :Teams, :Id, :Type, :CreateType, :CustomProperties, :FrameSyncState, :FrameRate, :RouteId, :CreateTime, :StartGameTime, :IsForbidJoin, :Owner
-        
+
         def initialize(name=nil, maxplayers=nil, owneropenid=nil, isprivate=nil, players=nil, teams=nil, id=nil, type=nil, createtype=nil, customproperties=nil, framesyncstate=nil, framerate=nil, routeid=nil, createtime=nil, startgametime=nil, isforbidjoin=nil, owner=nil)
           @Name = name
           @MaxPlayers = maxplayers
@@ -509,7 +509,7 @@ module TencentCloud
         # @type MaxPlayers: Integer
 
         attr_accessor :Id, :Name, :MinPlayers, :MaxPlayers
-        
+
         def initialize(id=nil, name=nil, minplayers=nil, maxplayers=nil)
           @Id = id
           @Name = name

@@ -29,7 +29,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :ContentType, :Url, :Content
-        
+
         def initialize(contenttype=nil, url=nil, content=nil)
           @ContentType = contenttype
           @Url = url
@@ -50,7 +50,7 @@ module TencentCloud
         # @type GroupList: Array
 
         attr_accessor :GroupList
-        
+
         def initialize(grouplist=nil)
           @GroupList = grouplist
         end
@@ -77,7 +77,7 @@ module TencentCloud
         # @type SlotValue: String
 
         attr_accessor :SlotName, :SlotValue
-        
+
         def initialize(slotname=nil, slotvalue=nil)
           @SlotName = slotname
           @SlotValue = slotvalue
@@ -107,7 +107,7 @@ module TencentCloud
         # @type PlatformId: String
 
         attr_accessor :BotId, :BotEnv, :TerminalId, :InputText, :SessionAttributes, :PlatformType, :PlatformId
-        
+
         def initialize(botid=nil, botenv=nil, terminalid=nil, inputtext=nil, sessionattributes=nil, platformtype=nil, platformid=nil)
           @BotId = botid
           @BotEnv = botenv
@@ -161,7 +161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :ResponseMessage, :SessionAttributes, :ResultType, :ResponseText, :RequestId
-        
+
         def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, responsemessage=nil, sessionattributes=nil, resulttype=nil, responsetext=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
@@ -213,7 +213,7 @@ module TencentCloud
         # @type PlatformId: String
 
         attr_accessor :BotId, :BotEnv, :TerminalId, :PlatformType, :PlatformId
-        
+
         def initialize(botid=nil, botenv=nil, terminalid=nil, platformtype=nil, platformid=nil)
           @BotId = botid
           @BotEnv = botenv
@@ -264,7 +264,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :ResponseMessage, :SessionAttributes, :ResultType, :ResponseText, :RequestId
-        
+
         def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, responsemessage=nil, sessionattributes=nil, resulttype=nil, responsetext=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname

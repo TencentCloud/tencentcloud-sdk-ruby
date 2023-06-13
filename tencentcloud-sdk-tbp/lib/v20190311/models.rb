@@ -25,7 +25,7 @@ module TencentCloud
         # @type BotCnName: String
 
         attr_accessor :BotName, :BotCnName
-        
+
         def initialize(botname=nil, botcnname=nil)
           @BotName = botname
           @BotCnName = botcnname
@@ -47,7 +47,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskRequestId, :Msg, :RequestId
-        
+
         def initialize(taskrequestid=nil, msg=nil, requestid=nil)
           @TaskRequestId = taskrequestid
           @Msg = msg
@@ -73,7 +73,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :ContentType, :Url, :Content
-        
+
         def initialize(contenttype=nil, url=nil, content=nil)
           @ContentType = contenttype
           @Url = url
@@ -99,7 +99,7 @@ module TencentCloud
         # @type BotEnv: String
 
         attr_accessor :BotId, :UserId, :BotVersion, :BotEnv
-        
+
         def initialize(botid=nil, userid=nil, botversion=nil, botenv=nil)
           @BotId = botid
           @UserId = userid
@@ -147,7 +147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :ResponseText, :SlotInfoList, :SessionAttributes, :Question, :WaveUrl, :WaveData, :RequestId
-        
+
         def initialize(dialogstatus=nil, botname=nil, intentname=nil, responsetext=nil, slotinfolist=nil, sessionattributes=nil, question=nil, waveurl=nil, wavedata=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
@@ -189,7 +189,7 @@ module TencentCloud
         # @type GroupList: :class:`Tencentcloud::Tbp.v20190311.models.Group`
 
         attr_accessor :GroupList
-        
+
         def initialize(grouplist=nil)
           @GroupList = grouplist
         end
@@ -212,7 +212,7 @@ module TencentCloud
         # @type SlotValue: String
 
         attr_accessor :SlotName, :SlotValue
-        
+
         def initialize(slotname=nil, slotvalue=nil)
           @SlotName = slotname
           @SlotValue = slotvalue
@@ -238,7 +238,7 @@ module TencentCloud
         # @type SessionAttributes: String
 
         attr_accessor :BotId, :TerminalId, :InputText, :BotEnv, :SessionAttributes
-        
+
         def initialize(botid=nil, terminalid=nil, inputtext=nil, botenv=nil, sessionattributes=nil)
           @BotId = botid
           @TerminalId = terminalid
@@ -289,7 +289,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :ResponseMessage, :ResultType, :RequestId
-        
+
         def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, responsemessage=nil, resulttype=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
@@ -337,7 +337,7 @@ module TencentCloud
         # @type BotEnv: String
 
         attr_accessor :BotId, :TerminalId, :BotEnv
-        
+
         def initialize(botid=nil, terminalid=nil, botenv=nil)
           @BotId = botid
           @TerminalId = terminalid
@@ -378,7 +378,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :RequestId
-        
+
         def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname

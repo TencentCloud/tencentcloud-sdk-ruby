@@ -23,7 +23,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -39,7 +39,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -55,7 +55,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -73,7 +73,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskStatus, :RequestId
-        
+
         def initialize(taskstatus=nil, requestid=nil)
           @TaskStatus = taskstatus
           @RequestId = requestid
@@ -104,7 +104,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Region, :Ip, :Port, :InstanceId
-        
+
         def initialize(region=nil, ip=nil, port=nil, instanceid=nil)
           @Region = region
           @Ip = ip
@@ -128,7 +128,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -150,7 +150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Projects, :TotalCount, :RequestId
-        
+
         def initialize(projects=nil, totalcount=nil, requestid=nil)
           @Projects = projects
           @TotalCount = totalcount
@@ -181,7 +181,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :Offset, :Limit, :ProjectId
-        
+
         def initialize(offset=nil, limit=nil, projectid=nil)
           @Offset = offset
           @Limit = limit
@@ -205,7 +205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
-        
+
         def initialize(totalcount=nil, tasks=nil, requestid=nil)
           @TotalCount = totalcount
           @Tasks = tasks
@@ -234,7 +234,7 @@ module TencentCloud
         # @type ProjectId: Integer
 
         attr_accessor :TaskId, :ProjectId
-        
+
         def initialize(taskid=nil, projectid=nil)
           @TaskId = taskid
           @ProjectId = projectid
@@ -252,7 +252,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -270,7 +270,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :Status, :TaskId
-        
+
         def initialize(status=nil, taskid=nil)
           @Status = status
           @TaskId = taskid
@@ -288,7 +288,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -306,7 +306,7 @@ module TencentCloud
         # @type ProjectName: String
 
         attr_accessor :ProjectId, :ProjectName
-        
+
         def initialize(projectid=nil, projectname=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -346,7 +346,7 @@ module TencentCloud
         # @type DstDatabaseType: String
 
         attr_accessor :TaskType, :TaskName, :ServiceSupplier, :CreateTime, :UpdateTime, :MigrateClass, :SrcInfo, :DstInfo, :SrcAccessType, :SrcDatabaseType, :DstAccessType, :DstDatabaseType
-        
+
         def initialize(tasktype=nil, taskname=nil, servicesupplier=nil, createtime=nil, updatetime=nil, migrateclass=nil, srcinfo=nil, dstinfo=nil, srcaccesstype=nil, srcdatabasetype=nil, dstaccesstype=nil, dstdatabasetype=nil)
           @TaskType = tasktype
           @TaskName = taskname
@@ -392,7 +392,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -416,7 +416,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Region, :Ip, :Port, :InstanceId
-        
+
         def initialize(region=nil, ip=nil, port=nil, instanceid=nil)
           @Region = region
           @Ip = ip
@@ -456,7 +456,7 @@ module TencentCloud
         # @type DstInfo: :class:`Tencentcloud::Msp.v20180319.models.DstInfo`
 
         attr_accessor :TaskId, :TaskName, :MigrationType, :Status, :ProjectId, :ProjectName, :SrcInfo, :MigrationTimeLine, :Updated, :DstInfo
-        
+
         def initialize(taskid=nil, taskname=nil, migrationtype=nil, status=nil, projectid=nil, projectname=nil, srcinfo=nil, migrationtimeline=nil, updated=nil, dstinfo=nil)
           @TaskId = taskid
           @TaskName = taskname
@@ -503,7 +503,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Status, :Progress, :UpdateTime
-        
+
         def initialize(status=nil, progress=nil, updatetime=nil)
           @Status = status
           @Progress = progress
@@ -525,7 +525,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :CreateTime, :EndTime
-        
+
         def initialize(createtime=nil, endtime=nil)
           @CreateTime = createtime
           @EndTime = endtime

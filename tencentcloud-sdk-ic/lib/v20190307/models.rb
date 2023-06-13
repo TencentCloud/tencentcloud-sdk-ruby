@@ -38,7 +38,7 @@ module TencentCloud
         # @type Uin: String
 
         attr_accessor :Sdkappid, :Appkey, :CloudAppid, :Name, :Description, :CreatedTime, :BizType, :Uin
-        
+
         def initialize(sdkappid=nil, appkey=nil, cloudappid=nil, name=nil, description=nil, createdtime=nil, biztype=nil, uin=nil)
           @Sdkappid = sdkappid
           @Appkey = appkey
@@ -141,7 +141,7 @@ module TencentCloud
         # @type OtherData: Float
 
         attr_accessor :Iccid, :Msisdn, :Imsi, :Imei, :Sdkappid, :Teleoperator, :CardStatus, :NetworkStatus, :ActivitedTime, :Type, :ProductId, :PoolId, :DataUsedInPeriod, :DataTotalInPeriod, :ProductExpiredTime, :Description, :CreatedTime, :ModifiedTime, :PreorderCnt, :IsActivated, :OrderId, :AutoRenew, :Remark, :AllowArrears, :NeedSms, :Provider, :CertificationState, :OtherData
-        
+
         def initialize(iccid=nil, msisdn=nil, imsi=nil, imei=nil, sdkappid=nil, teleoperator=nil, cardstatus=nil, networkstatus=nil, activitedtime=nil, type=nil, productid=nil, poolid=nil, datausedinperiod=nil, datatotalinperiod=nil, productexpiredtime=nil, description=nil, createdtime=nil, modifiedtime=nil, preordercnt=nil, isactivated=nil, orderid=nil, autorenew=nil, remark=nil, allowarrears=nil, needsms=nil, provider=nil, certificationstate=nil, otherdata=nil)
           @Iccid = iccid
           @Msisdn = msisdn
@@ -214,7 +214,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -239,7 +239,7 @@ module TencentCloud
         # @type Sdkappid: Integer
 
         attr_accessor :Sdkappid
-        
+
         def initialize(sdkappid=nil)
           @Sdkappid = sdkappid
         end
@@ -258,7 +258,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -281,7 +281,7 @@ module TencentCloud
         # @type Iccid: String
 
         attr_accessor :Sdkappid, :Iccid
-        
+
         def initialize(sdkappid=nil, iccid=nil)
           @Sdkappid = sdkappid
           @Iccid = iccid
@@ -302,7 +302,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -327,7 +327,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Sdkappid, :Offset, :Limit
-        
+
         def initialize(sdkappid=nil, offset=nil, limit=nil)
           @Sdkappid = sdkappid
           @Offset = offset
@@ -349,7 +349,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -384,7 +384,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Sdkappid, :Iccid, :Msisdn, :SmsType, :BeginTime, :EndTime, :Offset, :Limit
-        
+
         def initialize(sdkappid=nil, iccid=nil, msisdn=nil, smstype=nil, begintime=nil, endtime=nil, offset=nil, limit=nil)
           @Sdkappid = sdkappid
           @Iccid = iccid
@@ -420,7 +420,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :List, :RequestId
-        
+
         def initialize(total=nil, list=nil, requestid=nil)
           @Total = total
           @List = list
@@ -451,7 +451,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :Sdkappid, :Iccid, :Remark
-        
+
         def initialize(sdkappid=nil, iccid=nil, remark=nil)
           @Sdkappid = sdkappid
           @Iccid = iccid
@@ -471,7 +471,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -491,7 +491,7 @@ module TencentCloud
         # @type Sdkappid: Integer
 
         attr_accessor :Iccid, :ExtentData, :Sdkappid
-        
+
         def initialize(iccid=nil, extentdata=nil, sdkappid=nil)
           @Iccid = iccid
           @ExtentData = extentdata
@@ -513,7 +513,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -538,7 +538,7 @@ module TencentCloud
         # @type RenewNum: Integer
 
         attr_accessor :Sdkappid, :Iccids, :RenewNum
-        
+
         def initialize(sdkappid=nil, iccids=nil, renewnum=nil)
           @Sdkappid = sdkappid
           @Iccids = iccids
@@ -561,7 +561,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -583,7 +583,7 @@ module TencentCloud
         # @type OrderIds: Array
 
         attr_accessor :OrderIds
-        
+
         def initialize(orderids=nil)
           @OrderIds = orderids
         end
@@ -600,7 +600,7 @@ module TencentCloud
         # @type OrderIds: Array
 
         attr_accessor :OrderIds
-        
+
         def initialize(orderids=nil)
           @OrderIds = orderids
         end
@@ -641,7 +641,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Iccid, :Msisdn, :SdkAppid, :Content, :SmsType, :SendTime, :ReportTime, :Remark, :Status
-        
+
         def initialize(iccid=nil, msisdn=nil, sdkappid=nil, content=nil, smstype=nil, sendtime=nil, reporttime=nil, remark=nil, status=nil)
           @Iccid = iccid
           @Msisdn = msisdn
@@ -677,7 +677,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :Sdkappid, :Iccids, :Content
-        
+
         def initialize(sdkappid=nil, iccids=nil, content=nil)
           @Sdkappid = sdkappid
           @Iccids = iccids
@@ -700,7 +700,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -729,7 +729,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :Sdkappid, :Iccid, :Content
-        
+
         def initialize(sdkappid=nil, iccid=nil, content=nil)
           @Sdkappid = sdkappid
           @Iccid = iccid
@@ -752,7 +752,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -779,7 +779,7 @@ module TencentCloud
         # @type Sid: String
 
         attr_accessor :Code, :Msg, :Iccid, :Sid
-        
+
         def initialize(code=nil, msg=nil, iccid=nil, sid=nil)
           @Code = code
           @Msg = msg
@@ -804,7 +804,7 @@ module TencentCloud
         # @type Sid: String
 
         attr_accessor :Iccid, :Sid
-        
+
         def initialize(iccid=nil, sid=nil)
           @Iccid = iccid
           @Sid = sid

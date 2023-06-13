@@ -31,7 +31,7 @@ module TencentCloud
         # @type ApplicationId: String
 
         attr_accessor :UserId, :UserIp, :ProjectId, :ApplicationVersionId, :ApplicationId
-        
+
         def initialize(userid=nil, userip=nil, projectid=nil, applicationversionid=nil, applicationid=nil)
           @UserId = userid
           @UserIp = userip
@@ -55,7 +55,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -92,7 +92,7 @@ module TencentCloud
         # @type Role: String
 
         attr_accessor :UserId, :UserIp, :ClientSession, :RunMode, :ApplicationParameters, :HostUserId, :Role
-        
+
         def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil, applicationparameters=nil, hostuserid=nil, role=nil)
           @UserId = userid
           @UserIp = userip
@@ -122,7 +122,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServerSession, :RequestId
-        
+
         def initialize(serversession=nil, requestid=nil)
           @ServerSession = serversession
           @RequestId = requestid
@@ -140,7 +140,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserId
-        
+
         def initialize(userid=nil)
           @UserId = userid
         end
@@ -156,7 +156,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -172,7 +172,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserId
-        
+
         def initialize(userid=nil)
           @UserId = userid
         end
@@ -188,7 +188,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -204,7 +204,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserId
-        
+
         def initialize(userid=nil)
           @UserId = userid
         end
@@ -220,7 +220,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

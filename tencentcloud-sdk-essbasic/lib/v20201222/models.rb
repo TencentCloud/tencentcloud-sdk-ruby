@@ -31,7 +31,7 @@ module TencentCloud
         # @type Country: String
 
         attr_accessor :Province, :City, :County, :Details, :Country
-        
+
         def initialize(province=nil, city=nil, county=nil, details=nil, country=nil)
           @Province = province
           @City = city
@@ -57,7 +57,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Caller, :FlowId
-        
+
         def initialize(caller=nil, flowid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -78,7 +78,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -98,7 +98,7 @@ module TencentCloud
         # @type OperatorId: String
 
         attr_accessor :ApplicationId, :SubOrganizationId, :OperatorId
-        
+
         def initialize(applicationid=nil, suborganizationid=nil, operatorid=nil)
           @ApplicationId = applicationid
           @SubOrganizationId = suborganizationid
@@ -122,7 +122,7 @@ module TencentCloud
         # @type CancelMessage: String
 
         attr_accessor :Caller, :FlowId, :CancelMessage
-        
+
         def initialize(caller=nil, flowid=nil, cancelmessage=nil)
           @Caller = caller
           @FlowId = flowid
@@ -145,7 +145,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -163,7 +163,7 @@ module TencentCloud
         # @type Approvers: Array
 
         attr_accessor :FlowId, :Approvers
-        
+
         def initialize(flowid=nil, approvers=nil)
           @FlowId = flowid
           @Approvers = approvers
@@ -192,7 +192,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :FlowId, :SignComponents, :SignId
-        
+
         def initialize(flowid=nil, signcomponents=nil, signid=nil)
           @FlowId = flowid
           @SignComponents = signcomponents
@@ -223,7 +223,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Caller, :BankCard, :Name
-        
+
         def initialize(caller=nil, bankcard=nil, name=nil)
           @Caller = caller
           @BankCard = bankcard
@@ -271,7 +271,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -299,7 +299,7 @@ module TencentCloud
         # @type IdCardType: String
 
         attr_accessor :Caller, :BankCard, :Name, :IdCardNumber, :IdCardType
-        
+
         def initialize(caller=nil, bankcard=nil, name=nil, idcardnumber=nil, idcardtype=nil)
           @Caller = caller
           @BankCard = bankcard
@@ -351,7 +351,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -381,7 +381,7 @@ module TencentCloud
         # @type IdCardType: String
 
         attr_accessor :Caller, :BankCard, :Name, :IdCardNumber, :Mobile, :IdCardType
-        
+
         def initialize(caller=nil, bankcard=nil, name=nil, idcardnumber=nil, mobile=nil, idcardtype=nil)
           @Caller = caller
           @BankCard = bankcard
@@ -435,7 +435,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -465,7 +465,7 @@ module TencentCloud
         # @type IdCardType: String
 
         attr_accessor :Caller, :BankCard, :Name, :IdCardNumber, :Mobile, :IdCardType
-        
+
         def initialize(caller=nil, bankcard=nil, name=nil, idcardnumber=nil, mobile=nil, idcardtype=nil)
           @Caller = caller
           @BankCard = bankcard
@@ -519,7 +519,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -549,7 +549,7 @@ module TencentCloud
         # @type GetPhoto: Boolean
 
         attr_accessor :Caller, :VerifyChannel, :VerifyResult, :Name, :IdCardNumber, :GetPhoto
-        
+
         def initialize(caller=nil, verifychannel=nil, verifyresult=nil, name=nil, idcardnumber=nil, getphoto=nil)
           @Caller = caller
           @VerifyChannel = verifychannel
@@ -598,7 +598,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :ChannelName, :VerifiedOn, :SerialNumber, :VerifyServerIp, :PhotoFileName, :PhotoFileData, :RequestId
-        
+
         def initialize(result=nil, description=nil, channelname=nil, verifiedon=nil, serialnumber=nil, verifyserverip=nil, photofilename=nil, photofiledata=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -636,7 +636,7 @@ module TencentCloud
         # @type IdCardType: String
 
         attr_accessor :Caller, :Name, :IdCardNumber, :IdCardType
-        
+
         def initialize(caller=nil, name=nil, idcardnumber=nil, idcardtype=nil)
           @Caller = caller
           @Name = name
@@ -673,7 +673,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -697,7 +697,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Caller, :Mobile, :Name
-        
+
         def initialize(caller=nil, mobile=nil, name=nil)
           @Caller = caller
           @Mobile = mobile
@@ -736,7 +736,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -764,7 +764,7 @@ module TencentCloud
         # @type IdCardType: String
 
         attr_accessor :Caller, :Mobile, :Name, :IdCardNumber, :IdCardType
-        
+
         def initialize(caller=nil, mobile=nil, name=nil, idcardnumber=nil, idcardtype=nil)
           @Caller = caller
           @Mobile = mobile
@@ -807,7 +807,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :Description, :RequestId
-        
+
         def initialize(result=nil, description=nil, requestid=nil)
           @Result = result
           @Description = description
@@ -833,7 +833,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Caller, :Mobile, :VerifyCode, :FlowId
-        
+
         def initialize(caller=nil, mobile=nil, verifycode=nil, flowid=nil)
           @Caller = caller
           @Mobile = mobile
@@ -865,7 +865,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Success, :Result, :Description, :RequestId
-        
+
         def initialize(success=nil, result=nil, description=nil, requestid=nil)
           @Success = success
           @Result = result
@@ -936,7 +936,7 @@ module TencentCloud
         # @type GenerateExtra: String
 
         attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :SealOperate, :GenerateExtra
-        
+
         def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, sealoperate=nil, generateextra=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
@@ -982,7 +982,7 @@ module TencentCloud
         # @type SealId: String
 
         attr_accessor :ComponentId, :SealId
-        
+
         def initialize(componentid=nil, sealid=nil)
           @ComponentId = componentid
           @SealId = sealid
@@ -1002,7 +1002,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Caller, :Values
-        
+
         def initialize(caller=nil, values=nil)
           @Caller = caller
           @Values = values
@@ -1025,7 +1025,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Sign, :RequestId
-        
+
         def initialize(sign=nil, requestid=nil)
           @Sign = sign
           @RequestId = requestid
@@ -1049,7 +1049,7 @@ module TencentCloud
         # @type CustomId: String
 
         attr_accessor :Caller, :FlowInfo, :FileIds, :CustomId
-        
+
         def initialize(caller=nil, flowinfo=nil, fileids=nil, customid=nil)
           @Caller = caller
           @FlowInfo = flowinfo
@@ -1079,7 +1079,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
-        
+
         def initialize(flowid=nil, requestid=nil)
           @FlowId = flowid
           @RequestId = requestid
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type RedirectType: String
 
         attr_accessor :Caller, :WbAppId, :Name, :IdCardType, :IdCardNumber, :JumpUrl, :JumpType, :OpenFrom, :RedirectType
-        
+
         def initialize(caller=nil, wbappid=nil, name=nil, idcardtype=nil, idcardnumber=nil, jumpurl=nil, jumptype=nil, openfrom=nil, redirecttype=nil)
           @Caller = caller
           @WbAppId = wbappid
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :RequestId
-        
+
         def initialize(url=nil, requestid=nil)
           @Url = url
           @RequestId = requestid
@@ -1178,7 +1178,7 @@ module TencentCloud
         # @type SignUrlType: String
 
         attr_accessor :Caller, :Deadline, :CatalogId, :FlowId, :SignUrlType
-        
+
         def initialize(caller=nil, deadline=nil, catalogid=nil, flowid=nil, signurltype=nil)
           @Caller = caller
           @Deadline = deadline
@@ -1207,7 +1207,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PreviewSignUrl, :RequestId
-        
+
         def initialize(previewsignurl=nil, requestid=nil)
           @PreviewSignUrl = previewsignurl
           @RequestId = requestid
@@ -1246,7 +1246,7 @@ module TencentCloud
         # @type IsDefault: Boolean
 
         attr_accessor :Caller, :SealType, :SealName, :SourceIp, :Image, :FileId, :UserId, :IsDefault
-        
+
         def initialize(caller=nil, sealtype=nil, sealname=nil, sourceip=nil, image=nil, fileid=nil, userid=nil, isdefault=nil)
           @Caller = caller
           @SealType = sealtype
@@ -1281,7 +1281,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
-        
+
         def initialize(sealid=nil, requestid=nil)
           @SealId = sealid
           @RequestId = requestid
@@ -1305,7 +1305,7 @@ module TencentCloud
         # @type SourceIp: String
 
         attr_accessor :Caller, :FlowId, :SignComponents, :SourceIp
-        
+
         def initialize(caller=nil, flowid=nil, signcomponents=nil, sourceip=nil)
           @Caller = caller
           @FlowId = flowid
@@ -1341,7 +1341,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignStatus, :RequestId
-        
+
         def initialize(signstatus=nil, requestid=nil)
           @SignStatus = signstatus
           @RequestId = requestid
@@ -1373,7 +1373,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :Caller, :UserId, :Deadline, :CatalogId, :FlowId, :SignUrlType, :SignId
-        
+
         def initialize(caller=nil, userid=nil, deadline=nil, catalogid=nil, flowid=nil, signurltype=nil, signid=nil)
           @Caller = caller
           @UserId = userid
@@ -1406,7 +1406,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignUrl, :RequestId
-        
+
         def initialize(signurl=nil, requestid=nil)
           @SignUrl = signurl
           @RequestId = requestid
@@ -1487,7 +1487,7 @@ module TencentCloud
         # @type UseOpenId: Boolean
 
         attr_accessor :Caller, :Name, :IdCardType, :IdCardNumber, :OrganizationType, :LegalName, :LegalIdCardType, :LegalIdCardNumber, :VerifyClientIp, :Email, :IdCardFileType, :BizLicenseFile, :BizLicenseFileName, :LegalMobile, :ContactName, :VerifyServerIp, :ContactAddress, :SealName, :SealType, :SealHorizontalText, :OpenId, :UseOpenId
-        
+
         def initialize(caller=nil, name=nil, idcardtype=nil, idcardnumber=nil, organizationtype=nil, legalname=nil, legalidcardtype=nil, legalidcardnumber=nil, verifyclientip=nil, email=nil, idcardfiletype=nil, bizlicensefile=nil, bizlicensefilename=nil, legalmobile=nil, contactname=nil, verifyserverip=nil, contactaddress=nil, sealname=nil, sealtype=nil, sealhorizontaltext=nil, openid=nil, useopenid=nil)
           @Caller = caller
           @Name = name
@@ -1555,7 +1555,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubOrganizationId, :SealId, :RequestId
-        
+
         def initialize(suborganizationid=nil, sealid=nil, requestid=nil)
           @SubOrganizationId = suborganizationid
           @SealId = sealid
@@ -1626,7 +1626,7 @@ module TencentCloud
         # @type Email: String
 
         attr_accessor :Caller, :IdCardType, :IdCardNumber, :OrganizationType, :LegalName, :LegalIdCardType, :LegalIdCardNumber, :Name, :OpenId, :UseOpenId, :IdCardFileType, :BizLicenseFile, :BizLicenseFileName, :LegalMobile, :ContactName, :VerifyClientIp, :VerifyServerIp, :ContactAddress, :Email
-        
+
         def initialize(caller=nil, idcardtype=nil, idcardnumber=nil, organizationtype=nil, legalname=nil, legalidcardtype=nil, legalidcardnumber=nil, name=nil, openid=nil, useopenid=nil, idcardfiletype=nil, bizlicensefile=nil, bizlicensefilename=nil, legalmobile=nil, contactname=nil, verifyclientip=nil, verifyserverip=nil, contactaddress=nil, email=nil)
           @Caller = caller
           @IdCardType = idcardtype
@@ -1686,7 +1686,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubOrganizationId, :RequestId
-        
+
         def initialize(suborganizationid=nil, requestid=nil)
           @SubOrganizationId = suborganizationid
           @RequestId = requestid
@@ -1725,7 +1725,7 @@ module TencentCloud
         # @type UseOpenId: Boolean
 
         attr_accessor :Caller, :OpenId, :Name, :IdCardType, :IdCardNumber, :SourceIp, :Mobile, :Email, :SealName, :UseOpenId
-        
+
         def initialize(caller=nil, openid=nil, name=nil, idcardtype=nil, idcardnumber=nil, sourceip=nil, mobile=nil, email=nil, sealname=nil, useopenid=nil)
           @Caller = caller
           @OpenId = openid
@@ -1766,7 +1766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :SealId, :RequestId
-        
+
         def initialize(userid=nil, sealid=nil, requestid=nil)
           @UserId = userid
           @SealId = sealid
@@ -1806,7 +1806,7 @@ module TencentCloud
         # @type Mobile: String
 
         attr_accessor :Caller, :OpenId, :Name, :IdCardType, :IdCardNumber, :UseOpenId, :Email, :Mobile
-        
+
         def initialize(caller=nil, openid=nil, name=nil, idcardtype=nil, idcardnumber=nil, useopenid=nil, email=nil, mobile=nil)
           @Caller = caller
           @OpenId = openid
@@ -1841,7 +1841,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :RequestId
-        
+
         def initialize(userid=nil, requestid=nil)
           @UserId = userid
           @RequestId = requestid
@@ -1861,7 +1861,7 @@ module TencentCloud
         # @type FileId: String
 
         attr_accessor :CustomId, :FileId
-        
+
         def initialize(customid=nil, fileid=nil)
           @CustomId = customid
           @FileId = fileid
@@ -1881,7 +1881,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :CustomId, :FlowId
-        
+
         def initialize(customid=nil, flowid=nil)
           @CustomId = customid
           @FlowId = flowid
@@ -1905,7 +1905,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :Caller, :SealId, :SourceIp, :UserId
-        
+
         def initialize(caller=nil, sealid=nil, sourceip=nil, userid=nil)
           @Caller = caller
           @SealId = sealid
@@ -1930,7 +1930,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1950,7 +1950,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :Caller, :CatalogId, :UserId
-        
+
         def initialize(caller=nil, catalogid=nil, userid=nil)
           @Caller = caller
           @CatalogId = catalogid
@@ -1975,7 +1975,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Approvers, :RequestId
-        
+
         def initialize(approvers=nil, requestid=nil)
           @Approvers = approvers
           @RequestId = requestid
@@ -2002,7 +2002,7 @@ module TencentCloud
         # @type CatalogId: String
 
         attr_accessor :Caller, :CatalogId
-        
+
         def initialize(caller=nil, catalogid=nil)
           @Caller = caller
           @CatalogId = catalogid
@@ -2025,7 +2025,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignComponents, :RequestId
-        
+
         def initialize(signcomponents=nil, requestid=nil)
           @SignComponents = signcomponents
           @RequestId = requestid
@@ -2052,7 +2052,7 @@ module TencentCloud
         # @type FlowIds: Array
 
         attr_accessor :Caller, :FlowIds
-        
+
         def initialize(caller=nil, flowids=nil)
           @Caller = caller
           @FlowIds = flowids
@@ -2075,7 +2075,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomIdList, :RequestId
-        
+
         def initialize(customidlist=nil, requestid=nil)
           @CustomIdList = customidlist
           @RequestId = requestid
@@ -2102,7 +2102,7 @@ module TencentCloud
         # @type CustomIds: Array
 
         attr_accessor :Caller, :CustomIds
-        
+
         def initialize(caller=nil, customids=nil)
           @Caller = caller
           @CustomIds = customids
@@ -2125,7 +2125,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomIdList, :RequestId
-        
+
         def initialize(customidlist=nil, requestid=nil)
           @CustomIdList = customidlist
           @RequestId = requestid
@@ -2154,7 +2154,7 @@ module TencentCloud
         # @type OrderNumbers: Array
 
         attr_accessor :Caller, :WbAppId, :OrderNumbers
-        
+
         def initialize(caller=nil, wbappid=nil, ordernumbers=nil)
           @Caller = caller
           @WbAppId = wbappid
@@ -2179,7 +2179,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Photos, :RequestId
-        
+
         def initialize(photos=nil, requestid=nil)
           @Photos = photos
           @RequestId = requestid
@@ -2210,7 +2210,7 @@ module TencentCloud
         # @type FileType: Integer
 
         attr_accessor :Caller, :WbAppId, :OrderNumbers, :FileType
-        
+
         def initialize(caller=nil, wbappid=nil, ordernumbers=nil, filetype=nil)
           @Caller = caller
           @WbAppId = wbappid
@@ -2237,7 +2237,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -2264,7 +2264,7 @@ module TencentCloud
         # @type CustomIds: Array
 
         attr_accessor :Caller, :CustomIds
-        
+
         def initialize(caller=nil, customids=nil)
           @Caller = caller
           @CustomIds = customids
@@ -2287,7 +2287,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomIdList, :RequestId
-        
+
         def initialize(customidlist=nil, requestid=nil)
           @CustomIdList = customidlist
           @RequestId = requestid
@@ -2328,7 +2328,7 @@ module TencentCloud
         # @type FileType: String
 
         attr_accessor :Caller, :BusinessIds, :BusinessType, :FileName, :ResourceOffset, :ResourceLimit, :FileType
-        
+
         def initialize(caller=nil, businessids=nil, businesstype=nil, filename=nil, resourceoffset=nil, resourcelimit=nil, filetype=nil)
           @Caller = caller
           @BusinessIds = businessids
@@ -2363,7 +2363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileUrls, :TotalCount, :RequestId
-        
+
         def initialize(fileurls=nil, totalcount=nil, requestid=nil)
           @FileUrls = fileurls
           @TotalCount = totalcount
@@ -2396,7 +2396,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :Caller, :FlowId, :UserId, :SignId
-        
+
         def initialize(caller=nil, flowid=nil, userid=nil, signid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -2425,7 +2425,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowId, :Approvers, :RequestId
-        
+
         def initialize(flowid=nil, approvers=nil, requestid=nil)
           @FlowId = flowid
           @Approvers = approvers
@@ -2454,7 +2454,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Caller, :FlowId
-        
+
         def initialize(caller=nil, flowid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -2479,7 +2479,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowId, :FlowFileInfos, :RequestId
-        
+
         def initialize(flowid=nil, flowfileinfos=nil, requestid=nil)
           @FlowId = flowid
           @FlowFileInfos = flowfileinfos
@@ -2508,7 +2508,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Caller, :FlowId
-        
+
         def initialize(caller=nil, flowid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -2559,7 +2559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Creator, :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :UpdatedOn, :Deadline, :CallbackUrl, :FlowMessage, :RequestId
-        
+
         def initialize(creator=nil, flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, updatedon=nil, deadline=nil, callbackurl=nil, flowmessage=nil, requestid=nil)
           @Creator = creator
           @FlowId = flowid
@@ -2604,7 +2604,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :Caller, :SealIds, :UserId
-        
+
         def initialize(caller=nil, sealids=nil, userid=nil)
           @Caller = caller
           @SealIds = sealids
@@ -2629,7 +2629,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Seals, :RequestId
-        
+
         def initialize(seals=nil, requestid=nil)
           @Seals = seals
           @RequestId = requestid
@@ -2656,7 +2656,7 @@ module TencentCloud
         # @type SubOrganizationIds: Array
 
         attr_accessor :Caller, :SubOrganizationIds
-        
+
         def initialize(caller=nil, suborganizationids=nil)
           @Caller = caller
           @SubOrganizationIds = suborganizationids
@@ -2679,7 +2679,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubOrganizationInfos, :RequestId
-        
+
         def initialize(suborganizationinfos=nil, requestid=nil)
           @SubOrganizationInfos = suborganizationinfos
           @RequestId = requestid
@@ -2706,7 +2706,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :Caller, :UserIds
-        
+
         def initialize(caller=nil, userids=nil)
           @Caller = caller
           @UserIds = userids
@@ -2729,7 +2729,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Users, :RequestId
-        
+
         def initialize(users=nil, requestid=nil)
           @Users = users
           @RequestId = requestid
@@ -2756,7 +2756,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Caller, :FlowId
-        
+
         def initialize(caller=nil, flowid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -2777,7 +2777,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2801,7 +2801,7 @@ module TencentCloud
         # @type OrderNumber: String
 
         attr_accessor :Result, :Description, :Photo, :OrderNumber
-        
+
         def initialize(result=nil, description=nil, photo=nil, ordernumber=nil)
           @Result = result
           @Description = description
@@ -2854,7 +2854,7 @@ module TencentCloud
         # @type Video: String
 
         attr_accessor :Result, :Description, :OrderNumber, :Name, :IdCardType, :IdCardNumber, :LiveRate, :Similarity, :OccurredTime, :Photo, :Video
-        
+
         def initialize(result=nil, description=nil, ordernumber=nil, name=nil, idcardtype=nil, idcardnumber=nil, liverate=nil, similarity=nil, occurredtime=nil, photo=nil, video=nil)
           @Result = result
           @Description = description
@@ -2896,7 +2896,7 @@ module TencentCloud
         # @type FlowId: String
 
         attr_accessor :Url, :Option, :Index, :FlowId
-        
+
         def initialize(url=nil, option=nil, index=nil, flowid=nil)
           @Url = url
           @Option = option
@@ -2977,7 +2977,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :UserId, :VerifyChannel, :ApproveStatus, :ApproveMessage, :ApproveTime, :SubOrganizationId, :JumpUrl, :ComponentSeals, :IsFullText, :PreReadTime, :Mobile, :Deadline, :IsLastApprover, :SmsTemplate, :IdCardNumber, :Name, :CanOffLine, :IdCardType, :CallbackUrl, :SignId
-        
+
         def initialize(userid=nil, verifychannel=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, suborganizationid=nil, jumpurl=nil, componentseals=nil, isfulltext=nil, prereadtime=nil, mobile=nil, deadline=nil, islastapprover=nil, smstemplate=nil, idcardnumber=nil, name=nil, canoffline=nil, idcardtype=nil, callbackurl=nil, signid=nil)
           @UserId = userid
           @VerifyChannel = verifychannel
@@ -3053,7 +3053,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :FileIndex, :FileType, :FileMd5, :FileName, :FileSize, :CreatedOn, :Url
-        
+
         def initialize(fileindex=nil, filetype=nil, filemd5=nil, filename=nil, filesize=nil, createdon=nil, url=nil)
           @FileIndex = fileindex
           @FileType = filetype
@@ -3095,7 +3095,7 @@ module TencentCloud
         # @type UserData: String
 
         attr_accessor :FlowName, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :UserData
-        
+
         def initialize(flowname=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, userdata=nil)
           @FlowName = flowname
           @Deadline = deadline
@@ -3137,7 +3137,7 @@ module TencentCloud
         # @type IsDefault: Boolean
 
         attr_accessor :Caller, :SealType, :SourceIp, :SealName, :SealHorizontalText, :IsDefault
-        
+
         def initialize(caller=nil, sealtype=nil, sourceip=nil, sealname=nil, sealhorizontaltext=nil, isdefault=nil)
           @Caller = caller
           @SealType = sealtype
@@ -3168,7 +3168,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
-        
+
         def initialize(sealid=nil, requestid=nil)
           @SealId = sealid
           @RequestId = requestid
@@ -3194,7 +3194,7 @@ module TencentCloud
         # @type IsDefault: Boolean
 
         attr_accessor :Caller, :UserId, :SourceIp, :SealName, :IsDefault
-        
+
         def initialize(caller=nil, userid=nil, sourceip=nil, sealname=nil, isdefault=nil)
           @Caller = caller
           @UserId = userid
@@ -3223,7 +3223,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
-        
+
         def initialize(sealid=nil, requestid=nil)
           @SealId = sealid
           @RequestId = requestid
@@ -3245,7 +3245,7 @@ module TencentCloud
         # @type SourceIp: String
 
         attr_accessor :Caller, :SealId, :SourceIp
-        
+
         def initialize(caller=nil, sealid=nil, sourceip=nil)
           @Caller = caller
           @SealId = sealid
@@ -3268,7 +3268,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3296,7 +3296,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :Caller, :SourceIp, :SealId, :SealName, :Image, :FileId, :UserId
-        
+
         def initialize(caller=nil, sourceip=nil, sealid=nil, sealname=nil, image=nil, fileid=nil, userid=nil)
           @Caller = caller
           @SourceIp = sourceip
@@ -3327,7 +3327,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3371,7 +3371,7 @@ module TencentCloud
         # @type Email: String
 
         attr_accessor :Caller, :OpenId, :Name, :OrganizationType, :BizLicenseFile, :BizLicenseFileName, :LegalName, :LegalIdCardType, :LegalIdCardNumber, :LegalMobile, :ContactName, :ContactAddress, :Email
-        
+
         def initialize(caller=nil, openid=nil, name=nil, organizationtype=nil, bizlicensefile=nil, bizlicensefilename=nil, legalname=nil, legalidcardtype=nil, legalidcardnumber=nil, legalmobile=nil, contactname=nil, contactaddress=nil, email=nil)
           @Caller = caller
           @OpenId = openid
@@ -3419,7 +3419,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubOrganizationId, :RequestId
-        
+
         def initialize(suborganizationid=nil, requestid=nil)
           @SubOrganizationId = suborganizationid
           @RequestId = requestid
@@ -3443,7 +3443,7 @@ module TencentCloud
         # @type SourceIp: String
 
         attr_accessor :Caller, :UserId, :SealId, :SourceIp
-        
+
         def initialize(caller=nil, userid=nil, sealid=nil, sourceip=nil)
           @Caller = caller
           @UserId = userid
@@ -3468,7 +3468,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3494,7 +3494,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Caller, :OpenId, :UserId, :Mobile, :Email, :Name
-        
+
         def initialize(caller=nil, openid=nil, userid=nil, mobile=nil, email=nil, name=nil)
           @Caller = caller
           @OpenId = openid
@@ -3525,7 +3525,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :RequestId
-        
+
         def initialize(userid=nil, requestid=nil)
           @UserId = userid
           @RequestId = requestid
@@ -3566,7 +3566,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :Caller, :FlowId, :VerifyResult, :VerifyChannel, :SourceIp, :RejectMessage, :SignId
-        
+
         def initialize(caller=nil, flowid=nil, verifyresult=nil, verifychannel=nil, sourceip=nil, rejectmessage=nil, signid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -3597,7 +3597,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3631,7 +3631,7 @@ module TencentCloud
         # @type DefaultSeal: Boolean
 
         attr_accessor :SealId, :SealName, :SealType, :SealSource, :Creator, :CreatedOn, :UserId, :FileUrl, :DefaultSeal
-        
+
         def initialize(sealid=nil, sealname=nil, sealtype=nil, sealsource=nil, creator=nil, createdon=nil, userid=nil, fileurl=nil, defaultseal=nil)
           @SealId = sealid
           @SealName = sealname
@@ -3702,7 +3702,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :Caller, :FlowId, :UserId, :SignComponents, :Mobile, :SubOrganizationId, :VerifyChannel, :Deadline, :IsLastApprover, :JumpUrl, :SmsTemplate, :IsFullText, :PreReadTime, :CanOffLine, :CallbackUrl
-        
+
         def initialize(caller=nil, flowid=nil, userid=nil, signcomponents=nil, mobile=nil, suborganizationid=nil, verifychannel=nil, deadline=nil, islastapprover=nil, jumpurl=nil, smstemplate=nil, isfulltext=nil, prereadtime=nil, canoffline=nil, callbackurl=nil)
           @Caller = caller
           @FlowId = flowid
@@ -3761,7 +3761,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignId, :RequestId
-        
+
         def initialize(signid=nil, requestid=nil)
           @SignId = signid
           @RequestId = requestid
@@ -3814,7 +3814,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :Caller, :FlowId, :UserId, :SignComponents, :Mobile, :SubOrganizationId, :VerifyChannel, :Deadline, :IsLastApprover, :JumpUrl, :SmsTemplate, :IsFullText, :PreReadTime, :CanOffLine, :CallbackUrl
-        
+
         def initialize(caller=nil, flowid=nil, userid=nil, signcomponents=nil, mobile=nil, suborganizationid=nil, verifychannel=nil, deadline=nil, islastapprover=nil, jumpurl=nil, smstemplate=nil, isfulltext=nil, prereadtime=nil, canoffline=nil, callbackurl=nil)
           @Caller = caller
           @FlowId = flowid
@@ -3875,7 +3875,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignId, :SignUrl, :RequestId
-        
+
         def initialize(signid=nil, signurl=nil, requestid=nil)
           @SignId = signid
           @SignUrl = signurl
@@ -3909,7 +3909,7 @@ module TencentCloud
         # @type CheckThreeElementResult: Integer
 
         attr_accessor :Caller, :Mobile, :VerifyType, :UserId, :VerifyTemplateId, :VerifySign, :FlowId, :CheckThreeElementResult
-        
+
         def initialize(caller=nil, mobile=nil, verifytype=nil, userid=nil, verifytemplateid=nil, verifysign=nil, flowid=nil, checkthreeelementresult=nil)
           @Caller = caller
           @Mobile = mobile
@@ -3944,7 +3944,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -3987,7 +3987,7 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :Caller, :FlowId, :VerifyResult, :VerifyChannel, :SourceIp, :SignSeals, :ApproveMessage, :SignId
-        
+
         def initialize(caller=nil, flowid=nil, verifyresult=nil, verifychannel=nil, sourceip=nil, signseals=nil, approvemessage=nil, signid=nil)
           @Caller = caller
           @FlowId = flowid
@@ -4029,7 +4029,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
-        
+
         def initialize(status=nil, requestid=nil)
           @Status = status
           @RequestId = requestid
@@ -4059,7 +4059,7 @@ module TencentCloud
         # @type SealContent: String
 
         attr_accessor :ComponentId, :SignType, :FileIndex, :SealId, :SealContent
-        
+
         def initialize(componentid=nil, signtype=nil, fileindex=nil, sealid=nil, sealcontent=nil)
           @ComponentId = componentid
           @SignType = signtype
@@ -4085,7 +4085,7 @@ module TencentCloud
         # @type Sign: String
 
         attr_accessor :TemplateId, :Sign
-        
+
         def initialize(templateid=nil, sign=nil)
           @TemplateId = templateid
           @Sign = sign
@@ -4151,7 +4151,7 @@ module TencentCloud
         # @type ContactAddress: :class:`Tencentcloud::Essbasic.v20201222.models.Address`
 
         attr_accessor :Id, :Name, :Email, :IdCardType, :IdCardNumber, :OrganizationType, :IdCardFileType, :BizLicenseFile, :BizLicenseFileName, :LegalName, :LegalIdCardType, :LegalIdCardNumber, :LegalMobile, :ContactName, :VerifyStatus, :VerifiedOn, :CreatedOn, :UpdatedOn, :VerifyClientIp, :VerifyServerIp, :ContactAddress
-        
+
         def initialize(id=nil, name=nil, email=nil, idcardtype=nil, idcardnumber=nil, organizationtype=nil, idcardfiletype=nil, bizlicensefile=nil, bizlicensefilename=nil, legalname=nil, legalidcardtype=nil, legalidcardnumber=nil, legalmobile=nil, contactname=nil, verifystatus=nil, verifiedon=nil, createdon=nil, updatedon=nil, verifyclientip=nil, verifyserverip=nil, contactaddress=nil)
           @Id = id
           @Name = name
@@ -4212,7 +4212,7 @@ module TencentCloud
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName
-        
+
         def initialize(filebody=nil, filename=nil)
           @FileBody = filebody
           @FileName = filename
@@ -4251,7 +4251,7 @@ module TencentCloud
         # @type CustomIds: Array
 
         attr_accessor :Caller, :BusinessType, :FileInfos, :FileUrls, :CoverRect, :FileType, :CustomIds
-        
+
         def initialize(caller=nil, businesstype=nil, fileinfos=nil, fileurls=nil, coverrect=nil, filetype=nil, customids=nil)
           @Caller = caller
           @BusinessType = businesstype
@@ -4293,7 +4293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileIds, :TotalCount, :RequestId
-        
+
         def initialize(fileids=nil, totalcount=nil, requestid=nil)
           @FileIds = fileids
           @TotalCount = totalcount
@@ -4335,7 +4335,7 @@ module TencentCloud
         # @type IdCardNumber: String
 
         attr_accessor :UserId, :Mobile, :CreatedOn, :VerifyStatus, :Name, :VerifiedOn, :IdCardType, :IdCardNumber
-        
+
         def initialize(userid=nil, mobile=nil, createdon=nil, verifystatus=nil, name=nil, verifiedon=nil, idcardtype=nil, idcardnumber=nil)
           @UserId = userid
           @Mobile = mobile
@@ -4367,7 +4367,7 @@ module TencentCloud
         # @type OpenId: String
 
         attr_accessor :Caller, :OpenId
-        
+
         def initialize(caller=nil, openid=nil)
           @Caller = caller
           @OpenId = openid
@@ -4390,7 +4390,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubOrganizationId, :RequestId
-        
+
         def initialize(suborganizationid=nil, requestid=nil)
           @SubOrganizationId = suborganizationid
           @RequestId = requestid
@@ -4413,7 +4413,7 @@ module TencentCloud
         # @type CertificateRequired: Boolean
 
         attr_accessor :Caller, :UserId, :CertificateRequired
-        
+
         def initialize(caller=nil, userid=nil, certificaterequired=nil)
           @Caller = caller
           @UserId = userid
@@ -4438,7 +4438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :RequestId
-        
+
         def initialize(userid=nil, requestid=nil)
           @UserId = userid
           @RequestId = requestid

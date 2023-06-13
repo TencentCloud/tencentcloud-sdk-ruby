@@ -31,7 +31,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
-        
+
         def initialize(name=nil, src=nil, value=nil)
           @Name = name
           @Src = src
@@ -61,7 +61,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, value=nil)
           @Name = name
           @Src = src
@@ -84,7 +84,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -113,7 +113,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Index, :Number, :Relation, :Src, :Value
-        
+
         def initialize(index=nil, number=nil, relation=nil, src=nil, value=nil)
           @Index = index
           @Number = number
@@ -150,7 +150,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
-        
+
         def initialize(name=nil, index=nil, src=nil, value=nil, coords=nil)
           @Name = name
           @Index = index
@@ -194,7 +194,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Src, :Value, :Alias, :Coords
-        
+
         def initialize(name=nil, src=nil, value=nil, _alias=nil, coords=nil)
           @Name = name
           @Src = src
@@ -235,7 +235,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Src, :Value, :Coords
-        
+
         def initialize(name=nil, src=nil, value=nil, coords=nil)
           @Name = name
           @Src = src
@@ -277,7 +277,7 @@ module TencentCloud
         # @type Order: Integer
 
         attr_accessor :Name, :Src, :Value, :Coords, :Order
-        
+
         def initialize(name=nil, src=nil, value=nil, coords=nil, order=nil)
           @Name = name
           @Src = src
@@ -315,7 +315,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Value, :Src, :Coords
-        
+
         def initialize(value=nil, src=nil, coords=nil)
           @Value = value
           @Src = src
@@ -352,7 +352,7 @@ module TencentCloud
         # @type IssueInfo: :class:`Tencentcloud::Mrs.v20200910.models.IssueInfo`
 
         attr_accessor :NeonatalInfo, :MotherInfo, :FatherInfo, :IssueInfo
-        
+
         def initialize(neonatalinfo=nil, motherinfo=nil, fatherinfo=nil, issueinfo=nil)
           @NeonatalInfo = neonatalinfo
           @MotherInfo = motherinfo
@@ -393,7 +393,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
-        
+
         def initialize(name=nil, src=nil, value=nil)
           @Name = name
           @Src = src
@@ -432,7 +432,7 @@ module TencentCloud
         # @type Size: Array
 
         attr_accessor :Index, :Positive, :Src, :Value, :Type, :Name, :Size
-        
+
         def initialize(index=nil, positive=nil, src=nil, value=nil, type=nil, name=nil, size=nil)
           @Index = index
           @Positive = positive
@@ -480,7 +480,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Index, :Src, :Value, :Name, :Code
-        
+
         def initialize(index=nil, src=nil, value=nil, name=nil, code=nil)
           @Index = index
           @Src = src
@@ -523,7 +523,7 @@ module TencentCloud
         # @type NormSystolic: String
 
         attr_accessor :Name, :Src, :Norm, :Unit, :Value, :NormDiastolic, :NormSystolic
-        
+
         def initialize(name=nil, src=nil, norm=nil, unit=nil, value=nil, normdiastolic=nil, normsystolic=nil)
           @Name = name
           @Src = src
@@ -561,7 +561,7 @@ module TencentCloud
         # @type BloodPressure: :class:`Tencentcloud::Mrs.v20200910.models.BloodPressureBlock`
 
         attr_accessor :BodyTemperature, :Pulse, :Breathe, :BloodPressure
-        
+
         def initialize(bodytemperature=nil, pulse=nil, breathe=nil, bloodpressure=nil)
           @BodyTemperature = bodytemperature
           @Pulse = pulse
@@ -608,7 +608,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Unit, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, unit=nil, value=nil)
           @Name = name
           @Src = src
@@ -636,7 +636,7 @@ module TencentCloud
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
 
         attr_accessor :Desc, :Summary
-        
+
         def initialize(desc=nil, summary=nil)
           @Desc = desc
           @Summary = summary
@@ -670,7 +670,7 @@ module TencentCloud
         # @type Detail: Array
 
         attr_accessor :Name, :Src, :Value, :Detail
-        
+
         def initialize(name=nil, src=nil, value=nil, detail=nil)
           @Name = name
           @Src = src
@@ -709,7 +709,7 @@ module TencentCloud
         # @type TimeType: String
 
         attr_accessor :DiseaseName, :Part, :Time, :TimeType
-        
+
         def initialize(diseasename=nil, part=nil, time=nil, timetype=nil)
           @DiseaseName = diseasename
           @Part = part
@@ -738,7 +738,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
-        
+
         def initialize(name=nil, src=nil, value=nil)
           @Name = name
           @Src = src
@@ -759,7 +759,7 @@ module TencentCloud
         # @type Points: Array
 
         attr_accessor :Points
-        
+
         def initialize(points=nil)
           @Points = points
         end
@@ -792,7 +792,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -827,7 +827,7 @@ module TencentCloud
         # @type CodeColor: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :SampleTime, :TestTime, :TestOrganization, :TestResult, :CodeColor
-        
+
         def initialize(sampletime=nil, testtime=nil, testorganization=nil, testresult=nil, codecolor=nil)
           @SampleTime = sampletime
           @TestTime = testtime
@@ -870,7 +870,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :CovidItems, :Version
-        
+
         def initialize(coviditems=nil, version=nil)
           @CovidItems = coviditems
           @Version = version
@@ -914,7 +914,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Type, :Norm, :Unit, :Timestamp, :Value
-        
+
         def initialize(name=nil, src=nil, type=nil, norm=nil, unit=nil, timestamp=nil, value=nil)
           @Name = name
           @Src = src
@@ -952,7 +952,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Text, :Organ, :Tuber, :Coords
-        
+
         def initialize(text=nil, organ=nil, tuber=nil, coords=nil)
           @Text = text
           @Organ = organ
@@ -999,7 +999,7 @@ module TencentCloud
         # @type Infos: Array
 
         attr_accessor :Text, :Infos
-        
+
         def initialize(text=nil, infos=nil)
           @Text = text
           @Infos = infos
@@ -1067,7 +1067,7 @@ module TencentCloud
         # @type Breaked: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
 
         attr_accessor :Part, :TissueSizes, :TuberSizes, :CancerSizes, :HistologyLevel, :HistologyType, :Invasive, :PTNM, :InfiltrationDepth, :TuberNum, :Calcification, :Necrosis, :Abnormity, :Breaked
-        
+
         def initialize(part=nil, tissuesizes=nil, tubersizes=nil, cancersizes=nil, histologylevel=nil, histologytype=nil, invasive=nil, ptnm=nil, infiltrationdepth=nil, tubernum=nil, calcification=nil, necrosis=nil, abnormity=nil, breaked=nil)
           @Part = part
           @TissueSizes = tissuesizes
@@ -1171,7 +1171,7 @@ module TencentCloud
         # @type Diagnosis: Array
 
         attr_accessor :Advice, :Diagnosis
-        
+
         def initialize(advice=nil, diagnosis=nil)
           @Advice = advice
           @Diagnosis = diagnosis
@@ -1206,7 +1206,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Text, :Type, :Value
-        
+
         def initialize(text=nil, type=nil, value=nil)
           @Text = text
           @Type = type
@@ -1236,7 +1236,7 @@ module TencentCloud
         # @type Norm: String
 
         attr_accessor :Name, :Src, :Value, :Norm
-        
+
         def initialize(name=nil, src=nil, value=nil, norm=nil)
           @Name = name
           @Src = src
@@ -1271,7 +1271,7 @@ module TencentCloud
         # @type OutStatus: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
 
         attr_accessor :TableIndex, :OutDiagnosis, :DiseaseCode, :InStatus, :OutStatus
-        
+
         def initialize(tableindex=nil, outdiagnosis=nil, diseasecode=nil, instatus=nil, outstatus=nil)
           @TableIndex = tableindex
           @OutDiagnosis = outdiagnosis
@@ -1317,7 +1317,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, value=nil)
           @Name = name
           @Src = src
@@ -1352,7 +1352,7 @@ module TencentCloud
         # @type ParagraphBlock: :class:`Tencentcloud::Mrs.v20200910.models.ParagraphBlock`
 
         attr_accessor :DiseaseHistory, :PersonalHistory, :DrugHistory, :TreatmentRecord, :ParagraphBlock
-        
+
         def initialize(diseasehistory=nil, personalhistory=nil, drughistory=nil, treatmentrecord=nil, paragraphblock=nil)
           @DiseaseHistory = diseasehistory
           @PersonalHistory = personalhistory
@@ -1404,7 +1404,7 @@ module TencentCloud
         # @type TransfusionHistory: :class:`Tencentcloud::Mrs.v20200910.models.TransfusionHistoryBlock`
 
         attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :SurgeryHistory, :TransfusionHistory
-        
+
         def initialize(maindiseasehistory=nil, allergyhistory=nil, infecthistory=nil, surgeryhistory=nil, transfusionhistory=nil)
           @MainDiseaseHistory = maindiseasehistory
           @AllergyHistory = allergyhistory
@@ -1456,7 +1456,7 @@ module TencentCloud
         # @type TransfusionHistory: String
 
         attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :OperationHistory, :TransfusionHistory
-        
+
         def initialize(maindiseasehistory=nil, allergyhistory=nil, infecthistory=nil, operationhistory=nil, transfusionhistory=nil)
           @MainDiseaseHistory = maindiseasehistory
           @AllergyHistory = allergyhistory
@@ -1490,7 +1490,7 @@ module TencentCloud
         # @type Norm: String
 
         attr_accessor :Name, :Src, :Value, :Norm
-        
+
         def initialize(name=nil, src=nil, value=nil, norm=nil)
           @Name = name
           @Src = src
@@ -1522,7 +1522,7 @@ module TencentCloud
         # @type DrugDeliveryRoute: String
 
         attr_accessor :Value, :SingleMeasurement, :Frequency, :DrugDeliveryRoute
-        
+
         def initialize(value=nil, singlemeasurement=nil, frequency=nil, drugdeliveryroute=nil)
           @Value = value
           @SingleMeasurement = singlemeasurement
@@ -1554,7 +1554,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :DrugList, :Value
-        
+
         def initialize(name=nil, src=nil, druglist=nil, value=nil)
           @Name = name
           @Src = src
@@ -1593,7 +1593,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :CommonName, :TradeName, :Dosage, :Value
-        
+
         def initialize(commonname=nil, tradename=nil, dosage=nil, value=nil)
           @CommonName = commonname
           @TradeName = tradename
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type PQRSTAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
 
         attr_accessor :HeartRate, :AuricularRate, :VentricularRate, :Rhythm, :PDuration, :QrsDuration, :QrsAxis, :PRInterval, :PPInterval, :RRInterval, :PJInterval, :QTInterval, :QTCInterval, :Rv5SV1Amplitude, :Rv5AddSV1Amplitude, :PRTAxis, :Rv5Amplitude, :SV1Amplitude, :RV6SV2, :PQRSTAxis
-        
+
         def initialize(heartrate=nil, auricularrate=nil, ventricularrate=nil, rhythm=nil, pduration=nil, qrsduration=nil, qrsaxis=nil, printerval=nil, ppinterval=nil, rrinterval=nil, pjinterval=nil, qtinterval=nil, qtcinterval=nil, rv5sv1amplitude=nil, rv5addsv1amplitude=nil, prtaxis=nil, rv5amplitude=nil, sv1amplitude=nil, rv6sv2=nil, pqrstaxis=nil)
           @HeartRate = heartrate
           @AuricularRate = auricularrate
@@ -1794,7 +1794,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1822,7 +1822,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :Name, :Value, :Unit, :Src
-        
+
         def initialize(name=nil, value=nil, unit=nil, src=nil)
           @Name = name
           @Value = value
@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Index, :Score, :Src, :Value, :Name
-        
+
         def initialize(index=nil, score=nil, src=nil, value=nil, name=nil)
           @Index = index
           @Score = score
@@ -1885,7 +1885,7 @@ module TencentCloud
         # @type EcgDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.EcgDiagnosis`
 
         attr_accessor :EcgDescription, :EcgDiagnosis
-        
+
         def initialize(ecgdescription=nil, ecgdiagnosis=nil)
           @EcgDescription = ecgdescription
           @EcgDiagnosis = ecgdiagnosis
@@ -1916,7 +1916,7 @@ module TencentCloud
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
 
         attr_accessor :BiopsyPart, :Desc, :Summary
-        
+
         def initialize(biopsypart=nil, desc=nil, summary=nil)
           @BiopsyPart = biopsypart
           @Desc = desc
@@ -1952,7 +1952,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Text, :Organ, :Coords
-        
+
         def initialize(text=nil, organ=nil, coords=nil)
           @Text = text
           @Organ = organ
@@ -2002,7 +2002,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Part, :Index, :Src, :PartAlias, :SymDescList, :Coords
-        
+
         def initialize(part=nil, index=nil, src=nil, partalias=nil, symdesclist=nil, coords=nil)
           @Part = part
           @Index = index
@@ -2049,7 +2049,7 @@ module TencentCloud
         # @type Abnormality: Array
 
         attr_accessor :OverView, :Abnormality
-        
+
         def initialize(overview=nil, abnormality=nil)
           @OverView = overview
           @Abnormality = abnormality
@@ -2091,7 +2091,7 @@ module TencentCloud
         # @type Se: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem2`
 
         attr_accessor :Sph, :Cyl, :Ax, :Se
-        
+
         def initialize(sph=nil, cyl=nil, ax=nil, se=nil)
           @Sph = sph
           @Cyl = cyl
@@ -2144,7 +2144,7 @@ module TencentCloud
         # @type Pd: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem2`
 
         attr_accessor :Left, :Right, :Pd
-        
+
         def initialize(left=nil, right=nil, pd=nil)
           @Left = left
           @Right = right
@@ -2177,7 +2177,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :EyeItems, :Version
-        
+
         def initialize(eyeitems=nil, version=nil)
           @EyeItems = eyeitems
           @Version = version
@@ -2205,7 +2205,7 @@ module TencentCloud
         # @type GeneticHistory: :class:`Tencentcloud::Mrs.v20200910.models.GeneticHistoryBlock`
 
         attr_accessor :RelativeHistory, :RelativeCancerHistory, :GeneticHistory
-        
+
         def initialize(relativehistory=nil, relativecancerhistory=nil, genetichistory=nil)
           @RelativeHistory = relativehistory
           @RelativeCancerHistory = relativecancerhistory
@@ -2241,7 +2241,7 @@ module TencentCloud
         # @type GeneticHistory: String
 
         attr_accessor :RelativeHistory, :RelativeCancerHistory, :GeneticHistory
-        
+
         def initialize(relativehistory=nil, relativecancerhistory=nil, genetichistory=nil)
           @RelativeHistory = relativehistory
           @RelativeCancerHistory = relativecancerhistory
@@ -2280,7 +2280,7 @@ module TencentCloud
         # @type ProduCount: String
 
         attr_accessor :Name, :Src, :State, :Norm, :Value, :PregCount, :ProduCount
-        
+
         def initialize(name=nil, src=nil, state=nil, norm=nil, value=nil, pregcount=nil, producount=nil)
           @Name = name
           @Src = src
@@ -2387,7 +2387,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :BPD, :APTD, :TTD, :CRL, :HC, :AC, :FL, :HL, :Weight, :NT, :UmbilicalCord, :WaterDeep, :WaterQuad, :AFI, :FHR, :Movement, :Num, :Position, :Alive, :PlacentaLocation, :PlacentaThickness, :PlacentaGrade, :GestationTime, :GestationPeriod, :AroundNeck, :Sym, :Src
-        
+
         def initialize(bpd=nil, aptd=nil, ttd=nil, crl=nil, hc=nil, ac=nil, fl=nil, hl=nil, weight=nil, nt=nil, umbilicalcord=nil, waterdeep=nil, waterquad=nil, afi=nil, fhr=nil, movement=nil, num=nil, position=nil, alive=nil, placentalocation=nil, placentathickness=nil, placentagrade=nil, gestationtime=nil, gestationperiod=nil, aroundneck=nil, sym=nil, src=nil)
           @BPD = bpd
           @APTD = aptd
@@ -2547,7 +2547,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :Name, :Value, :Nums, :Src
-        
+
         def initialize(name=nil, value=nil, nums=nil, src=nil)
           @Name = name
           @Value = value
@@ -2589,7 +2589,7 @@ module TencentCloud
         # @type Fp2NdItems: Array
 
         attr_accessor :DischargeDiagnosis, :PathologicalDiagnosis, :ClinicalDiagnosis, :DamagePoi, :Fp2NdItems
-        
+
         def initialize(dischargediagnosis=nil, pathologicaldiagnosis=nil, clinicaldiagnosis=nil, damagepoi=nil, fp2nditems=nil)
           @DischargeDiagnosis = dischargediagnosis
           @PathologicalDiagnosis = pathologicaldiagnosis
@@ -2658,7 +2658,7 @@ module TencentCloud
         # @type AnesthesiaMethod: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :Code, :Name, :StartTime, :EndTime, :Level, :Type, :IncisionHealingGrade, :AnesthesiaMethod
-        
+
         def initialize(code=nil, name=nil, starttime=nil, endtime=nil, level=nil, type=nil, incisionhealinggrade=nil, anesthesiamethod=nil)
           @Code = code
           @Name = name
@@ -2722,7 +2722,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :GeneticList, :Value
-        
+
         def initialize(name=nil, src=nil, geneticlist=nil, value=nil)
           @Name = name
           @Src = src
@@ -2758,7 +2758,7 @@ module TencentCloud
         # @type ScaleTargetSize: Integer
 
         attr_accessor :OcrEngineType, :IsReturnText, :RotateTheAngle, :AutoFitDirection, :AutoOptimizeCoordinate, :IsScale, :ImageOriginalSize, :ScaleTargetSize
-        
+
         def initialize(ocrenginetype=nil, isreturntext=nil, rotatetheangle=nil, autofitdirection=nil, autooptimizecoordinate=nil, isscale=nil, imageoriginalsize=nil, scaletargetsize=nil)
           @OcrEngineType = ocrenginetype
           @IsReturnText = isreturntext
@@ -2801,7 +2801,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
-        
+
         def initialize(name=nil, index=nil, src=nil, value=nil, coords=nil)
           @Name = name
           @Index = index
@@ -2839,7 +2839,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :Grade, :Index, :Src
-        
+
         def initialize(grade=nil, index=nil, src=nil)
           @Grade = grade
           @Index = index
@@ -2869,7 +2869,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Infiltration, :Index, :Src, :Type
-        
+
         def initialize(infiltration=nil, index=nil, src=nil, type=nil)
           @Infiltration = infiltration
           @Index = index
@@ -2907,7 +2907,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Infiltration, :Index, :Src, :Type, :Name, :Coords
-        
+
         def initialize(infiltration=nil, index=nil, src=nil, type=nil, name=nil, coords=nil)
           @Infiltration = infiltration
           @Index = index
@@ -2962,7 +2962,7 @@ module TencentCloud
         # @type DischargeInstruction: String
 
         attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction
-        
+
         def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil)
           @AdmissionTime = admissiontime
           @DischargeTime = dischargetime
@@ -3005,7 +3005,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
-        
+
         def initialize(index=nil, src=nil, name=nil, value=nil, coords=nil)
           @Index = index
           @Src = src
@@ -3048,7 +3048,7 @@ module TencentCloud
         # @type Value: :class:`Tencentcloud::Mrs.v20200910.models.Value`
 
         attr_accessor :Index, :Src, :Name, :Value
-        
+
         def initialize(index=nil, src=nil, name=nil, value=nil)
           @Index = index
           @Src = src
@@ -3086,7 +3086,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
-        
+
         def initialize(index=nil, src=nil, name=nil, value=nil, coords=nil)
           @Index = index
           @Src = src
@@ -3124,7 +3124,7 @@ module TencentCloud
         # @type Base64: String
 
         attr_accessor :Id, :Url, :Base64
-        
+
         def initialize(id=nil, url=nil, base64=nil)
           @Id = id
           @Url = url
@@ -3150,7 +3150,7 @@ module TencentCloud
         # @type UserType: Integer
 
         attr_accessor :ImageInfoList, :HandleParam, :Type, :UserType
-        
+
         def initialize(imageinfolist=nil, handleparam=nil, type=nil, usertype=nil)
           @ImageInfoList = imageinfolist
           @HandleParam = handleparam
@@ -3185,7 +3185,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextTypeList, :RequestId
-        
+
         def initialize(texttypelist=nil, requestid=nil)
           @TextTypeList = texttypelist
           @RequestId = requestid
@@ -3224,7 +3224,7 @@ module TencentCloud
         # @type ReportTypeVersion: Array
 
         attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify, :UserType, :ReportTypeVersion
-        
+
         def initialize(imageinfolist=nil, handleparam=nil, type=nil, isusedclassify=nil, usertype=nil, reporttypeversion=nil)
           @ImageInfoList = imageinfolist
           @HandleParam = handleparam
@@ -3273,7 +3273,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Template, :TextTypeList, :RequestId
-        
+
         def initialize(template=nil, texttypelist=nil, requestid=nil)
           @Template = template
           @TextTypeList = texttypelist
@@ -3310,7 +3310,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Name, :Src, :Value
-        
+
         def initialize(name=nil, src=nil, value=nil)
           @Name = name
           @Src = src
@@ -3338,7 +3338,7 @@ module TencentCloud
         # @type Indicators: Array
 
         attr_accessor :Indicators
-        
+
         def initialize(indicators=nil)
           @Indicators = indicators
         end
@@ -3398,7 +3398,7 @@ module TencentCloud
         # @type InferNormal: String
 
         attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal, :ItemString, :Id, :Coords, :InferNormal
-        
+
         def initialize(code=nil, scode=nil, name=nil, sname=nil, result=nil, unit=nil, range=nil, arrow=nil, normal=nil, itemstring=nil, id=nil, coords=nil, infernormal=nil)
           @Code = code
           @Scode = scode
@@ -3472,7 +3472,7 @@ module TencentCloud
         # @type InferNormal: String
 
         attr_accessor :Item, :Code, :Result, :Unit, :Range, :Arrow, :Method, :Normal, :Id, :Order, :InferNormal
-        
+
         def initialize(item=nil, code=nil, result=nil, unit=nil, range=nil, arrow=nil, method=nil, normal=nil, id=nil, order=nil, infernormal=nil)
           @Item = item
           @Code = code
@@ -3533,7 +3533,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :TableIndictors, :Version
-        
+
         def initialize(tableindictors=nil, version=nil)
           @TableIndictors = tableindictors
           @Version = version
@@ -3568,7 +3568,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :Index, :Part, :Positive, :Src
-        
+
         def initialize(index=nil, part=nil, positive=nil, src=nil)
           @Index = index
           @Part = part
@@ -3606,7 +3606,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Index, :Part, :Positive, :Src, :Coords
-        
+
         def initialize(index=nil, part=nil, positive=nil, src=nil, coords=nil)
           @Index = index
           @Part = part
@@ -3647,7 +3647,7 @@ module TencentCloud
         # @type IssuedDate: String
 
         attr_accessor :CertNumber, :IssuedAuthority, :IssuedDate
-        
+
         def initialize(certnumber=nil, issuedauthority=nil, issueddate=nil)
           @CertNumber = certnumber
           @IssuedAuthority = issuedauthority
@@ -3686,7 +3686,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Type, :Timestamp, :Unit, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, type=nil, timestamp=nil, unit=nil, value=nil)
           @Name = name
           @Src = src
@@ -3727,7 +3727,7 @@ module TencentCloud
         # @type TransferNum: Integer
 
         attr_accessor :Src, :Index, :Part, :Total, :TransferNum
-        
+
         def initialize(src=nil, index=nil, part=nil, total=nil, transfernum=nil)
           @Src = src
           @Index = index
@@ -3776,7 +3776,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Part, :Src, :Total, :TransferNum, :Sizes, :Coords
-        
+
         def initialize(name=nil, index=nil, part=nil, src=nil, total=nil, transfernum=nil, sizes=nil, coords=nil)
           @Name = name
           @Index = index
@@ -3832,7 +3832,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :TransferNum, :Total, :Src, :Index, :Coords
-        
+
         def initialize(name=nil, transfernum=nil, total=nil, src=nil, index=nil, coords=nil)
           @Name = name
           @TransferNum = transfernum
@@ -3881,7 +3881,7 @@ module TencentCloud
         # @type Poslist: :class:`Tencentcloud::Mrs.v20200910.models.PoslistBlock`
 
         attr_accessor :Name, :Src, :State, :Value, :Neglist, :Poslist
-        
+
         def initialize(name=nil, src=nil, state=nil, value=nil, neglist=nil, poslist=nil)
           @Name = name
           @Src = src
@@ -3920,7 +3920,7 @@ module TencentCloud
         # @type OcrText: String
 
         attr_accessor :Desc, :Summary, :OcrText
-        
+
         def initialize(desc=nil, summary=nil, ocrtext=nil)
           @Desc = desc
           @Summary = summary
@@ -3956,7 +3956,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Fetus, :FetusNum, :Text, :Coords
-        
+
         def initialize(fetus=nil, fetusnum=nil, text=nil, coords=nil)
           @Fetus = fetus
           @FetusNum = fetusnum
@@ -4008,7 +4008,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Fetus, :FetusNum, :Sym, :Text, :Coords
-        
+
         def initialize(fetus=nil, fetusnum=nil, sym=nil, text=nil, coords=nil)
           @Fetus = fetus
           @FetusNum = fetusnum
@@ -4073,7 +4073,7 @@ module TencentCloud
         # @type TreatmentRecord: :class:`Tencentcloud::Mrs.v20200910.models.TreatmentRecord`
 
         attr_accessor :Advice, :Diagnosis, :DiseaseMedicalHistory, :PersonalMedicalHistory, :ObstericalMedicalHistory, :FamilyMedicalHistory, :MenstrualMedicalHistory, :TreatmentRecord
-        
+
         def initialize(advice=nil, diagnosis=nil, diseasemedicalhistory=nil, personalmedicalhistory=nil, obstericalmedicalhistory=nil, familymedicalhistory=nil, menstrualmedicalhistory=nil, treatmentrecord=nil)
           @Advice = advice
           @Diagnosis = diagnosis
@@ -4153,7 +4153,7 @@ module TencentCloud
         # @type TreatmentOpinion: String
 
         attr_accessor :DiagnosisTime, :DiagnosisDepartmentName, :DiagnosisDoctorName, :ClinicalDiagnosis, :MainNarration, :PhysicalExamination, :InspectionFindings, :TreatmentOpinion
-        
+
         def initialize(diagnosistime=nil, diagnosisdepartmentname=nil, diagnosisdoctorname=nil, clinicaldiagnosis=nil, mainnarration=nil, physicalexamination=nil, inspectionfindings=nil, treatmentopinion=nil)
           @DiagnosisTime = diagnosistime
           @DiagnosisDepartmentName = diagnosisdepartmentname
@@ -4205,7 +4205,7 @@ module TencentCloud
         # @type PackingUnit: String
 
         attr_accessor :Name, :TradeName, :Firm, :Category, :Specification, :MinQuantity, :DosageUnit, :PackingUnit
-        
+
         def initialize(name=nil, tradename=nil, firm=nil, category=nil, specification=nil, minquantity=nil, dosageunit=nil, packingunit=nil)
           @Name = name
           @TradeName = tradename
@@ -4242,7 +4242,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
-        
+
         def initialize(name=nil, src=nil, value=nil)
           @Name = name
           @Src = src
@@ -4278,7 +4278,7 @@ module TencentCloud
         # @type MenstrualPeriod: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualPeriodBlock`
 
         attr_accessor :LastMenstrualPeriod, :MenstrualFlow, :MenarcheAge, :MenstruationOrNot, :MenstrualCycles, :MenstrualPeriod
-        
+
         def initialize(lastmenstrualperiod=nil, menstrualflow=nil, menarcheage=nil, menstruationornot=nil, menstrualcycles=nil, menstrualperiod=nil)
           @LastMenstrualPeriod = lastmenstrualperiod
           @MenstrualFlow = menstrualflow
@@ -4344,7 +4344,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :State, :Norm, :TimeType, :Timestamp, :Unit, :Value
-        
+
         def initialize(name=nil, src=nil, state=nil, norm=nil, timetype=nil, timestamp=nil, unit=nil, value=nil)
           @Name = name
           @Src = src
@@ -4390,7 +4390,7 @@ module TencentCloud
         # @type MenstrualPeriod: String
 
         attr_accessor :LastMenstrualPeriod, :MenstrualFlow, :MenarcheAge, :MenstruationOrNot, :MenstrualCycles, :MenstrualPeriod
-        
+
         def initialize(lastmenstrualperiod=nil, menstrualflow=nil, menarcheage=nil, menstruationornot=nil, menstrualcycles=nil, menstrualperiod=nil)
           @LastMenstrualPeriod = lastmenstrualperiod
           @MenstrualFlow = menstrualflow
@@ -4435,7 +4435,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Type, :Timestamp, :Unit, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, type=nil, timestamp=nil, unit=nil, value=nil)
           @Name = name
           @Src = src
@@ -4479,7 +4479,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :TimeType, :Timestamp, :Value
-        
+
         def initialize(name=nil, src=nil, norm=nil, timetype=nil, timestamp=nil, value=nil)
           @Name = name
           @Src = src
@@ -4518,7 +4518,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
-        
+
         def initialize(index=nil, src=nil, name=nil, value=nil, coords=nil)
           @Index = index
           @Src = src
@@ -4565,7 +4565,7 @@ module TencentCloud
         # @type Src: String
 
         attr_accessor :Exon, :Position, :Type, :Positive, :Src
-        
+
         def initialize(exon=nil, position=nil, type=nil, positive=nil, src=nil)
           @Exon = exon
           @Position = position
@@ -4602,7 +4602,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Index, :Src, :Value, :Count, :Name
-        
+
         def initialize(index=nil, src=nil, value=nil, count=nil, name=nil)
           @Index = index
           @Src = src
@@ -4630,7 +4630,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -4670,7 +4670,7 @@ module TencentCloud
         # @type MedicalInstitutions: String
 
         attr_accessor :NeonatalName, :NeonatalGender, :BirthLength, :BirthWeight, :GestationalAge, :BirthTime, :BirthPlace, :MedicalInstitutions
-        
+
         def initialize(neonatalname=nil, neonatalgender=nil, birthlength=nil, birthweight=nil, gestationalage=nil, birthtime=nil, birthplace=nil, medicalinstitutions=nil)
           @NeonatalName = neonatalname
           @NeonatalGender = neonatalgender
@@ -4716,7 +4716,7 @@ module TencentCloud
         # @type PartDetail: :class:`Tencentcloud::Mrs.v20200910.models.PartDesc`
 
         attr_accessor :Part, :PartDirection, :Tissue, :TissueDirection, :Upper, :PartDetail
-        
+
         def initialize(part=nil, partdirection=nil, tissue=nil, tissuedirection=nil, upper=nil, partdetail=nil)
           @Part = part
           @PartDirection = partdirection
@@ -4755,7 +4755,7 @@ module TencentCloud
         # @type Impl: String
 
         attr_accessor :Number, :Type, :Unit, :Impl
-        
+
         def initialize(number=nil, type=nil, unit=nil, impl=nil)
           @Number = number
           @Type = type
@@ -4781,7 +4781,7 @@ module TencentCloud
         # @type Unit: String
 
         attr_accessor :Num, :Unit
-        
+
         def initialize(num=nil, unit=nil)
           @Num = num
           @Unit = unit
@@ -4803,7 +4803,7 @@ module TencentCloud
         # @type FertilityHistory: String
 
         attr_accessor :MarriageHistory, :FertilityHistory
-        
+
         def initialize(marriagehistory=nil, fertilityhistory=nil)
           @MarriageHistory = marriagehistory
           @FertilityHistory = fertilityhistory
@@ -4825,7 +4825,7 @@ module TencentCloud
         # @type FertilityHistory: :class:`Tencentcloud::Mrs.v20200910.models.FertilityHistoryBlock`
 
         attr_accessor :MarriageHistory, :FertilityHistory
-        
+
         def initialize(marriagehistory=nil, fertilityhistory=nil)
           @MarriageHistory = marriagehistory
           @FertilityHistory = fertilityhistory
@@ -4958,7 +4958,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords
-        
+
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil)
           @Part = part
           @Size = size
@@ -5175,7 +5175,7 @@ module TencentCloud
         # @type StartTime: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
 
         attr_accessor :Anesthesia, :BloodLoss, :BloodTransfusion, :Duration, :EndTime, :StartTime
-        
+
         def initialize(anesthesia=nil, bloodloss=nil, bloodtransfusion=nil, duration=nil, endtime=nil, starttime=nil)
           @Anesthesia = anesthesia
           @BloodLoss = bloodloss
@@ -5241,7 +5241,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :PT, :PN, :PM, :Coords
-        
+
         def initialize(name=nil, index=nil, src=nil, value=nil, pt=nil, pn=nil, pm=nil, coords=nil)
           @Name = name
           @Index = index
@@ -5291,7 +5291,7 @@ module TencentCloud
         # @type PTNMT: String
 
         attr_accessor :Name, :Src, :PTNMM, :PTNMN, :PTNMT
-        
+
         def initialize(name=nil, src=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil)
           @Name = name
           @Src = src
@@ -5395,7 +5395,7 @@ module TencentCloud
         # @type TreatmentResultText: String
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText
-        
+
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil)
           @IncisionHealingText = incisionhealingtext
           @AuxiliaryExaminationText = auxiliaryexaminationtext
@@ -5479,7 +5479,7 @@ module TencentCloud
         # @type Address: String
 
         attr_accessor :Name, :Age, :IdCard, :Ethnicity, :Nationality, :Address
-        
+
         def initialize(name=nil, age=nil, idcard=nil, ethnicity=nil, nationality=nil, address=nil)
           @Name = name
           @Age = age
@@ -5521,7 +5521,7 @@ module TencentCloud
         # @type ValueBrief: String
 
         attr_accessor :Index, :NormPart, :Src, :Value, :Name, :ValueBrief
-        
+
         def initialize(index=nil, normpart=nil, src=nil, value=nil, name=nil, valuebrief=nil)
           @Index = index
           @NormPart = normpart
@@ -5560,7 +5560,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :MainDir, :Part, :SecondaryDir, :Type
-        
+
         def initialize(maindir=nil, part=nil, secondarydir=nil, type=nil)
           @MainDir = maindir
           @Part = part
@@ -5592,7 +5592,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :Detail, :Value
-        
+
         def initialize(name=nil, src=nil, detail=nil, value=nil)
           @Name = name
           @Src = src
@@ -5628,7 +5628,7 @@ module TencentCloud
         # @type HistologicalGrade: String
 
         attr_accessor :Part, :HistologicalType, :HistologicalGrade
-        
+
         def initialize(part=nil, histologicaltype=nil, histologicalgrade=nil)
           @Part = part
           @HistologicalType = histologicaltype
@@ -5688,7 +5688,7 @@ module TencentCloud
         # @type SummaryText: String
 
         attr_accessor :CancerPart, :CancerSize, :DescText, :HistologyLevel, :HistologyType, :IHC, :InfiltrationDepth, :Invasive, :LymphNodes, :PTNM, :PathologicalReportType, :ReportText, :SampleType, :SummaryText
-        
+
         def initialize(cancerpart=nil, cancersize=nil, desctext=nil, histologylevel=nil, histologytype=nil, ihc=nil, infiltrationdepth=nil, invasive=nil, lymphnodes=nil, ptnm=nil, pathologicalreporttype=nil, reporttext=nil, sampletype=nil, summarytext=nil)
           @CancerPart = cancerpart
           @CancerSize = cancersize
@@ -5819,7 +5819,7 @@ module TencentCloud
         # @type Molecular: Array
 
         attr_accessor :PathologicalReportType, :Desc, :Summary, :ReportText, :LymphTotal, :LymphNodes, :Ihc, :Clinical, :Precancer, :Malignant, :Benigntumor, :SampleType, :LymphSize, :Molecular
-        
+
         def initialize(pathologicalreporttype=nil, desc=nil, summary=nil, reporttext=nil, lymphtotal=nil, lymphnodes=nil, ihc=nil, clinical=nil, precancer=nil, malignant=nil, benigntumor=nil, sampletype=nil, lymphsize=nil, molecular=nil)
           @PathologicalReportType = pathologicalreporttype
           @Desc = desc
@@ -5984,7 +5984,7 @@ module TencentCloud
         # @type BedNo: String
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
-        
+
         def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name
           @Sex = sex
@@ -6064,7 +6064,7 @@ module TencentCloud
         # @type FamilyHistory: :class:`Tencentcloud::Mrs.v20200910.models.FamilyHistoryBlock`
 
         attr_accessor :BirthPlace, :LivePlace, :Job, :SmokeHistory, :AlcoholicHistory, :MenstrualHistory, :ObstericalHistory, :FamilyHistory
-        
+
         def initialize(birthplace=nil, liveplace=nil, job=nil, smokehistory=nil, alcoholichistory=nil, menstrualhistory=nil, obstericalhistory=nil, familyhistory=nil)
           @BirthPlace = birthplace
           @LivePlace = liveplace
@@ -6131,7 +6131,7 @@ module TencentCloud
         # @type AlcoholicHistory: String
 
         attr_accessor :BirthPlace, :LivePlace, :Job, :SmokeHistory, :AlcoholicHistory
-        
+
         def initialize(birthplace=nil, liveplace=nil, job=nil, smokehistory=nil, alcoholichistory=nil)
           @BirthPlace = birthplace
           @LivePlace = liveplace
@@ -6159,7 +6159,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :X, :Y
-        
+
         def initialize(x=nil, y=nil)
           @X = x
           @Y = y
@@ -6181,7 +6181,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -6200,7 +6200,7 @@ module TencentCloud
         # @type MedicineList: Array
 
         attr_accessor :MedicineList
-        
+
         def initialize(medicinelist=nil)
           @MedicineList = medicinelist
         end
@@ -6233,7 +6233,7 @@ module TencentCloud
         # @type H: Integer
 
         attr_accessor :X, :Y, :W, :H
-        
+
         def initialize(x=nil, y=nil, w=nil, h=nil)
           @X = x
           @Y = y
@@ -6277,7 +6277,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :DiseaseName, :Type, :Norm, :Unit, :Timestamp, :Value
-        
+
         def initialize(name=nil, src=nil, diseasename=nil, type=nil, norm=nil, unit=nil, timestamp=nil, value=nil)
           @Name = name
           @Src = src
@@ -6317,7 +6317,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :RelativeCancerList, :Value
-        
+
         def initialize(name=nil, src=nil, relativecancerlist=nil, value=nil)
           @Name = name
           @Src = src
@@ -6349,7 +6349,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Detail, :Src, :Value
-        
+
         def initialize(name=nil, detail=nil, src=nil, value=nil)
           @Name = name
           @Detail = detail
@@ -6388,7 +6388,7 @@ module TencentCloud
         # @type TimeType: String
 
         attr_accessor :Name, :Relation, :TimeOfDeath, :TimeType
-        
+
         def initialize(name=nil, relation=nil, timeofdeath=nil, timetype=nil)
           @Name = name
           @Relation = relation
@@ -6423,7 +6423,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
-        
+
         def initialize(name=nil, index=nil, src=nil, value=nil, coords=nil)
           @Name = name
           @Index = index
@@ -6527,7 +6527,7 @@ module TencentCloud
         # @type Times: Array
 
         attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose, :CheckItem, :CheckMethod, :DiagnoseTime, :HealthCheckupNum, :OtherTime, :PrintTime, :Times
-        
+
         def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil, checkitem=nil, checkmethod=nil, diagnosetime=nil, healthcheckupnum=nil, othertime=nil, printtime=nil, times=nil)
           @Hospital = hospital
           @DepartmentName = departmentname
@@ -6600,7 +6600,7 @@ module TencentCloud
         # @type Version: Integer
 
         attr_accessor :ReportType, :Version
-        
+
         def initialize(reporttype=nil, version=nil)
           @ReportType = reporttype
           @Version = version
@@ -6622,7 +6622,7 @@ module TencentCloud
         # @type Items: Array
 
         attr_accessor :Text, :Items
-        
+
         def initialize(text=nil, items=nil)
           @Text = text
           @Items = items
@@ -6663,7 +6663,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Index, :NormSize, :Src, :Value, :Name
-        
+
         def initialize(index=nil, normsize=nil, src=nil, value=nil, name=nil)
           @Index = index
           @NormSize = normsize
@@ -6712,7 +6712,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :TimeUnit, :TimeNorm, :Amount, :QuitState, :State, :Value
-        
+
         def initialize(name=nil, src=nil, timeunit=nil, timenorm=nil, amount=nil, quitstate=nil, state=nil, value=nil)
           @Name = name
           @Src = src
@@ -6749,7 +6749,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Symptom, :Text, :Coords
-        
+
         def initialize(symptom=nil, text=nil, coords=nil)
           @Symptom = symptom
           @Text = text
@@ -6787,7 +6787,7 @@ module TencentCloud
         # @type Infos: Array
 
         attr_accessor :Text, :Infos
-        
+
         def initialize(text=nil, infos=nil)
           @Text = text
           @Infos = infos
@@ -6819,7 +6819,7 @@ module TencentCloud
         # @type OtherInfo: :class:`Tencentcloud::Mrs.v20200910.models.OtherInfo`
 
         attr_accessor :SurgeryHistory, :OtherInfo
-        
+
         def initialize(surgeryhistory=nil, otherinfo=nil)
           @SurgeryHistory = surgeryhistory
           @OtherInfo = otherinfo
@@ -6847,7 +6847,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -6876,7 +6876,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :SurgeryList, :Value
-        
+
         def initialize(name=nil, src=nil, surgerylist=nil, value=nil)
           @Name = name
           @Src = src
@@ -6921,7 +6921,7 @@ module TencentCloud
         # @type DischargeDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
 
         attr_accessor :SurgeryName, :SurgeryDate, :PreoperativePathology, :IntraoperativePathology, :PostoperativePathology, :DischargeDiagnosis
-        
+
         def initialize(surgeryname=nil, surgerydate=nil, preoperativepathology=nil, intraoperativepathology=nil, postoperativepathology=nil, dischargediagnosis=nil)
           @SurgeryName = surgeryname
           @SurgeryDate = surgerydate
@@ -6975,7 +6975,7 @@ module TencentCloud
         # @type Surgerylist: Array
 
         attr_accessor :Name, :Src, :Value, :Surgerylist
-        
+
         def initialize(name=nil, src=nil, value=nil, surgerylist=nil)
           @Name = name
           @Src = src
@@ -7014,7 +7014,7 @@ module TencentCloud
         # @type Part: String
 
         attr_accessor :Time, :TimeType, :Name, :Part
-        
+
         def initialize(time=nil, timetype=nil, name=nil, part=nil)
           @Time = time
           @TimeType = timetype
@@ -7055,7 +7055,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Grade, :Part, :Index, :Symptom, :Attrs, :Src, :Coords
-        
+
         def initialize(grade=nil, part=nil, index=nil, symptom=nil, attrs=nil, src=nil, coords=nil)
           @Grade = grade
           @Part = part
@@ -7110,7 +7110,7 @@ module TencentCloud
         # @type Sample: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :Indicators, :Sample
-        
+
         def initialize(indicators=nil, sample=nil)
           @Indicators = indicators
           @Sample = sample
@@ -7223,7 +7223,7 @@ module TencentCloud
         # @type Timeline: :class:`Tencentcloud::Mrs.v20200910.models.TimelineInformation`
 
         attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription, :VaccineCertificate, :OcrText, :OcrResult, :ReportTypeDesc, :PathologyV2, :C14, :Exame, :MedDocV2, :IndicatorV3, :Covid, :Maternity, :Eye, :BirthCert, :Timeline
-        
+
         def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil, vaccinecertificate=nil, ocrtext=nil, ocrresult=nil, reporttypedesc=nil, pathologyv2=nil, c14=nil, exame=nil, meddocv2=nil, indicatorv3=nil, covid=nil, maternity=nil, eye=nil, birthcert=nil, timeline=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
@@ -7372,7 +7372,7 @@ module TencentCloud
         # @type UserType: Integer
 
         attr_accessor :Text, :UserType
-        
+
         def initialize(text=nil, usertype=nil)
           @Text = text
           @UserType = usertype
@@ -7392,7 +7392,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextTypeList, :RequestId
-        
+
         def initialize(texttypelist=nil, requestid=nil)
           @TextTypeList = texttypelist
           @RequestId = requestid
@@ -7429,7 +7429,7 @@ module TencentCloud
         # @type ReportTypeVersion: Array
 
         attr_accessor :Text, :Type, :IsUsedClassify, :UserType, :ReportTypeVersion
-        
+
         def initialize(text=nil, type=nil, isusedclassify=nil, usertype=nil, reporttypeversion=nil)
           @Text = text
           @Type = type
@@ -7462,7 +7462,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Template, :RequestId
-        
+
         def initialize(template=nil, requestid=nil)
           @Template = template
           @RequestId = requestid
@@ -7490,7 +7490,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Id, :Level, :Name
-        
+
         def initialize(id=nil, level=nil, name=nil)
           @Id = id
           @Level = level
@@ -7514,7 +7514,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -7554,7 +7554,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Type, :Src, :SubType, :Time, :Value, :Rectangle, :Place, :EndTime
-        
+
         def initialize(type=nil, src=nil, subtype=nil, time=nil, value=nil, rectangle=nil, place=nil, endtime=nil)
           @Type = type
           @Src = src
@@ -7588,7 +7588,7 @@ module TencentCloud
         # @type Timeline: Array
 
         attr_accessor :Timeline
-        
+
         def initialize(timeline=nil)
           @Timeline = timeline
         end
@@ -7621,7 +7621,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Src, :State, :Value
-        
+
         def initialize(name=nil, src=nil, state=nil, value=nil)
           @Name = name
           @Src = src
@@ -7722,7 +7722,7 @@ module TencentCloud
         # @type ObservationDays: String
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays
-        
+
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil)
           @DmissionCondition = dmissioncondition
           @ChiefComplaint = chiefcomplaint
@@ -7941,7 +7941,7 @@ module TencentCloud
         # @type DischargeDiagnosisText: String
 
         attr_accessor :Immunohistochemistry, :ChiefComplaint, :AdmissionCondition, :BodyExamination, :AdmissionDiagnosis, :AdmissionTraditionalDiagnosis, :AdmissionModernDiagnosis, :PathologicalDiagnosis, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :CheckAndTreatmentProcess, :SurgeryCondition, :IncisionHealing, :DischargeDiagnosis, :DischargeTraditionalDiagnosis, :DischargeModernDiagnosis, :DischargeCondition, :DischargeInstructions, :TreatmentSuggestion, :FollowUpRequirements, :ConditionChanges, :PulmonaryArterySystolicPressure, :BCLC, :PTNM, :ECOG, :NRS, :KPS, :Cancerstaging, :DeathDate, :RelapseDate, :ObservationDays, :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText
-        
+
         def initialize(immunohistochemistry=nil, chiefcomplaint=nil, admissioncondition=nil, bodyexamination=nil, admissiondiagnosis=nil, admissiontraditionaldiagnosis=nil, admissionmoderndiagnosis=nil, pathologicaldiagnosis=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, checkandtreatmentprocess=nil, surgerycondition=nil, incisionhealing=nil, dischargediagnosis=nil, dischargetraditionaldiagnosis=nil, dischargemoderndiagnosis=nil, dischargecondition=nil, dischargeinstructions=nil, treatmentsuggestion=nil, followuprequirements=nil, conditionchanges=nil, pulmonaryarterysystolicpressure=nil, bclc=nil, ptnm=nil, ecog=nil, nrs=nil, kps=nil, cancerstaging=nil, deathdate=nil, relapsedate=nil, observationdays=nil, incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil)
           @Immunohistochemistry = immunohistochemistry
           @ChiefComplaint = chiefcomplaint
@@ -8298,7 +8298,7 @@ module TencentCloud
         # @type Coords: Array
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords
-        
+
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil)
           @Type = type
           @Part = part
@@ -8571,7 +8571,7 @@ module TencentCloud
         # @type Lot: String
 
         attr_accessor :Id, :Vaccine, :Dose, :Date, :LotNumber, :Manufacturer, :Clinic, :Site, :Provider, :Lot
-        
+
         def initialize(id=nil, vaccine=nil, dose=nil, date=nil, lotnumber=nil, manufacturer=nil, clinic=nil, site=nil, provider=nil, lot=nil)
           @Id = id
           @Vaccine = vaccine
@@ -8606,7 +8606,7 @@ module TencentCloud
         # @type VaccineList: Array
 
         attr_accessor :VaccineList
-        
+
         def initialize(vaccinelist=nil)
           @VaccineList = vaccinelist
         end
@@ -8636,7 +8636,7 @@ module TencentCloud
         # @type Positive: String
 
         attr_accessor :Grade, :Percent, :Positive
-        
+
         def initialize(grade=nil, percent=nil, positive=nil)
           @Grade = grade
           @Percent = percent
@@ -8663,7 +8663,7 @@ module TencentCloud
         # @type Positive: String
 
         attr_accessor :Grade, :Percent, :Positive
-        
+
         def initialize(grade=nil, percent=nil, positive=nil)
           @Grade = grade
           @Percent = percent

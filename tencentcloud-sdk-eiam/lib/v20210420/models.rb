@@ -29,7 +29,7 @@ module TencentCloud
         # @type CreatedDate: String
 
         attr_accessor :AccountGroupId, :GroupName, :Description, :CreatedDate
-        
+
         def initialize(accountgroupid=nil, groupname=nil, description=nil, createddate=nil)
           @AccountGroupId = accountgroupid
           @GroupName = groupname
@@ -51,7 +51,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Keyword
-        
+
         def initialize(keyword=nil)
           @Keyword = keyword
         end
@@ -69,7 +69,7 @@ module TencentCloud
         # @type AccountIds: Array
 
         attr_accessor :AccountGroupId, :AccountIds
-        
+
         def initialize(accountgroupid=nil, accountids=nil)
           @AccountGroupId = accountgroupid
           @AccountIds = accountids
@@ -87,7 +87,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -105,7 +105,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :UserIds, :UserGroupId
-        
+
         def initialize(userids=nil, usergroupid=nil)
           @UserIds = userids
           @UserGroupId = usergroupid
@@ -126,7 +126,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedItems, :RequestId
-        
+
         def initialize(faileditems=nil, requestid=nil)
           @FailedItems = faileditems
           @RequestId = requestid
@@ -156,7 +156,7 @@ module TencentCloud
         # @type CreatedDate: String
 
         attr_accessor :AccountId, :AccountName, :UserList, :Description, :CreatedDate
-        
+
         def initialize(accountid=nil, accountname=nil, userlist=nil, description=nil, createddate=nil)
           @AccountId = accountid
           @AccountName = accountname
@@ -187,7 +187,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Keyword
-        
+
         def initialize(keyword=nil)
           @Keyword = keyword
         end
@@ -216,7 +216,7 @@ module TencentCloud
         # @type CreatedDate: String
 
         attr_accessor :ApplicationAccounts, :ApplicationId, :InheritedForm, :ApplicationName, :CreatedDate
-        
+
         def initialize(applicationaccounts=nil, applicationid=nil, inheritedform=nil, applicationname=nil, createddate=nil)
           @ApplicationAccounts = applicationaccounts
           @ApplicationId = applicationid
@@ -245,7 +245,7 @@ module TencentCloud
         # @type ApplicationType: String
 
         attr_accessor :Keyword, :ApplicationType
-        
+
         def initialize(keyword=nil, applicationtype=nil)
           @Keyword = keyword
           @ApplicationType = applicationtype
@@ -284,7 +284,7 @@ module TencentCloud
         # @type ClientId: String
 
         attr_accessor :ApplicationId, :DisplayName, :CreatedDate, :LastModifiedDate, :AppStatus, :Icon, :ApplicationType, :ClientId
-        
+
         def initialize(applicationid=nil, displayname=nil, createddate=nil, lastmodifieddate=nil, appstatus=nil, icon=nil, applicationtype=nil, clientid=nil)
           @ApplicationId = applicationid
           @DisplayName = displayname
@@ -324,7 +324,7 @@ module TencentCloud
         # @type AuthorizationId: String
 
         attr_accessor :AppId, :AppName, :EntityName, :EntityId, :LastModifiedDate, :AuthorizationId
-        
+
         def initialize(appid=nil, appname=nil, entityname=nil, entityid=nil, lastmodifieddate=nil, authorizationid=nil)
           @AppId = appid
           @AppName = appname
@@ -350,7 +350,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Keyword
-        
+
         def initialize(keyword=nil)
           @Keyword = keyword
         end
@@ -376,7 +376,7 @@ module TencentCloud
         # @type ResourceName: String
 
         attr_accessor :ResourceId, :ResourceType, :Resource, :ResourceName
-        
+
         def initialize(resourceid=nil, resourcetype=nil, resource=nil, resourcename=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
@@ -414,7 +414,7 @@ module TencentCloud
         # @type ResourceName: String
 
         attr_accessor :ResourceId, :ResourceType, :Resource, :InheritedForm, :ApplicationAccounts, :ResourceName
-        
+
         def initialize(resourceid=nil, resourcetype=nil, resource=nil, inheritedform=nil, applicationaccounts=nil, resourcename=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
@@ -447,7 +447,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :ApplicationId, :GroupName, :Description
-        
+
         def initialize(applicationid=nil, groupname=nil, description=nil)
           @ApplicationId = applicationid
           @GroupName = groupname
@@ -470,7 +470,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccountGroupId, :RequestId
-        
+
         def initialize(accountgroupid=nil, requestid=nil)
           @AccountGroupId = accountgroupid
           @RequestId = requestid
@@ -494,7 +494,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :ApplicationId, :AccountName, :Password, :Description
-        
+
         def initialize(applicationid=nil, accountname=nil, password=nil, description=nil)
           @ApplicationId = applicationid
           @AccountName = accountname
@@ -519,7 +519,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccountId, :RequestId
-        
+
         def initialize(accountid=nil, requestid=nil)
           @AccountId = accountid
           @RequestId = requestid
@@ -543,7 +543,7 @@ module TencentCloud
         # @type CustomizedOrgNodeId: String
 
         attr_accessor :DisplayName, :ParentOrgNodeId, :Description, :CustomizedOrgNodeId
-        
+
         def initialize(displayname=nil, parentorgnodeid=nil, description=nil, customizedorgnodeid=nil)
           @DisplayName = displayname
           @ParentOrgNodeId = parentorgnodeid
@@ -568,7 +568,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrgNodeId, :RequestId
-        
+
         def initialize(orgnodeid=nil, requestid=nil)
           @OrgNodeId = orgnodeid
           @RequestId = requestid
@@ -588,7 +588,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :DisplayName, :Description
-        
+
         def initialize(displayname=nil, description=nil)
           @DisplayName = displayname
           @Description = description
@@ -609,7 +609,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserGroupId, :RequestId
-        
+
         def initialize(usergroupid=nil, requestid=nil)
           @UserGroupId = usergroupid
           @RequestId = requestid
@@ -647,7 +647,7 @@ module TencentCloud
         # @type SecondaryOrgNodeIdList: Array
 
         attr_accessor :UserName, :Password, :DisplayName, :Description, :UserGroupIds, :Phone, :OrgNodeId, :ExpirationTime, :Email, :PwdNeedReset, :SecondaryOrgNodeIdList
-        
+
         def initialize(username=nil, password=nil, displayname=nil, description=nil, usergroupids=nil, phone=nil, orgnodeid=nil, expirationtime=nil, email=nil, pwdneedreset=nil, secondaryorgnodeidlist=nil)
           @UserName = username
           @Password = password
@@ -686,7 +686,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :RequestId
-        
+
         def initialize(userid=nil, requestid=nil)
           @UserId = userid
           @RequestId = requestid
@@ -704,7 +704,7 @@ module TencentCloud
         # @type AccountGroupIdList: Array
 
         attr_accessor :AccountGroupIdList
-        
+
         def initialize(accountgroupidlist=nil)
           @AccountGroupIdList = accountgroupidlist
         end
@@ -720,7 +720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -736,7 +736,7 @@ module TencentCloud
         # @type AccountIdList: Array
 
         attr_accessor :AccountIdList
-        
+
         def initialize(accountidlist=nil)
           @AccountIdList = accountidlist
         end
@@ -752,7 +752,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -768,7 +768,7 @@ module TencentCloud
         # @type OrgNodeId: String
 
         attr_accessor :OrgNodeId
-        
+
         def initialize(orgnodeid=nil)
           @OrgNodeId = orgnodeid
         end
@@ -784,7 +784,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -800,7 +800,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :UserGroupId
-        
+
         def initialize(usergroupid=nil)
           @UserGroupId = usergroupid
         end
@@ -816,7 +816,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -834,7 +834,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserName, :UserId
-        
+
         def initialize(username=nil, userid=nil)
           @UserName = username
           @UserId = userid
@@ -852,7 +852,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -870,7 +870,7 @@ module TencentCloud
         # @type DeleteNameList: Array
 
         attr_accessor :DeleteIdList, :DeleteNameList
-        
+
         def initialize(deleteidlist=nil, deletenamelist=nil)
           @DeleteIdList = deleteidlist
           @DeleteNameList = deletenamelist
@@ -891,7 +891,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedItems, :RequestId
-        
+
         def initialize(faileditems=nil, requestid=nil)
           @FailedItems = faileditems
           @RequestId = requestid
@@ -915,7 +915,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ApplicationId, :SearchCondition, :Offset, :Limit
-        
+
         def initialize(applicationid=nil, searchcondition=nil, offset=nil, limit=nil)
           @ApplicationId = applicationid
           @SearchCondition = searchcondition
@@ -949,7 +949,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ApplicationId, :AccountGroupList, :RequestId
-        
+
         def initialize(totalcount=nil, applicationid=nil, accountgrouplist=nil, requestid=nil)
           @TotalCount = totalcount
           @ApplicationId = applicationid
@@ -984,7 +984,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ApplicationId, :SearchCondition, :Offset, :Limit
-        
+
         def initialize(applicationid=nil, searchcondition=nil, offset=nil, limit=nil)
           @ApplicationId = applicationid
           @SearchCondition = searchcondition
@@ -1018,7 +1018,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ApplicationId, :AppAccountList, :RequestId
-        
+
         def initialize(totalcount=nil, applicationid=nil, appaccountlist=nil, requestid=nil)
           @TotalCount = totalcount
           @ApplicationId = applicationid
@@ -1049,7 +1049,7 @@ module TencentCloud
         # @type ClientId: String
 
         attr_accessor :ApplicationId, :ClientId
-        
+
         def initialize(applicationid=nil, clientid=nil)
           @ApplicationId = applicationid
           @ClientId = clientid
@@ -1112,7 +1112,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeyId, :DisplayName, :LastModifiedDate, :ClientId, :ApplicationType, :CreatedDate, :ApplicationId, :TokenExpired, :ClientSecret, :PublicKey, :AuthorizeUrl, :IconUrl, :SecureLevel, :AppStatus, :Description, :RequestId
-        
+
         def initialize(keyid=nil, displayname=nil, lastmodifieddate=nil, clientid=nil, applicationtype=nil, createddate=nil, applicationid=nil, tokenexpired=nil, clientsecret=nil, publickey=nil, authorizeurl=nil, iconurl=nil, securelevel=nil, appstatus=nil, description=nil, requestid=nil)
           @KeyId = keyid
           @DisplayName = displayname
@@ -1160,7 +1160,7 @@ module TencentCloud
         # @type IncludeOrgNodeChildInfo: Boolean
 
         attr_accessor :OrgNodeId, :IncludeOrgNodeChildInfo
-        
+
         def initialize(orgnodeid=nil, includeorgnodechildinfo=nil)
           @OrgNodeId = orgnodeid
           @IncludeOrgNodeChildInfo = includeorgnodechildinfo
@@ -1205,7 +1205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate, :OrgNodeChildInfo, :Description, :RequestId
-        
+
         def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil, orgnodechildinfo=nil, description=nil, requestid=nil)
           @DisplayName = displayname
           @LastModifiedDate = lastmodifieddate
@@ -1248,7 +1248,7 @@ module TencentCloud
         # @type OrgNodeId: String
 
         attr_accessor :ApplicationId, :OrgNodeId
-        
+
         def initialize(applicationid=nil, orgnodeid=nil)
           @ApplicationId = applicationid
           @OrgNodeId = orgnodeid
@@ -1283,7 +1283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationId, :OrgNodeId, :OrgNodeName, :OrgNodePath, :AuthorizationOrgResourceList, :TotalCount, :RequestId
-        
+
         def initialize(applicationid=nil, orgnodeid=nil, orgnodename=nil, orgnodepath=nil, authorizationorgresourcelist=nil, totalcount=nil, requestid=nil)
           @ApplicationId = applicationid
           @OrgNodeId = orgnodeid
@@ -1318,7 +1318,7 @@ module TencentCloud
         # @type ApplicationId: String
 
         attr_accessor :ApplicationId
-        
+
         def initialize(applicationid=nil)
           @ApplicationId = applicationid
         end
@@ -1343,7 +1343,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PublicKey, :KeyId, :ApplicationId, :RequestId
-        
+
         def initialize(publickey=nil, keyid=nil, applicationid=nil, requestid=nil)
           @PublicKey = publickey
           @KeyId = keyid
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :UserGroupId
-        
+
         def initialize(usergroupid=nil)
           @UserGroupId = usergroupid
         end
@@ -1383,7 +1383,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :ApplicationId, :UserGroupId
-        
+
         def initialize(applicationid=nil, usergroupid=nil)
           @ApplicationId = applicationid
           @UserGroupId = usergroupid
@@ -1413,7 +1413,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationId, :UserGroupId, :UserGroupName, :AuthorizationUserGroupResourceList, :RequestId
-        
+
         def initialize(applicationid=nil, usergroupid=nil, usergroupname=nil, authorizationusergroupresourcelist=nil, requestid=nil)
           @ApplicationId = applicationid
           @UserGroupId = usergroupid
@@ -1453,7 +1453,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DisplayName, :Description, :UserGroupId, :RequestId
-        
+
         def initialize(displayname=nil, description=nil, usergroupid=nil, requestid=nil)
           @DisplayName = displayname
           @Description = description
@@ -1477,7 +1477,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserName, :UserId
-        
+
         def initialize(username=nil, userid=nil)
           @UserName = username
           @UserId = userid
@@ -1540,7 +1540,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserName, :Status, :DisplayName, :Description, :UserGroupIds, :UserId, :Email, :Phone, :OrgNodeId, :DataSource, :ExpirationTime, :ActivationTime, :PwdNeedReset, :SecondaryOrgNodeIdList, :AdminFlag, :RequestId
-        
+
         def initialize(username=nil, status=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, email=nil, phone=nil, orgnodeid=nil, datasource=nil, expirationtime=nil, activationtime=nil, pwdneedreset=nil, secondaryorgnodeidlist=nil, adminflag=nil, requestid=nil)
           @UserName = username
           @Status = status
@@ -1592,7 +1592,7 @@ module TencentCloud
         # @type IncludeInheritedAuthorizations: Boolean
 
         attr_accessor :ApplicationId, :UserId, :UserName, :IncludeInheritedAuthorizations
-        
+
         def initialize(applicationid=nil, userid=nil, username=nil, includeinheritedauthorizations=nil)
           @ApplicationId = applicationid
           @UserId = userid
@@ -1628,7 +1628,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationId, :ApplicationAccounts, :UserId, :UserName, :AuthorizationUserResourceList, :RequestId
-        
+
         def initialize(applicationid=nil, applicationaccounts=nil, userid=nil, username=nil, authorizationuserresourcelist=nil, requestid=nil)
           @ApplicationId = applicationid
           @ApplicationAccounts = applicationaccounts
@@ -1663,7 +1663,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserName, :UserId
-        
+
         def initialize(username=nil, userid=nil)
           @UserName = username
           @UserId = userid
@@ -1688,7 +1688,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserId, :UserName, :ThirdPartyAccounts, :RequestId
-        
+
         def initialize(userid=nil, username=nil, thirdpartyaccounts=nil, requestid=nil)
           @UserId = userid
           @UserName = username
@@ -1721,7 +1721,7 @@ module TencentCloud
         # @type OrgNodeIds: Array
 
         attr_accessor :UserGroupIds, :OrgNodeIds
-        
+
         def initialize(usergroupids=nil, orgnodeids=nil)
           @UserGroupIds = usergroupids
           @OrgNodeIds = orgnodeids
@@ -1743,7 +1743,7 @@ module TencentCloud
         # @type UserName: String
 
         attr_accessor :UserId, :UserName
-        
+
         def initialize(userid=nil, username=nil)
           @UserId = userid
           @UserName = username
@@ -1767,7 +1767,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :AccountGroupId, :SearchCondition, :Offset, :Limit
-        
+
         def initialize(accountgroupid=nil, searchcondition=nil, offset=nil, limit=nil)
           @AccountGroupId = accountgroupid
           @SearchCondition = searchcondition
@@ -1801,7 +1801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccountList, :TotalCount, :AccountGroupId, :RequestId
-        
+
         def initialize(accountlist=nil, totalcount=nil, accountgroupid=nil, requestid=nil)
           @AccountList = accountlist
           @TotalCount = totalcount
@@ -1838,7 +1838,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :EntityType, :SearchCondition, :Sort, :Offset, :Limit
-        
+
         def initialize(entitytype=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @EntityType = entitytype
           @SearchCondition = searchcondition
@@ -1874,7 +1874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthorizationInfoList, :TotalCount, :RequestId
-        
+
         def initialize(authorizationinfolist=nil, totalcount=nil, requestid=nil)
           @AuthorizationInfoList = authorizationinfolist
           @TotalCount = totalcount
@@ -1909,7 +1909,7 @@ module TencentCloud
         # @type ApplicationIdList: Array
 
         attr_accessor :SearchCondition, :Sort, :Offset, :Limit, :ApplicationIdList
-        
+
         def initialize(searchcondition=nil, sort=nil, offset=nil, limit=nil, applicationidlist=nil)
           @SearchCondition = searchcondition
           @Sort = sort
@@ -1945,7 +1945,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ApplicationInfoList, :RequestId
-        
+
         def initialize(totalcount=nil, applicationinfolist=nil, requestid=nil)
           @TotalCount = totalcount
           @ApplicationInfoList = applicationinfolist
@@ -1972,7 +1972,7 @@ module TencentCloud
         # @type OrgNodeId: String
 
         attr_accessor :OrgNodeId
-        
+
         def initialize(orgnodeid=nil)
           @OrgNodeId = orgnodeid
         end
@@ -1991,7 +1991,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationIds, :RequestId
-        
+
         def initialize(applicationids=nil, requestid=nil)
           @ApplicationIds = applicationids
           @RequestId = requestid
@@ -2009,7 +2009,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :UserGroupId
-        
+
         def initialize(usergroupid=nil)
           @UserGroupId = usergroupid
         end
@@ -2028,7 +2028,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationIds, :RequestId
-        
+
         def initialize(applicationids=nil, requestid=nil)
           @ApplicationIds = applicationids
           @RequestId = requestid
@@ -2048,7 +2048,7 @@ module TencentCloud
         # @type IncludeInheritedAuthorizations: Boolean
 
         attr_accessor :UserId, :IncludeInheritedAuthorizations
-        
+
         def initialize(userid=nil, includeinheritedauthorizations=nil)
           @UserId = userid
           @IncludeInheritedAuthorizations = includeinheritedauthorizations
@@ -2069,7 +2069,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationAuthorizationInfo, :RequestId
-        
+
         def initialize(applicationauthorizationinfo=nil, requestid=nil)
           @ApplicationAuthorizationInfo = applicationauthorizationinfo
           @RequestId = requestid
@@ -2102,7 +2102,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :UserId, :SearchCondition, :Sort, :Offset, :Limit
-        
+
         def initialize(userid=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @UserId = userid
           @SearchCondition = searchcondition
@@ -2144,7 +2144,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserGroupIds, :UserId, :UserGroupInfoList, :TotalCount, :RequestId
-        
+
         def initialize(usergroupids=nil, userid=nil, usergroupinfolist=nil, totalcount=nil, requestid=nil)
           @UserGroupIds = usergroupids
           @UserId = userid
@@ -2181,7 +2181,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :SearchCondition, :Sort, :Offset, :Limit
-        
+
         def initialize(searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @SearchCondition = searchcondition
           @Sort = sort
@@ -2215,7 +2215,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserGroupList, :TotalCount, :RequestId
-        
+
         def initialize(usergrouplist=nil, totalcount=nil, requestid=nil)
           @UserGroupList = usergrouplist
           @TotalCount = totalcount
@@ -2252,7 +2252,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :OrgNodeId, :IncludeOrgNodeChildInfo, :SearchCondition, :Sort, :Offset, :Limit
-        
+
         def initialize(orgnodeid=nil, includeorgnodechildinfo=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @OrgNodeId = orgnodeid
           @IncludeOrgNodeChildInfo = includeorgnodechildinfo
@@ -2302,7 +2302,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrgNodeChildUserInfo, :OrgNodeId, :UserInfo, :TotalUserNum, :OrgNodeIdPath, :OrgNodeNamePath, :RequestId
-        
+
         def initialize(orgnodechilduserinfo=nil, orgnodeid=nil, userinfo=nil, totalusernum=nil, orgnodeidpath=nil, orgnodenamepath=nil, requestid=nil)
           @OrgNodeChildUserInfo = orgnodechilduserinfo
           @OrgNodeId = orgnodeid
@@ -2356,7 +2356,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :UserName, :Phone, :Email, :Status, :CreationTime, :LastUpdateTime, :Keyword
-        
+
         def initialize(username=nil, phone=nil, email=nil, status=nil, creationtime=nil, lastupdatetime=nil, keyword=nil)
           @UserName = username
           @Phone = phone
@@ -2392,7 +2392,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :UserGroupId, :SearchCondition, :Sort, :Offset, :Limit
-        
+
         def initialize(usergroupid=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @UserGroupId = usergroupid
           @SearchCondition = searchcondition
@@ -2431,7 +2431,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserGroupId, :UserInfo, :TotalNum, :RequestId
-        
+
         def initialize(usergroupid=nil, userinfo=nil, totalnum=nil, requestid=nil)
           @UserGroupId = usergroupid
           @UserInfo = userinfo
@@ -2470,7 +2470,7 @@ module TencentCloud
         # @type IncludeTotal: Boolean
 
         attr_accessor :SearchCondition, :ExpectedFields, :Sort, :Offset, :Limit, :IncludeTotal
-        
+
         def initialize(searchcondition=nil, expectedfields=nil, sort=nil, offset=nil, limit=nil, includetotal=nil)
           @SearchCondition = searchcondition
           @ExpectedFields = expectedfields
@@ -2508,7 +2508,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserList, :TotalCount, :RequestId
-        
+
         def initialize(userlist=nil, totalcount=nil, requestid=nil)
           @UserList = userlist
           @TotalCount = totalcount
@@ -2539,7 +2539,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :AccountGroupId, :GroupName, :Description
-        
+
         def initialize(accountgroupid=nil, groupname=nil, description=nil)
           @AccountGroupId = accountgroupid
           @GroupName = groupname
@@ -2559,7 +2559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2581,7 +2581,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :AccountId, :AccountName, :Password, :Description
-        
+
         def initialize(accountid=nil, accountname=nil, password=nil, description=nil)
           @AccountId = accountid
           @AccountName = accountname
@@ -2603,7 +2603,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2629,7 +2629,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :ApplicationId, :SecureLevel, :DisplayName, :AppStatus, :IconUrl, :Description
-        
+
         def initialize(applicationid=nil, securelevel=nil, displayname=nil, appstatus=nil, iconurl=nil, description=nil)
           @ApplicationId = applicationid
           @SecureLevel = securelevel
@@ -2655,7 +2655,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2693,7 +2693,7 @@ module TencentCloud
         # @type SecondaryOrgNodeIdList: Array
 
         attr_accessor :UserName, :DisplayName, :Description, :UserGroupIds, :UserId, :Phone, :ExpirationTime, :Password, :Email, :PwdNeedReset, :OrgNodeId, :SecondaryOrgNodeIdList
-        
+
         def initialize(username=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, phone=nil, expirationtime=nil, password=nil, email=nil, pwdneedreset=nil, orgnodeid=nil, secondaryorgnodeidlist=nil)
           @UserName = username
           @DisplayName = displayname
@@ -2731,7 +2731,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2769,7 +2769,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate, :Description
-        
+
         def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil, description=nil)
           @DisplayName = displayname
           @LastModifiedDate = lastmodifieddate
@@ -2812,7 +2812,7 @@ module TencentCloud
         # @type OrgNodeNamePath: String
 
         attr_accessor :OrgNodeId, :UserInfo, :TotalUserNum, :OrgNodeIdPath, :OrgNodeNamePath
-        
+
         def initialize(orgnodeid=nil, userinfo=nil, totalusernum=nil, orgnodeidpath=nil, orgnodenamepath=nil)
           @OrgNodeId = orgnodeid
           @UserInfo = userinfo
@@ -2845,7 +2845,7 @@ module TencentCloud
         # @type AccountIds: Array
 
         attr_accessor :AccountGroupId, :AccountIds
-        
+
         def initialize(accountgroupid=nil, accountids=nil)
           @AccountGroupId = accountgroupid
           @AccountIds = accountids
@@ -2863,7 +2863,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2881,7 +2881,7 @@ module TencentCloud
         # @type UserGroupId: String
 
         attr_accessor :UserIds, :UserGroupId
-        
+
         def initialize(userids=nil, usergroupid=nil)
           @UserIds = userids
           @UserGroupId = usergroupid
@@ -2899,7 +2899,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2917,7 +2917,7 @@ module TencentCloud
         # @type SortOrder: String
 
         attr_accessor :SortKey, :SortOrder
-        
+
         def initialize(sortkey=nil, sortorder=nil)
           @SortKey = sortkey
           @SortOrder = sortorder
@@ -2939,7 +2939,7 @@ module TencentCloud
         # @type AccountName: String
 
         attr_accessor :AccountCode, :AccountName
-        
+
         def initialize(accountcode=nil, accountname=nil)
           @AccountCode = accountcode
           @AccountName = accountname
@@ -2963,7 +2963,7 @@ module TencentCloud
         # @type CustomizedOrgNodeId: String
 
         attr_accessor :OrgNodeId, :DisplayName, :Description, :CustomizedOrgNodeId
-        
+
         def initialize(orgnodeid=nil, displayname=nil, description=nil, customizedorgnodeid=nil)
           @OrgNodeId = orgnodeid
           @DisplayName = displayname
@@ -2985,7 +2985,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3011,7 +3011,7 @@ module TencentCloud
         # @type CreatedDate: String
 
         attr_accessor :DisplayName, :UserGroupId, :Description, :CreatedDate
-        
+
         def initialize(displayname=nil, usergroupid=nil, description=nil, createddate=nil)
           @DisplayName = displayname
           @UserGroupId = usergroupid
@@ -3033,7 +3033,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Keyword
-        
+
         def initialize(keyword=nil)
           @Keyword = keyword
         end
@@ -3054,7 +3054,7 @@ module TencentCloud
         # @type LastModifiedDate: String
 
         attr_accessor :UserGroupId, :UserGroupName, :LastModifiedDate
-        
+
         def initialize(usergroupid=nil, usergroupname=nil, lastmodifieddate=nil)
           @UserGroupId = usergroupid
           @UserGroupName = usergroupname
@@ -3074,7 +3074,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Keyword
-        
+
         def initialize(keyword=nil)
           @Keyword = keyword
         end
@@ -3109,7 +3109,7 @@ module TencentCloud
         # @type DataSource: String
 
         attr_accessor :UserId, :DisplayName, :UserName, :Phone, :Email, :Status, :DataSource
-        
+
         def initialize(userid=nil, displayname=nil, username=nil, phone=nil, email=nil, status=nil, datasource=nil)
           @UserId = userid
           @DisplayName = displayname
@@ -3171,7 +3171,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserName, :Status, :DisplayName, :Description, :LastUpdateTime, :CreationTime, :OrgPath, :Phone, :SubjectGroups, :Email, :LastLoginTime, :UserId
-        
+
         def initialize(username=nil, status=nil, displayname=nil, description=nil, lastupdatetime=nil, creationtime=nil, orgpath=nil, phone=nil, subjectgroups=nil, email=nil, lastlogintime=nil, userid=nil)
           @UserName = username
           @Status = status
@@ -3221,7 +3221,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :UserName, :Phone, :Email, :Status, :CreationTime, :LastUpdateTime, :Keyword
-        
+
         def initialize(username=nil, phone=nil, email=nil, status=nil, creationtime=nil, lastupdatetime=nil, keyword=nil)
           @UserName = username
           @Phone = phone

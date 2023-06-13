@@ -25,7 +25,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
-        
+
         def initialize(limit=nil, offset=nil)
           @Limit = limit
           @Offset = offset
@@ -47,7 +47,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Products, :TotalCount, :RequestId
-        
+
         def initialize(products=nil, totalcount=nil, requestid=nil)
           @Products = products
           @TotalCount = totalcount
@@ -74,7 +74,7 @@ module TencentCloud
         # @type Product: String
 
         attr_accessor :Product
-        
+
         def initialize(product=nil)
           @Product = product
         end
@@ -94,7 +94,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RegionSet, :RequestId
-        
+
         def initialize(totalcount=nil, regionset=nil, requestid=nil)
           @TotalCount = totalcount
           @RegionSet = regionset
@@ -121,7 +121,7 @@ module TencentCloud
         # @type Product: String
 
         attr_accessor :Product
-        
+
         def initialize(product=nil)
           @Product = product
         end
@@ -141,7 +141,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ZoneSet, :RequestId
-        
+
         def initialize(totalcount=nil, zoneset=nil, requestid=nil)
           @TotalCount = totalcount
           @ZoneSet = zoneset
@@ -184,7 +184,7 @@ module TencentCloud
         # @type RegionIdMC: String
 
         attr_accessor :Region, :RegionName, :RegionState, :RegionTypeMC, :LocationMC, :RegionNameMC, :RegionIdMC
-        
+
         def initialize(region=nil, regionname=nil, regionstate=nil, regiontypemc=nil, locationmc=nil, regionnamemc=nil, regionidmc=nil)
           @Region = region
           @RegionName = regionname
@@ -212,7 +212,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Name
-        
+
         def initialize(name=nil)
           @Name = name
         end
@@ -296,7 +296,7 @@ module TencentCloud
         # @type ZoneIdMC: String
 
         attr_accessor :Zone, :ZoneName, :ZoneId, :ZoneState, :ParentZone, :ParentZoneId, :ParentZoneName, :ZoneType, :MachineRoomTypeMC, :ZoneIdMC
-        
+
         def initialize(zone=nil, zonename=nil, zoneid=nil, zonestate=nil, parentzone=nil, parentzoneid=nil, parentzonename=nil, zonetype=nil, machineroomtypemc=nil, zoneidmc=nil)
           @Zone = zone
           @ZoneName = zonename

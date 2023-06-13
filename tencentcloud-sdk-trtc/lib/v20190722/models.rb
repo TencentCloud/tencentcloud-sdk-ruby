@@ -26,7 +26,7 @@ module TencentCloud
         # @type PeerId: String
 
         attr_accessor :AbnormalEventId, :PeerId
-        
+
         def initialize(abnormaleventid=nil, peerid=nil)
           @AbnormalEventId = abnormaleventid
           @PeerId = peerid
@@ -52,7 +52,7 @@ module TencentCloud
         # @type EventTime: Integer
 
         attr_accessor :UserId, :ExperienceId, :RoomId, :AbnormalEventList, :EventTime
-        
+
         def initialize(userid=nil, experienceid=nil, roomid=nil, abnormaleventlist=nil, eventtime=nil)
           @UserId = userid
           @ExperienceId = experienceid
@@ -87,7 +87,7 @@ module TencentCloud
         # @type MaxIdleTime: Integer
 
         attr_accessor :UserId, :UserSig, :MaxIdleTime
-        
+
         def initialize(userid=nil, usersig=nil, maxidletime=nil)
           @UserId = userid
           @UserSig = usersig
@@ -113,7 +113,7 @@ module TencentCloud
         # @type Codec: Integer
 
         attr_accessor :SampleRate, :Channel, :BitRate, :Codec
-        
+
         def initialize(samplerate=nil, channel=nil, bitrate=nil, codec=nil)
           @SampleRate = samplerate
           @Channel = channel
@@ -144,7 +144,7 @@ module TencentCloud
         # @type BitRate: Integer
 
         attr_accessor :SampleRate, :Channel, :BitRate
-        
+
         def initialize(samplerate=nil, channel=nil, bitrate=nil)
           @SampleRate = samplerate
           @Channel = channel
@@ -177,7 +177,7 @@ module TencentCloud
         # @type FileNamePrefix: Array
 
         attr_accessor :Vendor, :Region, :Bucket, :AccessKey, :SecretKey, :FileNamePrefix
-        
+
         def initialize(vendor=nil, region=nil, bucket=nil, accesskey=nil, secretkey=nil, filenameprefix=nil)
           @Vendor = vendor
           @Region = region
@@ -203,7 +203,7 @@ module TencentCloud
         # @type TencentVod: :class:`Tencentcloud::Trtc.v20190722.models.TencentVod`
 
         attr_accessor :TencentVod
-        
+
         def initialize(tencentvod=nil)
           @TencentVod = tencentvod
         end
@@ -244,7 +244,7 @@ module TencentCloud
         # @type PrivateMapKey: String
 
         attr_accessor :SdkAppId, :RoomId, :UserId, :UserSig, :RecordParams, :StorageParams, :RoomIdType, :MixTranscodeParams, :MixLayoutParams, :ResourceExpiredHour, :PrivateMapKey
-        
+
         def initialize(sdkappid=nil, roomid=nil, userid=nil, usersig=nil, recordparams=nil, storageparams=nil, roomidtype=nil, mixtranscodeparams=nil, mixlayoutparams=nil, resourceexpiredhour=nil, privatemapkey=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -294,7 +294,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -324,7 +324,7 @@ module TencentCloud
         # @type YPosition: Integer
 
         attr_accessor :SdkAppId, :Content, :Suffix, :Height, :Width, :XPosition, :YPosition
-        
+
         def initialize(sdkappid=nil, content=nil, suffix=nil, height=nil, width=nil, xposition=nil, yposition=nil)
           @SdkAppId = sdkappid
           @Content = content
@@ -354,7 +354,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PictureId, :RequestId
-        
+
         def initialize(pictureid=nil, requestid=nil)
           @PictureId = pictureid
           @RequestId = requestid
@@ -374,7 +374,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :SdkAppId, :TaskId
-        
+
         def initialize(sdkappid=nil, taskid=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -394,7 +394,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -414,7 +414,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :PictureId, :SdkAppId
-        
+
         def initialize(pictureid=nil, sdkappid=nil)
           @PictureId = pictureid
           @SdkAppId = sdkappid
@@ -432,7 +432,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -481,7 +481,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :DataType, :PageNumber, :PageSize
-        
+
         def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, datatype=nil, pagenumber=nil, pagesize=nil)
           @CommId = commid
           @StartTime = starttime
@@ -519,7 +519,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :UserList, :Data, :RequestId
-        
+
         def initialize(total=nil, userlist=nil, data=nil, requestid=nil)
           @Total = total
           @UserList = userlist
@@ -557,7 +557,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :SdkAppId, :TaskId
-        
+
         def initialize(sdkappid=nil, taskid=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -585,7 +585,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :Status, :StorageFileList, :RequestId
-        
+
         def initialize(taskid=nil, status=nil, storagefilelist=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
@@ -618,7 +618,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -644,7 +644,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SdkAppIdTrtrTimeUsages, :AnchorUsageMode, :AudienceUsageMode, :RequestId
-        
+
         def initialize(sdkappidtrtrtimeusages=nil, anchorusagemode=nil, audienceusagemode=nil, requestid=nil)
           @SdkAppIdTrtrTimeUsages = sdkappidtrtrtimeusages
           @AnchorUsageMode = anchorusagemode
@@ -678,7 +678,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -702,7 +702,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsageKey, :UsageList, :RequestId
-        
+
         def initialize(usagekey=nil, usagelist=nil, requestid=nil)
           @UsageKey = usagekey
           @UsageList = usagelist
@@ -735,7 +735,7 @@ module TencentCloud
         # @type PageNo: Integer
 
         attr_accessor :SdkAppId, :PictureId, :PageSize, :PageNo
-        
+
         def initialize(sdkappid=nil, pictureid=nil, pagesize=nil, pageno=nil)
           @SdkAppId = sdkappid
           @PictureId = pictureid
@@ -761,7 +761,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :PictureInfo, :RequestId
-        
+
         def initialize(total=nil, pictureinfo=nil, requestid=nil)
           @Total = total
           @PictureInfo = pictureinfo
@@ -793,7 +793,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -815,7 +815,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SdkAppIdUsages, :RequestId
-        
+
         def initialize(sdkappidusages=nil, requestid=nil)
           @SdkAppIdUsages = sdkappidusages
           @RequestId = requestid
@@ -847,7 +847,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :MixType, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, mixtype=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -873,7 +873,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsageKey, :UsageList, :RequestId
-        
+
         def initialize(usagekey=nil, usagelist=nil, requestid=nil)
           @UsageKey = usagekey
           @UsageList = usagelist
@@ -905,7 +905,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -929,7 +929,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsageKey, :UsageList, :RequestId
-        
+
         def initialize(usagekey=nil, usagelist=nil, requestid=nil)
           @UsageKey = usagekey
           @UsageList = usagelist
@@ -970,7 +970,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId, :PageNumber, :PageSize
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil, pagenumber=nil, pagesize=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1000,7 +1000,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :RoomList, :RequestId
-        
+
         def initialize(total=nil, roomlist=nil, requestid=nil)
           @Total = total
           @RoomList = roomlist
@@ -1033,7 +1033,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :SdkAppId, :StartTime, :EndTime
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1058,7 +1058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :ScaleList, :RequestId
-        
+
         def initialize(total=nil, scalelist=nil, requestid=nil)
           @Total = total
           @ScaleList = scalelist
@@ -1093,7 +1093,7 @@ module TencentCloud
         # @type Period: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1118,7 +1118,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1147,7 +1147,7 @@ module TencentCloud
         # @type Period: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1172,7 +1172,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1199,7 +1199,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1224,7 +1224,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1251,7 +1251,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1276,7 +1276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1302,7 +1302,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1324,7 +1324,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Usages, :RequestId
-        
+
         def initialize(usages=nil, requestid=nil)
           @Usages = usages
           @RequestId = requestid
@@ -1353,7 +1353,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :SdkAppid, :StartTime, :EndTime
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil)
           @SdkAppid = sdkappid
           @StartTime = starttime
@@ -1375,7 +1375,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1398,7 +1398,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SdkAppId
-        
+
         def initialize(starttime=nil, endtime=nil, sdkappid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1422,7 +1422,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsageKey, :UsageList, :RequestId
-        
+
         def initialize(usagekey=nil, usagelist=nil, requestid=nil)
           @UsageKey = usagekey
           @UsageList = usagelist
@@ -1456,7 +1456,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
-        
+
         def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -1483,7 +1483,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :AbnormalExperienceList, :RequestId
-        
+
         def initialize(total=nil, abnormalexperiencelist=nil, requestid=nil)
           @Total = total
           @AbnormalExperienceList = abnormalexperiencelist
@@ -1522,7 +1522,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :CommId, :StartTime, :EndTime, :UserId, :RoomId, :SdkAppId
-        
+
         def initialize(commid=nil, starttime=nil, endtime=nil, userid=nil, roomid=nil, sdkappid=nil)
           @CommId = commid
           @StartTime = starttime
@@ -1550,7 +1550,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1592,7 +1592,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :PageNumber, :PageSize
-        
+
         def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, pagenumber=nil, pagesize=nil)
           @CommId = commid
           @StartTime = starttime
@@ -1625,7 +1625,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :UserList, :RequestId
-        
+
         def initialize(total=nil, userlist=nil, requestid=nil)
           @Total = total
           @UserList = userlist
@@ -1654,7 +1654,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :SdkAppId, :RoomId
-        
+
         def initialize(sdkappid=nil, roomid=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -1672,7 +1672,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1690,7 +1690,7 @@ module TencentCloud
         # @type RoomId: Integer
 
         attr_accessor :SdkAppId, :RoomId
-        
+
         def initialize(sdkappid=nil, roomid=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -1708,7 +1708,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1753,7 +1753,7 @@ module TencentCloud
         # @type BackgroundImageUrl: String
 
         attr_accessor :AudioSampleRate, :AudioBitrate, :AudioChannels, :VideoWidth, :VideoHeight, :VideoBitrate, :VideoFramerate, :VideoGop, :BackgroundColor, :BackgroundImageId, :AudioCodec, :BackgroundImageUrl
-        
+
         def initialize(audiosamplerate=nil, audiobitrate=nil, audiochannels=nil, videowidth=nil, videoheight=nil, videobitrate=nil, videoframerate=nil, videogop=nil, backgroundcolor=nil, backgroundimageid=nil, audiocodec=nil, backgroundimageurl=nil)
           @AudioSampleRate = audiosamplerate
           @AudioBitrate = audiobitrate
@@ -1793,7 +1793,7 @@ module TencentCloud
         # @type PeerId: String
 
         attr_accessor :Content, :PeerId
-        
+
         def initialize(content=nil, peerid=nil)
           @Content = content
           @PeerId = peerid
@@ -1830,7 +1830,7 @@ module TencentCloud
         # @type ParamTwo: Integer
 
         attr_accessor :Type, :Time, :EventId, :ParamOne, :ParamTwo
-        
+
         def initialize(type=nil, time=nil, eventid=nil, paramone=nil, paramtwo=nil)
           @Type = type
           @Time = time
@@ -1874,7 +1874,7 @@ module TencentCloud
         # @type RenderMode: Integer
 
         attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode, :WaterMarkParams, :RenderMode
-        
+
         def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil, watermarkparams=nil, rendermode=nil)
           @Template = template
           @MainVideoUserId = mainvideouserid
@@ -1923,7 +1923,7 @@ module TencentCloud
         # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
 
         attr_accessor :UserMediaStream
-        
+
         def initialize(usermediastream=nil)
           @UserMediaStream = usermediastream
         end
@@ -1948,7 +1948,7 @@ module TencentCloud
         # @type UnSubscribeAudioList: Array
 
         attr_accessor :AudioEncode, :SubscribeAudioList, :UnSubscribeAudioList
-        
+
         def initialize(audioencode=nil, subscribeaudiolist=nil, unsubscribeaudiolist=nil)
           @AudioEncode = audioencode
           @SubscribeAudioList = subscribeaudiolist
@@ -1991,7 +1991,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :LocationX, :LocationY, :Width, :Height
-        
+
         def initialize(locationx=nil, locationy=nil, width=nil, height=nil)
           @LocationX = locationx
           @LocationY = locationy
@@ -2019,7 +2019,7 @@ module TencentCloud
         # @type UserSig: String
 
         attr_accessor :RoomId, :RoomIdType, :UserId, :UserSig
-        
+
         def initialize(roomid=nil, roomidtype=nil, userid=nil, usersig=nil)
           @RoomId = roomid
           @RoomIdType = roomidtype
@@ -2066,7 +2066,7 @@ module TencentCloud
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
 
         attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop
-        
+
         def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type RenderMode: Integer
 
         attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser, :RenderMode
-        
+
         def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil, rendermode=nil)
           @MixLayoutMode = mixlayoutmode
           @PureAudioHoldPlaceMode = pureaudioholdplacemode
@@ -2155,7 +2155,7 @@ module TencentCloud
         # @type FollowIdr: Integer
 
         attr_accessor :AppData, :PayloadType, :Interval, :FollowIdr
-        
+
         def initialize(appdata=nil, payloadtype=nil, interval=nil, followidr=nil)
           @AppData = appdata
           @PayloadType = payloadtype
@@ -2185,7 +2185,7 @@ module TencentCloud
         # @type FollowIdr: Integer
 
         attr_accessor :PayloadContent, :PayloadType, :PayloadUuid, :Interval, :FollowIdr
-        
+
         def initialize(payloadcontent=nil, payloadtype=nil, payloaduuid=nil, interval=nil, followidr=nil)
           @PayloadContent = payloadcontent
           @PayloadType = payloadtype
@@ -2211,7 +2211,7 @@ module TencentCloud
         # @type IsTencentCdn: Integer
 
         attr_accessor :PublishCdnUrl, :IsTencentCdn
-        
+
         def initialize(publishcdnurl=nil, istencentcdn=nil)
           @PublishCdnUrl = publishcdnurl
           @IsTencentCdn = istencentcdn
@@ -2231,7 +2231,7 @@ module TencentCloud
         # @type PassThrough: :class:`Tencentcloud::Trtc.v20190722.models.McuPassThrough`
 
         attr_accessor :LayoutVolume, :PassThrough
-        
+
         def initialize(layoutvolume=nil, passthrough=nil)
           @LayoutVolume = layoutvolume
           @PassThrough = passthrough
@@ -2255,7 +2255,7 @@ module TencentCloud
         # @type UserInfo: :class:`Tencentcloud::Trtc.v20190722.models.MixUserInfo`
 
         attr_accessor :UserInfo
-        
+
         def initialize(userinfo=nil)
           @UserInfo = userinfo
         end
@@ -2289,7 +2289,7 @@ module TencentCloud
         # @type WaterMarkList: Array
 
         attr_accessor :VideoEncode, :LayoutParams, :BackGroundColor, :BackgroundImageUrl, :WaterMarkList
-        
+
         def initialize(videoencode=nil, layoutparams=nil, backgroundcolor=nil, backgroundimageurl=nil, watermarklist=nil)
           @VideoEncode = videoencode
           @LayoutParams = layoutparams
@@ -2336,7 +2336,7 @@ module TencentCloud
         # @type ZOrder: Integer
 
         attr_accessor :WaterMarkUrl, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :ZOrder
-        
+
         def initialize(watermarkurl=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, zorder=nil)
           @WaterMarkUrl = watermarkurl
           @WaterMarkWidth = watermarkwidth
@@ -2366,7 +2366,7 @@ module TencentCloud
         # @type WaterMarkText: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkText`
 
         attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkText
-        
+
         def initialize(watermarktype=nil, watermarkimage=nil, watermarktext=nil)
           @WaterMarkType = watermarktype
           @WaterMarkImage = watermarkimage
@@ -2406,7 +2406,7 @@ module TencentCloud
         # @type BackGroundColor: String
 
         attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor
-        
+
         def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
           @Text = text
           @WaterMarkWidth = watermarkwidth
@@ -2462,7 +2462,7 @@ module TencentCloud
         # @type SubBackgroundImage: String
 
         attr_accessor :Top, :Left, :Width, :Height, :UserId, :Alpha, :RenderMode, :MediaId, :ImageLayer, :SubBackgroundImage
-        
+
         def initialize(top=nil, left=nil, width=nil, height=nil, userid=nil, alpha=nil, rendermode=nil, mediaid=nil, imagelayer=nil, subbackgroundimage=nil)
           @Top = top
           @Left = left
@@ -2533,7 +2533,7 @@ module TencentCloud
         # @type MaxResolutionUserAlign: Integer
 
         attr_accessor :MixLayoutMode, :MixLayoutList, :BackGroundColor, :MaxResolutionUserId, :MediaId, :BackgroundImageUrl, :PlaceHolderMode, :BackgroundImageRenderMode, :DefaultSubBackgroundImage, :WaterMarkList, :RenderMode, :MaxResolutionUserAlign
-        
+
         def initialize(mixlayoutmode=nil, mixlayoutlist=nil, backgroundcolor=nil, maxresolutionuserid=nil, mediaid=nil, backgroundimageurl=nil, placeholdermode=nil, backgroundimagerendermode=nil, defaultsubbackgroundimage=nil, watermarklist=nil, rendermode=nil, maxresolutionuseralign=nil)
           @MixLayoutMode = mixlayoutmode
           @MixLayoutList = mixlayoutlist
@@ -2587,7 +2587,7 @@ module TencentCloud
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.AudioParams`
 
         attr_accessor :VideoParams, :AudioParams
-        
+
         def initialize(videoparams=nil, audioparams=nil)
           @VideoParams = videoparams
           @AudioParams = audioparams
@@ -2615,7 +2615,7 @@ module TencentCloud
         # @type RoomIdType: Integer
 
         attr_accessor :UserId, :RoomId, :RoomIdType
-        
+
         def initialize(userid=nil, roomid=nil, roomidtype=nil)
           @UserId = userid
           @RoomId = roomid
@@ -2641,7 +2641,7 @@ module TencentCloud
         # @type SubscribeStreamUserIds: :class:`Tencentcloud::Trtc.v20190722.models.SubscribeStreamUserIds`
 
         attr_accessor :SdkAppId, :TaskId, :MixLayoutParams, :SubscribeStreamUserIds
-        
+
         def initialize(sdkappid=nil, taskid=nil, mixlayoutparams=nil, subscribestreamuserids=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -2671,7 +2671,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2699,7 +2699,7 @@ module TencentCloud
         # @type YPosition: Integer
 
         attr_accessor :PictureId, :SdkAppId, :Height, :Width, :XPosition, :YPosition
-        
+
         def initialize(pictureid=nil, sdkappid=nil, height=nil, width=nil, xposition=nil, yposition=nil)
           @PictureId = pictureid
           @SdkAppId = sdkappid
@@ -2725,7 +2725,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2745,7 +2745,7 @@ module TencentCloud
         # @type SdkAppId: String
 
         attr_accessor :SdkAppIdTranscodeTimeUsages, :TotalNum, :SdkAppId
-        
+
         def initialize(sdkappidtranscodetimeusages=nil, totalnum=nil, sdkappid=nil)
           @SdkAppIdTranscodeTimeUsages = sdkappidtranscodetimeusages
           @TotalNum = totalnum
@@ -2779,7 +2779,7 @@ module TencentCloud
         # @type RecordAudioOnly: Integer
 
         attr_accessor :StreamId, :PureAudioStream, :RecordId, :RecordAudioOnly
-        
+
         def initialize(streamid=nil, pureaudiostream=nil, recordid=nil, recordaudioonly=nil)
           @StreamId = streamid
           @PureAudioStream = pureaudiostream
@@ -2811,7 +2811,7 @@ module TencentCloud
         # @type PictureId: Integer
 
         attr_accessor :Height, :Width, :XPosition, :YPosition, :SdkAppId, :PictureId
-        
+
         def initialize(height=nil, width=nil, xposition=nil, yposition=nil, sdkappid=nil, pictureid=nil)
           @Height = height
           @Width = width
@@ -2855,7 +2855,7 @@ module TencentCloud
         # @type PlaceImageId: Integer
 
         attr_accessor :UserId, :StreamType, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :MixInputType, :PlaceImageId
-        
+
         def initialize(userid=nil, streamtype=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, mixinputtype=nil, placeimageid=nil)
           @UserId = userid
           @StreamType = streamtype
@@ -2891,7 +2891,7 @@ module TencentCloud
         # @type PublishCdnUrls: Array
 
         attr_accessor :BizId, :PublishCdnUrls
-        
+
         def initialize(bizid=nil, publishcdnurls=nil)
           @BizId = bizid
           @PublishCdnUrls = publishcdnurls
@@ -2916,7 +2916,7 @@ module TencentCloud
         # @type DataType: String
 
         attr_accessor :Content, :UserId, :PeerId, :DataType
-        
+
         def initialize(content=nil, userid=nil, peerid=nil, datatype=nil)
           @Content = content
           @UserId = userid
@@ -2965,7 +2965,7 @@ module TencentCloud
         # @type MediaId: Integer
 
         attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId
-        
+
         def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil, mediaid=nil)
           @RecordMode = recordmode
           @MaxIdleTime = maxidletime
@@ -3006,7 +3006,7 @@ module TencentCloud
         # @type AudioTime: Integer
 
         attr_accessor :TimeKey, :Class1VideoTime, :Class2VideoTime, :Class3VideoTime, :AudioTime
-        
+
         def initialize(timekey=nil, class1videotime=nil, class2videotime=nil, class3videotime=nil, audiotime=nil)
           @TimeKey = timekey
           @Class1VideoTime = class1videotime
@@ -3034,7 +3034,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :SdkAppId, :RoomId, :UserIds
-        
+
         def initialize(sdkappid=nil, roomid=nil, userids=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -3054,7 +3054,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3074,7 +3074,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :SdkAppId, :RoomId, :UserIds
-        
+
         def initialize(sdkappid=nil, roomid=nil, userids=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -3094,7 +3094,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3120,7 +3120,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :CommId, :RoomString, :CreateTime, :DestroyTime, :IsFinished, :UserId
-        
+
         def initialize(commid=nil, roomstring=nil, createtime=nil, destroytime=nil, isfinished=nil, userid=nil)
           @CommId = commid
           @RoomString = roomstring
@@ -3155,7 +3155,7 @@ module TencentCloud
         # @type RoomNumbers: Integer
 
         attr_accessor :Time, :UserNumber, :UserCount, :RoomNumbers
-        
+
         def initialize(time=nil, usernumber=nil, usercount=nil, roomnumbers=nil)
           @Time = time
           @UserNumber = usernumber
@@ -3181,7 +3181,7 @@ module TencentCloud
         # @type AudienceTrtcTimeUsages: Array
 
         attr_accessor :SdkAppId, :TrtcTimeUsages, :AudienceTrtcTimeUsages
-        
+
         def initialize(sdkappid=nil, trtctimeusages=nil, audiencetrtctimeusages=nil)
           @SdkAppId = sdkappid
           @TrtcTimeUsages = trtctimeusages
@@ -3217,7 +3217,7 @@ module TencentCloud
         # @type Usages: Array
 
         attr_accessor :SdkAppId, :Usages
-        
+
         def initialize(sdkappid=nil, usages=nil)
           @SdkAppId = sdkappid
           @Usages = usages
@@ -3253,7 +3253,7 @@ module TencentCloud
         # @type Flux: Float
 
         attr_accessor :TimeKey, :AudioTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeFhd, :Flux
-        
+
         def initialize(timekey=nil, audiotime=nil, videotimesd=nil, videotimehd=nil, videotimefhd=nil, flux=nil)
           @TimeKey = timekey
           @AudioTime = audiotime
@@ -3283,7 +3283,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Columns, :Values
-        
+
         def initialize(columns=nil, values=nil)
           @Columns = columns
           @Values = values
@@ -3301,7 +3301,7 @@ module TencentCloud
         # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
 
         attr_accessor :UserMediaStream
-        
+
         def initialize(usermediastream=nil)
           @UserMediaStream = usermediastream
         end
@@ -3330,7 +3330,7 @@ module TencentCloud
         # @type LocationY: Integer
 
         attr_accessor :UserId, :StreamType, :ImageWidth, :ImageHeight, :LocationX, :LocationY
-        
+
         def initialize(userid=nil, streamtype=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil)
           @UserId = userid
           @StreamType = streamtype
@@ -3366,7 +3366,7 @@ module TencentCloud
         # @type PublishCdnParams: :class:`Tencentcloud::Trtc.v20190722.models.PublishCdnParams`
 
         attr_accessor :SdkAppId, :StrRoomId, :OutputParams, :EncodeParams, :LayoutParams, :PublishCdnParams
-        
+
         def initialize(sdkappid=nil, strroomid=nil, outputparams=nil, encodeparams=nil, layoutparams=nil, publishcdnparams=nil)
           @SdkAppId = sdkappid
           @StrRoomId = strroomid
@@ -3404,7 +3404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3430,7 +3430,7 @@ module TencentCloud
         # @type PublishCdnParams: :class:`Tencentcloud::Trtc.v20190722.models.PublishCdnParams`
 
         attr_accessor :SdkAppId, :RoomId, :OutputParams, :EncodeParams, :LayoutParams, :PublishCdnParams
-        
+
         def initialize(sdkappid=nil, roomid=nil, outputparams=nil, encodeparams=nil, layoutparams=nil, publishcdnparams=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -3468,7 +3468,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3504,7 +3504,7 @@ module TencentCloud
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams
-        
+
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, agentparams=nil, withtranscoding=nil, audioparams=nil, videoparams=nil, singlesubscribeparams=nil, publishcdnparams=nil, seiparams=nil, feedbackroomparams=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -3571,7 +3571,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3591,7 +3591,7 @@ module TencentCloud
         # @type StrRoomId: String
 
         attr_accessor :SdkAppId, :StrRoomId
-        
+
         def initialize(sdkappid=nil, strroomid=nil)
           @SdkAppId = sdkappid
           @StrRoomId = strroomid
@@ -3609,7 +3609,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3627,7 +3627,7 @@ module TencentCloud
         # @type RoomId: Integer
 
         attr_accessor :SdkAppId, :RoomId
-        
+
         def initialize(sdkappid=nil, roomid=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
@@ -3645,7 +3645,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3663,7 +3663,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :SdkAppId, :TaskId
-        
+
         def initialize(sdkappid=nil, taskid=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -3683,7 +3683,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3712,7 +3712,7 @@ module TencentCloud
         # @type BeginTimeStamp: Integer
 
         attr_accessor :UserId, :FileName, :TrackType, :BeginTimeStamp
-        
+
         def initialize(userid=nil, filename=nil, tracktype=nil, begintimestamp=nil)
           @UserId = userid
           @FileName = filename
@@ -3736,7 +3736,7 @@ module TencentCloud
         # @type CloudVod: :class:`Tencentcloud::Trtc.v20190722.models.CloudVod`
 
         attr_accessor :CloudStorage, :CloudVod
-        
+
         def initialize(cloudstorage=nil, cloudvod=nil)
           @CloudStorage = cloudstorage
           @CloudVod = cloudvod
@@ -3766,7 +3766,7 @@ module TencentCloud
         # @type UnSubscribeVideoUserIds: Array
 
         attr_accessor :SubscribeAudioUserIds, :UnSubscribeAudioUserIds, :SubscribeVideoUserIds, :UnSubscribeVideoUserIds
-        
+
         def initialize(subscribeaudiouserids=nil, unsubscribeaudiouserids=nil, subscribevideouserids=nil, unsubscribevideouserids=nil)
           @SubscribeAudioUserIds = subscribeaudiouserids
           @UnSubscribeAudioUserIds = unsubscribeaudiouserids
@@ -3795,7 +3795,7 @@ module TencentCloud
         # @type Total: Integer
 
         attr_accessor :StatementID, :Series, :Total
-        
+
         def initialize(statementid=nil, series=nil, total=nil)
           @StatementID = statementid
           @Series = series
@@ -3839,7 +3839,7 @@ module TencentCloud
         # @type UserDefineRecordId: String
 
         attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext, :MediaType, :UserDefineRecordId
-        
+
         def initialize(procedure=nil, expiretime=nil, storageregion=nil, classid=nil, subappid=nil, sessioncontext=nil, sourcecontext=nil, mediatype=nil, userdefinerecordid=nil)
           @Procedure = procedure
           @ExpireTime = expiretime
@@ -3873,7 +3873,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -3909,7 +3909,7 @@ module TencentCloud
         # @type Video4KTime: Integer
 
         attr_accessor :TimeKey, :VoiceUserNum, :VideoTime, :Class1VideoTime, :Class2VideoTime, :Class3VideoTime, :AudioTime, :Bandwidth, :Video2KTime, :Video4KTime
-        
+
         def initialize(timekey=nil, voiceusernum=nil, videotime=nil, class1videotime=nil, class2videotime=nil, class3videotime=nil, audiotime=nil, bandwidth=nil, video2ktime=nil, video4ktime=nil)
           @TimeKey = timekey
           @VoiceUserNum = voiceusernum
@@ -3945,7 +3945,7 @@ module TencentCloud
         # @type UsageValue: Array
 
         attr_accessor :TimeKey, :UsageValue
-        
+
         def initialize(timekey=nil, usagevalue=nil)
           @TimeKey = timekey
           @UsageValue = usagevalue
@@ -3981,7 +3981,7 @@ module TencentCloud
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :TaskId, :SequenceNumber, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams
-        
+
         def initialize(sdkappid=nil, taskid=nil, sequencenumber=nil, withtranscoding=nil, audioparams=nil, videoparams=nil, singlesubscribeparams=nil, publishcdnparams=nil, seiparams=nil, feedbackroomparams=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -4043,7 +4043,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4075,7 +4075,7 @@ module TencentCloud
         # @type Finished: Boolean
 
         attr_accessor :RoomStr, :UserId, :JoinTs, :LeaveTs, :DeviceType, :SdkVersion, :ClientIp, :Finished
-        
+
         def initialize(roomstr=nil, userid=nil, joints=nil, leavets=nil, devicetype=nil, sdkversion=nil, clientip=nil, finished=nil)
           @RoomStr = roomstr
           @UserId = userid
@@ -4107,7 +4107,7 @@ module TencentCloud
         # @type StreamType: Integer
 
         attr_accessor :UserInfo, :StreamType
-        
+
         def initialize(userinfo=nil, streamtype=nil)
           @UserInfo = userinfo
           @StreamType = streamtype
@@ -4136,7 +4136,7 @@ module TencentCloud
         # @type Gop: Integer
 
         attr_accessor :Width, :Height, :Fps, :BitRate, :Gop
-        
+
         def initialize(width=nil, height=nil, fps=nil, bitrate=nil, gop=nil)
           @Width = width
           @Height = height
@@ -4168,7 +4168,7 @@ module TencentCloud
         # @type Gop: Integer
 
         attr_accessor :Width, :Height, :Fps, :BitRate, :Gop
-        
+
         def initialize(width=nil, height=nil, fps=nil, bitrate=nil, gop=nil)
           @Width = width
           @Height = height
@@ -4198,7 +4198,7 @@ module TencentCloud
         # @type WaterMarkTimestamp: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkTimestamp`
 
         attr_accessor :WaterMarkType, :WaterMarkImage, :WaterMarkChar, :WaterMarkTimestamp
-        
+
         def initialize(watermarktype=nil, watermarkimage=nil, watermarkchar=nil, watermarktimestamp=nil)
           @WaterMarkType = watermarktype
           @WaterMarkImage = watermarkimage
@@ -4243,7 +4243,7 @@ module TencentCloud
         # @type BackGroundColor: String
 
         attr_accessor :Top, :Left, :Width, :Height, :Chars, :FontSize, :FontColor, :BackGroundColor
-        
+
         def initialize(top=nil, left=nil, width=nil, height=nil, chars=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
           @Top = top
           @Left = left
@@ -4281,7 +4281,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :WaterMarkUrl, :Top, :Left, :Width, :Height
-        
+
         def initialize(watermarkurl=nil, top=nil, left=nil, width=nil, height=nil)
           @WaterMarkUrl = watermarkurl
           @Top = top
@@ -4315,7 +4315,7 @@ module TencentCloud
         # @type WaterMarkUrl: String
 
         attr_accessor :WaterMarkId, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :WaterMarkUrl
-        
+
         def initialize(watermarkid=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, watermarkurl=nil)
           @WaterMarkId = watermarkid
           @WaterMarkWidth = watermarkwidth
@@ -4343,7 +4343,7 @@ module TencentCloud
         # @type TimeZone: Integer
 
         attr_accessor :Pos, :TimeZone
-        
+
         def initialize(pos=nil, timezone=nil)
           @Pos = pos
           @TimeZone = timezone

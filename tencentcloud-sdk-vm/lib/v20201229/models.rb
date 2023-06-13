@@ -61,7 +61,7 @@ module TencentCloud
         # @type RecognitionResults: Array
 
         attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults
-        
+
         def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil)
           @HitFlag = hitflag
           @Label = label
@@ -142,7 +142,7 @@ module TencentCloud
         # @type SubLabelCode: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode
-        
+
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil)
           @Label = label
           @Score = score
@@ -180,7 +180,7 @@ module TencentCloud
         # @type Suggestion: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
-        
+
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
           @Score = score
@@ -231,7 +231,7 @@ module TencentCloud
         # @type SubLabel: String
 
         attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
-        
+
         def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
           @Label = label
           @Keywords = keywords
@@ -265,7 +265,7 @@ module TencentCloud
         # @type Result: :class:`Tencentcloud::Vm.v20201229.models.AudioResult`
 
         attr_accessor :OffsetTime, :Result
-        
+
         def initialize(offsettime=nil, result=nil)
           @OffsetTime = offsettime
           @Result = result
@@ -291,7 +291,7 @@ module TencentCloud
         # @type Object: String
 
         attr_accessor :Bucket, :Region, :Object
-        
+
         def initialize(bucket=nil, region=nil, object=nil)
           @Bucket = bucket
           @Region = region
@@ -311,7 +311,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -327,7 +327,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -353,7 +353,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :Type, :Tasks, :BizType, :Seed, :CallbackUrl, :Priority
-        
+
         def initialize(type=nil, tasks=nil, biztype=nil, seed=nil, callbackurl=nil, priority=nil)
           @Type = type
           @Tasks = tasks
@@ -389,7 +389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -417,7 +417,7 @@ module TencentCloud
         # @type ShowAllSegments: Boolean
 
         attr_accessor :TaskId, :ShowAllSegments
-        
+
         def initialize(taskid=nil, showallsegments=nil)
           @TaskId = taskid
           @ShowAllSegments = showallsegments
@@ -489,7 +489,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :RequestId
-        
+
         def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, requestid=nil)
           @TaskId = taskid
           @DataId = dataid
@@ -574,7 +574,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Limit, :Filter, :PageToken, :StartTime, :EndTime
-        
+
         def initialize(limit=nil, filter=nil, pagetoken=nil, starttime=nil, endtime=nil)
           @Limit = limit
           @Filter = filter
@@ -610,7 +610,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Data, :PageToken, :RequestId
-        
+
         def initialize(total=nil, data=nil, pagetoken=nil, requestid=nil)
           @Total = total
           @Data = data
@@ -662,7 +662,7 @@ module TencentCloud
         # @type SubLabel: String
 
         attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel
-        
+
         def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil)
           @HitFlag = hitflag
           @Label = label
@@ -725,7 +725,7 @@ module TencentCloud
         # @type Details: Array
 
         attr_accessor :Scene, :HitFlag, :Suggestion, :Label, :SubLabel, :Score, :Names, :Text, :Details
-        
+
         def initialize(scene=nil, hitflag=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, names=nil, text=nil, details=nil)
           @Scene = scene
           @HitFlag = hitflag
@@ -793,7 +793,7 @@ module TencentCloud
         # @type SubLabelCode: String
 
         attr_accessor :Name, :Text, :Location, :Label, :LibId, :LibName, :Keywords, :Suggestion, :Score, :SubLabelCode
-        
+
         def initialize(name=nil, text=nil, location=nil, label=nil, libid=nil, libname=nil, keywords=nil, suggestion=nil, score=nil, sublabelcode=nil)
           @Name = name
           @Text = text
@@ -843,7 +843,7 @@ module TencentCloud
         # @type Rotate: Float
 
         attr_accessor :X, :Y, :Width, :Height, :Rotate
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, rotate=nil)
           @X = x
           @Y = y
@@ -869,7 +869,7 @@ module TencentCloud
         # @type Result: :class:`Tencentcloud::Vm.v20201229.models.ImageResult`
 
         attr_accessor :OffsetTime, :Result
-        
+
         def initialize(offsettime=nil, result=nil)
           @OffsetTime = offsettime
           @Result = result
@@ -897,7 +897,7 @@ module TencentCloud
         # @type BucketInfo: String
 
         attr_accessor :Type, :Url, :BucketInfo
-        
+
         def initialize(type=nil, url=nil, bucketinfo=nil)
           @Type = type
           @Url = url
@@ -917,7 +917,7 @@ module TencentCloud
         # @type Duration: Integer
 
         attr_accessor :Duration
-        
+
         def initialize(duration=nil)
           @Duration = duration
         end
@@ -937,7 +937,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Label, :Tags
-        
+
         def initialize(label=nil, tags=nil)
           @Label = label
           @Tags = tags
@@ -966,7 +966,7 @@ module TencentCloud
         # @type BucketInfo: :class:`Tencentcloud::Vm.v20201229.models.BucketInfo`
 
         attr_accessor :Type, :Url, :BucketInfo
-        
+
         def initialize(type=nil, url=nil, bucketinfo=nil)
           @Type = type
           @Url = url
@@ -1001,7 +1001,7 @@ module TencentCloud
         # @type EndTime: Float
 
         attr_accessor :Name, :Score, :StartTime, :EndTime
-        
+
         def initialize(name=nil, score=nil, starttime=nil, endtime=nil)
           @Name = name
           @Score = score
@@ -1055,7 +1055,7 @@ module TencentCloud
         # @type InputInfo: :class:`Tencentcloud::Vm.v20201229.models.InputInfo`
 
         attr_accessor :DataId, :TaskId, :Status, :Name, :BizType, :Type, :Suggestion, :Labels, :MediaInfo, :CreatedAt, :UpdatedAt, :InputInfo
-        
+
         def initialize(dataid=nil, taskid=nil, status=nil, name=nil, biztype=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, createdat=nil, updatedat=nil, inputinfo=nil)
           @DataId = dataid
           @TaskId = taskid
@@ -1112,7 +1112,7 @@ module TencentCloud
         # @type TaskStatus: String
 
         attr_accessor :BizType, :Type, :Suggestion, :TaskStatus
-        
+
         def initialize(biztype=nil, type=nil, suggestion=nil, taskstatus=nil)
           @BizType = biztype
           @Type = type
@@ -1138,7 +1138,7 @@ module TencentCloud
         # @type Input: :class:`Tencentcloud::Vm.v20201229.models.StorageInfo`
 
         attr_accessor :DataId, :Name, :Input
-        
+
         def initialize(dataid=nil, name=nil, input=nil)
           @DataId = dataid
           @Name = name
@@ -1171,7 +1171,7 @@ module TencentCloud
         # @type SubLabel: String
 
         attr_accessor :Label, :Suggestion, :Score, :SubLabel
-        
+
         def initialize(label=nil, suggestion=nil, score=nil, sublabel=nil)
           @Label = label
           @Suggestion = suggestion
@@ -1203,7 +1203,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :DataId, :TaskId, :Code, :Message
-        
+
         def initialize(dataid=nil, taskid=nil, code=nil, message=nil)
           @DataId = dataid
           @TaskId = taskid

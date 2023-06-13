@@ -25,7 +25,7 @@ module TencentCloud
         # @type Method: String
 
         attr_accessor :Protocol, :Method
-        
+
         def initialize(protocol=nil, method=nil)
           @Protocol = protocol
           @Method = method
@@ -40,7 +40,7 @@ module TencentCloud
       # CheckRule请求参数结构体
       class CheckRuleRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -54,7 +54,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -72,7 +72,7 @@ module TencentCloud
         # @type Transformations: Array
 
         attr_accessor :Input, :Transformations
-        
+
         def initialize(input=nil, transformations=nil)
           @Input = input
           @Transformations = transformations
@@ -99,7 +99,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Output, :RequestId
-        
+
         def initialize(output=nil, requestid=nil)
           @Output = output
           @RequestId = requestid
@@ -119,7 +119,7 @@ module TencentCloud
         # @type ResourceDescription: String
 
         attr_accessor :TopicName, :ResourceDescription
-        
+
         def initialize(topicname=nil, resourcedescription=nil)
           @TopicName = topicname
           @ResourceDescription = resourcedescription
@@ -139,7 +139,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :Offset, :TopicName
-        
+
         def initialize(offset=nil, topicname=nil)
           @Offset = offset
           @TopicName = topicname
@@ -159,7 +159,7 @@ module TencentCloud
         # @type RetryPolicy: :class:`Tencentcloud::Eb.v20210416.models.RetryPolicy`
 
         attr_accessor :TopicName, :RetryPolicy
-        
+
         def initialize(topicname=nil, retrypolicy=nil)
           @TopicName = topicname
           @RetryPolicy = retrypolicy
@@ -198,7 +198,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Status, :ModTime, :Enable, :Description, :AddTime, :ConnectionId, :EventBusId, :ConnectionDescription, :ConnectionName, :Type
-        
+
         def initialize(status=nil, modtime=nil, enable=nil, description=nil, addtime=nil, connectionid=nil, eventbusid=nil, connectiondescription=nil, connectionname=nil, type=nil)
           @Status = status
           @ModTime = modtime
@@ -239,7 +239,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Type, :Status
-        
+
         def initialize(type=nil, status=nil)
           @Type = type
           @Status = status
@@ -266,7 +266,7 @@ module TencentCloud
         # @type DTSParams: :class:`Tencentcloud::Eb.v20210416.models.DTSParams`
 
         attr_accessor :ResourceDescription, :APIGWParams, :CkafkaParams, :DTSParams
-        
+
         def initialize(resourcedescription=nil, apigwparams=nil, ckafkaparams=nil, dtsparams=nil)
           @ResourceDescription = resourcedescription
           @APIGWParams = apigwparams
@@ -307,7 +307,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :ConnectionDescription, :EventBusId, :ConnectionName, :Description, :Enable, :Type
-        
+
         def initialize(connectiondescription=nil, eventbusid=nil, connectionname=nil, description=nil, enable=nil, type=nil)
           @ConnectionDescription = connectiondescription
           @EventBusId = eventbusid
@@ -338,7 +338,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ConnectionId, :RequestId
-        
+
         def initialize(connectionid=nil, requestid=nil)
           @ConnectionId = connectionid
           @RequestId = requestid
@@ -362,7 +362,7 @@ module TencentCloud
         # @type EnableStore: Boolean
 
         attr_accessor :EventBusName, :Description, :SaveDays, :EnableStore
-        
+
         def initialize(eventbusname=nil, description=nil, savedays=nil, enablestore=nil)
           @EventBusName = eventbusname
           @Description = description
@@ -386,7 +386,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventBusId, :RequestId
-        
+
         def initialize(eventbusid=nil, requestid=nil)
           @EventBusId = eventbusid
           @RequestId = requestid
@@ -412,7 +412,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :EventPattern, :EventBusId, :RuleName, :Enable, :Description
-        
+
         def initialize(eventpattern=nil, eventbusid=nil, rulename=nil, enable=nil, description=nil)
           @EventPattern = eventpattern
           @EventBusId = eventbusid
@@ -438,7 +438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleId, :RequestId
-        
+
         def initialize(ruleid=nil, requestid=nil)
           @RuleId = ruleid
           @RequestId = requestid
@@ -462,7 +462,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :EventBusId, :Type, :TargetDescription, :RuleId
-        
+
         def initialize(eventbusid=nil, type=nil, targetdescription=nil, ruleid=nil)
           @EventBusId = eventbusid
           @Type = type
@@ -489,7 +489,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TargetId, :RequestId
-        
+
         def initialize(targetid=nil, requestid=nil)
           @TargetId = targetid
           @RequestId = requestid
@@ -511,7 +511,7 @@ module TencentCloud
         # @type Transformations: Array
 
         attr_accessor :EventBusId, :RuleId, :Transformations
-        
+
         def initialize(eventbusid=nil, ruleid=nil, transformations=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -540,7 +540,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TransformationId, :RequestId
-        
+
         def initialize(transformationid=nil, requestid=nil)
           @TransformationId = transformationid
           @RequestId = requestid
@@ -555,7 +555,7 @@ module TencentCloud
       # Data Transfer Service参数
       class DTSParams < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -572,7 +572,7 @@ module TencentCloud
         # @type CkafkaDeliveryParams: :class:`Tencentcloud::Eb.v20210416.models.CkafkaDeliveryParams`
 
         attr_accessor :DisposeMethod, :CkafkaDeliveryParams
-        
+
         def initialize(disposemethod=nil, ckafkadeliveryparams=nil)
           @DisposeMethod = disposemethod
           @CkafkaDeliveryParams = ckafkadeliveryparams
@@ -595,7 +595,7 @@ module TencentCloud
         # @type EventBusId: String
 
         attr_accessor :ConnectionId, :EventBusId
-        
+
         def initialize(connectionid=nil, eventbusid=nil)
           @ConnectionId = connectionid
           @EventBusId = eventbusid
@@ -613,7 +613,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -629,7 +629,7 @@ module TencentCloud
         # @type EventBusId: String
 
         attr_accessor :EventBusId
-        
+
         def initialize(eventbusid=nil)
           @EventBusId = eventbusid
         end
@@ -645,7 +645,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -663,7 +663,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :EventBusId, :RuleId
-        
+
         def initialize(eventbusid=nil, ruleid=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -681,7 +681,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -701,7 +701,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :EventBusId, :TargetId, :RuleId
-        
+
         def initialize(eventbusid=nil, targetid=nil, ruleid=nil)
           @EventBusId = eventbusid
           @TargetId = targetid
@@ -721,7 +721,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -741,7 +741,7 @@ module TencentCloud
         # @type TransformationId: String
 
         attr_accessor :EventBusId, :RuleId, :TransformationId
-        
+
         def initialize(eventbusid=nil, ruleid=nil, transformationid=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -761,7 +761,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -789,7 +789,7 @@ module TencentCloud
         # @type Filter: Array
 
         attr_accessor :StartTime, :EndTime, :EventBusId, :GroupField, :Page, :Limit, :Filter
-        
+
         def initialize(starttime=nil, endtime=nil, eventbusid=nil, groupfield=nil, page=nil, limit=nil, filter=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -827,7 +827,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -855,7 +855,7 @@ module TencentCloud
         # @type IndexTemplateType: String
 
         attr_accessor :NetMode, :IndexPrefix, :RotationInterval, :OutputMode, :IndexSuffixMode, :IndexTemplateType
-        
+
         def initialize(netmode=nil, indexprefix=nil, rotationinterval=nil, outputmode=nil, indexsuffixmode=nil, indextemplatetype=nil)
           @NetMode = netmode
           @IndexPrefix = indexprefix
@@ -881,7 +881,7 @@ module TencentCloud
         # @type Filter: String
 
         attr_accessor :Filter
-        
+
         def initialize(filter=nil)
           @Filter = filter
         end
@@ -906,7 +906,7 @@ module TencentCloud
         # @type Time: Integer
 
         attr_accessor :Source, :Data, :Type, :Subject, :Time
-        
+
         def initialize(source=nil, data=nil, type=nil, subject=nil, time=nil)
           @Source = source
           @Data = data
@@ -949,7 +949,7 @@ module TencentCloud
         # @type TargetBriefs: Array
 
         attr_accessor :ModTime, :Description, :AddTime, :EventBusName, :EventBusId, :Type, :PayMode, :ConnectionBriefs, :TargetBriefs
-        
+
         def initialize(modtime=nil, description=nil, addtime=nil, eventbusname=nil, eventbusid=nil, type=nil, paymode=nil, connectionbriefs=nil, targetbriefs=nil)
           @ModTime = modtime
           @Description = description
@@ -1000,7 +1000,7 @@ module TencentCloud
         # @type TextParams: :class:`Tencentcloud::Eb.v20210416.models.TextParams`
 
         attr_accessor :ExtractionInputPath, :Format, :TextParams
-        
+
         def initialize(extractioninputpath=nil, format=nil, textparams=nil)
           @ExtractionInputPath = extractioninputpath
           @Format = format
@@ -1027,7 +1027,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Values, :Name
-        
+
         def initialize(values=nil, name=nil)
           @Values = values
           @Name = name
@@ -1045,7 +1045,7 @@ module TencentCloud
         # @type EventBusId: String
 
         attr_accessor :EventBusId
-        
+
         def initialize(eventbusid=nil)
           @EventBusId = eventbusid
         end
@@ -1091,7 +1091,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModTime, :Description, :ClsTopicId, :AddTime, :ClsLogsetId, :EventBusName, :EventBusId, :Type, :PayMode, :SaveDays, :LogTopicId, :EnableStore, :LinkMode, :RequestId
-        
+
         def initialize(modtime=nil, description=nil, clstopicid=nil, addtime=nil, clslogsetid=nil, eventbusname=nil, eventbusid=nil, type=nil, paymode=nil, savedays=nil, logtopicid=nil, enablestore=nil, linkmode=nil, requestid=nil)
           @ModTime = modtime
           @Description = description
@@ -1135,7 +1135,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :EventBusId, :RuleId
-        
+
         def initialize(eventbusid=nil, ruleid=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -1171,7 +1171,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventBusId, :RuleId, :RuleName, :Status, :Enable, :Description, :EventPattern, :AddTime, :ModTime, :RequestId
-        
+
         def initialize(eventbusid=nil, ruleid=nil, rulename=nil, status=nil, enable=nil, description=nil, eventpattern=nil, addtime=nil, modtime=nil, requestid=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -1209,7 +1209,7 @@ module TencentCloud
         # @type TransformationId: String
 
         attr_accessor :EventBusId, :RuleId, :TransformationId
-        
+
         def initialize(eventbusid=nil, ruleid=nil, transformationid=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -1231,7 +1231,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Transformations, :RequestId
-        
+
         def initialize(transformations=nil, requestid=nil)
           @Transformations = transformations
           @RequestId = requestid
@@ -1264,7 +1264,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :EventBusId, :OrderBy, :Limit, :Order, :Offset
-        
+
         def initialize(eventbusid=nil, orderby=nil, limit=nil, order=nil, offset=nil)
           @EventBusId = eventbusid
           @OrderBy = orderby
@@ -1292,7 +1292,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Connections, :TotalCount, :RequestId
-        
+
         def initialize(connections=nil, totalcount=nil, requestid=nil)
           @Connections = connections
           @TotalCount = totalcount
@@ -1327,7 +1327,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :OrderBy, :Limit, :Order, :Filters, :Offset
-        
+
         def initialize(orderby=nil, limit=nil, order=nil, filters=nil, offset=nil)
           @OrderBy = orderby
           @Limit = limit
@@ -1362,7 +1362,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventBuses, :TotalCount, :RequestId
-        
+
         def initialize(eventbuses=nil, totalcount=nil, requestid=nil)
           @EventBuses = eventbuses
           @TotalCount = totalcount
@@ -1397,7 +1397,7 @@ module TencentCloud
         # @type Order: String
 
         attr_accessor :EventBusId, :OrderBy, :Limit, :Offset, :Order
-        
+
         def initialize(eventbusid=nil, orderby=nil, limit=nil, offset=nil, order=nil)
           @EventBusId = eventbusid
           @OrderBy = orderby
@@ -1425,7 +1425,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Rules, :TotalCount, :RequestId
-        
+
         def initialize(rules=nil, totalcount=nil, requestid=nil)
           @Rules = rules
           @TotalCount = totalcount
@@ -1462,7 +1462,7 @@ module TencentCloud
         # @type Order: String
 
         attr_accessor :EventBusId, :OrderBy, :RuleId, :Limit, :Offset, :Order
-        
+
         def initialize(eventbusid=nil, orderby=nil, ruleid=nil, limit=nil, offset=nil, order=nil)
           @EventBusId = eventbusid
           @OrderBy = orderby
@@ -1492,7 +1492,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Targets, :RequestId
-        
+
         def initialize(totalcount=nil, targets=nil, requestid=nil)
           @TotalCount = totalcount
           @Targets = targets
@@ -1527,7 +1527,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Key, :Operator, :Value, :Type, :Filters
-        
+
         def initialize(key=nil, operator=nil, value=nil, type=nil, filters=nil)
           @Key = key
           @Operator = operator
@@ -1562,7 +1562,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Operator, :Value
-        
+
         def initialize(key=nil, operator=nil, value=nil)
           @Key = key
           @Operator = operator
@@ -1586,7 +1586,7 @@ module TencentCloud
         # @type ValueType: String
 
         attr_accessor :Key, :Value, :ValueType
-        
+
         def initialize(key=nil, value=nil, valuetype=nil)
           @Key = key
           @Value = value
@@ -1608,7 +1608,7 @@ module TencentCloud
         # @type EventBusId: String
 
         attr_accessor :EventList, :EventBusId
-        
+
         def initialize(eventlist=nil, eventbusid=nil)
           @EventList = eventlist
           @EventBusId = eventbusid
@@ -1633,7 +1633,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1651,7 +1651,7 @@ module TencentCloud
         # @type EventBusId: String
 
         attr_accessor :EventList, :EventBusId
-        
+
         def initialize(eventlist=nil, eventbusid=nil)
           @EventList = eventlist
           @EventBusId = eventbusid
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1694,7 +1694,7 @@ module TencentCloud
         # @type MaxRetryAttempts: Integer
 
         attr_accessor :RetryInterval, :MaxRetryAttempts
-        
+
         def initialize(retryinterval=nil, maxretryattempts=nil)
           @RetryInterval = retryinterval
           @MaxRetryAttempts = maxretryattempts
@@ -1732,7 +1732,7 @@ module TencentCloud
         # @type DeadLetterConfig: :class:`Tencentcloud::Eb.v20210416.models.DeadLetterConfig`
 
         attr_accessor :Status, :ModTime, :Enable, :Description, :RuleId, :AddTime, :EventBusId, :RuleName, :Targets, :DeadLetterConfig
-        
+
         def initialize(status=nil, modtime=nil, enable=nil, description=nil, ruleid=nil, addtime=nil, eventbusid=nil, rulename=nil, targets=nil, deadletterconfig=nil)
           @Status = status
           @ModTime = modtime
@@ -1780,7 +1780,7 @@ module TencentCloud
         # @type EnableBatchDelivery: Boolean
 
         attr_accessor :BatchTimeout, :BatchEventCount, :EnableBatchDelivery
-        
+
         def initialize(batchtimeout=nil, batcheventcount=nil, enablebatchdelivery=nil)
           @BatchTimeout = batchtimeout
           @BatchEventCount = batcheventcount
@@ -1814,7 +1814,7 @@ module TencentCloud
         # @type OrderBy: String
 
         attr_accessor :StartTime, :EndTime, :EventBusId, :Page, :Limit, :Filter, :OrderFields, :OrderBy
-        
+
         def initialize(starttime=nil, endtime=nil, eventbusid=nil, page=nil, limit=nil, filter=nil, orderfields=nil, orderby=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1863,7 +1863,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Limit, :Page, :Results, :RequestId
-        
+
         def initialize(total=nil, limit=nil, page=nil, results=nil, requestid=nil)
           @Total = total
           @Limit = limit
@@ -1916,7 +1916,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Timestamp, :Message, :Source, :Type, :RuleIds, :Subject, :Region, :Status
-        
+
         def initialize(timestamp=nil, message=nil, source=nil, type=nil, ruleids=nil, subject=nil, region=nil, status=nil)
           @Timestamp = timestamp
           @Message = message
@@ -1963,7 +1963,7 @@ module TencentCloud
         # @type BatchEventCount: Integer
 
         attr_accessor :Type, :EventBusId, :TargetId, :TargetDescription, :RuleId, :EnableBatchDelivery, :BatchTimeout, :BatchEventCount
-        
+
         def initialize(type=nil, eventbusid=nil, targetid=nil, targetdescription=nil, ruleid=nil, enablebatchdelivery=nil, batchtimeout=nil, batcheventcount=nil)
           @Type = type
           @EventBusId = eventbusid
@@ -1998,7 +1998,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :TargetId, :Type
-        
+
         def initialize(targetid=nil, type=nil)
           @TargetId = targetid
           @Type = type
@@ -2022,7 +2022,7 @@ module TencentCloud
         # @type ESTargetParams: :class:`Tencentcloud::Eb.v20210416.models.ESTargetParams`
 
         attr_accessor :ResourceDescription, :SCFParams, :CkafkaTargetParams, :ESTargetParams
-        
+
         def initialize(resourcedescription=nil, scfparams=nil, ckafkatargetparams=nil, estargetparams=nil)
           @ResourceDescription = resourcedescription
           @SCFParams = scfparams
@@ -2057,7 +2057,7 @@ module TencentCloud
         # @type Regex: String
 
         attr_accessor :Separator, :Regex
-        
+
         def initialize(separator=nil, regex=nil)
           @Separator = separator
           @Regex = regex
@@ -2075,7 +2075,7 @@ module TencentCloud
         # @type OutputStructs: Array
 
         attr_accessor :OutputStructs
-        
+
         def initialize(outputstructs=nil)
           @OutputStructs = outputstructs
         end
@@ -2105,7 +2105,7 @@ module TencentCloud
         # @type Transform: :class:`Tencentcloud::Eb.v20210416.models.Transform`
 
         attr_accessor :Extraction, :EtlFilter, :Transform
-        
+
         def initialize(extraction=nil, etlfilter=nil, transform=nil)
           @Extraction = extraction
           @EtlFilter = etlfilter
@@ -2142,7 +2142,7 @@ module TencentCloud
         # @type ConnectionName: String
 
         attr_accessor :ConnectionId, :EventBusId, :Enable, :Description, :ConnectionName
-        
+
         def initialize(connectionid=nil, eventbusid=nil, enable=nil, description=nil, connectionname=nil)
           @ConnectionId = connectionid
           @EventBusId = eventbusid
@@ -2166,7 +2166,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2192,7 +2192,7 @@ module TencentCloud
         # @type EnableStore: Boolean
 
         attr_accessor :EventBusId, :Description, :EventBusName, :SaveDays, :LogTopicId, :EnableStore
-        
+
         def initialize(eventbusid=nil, description=nil, eventbusname=nil, savedays=nil, logtopicid=nil, enablestore=nil)
           @EventBusId = eventbusid
           @Description = description
@@ -2218,7 +2218,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2244,7 +2244,7 @@ module TencentCloud
         # @type RuleName: String
 
         attr_accessor :RuleId, :EventBusId, :Enable, :Description, :EventPattern, :RuleName
-        
+
         def initialize(ruleid=nil, eventbusid=nil, enable=nil, description=nil, eventpattern=nil, rulename=nil)
           @RuleId = ruleid
           @EventBusId = eventbusid
@@ -2270,7 +2270,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2296,7 +2296,7 @@ module TencentCloud
         # @type BatchEventCount: Integer
 
         attr_accessor :EventBusId, :RuleId, :TargetId, :EnableBatchDelivery, :BatchTimeout, :BatchEventCount
-        
+
         def initialize(eventbusid=nil, ruleid=nil, targetid=nil, enablebatchdelivery=nil, batchtimeout=nil, batcheventcount=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -2322,7 +2322,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2344,7 +2344,7 @@ module TencentCloud
         # @type Transformations: Array
 
         attr_accessor :EventBusId, :RuleId, :TransformationId, :Transformations
-        
+
         def initialize(eventbusid=nil, ruleid=nil, transformationid=nil, transformations=nil)
           @EventBusId = eventbusid
           @RuleId = ruleid
@@ -2373,7 +2373,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

@@ -105,7 +105,7 @@ module TencentCloud
         # @type WxToken: String
 
         attr_accessor :LoginIp, :Uid, :LoginTime, :AccountType, :AppIdU, :AssociateAccount, :NickName, :PhoneNumber, :EmailAddress, :RegisterTime, :Address, :CookieHash, :LoginSource, :LoginType, :Referer, :JumpUrl, :UserAgent, :XForwardedFor, :MouseClickCount, :KeyboardClickCount, :Result, :Reason, :LoginSpend, :MacAddress, :VendorId, :AppVersion, :Imei, :BusinessId, :WxSubType, :RandNum, :WxToken
-        
+
         def initialize(loginip=nil, uid=nil, logintime=nil, accounttype=nil, appidu=nil, associateaccount=nil, nickname=nil, phonenumber=nil, emailaddress=nil, registertime=nil, address=nil, cookiehash=nil, loginsource=nil, logintype=nil, referer=nil, jumpurl=nil, useragent=nil, xforwardedfor=nil, mouseclickcount=nil, keyboardclickcount=nil, result=nil, reason=nil, loginspend=nil, macaddress=nil, vendorid=nil, appversion=nil, imei=nil, businessid=nil, wxsubtype=nil, randnum=nil, wxtoken=nil)
           @LoginIp = loginip
           @Uid = uid
@@ -223,7 +223,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeDesc, :AssociateAccount, :LoginTime, :Uid, :LoginIp, :Level, :RiskType, :RootId, :RequestId
-        
+
         def initialize(codedesc=nil, associateaccount=nil, logintime=nil, uid=nil, loginip=nil, level=nil, risktype=nil, rootid=nil, requestid=nil)
           @CodeDesc = codedesc
           @AssociateAccount = associateaccount

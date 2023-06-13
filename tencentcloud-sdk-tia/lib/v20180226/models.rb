@@ -49,7 +49,7 @@ module TencentCloud
         # @type RuntimeConf: Array
 
         attr_accessor :Name, :Cluster, :RuntimeVersion, :PackageDir, :Command, :Args, :ScaleTier, :MasterType, :WorkerType, :ParameterServerType, :WorkerCount, :ParameterServerCount, :Debug, :RuntimeConf
-        
+
         def initialize(name=nil, cluster=nil, runtimeversion=nil, packagedir=nil, command=nil, args=nil, scaletier=nil, mastertype=nil, workertype=nil, parameterservertype=nil, workercount=nil, parameterservercount=nil, debug=nil, runtimeconf=nil)
           @Name = name
           @Cluster = cluster
@@ -93,7 +93,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Job, :RequestId
-        
+
         def initialize(job=nil, requestid=nil)
           @Job = job
           @RequestId = requestid
@@ -130,7 +130,7 @@ module TencentCloud
         # @type RuntimeConf: Array
 
         attr_accessor :Name, :Model, :Description, :Cluster, :RuntimeVersion, :Replicas, :Expose, :ServType, :RuntimeConf
-        
+
         def initialize(name=nil, model=nil, description=nil, cluster=nil, runtimeversion=nil, replicas=nil, expose=nil, servtype=nil, runtimeconf=nil)
           @Name = name
           @Model = model
@@ -164,7 +164,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Model, :RequestId
-        
+
         def initialize(model=nil, requestid=nil)
           @Model = model
           @RequestId = requestid
@@ -187,7 +187,7 @@ module TencentCloud
         # @type Cluster: String
 
         attr_accessor :Name, :Cluster
-        
+
         def initialize(name=nil, cluster=nil)
           @Name = name
           @Cluster = cluster
@@ -205,7 +205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -225,7 +225,7 @@ module TencentCloud
         # @type ServType: String
 
         attr_accessor :Name, :Cluster, :ServType
-        
+
         def initialize(name=nil, cluster=nil, servtype=nil)
           @Name = name
           @Cluster = cluster
@@ -245,7 +245,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -263,7 +263,7 @@ module TencentCloud
         # @type Cluster: String
 
         attr_accessor :Name, :Cluster
-        
+
         def initialize(name=nil, cluster=nil)
           @Name = name
           @Cluster = cluster
@@ -283,7 +283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Job, :RequestId
-        
+
         def initialize(job=nil, requestid=nil)
           @Job = job
           @RequestId = requestid
@@ -308,7 +308,7 @@ module TencentCloud
         # @type ServType: String
 
         attr_accessor :Name, :Cluster, :ServType
-        
+
         def initialize(name=nil, cluster=nil, servtype=nil)
           @Name = name
           @Cluster = cluster
@@ -330,7 +330,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Model, :RequestId
-        
+
         def initialize(model=nil, requestid=nil)
           @Model = model
           @RequestId = requestid
@@ -355,7 +355,7 @@ module TencentCloud
         # @type Update: Boolean
 
         attr_accessor :Cluster, :TiaVersion, :Update
-        
+
         def initialize(cluster=nil, tiaversion=nil, update=nil)
           @Cluster = cluster
           @TiaVersion = tiaversion
@@ -377,7 +377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TiaVersion, :RequestId
-        
+
         def initialize(tiaversion=nil, requestid=nil)
           @TiaVersion = tiaversion
           @RequestId = requestid
@@ -439,7 +439,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Name, :CreateTime, :StartTime, :EndTime, :State, :Message, :ScaleTier, :MasterType, :WorkerType, :ParameterServerType, :WorkerCount, :ParameterServerCount, :PackageDir, :Command, :Args, :Cluster, :RuntimeVersion, :DelTime, :AppId, :Uin, :Debug, :RuntimeConf, :Id
-        
+
         def initialize(name=nil, createtime=nil, starttime=nil, endtime=nil, state=nil, message=nil, scaletier=nil, mastertype=nil, workertype=nil, parameterservertype=nil, workercount=nil, parameterservercount=nil, packagedir=nil, command=nil, args=nil, cluster=nil, runtimeversion=nil, deltime=nil, appid=nil, uin=nil, debug=nil, runtimeconf=nil, id=nil)
           @Name = name
           @CreateTime = createtime
@@ -503,7 +503,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Cluster, :Limit, :Offset
-        
+
         def initialize(cluster=nil, limit=nil, offset=nil)
           @Cluster = cluster
           @Limit = limit
@@ -525,7 +525,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Jobs, :RequestId
-        
+
         def initialize(jobs=nil, requestid=nil)
           @Jobs = jobs
           @RequestId = requestid
@@ -556,7 +556,7 @@ module TencentCloud
         # @type ServType: String
 
         attr_accessor :Cluster, :Limit, :Offset, :ServType
-        
+
         def initialize(cluster=nil, limit=nil, offset=nil, servtype=nil)
           @Cluster = cluster
           @Limit = limit
@@ -580,7 +580,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Models, :RequestId
-        
+
         def initialize(models=nil, requestid=nil)
           @Models = models
           @RequestId = requestid
@@ -615,7 +615,7 @@ module TencentCloud
         # @type Time: String
 
         attr_accessor :ContainerName, :Log, :Namespace, :PodId, :PodName, :Time
-        
+
         def initialize(containername=nil, log=nil, namespace=nil, podid=nil, podname=nil, time=nil)
           @ContainerName = containername
           @Log = log
@@ -684,7 +684,7 @@ module TencentCloud
         # @type DelTime: String
 
         attr_accessor :Name, :Description, :Cluster, :Model, :RuntimeVersion, :CreateTime, :State, :ServingUrl, :Message, :AppId, :ServType, :Expose, :Replicas, :Id, :Uin, :DelTime
-        
+
         def initialize(name=nil, description=nil, cluster=nil, model=nil, runtimeversion=nil, createtime=nil, state=nil, servingurl=nil, message=nil, appid=nil, servtype=nil, expose=nil, replicas=nil, id=nil, uin=nil, deltime=nil)
           @Name = name
           @Description = description
@@ -740,7 +740,7 @@ module TencentCloud
         # @type Context: String
 
         attr_accessor :JobName, :Cluster, :StartTime, :EndTime, :Limit, :Context
-        
+
         def initialize(jobname=nil, cluster=nil, starttime=nil, endtime=nil, limit=nil, context=nil)
           @JobName = jobname
           @Cluster = cluster
@@ -772,7 +772,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Context, :Logs, :Listover, :RequestId
-        
+
         def initialize(context=nil, logs=nil, listover=nil, requestid=nil)
           @Context = context
           @Logs = logs

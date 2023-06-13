@@ -27,7 +27,7 @@ module TencentCloud
         # @type User: String
 
         attr_accessor :Text, :ProjectId, :User
-        
+
         def initialize(text=nil, projectid=nil, user=nil)
           @Text = text
           @ProjectId = projectid
@@ -49,7 +49,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Answer, :RequestId
-        
+
         def initialize(answer=nil, requestid=nil)
           @Answer = answer
           @RequestId = requestid
@@ -83,7 +83,7 @@ module TencentCloud
         # @type DataLen: Integer
 
         attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen
-        
+
         def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil)
           @ProjectId = projectid
           @SubServiceType = subservicetype
@@ -117,7 +117,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -157,7 +157,7 @@ module TencentCloud
         # @type Seq: Integer
 
         attr_accessor :ProjectId, :SubServiceType, :RecEngineModelType, :Data, :DataLen, :VoiceId, :IsEnd, :VoiceFormat, :OpenTranslate, :SourceLanguage, :TargetLanguage, :Seq
-        
+
         def initialize(projectid=nil, subservicetype=nil, recenginemodeltype=nil, data=nil, datalen=nil, voiceid=nil, isend=nil, voiceformat=nil, opentranslate=nil, sourcelanguage=nil, targetlanguage=nil, seq=nil)
           @ProjectId = projectid
           @SubServiceType = subservicetype
@@ -199,7 +199,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsrText, :NmtText, :RequestId
-        
+
         def initialize(asrtext=nil, nmttext=nil, requestid=nil)
           @AsrText = asrtext
           @NmtText = nmttext
@@ -239,7 +239,7 @@ module TencentCloud
         # @type Codec: String
 
         attr_accessor :Text, :SessionId, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec
-        
+
         def initialize(text=nil, sessionid=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil)
           @Text = text
           @SessionId = sessionid
@@ -277,7 +277,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Audio, :SessionId, :RequestId
-        
+
         def initialize(audio=nil, sessionid=nil, requestid=nil)
           @Audio = audio
           @SessionId = sessionid

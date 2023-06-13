@@ -23,7 +23,7 @@ module TencentCloud
         # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
 
         attr_accessor :BusinessSecurityData
-        
+
         def initialize(businesssecuritydata=nil)
           @BusinessSecurityData = businesssecuritydata
         end
@@ -44,7 +44,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -72,7 +72,7 @@ module TencentCloud
         # @type BlockTime: String
 
         attr_accessor :BlockHash, :BlockHeight, :BlockTime
-        
+
         def initialize(blockhash=nil, blockheight=nil, blocktime=nil)
           @BlockHash = blockhash
           @BlockHeight = blockheight
@@ -141,7 +141,7 @@ module TencentCloud
         # @type Job: :class:`Tencentcloud::Trp.v20210515.models.Job`
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job
-        
+
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil)
           @BatchId = batchid
           @CorpId = corpid
@@ -195,7 +195,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Code
-        
+
         def initialize(code=nil)
           @Code = code
         end
@@ -269,7 +269,7 @@ module TencentCloud
         # @type PackSpec: Array
 
         attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec
-        
+
         def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil)
           @PackId = packid
           @CorpId = corpid
@@ -342,7 +342,7 @@ module TencentCloud
         # @type Ext: String
 
         attr_accessor :Name, :Type, :Value, :Length, :Ext
-        
+
         def initialize(name=nil, type=nil, value=nil, length=nil, ext=nil)
           @Name = name
           @Type = type
@@ -372,7 +372,7 @@ module TencentCloud
         # @type UsageQuota: :class:`Tencentcloud::Trp.v20210515.models.UsageQuota`
 
         attr_accessor :CorpId, :CorpName, :Quota, :UsageQuota
-        
+
         def initialize(corpid=nil, corpname=nil, quota=nil, usagequota=nil)
           @CorpId = corpid
           @CorpName = corpname
@@ -416,7 +416,7 @@ module TencentCloud
         # @type BatchCode: String
 
         attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl, :CloneId, :BatchCode
-        
+
         def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil, cloneid=nil, batchcode=nil)
           @CorpId = corpid
           @MerchantId = merchantid
@@ -450,7 +450,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :RequestId
-        
+
         def initialize(batchid=nil, requestid=nil)
           @BatchId = batchid
           @RequestId = requestid
@@ -486,7 +486,7 @@ module TencentCloud
         # @type SerialType: Integer
 
         attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType
-        
+
         def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil)
           @MerchantId = merchantid
           @CodeLength = codelength
@@ -529,7 +529,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PackId, :RequestId
-        
+
         def initialize(packid=nil, requestid=nil)
           @PackId = packid
           @RequestId = requestid
@@ -563,7 +563,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :CorpName, :Owner, :CodeQuota, :ExpireTime, :Amount, :CorpId, :ContactPerson, :ContactNumber, :Remark
-        
+
         def initialize(corpname=nil, owner=nil, codequota=nil, expiretime=nil, amount=nil, corpid=nil, contactperson=nil, contactnumber=nil, remark=nil)
           @CorpName = corpname
           @Owner = owner
@@ -598,7 +598,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CorpId, :RequestId
-        
+
         def initialize(corpid=nil, requestid=nil)
           @CorpId = corpid
           @RequestId = requestid
@@ -634,7 +634,7 @@ module TencentCloud
         # @type SerialType: Integer
 
         attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType
-        
+
         def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil)
           @MerchantId = merchantid
           @Amount = amount
@@ -684,7 +684,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PackId, :RequestId
-        
+
         def initialize(packid=nil, requestid=nil)
           @PackId = packid
           @RequestId = requestid
@@ -710,7 +710,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :Name, :MerchantId, :CodeLength, :CodeParts, :CorpId
-        
+
         def initialize(name=nil, merchantid=nil, codelength=nil, codeparts=nil, corpid=nil)
           @Name = name
           @MerchantId = merchantid
@@ -744,7 +744,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomId, :RequestId
-        
+
         def initialize(customid=nil, requestid=nil)
           @CustomId = customid
           @RequestId = requestid
@@ -770,7 +770,7 @@ module TencentCloud
         # @type CodeUrl: String
 
         attr_accessor :Name, :Remark, :CorpId, :CodeType, :CodeUrl
-        
+
         def initialize(name=nil, remark=nil, corpid=nil, codetype=nil, codeurl=nil)
           @Name = name
           @Remark = remark
@@ -797,7 +797,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantId, :RequestId
-        
+
         def initialize(merchantid=nil, requestid=nil)
           @MerchantId = merchantid
           @RequestId = requestid
@@ -829,7 +829,7 @@ module TencentCloud
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
 
         attr_accessor :Name, :MerchantId, :Remark, :MerchantName, :Specification, :Logo, :CorpId, :Ext
-        
+
         def initialize(name=nil, merchantid=nil, remark=nil, merchantname=nil, specification=nil, logo=nil, corpid=nil, ext=nil)
           @Name = name
           @MerchantId = merchantid
@@ -865,7 +865,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductId, :RequestId
-        
+
         def initialize(productid=nil, requestid=nil)
           @ProductId = productid
           @RequestId = requestid
@@ -885,7 +885,7 @@ module TencentCloud
         # @type TraceId: String
 
         attr_accessor :CorpId, :TraceId
-        
+
         def initialize(corpid=nil, traceid=nil)
           @CorpId = corpid
           @TraceId = traceid
@@ -905,7 +905,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :RequestId
-        
+
         def initialize(traceid=nil, requestid=nil)
           @TraceId = traceid
           @RequestId = requestid
@@ -927,7 +927,7 @@ module TencentCloud
         # @type FileKey: String
 
         attr_accessor :CorpId, :BatchId, :FileKey
-        
+
         def initialize(corpid=nil, batchid=nil, filekey=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -950,7 +950,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :RequestId
-        
+
         def initialize(batchid=nil, requestid=nil)
           @BatchId = batchid
           @RequestId = requestid
@@ -980,7 +980,7 @@ module TencentCloud
         # @type CheckType: Integer
 
         attr_accessor :BatchId, :CorpId, :Codes, :CodeType, :CheckType
-        
+
         def initialize(batchid=nil, corpid=nil, codes=nil, codetype=nil, checktype=nil)
           @BatchId = batchid
           @CorpId = corpid
@@ -1017,7 +1017,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :ActiveCnt, :CodeCnt, :RequestId
-        
+
         def initialize(batchid=nil, activecnt=nil, codecnt=nil, requestid=nil)
           @BatchId = batchid
           @ActiveCnt = activecnt
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
 
         attr_accessor :CorpId, :BatchId, :TaskId, :Phase, :PhaseName, :ChainStatus, :Type, :TraceId, :TraceItems, :Status, :PhaseData
-        
+
         def initialize(corpid=nil, batchid=nil, taskid=nil, phase=nil, phasename=nil, chainstatus=nil, type=nil, traceid=nil, traceitems=nil, status=nil, phasedata=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -1107,7 +1107,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :RequestId
-        
+
         def initialize(traceid=nil, requestid=nil)
           @TraceId = traceid
           @RequestId = requestid
@@ -1144,7 +1144,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :CustomId, :Name, :CorpId, :MerchantId, :CodeLength, :Status, :CodeParts, :CreateTime, :UpdateTime
-        
+
         def initialize(customid=nil, name=nil, corpid=nil, merchantid=nil, codelength=nil, status=nil, codeparts=nil, createtime=nil, updatetime=nil)
           @CustomId = customid
           @Name = name
@@ -1185,7 +1185,7 @@ module TencentCloud
         # @type BatchId: String
 
         attr_accessor :CorpId, :BatchId
-        
+
         def initialize(corpid=nil, batchid=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -1205,7 +1205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :RequestId
-        
+
         def initialize(batchid=nil, requestid=nil)
           @BatchId = batchid
           @RequestId = requestid
@@ -1225,7 +1225,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :MerchantId, :CorpId
-        
+
         def initialize(merchantid=nil, corpid=nil)
           @MerchantId = merchantid
           @CorpId = corpid
@@ -1246,7 +1246,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantId, :RequestId
-        
+
         def initialize(merchantid=nil, requestid=nil)
           @MerchantId = merchantid
           @RequestId = requestid
@@ -1266,7 +1266,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :ProductId, :CorpId
-        
+
         def initialize(productid=nil, corpid=nil)
           @ProductId = productid
           @CorpId = corpid
@@ -1287,7 +1287,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductId, :RequestId
-        
+
         def initialize(productid=nil, requestid=nil)
           @ProductId = productid
           @RequestId = requestid
@@ -1307,7 +1307,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :TraceId, :CorpId
-        
+
         def initialize(traceid=nil, corpid=nil)
           @TraceId = traceid
           @CorpId = corpid
@@ -1328,7 +1328,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :RequestId
-        
+
         def initialize(traceid=nil, requestid=nil)
           @TraceId = traceid
           @RequestId = requestid
@@ -1348,7 +1348,7 @@ module TencentCloud
         # @type BatchId: String
 
         attr_accessor :CorpId, :BatchId
-        
+
         def initialize(corpid=nil, batchid=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -1368,7 +1368,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeBatch, :RequestId
-        
+
         def initialize(codebatch=nil, requestid=nil)
           @CodeBatch = codebatch
           @RequestId = requestid
@@ -1401,7 +1401,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId
-        
+
         def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil)
           @MerchantId = merchantid
           @ProductId = productid
@@ -1435,7 +1435,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeBatchs, :TotalCount, :RequestId
-        
+
         def initialize(codebatchs=nil, totalcount=nil, requestid=nil)
           @CodeBatchs = codebatchs
           @TotalCount = totalcount
@@ -1464,7 +1464,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :PackId, :CorpId
-        
+
         def initialize(packid=nil, corpid=nil)
           @PackId = packid
           @CorpId = corpid
@@ -1485,7 +1485,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
-        
+
         def initialize(status=nil, requestid=nil)
           @Status = status
           @RequestId = requestid
@@ -1505,7 +1505,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :PackId, :CorpId
-        
+
         def initialize(packid=nil, corpid=nil)
           @PackId = packid
           @CorpId = corpid
@@ -1532,7 +1532,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :ImgUrl, :FileKey, :RequestId
-        
+
         def initialize(url=nil, imgurl=nil, filekey=nil, requestid=nil)
           @Url = url
           @ImgUrl = imgurl
@@ -1562,7 +1562,7 @@ module TencentCloud
         # @type SerialType: Integer
 
         attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType
-        
+
         def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -1592,7 +1592,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodePacks, :TotalCount, :RequestId
-        
+
         def initialize(codepacks=nil, totalcount=nil, requestid=nil)
           @CodePacks = codepacks
           @TotalCount = totalcount
@@ -1621,7 +1621,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :PackId, :CorpId
-        
+
         def initialize(packid=nil, corpid=nil)
           @PackId = packid
           @CorpId = corpid
@@ -1642,7 +1642,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Codes, :RequestId
-        
+
         def initialize(codes=nil, requestid=nil)
           @Codes = codes
           @RequestId = requestid
@@ -1673,7 +1673,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :AgentId, :PageNumber, :PageSize, :Keyword
-        
+
         def initialize(agentid=nil, pagenumber=nil, pagesize=nil, keyword=nil)
           @AgentId = agentid
           @PageNumber = pagenumber
@@ -1701,7 +1701,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CorpQuotas, :Total, :RequestId
-        
+
         def initialize(corpquotas=nil, total=nil, requestid=nil)
           @CorpQuotas = corpquotas
           @Total = total
@@ -1730,7 +1730,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :CustomId, :CorpId
-        
+
         def initialize(customid=nil, corpid=nil)
           @CustomId = customid
           @CorpId = corpid
@@ -1751,7 +1751,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomRule, :RequestId
-        
+
         def initialize(customrule=nil, requestid=nil)
           @CustomRule = customrule
           @RequestId = requestid
@@ -1782,7 +1782,7 @@ module TencentCloud
         # @type MerchantId: String
 
         attr_accessor :Keyword, :PageSize, :PageNumber, :CorpId, :Status, :MerchantId
-        
+
         def initialize(keyword=nil, pagesize=nil, pagenumber=nil, corpid=nil, status=nil, merchantid=nil)
           @Keyword = keyword
           @PageSize = pagesize
@@ -1814,7 +1814,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomRules, :TotalCount, :RequestId
-        
+
         def initialize(customrules=nil, totalcount=nil, requestid=nil)
           @CustomRules = customrules
           @TotalCount = totalcount
@@ -1843,7 +1843,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :JobId, :CorpId
-        
+
         def initialize(jobid=nil, corpid=nil)
           @JobId = jobid
           @CorpId = corpid
@@ -1864,7 +1864,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :RequestId
-        
+
         def initialize(url=nil, requestid=nil)
           @Url = url
           @RequestId = requestid
@@ -1884,7 +1884,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :MerchantId, :CorpId
-        
+
         def initialize(merchantid=nil, corpid=nil)
           @MerchantId = merchantid
           @CorpId = corpid
@@ -1905,7 +1905,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Merchant, :RequestId
-        
+
         def initialize(merchant=nil, requestid=nil)
           @Merchant = merchant
           @RequestId = requestid
@@ -1934,7 +1934,7 @@ module TencentCloud
         # @type CodeType: Integer
 
         attr_accessor :Name, :PageSize, :PageNumber, :CorpId, :CodeType
-        
+
         def initialize(name=nil, pagesize=nil, pagenumber=nil, corpid=nil, codetype=nil)
           @Name = name
           @PageSize = pagesize
@@ -1964,7 +1964,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Merchants, :TotalCount, :RequestId
-        
+
         def initialize(merchants=nil, totalcount=nil, requestid=nil)
           @Merchants = merchants
           @TotalCount = totalcount
@@ -1993,7 +1993,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :ProductId, :CorpId
-        
+
         def initialize(productid=nil, corpid=nil)
           @ProductId = productid
           @CorpId = corpid
@@ -2014,7 +2014,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Product, :RequestId
-        
+
         def initialize(product=nil, requestid=nil)
           @Product = product
           @RequestId = requestid
@@ -2043,7 +2043,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :Name, :PageSize, :PageNumber, :MerchantId, :CorpId
-        
+
         def initialize(name=nil, pagesize=nil, pagenumber=nil, merchantid=nil, corpid=nil)
           @Name = name
           @PageSize = pagesize
@@ -2073,7 +2073,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Products, :TotalCount, :RequestId
-        
+
         def initialize(products=nil, totalcount=nil, requestid=nil)
           @Products = products
           @TotalCount = totalcount
@@ -2102,7 +2102,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :Code, :CorpId
-        
+
         def initialize(code=nil, corpid=nil)
           @Code = code
           @CorpId = corpid
@@ -2127,7 +2127,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
-        
+
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
           @TotalCount = totalcount
@@ -2175,7 +2175,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :CorpId, :PageSize, :PageNumber, :MerchantId, :ProductId, :BatchId, :Code
-        
+
         def initialize(corpid=nil, pagesize=nil, pagenumber=nil, merchantid=nil, productid=nil, batchid=nil, code=nil)
           @CorpId = corpid
           @PageSize = pagesize
@@ -2205,7 +2205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ScanStats, :RequestId
-        
+
         def initialize(scanstats=nil, requestid=nil)
           @ScanStats = scanstats
           @RequestId = requestid
@@ -2230,7 +2230,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :CorpId
-        
+
         def initialize(corpid=nil)
           @CorpId = corpid
         end
@@ -2249,7 +2249,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Token, :RequestId
-        
+
         def initialize(token=nil, requestid=nil)
           @Token = token
           @RequestId = requestid
@@ -2269,7 +2269,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :CorpId, :Code
-        
+
         def initialize(corpid=nil, code=nil)
           @CorpId = corpid
           @Code = code
@@ -2289,7 +2289,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceCode, :RequestId
-        
+
         def initialize(tracecode=nil, requestid=nil)
           @TraceCode = tracecode
           @RequestId = requestid
@@ -2318,7 +2318,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :Keyword, :PageNumber, :PageSize, :BatchId, :CorpId
-        
+
         def initialize(keyword=nil, pagenumber=nil, pagesize=nil, batchid=nil, corpid=nil)
           @Keyword = keyword
           @PageNumber = pagenumber
@@ -2348,7 +2348,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceCodes, :TotalCount, :RequestId
-        
+
         def initialize(tracecodes=nil, totalcount=nil, requestid=nil)
           @TraceCodes = tracecodes
           @TotalCount = totalcount
@@ -2377,7 +2377,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :Id, :CorpId
-        
+
         def initialize(id=nil, corpid=nil)
           @Id = id
           @CorpId = corpid
@@ -2397,7 +2397,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceData, :RequestId
-        
+
         def initialize(tracedata=nil, requestid=nil)
           @TraceData = tracedata
           @RequestId = requestid
@@ -2430,7 +2430,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :CorpId, :BatchId, :TaskId, :PageNumber, :Code, :Phase, :PageSize
-        
+
         def initialize(corpid=nil, batchid=nil, taskid=nil, pagenumber=nil, code=nil, phase=nil, pagesize=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -2462,7 +2462,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TraceDataList, :RequestId
-        
+
         def initialize(totalcount=nil, tracedatalist=nil, requestid=nil)
           @TotalCount = totalcount
           @TraceDataList = tracedatalist
@@ -2489,7 +2489,7 @@ module TencentCloud
         # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
 
         attr_accessor :BusinessSecurityData
-        
+
         def initialize(businesssecuritydata=nil)
           @BusinessSecurityData = businesssecuritydata
         end
@@ -2510,7 +2510,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -2528,7 +2528,7 @@ module TencentCloud
       # 预留字段
       class Ext < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2551,7 +2551,7 @@ module TencentCloud
         # @type IsAuthorized: Integer
 
         attr_accessor :EncryptMethod, :EncryptMode, :PaddingType, :EncryptData, :IsAuthorized
-        
+
         def initialize(encryptmethod=nil, encryptmode=nil, paddingtype=nil, encryptdata=nil, isauthorized=nil)
           @EncryptMethod = encryptmethod
           @EncryptMode = encryptmode
@@ -2577,7 +2577,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :JobId, :Status
-        
+
         def initialize(jobid=nil, status=nil)
           @JobId = jobid
           @Status = status
@@ -2613,7 +2613,7 @@ module TencentCloud
         # @type CodeUrl: String
 
         attr_accessor :MerchantId, :CorpId, :Name, :Remark, :CreateTime, :UpdateTime, :CodeRule, :CodeType, :CodeUrl
-        
+
         def initialize(merchantid=nil, corpid=nil, name=nil, remark=nil, createtime=nil, updatetime=nil, coderule=nil, codetype=nil, codeurl=nil)
           @MerchantId = merchantid
           @CorpId = corpid
@@ -2659,7 +2659,7 @@ module TencentCloud
         # @type BatchCode: String
 
         attr_accessor :BatchId, :CorpId, :Status, :MpTpl, :MerchantId, :ProductId, :Remark, :BatchCode
-        
+
         def initialize(batchid=nil, corpid=nil, status=nil, mptpl=nil, merchantid=nil, productid=nil, remark=nil, batchcode=nil)
           @BatchId = batchid
           @CorpId = corpid
@@ -2691,7 +2691,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :RequestId
-        
+
         def initialize(batchid=nil, requestid=nil)
           @BatchId = batchid
           @RequestId = requestid
@@ -2717,7 +2717,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :CustomId, :Name, :CodeLength, :CodeParts, :CorpId
-        
+
         def initialize(customid=nil, name=nil, codelength=nil, codeparts=nil, corpid=nil)
           @CustomId = customid
           @Name = name
@@ -2751,7 +2751,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomId, :RequestId
-        
+
         def initialize(customid=nil, requestid=nil)
           @CustomId = customid
           @RequestId = requestid
@@ -2773,7 +2773,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :CustomId, :Status, :CorpId
-        
+
         def initialize(customid=nil, status=nil, corpid=nil)
           @CustomId = customid
           @Status = status
@@ -2796,7 +2796,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomId, :RequestId
-        
+
         def initialize(customid=nil, requestid=nil)
           @CustomId = customid
           @RequestId = requestid
@@ -2824,7 +2824,7 @@ module TencentCloud
         # @type CodeUrl: String
 
         attr_accessor :Name, :MerchantId, :Remark, :CorpId, :CodeType, :CodeUrl
-        
+
         def initialize(name=nil, merchantid=nil, remark=nil, corpid=nil, codetype=nil, codeurl=nil)
           @Name = name
           @MerchantId = merchantid
@@ -2853,7 +2853,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantId, :RequestId
-        
+
         def initialize(merchantid=nil, requestid=nil)
           @MerchantId = merchantid
           @RequestId = requestid
@@ -2883,7 +2883,7 @@ module TencentCloud
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
 
         attr_accessor :Name, :ProductId, :Remark, :Specification, :Logo, :CorpId, :Ext
-        
+
         def initialize(name=nil, productid=nil, remark=nil, specification=nil, logo=nil, corpid=nil, ext=nil)
           @Name = name
           @ProductId = productid
@@ -2917,7 +2917,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductId, :RequestId
-        
+
         def initialize(productid=nil, requestid=nil)
           @ProductId = productid
           @RequestId = requestid
@@ -2939,7 +2939,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Code, :CorpId, :Status
-        
+
         def initialize(code=nil, corpid=nil, status=nil)
           @Code = code
           @CorpId = corpid
@@ -2959,7 +2959,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2979,7 +2979,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :BatchId, :Codes, :CorpId
-        
+
         def initialize(batchid=nil, codes=nil, corpid=nil)
           @BatchId = batchid
           @Codes = codes
@@ -3005,7 +3005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UnlinkCnt, :CodeCnt, :BatchId, :RequestId
-        
+
         def initialize(unlinkcnt=nil, codecnt=nil, batchid=nil, requestid=nil)
           @UnlinkCnt = unlinkcnt
           @CodeCnt = codecnt
@@ -3033,7 +3033,7 @@ module TencentCloud
         # @type TraceIds: Array
 
         attr_accessor :CorpId, :BatchId, :TaskId, :TraceIds
-        
+
         def initialize(corpid=nil, batchid=nil, taskid=nil, traceids=nil)
           @CorpId = corpid
           @BatchId = batchid
@@ -3058,7 +3058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchId, :RequestId
-        
+
         def initialize(batchid=nil, requestid=nil)
           @BatchId = batchid
           @RequestId = requestid
@@ -3108,7 +3108,7 @@ module TencentCloud
         # @type CorpId: Integer
 
         attr_accessor :TraceId, :BatchId, :TaskId, :TraceItems, :PhaseName, :PhaseData, :Status, :Rank, :Type, :Code, :Phase, :TraceTime, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :CorpId
-        
+
         def initialize(traceid=nil, batchid=nil, taskid=nil, traceitems=nil, phasename=nil, phasedata=nil, status=nil, rank=nil, type=nil, code=nil, phase=nil, tracetime=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, corpid=nil)
           @TraceId = traceid
           @BatchId = batchid
@@ -3171,7 +3171,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :RequestId
-        
+
         def initialize(traceid=nil, requestid=nil)
           @TraceId = traceid
           @RequestId = requestid
@@ -3196,7 +3196,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Code, :Message, :Value
-        
+
         def initialize(code=nil, message=nil, value=nil)
           @Code = code
           @Message = message
@@ -3226,7 +3226,7 @@ module TencentCloud
         # @type CodeParts: Array
 
         attr_accessor :Level, :Rate, :Amount, :CustomId, :CodeParts
-        
+
         def initialize(level=nil, rate=nil, amount=nil, customid=nil, codeparts=nil)
           @Level = level
           @Rate = rate
@@ -3267,7 +3267,7 @@ module TencentCloud
         # @type AppName: String
 
         attr_accessor :HeadEnabled, :HeadTitle, :Key, :AppId, :AppPath, :AppName
-        
+
         def initialize(headenabled=nil, headtitle=nil, key=nil, appid=nil, apppath=nil, appname=nil)
           @HeadEnabled = headenabled
           @HeadTitle = headtitle
@@ -3319,7 +3319,7 @@ module TencentCloud
         # @type MerchantName: String
 
         attr_accessor :ProductId, :CorpId, :MerchantId, :ProductCode, :Name, :Specification, :Remark, :Logo, :CreateTime, :UpdateTime, :Ext, :MerchantName
-        
+
         def initialize(productid=nil, corpid=nil, merchantid=nil, productcode=nil, name=nil, specification=nil, remark=nil, logo=nil, createtime=nil, updatetime=nil, ext=nil, merchantname=nil)
           @ProductId = productid
           @CorpId = corpid
@@ -3397,7 +3397,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :TrackType, :Version
-        
+
         def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, tracktype=nil, version=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -3437,7 +3437,7 @@ module TencentCloud
         # @type BusinessSecurityData: :class:`Tencentcloud::Trp.v20210515.models.InputEncryptData`
 
         attr_accessor :BusinessSecurityData
-        
+
         def initialize(businesssecuritydata=nil)
           @BusinessSecurityData = businesssecuritydata
         end
@@ -3458,7 +3458,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -3525,7 +3525,7 @@ module TencentCloud
         # @type BatchId: String
 
         attr_accessor :LogId, :Openid, :Nickname, :CreateTime, :Code, :CorpId, :MerchantId, :ProductId, :Ip, :Country, :Province, :City, :District, :Unionid, :First, :BatchId
-        
+
         def initialize(logid=nil, openid=nil, nickname=nil, createtime=nil, code=nil, corpid=nil, merchantid=nil, productid=nil, ip=nil, country=nil, province=nil, city=nil, district=nil, unionid=nil, first=nil, batchid=nil)
           @LogId = logid
           @Openid = openid
@@ -3591,7 +3591,7 @@ module TencentCloud
         # @type ProductName: String
 
         attr_accessor :Code, :CorpId, :MerchantId, :ProductId, :BatchId, :Pv, :Uv, :CreateTime, :UpdateTime, :MerchantName, :ProductName
-        
+
         def initialize(code=nil, corpid=nil, merchantid=nil, productid=nil, batchid=nil, pv=nil, uv=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil)
           @Code = code
           @CorpId = corpid
@@ -3651,7 +3651,7 @@ module TencentCloud
         # @type Level: Integer
 
         attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :AgentId, :Level
-        
+
         def initialize(code=nil, corpid=nil, packid=nil, batchid=nil, merchantid=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, agentid=nil, level=nil)
           @Code = code
           @CorpId = corpid
@@ -3726,7 +3726,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :TraceId, :CorpId, :Type, :Code, :Rank, :Phase, :PhaseName, :TraceTime, :TraceItems, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :PhaseData, :Status
-        
+
         def initialize(traceid=nil, corpid=nil, type=nil, code=nil, rank=nil, phase=nil, phasename=nil, tracetime=nil, traceitems=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, phasedata=nil, status=nil)
           @TraceId = traceid
           @CorpId = corpid
@@ -3815,7 +3815,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key, :Ext, :Attrs, :List
-        
+
         def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil, ext=nil, attrs=nil, list=nil)
           @Name = name
           @Value = value
@@ -3885,7 +3885,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
-        
+
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid
           @FactoryCnt = factorycnt

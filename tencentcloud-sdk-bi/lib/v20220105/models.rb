@@ -31,7 +31,7 @@ module TencentCloud
         # @type Scope: String
 
         attr_accessor :ProjectId, :PageId, :BIToken, :ExtraParam, :Scope
-        
+
         def initialize(projectid=nil, pageid=nil, bitoken=nil, extraparam=nil, scope=nil)
           @ProjectId = projectid
           @PageId = pageid
@@ -64,7 +64,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Extra, :Data, :Msg, :RequestId
-        
+
         def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
           @Extra = extra
           @Data = data
@@ -90,7 +90,7 @@ module TencentCloud
         # @type Result: Boolean
 
         attr_accessor :Result
-        
+
         def initialize(result=nil)
           @Result = result
         end
@@ -114,7 +114,7 @@ module TencentCloud
         # @type ExtraParam: String
 
         attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam
-        
+
         def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil)
           @ProjectId = projectid
           @PageId = pageid
@@ -147,7 +147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Extra, :Data, :Msg, :RequestId
-        
+
         def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
           @Extra = extra
           @Data = data
@@ -203,7 +203,7 @@ module TencentCloud
         # @type ExpireTime: Integer
 
         attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime
-        
+
         def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil)
           @Id = id
           @BIToken = bitoken

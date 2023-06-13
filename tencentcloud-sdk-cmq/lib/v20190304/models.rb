@@ -23,7 +23,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :QueueName
-        
+
         def initialize(queuename=nil)
           @QueueName = queuename
         end
@@ -39,7 +39,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -57,7 +57,7 @@ module TencentCloud
         # @type SubscriptionName: String
 
         attr_accessor :TopicName, :SubscriptionName
-        
+
         def initialize(topicname=nil, subscriptionname=nil)
           @TopicName = topicname
           @SubscriptionName = subscriptionname
@@ -75,7 +75,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -119,7 +119,7 @@ module TencentCloud
         # @type Trace: Boolean
 
         attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace
-        
+
         def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, transaction=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, policy=nil, maxreceivecount=nil, maxtimetolive=nil, trace=nil)
           @QueueName = queuename
           @MaxMsgHeapNum = maxmsgheapnum
@@ -165,7 +165,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QueueId, :RequestId
-        
+
         def initialize(queueid=nil, requestid=nil)
           @QueueId = queueid
           @RequestId = requestid
@@ -197,7 +197,7 @@ module TencentCloud
         # @type NotifyContentFormat: String
 
         attr_accessor :TopicName, :SubscriptionName, :Protocol, :Endpoint, :NotifyStrategy, :FilterTag, :BindingKey, :NotifyContentFormat
-        
+
         def initialize(topicname=nil, subscriptionname=nil, protocol=nil, endpoint=nil, notifystrategy=nil, filtertag=nil, bindingkey=nil, notifycontentformat=nil)
           @TopicName = topicname
           @SubscriptionName = subscriptionname
@@ -229,7 +229,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubscriptionId, :RequestId
-        
+
         def initialize(subscriptionid=nil, requestid=nil)
           @SubscriptionId = subscriptionid
           @RequestId = requestid
@@ -255,7 +255,7 @@ module TencentCloud
         # @type Trace: Boolean
 
         attr_accessor :TopicName, :MaxMsgSize, :FilterType, :MsgRetentionSeconds, :Trace
-        
+
         def initialize(topicname=nil, maxmsgsize=nil, filtertype=nil, msgretentionseconds=nil, trace=nil)
           @TopicName = topicname
           @MaxMsgSize = maxmsgsize
@@ -281,7 +281,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TopicId, :RequestId
-        
+
         def initialize(topicid=nil, requestid=nil)
           @TopicId = topicid
           @RequestId = requestid
@@ -312,7 +312,7 @@ module TencentCloud
         # @type MaxReceiveCount: Integer
 
         attr_accessor :DeadLetterQueue, :DeadLetterQueueName, :MaxTimeToLive, :Policy, :MaxReceiveCount
-        
+
         def initialize(deadletterqueue=nil, deadletterqueuename=nil, maxtimetolive=nil, policy=nil, maxreceivecount=nil)
           @DeadLetterQueue = deadletterqueue
           @DeadLetterQueueName = deadletterqueuename
@@ -340,7 +340,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :QueueId, :QueueName
-        
+
         def initialize(queueid=nil, queuename=nil)
           @QueueId = queueid
           @QueueName = queuename
@@ -358,7 +358,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :QueueName
-        
+
         def initialize(queuename=nil)
           @QueueName = queuename
         end
@@ -374,7 +374,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -392,7 +392,7 @@ module TencentCloud
         # @type SubscriptionName: String
 
         attr_accessor :TopicName, :SubscriptionName
-        
+
         def initialize(topicname=nil, subscriptionname=nil)
           @TopicName = topicname
           @SubscriptionName = subscriptionname
@@ -410,7 +410,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -426,7 +426,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :TopicName
-        
+
         def initialize(topicname=nil)
           @TopicName = topicname
         end
@@ -442,7 +442,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -464,7 +464,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :DeadLetterQueueName, :Limit, :Offset, :Filters
-        
+
         def initialize(deadletterqueuename=nil, limit=nil, offset=nil, filters=nil)
           @DeadLetterQueueName = deadletterqueuename
           @Limit = limit
@@ -497,7 +497,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :QueueSet, :RequestId
-        
+
         def initialize(totalcount=nil, queueset=nil, requestid=nil)
           @TotalCount = totalcount
           @QueueSet = queueset
@@ -532,7 +532,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :Offset, :Limit, :Filters, :TagKey, :QueueName
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, tagkey=nil, queuename=nil)
           @Offset = offset
           @Limit = limit
@@ -567,7 +567,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :QueueSet, :RequestId
-        
+
         def initialize(totalcount=nil, queueset=nil, requestid=nil)
           @TotalCount = totalcount
           @QueueSet = queueset
@@ -600,7 +600,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :TopicName, :Offset, :Limit, :Filters
-        
+
         def initialize(topicname=nil, offset=nil, limit=nil, filters=nil)
           @TopicName = topicname
           @Offset = offset
@@ -634,7 +634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SubscriptionSet, :RequestId
-        
+
         def initialize(totalcount=nil, subscriptionset=nil, requestid=nil)
           @TotalCount = totalcount
           @SubscriptionSet = subscriptionset
@@ -669,7 +669,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :Offset, :Limit, :Filters, :TagKey, :TopicName
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, tagkey=nil, topicname=nil)
           @Offset = offset
           @Limit = limit
@@ -704,7 +704,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TopicSet, :RequestId
-        
+
         def initialize(totalcount=nil, topicset=nil, requestid=nil)
           @TotalCount = totalcount
           @TopicSet = topicset
@@ -733,7 +733,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Values, :Name
-        
+
         def initialize(values=nil, name=nil)
           @Values = values
           @Name = name
@@ -777,7 +777,7 @@ module TencentCloud
         # @type Trace: Boolean
 
         attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :MaxTimeToLive, :MaxReceiveCount, :Policy, :Trace
-        
+
         def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, maxtimetolive=nil, maxreceivecount=nil, policy=nil, trace=nil)
           @QueueName = queuename
           @MaxMsgHeapNum = maxmsgheapnum
@@ -819,7 +819,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -847,7 +847,7 @@ module TencentCloud
         # @type BindingKey: Array
 
         attr_accessor :TopicName, :SubscriptionName, :NotifyStrategy, :NotifyContentFormat, :FilterTags, :BindingKey
-        
+
         def initialize(topicname=nil, subscriptionname=nil, notifystrategy=nil, notifycontentformat=nil, filtertags=nil, bindingkey=nil)
           @TopicName = topicname
           @SubscriptionName = subscriptionname
@@ -873,7 +873,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -895,7 +895,7 @@ module TencentCloud
         # @type Trace: Boolean
 
         attr_accessor :TopicName, :MaxMsgSize, :MsgRetentionSeconds, :Trace
-        
+
         def initialize(topicname=nil, maxmsgsize=nil, msgretentionseconds=nil, trace=nil)
           @TopicName = topicname
           @MaxMsgSize = maxmsgsize
@@ -917,7 +917,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1007,7 +1007,7 @@ module TencentCloud
         # @type Migrate: Integer
 
         attr_accessor :QueueId, :RewindSeconds, :CreateUin, :LastModifyTime, :VisibilityTimeout, :QueueName, :Trace, :Tags, :RewindMsgNum, :MaxDelaySeconds, :TransactionPolicy, :MsgRetentionSeconds, :DelayMsgNum, :MaxMsgHeapNum, :PollingWaitSeconds, :Bps, :InactiveMsgNum, :DeadLetterPolicy, :ActiveMsgNum, :MaxMsgSize, :MinMsgTime, :DeadLetterSource, :Transaction, :Qps, :CreateTime, :Migrate
-        
+
         def initialize(queueid=nil, rewindseconds=nil, createuin=nil, lastmodifytime=nil, visibilitytimeout=nil, queuename=nil, trace=nil, tags=nil, rewindmsgnum=nil, maxdelayseconds=nil, transactionpolicy=nil, msgretentionseconds=nil, delaymsgnum=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, bps=nil, inactivemsgnum=nil, deadletterpolicy=nil, activemsgnum=nil, maxmsgsize=nil, minmsgtime=nil, deadlettersource=nil, transaction=nil, qps=nil, createtime=nil, migrate=nil)
           @QueueId = queueid
           @RewindSeconds = rewindseconds
@@ -1095,7 +1095,7 @@ module TencentCloud
         # @type StartConsumeTime: Integer
 
         attr_accessor :QueueName, :StartConsumeTime
-        
+
         def initialize(queuename=nil, startconsumetime=nil)
           @QueueName = queuename
           @StartConsumeTime = startconsumetime
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1167,7 +1167,7 @@ module TencentCloud
         # @type NotifyContentFormat: String
 
         attr_accessor :SubscriptionName, :SubscriptionId, :TopicOwner, :MsgCount, :LastModifyTime, :CreateTime, :BindingKey, :Endpoint, :FilterTags, :Protocol, :NotifyStrategy, :NotifyContentFormat
-        
+
         def initialize(subscriptionname=nil, subscriptionid=nil, topicowner=nil, msgcount=nil, lastmodifytime=nil, createtime=nil, bindingkey=nil, endpoint=nil, filtertags=nil, protocol=nil, notifystrategy=nil, notifycontentformat=nil)
           @SubscriptionName = subscriptionname
           @SubscriptionId = subscriptionid
@@ -1209,7 +1209,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1266,7 +1266,7 @@ module TencentCloud
         # @type Migrate: Integer
 
         attr_accessor :MsgCount, :TopicId, :MaxMsgSize, :Trace, :Tags, :CreateUin, :FilterType, :TopicName, :LastModifyTime, :MsgRetentionSeconds, :Qps, :CreateTime, :Migrate
-        
+
         def initialize(msgcount=nil, topicid=nil, maxmsgsize=nil, trace=nil, tags=nil, createuin=nil, filtertype=nil, topicname=nil, lastmodifytime=nil, msgretentionseconds=nil, qps=nil, createtime=nil, migrate=nil)
           @MsgCount = msgcount
           @TopicId = topicid
@@ -1317,7 +1317,7 @@ module TencentCloud
         # @type FirstQueryInterval: Integer
 
         attr_accessor :MaxQueryCount, :FirstQueryInterval
-        
+
         def initialize(maxquerycount=nil, firstqueryinterval=nil)
           @MaxQueryCount = maxquerycount
           @FirstQueryInterval = firstqueryinterval
@@ -1335,7 +1335,7 @@ module TencentCloud
         # @type QueueName: String
 
         attr_accessor :QueueName
-        
+
         def initialize(queuename=nil)
           @QueueName = queuename
         end
@@ -1351,7 +1351,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

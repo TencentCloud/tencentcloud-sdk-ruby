@@ -37,7 +37,7 @@ module TencentCloud
         # @type SupportFeatures: Array
 
         attr_accessor :InstanceId, :Version, :LastHeartbeatTime, :AgentStatus, :Environment, :SupportFeatures
-        
+
         def initialize(instanceid=nil, version=nil, lastheartbeattime=nil, agentstatus=nil, environment=nil, supportfeatures=nil)
           @InstanceId = instanceid
           @Version = version
@@ -67,7 +67,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :InvocationId, :InstanceIds
-        
+
         def initialize(invocationid=nil, instanceids=nil)
           @InvocationId = invocationid
           @InstanceIds = instanceids
@@ -85,7 +85,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -133,7 +133,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
@@ -200,7 +200,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :Content, :CommandType, :Timeout, :WorkingDirectory, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(content=nil, commandtype=nil, timeout=nil, workingdirectory=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @Content = content
           @CommandType = commandtype
@@ -260,7 +260,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandName = commandname
           @Content = content
@@ -307,7 +307,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CommandId, :RequestId
-        
+
         def initialize(commandid=nil, requestid=nil)
           @CommandId = commandid
           @RequestId = requestid
@@ -337,7 +337,7 @@ module TencentCloud
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
 
         attr_accessor :Name, :Type, :CommandId, :InstanceIds, :Username, :Parameters, :ScheduleSettings
-        
+
         def initialize(name=nil, type=nil, commandid=nil, instanceids=nil, username=nil, parameters=nil, schedulesettings=nil)
           @Name = name
           @Type = type
@@ -370,7 +370,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvokerId, :RequestId
-        
+
         def initialize(invokerid=nil, requestid=nil)
           @InvokerId = invokerid
           @RequestId = requestid
@@ -388,7 +388,7 @@ module TencentCloud
         # @type CommandId: String
 
         attr_accessor :CommandId
-        
+
         def initialize(commandid=nil)
           @CommandId = commandid
         end
@@ -404,7 +404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -420,7 +420,7 @@ module TencentCloud
         # @type InvokerId: String
 
         attr_accessor :InvokerId
-        
+
         def initialize(invokerid=nil)
           @InvokerId = invokerid
         end
@@ -436,7 +436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -458,7 +458,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InstanceIds, :Filters, :Limit, :Offset
-        
+
         def initialize(instanceids=nil, filters=nil, limit=nil, offset=nil)
           @InstanceIds = instanceids
           @Filters = filters
@@ -491,7 +491,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutomationAgentSet, :TotalCount, :RequestId
-        
+
         def initialize(automationagentset=nil, totalcount=nil, requestid=nil)
           @AutomationAgentSet = automationagentset
           @TotalCount = totalcount
@@ -533,7 +533,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :CommandIds, :Filters, :Limit, :Offset
-        
+
         def initialize(commandids=nil, filters=nil, limit=nil, offset=nil)
           @CommandIds = commandids
           @Filters = filters
@@ -566,7 +566,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :CommandSet, :RequestId
-        
+
         def initialize(totalcount=nil, commandset=nil, requestid=nil)
           @TotalCount = totalcount
           @CommandSet = commandset
@@ -601,7 +601,7 @@ module TencentCloud
         # @type HideOutput: Boolean
 
         attr_accessor :InvocationTaskIds, :Filters, :Limit, :Offset, :HideOutput
-        
+
         def initialize(invocationtaskids=nil, filters=nil, limit=nil, offset=nil, hideoutput=nil)
           @InvocationTaskIds = invocationtaskids
           @Filters = filters
@@ -636,7 +636,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InvocationTaskSet, :RequestId
-        
+
         def initialize(totalcount=nil, invocationtaskset=nil, requestid=nil)
           @TotalCount = totalcount
           @InvocationTaskSet = invocationtaskset
@@ -673,7 +673,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InvocationIds, :Filters, :Limit, :Offset
-        
+
         def initialize(invocationids=nil, filters=nil, limit=nil, offset=nil)
           @InvocationIds = invocationids
           @Filters = filters
@@ -706,7 +706,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InvocationSet, :RequestId
-        
+
         def initialize(totalcount=nil, invocationset=nil, requestid=nil)
           @TotalCount = totalcount
           @InvocationSet = invocationset
@@ -737,7 +737,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InvokerIds, :Limit, :Offset
-        
+
         def initialize(invokerids=nil, limit=nil, offset=nil)
           @InvokerIds = invokerids
           @Limit = limit
@@ -761,7 +761,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InvokerRecordSet, :RequestId
-        
+
         def initialize(totalcount=nil, invokerrecordset=nil, requestid=nil)
           @TotalCount = totalcount
           @InvokerRecordSet = invokerrecordset
@@ -798,7 +798,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :InvokerIds, :Filters, :Limit, :Offset
-        
+
         def initialize(invokerids=nil, filters=nil, limit=nil, offset=nil)
           @InvokerIds = invokerids
           @Filters = filters
@@ -831,7 +831,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InvokerSet, :RequestId
-        
+
         def initialize(totalcount=nil, invokerset=nil, requestid=nil)
           @TotalCount = totalcount
           @InvokerSet = invokerset
@@ -855,7 +855,7 @@ module TencentCloud
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -873,7 +873,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RegionSet, :RequestId
-        
+
         def initialize(totalcount=nil, regionset=nil, requestid=nil)
           @TotalCount = totalcount
           @RegionSet = regionset
@@ -900,7 +900,7 @@ module TencentCloud
         # @type InvokerId: String
 
         attr_accessor :InvokerId
-        
+
         def initialize(invokerid=nil)
           @InvokerId = invokerid
         end
@@ -916,7 +916,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -932,7 +932,7 @@ module TencentCloud
         # @type InvokerId: String
 
         attr_accessor :InvokerId
-        
+
         def initialize(invokerid=nil)
           @InvokerId = invokerid
         end
@@ -948,7 +948,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -977,7 +977,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1039,7 +1039,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @InvocationId = invocationid
           @CommandId = commandid
@@ -1137,7 +1137,7 @@ module TencentCloud
         # @type InvocationSource: String
 
         attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo, :InvocationSource
-        
+
         def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil, invocationsource=nil)
           @InvocationId = invocationid
           @InvocationTaskId = invocationtaskid
@@ -1200,7 +1200,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InvocationTaskId, :TaskStatus, :InstanceId
-        
+
         def initialize(invocationtaskid=nil, taskstatus=nil, instanceid=nil)
           @InvocationTaskId = invocationtaskid
           @TaskStatus = taskstatus
@@ -1242,7 +1242,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandId, :InstanceIds, :Parameters, :Username, :WorkingDirectory, :Timeout, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil, workingdirectory=nil, timeout=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @InstanceIds = instanceids
@@ -1274,7 +1274,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvocationId, :RequestId
-        
+
         def initialize(invocationid=nil, requestid=nil)
           @InvocationId = invocationid
           @RequestId = requestid
@@ -1313,7 +1313,7 @@ module TencentCloud
         # @type UpdatedTime: String
 
         attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :Enable, :ScheduleSettings, :CreatedTime, :UpdatedTime
-        
+
         def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, enable=nil, schedulesettings=nil, createdtime=nil, updatedtime=nil)
           @InvokerId = invokerid
           @Name = name
@@ -1360,7 +1360,7 @@ module TencentCloud
         # @type Result: String
 
         attr_accessor :InvokerId, :InvokeTime, :Reason, :InvocationId, :Result
-        
+
         def initialize(invokerid=nil, invoketime=nil, reason=nil, invocationid=nil, result=nil)
           @InvokerId = invokerid
           @InvokeTime = invoketime
@@ -1413,7 +1413,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
@@ -1449,7 +1449,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1479,7 +1479,7 @@ module TencentCloud
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
 
         attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :ScheduleSettings
-        
+
         def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, schedulesettings=nil)
           @InvokerId = invokerid
           @Name = name
@@ -1512,7 +1512,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1538,7 +1538,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :Parameters, :CommandId, :Content
-        
+
         def initialize(parameters=nil, commandid=nil, content=nil)
           @Parameters = parameters
           @CommandId = commandid
@@ -1560,7 +1560,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReplacedContent, :RequestId
-        
+
         def initialize(replacedcontent=nil, requestid=nil)
           @ReplacedContent = replacedcontent
           @RequestId = requestid
@@ -1582,7 +1582,7 @@ module TencentCloud
         # @type RegionState: String
 
         attr_accessor :Region, :RegionName, :RegionState
-        
+
         def initialize(region=nil, regionname=nil, regionstate=nil)
           @Region = region
           @RegionName = regionname
@@ -1649,7 +1649,7 @@ module TencentCloud
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
-        
+
         def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @Content = content
           @InstanceIds = instanceids
@@ -1704,7 +1704,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CommandId, :InvocationId, :RequestId
-        
+
         def initialize(commandid=nil, invocationid=nil, requestid=nil)
           @CommandId = commandid
           @InvocationId = invocationid
@@ -1730,7 +1730,7 @@ module TencentCloud
         # @type InvokeTime: String
 
         attr_accessor :Policy, :Recurrence, :InvokeTime
-        
+
         def initialize(policy=nil, recurrence=nil, invoketime=nil)
           @Policy = policy
           @Recurrence = recurrence
@@ -1752,7 +1752,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1782,7 +1782,7 @@ module TencentCloud
         # @type OutputUploadCOSErrorInfo: String
 
         attr_accessor :ExitCode, :Output, :ExecStartTime, :ExecEndTime, :Dropped, :OutputUrl, :OutputUploadCOSErrorInfo
-        
+
         def initialize(exitcode=nil, output=nil, execstarttime=nil, execendtime=nil, dropped=nil, outputurl=nil, outputuploadcoserrorinfo=nil)
           @ExitCode = exitcode
           @Output = output

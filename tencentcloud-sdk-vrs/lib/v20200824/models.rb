@@ -46,7 +46,7 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :SessionId, :VoiceName, :SampleRate, :VoiceGender, :VoiceLanguage, :Codec, :AudioIdList, :CallbackUrl
-        
+
         def initialize(sessionid=nil, voicename=nil, samplerate=nil, voicegender=nil, voicelanguage=nil, codec=nil, audioidlist=nil, callbackurl=nil)
           @SessionId = sessionid
           @VoiceName = voicename
@@ -77,7 +77,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -95,7 +95,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -116,7 +116,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -145,7 +145,7 @@ module TencentCloud
         # @type ErrorMsg: String
 
         attr_accessor :TaskId, :Status, :StatusStr, :VoiceType, :ErrorMsg
-        
+
         def initialize(taskid=nil, status=nil, statusstr=nil, voicetype=nil, errormsg=nil)
           @TaskId = taskid
           @Status = status
@@ -171,7 +171,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -202,7 +202,7 @@ module TencentCloud
         # @type SampleRate: Integer
 
         attr_accessor :TextId, :AudioData, :Codec, :TypeId, :SampleRate
-        
+
         def initialize(textid=nil, audiodata=nil, codec=nil, typeid=nil, samplerate=nil)
           @TextId = textid
           @AudioData = audiodata
@@ -228,7 +228,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -264,7 +264,7 @@ module TencentCloud
         # @type DetectionTip: Array
 
         attr_accessor :AudioId, :DetectionCode, :DetectionMsg, :DetectionTip
-        
+
         def initialize(audioid=nil, detectioncode=nil, detectionmsg=nil, detectiontip=nil)
           @AudioId = audioid
           @DetectionCode = detectioncode
@@ -290,7 +290,7 @@ module TencentCloud
       # GetTrainingText请求参数结构体
       class GetTrainingTextRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -306,7 +306,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -331,7 +331,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :TextId, :Text
-        
+
         def initialize(textid=nil, text=nil)
           @TextId = textid
           @Text = text
@@ -350,7 +350,7 @@ module TencentCloud
         # @type TrainingTextList: Array
 
         attr_accessor :TrainingTextList
-        
+
         def initialize(trainingtextlist=nil)
           @TrainingTextList = trainingtextlist
         end
@@ -391,7 +391,7 @@ module TencentCloud
         # @type Word: String
 
         attr_accessor :PronAccuracy, :PronFluency, :Tag, :Word
-        
+
         def initialize(pronaccuracy=nil, pronfluency=nil, tag=nil, word=nil)
           @PronAccuracy = pronaccuracy
           @PronFluency = pronfluency

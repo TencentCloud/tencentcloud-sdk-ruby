@@ -55,7 +55,7 @@ module TencentCloud
         # @type AlgoType: Integer
 
         attr_accessor :AlgoId, :AlgoName, :Result, :Error, :AlgoType
-        
+
         def initialize(algoid=nil, algoname=nil, result=nil, error=nil, algotype=nil)
           @AlgoId = algoid
           @AlgoName = algoname
@@ -79,7 +79,7 @@ module TencentCloud
         # @type InvokeId: String
 
         attr_accessor :InvokeId
-        
+
         def initialize(invokeid=nil)
           @InvokeId = invokeid
         end
@@ -101,7 +101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :Status, :RequestId
-        
+
         def initialize(results=nil, status=nil, requestid=nil)
           @Results = results
           @Status = status
@@ -134,7 +134,7 @@ module TencentCloud
         # @type Input: String
 
         attr_accessor :ServiceId, :ServiceStatus, :FileUrl, :Input
-        
+
         def initialize(serviceid=nil, servicestatus=nil, fileurl=nil, input=nil)
           @ServiceId = serviceid
           @ServiceStatus = servicestatus
@@ -156,7 +156,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

@@ -61,7 +61,7 @@ module TencentCloud
         # @type InvocationResultSet: Array
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet
-        
+
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ActivityId = activityid
@@ -139,7 +139,7 @@ module TencentCloud
         # @type InstanceStatus: String
 
         attr_accessor :InstanceId, :InstanceStatus
-        
+
         def initialize(instanceid=nil, instancestatus=nil)
           @InstanceId = instanceid
           @InstanceStatus = instancestatus
@@ -159,19 +159,25 @@ module TencentCloud
         # @type Detail: String
         # @param Solution: 建议解决方案。
         # @type Solution: String
+        # @param Level: 伸缩建议警告级别。取值范围：<br>
+        # <li>WARNING：警告级别<br>
+        # <li>CRITICAL：严重级别<br>
+        # @type Level: String
 
-        attr_accessor :Problem, :Detail, :Solution
-        
-        def initialize(problem=nil, detail=nil, solution=nil)
+        attr_accessor :Problem, :Detail, :Solution, :Level
+
+        def initialize(problem=nil, detail=nil, solution=nil, level=nil)
           @Problem = problem
           @Detail = detail
           @Solution = solution
+          @Level = level
         end
 
         def deserialize(params)
           @Problem = params['Problem']
           @Detail = params['Detail']
           @Solution = params['Solution']
+          @Level = params['Level']
         end
       end
 
@@ -183,7 +189,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -203,7 +209,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -225,7 +231,7 @@ module TencentCloud
         # @type ForwardLoadBalancers: Array
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers
-        
+
         def initialize(autoscalinggroupid=nil, loadbalancerids=nil, forwardloadbalancers=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @LoadBalancerIds = loadbalancerids
@@ -254,7 +260,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -279,7 +285,7 @@ module TencentCloud
         # @type Advices: Array
 
         attr_accessor :AutoScalingGroupId, :Level, :Advices
-        
+
         def initialize(autoscalinggroupid=nil, level=nil, advices=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @Level = level
@@ -383,7 +389,7 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
 
         attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :AutoScalingGroupStatus, :CreatedTime, :DefaultCooldown, :DesiredCapacity, :EnabledStatus, :ForwardLoadBalancerSet, :InstanceCount, :InServiceInstanceCount, :LaunchConfigurationId, :LaunchConfigurationName, :LoadBalancerIdSet, :MaxSize, :MinSize, :ProjectId, :SubnetIdSet, :TerminationPolicySet, :VpcId, :ZoneSet, :RetryPolicy, :InActivityStatus, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance
-        
+
         def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, autoscalinggroupstatus=nil, createdtime=nil, defaultcooldown=nil, desiredcapacity=nil, enabledstatus=nil, forwardloadbalancerset=nil, instancecount=nil, inserviceinstancecount=nil, launchconfigurationid=nil, launchconfigurationname=nil, loadbalanceridset=nil, maxsize=nil, minsize=nil, projectid=nil, subnetidset=nil, terminationpolicyset=nil, vpcid=nil, zoneset=nil, retrypolicy=nil, inactivitystatus=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
@@ -481,7 +487,7 @@ module TencentCloud
         # @type AutoScalingGroupName: String
 
         attr_accessor :AutoScalingGroupId, :AutoScalingGroupName
-        
+
         def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
@@ -511,7 +517,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :AutoScalingGroupId, :NotificationUserGroupIds, :NotificationTypes, :AutoScalingNotificationId, :TargetType, :QueueName, :TopicName
-        
+
         def initialize(autoscalinggroupid=nil, notificationusergroupids=nil, notificationtypes=nil, autoscalingnotificationid=nil, targettype=nil, queuename=nil, topicname=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @NotificationUserGroupIds = notificationusergroupids
@@ -551,7 +557,7 @@ module TencentCloud
         # @type ClearDisasterRecoverGroupIds: Boolean
 
         attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds
-        
+
         def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ClearDataDisks = cleardatadisks
@@ -575,7 +581,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -597,7 +603,7 @@ module TencentCloud
         # @type LifecycleActionToken: String
 
         attr_accessor :LifecycleHookId, :LifecycleActionResult, :InstanceId, :LifecycleActionToken
-        
+
         def initialize(lifecyclehookid=nil, lifecycleactionresult=nil, instanceid=nil, lifecycleactiontoken=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleActionResult = lifecycleactionresult
@@ -619,7 +625,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -645,7 +651,7 @@ module TencentCloud
         # @type InheritInstanceTag: Boolean
 
         attr_accessor :AutoScalingGroupName, :InstanceId, :MinSize, :MaxSize, :DesiredCapacity, :InheritInstanceTag
-        
+
         def initialize(autoscalinggroupname=nil, instanceid=nil, minsize=nil, maxsize=nil, desiredcapacity=nil, inheritinstancetag=nil)
           @AutoScalingGroupName = autoscalinggroupname
           @InstanceId = instanceid
@@ -673,7 +679,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingGroupId, :RequestId
-        
+
         def initialize(autoscalinggroupid=nil, requestid=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @RequestId = requestid
@@ -761,7 +767,7 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
 
         attr_accessor :AutoScalingGroupName, :LaunchConfigurationId, :MaxSize, :MinSize, :VpcId, :DefaultCooldown, :DesiredCapacity, :LoadBalancerIds, :ProjectId, :ForwardLoadBalancers, :SubnetIds, :TerminationPolicies, :Zones, :RetryPolicy, :ZonesCheckPolicy, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance
-        
+
         def initialize(autoscalinggroupname=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, vpcid=nil, defaultcooldown=nil, desiredcapacity=nil, loadbalancerids=nil, projectid=nil, forwardloadbalancers=nil, subnetids=nil, terminationpolicies=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil)
           @AutoScalingGroupName = autoscalinggroupname
           @LaunchConfigurationId = launchconfigurationid
@@ -845,7 +851,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingGroupId, :RequestId
-        
+
         def initialize(autoscalinggroupid=nil, requestid=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @RequestId = requestid
@@ -926,7 +932,7 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
 
         attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
-        
+
         def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
@@ -1040,7 +1046,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LaunchConfigurationId, :RequestId
-        
+
         def initialize(launchconfigurationid=nil, requestid=nil)
           @LaunchConfigurationId = launchconfigurationid
           @RequestId = requestid
@@ -1074,7 +1080,7 @@ module TencentCloud
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :AutoScalingGroupId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
-        
+
         def initialize(autoscalinggroupid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, notificationtarget=nil, lifecycletransitiontype=nil, lifecyclecommand=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @LifecycleHookName = lifecyclehookname
@@ -1114,7 +1120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LifecycleHookId, :RequestId
-        
+
         def initialize(lifecyclehookid=nil, requestid=nil)
           @LifecycleHookId = lifecyclehookid
           @RequestId = requestid
@@ -1155,7 +1161,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :AutoScalingGroupId, :NotificationTypes, :NotificationUserGroupIds, :TargetType, :QueueName, :TopicName
-        
+
         def initialize(autoscalinggroupid=nil, notificationtypes=nil, notificationusergroupids=nil, targettype=nil, queuename=nil, topicname=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @NotificationTypes = notificationtypes
@@ -1183,7 +1189,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingNotificationId, :RequestId
-        
+
         def initialize(autoscalingnotificationid=nil, requestid=nil)
           @AutoScalingNotificationId = autoscalingnotificationid
           @RequestId = requestid
@@ -1224,7 +1230,7 @@ module TencentCloud
         # @type NotificationUserGroupIds: Array
 
         attr_accessor :AutoScalingGroupId, :ScalingPolicyName, :ScalingPolicyType, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :NotificationUserGroupIds
-        
+
         def initialize(autoscalinggroupid=nil, scalingpolicyname=nil, scalingpolicytype=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, notificationusergroupids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScalingPolicyName = scalingpolicyname
@@ -1267,7 +1273,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingPolicyId, :RequestId
-        
+
         def initialize(autoscalingpolicyid=nil, requestid=nil)
           @AutoScalingPolicyId = autoscalingpolicyid
           @RequestId = requestid
@@ -1299,7 +1305,7 @@ module TencentCloud
         # @type Recurrence: String
 
         attr_accessor :AutoScalingGroupId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
-        
+
         def initialize(autoscalinggroupid=nil, scheduledactionname=nil, maxsize=nil, minsize=nil, desiredcapacity=nil, starttime=nil, endtime=nil, recurrence=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScheduledActionName = scheduledactionname
@@ -1331,7 +1337,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ScheduledActionId, :RequestId
-        
+
         def initialize(scheduledactionid=nil, requestid=nil)
           @ScheduledActionId = scheduledactionid
           @RequestId = requestid
@@ -1366,7 +1372,7 @@ module TencentCloud
         # @type ThroughputPerformance: Integer
 
         attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt, :ThroughputPerformance
-        
+
         def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil, throughputperformance=nil)
           @DiskType = disktype
           @DiskSize = disksize
@@ -1392,7 +1398,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
 
         attr_accessor :AutoScalingGroupId
-        
+
         def initialize(autoscalinggroupid=nil)
           @AutoScalingGroupId = autoscalinggroupid
         end
@@ -1408,7 +1414,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1424,7 +1430,7 @@ module TencentCloud
         # @type LaunchConfigurationId: String
 
         attr_accessor :LaunchConfigurationId
-        
+
         def initialize(launchconfigurationid=nil)
           @LaunchConfigurationId = launchconfigurationid
         end
@@ -1440,7 +1446,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1456,7 +1462,7 @@ module TencentCloud
         # @type LifecycleHookId: String
 
         attr_accessor :LifecycleHookId
-        
+
         def initialize(lifecyclehookid=nil)
           @LifecycleHookId = lifecyclehookid
         end
@@ -1472,7 +1478,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1488,7 +1494,7 @@ module TencentCloud
         # @type AutoScalingNotificationId: String
 
         attr_accessor :AutoScalingNotificationId
-        
+
         def initialize(autoscalingnotificationid=nil)
           @AutoScalingNotificationId = autoscalingnotificationid
         end
@@ -1504,7 +1510,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1520,7 +1526,7 @@ module TencentCloud
         # @type AutoScalingPolicyId: String
 
         attr_accessor :AutoScalingPolicyId
-        
+
         def initialize(autoscalingpolicyid=nil)
           @AutoScalingPolicyId = autoscalingpolicyid
         end
@@ -1536,7 +1542,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1552,7 +1558,7 @@ module TencentCloud
         # @type ScheduledActionId: String
 
         attr_accessor :ScheduledActionId
-        
+
         def initialize(scheduledactionid=nil)
           @ScheduledActionId = scheduledactionid
         end
@@ -1568,7 +1574,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1581,7 +1587,7 @@ module TencentCloud
       # DescribeAccountLimits请求参数结构体
       class DescribeAccountLimitsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1603,7 +1609,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaxNumberOfLaunchConfigurations, :NumberOfLaunchConfigurations, :MaxNumberOfAutoScalingGroups, :NumberOfAutoScalingGroups, :RequestId
-        
+
         def initialize(maxnumberoflaunchconfigurations=nil, numberoflaunchconfigurations=nil, maxnumberofautoscalinggroups=nil, numberofautoscalinggroups=nil, requestid=nil)
           @MaxNumberOfLaunchConfigurations = maxnumberoflaunchconfigurations
           @NumberOfLaunchConfigurations = numberoflaunchconfigurations
@@ -1642,7 +1648,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :ActivityIds, :Filters, :Limit, :Offset, :StartTime, :EndTime
-        
+
         def initialize(activityids=nil, filters=nil, limit=nil, offset=nil, starttime=nil, endtime=nil)
           @ActivityIds = activityids
           @Filters = filters
@@ -1679,7 +1685,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ActivitySet, :RequestId
-        
+
         def initialize(totalcount=nil, activityset=nil, requestid=nil)
           @TotalCount = totalcount
           @ActivitySet = activityset
@@ -1706,7 +1712,7 @@ module TencentCloud
         # @type AutoScalingGroupIds: Array
 
         attr_accessor :AutoScalingGroupIds
-        
+
         def initialize(autoscalinggroupids=nil)
           @AutoScalingGroupIds = autoscalinggroupids
         end
@@ -1724,7 +1730,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingAdviceSet, :RequestId
-        
+
         def initialize(autoscalingadviceset=nil, requestid=nil)
           @AutoScalingAdviceSet = autoscalingadviceset
           @RequestId = requestid
@@ -1749,7 +1755,7 @@ module TencentCloud
         # @type AutoScalingGroupIds: Array
 
         attr_accessor :AutoScalingGroupIds
-        
+
         def initialize(autoscalinggroupids=nil)
           @AutoScalingGroupIds = autoscalinggroupids
         end
@@ -1767,7 +1773,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivitySet, :RequestId
-        
+
         def initialize(activityset=nil, requestid=nil)
           @ActivitySet = activityset
           @RequestId = requestid
@@ -1806,7 +1812,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :AutoScalingGroupIds, :Filters, :Limit, :Offset
-        
+
         def initialize(autoscalinggroupids=nil, filters=nil, limit=nil, offset=nil)
           @AutoScalingGroupIds = autoscalinggroupids
           @Filters = filters
@@ -1839,7 +1845,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingGroupSet, :TotalCount, :RequestId
-        
+
         def initialize(autoscalinggroupset=nil, totalcount=nil, requestid=nil)
           @AutoScalingGroupSet = autoscalinggroupset
           @TotalCount = totalcount
@@ -1875,7 +1881,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :InstanceIds, :Filters, :Offset, :Limit
-        
+
         def initialize(instanceids=nil, filters=nil, offset=nil, limit=nil)
           @InstanceIds = instanceids
           @Filters = filters
@@ -1908,7 +1914,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoScalingInstanceSet, :TotalCount, :RequestId
-        
+
         def initialize(autoscalinginstanceset=nil, totalcount=nil, requestid=nil)
           @AutoScalingInstanceSet = autoscalinginstanceset
           @TotalCount = totalcount
@@ -1949,7 +1955,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :LaunchConfigurationIds, :Filters, :Limit, :Offset
-        
+
         def initialize(launchconfigurationids=nil, filters=nil, limit=nil, offset=nil)
           @LaunchConfigurationIds = launchconfigurationids
           @Filters = filters
@@ -1982,7 +1988,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :LaunchConfigurationSet, :RequestId
-        
+
         def initialize(totalcount=nil, launchconfigurationset=nil, requestid=nil)
           @TotalCount = totalcount
           @LaunchConfigurationSet = launchconfigurationset
@@ -2019,7 +2025,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :LifecycleHookIds, :Filters, :Limit, :Offset
-        
+
         def initialize(lifecyclehookids=nil, filters=nil, limit=nil, offset=nil)
           @LifecycleHookIds = lifecyclehookids
           @Filters = filters
@@ -2052,7 +2058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LifecycleHookSet, :TotalCount, :RequestId
-        
+
         def initialize(lifecyclehookset=nil, totalcount=nil, requestid=nil)
           @LifecycleHookSet = lifecyclehookset
           @TotalCount = totalcount
@@ -2088,7 +2094,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :AutoScalingNotificationIds, :Filters, :Limit, :Offset
-        
+
         def initialize(autoscalingnotificationids=nil, filters=nil, limit=nil, offset=nil)
           @AutoScalingNotificationIds = autoscalingnotificationids
           @Filters = filters
@@ -2121,7 +2127,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AutoScalingNotificationSet, :RequestId
-        
+
         def initialize(totalcount=nil, autoscalingnotificationset=nil, requestid=nil)
           @TotalCount = totalcount
           @AutoScalingNotificationSet = autoscalingnotificationset
@@ -2159,7 +2165,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :AutoScalingPolicyIds, :Filters, :Limit, :Offset
-        
+
         def initialize(autoscalingpolicyids=nil, filters=nil, limit=nil, offset=nil)
           @AutoScalingPolicyIds = autoscalingpolicyids
           @Filters = filters
@@ -2192,7 +2198,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ScalingPolicySet, :TotalCount, :RequestId
-        
+
         def initialize(scalingpolicyset=nil, totalcount=nil, requestid=nil)
           @ScalingPolicySet = scalingpolicyset
           @TotalCount = totalcount
@@ -2228,7 +2234,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ScheduledActionIds, :Filters, :Offset, :Limit
-        
+
         def initialize(scheduledactionids=nil, filters=nil, offset=nil, limit=nil)
           @ScheduledActionIds = scheduledactionids
           @Filters = filters
@@ -2261,7 +2267,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ScheduledActionSet, :RequestId
-        
+
         def initialize(totalcount=nil, scheduledactionset=nil, requestid=nil)
           @TotalCount = totalcount
           @ScheduledActionSet = scheduledactionset
@@ -2290,7 +2296,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -2310,7 +2316,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -2332,7 +2338,7 @@ module TencentCloud
         # @type ForwardLoadBalancerIdentifications: Array
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancerIdentifications
-        
+
         def initialize(autoscalinggroupid=nil, loadbalancerids=nil, forwardloadbalanceridentifications=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @LoadBalancerIds = loadbalancerids
@@ -2361,7 +2367,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -2391,7 +2397,7 @@ module TencentCloud
         # @type InstanceType: String
 
         attr_accessor :Code, :Zone, :InstanceId, :InstanceChargeType, :SubnetId, :Message, :InstanceType
-        
+
         def initialize(code=nil, zone=nil, instanceid=nil, instancechargetype=nil, subnetid=nil, message=nil, instancetype=nil)
           @Code = code
           @Zone = zone
@@ -2419,7 +2425,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
 
         attr_accessor :AutoScalingGroupId
-        
+
         def initialize(autoscalinggroupid=nil)
           @AutoScalingGroupId = autoscalinggroupid
         end
@@ -2435,7 +2441,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2451,7 +2457,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
 
         attr_accessor :AutoScalingGroupId
-        
+
         def initialize(autoscalinggroupid=nil)
           @AutoScalingGroupId = autoscalinggroupid
         end
@@ -2467,7 +2473,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2489,7 +2495,7 @@ module TencentCloud
         # @type AutomationToolsService: :class:`Tencentcloud::As.v20180419.models.RunAutomationServiceEnabled`
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
-        
+
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
           @MonitorService = monitorservice
@@ -2531,7 +2537,7 @@ module TencentCloud
         # @type TriggerSource: String
 
         attr_accessor :AutoScalingPolicyId, :HonorCooldown, :TriggerSource
-        
+
         def initialize(autoscalingpolicyid=nil, honorcooldown=nil, triggersource=nil)
           @AutoScalingPolicyId = autoscalingpolicyid
           @HonorCooldown = honorcooldown
@@ -2553,7 +2559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -2584,7 +2590,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -2610,7 +2616,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :TargetAttributes, :LocationId, :Region
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, targetattributes=nil, locationid=nil, region=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -2645,7 +2651,7 @@ module TencentCloud
         # @type LocationId: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :LocationId
-        
+
         def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
@@ -2674,7 +2680,7 @@ module TencentCloud
         # @type HostNameStyle: String
 
         attr_accessor :HostName, :HostNameStyle
-        
+
         def initialize(hostname=nil, hostnamestyle=nil)
           @HostName = hostname
           @HostNameStyle = hostnamestyle
@@ -2701,7 +2707,7 @@ module TencentCloud
         # @type BandwidthPackageId: String
 
         attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :BandwidthPackageId
-        
+
         def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, bandwidthpackageid=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -2773,7 +2779,7 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
 
         attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName, :WarmupStatus, :DisasterRecoverGroupIds
-        
+
         def initialize(instanceid=nil, autoscalinggroupid=nil, launchconfigurationid=nil, launchconfigurationname=nil, lifecyclestate=nil, healthstatus=nil, protectedfromscalein=nil, zone=nil, creationtype=nil, addtime=nil, instancetype=nil, versionnumber=nil, autoscalinggroupname=nil, warmupstatus=nil, disasterrecovergroupids=nil)
           @InstanceId = instanceid
           @AutoScalingGroupId = autoscalinggroupid
@@ -2819,7 +2825,7 @@ module TencentCloud
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
-        
+
         def initialize(period=nil, renewflag=nil)
           @Period = period
           @RenewFlag = renewflag
@@ -2840,7 +2846,7 @@ module TencentCloud
         # @type MarketType: String
 
         attr_accessor :SpotOptions, :MarketType
-        
+
         def initialize(spotoptions=nil, markettype=nil)
           @SpotOptions = spotoptions
           @MarketType = markettype
@@ -2870,7 +2876,7 @@ module TencentCloud
         # @type InstanceNameStyle: String
 
         attr_accessor :InstanceName, :InstanceNameStyle
-        
+
         def initialize(instancename=nil, instancenamestyle=nil)
           @InstanceName = instancename
           @InstanceNameStyle = instancenamestyle
@@ -2890,7 +2896,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -2918,7 +2924,7 @@ module TencentCloud
         # @type BandwidthPackageId: String
 
         attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId
-        
+
         def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -2956,7 +2962,7 @@ module TencentCloud
         # @type ErrorMessage: String
 
         attr_accessor :InstanceId, :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :ErrorMessage
-        
+
         def initialize(instanceid=nil, invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, errormessage=nil)
           @InstanceId = instanceid
           @InvocationId = invocationid
@@ -3048,7 +3054,7 @@ module TencentCloud
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
         attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible
-        
+
         def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
@@ -3203,7 +3209,7 @@ module TencentCloud
         # @type ResultReason: String
 
         attr_accessor :LifecycleHookId, :InstanceId, :InvocationId, :InvokeCommandResult, :NotificationResult, :LifecycleActionResult, :ResultReason
-        
+
         def initialize(lifecyclehookid=nil, instanceid=nil, invocationid=nil, invokecommandresult=nil, notificationresult=nil, lifecycleactionresult=nil, resultreason=nil)
           @LifecycleHookId = lifecyclehookid
           @InstanceId = instanceid
@@ -3238,7 +3244,7 @@ module TencentCloud
         # @type Parameters: String
 
         attr_accessor :CommandId, :Parameters
-        
+
         def initialize(commandid=nil, parameters=nil)
           @CommandId = commandid
           @Parameters = parameters
@@ -3277,7 +3283,7 @@ module TencentCloud
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :AutoScalingGroupId, :DefaultResult, :HeartbeatTimeout, :LifecycleTransition, :NotificationMetadata, :CreatedTime, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
-        
+
         def initialize(lifecyclehookid=nil, lifecyclehookname=nil, autoscalinggroupid=nil, defaultresult=nil, heartbeattimeout=nil, lifecycletransition=nil, notificationmetadata=nil, createdtime=nil, notificationtarget=nil, lifecycletransitiontype=nil, lifecyclecommand=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleHookName = lifecyclehookname
@@ -3319,7 +3325,7 @@ module TencentCloud
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
-        
+
         def initialize(keyids=nil)
           @KeyIds = keyids
         end
@@ -3339,7 +3345,7 @@ module TencentCloud
         # @type KeepImageLogin: Boolean
 
         attr_accessor :Password, :KeyIds, :KeepImageLogin
-        
+
         def initialize(password=nil, keyids=nil, keepimagelogin=nil)
           @Password = password
           @KeyIds = keyids
@@ -3371,7 +3377,7 @@ module TencentCloud
         # @type PreciseThreshold: Float
 
         attr_accessor :ComparisonOperator, :MetricName, :Threshold, :Period, :ContinuousTime, :Statistic, :PreciseThreshold
-        
+
         def initialize(comparisonoperator=nil, metricname=nil, threshold=nil, period=nil, continuoustime=nil, statistic=nil, precisethreshold=nil)
           @ComparisonOperator = comparisonoperator
           @MetricName = metricname
@@ -3465,7 +3471,7 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
 
         attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :DefaultCooldown, :DesiredCapacity, :LaunchConfigurationId, :MaxSize, :MinSize, :ProjectId, :SubnetIds, :TerminationPolicies, :VpcId, :Zones, :RetryPolicy, :ZonesCheckPolicy, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance
-        
+
         def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, defaultcooldown=nil, desiredcapacity=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, projectid=nil, subnetids=nil, terminationpolicies=nil, vpcid=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
@@ -3529,7 +3535,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3551,7 +3557,7 @@ module TencentCloud
         # @type MaxSize: Integer
 
         attr_accessor :AutoScalingGroupId, :DesiredCapacity, :MinSize, :MaxSize
-        
+
         def initialize(autoscalinggroupid=nil, desiredcapacity=nil, minsize=nil, maxsize=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @DesiredCapacity = desiredcapacity
@@ -3573,7 +3579,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3655,7 +3661,7 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
 
         attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
-        
+
         def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
@@ -3742,7 +3748,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3778,7 +3784,7 @@ module TencentCloud
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :LifecycleTransitionType, :NotificationTarget, :LifecycleCommand
-        
+
         def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, lifecycletransitiontype=nil, notificationtarget=nil, lifecyclecommand=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleHookName = lifecyclehookname
@@ -3816,7 +3822,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3834,7 +3840,7 @@ module TencentCloud
         # @type ForwardLoadBalancers: Array
 
         attr_accessor :AutoScalingGroupId, :ForwardLoadBalancers
-        
+
         def initialize(autoscalinggroupid=nil, forwardloadbalancers=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ForwardLoadBalancers = forwardloadbalancers
@@ -3861,7 +3867,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -3887,7 +3893,7 @@ module TencentCloud
         # @type LoadBalancersCheckPolicy: String
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers, :LoadBalancersCheckPolicy
-        
+
         def initialize(autoscalinggroupid=nil, loadbalancerids=nil, forwardloadbalancers=nil, loadbalancerscheckpolicy=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @LoadBalancerIds = loadbalancerids
@@ -3918,7 +3924,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -3950,7 +3956,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :AutoScalingNotificationId, :NotificationTypes, :NotificationUserGroupIds, :QueueName, :TopicName
-        
+
         def initialize(autoscalingnotificationid=nil, notificationtypes=nil, notificationusergroupids=nil, queuename=nil, topicname=nil)
           @AutoScalingNotificationId = autoscalingnotificationid
           @NotificationTypes = notificationtypes
@@ -3974,7 +3980,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4011,7 +4017,7 @@ module TencentCloud
         # @type NotificationUserGroupIds: Array
 
         attr_accessor :AutoScalingPolicyId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :NotificationUserGroupIds
-        
+
         def initialize(autoscalingpolicyid=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, notificationusergroupids=nil)
           @AutoScalingPolicyId = autoscalingpolicyid
           @ScalingPolicyName = scalingpolicyname
@@ -4050,7 +4056,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4080,7 +4086,7 @@ module TencentCloud
         # @type Recurrence: String
 
         attr_accessor :ScheduledActionId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
-        
+
         def initialize(scheduledactionid=nil, scheduledactionname=nil, maxsize=nil, minsize=nil, desiredcapacity=nil, starttime=nil, endtime=nil, recurrence=nil)
           @ScheduledActionId = scheduledactionid
           @ScheduledActionName = scheduledactionname
@@ -4110,7 +4116,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4134,7 +4140,7 @@ module TencentCloud
         # @type TopicName: String
 
         attr_accessor :TargetType, :QueueName, :TopicName
-        
+
         def initialize(targettype=nil, queuename=nil, topicname=nil)
           @TargetType = targettype
           @QueueName = queuename
@@ -4156,7 +4162,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -4176,7 +4182,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -4195,7 +4201,7 @@ module TencentCloud
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
-        
+
         def initialize(enabled=nil)
           @Enabled = enabled
         end
@@ -4212,7 +4218,7 @@ module TencentCloud
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
-        
+
         def initialize(enabled=nil)
           @Enabled = enabled
         end
@@ -4229,7 +4235,7 @@ module TencentCloud
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
-        
+
         def initialize(enabled=nil)
           @Enabled = enabled
         end
@@ -4247,7 +4253,7 @@ module TencentCloud
         # @type ScaleInNumber: Integer
 
         attr_accessor :AutoScalingGroupId, :ScaleInNumber
-        
+
         def initialize(autoscalinggroupid=nil, scaleinnumber=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScaleInNumber = scaleinnumber
@@ -4267,7 +4273,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -4287,7 +4293,7 @@ module TencentCloud
         # @type ScaleOutNumber: Integer
 
         attr_accessor :AutoScalingGroupId, :ScaleOutNumber
-        
+
         def initialize(autoscalinggroupid=nil, scaleoutnumber=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScaleOutNumber = scaleoutnumber
@@ -4307,7 +4313,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -4358,7 +4364,7 @@ module TencentCloud
         # @type NotificationUserGroupIds: Array
 
         attr_accessor :AutoScalingGroupId, :AutoScalingPolicyId, :ScalingPolicyType, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :MetricAlarms, :NotificationUserGroupIds
-        
+
         def initialize(autoscalinggroupid=nil, autoscalingpolicyid=nil, scalingpolicytype=nil, scalingpolicyname=nil, adjustmenttype=nil, adjustmentvalue=nil, cooldown=nil, metricalarm=nil, predefinedmetrictype=nil, targetvalue=nil, estimatedinstancewarmup=nil, disablescalein=nil, metricalarms=nil, notificationusergroupids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingPolicyId = autoscalingpolicyid
@@ -4430,7 +4436,7 @@ module TencentCloud
         # @type ScheduledType: String
 
         attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime, :ScheduledType
-        
+
         def initialize(scheduledactionid=nil, scheduledactionname=nil, autoscalinggroupid=nil, starttime=nil, recurrence=nil, endtime=nil, maxsize=nil, desiredcapacity=nil, minsize=nil, createdtime=nil, scheduledtype=nil)
           @ScheduledActionId = scheduledactionid
           @ScheduledActionName = scheduledactionname
@@ -4473,7 +4479,7 @@ module TencentCloud
         # @type ReplaceLoadBalancerUnhealthy: Boolean
 
         attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy
-        
+
         def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil)
           @ReplaceMonitorUnhealthy = replacemonitorunhealthy
           @ScalingMode = scalingmode
@@ -4497,7 +4503,7 @@ module TencentCloud
         # @type ProtectedFromScaleIn: Boolean
 
         attr_accessor :AutoScalingGroupId, :InstanceIds, :ProtectedFromScaleIn
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil, protectedfromscalein=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -4517,7 +4523,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4536,7 +4542,7 @@ module TencentCloud
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType
-        
+
         def initialize(maxprice=nil, spotinstancetype=nil)
           @MaxPrice = maxprice
           @SpotInstanceType = spotinstancetype
@@ -4571,7 +4577,7 @@ module TencentCloud
         # @type CompensateWithBaseInstance: Boolean
 
         attr_accessor :BaseCapacity, :OnDemandPercentageAboveBaseCapacity, :SpotAllocationStrategy, :CompensateWithBaseInstance
-        
+
         def initialize(basecapacity=nil, ondemandpercentageabovebasecapacity=nil, spotallocationstrategy=nil, compensatewithbaseinstance=nil)
           @BaseCapacity = basecapacity
           @OnDemandPercentageAboveBaseCapacity = ondemandpercentageabovebasecapacity
@@ -4595,7 +4601,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -4615,7 +4621,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -4640,7 +4646,7 @@ module TencentCloud
         # @type StoppedMode: String
 
         attr_accessor :AutoScalingGroupId, :InstanceIds, :StoppedMode
-        
+
         def initialize(autoscalinggroupid=nil, instanceids=nil, stoppedmode=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @InstanceIds = instanceids
@@ -4662,7 +4668,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ActivityId, :RequestId
-        
+
         def initialize(activityid=nil, requestid=nil)
           @ActivityId = activityid
           @RequestId = requestid
@@ -4684,7 +4690,7 @@ module TencentCloud
         # @type DiskSize: Integer
 
         attr_accessor :DiskType, :DiskSize
-        
+
         def initialize(disktype=nil, disksize=nil)
           @DiskType = disktype
           @DiskSize = disksize
@@ -4707,7 +4713,7 @@ module TencentCloud
         # @type ResourceType: String
 
         attr_accessor :Key, :Value, :ResourceType
-        
+
         def initialize(key=nil, value=nil, resourcetype=nil)
           @Key = key
           @Value = value
@@ -4729,7 +4735,7 @@ module TencentCloud
         # @type Weight: Integer
 
         attr_accessor :Port, :Weight
-        
+
         def initialize(port=nil, weight=nil)
           @Port = port
           @Weight = weight
@@ -4799,7 +4805,7 @@ module TencentCloud
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
         attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :IPv6InternetAccessible
-        
+
         def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, launchconfigurationname=nil, datadisks=nil, enhancedservice=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypescheckpolicy=nil, internetaccessible=nil, loginsettings=nil, projectid=nil, securitygroupids=nil, systemdisk=nil, userdata=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, ipv6internetaccessible=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
@@ -4898,7 +4904,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4930,7 +4936,7 @@ module TencentCloud
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
-        
+
         def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, notificationtarget=nil, lifecycletransitiontype=nil, lifecyclecommand=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleHookName = lifecyclehookname
@@ -4968,7 +4974,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

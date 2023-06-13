@@ -37,7 +37,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :FileName, :EvidenceHash, :BusinessId, :FileContent, :FileUrl, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, filename=nil, evidencehash=nil, businessid=nil, filecontent=nil, fileurl=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @FileName = filename
@@ -72,7 +72,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -102,7 +102,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceInfo, :EvidenceName, :EvidenceHash, :BusinessId, :HashType, :EvidenceDescription
-        
+
         def initialize(evidenceinfo=nil, evidencename=nil, evidencehash=nil, businessid=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceInfo = evidenceinfo
           @EvidenceName = evidencename
@@ -133,7 +133,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -167,7 +167,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :FileName, :EvidenceHash, :BusinessId, :FileContent, :FileUrl, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, filename=nil, evidencehash=nil, businessid=nil, filecontent=nil, fileurl=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @FileName = filename
@@ -202,7 +202,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -228,7 +228,7 @@ module TencentCloud
         # @type EvidenceInfo: String
 
         attr_accessor :EvidenceHash, :BusinessId, :HashType, :EvidenceInfo
-        
+
         def initialize(evidencehash=nil, businessid=nil, hashtype=nil, evidenceinfo=nil)
           @EvidenceHash = evidencehash
           @BusinessId = businessid
@@ -261,7 +261,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :EvidenceTime, :EvidenceTxHash, :BlockchainHeight, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, evidencetime=nil, evidencetxhash=nil, blockchainheight=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -293,7 +293,7 @@ module TencentCloud
         # @type EvidenceInfo: String
 
         attr_accessor :EvidenceHash, :BusinessId, :HashType, :EvidenceInfo
-        
+
         def initialize(evidencehash=nil, businessid=nil, hashtype=nil, evidenceinfo=nil)
           @EvidenceHash = evidencehash
           @BusinessId = businessid
@@ -326,7 +326,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :EvidenceTime, :EvidenceTxHash, :BlockchainHeight, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, evidencetime=nil, evidencetxhash=nil, blockchainheight=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -360,7 +360,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :EvidenceHash, :BusinessId, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, evidencehash=nil, businessid=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @EvidenceHash = evidencehash
@@ -389,7 +389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -423,7 +423,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :FileName, :EvidenceHash, :BusinessId, :FileContent, :FileUrl, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, filename=nil, evidencehash=nil, businessid=nil, filecontent=nil, fileurl=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @FileName = filename
@@ -458,7 +458,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -492,7 +492,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :FileName, :EvidenceHash, :BusinessId, :FileContent, :FileUrl, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, filename=nil, evidencehash=nil, businessid=nil, filecontent=nil, fileurl=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @FileName = filename
@@ -527,7 +527,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -555,7 +555,7 @@ module TencentCloud
         # @type EvidenceDescription: String
 
         attr_accessor :EvidenceName, :EvidenceUrl, :BusinessId, :HashType, :EvidenceDescription
-        
+
         def initialize(evidencename=nil, evidenceurl=nil, businessid=nil, hashtype=nil, evidencedescription=nil)
           @EvidenceName = evidencename
           @EvidenceUrl = evidenceurl
@@ -584,7 +584,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
-        
+
         def initialize(businessid=nil, evidenceid=nil, requestid=nil)
           @BusinessId = businessid
           @EvidenceId = evidenceid
@@ -604,7 +604,7 @@ module TencentCloud
         # @type EvidenceId: String
 
         attr_accessor :EvidenceId
-        
+
         def initialize(evidenceid=nil)
           @EvidenceId = evidenceid
         end
@@ -624,7 +624,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceCert, :RequestId
-        
+
         def initialize(evidenceid=nil, evidencecert=nil, requestid=nil)
           @EvidenceId = evidenceid
           @EvidenceCert = evidencecert
@@ -644,7 +644,7 @@ module TencentCloud
         # @type EvidenceId: String
 
         attr_accessor :EvidenceId
-        
+
         def initialize(evidenceid=nil)
           @EvidenceId = evidenceid
         end
@@ -664,7 +664,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceFile, :RequestId
-        
+
         def initialize(evidenceid=nil, evidencefile=nil, requestid=nil)
           @EvidenceId = evidenceid
           @EvidenceFile = evidencefile
@@ -684,7 +684,7 @@ module TencentCloud
         # @type EvidenceId: String
 
         attr_accessor :EvidenceId
-        
+
         def initialize(evidenceid=nil)
           @EvidenceId = evidenceid
         end
@@ -708,7 +708,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceTime, :EvidenceTxHash, :BlockchainHeight, :RequestId
-        
+
         def initialize(evidenceid=nil, evidencetime=nil, evidencetxhash=nil, blockchainheight=nil, requestid=nil)
           @EvidenceId = evidenceid
           @EvidenceTime = evidencetime

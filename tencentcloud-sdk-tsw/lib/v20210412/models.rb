@@ -20,7 +20,7 @@ module TencentCloud
       # DescribeComponentAlertObject请求参数结构体
       class DescribeComponentAlertObjectRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -34,7 +34,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -47,7 +47,7 @@ module TencentCloud
       # DescribeServiceAlertObject请求参数结构体
       class DescribeServiceAlertObjectRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -61,7 +61,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -77,7 +77,7 @@ module TencentCloud
         # @type Namespace: String
 
         attr_accessor :Namespace
-        
+
         def initialize(namespace=nil)
           @Namespace = namespace
         end
@@ -95,7 +95,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid

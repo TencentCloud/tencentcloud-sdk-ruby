@@ -23,7 +23,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -41,7 +41,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Pass, :RequestId
-        
+
         def initialize(pass=nil, requestid=nil)
           @Pass = pass
           @RequestId = requestid
@@ -61,7 +61,7 @@ module TencentCloud
         # @type Tid: String
 
         attr_accessor :OrderId, :Tid
-        
+
         def initialize(orderid=nil, tid=nil)
           @OrderId = orderid
           @Tid = tid
@@ -81,7 +81,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Tid, :RequestId
-        
+
         def initialize(tid=nil, requestid=nil)
           @Tid = tid
           @RequestId = requestid
@@ -101,7 +101,7 @@ module TencentCloud
         # @type Tid: String
 
         attr_accessor :OrderId, :Tid
-        
+
         def initialize(orderid=nil, tid=nil)
           @OrderId = orderid
           @Tid = tid
@@ -125,7 +125,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RemaindCount, :Tid, :ProductKey, :RequestId
-        
+
         def initialize(remaindcount=nil, tid=nil, productkey=nil, requestid=nil)
           @RemaindCount = remaindcount
           @Tid = tid
@@ -149,7 +149,7 @@ module TencentCloud
         # @type Quantity: Integer
 
         attr_accessor :OrderId, :Quantity
-        
+
         def initialize(orderid=nil, quantity=nil)
           @OrderId = orderid
           @Quantity = quantity
@@ -172,7 +172,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TidSet, :ProductKey, :RequestId
-        
+
         def initialize(tidset=nil, productkey=nil, requestid=nil)
           @TidSet = tidset
           @ProductKey = productkey
@@ -199,7 +199,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :OrderId
-        
+
         def initialize(orderid=nil)
           @OrderId = orderid
         end
@@ -217,7 +217,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Quantity, :RequestId
-        
+
         def initialize(quantity=nil, requestid=nil)
           @Quantity = quantity
           @RequestId = requestid
@@ -232,7 +232,7 @@ module TencentCloud
       # DescribePermission请求参数结构体
       class DescribePermissionRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -252,7 +252,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnterpriseUser, :DownloadPermission, :UsePermission, :RequestId
-        
+
         def initialize(enterpriseuser=nil, downloadpermission=nil, usepermission=nil, requestid=nil)
           @EnterpriseUser = enterpriseuser
           @DownloadPermission = downloadpermission
@@ -276,7 +276,7 @@ module TencentCloud
         # @type Quantity: Integer
 
         attr_accessor :OrderId, :Quantity
-        
+
         def initialize(orderid=nil, quantity=nil)
           @OrderId = orderid
           @Quantity = quantity
@@ -297,7 +297,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TidSet, :RequestId
-        
+
         def initialize(tidset=nil, requestid=nil)
           @TidSet = tidset
           @RequestId = requestid
@@ -332,7 +332,7 @@ module TencentCloud
         # @type DeviceCode: String
 
         attr_accessor :Tid, :PublicKey, :PrivateKey, :Psk, :DownloadUrl, :DeviceCode
-        
+
         def initialize(tid=nil, publickey=nil, privatekey=nil, psk=nil, downloadurl=nil, devicecode=nil)
           @Tid = tid
           @PublicKey = publickey
@@ -360,7 +360,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :CodeSet, :OrderId
-        
+
         def initialize(codeset=nil, orderid=nil)
           @CodeSet = codeset
           @OrderId = orderid
@@ -388,7 +388,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Count, :ExistedCodeSet, :LeftQuantity, :IllegalCodeSet, :RequestId
-        
+
         def initialize(count=nil, existedcodeset=nil, leftquantity=nil, illegalcodeset=nil, requestid=nil)
           @Count = count
           @ExistedCodeSet = existedcodeset
@@ -412,7 +412,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -434,7 +434,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Pass, :VerifiedTimes, :LeftTimes, :RequestId
-        
+
         def initialize(pass=nil, verifiedtimes=nil, lefttimes=nil, requestid=nil)
           @Pass = pass
           @VerifiedTimes = verifiedtimes

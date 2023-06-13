@@ -889,6 +889,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除RabbitMQ的用户
+
+        # @param request: Request instance for DeleteRabbitMQUser.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQUserRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQUserResponse`
+        def DeleteRabbitMQUser(request)
+          body = send_request('DeleteRabbitMQUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRabbitMQUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除RabbitMQ的vhost
+
+        # @param request: Request instance for DeleteRabbitMQVirtualHost.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQVirtualHostRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQVirtualHostResponse`
+        def DeleteRabbitMQVirtualHost(request)
+          body = send_request('DeleteRabbitMQVirtualHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRabbitMQVirtualHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除RocketMQ集群
 
         # @param request: Request instance for DeleteRocketMQCluster.
@@ -1741,6 +1789,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询RabbitMQ用户列表
+
+        # @param request: Request instance for DescribeRabbitMQUser.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQUserRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQUserResponse`
+        def DescribeRabbitMQUser(request)
+          body = send_request('DescribeRabbitMQUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取单个RabbitMQ专享实例信息
 
         # @param request: Request instance for DescribeRabbitMQVipInstance.
@@ -1775,6 +1847,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRabbitMQVipInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询RabbitMQ vhost列表
+
+        # @param request: Request instance for DescribeRabbitMQVirtualHost.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostResponse`
+        def DescribeRabbitMQVirtualHost(request)
+          body = send_request('DescribeRabbitMQVirtualHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQVirtualHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # RabbitMQ专享版查询虚拟主机列表
+
+        # @param request: Request instance for DescribeRabbitMQVirtualHostList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostListResponse`
+        def DescribeRabbitMQVirtualHostList(request)
+          body = send_request('DescribeRabbitMQVirtualHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQVirtualHostListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2299,6 +2419,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改RabbitMQ的用户
+
+        # @param request: Request instance for ModifyRabbitMQUser.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQUserRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQUserResponse`
+        def ModifyRabbitMQUser(request)
+          body = send_request('ModifyRabbitMQUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRabbitMQUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改RabbitMQ专享版实例
 
         # @param request: Request instance for ModifyRabbitMQVipInstance.
@@ -2309,6 +2453,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRabbitMQVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改RabbitMQ的vhost
+
+        # @param request: Request instance for ModifyRabbitMQVirtualHost.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQVirtualHostRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQVirtualHostResponse`
+        def ModifyRabbitMQVirtualHost(request)
+          body = send_request('ModifyRabbitMQVirtualHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRabbitMQVirtualHostResponse.new
             model.deserialize(response['Response'])
             model
           else

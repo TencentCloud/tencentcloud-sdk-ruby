@@ -33,7 +33,7 @@ module TencentCloud
         # @type Vport: Integer
 
         attr_accessor :SubscribeId, :InstanceId, :SubscribeObjectType, :Objects, :UniqSubnetId, :Vport
-        
+
         def initialize(subscribeid=nil, instanceid=nil, subscribeobjecttype=nil, objects=nil, uniqsubnetid=nil, vport=nil)
           @SubscribeId = subscribeid
           @InstanceId = instanceid
@@ -64,7 +64,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsyncRequestId, :RequestId
-        
+
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
           @RequestId = requestid
@@ -84,7 +84,7 @@ module TencentCloud
         # @type CompleteMode: String
 
         attr_accessor :JobId, :CompleteMode
-        
+
         def initialize(jobid=nil, completemode=nil)
           @JobId = jobid
           @CompleteMode = completemode
@@ -102,7 +102,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -122,7 +122,7 @@ module TencentCloud
         # @type TablesSelectCount: Integer
 
         attr_accessor :SelectRowsPerTable, :TablesSelectAll, :TablesSelectCount
-        
+
         def initialize(selectrowspertable=nil, tablesselectall=nil, tablesselectcount=nil)
           @SelectRowsPerTable = selectrowspertable
           @TablesSelectAll = tablesselectall
@@ -142,7 +142,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -158,7 +158,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -200,7 +200,7 @@ module TencentCloud
         # @type SrcInfoMulti: Array
 
         attr_accessor :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :Tags, :SrcNodeType, :SrcInfoMulti
-        
+
         def initialize(jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, tags=nil, srcnodetype=nil, srcinfomulti=nil)
           @JobName = jobname
           @MigrateOption = migrateoption
@@ -263,7 +263,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -293,7 +293,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Product, :PayType, :Duration, :Count, :AutoRenew, :Tags, :Name
-        
+
         def initialize(product=nil, paytype=nil, duration=nil, count=nil, autorenew=nil, tags=nil, name=nil)
           @Product = product
           @PayType = paytype
@@ -331,7 +331,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubscribeIds, :RequestId
-        
+
         def initialize(subscribeids=nil, requestid=nil)
           @SubscribeIds = subscribeids
           @RequestId = requestid
@@ -349,7 +349,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -365,7 +365,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -381,7 +381,7 @@ module TencentCloud
         # @type AsyncRequestId: String
 
         attr_accessor :AsyncRequestId
-        
+
         def initialize(asyncrequestid=nil)
           @AsyncRequestId = asyncrequestid
         end
@@ -401,7 +401,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Info, :Status, :RequestId
-        
+
         def initialize(info=nil, status=nil, requestid=nil)
           @Info = info
           @Status = status
@@ -421,7 +421,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -447,7 +447,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :ErrorCode, :ErrorMessage, :Progress, :CheckFlag, :RequestId
-        
+
         def initialize(status=nil, errorcode=nil, errormessage=nil, progress=nil, checkflag=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
@@ -485,7 +485,7 @@ module TencentCloud
         # @type TagFilters: Array
 
         attr_accessor :JobId, :JobName, :Order, :OrderSeq, :Offset, :Limit, :TagFilters
-        
+
         def initialize(jobid=nil, jobname=nil, order=nil, orderseq=nil, offset=nil, limit=nil, tagfilters=nil)
           @JobId = jobid
           @JobName = jobname
@@ -524,7 +524,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :JobList, :RequestId
-        
+
         def initialize(totalcount=nil, joblist=nil, requestid=nil)
           @TotalCount = totalcount
           @JobList = joblist
@@ -548,7 +548,7 @@ module TencentCloud
       # DescribeRegionConf请求参数结构体
       class DescribeRegionConfRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -566,7 +566,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Items, :RequestId
-        
+
         def initialize(totalcount=nil, items=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
@@ -593,7 +593,7 @@ module TencentCloud
         # @type SubscribeId: String
 
         attr_accessor :SubscribeId
-        
+
         def initialize(subscribeid=nil)
           @SubscribeId = subscribeid
         end
@@ -668,7 +668,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :Status, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :SdkConsumedTime, :SdkHost, :SubscribeObjectType, :SubscribeObjects, :ModifyTime, :Region, :Tags, :AutoRenewFlag, :SubscribeVersion, :Errors, :RequestId
-        
+
         def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, status=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, sdkconsumedtime=nil, sdkhost=nil, subscribeobjecttype=nil, subscribeobjects=nil, modifytime=nil, region=nil, tags=nil, autorenewflag=nil, subscribeversion=nil, errors=nil, requestid=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
@@ -785,7 +785,7 @@ module TencentCloud
         # @type SubscribeVersion: String
 
         attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :ChannelId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters, :SubscribeVersion
-        
+
         def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, channelid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil, subscribeversion=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
@@ -836,7 +836,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Items, :RequestId
-        
+
         def initialize(totalcount=nil, items=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
@@ -875,7 +875,7 @@ module TencentCloud
         # @type Password: String
 
         attr_accessor :Region, :InstanceId, :Ip, :Port, :ReadOnly, :User, :Password
-        
+
         def initialize(region=nil, instanceid=nil, ip=nil, port=nil, readonly=nil, user=nil, password=nil)
           @Region = region
           @InstanceId = instanceid
@@ -905,7 +905,7 @@ module TencentCloud
         # @type HelpDoc: String
 
         attr_accessor :ErrorLog, :HelpDoc
-        
+
         def initialize(errorlog=nil, helpdoc=nil)
           @ErrorLog = errorlog
           @HelpDoc = helpdoc
@@ -923,7 +923,7 @@ module TencentCloud
         # @type SubscribeId: String
 
         attr_accessor :SubscribeId
-        
+
         def initialize(subscribeid=nil)
           @SubscribeId = subscribeid
         end
@@ -939,7 +939,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -967,7 +967,7 @@ module TencentCloud
         # @type StepInfo: Array
 
         attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :StepInfo
-        
+
         def initialize(stepall=nil, stepnow=nil, progress=nil, currentstepprogress=nil, masterslavedistance=nil, secondsbehindmaster=nil, stepinfo=nil)
           @StepAll = stepall
           @StepNow = stepnow
@@ -1038,7 +1038,7 @@ module TencentCloud
         # @type SrcInfoMulti: Array
 
         attr_accessor :JobId, :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :CreateTime, :StartTime, :EndTime, :Status, :Detail, :ErrorInfo, :Tags, :SrcInfoMulti
-        
+
         def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, detail=nil, errorinfo=nil, tags=nil, srcinfomulti=nil)
           @JobId = jobid
           @JobName = jobname
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type ConsistencyParams: :class:`Tencentcloud::Dts.v20180330.models.ConsistencyParams`
 
         attr_accessor :RunMode, :ExpectTime, :MigrateType, :MigrateObject, :ConsistencyType, :IsOverrideRoot, :ExternParams, :ConsistencyParams
-        
+
         def initialize(runmode=nil, expecttime=nil, migratetype=nil, migrateobject=nil, consistencytype=nil, isoverrideroot=nil, externparams=nil, consistencyparams=nil)
           @RunMode = runmode
           @ExpectTime = expecttime
@@ -1192,7 +1192,7 @@ module TencentCloud
         # @type StartTime: String
 
         attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime
-        
+
         def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil, starttime=nil)
           @StepNo = stepno
           @StepName = stepname
@@ -1241,7 +1241,7 @@ module TencentCloud
         # @type SrcInfoMulti: Array
 
         attr_accessor :JobId, :JobName, :MigrateOption, :SrcAccessType, :SrcInfo, :DstAccessType, :DstInfo, :DatabaseInfo, :SrcNodeType, :SrcInfoMulti
-        
+
         def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcaccesstype=nil, srcinfo=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, srcnodetype=nil, srcinfomulti=nil)
           @JobId = jobid
           @JobName = jobname
@@ -1291,7 +1291,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1309,7 +1309,7 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
 
         attr_accessor :SubscribeId, :AutoRenewFlag
-        
+
         def initialize(subscribeid=nil, autorenewflag=nil)
           @SubscribeId = subscribeid
           @AutoRenewFlag = autorenewflag
@@ -1327,7 +1327,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1345,7 +1345,7 @@ module TencentCloud
         # @type ConsumeStartTime: String
 
         attr_accessor :SubscribeId, :ConsumeStartTime
-        
+
         def initialize(subscribeid=nil, consumestarttime=nil)
           @SubscribeId = subscribeid
           @ConsumeStartTime = consumestarttime
@@ -1363,7 +1363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1381,7 +1381,7 @@ module TencentCloud
         # @type SubscribeName: String
 
         attr_accessor :SubscribeId, :SubscribeName
-        
+
         def initialize(subscribeid=nil, subscribename=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
@@ -1399,7 +1399,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1419,7 +1419,7 @@ module TencentCloud
         # @type Objects: Array
 
         attr_accessor :SubscribeId, :SubscribeObjectType, :Objects
-        
+
         def initialize(subscribeid=nil, subscribeobjecttype=nil, objects=nil)
           @SubscribeId = subscribeid
           @SubscribeObjectType = subscribeobjecttype
@@ -1448,7 +1448,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsyncRequestId, :RequestId
-        
+
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
           @RequestId = requestid
@@ -1472,7 +1472,7 @@ module TencentCloud
         # @type DstPort: Integer
 
         attr_accessor :SubscribeId, :DstUniqSubnetId, :DstIp, :DstPort
-        
+
         def initialize(subscribeid=nil, dstuniqsubnetid=nil, dstip=nil, dstport=nil)
           @SubscribeId = subscribeid
           @DstUniqSubnetId = dstuniqsubnetid
@@ -1494,7 +1494,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1510,7 +1510,7 @@ module TencentCloud
         # @type SubscribeId: String
 
         attr_accessor :SubscribeId
-        
+
         def initialize(subscribeid=nil)
           @SubscribeId = subscribeid
         end
@@ -1526,7 +1526,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1542,7 +1542,7 @@ module TencentCloud
         # @type SubscribeId: String
 
         attr_accessor :SubscribeId
-        
+
         def initialize(subscribeid=nil)
           @SubscribeId = subscribeid
         end
@@ -1558,7 +1558,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1605,7 +1605,7 @@ module TencentCloud
         # @type EngineVersion: String
 
         attr_accessor :AccessKey, :Ip, :Port, :User, :Password, :RdsInstanceId, :CvmInstanceId, :UniqDcgId, :VpcId, :SubnetId, :UniqVpnGwId, :InstanceId, :Region, :Supplier, :CcnId, :EngineVersion
-        
+
         def initialize(accesskey=nil, ip=nil, port=nil, user=nil, password=nil, rdsinstanceid=nil, cvminstanceid=nil, uniqdcgid=nil, vpcid=nil, subnetid=nil, uniqvpngwid=nil, instanceid=nil, region=nil, supplier=nil, ccnid=nil, engineversion=nil)
           @AccessKey = accesskey
           @Ip = ip
@@ -1651,7 +1651,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -1667,7 +1667,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1683,7 +1683,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -1699,7 +1699,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1716,7 +1716,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Message
-        
+
         def initialize(message=nil)
           @Message = message
         end
@@ -1781,7 +1781,7 @@ module TencentCloud
         # @type SubscribeVersion: String
 
         attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :AutoRenewFlag, :SubscribeVersion
-        
+
         def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, autorenewflag=nil, subscribeversion=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type TableNames: Array
 
         attr_accessor :ObjectsType, :DatabaseName, :TableNames
-        
+
         def initialize(objectstype=nil, databasename=nil, tablenames=nil)
           @ObjectsType = objectstype
           @DatabaseName = databasename
@@ -1890,7 +1890,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :RegionName, :Region, :Area, :IsDefaultRegion, :Status
-        
+
         def initialize(regionname=nil, region=nil, area=nil, isdefaultregion=nil, status=nil)
           @RegionName = regionname
           @Region = region
@@ -1916,7 +1916,7 @@ module TencentCloud
         # @type TagValue: Array
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1937,7 +1937,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue

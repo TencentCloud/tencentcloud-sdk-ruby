@@ -23,7 +23,7 @@ module TencentCloud
         # @type PhoneNumber: String
 
         attr_accessor :PhoneNumber
-        
+
         def initialize(phonenumber=nil)
           @PhoneNumber = phonenumber
         end
@@ -49,7 +49,7 @@ module TencentCloud
         # @type TagCount: Integer
 
         attr_accessor :TagType, :TagCount
-        
+
         def initialize(tagtype=nil, tagcount=nil)
           @TagType = tagtype
           @TagCount = tagcount
@@ -69,7 +69,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :RequestData, :ResourceId
-        
+
         def initialize(requestdata=nil, resourceid=nil)
           @RequestData = requestdata
           @ResourceId = resourceid
@@ -92,7 +92,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid
@@ -115,7 +115,7 @@ module TencentCloud
         # @type RequestData: :class:`Tencentcloud::Smpn.v20190822.models.CHPRequest`
 
         attr_accessor :ResourceId, :RequestData
-        
+
         def initialize(resourceid=nil, requestdata=nil)
           @ResourceId = resourceid
           @RequestData = requestdata
@@ -138,7 +138,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid
@@ -161,7 +161,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :RequestData, :ResourceId
-        
+
         def initialize(requestdata=nil, resourceid=nil)
           @RequestData = requestdata
           @ResourceId = resourceid
@@ -184,7 +184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid
@@ -207,7 +207,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :RequestData, :ResourceId
-        
+
         def initialize(requestdata=nil, resourceid=nil)
           @RequestData = requestdata
           @ResourceId = resourceid
@@ -230,7 +230,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid
@@ -253,7 +253,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :RequestData, :ResourceId
-        
+
         def initialize(requestdata=nil, resourceid=nil)
           @RequestData = requestdata
           @ResourceId = resourceid
@@ -276,7 +276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid
@@ -299,7 +299,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :PhoneNumber, :Name
-        
+
         def initialize(phonenumber=nil, name=nil)
           @PhoneNumber = phonenumber
           @Name = name
@@ -317,7 +317,7 @@ module TencentCloud
         # @type RetCode: Integer
 
         attr_accessor :RetCode
-        
+
         def initialize(retcode=nil)
           @RetCode = retcode
         end
@@ -333,7 +333,7 @@ module TencentCloud
         # @type PhoneNumber: String
 
         attr_accessor :PhoneNumber
-        
+
         def initialize(phonenumber=nil)
           @PhoneNumber = phonenumber
         end
@@ -349,7 +349,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Status
-        
+
         def initialize(status=nil)
           @Status = status
         end
@@ -365,7 +365,7 @@ module TencentCloud
         # @type PhoneNumber: String
 
         attr_accessor :PhoneNumber
-        
+
         def initialize(phonenumber=nil)
           @PhoneNumber = phonenumber
         end
@@ -391,7 +391,7 @@ module TencentCloud
         # @type TagCount: Integer
 
         attr_accessor :TagType, :TagCount
-        
+
         def initialize(tagtype=nil, tagcount=nil)
           @TagType = tagtype
           @TagCount = tagcount
@@ -409,7 +409,7 @@ module TencentCloud
         # @type PhoneNumber: String
 
         attr_accessor :PhoneNumber
-        
+
         def initialize(phonenumber=nil)
           @PhoneNumber = phonenumber
         end
@@ -433,7 +433,7 @@ module TencentCloud
         # @type CheatLevel: Integer
 
         attr_accessor :DisturbLevel, :HouseAgentLevel, :InsuranceLevel, :SalesLevel, :CheatLevel
-        
+
         def initialize(disturblevel=nil, houseagentlevel=nil, insurancelevel=nil, saleslevel=nil, cheatlevel=nil)
           @DisturbLevel = disturblevel
           @HouseAgentLevel = houseagentlevel

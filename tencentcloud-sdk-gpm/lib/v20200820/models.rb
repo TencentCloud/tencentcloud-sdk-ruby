@@ -25,7 +25,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -45,7 +45,7 @@ module TencentCloud
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :MatchTicketId
-        
+
         def initialize(matchcode=nil, matchticketid=nil)
           @MatchCode = matchcode
           @MatchTicketId = matchticketid
@@ -65,7 +65,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :RequestId
-        
+
         def initialize(errcode=nil, requestid=nil)
           @ErrCode = errcode
           @RequestId = requestid
@@ -107,7 +107,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :MatchName, :RuleCode, :Timeout, :ServerType, :MatchDesc, :NotifyUrl, :ServerRegion, :ServerQueue, :CustomPushData, :ServerSessionData, :GameProperties, :LogSwitch, :Tags
-        
+
         def initialize(matchname=nil, rulecode=nil, timeout=nil, servertype=nil, matchdesc=nil, notifyurl=nil, serverregion=nil, serverqueue=nil, custompushdata=nil, serversessiondata=nil, gameproperties=nil, logswitch=nil, tags=nil)
           @MatchName = matchname
           @RuleCode = rulecode
@@ -163,7 +163,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchInfo, :RequestId
-        
+
         def initialize(matchinfo=nil, requestid=nil)
           @MatchInfo = matchinfo
           @RequestId = requestid
@@ -190,7 +190,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :RuleName, :RuleScript, :RuleDesc, :Tags
-        
+
         def initialize(rulename=nil, rulescript=nil, ruledesc=nil, tags=nil)
           @RuleName = rulename
           @RuleScript = rulescript
@@ -221,7 +221,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleInfo, :RequestId
-        
+
         def initialize(ruleinfo=nil, requestid=nil)
           @RuleInfo = ruleinfo
           @RequestId = requestid
@@ -242,7 +242,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :MatchCode
-        
+
         def initialize(matchcode=nil)
           @MatchCode = matchcode
         end
@@ -258,7 +258,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -274,7 +274,7 @@ module TencentCloud
         # @type RuleCode: String
 
         attr_accessor :RuleCode
-        
+
         def initialize(rulecode=nil)
           @RuleCode = rulecode
         end
@@ -290,7 +290,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -312,7 +312,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :StartTime, :EndTime, :TimeType, :MatchCode
-        
+
         def initialize(starttime=nil, endtime=nil, timetype=nil, matchcode=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -340,7 +340,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OverviewData, :TrendData, :RequestId
-        
+
         def initialize(overviewdata=nil, trenddata=nil, requestid=nil)
           @OverviewData = overviewdata
           @TrendData = trenddata
@@ -370,7 +370,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :Offset, :Limit, :MatchCode
-        
+
         def initialize(offset=nil, limit=nil, matchcode=nil)
           @Offset = offset
           @Limit = limit
@@ -396,7 +396,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchCodes, :TotalCount, :RequestId
-        
+
         def initialize(matchcodes=nil, totalcount=nil, requestid=nil)
           @MatchCodes = matchcodes
           @TotalCount = totalcount
@@ -423,7 +423,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :MatchCode
-        
+
         def initialize(matchcode=nil)
           @MatchCode = matchcode
         end
@@ -442,7 +442,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchInfo, :RequestId
-        
+
         def initialize(matchinfo=nil, requestid=nil)
           @MatchInfo = matchinfo
           @RequestId = requestid
@@ -471,7 +471,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :PageNumber, :PageSize, :SearchType, :Keyword, :Tags
-        
+
         def initialize(pagenumber=nil, pagesize=nil, searchtype=nil, keyword=nil, tags=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -515,7 +515,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchInfoList, :TotalCount, :PageNumber, :PageSize, :SearchType, :Keyword, :RequestId
-        
+
         def initialize(matchinfolist=nil, totalcount=nil, pagenumber=nil, pagesize=nil, searchtype=nil, keyword=nil, requestid=nil)
           @MatchInfoList = matchinfolist
           @TotalCount = totalcount
@@ -550,7 +550,7 @@ module TencentCloud
         # @type MatchTicketIds: Array
 
         attr_accessor :MatchTicketIds
-        
+
         def initialize(matchticketids=nil)
           @MatchTicketIds = matchticketids
         end
@@ -579,7 +579,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchTickets, :ErrCode, :RequestId
-        
+
         def initialize(matchtickets=nil, errcode=nil, requestid=nil)
           @MatchTickets = matchtickets
           @ErrCode = errcode
@@ -606,7 +606,7 @@ module TencentCloud
         # @type RuleCode: String
 
         attr_accessor :RuleCode
-        
+
         def initialize(rulecode=nil)
           @RuleCode = rulecode
         end
@@ -625,7 +625,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleInfo, :RequestId
-        
+
         def initialize(ruleinfo=nil, requestid=nil)
           @RuleInfo = ruleinfo
           @RequestId = requestid
@@ -654,7 +654,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :PageNumber, :PageSize, :SearchType, :Keyword, :Tags
-        
+
         def initialize(pagenumber=nil, pagesize=nil, searchtype=nil, keyword=nil, tags=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -698,7 +698,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleInfoList, :TotalCount, :PageNumber, :PageSize, :SearchType, :Keyword, :RequestId
-        
+
         def initialize(ruleinfolist=nil, totalcount=nil, pagenumber=nil, pagesize=nil, searchtype=nil, keyword=nil, requestid=nil)
           @RuleInfoList = ruleinfolist
           @TotalCount = totalcount
@@ -733,7 +733,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :MatchCode
-        
+
         def initialize(matchcode=nil)
           @MatchCode = matchcode
         end
@@ -755,7 +755,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchToken, :CompatibleSpan, :RequestId
-        
+
         def initialize(matchtoken=nil, compatiblespan=nil, requestid=nil)
           @MatchToken = matchtoken
           @CompatibleSpan = compatiblespan
@@ -777,7 +777,7 @@ module TencentCloud
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :MatchTicketId
-        
+
         def initialize(matchcode=nil, matchticketid=nil)
           @MatchCode = matchcode
           @MatchTicketId = matchticketid
@@ -805,7 +805,7 @@ module TencentCloud
         # @type MapValue: Array
 
         attr_accessor :Name, :Type, :NumberValue, :StringValue, :ListValue, :MapValue
-        
+
         def initialize(name=nil, type=nil, numbervalue=nil, stringvalue=nil, listvalue=nil, mapvalue=nil)
           @Name = name
           @Type = type
@@ -839,7 +839,7 @@ module TencentCloud
         # @type MatchCode: String
 
         attr_accessor :MatchCode
-        
+
         def initialize(matchcode=nil)
           @MatchCode = matchcode
         end
@@ -920,7 +920,7 @@ module TencentCloud
         # @type LogStatus: Integer
 
         attr_accessor :MatchCode, :MatchName, :MatchDesc, :RuleCode, :CreateTime, :Timeout, :NotifyUrl, :ServerType, :ServerRegion, :ServerQueue, :CustomPushData, :ServerSessionData, :GameProperties, :LogSwitch, :LogsetId, :LogsetName, :LogTopicId, :LogTopicName, :Tags, :Region, :AppId, :Uin, :CreateUin, :RuleName, :LogStatus
-        
+
         def initialize(matchcode=nil, matchname=nil, matchdesc=nil, rulecode=nil, createtime=nil, timeout=nil, notifyurl=nil, servertype=nil, serverregion=nil, serverqueue=nil, custompushdata=nil, serversessiondata=nil, gameproperties=nil, logswitch=nil, logsetid=nil, logsetname=nil, logtopicid=nil, logtopicname=nil, tags=nil, region=nil, appid=nil, uin=nil, createuin=nil, rulename=nil, logstatus=nil)
           @MatchCode = matchcode
           @MatchName = matchname
@@ -1021,7 +1021,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Id, :MatchCode, :MatchResult, :MatchType, :Players, :Status, :StatusMessage, :StatusReason, :StartTime, :EndTime
-        
+
         def initialize(id=nil, matchcode=nil, matchresult=nil, matchtype=nil, players=nil, status=nil, statusmessage=nil, statusreason=nil, starttime=nil, endtime=nil)
           @Id = id
           @MatchCode = matchcode
@@ -1088,7 +1088,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :MatchName, :RuleCode, :Timeout, :ServerType, :MatchCode, :MatchDesc, :NotifyUrl, :ServerRegion, :ServerQueue, :CustomPushData, :ServerSessionData, :GameProperties, :LogSwitch, :Tags
-        
+
         def initialize(matchname=nil, rulecode=nil, timeout=nil, servertype=nil, matchcode=nil, matchdesc=nil, notifyurl=nil, serverregion=nil, serverqueue=nil, custompushdata=nil, serversessiondata=nil, gameproperties=nil, logswitch=nil, tags=nil)
           @MatchName = matchname
           @RuleCode = rulecode
@@ -1146,7 +1146,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchInfo, :RequestId
-        
+
         def initialize(matchinfo=nil, requestid=nil)
           @MatchInfo = matchinfo
           @RequestId = requestid
@@ -1173,7 +1173,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :RuleCode, :RuleName, :RuleDesc, :Tags
-        
+
         def initialize(rulecode=nil, rulename=nil, ruledesc=nil, tags=nil)
           @RuleCode = rulecode
           @RuleName = rulename
@@ -1204,7 +1204,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleInfo, :RequestId
-        
+
         def initialize(ruleinfo=nil, requestid=nil)
           @RuleInfo = ruleinfo
           @RequestId = requestid
@@ -1229,7 +1229,7 @@ module TencentCloud
         # @type MatchToken: String
 
         attr_accessor :MatchCode, :CompatibleSpan, :MatchToken
-        
+
         def initialize(matchcode=nil, compatiblespan=nil, matchtoken=nil)
           @MatchCode = matchcode
           @CompatibleSpan = compatiblespan
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchToken, :CompatibleSpan, :RequestId
-        
+
         def initialize(matchtoken=nil, compatiblespan=nil, requestid=nil)
           @MatchToken = matchtoken
           @CompatibleSpan = compatiblespan
@@ -1286,7 +1286,7 @@ module TencentCloud
         # @type RegionLatencies: Array
 
         attr_accessor :Id, :Name, :MatchAttributes, :Team, :CustomPlayerStatus, :CustomProfile, :RegionLatencies
-        
+
         def initialize(id=nil, name=nil, matchattributes=nil, team=nil, customplayerstatus=nil, customprofile=nil, regionlatencies=nil)
           @Id = id
           @Name = name
@@ -1345,7 +1345,7 @@ module TencentCloud
         # @type Latency: Integer
 
         attr_accessor :Region, :Latency
-        
+
         def initialize(region=nil, latency=nil)
           @Region = region
           @Latency = latency
@@ -1371,7 +1371,7 @@ module TencentCloud
         # @type AverageSec: Float
 
         attr_accessor :TotalTimes, :SuccessPercent, :TimeoutPercent, :FailPercent, :AverageSec
-        
+
         def initialize(totaltimes=nil, successpercent=nil, timeoutpercent=nil, failpercent=nil, averagesec=nil)
           @TotalTimes = totaltimes
           @SuccessPercent = successpercent
@@ -1405,7 +1405,7 @@ module TencentCloud
         # @type TimeList: Array
 
         attr_accessor :TotalList, :CancelList, :SuccessList, :FailList, :TimeoutList, :TimeList
-        
+
         def initialize(totallist=nil, cancellist=nil, successlist=nil, faillist=nil, timeoutlist=nil, timelist=nil)
           @TotalList = totallist
           @CancelList = cancellist
@@ -1437,7 +1437,7 @@ module TencentCloud
         # @type RuleCode: String
 
         attr_accessor :RuleName, :MatchCodeList, :CreateTime, :RuleCode
-        
+
         def initialize(rulename=nil, matchcodelist=nil, createtime=nil, rulecode=nil)
           @RuleName = rulename
           @MatchCodeList = matchcodelist
@@ -1493,7 +1493,7 @@ module TencentCloud
         # @type CreateUin: String
 
         attr_accessor :RuleName, :CreateTime, :RuleDesc, :RuleScript, :Tags, :MatchCodeList, :RuleCode, :Region, :AppId, :Uin, :CreateUin
-        
+
         def initialize(rulename=nil, createtime=nil, ruledesc=nil, rulescript=nil, tags=nil, matchcodelist=nil, rulecode=nil, region=nil, appid=nil, uin=nil, createuin=nil)
           @RuleName = rulename
           @CreateTime = createtime
@@ -1549,7 +1549,7 @@ module TencentCloud
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :Players, :GameServerSessionId, :MatchTicketId
-        
+
         def initialize(matchcode=nil, players=nil, gameserversessionid=nil, matchticketid=nil)
           @MatchCode = matchcode
           @Players = players
@@ -1581,7 +1581,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MatchTicket, :RequestId
-        
+
         def initialize(matchticket=nil, requestid=nil)
           @MatchTicket = matchticket
           @RequestId = requestid
@@ -1606,7 +1606,7 @@ module TencentCloud
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :Players, :MatchTicketId
-        
+
         def initialize(matchcode=nil, players=nil, matchticketid=nil)
           @MatchCode = matchcode
           @Players = players
@@ -1637,7 +1637,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :MatchTicketId, :RequestId
-        
+
         def initialize(errcode=nil, matchticketid=nil, requestid=nil)
           @ErrCode = errcode
           @MatchTicketId = matchticketid
@@ -1659,7 +1659,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1679,7 +1679,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue

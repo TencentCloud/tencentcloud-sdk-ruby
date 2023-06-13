@@ -29,7 +29,7 @@ module TencentCloud
         # @type LockTransfer: Boolean
 
         attr_accessor :Domains, :TemplateId, :LockTransfer
-        
+
         def initialize(domains=nil, templateid=nil, locktransfer=nil)
           @Domains = domains
           @TemplateId = templateid
@@ -51,7 +51,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -73,7 +73,7 @@ module TencentCloud
         # @type BatchAction: String
 
         attr_accessor :LogId, :Status, :BatchAction
-        
+
         def initialize(logid=nil, status=nil, batchaction=nil)
           @LogId = logid
           @Status = status
@@ -137,7 +137,7 @@ module TencentCloud
         # @type RegistrantImgUrl: String
 
         attr_accessor :CertificateCode, :CertificateType, :ImgUrl, :OriginImgUrl, :RegistrantCertificateCode, :RegistrantCertificateType, :RegistrantImgUrl
-        
+
         def initialize(certificatecode=nil, certificatetype=nil, imgurl=nil, originimgurl=nil, registrantcertificatecode=nil, registrantcertificatetype=nil, registrantimgurl=nil)
           @CertificateCode = certificatecode
           @CertificateType = certificatetype
@@ -165,7 +165,7 @@ module TencentCloud
         # @type LogIds: Array
 
         attr_accessor :LogIds
-        
+
         def initialize(logids=nil)
           @LogIds = logids
         end
@@ -183,7 +183,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StatusSet, :RequestId
-        
+
         def initialize(statusset=nil, requestid=nil)
           @StatusSet = statusset
           @RequestId = requestid
@@ -210,7 +210,7 @@ module TencentCloud
         # @type Period: String
 
         attr_accessor :DomainName, :Period
-        
+
         def initialize(domainname=nil, period=nil)
           @DomainName = domainname
           @Period = period
@@ -258,7 +258,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainName, :Available, :Reason, :Premium, :Price, :BlackWord, :Describe, :FeeRenew, :RealPrice, :FeeTransfer, :FeeRestore, :Period, :RecordSupport, :RequestId
-        
+
         def initialize(domainname=nil, available=nil, reason=nil, premium=nil, price=nil, blackword=nil, describe=nil, feerenew=nil, realprice=nil, feetransfer=nil, feerestore=nil, period=nil, recordsupport=nil, requestid=nil)
           @DomainName = domainname
           @Available = available
@@ -330,7 +330,7 @@ module TencentCloud
         # @type Country: String
 
         attr_accessor :OrganizationNameCN, :OrganizationName, :RegistrantNameCN, :RegistrantName, :ProvinceCN, :CityCN, :StreetCN, :Street, :CountryCN, :Telephone, :Email, :ZipCode, :RegistrantType, :Province, :City, :Country
-        
+
         def initialize(organizationnamecn=nil, organizationname=nil, registrantnamecn=nil, registrantname=nil, provincecn=nil, citycn=nil, streetcn=nil, street=nil, countrycn=nil, telephone=nil, email=nil, zipcode=nil, registranttype=nil, province=nil, city=nil, country=nil)
           @OrganizationNameCN = organizationnamecn
           @OrganizationName = organizationname
@@ -398,7 +398,7 @@ module TencentCloud
         # @type ActivityId: String
 
         attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :UpdateProhibition, :TransferProhibition, :ChannelFrom, :OrderFrom, :ActivityId
-        
+
         def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, updateprohibition=nil, transferprohibition=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @TemplateId = templateid
           @Period = period
@@ -437,7 +437,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -459,7 +459,7 @@ module TencentCloud
         # @type VerifyCode: String
 
         attr_accessor :Code, :Type, :VerifyCode
-        
+
         def initialize(code=nil, type=nil, verifycode=nil)
           @Code = code
           @Type = type
@@ -479,7 +479,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -497,7 +497,7 @@ module TencentCloud
         # @type CertificateInfo: :class:`Tencentcloud::Domain.v20180808.models.CertificateInfo`
 
         attr_accessor :ContactInfo, :CertificateInfo
-        
+
         def initialize(contactinfo=nil, certificateinfo=nil)
           @ContactInfo = contactinfo
           @CertificateInfo = certificateinfo
@@ -523,7 +523,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Template, :RequestId
-        
+
         def initialize(template=nil, requestid=nil)
           @Template = template
           @RequestId = requestid
@@ -546,7 +546,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :Code, :Type
-        
+
         def initialize(code=nil, type=nil)
           @Code = code
           @Type = type
@@ -564,7 +564,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -580,7 +580,7 @@ module TencentCloud
         # @type TemplateId: String
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -596,7 +596,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -616,7 +616,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :LogId, :Offset, :Limit
-        
+
         def initialize(logid=nil, offset=nil, limit=nil)
           @LogId = logid
           @Offset = offset
@@ -641,7 +641,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DomainBatchDetailSet, :RequestId
-        
+
         def initialize(totalcount=nil, domainbatchdetailset=nil, requestid=nil)
           @TotalCount = totalcount
           @DomainBatchDetailSet = domainbatchdetailset
@@ -670,7 +670,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -693,7 +693,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DomainBatchLogSet, :RequestId
-        
+
         def initialize(totalcount=nil, domainbatchlogset=nil, requestid=nil)
           @TotalCount = totalcount
           @DomainBatchLogSet = domainbatchlogset
@@ -720,7 +720,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -741,7 +741,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainInfo, :Uin, :RequestId
-        
+
         def initialize(domaininfo=nil, uin=nil, requestid=nil)
           @DomainInfo = domaininfo
           @Uin = uin
@@ -766,7 +766,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -789,7 +789,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainSet, :TotalCount, :RequestId
-        
+
         def initialize(domainset=nil, totalcount=nil, requestid=nil)
           @DomainSet = domainset
           @TotalCount = totalcount
@@ -820,7 +820,7 @@ module TencentCloud
         # @type Operation: Array
 
         attr_accessor :TldList, :Year, :Operation
-        
+
         def initialize(tldlist=nil, year=nil, operation=nil)
           @TldList = tldlist
           @Year = year
@@ -842,7 +842,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PriceList, :RequestId
-        
+
         def initialize(pricelist=nil, requestid=nil)
           @PriceList = pricelist
           @RequestId = requestid
@@ -867,7 +867,7 @@ module TencentCloud
         # @type DomainName: String
 
         attr_accessor :DomainName
-        
+
         def initialize(domainname=nil)
           @DomainName = domainname
         end
@@ -887,7 +887,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainInfo, :Uin, :RequestId
-        
+
         def initialize(domaininfo=nil, uin=nil, requestid=nil)
           @DomainInfo = domaininfo
           @Uin = uin
@@ -916,7 +916,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Type, :Offset, :Limit, :Code
-        
+
         def initialize(type=nil, offset=nil, limit=nil, code=nil)
           @Type = type
           @Offset = offset
@@ -942,7 +942,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PhoneEmailList, :TotalCount, :RequestId
-        
+
         def initialize(phoneemaillist=nil, totalcount=nil, requestid=nil)
           @PhoneEmailList = phoneemaillist
           @TotalCount = totalcount
@@ -977,7 +977,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Offset, :Limit, :Type, :Status, :Keyword
-        
+
         def initialize(offset=nil, limit=nil, type=nil, status=nil, keyword=nil)
           @Offset = offset
           @Limit = limit
@@ -1005,7 +1005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TemplateSet, :RequestId
-        
+
         def initialize(totalcount=nil, templateset=nil, requestid=nil)
           @TotalCount = totalcount
           @TemplateSet = templateset
@@ -1032,7 +1032,7 @@ module TencentCloud
         # @type TemplateId: String
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -1050,7 +1050,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Template, :RequestId
-        
+
         def initialize(template=nil, requestid=nil)
           @Template = template
           @RequestId = requestid
@@ -1141,7 +1141,7 @@ module TencentCloud
         # @type LockEndTime: String
 
         attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer, :LockTransfer, :LockEndTime
-        
+
         def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil, locktransfer=nil, lockendtime=nil)
           @DomainId = domainid
           @DomainName = domainname
@@ -1197,7 +1197,7 @@ module TencentCloud
         # @type UpdatedOn: String
 
         attr_accessor :Id, :Domain, :Status, :Reason, :CreatedOn, :UpdatedOn
-        
+
         def initialize(id=nil, domain=nil, status=nil, reason=nil, createdon=nil, updatedon=nil)
           @Id = id
           @Domain = domain
@@ -1231,7 +1231,7 @@ module TencentCloud
         # @type CreatedOn: String
 
         attr_accessor :LogId, :Number, :Status, :CreatedOn
-        
+
         def initialize(logid=nil, number=nil, status=nil, createdon=nil)
           @LogId = logid
           @Number = number
@@ -1286,7 +1286,7 @@ module TencentCloud
         # @type BuyStatus: String
 
         attr_accessor :IsPremium, :DomainId, :DomainName, :AutoRenew, :CreationDate, :ExpirationDate, :Tld, :CodeTld, :BuyStatus
-        
+
         def initialize(ispremium=nil, domainid=nil, domainname=nil, autorenew=nil, creationdate=nil, expirationdate=nil, tld=nil, codetld=nil, buystatus=nil)
           @IsPremium = ispremium
           @DomainId = domainid
@@ -1396,7 +1396,7 @@ module TencentCloud
         # @type RegistrantName: String
 
         attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer, :LockTransfer, :LockEndTime, :RegistrantType, :OrganizationNameCN, :OrganizationName, :RegistrantNameCN, :RegistrantName
-        
+
         def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil, locktransfer=nil, lockendtime=nil, registranttype=nil, organizationnamecn=nil, organizationname=nil, registrantnamecn=nil, registrantname=nil)
           @DomainId = domainid
           @DomainName = domainname
@@ -1450,7 +1450,7 @@ module TencentCloud
         # @type Dns: Array
 
         attr_accessor :Domains, :Dns
-        
+
         def initialize(domains=nil, dns=nil)
           @Domains = domains
           @Dns = dns
@@ -1470,7 +1470,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1494,7 +1494,7 @@ module TencentCloud
         # @type NewOwnerAppId: String
 
         attr_accessor :Domains, :NewOwnerUin, :TransferDns, :NewOwnerAppId
-        
+
         def initialize(domains=nil, newowneruin=nil, transferdns=nil, newownerappid=nil)
           @Domains = domains
           @NewOwnerUin = newowneruin
@@ -1518,7 +1518,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1542,7 +1542,7 @@ module TencentCloud
         # @type CheckStatus: Integer
 
         attr_accessor :Code, :Type, :CreatedOn, :CheckStatus
-        
+
         def initialize(code=nil, type=nil, createdon=nil, checkstatus=nil)
           @Code = code
           @Type = type
@@ -1572,7 +1572,7 @@ module TencentCloud
         # @type Operation: String
 
         attr_accessor :Tld, :Year, :Price, :RealPrice, :Operation
-        
+
         def initialize(tld=nil, year=nil, price=nil, realprice=nil, operation=nil)
           @Tld = tld
           @Year = year
@@ -1613,7 +1613,7 @@ module TencentCloud
         # @type ActivityId: String
 
         attr_accessor :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :ChannelFrom, :OrderFrom, :ActivityId
-        
+
         def initialize(period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @Period = period
           @Domains = domains
@@ -1645,7 +1645,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1665,7 +1665,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :Code, :Type
-        
+
         def initialize(code=nil, type=nil)
           @Code = code
           @Type = type
@@ -1683,7 +1683,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1704,7 +1704,7 @@ module TencentCloud
         # @type AutoRenew: Integer
 
         attr_accessor :DomainId, :AutoRenew
-        
+
         def initialize(domainid=nil, autorenew=nil)
           @DomainId = domainid
           @AutoRenew = autorenew
@@ -1722,7 +1722,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1760,7 +1760,7 @@ module TencentCloud
         # @type IsBlack: Boolean
 
         attr_accessor :TemplateId, :AuditStatus, :CreatedOn, :UpdatedOn, :UserUin, :IsDefault, :AuditReason, :CertificateInfo, :ContactInfo, :IsValidTemplate, :InvalidReason, :IsBlack
-        
+
         def initialize(templateid=nil, auditstatus=nil, createdon=nil, updatedon=nil, useruin=nil, isdefault=nil, auditreason=nil, certificateinfo=nil, contactinfo=nil, isvalidtemplate=nil, invalidreason=nil, isblack=nil)
           @TemplateId = templateid
           @AuditStatus = auditstatus
@@ -1828,7 +1828,7 @@ module TencentCloud
         # @type ActivityId: String
 
         attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer, :UpdateProhibition, :TransferProhibition, :ChannelFrom, :OrderFrom, :ActivityId
-        
+
         def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil, updateprohibition=nil, transferprohibition=nil, channelfrom=nil, orderfrom=nil, activityid=nil)
           @Domains = domains
           @PassWords = passwords
@@ -1866,7 +1866,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1888,7 +1888,7 @@ module TencentCloud
         # @type Status: Boolean
 
         attr_accessor :Domains, :Status
-        
+
         def initialize(domains=nil, status=nil)
           @Domains = domains
           @Status = status
@@ -1908,7 +1908,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1930,7 +1930,7 @@ module TencentCloud
         # @type Status: Boolean
 
         attr_accessor :Domains, :Status
-        
+
         def initialize(domains=nil, status=nil)
           @Domains = domains
           @Status = status
@@ -1950,7 +1950,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogId, :RequestId
-        
+
         def initialize(logid=nil, requestid=nil)
           @LogId = logid
           @RequestId = requestid
@@ -1968,7 +1968,7 @@ module TencentCloud
         # @type ImageFile: String
 
         attr_accessor :ImageFile
-        
+
         def initialize(imagefile=nil)
           @ImageFile = imagefile
         end
@@ -1986,7 +1986,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessUrl, :RequestId
-        
+
         def initialize(accessurl=nil, requestid=nil)
           @AccessUrl = accessurl
           @RequestId = requestid

@@ -31,7 +31,7 @@ module TencentCloud
         # @type Headers: Array
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
-        
+
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
           @ZoneId = zoneid
           @Targets = targets
@@ -65,7 +65,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :FailedList, :RequestId
-        
+
         def initialize(jobid=nil, failedlist=nil, requestid=nil)
           @JobId = jobid
           @FailedList = failedlist
@@ -111,7 +111,7 @@ module TencentCloud
         # @type EncodeUrl: Boolean
 
         attr_accessor :ZoneId, :Type, :Targets, :EncodeUrl
-        
+
         def initialize(zoneid=nil, type=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
           @Type = type
@@ -138,7 +138,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :FailedList, :RequestId
-        
+
         def initialize(jobid=nil, failedlist=nil, requestid=nil)
           @JobId = jobid
           @FailedList = failedlist
@@ -182,7 +182,7 @@ module TencentCloud
         # @type Target: String
 
         attr_accessor :JobId, :StartTime, :EndTime, :Offset, :Limit, :Statuses, :ZoneId, :Domains, :Target
-        
+
         def initialize(jobid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, statuses=nil, zoneid=nil, domains=nil, target=nil)
           @JobId = jobid
           @StartTime = starttime
@@ -218,7 +218,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
-        
+
         def initialize(totalcount=nil, tasks=nil, requestid=nil)
           @TotalCount = totalcount
           @Tasks = tasks
@@ -264,7 +264,7 @@ module TencentCloud
         # @type Target: String
 
         attr_accessor :JobId, :Type, :StartTime, :EndTime, :Offset, :Limit, :Statuses, :ZoneId, :Domains, :Target
-        
+
         def initialize(jobid=nil, type=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, statuses=nil, zoneid=nil, domains=nil, target=nil)
           @JobId = jobid
           @Type = type
@@ -302,7 +302,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
-        
+
         def initialize(totalcount=nil, tasks=nil, requestid=nil)
           @TotalCount = totalcount
           @Tasks = tasks
@@ -333,7 +333,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
-        
+
         def initialize(offset=nil, limit=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -364,7 +364,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Zones, :RequestId
-        
+
         def initialize(totalcount=nil, zones=nil, requestid=nil)
           @TotalCount = totalcount
           @Zones = zones
@@ -394,7 +394,7 @@ module TencentCloud
         # @type Targets: Array
 
         attr_accessor :Reason, :Targets
-        
+
         def initialize(reason=nil, targets=nil)
           @Reason = reason
           @Targets = targets
@@ -414,7 +414,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -459,7 +459,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Id, :PayMode, :CreateTime, :EnableTime, :ExpireTime, :Status, :Sv, :AutoRenewFlag, :PlanId, :Area
-        
+
         def initialize(id=nil, paymode=nil, createtime=nil, enabletime=nil, expiretime=nil, status=nil, sv=nil, autorenewflag=nil, planid=nil, area=nil)
           @Id = id
           @PayMode = paymode
@@ -502,7 +502,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -524,7 +524,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -552,7 +552,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :JobId, :Status, :Target, :Type, :CreateTime, :UpdateTime
-        
+
         def initialize(jobid=nil, status=nil, target=nil, type=nil, createtime=nil, updatetime=nil)
           @JobId = jobid
           @Status = status
@@ -617,7 +617,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area
-        
+
         def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil)
           @Id = id
           @Name = name
@@ -681,7 +681,7 @@ module TencentCloud
         # @type Fuzzy: Boolean
 
         attr_accessor :Name, :Values, :Fuzzy
-        
+
         def initialize(name=nil, values=nil, fuzzy=nil)
           @Name = name
           @Values = values

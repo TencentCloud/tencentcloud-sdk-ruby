@@ -30,7 +30,7 @@ module TencentCloud
         # @type AlgorithmName: String
 
         attr_accessor :TrainingImageName, :TrainingInputMode, :AlgorithmName
-        
+
         def initialize(trainingimagename=nil, traininginputmode=nil, algorithmname=nil)
           @TrainingImageName = trainingimagename
           @TrainingInputMode = traininginputmode
@@ -58,7 +58,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Label, :VolumeSize, :Status
-        
+
         def initialize(label=nil, volumesize=nil, status=nil)
           @Label = label
           @VolumeSize = volumesize
@@ -82,7 +82,7 @@ module TencentCloud
         # @type TopicId: String
 
         attr_accessor :Type, :LogSetId, :TopicId
-        
+
         def initialize(type=nil, logsetid=nil, topicid=nil)
           @Type = type
           @LogSetId = logsetid
@@ -110,7 +110,7 @@ module TencentCloud
         # @type NoSecret: Boolean
 
         attr_accessor :CreationTime, :LastModifiedTime, :CodeRepositoryName, :GitConfig, :NoSecret
-        
+
         def initialize(creationtime=nil, lastmodifiedtime=nil, coderepositoryname=nil, gitconfig=nil, nosecret=nil)
           @CreationTime = creationtime
           @LastModifiedTime = lastmodifiedtime
@@ -147,7 +147,7 @@ module TencentCloud
         # @type DataType: String
 
         attr_accessor :Bucket, :KeyPrefix, :DataDistributionType, :DataType
-        
+
         def initialize(bucket=nil, keyprefix=nil, datadistributiontype=nil, datatype=nil)
           @Bucket = bucket
           @KeyPrefix = keyprefix
@@ -173,7 +173,7 @@ module TencentCloud
         # @type GitSecret: :class:`Tencentcloud::Tione.v20191022.models.GitSecret`
 
         attr_accessor :CodeRepositoryName, :GitConfig, :GitSecret
-        
+
         def initialize(coderepositoryname=nil, gitconfig=nil, gitsecret=nil)
           @CodeRepositoryName = coderepositoryname
           @GitConfig = gitconfig
@@ -201,7 +201,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeRepositoryName, :RequestId
-        
+
         def initialize(coderepositoryname=nil, requestid=nil)
           @CodeRepositoryName = coderepositoryname
           @RequestId = requestid
@@ -259,7 +259,7 @@ module TencentCloud
         # @type ClsConfig: :class:`Tencentcloud::Tione.v20191022.models.ClsConfig`
 
         attr_accessor :NotebookInstanceName, :InstanceType, :VolumeSizeInGB, :DirectInternetAccess, :RootAccess, :SubnetId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :StoppingCondition, :AutoStopping, :ClsConfig
-        
+
         def initialize(notebookinstancename=nil, instancetype=nil, volumesizeingb=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, stoppingcondition=nil, autostopping=nil, clsconfig=nil)
           @NotebookInstanceName = notebookinstancename
           @InstanceType = instancetype
@@ -307,7 +307,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookInstanceName, :RequestId
-        
+
         def initialize(notebookinstancename=nil, requestid=nil)
           @NotebookInstanceName = notebookinstancename
           @RequestId = requestid
@@ -331,7 +331,7 @@ module TencentCloud
         # @type StartScript: String
 
         attr_accessor :NotebookLifecycleScriptsName, :CreateScript, :StartScript
-        
+
         def initialize(notebooklifecyclescriptsname=nil, createscript=nil, startscript=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @CreateScript = createscript
@@ -353,7 +353,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookLifecycleScriptsName, :RequestId
-        
+
         def initialize(notebooklifecyclescriptsname=nil, requestid=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @RequestId = requestid
@@ -374,7 +374,7 @@ module TencentCloud
         # @type SessionExpirationDurationInSeconds: Integer
 
         attr_accessor :NotebookInstanceName, :SessionExpirationDurationInSeconds
-        
+
         def initialize(notebookinstancename=nil, sessionexpirationdurationinseconds=nil)
           @NotebookInstanceName = notebookinstancename
           @SessionExpirationDurationInSeconds = sessionexpirationdurationinseconds
@@ -394,7 +394,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthorizedUrl, :RequestId
-        
+
         def initialize(authorizedurl=nil, requestid=nil)
           @AuthorizedUrl = authorizedurl
           @RequestId = requestid
@@ -433,7 +433,7 @@ module TencentCloud
         # @type RetryWhenResourceInsufficient: String
 
         attr_accessor :AlgorithmSpecification, :OutputDataConfig, :ResourceConfig, :TrainingJobName, :InputDataConfig, :StoppingCondition, :VpcConfig, :HyperParameters, :EnvConfig, :RoleName, :RetryWhenResourceInsufficient
-        
+
         def initialize(algorithmspecification=nil, outputdataconfig=nil, resourceconfig=nil, trainingjobname=nil, inputdataconfig=nil, stoppingcondition=nil, vpcconfig=nil, hyperparameters=nil, envconfig=nil, rolename=nil, retrywhenresourceinsufficient=nil)
           @AlgorithmSpecification = algorithmspecification
           @OutputDataConfig = outputdataconfig
@@ -500,7 +500,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TrainingJobName, :RequestId
-        
+
         def initialize(trainingjobname=nil, requestid=nil)
           @TrainingJobName = trainingjobname
           @RequestId = requestid
@@ -522,7 +522,7 @@ module TencentCloud
         # @type FileSystemDataSource: :class:`Tencentcloud::Tione.v20191022.models.FileSystemDataSource`
 
         attr_accessor :CosDataSource, :FileSystemDataSource
-        
+
         def initialize(cosdatasource=nil, filesystemdatasource=nil)
           @CosDataSource = cosdatasource
           @FileSystemDataSource = filesystemdatasource
@@ -546,7 +546,7 @@ module TencentCloud
         # @type CodeRepositoryName: String
 
         attr_accessor :CodeRepositoryName
-        
+
         def initialize(coderepositoryname=nil)
           @CodeRepositoryName = coderepositoryname
         end
@@ -564,7 +564,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeRepositoryName, :RequestId
-        
+
         def initialize(coderepositoryname=nil, requestid=nil)
           @CodeRepositoryName = coderepositoryname
           @RequestId = requestid
@@ -582,7 +582,7 @@ module TencentCloud
         # @type NotebookInstanceName: String
 
         attr_accessor :NotebookInstanceName
-        
+
         def initialize(notebookinstancename=nil)
           @NotebookInstanceName = notebookinstancename
         end
@@ -598,7 +598,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -616,7 +616,7 @@ module TencentCloud
         # @type Forcible: Boolean
 
         attr_accessor :NotebookLifecycleScriptsName, :Forcible
-        
+
         def initialize(notebooklifecyclescriptsname=nil, forcible=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @Forcible = forcible
@@ -634,7 +634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -660,7 +660,7 @@ module TencentCloud
         # @type SortOrder: String
 
         attr_accessor :Offset, :Limit, :Filters, :SortOrder
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, sortorder=nil)
           @Offset = offset
           @Limit = limit
@@ -694,7 +694,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :CodeRepoSet, :RequestId
-        
+
         def initialize(totalcount=nil, codereposet=nil, requestid=nil)
           @TotalCount = totalcount
           @CodeRepoSet = codereposet
@@ -721,7 +721,7 @@ module TencentCloud
         # @type CodeRepositoryName: String
 
         attr_accessor :CodeRepositoryName
-        
+
         def initialize(coderepositoryname=nil)
           @CodeRepositoryName = coderepositoryname
         end
@@ -747,7 +747,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CreationTime, :LastModifiedTime, :CodeRepositoryName, :GitConfig, :NoSecret, :RequestId
-        
+
         def initialize(creationtime=nil, lastmodifiedtime=nil, coderepositoryname=nil, gitconfig=nil, nosecret=nil, requestid=nil)
           @CreationTime = creationtime
           @LastModifiedTime = lastmodifiedtime
@@ -777,7 +777,7 @@ module TencentCloud
         # @type NotebookInstanceName: String
 
         attr_accessor :NotebookInstanceName
-        
+
         def initialize(notebookinstancename=nil)
           @NotebookInstanceName = notebookinstancename
         end
@@ -863,7 +863,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookInstanceName, :InstanceType, :RoleArn, :DirectInternetAccess, :RootAccess, :SubnetId, :VolumeSizeInGB, :FailureReason, :CreationTime, :LastModifiedTime, :LogUrl, :NotebookInstanceStatus, :InstanceId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :Prepay, :Deadline, :StoppingCondition, :ClsConfig, :RequestId
-        
+
         def initialize(notebookinstancename=nil, instancetype=nil, rolearn=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, volumesizeingb=nil, failurereason=nil, creationtime=nil, lastmodifiedtime=nil, logurl=nil, notebookinstancestatus=nil, instanceid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, prepay=nil, deadline=nil, stoppingcondition=nil, clsconfig=nil, requestid=nil)
           @NotebookInstanceName = notebookinstancename
           @InstanceType = instancetype
@@ -945,7 +945,7 @@ module TencentCloud
         # @type SortBy: String
 
         attr_accessor :Offset, :Limit, :SortOrder, :Filters, :SortBy
-        
+
         def initialize(offset=nil, limit=nil, sortorder=nil, filters=nil, sortby=nil)
           @Offset = offset
           @Limit = limit
@@ -980,7 +980,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookInstanceSet, :TotalCount, :RequestId
-        
+
         def initialize(notebookinstanceset=nil, totalcount=nil, requestid=nil)
           @NotebookInstanceSet = notebookinstanceset
           @TotalCount = totalcount
@@ -1007,7 +1007,7 @@ module TencentCloud
         # @type NotebookLifecycleScriptsName: String
 
         attr_accessor :NotebookLifecycleScriptsName
-        
+
         def initialize(notebooklifecyclescriptsname=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
         end
@@ -1035,7 +1035,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookLifecycleScriptsName, :CreateScript, :StartScript, :CreationTime, :LastModifiedTime, :RequestId
-        
+
         def initialize(notebooklifecyclescriptsname=nil, createscript=nil, startscript=nil, creationtime=nil, lastmodifiedtime=nil, requestid=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @CreateScript = createscript
@@ -1071,7 +1071,7 @@ module TencentCloud
         # @type SortOrder: String
 
         attr_accessor :Offset, :Limit, :Filters, :SortOrder
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, sortorder=nil)
           @Offset = offset
           @Limit = limit
@@ -1104,7 +1104,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NotebookLifecycleScriptsSet, :TotalCount, :RequestId
-        
+
         def initialize(notebooklifecyclescriptsset=nil, totalcount=nil, requestid=nil)
           @NotebookLifecycleScriptsSet = notebooklifecyclescriptsset
           @TotalCount = totalcount
@@ -1128,7 +1128,7 @@ module TencentCloud
       # DescribeNotebookSummary请求参数结构体
       class DescribeNotebookSummaryRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AllInstanceCnt, :BillingInstanceCnt, :StorageOnlyBillingInstanceCnt, :ComputingBillingInstanceCnt, :RequestId
-        
+
         def initialize(allinstancecnt=nil, billinginstancecnt=nil, storageonlybillinginstancecnt=nil, computingbillinginstancecnt=nil, requestid=nil)
           @AllInstanceCnt = allinstancecnt
           @BillingInstanceCnt = billinginstancecnt
@@ -1174,7 +1174,7 @@ module TencentCloud
         # @type TrainingJobName: String
 
         attr_accessor :TrainingJobName
-        
+
         def initialize(trainingjobname=nil)
           @TrainingJobName = trainingjobname
         end
@@ -1252,7 +1252,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AlgorithmSpecification, :TrainingJobName, :HyperParameters, :InputDataConfig, :OutputDataConfig, :StoppingCondition, :ResourceConfig, :VpcConfig, :FailureReason, :LastModifiedTime, :TrainingStartTime, :TrainingEndTime, :ModelArtifacts, :SecondaryStatus, :SecondaryStatusTransitions, :RoleName, :TrainingJobStatus, :LogUrl, :InstanceId, :RequestId
-        
+
         def initialize(algorithmspecification=nil, trainingjobname=nil, hyperparameters=nil, inputdataconfig=nil, outputdataconfig=nil, stoppingcondition=nil, resourceconfig=nil, vpcconfig=nil, failurereason=nil, lastmodifiedtime=nil, trainingstarttime=nil, trainingendtime=nil, modelartifacts=nil, secondarystatus=nil, secondarystatustransitions=nil, rolename=nil, trainingjobstatus=nil, logurl=nil, instanceid=nil, requestid=nil)
           @AlgorithmSpecification = algorithmspecification
           @TrainingJobName = trainingjobname
@@ -1352,7 +1352,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :CreationTimeAfter, :CreationTimeBefore, :NameContains, :StatusEquals, :Filters
-        
+
         def initialize(offset=nil, limit=nil, creationtimeafter=nil, creationtimebefore=nil, namecontains=nil, statusequals=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -1391,7 +1391,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TrainingJobSet, :TotalCount, :RequestId
-        
+
         def initialize(trainingjobset=nil, totalcount=nil, requestid=nil)
           @TrainingJobSet = trainingjobset
           @TotalCount = totalcount
@@ -1420,7 +1420,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1448,7 +1448,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :DirectoryPath, :FileSystemType, :FileSystemAccessMode, :FileSystemId
-        
+
         def initialize(directorypath=nil, filesystemtype=nil, filesystemaccessmode=nil, filesystemid=nil)
           @DirectoryPath = directorypath
           @FileSystemType = filesystemtype
@@ -1472,7 +1472,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1493,7 +1493,7 @@ module TencentCloud
         # @type Branch: String
 
         attr_accessor :RepositoryUrl, :Branch
-        
+
         def initialize(repositoryurl=nil, branch=nil)
           @RepositoryUrl = repositoryurl
           @Branch = branch
@@ -1515,7 +1515,7 @@ module TencentCloud
         # @type Secret: String
 
         attr_accessor :NoSecret, :Secret
-        
+
         def initialize(nosecret=nil, secret=nil)
           @NoSecret = nosecret
           @Secret = secret
@@ -1543,7 +1543,7 @@ module TencentCloud
         # @type ContentType: String
 
         attr_accessor :ChannelName, :DataSource, :InputMode, :ContentType
-        
+
         def initialize(channelname=nil, datasource=nil, inputmode=nil, contenttype=nil)
           @ChannelName = channelname
           @DataSource = datasource
@@ -1569,7 +1569,7 @@ module TencentCloud
         # @type CosModelArtifacts: String
 
         attr_accessor :CosModelArtifacts
-        
+
         def initialize(cosmodelartifacts=nil)
           @CosModelArtifacts = cosmodelartifacts
         end
@@ -1627,7 +1627,7 @@ module TencentCloud
         # @type RemainTimeInSeconds: Integer
 
         attr_accessor :CreationTime, :LastModifiedTime, :NotebookInstanceName, :NotebookInstanceStatus, :InstanceType, :InstanceId, :StartupTime, :Deadline, :StoppingCondition, :Prepay, :BillingLabel, :RuntimeInSeconds, :RemainTimeInSeconds
-        
+
         def initialize(creationtime=nil, lastmodifiedtime=nil, notebookinstancename=nil, notebookinstancestatus=nil, instancetype=nil, instanceid=nil, startuptime=nil, deadline=nil, stoppingcondition=nil, prepay=nil, billinglabel=nil, runtimeinseconds=nil, remaintimeinseconds=nil)
           @CreationTime = creationtime
           @LastModifiedTime = lastmodifiedtime
@@ -1677,7 +1677,7 @@ module TencentCloud
         # @type LastModifiedTime: String
 
         attr_accessor :NotebookLifecycleScriptsName, :CreationTime, :LastModifiedTime
-        
+
         def initialize(notebooklifecyclescriptsname=nil, creationtime=nil, lastmodifiedtime=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @CreationTime = creationtime
@@ -1704,7 +1704,7 @@ module TencentCloud
         # @type FileSystemDataSource: :class:`Tencentcloud::Tione.v20191022.models.FileSystemDataSource`
 
         attr_accessor :CosOutputBucket, :CosOutputKeyPrefix, :FileSystemDataSource
-        
+
         def initialize(cosoutputbucket=nil, cosoutputkeyprefix=nil, filesystemdatasource=nil)
           @CosOutputBucket = cosoutputbucket
           @CosOutputKeyPrefix = cosoutputkeyprefix
@@ -1734,7 +1734,7 @@ module TencentCloud
         # @type VolumeSizeInGB: Integer
 
         attr_accessor :InstanceCount, :InstanceType, :VolumeSizeInGB
-        
+
         def initialize(instancecount=nil, instancetype=nil, volumesizeingb=nil)
           @InstanceCount = instancecount
           @InstanceType = instancetype
@@ -1764,7 +1764,7 @@ module TencentCloud
         # @type StatusMessage: String
 
         attr_accessor :StartTime, :EndTime, :Status, :StatusMessage
-        
+
         def initialize(starttime=nil, endtime=nil, status=nil, statusmessage=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1792,7 +1792,7 @@ module TencentCloud
         # @type StoppingCondition: :class:`Tencentcloud::Tione.v20191022.models.StoppingCondition`
 
         attr_accessor :NotebookInstanceName, :AutoStopping, :StoppingCondition
-        
+
         def initialize(notebookinstancename=nil, autostopping=nil, stoppingcondition=nil)
           @NotebookInstanceName = notebookinstancename
           @AutoStopping = autostopping
@@ -1815,7 +1815,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1831,7 +1831,7 @@ module TencentCloud
         # @type NotebookInstanceName: String
 
         attr_accessor :NotebookInstanceName
-        
+
         def initialize(notebookinstancename=nil)
           @NotebookInstanceName = notebookinstancename
         end
@@ -1847,7 +1847,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1863,7 +1863,7 @@ module TencentCloud
         # @type TrainingJobName: String
 
         attr_accessor :TrainingJobName
-        
+
         def initialize(trainingjobname=nil)
           @TrainingJobName = trainingjobname
         end
@@ -1879,7 +1879,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type MaxWaitTimeInSeconds: Integer
 
         attr_accessor :MaxRuntimeInSeconds, :MaxWaitTimeInSeconds
-        
+
         def initialize(maxruntimeinseconds=nil, maxwaittimeinseconds=nil)
           @MaxRuntimeInSeconds = maxruntimeinseconds
           @MaxWaitTimeInSeconds = maxwaittimeinseconds
@@ -1941,7 +1941,7 @@ module TencentCloud
         # @type ResourceConfig: :class:`Tencentcloud::Tione.v20191022.models.ResourceConfig`
 
         attr_accessor :CreationTime, :LastModifiedTime, :TrainingJobName, :TrainingJobStatus, :TrainingEndTime, :InstanceId, :ResourceConfig
-        
+
         def initialize(creationtime=nil, lastmodifiedtime=nil, trainingjobname=nil, trainingjobstatus=nil, trainingendtime=nil, instanceid=nil, resourceconfig=nil)
           @CreationTime = creationtime
           @LastModifiedTime = lastmodifiedtime
@@ -1974,7 +1974,7 @@ module TencentCloud
         # @type GitSecret: :class:`Tencentcloud::Tione.v20191022.models.GitSecret`
 
         attr_accessor :CodeRepositoryName, :GitSecret
-        
+
         def initialize(coderepositoryname=nil, gitsecret=nil)
           @CodeRepositoryName = coderepositoryname
           @GitSecret = gitsecret
@@ -1997,7 +1997,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeRepositoryName, :RequestId
-        
+
         def initialize(coderepositoryname=nil, requestid=nil)
           @CodeRepositoryName = coderepositoryname
           @RequestId = requestid
@@ -2051,7 +2051,7 @@ module TencentCloud
         # @type ClsConfig: :class:`Tencentcloud::Tione.v20191022.models.ClsConfig`
 
         attr_accessor :NotebookInstanceName, :RoleArn, :RootAccess, :VolumeSizeInGB, :InstanceType, :LifecycleScriptsName, :DisassociateLifecycleScript, :DefaultCodeRepository, :AdditionalCodeRepositories, :DisassociateDefaultCodeRepository, :DisassociateAdditionalCodeRepositories, :ClsAccess, :AutoStopping, :StoppingCondition, :ClsConfig
-        
+
         def initialize(notebookinstancename=nil, rolearn=nil, rootaccess=nil, volumesizeingb=nil, instancetype=nil, lifecyclescriptsname=nil, disassociatelifecyclescript=nil, defaultcoderepository=nil, additionalcoderepositories=nil, disassociatedefaultcoderepository=nil, disassociateadditionalcoderepositories=nil, clsaccess=nil, autostopping=nil, stoppingcondition=nil, clsconfig=nil)
           @NotebookInstanceName = notebookinstancename
           @RoleArn = rolearn
@@ -2101,7 +2101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2123,7 +2123,7 @@ module TencentCloud
         # @type StartScript: String
 
         attr_accessor :NotebookLifecycleScriptsName, :CreateScript, :StartScript
-        
+
         def initialize(notebooklifecyclescriptsname=nil, createscript=nil, startscript=nil)
           @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
           @CreateScript = createscript
@@ -2143,7 +2143,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2163,7 +2163,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :SecurityGroupIds, :SubnetId
-        
+
         def initialize(securitygroupids=nil, subnetid=nil)
           @SecurityGroupIds = securitygroupids
           @SubnetId = subnetid

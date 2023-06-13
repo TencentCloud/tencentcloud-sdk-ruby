@@ -25,7 +25,7 @@ module TencentCloud
         # @type TaskConfig: :class:`Tencentcloud::Cfg.v20210820.models.TaskConfig`
 
         attr_accessor :TemplateId, :TaskConfig
-        
+
         def initialize(templateid=nil, taskconfig=nil)
           @TemplateId = templateid
           @TaskConfig = taskconfig
@@ -48,7 +48,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -66,7 +66,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -82,7 +82,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -105,7 +105,7 @@ module TencentCloud
         # @type TaskPolicyDealType: Integer
 
         attr_accessor :TaskPolicyIdList, :TaskPolicyStatus, :TaskPolicyRule, :TaskPolicyDealType
-        
+
         def initialize(taskpolicyidlist=nil, taskpolicystatus=nil, taskpolicyrule=nil, taskpolicydealtype=nil)
           @TaskPolicyIdList = taskpolicyidlist
           @TaskPolicyStatus = taskpolicystatus
@@ -131,7 +131,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :TaskId, :Limit, :Offset
-        
+
         def initialize(taskid=nil, limit=nil, offset=nil)
           @TaskId = taskid
           @Limit = limit
@@ -153,7 +153,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LogMessage, :RequestId
-        
+
         def initialize(logmessage=nil, requestid=nil)
           @LogMessage = logmessage
           @RequestId = requestid
@@ -185,7 +185,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags
-        
+
         def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil)
           @Limit = limit
           @Offset = offset
@@ -226,7 +226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskList, :Total, :RequestId
-        
+
         def initialize(tasklist=nil, total=nil, requestid=nil)
           @TaskList = tasklist
           @Total = total
@@ -253,7 +253,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -274,7 +274,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Task, :ReportInfo, :RequestId
-        
+
         def initialize(task=nil, reportinfo=nil, requestid=nil)
           @Task = task
           @ReportInfo = reportinfo
@@ -310,7 +310,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Limit, :Offset, :Title, :Tag, :IsUsed, :Tags
-        
+
         def initialize(limit=nil, offset=nil, title=nil, tag=nil, isused=nil, tags=nil)
           @Limit = limit
           @Offset = offset
@@ -347,7 +347,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TemplateList, :Total, :RequestId
-        
+
         def initialize(templatelist=nil, total=nil, requestid=nil)
           @TemplateList = templatelist
           @Total = total
@@ -374,7 +374,7 @@ module TencentCloud
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -392,7 +392,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Template, :RequestId
-        
+
         def initialize(template=nil, requestid=nil)
           @Template = template
           @RequestId = requestid
@@ -423,7 +423,7 @@ module TencentCloud
         # @type TaskGroupId: Integer
 
         attr_accessor :TaskId, :TaskActionId, :TaskInstanceIds, :IsOperateAll, :ActionType, :TaskGroupId
-        
+
         def initialize(taskid=nil, taskactionid=nil, taskinstanceids=nil, isoperateall=nil, actiontype=nil, taskgroupid=nil)
           @TaskId = taskid
           @TaskActionId = taskactionid
@@ -449,7 +449,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -465,7 +465,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -481,7 +481,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -503,7 +503,7 @@ module TencentCloud
         # @type Summary: String
 
         attr_accessor :TaskId, :Status, :IsExpect, :Summary
-        
+
         def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil)
           @TaskId = taskid
           @Status = status
@@ -525,7 +525,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -543,7 +543,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -563,7 +563,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -637,7 +637,7 @@ module TencentCloud
         # @type TaskPlanTitle: String
 
         attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle
-        
+
         def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
@@ -731,7 +731,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :TaskGroupsConfig, :TaskTitle, :TaskDescription, :TaskMode, :TaskPauseDuration, :Tags
-        
+
         def initialize(taskgroupsconfig=nil, tasktitle=nil, taskdescription=nil, taskmode=nil, taskpauseduration=nil, tags=nil)
           @TaskGroupsConfig = taskgroupsconfig
           @TaskTitle = tasktitle
@@ -798,7 +798,7 @@ module TencentCloud
         # @type TaskGroupInstancesExecuteRule: Array
 
         attr_accessor :TaskGroupId, :TaskGroupTitle, :TaskGroupDescription, :TaskGroupOrder, :ObjectTypeId, :TaskGroupCreateTime, :TaskGroupUpdateTime, :TaskGroupActions, :TaskGroupInstanceList, :TaskGroupMode, :TaskGroupDiscardInstanceList, :TaskGroupSelectedInstanceList, :TaskGroupInstancesExecuteRule
-        
+
         def initialize(taskgroupid=nil, taskgrouptitle=nil, taskgroupdescription=nil, taskgrouporder=nil, objecttypeid=nil, taskgroupcreatetime=nil, taskgroupupdatetime=nil, taskgroupactions=nil, taskgroupinstancelist=nil, taskgroupmode=nil, taskgroupdiscardinstancelist=nil, taskgroupselectedinstancelist=nil, taskgroupinstancesexecuterule=nil)
           @TaskGroupId = taskgroupid
           @TaskGroupTitle = taskgrouptitle
@@ -901,7 +901,7 @@ module TencentCloud
         # @type TaskGroupActionExecuteTime: Integer
 
         attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :IsExecuteRedo, :ActionRisk, :TaskGroupActionExecuteTime
-        
+
         def initialize(taskgroupactionid=nil, taskgroupinstances=nil, actionid=nil, taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil, taskgroupactionstatus=nil, taskgroupactioncreatetime=nil, taskgroupactionupdatetime=nil, actiontitle=nil, taskgroupactionstatustype=nil, taskgroupactionrandomid=nil, taskgroupactionrecoverid=nil, taskgroupactionexecuteid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, isexecuteredo=nil, actionrisk=nil, taskgroupactionexecutetime=nil)
           @TaskGroupActionId = taskgroupactionid
           @TaskGroupInstances = taskgroupinstances
@@ -966,7 +966,7 @@ module TencentCloud
         # @type TaskGroupActionCustomConfiguration: String
 
         attr_accessor :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration
-        
+
         def initialize(taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil)
           @TaskGroupActionOrder = taskgroupactionorder
           @TaskGroupActionGeneralConfiguration = taskgroupactiongeneralconfiguration
@@ -994,7 +994,7 @@ module TencentCloud
         # @type TaskGroupActionsConfig: Array
 
         attr_accessor :TaskGroupInstances, :TaskGroupTitle, :TaskGroupDescription, :TaskGroupMode, :TaskGroupActionsConfig
-        
+
         def initialize(taskgroupinstances=nil, taskgrouptitle=nil, taskgroupdescription=nil, taskgroupmode=nil, taskgroupactionsconfig=nil)
           @TaskGroupInstances = taskgroupinstances
           @TaskGroupTitle = taskgrouptitle
@@ -1051,7 +1051,7 @@ module TencentCloud
         # @type TaskGroupInstanceExecuteTime: Integer
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
-        
+
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstanceexecutelog=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
           @TaskGroupInstanceObjectId = taskgroupinstanceobjectid
@@ -1094,7 +1094,7 @@ module TencentCloud
         # @type TaskGroupInstancesExecuteNum: Integer
 
         attr_accessor :TaskGroupInstancesExecuteMode, :TaskGroupInstancesExecutePercent, :TaskGroupInstancesExecuteNum
-        
+
         def initialize(taskgroupinstancesexecutemode=nil, taskgroupinstancesexecutepercent=nil, taskgroupinstancesexecutenum=nil)
           @TaskGroupInstancesExecuteMode = taskgroupinstancesexecutemode
           @TaskGroupInstancesExecutePercent = taskgroupinstancesexecutepercent
@@ -1133,7 +1133,7 @@ module TencentCloud
         # @type TaskPreCheckSuccess: Boolean
 
         attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess
-        
+
         def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
@@ -1177,7 +1177,7 @@ module TencentCloud
         # @type Unit: String
 
         attr_accessor :TaskMonitorId, :TaskMonitorObjectTypeId, :MetricName, :InstancesIds, :MetricChineseName, :Unit
-        
+
         def initialize(taskmonitorid=nil, taskmonitorobjecttypeid=nil, metricname=nil, instancesids=nil, metricchinesename=nil, unit=nil)
           @TaskMonitorId = taskmonitorid
           @TaskMonitorObjectTypeId = taskmonitorobjecttypeid
@@ -1215,7 +1215,7 @@ module TencentCloud
         # @type Log: String
 
         attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log
-        
+
         def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil)
           @Stage = stage
           @CreateTime = createtime
@@ -1272,7 +1272,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags
-        
+
         def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
@@ -1357,7 +1357,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :TemplateGroupId, :TemplateGroupActions, :Title, :Description, :Order, :Mode, :ObjectTypeId, :CreateTime, :UpdateTime
-        
+
         def initialize(templategroupid=nil, templategroupactions=nil, title=nil, description=nil, order=nil, mode=nil, objecttypeid=nil, createtime=nil, updatetime=nil)
           @TemplateGroupId = templategroupid
           @TemplateGroupActions = templategroupactions
@@ -1430,7 +1430,7 @@ module TencentCloud
         # @type ActionType: String
 
         attr_accessor :TemplateGroupActionId, :ActionId, :Order, :GeneralConfiguration, :CustomConfiguration, :CreateTime, :UpdateTime, :ActionTitle, :RandomId, :RecoverId, :ExecuteId, :ActionApiType, :ActionAttribute, :ActionType
-        
+
         def initialize(templategroupactionid=nil, actionid=nil, order=nil, generalconfiguration=nil, customconfiguration=nil, createtime=nil, updatetime=nil, actiontitle=nil, randomid=nil, recoverid=nil, executeid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil)
           @TemplateGroupActionId = templategroupactionid
           @ActionId = actionid
@@ -1487,7 +1487,7 @@ module TencentCloud
         # @type TemplateUsedNum: Integer
 
         attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateUsedNum
-        
+
         def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templateusednum=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
@@ -1524,7 +1524,7 @@ module TencentCloud
         # @type MetricChineseName: String
 
         attr_accessor :MonitorId, :ObjectTypeId, :MetricName, :MetricChineseName
-        
+
         def initialize(monitorid=nil, objecttypeid=nil, metricname=nil, metricchinesename=nil)
           @MonitorId = monitorid
           @ObjectTypeId = objecttypeid
@@ -1550,7 +1550,7 @@ module TencentCloud
         # @type TemplatePolicyDealType: Integer
 
         attr_accessor :TemplatePolicyIdList, :TemplatePolicyRule, :TemplatePolicyDealType
-        
+
         def initialize(templatepolicyidlist=nil, templatepolicyrule=nil, templatepolicydealtype=nil)
           @TemplatePolicyIdList = templatepolicyidlist
           @TemplatePolicyRule = templatepolicyrule

@@ -47,7 +47,7 @@ module TencentCloud
         # @type RejectVagueArithmetic: Boolean
 
         attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex, :RejectVagueArithmetic
-        
+
         def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil, rejectvaguearithmetic=nil)
           @SessionId = sessionid
           @Image = image
@@ -94,7 +94,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :Items, :TaskId, :RequestId
-        
+
         def initialize(sessionid=nil, items=nil, taskid=nil, requestid=nil)
           @SessionId = sessionid
           @Items = items
@@ -143,7 +143,7 @@ module TencentCloud
         # @type QuestionId: String
 
         attr_accessor :Item, :ItemString, :ItemCoord, :Answer, :ExpressionType, :ItemConf, :QuestionId
-        
+
         def initialize(item=nil, itemstring=nil, itemcoord=nil, answer=nil, expressiontype=nil, itemconf=nil, questionid=nil)
           @Item = item
           @ItemString = itemstring
@@ -180,7 +180,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :Height, :Width, :X, :Y
-        
+
         def initialize(height=nil, width=nil, x=nil, y=nil)
           @Height = height
           @Width = width

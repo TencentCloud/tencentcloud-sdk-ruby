@@ -56,7 +56,7 @@ module TencentCloud
         # @type Mail: String
 
         attr_accessor :Uin, :ClientUin, :AgentTime, :ClientFlag, :ClientRemark, :ClientName, :AuthType, :AppId, :LastMonthAmt, :ThisMonthAmt, :HasOverdueBill, :ClientType, :ProjectType, :SalesUin, :SalesName, :Mail
-        
+
         def initialize(uin=nil, clientuin=nil, agenttime=nil, clientflag=nil, clientremark=nil, clientname=nil, authtype=nil, appid=nil, lastmonthamt=nil, thismonthamt=nil, hasoverduebill=nil, clienttype=nil, projecttype=nil, salesuin=nil, salesname=nil, mail=nil)
           @Uin = uin
           @ClientUin = clientuin
@@ -129,7 +129,7 @@ module TencentCloud
         # @type ActivityId: String
 
         attr_accessor :Uin, :OrderId, :ClientUin, :ClientRemark, :PayTime, :GoodsType, :PayMode, :SettleMonth, :Amt, :PayerMode, :ClientType, :ProjectType, :ActivityId
-        
+
         def initialize(uin=nil, orderid=nil, clientuin=nil, clientremark=nil, paytime=nil, goodstype=nil, paymode=nil, settlemonth=nil, amt=nil, payermode=nil, clienttype=nil, projecttype=nil, activityid=nil)
           @Uin = uin
           @OrderId = orderid
@@ -192,7 +192,7 @@ module TencentCloud
         # @type ClientName: String
 
         attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName, :ClientName
-        
+
         def initialize(uin=nil, clientuin=nil, applytime=nil, clientflag=nil, mail=nil, phone=nil, hasoverduebill=nil, status=nil, salesuin=nil, salesname=nil, clientname=nil)
           @Uin = uin
           @ClientUin = clientuin
@@ -306,7 +306,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime
-        
+
         def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil)
           @DealId = dealid
           @DealName = dealname
@@ -464,7 +464,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime
-        
+
         def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil)
           @DealId = dealid
           @DealName = dealname
@@ -548,7 +548,7 @@ module TencentCloud
         # @type DealNames: Array
 
         attr_accessor :OwnerUin, :AgentPay, :DealNames
-        
+
         def initialize(owneruin=nil, agentpay=nil, dealnames=nil)
           @OwnerUin = owneruin
           @AgentPay = agentpay
@@ -568,7 +568,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -590,7 +590,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :Uin, :SalesUin, :SalesName, :CreateTime
-        
+
         def initialize(uin=nil, salesuin=nil, salesname=nil, createtime=nil)
           @Uin = uin
           @SalesUin = salesuin
@@ -614,7 +614,7 @@ module TencentCloud
         # @type Amount: Integer
 
         attr_accessor :ClientUin, :Amount
-        
+
         def initialize(clientuin=nil, amount=nil)
           @ClientUin = clientuin
           @Amount = amount
@@ -632,7 +632,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -654,7 +654,7 @@ module TencentCloud
         # @type AssignActionType: String
 
         attr_accessor :ClientUins, :SalesUin, :AssignClientStatus, :AssignActionType
-        
+
         def initialize(clientuins=nil, salesuin=nil, assignclientstatus=nil, assignactiontype=nil)
           @ClientUins = clientuins
           @SalesUin = salesuin
@@ -682,7 +682,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SucceedUins, :FailedUins, :RequestId
-        
+
         def initialize(succeeduins=nil, faileduins=nil, requestid=nil)
           @SucceedUins = succeeduins
           @FailedUins = faileduins
@@ -706,7 +706,7 @@ module TencentCloud
         # @type Note: String
 
         attr_accessor :ClientUin, :AuditResult, :Note
-        
+
         def initialize(clientuin=nil, auditresult=nil, note=nil)
           @ClientUin = clientuin
           @AuditResult = auditresult
@@ -735,7 +735,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Uin, :ClientUin, :AuditResult, :AgentTime, :RequestId
-        
+
         def initialize(uin=nil, clientuin=nil, auditresult=nil, agenttime=nil, requestid=nil)
           @Uin = uin
           @ClientUin = clientuin
@@ -759,7 +759,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientUin
-        
+
         def initialize(clientuin=nil)
           @ClientUin = clientuin
         end
@@ -775,7 +775,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -793,7 +793,7 @@ module TencentCloud
         # @type OriginalTotalCost: Integer
 
         attr_accessor :RealTotalCost, :OriginalTotalCost
-        
+
         def initialize(realtotalcost=nil, originaltotalcost=nil)
           @RealTotalCost = realtotalcost
           @OriginalTotalCost = originaltotalcost
@@ -813,7 +813,7 @@ module TencentCloud
         # @type OriginalTotalCost: Integer
 
         attr_accessor :RealTotalCost, :OriginalTotalCost
-        
+
         def initialize(realtotalcost=nil, originaltotalcost=nil)
           @RealTotalCost = realtotalcost
           @OriginalTotalCost = originaltotalcost
@@ -855,7 +855,7 @@ module TencentCloud
         # @type SalesName: String
 
         attr_accessor :ClientUin, :ClientName, :ClientFlag, :OrderDirection, :ClientUins, :HasOverdueBill, :ClientRemark, :Offset, :Limit, :ClientType, :ProjectType, :SalesUin, :SalesName
-        
+
         def initialize(clientuin=nil, clientname=nil, clientflag=nil, orderdirection=nil, clientuins=nil, hasoverduebill=nil, clientremark=nil, offset=nil, limit=nil, clienttype=nil, projecttype=nil, salesuin=nil, salesname=nil)
           @ClientUin = clientuin
           @ClientName = clientname
@@ -899,7 +899,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentClientSet, :TotalCount, :RequestId
-        
+
         def initialize(agentclientset=nil, totalcount=nil, requestid=nil)
           @AgentClientSet = agentclientset
           @TotalCount = totalcount
@@ -938,7 +938,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :SettleMonth, :ClientUin, :PayMode, :OrderId, :ClientRemark, :Offset, :Limit
-        
+
         def initialize(settlemonth=nil, clientuin=nil, paymode=nil, orderid=nil, clientremark=nil, offset=nil, limit=nil)
           @SettleMonth = settlemonth
           @ClientUin = clientuin
@@ -970,7 +970,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AgentBillSet, :RequestId
-        
+
         def initialize(totalcount=nil, agentbillset=nil, requestid=nil)
           @TotalCount = totalcount
           @AgentBillSet = agentbillset
@@ -997,7 +997,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientUin
-        
+
         def initialize(clientuin=nil)
           @ClientUin = clientuin
         end
@@ -1021,7 +1021,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuditStatus, :AuthState, :ClientGrade, :ClientType, :RequestId
-        
+
         def initialize(auditstatus=nil, authstate=nil, clientgrade=nil, clienttype=nil, requestid=nil)
           @AuditStatus = auditstatus
           @AuthState = authstate
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type SalesName: String
 
         attr_accessor :ClientUin, :ClientName, :ClientFlag, :OrderDirection, :Offset, :Limit, :SalesUin, :SalesName
-        
+
         def initialize(clientuin=nil, clientname=nil, clientflag=nil, orderdirection=nil, offset=nil, limit=nil, salesuin=nil, salesname=nil)
           @ClientUin = clientuin
           @ClientName = clientname
@@ -1093,7 +1093,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentClientSet, :TotalCount, :RequestId
-        
+
         def initialize(agentclientset=nil, totalcount=nil, requestid=nil)
           @AgentClientSet = agentclientset
           @TotalCount = totalcount
@@ -1138,7 +1138,7 @@ module TencentCloud
         # @type PayerMode: Integer
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds, :PayerMode
-        
+
         def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, bigdealids=nil, payermode=nil)
           @Offset = offset
           @Limit = limit
@@ -1176,7 +1176,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentdealset=nil, totalcount=nil, requestid=nil)
           @AgentDealSet = agentdealset
           @TotalCount = totalcount
@@ -1219,7 +1219,7 @@ module TencentCloud
         # @type PayerMode: Integer
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :PayerMode
-        
+
         def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, payermode=nil)
           @Offset = offset
           @Limit = limit
@@ -1255,7 +1255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentdealset=nil, totalcount=nil, requestid=nil)
           @AgentDealSet = agentdealset
           @TotalCount = totalcount
@@ -1296,7 +1296,7 @@ module TencentCloud
         # @type DealNames: Array
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames
-        
+
         def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil)
           @Offset = offset
           @Limit = limit
@@ -1330,7 +1330,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentPayDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentpaydealset=nil, totalcount=nil, requestid=nil)
           @AgentPayDealSet = agentpaydealset
           @TotalCount = totalcount
@@ -1373,7 +1373,7 @@ module TencentCloud
         # @type BigDealIds: Array
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds
-        
+
         def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, bigdealids=nil)
           @Offset = offset
           @Limit = limit
@@ -1409,7 +1409,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentPayDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentpaydealset=nil, totalcount=nil, requestid=nil)
           @AgentPayDealSet = agentpaydealset
           @TotalCount = totalcount
@@ -1450,7 +1450,7 @@ module TencentCloud
         # @type DealNames: Array
 
         attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames
-        
+
         def initialize(owneruin=nil, offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, dealnames=nil)
           @OwnerUin = owneruin
           @Offset = offset
@@ -1484,7 +1484,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentPayDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentpaydealset=nil, totalcount=nil, requestid=nil)
           @AgentPayDealSet = agentpaydealset
           @TotalCount = totalcount
@@ -1527,7 +1527,7 @@ module TencentCloud
         # @type BigDealIds: Array
 
         attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames, :BigDealIds
-        
+
         def initialize(owneruin=nil, offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, dealnames=nil, bigdealids=nil)
           @OwnerUin = owneruin
           @Offset = offset
@@ -1563,7 +1563,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentPayDealSet, :TotalCount, :RequestId
-        
+
         def initialize(agentpaydealset=nil, totalcount=nil, requestid=nil)
           @AgentPayDealSet = agentpaydealset
           @TotalCount = totalcount
@@ -1590,7 +1590,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientUin
-        
+
         def initialize(clientuin=nil)
           @ClientUin = clientuin
         end
@@ -1610,7 +1610,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Balance, :Cash, :RequestId
-        
+
         def initialize(balance=nil, cash=nil, requestid=nil)
           @Balance = balance
           @Cash = cash
@@ -1630,7 +1630,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientUin
-        
+
         def initialize(clientuin=nil)
           @ClientUin = clientuin
         end
@@ -1650,7 +1650,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Balance, :Cash, :RequestId
-        
+
         def initialize(balance=nil, cash=nil, requestid=nil)
           @Balance = balance
           @Cash = cash
@@ -1674,7 +1674,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :RebateMonth, :Offset, :Limit
-        
+
         def initialize(rebatemonth=nil, offset=nil, limit=nil)
           @RebateMonth = rebatemonth
           @Offset = offset
@@ -1698,7 +1698,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RebateInfoSet, :TotalCount, :RequestId
-        
+
         def initialize(rebateinfoset=nil, totalcount=nil, requestid=nil)
           @RebateInfoSet = rebateinfoset
           @TotalCount = totalcount
@@ -1729,7 +1729,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :RebateMonth, :Offset, :Limit
-        
+
         def initialize(rebatemonth=nil, offset=nil, limit=nil)
           @RebateMonth = rebatemonth
           @Offset = offset
@@ -1753,7 +1753,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RebateInfoSet, :TotalCount, :RequestId
-        
+
         def initialize(rebateinfoset=nil, totalcount=nil, requestid=nil)
           @RebateInfoSet = rebateinfoset
           @TotalCount = totalcount
@@ -1788,7 +1788,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :Offset, :Limit, :SalesName, :SalesUin, :OrderDirection
-        
+
         def initialize(offset=nil, limit=nil, salesname=nil, salesuin=nil, orderdirection=nil)
           @Offset = offset
           @Limit = limit
@@ -1816,7 +1816,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentSalesmanSet, :TotalCount, :RequestId
-        
+
         def initialize(agentsalesmanset=nil, totalcount=nil, requestid=nil)
           @AgentSalesmanSet = agentsalesmanset
           @TotalCount = totalcount
@@ -1855,7 +1855,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :Status, :Offset, :Limit, :UnbindUin, :ApplyTimeStart, :ApplyTimeEnd, :OrderDirection
-        
+
         def initialize(status=nil, offset=nil, limit=nil, unbinduin=nil, applytimestart=nil, applytimeend=nil, orderdirection=nil)
           @Status = status
           @Offset = offset
@@ -1887,7 +1887,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :UnbindClientList, :RequestId
-        
+
         def initialize(totalcount=nil, unbindclientlist=nil, requestid=nil)
           @TotalCount = totalcount
           @UnbindClientList = unbindclientlist
@@ -1916,7 +1916,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientRemark, :ClientUin
-        
+
         def initialize(clientremark=nil, clientuin=nil)
           @ClientRemark = clientremark
           @ClientUin = clientuin
@@ -1934,7 +1934,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1952,7 +1952,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1980,7 +1980,7 @@ module TencentCloud
         # @type ExceptionFlag: String
 
         attr_accessor :Uin, :RebateMonth, :Amt, :MonthSales, :QuarterSales, :ExceptionFlag
-        
+
         def initialize(uin=nil, rebatemonth=nil, amt=nil, monthsales=nil, quartersales=nil, exceptionflag=nil)
           @Uin = uin
           @RebateMonth = rebatemonth
@@ -2016,7 +2016,7 @@ module TencentCloud
         # @type ExceptionFlag: String
 
         attr_accessor :Uin, :RebateMonth, :Amt, :MonthSales, :QuarterSales, :ExceptionFlag
-        
+
         def initialize(uin=nil, rebatemonth=nil, amt=nil, monthsales=nil, quartersales=nil, exceptionflag=nil)
           @Uin = uin
           @RebateMonth = rebatemonth
@@ -2042,7 +2042,7 @@ module TencentCloud
         # @type ClientUin: String
 
         attr_accessor :ClientUin
-        
+
         def initialize(clientuin=nil)
           @ClientUin = clientuin
         end
@@ -2058,7 +2058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2084,7 +2084,7 @@ module TencentCloud
         # @type ActionTime: String
 
         attr_accessor :Uin, :Name, :Status, :ApplyTime, :ActionTime
-        
+
         def initialize(uin=nil, name=nil, status=nil, applytime=nil, actiontime=nil)
           @Uin = uin
           @Name = name

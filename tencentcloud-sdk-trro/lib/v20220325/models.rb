@@ -25,7 +25,7 @@ module TencentCloud
         # @type DeviceIds: Array
 
         attr_accessor :ProjectId, :DeviceIds
-        
+
         def initialize(projectid=nil, deviceids=nil)
           @ProjectId = projectid
           @DeviceIds = deviceids
@@ -46,7 +46,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedDeviceIds, :RequestId
-        
+
         def initialize(faileddeviceids=nil, requestid=nil)
           @FailedDeviceIds = faileddeviceids
           @RequestId = requestid
@@ -68,7 +68,7 @@ module TencentCloud
         # @type PolicyMode: String
 
         attr_accessor :ProjectId, :RemoteDeviceIds, :PolicyMode
-        
+
         def initialize(projectid=nil, remotedeviceids=nil, policymode=nil)
           @ProjectId = projectid
           @RemoteDeviceIds = remotedeviceids
@@ -90,7 +90,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedRemoteDeviceIds, :RequestId
-        
+
         def initialize(failedremotedeviceids=nil, requestid=nil)
           @FailedRemoteDeviceIds = failedremotedeviceids
           @RequestId = requestid
@@ -112,7 +112,7 @@ module TencentCloud
         # @type ProjectId: String
 
         attr_accessor :Count, :DeviceId, :ProjectId
-        
+
         def initialize(count=nil, deviceid=nil, projectid=nil)
           @Count = count
           @DeviceId = deviceid
@@ -132,7 +132,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -156,7 +156,7 @@ module TencentCloud
         # @type DeviceToken: String
 
         attr_accessor :ProjectId, :DeviceId, :DeviceName, :DeviceType, :DeviceToken
-        
+
         def initialize(projectid=nil, deviceid=nil, devicename=nil, devicetype=nil, devicetoken=nil)
           @ProjectId = projectid
           @DeviceId = deviceid
@@ -180,7 +180,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -200,7 +200,7 @@ module TencentCloud
         # @type PolicyMode: String
 
         attr_accessor :ProjectName, :ProjectDescription, :PolicyMode
-        
+
         def initialize(projectname=nil, projectdescription=nil, policymode=nil)
           @ProjectName = projectname
           @ProjectDescription = projectdescription
@@ -222,7 +222,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProjectId, :RequestId
-        
+
         def initialize(projectid=nil, requestid=nil)
           @ProjectId = projectid
           @RequestId = requestid
@@ -240,7 +240,7 @@ module TencentCloud
         # @type ProjectId: String
 
         attr_accessor :ProjectId
-        
+
         def initialize(projectid=nil)
           @ProjectId = projectid
         end
@@ -256,7 +256,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -274,7 +274,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :ProjectId, :DeviceId
-        
+
         def initialize(projectid=nil, deviceid=nil)
           @ProjectId = projectid
           @DeviceId = deviceid
@@ -302,7 +302,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceName, :DeviceType, :DeviceStatus, :LastReportTime, :ModifyTime, :RequestId
-        
+
         def initialize(devicename=nil, devicetype=nil, devicestatus=nil, lastreporttime=nil, modifytime=nil, requestid=nil)
           @DeviceName = devicename
           @DeviceType = devicetype
@@ -336,7 +336,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :ProjectId, :DeviceType, :SearchWords, :PageSize, :PageNumber
-        
+
         def initialize(projectid=nil, devicetype=nil, searchwords=nil, pagesize=nil, pagenumber=nil)
           @ProjectId = projectid
           @DeviceType = devicetype
@@ -366,7 +366,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Devices, :Total, :Num, :RequestId
-        
+
         def initialize(devices=nil, total=nil, num=nil, requestid=nil)
           @Devices = devices
           @Total = total
@@ -395,7 +395,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :SessionId
-        
+
         def initialize(sessionid=nil)
           @SessionId = sessionid
         end
@@ -413,7 +413,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Details, :RequestId
-        
+
         def initialize(details=nil, requestid=nil)
           @Details = details
           @RequestId = requestid
@@ -448,7 +448,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :DeviceId, :StartTime, :EndTime
-        
+
         def initialize(projectid=nil, pagenumber=nil, pagesize=nil, deviceid=nil, starttime=nil, endtime=nil)
           @ProjectId = projectid
           @PageNumber = pagenumber
@@ -480,7 +480,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :DeviceSessionList, :Num, :RequestId
-        
+
         def initialize(total=nil, devicesessionlist=nil, num=nil, requestid=nil)
           @Total = total
           @DeviceSessionList = devicesessionlist
@@ -519,7 +519,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :ProjectId, :PolicyMode, :SearchMode, :SearchWords, :PageSize, :PageNumber
-        
+
         def initialize(projectid=nil, policymode=nil, searchmode=nil, searchwords=nil, pagesize=nil, pagenumber=nil)
           @ProjectId = projectid
           @PolicyMode = policymode
@@ -555,7 +555,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PolicyMode, :PolicyEnabled, :PolicyInfo, :Num, :Total, :RequestId
-        
+
         def initialize(policymode=nil, policyenabled=nil, policyinfo=nil, num=nil, total=nil, requestid=nil)
           @PolicyMode = policymode
           @PolicyEnabled = policyenabled
@@ -588,7 +588,7 @@ module TencentCloud
         # @type ProjectId: String
 
         attr_accessor :ProjectId
-        
+
         def initialize(projectid=nil)
           @ProjectId = projectid
         end
@@ -612,7 +612,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProjectName, :ProjectDescription, :PolicyMode, :ModifyTime, :RequestId
-        
+
         def initialize(projectname=nil, projectdescription=nil, policymode=nil, modifytime=nil, requestid=nil)
           @ProjectName = projectname
           @ProjectDescription = projectdescription
@@ -638,7 +638,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :PageSize, :PageNumber
-        
+
         def initialize(pagesize=nil, pagenumber=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -662,7 +662,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Projects, :Total, :Num, :RequestId
-        
+
         def initialize(projects=nil, total=nil, num=nil, requestid=nil)
           @Projects = projects
           @Total = total
@@ -701,7 +701,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :DeviceId, :StartTime, :EndTime
-        
+
         def initialize(projectid=nil, pagenumber=nil, pagesize=nil, deviceid=nil, starttime=nil, endtime=nil)
           @ProjectId = projectid
           @PageNumber = pagenumber
@@ -733,7 +733,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :RecentSessionList, :Num, :RequestId
-        
+
         def initialize(total=nil, recentsessionlist=nil, num=nil, requestid=nil)
           @Total = total
           @RecentSessionList = recentsessionlist
@@ -770,7 +770,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :StatisticInterval, :DeviceId, :StartTime, :EndTime
-        
+
         def initialize(projectid=nil, statisticinterval=nil, deviceid=nil, starttime=nil, endtime=nil)
           @ProjectId = projectid
           @StatisticInterval = statisticinterval
@@ -796,7 +796,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionStatistics, :RequestId
-        
+
         def initialize(sessionstatistics=nil, requestid=nil)
           @SessionStatistics = sessionstatistics
           @RequestId = requestid
@@ -827,7 +827,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :DeviceId, :StartTime, :EndTime
-        
+
         def initialize(projectid=nil, deviceid=nil, starttime=nil, endtime=nil)
           @ProjectId = projectid
           @DeviceId = deviceid
@@ -859,7 +859,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionNum, :TotalDuration, :ActiveFieldDeviceNum, :ActiveRemoteDeviceNum, :NotBadSessionRatio, :RequestId
-        
+
         def initialize(sessionnum=nil, totalduration=nil, activefielddevicenum=nil, activeremotedevicenum=nil, notbadsessionratio=nil, requestid=nil)
           @SessionNum = sessionnum
           @TotalDuration = totalduration
@@ -904,7 +904,7 @@ module TencentCloud
         # @type LicenseIds: Array
 
         attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds
-        
+
         def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
@@ -944,7 +944,7 @@ module TencentCloud
         # @type ProjectId: String
 
         attr_accessor :DeviceId, :DeviceName, :DeviceStatus, :DeviceType, :ModifyTime, :LastReportTime, :ProjectId
-        
+
         def initialize(deviceid=nil, devicename=nil, devicestatus=nil, devicetype=nil, modifytime=nil, lastreporttime=nil, projectid=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
@@ -974,7 +974,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :ProjectId, :DeviceId
-        
+
         def initialize(projectid=nil, deviceid=nil)
           @ProjectId = projectid
           @DeviceId = deviceid
@@ -994,7 +994,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AvailableCount, :RequestId
-        
+
         def initialize(availablecount=nil, requestid=nil)
           @AvailableCount = availablecount
           @RequestId = requestid
@@ -1018,7 +1018,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId
-        
+
         def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
           @PageNum = pagenum
           @PageSize = pagesize
@@ -1044,7 +1044,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Devices, :TotalCount, :RequestId
-        
+
         def initialize(devices=nil, totalcount=nil, requestid=nil)
           @Devices = devices
           @TotalCount = totalcount
@@ -1068,7 +1068,7 @@ module TencentCloud
       # GetLicenseStat请求参数结构体
       class GetLicenseStatRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1090,7 +1090,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Valid, :Bound, :UnBound, :Expire, :RequestId
-        
+
         def initialize(valid=nil, bound=nil, unbound=nil, expire=nil, requestid=nil)
           @Valid = valid
           @Bound = bound
@@ -1120,7 +1120,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId
-        
+
         def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
           @PageNum = pagenum
           @PageSize = pagesize
@@ -1146,7 +1146,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Licenses, :TotalCount, :RequestId
-        
+
         def initialize(licenses=nil, totalcount=nil, requestid=nil)
           @Licenses = licenses
           @TotalCount = totalcount
@@ -1189,7 +1189,7 @@ module TencentCloud
         # @type LicenseIds: Array
 
         attr_accessor :Count, :Status, :ExpireTime, :Duration, :RemainDay, :LicenseIds
-        
+
         def initialize(count=nil, status=nil, expiretime=nil, duration=nil, remainday=nil, licenseids=nil)
           @Count = count
           @Status = status
@@ -1221,7 +1221,7 @@ module TencentCloud
         # @type DeviceToken: String
 
         attr_accessor :ProjectId, :DeviceId, :DeviceName, :DeviceToken
-        
+
         def initialize(projectid=nil, deviceid=nil, devicename=nil, devicetoken=nil)
           @ProjectId = projectid
           @DeviceId = deviceid
@@ -1243,7 +1243,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1267,7 +1267,7 @@ module TencentCloud
         # @type ModifyMode: String
 
         attr_accessor :ProjectId, :RemoteDeviceId, :FieldDeviceIds, :PolicyMode, :ModifyMode
-        
+
         def initialize(projectid=nil, remotedeviceid=nil, fielddeviceids=nil, policymode=nil, modifymode=nil)
           @ProjectId = projectid
           @RemoteDeviceId = remotedeviceid
@@ -1297,7 +1297,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedInsertIds, :FailedDeleteIds, :RequestId
-        
+
         def initialize(failedinsertids=nil, faileddeleteids=nil, requestid=nil)
           @FailedInsertIds = failedinsertids
           @FailedDeleteIds = faileddeleteids
@@ -1323,7 +1323,7 @@ module TencentCloud
         # @type PolicyMode: String
 
         attr_accessor :ProjectId, :ProjectName, :ProjectDescription, :PolicyMode
-        
+
         def initialize(projectid=nil, projectname=nil, projectdescription=nil, policymode=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1345,7 +1345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type ModifyTime: String
 
         attr_accessor :RemoteDeviceId, :FieldDeviceIds, :ModifyTime
-        
+
         def initialize(remotedeviceid=nil, fielddeviceids=nil, modifytime=nil)
           @RemoteDeviceId = remotedeviceid
           @FieldDeviceIds = fielddeviceids
@@ -1393,7 +1393,7 @@ module TencentCloud
         # @type ModifyTime: String
 
         attr_accessor :ProjectId, :ProjectName, :ProjectDescription, :PolicyMode, :ModifyTime
-        
+
         def initialize(projectid=nil, projectname=nil, projectdescription=nil, policymode=nil, modifytime=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1427,7 +1427,7 @@ module TencentCloud
         # @type LatestUpdateTime: Integer
 
         attr_accessor :SessionId, :RemoteDeviceId, :FieldDeviceId, :Resolution, :StartTime, :LatestUpdateTime
-        
+
         def initialize(sessionid=nil, remotedeviceid=nil, fielddeviceid=nil, resolution=nil, starttime=nil, latestupdatetime=nil)
           @SessionId = sessionid
           @RemoteDeviceId = remotedeviceid
@@ -1479,7 +1479,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId
-        
+
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil)
           @DeviceType = devicetype
           @StartTime = starttime
@@ -1533,7 +1533,7 @@ module TencentCloud
         # @type Quality: String
 
         attr_accessor :SessionId, :RemoteDeviceId, :FieldDeviceId, :Resolution, :StartTime, :EndTime, :Quality
-        
+
         def initialize(sessionid=nil, remotedeviceid=nil, fielddeviceid=nil, resolution=nil, starttime=nil, endtime=nil, quality=nil)
           @SessionId = sessionid
           @RemoteDeviceId = remotedeviceid
@@ -1573,7 +1573,7 @@ module TencentCloud
         # @type NotBadSessionRatio: Integer
 
         attr_accessor :ActiveFieldDeviceNum, :ActiveRemoteDeviceNum, :SessionNum, :TotalDuration, :StartTime, :EndTime, :NotBadSessionRatio
-        
+
         def initialize(activefielddevicenum=nil, activeremotedevicenum=nil, sessionnum=nil, totalduration=nil, starttime=nil, endtime=nil, notbadsessionratio=nil)
           @ActiveFieldDeviceNum = activefielddevicenum
           @ActiveRemoteDeviceNum = activeremotedevicenum

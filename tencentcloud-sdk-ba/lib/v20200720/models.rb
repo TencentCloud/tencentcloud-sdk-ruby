@@ -23,7 +23,7 @@ module TencentCloud
         # @type SessionKey: String
 
         attr_accessor :SessionKey
-        
+
         def initialize(sessionkey=nil)
           @SessionKey = sessionkey
         end
@@ -41,7 +41,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :RequestId
-        
+
         def initialize(url=nil, requestid=nil)
           @Url = url
           @RequestId = requestid
@@ -56,7 +56,7 @@ module TencentCloud
       # DescribeGetAuthInfo请求参数结构体
       class DescribeGetAuthInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -76,7 +76,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsTenPayMasked, :IsAuthenticated, :Type, :RequestId
-        
+
         def initialize(istenpaymasked=nil, isauthenticated=nil, type=nil, requestid=nil)
           @IsTenPayMasked = istenpaymasked
           @IsAuthenticated = isauthenticated
@@ -106,7 +106,7 @@ module TencentCloud
         # @type CheckSamePerson: Boolean
 
         attr_accessor :IcpOrderId, :SourceWebId, :TargetWebIds, :SyncFields, :CheckSamePerson
-        
+
         def initialize(icporderid=nil, sourcewebid=nil, targetwebids=nil, syncfields=nil, checksameperson=nil)
           @IcpOrderId = icporderid
           @SourceWebId = sourcewebid
@@ -130,7 +130,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

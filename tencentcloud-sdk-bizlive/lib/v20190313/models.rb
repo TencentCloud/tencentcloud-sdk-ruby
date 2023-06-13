@@ -35,7 +35,7 @@ module TencentCloud
         # @type Resolution: String
 
         attr_accessor :ClientSession, :GameId, :UserId, :GameParas, :GameRegion, :ImageUrl, :Resolution
-        
+
         def initialize(clientsession=nil, gameid=nil, userid=nil, gameparas=nil, gameregion=nil, imageurl=nil, resolution=nil)
           @ClientSession = clientsession
           @GameId = gameid
@@ -65,7 +65,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServerSession, :RequestId
-        
+
         def initialize(serversession=nil, requestid=nil)
           @ServerSession = serversession
           @RequestId = requestid
@@ -91,7 +91,7 @@ module TencentCloud
         # @type Time: String
 
         attr_accessor :Bandwidth, :Flux, :Online, :Request, :Time
-        
+
         def initialize(bandwidth=nil, flux=nil, online=nil, request=nil, time=nil)
           @Bandwidth = bandwidth
           @Flux = flux
@@ -124,7 +124,7 @@ module TencentCloud
         # @type StreamName: String
 
         attr_accessor :EndTime, :PlayDomain, :StartTime, :StreamName
-        
+
         def initialize(endtime=nil, playdomain=nil, starttime=nil, streamname=nil)
           @EndTime = endtime
           @PlayDomain = playdomain
@@ -148,7 +148,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataInfoList, :RequestId
-        
+
         def initialize(datainfolist=nil, requestid=nil)
           @DataInfoList = datainfolist
           @RequestId = requestid
@@ -170,7 +170,7 @@ module TencentCloud
       # DescribeWorkers请求参数结构体
       class DescribeWorkersRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -190,7 +190,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegionDetail, :Idle, :RegionNum, :RequestId
-        
+
         def initialize(regiondetail=nil, idle=nil, regionnum=nil, requestid=nil)
           @RegionDetail = regiondetail
           @Idle = idle
@@ -226,7 +226,7 @@ module TencentCloud
         # @type ResumeTime: String
 
         attr_accessor :AppName, :DomainName, :StreamName, :ResumeTime
-        
+
         def initialize(appname=nil, domainname=nil, streamname=nil, resumetime=nil)
           @AppName = appname
           @DomainName = domainname
@@ -248,7 +248,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -270,7 +270,7 @@ module TencentCloud
         # @type Level: Integer
 
         attr_accessor :Nickname, :UserId, :HeadImgUrl, :Level
-        
+
         def initialize(nickname=nil, userid=nil, headimgurl=nil, level=nil)
           @Nickname = nickname
           @UserId = userid
@@ -294,7 +294,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserKey, :RequestId
-        
+
         def initialize(userkey=nil, requestid=nil)
           @UserKey = userkey
           @RequestId = requestid
@@ -312,7 +312,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserId
-        
+
         def initialize(userid=nil)
           @UserId = userid
         end
@@ -328,7 +328,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -346,7 +346,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Idle, :Region
-        
+
         def initialize(idle=nil, region=nil)
           @Idle = idle
           @Region = region

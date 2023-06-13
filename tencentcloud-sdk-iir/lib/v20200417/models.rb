@@ -29,7 +29,7 @@ module TencentCloud
         # @type YMax: Integer
 
         attr_accessor :XMin, :YMin, :XMax, :YMax
-        
+
         def initialize(xmin=nil, ymin=nil, xmax=nil, ymax=nil)
           @XMin = xmin
           @YMin = ymin
@@ -70,7 +70,7 @@ module TencentCloud
         # @type Image: String
 
         attr_accessor :FindSKU, :Location, :Name, :Brand, :Price, :ProductCategory, :Score, :Image
-        
+
         def initialize(findsku=nil, location=nil, name=nil, brand=nil, price=nil, productcategory=nil, score=nil, image=nil)
           @FindSKU = findsku
           @Location = location
@@ -108,7 +108,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -133,7 +133,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegionDetected, :ProductInfo, :RequestId
-        
+
         def initialize(regiondetected=nil, productinfo=nil, requestid=nil)
           @RegionDetected = regiondetected
           @ProductInfo = productinfo
@@ -170,7 +170,7 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Iir.v20200417.models.Location`
 
         attr_accessor :Category, :CategoryScore, :Location
-        
+
         def initialize(category=nil, categoryscore=nil, location=nil)
           @Category = category
           @CategoryScore = categoryscore

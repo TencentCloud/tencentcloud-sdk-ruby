@@ -36,7 +36,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :Pem, :Ask, :PemDecryptKey, :BailorId, :Priority
-        
+
         def initialize(pem=nil, ask=nil, pemdecryptkey=nil, bailorid=nil, priority=nil)
           @Pem = pem
           @Ask = ask
@@ -66,7 +66,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FairPlayPemId, :Priority, :RequestId
-        
+
         def initialize(fairplaypemid=nil, priority=nil, requestid=nil)
           @FairPlayPemId = fairplaypemid
           @Priority = priority
@@ -92,7 +92,7 @@ module TencentCloud
         # @type ContentType: String
 
         attr_accessor :DrmType, :Keys, :ContentId, :ContentType
-        
+
         def initialize(drmtype=nil, keys=nil, contentid=nil, contenttype=nil)
           @DrmType = drmtype
           @Keys = keys
@@ -121,7 +121,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -146,7 +146,7 @@ module TencentCloud
         # @type PlaybackPolicy: :class:`Tencentcloud::Drm.v20181115.models.PlaybackPolicy`
 
         attr_accessor :DrmType, :LicenseRequest, :ContentType, :Tracks, :PlaybackPolicy
-        
+
         def initialize(drmtype=nil, licenserequest=nil, contenttype=nil, tracks=nil, playbackpolicy=nil)
           @DrmType = drmtype
           @LicenseRequest = licenserequest
@@ -177,7 +177,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :License, :ContentId, :RequestId
-        
+
         def initialize(license=nil, contentid=nil, requestid=nil)
           @License = license
           @ContentId = contentid
@@ -200,7 +200,7 @@ module TencentCloud
         # @type FairPlayPemId: Integer
 
         attr_accessor :BailorId, :FairPlayPemId
-        
+
         def initialize(bailorid=nil, fairplaypemid=nil)
           @BailorId = bailorid
           @FairPlayPemId = fairplaypemid
@@ -218,7 +218,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -241,7 +241,7 @@ module TencentCloud
         # @type ContentType: String
 
         attr_accessor :DrmType, :RsaPublicKey, :ContentId, :ContentType
-        
+
         def initialize(drmtype=nil, rsapublickey=nil, contentid=nil, contenttype=nil)
           @DrmType = drmtype
           @RsaPublicKey = rsapublickey
@@ -274,7 +274,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Keys, :SessionKey, :ContentId, :RequestId
-        
+
         def initialize(keys=nil, sessionkey=nil, contentid=nil, requestid=nil)
           @Keys = keys
           @SessionKey = sessionkey
@@ -306,7 +306,7 @@ module TencentCloud
         # @type FairPlayPemId: Integer
 
         attr_accessor :BailorId, :FairPlayPemId
-        
+
         def initialize(bailorid=nil, fairplaypemid=nil)
           @BailorId = bailorid
           @FairPlayPemId = fairplaypemid
@@ -327,7 +327,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FairPlayPems, :RequestId
-        
+
         def initialize(fairplaypems=nil, requestid=nil)
           @FairPlayPems = fairplaypems
           @RequestId = requestid
@@ -362,7 +362,7 @@ module TencentCloud
         # @type ContentId: String
 
         attr_accessor :DrmType, :Tracks, :ContentType, :RsaPublicKey, :ContentId
-        
+
         def initialize(drmtype=nil, tracks=nil, contenttype=nil, rsapublickey=nil, contentid=nil)
           @DrmType = drmtype
           @Tracks = tracks
@@ -397,7 +397,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Keys, :SessionKey, :ContentId, :Pssh, :RequestId
-        
+
         def initialize(keys=nil, sessionkey=nil, contentid=nil, pssh=nil, requestid=nil)
           @Keys = keys
           @SessionKey = sessionkey
@@ -432,7 +432,7 @@ module TencentCloud
         # @type Para: :class:`Tencentcloud::Drm.v20181115.models.DrmOutputPara`
 
         attr_accessor :BucketName, :ObjectName, :Para
-        
+
         def initialize(bucketname=nil, objectname=nil, para=nil)
           @BucketName = bucketname
           @ObjectName = objectname
@@ -457,7 +457,7 @@ module TencentCloud
         # @type Language: String
 
         attr_accessor :Type, :Language
-        
+
         def initialize(type=nil, language=nil)
           @Type = type
           @Language = language
@@ -477,7 +477,7 @@ module TencentCloud
         # @type ObjectName: String
 
         attr_accessor :BucketName, :ObjectName
-        
+
         def initialize(bucketname=nil, objectname=nil)
           @BucketName = bucketname
           @ObjectName = objectname
@@ -508,7 +508,7 @@ module TencentCloud
         # @type Md5PemDecryptKey: String
 
         attr_accessor :FairPlayPemId, :Priority, :Md5Pem, :Md5Ask, :Md5PemDecryptKey
-        
+
         def initialize(fairplaypemid=nil, priority=nil, md5pem=nil, md5ask=nil, md5pemdecryptkey=nil)
           @FairPlayPemId = fairplaypemid
           @Priority = priority
@@ -541,7 +541,7 @@ module TencentCloud
         # @type InsertTimestamp: Integer
 
         attr_accessor :Track, :KeyId, :Key, :Iv, :InsertTimestamp
-        
+
         def initialize(track=nil, keyid=nil, key=nil, iv=nil, inserttimestamp=nil)
           @Track = track
           @KeyId = keyid
@@ -572,7 +572,7 @@ module TencentCloud
         # @type Iv: String
 
         attr_accessor :Track, :Key, :KeyId, :Iv
-        
+
         def initialize(track=nil, key=nil, keyid=nil, iv=nil)
           @Track = track
           @Key = key
@@ -609,7 +609,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :Pem, :Ask, :FairPlayPemId, :PemDecryptKey, :BailorId, :Priority
-        
+
         def initialize(pem=nil, ask=nil, fairplaypemid=nil, pemdecryptkey=nil, bailorid=nil, priority=nil)
           @Pem = pem
           @Ask = ask
@@ -641,7 +641,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FairPlayPemId, :Priority, :RequestId
-        
+
         def initialize(fairplaypemid=nil, priority=nil, requestid=nil)
           @FairPlayPemId = fairplaypemid
           @Priority = priority
@@ -663,7 +663,7 @@ module TencentCloud
         # @type PlaybackDurationSeconds: Integer
 
         attr_accessor :LicenseDurationSeconds, :PlaybackDurationSeconds
-        
+
         def initialize(licensedurationseconds=nil, playbackdurationseconds=nil)
           @LicenseDurationSeconds = licensedurationseconds
           @PlaybackDurationSeconds = playbackdurationseconds
@@ -691,7 +691,7 @@ module TencentCloud
         # @type OutputObjects: Array
 
         attr_accessor :CosEndPoint, :CosSecretId, :CosSecretKey, :DrmType, :SourceObject, :OutputObjects
-        
+
         def initialize(cosendpoint=nil, cossecretid=nil, cossecretkey=nil, drmtype=nil, sourceobject=nil, outputobjects=nil)
           @CosEndPoint = cosendpoint
           @CosSecretId = cossecretid
@@ -727,7 +727,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

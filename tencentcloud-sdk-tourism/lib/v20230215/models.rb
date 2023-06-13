@@ -25,7 +25,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :PageNumber, :PageSize
-        
+
         def initialize(pagenumber=nil, pagesize=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -47,7 +47,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ResourceDrawList, :RequestId
-        
+
         def initialize(totalcount=nil, resourcedrawlist=nil, requestid=nil)
           @TotalCount = totalcount
           @ResourceDrawList = resourcedrawlist
@@ -108,7 +108,7 @@ module TencentCloud
         # @type ResourceType: Integer
 
         attr_accessor :Id, :FlowId, :ResourceId, :IndexId, :Uin, :BigDealId, :SmallOrderId, :ResourceNewStartTime, :ResourceNewEndTime, :ResourceStatus, :Status, :ResourceType
-        
+
         def initialize(id=nil, flowid=nil, resourceid=nil, indexid=nil, uin=nil, bigdealid=nil, smallorderid=nil, resourcenewstarttime=nil, resourcenewendtime=nil, resourcestatus=nil, status=nil, resourcetype=nil)
           @Id = id
           @FlowId = flowid

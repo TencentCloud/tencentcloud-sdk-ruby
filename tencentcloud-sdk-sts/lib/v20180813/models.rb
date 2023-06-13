@@ -27,7 +27,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :SecretId, :CreateTime, :Status
-        
+
         def initialize(secretid=nil, createtime=nil, status=nil)
           @SecretId = secretid
           @CreateTime = createtime
@@ -69,7 +69,7 @@ module TencentCloud
         # @type SourceIdentity: String
 
         attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags, :SourceIdentity
-        
+
         def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil, sourceidentity=nil)
           @RoleArn = rolearn
           @RoleSessionName = rolesessionname
@@ -110,7 +110,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
-        
+
         def initialize(credentials=nil, expiredtime=nil, expiration=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
@@ -143,7 +143,7 @@ module TencentCloud
         # @type DurationSeconds: Integer
 
         attr_accessor :SAMLAssertion, :PrincipalArn, :RoleArn, :RoleSessionName, :DurationSeconds
-        
+
         def initialize(samlassertion=nil, principalarn=nil, rolearn=nil, rolesessionname=nil, durationseconds=nil)
           @SAMLAssertion = samlassertion
           @PrincipalArn = principalarn
@@ -173,7 +173,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
-        
+
         def initialize(credentials=nil, expiredtime=nil, expiration=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
@@ -206,7 +206,7 @@ module TencentCloud
         # @type DurationSeconds: Integer
 
         attr_accessor :ProviderId, :WebIdentityToken, :RoleArn, :RoleSessionName, :DurationSeconds
-        
+
         def initialize(providerid=nil, webidentitytoken=nil, rolearn=nil, rolesessionname=nil, durationseconds=nil)
           @ProviderId = providerid
           @WebIdentityToken = webidentitytoken
@@ -236,7 +236,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExpiredTime, :Expiration, :Credentials, :RequestId
-        
+
         def initialize(expiredtime=nil, expiration=nil, credentials=nil, requestid=nil)
           @ExpiredTime = expiredtime
           @Expiration = expiration
@@ -265,7 +265,7 @@ module TencentCloud
         # @type TmpSecretKey: String
 
         attr_accessor :Token, :TmpSecretId, :TmpSecretKey
-        
+
         def initialize(token=nil, tmpsecretid=nil, tmpsecretkey=nil)
           @Token = token
           @TmpSecretId = tmpsecretid
@@ -282,7 +282,7 @@ module TencentCloud
       # GetCallerIdentity请求参数结构体
       class GetCallerIdentityRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -311,7 +311,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Arn, :AccountId, :UserId, :PrincipalId, :Type, :RequestId
-        
+
         def initialize(arn=nil, accountid=nil, userid=nil, principalid=nil, type=nil, requestid=nil)
           @Arn = arn
           @AccountId = accountid
@@ -345,7 +345,7 @@ module TencentCloud
         # @type DurationSeconds: Integer
 
         attr_accessor :Name, :Policy, :DurationSeconds
-        
+
         def initialize(name=nil, policy=nil, durationseconds=nil)
           @Name = name
           @Policy = policy
@@ -372,7 +372,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
-        
+
         def initialize(credentials=nil, expiredtime=nil, expiration=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
@@ -397,7 +397,7 @@ module TencentCloud
         # @type TargetUin: Integer
 
         attr_accessor :TargetUin
-        
+
         def initialize(targetuin=nil)
           @TargetUin = targetuin
         end
@@ -415,7 +415,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdKeys, :RequestId
-        
+
         def initialize(idkeys=nil, requestid=nil)
           @IdKeys = idkeys
           @RequestId = requestid
@@ -442,7 +442,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value

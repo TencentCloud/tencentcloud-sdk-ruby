@@ -47,7 +47,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags
-        
+
         def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil)
           @Label = label
           @Suggestion = suggestion
@@ -100,7 +100,7 @@ module TencentCloud
         # @type IDFV: String
 
         attr_accessor :IP, :Mac, :TokenId, :DeviceId, :IMEI, :IDFA, :IDFV
-        
+
         def initialize(ip=nil, mac=nil, tokenid=nil, deviceid=nil, imei=nil, idfa=nil, idfv=nil)
           @IP = ip
           @Mac = mac
@@ -130,7 +130,7 @@ module TencentCloud
         # @type Level: Integer
 
         attr_accessor :Label, :Level
-        
+
         def initialize(label=nil, level=nil)
           @Label = label
           @Level = level
@@ -155,7 +155,7 @@ module TencentCloud
         # @type Score: Integer
 
         attr_accessor :Keyword, :SubLabel, :Score
-        
+
         def initialize(keyword=nil, sublabel=nil, score=nil)
           @Keyword = keyword
           @SubLabel = sublabel
@@ -183,7 +183,7 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Tms.v20201229.models.Device`
 
         attr_accessor :Content, :BizType, :DataId, :User, :Device
-        
+
         def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil)
           @Content = content
           @BizType = biztype
@@ -242,7 +242,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :RequestId
-        
+
         def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, requestid=nil)
           @BizType = biztype
           @Label = label
@@ -323,7 +323,7 @@ module TencentCloud
         # @type SendTime: Integer
 
         attr_accessor :UserId, :Nickname, :AccountType, :Gender, :Age, :Level, :Phone, :HeadUrl, :Desc, :RoomId, :ReceiverId, :SendTime
-        
+
         def initialize(userid=nil, nickname=nil, accounttype=nil, gender=nil, age=nil, level=nil, phone=nil, headurl=nil, desc=nil, roomid=nil, receiverid=nil, sendtime=nil)
           @UserId = userid
           @Nickname = nickname

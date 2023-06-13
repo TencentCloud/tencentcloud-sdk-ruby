@@ -35,7 +35,7 @@ module TencentCloud
         # @type NotifyURL: String
 
         attr_accessor :AccountId, :DeviceId, :OrderId, :Code, :Async, :ProductId, :NotifyURL
-        
+
         def initialize(accountid=nil, deviceid=nil, orderid=nil, code=nil, async=nil, productid=nil, notifyurl=nil)
           @AccountId = accountid
           @DeviceId = deviceid
@@ -75,7 +75,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderId, :Code, :Message, :Data, :RequestId
-        
+
         def initialize(orderid=nil, code=nil, message=nil, data=nil, requestid=nil)
           @OrderId = orderid
           @Code = code
@@ -143,7 +143,7 @@ module TencentCloud
         # @type GrowScore: Integer
 
         attr_accessor :Code, :Message, :TaskId, :TaskOrderId, :TaskCode, :TaskCoinNumber, :TaskType, :TotalCoin, :Attach, :DoneTimes, :TotalTimes, :TaskName, :GrowScore
-        
+
         def initialize(code=nil, message=nil, taskid=nil, taskorderid=nil, taskcode=nil, taskcoinnumber=nil, tasktype=nil, totalcoin=nil, attach=nil, donetimes=nil, totaltimes=nil, taskname=nil, growscore=nil)
           @Code = code
           @Message = message

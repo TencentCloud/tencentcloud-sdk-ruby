@@ -23,7 +23,7 @@ module TencentCloud
         # @type ID: String
 
         attr_accessor :ID
-        
+
         def initialize(id=nil)
           @ID = id
         end
@@ -41,7 +41,7 @@ module TencentCloud
         # @type Metadata: :class:`Tencentcloud::Icr.v20211014.models.ReqMetadata`
 
         attr_accessor :Payload, :Metadata
-        
+
         def initialize(payload=nil, metadata=nil)
           @Payload = payload
           @Metadata = metadata
@@ -93,7 +93,7 @@ module TencentCloud
         # @type UserAccount: String
 
         attr_accessor :EditTime, :FeatureList, :ID, :IndustryType, :MemberNum, :ProductList, :Remark, :Status, :TypeList, :UserAccount
-        
+
         def initialize(edittime=nil, featurelist=nil, id=nil, industrytype=nil, membernum=nil, productlist=nil, remark=nil, status=nil, typelist=nil, useraccount=nil)
           @EditTime = edittime
           @FeatureList = featurelist
@@ -140,7 +140,7 @@ module TencentCloud
         # @type ID: String
 
         attr_accessor :FeatureName, :ID
-        
+
         def initialize(featurename=nil, id=nil)
           @FeatureName = featurename
           @ID = id
@@ -162,7 +162,7 @@ module TencentCloud
         # @type IndustryName: String
 
         attr_accessor :ID, :IndustryName
-        
+
         def initialize(id=nil, industryname=nil)
           @ID = id
           @IndustryName = industryname
@@ -193,7 +193,7 @@ module TencentCloud
         # @type Total: Integer
 
         attr_accessor :AccountLevel, :DataList, :Limit, :Offset, :Total
-        
+
         def initialize(accountlevel=nil, datalist=nil, limit=nil, offset=nil, total=nil)
           @AccountLevel = accountlevel
           @DataList = datalist
@@ -249,7 +249,7 @@ module TencentCloud
         # @type TemplateList: String
 
         attr_accessor :CreateTime, :EditTime, :AppKey, :Image, :Industry, :OperatorList, :ProductName, :Remark, :TemplateList
-        
+
         def initialize(createtime=nil, edittime=nil, appkey=nil, image=nil, industry=nil, operatorlist=nil, productname=nil, remark=nil, templatelist=nil)
           @CreateTime = createtime
           @EditTime = edittime
@@ -292,7 +292,7 @@ module TencentCloud
         # @type TypeName: String
 
         attr_accessor :Type, :TypeName
-        
+
         def initialize(type=nil, typename=nil)
           @Type = type
           @TypeName = typename
@@ -316,7 +316,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Metadata, :Payload, :RequestId
-        
+
         def initialize(metadata=nil, payload=nil, requestid=nil)
           @Metadata = metadata
           @Payload = payload
@@ -352,7 +352,7 @@ module TencentCloud
         # @type Vagrants: Array
 
         attr_accessor :ChannelID, :BusinessName, :GUID, :AppKey, :LBS, :Vagrants
-        
+
         def initialize(channelid=nil, businessname=nil, guid=nil, appkey=nil, lbs=nil, vagrants=nil)
           @ChannelID = channelid
           @BusinessName = businessname
@@ -390,7 +390,7 @@ module TencentCloud
         # @type Longitude: Float
 
         attr_accessor :Latitude, :Longitude
-        
+
         def initialize(latitude=nil, longitude=nil)
           @Latitude = latitude
           @Longitude = longitude
@@ -410,7 +410,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -434,7 +434,7 @@ module TencentCloud
         # @type SessionDelta: String
 
         attr_accessor :Code, :Message, :SessionID, :SessionDelta
-        
+
         def initialize(code=nil, message=nil, sessionid=nil, sessiondelta=nil)
           @Code = code
           @Message = message

@@ -57,7 +57,7 @@ module TencentCloud
         # @type Pdomain: String
 
         attr_accessor :InstanceId, :AppId, :Uin, :ProjectId, :RenewFlag, :Region, :PayMode, :Status, :IsolatedTimestamp, :CreateTime, :ExpireTime, :InstanceName, :PublicIp, :PrivateIp, :InstanceType, :Pdomain
-        
+
         def initialize(instanceid=nil, appid=nil, uin=nil, projectid=nil, renewflag=nil, region=nil, paymode=nil, status=nil, isolatedtimestamp=nil, createtime=nil, expiretime=nil, instancename=nil, publicip=nil, privateip=nil, instancetype=nil, pdomain=nil)
           @InstanceId = instanceid
           @AppId = appid
@@ -115,7 +115,7 @@ module TencentCloud
         # @type ArchivingStorageCapacity: Integer
 
         attr_accessor :InstanceVersionName, :InstanceVersionKey, :Qps, :MaxInstances, :InsertSpeed, :OnlineStorageCapacity, :ArchivingStorageCapacity
-        
+
         def initialize(instanceversionname=nil, instanceversionkey=nil, qps=nil, maxinstances=nil, insertspeed=nil, onlinestoragecapacity=nil, archivingstoragecapacity=nil)
           @InstanceVersionName = instanceversionname
           @InstanceVersionKey = instanceversionkey
@@ -140,7 +140,7 @@ module TencentCloud
       # DescribeDasbImageIds请求参数结构体
       class DescribeDasbImageIdsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -158,7 +158,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BaseImageId, :AiImageId, :RequestId
-        
+
         def initialize(baseimageid=nil, aiimageid=nil, requestid=nil)
           @BaseImageId = baseimageid
           @AiImageId = aiimageid
@@ -175,7 +175,7 @@ module TencentCloud
       # DescribeDbauditInstanceType请求参数结构体
       class DescribeDbauditInstanceTypeRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -191,7 +191,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DbauditTypesSet, :RequestId
-        
+
         def initialize(dbaudittypesset=nil, requestid=nil)
           @DbauditTypesSet = dbaudittypesset
           @RequestId = requestid
@@ -220,7 +220,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :SearchRegion, :Limit, :Offset
-        
+
         def initialize(searchregion=nil, limit=nil, offset=nil)
           @SearchRegion = searchregion
           @Limit = limit
@@ -244,7 +244,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :CdsAuditInstanceSet, :RequestId
-        
+
         def initialize(totalcount=nil, cdsauditinstanceset=nil, requestid=nil)
           @TotalCount = totalcount
           @CdsAuditInstanceSet = cdsauditinstanceset
@@ -268,7 +268,7 @@ module TencentCloud
       # DescribeDbauditUsedRegions请求参数结构体
       class DescribeDbauditUsedRegionsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -284,7 +284,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegionSet, :RequestId
-        
+
         def initialize(regionset=nil, requestid=nil)
           @RegionSet = regionset
           @RequestId = requestid
@@ -317,7 +317,7 @@ module TencentCloud
         # @type ServiceRegion: String
 
         attr_accessor :InstanceVersion, :InquiryType, :TimeSpan, :TimeUnit, :ServiceRegion
-        
+
         def initialize(instanceversion=nil, inquirytype=nil, timespan=nil, timeunit=nil, serviceregion=nil)
           @InstanceVersion = instanceversion
           @InquiryType = inquirytype
@@ -345,7 +345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalPrice, :RealTotalCost, :RequestId
-        
+
         def initialize(totalprice=nil, realtotalcost=nil, requestid=nil)
           @TotalPrice = totalprice
           @RealTotalCost = realtotalcost
@@ -367,7 +367,7 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
 
         attr_accessor :InstanceId, :AutoRenewFlag
-        
+
         def initialize(instanceid=nil, autorenewflag=nil)
           @InstanceId = instanceid
           @AutoRenewFlag = autorenewflag
@@ -385,7 +385,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -407,7 +407,7 @@ module TencentCloud
         # @type RegionState: Integer
 
         attr_accessor :RegionId, :Region, :RegionName, :RegionState
-        
+
         def initialize(regionid=nil, region=nil, regionname=nil, regionstate=nil)
           @RegionId = regionid
           @Region = region

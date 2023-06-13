@@ -33,7 +33,7 @@ module TencentCloud
         # @type PhoneNum: Integer
 
         attr_accessor :License, :Name, :FileName, :Desc, :CosUrl, :PhoneNum
-        
+
         def initialize(license=nil, name=nil, filename=nil, desc=nil, cosurl=nil, phonenum=nil)
           @License = license
           @Name = name
@@ -61,7 +61,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -111,7 +111,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :License, :SignType, :DocumentType, :International, :ProofImage, :SignName, :Remark
-        
+
         def initialize(license=nil, signtype=nil, documenttype=nil, international=nil, proofimage=nil, signname=nil, remark=nil)
           @License = license
           @SignType = signtype
@@ -141,7 +141,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -162,7 +162,7 @@ module TencentCloud
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -198,7 +198,7 @@ module TencentCloud
         # @type UrlParams: Array
 
         attr_accessor :License, :SignID, :TemplateName, :TemplateContent, :SmsType, :International, :Remark, :Urls, :CommonParams, :UrlParams
-        
+
         def initialize(license=nil, signid=nil, templatename=nil, templatecontent=nil, smstype=nil, international=nil, remark=nil, urls=nil, commonparams=nil, urlparams=nil)
           @License = license
           @SignID = signid
@@ -234,7 +234,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -255,7 +255,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Message
-        
+
         def initialize(message=nil)
           @Message = message
         end
@@ -273,7 +273,7 @@ module TencentCloud
         # @type CampaignId: Integer
 
         attr_accessor :License, :CampaignId
-        
+
         def initialize(license=nil, campaignid=nil)
           @License = license
           @CampaignId = campaignid
@@ -293,7 +293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -326,7 +326,7 @@ module TencentCloud
         # @type SmsType: Integer
 
         attr_accessor :License, :SendTime, :Name, :Strategies, :TemplateId, :CrowdID, :SmsType
-        
+
         def initialize(license=nil, sendtime=nil, name=nil, strategies=nil, templateid=nil, crowdid=nil, smstype=nil)
           @License = license
           @SendTime = sendtime
@@ -363,7 +363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -386,7 +386,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :ContentType, :Content
-        
+
         def initialize(contenttype=nil, content=nil)
           @ContentType = contenttype
           @Content = content
@@ -420,7 +420,7 @@ module TencentCloud
         # @type UrlParams: Array
 
         attr_accessor :License, :InstanceName, :Title, :Sign, :Contents, :Urls, :PhoneType, :CommonParams, :UrlParams
-        
+
         def initialize(license=nil, instancename=nil, title=nil, sign=nil, contents=nil, urls=nil, phonetype=nil, commonparams=nil, urlparams=nil)
           @License = license
           @InstanceName = instancename
@@ -463,7 +463,7 @@ module TencentCloud
         # @type InstanceId: Integer
 
         attr_accessor :ReturnCode, :ReturnMsg, :InstanceId
-        
+
         def initialize(returncode=nil, returnmsg=nil, instanceid=nil)
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
@@ -485,7 +485,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -508,7 +508,7 @@ module TencentCloud
         # @type ID: Integer
 
         attr_accessor :License, :ID
-        
+
         def initialize(license=nil, id=nil)
           @License = license
           @ID = id
@@ -528,7 +528,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -549,7 +549,7 @@ module TencentCloud
         # @type InstanceId: Integer
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -567,7 +567,7 @@ module TencentCloud
         # @type TemplateID: Integer
 
         attr_accessor :License, :TemplateID
-        
+
         def initialize(license=nil, templateid=nil)
           @License = license
           @TemplateID = templateid
@@ -587,7 +587,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -610,7 +610,7 @@ module TencentCloud
         # @type InstanceId: Integer
 
         attr_accessor :License, :InstanceId
-        
+
         def initialize(license=nil, instanceid=nil)
           @License = license
           @InstanceId = instanceid
@@ -630,7 +630,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -653,7 +653,7 @@ module TencentCloud
         # @type InstanceId: Integer
 
         attr_accessor :License, :InstanceId
-        
+
         def initialize(license=nil, instanceid=nil)
           @License = license
           @InstanceId = instanceid
@@ -673,7 +673,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -702,7 +702,7 @@ module TencentCloud
         # @type Title: String
 
         attr_accessor :License, :Offset, :Limit, :AppSubId, :Title
-        
+
         def initialize(license=nil, offset=nil, limit=nil, appsubid=nil, title=nil)
           @License = license
           @Offset = offset
@@ -728,7 +728,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -751,7 +751,7 @@ module TencentCloud
         # @type License: String
 
         attr_accessor :CampaignId, :License
-        
+
         def initialize(campaignid=nil, license=nil)
           @CampaignId = campaignid
           @License = license
@@ -771,7 +771,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -806,7 +806,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :SignId, :International, :StatusCode, :ReviewReply, :SignName, :CreateTime
-        
+
         def initialize(signid=nil, international=nil, statuscode=nil, reviewreply=nil, signname=nil, createtime=nil)
           @SignId = signid
           @International = international
@@ -838,7 +838,7 @@ module TencentCloud
         # @type International: Integer
 
         attr_accessor :License, :SignIdSet, :International
-        
+
         def initialize(license=nil, signidset=nil, international=nil)
           @License = license
           @SignIdSet = signidset
@@ -860,7 +860,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -899,7 +899,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :TemplateId, :International, :StatusCode, :ReviewReply, :TemplateName, :CreateTime
-        
+
         def initialize(templateid=nil, international=nil, statuscode=nil, reviewreply=nil, templatename=nil, createtime=nil)
           @TemplateId = templateid
           @International = international
@@ -931,7 +931,7 @@ module TencentCloud
         # @type International: Integer
 
         attr_accessor :License, :TemplateIdSet, :International
-        
+
         def initialize(license=nil, templateidset=nil, international=nil)
           @License = license
           @TemplateIdSet = templateidset
@@ -953,7 +953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -986,7 +986,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :License, :Offset, :Limit, :Name, :Status
-        
+
         def initialize(license=nil, offset=nil, limit=nil, name=nil, status=nil)
           @License = license
           @Offset = offset
@@ -1012,7 +1012,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1035,7 +1035,7 @@ module TencentCloud
         # @type FileName: String
 
         attr_accessor :License, :FileName
-        
+
         def initialize(license=nil, filename=nil)
           @License = license
           @FileName = filename
@@ -1055,7 +1055,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1076,7 +1076,7 @@ module TencentCloud
         # @type License: String
 
         attr_accessor :License
-        
+
         def initialize(license=nil)
           @License = license
         end
@@ -1094,7 +1094,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1117,7 +1117,7 @@ module TencentCloud
         # @type CampaignId: Integer
 
         attr_accessor :License, :CampaignId
-        
+
         def initialize(license=nil, campaignid=nil)
           @License = license
           @CampaignId = campaignid
@@ -1137,7 +1137,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1196,7 +1196,7 @@ module TencentCloud
         # @type UrlParams: Array
 
         attr_accessor :InstanceId, :InstanceName, :Status, :StatusInfo, :AppSubId, :Title, :Sign, :Contents, :CreatedAt, :Urls, :PhoneType, :CommonParams, :UrlParams
-        
+
         def initialize(instanceid=nil, instancename=nil, status=nil, statusinfo=nil, appsubid=nil, title=nil, sign=nil, contents=nil, createdat=nil, urls=nil, phonetype=nil, commonparams=nil, urlparams=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1272,7 +1272,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :Operator, :State
-        
+
         def initialize(operator=nil, state=nil)
           @Operator = operator
           @State = state
@@ -1291,7 +1291,7 @@ module TencentCloud
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -1329,7 +1329,7 @@ module TencentCloud
         # @type UrlParams: Array
 
         attr_accessor :License, :TemplateId, :SignID, :TemplateName, :TemplateContent, :SmsType, :International, :Remark, :Urls, :CommonParams, :UrlParams
-        
+
         def initialize(license=nil, templateid=nil, signid=nil, templatename=nil, templatecontent=nil, smstype=nil, international=nil, remark=nil, urls=nil, commonparams=nil, urlparams=nil)
           @License = license
           @TemplateId = templateid
@@ -1367,7 +1367,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1388,7 +1388,7 @@ module TencentCloud
         # @type SignId: Integer
 
         attr_accessor :SignId
-        
+
         def initialize(signid=nil)
           @SignId = signid
         end
@@ -1404,7 +1404,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Status
-        
+
         def initialize(status=nil)
           @Status = status
         end
@@ -1422,7 +1422,7 @@ module TencentCloud
         # @type Items: Array
 
         attr_accessor :CrowdID, :Items
-        
+
         def initialize(crowdid=nil, items=nil)
           @CrowdID = crowdid
           @Items = items
@@ -1449,7 +1449,7 @@ module TencentCloud
         # @type ContentType: Integer
 
         attr_accessor :Id, :ContentType
-        
+
         def initialize(id=nil, contenttype=nil)
           @Id = id
           @ContentType = contenttype
@@ -1477,7 +1477,7 @@ module TencentCloud
         # @type DynamicParaValue: Array
 
         attr_accessor :License, :InstanceId, :Tel, :Session, :DynamicParaKey, :DynamicParaValue
-        
+
         def initialize(license=nil, instanceid=nil, tel=nil, session=nil, dynamicparakey=nil, dynamicparavalue=nil)
           @License = license
           @InstanceId = instanceid
@@ -1507,7 +1507,7 @@ module TencentCloud
         # @type MessageId: Integer
 
         attr_accessor :ReturnCode, :ReturnMsg, :MessageId
-        
+
         def initialize(returncode=nil, returnmsg=nil, messageid=nil)
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
@@ -1529,7 +1529,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1558,7 +1558,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :SerialNo, :PhoneNumber, :Fee, :Code, :Message
-        
+
         def initialize(serialno=nil, phonenumber=nil, fee=nil, code=nil, message=nil)
           @SerialNo = serialno
           @PhoneNumber = phonenumber
@@ -1600,7 +1600,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :License, :Phone, :TemplateId, :Params, :Sign, :SenderId, :SmsType, :International, :Content
-        
+
         def initialize(license=nil, phone=nil, templateid=nil, params=nil, sign=nil, senderid=nil, smstype=nil, international=nil, content=nil)
           @License = license
           @Phone = phone
@@ -1634,7 +1634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1659,7 +1659,7 @@ module TencentCloud
         # @type ID: Integer
 
         attr_accessor :ID
-        
+
         def initialize(id=nil)
           @ID = id
         end
@@ -1689,7 +1689,7 @@ module TencentCloud
         # @type MmsSendConsume: Integer
 
         attr_accessor :SmsCampaignAmount, :SmsCampaignConsume, :SmsSendAmount, :SmsSendConsume, :MmsCampaignAmount, :MmsCampaignConsume, :MmsSendAmount, :MmsSendConsume
-        
+
         def initialize(smscampaignamount=nil, smscampaignconsume=nil, smssendamount=nil, smssendconsume=nil, mmscampaignamount=nil, mmscampaignconsume=nil, mmssendamount=nil, mmssendconsume=nil)
           @SmsCampaignAmount = smscampaignamount
           @SmsCampaignConsume = smscampaignconsume
@@ -1725,7 +1725,7 @@ module TencentCloud
         # @type TemplateList: Array
 
         attr_accessor :CrowdId, :CrowdName, :CrowdCount, :TemplateList
-        
+
         def initialize(crowdid=nil, crowdname=nil, crowdcount=nil, templatelist=nil)
           @CrowdId = crowdid
           @CrowdName = crowdname
@@ -1756,7 +1756,7 @@ module TencentCloud
         # @type Statistics: Array
 
         attr_accessor :CampaignId, :Statistics
-        
+
         def initialize(campaignid=nil, statistics=nil)
           @CampaignId = campaignid
           @Statistics = statistics
@@ -1787,7 +1787,7 @@ module TencentCloud
         # @type ClickCount: Integer
 
         attr_accessor :TemplateId, :TemplateContent, :SendCount, :ClickCount
-        
+
         def initialize(templateid=nil, templatecontent=nil, sendcount=nil, clickcount=nil)
           @TemplateId = templateid
           @TemplateContent = templatecontent
@@ -1809,7 +1809,7 @@ module TencentCloud
         # @type CampaignId: Integer
 
         attr_accessor :CampaignId
-        
+
         def initialize(campaignid=nil)
           @CampaignId = campaignid
         end
@@ -1841,7 +1841,7 @@ module TencentCloud
         # @type Desc: String
 
         attr_accessor :CreatedAt, :ID, :Name, :Status, :PhoneNum, :Tag, :MD5, :FileName, :Desc
-        
+
         def initialize(createdat=nil, id=nil, name=nil, status=nil, phonenum=nil, tag=nil, md5=nil, filename=nil, desc=nil)
           @CreatedAt = createdat
           @ID = id
@@ -1876,7 +1876,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -1909,7 +1909,7 @@ module TencentCloud
         # @type CosInfo: :class:`Tencentcloud::Zj.v20190121.models.UploadFansInfoCosInfo`
 
         attr_accessor :ExpiredTime, :SessionToken, :TmpSecretId, :TmpSecretKey, :CosInfo
-        
+
         def initialize(expiredtime=nil, sessiontoken=nil, tmpsecretid=nil, tmpsecretkey=nil, cosinfo=nil)
           @ExpiredTime = expiredtime
           @SessionToken = sessiontoken
@@ -1936,7 +1936,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Message
-        
+
         def initialize(message=nil)
           @Message = message
         end
@@ -1956,7 +1956,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Bucket, :Key, :Region
-        
+
         def initialize(bucket=nil, key=nil, region=nil)
           @Bucket = bucket
           @Key = key

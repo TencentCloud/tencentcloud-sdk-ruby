@@ -33,7 +33,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Uin, :Event, :Limit, :Status, :BeginTime, :EndTime
-        
+
         def initialize(uin=nil, event=nil, limit=nil, status=nil, begintime=nil, endtime=nil)
           @Uin = uin
           @Event = event
@@ -59,7 +59,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :SubnetId
-        
+
         def initialize(subnetid=nil)
           @SubnetId = subnetid
         end
@@ -79,7 +79,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SubnetId, :RequestId
-        
+
         def initialize(totalcount=nil, subnetid=nil, requestid=nil)
           @TotalCount = totalcount
           @SubnetId = subnetid
@@ -99,7 +99,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :VpcId
-        
+
         def initialize(vpcid=nil)
           @VpcId = vpcid
         end
@@ -119,7 +119,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpcId, :RequestId
-        
+
         def initialize(totalcount=nil, vpcid=nil, requestid=nil)
           @TotalCount = totalcount
           @VpcId = vpcid
@@ -145,7 +145,7 @@ module TencentCloud
         # @type SearchWord: String
 
         attr_accessor :Limit, :Offset, :VpcId, :SearchWord
-        
+
         def initialize(limit=nil, offset=nil, vpcid=nil, searchword=nil)
           @Limit = limit
           @Offset = offset
@@ -172,7 +172,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SubnetList, :RequestId
-        
+
         def initialize(totalcount=nil, subnetlist=nil, requestid=nil)
           @TotalCount = totalcount
           @SubnetList = subnetlist
@@ -199,7 +199,7 @@ module TencentCloud
         # @type HsmType: String
 
         attr_accessor :HsmType
-        
+
         def initialize(hsmtype=nil)
           @HsmType = hsmtype
         end
@@ -218,7 +218,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceTypes, :RequestId
-        
+
         def initialize(devicetypes=nil, requestid=nil)
           @DeviceTypes = devicetypes
           @RequestId = requestid
@@ -247,7 +247,7 @@ module TencentCloud
         # @type SearchWord: String
 
         attr_accessor :Offset, :Limit, :SearchWord
-        
+
         def initialize(offset=nil, limit=nil, searchword=nil)
           @Offset = offset
           @Limit = limit
@@ -272,7 +272,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SgList, :TotalCount, :RequestId
-        
+
         def initialize(sglist=nil, totalcount=nil, requestid=nil)
           @SgList = sglist
           @TotalCount = totalcount
@@ -299,7 +299,7 @@ module TencentCloud
         # @type SgIds: Array
 
         attr_accessor :SgIds
-        
+
         def initialize(sgids=nil)
           @SgIds = sgids
         end
@@ -321,7 +321,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SgRules, :TotalCount, :RequestId
-        
+
         def initialize(sgrules=nil, totalcount=nil, requestid=nil)
           @SgRules = sgrules
           @TotalCount = totalcount
@@ -352,7 +352,7 @@ module TencentCloud
         # @type SearchWord: String
 
         attr_accessor :Offset, :Limit, :SearchWord
-        
+
         def initialize(offset=nil, limit=nil, searchword=nil)
           @Offset = offset
           @Limit = limit
@@ -377,7 +377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpcList, :RequestId
-        
+
         def initialize(totalcount=nil, vpclist=nil, requestid=nil)
           @TotalCount = totalcount
           @VpcList = vpclist
@@ -404,7 +404,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :ResourceId
-        
+
         def initialize(resourceid=nil)
           @ResourceId = resourceid
         end
@@ -478,7 +478,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :RequestId
-        
+
         def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
@@ -564,7 +564,7 @@ module TencentCloud
         # @type HsmType: String
 
         attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer, :HsmType
-        
+
         def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil, hsmtype=nil)
           @Offset = offset
           @Limit = limit
@@ -602,7 +602,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VsmList, :RequestId
-        
+
         def initialize(totalcount=nil, vsmlist=nil, requestid=nil)
           @TotalCount = totalcount
           @VsmList = vsmlist
@@ -631,7 +631,7 @@ module TencentCloud
         # @type HsmTypes: Array
 
         attr_accessor :Manufacturer, :HsmTypes
-        
+
         def initialize(manufacturer=nil, hsmtypes=nil)
           @Manufacturer = manufacturer
           @HsmTypes = hsmtypes
@@ -653,7 +653,7 @@ module TencentCloud
       # GetAlarmEvent请求参数结构体
       class GetAlarmEventRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -670,7 +670,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AlarmConfig, :RequestId
-        
+
         def initialize(alarmconfig=nil, requestid=nil)
           @AlarmConfig = alarmconfig
           @RequestId = requestid
@@ -697,7 +697,7 @@ module TencentCloud
         # @type ResourceName: String
 
         attr_accessor :ResourceId, :ResourceName
-        
+
         def initialize(resourceid=nil, resourcename=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
@@ -717,7 +717,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MonitorInfo, :RequestId
-        
+
         def initialize(monitorinfo=nil, requestid=nil)
           @MonitorInfo = monitorinfo
           @RequestId = requestid
@@ -739,7 +739,7 @@ module TencentCloud
         # @type HsmType: String
 
         attr_accessor :Model, :VsmTypes, :HsmType
-        
+
         def initialize(model=nil, vsmtypes=nil, hsmtype=nil)
           @Model = model
           @VsmTypes = vsmtypes
@@ -778,7 +778,7 @@ module TencentCloud
         # @type HsmType: String
 
         attr_accessor :GoodsNum, :PayMode, :TimeSpan, :TimeUnit, :Currency, :Type, :HsmType
-        
+
         def initialize(goodsnum=nil, paymode=nil, timespan=nil, timeunit=nil, currency=nil, type=nil, hsmtype=nil)
           @GoodsNum = goodsnum
           @PayMode = paymode
@@ -821,7 +821,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCost, :GoodsNum, :TimeSpan, :TimeUnit, :OriginalCost, :RequestId
-        
+
         def initialize(totalcost=nil, goodsnum=nil, timespan=nil, timeunit=nil, originalcost=nil, requestid=nil)
           @TotalCost = totalcost
           @GoodsNum = goodsnum
@@ -855,7 +855,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Event, :Limit, :Status, :BeginTime, :EndTime
-        
+
         def initialize(event=nil, limit=nil, status=nil, begintime=nil, endtime=nil)
           @Event = event
           @Limit = limit
@@ -879,7 +879,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -910,7 +910,7 @@ module TencentCloud
         # @type AlarmStatus: Integer
 
         attr_accessor :ResourceId, :Type, :ResourceName, :SgIds, :VpcId, :SubnetId, :AlarmStatus
-        
+
         def initialize(resourceid=nil, type=nil, resourcename=nil, sgids=nil, vpcid=nil, subnetid=nil, alarmstatus=nil)
           @ResourceId = resourceid
           @Type = type
@@ -938,7 +938,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1021,7 +1021,7 @@ module TencentCloud
         # @type AlarmStatus: Integer
 
         attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus
-        
+
         def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
@@ -1105,7 +1105,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :SgId, :SgName, :SgRemark, :CreateTime
-        
+
         def initialize(sgid=nil, sgname=nil, sgremark=nil, createtime=nil)
           @SgId = sgid
           @SgName = sgname
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type IsDefault: Boolean
 
         attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :TotalIpAddressCount, :IsDefault
-        
+
         def initialize(vpcid=nil, subnetid=nil, subnetname=nil, cidrblock=nil, createdtime=nil, availableipaddresscount=nil, ipv6cidrblock=nil, totalipaddresscount=nil, isdefault=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1186,7 +1186,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1206,7 +1206,7 @@ module TencentCloud
         # @type TagValue: Array
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1246,7 +1246,7 @@ module TencentCloud
         # @type Action: String
 
         attr_accessor :Ip, :Id, :AddressModule, :Proto, :Port, :ServiceModule, :Desc, :Action
-        
+
         def initialize(ip=nil, id=nil, addressmodule=nil, proto=nil, port=nil, servicemodule=nil, desc=nil, action=nil)
           @Ip = ip
           @Id = id
@@ -1295,7 +1295,7 @@ module TencentCloud
         # @type Version: Integer
 
         attr_accessor :InBound, :OutBound, :SgId, :SgName, :SgRemark, :CreateTime, :Version
-        
+
         def initialize(inbound=nil, outbound=nil, sgid=nil, sgname=nil, sgremark=nil, createtime=nil, version=nil)
           @InBound = inbound
           @OutBound = outbound
@@ -1347,7 +1347,7 @@ module TencentCloud
         # @type IsDefault: Boolean
 
         attr_accessor :VpcName, :VpcId, :CreatedTime, :IsDefault
-        
+
         def initialize(vpcname=nil, vpcid=nil, createdtime=nil, isdefault=nil)
           @VpcName = vpcname
           @VpcId = vpcid
@@ -1371,7 +1371,7 @@ module TencentCloud
         # @type TypeID: Integer
 
         attr_accessor :TypeName, :TypeID
-        
+
         def initialize(typename=nil, typeid=nil)
           @TypeName = typename
           @TypeID = typeid

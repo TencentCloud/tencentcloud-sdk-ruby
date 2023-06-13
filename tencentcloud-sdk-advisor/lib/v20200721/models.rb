@@ -48,7 +48,7 @@ module TencentCloud
         # @type Conditions: Array
 
         attr_accessor :StrategyId, :Name, :Desc, :Product, :ProductDesc, :Repair, :GroupId, :GroupName, :Conditions
-        
+
         def initialize(strategyid=nil, name=nil, desc=nil, product=nil, productdesc=nil, repair=nil, groupid=nil, groupname=nil, conditions=nil)
           @StrategyId = strategyid
           @Name = name
@@ -96,7 +96,7 @@ module TencentCloud
         # @type Desc: String
 
         attr_accessor :ConditionId, :Level, :LevelDesc, :Desc
-        
+
         def initialize(conditionid=nil, level=nil, leveldesc=nil, desc=nil)
           @ConditionId = conditionid
           @Level = level
@@ -115,7 +115,7 @@ module TencentCloud
       # DescribeStrategies请求参数结构体
       class DescribeStrategiesRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -132,7 +132,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Strategies, :RequestId
-        
+
         def initialize(strategies=nil, requestid=nil)
           @Strategies = strategies
           @RequestId = requestid
@@ -165,7 +165,7 @@ module TencentCloud
         # @type TaskType: String
 
         attr_accessor :StrategyId, :Limit, :Offset, :Env, :TaskType
-        
+
         def initialize(strategyid=nil, limit=nil, offset=nil, env=nil, tasktype=nil)
           @StrategyId = strategyid
           @Limit = limit
@@ -205,7 +205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RiskFieldsDesc, :StrategyId, :RiskTotalCount, :Risks, :ResourceCount, :RequestId
-        
+
         def initialize(riskfieldsdesc=nil, strategyid=nil, risktotalcount=nil, risks=nil, resourcecount=nil, requestid=nil)
           @RiskFieldsDesc = riskfieldsdesc
           @StrategyId = strategyid
@@ -240,7 +240,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -269,7 +269,7 @@ module TencentCloud
         # @type FieldDict: Array
 
         attr_accessor :Field, :FieldName, :FieldType, :FieldDict
-        
+
         def initialize(field=nil, fieldname=nil, fieldtype=nil, fielddict=nil)
           @Field = field
           @FieldName = fieldname

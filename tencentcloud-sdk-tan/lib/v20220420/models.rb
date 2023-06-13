@@ -27,7 +27,7 @@ module TencentCloud
         # @type Records: String
 
         attr_accessor :GroupId, :NodeId, :Records
-        
+
         def initialize(groupid=nil, nodeid=nil, records=nil)
           @GroupId = groupid
           @NodeId = nodeid
@@ -47,7 +47,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

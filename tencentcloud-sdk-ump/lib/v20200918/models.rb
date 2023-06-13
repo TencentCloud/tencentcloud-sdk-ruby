@@ -27,7 +27,7 @@ module TencentCloud
         # @type BunkCodes: String
 
         attr_accessor :ZoneId, :ZoneName, :BunkCodes
-        
+
         def initialize(zoneid=nil, zonename=nil, bunkcodes=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
@@ -87,7 +87,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :GroupCode, :MallId, :FloorId, :CameraId, :CameraIp, :CameraMac, :CameraType, :CameraFeature, :CameraState, :ZoneId, :ZoneType, :Config, :Width, :Height
-        
+
         def initialize(groupcode=nil, mallid=nil, floorid=nil, cameraid=nil, cameraip=nil, cameramac=nil, cameratype=nil, camerafeature=nil, camerastate=nil, zoneid=nil, zonetype=nil, config=nil, width=nil, height=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -141,7 +141,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :CameraId, :State
-        
+
         def initialize(cameraid=nil, state=nil)
           @CameraId = cameraid
           @State = state
@@ -188,7 +188,7 @@ module TencentCloud
         # @type RTSP: String
 
         attr_accessor :CameraId, :CameraName, :CameraFeature, :CameraIp, :CameraState, :Zones, :Pixel, :RTSP
-        
+
         def initialize(cameraid=nil, cameraname=nil, camerafeature=nil, cameraip=nil, camerastate=nil, zones=nil, pixel=nil, rtsp=nil)
           @CameraId = cameraid
           @CameraName = cameraname
@@ -251,7 +251,7 @@ module TencentCloud
         # @type Zones: Array
 
         attr_accessor :CameraProducer, :RTSP, :Fps, :DecodeFps, :PassengerFlow, :FaceExpose, :MallArea, :ShopArea, :TrackAreas, :Zones
-        
+
         def initialize(cameraproducer=nil, rtsp=nil, fps=nil, decodefps=nil, passengerflow=nil, faceexpose=nil, mallarea=nil, shoparea=nil, trackareas=nil, zones=nil)
           @CameraProducer = cameraproducer
           @RTSP = rtsp
@@ -325,7 +325,7 @@ module TencentCloud
         # @type CoverAlert: :class:`Tencentcloud::Ump.v20200918.models.CreateCameraAlertsCoverAlert`
 
         attr_accessor :GroupCode, :MallId, :CameraId, :CaptureTime, :Image, :MoveAlert, :CoverAlert
-        
+
         def initialize(groupcode=nil, mallid=nil, cameraid=nil, capturetime=nil, image=nil, movealert=nil, coveralert=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -361,7 +361,7 @@ module TencentCloud
         # @type CoverConfidence: Float
 
         attr_accessor :Cover, :CoverConfidence
-        
+
         def initialize(cover=nil, coverconfidence=nil)
           @Cover = cover
           @CoverConfidence = coverconfidence
@@ -381,7 +381,7 @@ module TencentCloud
         # @type MoveConfidence: Float
 
         attr_accessor :Move, :MoveConfidence
-        
+
         def initialize(move=nil, moveconfidence=nil)
           @Move = move
           @MoveConfidence = moveconfidence
@@ -399,7 +399,7 @@ module TencentCloud
         # @type Alerts: Array
 
         attr_accessor :Alerts
-        
+
         def initialize(alerts=nil)
           @Alerts = alerts
         end
@@ -422,7 +422,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -442,7 +442,7 @@ module TencentCloud
         # @type CameraStates: Array
 
         attr_accessor :GroupCode, :MallId, :CameraStates
-        
+
         def initialize(groupcode=nil, mallid=nil, camerastates=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -469,7 +469,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -485,7 +485,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -504,7 +504,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RspData, :RequestId
-        
+
         def initialize(rspdata=nil, requestid=nil)
           @RspData = rspdata
           @RequestId = requestid
@@ -539,7 +539,7 @@ module TencentCloud
         # @type Warnings: Array
 
         attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :CaptureTime, :State, :Image, :Warnings
-        
+
         def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, capturetime=nil, state=nil, image=nil, warnings=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -576,7 +576,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -596,7 +596,7 @@ module TencentCloud
         # @type MallId: Integer
 
         attr_accessor :GroupCode, :ProgramStateItems, :MallId
-        
+
         def initialize(groupcode=nil, programstateitems=nil, mallid=nil)
           @GroupCode = groupcode
           @ProgramStateItems = programstateitems
@@ -623,7 +623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -645,7 +645,7 @@ module TencentCloud
         # @type ReportTime: Integer
 
         attr_accessor :GroupCode, :ServerStateItems, :MallId, :ReportTime
-        
+
         def initialize(groupcode=nil, serverstateitems=nil, mallid=nil, reporttime=nil)
           @GroupCode = groupcode
           @ServerStateItems = serverstateitems
@@ -674,7 +674,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -703,7 +703,7 @@ module TencentCloud
         # @type Image: String
 
         attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :ActionType, :Image
-        
+
         def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, actiontype=nil, image=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -729,7 +729,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -749,7 +749,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :GroupCode, :MallId, :TaskId
-        
+
         def initialize(groupcode=nil, mallid=nil, taskid=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -769,7 +769,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -787,7 +787,7 @@ module TencentCloud
         # @type MallId: Integer
 
         attr_accessor :GroupCode, :MallId
-        
+
         def initialize(groupcode=nil, mallid=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -807,7 +807,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Cameras, :RequestId
-        
+
         def initialize(cameras=nil, requestid=nil)
           @Cameras = cameras
           @RequestId = requestid
@@ -844,7 +844,7 @@ module TencentCloud
         # @type MallId: Integer
 
         attr_accessor :SessionId, :CameraSign, :CameraAppId, :CameraTimestamp, :ServerMac, :GroupCode, :MallId
-        
+
         def initialize(sessionid=nil, camerasign=nil, cameraappid=nil, cameratimestamp=nil, servermac=nil, groupcode=nil, mallid=nil)
           @SessionId = sessionid
           @CameraSign = camerasign
@@ -878,7 +878,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :Version, :Cameras, :RequestId
-        
+
         def initialize(sessionid=nil, version=nil, cameras=nil, requestid=nil)
           @SessionId = sessionid
           @Version = version
@@ -911,7 +911,7 @@ module TencentCloud
         # @type CameraId: Integer
 
         attr_accessor :GroupCode, :MallId, :CameraId
-        
+
         def initialize(groupcode=nil, mallid=nil, cameraid=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -933,7 +933,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageUrl, :RequestId
-        
+
         def initialize(imageurl=nil, requestid=nil)
           @ImageUrl = imageurl
           @RequestId = requestid
@@ -957,7 +957,7 @@ module TencentCloud
         # @type ZoneId: Integer
 
         attr_accessor :GroupCode, :MallId, :CameraId, :ZoneId
-        
+
         def initialize(groupcode=nil, mallid=nil, cameraid=nil, zoneid=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -981,7 +981,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageUrl, :RequestId
-        
+
         def initialize(imageurl=nil, requestid=nil)
           @ImageUrl = imageurl
           @RequestId = requestid
@@ -1004,7 +1004,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :GroupCode, :MallId, :TaskType
-        
+
         def initialize(groupcode=nil, mallid=nil, tasktype=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -1026,7 +1026,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Tasks, :RequestId
-        
+
         def initialize(tasks=nil, requestid=nil)
           @Tasks = tasks
           @RequestId = requestid
@@ -1053,7 +1053,7 @@ module TencentCloud
         # @type MallId: Integer
 
         attr_accessor :GroupCode, :MallId
-        
+
         def initialize(groupcode=nil, mallid=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -1073,7 +1073,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Zones, :RequestId
-        
+
         def initialize(zones=nil, requestid=nil)
           @Zones = zones
           @RequestId = requestid
@@ -1100,7 +1100,7 @@ module TencentCloud
         # @type Usage: Float
 
         attr_accessor :DiskName, :Usage
-        
+
         def initialize(diskname=nil, usage=nil)
           @DiskName = diskname
           @Usage = usage
@@ -1126,7 +1126,7 @@ module TencentCloud
         # @type MonitoringAreas: Array
 
         attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :MonitoringAreas
-        
+
         def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, monitoringareas=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -1157,7 +1157,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1177,7 +1177,7 @@ module TencentCloud
         # @type WarningInfos: Array
 
         attr_accessor :Id, :MonitoringArea, :WarningInfos
-        
+
         def initialize(id=nil, monitoringarea=nil, warninginfos=nil)
           @Id = id
           @MonitoringArea = monitoringarea
@@ -1220,7 +1220,7 @@ module TencentCloud
         # @type WarningAreaContour: Array
 
         attr_accessor :WarningType, :WarningAreaSize, :WarningLocation, :WarningAreaContour
-        
+
         def initialize(warningtype=nil, warningareasize=nil, warninglocation=nil, warningareacontour=nil)
           @WarningType = warningtype
           @WarningAreaSize = warningareasize
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :X, :Y
-        
+
         def initialize(x=nil, y=nil)
           @X = x
           @Y = y
@@ -1272,7 +1272,7 @@ module TencentCloud
         # @type Points: Array
 
         attr_accessor :Points
-        
+
         def initialize(points=nil)
           @Points = points
         end
@@ -1306,7 +1306,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :ServerIp, :ProgramName, :OnlineCount, :OfflineCount, :State
-        
+
         def initialize(serverip=nil, programname=nil, onlinecount=nil, offlinecount=nil, state=nil)
           @ServerIp = serverip
           @ProgramName = programname
@@ -1340,7 +1340,7 @@ module TencentCloud
         # @type ReportTime: Integer
 
         attr_accessor :GroupCode, :MallId, :ServiceRegisterInfos, :ServerIp, :ServerNodeId, :ReportTime
-        
+
         def initialize(groupcode=nil, mallid=nil, serviceregisterinfos=nil, serverip=nil, servernodeid=nil, reporttime=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -1373,7 +1373,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1395,7 +1395,7 @@ module TencentCloud
         # @type ImageTime: Integer
 
         attr_accessor :GroupCode, :MallId, :Image, :ImageTime
-        
+
         def initialize(groupcode=nil, mallid=nil, image=nil, imagetime=nil)
           @GroupCode = groupcode
           @MallId = mallid
@@ -1421,7 +1421,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceId, :Results, :RequestId
-        
+
         def initialize(faceid=nil, results=nil, requestid=nil)
           @FaceId = faceid
           @Results = results
@@ -1452,7 +1452,7 @@ module TencentCloud
         # @type Similarity: Float
 
         attr_accessor :Image, :PersonId, :Similarity
-        
+
         def initialize(image=nil, personid=nil, similarity=nil)
           @Image = image
           @PersonId = personid
@@ -1479,7 +1479,7 @@ module TencentCloud
         # @type DiskInfos: Array
 
         attr_accessor :ServerState, :ServerIp, :DiskInfos
-        
+
         def initialize(serverstate=nil, serverip=nil, diskinfos=nil)
           @ServerState = serverstate
           @ServerIp = serverip
@@ -1511,7 +1511,7 @@ module TencentCloud
         # @type ServiceType: Integer
 
         attr_accessor :CgiUrl, :ServiceType
-        
+
         def initialize(cgiurl=nil, servicetype=nil)
           @CgiUrl = cgiurl
           @ServiceType = servicetype
@@ -1538,7 +1538,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :TaskId, :GroupCode, :MallId, :TaskContent, :TaskType
-        
+
         def initialize(taskid=nil, groupcode=nil, mallid=nil, taskcontent=nil, tasktype=nil)
           @TaskId = taskid
           @GroupCode = groupcode
@@ -1569,7 +1569,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :CameraId, :RTSP, :Url
-        
+
         def initialize(cameraid=nil, rtsp=nil, url=nil)
           @CameraId = cameraid
           @RTSP = rtsp
@@ -1591,7 +1591,7 @@ module TencentCloud
         # @type ShopArea: Array
 
         attr_accessor :ZoneId, :ShopArea
-        
+
         def initialize(zoneid=nil, shoparea=nil)
           @ZoneId = zoneid
           @ShopArea = shoparea
@@ -1643,7 +1643,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :ZoneId, :ZoneName, :ZoneType, :BunkCodes, :FloorName, :FloorId, :BindNum, :DebugNum, :State
-        
+
         def initialize(zoneid=nil, zonename=nil, zonetype=nil, bunkcodes=nil, floorname=nil, floorid=nil, bindnum=nil, debugnum=nil, state=nil)
           @ZoneId = zoneid
           @ZoneName = zonename

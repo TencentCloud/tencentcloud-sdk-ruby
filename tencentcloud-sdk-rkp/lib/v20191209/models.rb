@@ -30,7 +30,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :OpenId, :RiskScore, :RiskInfo, :Probability
-        
+
         def initialize(openid=nil, riskscore=nil, riskinfo=nil, probability=nil)
           @OpenId = openid
           @RiskScore = riskscore
@@ -67,7 +67,7 @@ module TencentCloud
         # @type Option: String
 
         attr_accessor :DeviceToken, :BusinessId, :BusinessUserId, :Platform, :Option
-        
+
         def initialize(devicetoken=nil, businessid=nil, businessuserid=nil, platform=nil, option=nil)
           @DeviceToken = devicetoken
           @BusinessId = businessid
@@ -97,7 +97,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OpenId, :RiskInfo, :RequestId
-        
+
         def initialize(openid=nil, riskinfo=nil, requestid=nil)
           @OpenId = openid
           @RiskInfo = riskinfo
@@ -134,7 +134,7 @@ module TencentCloud
         # @type OldToken: String
 
         attr_accessor :BusinessId, :Scene, :BusinessUserId, :AppClientIp, :ExpireTime, :OldToken
-        
+
         def initialize(businessid=nil, scene=nil, businessuserid=nil, appclientip=nil, expiretime=nil, oldtoken=nil)
           @BusinessId = businessid
           @Scene = scene
@@ -164,7 +164,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Token, :ExpireTime, :RequestId
-        
+
         def initialize(token=nil, expiretime=nil, requestid=nil)
           @Token = token
           @ExpireTime = expiretime
@@ -230,7 +230,7 @@ module TencentCloud
         # @type SerialId: String
 
         attr_accessor :DevType, :Imei, :Mac, :Aid, :Cid, :Imsi, :Df, :KernelVer, :Storage, :Dfp, :BootTime, :Resolution, :RingList, :FontList, :SensorList, :CpuType, :Battery, :Oaid, :Idfa, :Idfv, :DeviceName, :IphoneModel, :Fingerprint, :SerialId
-        
+
         def initialize(devtype=nil, imei=nil, mac=nil, aid=nil, cid=nil, imsi=nil, df=nil, kernelver=nil, storage=nil, dfp=nil, boottime=nil, resolution=nil, ringlist=nil, fontlist=nil, sensorlist=nil, cputype=nil, battery=nil, oaid=nil, idfa=nil, idfv=nil, devicename=nil, iphonemodel=nil, fingerprint=nil, serialid=nil)
           @DevType = devtype
           @Imei = imei
@@ -300,7 +300,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Found, :AllCnt, :Matches, :RequestId
-        
+
         def initialize(found=nil, allcnt=nil, matches=nil, requestid=nil)
           @Found = found
           @AllCnt = allcnt
@@ -332,7 +332,7 @@ module TencentCloud
         # @type RiskCodeValue: String
 
         attr_accessor :RiskCode, :RiskCodeValue
-        
+
         def initialize(riskcode=nil, riskcodevalue=nil)
           @RiskCode = riskcode
           @RiskCodeValue = riskcodevalue
@@ -353,7 +353,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value

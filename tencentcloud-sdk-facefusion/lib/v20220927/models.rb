@@ -29,7 +29,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :ActivityId, :MaterialId, :Limit, :Offset
-        
+
         def initialize(activityid=nil, materialid=nil, limit=nil, offset=nil)
           @ActivityId = activityid
           @MaterialId = materialid
@@ -55,7 +55,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialInfos, :Count, :RequestId
-        
+
         def initialize(materialinfos=nil, count=nil, requestid=nil)
           @MaterialInfos = materialinfos
           @Count = count
@@ -88,7 +88,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -116,7 +116,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -159,7 +159,7 @@ module TencentCloud
         # @type LogoParam: :class:`Tencentcloud::Facefusion.v20220927.models.LogoParam`
 
         attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :LogoAdd, :LogoParam
-        
+
         def initialize(projectid=nil, modelid=nil, rspimgtype=nil, mergeinfos=nil, fuseprofiledegree=nil, fusefacedegree=nil, logoadd=nil, logoparam=nil)
           @ProjectId = projectid
           @ModelId = modelid
@@ -201,7 +201,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FusedImage, :RequestId
-        
+
         def initialize(fusedimage=nil, requestid=nil)
           @FusedImage = fusedimage
           @RequestId = requestid
@@ -223,7 +223,7 @@ module TencentCloud
         # @type LogoImage: String
 
         attr_accessor :LogoRect, :LogoUrl, :LogoImage
-        
+
         def initialize(logorect=nil, logourl=nil, logoimage=nil)
           @LogoRect = logorect
           @LogoUrl = logourl
@@ -248,7 +248,7 @@ module TencentCloud
         # @type FaceInfo: :class:`Tencentcloud::Facefusion.v20220927.models.FaceInfo`
 
         attr_accessor :FaceId, :FaceInfo
-        
+
         def initialize(faceid=nil, faceinfo=nil)
           @FaceId = faceid
           @FaceInfo = faceinfo
@@ -275,7 +275,7 @@ module TencentCloud
         # @type TemplateFaceID: String
 
         attr_accessor :Image, :Url, :InputImageFaceRect, :TemplateFaceID
-        
+
         def initialize(image=nil, url=nil, inputimagefacerect=nil, templatefaceid=nil)
           @Image = image
           @Url = url
@@ -313,7 +313,7 @@ module TencentCloud
         # @type AuditResult: String
 
         attr_accessor :MaterialId, :MaterialStatus, :CreateTime, :UpdateTime, :MaterialFaceList, :MaterialName, :AuditResult
-        
+
         def initialize(materialid=nil, materialstatus=nil, createtime=nil, updatetime=nil, materialfacelist=nil, materialname=nil, auditresult=nil)
           @MaterialId = materialid
           @MaterialStatus = materialstatus

@@ -29,7 +29,7 @@ module TencentCloud
         # @type StrategyStopCnt: Float
 
         attr_accessor :DateKey, :AllStopCnt, :PicStopCnt, :StrategyStopCnt
-        
+
         def initialize(datekey=nil, allstopcnt=nil, picstopcnt=nil, strategystopcnt=nil)
           @DateKey = datekey
           @AllStopCnt = allstopcnt
@@ -55,7 +55,7 @@ module TencentCloud
         # @type AppIdLoadTime: Float
 
         attr_accessor :DateKey, :MarketLoadTime, :AppIdLoadTime
-        
+
         def initialize(datekey=nil, marketloadtime=nil, appidloadtime=nil)
           @DateKey = datekey
           @MarketLoadTime = marketloadtime
@@ -85,7 +85,7 @@ module TencentCloud
         # @type OperDataTryTimesDistributeUnitArray: Array
 
         attr_accessor :OperDataLoadTimeUnitArray, :OperDataInterceptUnitArray, :OperDataTryTimesUnitArray, :OperDataTryTimesDistributeUnitArray
-        
+
         def initialize(operdataloadtimeunitarray=nil, operdatainterceptunitarray=nil, operdatatrytimesunitarray=nil, operdatatrytimesdistributeunitarray=nil)
           @OperDataLoadTimeUnitArray = operdataloadtimeunitarray
           @OperDataInterceptUnitArray = operdatainterceptunitarray
@@ -137,7 +137,7 @@ module TencentCloud
         # @type UserCount: Integer
 
         attr_accessor :TryCount, :UserCount
-        
+
         def initialize(trycount=nil, usercount=nil)
           @TryCount = trycount
           @UserCount = usercount
@@ -159,7 +159,7 @@ module TencentCloud
         # @type MarketCntPerPass: Float
 
         attr_accessor :DateKey, :CntPerPass, :MarketCntPerPass
-        
+
         def initialize(datekey=nil, cntperpass=nil, marketcntperpass=nil)
           @DateKey = datekey
           @CntPerPass = cntperpass
@@ -181,7 +181,7 @@ module TencentCloud
         # @type Date: String
 
         attr_accessor :Cnt, :Date
-        
+
         def initialize(cnt=nil, date=nil)
           @Cnt = cnt
           @Date = date
@@ -220,7 +220,7 @@ module TencentCloud
         # @type TicketCheckTrend: Array
 
         attr_accessor :ActionTotal, :VerifyTotal, :VerifyThroughTotal, :VerifyInterceptTotal, :TicketTotal, :TicketThroughTotal, :TicketInterceptTotal, :RequestTrend, :InterceptPerTrend, :TicketCheckTrend
-        
+
         def initialize(actiontotal=nil, verifytotal=nil, verifythroughtotal=nil, verifyintercepttotal=nil, tickettotal=nil, ticketthroughtotal=nil, ticketintercepttotal=nil, requesttrend=nil, interceptpertrend=nil, ticketchecktrend=nil)
           @ActionTotal = actiontotal
           @VerifyTotal = verifytotal
@@ -279,7 +279,7 @@ module TencentCloud
         # @type TicketInterceptArray: Array
 
         attr_accessor :TicketAmountArray, :TicketThroughArray, :TicketInterceptArray
-        
+
         def initialize(ticketamountarray=nil, ticketthrougharray=nil, ticketinterceptarray=nil)
           @TicketAmountArray = ticketamountarray
           @TicketThroughArray = ticketthrougharray
@@ -326,7 +326,7 @@ module TencentCloud
         # @type ChannelInfo: String
 
         attr_accessor :CaptchaAppId, :AppName, :TcAppId, :ChannelInfo
-        
+
         def initialize(captchaappid=nil, appname=nil, tcappid=nil, channelinfo=nil)
           @CaptchaAppId = captchaappid
           @AppName = appname
@@ -348,7 +348,7 @@ module TencentCloud
         # @type CaptchaAppId: Integer
 
         attr_accessor :CaptchaAppId
-        
+
         def initialize(captchaappid=nil)
           @CaptchaAppId = captchaappid
         end
@@ -396,7 +396,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SchemeColor, :Language, :SceneType, :EvilInterceptGrade, :SmartVerify, :SmartEngine, :CapType, :AppName, :DomainLimit, :MailAlarm, :TrafficThreshold, :EncryptKey, :TopFullScreen, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(schemecolor=nil, language=nil, scenetype=nil, evilinterceptgrade=nil, smartverify=nil, smartengine=nil, captype=nil, appname=nil, domainlimit=nil, mailalarm=nil, trafficthreshold=nil, encryptkey=nil, topfullscreen=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @SchemeColor = schemecolor
           @Language = language
@@ -448,7 +448,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :CaptchaAppId, :Start, :End, :Type
-        
+
         def initialize(captchaappid=nil, start=nil, _end=nil, type=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -478,7 +478,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :Data, :CaptchaMsg, :RequestId
-        
+
         def initialize(captchacode=nil, data=nil, captchamsg=nil, requestid=nil)
           @CaptchaCode = captchacode
           @Data = data
@@ -511,7 +511,7 @@ module TencentCloud
         # @type End: Integer
 
         attr_accessor :CaptchaAppId, :Start, :End
-        
+
         def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -550,7 +550,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
-        
+
         def initialize(getsum=nil, vfysuccsum=nil, vfysum=nil, attacksum=nil, captchamsg=nil, captchacode=nil, checkticketsum=nil, ticketthroughputsum=nil, ticketinterceptsum=nil, requestid=nil)
           @GetSum = getsum
           @VfySuccSum = vfysuccsum
@@ -590,7 +590,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :CaptchaAppId, :Start, :End, :Type
-        
+
         def initialize(captchaappid=nil, start=nil, _end=nil, type=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -620,7 +620,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :Data, :CaptchaMsg, :RequestId
-        
+
         def initialize(captchacode=nil, data=nil, captchamsg=nil, requestid=nil)
           @CaptchaCode = captchacode
           @Data = data
@@ -653,7 +653,7 @@ module TencentCloud
         # @type End: Integer
 
         attr_accessor :CaptchaAppId, :Start, :End
-        
+
         def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -700,7 +700,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
-        
+
         def initialize(getsum=nil, vfysuccsum=nil, vfysum=nil, attacksum=nil, captchamsg=nil, captchacode=nil, checkticketsum=nil, ticketthroughputsum=nil, ticketinterceptsum=nil, requestid=nil)
           @GetSum = getsum
           @VfySuccSum = vfysuccsum
@@ -740,7 +740,7 @@ module TencentCloud
         # @type End: Integer
 
         attr_accessor :CaptchaAppId, :Start, :Type, :End
-        
+
         def initialize(captchaappid=nil, start=nil, type=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -770,7 +770,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, data=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -811,7 +811,7 @@ module TencentCloud
         # @type Imei: String
 
         attr_accessor :CaptchaType, :Ticket, :UserIp, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei
-        
+
         def initialize(captchatype=nil, ticket=nil, userip=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil)
           @CaptchaType = captchatype
           @Ticket = ticket
@@ -858,7 +858,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -898,7 +898,7 @@ module TencentCloud
         # @type WeChatOpenId: String
 
         attr_accessor :CaptchaType, :Ticket, :UserIp, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei, :SceneCode, :WeChatOpenId
-        
+
         def initialize(captchatype=nil, ticket=nil, userip=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil, scenecode=nil, wechatopenid=nil)
           @CaptchaType = captchatype
           @Ticket = ticket
@@ -953,7 +953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :ManageMarketingRiskValue, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, managemarketingriskvalue=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -984,7 +984,7 @@ module TencentCloud
         # @type End: Integer
 
         attr_accessor :CaptchaAppId, :Start, :Type, :End
-        
+
         def initialize(captchaappid=nil, start=nil, type=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -1014,7 +1014,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, data=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type NeedGetCaptchaTime: Integer
 
         attr_accessor :CaptchaType, :Ticket, :UserIp, :Randstr, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei, :NeedGetCaptchaTime
-        
+
         def initialize(captchatype=nil, ticket=nil, userip=nil, randstr=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil, needgetcaptchatime=nil)
           @CaptchaType = captchatype
           @Ticket = ticket
@@ -1120,7 +1120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type End: Integer
 
         attr_accessor :CaptchaAppId, :Start, :End
-        
+
         def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
@@ -1180,7 +1180,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, data=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
@@ -1202,7 +1202,7 @@ module TencentCloud
       # DescribeCaptchaUserAllAppId请求参数结构体
       class DescribeCaptchaUserAllAppIdRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1224,7 +1224,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @Data = data
           @CaptchaCode = captchacode
@@ -1259,7 +1259,7 @@ module TencentCloud
         # @type Dimension: String
 
         attr_accessor :CaptchaAppId, :StartTimeStr, :EndTimeStr, :Dimension
-        
+
         def initialize(captchaappid=nil, starttimestr=nil, endtimestr=nil, dimension=nil)
           @CaptchaAppId = captchaappid
           @StartTimeStr = starttimestr
@@ -1288,7 +1288,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @Data = data
           @CaptchaCode = captchacode
@@ -1319,7 +1319,7 @@ module TencentCloud
         # @type Dimension: String
 
         attr_accessor :CaptchaAppId, :StartTimeStr, :EndTimeStr, :Dimension
-        
+
         def initialize(captchaappid=nil, starttimestr=nil, endtimestr=nil, dimension=nil)
           @CaptchaAppId = captchaappid
           @StartTimeStr = starttimestr
@@ -1348,7 +1348,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @Data = data
           @CaptchaCode = captchacode
@@ -1377,7 +1377,7 @@ module TencentCloud
         # @type Dimension: String
 
         attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
-        
+
         def initialize(starttimestr=nil, endtimestr=nil, dimension=nil)
           @StartTimeStr = starttimestr
           @EndTimeStr = endtimestr
@@ -1404,7 +1404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @Data = data
           @CaptchaCode = captchacode
@@ -1436,7 +1436,7 @@ module TencentCloud
         # @type Dimension: String
 
         attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
-        
+
         def initialize(starttimestr=nil, endtimestr=nil, dimension=nil)
           @StartTimeStr = starttimestr
           @EndTimeStr = endtimestr
@@ -1463,7 +1463,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
           @Data = data
           @CaptchaCode = captchacode
@@ -1494,7 +1494,7 @@ module TencentCloud
         # @type PolicyInterceptPer: Float
 
         attr_accessor :Ftime, :RequestInterceptPer, :AnswerInterceptPer, :PolicyInterceptPer
-        
+
         def initialize(ftime=nil, requestinterceptper=nil, answerinterceptper=nil, policyinterceptper=nil)
           @Ftime = ftime
           @RequestInterceptPer = requestinterceptper
@@ -1563,7 +1563,7 @@ module TencentCloud
         # @type RiskType: Array
 
         attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType
-        
+
         def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil)
           @UserId = userid
           @PostTime = posttime
@@ -1597,7 +1597,7 @@ module TencentCloud
         # @type RequestIntercept: Integer
 
         attr_accessor :Ftime, :RequestAction, :RequestVerify, :RequestThroughput, :RequestIntercept
-        
+
         def initialize(ftime=nil, requestaction=nil, requestverify=nil, requestthroughput=nil, requestintercept=nil)
           @Ftime = ftime
           @RequestAction = requestaction
@@ -1623,7 +1623,7 @@ module TencentCloud
         # @type Amount: Integer
 
         attr_accessor :DateKey, :Amount
-        
+
         def initialize(datekey=nil, amount=nil)
           @DateKey = datekey
           @Amount = amount
@@ -1647,7 +1647,7 @@ module TencentCloud
         # @type TicketIntercept: Integer
 
         attr_accessor :Ftime, :TicketCount, :TicketThroughput, :TicketIntercept
-        
+
         def initialize(ftime=nil, ticketcount=nil, ticketthroughput=nil, ticketintercept=nil)
           @Ftime = ftime
           @TicketCount = ticketcount
@@ -1671,7 +1671,7 @@ module TencentCloud
         # @type Intercept: Integer
 
         attr_accessor :DateKey, :Intercept
-        
+
         def initialize(datekey=nil, intercept=nil)
           @DateKey = datekey
           @Intercept = intercept
@@ -1691,7 +1691,7 @@ module TencentCloud
         # @type Through: Integer
 
         attr_accessor :DateKey, :Through
-        
+
         def initialize(datekey=nil, through=nil)
           @DateKey = datekey
           @Through = through
@@ -1733,7 +1733,7 @@ module TencentCloud
         # @type TrafficThreshold: Integer
 
         attr_accessor :CaptchaAppId, :AppName, :DomainLimit, :SceneType, :CapType, :EvilInterceptGrade, :SmartVerify, :SmartEngine, :SchemeColor, :CaptchaLanguage, :MailAlarm, :TopFullScreen, :TrafficThreshold
-        
+
         def initialize(captchaappid=nil, appname=nil, domainlimit=nil, scenetype=nil, captype=nil, evilinterceptgrade=nil, smartverify=nil, smartengine=nil, schemecolor=nil, captchalanguage=nil, mailalarm=nil, topfullscreen=nil, trafficthreshold=nil)
           @CaptchaAppId = captchaappid
           @AppName = appname
@@ -1778,7 +1778,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :RequestId
-        
+
         def initialize(captchacode=nil, captchamsg=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg

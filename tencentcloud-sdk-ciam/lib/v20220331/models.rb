@@ -25,7 +25,7 @@ module TencentCloud
         # @type DataFlowUserCreateList: Array
 
         attr_accessor :UserStoreId, :DataFlowUserCreateList
-        
+
         def initialize(userstoreid=nil, dataflowusercreatelist=nil)
           @UserStoreId = userstoreid
           @DataFlowUserCreateList = dataflowusercreatelist
@@ -52,7 +52,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Job, :RequestId
-        
+
         def initialize(job=nil, requestid=nil)
           @Job = job
           @RequestId = requestid
@@ -85,7 +85,7 @@ module TencentCloud
         # @type ExportPropertyMaps: Array
 
         attr_accessor :UserStoreId, :Format, :Filters, :ExportPropertyMaps
-        
+
         def initialize(userstoreid=nil, format=nil, filters=nil, exportpropertymaps=nil)
           @UserStoreId = userstoreid
           @Format = format
@@ -123,7 +123,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Job, :RequestId
-        
+
         def initialize(job=nil, requestid=nil)
           @Job = job
           @RequestId = requestid
@@ -172,7 +172,7 @@ module TencentCloud
         # @type IndexedAttribute5: String
 
         attr_accessor :UserStoreId, :PhoneNumber, :Email, :Password, :UserName, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
-        
+
         def initialize(userstoreid=nil, phonenumber=nil, email=nil, password=nil, username=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserStoreId = userstoreid
           @PhoneNumber = phonenumber
@@ -226,7 +226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :User, :RequestId
-        
+
         def initialize(user=nil, requestid=nil)
           @User = user
           @RequestId = requestid
@@ -249,7 +249,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :UserStoreId, :UserIds
-        
+
         def initialize(userstoreid=nil, userids=nil)
           @UserStoreId = userstoreid
           @UserIds = userids
@@ -267,7 +267,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -290,7 +290,7 @@ module TencentCloud
         # @type Original: Boolean
 
         attr_accessor :UserStoreId, :UserId, :Original
-        
+
         def initialize(userstoreid=nil, userid=nil, original=nil)
           @UserStoreId = userstoreid
           @UserId = userid
@@ -313,7 +313,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :User, :RequestId
-        
+
         def initialize(user=nil, requestid=nil)
           @User = user
           @RequestId = requestid
@@ -342,7 +342,7 @@ module TencentCloud
         # @type Sort: :class:`Tencentcloud::Ciam.v20220331.models.Sort`
 
         attr_accessor :UserStoreId, :Pageable, :Filters, :Original, :Sort
-        
+
         def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil, sort=nil)
           @UserStoreId = userstoreid
           @Pageable = pageable
@@ -388,7 +388,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Pageable, :Content, :RequestId
-        
+
         def initialize(total=nil, pageable=nil, content=nil, requestid=nil)
           @Total = total
           @Pageable = pageable
@@ -423,7 +423,7 @@ module TencentCloud
         # @type Error: String
 
         attr_accessor :UserId, :Error
-        
+
         def initialize(userid=nil, error=nil)
           @UserId = userid
           @Error = error
@@ -443,7 +443,7 @@ module TencentCloud
         # @type ColumnName: String
 
         attr_accessor :UserPropertyCode, :ColumnName
-        
+
         def initialize(userpropertycode=nil, columnname=nil)
           @UserPropertyCode = userpropertycode
           @ColumnName = columnname
@@ -465,7 +465,7 @@ module TencentCloud
         # @type FailedReason: String
 
         attr_accessor :FailedUserIdentification, :FailedReason
-        
+
         def initialize(faileduseridentification=nil, failedreason=nil)
           @FailedUserIdentification = faileduseridentification
           @FailedReason = failedreason
@@ -487,7 +487,7 @@ module TencentCloud
         # @type Logic: Boolean
 
         attr_accessor :Key, :Values, :Logic
-        
+
         def initialize(key=nil, values=nil, logic=nil)
           @Key = key
           @Values = values
@@ -573,7 +573,7 @@ module TencentCloud
         # @type IndexedAttribute5: String
 
         attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
-        
+
         def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserName = username
           @PhoneNumber = phonenumber
@@ -688,7 +688,7 @@ module TencentCloud
         # @type FailedUsers: Array
 
         attr_accessor :Id, :Status, :Type, :CreatedDate, :Format, :Location, :ErrorDetails, :FailedUsers
-        
+
         def initialize(id=nil, status=nil, type=nil, createddate=nil, format=nil, location=nil, errordetails=nil, failedusers=nil)
           @Id = id
           @Status = status
@@ -741,7 +741,7 @@ module TencentCloud
         # @type UserLinkedOnAttribute: String
 
         attr_accessor :UserStoreId, :PrimaryUserId, :SecondaryUserId, :UserLinkedOnAttribute
-        
+
         def initialize(userstoreid=nil, primaryuserid=nil, secondaryuserid=nil, userlinkedonattribute=nil)
           @UserStoreId = userstoreid
           @PrimaryUserId = primaryuserid
@@ -763,7 +763,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -781,7 +781,7 @@ module TencentCloud
         # @type JobIds: Array
 
         attr_accessor :UserStoreId, :JobIds
-        
+
         def initialize(userstoreid=nil, jobids=nil)
           @UserStoreId = userstoreid
           @JobIds = jobids
@@ -802,7 +802,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobSet, :RequestId
-        
+
         def initialize(jobset=nil, requestid=nil)
           @JobSet = jobset
           @RequestId = requestid
@@ -835,7 +835,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :UserStoreId, :Pageable, :StartTime, :Filters
-        
+
         def initialize(userstoreid=nil, pageable=nil, starttime=nil, filters=nil)
           @UserStoreId = userstoreid
           @Pageable = pageable
@@ -874,7 +874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Pageable, :Content, :RequestId
-        
+
         def initialize(total=nil, pageable=nil, content=nil, requestid=nil)
           @Total = total
           @Pageable = pageable
@@ -915,7 +915,7 @@ module TencentCloud
         # @type Original: Boolean
 
         attr_accessor :UserStoreId, :PropertyCode, :PropertyValue, :Original
-        
+
         def initialize(userstoreid=nil, propertycode=nil, propertyvalue=nil, original=nil)
           @UserStoreId = userstoreid
           @PropertyCode = propertycode
@@ -940,7 +940,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Users, :RequestId
-        
+
         def initialize(users=nil, requestid=nil)
           @Users = users
           @RequestId = requestid
@@ -974,7 +974,7 @@ module TencentCloud
         # @type Original: Boolean
 
         attr_accessor :UserStoreId, :Pageable, :Filters, :Original
-        
+
         def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil)
           @UserStoreId = userstoreid
           @Pageable = pageable
@@ -1015,7 +1015,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Pageable, :Content, :RequestId
-        
+
         def initialize(total=nil, pageable=nil, content=nil, requestid=nil)
           @Total = total
           @Pageable = pageable
@@ -1098,7 +1098,7 @@ module TencentCloud
         # @type Detail: String
 
         attr_accessor :LogId, :TenantId, :UserStoreId, :EventCode, :EventDate, :Description, :Participant, :ApplicationClientId, :ApplicationName, :AuthSourceId, :AuthSourceName, :AuthSourceType, :AuthSourceCategory, :Ip, :UserAgent, :UserId, :Detail
-        
+
         def initialize(logid=nil, tenantid=nil, userstoreid=nil, eventcode=nil, eventdate=nil, description=nil, participant=nil, applicationclientid=nil, applicationname=nil, authsourceid=nil, authsourcename=nil, authsourcetype=nil, authsourcecategory=nil, ip=nil, useragent=nil, userid=nil, detail=nil)
           @LogId = logid
           @TenantId = tenantid
@@ -1151,7 +1151,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Name, :Value, :Type
-        
+
         def initialize(name=nil, value=nil, type=nil)
           @Name = name
           @Value = value
@@ -1173,7 +1173,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :PageSize, :PageNumber
-        
+
         def initialize(pagesize=nil, pagenumber=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -1197,7 +1197,7 @@ module TencentCloud
         # @type OperateLogic: String
 
         attr_accessor :PropertyKey, :PropertyValue, :Logic, :OperateLogic
-        
+
         def initialize(propertykey=nil, propertyvalue=nil, logic=nil, operatelogic=nil)
           @PropertyKey = propertykey
           @PropertyValue = propertyvalue
@@ -1221,7 +1221,7 @@ module TencentCloud
         # @type UserStoreId: String
 
         attr_accessor :UserId, :UserStoreId
-        
+
         def initialize(userid=nil, userstoreid=nil)
           @UserId = userid
           @UserStoreId = userstoreid
@@ -1241,7 +1241,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Password, :RequestId
-        
+
         def initialize(password=nil, requestid=nil)
           @Password = password
           @RequestId = requestid
@@ -1261,7 +1261,7 @@ module TencentCloud
         # @type SaltLocation: :class:`Tencentcloud::Ciam.v20220331.models.SaltLocation`
 
         attr_accessor :SaltValue, :SaltLocation
-        
+
         def initialize(saltvalue=nil, saltlocation=nil)
           @SaltValue = saltvalue
           @SaltLocation = saltlocation
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type SaltLocationRule: :class:`Tencentcloud::Ciam.v20220331.models.SaltLocationRule`
 
         attr_accessor :SaltLocationTypeEnum, :SaltLocationRule
-        
+
         def initialize(saltlocationtypeenum=nil, saltlocationrule=nil)
           @SaltLocationTypeEnum = saltlocationtypeenum
           @SaltLocationRule = saltlocationrule
@@ -1305,7 +1305,7 @@ module TencentCloud
         # @type Regex: String
 
         attr_accessor :Regex
-        
+
         def initialize(regex=nil)
           @Regex = regex
         end
@@ -1325,7 +1325,7 @@ module TencentCloud
         # @type Password: String
 
         attr_accessor :UserStoreId, :UserId, :Password
-        
+
         def initialize(userstoreid=nil, userid=nil, password=nil)
           @UserStoreId = userstoreid
           @UserId = userid
@@ -1345,7 +1345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1363,7 +1363,7 @@ module TencentCloud
         # @type Order: String
 
         attr_accessor :PropertyKey, :Order
-        
+
         def initialize(propertykey=nil, order=nil)
           @PropertyKey = propertykey
           @Order = order
@@ -1409,7 +1409,7 @@ module TencentCloud
         # @type IndexedAttribute5: String
 
         attr_accessor :UserId, :UserStoreId, :UserName, :PhoneNumber, :Email, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
-        
+
         def initialize(userid=nil, userstoreid=nil, username=nil, phonenumber=nil, email=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserId = userid
           @UserStoreId = userstoreid
@@ -1463,7 +1463,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :User, :RequestId
-        
+
         def initialize(user=nil, requestid=nil)
           @User = user
           @RequestId = requestid
@@ -1492,7 +1492,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :UserStoreId, :UserId, :Status
-        
+
         def initialize(userstoreid=nil, userid=nil, status=nil)
           @UserStoreId = userstoreid
           @UserId = userid
@@ -1512,7 +1512,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1645,7 +1645,7 @@ module TencentCloud
         # @type IndexedAttribute5: String
 
         attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
-        
+
         def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserId = userid
           @UserName = username

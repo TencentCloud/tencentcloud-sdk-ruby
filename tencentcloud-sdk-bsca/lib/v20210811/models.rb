@@ -59,7 +59,7 @@ module TencentCloud
         # @type AvailabilityImpact: String
 
         attr_accessor :CVSS, :AccessVector, :AccessComplexity, :Authentication, :ConImpact, :IntegrityImpact, :AvailabilityImpact
-        
+
         def initialize(cvss=nil, accessvector=nil, accesscomplexity=nil, authentication=nil, conimpact=nil, integrityimpact=nil, availabilityimpact=nil)
           @CVSS = cvss
           @AccessVector = accessvector
@@ -133,7 +133,7 @@ module TencentCloud
         # @type AvailabilityImpact: String
 
         attr_accessor :CVSS, :AttackVector, :AttackComplexity, :PrivilegesRequired, :UserInteraction, :Scope, :ConImpact, :IntegrityImpact, :AvailabilityImpact
-        
+
         def initialize(cvss=nil, attackvector=nil, attackcomplexity=nil, privilegesrequired=nil, userinteraction=nil, scope=nil, conimpact=nil, integrityimpact=nil, availabilityimpact=nil)
           @CVSS = cvss
           @AttackVector = attackvector
@@ -177,7 +177,7 @@ module TencentCloud
         # @type LicenseExpression: String
 
         attr_accessor :PURL, :Homepage, :Summary, :NicknameList, :CodeLocationList, :LicenseExpression
-        
+
         def initialize(purl=nil, homepage=nil, summary=nil, nicknamelist=nil, codelocationlist=nil, licenseexpression=nil)
           @PURL = purl
           @Homepage = homepage
@@ -221,7 +221,7 @@ module TencentCloud
         # @type RiskLevel: String
 
         attr_accessor :PURL, :CanBeFixed, :FixedVersion, :AffectedVersion, :AffectedComponent, :RiskLevel
-        
+
         def initialize(purl=nil, canbefixed=nil, fixedversion=nil, affectedversion=nil, affectedcomponent=nil, risklevel=nil)
           @PURL = purl
           @CanBeFixed = canbefixed
@@ -252,7 +252,7 @@ module TencentCloud
         # @type SummaryInComponent: :class:`Tencentcloud::Bsca.v20210811.models.ComponentVulnerabilitySummary`
 
         attr_accessor :Summary, :SummaryInComponent
-        
+
         def initialize(summary=nil, summaryincomponent=nil)
           @Summary = summary
           @SummaryInComponent = summaryincomponent
@@ -276,7 +276,7 @@ module TencentCloud
         # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
 
         attr_accessor :PURL
-        
+
         def initialize(purl=nil)
           @PURL = purl
         end
@@ -297,7 +297,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Component, :RequestId
-        
+
         def initialize(component=nil, requestid=nil)
           @Component = component
           @RequestId = requestid
@@ -318,7 +318,7 @@ module TencentCloud
         # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
 
         attr_accessor :PURL
-        
+
         def initialize(purl=nil)
           @PURL = purl
         end
@@ -340,7 +340,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VulnerabilityList, :RequestId
-        
+
         def initialize(vulnerabilitylist=nil, requestid=nil)
           @VulnerabilityList = vulnerabilitylist
           @RequestId = requestid
@@ -365,7 +365,7 @@ module TencentCloud
         # @type LicenseExpression: String
 
         attr_accessor :LicenseExpression
-        
+
         def initialize(licenseexpression=nil)
           @LicenseExpression = licenseexpression
         end
@@ -386,7 +386,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LicenseList, :NormalizedLicenseExpression, :RequestId
-        
+
         def initialize(licenselist=nil, normalizedlicenseexpression=nil, requestid=nil)
           @LicenseList = licenselist
           @NormalizedLicenseExpression = normalizedlicenseexpression
@@ -415,7 +415,7 @@ module TencentCloud
         # @type VulID: Array
 
         attr_accessor :CVEID, :VulID
-        
+
         def initialize(cveid=nil, vulid=nil)
           @CVEID = cveid
           @VulID = vulid
@@ -436,7 +436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VulnerabilityDetailList, :RequestId
-        
+
         def initialize(vulnerabilitydetaillist=nil, requestid=nil)
           @VulnerabilityDetailList = vulnerabilitydetaillist
           @RequestId = requestid
@@ -467,7 +467,7 @@ module TencentCloud
         # @type PermissionSet: Array
 
         attr_accessor :Content, :ConditionSet, :ForbiddenSet, :PermissionSet
-        
+
         def initialize(content=nil, conditionset=nil, forbiddenset=nil, permissionset=nil)
           @Content = content
           @ConditionSet = conditionset
@@ -512,7 +512,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :Name, :Description
-        
+
         def initialize(name=nil, description=nil)
           @Name = name
           @Description = description
@@ -544,7 +544,7 @@ module TencentCloud
         # @type Source: String
 
         attr_accessor :Key, :SPDXKey, :ShortName, :Name, :Risk, :Source
-        
+
         def initialize(key=nil, spdxkey=nil, shortname=nil, name=nil, risk=nil, source=nil)
           @Key = key
           @SPDXKey = spdxkey
@@ -572,7 +572,7 @@ module TencentCloud
         # @type LicenseDetail: :class:`Tencentcloud::Bsca.v20210811.models.LicenseDetail`
 
         attr_accessor :LicenseSummary, :LicenseDetail
-        
+
         def initialize(licensesummary=nil, licensedetail=nil)
           @LicenseSummary = licensesummary
           @LicenseDetail = licensedetail
@@ -596,7 +596,7 @@ module TencentCloud
         # @type SHA1: String
 
         attr_accessor :SHA1
-        
+
         def initialize(sha1=nil)
           @SHA1 = sha1
         end
@@ -616,7 +616,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PURLList, :Hit, :RequestId
-        
+
         def initialize(purllist=nil, hit=nil, requestid=nil)
           @PURLList = purllist
           @Hit = hit
@@ -654,7 +654,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :Name, :Protocol, :Namespace, :Qualifiers, :Subpath, :Version
-        
+
         def initialize(name=nil, protocol=nil, namespace=nil, qualifiers=nil, subpath=nil, version=nil)
           @Name = name
           @Protocol = protocol
@@ -689,7 +689,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -731,7 +731,7 @@ module TencentCloud
         # @type CVSSv3Vector: String
 
         attr_accessor :Category, :CategoryType, :Description, :OfficialSolution, :ReferenceList, :DefenseSolution, :CVSSv2Info, :CVSSv3Info, :SubmitTime, :CWEID, :CVSSv2Vector, :CVSSv3Vector
-        
+
         def initialize(category=nil, categorytype=nil, description=nil, officialsolution=nil, referencelist=nil, defensesolution=nil, cvssv2info=nil, cvssv3info=nil, submittime=nil, cweid=nil, cvssv2vector=nil, cvssv3vector=nil)
           @Category = category
           @CategoryType = categorytype
@@ -791,7 +791,7 @@ module TencentCloud
         # @type Severity: String
 
         attr_accessor :VulID, :CVEID, :CNVDID, :CNNVDID, :Name, :IsSuggest, :Severity
-        
+
         def initialize(vulid=nil, cveid=nil, cnvdid=nil, cnnvdid=nil, name=nil, issuggest=nil, severity=nil)
           @VulID = vulid
           @CVEID = cveid
@@ -821,7 +821,7 @@ module TencentCloud
         # @type Detail: :class:`Tencentcloud::Bsca.v20210811.models.VulnerabilityDetail`
 
         attr_accessor :Summary, :Detail
-        
+
         def initialize(summary=nil, detail=nil)
           @Summary = summary
           @Detail = detail

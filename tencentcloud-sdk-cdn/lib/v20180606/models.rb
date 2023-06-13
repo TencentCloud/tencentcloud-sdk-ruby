@@ -31,7 +31,7 @@ module TencentCloud
         # @type ReturnCode: Integer
 
         attr_accessor :Switch, :AccessControlRules, :ReturnCode
-        
+
         def initialize(switch=nil, accesscontrolrules=nil, returncode=nil)
           @Switch = switch
           @AccessControlRules = accesscontrolrules
@@ -70,7 +70,7 @@ module TencentCloud
         # @type RuleHeader: String
 
         attr_accessor :RuleType, :RuleContent, :Regex, :RuleHeader
-        
+
         def initialize(ruletype=nil, rulecontent=nil, regex=nil, ruleheader=nil)
           @RuleType = ruletype
           @RuleContent = rulecontent
@@ -98,7 +98,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :DomainAreaConfigs, :Channel
-        
+
         def initialize(logsetid=nil, topicid=nil, domainareaconfigs=nil, channel=nil)
           @LogsetId = logsetid
           @TopicId = topicid
@@ -127,7 +127,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -231,7 +231,7 @@ module TencentCloud
         # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
         attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache, :Quic, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess, :OthersPrivateAccess, :HttpsBilling
-        
+
         def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil, quic=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil, othersprivateaccess=nil, httpsbilling=nil)
           @Domain = domain
           @ServiceType = servicetype
@@ -437,7 +437,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -471,7 +471,7 @@ module TencentCloud
         # @type CacheTime: Integer
 
         attr_accessor :CacheType, :CacheContents, :CacheTime
-        
+
         def initialize(cachetype=nil, cachecontents=nil, cachetime=nil)
           @CacheType = cachetype
           @CacheContents = cachecontents
@@ -497,7 +497,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -534,7 +534,7 @@ module TencentCloud
         # @type OriginCertInfo: :class:`Tencentcloud::Cdn.v20180606.models.ClientCert`
 
         attr_accessor :CustomTlsStatus, :TlsVersion, :Cipher, :VerifyOriginType, :CertInfo, :OriginCertInfo
-        
+
         def initialize(customtlsstatus=nil, tlsversion=nil, cipher=nil, verifyorigintype=nil, certinfo=nil, origincertinfo=nil)
           @CustomTlsStatus = customtlsstatus
           @TlsVersion = tlsversion
@@ -587,7 +587,7 @@ module TencentCloud
         # @type TypeF: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeF`
 
         attr_accessor :Switch, :TypeA, :TypeB, :TypeC, :TypeD, :TypeE, :TypeF
-        
+
         def initialize(switch=nil, typea=nil, typeb=nil, typec=nil, typed=nil, typee=nil, typef=nil)
           @Switch = switch
           @TypeA = typea
@@ -653,7 +653,7 @@ module TencentCloud
         # @type Transformation: Integer
 
         attr_accessor :SecretKey, :SignParam, :TimeParam, :ExpireTime, :ExpireTimeRequired, :Format, :TimeFormat, :FailCode, :ExpireCode, :RulePaths, :Transformation
-        
+
         def initialize(secretkey=nil, signparam=nil, timeparam=nil, expiretime=nil, expiretimerequired=nil, format=nil, timeformat=nil, failcode=nil, expirecode=nil, rulepaths=nil, transformation=nil)
           @SecretKey = secretkey
           @SignParam = signparam
@@ -707,7 +707,7 @@ module TencentCloud
         # @type RulePaths: Array
 
         attr_accessor :KeyAlpha, :KeyBeta, :KeyGamma, :SignParam, :TimeParam, :ExpireTime, :TimeFormat, :FailCode, :ExpireCode, :RulePaths
-        
+
         def initialize(keyalpha=nil, keybeta=nil, keygamma=nil, signparam=nil, timeparam=nil, expiretime=nil, timeformat=nil, failcode=nil, expirecode=nil, rulepaths=nil)
           @KeyAlpha = keyalpha
           @KeyBeta = keybeta
@@ -743,7 +743,7 @@ module TencentCloud
         # @type SecretKey: String
 
         attr_accessor :AccessKey, :SecretKey
-        
+
         def initialize(accesskey=nil, secretkey=nil)
           @AccessKey = accesskey
           @SecretKey = secretkey
@@ -771,7 +771,7 @@ module TencentCloud
         # @type TimeFormat: String
 
         attr_accessor :SecretKey, :BackupSecretKey, :SignParam, :TimeParam, :ExpireTime, :TimeFormat
-        
+
         def initialize(secretkey=nil, backupsecretkey=nil, signparam=nil, timeparam=nil, expiretime=nil, timeformat=nil)
           @SecretKey = secretkey
           @BackupSecretKey = backupsecretkey
@@ -813,7 +813,7 @@ module TencentCloud
         # @type TimeFormat: String
 
         attr_accessor :SecretKey, :SignParam, :AclSignParam, :StartTimeParam, :ExpireTimeParam, :TimeFormat
-        
+
         def initialize(secretkey=nil, signparam=nil, aclsignparam=nil, starttimeparam=nil, expiretimeparam=nil, timeformat=nil)
           @SecretKey = secretkey
           @SignParam = signparam
@@ -852,7 +852,7 @@ module TencentCloud
         # @type BackupSecretKey: String
 
         attr_accessor :SignParam, :TimeParam, :TransactionParam, :SecretKey, :BackupSecretKey
-        
+
         def initialize(signparam=nil, timeparam=nil, transactionparam=nil, secretkey=nil, backupsecretkey=nil)
           @SignParam = signparam
           @TimeParam = timeparam
@@ -904,7 +904,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :RuleName, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl, :Configure, :Switch
-        
+
         def initialize(rulename=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil, configure=nil, switch=nil)
           @RuleName = rulename
           @DetectionTime = detectiontime
@@ -957,7 +957,7 @@ module TencentCloud
         # @type IgnoreSetCookie: String
 
         attr_accessor :CacheRules, :IgnoreCacheControl, :IgnoreSetCookie
-        
+
         def initialize(cacherules=nil, ignorecachecontrol=nil, ignoresetcookie=nil)
           @CacheRules = cacherules
           @IgnoreCacheControl = ignorecachecontrol
@@ -992,7 +992,7 @@ module TencentCloud
         # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ScdnErrorPage`
 
         attr_accessor :RuleName, :Configure, :Result, :Status, :ErrorPage
-        
+
         def initialize(rulename=nil, configure=nil, result=nil, status=nil, errorpage=nil)
           @RuleName = rulename
           @Configure = configure
@@ -1271,7 +1271,7 @@ module TencentCloud
         # @type MatchKeyParam: String
 
         attr_accessor :MatchKey, :LogicOperator, :MatchValue, :CaseSensitive, :MatchKeyParam
-        
+
         def initialize(matchkey=nil, logicoperator=nil, matchvalue=nil, casesensitive=nil, matchkeyparam=nil)
           @MatchKey = matchkey
           @LogicOperator = logicoperator
@@ -1316,7 +1316,7 @@ module TencentCloud
         # @type TypeD: :class:`Tencentcloud::Cdn.v20180606.models.AuthenticationTypeD`
 
         attr_accessor :Switch, :AuthAlgorithm, :TypeA, :TypeB, :TypeC, :TypeD
-        
+
         def initialize(switch=nil, authalgorithm=nil, typea=nil, typeb=nil, typec=nil, typed=nil)
           @Switch = switch
           @AuthAlgorithm = authalgorithm
@@ -1377,7 +1377,7 @@ module TencentCloud
         # @type BackupSecretKey: String
 
         attr_accessor :SecretKey, :SignParam, :ExpireTime, :FileExtensions, :FilterType, :BackupSecretKey
-        
+
         def initialize(secretkey=nil, signparam=nil, expiretime=nil, fileextensions=nil, filtertype=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @SignParam = signparam
@@ -1418,7 +1418,7 @@ module TencentCloud
         # @type BackupSecretKey: String
 
         attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :BackupSecretKey
-        
+
         def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
@@ -1465,7 +1465,7 @@ module TencentCloud
         # @type BackupSecretKey: String
 
         attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :TimeFormat, :BackupSecretKey
-        
+
         def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, timeformat=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
@@ -1519,7 +1519,7 @@ module TencentCloud
         # @type BackupSecretKey: String
 
         attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :SignParam, :TimeParam, :TimeFormat, :BackupSecretKey
-        
+
         def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, signparam=nil, timeparam=nil, timeformat=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
@@ -1552,7 +1552,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -1582,7 +1582,7 @@ module TencentCloud
         # @type Bucket: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey, :Region, :Bucket
-        
+
         def initialize(switch=nil, accesskey=nil, secretkey=nil, region=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
@@ -1637,7 +1637,7 @@ module TencentCloud
         # @type StatisticItems: Array
 
         attr_accessor :Switch, :BpsThreshold, :CounterMeasure, :LastTriggerTime, :AlertSwitch, :AlertPercentage, :LastTriggerTimeOverseas, :Metric, :StatisticItems
-        
+
         def initialize(switch=nil, bpsthreshold=nil, countermeasure=nil, lasttriggertime=nil, alertswitch=nil, alertpercentage=nil, lasttriggertimeoverseas=nil, metric=nil, statisticitems=nil)
           @Switch = switch
           @BpsThreshold = bpsthreshold
@@ -1690,7 +1690,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Switch, :RuleType, :RuleValue, :Action, :RedirectUrl, :UpdateTime
-        
+
         def initialize(switch=nil, ruletype=nil, rulevalue=nil, action=nil, redirecturl=nil, updatetime=nil)
           @Switch = switch
           @RuleType = ruletype
@@ -1730,7 +1730,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Switch, :RuleType, :RuleValue, :Action, :RedirectUrl, :UpdateTime
-        
+
         def initialize(switch=nil, ruletype=nil, rulevalue=nil, action=nil, redirecturl=nil, updatetime=nil)
           @Switch = switch
           @RuleType = ruletype
@@ -1806,7 +1806,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Action, :Nums, :RuleName, :SessionDuration, :SrcIp, :BotFeature, :Time, :Score, :AvgSpeed, :TcbDetail, :Id, :Domain
-        
+
         def initialize(action=nil, nums=nil, rulename=nil, sessionduration=nil, srcip=nil, botfeature=nil, time=nil, score=nil, avgspeed=nil, tcbdetail=nil, id=nil, domain=nil)
           @Action = action
           @Nums = nums
@@ -1846,7 +1846,7 @@ module TencentCloud
         # @type Sequence: String
 
         attr_accessor :Key, :Sequence
-        
+
         def initialize(key=nil, sequence=nil)
           @Key = key
           @Sequence = sequence
@@ -1872,7 +1872,7 @@ module TencentCloud
         # @type Isp: String
 
         attr_accessor :Count, :Value, :Country, :Province, :Isp
-        
+
         def initialize(count=nil, value=nil, country=nil, province=nil, isp=nil)
           @Count = count
           @Value = value
@@ -1898,7 +1898,7 @@ module TencentCloud
         # @type DetailData: Array
 
         attr_accessor :Metric, :DetailData
-        
+
         def initialize(metric=nil, detaildata=nil)
           @Metric = metric
           @DetailData = detaildata
@@ -1925,7 +1925,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -1994,7 +1994,7 @@ module TencentCloud
         # @type ParentHost: String
 
         attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :Disable, :Area, :Readonly, :Product, :ParentHost
-        
+
         def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, disable=nil, area=nil, readonly=nil, product=nil, parenthost=nil)
           @ResourceId = resourceid
           @AppId = appid
@@ -2050,7 +2050,7 @@ module TencentCloud
         # @type RuleCache: Array
 
         attr_accessor :SimpleCache, :AdvancedCache, :RuleCache
-        
+
         def initialize(simplecache=nil, advancedcache=nil, rulecache=nil)
           @SimpleCache = simplecache
           @AdvancedCache = advancedcache
@@ -2087,7 +2087,7 @@ module TencentCloud
         # @type HeuristicCacheTime: Integer
 
         attr_accessor :HeuristicCacheTimeSwitch, :HeuristicCacheTime
-        
+
         def initialize(heuristiccachetimeswitch=nil, heuristiccachetime=nil)
           @HeuristicCacheTimeSwitch = heuristiccachetimeswitch
           @HeuristicCacheTime = heuristiccachetime
@@ -2130,7 +2130,7 @@ module TencentCloud
         # @type IgnoreSetCookie: String
 
         attr_accessor :Switch, :CacheTime, :CompareMaxAge, :IgnoreCacheControl, :IgnoreSetCookie
-        
+
         def initialize(switch=nil, cachetime=nil, comparemaxage=nil, ignorecachecontrol=nil, ignoresetcookie=nil)
           @Switch = switch
           @CacheTime = cachetime
@@ -2159,7 +2159,7 @@ module TencentCloud
         # @type HeuristicCache: :class:`Tencentcloud::Cdn.v20180606.models.HeuristicCache`
 
         attr_accessor :Switch, :HeuristicCache
-        
+
         def initialize(switch=nil, heuristiccache=nil)
           @Switch = switch
           @HeuristicCache = heuristiccache
@@ -2189,7 +2189,7 @@ module TencentCloud
         # @type Revalidate: String
 
         attr_accessor :Switch, :Revalidate
-        
+
         def initialize(switch=nil, revalidate=nil)
           @Switch = switch
           @Revalidate = revalidate
@@ -2230,7 +2230,7 @@ module TencentCloud
         # @type KeyRules: Array
 
         attr_accessor :FullUrlCache, :IgnoreCase, :QueryString, :Cookie, :Header, :CacheTag, :Scheme, :KeyRules
-        
+
         def initialize(fullurlcache=nil, ignorecase=nil, querystring=nil, cookie=nil, header=nil, cachetag=nil, scheme=nil, keyrules=nil)
           @FullUrlCache = fullurlcache
           @IgnoreCase = ignorecase
@@ -2286,7 +2286,7 @@ module TencentCloud
         # @type FailUrls: Array
 
         attr_accessor :SuccessUrls, :FailUrls
-        
+
         def initialize(successurls=nil, failurls=nil)
           @SuccessUrls = successurls
           @FailUrls = failurls
@@ -2310,7 +2310,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Switch, :Value
-        
+
         def initialize(switch=nil, value=nil)
           @Switch = switch
           @Value = value
@@ -2340,7 +2340,7 @@ module TencentCloud
         # @type KBpsThreshold: Integer
 
         attr_accessor :RuleType, :RulePaths, :KBpsThreshold
-        
+
         def initialize(ruletype=nil, rulepaths=nil, kbpsthreshold=nil)
           @RuleType = ruletype
           @RulePaths = rulepaths
@@ -2373,7 +2373,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Ip, :Url, :UserAgent, :Value, :Domain
-        
+
         def initialize(ip=nil, url=nil, useragent=nil, value=nil, domain=nil)
           @Ip = ip
           @Url = url
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type SummarizedData: :class:`Tencentcloud::Cdn.v20180606.models.SummarizedData`
 
         attr_accessor :Metric, :DetailData, :SummarizedData
-        
+
         def initialize(metric=nil, detaildata=nil, summarizeddata=nil)
           @Metric = metric
           @DetailData = detaildata
@@ -2458,7 +2458,7 @@ module TencentCloud
         # @type City: String
 
         attr_accessor :Ip, :Platform, :Location, :History, :Area, :City
-        
+
         def initialize(ip=nil, platform=nil, location=nil, history=nil, area=nil, city=nil)
           @Ip = ip
           @Platform = platform
@@ -2497,7 +2497,7 @@ module TencentCloud
         # @type Datetime: String
 
         attr_accessor :Status, :Datetime
-        
+
         def initialize(status=nil, datetime=nil)
           @Status = status
           @Datetime = datetime
@@ -2528,7 +2528,7 @@ module TencentCloud
         # @type DeployTime: String
 
         attr_accessor :Certificate, :CertName, :ExpireTime, :DeployTime
-        
+
         def initialize(certificate=nil, certname=nil, expiretime=nil, deploytime=nil)
           @Certificate = certificate
           @CertName = certname
@@ -2560,7 +2560,7 @@ module TencentCloud
         # @type Ip: String
 
         attr_accessor :ProvName, :Country, :IspName, :Ip
-        
+
         def initialize(provname=nil, country=nil, ispname=nil, ip=nil)
           @ProvName = provname
           @Country = country
@@ -2588,7 +2588,7 @@ module TencentCloud
         # @type Time: String
 
         attr_accessor :ClientIp, :Request, :Count, :Time
-        
+
         def initialize(clientip=nil, request=nil, count=nil, time=nil)
           @ClientIp = clientip
           @Request = request
@@ -2620,7 +2620,7 @@ module TencentCloud
         # @type Source: String
 
         attr_accessor :TopicId, :TopicName, :Timestamp, :Content, :Filename, :Source
-        
+
         def initialize(topicid=nil, topicname=nil, timestamp=nil, content=nil, filename=nil, source=nil)
           @TopicId = topicid
           @TopicName = topicname
@@ -2650,7 +2650,7 @@ module TencentCloud
         # @type Results: Array
 
         attr_accessor :Context, :Listover, :Results
-        
+
         def initialize(context=nil, listover=nil, results=nil)
           @Context = context
           @Listover = listover
@@ -2678,7 +2678,7 @@ module TencentCloud
         # @type Code: Integer
 
         attr_accessor :Code
-        
+
         def initialize(code=nil)
           @Code = code
         end
@@ -2699,7 +2699,7 @@ module TencentCloud
         # @type CompressionRules: Array
 
         attr_accessor :Switch, :CompressionRules
-        
+
         def initialize(switch=nil, compressionrules=nil)
           @Switch = switch
           @CompressionRules = compressionrules
@@ -2758,7 +2758,7 @@ module TencentCloud
         # @type RulePaths: Array
 
         attr_accessor :Compress, :MinLength, :MaxLength, :Algorithms, :FileExtensions, :RuleType, :RulePaths
-        
+
         def initialize(compress=nil, minlength=nil, maxlength=nil, algorithms=nil, fileextensions=nil, ruletype=nil, rulepaths=nil)
           @Compress = compress
           @MinLength = minlength
@@ -2792,7 +2792,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Switch, :Value
-        
+
         def initialize(switch=nil, value=nil)
           @Switch = switch
           @Value = value
@@ -2816,7 +2816,7 @@ module TencentCloud
         # @type DomainAreaConfigs: Array
 
         attr_accessor :TopicName, :LogsetId, :Channel, :DomainAreaConfigs
-        
+
         def initialize(topicname=nil, logsetid=nil, channel=nil, domainareaconfigs=nil)
           @TopicName = topicname
           @LogsetId = logsetid
@@ -2848,7 +2848,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TopicId, :RequestId
-        
+
         def initialize(topicid=nil, requestid=nil)
           @TopicId = topicid
           @RequestId = requestid
@@ -2868,7 +2868,7 @@ module TencentCloud
         # @type Origin: String
 
         attr_accessor :Url, :Origin
-        
+
         def initialize(url=nil, origin=nil)
           @Url = url
           @Origin = origin
@@ -2888,7 +2888,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DiagnoseLink, :RequestId
-        
+
         def initialize(diagnoselink=nil, requestid=nil)
           @DiagnoseLink = diagnoselink
           @RequestId = requestid
@@ -2912,7 +2912,7 @@ module TencentCloud
         # @type CosUriTo: String
 
         attr_accessor :CosBucket, :CosUriFrom, :BlockID, :CosUriTo
-        
+
         def initialize(cosbucket=nil, cosurifrom=nil, blockid=nil, cosurito=nil)
           @CosBucket = cosbucket
           @CosUriFrom = cosurifrom
@@ -2934,7 +2934,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2960,7 +2960,7 @@ module TencentCloud
         # @type Bot: :class:`Tencentcloud::Cdn.v20180606.models.ScdnBotConfig`
 
         attr_accessor :Domain, :Waf, :Acl, :CC, :Ddos, :Bot
-        
+
         def initialize(domain=nil, waf=nil, acl=nil, cc=nil, ddos=nil, bot=nil)
           @Domain = domain
           @Waf = waf
@@ -3003,7 +3003,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -3023,7 +3023,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :TaskId, :Area
-        
+
         def initialize(taskid=nil, area=nil)
           @TaskId = taskid
           @Area = area
@@ -3044,7 +3044,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -3111,7 +3111,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Mode, :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Ip, :Domains, :AttackTypes, :Conditions, :Source, :Area
-        
+
         def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, ip=nil, domains=nil, attacktypes=nil, conditions=nil, source=nil, area=nil)
           @Mode = mode
           @StartTime = starttime
@@ -3159,7 +3159,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -3177,7 +3177,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -3208,7 +3208,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubDomain, :Record, :RecordType, :FileVerifyUrl, :FileVerifyDomains, :FileVerifyName, :RequestId
-        
+
         def initialize(subdomain=nil, record=nil, recordtype=nil, fileverifyurl=nil, fileverifydomains=nil, fileverifyname=nil, requestid=nil)
           @SubDomain = subdomain
           @Record = record
@@ -3240,7 +3240,7 @@ module TencentCloud
         # @type Time: String
 
         attr_accessor :AttackType, :Value, :Time
-        
+
         def initialize(attacktype=nil, value=nil, time=nil)
           @AttackType = attacktype
           @Value = value
@@ -3268,7 +3268,7 @@ module TencentCloud
         # @type AttackCount: Float
 
         attr_accessor :AttackIP, :Province, :Country, :Isp, :AttackCount
-        
+
         def initialize(attackip=nil, province=nil, country=nil, isp=nil, attackcount=nil)
           @AttackIP = attackip
           @Province = province
@@ -3294,7 +3294,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -3314,7 +3314,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :AttackType, :Value
-        
+
         def initialize(attacktype=nil, value=nil)
           @AttackType = attacktype
           @Value = value
@@ -3333,7 +3333,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -3349,7 +3349,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3369,7 +3369,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :TopicId, :LogsetId, :Channel
-        
+
         def initialize(topicid=nil, logsetid=nil, channel=nil)
           @TopicId = topicid
           @LogsetId = logsetid
@@ -3389,7 +3389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3405,7 +3405,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -3423,7 +3423,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -3478,7 +3478,7 @@ module TencentCloud
         # @type TimeZone: String
 
         attr_accessor :StartTime, :EndTime, :Interval, :Domain, :Project, :Area, :District, :Metric, :Product, :TimeZone
-        
+
         def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, project=nil, area=nil, district=nil, metric=nil, product=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -3520,7 +3520,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Interval, :Data, :RequestId
-        
+
         def initialize(interval=nil, data=nil, requestid=nil)
           @Interval = interval
           @Data = data
@@ -3568,7 +3568,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :Interval, :Domain, :ActionName, :Domains, :Source, :Area
-        
+
         def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, actionname=nil, domains=nil, source=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -3611,7 +3611,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :Interval, :InterceptQpsData, :RedirectQpsData, :ObserveQpsData, :RequestId
-        
+
         def initialize(data=nil, interval=nil, interceptqpsdata=nil, redirectqpsdata=nil, observeqpsdata=nil, requestid=nil)
           @Data = data
           @Interval = interval
@@ -3742,7 +3742,7 @@ module TencentCloud
         # @type TimeZone: String
 
         attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Isp, :District, :Protocol, :DataSource, :IpProtocol, :Area, :AreaType, :Product, :TimeZone
-        
+
         def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, isp=nil, district=nil, protocol=nil, datasource=nil, ipprotocol=nil, area=nil, areatype=nil, product=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -3796,7 +3796,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Interval, :Data, :RequestId
-        
+
         def initialize(interval=nil, data=nil, requestid=nil)
           @Interval = interval
           @Data = data
@@ -3840,7 +3840,7 @@ module TencentCloud
         # @type LogType: String
 
         attr_accessor :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :LogType
-        
+
         def initialize(domain=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, area=nil, logtype=nil)
           @Domain = domain
           @StartTime = starttime
@@ -3873,7 +3873,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainLogs, :TotalCount, :RequestId
-        
+
         def initialize(domainlogs=nil, totalcount=nil, requestid=nil)
           @DomainLogs = domainlogs
           @TotalCount = totalcount
@@ -3900,7 +3900,7 @@ module TencentCloud
         # @type Ips: Array
 
         attr_accessor :Ips
-        
+
         def initialize(ips=nil)
           @Ips = ips
         end
@@ -3918,7 +3918,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ips, :RequestId
-        
+
         def initialize(ips=nil, requestid=nil)
           @Ips = ips
           @RequestId = requestid
@@ -3940,7 +3940,7 @@ module TencentCloud
       # DescribeCdnOriginIp请求参数结构体
       class DescribeCdnOriginIpRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -3958,7 +3958,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ips, :TotalCount, :RequestId
-        
+
         def initialize(ips=nil, totalcount=nil, requestid=nil)
           @Ips = ips
           @TotalCount = totalcount
@@ -3989,7 +3989,7 @@ module TencentCloud
         # @type Product: String
 
         attr_accessor :Cert, :CertId, :Product
-        
+
         def initialize(cert=nil, certid=nil, product=nil)
           @Cert = cert
           @CertId = certid
@@ -4015,7 +4015,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Domains, :CertifiedDomains, :RequestId
-        
+
         def initialize(domains=nil, certifieddomains=nil, requestid=nil)
           @Domains = domains
           @CertifiedDomains = certifieddomains
@@ -4043,7 +4043,7 @@ module TencentCloud
         # @type Interval: String
 
         attr_accessor :StartTime, :EndTime, :Interval
-        
+
         def initialize(starttime=nil, endtime=nil, interval=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -4073,7 +4073,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :Interval, :AttackBandwidthData, :RequestId
-        
+
         def initialize(data=nil, interval=nil, attackbandwidthdata=nil, requestid=nil)
           @Data = data
           @Interval = interval
@@ -4109,7 +4109,7 @@ module TencentCloud
         # @type ReportId: String
 
         attr_accessor :ReportId
-        
+
         def initialize(reportid=nil)
           @ReportId = reportid
         end
@@ -4144,7 +4144,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BaskInfo, :CnameInfo, :ClientInfo, :DnsInfo, :NetworkInfo, :OcNodeInfo, :MidNodeInfo, :OriginInfo, :PurgeInfo, :RequestId
-        
+
         def initialize(baskinfo=nil, cnameinfo=nil, clientinfo=nil, dnsinfo=nil, networkinfo=nil, ocnodeinfo=nil, midnodeinfo=nil, origininfo=nil, purgeinfo=nil, requestid=nil)
           @BaskInfo = baskinfo
           @CnameInfo = cnameinfo
@@ -4243,7 +4243,7 @@ module TencentCloud
         # @type Interval: String
 
         attr_accessor :Domains, :StartTime, :EndTime, :Metric, :Districts, :Isps, :Protocol, :IpProtocol, :Interval
-        
+
         def initialize(domains=nil, starttime=nil, endtime=nil, metric=nil, districts=nil, isps=nil, protocol=nil, ipprotocol=nil, interval=nil)
           @Domains = domains
           @StartTime = starttime
@@ -4278,7 +4278,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -4309,7 +4309,7 @@ module TencentCloud
         # @type Sort: :class:`Tencentcloud::Cdn.v20180606.models.Sort`
 
         attr_accessor :Offset, :Limit, :Filters, :Sort
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, sort=nil)
           @Offset = offset
           @Limit = limit
@@ -4346,7 +4346,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Domains, :TotalNumber, :RequestId
-        
+
         def initialize(domains=nil, totalnumber=nil, requestid=nil)
           @Domains = domains
           @TotalNumber = totalnumber
@@ -4377,7 +4377,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
-        
+
         def initialize(offset=nil, limit=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -4409,7 +4409,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Domains, :TotalNumber, :RequestId
-        
+
         def initialize(domains=nil, totalnumber=nil, requestid=nil)
           @Domains = domains
           @TotalNumber = totalnumber
@@ -4444,7 +4444,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :StartTime, :EndTime, :Limit, :Offset, :Filters
-        
+
         def initialize(starttime=nil, endtime=nil, limit=nil, offset=nil, filters=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -4479,7 +4479,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EdgePackTaskStatusSet, :TotalCount, :RequestId
-        
+
         def initialize(edgepacktaskstatusset=nil, totalcount=nil, requestid=nil)
           @EdgePackTaskStatusSet = edgepacktaskstatusset
           @TotalCount = totalcount
@@ -4527,7 +4527,7 @@ module TencentCloud
         # @type Source: String
 
         attr_accessor :Mode, :StartTime, :EndTime, :Domain, :ActionName, :Url, :Area, :Source
-        
+
         def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, actionname=nil, url=nil, area=nil, source=nil)
           @Mode = mode
           @StartTime = starttime
@@ -4559,7 +4559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -4586,7 +4586,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -4614,7 +4614,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :HttpsPackages, :ExpiringCount, :EnabledCount, :PaidCount, :RequestId
-        
+
         def initialize(totalcount=nil, httpspackages=nil, expiringcount=nil, enabledcount=nil, paidcount=nil, requestid=nil)
           @TotalCount = totalcount
           @HttpsPackages = httpspackages
@@ -4647,7 +4647,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -4675,7 +4675,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter, :RequestId
-        
+
         def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil, requestid=nil)
           @WebpAdapter = webpadapter
           @TpgAdapter = tpgadapter
@@ -4727,7 +4727,7 @@ module TencentCloud
         # @type AbbreviationIpv6: Boolean
 
         attr_accessor :Domain, :Layer, :Area, :Segment, :ShowIpv6, :AbbreviationIpv6
-        
+
         def initialize(domain=nil, layer=nil, area=nil, segment=nil, showipv6=nil, abbreviationipv6=nil)
           @Domain = domain
           @Layer = layer
@@ -4757,7 +4757,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ips, :TotalCount, :RequestId
-        
+
         def initialize(ips=nil, totalcount=nil, requestid=nil)
           @Ips = ips
           @TotalCount = totalcount
@@ -4797,7 +4797,7 @@ module TencentCloud
         # @type Interval: String
 
         attr_accessor :StartTime, :EndTime, :Domains, :Project, :Interval
-        
+
         def initialize(starttime=nil, endtime=nil, domains=nil, project=nil, interval=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -4825,7 +4825,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Interval, :Data, :RequestId
-        
+
         def initialize(interval=nil, data=nil, requestid=nil)
           @Interval = interval
           @Data = data
@@ -4854,7 +4854,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Name
-        
+
         def initialize(name=nil)
           @Name = name
         end
@@ -4878,7 +4878,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MapInfoList, :ServerRegionRelation, :ClientRegionRelation, :RequestId
-        
+
         def initialize(mapinfolist=nil, serverregionrelation=nil, clientregionrelation=nil, requestid=nil)
           @MapInfoList = mapinfolist
           @ServerRegionRelation = serverregionrelation
@@ -4961,7 +4961,7 @@ module TencentCloud
         # @type TimeZone: String
 
         attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Area, :TimeZone
-        
+
         def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, area=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -4997,7 +4997,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Interval, :Data, :RequestId
-        
+
         def initialize(interval=nil, data=nil, requestid=nil)
           @Interval = interval
           @Data = data
@@ -5035,7 +5035,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Area, :Product, :Type
-        
+
         def initialize(area=nil, product=nil, type=nil)
           @Area = area
           @Product = product
@@ -5086,7 +5086,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PayType, :BillingCycle, :StatType, :RegionType, :CurrentPayType, :RequestId
-        
+
         def initialize(paytype=nil, billingcycle=nil, stattype=nil, regiontype=nil, currentpaytype=nil, requestid=nil)
           @PayType = paytype
           @BillingCycle = billingcycle
@@ -5109,7 +5109,7 @@ module TencentCloud
       # DescribePurgeQuota请求参数结构体
       class DescribePurgeQuotaRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -5127,7 +5127,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UrlPurge, :PathPurge, :RequestId
-        
+
         def initialize(urlpurge=nil, pathpurge=nil, requestid=nil)
           @UrlPurge = urlpurge
           @PathPurge = pathpurge
@@ -5186,7 +5186,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :PurgeType, :StartTime, :EndTime, :TaskId, :Offset, :Limit, :Keyword, :Status, :Area
-        
+
         def initialize(purgetype=nil, starttime=nil, endtime=nil, taskid=nil, offset=nil, limit=nil, keyword=nil, status=nil, area=nil)
           @PurgeType = purgetype
           @StartTime = starttime
@@ -5224,7 +5224,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PurgeLogs, :TotalCount, :RequestId
-        
+
         def initialize(purgelogs=nil, totalcount=nil, requestid=nil)
           @PurgeLogs = purgelogs
           @TotalCount = totalcount
@@ -5248,7 +5248,7 @@ module TencentCloud
       # DescribePushQuota请求参数结构体
       class DescribePushQuotaRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -5264,7 +5264,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UrlPush, :RequestId
-        
+
         def initialize(urlpush=nil, requestid=nil)
           @UrlPush = urlpush
           @RequestId = requestid
@@ -5311,7 +5311,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :StartTime, :EndTime, :TaskId, :Keyword, :Offset, :Limit, :Area, :Status
-        
+
         def initialize(starttime=nil, endtime=nil, taskid=nil, keyword=nil, offset=nil, limit=nil, area=nil, status=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -5347,7 +5347,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PushLogs, :TotalCount, :RequestId
-        
+
         def initialize(pushlogs=nil, totalcount=nil, requestid=nil)
           @PushLogs = pushlogs
           @TotalCount = totalcount
@@ -5397,7 +5397,7 @@ module TencentCloud
         # @type Project: Integer
 
         attr_accessor :StartTime, :EndTime, :ReportType, :Area, :Offset, :Limit, :Project
-        
+
         def initialize(starttime=nil, endtime=nil, reporttype=nil, area=nil, offset=nil, limit=nil, project=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -5429,7 +5429,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainReport, :ProjectReport, :RequestId
-        
+
         def initialize(domainreport=nil, projectreport=nil, requestid=nil)
           @DomainReport = domainreport
           @ProjectReport = projectreport
@@ -5471,7 +5471,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :StartTime, :EndTime, :Area, :Interval, :Domains
-        
+
         def initialize(starttime=nil, endtime=nil, area=nil, interval=nil, domains=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -5499,7 +5499,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :Interval, :RequestId
-        
+
         def initialize(data=nil, interval=nil, requestid=nil)
           @Data = data
           @Interval = interval
@@ -5611,7 +5611,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :BotType, :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :SortBy, :FilterName, :FilterAction, :FilterIp, :Domains
-        
+
         def initialize(bottype=nil, domain=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, area=nil, sortby=nil, filtername=nil, filteraction=nil, filterip=nil, domains=nil)
           @BotType = bottype
           @Domain = domain
@@ -5660,7 +5660,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :TotalCount, :RequestId
-        
+
         def initialize(data=nil, totalcount=nil, requestid=nil)
           @Data = data
           @TotalCount = totalcount
@@ -5687,7 +5687,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -5716,7 +5716,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Acl, :Waf, :CC, :Ddos, :Bot, :Status, :RequestId
-        
+
         def initialize(acl=nil, waf=nil, cc=nil, ddos=nil, bot=nil, status=nil, requestid=nil)
           @Acl = acl
           @Waf = waf
@@ -5767,7 +5767,7 @@ module TencentCloud
         # @type Sequence: String
 
         attr_accessor :Offset, :Limit, :Filters, :Order, :Sequence
-        
+
         def initialize(offset=nil, limit=nil, filters=nil, order=nil, sequence=nil)
           @Offset = offset
           @Limit = limit
@@ -5804,7 +5804,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IpStrategyList, :TotalCount, :RequestId
-        
+
         def initialize(ipstrategylist=nil, totalcount=nil, requestid=nil)
           @IpStrategyList = ipstrategylist
           @TotalCount = totalcount
@@ -5871,7 +5871,7 @@ module TencentCloud
         # @type DefenceMode: String
 
         attr_accessor :StartTime, :EndTime, :Mode, :Metric, :Filter, :Domain, :AttackType, :DefenceMode
-        
+
         def initialize(starttime=nil, endtime=nil, mode=nil, metric=nil, filter=nil, domain=nil, attacktype=nil, defencemode=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -5912,7 +5912,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TopTypeData, :TopIpData, :Mode, :TopUrlData, :RequestId
-        
+
         def initialize(toptypedata=nil, topipdata=nil, mode=nil, topurldata=nil, requestid=nil)
           @TopTypeData = toptypedata
           @TopIpData = topipdata
@@ -5984,7 +5984,7 @@ module TencentCloud
         # @type Product: String
 
         attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Area, :Product
-        
+
         def initialize(starttime=nil, endtime=nil, metric=nil, filter=nil, domains=nil, project=nil, detail=nil, area=nil, product=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -6018,7 +6018,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -6053,7 +6053,7 @@ module TencentCloud
         # @type SortBy: String
 
         attr_accessor :Offset, :Limit, :SortBy
-        
+
         def initialize(offset=nil, limit=nil, sortby=nil)
           @Offset = offset
           @Limit = limit
@@ -6083,7 +6083,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TrafficPackages, :ExpiringCount, :EnabledCount, :PaidCount, :RequestId
-        
+
         def initialize(totalcount=nil, trafficpackages=nil, expiringcount=nil, enabledcount=nil, paidcount=nil, requestid=nil)
           @TotalCount = totalcount
           @TrafficPackages = trafficpackages
@@ -6120,7 +6120,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :Offset, :Limit, :Domains
-        
+
         def initialize(offset=nil, limit=nil, domains=nil)
           @Offset = offset
           @Limit = limit
@@ -6145,7 +6145,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UrlRecordList, :TotalCount, :RequestId
-        
+
         def initialize(urlrecordlist=nil, totalcount=nil, requestid=nil)
           @UrlRecordList = urlrecordlist
           @TotalCount = totalcount
@@ -6213,7 +6213,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :StartTime, :EndTime, :Interval, :Domain, :AttackType, :DefenceMode, :Area, :AttackTypes, :Domains
-        
+
         def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, attacktype=nil, defencemode=nil, area=nil, attacktypes=nil, domains=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -6249,7 +6249,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :Interval, :RequestId
-        
+
         def initialize(data=nil, interval=nil, requestid=nil)
           @Data = data
           @Interval = interval
@@ -6490,7 +6490,7 @@ module TencentCloud
         # @type OthersPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OthersPrivateAccess`
 
         attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling, :OthersPrivateAccess
-        
+
         def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil, othersprivateaccess=nil)
           @ResourceId = resourceid
           @AppId = appid
@@ -6804,7 +6804,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Data, :Status
-        
+
         def initialize(data=nil, status=nil)
           @Data = data
           @Status = status
@@ -6848,7 +6848,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :DiagnoseUrl, :DiagnoseLink, :CreateTime, :ExpireDate, :VisitCount, :ClientList, :Area
-        
+
         def initialize(diagnoseurl=nil, diagnoselink=nil, createtime=nil, expiredate=nil, visitcount=nil, clientlist=nil, area=nil)
           @DiagnoseUrl = diagnoseurl
           @DiagnoseLink = diagnoselink
@@ -6901,7 +6901,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :DiagnoseTag, :ReportId, :ClientInfo, :FinalDiagnose, :CreateTime
-        
+
         def initialize(diagnosetag=nil, reportid=nil, clientinfo=nil, finaldiagnose=nil, createtime=nil)
           @DiagnoseTag = diagnosetag
           @ReportId = reportid
@@ -6942,7 +6942,7 @@ module TencentCloud
         # @type ValueText: String
 
         attr_accessor :Key, :KeyText, :Value, :ValueText
-        
+
         def initialize(key=nil, keytext=nil, value=nil, valuetext=nil)
           @Key = key
           @KeyText = keytext
@@ -6965,7 +6965,7 @@ module TencentCloud
         # @type Urls: Array
 
         attr_accessor :Urls
-        
+
         def initialize(urls=nil)
           @Urls = urls
         end
@@ -6987,7 +6987,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CacheOptResult, :TaskId, :RequestId
-        
+
         def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
           @CacheOptResult = cacheoptresult
           @TaskId = taskid
@@ -7014,7 +7014,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
-        
+
         def initialize(logsetid=nil, topicid=nil, channel=nil)
           @LogsetId = logsetid
           @TopicId = topicid
@@ -7034,7 +7034,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -7072,7 +7072,7 @@ module TencentCloud
         # @type IspName: String
 
         attr_accessor :Domain, :Protocol, :IpProtocol, :StartTime, :EndTime, :Interval, :Metric, :District, :Isp, :DataPoints, :DistrictName, :IspName
-        
+
         def initialize(domain=nil, protocol=nil, ipprotocol=nil, starttime=nil, endtime=nil, interval=nil, metric=nil, district=nil, isp=nil, datapoints=nil, districtname=nil, ispname=nil)
           @Domain = domain
           @Protocol = protocol
@@ -7112,7 +7112,7 @@ module TencentCloud
         # @type Area: Array
 
         attr_accessor :Domain, :Area
-        
+
         def initialize(domain=nil, area=nil)
           @Domain = domain
           @Area = area
@@ -7144,7 +7144,7 @@ module TencentCloud
         # @type Isp: String
 
         attr_accessor :Domain, :Count, :Value, :Country, :Province, :Isp
-        
+
         def initialize(domain=nil, count=nil, value=nil, country=nil, province=nil, isp=nil)
           @Domain = domain
           @Count = count
@@ -7186,7 +7186,7 @@ module TencentCloud
         # @type Fuzzy: Boolean
 
         attr_accessor :Name, :Value, :Fuzzy
-        
+
         def initialize(name=nil, value=nil, fuzzy=nil)
           @Name = name
           @Value = value
@@ -7219,7 +7219,7 @@ module TencentCloud
         # @type FileSize: Integer
 
         attr_accessor :StartTime, :EndTime, :LogPath, :Area, :LogName, :FileSize
-        
+
         def initialize(starttime=nil, endtime=nil, logpath=nil, area=nil, logname=nil, filesize=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -7250,7 +7250,7 @@ module TencentCloud
         # @type CappingRules: Array
 
         attr_accessor :Switch, :CappingRules
-        
+
         def initialize(switch=nil, cappingrules=nil)
           @Switch = switch
           @CappingRules = cappingrules
@@ -7277,7 +7277,7 @@ module TencentCloud
         # @type ReferenceDomain: String
 
         attr_accessor :Domain, :ReferenceDomain
-        
+
         def initialize(domain=nil, referencedomain=nil)
           @Domain = domain
           @ReferenceDomain = referencedomain
@@ -7295,7 +7295,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -7318,7 +7318,7 @@ module TencentCloud
         # @type Fuzzy: Boolean
 
         attr_accessor :Name, :Value, :Fuzzy
-        
+
         def initialize(name=nil, value=nil, fuzzy=nil)
           @Name = name
           @Value = value
@@ -7352,7 +7352,7 @@ module TencentCloud
         # @type StatusDesc: String
 
         attr_accessor :Apk, :DstDir, :UploadTime, :Status, :SrcDir, :StatusDesc
-        
+
         def initialize(apk=nil, dstdir=nil, uploadtime=nil, status=nil, srcdir=nil, statusdesc=nil)
           @Apk = apk
           @DstDir = dstdir
@@ -7380,7 +7380,7 @@ module TencentCloud
         # @type Date: String
 
         attr_accessor :Urls, :Date
-        
+
         def initialize(urls=nil, date=nil)
           @Urls = urls
           @Date = date
@@ -7404,7 +7404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CacheOptResult, :TaskId, :RequestId
-        
+
         def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
           @CacheOptResult = cacheoptresult
           @TaskId = taskid
@@ -7431,7 +7431,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
-        
+
         def initialize(logsetid=nil, topicid=nil, channel=nil)
           @LogsetId = logsetid
           @TopicId = topicid
@@ -7451,7 +7451,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -7473,7 +7473,7 @@ module TencentCloud
         # @type PageRules: Array
 
         attr_accessor :Switch, :PageRules
-        
+
         def initialize(switch=nil, pagerules=nil)
           @Switch = switch
           @PageRules = pagerules
@@ -7505,7 +7505,7 @@ module TencentCloud
         # @type RedirectUrl: String
 
         attr_accessor :StatusCode, :RedirectCode, :RedirectUrl
-        
+
         def initialize(statuscode=nil, redirectcode=nil, redirecturl=nil)
           @StatusCode = statuscode
           @RedirectCode = redirectcode
@@ -7527,7 +7527,7 @@ module TencentCloud
         # @type Request: Integer
 
         attr_accessor :Datetime, :Request
-        
+
         def initialize(datetime=nil, request=nil)
           @Datetime = datetime
           @Request = request
@@ -7549,7 +7549,7 @@ module TencentCloud
         # @type Topics: Array
 
         attr_accessor :Logset, :Topics
-        
+
         def initialize(logset=nil, topics=nil)
           @Logset = logset
           @Topics = topics
@@ -7582,7 +7582,7 @@ module TencentCloud
         # @type RedirectConfig: :class:`Tencentcloud::Cdn.v20180606.models.RedirectConfig`
 
         attr_accessor :Switch, :RedirectConfig
-        
+
         def initialize(switch=nil, redirectconfig=nil)
           @Switch = switch
           @RedirectConfig = redirectconfig
@@ -7618,7 +7618,7 @@ module TencentCloud
         # @type CarryHeaders: String
 
         attr_accessor :Switch, :RedirectType, :RedirectStatusCode, :CarryHeaders
-        
+
         def initialize(switch=nil, redirecttype=nil, redirectstatuscode=nil, carryheaders=nil)
           @Switch = switch
           @RedirectType = redirecttype
@@ -7654,7 +7654,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :Url, :StartTime, :EndTime, :Status, :Offset, :Limit, :TaskId
-        
+
         def initialize(url=nil, starttime=nil, endtime=nil, status=nil, offset=nil, limit=nil, taskid=nil)
           @Url = url
           @StartTime = starttime
@@ -7688,7 +7688,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UrlRecordList, :TotalCount, :RequestId
-        
+
         def initialize(urlrecordlist=nil, totalcount=nil, requestid=nil)
           @UrlRecordList = urlrecordlist
           @TotalCount = totalcount
@@ -7718,7 +7718,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -7736,7 +7736,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -7760,7 +7760,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Switch, :Value
-        
+
         def initialize(switch=nil, value=nil)
           @Switch = switch
           @Value = value
@@ -7782,7 +7782,7 @@ module TencentCloud
         # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfig`
 
         attr_accessor :Switch, :CacheConfig
-        
+
         def initialize(switch=nil, cacheconfig=nil)
           @Switch = switch
           @CacheConfig = cacheconfig
@@ -7811,7 +7811,7 @@ module TencentCloud
         # @type IncludeSubDomains: String
 
         attr_accessor :Switch, :MaxAge, :IncludeSubDomains
-        
+
         def initialize(switch=nil, maxage=nil, includesubdomains=nil)
           @Switch = switch
           @MaxAge = maxage
@@ -7857,7 +7857,7 @@ module TencentCloud
         # @type RulePaths: Array
 
         attr_accessor :HeaderMode, :HeaderName, :HeaderValue, :RuleType, :RulePaths
-        
+
         def initialize(headermode=nil, headername=nil, headervalue=nil, ruletype=nil, rulepaths=nil)
           @HeaderMode = headermode
           @HeaderName = headername
@@ -7885,7 +7885,7 @@ module TencentCloud
         # @type HeaderValue: String
 
         attr_accessor :HeaderMode, :HeaderName, :HeaderValue
-        
+
         def initialize(headermode=nil, headername=nil, headervalue=nil)
           @HeaderMode = headermode
           @HeaderName = headername
@@ -7950,7 +7950,7 @@ module TencentCloud
         # @type TlsVersion: Array
 
         attr_accessor :Switch, :Http2, :OcspStapling, :VerifyClient, :CertInfo, :ClientCertInfo, :Spdy, :SslStatus, :Hsts, :TlsVersion
-        
+
         def initialize(switch=nil, http2=nil, ocspstapling=nil, verifyclient=nil, certinfo=nil, clientcertinfo=nil, spdy=nil, sslstatus=nil, hsts=nil, tlsversion=nil)
           @Switch = switch
           @Http2 = http2
@@ -7995,7 +7995,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -8056,7 +8056,7 @@ module TencentCloud
         # @type AutoExtension: Boolean
 
         attr_accessor :Id, :Type, :Size, :SizeUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :Channel, :LifeTimeMonth, :RefundAvailable, :ConfigId, :TrueEnableTime, :TrueExpireTime, :Area, :ContractExtension, :ExtensionAvailable, :ExtensionMode, :AutoExtension
-        
+
         def initialize(id=nil, type=nil, size=nil, sizeused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, channel=nil, lifetimemonth=nil, refundavailable=nil, configid=nil, trueenabletime=nil, trueexpiretime=nil, area=nil, contractextension=nil, extensionavailable=nil, extensionmode=nil, autoextension=nil)
           @Id = id
           @Type = type
@@ -8119,7 +8119,7 @@ module TencentCloud
         # @type Bucket: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey, :Bucket
-        
+
         def initialize(switch=nil, accesskey=nil, secretkey=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
@@ -8151,7 +8151,7 @@ module TencentCloud
         # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
 
         attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter
-        
+
         def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil)
           @WebpAdapter = webpadapter
           @TpgAdapter = tpgadapter
@@ -8203,7 +8203,7 @@ module TencentCloud
         # @type ReturnCode: Integer
 
         attr_accessor :Switch, :FilterType, :Filters, :FilterRules, :ReturnCode
-        
+
         def initialize(switch=nil, filtertype=nil, filters=nil, filterrules=nil, returncode=nil)
           @Switch = switch
           @FilterType = filtertype
@@ -8256,7 +8256,7 @@ module TencentCloud
         # @type RulePaths: Array
 
         attr_accessor :FilterType, :Filters, :RuleType, :RulePaths
-        
+
         def initialize(filtertype=nil, filters=nil, ruletype=nil, rulepaths=nil)
           @FilterType = filtertype
           @Filters = filters
@@ -8284,7 +8284,7 @@ module TencentCloud
         # @type Qps: Integer
 
         attr_accessor :Switch, :Qps
-        
+
         def initialize(switch=nil, qps=nil)
           @Switch = switch
           @Qps = qps
@@ -8315,7 +8315,7 @@ module TencentCloud
         # @type Ipv6: String
 
         attr_accessor :Ip, :District, :Isp, :City, :Status, :Ipv6
-        
+
         def initialize(ip=nil, district=nil, isp=nil, city=nil, status=nil, ipv6=nil)
           @Ip = ip
           @District = district
@@ -8344,7 +8344,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -8363,7 +8363,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -8405,7 +8405,7 @@ module TencentCloud
         # @type RuleTag: String
 
         attr_accessor :RulePaths, :RuleType, :FullUrlCache, :IgnoreCase, :QueryString, :RuleTag
-        
+
         def initialize(rulepaths=nil, ruletype=nil, fullurlcache=nil, ignorecase=nil, querystring=nil, ruletag=nil)
           @RulePaths = rulepaths
           @RuleType = ruletype
@@ -8434,7 +8434,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :Channel
-        
+
         def initialize(channel=nil)
           @Channel = channel
         end
@@ -8458,7 +8458,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Logset, :Topics, :ExtraLogset, :RequestId
-        
+
         def initialize(logset=nil, topics=nil, extralogset=nil, requestid=nil)
           @Logset = logset
           @Topics = topics
@@ -8501,7 +8501,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
-        
+
         def initialize(logsetid=nil, topicid=nil, channel=nil)
           @LogsetId = logsetid
           @TopicId = topicid
@@ -8536,7 +8536,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppId, :Channel, :LogsetId, :TopicId, :DomainAreaConfigs, :TopicName, :UpdateTime, :RequestId
-        
+
         def initialize(appid=nil, channel=nil, logsetid=nil, topicid=nil, domainareaconfigs=nil, topicname=nil, updatetime=nil, requestid=nil)
           @AppId = appid
           @Channel = channel
@@ -8577,7 +8577,7 @@ module TencentCloud
         # @type Origin: String
 
         attr_accessor :KeyWords, :DiagnoseLink, :Origin
-        
+
         def initialize(keywords=nil, diagnoselink=nil, origin=nil)
           @KeyWords = keywords
           @DiagnoseLink = diagnoselink
@@ -8599,7 +8599,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -8628,7 +8628,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Offset, :Limit, :Domain
-        
+
         def initialize(offset=nil, limit=nil, domain=nil)
           @Offset = offset
           @Limit = limit
@@ -8654,7 +8654,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DomainList, :TotalCount, :RequestId
-        
+
         def initialize(domainlist=nil, totalcount=nil, requestid=nil)
           @DomainList = domainlist
           @TotalCount = totalcount
@@ -8683,7 +8683,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Source, :Area
-        
+
         def initialize(source=nil, area=nil)
           @Source = source
           @Area = area
@@ -8705,7 +8705,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskList, :TotalCount, :RequestId
-        
+
         def initialize(tasklist=nil, totalcount=nil, requestid=nil)
           @TaskList = tasklist
           @TotalCount = totalcount
@@ -8745,7 +8745,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :TopCount, :StartTime, :EndTime, :Area, :Metric, :Domains
-        
+
         def initialize(topcount=nil, starttime=nil, endtime=nil, area=nil, metric=nil, domains=nil)
           @TopCount = topcount
           @StartTime = starttime
@@ -8773,7 +8773,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -8811,7 +8811,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :TopCount, :StartTime, :EndTime, :Metric, :Domain, :Domains
-        
+
         def initialize(topcount=nil, starttime=nil, endtime=nil, metric=nil, domain=nil, domains=nil)
           @TopCount = topcount
           @StartTime = starttime
@@ -8839,7 +8839,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -8885,7 +8885,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :Domain, :Metric, :Source, :Domains, :ActionName, :Area
-        
+
         def initialize(starttime=nil, endtime=nil, domain=nil, metric=nil, source=nil, domains=nil, actionname=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -8918,7 +8918,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -8962,7 +8962,7 @@ module TencentCloud
         # @type Sort: String
 
         attr_accessor :LogsetId, :TopicIds, :StartTime, :EndTime, :Domain, :Url, :Channel, :Limit, :Sort
-        
+
         def initialize(logsetid=nil, topicids=nil, starttime=nil, endtime=nil, domain=nil, url=nil, channel=nil, limit=nil, sort=nil)
           @LogsetId = logsetid
           @TopicIds = topicids
@@ -9000,7 +9000,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :TotalCount, :IpCount, :RequestId
-        
+
         def initialize(data=nil, totalcount=nil, ipcount=nil, requestid=nil)
           @Data = data
           @TotalCount = totalcount
@@ -9036,7 +9036,7 @@ module TencentCloud
         # @type Metric: String
 
         attr_accessor :StartTime, :EndTime, :TopCount, :Metric
-        
+
         def initialize(starttime=nil, endtime=nil, topcount=nil, metric=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -9062,7 +9062,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :IPData, :RequestId
-        
+
         def initialize(data=nil, ipdata=nil, requestid=nil)
           @Data = data
           @IPData = ipdata
@@ -9149,7 +9149,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Code, :Area, :AreaType, :Product, :Limit
-        
+
         def initialize(starttime=nil, endtime=nil, metric=nil, filter=nil, domains=nil, project=nil, detail=nil, code=nil, area=nil, areatype=nil, product=nil, limit=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -9189,7 +9189,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -9253,7 +9253,7 @@ module TencentCloud
         # @type Domains: Array
 
         attr_accessor :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Metric, :Area, :AttackTypes, :Domains
-        
+
         def initialize(starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, metric=nil, area=nil, attacktypes=nil, domains=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -9293,7 +9293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TopTypeData, :TopIpData, :TopUrlData, :TopDomainData, :RequestId
-        
+
         def initialize(toptypedata=nil, topipdata=nil, topurldata=nil, topdomaindata=nil, requestid=nil)
           @TopTypeData = toptypedata
           @TopIpData = topipdata
@@ -9366,7 +9366,7 @@ module TencentCloud
         # @type RegionEn: String
 
         attr_accessor :AppId, :Channel, :LogsetId, :LogsetName, :IsDefault, :LogsetSavePeriod, :CreateTime, :Region, :Deleted, :RegionEn
-        
+
         def initialize(appid=nil, channel=nil, logsetid=nil, logsetname=nil, isdefault=nil, logsetsaveperiod=nil, createtime=nil, region=nil, deleted=nil, regionen=nil)
           @AppId = appid
           @Channel = channel
@@ -9488,7 +9488,7 @@ module TencentCloud
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
         attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
-        
+
         def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
@@ -9645,7 +9645,7 @@ module TencentCloud
         # @type DomainAreaConfigs: Array
 
         attr_accessor :LogsetId, :TopicId, :Channel, :DomainAreaConfigs
-        
+
         def initialize(logsetid=nil, topicid=nil, channel=nil, domainareaconfigs=nil)
           @LogsetId = logsetid
           @TopicId = topicid
@@ -9674,7 +9674,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -9692,7 +9692,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Id, :Name
-        
+
         def initialize(id=nil, name=nil)
           @Id = id
           @Name = name
@@ -9719,7 +9719,7 @@ module TencentCloud
         # @type MaxAgeCodeRule: :class:`Tencentcloud::Cdn.v20180606.models.MaxAgeCodeRule`
 
         attr_accessor :Switch, :MaxAgeRules, :MaxAgeCodeRule
-        
+
         def initialize(switch=nil, maxagerules=nil, maxagecoderule=nil)
           @Switch = switch
           @MaxAgeRules = maxagerules
@@ -9752,7 +9752,7 @@ module TencentCloud
         # @type StatusCodes: Array
 
         attr_accessor :Action, :StatusCodes
-        
+
         def initialize(action=nil, statuscodes=nil)
           @Action = action
           @StatusCodes = statuscodes
@@ -9789,7 +9789,7 @@ module TencentCloud
         # @type FollowOrigin: String
 
         attr_accessor :MaxAgeType, :MaxAgeContents, :MaxAgeTime, :FollowOrigin
-        
+
         def initialize(maxagetype=nil, maxagecontents=nil, maxagetime=nil, followorigin=nil)
           @MaxAgeType = maxagetype
           @MaxAgeContents = maxagecontents
@@ -9819,7 +9819,7 @@ module TencentCloud
         # @type ExecutionStatusDesc: String
 
         attr_accessor :ExecutionTime, :ExecutionStatus, :Id, :ExecutionStatusDesc
-        
+
         def initialize(executiontime=nil, executionstatus=nil, id=nil, executionstatusdesc=nil)
           @ExecutionTime = executiontime
           @ExecutionStatus = executionstatus
@@ -9841,7 +9841,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -9859,7 +9859,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -9972,7 +9972,7 @@ module TencentCloud
         # @type OriginCompany: String
 
         attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :Sni, :AdvanceHttps, :OriginCompany
-        
+
         def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, sni=nil, advancehttps=nil, origincompany=nil)
           @Origins = origins
           @OriginType = origintype
@@ -10041,7 +10041,7 @@ module TencentCloud
         # @type TypeA: :class:`Tencentcloud::Cdn.v20180606.models.OriginAuthenticationTypeA`
 
         attr_accessor :Switch, :TypeA
-        
+
         def initialize(switch=nil, typea=nil)
           @Switch = switch
           @TypeA = typea
@@ -10063,7 +10063,7 @@ module TencentCloud
         # @type SecretKey: String
 
         attr_accessor :SecretKey
-        
+
         def initialize(secretkey=nil)
           @SecretKey = secretkey
         end
@@ -10081,7 +10081,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -10097,7 +10097,7 @@ module TencentCloud
         # @type Ip: String
 
         attr_accessor :Ip
-        
+
         def initialize(ip=nil)
           @Ip = ip
         end
@@ -10120,7 +10120,7 @@ module TencentCloud
         # @type OptimizationType: String
 
         attr_accessor :Switch, :OptimizationType
-        
+
         def initialize(switch=nil, optimizationtype=nil)
           @Switch = switch
           @OptimizationType = optimizationtype
@@ -10142,7 +10142,7 @@ module TencentCloud
         # @type ReceiveTimeout: Integer
 
         attr_accessor :ConnectTimeout, :ReceiveTimeout
-        
+
         def initialize(connecttimeout=nil, receivetimeout=nil)
           @ConnectTimeout = connecttimeout
           @ReceiveTimeout = receivetimeout
@@ -10165,7 +10165,7 @@ module TencentCloud
         # @type ServerName: String
 
         attr_accessor :Switch, :ServerName
-        
+
         def initialize(switch=nil, servername=nil)
           @Switch = switch
           @ServerName = servername
@@ -10197,7 +10197,7 @@ module TencentCloud
         # @type Bucket: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey, :Region, :Bucket
-        
+
         def initialize(switch=nil, accesskey=nil, secretkey=nil, region=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
@@ -10235,7 +10235,7 @@ module TencentCloud
         # @type Bucket: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey, :Region, :Bucket
-        
+
         def initialize(switch=nil, accesskey=nil, secretkey=nil, region=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
@@ -10347,7 +10347,7 @@ module TencentCloud
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
         attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
-        
+
         def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
@@ -10510,7 +10510,7 @@ module TencentCloud
         # @type Origin: Array
 
         attr_accessor :RuleType, :RulePaths, :Origin
-        
+
         def initialize(ruletype=nil, rulepaths=nil, origin=nil)
           @RuleType = ruletype
           @RulePaths = rulepaths
@@ -10559,7 +10559,7 @@ module TencentCloud
         # @type FullMatch: Boolean
 
         attr_accessor :Regex, :Path, :Origin, :ServerName, :OriginArea, :ForwardUri, :RequestHeaders, :FullMatch
-        
+
         def initialize(regex=nil, path=nil, origin=nil, servername=nil, originarea=nil, forwarduri=nil, requestheaders=nil, fullmatch=nil)
           @Regex = regex
           @Path = path
@@ -10600,7 +10600,7 @@ module TencentCloud
         # @type MaxSize: Integer
 
         attr_accessor :Switch, :MaxSize
-        
+
         def initialize(switch=nil, maxsize=nil)
           @Switch = switch
           @MaxSize = maxsize
@@ -10630,7 +10630,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Paths, :FlushType, :UrlEncode, :Area
-        
+
         def initialize(paths=nil, flushtype=nil, urlencode=nil, area=nil)
           @Paths = paths
           @FlushType = flushtype
@@ -10654,7 +10654,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -10689,7 +10689,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :TaskId, :Url, :Status, :PurgeType, :FlushType, :CreateTime
-        
+
         def initialize(taskid=nil, url=nil, status=nil, purgetype=nil, flushtype=nil, createtime=nil)
           @TaskId = taskid
           @Url = url
@@ -10723,7 +10723,7 @@ module TencentCloud
         # @type UrlEncode: Boolean
 
         attr_accessor :Urls, :Area, :UrlEncode
-        
+
         def initialize(urls=nil, area=nil, urlencode=nil)
           @Urls = urls
           @Area = area
@@ -10745,7 +10745,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -10783,7 +10783,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :TaskId, :Url, :Status, :Percent, :CreateTime, :Area, :UpdateTime
-        
+
         def initialize(taskid=nil, url=nil, status=nil, percent=nil, createtime=nil, area=nil, updatetime=nil)
           @TaskId = taskid
           @Url = url
@@ -10837,7 +10837,7 @@ module TencentCloud
         # @type UrlEncode: Boolean
 
         attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange, :Headers, :UrlEncode
-        
+
         def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil, headers=nil, urlencode=nil)
           @Urls = urls
           @UserAgent = useragent
@@ -10876,7 +10876,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -10901,7 +10901,7 @@ module TencentCloud
         # @type SecretKey: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey
-        
+
         def initialize(switch=nil, accesskey=nil, secretkey=nil)
           @Switch = switch
           @AccessKey = accesskey
@@ -10937,7 +10937,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Switch, :Reorder, :Action, :Value
-        
+
         def initialize(switch=nil, reorder=nil, action=nil, value=nil)
           @Switch = switch
           @Reorder = reorder
@@ -10961,7 +10961,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -10983,7 +10983,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Batch, :Total, :Available, :Area
-        
+
         def initialize(batch=nil, total=nil, available=nil, area=nil)
           @Batch = batch
           @Total = total
@@ -11010,7 +11010,7 @@ module TencentCloud
         # @type RangeRules: Array
 
         attr_accessor :Switch, :RangeRules
-        
+
         def initialize(switch=nil, rangerules=nil)
           @Switch = switch
           @RangeRules = rangerules
@@ -11049,7 +11049,7 @@ module TencentCloud
         # @type RulePaths: Array
 
         attr_accessor :Switch, :RuleType, :RulePaths
-        
+
         def initialize(switch=nil, ruletype=nil, rulepaths=nil)
           @Switch = switch
           @RuleType = ruletype
@@ -11075,7 +11075,7 @@ module TencentCloud
         # @type FollowRedirectBackupHost: String
 
         attr_accessor :Switch, :FollowRedirectHost, :FollowRedirectBackupHost
-        
+
         def initialize(switch=nil, followredirecthost=nil, followredirectbackuphost=nil)
           @Switch = switch
           @FollowRedirectHost = followredirecthost
@@ -11100,7 +11100,7 @@ module TencentCloud
         # @type RefererRules: Array
 
         attr_accessor :Switch, :RefererRules
-        
+
         def initialize(switch=nil, refererrules=nil)
           @Switch = switch
           @RefererRules = refererrules
@@ -11145,7 +11145,7 @@ module TencentCloud
         # @type AllowEmpty: Boolean
 
         attr_accessor :RuleType, :RulePaths, :RefererType, :Referers, :AllowEmpty
-        
+
         def initialize(ruletype=nil, rulepaths=nil, referertype=nil, referers=nil, allowempty=nil)
           @RuleType = ruletype
           @RulePaths = rulepaths
@@ -11171,7 +11171,7 @@ module TencentCloud
         # @type SubRegionIdList: Array
 
         attr_accessor :RegionId, :SubRegionIdList
-        
+
         def initialize(regionid=nil, subregionidlist=nil)
           @RegionId = regionid
           @SubRegionIdList = subregionidlist
@@ -11200,7 +11200,7 @@ module TencentCloud
         # @type Server: String
 
         attr_accessor :Switch, :RemoteAuthenticationRules, :Server
-        
+
         def initialize(switch=nil, remoteauthenticationrules=nil, server=nil)
           @Switch = switch
           @RemoteAuthenticationRules = remoteauthenticationrules
@@ -11256,7 +11256,7 @@ module TencentCloud
         # @type AuthTimeoutAction: String
 
         attr_accessor :Server, :AuthMethod, :RuleType, :RulePaths, :AuthTimeout, :AuthTimeoutAction
-        
+
         def initialize(server=nil, authmethod=nil, ruletype=nil, rulepaths=nil, authtimeout=nil, authtimeoutaction=nil)
           @Server = server
           @AuthMethod = authmethod
@@ -11292,7 +11292,7 @@ module TencentCloud
         # @type BillingPercentage: Float
 
         attr_accessor :ResourceId, :Resource, :Value, :Percentage, :BillingValue, :BillingPercentage
-        
+
         def initialize(resourceid=nil, resource=nil, value=nil, percentage=nil, billingvalue=nil, billingpercentage=nil)
           @ResourceId = resourceid
           @Resource = resource
@@ -11323,7 +11323,7 @@ module TencentCloud
         # @type HeaderRules: Array
 
         attr_accessor :Switch, :HeaderRules
-        
+
         def initialize(switch=nil, headerrules=nil)
           @Switch = switch
           @HeaderRules = headerrules
@@ -11354,7 +11354,7 @@ module TencentCloud
         # @type BillingData: Array
 
         attr_accessor :Resource, :BillingData
-        
+
         def initialize(resource=nil, billingdata=nil)
           @Resource = resource
           @BillingData = billingdata
@@ -11385,7 +11385,7 @@ module TencentCloud
         # @type CdnData: Array
 
         attr_accessor :Resource, :CdnData
-        
+
         def initialize(resource=nil, cdndata=nil)
           @Resource = resource
           @CdnData = cdndata
@@ -11416,7 +11416,7 @@ module TencentCloud
         # @type OriginData: Array
 
         attr_accessor :Resource, :OriginData
-        
+
         def initialize(resource=nil, origindata=nil)
           @Resource = resource
           @OriginData = origindata
@@ -11446,7 +11446,7 @@ module TencentCloud
         # @type HeaderRules: Array
 
         attr_accessor :Switch, :HeaderRules
-        
+
         def initialize(switch=nil, headerrules=nil)
           @Switch = switch
           @HeaderRules = headerrules
@@ -11473,7 +11473,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -11496,7 +11496,7 @@ module TencentCloud
         # @type Path: String
 
         attr_accessor :Switch, :Path
-        
+
         def initialize(switch=nil, path=nil)
           @Switch = switch
           @Path = path
@@ -11533,7 +11533,7 @@ module TencentCloud
         # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.RuleCacheConfig`
 
         attr_accessor :RulePaths, :RuleType, :CacheConfig
-        
+
         def initialize(rulepaths=nil, ruletype=nil, cacheconfig=nil)
           @RulePaths = rulepaths
           @RuleType = ruletype
@@ -11563,7 +11563,7 @@ module TencentCloud
         # @type FollowOrigin: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfigFollowOrigin`
 
         attr_accessor :Cache, :NoCache, :FollowOrigin
-        
+
         def initialize(cache=nil, nocache=nil, followorigin=nil)
           @Cache = cache
           @NoCache = nocache
@@ -11597,7 +11597,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :Switch, :Content
-        
+
         def initialize(switch=nil, content=nil)
           @Switch = switch
           @Content = content
@@ -11625,7 +11625,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Switch, :Action, :Value
-        
+
         def initialize(switch=nil, action=nil, value=nil)
           @Switch = switch
           @Action = action
@@ -11656,7 +11656,7 @@ module TencentCloud
         # @type AdvancedScriptData: Array
 
         attr_accessor :Switch, :ScriptData, :ErrorPage, :AdvancedScriptData
-        
+
         def initialize(switch=nil, scriptdata=nil, errorpage=nil, advancedscriptdata=nil)
           @Switch = switch
           @ScriptData = scriptdata
@@ -11704,7 +11704,7 @@ module TencentCloud
         # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ScdnErrorPage`
 
         attr_accessor :RuleName, :Configure, :Result, :Status, :ErrorPage
-        
+
         def initialize(rulename=nil, configure=nil, result=nil, status=nil, errorpage=nil)
           @RuleName = rulename
           @Configure = configure
@@ -11742,7 +11742,7 @@ module TencentCloud
         # @type MatchValue: String
 
         attr_accessor :MatchKey, :LogiOperator, :MatchValue
-        
+
         def initialize(matchkey=nil, logioperator=nil, matchvalue=nil)
           @MatchKey = matchkey
           @LogiOperator = logioperator
@@ -11770,7 +11770,7 @@ module TencentCloud
         # @type BotJavaScript: Array
 
         attr_accessor :Switch, :BotCookie, :BotJavaScript
-        
+
         def initialize(switch=nil, botcookie=nil, botjavascript=nil)
           @Switch = switch
           @BotCookie = botcookie
@@ -11833,7 +11833,7 @@ module TencentCloud
         # @type RedirectUrl: String
 
         attr_accessor :RuleType, :RuleValue, :Qps, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl
-        
+
         def initialize(ruletype=nil, rulevalue=nil, qps=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil)
           @RuleType = ruletype
           @RuleValue = rulevalue
@@ -11876,7 +11876,7 @@ module TencentCloud
         # @type GlobalAdvancedRules: Array
 
         attr_accessor :Switch, :Rules, :AdvancedRules, :GlobalAdvancedRules
-        
+
         def initialize(switch=nil, rules=nil, advancedrules=nil, globaladvancedrules=nil)
           @Switch = switch
           @Rules = rules
@@ -11921,7 +11921,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -11959,7 +11959,7 @@ module TencentCloud
         # @type WafLevel: Integer
 
         attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot, :Area, :WafLevel
-        
+
         def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil, area=nil, waflevel=nil)
           @Domain = domain
           @Status = status
@@ -11999,7 +11999,7 @@ module TencentCloud
         # @type RedirectUrl: String
 
         attr_accessor :RedirectCode, :RedirectUrl
-        
+
         def initialize(redirectcode=nil, redirecturl=nil)
           @RedirectCode = redirectcode
           @RedirectUrl = redirecturl
@@ -12021,7 +12021,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Operator, :Value
-        
+
         def initialize(key=nil, operator=nil, value=nil)
           @Key = key
           @Operator = operator
@@ -12055,7 +12055,7 @@ module TencentCloud
         # @type RuleValue: Array
 
         attr_accessor :Domain, :StrategyId, :IpList, :UpdateTime, :Remark, :RuleType, :RuleValue
-        
+
         def initialize(domain=nil, strategyid=nil, iplist=nil, updatetime=nil, remark=nil, ruletype=nil, rulevalue=nil)
           @Domain = domain
           @StrategyId = strategyid
@@ -12088,7 +12088,7 @@ module TencentCloud
         # @type Fuzzy: Boolean
 
         attr_accessor :Name, :Value, :Fuzzy
-        
+
         def initialize(name=nil, value=nil, fuzzy=nil)
           @Name = name
           @Value = value
@@ -12161,7 +12161,7 @@ module TencentCloud
         # @type Area: String
 
         attr_accessor :Domain, :Mode, :StartTime, :EndTime, :CreateTime, :DownloadUrl, :Status, :TaskID, :AttackType, :DefenceMode, :Conditions, :Area
-        
+
         def initialize(domain=nil, mode=nil, starttime=nil, endtime=nil, createtime=nil, downloadurl=nil, status=nil, taskid=nil, attacktype=nil, defencemode=nil, conditions=nil, area=nil)
           @Domain = domain
           @Mode = mode
@@ -12235,7 +12235,7 @@ module TencentCloud
         # @type RuleParam: String
 
         attr_accessor :CaseSensitive, :RuleType, :LogicOperator, :RuleValue, :RuleParam
-        
+
         def initialize(casesensitive=nil, ruletype=nil, logicoperator=nil, rulevalue=nil, ruleparam=nil)
           @CaseSensitive = casesensitive
           @RuleType = ruletype
@@ -12267,7 +12267,7 @@ module TencentCloud
         # @type District: String
 
         attr_accessor :Time, :Value, :Isp, :Ip, :District
-        
+
         def initialize(time=nil, value=nil, isp=nil, ip=nil, district=nil)
           @Time = time
           @Value = value
@@ -12295,7 +12295,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :Domain, :Value, :Percent
-        
+
         def initialize(domain=nil, value=nil, percent=nil)
           @Domain = domain
           @Value = value
@@ -12322,7 +12322,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Url, :Value, :Time, :Domain
-        
+
         def initialize(url=nil, value=nil, time=nil, domain=nil)
           @Url = url
           @Value = value
@@ -12346,7 +12346,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :AttackType, :Value
-        
+
         def initialize(attacktype=nil, value=nil)
           @AttackType = attacktype
           @Value = value
@@ -12388,7 +12388,7 @@ module TencentCloud
         # @type SubRuleSwitch: Array
 
         attr_accessor :Switch, :Mode, :ErrorPage, :WebShellSwitch, :Rules, :Level, :SubRuleSwitch
-        
+
         def initialize(switch=nil, mode=nil, errorpage=nil, webshellswitch=nil, rules=nil, level=nil, subruleswitch=nil)
           @Switch = switch
           @Mode = mode
@@ -12435,7 +12435,7 @@ module TencentCloud
         # @type Operate: String
 
         attr_accessor :AttackType, :Operate
-        
+
         def initialize(attacktype=nil, operate=nil)
           @AttackType = attacktype
           @Operate = operate
@@ -12456,7 +12456,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -12488,7 +12488,7 @@ module TencentCloud
         # @type Sort: String
 
         attr_accessor :LogsetId, :TopicIds, :StartTime, :EndTime, :Limit, :Channel, :Query, :Context, :Sort
-        
+
         def initialize(logsetid=nil, topicids=nil, starttime=nil, endtime=nil, limit=nil, channel=nil, query=nil, context=nil, sort=nil)
           @LogsetId = logsetid
           @TopicIds = topicids
@@ -12522,7 +12522,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Logs, :RequestId
-        
+
         def initialize(logs=nil, requestid=nil)
           @Logs = logs
           @RequestId = requestid
@@ -12545,7 +12545,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -12564,7 +12564,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -12609,7 +12609,7 @@ module TencentCloud
         # @type From: String
 
         attr_accessor :CertId, :CertName, :Certificate, :PrivateKey, :ExpireTime, :DeployTime, :Message, :From
-        
+
         def initialize(certid=nil, certname=nil, certificate=nil, privatekey=nil, expiretime=nil, deploytime=nil, message=nil, from=nil)
           @CertId = certid
           @CertName = certname
@@ -12645,7 +12645,7 @@ module TencentCloud
         # @type Cname: String
 
         attr_accessor :Switch, :Cname
-        
+
         def initialize(switch=nil, cname=nil)
           @Switch = switch
           @Cname = cname
@@ -12695,7 +12695,7 @@ module TencentCloud
         # @type Revalidate: :class:`Tencentcloud::Cdn.v20180606.models.Revalidate`
 
         attr_accessor :CacheRules, :FollowOrigin, :IgnoreCacheControl, :IgnoreSetCookie, :CompareMaxAge, :Revalidate
-        
+
         def initialize(cacherules=nil, followorigin=nil, ignorecachecontrol=nil, ignoresetcookie=nil, comparemaxage=nil, revalidate=nil)
           @CacheRules = cacherules
           @FollowOrigin = followorigin
@@ -12746,7 +12746,7 @@ module TencentCloud
         # @type CacheTime: Integer
 
         attr_accessor :CacheType, :CacheContents, :CacheTime
-        
+
         def initialize(cachetype=nil, cachecontents=nil, cachetime=nil)
           @CacheType = cachetype
           @CacheContents = cachecontents
@@ -12771,7 +12771,7 @@ module TencentCloud
         # @type Sequence: String
 
         attr_accessor :Key, :Sequence
-        
+
         def initialize(key=nil, sequence=nil)
           @Key = key
           @Sequence = sequence
@@ -12793,7 +12793,7 @@ module TencentCloud
         # @type Overseas: :class:`Tencentcloud::Cdn.v20180606.models.OverseaConfig`
 
         attr_accessor :Mainland, :Overseas
-        
+
         def initialize(mainland=nil, overseas=nil)
           @Mainland = mainland
           @Overseas = overseas
@@ -12818,7 +12818,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -12834,7 +12834,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -12850,7 +12850,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -12868,7 +12868,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -12915,7 +12915,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Type, :UnBlockTime, :BpsThreshold, :CounterMeasure, :AlertPercentage, :AlertSwitch, :Metric, :Cycle, :Switch
-        
+
         def initialize(type=nil, unblocktime=nil, bpsthreshold=nil, countermeasure=nil, alertpercentage=nil, alertswitch=nil, metric=nil, cycle=nil, switch=nil)
           @Type = type
           @UnBlockTime = unblocktime
@@ -12953,7 +12953,7 @@ module TencentCloud
         # @type CacheRules: Array
 
         attr_accessor :Switch, :CacheRules
-        
+
         def initialize(switch=nil, cacherules=nil)
           @Switch = switch
           @CacheRules = cacherules
@@ -12981,7 +12981,7 @@ module TencentCloud
         # @type CacheTime: Integer
 
         attr_accessor :StatusCode, :CacheTime
-        
+
         def initialize(statuscode=nil, cachetime=nil)
           @StatusCode = statuscode
           @CacheTime = cachetime
@@ -13000,7 +13000,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -13016,7 +13016,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -13032,7 +13032,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -13050,7 +13050,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -13073,7 +13073,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -13095,7 +13095,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -13116,7 +13116,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -13140,7 +13140,7 @@ module TencentCloud
         # @type DetailData: Array
 
         attr_accessor :Resource, :DetailData
-        
+
         def initialize(resource=nil, detaildata=nil)
           @Resource = resource
           @DetailData = detaildata
@@ -13167,7 +13167,7 @@ module TencentCloud
         # @type DetailData: Array
 
         attr_accessor :Resource, :DetailData
-        
+
         def initialize(resource=nil, detaildata=nil)
           @Resource = resource
           @DetailData = detaildata
@@ -13194,7 +13194,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -13217,7 +13217,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :Name, :Value, :Percent
-        
+
         def initialize(name=nil, value=nil, percent=nil)
           @Name = name
           @Value = value
@@ -13250,7 +13250,7 @@ module TencentCloud
         # @type Deleted: String
 
         attr_accessor :TopicId, :TopicName, :Enabled, :CreateTime, :Channel, :Deleted
-        
+
         def initialize(topicid=nil, topicname=nil, enabled=nil, createtime=nil, channel=nil, deleted=nil)
           @TopicId = topicid
           @TopicName = topicname
@@ -13279,7 +13279,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -13350,7 +13350,7 @@ module TencentCloud
         # @type TrueExpireTime: String
 
         attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId, :ExtensionMode, :TrueEnableTime, :TrueExpireTime
-        
+
         def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil, extensionmode=nil, trueenabletime=nil, trueexpiretime=nil)
           @Id = id
           @Type = type
@@ -13508,7 +13508,7 @@ module TencentCloud
         # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
 
         attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess, :OthersPrivateAccess, :HttpsBilling
-        
+
         def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil, othersprivateaccess=nil, httpsbilling=nil)
           @Domain = domain
           @ProjectId = projectid
@@ -13752,7 +13752,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -13776,7 +13776,7 @@ module TencentCloud
         # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
 
         attr_accessor :Domain, :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter
-        
+
         def initialize(domain=nil, webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil)
           @Domain = domain
           @WebpAdapter = webpadapter
@@ -13812,7 +13812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -13830,7 +13830,7 @@ module TencentCloud
         # @type PayType: String
 
         attr_accessor :Area, :PayType
-        
+
         def initialize(area=nil, paytype=nil)
           @Area = area
           @PayType = paytype
@@ -13848,7 +13848,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -13874,7 +13874,7 @@ module TencentCloud
         # @type Bot: :class:`Tencentcloud::Cdn.v20180606.models.ScdnBotConfig`
 
         attr_accessor :Domain, :Waf, :Acl, :CC, :Ddos, :Bot
-        
+
         def initialize(domain=nil, waf=nil, acl=nil, cc=nil, ddos=nil, bot=nil)
           @Domain = domain
           @Waf = waf
@@ -13917,7 +13917,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -13945,7 +13945,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Status, :RealUrl, :CreateTime, :UpdateTime
-        
+
         def initialize(status=nil, realurl=nil, createtime=nil, updatetime=nil)
           @Status = status
           @RealUrl = realurl
@@ -13972,7 +13972,7 @@ module TencentCloud
         # @type PathRules: Array
 
         attr_accessor :Switch, :PathRules
-        
+
         def initialize(switch=nil, pathrules=nil)
           @Switch = switch
           @PathRules = pathrules
@@ -14007,7 +14007,7 @@ module TencentCloud
         # @type FullMatch: Boolean
 
         attr_accessor :RedirectStatusCode, :Pattern, :RedirectUrl, :RedirectHost, :FullMatch
-        
+
         def initialize(redirectstatuscode=nil, pattern=nil, redirecturl=nil, redirecthost=nil, fullmatch=nil)
           @RedirectStatusCode = redirectstatuscode
           @Pattern = pattern
@@ -14037,7 +14037,7 @@ module TencentCloud
         # @type FilterRules: Array
 
         attr_accessor :Switch, :FilterRules
-        
+
         def initialize(switch=nil, filterrules=nil)
           @Switch = switch
           @FilterRules = filterrules
@@ -14076,7 +14076,7 @@ module TencentCloud
         # @type FilterType: String
 
         attr_accessor :RuleType, :RulePaths, :UserAgents, :FilterType
-        
+
         def initialize(ruletype=nil, rulepaths=nil, useragents=nil, filtertype=nil)
           @RuleType = ruletype
           @RulePaths = rulepaths
@@ -14102,7 +14102,7 @@ module TencentCloud
         # @type VerifyType: String
 
         attr_accessor :Domain, :VerifyType
-        
+
         def initialize(domain=nil, verifytype=nil)
           @Domain = domain
           @VerifyType = verifytype
@@ -14122,7 +14122,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -14142,7 +14142,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end
@@ -14173,7 +14173,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Id, :RealUrl, :DownloadUrl, :UrlStatus, :CreateTime, :UpdateTime
-        
+
         def initialize(id=nil, realurl=nil, downloadurl=nil, urlstatus=nil, createtime=nil, updatetime=nil)
           @Id = id
           @RealUrl = realurl
@@ -14203,7 +14203,7 @@ module TencentCloud
         # @type SubIds: Array
 
         attr_accessor :Switch, :SubIds
-        
+
         def initialize(switch=nil, subids=nil)
           @Switch = switch
           @SubIds = subids
@@ -14227,7 +14227,7 @@ module TencentCloud
         # @type Timeout: Integer
 
         attr_accessor :Switch, :Timeout
-        
+
         def initialize(switch=nil, timeout=nil)
           @Switch = switch
           @Timeout = timeout
@@ -14248,7 +14248,7 @@ module TencentCloud
         # @type Switch: String
 
         attr_accessor :Switch
-        
+
         def initialize(switch=nil)
           @Switch = switch
         end

@@ -25,7 +25,7 @@ module TencentCloud
         # @type SignApplyId: Integer
 
         attr_accessor :SignId, :SignApplyId
-        
+
         def initialize(signid=nil, signapplyid=nil)
           @SignId = signid
           @SignApplyId = signapplyid
@@ -81,7 +81,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :SignName, :SignType, :DocumentType, :International, :UsedMethod, :ProofImage, :CommissionImage, :Remark
-        
+
         def initialize(signname=nil, signtype=nil, documenttype=nil, international=nil, usedmethod=nil, proofimage=nil, commissionimage=nil, remark=nil)
           @SignName = signname
           @SignType = signtype
@@ -113,7 +113,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AddSignStatus, :RequestId
-        
+
         def initialize(addsignstatus=nil, requestid=nil)
           @AddSignStatus = addsignstatus
           @RequestId = requestid
@@ -144,7 +144,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :TemplateName, :TemplateContent, :SmsType, :International, :Remark
-        
+
         def initialize(templatename=nil, templatecontent=nil, smstype=nil, international=nil, remark=nil)
           @TemplateName = templatename
           @TemplateContent = templatecontent
@@ -170,7 +170,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AddTemplateStatus, :RequestId
-        
+
         def initialize(addtemplatestatus=nil, requestid=nil)
           @AddTemplateStatus = addtemplatestatus
           @RequestId = requestid
@@ -191,7 +191,7 @@ module TencentCloud
         # @type TemplateId: String
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -223,7 +223,7 @@ module TencentCloud
         # @type FrequencyLimitCount: Integer
 
         attr_accessor :CallbackCount, :RequestSuccessCount, :CallbackFailCount, :CallbackSuccessCount, :InternalErrorCount, :InvalidNumberCount, :ShutdownErrorCount, :BlackListCount, :FrequencyLimitCount
-        
+
         def initialize(callbackcount=nil, requestsuccesscount=nil, callbackfailcount=nil, callbacksuccesscount=nil, internalerrorcount=nil, invalidnumbercount=nil, shutdownerrorcount=nil, blacklistcount=nil, frequencylimitcount=nil)
           @CallbackCount = callbackcount
           @RequestSuccessCount = requestsuccesscount
@@ -266,7 +266,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :StartDateTime, :EndDataTime, :SmsSdkAppid, :Limit, :Offset
-        
+
         def initialize(startdatetime=nil, enddatatime=nil, smssdkappid=nil, limit=nil, offset=nil)
           @StartDateTime = startdatetime
           @EndDataTime = enddatatime
@@ -292,7 +292,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CallbackStatusStatistics, :RequestId
-        
+
         def initialize(callbackstatusstatistics=nil, requestid=nil)
           @CallbackStatusStatistics = callbackstatusstatistics
           @RequestId = requestid
@@ -315,7 +315,7 @@ module TencentCloud
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
-        
+
         def initialize(deletestatus=nil, deletetime=nil)
           @DeleteStatus = deletestatus
           @DeleteTime = deletetime
@@ -333,7 +333,7 @@ module TencentCloud
         # @type SignId: Integer
 
         attr_accessor :SignId
-        
+
         def initialize(signid=nil)
           @SignId = signid
         end
@@ -351,7 +351,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeleteSignStatus, :RequestId
-        
+
         def initialize(deletesignstatus=nil, requestid=nil)
           @DeleteSignStatus = deletesignstatus
           @RequestId = requestid
@@ -372,7 +372,7 @@ module TencentCloud
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -390,7 +390,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeleteTemplateStatus, :RequestId
-        
+
         def initialize(deletetemplatestatus=nil, requestid=nil)
           @DeleteTemplateStatus = deletetemplatestatus
           @RequestId = requestid
@@ -413,7 +413,7 @@ module TencentCloud
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
-        
+
         def initialize(deletestatus=nil, deletetime=nil)
           @DeleteStatus = deletestatus
           @DeleteTime = deletetime
@@ -446,7 +446,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :SignId, :International, :StatusCode, :ReviewReply, :SignName, :CreateTime
-        
+
         def initialize(signid=nil, international=nil, statuscode=nil, reviewreply=nil, signname=nil, createtime=nil)
           @SignId = signid
           @International = international
@@ -476,7 +476,7 @@ module TencentCloud
         # @type International: Integer
 
         attr_accessor :SignIdSet, :International
-        
+
         def initialize(signidset=nil, international=nil)
           @SignIdSet = signidset
           @International = international
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DescribeSignListStatusSet, :RequestId
-        
+
         def initialize(describesignliststatusset=nil, requestid=nil)
           @DescribeSignListStatusSet = describesignliststatusset
           @RequestId = requestid
@@ -525,7 +525,7 @@ module TencentCloud
         # @type International: Integer
 
         attr_accessor :TemplateIdSet, :International
-        
+
         def initialize(templateidset=nil, international=nil)
           @TemplateIdSet = templateidset
           @International = international
@@ -545,7 +545,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DescribeTemplateStatusSet, :RequestId
-        
+
         def initialize(describetemplatestatusset=nil, requestid=nil)
           @DescribeTemplateStatusSet = describetemplatestatusset
           @RequestId = requestid
@@ -585,7 +585,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :TemplateId, :International, :StatusCode, :ReviewReply, :TemplateName, :CreateTime
-        
+
         def initialize(templateid=nil, international=nil, statuscode=nil, reviewreply=nil, templatename=nil, createtime=nil)
           @TemplateId = templateid
           @International = international
@@ -613,7 +613,7 @@ module TencentCloud
         # @type SignApplyId: String
 
         attr_accessor :SignId, :SignApplyId
-        
+
         def initialize(signid=nil, signapplyid=nil)
           @SignId = signid
           @SignApplyId = signapplyid
@@ -671,7 +671,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :SignId, :SignName, :SignType, :DocumentType, :International, :UsedMethod, :ProofImage, :CommissionImage, :Remark
-        
+
         def initialize(signid=nil, signname=nil, signtype=nil, documenttype=nil, international=nil, usedmethod=nil, proofimage=nil, commissionimage=nil, remark=nil)
           @SignId = signid
           @SignName = signname
@@ -705,7 +705,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModifySignStatus, :RequestId
-        
+
         def initialize(modifysignstatus=nil, requestid=nil)
           @ModifySignStatus = modifysignstatus
           @RequestId = requestid
@@ -738,7 +738,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :TemplateId, :TemplateName, :TemplateContent, :SmsType, :International, :Remark
-        
+
         def initialize(templateid=nil, templatename=nil, templatecontent=nil, smstype=nil, international=nil, remark=nil)
           @TemplateId = templateid
           @TemplateName = templatename
@@ -766,7 +766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModifyTemplateStatus, :RequestId
-        
+
         def initialize(modifytemplatestatus=nil, requestid=nil)
           @ModifyTemplateStatus = modifytemplatestatus
           @RequestId = requestid
@@ -787,7 +787,7 @@ module TencentCloud
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
-        
+
         def initialize(templateid=nil)
           @TemplateId = templateid
         end
@@ -815,7 +815,7 @@ module TencentCloud
         # @type ReplyUnixTime: Integer
 
         attr_accessor :ExtendCode, :NationCode, :PhoneNumber, :Sign, :ReplyContent, :ReplyTime, :ReplyUnixTime
-        
+
         def initialize(extendcode=nil, nationcode=nil, phonenumber=nil, sign=nil, replycontent=nil, replytime=nil, replyunixtime=nil)
           @ExtendCode = extendcode
           @NationCode = nationcode
@@ -855,7 +855,7 @@ module TencentCloud
         # @type EndDateTime: Integer
 
         attr_accessor :SendDateTime, :Offset, :Limit, :PhoneNumber, :SmsSdkAppid, :EndDateTime
-        
+
         def initialize(senddatetime=nil, offset=nil, limit=nil, phonenumber=nil, smssdkappid=nil, enddatetime=nil)
           @SendDateTime = senddatetime
           @Offset = offset
@@ -883,7 +883,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PullSmsReplyStatusSet, :RequestId
-        
+
         def initialize(pullsmsreplystatusset=nil, requestid=nil)
           @PullSmsReplyStatusSet = pullsmsreplystatusset
           @RequestId = requestid
@@ -910,7 +910,7 @@ module TencentCloud
         # @type SmsSdkAppid: String
 
         attr_accessor :Limit, :SmsSdkAppid
-        
+
         def initialize(limit=nil, smssdkappid=nil)
           @Limit = limit
           @SmsSdkAppid = smssdkappid
@@ -930,7 +930,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PullSmsReplyStatusSet, :RequestId
-        
+
         def initialize(pullsmsreplystatusset=nil, requestid=nil)
           @PullSmsReplyStatusSet = pullsmsreplystatusset
           @RequestId = requestid
@@ -969,7 +969,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :UserReceiveTime, :UserReceiveUnixTime, :NationCode, :PurePhoneNumber, :PhoneNumber, :SerialNo, :ReportStatus, :Description
-        
+
         def initialize(userreceivetime=nil, userreceiveunixtime=nil, nationcode=nil, purephonenumber=nil, phonenumber=nil, serialno=nil, reportstatus=nil, description=nil)
           @UserReceiveTime = userreceivetime
           @UserReceiveUnixTime = userreceiveunixtime
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @type EndDateTime: Integer
 
         attr_accessor :SendDateTime, :Offset, :Limit, :PhoneNumber, :SmsSdkAppid, :EndDateTime
-        
+
         def initialize(senddatetime=nil, offset=nil, limit=nil, phonenumber=nil, smssdkappid=nil, enddatetime=nil)
           @SendDateTime = senddatetime
           @Offset = offset
@@ -1039,7 +1039,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PullSmsSendStatusSet, :RequestId
-        
+
         def initialize(pullsmssendstatusset=nil, requestid=nil)
           @PullSmsSendStatusSet = pullsmssendstatusset
           @RequestId = requestid
@@ -1066,7 +1066,7 @@ module TencentCloud
         # @type SmsSdkAppid: String
 
         attr_accessor :Limit, :SmsSdkAppid
-        
+
         def initialize(limit=nil, smssdkappid=nil)
           @Limit = limit
           @SmsSdkAppid = smssdkappid
@@ -1086,7 +1086,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PullSmsSendStatusSet, :RequestId
-        
+
         def initialize(pullsmssendstatusset=nil, requestid=nil)
           @PullSmsSendStatusSet = pullsmssendstatusset
           @RequestId = requestid
@@ -1126,7 +1126,7 @@ module TencentCloud
         # @type SenderId: String
 
         attr_accessor :PhoneNumberSet, :TemplateID, :SmsSdkAppid, :Sign, :TemplateParamSet, :ExtendCode, :SessionContext, :SenderId
-        
+
         def initialize(phonenumberset=nil, templateid=nil, smssdkappid=nil, sign=nil, templateparamset=nil, extendcode=nil, sessioncontext=nil, senderid=nil)
           @PhoneNumberSet = phonenumberset
           @TemplateID = templateid
@@ -1158,7 +1158,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SendStatusSet, :RequestId
-        
+
         def initialize(sendstatusset=nil, requestid=nil)
           @SendStatusSet = sendstatusset
           @RequestId = requestid
@@ -1195,7 +1195,7 @@ module TencentCloud
         # @type IsoCode: String
 
         attr_accessor :SerialNo, :PhoneNumber, :Fee, :SessionContext, :Code, :Message, :IsoCode
-        
+
         def initialize(serialno=nil, phonenumber=nil, fee=nil, sessioncontext=nil, code=nil, message=nil, isocode=nil)
           @SerialNo = serialno
           @PhoneNumber = phonenumber
@@ -1227,7 +1227,7 @@ module TencentCloud
         # @type RequestSuccessCount: Integer
 
         attr_accessor :FeeCount, :RequestCount, :RequestSuccessCount
-        
+
         def initialize(feecount=nil, requestcount=nil, requestsuccesscount=nil)
           @FeeCount = feecount
           @RequestCount = requestcount
@@ -1258,7 +1258,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :StartDateTime, :EndDataTime, :SmsSdkAppid, :Limit, :Offset
-        
+
         def initialize(startdatetime=nil, enddatatime=nil, smssdkappid=nil, limit=nil, offset=nil)
           @StartDateTime = startdatetime
           @EndDataTime = enddatatime
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SendStatusStatistics, :RequestId
-        
+
         def initialize(sendstatusstatistics=nil, requestid=nil)
           @SendStatusStatistics = sendstatusstatistics
           @RequestId = requestid
@@ -1323,7 +1323,7 @@ module TencentCloud
         # @type CurrentUsage: Integer
 
         attr_accessor :PackageCreateTime, :PackageCreateUnixTime, :PackageEffectiveTime, :PackageEffectiveUnixTime, :PackageExpiredTime, :PackageExpiredUnixTime, :AmountOfPackage, :TypeOfPackage, :PackageId, :CurrentUsage
-        
+
         def initialize(packagecreatetime=nil, packagecreateunixtime=nil, packageeffectivetime=nil, packageeffectiveunixtime=nil, packageexpiredtime=nil, packageexpiredunixtime=nil, amountofpackage=nil, typeofpackage=nil, packageid=nil, currentusage=nil)
           @PackageCreateTime = packagecreatetime
           @PackageCreateUnixTime = packagecreateunixtime
@@ -1362,7 +1362,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :SmsSdkAppid, :Limit, :Offset
-        
+
         def initialize(smssdkappid=nil, limit=nil, offset=nil)
           @SmsSdkAppid = smssdkappid
           @Limit = limit
@@ -1384,7 +1384,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SmsPackagesStatisticsSet, :RequestId
-        
+
         def initialize(smspackagesstatisticsset=nil, requestid=nil)
           @SmsPackagesStatisticsSet = smspackagesstatisticsset
           @RequestId = requestid

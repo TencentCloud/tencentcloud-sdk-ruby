@@ -33,7 +33,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :AccessGroupId, :AccessGroupName, :Description, :CreateTime, :VpcType, :VpcId
-        
+
         def initialize(accessgroupid=nil, accessgroupname=nil, description=nil, createtime=nil, vpctype=nil, vpcid=nil)
           @AccessGroupId = accessgroupid
           @AccessGroupName = accessgroupname
@@ -67,7 +67,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :AccessRuleId, :Address, :AccessMode, :Priority, :CreateTime
-        
+
         def initialize(accessruleid=nil, address=nil, accessmode=nil, priority=nil, createtime=nil)
           @AccessRuleId = accessruleid
           @Address = address
@@ -93,7 +93,7 @@ module TencentCloud
         # @type AccessGroupIds: Array
 
         attr_accessor :MountPointId, :AccessGroupIds
-        
+
         def initialize(mountpointid=nil, accessgroupids=nil)
           @MountPointId = mountpointid
           @AccessGroupIds = accessgroupids
@@ -111,7 +111,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -133,7 +133,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :AccessGroupName, :VpcType, :VpcId, :Description
-        
+
         def initialize(accessgroupname=nil, vpctype=nil, vpcid=nil, description=nil)
           @AccessGroupName = accessgroupname
           @VpcType = vpctype
@@ -157,7 +157,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessGroup, :RequestId
-        
+
         def initialize(accessgroup=nil, requestid=nil)
           @AccessGroup = accessgroup
           @RequestId = requestid
@@ -180,7 +180,7 @@ module TencentCloud
         # @type AccessGroupId: String
 
         attr_accessor :AccessRules, :AccessGroupId
-        
+
         def initialize(accessrules=nil, accessgroupid=nil)
           @AccessRules = accessrules
           @AccessGroupId = accessgroupid
@@ -208,7 +208,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessRules, :RequestId
-        
+
         def initialize(accessrules=nil, requestid=nil)
           @AccessRules = accessrules
           @RequestId = requestid
@@ -251,7 +251,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses, :Tags
-        
+
         def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil, tags=nil)
           @FileSystemName = filesystemname
           @CapacityQuota = capacityquota
@@ -294,7 +294,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystem, :RequestId
-        
+
         def initialize(filesystem=nil, requestid=nil)
           @FileSystem = filesystem
           @RequestId = requestid
@@ -317,7 +317,7 @@ module TencentCloud
         # @type LifeCycleRules: Array
 
         attr_accessor :FileSystemId, :LifeCycleRules
-        
+
         def initialize(filesystemid=nil, lifecyclerules=nil)
           @FileSystemId = filesystemid
           @LifeCycleRules = lifecyclerules
@@ -342,7 +342,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -362,7 +362,7 @@ module TencentCloud
         # @type MountPointStatus: Integer
 
         attr_accessor :MountPointName, :FileSystemId, :MountPointStatus
-        
+
         def initialize(mountpointname=nil, filesystemid=nil, mountpointstatus=nil)
           @MountPointName = mountpointname
           @FileSystemId = filesystemid
@@ -384,7 +384,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MountPoint, :RequestId
-        
+
         def initialize(mountpoint=nil, requestid=nil)
           @MountPoint = mountpoint
           @RequestId = requestid
@@ -407,7 +407,7 @@ module TencentCloud
         # @type RestoreTasks: Array
 
         attr_accessor :FileSystemId, :RestoreTasks
-        
+
         def initialize(filesystemid=nil, restoretasks=nil)
           @FileSystemId = filesystemid
           @RestoreTasks = restoretasks
@@ -432,7 +432,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -448,7 +448,7 @@ module TencentCloud
         # @type AccessGroupId: String
 
         attr_accessor :AccessGroupId
-        
+
         def initialize(accessgroupid=nil)
           @AccessGroupId = accessgroupid
         end
@@ -464,7 +464,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -480,7 +480,7 @@ module TencentCloud
         # @type AccessRuleIds: Array
 
         attr_accessor :AccessRuleIds
-        
+
         def initialize(accessruleids=nil)
           @AccessRuleIds = accessruleids
         end
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -512,7 +512,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -528,7 +528,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -544,7 +544,7 @@ module TencentCloud
         # @type LifeCycleRuleIds: Array
 
         attr_accessor :LifeCycleRuleIds
-        
+
         def initialize(lifecycleruleids=nil)
           @LifeCycleRuleIds = lifecycleruleids
         end
@@ -560,7 +560,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -576,7 +576,7 @@ module TencentCloud
         # @type MountPointId: String
 
         attr_accessor :MountPointId
-        
+
         def initialize(mountpointid=nil)
           @MountPointId = mountpointid
         end
@@ -592,7 +592,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -608,7 +608,7 @@ module TencentCloud
         # @type AccessGroupId: String
 
         attr_accessor :AccessGroupId
-        
+
         def initialize(accessgroupid=nil)
           @AccessGroupId = accessgroupid
         end
@@ -626,7 +626,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessGroup, :RequestId
-        
+
         def initialize(accessgroup=nil, requestid=nil)
           @AccessGroup = accessgroup
           @RequestId = requestid
@@ -650,7 +650,7 @@ module TencentCloud
         # @type OwnerUin: Integer
 
         attr_accessor :VpcId, :OwnerUin
-        
+
         def initialize(vpcid=nil, owneruin=nil)
           @VpcId = vpcid
           @OwnerUin = owneruin
@@ -670,7 +670,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessGroups, :RequestId
-        
+
         def initialize(accessgroups=nil, requestid=nil)
           @AccessGroups = accessgroups
           @RequestId = requestid
@@ -695,7 +695,7 @@ module TencentCloud
         # @type AccessGroupId: String
 
         attr_accessor :AccessGroupId
-        
+
         def initialize(accessgroupid=nil)
           @AccessGroupId = accessgroupid
         end
@@ -713,7 +713,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccessRules, :RequestId
-        
+
         def initialize(accessrules=nil, requestid=nil)
           @AccessRules = accessrules
           @RequestId = requestid
@@ -738,7 +738,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -774,7 +774,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystem, :CapacityUsed, :ArchiveCapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :DeepArchiveCapacityUsed, :IntelligentCapacityUsed, :RequestId
-        
+
         def initialize(filesystem=nil, capacityused=nil, archivecapacityused=nil, standardcapacityused=nil, degradecapacityused=nil, deeparchivecapacityused=nil, intelligentcapacityused=nil, requestid=nil)
           @FileSystem = filesystem
           @CapacityUsed = capacityused
@@ -804,7 +804,7 @@ module TencentCloud
       # DescribeFileSystems请求参数结构体
       class DescribeFileSystemsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -820,7 +820,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystems, :RequestId
-        
+
         def initialize(filesystems=nil, requestid=nil)
           @FileSystems = filesystems
           @RequestId = requestid
@@ -845,7 +845,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -863,7 +863,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LifeCycleRules, :RequestId
-        
+
         def initialize(lifecyclerules=nil, requestid=nil)
           @LifeCycleRules = lifecyclerules
           @RequestId = requestid
@@ -888,7 +888,7 @@ module TencentCloud
         # @type MountPointId: String
 
         attr_accessor :MountPointId
-        
+
         def initialize(mountpointid=nil)
           @MountPointId = mountpointid
         end
@@ -906,7 +906,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MountPoint, :RequestId
-        
+
         def initialize(mountpoint=nil, requestid=nil)
           @MountPoint = mountpoint
           @RequestId = requestid
@@ -932,7 +932,7 @@ module TencentCloud
         # @type OwnerUin: Integer
 
         attr_accessor :FileSystemId, :AccessGroupId, :OwnerUin
-        
+
         def initialize(filesystemid=nil, accessgroupid=nil, owneruin=nil)
           @FileSystemId = filesystemid
           @AccessGroupId = accessgroupid
@@ -954,7 +954,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MountPoints, :RequestId
-        
+
         def initialize(mountpoints=nil, requestid=nil)
           @MountPoints = mountpoints
           @RequestId = requestid
@@ -979,7 +979,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -997,7 +997,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Tags, :RequestId
-        
+
         def initialize(tags=nil, requestid=nil)
           @Tags = tags
           @RequestId = requestid
@@ -1022,7 +1022,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -1040,7 +1040,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RestoreTasks, :RequestId
-        
+
         def initialize(restoretasks=nil, requestid=nil)
           @RestoreTasks = restoretasks
           @RequestId = requestid
@@ -1067,7 +1067,7 @@ module TencentCloud
         # @type AccessGroupIds: Array
 
         attr_accessor :MountPointId, :AccessGroupIds
-        
+
         def initialize(mountpointid=nil, accessgroupids=nil)
           @MountPointId = mountpointid
           @AccessGroupIds = accessgroupids
@@ -1085,7 +1085,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1127,7 +1127,7 @@ module TencentCloud
         # @type RangerServiceAddresses: Array
 
         attr_accessor :AppId, :FileSystemName, :Description, :Region, :FileSystemId, :CreateTime, :BlockSize, :CapacityQuota, :Status, :SuperUsers, :PosixAcl, :EnableRanger, :RangerServiceAddresses
-        
+
         def initialize(appid=nil, filesystemname=nil, description=nil, region=nil, filesystemid=nil, createtime=nil, blocksize=nil, capacityquota=nil, status=nil, superusers=nil, posixacl=nil, enableranger=nil, rangerserviceaddresses=nil)
           @AppId = appid
           @FileSystemName = filesystemname
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type LastSummaryTime: String
 
         attr_accessor :LifeCycleRuleId, :LifeCycleRuleName, :Path, :Transitions, :Status, :CreateTime, :Summary, :LastSummaryTime
-        
+
         def initialize(lifecycleruleid=nil, lifecyclerulename=nil, path=nil, transitions=nil, status=nil, createtime=nil, summary=nil, lastsummarytime=nil)
           @LifeCycleRuleId = lifecycleruleid
           @LifeCycleRuleName = lifecyclerulename
@@ -1225,7 +1225,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :AccessGroupId, :AccessGroupName, :Description
-        
+
         def initialize(accessgroupid=nil, accessgroupname=nil, description=nil)
           @AccessGroupId = accessgroupid
           @AccessGroupName = accessgroupname
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1261,7 +1261,7 @@ module TencentCloud
         # @type AccessRules: Array
 
         attr_accessor :AccessRules
-        
+
         def initialize(accessrules=nil)
           @AccessRules = accessrules
         end
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1315,7 +1315,7 @@ module TencentCloud
         # @type RangerServiceAddresses: Array
 
         attr_accessor :FileSystemId, :FileSystemName, :Description, :CapacityQuota, :SuperUsers, :PosixAcl, :EnableRanger, :RangerServiceAddresses
-        
+
         def initialize(filesystemid=nil, filesystemname=nil, description=nil, capacityquota=nil, superusers=nil, posixacl=nil, enableranger=nil, rangerserviceaddresses=nil)
           @FileSystemId = filesystemid
           @FileSystemName = filesystemname
@@ -1345,7 +1345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1361,7 +1361,7 @@ module TencentCloud
         # @type LifeCycleRules: Array
 
         attr_accessor :LifeCycleRules
-        
+
         def initialize(lifecyclerules=nil)
           @LifeCycleRules = lifecyclerules
         end
@@ -1384,7 +1384,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1404,7 +1404,7 @@ module TencentCloud
         # @type MountPointStatus: Integer
 
         attr_accessor :MountPointId, :MountPointName, :MountPointStatus
-        
+
         def initialize(mountpointid=nil, mountpointname=nil, mountpointstatus=nil)
           @MountPointId = mountpointid
           @MountPointName = mountpointname
@@ -1424,7 +1424,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1442,7 +1442,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :FileSystemId, :Tags
-        
+
         def initialize(filesystemid=nil, tags=nil)
           @FileSystemId = filesystemid
           @Tags = tags
@@ -1467,7 +1467,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1493,7 +1493,7 @@ module TencentCloud
         # @type AccessGroupIds: Array
 
         attr_accessor :MountPointId, :MountPointName, :FileSystemId, :Status, :CreateTime, :AccessGroupIds
-        
+
         def initialize(mountpointid=nil, mountpointname=nil, filesystemid=nil, status=nil, createtime=nil, accessgroupids=nil)
           @MountPointId = mountpointid
           @MountPointName = mountpointname
@@ -1529,7 +1529,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :RestoreTaskId, :FilePath, :Type, :Days, :Status, :CreateTime
-        
+
         def initialize(restoretaskid=nil, filepath=nil, type=nil, days=nil, status=nil, createtime=nil)
           @RestoreTaskId = restoretaskid
           @FilePath = filepath
@@ -1571,7 +1571,7 @@ module TencentCloud
         # @type IntelligentCapacityUsed: Integer
 
         attr_accessor :CapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :ArchiveCapacityUsed, :DeepArchiveCapacityUsed, :IntelligentCapacityUsed
-        
+
         def initialize(capacityused=nil, standardcapacityused=nil, degradecapacityused=nil, archivecapacityused=nil, deeparchivecapacityused=nil, intelligentcapacityused=nil)
           @CapacityUsed = capacityused
           @StandardCapacityUsed = standardcapacityused
@@ -1599,7 +1599,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1619,7 +1619,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :Days, :Type
-        
+
         def initialize(days=nil, type=nil)
           @Days = days
           @Type = type

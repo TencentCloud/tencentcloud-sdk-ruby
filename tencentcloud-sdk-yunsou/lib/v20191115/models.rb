@@ -29,7 +29,7 @@ module TencentCloud
         # @type ResourceId: Integer
 
         attr_accessor :OpType, :Encoding, :Contents, :ResourceId
-        
+
         def initialize(optype=nil, encoding=nil, contents=nil, resourceid=nil)
           @OpType = optype
           @Encoding = encoding
@@ -53,7 +53,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -84,7 +84,7 @@ module TencentCloud
         # @type ErrorResult: String
 
         attr_accessor :AppId, :Seq, :TotalResult, :Result, :ErrorResult
-        
+
         def initialize(appid=nil, seq=nil, totalresult=nil, result=nil, errorresult=nil)
           @AppId = appid
           @Seq = seq
@@ -119,7 +119,7 @@ module TencentCloud
         # @type Errno: Integer
 
         attr_accessor :Result, :DocId, :Errno
-        
+
         def initialize(result=nil, docid=nil, errno=nil)
           @Result = result
           @DocId = docid
@@ -183,7 +183,7 @@ module TencentCloud
         # @type MultiFilter: Array
 
         attr_accessor :ResourceId, :SearchQuery, :PageId, :NumPerPage, :SearchId, :QueryEncode, :RankType, :NumFilter, :ClFilter, :Extra, :SourceId, :SecondSearch, :MaxDocReturn, :IsSmartbox, :EnableAbsHighlight, :QcBid, :GroupBy, :Distinct, :L4RankExpression, :MatchValue, :Longitude, :Latitude, :MultiFilter
-        
+
         def initialize(resourceid=nil, searchquery=nil, pageid=nil, numperpage=nil, searchid=nil, queryencode=nil, ranktype=nil, numfilter=nil, clfilter=nil, extra=nil, sourceid=nil, secondsearch=nil, maxdocreturn=nil, issmartbox=nil, enableabshighlight=nil, qcbid=nil, groupby=nil, distinct=nil, l4rankexpression=nil, matchvalue=nil, longitude=nil, latitude=nil, multifilter=nil)
           @ResourceId = resourceid
           @SearchQuery = searchquery
@@ -245,7 +245,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -280,7 +280,7 @@ module TencentCloud
         # @type SegList: Array
 
         attr_accessor :CostTime, :DisplayNum, :Echo, :EResultNum, :ResultNum, :ResultList, :SegList
-        
+
         def initialize(costtime=nil, displaynum=nil, echo=nil, eresultnum=nil, resultnum=nil, resultlist=nil, seglist=nil)
           @CostTime = costtime
           @DisplayNum = displaynum
@@ -330,7 +330,7 @@ module TencentCloud
         # @type SearchDebuginfo: String
 
         attr_accessor :DocAbs, :DocId, :DocMeta, :L2Score, :SearchDebuginfo
-        
+
         def initialize(docabs=nil, docid=nil, docmeta=nil, l2score=nil, searchdebuginfo=nil)
           @DocAbs = docabs
           @DocId = docid
@@ -354,7 +354,7 @@ module TencentCloud
         # @type SegStr: String
 
         attr_accessor :SegStr
-        
+
         def initialize(segstr=nil)
           @SegStr = segstr
         end

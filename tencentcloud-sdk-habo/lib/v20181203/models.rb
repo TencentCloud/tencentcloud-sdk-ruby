@@ -25,7 +25,7 @@ module TencentCloud
         # @type Md5: String
 
         attr_accessor :Pk, :Md5
-        
+
         def initialize(pk=nil, md5=nil)
           @Pk = pk
           @Md5 = md5
@@ -49,7 +49,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info
@@ -75,7 +75,7 @@ module TencentCloud
         # @type DlUrl: String
 
         attr_accessor :Pk, :Md5, :DlUrl
-        
+
         def initialize(pk=nil, md5=nil, dlurl=nil)
           @Pk = pk
           @Md5 = md5
@@ -101,7 +101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info

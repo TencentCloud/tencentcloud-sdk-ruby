@@ -25,7 +25,7 @@ module TencentCloud
         # @type ModuleType: String
 
         attr_accessor :Id, :ModuleType
-        
+
         def initialize(id=nil, moduletype=nil)
           @Id = id
           @ModuleType = moduletype
@@ -43,7 +43,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -73,7 +73,7 @@ module TencentCloud
         # @type AltDomain: String
 
         attr_accessor :ModuleType, :Offset, :Limit, :SearchKey, :CertType, :Id, :WithCert, :AltDomain
-        
+
         def initialize(moduletype=nil, offset=nil, limit=nil, searchkey=nil, certtype=nil, id=nil, withcert=nil, altdomain=nil)
           @ModuleType = moduletype
           @Offset = offset
@@ -107,7 +107,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :CertificateSet, :RequestId
-        
+
         def initialize(totalcount=nil, certificateset=nil, requestid=nil)
           @TotalCount = totalcount
           @CertificateSet = certificateset
@@ -210,7 +210,7 @@ module TencentCloud
         # @type Cert: String
 
         attr_accessor :OwnerUin, :ProjectId, :From, :Type, :CertType, :ProductZhName, :Domain, :Alias, :Status, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :ProjectInfo, :Id, :SubjectAltName, :TypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :Cert
-        
+
         def initialize(owneruin=nil, projectid=nil, from=nil, type=nil, certtype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, projectinfo=nil, id=nil, subjectaltname=nil, typename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, cert=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
@@ -295,7 +295,7 @@ module TencentCloud
         # @type Info: String
 
         attr_accessor :ProjectId, :OwnerUin, :Name, :CreatorUin, :CreateTime, :Info
-        
+
         def initialize(projectid=nil, owneruin=nil, name=nil, creatoruin=nil, createtime=nil, info=nil)
           @ProjectId = projectid
           @OwnerUin = owneruin
@@ -331,7 +331,7 @@ module TencentCloud
         # @type Alias: String
 
         attr_accessor :Cert, :CertType, :ProjectId, :ModuleType, :Key, :Alias
-        
+
         def initialize(cert=nil, certtype=nil, projectid=nil, moduletype=nil, key=nil, _alias=nil)
           @Cert = cert
           @CertType = certtype
@@ -359,7 +359,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Id, :RequestId
-        
+
         def initialize(id=nil, requestid=nil)
           @Id = id
           @RequestId = requestid

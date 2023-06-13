@@ -29,7 +29,7 @@ module TencentCloud
         # @type OtherAccount: :class:`Tencentcloud::Rce.v20201103.models.OtherAccountInfo`
 
         attr_accessor :AccountType, :QQAccount, :WeChatAccount, :OtherAccount
-        
+
         def initialize(accounttype=nil, qqaccount=nil, wechataccount=nil, otheraccount=nil)
           @AccountType = accounttype
           @QQAccount = qqaccount
@@ -57,7 +57,7 @@ module TencentCloud
       # DescribeRiskAssessment请求参数结构体
       class DescribeRiskAssessmentRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -71,7 +71,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -87,7 +87,7 @@ module TencentCloud
         # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputFrontRisk`
 
         attr_accessor :BusinessSecurityData
-        
+
         def initialize(businesssecuritydata=nil)
           @BusinessSecurityData = businesssecuritydata
         end
@@ -108,7 +108,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -133,7 +133,7 @@ module TencentCloud
         # @type CryptoContent: String
 
         attr_accessor :IsAuthorized, :CryptoType, :CryptoContent
-        
+
         def initialize(isauthorized=nil, cryptotype=nil, cryptocontent=nil)
           @IsAuthorized = isauthorized
           @CryptoType = cryptotype
@@ -155,7 +155,7 @@ module TencentCloud
         # @type FieldValue: String
 
         attr_accessor :FieldName, :FieldValue
-        
+
         def initialize(fieldname=nil, fieldvalue=nil)
           @FieldName = fieldname
           @FieldValue = fieldvalue
@@ -183,7 +183,7 @@ module TencentCloud
         # @type CurrentEndTime: String
 
         attr_accessor :EventId, :StartTime, :EndTime, :Type, :CurrentStartTime, :CurrentEndTime
-        
+
         def initialize(eventid=nil, starttime=nil, endtime=nil, type=nil, currentstarttime=nil, currentendtime=nil)
           @EventId = eventid
           @StartTime = starttime
@@ -257,7 +257,7 @@ module TencentCloud
         # @type Platform: String
 
         attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform
-        
+
         def initialize(account=nil, scenecode=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, devicetype=nil, details=nil, sponsor=nil, onlinescam=nil, platform=nil)
           @Account = account
           @SceneCode = scenecode
@@ -333,7 +333,7 @@ module TencentCloud
         # @type BusinessCryptoData: :class:`Tencentcloud::Rce.v20201103.models.InputCryptoManageMarketingRisk`
 
         attr_accessor :BusinessSecurityData, :BusinessCryptoData
-        
+
         def initialize(businesssecuritydata=nil, businesscryptodata=nil)
           @BusinessSecurityData = businesssecuritydata
           @BusinessCryptoData = businesscryptodata
@@ -359,7 +359,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -392,7 +392,7 @@ module TencentCloud
         # @type FraudAccount: String
 
         attr_accessor :ContentLabel, :ContentRiskLevel, :ContentType, :FraudType, :FraudAccount
-        
+
         def initialize(contentlabel=nil, contentrisklevel=nil, contenttype=nil, fraudtype=nil, fraudaccount=nil)
           @ContentLabel = contentlabel
           @ContentRiskLevel = contentrisklevel
@@ -420,7 +420,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :AccountId, :MobilePhone, :DeviceId
-        
+
         def initialize(accountid=nil, mobilephone=nil, deviceid=nil)
           @AccountId = accountid
           @MobilePhone = mobilephone
@@ -444,7 +444,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -476,7 +476,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Code, :Message, :Value
-        
+
         def initialize(code=nil, message=nil, value=nil)
           @Code = code
           @Message = message
@@ -507,7 +507,7 @@ module TencentCloud
         # @type Index: String
 
         attr_accessor :Requests, :Index
-        
+
         def initialize(requests=nil, index=nil)
           @Requests = requests
           @Index = index
@@ -535,7 +535,7 @@ module TencentCloud
         # @type UUid: String
 
         attr_accessor :Code, :Message, :Value, :UUid
-        
+
         def initialize(code=nil, message=nil, value=nil, uuid=nil)
           @Code = code
           @Message = message
@@ -613,7 +613,7 @@ module TencentCloud
         # @type ConstId: String
 
         attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId
-        
+
         def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil, constid=nil)
           @UserId = userid
           @PostTime = posttime
@@ -649,7 +649,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :QQOpenId, :AppIdUser, :AssociateAccount, :MobilePhone, :DeviceId
-        
+
         def initialize(qqopenid=nil, appiduser=nil, associateaccount=nil, mobilephone=nil, deviceid=nil)
           @QQOpenId = qqopenid
           @AppIdUser = appiduser
@@ -681,7 +681,7 @@ module TencentCloud
         # @type CampaignUrl: String
 
         attr_accessor :SponsorOpenId, :SponsorDeviceNumber, :SponsorPhone, :SponsorIp, :CampaignUrl
-        
+
         def initialize(sponsoropenid=nil, sponsordevicenumber=nil, sponsorphone=nil, sponsorip=nil, campaignurl=nil)
           @SponsorOpenId = sponsoropenid
           @SponsorDeviceNumber = sponsordevicenumber
@@ -719,7 +719,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :WeChatOpenId, :WeChatSubType, :RandStr, :WeChatAccessToken, :AssociateAccount, :MobilePhone, :DeviceId
-        
+
         def initialize(wechatopenid=nil, wechatsubtype=nil, randstr=nil, wechataccesstoken=nil, associateaccount=nil, mobilephone=nil, deviceid=nil)
           @WeChatOpenId = wechatopenid
           @WeChatSubType = wechatsubtype

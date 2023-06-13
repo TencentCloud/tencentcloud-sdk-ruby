@@ -31,7 +31,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :Name, :BucketName, :BucketRegion, :LibraryExtension, :Remark
-        
+
         def initialize(name=nil, bucketname=nil, bucketregion=nil, libraryextension=nil, remark=nil)
           @Name = name
           @BucketName = bucketname
@@ -60,7 +60,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibraryId, :RequestId
-        
+
         def initialize(libraryid=nil, requestid=nil)
           @LibraryId = libraryid
           @RequestId = requestid
@@ -78,7 +78,7 @@ module TencentCloud
         # @type LibraryId: String
 
         attr_accessor :LibraryId
-        
+
         def initialize(libraryid=nil)
           @LibraryId = libraryid
         end
@@ -94,7 +94,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -114,7 +114,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :LibraryIds, :PageNumber, :PageSize
-        
+
         def initialize(libraryids=nil, pagenumber=nil, pagesize=nil)
           @LibraryIds = libraryids
           @PageNumber = pagenumber
@@ -138,7 +138,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :List, :TotalCount, :RequestId
-        
+
         def initialize(list=nil, totalcount=nil, requestid=nil)
           @List = list
           @TotalCount = totalcount
@@ -165,7 +165,7 @@ module TencentCloud
         # @type LibraryId: String
 
         attr_accessor :LibraryId
-        
+
         def initialize(libraryid=nil)
           @LibraryId = libraryid
         end
@@ -185,7 +185,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibraryId, :LibrarySecret, :RequestId
-        
+
         def initialize(libraryid=nil, librarysecret=nil, requestid=nil)
           @LibraryId = libraryid
           @LibrarySecret = librarysecret
@@ -219,7 +219,7 @@ module TencentCloud
         # @type BindPhone: Boolean
 
         attr_accessor :SuperAdminAccount, :InstanceIds, :PageNumber, :PageSize, :OrderBy, :OrderByType, :AutoRenew, :BindPhone
-        
+
         def initialize(superadminaccount=nil, instanceids=nil, pagenumber=nil, pagesize=nil, orderby=nil, orderbytype=nil, autorenew=nil, bindphone=nil)
           @SuperAdminAccount = superadminaccount
           @InstanceIds = instanceids
@@ -253,7 +253,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :List, :TotalCount, :RequestId
-        
+
         def initialize(list=nil, totalcount=nil, requestid=nil)
           @List = list
           @TotalCount = totalcount
@@ -277,7 +277,7 @@ module TencentCloud
       # DescribeOfficialOverview请求参数结构体
       class DescribeOfficialOverviewRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -299,7 +299,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Quantity, :Storage, :UserCount, :InternetTraffic, :RequestId
-        
+
         def initialize(quantity=nil, storage=nil, usercount=nil, internettraffic=nil, requestid=nil)
           @Quantity = quantity
           @Storage = storage
@@ -333,7 +333,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :ResourceIds, :PageNumber, :PageSize, :OrderBy, :OrderByType, :Type
-        
+
         def initialize(resourceids=nil, pagenumber=nil, pagesize=nil, orderby=nil, orderbytype=nil, type=nil)
           @ResourceIds = resourceids
           @PageNumber = pagenumber
@@ -363,7 +363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :List, :TotalCount, :RequestId
-        
+
         def initialize(list=nil, totalcount=nil, requestid=nil)
           @List = list
           @TotalCount = totalcount
@@ -414,7 +414,7 @@ module TencentCloud
         # @type SuperAdminAccount: String
 
         attr_accessor :InstanceId, :Domain, :EffectiveTime, :ExpireTime, :UserLimit, :StorageLimit, :StorageLimitGB, :Isolated, :AutoRenew, :SuperAdminAccount
-        
+
         def initialize(instanceid=nil, domain=nil, effectivetime=nil, expiretime=nil, userlimit=nil, storagelimit=nil, storagelimitgb=nil, isolated=nil, autorenew=nil, superadminaccount=nil)
           @InstanceId = instanceid
           @Domain = domain
@@ -466,7 +466,7 @@ module TencentCloud
         # @type FileNum: String
 
         attr_accessor :LibraryId, :Name, :Remark, :BucketName, :BucketRegion, :CreationTime, :LibraryExtension, :Size, :DirNum, :FileNum
-        
+
         def initialize(libraryid=nil, name=nil, remark=nil, bucketname=nil, bucketregion=nil, creationtime=nil, libraryextension=nil, size=nil, dirnum=nil, filenum=nil)
           @LibraryId = libraryid
           @Name = name
@@ -550,7 +550,7 @@ module TencentCloud
         # @type RecognizeSensitiveContent: Boolean
 
         attr_accessor :IsFileLibrary, :IsMultiSpace, :CosStorageClass, :UseRecycleBin, :AutoRemoveRecycledDays, :EnableSearch, :DenyOnQuotaLessThanUsage, :EnableFileHistory, :FileHistoryCount, :FileHistoryExpireDay, :MaxDirFileNameLength, :IsPublicRead, :IsMultiAlbum, :AllowPhoto, :AllowPhotoExtName, :AllowVideo, :AllowVideoExtName, :AllowFileExtName, :RecognizeSensitiveContent
-        
+
         def initialize(isfilelibrary=nil, ismultispace=nil, cosstorageclass=nil, userecyclebin=nil, autoremoverecycleddays=nil, enablesearch=nil, denyonquotalessthanusage=nil, enablefilehistory=nil, filehistorycount=nil, filehistoryexpireday=nil, maxdirfilenamelength=nil, ispublicread=nil, ismultialbum=nil, allowphoto=nil, allowphotoextname=nil, allowvideo=nil, allowvideoextname=nil, allowfileextname=nil, recognizesensitivecontent=nil)
           @IsFileLibrary = isfilelibrary
           @IsMultiSpace = ismultispace
@@ -608,7 +608,7 @@ module TencentCloud
         # @type LibraryExtension: :class:`Tencentcloud::Smh.v20210712.models.LibraryExtension`
 
         attr_accessor :LibraryId, :Name, :Remark, :LibraryExtension
-        
+
         def initialize(libraryid=nil, name=nil, remark=nil, libraryextension=nil)
           @LibraryId = libraryid
           @Name = name
@@ -633,7 +633,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -655,7 +655,7 @@ module TencentCloud
         # @type CountryCode: String
 
         attr_accessor :Purpose, :PhoneNumber, :InstanceId, :CountryCode
-        
+
         def initialize(purpose=nil, phonenumber=nil, instanceid=nil, countrycode=nil)
           @Purpose = purpose
           @PhoneNumber = phonenumber
@@ -677,7 +677,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -713,7 +713,7 @@ module TencentCloud
         # @type ExpireTime: String
 
         attr_accessor :InstanceId, :Domain, :Type, :Size, :SizeGB, :Remain, :Used, :UsedPercentage, :EffectiveTime, :ExpireTime
-        
+
         def initialize(instanceid=nil, domain=nil, type=nil, size=nil, sizegb=nil, remain=nil, used=nil, usedpercentage=nil, effectivetime=nil, expiretime=nil)
           @InstanceId = instanceid
           @Domain = domain
@@ -755,7 +755,7 @@ module TencentCloud
         # @type CountryCode: String
 
         attr_accessor :Purpose, :PhoneNumber, :Code, :InstanceId, :CountryCode
-        
+
         def initialize(purpose=nil, phonenumber=nil, code=nil, instanceid=nil, countrycode=nil)
           @Purpose = purpose
           @PhoneNumber = phonenumber
@@ -779,7 +779,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

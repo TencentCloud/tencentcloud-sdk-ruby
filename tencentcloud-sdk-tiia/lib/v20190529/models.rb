@@ -33,7 +33,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -65,7 +65,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LongImage, :BlackAndWhite, :SmallImage, :BigImage, :PureImage, :ClarityScore, :AestheticScore, :RequestId
-        
+
         def initialize(longimage=nil, blackandwhite=nil, smallimage=nil, bigimage=nil, pureimage=nil, clarityscore=nil, aestheticscore=nil, requestid=nil)
           @LongImage = longimage
           @BlackAndWhite = blackandwhite
@@ -97,7 +97,7 @@ module TencentCloud
         # @type Details: String
 
         attr_accessor :Type, :Details
-        
+
         def initialize(type=nil, details=nil)
           @Type = type
           @Details = details
@@ -122,7 +122,7 @@ module TencentCloud
         # @type Attributes: Array
 
         attr_accessor :Rect, :DetectConfidence, :Attributes
-        
+
         def initialize(rect=nil, detectconfidence=nil, attributes=nil)
           @Rect = rect
           @DetectConfidence = detectconfidence
@@ -159,7 +159,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Label, :Confidence, :Name
-        
+
         def initialize(label=nil, confidence=nil, name=nil)
           @Label = label
           @Confidence = confidence
@@ -183,7 +183,7 @@ module TencentCloud
         # @type CategoryId: Integer
 
         attr_accessor :Rect, :Score, :CategoryId
-        
+
         def initialize(rect=nil, score=nil, categoryid=nil)
           @Rect = rect
           @Score = score
@@ -228,7 +228,7 @@ module TencentCloud
         # @type PlateAngle: Float
 
         attr_accessor :Plate, :Color, :Type, :PlateLocation, :PlateStatus, :PlateStatusConfidence, :PlateAngle
-        
+
         def initialize(plate=nil, color=nil, type=nil, platelocation=nil, platestatus=nil, platestatusconfidence=nil, plateangle=nil)
           @Plate = plate
           @Color = color
@@ -293,7 +293,7 @@ module TencentCloud
         # @type OrientationConfidence: Integer
 
         attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent, :PlateConfidence, :TypeConfidence, :ColorConfidence, :Orientation, :OrientationConfidence
-        
+
         def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil, plateconfidence=nil, typeconfidence=nil, colorconfidence=nil, orientation=nil, orientationconfidence=nil)
           @Serial = serial
           @Brand = brand
@@ -347,7 +347,7 @@ module TencentCloud
         # @type Label: String
 
         attr_accessor :Color, :Percentage, :Label
-        
+
         def initialize(color=nil, percentage=nil, label=nil)
           @Color = color
           @Percentage = percentage
@@ -369,7 +369,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :X, :Y
-        
+
         def initialize(x=nil, y=nil)
           @X = x
           @Y = y
@@ -406,7 +406,7 @@ module TencentCloud
         # @type GroupType: Integer
 
         attr_accessor :GroupId, :GroupName, :MaxCapacity, :Brief, :MaxQps, :GroupType
-        
+
         def initialize(groupid=nil, groupname=nil, maxcapacity=nil, brief=nil, maxqps=nil, grouptype=nil)
           @GroupId = groupid
           @GroupName = groupname
@@ -432,7 +432,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -492,7 +492,7 @@ module TencentCloud
         # @type ImageRect: :class:`Tencentcloud::Tiia.v20190529.models.Rect`
 
         attr_accessor :GroupId, :EntityId, :PicName, :ImageUrl, :CustomContent, :ImageBase64, :Tags, :EnableDetect, :CategoryId, :ImageRect
-        
+
         def initialize(groupid=nil, entityid=nil, picname=nil, imageurl=nil, customcontent=nil, imagebase64=nil, tags=nil, enabledetect=nil, categoryid=nil, imagerect=nil)
           @GroupId = groupid
           @EntityId = entityid
@@ -534,7 +534,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Object, :RequestId
-        
+
         def initialize(object=nil, requestid=nil)
           @Object = object
           @RequestId = requestid
@@ -573,7 +573,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :Width, :Height, :ImageUrl, :ImageBase64
-        
+
         def initialize(width=nil, height=nil, imageurl=nil, imagebase64=nil)
           @Width = width
           @Height = height
@@ -617,7 +617,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :X, :Y, :Width, :Height, :OriginalWidth, :OriginalHeight, :CropResult, :RequestId
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, originalwidth=nil, originalheight=nil, cropresult=nil, requestid=nil)
           @X = x
           @Y = y
@@ -651,7 +651,7 @@ module TencentCloud
         # @type PicName: String
 
         attr_accessor :GroupId, :EntityId, :PicName
-        
+
         def initialize(groupid=nil, entityid=nil, picname=nil)
           @GroupId = groupid
           @EntityId = entityid
@@ -671,7 +671,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -691,7 +691,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :Offset, :Limit, :GroupId
-        
+
         def initialize(offset=nil, limit=nil, groupid=nil)
           @Offset = offset
           @Limit = limit
@@ -714,7 +714,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Groups, :RequestId
-        
+
         def initialize(groups=nil, requestid=nil)
           @Groups = groups
           @RequestId = requestid
@@ -743,7 +743,7 @@ module TencentCloud
         # @type PicName: String
 
         attr_accessor :GroupId, :EntityId, :PicName
-        
+
         def initialize(groupid=nil, entityid=nil, picname=nil)
           @GroupId = groupid
           @EntityId = entityid
@@ -769,7 +769,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GroupId, :EntityId, :ImageInfos, :RequestId
-        
+
         def initialize(groupid=nil, entityid=nil, imageinfos=nil, requestid=nil)
           @GroupId = groupid
           @EntityId = entityid
@@ -817,7 +817,7 @@ module TencentCloud
         # @type EnablePreferred: Boolean
 
         attr_accessor :ImageUrl, :ImageBase64, :EnableDetect, :EnablePreferred
-        
+
         def initialize(imageurl=nil, imagebase64=nil, enabledetect=nil, enablepreferred=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -842,7 +842,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Bodies, :RequestId
-        
+
         def initialize(bodies=nil, requestid=nil)
           @Bodies = bodies
           @RequestId = requestid
@@ -877,7 +877,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -899,7 +899,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Confidence, :Type, :RequestId
-        
+
         def initialize(confidence=nil, type=nil, requestid=nil)
           @Confidence = confidence
           @Type = type
@@ -925,7 +925,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -949,7 +949,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FirstTags, :SecondTags, :RequestId
-        
+
         def initialize(firsttags=nil, secondtags=nil, requestid=nil)
           @FirstTags = firsttags
           @SecondTags = secondtags
@@ -1004,7 +1004,7 @@ module TencentCloud
         # @type Scenes: Array
 
         attr_accessor :ImageUrl, :ImageBase64, :Scenes
-        
+
         def initialize(imageurl=nil, imagebase64=nil, scenes=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1043,7 +1043,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Labels, :CameraLabels, :AlbumLabels, :NewsLabels, :NoneCamLabels, :LocationLabels, :RequestId
-        
+
         def initialize(labels=nil, cameralabels=nil, albumlabels=nil, newslabels=nil, nonecamlabels=nil, locationlabels=nil, requestid=nil)
           @Labels = labels
           @CameraLabels = cameralabels
@@ -1119,7 +1119,7 @@ module TencentCloud
         # @type SecondCategory: String
 
         attr_accessor :Name, :Confidence, :FirstCategory, :SecondCategory
-        
+
         def initialize(name=nil, confidence=nil, firstcategory=nil, secondcategory=nil)
           @Name = name
           @Confidence = confidence
@@ -1155,7 +1155,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1176,7 +1176,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Labels, :RequestId
-        
+
         def initialize(labels=nil, requestid=nil)
           @Labels = labels
           @RequestId = requestid
@@ -1224,7 +1224,7 @@ module TencentCloud
         # @type Scenes: Array
 
         attr_accessor :ImageBase64, :ImageUrl, :Scenes
-        
+
         def initialize(imagebase64=nil, imageurl=nil, scenes=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1257,7 +1257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Labels, :CameraLabels, :AlbumLabels, :NewsLabels, :RequestId
-        
+
         def initialize(labels=nil, cameralabels=nil, albumlabels=nil, newslabels=nil, requestid=nil)
           @Labels = labels
           @CameraLabels = cameralabels
@@ -1319,7 +1319,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1341,7 +1341,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Confidence, :Type, :RequestId
-        
+
         def initialize(confidence=nil, type=nil, requestid=nil)
           @Confidence = confidence
           @Type = type
@@ -1367,7 +1367,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1387,7 +1387,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Pets, :RequestId
-        
+
         def initialize(pets=nil, requestid=nil)
           @Pets = pets
           @RequestId = requestid
@@ -1418,7 +1418,7 @@ module TencentCloud
         # @type NeedLemma: Integer
 
         attr_accessor :ImageUrl, :ImageBase64, :NeedLemma
-        
+
         def initialize(imageurl=nil, imagebase64=nil, needlemma=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1448,7 +1448,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegionDetected, :ProductInfo, :ProductInfoList, :RequestId
-        
+
         def initialize(regiondetected=nil, productinfo=nil, productinfolist=nil, requestid=nil)
           @RegionDetected = regiondetected
           @ProductInfo = productinfo
@@ -1497,7 +1497,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1517,7 +1517,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Products, :RequestId
-        
+
         def initialize(products=nil, requestid=nil)
           @Products = products
           @RequestId = requestid
@@ -1562,7 +1562,7 @@ module TencentCloud
         # @type EnablePreferred: Boolean
 
         attr_accessor :ImageUrl, :ImageBase64, :EnableDetect, :EnablePreferred
-        
+
         def initialize(imageurl=nil, imagebase64=nil, enabledetect=nil, enablepreferred=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1587,7 +1587,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Bodies, :RequestId
-        
+
         def initialize(bodies=nil, requestid=nil)
           @Bodies = bodies
           @RequestId = requestid
@@ -1622,7 +1622,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1642,7 +1642,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnhancedImage, :RequestId
-        
+
         def initialize(enhancedimage=nil, requestid=nil)
           @EnhancedImage = enhancedimage
           @RequestId = requestid
@@ -1680,7 +1680,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :GroupId, :GroupName, :Brief, :MaxCapacity, :MaxQps, :GroupType, :PicCount, :CreateTime, :UpdateTime
-        
+
         def initialize(groupid=nil, groupname=nil, brief=nil, maxcapacity=nil, maxqps=nil, grouptype=nil, piccount=nil, createtime=nil, updatetime=nil)
           @GroupId = groupid
           @GroupName = groupname
@@ -1720,7 +1720,7 @@ module TencentCloud
         # @type Score: Integer
 
         attr_accessor :EntityId, :CustomContent, :Tags, :PicName, :Score
-        
+
         def initialize(entityid=nil, customcontent=nil, tags=nil, picname=nil, score=nil)
           @EntityId = entityid
           @CustomContent = customcontent
@@ -1750,7 +1750,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -1774,7 +1774,7 @@ module TencentCloud
         # @type Confidence: Float
 
         attr_accessor :Name, :Confidence
-        
+
         def initialize(name=nil, confidence=nil)
           @Name = name
           @Confidence = confidence
@@ -1799,7 +1799,7 @@ module TencentCloud
         # @type Tag: String
 
         attr_accessor :LemmaTitle, :LemmaAbstract, :Tag
-        
+
         def initialize(lemmatitle=nil, lemmaabstract=nil, tag=nil)
           @LemmaTitle = lemmatitle
           @LemmaAbstract = lemmaabstract
@@ -1825,7 +1825,7 @@ module TencentCloud
         # @type YMax: Integer
 
         attr_accessor :XMin, :YMin, :XMax, :YMax
-        
+
         def initialize(xmin=nil, ymin=nil, xmax=nil, ymax=nil)
           @XMin = xmin
           @YMin = ymin
@@ -1856,7 +1856,7 @@ module TencentCloud
         # @type AllBox: Array
 
         attr_accessor :Box, :CategoryId, :Colors, :Attributes, :AllBox
-        
+
         def initialize(box=nil, categoryid=nil, colors=nil, attributes=nil, allbox=nil)
           @Box = box
           @CategoryId = categoryid
@@ -1908,7 +1908,7 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Tiia.v20190529.models.Rect`
 
         attr_accessor :Name, :Score, :Location
-        
+
         def initialize(name=nil, score=nil, location=nil)
           @Name = name
           @Score = score
@@ -1943,7 +1943,7 @@ module TencentCloud
         # @type YMax: Integer
 
         attr_accessor :Name, :Parents, :Confidence, :XMin, :YMin, :XMax, :YMax
-        
+
         def initialize(name=nil, parents=nil, confidence=nil, xmin=nil, ymin=nil, xmax=nil, ymax=nil)
           @Name = name
           @Parents = parents
@@ -1993,7 +1993,7 @@ module TencentCloud
         # @type LemmaInfoList: Array
 
         attr_accessor :FindSKU, :Location, :Name, :Brand, :Price, :ProductCategory, :Score, :Image, :LemmaInfoList
-        
+
         def initialize(findsku=nil, location=nil, name=nil, brand=nil, price=nil, productcategory=nil, score=nil, image=nil, lemmainfolist=nil)
           @FindSKU = findsku
           @Location = location
@@ -2046,7 +2046,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -2069,7 +2069,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CarCoords, :CarTags, :RequestId
-        
+
         def initialize(carcoords=nil, cartags=nil, requestid=nil)
           @CarCoords = carcoords
           @CarTags = cartags
@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :ImageUrl, :ImageBase64
-        
+
         def initialize(imageurl=nil, imagebase64=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -2136,7 +2136,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CarCoords, :CarTags, :RequestId
-        
+
         def initialize(carcoords=nil, cartags=nil, requestid=nil)
           @CarCoords = carcoords
           @CarTags = cartags
@@ -2176,7 +2176,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -2205,7 +2205,7 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Tiia.v20190529.models.Location`
 
         attr_accessor :Category, :CategoryScore, :Location
-        
+
         def initialize(category=nil, categoryscore=nil, location=nil)
           @Category = category
           @CategoryScore = categoryscore
@@ -2282,7 +2282,7 @@ module TencentCloud
         # @type CategoryId: Integer
 
         attr_accessor :GroupId, :ImageUrl, :ImageBase64, :Limit, :Offset, :MatchThreshold, :Filter, :ImageRect, :EnableDetect, :CategoryId
-        
+
         def initialize(groupid=nil, imageurl=nil, imagebase64=nil, limit=nil, offset=nil, matchthreshold=nil, filter=nil, imagerect=nil, enabledetect=nil, categoryid=nil)
           @GroupId = groupid
           @ImageUrl = imageurl
@@ -2329,7 +2329,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Count, :ImageInfos, :Object, :RequestId
-        
+
         def initialize(count=nil, imageinfos=nil, object=nil, requestid=nil)
           @Count = count
           @ImageInfos = imageinfos
@@ -2367,7 +2367,7 @@ module TencentCloud
         # @type Tags: String
 
         attr_accessor :GroupId, :EntityId, :PicName, :Tags
-        
+
         def initialize(groupid=nil, entityid=nil, picname=nil, tags=nil)
           @GroupId = groupid
           @EntityId = entityid
@@ -2389,7 +2389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

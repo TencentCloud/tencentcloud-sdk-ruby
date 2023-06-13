@@ -29,7 +29,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :SdkAppId, :Caller, :Callee, :CreateTime
-        
+
         def initialize(sdkappid=nil, caller=nil, callee=nil, createtime=nil)
           @SdkAppId = sdkappid
           @Caller = caller
@@ -55,7 +55,7 @@ module TencentCloud
         # @type Sessions: Array
 
         attr_accessor :Callee, :State, :Sessions
-        
+
         def initialize(callee=nil, state=nil, sessions=nil)
           @Callee = callee
           @State = state
@@ -90,7 +90,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :Name, :CalleeCount, :Callers, :NotBefore, :NotAfter, :IvrId, :State, :TaskId
-        
+
         def initialize(name=nil, calleecount=nil, callers=nil, notbefore=nil, notafter=nil, ivrid=nil, state=nil, taskid=nil)
           @Name = name
           @CalleeCount = calleecount
@@ -124,7 +124,7 @@ module TencentCloud
         # @type SkillGroupIds: Array
 
         attr_accessor :SdkAppId, :Number, :SkillGroupIds
-        
+
         def initialize(sdkappid=nil, number=nil, skillgroupids=nil)
           @SdkAppId = sdkappid
           @Number = number
@@ -144,7 +144,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -164,7 +164,7 @@ module TencentCloud
         # @type SkillGroupList: Array
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList
-        
+
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil)
           @SdkAppId = sdkappid
           @StaffEmail = staffemail
@@ -184,7 +184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -220,7 +220,7 @@ module TencentCloud
         # @type AvgAcceptDuration: Integer
 
         attr_accessor :IvrCount, :QueueCount, :RingCount, :AcceptCount, :TransferOuterCount, :MaxQueueDuration, :AvgQueueDuration, :MaxRingDuration, :AvgRingDuration, :MaxAcceptDuration, :AvgAcceptDuration
-        
+
         def initialize(ivrcount=nil, queuecount=nil, ringcount=nil, acceptcount=nil, transferoutercount=nil, maxqueueduration=nil, avgqueueduration=nil, maxringduration=nil, avgringduration=nil, maxacceptduration=nil, avgacceptduration=nil)
           @IvrCount = ivrcount
           @QueueCount = queuecount
@@ -260,7 +260,7 @@ module TencentCloud
         # @type SkillGroupMetrics: Array
 
         attr_accessor :Number, :Metrics, :SkillGroupMetrics
-        
+
         def initialize(number=nil, metrics=nil, skillgroupmetrics=nil)
           @Number = number
           @Metrics = metrics
@@ -294,7 +294,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :SkillGroupId, :Metrics, :Name
-        
+
         def initialize(skillgroupid=nil, metrics=nil, name=nil)
           @SkillGroupId = skillgroupid
           @Metrics = metrics
@@ -321,7 +321,7 @@ module TencentCloud
         # @type Variables: Array
 
         attr_accessor :Callee, :UUI, :Variables
-        
+
         def initialize(callee=nil, uui=nil, variables=nil)
           @Callee = callee
           @UUI = uui
@@ -363,7 +363,7 @@ module TencentCloud
         # @type UpdateTime: Integer
 
         attr_accessor :SdkAppId, :ApplicantId, :Callers, :Callees, :Description, :State, :CreateTime, :UpdateTime
-        
+
         def initialize(sdkappid=nil, applicantid=nil, callers=nil, callees=nil, description=nil, state=nil, createtime=nil, updatetime=nil)
           @SdkAppId = sdkappid
           @ApplicantId = applicantid
@@ -415,7 +415,7 @@ module TencentCloud
         # @type CalleeAttributes: Array
 
         attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes
-        
+
         def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
@@ -469,7 +469,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -494,7 +494,7 @@ module TencentCloud
         # @type MaxConcurrency: Integer
 
         attr_accessor :SdkAppId, :SkillGroupName, :SkillGroupType, :MaxConcurrency
-        
+
         def initialize(sdkappid=nil, skillgroupname=nil, skillgrouptype=nil, maxconcurrency=nil)
           @SdkAppId = sdkappid
           @SkillGroupName = skillgroupname
@@ -518,7 +518,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SkillGroupId, :RequestId
-        
+
         def initialize(skillgroupid=nil, requestid=nil)
           @SkillGroupId = skillgroupid
           @RequestId = requestid
@@ -548,7 +548,7 @@ module TencentCloud
         # @type Uui: String
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui
-        
+
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
           @UserId = userid
@@ -578,7 +578,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :RequestId
-        
+
         def initialize(sessionid=nil, requestid=nil)
           @SessionId = sessionid
           @RequestId = requestid
@@ -602,7 +602,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :SdkAppId, :Callers, :Callees, :Description
-        
+
         def initialize(sdkappid=nil, callers=nil, callees=nil, description=nil)
           @SdkAppId = sdkappid
           @Callers = callers
@@ -626,7 +626,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicantId, :RequestId
-        
+
         def initialize(applicantid=nil, requestid=nil)
           @ApplicantId = applicantid
           @RequestId = requestid
@@ -648,7 +648,7 @@ module TencentCloud
         # @type ExtensionName: String
 
         attr_accessor :SdkAppId, :ExtensionId, :ExtensionName
-        
+
         def initialize(sdkappid=nil, extensionid=nil, extensionname=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
@@ -668,7 +668,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -686,7 +686,7 @@ module TencentCloud
         # @type SeatUserId: String
 
         attr_accessor :SdkAppId, :SeatUserId
-        
+
         def initialize(sdkappid=nil, seatuserid=nil)
           @SdkAppId = sdkappid
           @SeatUserId = seatuserid
@@ -710,7 +710,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Token, :ExpiredTime, :SdkURL, :RequestId
-        
+
         def initialize(token=nil, expiredtime=nil, sdkurl=nil, requestid=nil)
           @Token = token
           @ExpiredTime = expiredtime
@@ -736,7 +736,7 @@ module TencentCloud
         # @type SendPassword: Boolean
 
         attr_accessor :SdkAppId, :Staffs, :SendPassword
-        
+
         def initialize(sdkappid=nil, staffs=nil, sendpassword=nil)
           @SdkAppId = sdkappid
           @Staffs = staffs
@@ -766,7 +766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorStaffList, :RequestId
-        
+
         def initialize(errorstafflist=nil, requestid=nil)
           @ErrorStaffList = errorstafflist
           @RequestId = requestid
@@ -797,7 +797,7 @@ module TencentCloud
         # @type ClientData: String
 
         attr_accessor :SdkAppId, :Uid, :ExpiredTime, :ClientData
-        
+
         def initialize(sdkappid=nil, uid=nil, expiredtime=nil, clientdata=nil)
           @SdkAppId = sdkappid
           @Uid = uid
@@ -821,7 +821,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserSig, :RequestId
-        
+
         def initialize(usersig=nil, requestid=nil)
           @UserSig = usersig
           @RequestId = requestid
@@ -841,7 +841,7 @@ module TencentCloud
         # @type ExtensionId: String
 
         attr_accessor :SdkAppId, :ExtensionId
-        
+
         def initialize(sdkappid=nil, extensionid=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
@@ -859,7 +859,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -877,7 +877,7 @@ module TencentCloud
         # @type StaffList: Array
 
         attr_accessor :SdkAppId, :StaffList
-        
+
         def initialize(sdkappid=nil, stafflist=nil)
           @SdkAppId = sdkappid
           @StaffList = stafflist
@@ -898,7 +898,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OnlineStaffList, :RequestId
-        
+
         def initialize(onlinestafflist=nil, requestid=nil)
           @OnlineStaffList = onlinestafflist
           @RequestId = requestid
@@ -922,7 +922,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :SdkAppId, :PageNumber, :PageSize, :Filters
-        
+
         def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil, filters=nil)
           @SdkAppId = sdkappid
           @PageNumber = pagenumber
@@ -957,7 +957,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ActiveCarrierPrivilegeNumbers, :PendingApplicantIds, :RequestId
-        
+
         def initialize(totalcount=nil, activecarrierprivilegenumbers=nil, pendingapplicantids=nil, requestid=nil)
           @TotalCount = totalcount
           @ActiveCarrierPrivilegeNumbers = activecarrierprivilegenumbers
@@ -988,7 +988,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :SdkAppId, :TaskId
-        
+
         def initialize(sdkappid=nil, taskid=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -1023,7 +1023,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :Description, :NotBefore, :NotAfter, :Callers, :Callees, :IvrId, :State, :RequestId
-        
+
         def initialize(name=nil, description=nil, notbefore=nil, notafter=nil, callers=nil, callees=nil, ivrid=nil, state=nil, requestid=nil)
           @Name = name
           @Description = description
@@ -1066,7 +1066,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :SdkAppId, :PageSize, :PageNumber
-        
+
         def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
@@ -1090,7 +1090,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
-        
+
         def initialize(totalcount=nil, tasks=nil, requestid=nil)
           @TotalCount = totalcount
           @Tasks = tasks
@@ -1117,7 +1117,7 @@ module TencentCloud
         # @type SdkAppIds: Array
 
         attr_accessor :SdkAppIds
-        
+
         def initialize(sdkappids=nil)
           @SdkAppIds = sdkappids
         end
@@ -1139,7 +1139,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SdkAppIdBuyList, :PackageBuyList, :RequestId
-        
+
         def initialize(totalcount=nil, sdkappidbuylist=nil, packagebuylist=nil, requestid=nil)
           @TotalCount = totalcount
           @SdkAppIdBuyList = sdkappidbuylist
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type GroupIdList: Array
 
         attr_accessor :SdkAppId, :EnabledSkillGroup, :EnabledNumber, :GroupIdList
-        
+
         def initialize(sdkappid=nil, enabledskillgroup=nil, enablednumber=nil, groupidlist=nil)
           @SdkAppId = sdkappid
           @EnabledSkillGroup = enabledskillgroup
@@ -1213,7 +1213,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Timestamp, :TotalMetrics, :NumberMetrics, :SkillGroupMetrics, :RequestId
-        
+
         def initialize(timestamp=nil, totalmetrics=nil, numbermetrics=nil, skillgroupmetrics=nil, requestid=nil)
           @Timestamp = timestamp
           @TotalMetrics = totalmetrics
@@ -1260,7 +1260,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :SdkAppId, :PageNumber, :PageSize, :Filters
-        
+
         def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil, filters=nil)
           @SdkAppId = sdkappid
           @PageNumber = pagenumber
@@ -1293,7 +1293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Applicants, :RequestId
-        
+
         def initialize(totalcount=nil, applicants=nil, requestid=nil)
           @TotalCount = totalcount
           @Applicants = applicants
@@ -1332,7 +1332,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
-        
+
         def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid
           @SdkAppId = sdkappid
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Messages, :RequestId
-        
+
         def initialize(totalcount=nil, messages=nil, requestid=nil)
           @TotalCount = totalcount
           @Messages = messages
@@ -1394,7 +1394,7 @@ module TencentCloud
         # @type ExtensionId: String
 
         attr_accessor :SdkAppId, :ExtensionId
-        
+
         def initialize(sdkappid=nil, extensionid=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
@@ -1422,7 +1422,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExtensionId, :ExtensionDomain, :Password, :OutboundProxy, :Transport, :RequestId
-        
+
         def initialize(extensionid=nil, extensiondomain=nil, password=nil, outboundproxy=nil, transport=nil, requestid=nil)
           @ExtensionId = extensionid
           @ExtensionDomain = extensiondomain
@@ -1458,7 +1458,7 @@ module TencentCloud
         # @type IsNeedStatus: Boolean
 
         attr_accessor :SdkAppId, :PageNumber, :ExtensionIds, :PageSize, :FuzzingKeyWord, :IsNeedStatus
-        
+
         def initialize(sdkappid=nil, pagenumber=nil, extensionids=nil, pagesize=nil, fuzzingkeyword=nil, isneedstatus=nil)
           @SdkAppId = sdkappid
           @PageNumber = pagenumber
@@ -1488,7 +1488,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :ExtensionList, :RequestId
-        
+
         def initialize(total=nil, extensionlist=nil, requestid=nil)
           @Total = total
           @ExtensionList = extensionlist
@@ -1527,7 +1527,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
-        
+
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
           @EndTimestamp = endtimestamp
@@ -1559,7 +1559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :IMCdrs, :RequestId
-        
+
         def initialize(totalcount=nil, imcdrs=nil, requestid=nil)
           @TotalCount = totalcount
           @IMCdrs = imcdrs
@@ -1590,7 +1590,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :SdkAppId, :PageNumber, :PageSize
-        
+
         def initialize(sdkappid=nil, pagenumber=nil, pagesize=nil)
           @SdkAppId = sdkappid
           @PageNumber = pagenumber
@@ -1614,7 +1614,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Numbers, :RequestId
-        
+
         def initialize(totalcount=nil, numbers=nil, requestid=nil)
           @TotalCount = totalcount
           @Numbers = numbers
@@ -1645,7 +1645,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :SdkAppId, :Offset, :Limit
-        
+
         def initialize(sdkappid=nil, offset=nil, limit=nil)
           @SdkAppId = sdkappid
           @Offset = offset
@@ -1669,7 +1669,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Sessions, :RequestId
-        
+
         def initialize(total=nil, sessions=nil, requestid=nil)
           @Total = total
           @Sessions = sessions
@@ -1704,7 +1704,7 @@ module TencentCloud
         # @type PageNumber: Integer
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber
-        
+
         def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
@@ -1732,7 +1732,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TelCdrs, :RequestId
-        
+
         def initialize(totalcount=nil, telcdrs=nil, requestid=nil)
           @TotalCount = totalcount
           @TelCdrs = telcdrs
@@ -1769,7 +1769,7 @@ module TencentCloud
         # @type SkillGroupName: String
 
         attr_accessor :SdkAppId, :PageSize, :PageNumber, :SkillGroupId, :ModifiedTime, :SkillGroupName
-        
+
         def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, skillgroupid=nil, modifiedtime=nil, skillgroupname=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
@@ -1799,7 +1799,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SkillGroupList, :RequestId
-        
+
         def initialize(totalcount=nil, skillgrouplist=nil, requestid=nil)
           @TotalCount = totalcount
           @SkillGroupList = skillgrouplist
@@ -1836,7 +1836,7 @@ module TencentCloud
         # @type SkillGroupId: Integer
 
         attr_accessor :SdkAppId, :PageSize, :PageNumber, :StaffMail, :ModifiedTime, :SkillGroupId
-        
+
         def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, staffmail=nil, modifiedtime=nil, skillgroupid=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
@@ -1866,7 +1866,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :StaffList, :RequestId
-        
+
         def initialize(totalcount=nil, stafflist=nil, requestid=nil)
           @TotalCount = totalcount
           @StaffList = stafflist
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type StatusList: Array
 
         attr_accessor :SdkAppId, :StaffList, :GroupIdList, :StatusList
-        
+
         def initialize(sdkappid=nil, stafflist=nil, groupidlist=nil, statuslist=nil)
           @SdkAppId = sdkappid
           @StaffList = stafflist
@@ -1923,7 +1923,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Metrics, :RequestId
-        
+
         def initialize(metrics=nil, requestid=nil)
           @Metrics = metrics
           @RequestId = requestid
@@ -1952,7 +1952,7 @@ module TencentCloud
         # @type SdkAppIdList: Array
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppIdList
-        
+
         def initialize(starttimestamp=nil, endtimestamp=nil, sdkappidlist=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
@@ -1984,7 +1984,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
-        
+
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
           @TelCallInCount = telcallincount
@@ -2030,7 +2030,7 @@ module TencentCloud
         # @type SessionIds: Array
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
-        
+
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
@@ -2068,7 +2068,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TelCdrs, :RequestId
-        
+
         def initialize(totalcount=nil, telcdrs=nil, requestid=nil)
           @TotalCount = totalcount
           @TelCdrs = telcdrs
@@ -2097,7 +2097,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :SdkAppId, :SessionId
-        
+
         def initialize(sdkappid=nil, sessionid=nil)
           @SdkAppId = sdkappid
           @SessionId = sessionid
@@ -2117,7 +2117,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Session, :RequestId
-        
+
         def initialize(session=nil, requestid=nil)
           @Session = session
           @RequestId = requestid
@@ -2142,7 +2142,7 @@ module TencentCloud
         # @type SdkAppId: Integer
 
         attr_accessor :PhoneNumbers, :Disabled, :SdkAppId
-        
+
         def initialize(phonenumbers=nil, disabled=nil, sdkappid=nil)
           @PhoneNumbers = phonenumbers
           @Disabled = disabled
@@ -2162,7 +2162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2182,7 +2182,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :StaffEmail, :Code, :Message
-        
+
         def initialize(staffemail=nil, code=nil, message=nil)
           @StaffEmail = staffemail
           @Code = code
@@ -2222,7 +2222,7 @@ module TencentCloud
         # @type RelationName: String
 
         attr_accessor :SdkAppId, :FullExtensionId, :ExtensionId, :SkillGroupId, :ExtensionName, :CreateTime, :ModifyTime, :Status, :Register, :Relation, :RelationName
-        
+
         def initialize(sdkappid=nil, fullextensionid=nil, extensionid=nil, skillgroupid=nil, extensionname=nil, createtime=nil, modifytime=nil, status=nil, register=nil, relation=nil, relationname=nil)
           @SdkAppId = sdkappid
           @FullExtensionId = fullextensionid
@@ -2260,7 +2260,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -2280,7 +2280,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :SdkAppId, :SessionId
-        
+
         def initialize(sdkappid=nil, sessionid=nil)
           @SdkAppId = sdkappid
           @SessionId = sessionid
@@ -2298,7 +2298,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2346,7 +2346,7 @@ module TencentCloud
         # @type Satisfaction: :class:`Tencentcloud::Ccc.v20200210.models.IMSatisfaction`
 
         attr_accessor :Id, :Duration, :EndStatus, :Nickname, :Type, :StaffId, :Timestamp, :SessionId, :SkillGroupId, :SkillGroupName, :Satisfaction
-        
+
         def initialize(id=nil, duration=nil, endstatus=nil, nickname=nil, type=nil, staffid=nil, timestamp=nil, sessionid=nil, skillgroupid=nil, skillgroupname=nil, satisfaction=nil)
           @Id = id
           @Duration = duration
@@ -2389,7 +2389,7 @@ module TencentCloud
         # @type Label: String
 
         attr_accessor :Id, :Label
-        
+
         def initialize(id=nil, label=nil)
           @Id = id
           @Label = label
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type Label: String
 
         attr_accessor :Key, :Label
-        
+
         def initialize(key=nil, label=nil)
           @Key = key
           @Label = label
@@ -2431,7 +2431,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :Type, :Content
-        
+
         def initialize(type=nil, content=nil)
           @Type = type
           @Content = content
@@ -2453,7 +2453,7 @@ module TencentCloud
         # @type Messages: Array
 
         attr_accessor :Timestamp, :From, :Messages
-        
+
         def initialize(timestamp=nil, from=nil, messages=nil)
           @Timestamp = timestamp
           @From = from
@@ -2488,7 +2488,7 @@ module TencentCloud
         # @type Relation: String
 
         attr_accessor :SdkAppId, :ExtensionId, :ExtensionName, :SkillGroupIds, :Relation
-        
+
         def initialize(sdkappid=nil, extensionid=nil, extensionname=nil, skillgroupids=nil, relation=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
@@ -2512,7 +2512,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2542,7 +2542,7 @@ module TencentCloud
         # @type UseMobileAccept: Integer
 
         attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :SkillGroupIds, :UseMobileCallOut, :UseMobileAccept
-        
+
         def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, skillgroupids=nil, usemobilecallout=nil, usemobileaccept=nil)
           @SdkAppId = sdkappid
           @Email = email
@@ -2572,7 +2572,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2590,7 +2590,7 @@ module TencentCloud
         # @type CallOutSkillGroupIds: Array
 
         attr_accessor :Number, :CallOutSkillGroupIds
-        
+
         def initialize(number=nil, calloutskillgroupids=nil)
           @Number = number
           @CallOutSkillGroupIds = calloutskillgroupids
@@ -2640,7 +2640,7 @@ module TencentCloud
         # @type ProtectedCallee: String
 
         attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :RingTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :OutBoundCaller, :OutBoundCallee, :ProtectedCaller, :ProtectedCallee
-        
+
         def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, outboundcaller=nil, outboundcallee=nil, protectedcaller=nil, protectedcallee=nil)
           @SessionID = sessionid
           @RoomID = roomid
@@ -2708,7 +2708,7 @@ module TencentCloud
         # @type ProtectedCallee: String
 
         attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :RingTimestamp, :ProtectedCaller, :ProtectedCallee
-        
+
         def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, ringtimestamp=nil, protectedcaller=nil, protectedcallee=nil)
           @SessionID = sessionid
           @RoomID = roomid
@@ -2758,7 +2758,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :PackageId, :Type, :CapacitySize, :CapacityRemain, :BuyTime, :EndTime
-        
+
         def initialize(packageid=nil, type=nil, capacitysize=nil, capacityremain=nil, buytime=nil, endtime=nil)
           @PackageId = packageid
           @Type = type
@@ -2794,7 +2794,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :PhoneNum, :Type, :CallType, :BuyTime, :EndTime, :State
-        
+
         def initialize(phonenum=nil, type=nil, calltype=nil, buytime=nil, endtime=nil, state=nil)
           @PhoneNum = phonenum
           @Type = type
@@ -2822,7 +2822,7 @@ module TencentCloud
         # @type ExtensionId: String
 
         attr_accessor :SdkAppId, :ExtensionId
-        
+
         def initialize(sdkappid=nil, extensionid=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
@@ -2842,7 +2842,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Password, :RequestId
-        
+
         def initialize(password=nil, requestid=nil)
           @Password = password
           @RequestId = requestid
@@ -2868,7 +2868,7 @@ module TencentCloud
         # @type PhoneNumBuyList: Array
 
         attr_accessor :SdkAppId, :Name, :StaffBuyNum, :StaffBuyList, :PhoneNumBuyList
-        
+
         def initialize(sdkappid=nil, name=nil, staffbuynum=nil, staffbuylist=nil, phonenumbuylist=nil)
           @SdkAppId = sdkappid
           @Name = name
@@ -2920,7 +2920,7 @@ module TencentCloud
         # @type SkillGroupNameList: Array
 
         attr_accessor :Name, :Mail, :StaffNumber, :Phone, :Nick, :UserId, :SkillGroupNameList
-        
+
         def initialize(name=nil, mail=nil, staffnumber=nil, phone=nil, nick=nil, userid=nil, skillgroupnamelist=nil)
           @Name = name
           @Mail = mail
@@ -3000,7 +3000,7 @@ module TencentCloud
         # @type CustomRecordURL: String
 
         attr_accessor :Mail, :Phone, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :RecordId, :Type, :TransferFrom, :TransferFromType, :TransferTo, :TransferToType, :SkillGroupId, :EndStatusString, :RecordURL, :Sequence, :StartTimestamp, :SkillGroupName, :CustomRecordURL
-        
+
         def initialize(mail=nil, phone=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, recordid=nil, type=nil, transferfrom=nil, transferfromtype=nil, transferto=nil, transfertotype=nil, skillgroupid=nil, endstatusstring=nil, recordurl=nil, sequence=nil, starttimestamp=nil, skillgroupname=nil, customrecordurl=nil)
           @Mail = mail
           @Phone = phone
@@ -3069,7 +3069,7 @@ module TencentCloud
         # @type SkillGroupType: Integer
 
         attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType
-        
+
         def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil)
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
@@ -3105,7 +3105,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :SkillGroupId, :SkillGroupName, :Priority, :Type
-        
+
         def initialize(skillgroupid=nil, skillgroupname=nil, priority=nil, type=nil)
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
@@ -3131,7 +3131,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Num, :BuyTime, :EndTime
-        
+
         def initialize(num=nil, buytime=nil, endtime=nil)
           @Num = num
           @BuyTime = buytime
@@ -3169,7 +3169,7 @@ module TencentCloud
         # @type LastModifyTimestamp: Integer
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :SkillGroupList, :LastModifyTimestamp
-        
+
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, skillgrouplist=nil, lastmodifytimestamp=nil)
           @Name = name
           @Mail = mail
@@ -3206,7 +3206,7 @@ module TencentCloud
         # @type Direct: String
 
         attr_accessor :Type, :Direct
-        
+
         def initialize(type=nil, direct=nil)
           @Type = type
           @Direct = direct
@@ -3256,7 +3256,7 @@ module TencentCloud
         # @type LastStatusTimestamp: Integer
 
         attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut, :LastOnlineTimestamp, :LastStatusTimestamp
-        
+
         def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil, lastonlinetimestamp=nil, laststatustimestamp=nil)
           @Email = email
           @Status = status
@@ -3307,7 +3307,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :SdkAppId, :TaskId
-        
+
         def initialize(sdkappid=nil, taskid=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
@@ -3325,7 +3325,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3510,7 +3510,7 @@ module TencentCloud
         # @type VoicemailRecordURL: Array
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL
-        
+
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil)
           @Caller = caller
           @Callee = callee
@@ -3618,7 +3618,7 @@ module TencentCloud
         # @type SkillGroupIds: Array
 
         attr_accessor :SdkAppId, :Number, :SkillGroupIds
-        
+
         def initialize(sdkappid=nil, number=nil, skillgroupids=nil)
           @SdkAppId = sdkappid
           @Number = number
@@ -3638,7 +3638,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3658,7 +3658,7 @@ module TencentCloud
         # @type SkillGroupList: Array
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList
-        
+
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil)
           @SdkAppId = sdkappid
           @StaffEmail = staffemail
@@ -3678,7 +3678,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3696,7 +3696,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value

@@ -23,7 +23,7 @@ module TencentCloud
         # @type Key: String
 
         attr_accessor :Key
-        
+
         def initialize(key=nil)
           @Key = key
         end
@@ -45,7 +45,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info
@@ -69,7 +69,7 @@ module TencentCloud
         # @type Md5: String
 
         attr_accessor :Key, :Md5
-        
+
         def initialize(key=nil, md5=nil)
           @Key = key
           @Md5 = md5
@@ -94,7 +94,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info
@@ -122,7 +122,7 @@ module TencentCloud
         # @type SensitiveLevel: String
 
         attr_accessor :Key, :Md5s, :WithCategory, :SensitiveLevel
-        
+
         def initialize(key=nil, md5s=nil, withcategory=nil, sensitivelevel=nil)
           @Key = key
           @Md5s = md5s
@@ -152,7 +152,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info
@@ -178,7 +178,7 @@ module TencentCloud
         # @type Md5: String
 
         attr_accessor :Key, :Sample, :Md5
-        
+
         def initialize(key=nil, sample=nil, md5=nil)
           @Key = key
           @Sample = sample
@@ -204,7 +204,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Info, :Data, :RequestId
-        
+
         def initialize(status=nil, info=nil, data=nil, requestid=nil)
           @Status = status
           @Info = info

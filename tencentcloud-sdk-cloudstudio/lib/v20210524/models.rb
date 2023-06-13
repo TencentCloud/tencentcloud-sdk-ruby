@@ -41,7 +41,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :Name, :ImageId, :ImageName, :RemoteUser, :RemoteHost, :RemotePort, :WorkspaceType, :WorkspaceVersion, :WorkspaceResourceDTO, :Description
-        
+
         def initialize(name=nil, imageid=nil, imagename=nil, remoteuser=nil, remotehost=nil, remoteport=nil, workspacetype=nil, workspaceversion=nil, workspaceresourcedto=nil, description=nil)
           @Name = name
           @ImageId = imageid
@@ -80,7 +80,7 @@ module TencentCloud
         # @type UserDefinedTemplateParams: :class:`Tencentcloud::Cloudstudio.v20210524.models.UserDefinedTemplateParams`
 
         attr_accessor :CloudStudioSessionTeam, :UserDefinedTemplateParams
-        
+
         def initialize(cloudstudiosessionteam=nil, userdefinedtemplateparams=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @UserDefinedTemplateParams = userdefinedtemplateparams
@@ -104,7 +104,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -127,7 +127,7 @@ module TencentCloud
         # @type AgentSpaceDTO: :class:`Tencentcloud::Cloudstudio.v20210524.models.AgentSpaceDTO`
 
         attr_accessor :CloudStudioSessionTeam, :AgentSpaceDTO
-        
+
         def initialize(cloudstudiosessionteam=nil, agentspacedto=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @AgentSpaceDTO = agentspacedto
@@ -151,7 +151,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -176,7 +176,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :CloudStudioSessionTeam, :TemplateId, :Name
-        
+
         def initialize(cloudstudiosessionteam=nil, templateid=nil, name=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @TemplateId = templateid
@@ -198,7 +198,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -221,7 +221,7 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
 
         attr_accessor :WorkspaceDTO, :CloudStudioSessionTeam
-        
+
         def initialize(workspacedto=nil, cloudstudiosessionteam=nil)
           @WorkspaceDTO = workspacedto
           @CloudStudioSessionTeam = cloudstudiosessionteam
@@ -245,7 +245,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -266,7 +266,7 @@ module TencentCloud
         # @type WorkspaceTokenDTO: :class:`Tencentcloud::Cloudstudio.v20210524.models.WorkspaceTokenDTO`
 
         attr_accessor :WorkspaceTokenDTO
-        
+
         def initialize(workspacetokendto=nil)
           @WorkspaceTokenDTO = workspacetokendto
         end
@@ -287,7 +287,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -315,7 +315,7 @@ module TencentCloud
         # @type Templates: :class:`Tencentcloud::Cloudstudio.v20210524.models.UserDefinedTemplateParams`
 
         attr_accessor :Tags, :Icons, :Templates
-        
+
         def initialize(tags=nil, icons=nil, templates=nil)
           @Tags = tags
           @Icons = icons
@@ -340,7 +340,7 @@ module TencentCloud
         # @type Id: Integer
 
         attr_accessor :CloudStudioSessionTeam, :Id
-        
+
         def initialize(cloudstudiosessionteam=nil, id=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @Id = id
@@ -358,7 +358,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -376,7 +376,7 @@ module TencentCloud
         # @type Id: Integer
 
         attr_accessor :CloudStudioSessionTeam, :Id
-        
+
         def initialize(cloudstudiosessionteam=nil, id=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @Id = id
@@ -397,7 +397,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -420,7 +420,7 @@ module TencentCloud
         # @type SpaceKey: String
 
         attr_accessor :CloudStudioSessionTeam, :SpaceKey
-        
+
         def initialize(cloudstudiosessionteam=nil, spacekey=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @SpaceKey = spacekey
@@ -441,7 +441,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -462,7 +462,7 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
 
         attr_accessor :CloudStudioSessionTeam
-        
+
         def initialize(cloudstudiosessionteam=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
         end
@@ -481,7 +481,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -506,7 +506,7 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
 
         attr_accessor :CloudStudioSessionTeam
-        
+
         def initialize(cloudstudiosessionteam=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
         end
@@ -525,7 +525,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -550,7 +550,7 @@ module TencentCloud
         # @type SpaceKey: String
 
         attr_accessor :SpaceKey
-        
+
         def initialize(spacekey=nil)
           @SpaceKey = spacekey
         end
@@ -569,7 +569,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -591,7 +591,7 @@ module TencentCloud
         # @type WorkspaceId: String
 
         attr_accessor :CloudStudioSessionTeam, :Name, :WorkspaceId
-        
+
         def initialize(cloudstudiosessionteam=nil, name=nil, workspaceid=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @Name = name
@@ -614,7 +614,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -635,7 +635,7 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
 
         attr_accessor :CloudStudioSessionTeam
-        
+
         def initialize(cloudstudiosessionteam=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
         end
@@ -654,7 +654,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -681,7 +681,7 @@ module TencentCloud
         # @type SpaceKey: String
 
         attr_accessor :CloudStudioSessionTeam, :SpaceKey
-        
+
         def initialize(cloudstudiosessionteam=nil, spacekey=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @SpaceKey = spacekey
@@ -702,7 +702,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -741,7 +741,7 @@ module TencentCloud
         # @type Sort: Integer
 
         attr_accessor :Id, :Name, :Tag, :Description, :DescriptionCN, :IconUrl, :Author, :Visible, :WorkspaceVersion, :Sort
-        
+
         def initialize(id=nil, name=nil, tag=nil, description=nil, descriptioncn=nil, iconurl=nil, author=nil, visible=nil, workspaceversion=nil, sort=nil)
           @Id = id
           @Name = name
@@ -783,7 +783,7 @@ module TencentCloud
         # @type RefType: String
 
         attr_accessor :CloudStudioSessionTeam, :TemplateId, :Url, :Ref, :RefType
-        
+
         def initialize(cloudstudiosessionteam=nil, templateid=nil, url=nil, ref=nil, reftype=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @TemplateId = templateid
@@ -810,7 +810,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -835,7 +835,7 @@ module TencentCloud
         # @type UserDefinedTemplateParams: :class:`Tencentcloud::Cloudstudio.v20210524.models.UserDefinedTemplateParams`
 
         attr_accessor :CloudStudioSessionTeam, :Id, :UserDefinedTemplateParams
-        
+
         def initialize(cloudstudiosessionteam=nil, id=nil, userdefinedtemplateparams=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @Id = id
@@ -860,7 +860,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -885,7 +885,7 @@ module TencentCloud
         # @type UserDefinedTemplatePatchedParams: :class:`Tencentcloud::Cloudstudio.v20210524.models.UserDefinedTemplatePatchedParams`
 
         attr_accessor :CloudStudioSessionTeam, :Id, :UserDefinedTemplatePatchedParams
-        
+
         def initialize(cloudstudiosessionteam=nil, id=nil, userdefinedtemplatepatchedparams=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @Id = id
@@ -910,7 +910,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -939,7 +939,7 @@ module TencentCloud
         # @type PriceId: Integer
 
         attr_accessor :CloudStudioSessionTeam, :WorkspaceId, :Name, :Description, :PriceId
-        
+
         def initialize(cloudstudiosessionteam=nil, workspaceid=nil, name=nil, description=nil, priceid=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @WorkspaceId = workspaceid
@@ -963,7 +963,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -981,7 +981,7 @@ module TencentCloud
         # @type SpaceKey: String
 
         attr_accessor :CloudStudioSessionTeam, :SpaceKey
-        
+
         def initialize(cloudstudiosessionteam=nil, spacekey=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @SpaceKey = spacekey
@@ -999,7 +999,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1019,7 +1019,7 @@ module TencentCloud
         # @type Force: Boolean
 
         attr_accessor :CloudStudioSessionTeam, :SpaceKey, :Force
-        
+
         def initialize(cloudstudiosessionteam=nil, spacekey=nil, force=nil)
           @CloudStudioSessionTeam = cloudstudiosessionteam
           @SpaceKey = spacekey
@@ -1039,7 +1039,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1057,7 +1057,7 @@ module TencentCloud
         # @type CloudStudioSessionTeam: String
 
         attr_accessor :SpaceKey, :CloudStudioSessionTeam
-        
+
         def initialize(spacekey=nil, cloudstudiosessionteam=nil)
           @SpaceKey = spacekey
           @CloudStudioSessionTeam = cloudstudiosessionteam
@@ -1075,7 +1075,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1095,7 +1095,7 @@ module TencentCloud
         # @type Force: String
 
         attr_accessor :SpaceKey, :CloudStudioSessionTeam, :Force
-        
+
         def initialize(spacekey=nil, cloudstudiosessionteam=nil, force=nil)
           @SpaceKey = spacekey
           @CloudStudioSessionTeam = cloudstudiosessionteam
@@ -1115,7 +1115,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1150,7 +1150,7 @@ module TencentCloud
         # @type VersionControlUrl: String
 
         attr_accessor :Name, :Icon, :Tags, :Source, :Description, :VersionControlType, :VersionControlUrl
-        
+
         def initialize(name=nil, icon=nil, tags=nil, source=nil, description=nil, versioncontroltype=nil, versioncontrolurl=nil)
           @Name = name
           @Icon = icon
@@ -1191,7 +1191,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Source, :Name, :Icon, :Description, :Tags
-        
+
         def initialize(source=nil, name=nil, icon=nil, description=nil, tags=nil)
           @Source = source
           @Name = name
@@ -1225,7 +1225,7 @@ module TencentCloud
         # @type PreviewStatus: Integer
 
         attr_accessor :Id, :AuthenticationUserInfo, :Avatar, :Features, :PreviewStatus
-        
+
         def initialize(id=nil, authenticationuserinfo=nil, avatar=nil, features=nil, previewstatus=nil)
           @Id = id
           @AuthenticationUserInfo = authenticationuserinfo
@@ -1261,7 +1261,7 @@ module TencentCloud
         # @type IsTrial: Boolean
 
         attr_accessor :Team, :UserName, :NickName, :IsAdmin, :IsTrial
-        
+
         def initialize(team=nil, username=nil, nickname=nil, isadmin=nil, istrial=nil)
           @Team = team
           @UserName = username
@@ -1313,7 +1313,7 @@ module TencentCloud
         # @type VersionControlDesc: String
 
         attr_accessor :Name, :VersionControlType, :ImageId, :ImageName, :Description, :WorkspaceVersion, :WorkspaceResourceDTO, :VersionControlUrl, :VersionControlRef, :VersionControlRefType, :SnapshotUid, :TemplateId, :PriceId, :InitializeStatus, :VersionControlDesc
-        
+
         def initialize(name=nil, versioncontroltype=nil, imageid=nil, imagename=nil, description=nil, workspaceversion=nil, workspaceresourcedto=nil, versioncontrolurl=nil, versioncontrolref=nil, versioncontrolreftype=nil, snapshotuid=nil, templateid=nil, priceid=nil, initializestatus=nil, versioncontroldesc=nil)
           @Name = name
           @VersionControlType = versioncontroltype
@@ -1367,7 +1367,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :WorkspaceId, :SpaceKey, :Name
-        
+
         def initialize(workspaceid=nil, spacekey=nil, name=nil)
           @WorkspaceId = workspaceid
           @SpaceKey = spacekey
@@ -1391,7 +1391,7 @@ module TencentCloud
         # @type WorkspaceId: Integer
 
         attr_accessor :CreateDate, :SpaceKey, :WorkspaceId
-        
+
         def initialize(createdate=nil, spacekey=nil, workspaceid=nil)
           @CreateDate = createdate
           @SpaceKey = spacekey
@@ -1421,7 +1421,7 @@ module TencentCloud
         # @type GpuMemory: Integer
 
         attr_accessor :CpuCoreNumber, :NormalMemory, :SystemStorage, :UserStorage, :GpuNumber, :GpuMemory
-        
+
         def initialize(cpucorenumber=nil, normalmemory=nil, systemstorage=nil, userstorage=nil, gpunumber=nil, gpumemory=nil)
           @CpuCoreNumber = cpucorenumber
           @NormalMemory = normalmemory
@@ -1458,7 +1458,7 @@ module TencentCloud
         # @type Users: Array
 
         attr_accessor :Status, :WithMe, :BeginDate, :EndDate, :Users
-        
+
         def initialize(status=nil, withme=nil, begindate=nil, enddate=nil, users=nil)
           @Status = status
           @WithMe = withme
@@ -1546,7 +1546,7 @@ module TencentCloud
         # @type Memory: Integer
 
         attr_accessor :Id, :Name, :Owner, :SpaceKey, :Status, :LastOpsDate, :Description, :Share, :WorkspaceType, :Label, :WorkspaceVersion, :ImageIcon, :CreateDate, :VersionControlUrl, :VersionControlDesc, :VersionControlRef, :VersionControlRefType, :VersionControlType, :TemplateId, :SnapshotUid, :SpecDesc, :Cpu, :Memory
-        
+
         def initialize(id=nil, name=nil, owner=nil, spacekey=nil, status=nil, lastopsdate=nil, description=nil, share=nil, workspacetype=nil, label=nil, workspaceversion=nil, imageicon=nil, createdate=nil, versioncontrolurl=nil, versioncontroldesc=nil, versioncontrolref=nil, versioncontrolreftype=nil, versioncontroltype=nil, templateid=nil, snapshotuid=nil, specdesc=nil, cpu=nil, memory=nil)
           @Id = id
           @Name = name
@@ -1692,7 +1692,7 @@ module TencentCloud
         # @type AuthorAvatar: String
 
         attr_accessor :Id, :Category, :Name, :Description, :DescriptionEN, :Tags, :Icon, :VersionControlType, :VersionControlUrl, :VersionControlDesc, :VersionControlOwner, :VersionControlRef, :VersionControlRefType, :UserVersionControlUrl, :UserVersionControlType, :UserVersionControlRef, :UserVersionControlRefType, :DevFile, :PluginFile, :PrebuildFile, :Marked, :MarkAt, :CreateDate, :LastModified, :Sort, :SnapshotUid, :UserId, :Author, :Me, :AuthorAvatar
-        
+
         def initialize(id=nil, category=nil, name=nil, description=nil, descriptionen=nil, tags=nil, icon=nil, versioncontroltype=nil, versioncontrolurl=nil, versioncontroldesc=nil, versioncontrolowner=nil, versioncontrolref=nil, versioncontrolreftype=nil, userversioncontrolurl=nil, userversioncontroltype=nil, userversioncontrolref=nil, userversioncontrolreftype=nil, devfile=nil, pluginfile=nil, prebuildfile=nil, marked=nil, markat=nil, createdate=nil, lastmodified=nil, sort=nil, snapshotuid=nil, userid=nil, author=nil, me=nil, authoravatar=nil)
           @Id = id
           @Category = category
@@ -1768,7 +1768,7 @@ module TencentCloud
         # @type TokenExpiredLimitSec: Integer
 
         attr_accessor :SpaceKey, :TokenExpiredLimitSec
-        
+
         def initialize(spacekey=nil, tokenexpiredlimitsec=nil)
           @SpaceKey = spacekey
           @TokenExpiredLimitSec = tokenexpiredlimitsec
@@ -1789,7 +1789,7 @@ module TencentCloud
         # @type ExpiredTime: String
 
         attr_accessor :Token, :ExpiredTime
-        
+
         def initialize(token=nil, expiredtime=nil)
           @Token = token
           @ExpiredTime = expiredtime

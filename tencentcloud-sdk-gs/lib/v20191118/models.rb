@@ -59,7 +59,7 @@ module TencentCloud
         # @type RunMode: String
 
         attr_accessor :UserId, :GameId, :GameRegion, :GameParas, :ClientSession, :Resolution, :ImageUrl, :SetNo, :Bitrate, :MaxBitrate, :MinBitrate, :Fps, :UserIp, :Optimization, :HostUserId, :Role, :GameContext, :RunMode
-        
+
         def initialize(userid=nil, gameid=nil, gameregion=nil, gameparas=nil, clientsession=nil, resolution=nil, imageurl=nil, setno=nil, bitrate=nil, maxbitrate=nil, minbitrate=nil, fps=nil, userip=nil, optimization=nil, hostuserid=nil, role=nil, gamecontext=nil, runmode=nil)
           @UserId = userid
           @GameId = gameid
@@ -115,7 +115,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServerSession, :RoleNumber, :Role, :RequestId
-        
+
         def initialize(serversession=nil, rolenumber=nil, role=nil, requestid=nil)
           @ServerSession = serversession
           @RoleNumber = rolenumber
@@ -145,7 +145,7 @@ module TencentCloud
         # @type GameType: String
 
         attr_accessor :GameId, :GroupId, :GameRegion, :GameType
-        
+
         def initialize(gameid=nil, groupid=nil, gameregion=nil, gametype=nil)
           @GameId = gameid
           @GroupId = groupid
@@ -171,7 +171,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Running, :RequestId
-        
+
         def initialize(total=nil, running=nil, requestid=nil)
           @Total = total
           @Running = running
@@ -193,7 +193,7 @@ module TencentCloud
         # @type GameId: String
 
         attr_accessor :UserId, :GameId
-        
+
         def initialize(userid=nil, gameid=nil)
           @UserId = userid
           @GameId = gameid
@@ -211,7 +211,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -229,7 +229,7 @@ module TencentCloud
         # @type PublishUrl: String
 
         attr_accessor :UserId, :PublishUrl
-        
+
         def initialize(userid=nil, publishurl=nil)
           @UserId = userid
           @PublishUrl = publishurl
@@ -247,7 +247,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -265,7 +265,7 @@ module TencentCloud
         # @type HostUserId: String
 
         attr_accessor :UserId, :HostUserId
-        
+
         def initialize(userid=nil, hostuserid=nil)
           @UserId = userid
           @HostUserId = hostuserid
@@ -283,7 +283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -299,7 +299,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserId
-        
+
         def initialize(userid=nil)
           @UserId = userid
         end
@@ -315,7 +315,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -337,7 +337,7 @@ module TencentCloud
         # @type GameContext: String
 
         attr_accessor :UserId, :GameId, :GameArchiveUrl, :GameContext
-        
+
         def initialize(userid=nil, gameid=nil, gamearchiveurl=nil, gamecontext=nil)
           @UserId = userid
           @GameId = gameid
@@ -359,7 +359,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -385,7 +385,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :UserId, :GameId, :GameRegion, :SetNo, :UserIp, :GroupId
-        
+
         def initialize(userid=nil, gameid=nil, gameregion=nil, setno=nil, userip=nil, groupid=nil)
           @UserId = userid
           @GameId = gameid
@@ -411,7 +411,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

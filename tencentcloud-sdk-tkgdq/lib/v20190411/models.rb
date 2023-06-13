@@ -23,7 +23,7 @@ module TencentCloud
         # @type EntityName: String
 
         attr_accessor :EntityName
-        
+
         def initialize(entityname=nil)
           @EntityName = entityname
         end
@@ -41,7 +41,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Content, :RequestId
-        
+
         def initialize(content=nil, requestid=nil)
           @Content = content
           @RequestId = requestid
@@ -61,7 +61,7 @@ module TencentCloud
         # @type RightEntityName: String
 
         attr_accessor :LeftEntityName, :RightEntityName
-        
+
         def initialize(leftentityname=nil, rightentityname=nil)
           @LeftEntityName = leftentityname
           @RightEntityName = rightentityname
@@ -81,7 +81,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Content, :RequestId
-        
+
         def initialize(content=nil, requestid=nil)
           @Content = content
           @RequestId = requestid
@@ -106,7 +106,7 @@ module TencentCloud
         # @type TripleCondition: String
 
         attr_accessor :TripleCondition
-        
+
         def initialize(triplecondition=nil)
           @TripleCondition = triplecondition
         end
@@ -124,7 +124,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Content, :RequestId
-        
+
         def initialize(content=nil, requestid=nil)
           @Content = content
           @RequestId = requestid
@@ -153,7 +153,7 @@ module TencentCloud
         # @type Relation: String
 
         attr_accessor :Object, :Subject, :Relation
-        
+
         def initialize(object=nil, subject=nil, relation=nil)
           @Object = object
           @Subject = subject
@@ -191,7 +191,7 @@ module TencentCloud
         # @type Popular: Array
 
         attr_accessor :Id, :Name, :Popular
-        
+
         def initialize(id=nil, name=nil, popular=nil)
           @Id = id
           @Name = name
@@ -215,7 +215,7 @@ module TencentCloud
         # @type Popular: Array
 
         attr_accessor :Id, :Name, :Popular
-        
+
         def initialize(id=nil, name=nil, popular=nil)
           @Id = id
           @Name = name
@@ -241,7 +241,7 @@ module TencentCloud
         # @type Popular: Integer
 
         attr_accessor :Id, :Name, :Order, :Popular
-        
+
         def initialize(id=nil, name=nil, order=nil, popular=nil)
           @Id = id
           @Name = name

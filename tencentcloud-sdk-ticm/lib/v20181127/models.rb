@@ -25,7 +25,7 @@ module TencentCloud
         # @type Confidence: Integer
 
         attr_accessor :Name, :Confidence
-        
+
         def initialize(name=nil, confidence=nil)
           @Name = name
           @Confidence = confidence
@@ -43,7 +43,7 @@ module TencentCloud
         # @type VodTaskId: String
 
         attr_accessor :VodTaskId
-        
+
         def initialize(vodtaskid=nil)
           @VodTaskId = vodtaskid
         end
@@ -84,7 +84,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :BeginProcessTime, :FinishTime, :PornResult, :TerrorismResult, :PoliticalResult, :PoliticalOcrResult, :PornAsrResult, :PoliticalAsrResult, :PornOcrResult, :MetaData, :RequestId
-        
+
         def initialize(status=nil, beginprocesstime=nil, finishtime=nil, pornresult=nil, terrorismresult=nil, politicalresult=nil, politicalocrresult=nil, pornasrresult=nil, politicalasrresult=nil, pornocrresult=nil, metadata=nil, requestid=nil)
           @Status = status
           @BeginProcessTime = beginprocesstime
@@ -158,7 +158,7 @@ module TencentCloud
         # @type Confidence: Integer
 
         attr_accessor :Code, :Msg, :Suggestion, :Confidence
-        
+
         def initialize(code=nil, msg=nil, suggestion=nil, confidence=nil)
           @Code = code
           @Msg = msg
@@ -186,7 +186,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -210,7 +210,7 @@ module TencentCloud
         # @type Candidates: Array
 
         attr_accessor :FaceRect, :Candidates
-        
+
         def initialize(facerect=nil, candidates=nil)
           @FaceRect = facerect
           @Candidates = candidates
@@ -257,7 +257,7 @@ module TencentCloud
         # @type ImageBase64: String
 
         attr_accessor :Scenes, :ImageUrl, :Config, :Extra, :ImageBase64
-        
+
         def initialize(scenes=nil, imageurl=nil, config=nil, extra=nil, imagebase64=nil)
           @Scenes = scenes
           @ImageUrl = imageurl
@@ -300,7 +300,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Suggestion, :PornResult, :TerrorismResult, :PoliticsResult, :Extra, :DisgustResult, :RequestId
-        
+
         def initialize(suggestion=nil, pornresult=nil, terrorismresult=nil, politicsresult=nil, extra=nil, disgustresult=nil, requestid=nil)
           @Suggestion = suggestion
           @PornResult = pornresult
@@ -368,7 +368,7 @@ module TencentCloud
         # @type AdvancedInfo: String
 
         attr_accessor :Code, :Msg, :Suggestion, :Confidence, :FaceResults, :Type, :AdvancedInfo
-        
+
         def initialize(code=nil, msg=nil, suggestion=nil, confidence=nil, faceresults=nil, type=nil, advancedinfo=nil)
           @Code = code
           @Msg = msg
@@ -420,7 +420,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Code, :Msg, :Suggestion, :Confidence, :AdvancedInfo, :Type
-        
+
         def initialize(code=nil, msg=nil, suggestion=nil, confidence=nil, advancedinfo=nil, type=nil)
           @Code = code
           @Msg = msg
@@ -473,7 +473,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Code, :Msg, :Suggestion, :Confidence, :FaceResults, :AdvancedInfo, :Type
-        
+
         def initialize(code=nil, msg=nil, suggestion=nil, confidence=nil, faceresults=nil, advancedinfo=nil, type=nil)
           @Code = code
           @Msg = msg
@@ -514,7 +514,7 @@ module TencentCloud
         # @type Extra: String
 
         attr_accessor :VideoUrl, :DeveloperId, :CBUrl, :Extra
-        
+
         def initialize(videourl=nil, developerid=nil, cburl=nil, extra=nil)
           @VideoUrl = videourl
           @DeveloperId = developerid
@@ -538,7 +538,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VodTaskId, :RequestId
-        
+
         def initialize(vodtaskid=nil, requestid=nil)
           @VodTaskId = vodtaskid
           @RequestId = requestid
@@ -573,7 +573,7 @@ module TencentCloud
         # @type KeywordSet: Array
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :KeywordSet
-        
+
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, keywordset=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -604,7 +604,7 @@ module TencentCloud
         # @type Codec: String
 
         attr_accessor :Bitrate, :SamplingRate, :Codec
-        
+
         def initialize(bitrate=nil, samplingrate=nil, codec=nil)
           @Bitrate = bitrate
           @SamplingRate = samplingrate
@@ -655,7 +655,7 @@ module TencentCloud
         # @type AudioDuration: Float
 
         attr_accessor :Size, :Container, :Bitrate, :Height, :Width, :Duration, :Rotate, :VideoStreamSet, :AudioStreamSet, :VideoDuration, :AudioDuration
-        
+
         def initialize(size=nil, container=nil, bitrate=nil, height=nil, width=nil, duration=nil, rotate=nil, videostreamset=nil, audiostreamset=nil, videoduration=nil, audioduration=nil)
           @Size = size
           @Container = container
@@ -725,7 +725,7 @@ module TencentCloud
         # @type AreaCoordSet: Array
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :KeywordSet, :AreaCoordSet
-        
+
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, keywordset=nil, areacoordset=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -775,7 +775,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -824,7 +824,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -882,7 +882,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :Label, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, label=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -947,7 +947,7 @@ module TencentCloud
         # @type AreaCoordSet: Array
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :PicUrlExpireTimeStamp, :AreaCoordSet
-        
+
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, picurlexpiretimestamp=nil, areacoordset=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -998,7 +998,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -1050,7 +1050,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -1110,7 +1110,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Status, :Code, :Msg, :Confidence, :Suggestion, :Label, :SegmentSet
-        
+
         def initialize(status=nil, code=nil, msg=nil, confidence=nil, suggestion=nil, label=nil, segmentset=nil)
           @Status = status
           @Code = code
@@ -1169,7 +1169,7 @@ module TencentCloud
         # @type PicUrlExpireTimeStamp: Integer
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp
-        
+
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -1228,7 +1228,7 @@ module TencentCloud
         # @type SegmentSet: Array
 
         attr_accessor :Confidence, :Suggestion, :Label, :Status, :Code, :Msg, :SegmentSet
-        
+
         def initialize(confidence=nil, suggestion=nil, label=nil, status=nil, code=nil, msg=nil, segmentset=nil)
           @Confidence = confidence
           @Suggestion = suggestion
@@ -1276,7 +1276,7 @@ module TencentCloud
         # @type Fps: Integer
 
         attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps
-        
+
         def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil)
           @Bitrate = bitrate
           @Height = height

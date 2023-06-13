@@ -26,7 +26,7 @@ module TencentCloud
         # @type Length: Integer
 
         attr_accessor :Text, :Length
-        
+
         def initialize(text=nil, length=nil)
           @Text = text
           @Length = length
@@ -46,7 +46,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Summary, :RequestId
-        
+
         def initialize(summary=nil, requestid=nil)
           @Summary = summary
           @RequestId = requestid
@@ -70,7 +70,7 @@ module TencentCloud
         # @type Pos: String
 
         attr_accessor :Word, :BeginOffset, :Length, :Pos
-        
+
         def initialize(word=nil, beginoffset=nil, length=nil, pos=nil)
           @Word = word
           @BeginOffset = beginoffset
@@ -96,7 +96,7 @@ module TencentCloud
         # @type CorrectWord: String
 
         attr_accessor :Word, :BeginOffset, :CorrectWord
-        
+
         def initialize(word=nil, beginoffset=nil, correctword=nil)
           @Word = word
           @BeginOffset = beginoffset
@@ -120,7 +120,7 @@ module TencentCloud
         # @type Flag: Integer
 
         attr_accessor :Query, :OpenId, :Flag
-        
+
         def initialize(query=nil, openid=nil, flag=nil)
           @Query = query
           @OpenId = openid
@@ -144,7 +144,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Reply, :Confidence, :RequestId
-        
+
         def initialize(reply=nil, confidence=nil, requestid=nil)
           @Reply = reply
           @Confidence = confidence
@@ -182,7 +182,7 @@ module TencentCloud
         # @type FifthClassProbability: Float
 
         attr_accessor :FirstClassName, :SecondClassName, :FirstClassProbability, :SecondClassProbability, :ThirdClassName, :ThirdClassProbability, :FourthClassName, :FourthClassProbability, :FifthClassName, :FifthClassProbability
-        
+
         def initialize(firstclassname=nil, secondclassname=nil, firstclassprobability=nil, secondclassprobability=nil, thirdclassname=nil, thirdclassprobability=nil, fourthclassname=nil, fourthclassprobability=nil, fifthclassname=nil, fifthclassprobability=nil)
           @FirstClassName = firstclassname
           @SecondClassName = secondclassname
@@ -222,7 +222,7 @@ module TencentCloud
         # @type Pos: String
 
         attr_accessor :Word, :BeginOffset, :Length, :Pos
-        
+
         def initialize(word=nil, beginoffset=nil, length=nil, pos=nil)
           @Word = word
           @BeginOffset = beginoffset
@@ -263,7 +263,7 @@ module TencentCloud
         # @type DescriptionEn: String
 
         attr_accessor :Order, :BeginOffset, :Len, :Word, :CorrectWord, :CorrectionType, :Confidence, :DescriptionZh, :DescriptionEn
-        
+
         def initialize(order=nil, beginoffset=nil, len=nil, word=nil, correctword=nil, correctiontype=nil, confidence=nil, descriptionzh=nil, descriptionen=nil)
           @Order = order
           @BeginOffset = beginoffset
@@ -297,7 +297,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :Name, :Description
-        
+
         def initialize(name=nil, description=nil)
           @Name = name
           @Description = description
@@ -318,7 +318,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DictId, :RequestId
-        
+
         def initialize(dictid=nil, requestid=nil)
           @DictId = dictid
           @RequestId = requestid
@@ -338,7 +338,7 @@ module TencentCloud
         # @type WordItems: Array
 
         attr_accessor :DictId, :WordItems
-        
+
         def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
           @WordItems = worditems
@@ -363,7 +363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -379,7 +379,7 @@ module TencentCloud
         # @type DictId: String
 
         attr_accessor :DictId
-        
+
         def initialize(dictid=nil)
           @DictId = dictid
         end
@@ -395,7 +395,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -413,7 +413,7 @@ module TencentCloud
         # @type WordItems: Array
 
         attr_accessor :DictId, :WordItems
-        
+
         def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
           @WordItems = worditems
@@ -438,7 +438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -454,7 +454,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -487,7 +487,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DpTokens, :RequestId
-        
+
         def initialize(dptokens=nil, requestid=nil)
           @DpTokens = dptokens
           @RequestId = requestid
@@ -514,7 +514,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :DictId, :Name
-        
+
         def initialize(dictid=nil, name=nil)
           @DictId = dictid
           @Name = name
@@ -535,7 +535,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Dicts, :RequestId
-        
+
         def initialize(dicts=nil, requestid=nil)
           @Dicts = dicts
           @RequestId = requestid
@@ -562,7 +562,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
-        
+
         def initialize(limit=nil, offset=nil)
           @Limit = limit
           @Offset = offset
@@ -585,7 +585,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Dicts, :RequestId
-        
+
         def initialize(totalcount=nil, dicts=nil, requestid=nil)
           @TotalCount = totalcount
           @Dicts = dicts
@@ -618,7 +618,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :DictId, :Offset, :Limit, :Text
-        
+
         def initialize(dictid=nil, offset=nil, limit=nil, text=nil)
           @DictId = dictid
           @Offset = offset
@@ -645,7 +645,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :WordItems, :RequestId
-        
+
         def initialize(totalcount=nil, worditems=nil, requestid=nil)
           @TotalCount = totalcount
           @WordItems = worditems
@@ -680,7 +680,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :Name, :Id, :Description, :UpdateTime, :CreateTime
-        
+
         def initialize(name=nil, id=nil, description=nil, updatetime=nil, createtime=nil)
           @Name = name
           @Id = id
@@ -710,7 +710,7 @@ module TencentCloud
         # @type Id: Integer
 
         attr_accessor :Relation, :HeadId, :Word, :Id
-        
+
         def initialize(relation=nil, headid=nil, word=nil, id=nil)
           @Relation = relation
           @HeadId = headid
@@ -742,7 +742,7 @@ module TencentCloud
         # @type EmbellishType: String
 
         attr_accessor :Text, :EmbellishType
-        
+
         def initialize(text=nil, embellishtype=nil)
           @Text = text
           @EmbellishType = embellishtype
@@ -768,7 +768,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Word, :BeginOffset, :Length, :Type, :Name
-        
+
         def initialize(word=nil, beginoffset=nil, length=nil, type=nil, name=nil)
           @Word = word
           @BeginOffset = beginoffset
@@ -792,7 +792,7 @@ module TencentCloud
         # @type SentencePairList: Array
 
         attr_accessor :SentencePairList
-        
+
         def initialize(sentencepairlist=nil)
           @SentencePairList = sentencepairlist
         end
@@ -817,7 +817,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ScoreList, :RequestId
-        
+
         def initialize(scorelist=nil, requestid=nil)
           @ScoreList = scorelist
           @RequestId = requestid
@@ -837,7 +837,7 @@ module TencentCloud
         # @type TargetWord: String
 
         attr_accessor :SourceWord, :TargetWord
-        
+
         def initialize(sourceword=nil, targetword=nil)
           @SourceWord = sourceword
           @TargetWord = targetword
@@ -857,7 +857,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Similarity, :RequestId
-        
+
         def initialize(similarity=nil, requestid=nil)
           @Similarity = similarity
           @RequestId = requestid
@@ -877,7 +877,7 @@ module TencentCloud
         # @type TargetType: Integer
 
         attr_accessor :Text, :TargetType
-        
+
         def initialize(text=nil, targettype=nil)
           @Text = text
           @TargetType = targettype
@@ -901,7 +901,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TopScroll, :Content, :RandomCause, :RequestId
-        
+
         def initialize(topscroll=nil, content=nil, randomcause=nil, requestid=nil)
           @TopScroll = topscroll
           @Content = content
@@ -931,7 +931,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :WordList, :Number, :Domain
-        
+
         def initialize(wordlist=nil, number=nil, domain=nil)
           @WordList = wordlist
           @Number = number
@@ -953,7 +953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :KeywordSentenceList, :RequestId
-        
+
         def initialize(keywordsentencelist=nil, requestid=nil)
           @KeywordSentenceList = keywordsentencelist
           @RequestId = requestid
@@ -982,7 +982,7 @@ module TencentCloud
         # @type Genre: Integer
 
         attr_accessor :Text, :PoetryType, :Genre
-        
+
         def initialize(text=nil, poetrytype=nil, genre=nil)
           @Text = text
           @PoetryType = poetrytype
@@ -1006,7 +1006,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Title, :Content, :RequestId
-        
+
         def initialize(title=nil, content=nil, requestid=nil)
           @Title = title
           @Content = content
@@ -1028,7 +1028,7 @@ module TencentCloud
         # @type Word: String
 
         attr_accessor :Score, :Word
-        
+
         def initialize(score=nil, word=nil)
           @Score = score
           @Word = word
@@ -1046,7 +1046,7 @@ module TencentCloud
         # @type TargetText: String
 
         attr_accessor :TargetText
-        
+
         def initialize(targettext=nil)
           @TargetText = targettext
         end
@@ -1064,7 +1064,7 @@ module TencentCloud
         # @type Num: Integer
 
         attr_accessor :Text, :Num
-        
+
         def initialize(text=nil, num=nil)
           @Text = text
           @Num = num
@@ -1085,7 +1085,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Keywords, :RequestId
-        
+
         def initialize(keywords=nil, requestid=nil)
           @Keywords = keywords
           @RequestId = requestid
@@ -1116,7 +1116,7 @@ module TencentCloud
         # @type Flag: Integer
 
         attr_accessor :Text, :DictId, :Flag
-        
+
         def initialize(text=nil, dictid=nil, flag=nil)
           @Text = text
           @DictId = dictid
@@ -1145,7 +1145,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NerTokens, :PosTokens, :RequestId
-        
+
         def initialize(nertokens=nil, postokens=nil, requestid=nil)
           @NerTokens = nertokens
           @PosTokens = postokens
@@ -1185,7 +1185,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Word, :Length, :BeginOffset, :Type
-        
+
         def initialize(word=nil, length=nil, beginoffset=nil, type=nil)
           @Word = word
           @Length = length
@@ -1207,7 +1207,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -1231,7 +1231,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NormalText, :BasicParticiples, :CompoundParticiples, :Entities, :RequestId
-        
+
         def initialize(normaltext=nil, basicparticiples=nil, compoundparticiples=nil, entities=nil, requestid=nil)
           @NormalText = normaltext
           @BasicParticiples = basicparticiples
@@ -1282,7 +1282,7 @@ module TencentCloud
         # @type Pos: String
 
         attr_accessor :Word, :Length, :BeginOffset, :Pos
-        
+
         def initialize(word=nil, length=nil, beginoffset=nil, pos=nil)
           @Word = word
           @Length = length
@@ -1306,7 +1306,7 @@ module TencentCloud
         # @type Number: Integer
 
         attr_accessor :Text, :Number
-        
+
         def initialize(text=nil, number=nil)
           @Text = text
           @Number = number
@@ -1326,7 +1326,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WordList, :RequestId
-        
+
         def initialize(wordlist=nil, requestid=nil)
           @WordList = wordlist
           @RequestId = requestid
@@ -1350,7 +1350,7 @@ module TencentCloud
         # @type Pos: String
 
         attr_accessor :Text, :IsExist, :MatchText, :Pos
-        
+
         def initialize(text=nil, isexist=nil, matchtext=nil, pos=nil)
           @Text = text
           @IsExist = isexist
@@ -1374,7 +1374,7 @@ module TencentCloud
         # @type WordItems: Array
 
         attr_accessor :DictId, :WordItems
-        
+
         def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
           @WordItems = worditems
@@ -1402,7 +1402,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -1427,7 +1427,7 @@ module TencentCloud
         # @type TextList: Array
 
         attr_accessor :TextList
-        
+
         def initialize(textlist=nil)
           @TextList = textlist
         end
@@ -1446,7 +1446,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CorrectionList, :RequestId
-        
+
         def initialize(correctionlist=nil, requestid=nil)
           @CorrectionList = correctionlist
           @RequestId = requestid
@@ -1471,7 +1471,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -1491,7 +1491,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Vector, :Dimension, :RequestId
-        
+
         def initialize(vector=nil, dimension=nil, requestid=nil)
           @Vector = vector
           @Dimension = dimension
@@ -1513,7 +1513,7 @@ module TencentCloud
         # @type TargetText: String
 
         attr_accessor :SourceText, :TargetText
-        
+
         def initialize(sourcetext=nil, targettext=nil)
           @SourceText = sourcetext
           @TargetText = targettext
@@ -1541,7 +1541,7 @@ module TencentCloud
         # @type Mode: String
 
         attr_accessor :Text, :Flag, :Mode
-        
+
         def initialize(text=nil, flag=nil, mode=nil)
           @Text = text
           @Flag = flag
@@ -1573,7 +1573,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Positive, :Neutral, :Negative, :Sentiment, :RequestId
-        
+
         def initialize(positive=nil, neutral=nil, negative=nil, sentiment=nil, requestid=nil)
           @Positive = positive
           @Neutral = neutral
@@ -1599,7 +1599,7 @@ module TencentCloud
         # @type WordNumber: Integer
 
         attr_accessor :Text, :WordNumber
-        
+
         def initialize(text=nil, wordnumber=nil)
           @Text = text
           @WordNumber = wordnumber
@@ -1619,7 +1619,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SimilarWords, :RequestId
-        
+
         def initialize(similarwords=nil, requestid=nil)
           @SimilarWords = similarwords
           @RequestId = requestid
@@ -1639,7 +1639,7 @@ module TencentCloud
         # @type Score: Float
 
         attr_accessor :Text, :Score
-        
+
         def initialize(text=nil, score=nil)
           @Text = text
           @Score = score
@@ -1661,7 +1661,7 @@ module TencentCloud
         # @type Flag: Integer
 
         attr_accessor :Text, :Flag
-        
+
         def initialize(text=nil, flag=nil)
           @Text = text
           @Flag = flag
@@ -1681,7 +1681,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Classes, :RequestId
-        
+
         def initialize(classes=nil, requestid=nil)
           @Classes = classes
           @RequestId = requestid
@@ -1706,7 +1706,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -1727,7 +1727,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CCITokens, :ResultText, :RequestId
-        
+
         def initialize(ccitokens=nil, resulttext=nil, requestid=nil)
           @CCITokens = ccitokens
           @ResultText = resulttext
@@ -1754,7 +1754,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -1775,7 +1775,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CCITokens, :ResultText, :RequestId
-        
+
         def initialize(ccitokens=nil, resulttext=nil, requestid=nil)
           @CCITokens = ccitokens
           @ResultText = resulttext
@@ -1817,7 +1817,7 @@ module TencentCloud
         # @type Style: String
 
         attr_accessor :Text, :SourceLang, :Number, :Style
-        
+
         def initialize(text=nil, sourcelang=nil, number=nil, style=nil)
           @Text = text
           @SourceLang = sourcelang
@@ -1841,7 +1841,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EmbellishList, :RequestId
-        
+
         def initialize(embellishlist=nil, requestid=nil)
           @EmbellishList = embellishlist
           @RequestId = requestid
@@ -1868,7 +1868,7 @@ module TencentCloud
         # @type TargetText: Array
 
         attr_accessor :SrcText, :TargetText
-        
+
         def initialize(srctext=nil, targettext=nil)
           @SrcText = srctext
           @TargetText = targettext
@@ -1888,7 +1888,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Similarity, :RequestId
-        
+
         def initialize(similarity=nil, requestid=nil)
           @Similarity = similarity
           @RequestId = requestid
@@ -1915,7 +1915,7 @@ module TencentCloud
         # @type TargetText: Array
 
         attr_accessor :SrcText, :TargetText
-        
+
         def initialize(srctext=nil, targettext=nil)
           @SrcText = srctext
           @TargetText = targettext
@@ -1935,7 +1935,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Similarity, :RequestId
-        
+
         def initialize(similarity=nil, requestid=nil)
           @Similarity = similarity
           @RequestId = requestid
@@ -1979,7 +1979,7 @@ module TencentCloud
         # @type Style: String
 
         attr_accessor :Text, :SourceLang, :Number, :Domain, :Style
-        
+
         def initialize(text=nil, sourcelang=nil, number=nil, domain=nil, style=nil)
           @Text = text
           @SourceLang = sourcelang
@@ -2005,7 +2005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WritingList, :RequestId
-        
+
         def initialize(writinglist=nil, requestid=nil)
           @WritingList = writinglist
           @RequestId = requestid
@@ -2034,7 +2034,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :DictId, :Description, :Name
-        
+
         def initialize(dictid=nil, description=nil, name=nil)
           @DictId = dictid
           @Description = description
@@ -2054,7 +2054,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2070,7 +2070,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -2090,7 +2090,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Vector, :Dimension, :RequestId
-        
+
         def initialize(vector=nil, dimension=nil, requestid=nil)
           @Vector = vector
           @Dimension = dimension
@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type Pos: String
 
         attr_accessor :Text, :CreateTime, :Pos
-        
+
         def initialize(text=nil, createtime=nil, pos=nil)
           @Text = text
           @CreateTime = createtime
@@ -2136,7 +2136,7 @@ module TencentCloud
         # @type TargetWord: String
 
         attr_accessor :SrcWord, :TargetWord
-        
+
         def initialize(srcword=nil, targetword=nil)
           @SrcWord = srcword
           @TargetWord = targetword
@@ -2156,7 +2156,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Similarity, :RequestId
-        
+
         def initialize(similarity=nil, requestid=nil)
           @Similarity = similarity
           @RequestId = requestid
@@ -2176,7 +2176,7 @@ module TencentCloud
         # @type PrefixText: String
 
         attr_accessor :TargetText, :PrefixText
-        
+
         def initialize(targettext=nil, prefixtext=nil)
           @TargetText = targettext
           @PrefixText = prefixtext

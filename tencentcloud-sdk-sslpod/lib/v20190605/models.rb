@@ -44,7 +44,7 @@ module TencentCloud
         # @type CertType: String
 
         attr_accessor :Hash, :CN, :SANs, :KeyAlgo, :Issuer, :BeginTime, :EndTime, :Days, :Brand, :TrustStatus, :CertType
-        
+
         def initialize(hash=nil, cn=nil, sans=nil, keyalgo=nil, issuer=nil, begintime=nil, endtime=nil, days=nil, brand=nil, truststatus=nil, certtype=nil)
           @Hash = hash
           @CN = cn
@@ -82,7 +82,7 @@ module TencentCloud
         # @type Children: Array
 
         attr_accessor :Name, :Children
-        
+
         def initialize(name=nil, children=nil)
           @Name = name
           @Children = children
@@ -109,7 +109,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -137,7 +137,7 @@ module TencentCloud
         # @type Tags: String
 
         attr_accessor :ServerType, :Domain, :Port, :IP, :Notice, :Tags
-        
+
         def initialize(servertype=nil, domain=nil, port=nil, ip=nil, notice=nil, tags=nil)
           @ServerType = servertype
           @Domain = domain
@@ -163,7 +163,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -189,7 +189,7 @@ module TencentCloud
         # @type ComplianceHistogram: Array
 
         attr_accessor :SecurityLevelPie, :CertBrandsPie, :CertValidTimePie, :CertTypePie, :SSLBugsLoopholeHistogram, :ComplianceHistogram
-        
+
         def initialize(securitylevelpie=nil, certbrandspie=nil, certvalidtimepie=nil, certtypepie=nil, sslbugsloopholehistogram=nil, compliancehistogram=nil)
           @SecurityLevelPie = securitylevelpie
           @CertBrandsPie = certbrandspie
@@ -257,7 +257,7 @@ module TencentCloud
         # @type DomainId: Integer
 
         attr_accessor :DomainId
-        
+
         def initialize(domainid=nil)
           @DomainId = domainid
         end
@@ -273,7 +273,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -286,7 +286,7 @@ module TencentCloud
       # DescribeDashboard请求参数结构体
       class DescribeDashboardRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -303,7 +303,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -324,7 +324,7 @@ module TencentCloud
         # @type DomainId: Integer
 
         attr_accessor :DomainId
-        
+
         def initialize(domainid=nil)
           @DomainId = domainid
         end
@@ -342,7 +342,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -364,7 +364,7 @@ module TencentCloud
       # DescribeDomainTags请求参数结构体
       class DescribeDomainTagsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -380,7 +380,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -409,7 +409,7 @@ module TencentCloud
         # @type AllowMaxAddDomain: Integer
 
         attr_accessor :Result, :SearchTotal, :Total, :AllowMonitoringCount, :CurrentMonitoringCount, :AllowMaxAddDomain
-        
+
         def initialize(result=nil, searchtotal=nil, total=nil, allowmonitoringcount=nil, currentmonitoringcount=nil, allowmaxadddomain=nil)
           @Result = result
           @SearchTotal = searchtotal
@@ -469,7 +469,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Offset, :Limit, :SearchType, :Tag, :Grade, :Brand, :Code, :Hash, :Item, :Status, :Domain
-        
+
         def initialize(offset=nil, limit=nil, searchtype=nil, tag=nil, grade=nil, brand=nil, code=nil, hash=nil, item=nil, status=nil, domain=nil)
           @Offset = offset
           @Limit = limit
@@ -507,7 +507,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -525,7 +525,7 @@ module TencentCloud
       # DescribeNoticeInfo请求参数结构体
       class DescribeNoticeInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -541,7 +541,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -621,7 +621,7 @@ module TencentCloud
         # @type Port: String
 
         attr_accessor :Id, :Domain, :Ip, :AutoIP, :Grade, :Brand, :ServerType, :GradeCode, :Notice, :AccountDomainId, :Tags, :Status, :Port
-        
+
         def initialize(id=nil, domain=nil, ip=nil, autoip=nil, grade=nil, brand=nil, servertype=nil, gradecode=nil, notice=nil, accountdomainid=nil, tags=nil, status=nil, port=nil)
           @Id = id
           @Domain = domain
@@ -668,7 +668,7 @@ module TencentCloud
         # @type Sent: Integer
 
         attr_accessor :Type, :Total, :Sent
-        
+
         def initialize(type=nil, total=nil, sent=nil)
           @Type = type
           @Total = total
@@ -690,7 +690,7 @@ module TencentCloud
         # @type Tags: String
 
         attr_accessor :AccountDomainId, :Tags
-        
+
         def initialize(accountdomainid=nil, tags=nil)
           @AccountDomainId = accountdomainid
           @Tags = tags
@@ -708,7 +708,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -728,7 +728,7 @@ module TencentCloud
         # @type LimitInfos: Array
 
         attr_accessor :Id, :NoticeType, :LimitInfos
-        
+
         def initialize(id=nil, noticetype=nil, limitinfos=nil)
           @Id = id
           @NoticeType = noticetype
@@ -755,7 +755,7 @@ module TencentCloud
         # @type DomainId: Integer
 
         attr_accessor :DomainId
-        
+
         def initialize(domainid=nil)
           @DomainId = domainid
         end
@@ -771,7 +771,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -787,7 +787,7 @@ module TencentCloud
         # @type Domain: String
 
         attr_accessor :Domain
-        
+
         def initialize(domain=nil)
           @Domain = domain
         end
@@ -805,7 +805,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid

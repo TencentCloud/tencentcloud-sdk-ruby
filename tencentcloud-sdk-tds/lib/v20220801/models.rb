@@ -23,7 +23,7 @@ module TencentCloud
         # @type DeviceToken: String
 
         attr_accessor :DeviceToken
-        
+
         def initialize(devicetoken=nil)
           @DeviceToken = devicetoken
         end
@@ -61,7 +61,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :RequestId
-        
+
         def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, requestid=nil)
           @AppVersion = appversion
           @Brand = brand
@@ -113,7 +113,7 @@ module TencentCloud
         # @type DeviceToken: String
 
         attr_accessor :DeviceToken
-        
+
         def initialize(devicetoken=nil)
           @DeviceToken = devicetoken
         end
@@ -153,7 +153,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :RequestId
-        
+
         def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, requestid=nil)
           @AppVersion = appversion
           @Brand = brand
@@ -223,7 +223,7 @@ module TencentCloud
         # @type QQOpenId: String
 
         attr_accessor :DeviceToken, :SceneCode, :UserId, :EventTime, :ElapsedTime, :WeChatOpenId, :PhoneNumber, :ClientIP, :QQOpenId
-        
+
         def initialize(devicetoken=nil, scenecode=nil, userid=nil, eventtime=nil, elapsedtime=nil, wechatopenid=nil, phonenumber=nil, clientip=nil, qqopenid=nil)
           @DeviceToken = devicetoken
           @SceneCode = scenecode
@@ -283,7 +283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :SceneRiskInfos, :SuggestionLevel, :RequestId
-        
+
         def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, sceneriskinfos=nil, suggestionlevel=nil, requestid=nil)
           @AppVersion = appversion
           @Brand = brand
@@ -348,7 +348,7 @@ module TencentCloud
         # @type DeviceToken: String
 
         attr_accessor :DeviceToken
-        
+
         def initialize(devicetoken=nil)
           @DeviceToken = devicetoken
         end
@@ -384,7 +384,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Openid, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RequestId
-        
+
         def initialize(openid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, requestid=nil)
           @Openid = openid
           @AppVersion = appversion
@@ -422,7 +422,7 @@ module TencentCloud
         # @type Level: Integer
 
         attr_accessor :Type, :Level
-        
+
         def initialize(type=nil, level=nil)
           @Type = type
           @Level = level

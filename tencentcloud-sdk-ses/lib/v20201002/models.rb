@@ -25,7 +25,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :FileName, :Content
-        
+
         def initialize(filename=nil, content=nil)
           @FileName = filename
           @Content = content
@@ -67,7 +67,7 @@ module TencentCloud
         # @type ADLocation: Integer
 
         attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam, :Unsubscribe, :ADLocation
-        
+
         def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil, unsubscribe=nil, adlocation=nil)
           @FromEmailAddress = fromemailaddress
           @ReceiverId = receiverid
@@ -126,7 +126,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -146,7 +146,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :BounceTime, :EmailAddress
-        
+
         def initialize(bouncetime=nil, emailaddress=nil)
           @BounceTime = bouncetime
           @EmailAddress = emailaddress
@@ -166,7 +166,7 @@ module TencentCloud
         # @type EmailSenderName: String
 
         attr_accessor :EmailAddress, :EmailSenderName
-        
+
         def initialize(emailaddress=nil, emailsendername=nil)
           @EmailAddress = emailaddress
           @EmailSenderName = emailsendername
@@ -184,7 +184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -200,7 +200,7 @@ module TencentCloud
         # @type EmailIdentity: String
 
         attr_accessor :EmailIdentity
-        
+
         def initialize(emailidentity=nil)
           @EmailIdentity = emailidentity
         end
@@ -222,7 +222,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
-        
+
         def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
@@ -253,7 +253,7 @@ module TencentCloud
         # @type TemplateContent: :class:`Tencentcloud::Ses.v20201002.models.TemplateContent`
 
         attr_accessor :TemplateName, :TemplateContent
-        
+
         def initialize(templatename=nil, templatecontent=nil)
           @TemplateName = templatename
           @TemplateContent = templatecontent
@@ -276,7 +276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TemplateID, :RequestId
-        
+
         def initialize(templateid=nil, requestid=nil)
           @TemplateID = templateid
           @RequestId = requestid
@@ -296,7 +296,7 @@ module TencentCloud
         # @type Emails: Array
 
         attr_accessor :ReceiverId, :Emails
-        
+
         def initialize(receiverid=nil, emails=nil)
           @ReceiverId = receiverid
           @Emails = emails
@@ -314,7 +314,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -332,7 +332,7 @@ module TencentCloud
         # @type Datas: Array
 
         attr_accessor :ReceiverId, :Datas
-        
+
         def initialize(receiverid=nil, datas=nil)
           @ReceiverId = receiverid
           @Datas = datas
@@ -357,7 +357,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -375,7 +375,7 @@ module TencentCloud
         # @type Desc: String
 
         attr_accessor :ReceiversName, :Desc
-        
+
         def initialize(receiversname=nil, desc=nil)
           @ReceiversName = receiversname
           @Desc = desc
@@ -395,7 +395,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReceiverId, :RequestId
-        
+
         def initialize(receiverid=nil, requestid=nil)
           @ReceiverId = receiverid
           @RequestId = requestid
@@ -417,7 +417,7 @@ module TencentCloud
         # @type TermCycle: Integer
 
         attr_accessor :BeginTime, :IntervalTime, :TermCycle
-        
+
         def initialize(begintime=nil, intervaltime=nil, termcycle=nil)
           @BeginTime = begintime
           @IntervalTime = intervaltime
@@ -445,7 +445,7 @@ module TencentCloud
         # @type Status: Boolean
 
         attr_accessor :Type, :SendDomain, :ExpectedValue, :CurrentValue, :Status
-        
+
         def initialize(type=nil, senddomain=nil, expectedvalue=nil, currentvalue=nil, status=nil)
           @Type = type
           @SendDomain = senddomain
@@ -469,7 +469,7 @@ module TencentCloud
         # @type EmailAddressList: Array
 
         attr_accessor :EmailAddressList
-        
+
         def initialize(emailaddresslist=nil)
           @EmailAddressList = emailaddresslist
         end
@@ -485,7 +485,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -501,7 +501,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :EmailAddress
-        
+
         def initialize(emailaddress=nil)
           @EmailAddress = emailaddress
         end
@@ -517,7 +517,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -533,7 +533,7 @@ module TencentCloud
         # @type EmailIdentity: String
 
         attr_accessor :EmailIdentity
-        
+
         def initialize(emailidentity=nil)
           @EmailIdentity = emailidentity
         end
@@ -549,7 +549,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -565,7 +565,7 @@ module TencentCloud
         # @type TemplateID: Integer
 
         attr_accessor :TemplateID
-        
+
         def initialize(templateid=nil)
           @TemplateID = templateid
         end
@@ -581,7 +581,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -597,7 +597,7 @@ module TencentCloud
         # @type ReceiverId: Integer
 
         attr_accessor :ReceiverId
-        
+
         def initialize(receiverid=nil)
           @ReceiverId = receiverid
         end
@@ -613,7 +613,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -637,7 +637,7 @@ module TencentCloud
         # @type DailyQuota: Integer
 
         attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota
-        
+
         def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil)
           @IdentityName = identityname
           @IdentityType = identitytype
@@ -667,7 +667,7 @@ module TencentCloud
         # @type CreatedTimestamp: Integer
 
         attr_accessor :EmailAddress, :EmailSenderName, :CreatedTimestamp
-        
+
         def initialize(emailaddress=nil, emailsendername=nil, createdtimestamp=nil)
           @EmailAddress = emailaddress
           @EmailSenderName = emailsendername
@@ -687,7 +687,7 @@ module TencentCloud
         # @type EmailIdentity: String
 
         attr_accessor :EmailIdentity
-        
+
         def initialize(emailidentity=nil)
           @EmailIdentity = emailidentity
         end
@@ -709,7 +709,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
-        
+
         def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
@@ -738,7 +738,7 @@ module TencentCloud
         # @type TemplateID: Integer
 
         attr_accessor :TemplateID
-        
+
         def initialize(templateid=nil)
           @TemplateID = templateid
         end
@@ -760,7 +760,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TemplateContent, :TemplateStatus, :TemplateName, :RequestId
-        
+
         def initialize(templatecontent=nil, templatestatus=nil, templatename=nil, requestid=nil)
           @TemplateContent = templatecontent
           @TemplateStatus = templatestatus
@@ -793,7 +793,7 @@ module TencentCloud
         # @type ToEmailAddress: String
 
         attr_accessor :RequestDate, :Offset, :Limit, :MessageId, :ToEmailAddress
-        
+
         def initialize(requestdate=nil, offset=nil, limit=nil, messageid=nil, toemailaddress=nil)
           @RequestDate = requestdate
           @Offset = offset
@@ -819,7 +819,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EmailStatusList, :RequestId
-        
+
         def initialize(emailstatuslist=nil, requestid=nil)
           @EmailStatusList = emailstatuslist
           @RequestId = requestid
@@ -850,7 +850,7 @@ module TencentCloud
         # @type ReceivingMailboxType: String
 
         attr_accessor :StartDate, :EndDate, :Domain, :ReceivingMailboxType
-        
+
         def initialize(startdate=nil, enddate=nil, domain=nil, receivingmailboxtype=nil)
           @StartDate = startdate
           @EndDate = enddate
@@ -876,7 +876,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DailyVolumes, :OverallVolume, :RequestId
-        
+
         def initialize(dailyvolumes=nil, overallvolume=nil, requestid=nil)
           @DailyVolumes = dailyvolumes
           @OverallVolume = overallvolume
@@ -916,7 +916,7 @@ module TencentCloud
         # @type TaskID: String
 
         attr_accessor :StartDate, :EndDate, :Limit, :Offset, :EmailAddress, :TaskID
-        
+
         def initialize(startdate=nil, enddate=nil, limit=nil, offset=nil, emailaddress=nil, taskid=nil)
           @StartDate = startdate
           @EndDate = enddate
@@ -946,7 +946,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BlackList, :TotalCount, :RequestId
-        
+
         def initialize(blacklist=nil, totalcount=nil, requestid=nil)
           @BlackList = blacklist
           @TotalCount = totalcount
@@ -970,7 +970,7 @@ module TencentCloud
       # ListEmailAddress请求参数结构体
       class ListEmailAddressRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -987,7 +987,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EmailSenders, :RequestId
-        
+
         def initialize(emailsenders=nil, requestid=nil)
           @EmailSenders = emailsenders
           @RequestId = requestid
@@ -1009,7 +1009,7 @@ module TencentCloud
       # ListEmailIdentities请求参数结构体
       class ListEmailIdentitiesRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1029,7 +1029,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EmailIdentities, :MaxReputationLevel, :MaxDailyQuota, :RequestId
-        
+
         def initialize(emailidentities=nil, maxreputationlevel=nil, maxdailyquota=nil, requestid=nil)
           @EmailIdentities = emailidentities
           @MaxReputationLevel = maxreputationlevel
@@ -1060,7 +1060,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
-        
+
         def initialize(limit=nil, offset=nil)
           @Limit = limit
           @Offset = offset
@@ -1082,7 +1082,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TemplatesMetadata, :TotalCount, :RequestId
-        
+
         def initialize(templatesmetadata=nil, totalcount=nil, requestid=nil)
           @TemplatesMetadata = templatesmetadata
           @TotalCount = totalcount
@@ -1115,7 +1115,7 @@ module TencentCloud
         # @type KeyWord: String
 
         attr_accessor :Offset, :Limit, :Status, :KeyWord
-        
+
         def initialize(offset=nil, limit=nil, status=nil, keyword=nil)
           @Offset = offset
           @Limit = limit
@@ -1141,7 +1141,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1176,7 +1176,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :Offset, :Limit, :Status, :ReceiverId, :TaskType
-        
+
         def initialize(offset=nil, limit=nil, status=nil, receiverid=nil, tasktype=nil)
           @Offset = offset
           @Limit = limit
@@ -1204,7 +1204,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1243,7 +1243,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ReceiverId, :ReceiversName, :Count, :Desc, :ReceiversStatus, :CreateTime
-        
+
         def initialize(receiverid=nil, receiversname=nil, count=nil, desc=nil, receiversstatus=nil, createtime=nil)
           @ReceiverId = receiverid
           @ReceiversName = receiversname
@@ -1272,7 +1272,7 @@ module TencentCloud
         # @type TemplateData: String
 
         attr_accessor :Email, :TemplateData
-        
+
         def initialize(email=nil, templatedata=nil)
           @Email = email
           @TemplateData = templatedata
@@ -1312,7 +1312,7 @@ module TencentCloud
         # @type TriggerType: Integer
 
         attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType
-        
+
         def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
@@ -1363,7 +1363,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MessageId, :RequestId
-        
+
         def initialize(messageid=nil, requestid=nil)
           @MessageId = messageid
           @RequestId = requestid
@@ -1432,7 +1432,7 @@ module TencentCloud
         # @type UserComplainted: Boolean
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted
-        
+
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil)
           @MessageId = messageid
           @ToEmailAddress = toemailaddress
@@ -1504,7 +1504,7 @@ module TencentCloud
         # @type ReceiversName: String
 
         attr_accessor :TaskId, :FromEmailAddress, :ReceiverId, :TaskStatus, :TaskType, :RequestCount, :SendCount, :CacheCount, :CreateTime, :UpdateTime, :Subject, :Template, :CycleParam, :TimedParam, :ErrMsg, :ReceiversName
-        
+
         def initialize(taskid=nil, fromemailaddress=nil, receiverid=nil, taskstatus=nil, tasktype=nil, requestcount=nil, sendcount=nil, cachecount=nil, createtime=nil, updatetime=nil, subject=nil, template=nil, cycleparam=nil, timedparam=nil, errmsg=nil, receiversname=nil)
           @TaskId = taskid
           @FromEmailAddress = fromemailaddress
@@ -1561,7 +1561,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Html, :Text
-        
+
         def initialize(html=nil, text=nil)
           @Html = html
           @Text = text
@@ -1583,7 +1583,7 @@ module TencentCloud
         # @type TemplateData: String
 
         attr_accessor :TemplateID, :TemplateData
-        
+
         def initialize(templateid=nil, templatedata=nil)
           @TemplateID = templateid
           @TemplateData = templatedata
@@ -1603,7 +1603,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Html, :Text
-        
+
         def initialize(html=nil, text=nil)
           @Html = html
           @Text = text
@@ -1629,7 +1629,7 @@ module TencentCloud
         # @type ReviewReason: String
 
         attr_accessor :CreatedTimestamp, :TemplateName, :TemplateStatus, :TemplateID, :ReviewReason
-        
+
         def initialize(createdtimestamp=nil, templatename=nil, templatestatus=nil, templateid=nil, reviewreason=nil)
           @CreatedTimestamp = createdtimestamp
           @TemplateName = templatename
@@ -1653,7 +1653,7 @@ module TencentCloud
         # @type BeginTime: String
 
         attr_accessor :BeginTime
-        
+
         def initialize(begintime=nil)
           @BeginTime = begintime
         end
@@ -1669,7 +1669,7 @@ module TencentCloud
         # @type EmailIdentity: String
 
         attr_accessor :EmailIdentity
-        
+
         def initialize(emailidentity=nil)
           @EmailIdentity = emailidentity
         end
@@ -1691,7 +1691,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
-        
+
         def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
@@ -1722,7 +1722,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :Password, :EmailAddress
-        
+
         def initialize(password=nil, emailaddress=nil)
           @Password = password
           @EmailAddress = emailaddress
@@ -1740,7 +1740,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1760,7 +1760,7 @@ module TencentCloud
         # @type TemplateName: String
 
         attr_accessor :TemplateContent, :TemplateID, :TemplateName
-        
+
         def initialize(templatecontent=nil, templateid=nil, templatename=nil)
           @TemplateContent = templatecontent
           @TemplateID = templateid
@@ -1783,7 +1783,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1815,7 +1815,7 @@ module TencentCloud
         # @type UnsubscribeCount: Integer
 
         attr_accessor :SendDate, :RequestCount, :AcceptedCount, :DeliveredCount, :OpenedCount, :ClickedCount, :BounceCount, :UnsubscribeCount
-        
+
         def initialize(senddate=nil, requestcount=nil, acceptedcount=nil, deliveredcount=nil, openedcount=nil, clickedcount=nil, bouncecount=nil, unsubscribecount=nil)
           @SendDate = senddate
           @RequestCount = requestcount

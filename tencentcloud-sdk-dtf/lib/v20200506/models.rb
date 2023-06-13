@@ -37,7 +37,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :GroupId, :TransactionBeginFrom, :TransactionBeginTo, :SearchError, :TransactionId, :TransactionIdList, :Limit, :Offset
-        
+
         def initialize(groupid=nil, transactionbeginfrom=nil, transactionbeginto=nil, searcherror=nil, transactionid=nil, transactionidlist=nil, limit=nil, offset=nil)
           @GroupId = groupid
           @TransactionBeginFrom = transactionbeginfrom
@@ -69,7 +69,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -93,7 +93,7 @@ module TencentCloud
         # @type Content: Array
 
         attr_accessor :TotalCount, :Content
-        
+
         def initialize(totalcount=nil, content=nil)
           @TotalCount = totalcount
           @Content = content
@@ -161,7 +161,7 @@ module TencentCloud
         # @type RetryFlag: Boolean
 
         attr_accessor :TransactionId, :TransactionBegin, :TransactionEnd, :TransactionCommit, :TransactionRollback, :TransactionError, :Timeout, :Status, :EndFlag, :TimeoutFlag, :Comment, :GroupId, :Server, :BranchQuantity, :RetryFlag
-        
+
         def initialize(transactionid=nil, transactionbegin=nil, transactionend=nil, transactioncommit=nil, transactionrollback=nil, transactionerror=nil, timeout=nil, status=nil, endflag=nil, timeoutflag=nil, comment=nil, groupid=nil, server=nil, branchquantity=nil, retryflag=nil)
           @TransactionId = transactionid
           @TransactionBegin = transactionbegin

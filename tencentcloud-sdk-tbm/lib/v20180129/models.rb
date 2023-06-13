@@ -25,7 +25,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :AgeRange, :Percent
-        
+
         def initialize(agerange=nil, percent=nil)
           @AgeRange = agerange
           @Percent = percent
@@ -43,7 +43,7 @@ module TencentCloud
         # @type PortraitSet: Array
 
         attr_accessor :PortraitSet
-        
+
         def initialize(portraitset=nil)
           @PortraitSet = portraitset
         end
@@ -82,7 +82,7 @@ module TencentCloud
         # @type ArticleId: String
 
         attr_accessor :Title, :Url, :FromSite, :PubTime, :Flag, :Hot, :Level, :Abstract, :ArticleId
-        
+
         def initialize(title=nil, url=nil, fromsite=nil, pubtime=nil, flag=nil, hot=nil, level=nil, abstract=nil, articleid=nil)
           @Title = title
           @Url = url
@@ -118,7 +118,7 @@ module TencentCloud
         # @type PosCommentCount: Integer
 
         attr_accessor :Date, :NegCommentCount, :PosCommentCount
-        
+
         def initialize(date=nil, negcommentcount=nil, poscommentcount=nil)
           @Date = date
           @NegCommentCount = negcommentcount
@@ -140,7 +140,7 @@ module TencentCloud
         # @type Date: String
 
         attr_accessor :Comment, :Date
-        
+
         def initialize(comment=nil, date=nil)
           @Comment = comment
           @Date = date
@@ -160,7 +160,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :Date, :Count
-        
+
         def initialize(date=nil, count=nil)
           @Date = date
           @Count = count
@@ -182,7 +182,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :BrandId, :StartDate, :EndDate
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -204,7 +204,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CommentSet, :RequestId
-        
+
         def initialize(commentset=nil, requestid=nil)
           @CommentSet = commentset
           @RequestId = requestid
@@ -233,7 +233,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :BrandId, :StartDate, :EndDate
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -257,7 +257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DateCountSet, :RequestId
-        
+
         def initialize(totalcount=nil, datecountset=nil, requestid=nil)
           @TotalCount = totalcount
           @DateCountSet = datecountset
@@ -288,7 +288,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :BrandId, :StartDate, :EndDate
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -312,7 +312,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DateCountSet, :RequestId
-        
+
         def initialize(totalcount=nil, datecountset=nil, requestid=nil)
           @TotalCount = totalcount
           @DateCountSet = datecountset
@@ -347,7 +347,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :BrandId, :StartDate, :EndDate, :Limit, :Offset
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil, limit=nil, offset=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -375,7 +375,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BrandCommentSet, :TotalComments, :RequestId
-        
+
         def initialize(brandcommentset=nil, totalcomments=nil, requestid=nil)
           @BrandCommentSet = brandcommentset
           @TotalComments = totalcomments
@@ -410,7 +410,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :BrandId, :StartDate, :EndDate, :Limit, :Offset
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil, limit=nil, offset=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -438,7 +438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BrandCommentSet, :TotalComments, :RequestId
-        
+
         def initialize(brandcommentset=nil, totalcomments=nil, requestid=nil)
           @BrandCommentSet = brandcommentset
           @TotalComments = totalcomments
@@ -475,7 +475,7 @@ module TencentCloud
         # @type ShowList: Boolean
 
         attr_accessor :BrandId, :StartDate, :EndDate, :Offset, :Limit, :ShowList
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil, offset=nil, limit=nil, showlist=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -509,7 +509,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ArticleCount, :FromCount, :AdverseCount, :ArticleSet, :RequestId
-        
+
         def initialize(articlecount=nil, fromcount=nil, adversecount=nil, articleset=nil, requestid=nil)
           @ArticleCount = articlecount
           @FromCount = fromcount
@@ -544,7 +544,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :BrandId, :StartDate, :EndDate
-        
+
         def initialize(brandid=nil, startdate=nil, enddate=nil)
           @BrandId = brandid
           @StartDate = startdate
@@ -568,7 +568,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :DateCountSet, :RequestId
-        
+
         def initialize(totalcount=nil, datecountset=nil, requestid=nil)
           @TotalCount = totalcount
           @DateCountSet = datecountset
@@ -605,7 +605,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :IndustryId, :StartDate, :EndDate, :ShowList, :Offset, :Limit
-        
+
         def initialize(industryid=nil, startdate=nil, enddate=nil, showlist=nil, offset=nil, limit=nil)
           @IndustryId = industryid
           @StartDate = startdate
@@ -641,7 +641,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NewsCount, :FromCount, :AdverseCount, :NewsSet, :DateCountSet, :RequestId
-        
+
         def initialize(newscount=nil, fromcount=nil, adversecount=nil, newsset=nil, datecountset=nil, requestid=nil)
           @NewsCount = newscount
           @FromCount = fromcount
@@ -681,7 +681,7 @@ module TencentCloud
         # @type BrandId: String
 
         attr_accessor :BrandId
-        
+
         def initialize(brandid=nil)
           @BrandId = brandid
         end
@@ -707,7 +707,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Age, :Gender, :Province, :Movie, :Star, :RequestId
-        
+
         def initialize(age=nil, gender=nil, province=nil, movie=nil, star=nil, requestid=nil)
           @Age = age
           @Gender = gender
@@ -750,7 +750,7 @@ module TencentCloud
         # @type Percent: Integer
 
         attr_accessor :Gender, :Percent
-        
+
         def initialize(gender=nil, percent=nil)
           @Gender = gender
           @Percent = percent
@@ -768,7 +768,7 @@ module TencentCloud
         # @type PortraitSet: Array
 
         attr_accessor :PortraitSet
-        
+
         def initialize(portraitset=nil)
           @PortraitSet = portraitset
         end
@@ -807,7 +807,7 @@ module TencentCloud
         # @type Abstract: String
 
         attr_accessor :IndustryId, :PubTime, :FromSite, :Title, :Url, :Level, :Hot, :Flag, :Abstract
-        
+
         def initialize(industryid=nil, pubtime=nil, fromsite=nil, title=nil, url=nil, level=nil, hot=nil, flag=nil, abstract=nil)
           @IndustryId = industryid
           @PubTime = pubtime
@@ -841,7 +841,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :Name, :Percent
-        
+
         def initialize(name=nil, percent=nil)
           @Name = name
           @Percent = percent
@@ -859,7 +859,7 @@ module TencentCloud
         # @type PortraitSet: Array
 
         attr_accessor :PortraitSet
-        
+
         def initialize(portraitset=nil)
           @PortraitSet = portraitset
         end
@@ -884,7 +884,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :Province, :Percent
-        
+
         def initialize(province=nil, percent=nil)
           @Province = province
           @Percent = percent
@@ -902,7 +902,7 @@ module TencentCloud
         # @type PortraitSet: Array
 
         attr_accessor :PortraitSet
-        
+
         def initialize(portraitset=nil)
           @PortraitSet = portraitset
         end
@@ -927,7 +927,7 @@ module TencentCloud
         # @type Percent: Float
 
         attr_accessor :Name, :Percent
-        
+
         def initialize(name=nil, percent=nil)
           @Name = name
           @Percent = percent
@@ -945,7 +945,7 @@ module TencentCloud
         # @type PortraitSet: Array
 
         attr_accessor :PortraitSet
-        
+
         def initialize(portraitset=nil)
           @PortraitSet = portraitset
         end

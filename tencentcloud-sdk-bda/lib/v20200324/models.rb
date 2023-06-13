@@ -26,7 +26,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -56,7 +56,7 @@ module TencentCloud
         # @type LowerBodyCloth: Boolean
 
         attr_accessor :Age, :Bag, :Gender, :Orientation, :UpperBodyCloth, :LowerBodyCloth
-        
+
         def initialize(age=nil, bag=nil, gender=nil, orientation=nil, upperbodycloth=nil, lowerbodycloth=nil)
           @Age = age
           @Bag = bag
@@ -85,7 +85,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -125,7 +125,7 @@ module TencentCloud
         # @type LowerBodyCloth: :class:`Tencentcloud::Bda.v20200324.models.LowerBodyCloth`
 
         attr_accessor :Age, :Bag, :Gender, :Orientation, :UpperBodyCloth, :LowerBodyCloth
-        
+
         def initialize(age=nil, bag=nil, gender=nil, orientation=nil, upperbodycloth=nil, lowerbodycloth=nil)
           @Age = age
           @Bag = bag
@@ -175,7 +175,7 @@ module TencentCloud
         # @type BodyAttributeInfo: :class:`Tencentcloud::Bda.v20200324.models.BodyAttributeInfo`
 
         attr_accessor :Confidence, :BodyRect, :BodyAttributeInfo
-        
+
         def initialize(confidence=nil, bodyrect=nil, bodyattributeinfo=nil)
           @Confidence = confidence
           @BodyRect = bodyrect
@@ -205,7 +205,7 @@ module TencentCloud
         # @type Confidence: Float
 
         attr_accessor :BoundBox, :BodyJoints, :Confidence
-        
+
         def initialize(boundbox=nil, bodyjoints=nil, confidence=nil)
           @BoundBox = boundbox
           @BodyJoints = bodyjoints
@@ -241,7 +241,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -269,7 +269,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -300,7 +300,7 @@ module TencentCloud
         # @type Score: Float
 
         attr_accessor :PersonId, :TraceId, :Score
-        
+
         def initialize(personid=nil, traceid=nil, score=nil)
           @PersonId = personid
           @TraceId = traceid
@@ -328,7 +328,7 @@ module TencentCloud
         # @type BodyModelVersion: String
 
         attr_accessor :GroupName, :GroupId, :Tag, :BodyModelVersion
-        
+
         def initialize(groupname=nil, groupid=nil, tag=nil, bodymodelversion=nil)
           @GroupName = groupname
           @GroupId = groupid
@@ -350,7 +350,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -373,7 +373,7 @@ module TencentCloud
         # @type Trace: :class:`Tencentcloud::Bda.v20200324.models.Trace`
 
         attr_accessor :GroupId, :PersonName, :PersonId, :Trace
-        
+
         def initialize(groupid=nil, personname=nil, personid=nil, trace=nil)
           @GroupId = groupid
           @PersonName = personname
@@ -410,7 +410,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :BodyModelVersion, :InputRetCode, :InputRetCodeDetails, :RequestId
-        
+
         def initialize(traceid=nil, bodymodelversion=nil, inputretcode=nil, inputretcodedetails=nil, requestid=nil)
           @TraceId = traceid
           @BodyModelVersion = bodymodelversion
@@ -440,7 +440,7 @@ module TencentCloud
         # @type Config: String
 
         attr_accessor :VideoUrl, :BackgroundImageUrl, :Config
-        
+
         def initialize(videourl=nil, backgroundimageurl=nil, config=nil)
           @VideoUrl = videourl
           @BackgroundImageUrl = backgroundimageurl
@@ -464,7 +464,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskID, :EstimatedProcessingTime, :RequestId
-        
+
         def initialize(taskid=nil, estimatedprocessingtime=nil, requestid=nil)
           @TaskID = taskid
           @EstimatedProcessingTime = estimatedprocessingtime
@@ -486,7 +486,7 @@ module TencentCloud
         # @type Trace: :class:`Tencentcloud::Bda.v20200324.models.Trace`
 
         attr_accessor :PersonId, :Trace
-        
+
         def initialize(personid=nil, trace=nil)
           @PersonId = personid
           @Trace = trace
@@ -518,7 +518,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TraceId, :BodyModelVersion, :InputRetCode, :InputRetCodeDetails, :RequestId
-        
+
         def initialize(traceid=nil, bodymodelversion=nil, inputretcode=nil, inputretcodedetails=nil, requestid=nil)
           @TraceId = traceid
           @BodyModelVersion = bodymodelversion
@@ -542,7 +542,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :GroupId
-        
+
         def initialize(groupid=nil)
           @GroupId = groupid
         end
@@ -558,7 +558,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -574,7 +574,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :PersonId
-        
+
         def initialize(personid=nil)
           @PersonId = personid
         end
@@ -590,7 +590,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -606,7 +606,7 @@ module TencentCloud
         # @type TaskID: String
 
         attr_accessor :TaskID
-        
+
         def initialize(taskid=nil)
           @TaskID = taskid
         end
@@ -639,7 +639,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskStatus, :ResultVideoUrl, :ResultVideoMD5, :VideoBasicInformation, :ErrorMsg, :RequestId
-        
+
         def initialize(taskstatus=nil, resultvideourl=nil, resultvideomd5=nil, videobasicinformation=nil, errormsg=nil, requestid=nil)
           @TaskStatus = taskstatus
           @ResultVideoUrl = resultvideourl
@@ -679,7 +679,7 @@ module TencentCloud
         # @type LocalBodySwitch: Boolean
 
         attr_accessor :Image, :Url, :LocalBodySwitch
-        
+
         def initialize(image=nil, url=nil, localbodyswitch=nil)
           @Image = image
           @Url = url
@@ -701,7 +701,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BodyJointsResults, :RequestId
-        
+
         def initialize(bodyjointsresults=nil, requestid=nil)
           @BodyJointsResults = bodyjointsresults
           @RequestId = requestid
@@ -746,7 +746,7 @@ module TencentCloud
         # @type AttributesOptions: :class:`Tencentcloud::Bda.v20200324.models.AttributesOptions`
 
         attr_accessor :Image, :MaxBodyNum, :Url, :AttributesOptions
-        
+
         def initialize(image=nil, maxbodynum=nil, url=nil, attributesoptions=nil)
           @Image = image
           @MaxBodyNum = maxbodynum
@@ -775,7 +775,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BodyDetectResults, :BodyModelVersion, :RequestId
-        
+
         def initialize(bodydetectresults=nil, bodymodelversion=nil, requestid=nil)
           @BodyDetectResults = bodydetectresults
           @BodyModelVersion = bodymodelversion
@@ -805,7 +805,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -825,7 +825,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -847,7 +847,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GroupInfos, :GroupNum, :RequestId
-        
+
         def initialize(groupinfos=nil, groupnum=nil, requestid=nil)
           @GroupInfos = groupinfos
           @GroupNum = groupnum
@@ -878,7 +878,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :GroupId, :Offset, :Limit
-        
+
         def initialize(groupid=nil, offset=nil, limit=nil)
           @GroupId = groupid
           @Offset = offset
@@ -904,7 +904,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonInfos, :PersonNum, :BodyModelVersion, :RequestId
-        
+
         def initialize(personinfos=nil, personnum=nil, bodymodelversion=nil, requestid=nil)
           @PersonInfos = personinfos
           @PersonNum = personnum
@@ -930,7 +930,7 @@ module TencentCloud
       # GetSummaryInfo请求参数结构体
       class GetSummaryInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -950,7 +950,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GroupCount, :PersonCount, :TraceCount, :RequestId
-        
+
         def initialize(groupcount=nil, personcount=nil, tracecount=nil, requestid=nil)
           @GroupCount = groupcount
           @PersonCount = personcount
@@ -981,7 +981,7 @@ module TencentCloud
         # @type CreationTimestamp: Integer
 
         attr_accessor :GroupName, :GroupId, :Tag, :BodyModelVersion, :CreationTimestamp
-        
+
         def initialize(groupname=nil, groupid=nil, tag=nil, bodymodelversion=nil, creationtimestamp=nil)
           @GroupName = groupname
           @GroupId = groupid
@@ -1013,7 +1013,7 @@ module TencentCloud
         # @type Label: String
 
         attr_accessor :X, :Y, :Width, :Height, :Label
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, label=nil)
           @X = x
           @Y = y
@@ -1043,7 +1043,7 @@ module TencentCloud
         # @type BodyScore: Float
 
         attr_accessor :KeyPointType, :X, :Y, :BodyScore
-        
+
         def initialize(keypointtype=nil, x=nil, y=nil, bodyscore=nil)
           @KeyPointType = keypointtype
           @X = x
@@ -1069,7 +1069,7 @@ module TencentCloud
         # @type Type: :class:`Tencentcloud::Bda.v20200324.models.LowerBodyClothType`
 
         attr_accessor :Color, :Length, :Type
-        
+
         def initialize(color=nil, length=nil, type=nil)
           @Color = color
           @Length = length
@@ -1100,7 +1100,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1120,7 +1120,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1140,7 +1140,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1162,7 +1162,7 @@ module TencentCloud
         # @type Tag: String
 
         attr_accessor :GroupId, :GroupName, :Tag
-        
+
         def initialize(groupid=nil, groupname=nil, tag=nil)
           @GroupId = groupid
           @GroupName = groupname
@@ -1182,7 +1182,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1200,7 +1200,7 @@ module TencentCloud
         # @type PersonName: String
 
         attr_accessor :PersonId, :PersonName
-        
+
         def initialize(personid=nil, personname=nil)
           @PersonId = personid
           @PersonName = personname
@@ -1218,7 +1218,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1237,7 +1237,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1259,7 +1259,7 @@ module TencentCloud
         # @type TraceInfos: Array
 
         attr_accessor :PersonName, :PersonId, :TraceInfos
-        
+
         def initialize(personname=nil, personid=nil, traceinfos=nil)
           @PersonName = personname
           @PersonId = personid
@@ -1295,7 +1295,7 @@ module TencentCloud
         # @type TraceMatchThreshold: Float
 
         attr_accessor :GroupId, :Trace, :MaxPersonNum, :TraceMatchThreshold
-        
+
         def initialize(groupid=nil, trace=nil, maxpersonnum=nil, tracematchthreshold=nil)
           @GroupId = groupid
           @Trace = trace
@@ -1331,7 +1331,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Candidates, :InputRetCode, :InputRetCodeDetails, :BodyModelVersion, :RequestId
-        
+
         def initialize(candidates=nil, inputretcode=nil, inputretcodedetails=nil, bodymodelversion=nil, requestid=nil)
           @Candidates = candidates
           @InputRetCode = inputretcode
@@ -1373,7 +1373,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :SegmentationOptions, :Image, :Url
-        
+
         def initialize(segmentationoptions=nil, image=nil, url=nil)
           @SegmentationOptions = segmentationoptions
           @Image = image
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PortraitImage, :MaskImage, :ImageRects, :RequestId
-        
+
         def initialize(portraitimage=nil, maskimage=nil, imagerects=nil, requestid=nil)
           @PortraitImage = portraitimage
           @MaskImage = maskimage
@@ -1448,7 +1448,7 @@ module TencentCloud
         # @type Scene: String
 
         attr_accessor :Image, :Url, :RspImgType, :Scene
-        
+
         def initialize(image=nil, url=nil, rspimgtype=nil, scene=nil)
           @Image = image
           @Url = url
@@ -1485,7 +1485,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultMask, :HasForeground, :ResultImageUrl, :ResultMaskUrl, :RequestId
-        
+
         def initialize(resultimage=nil, resultmask=nil, hasforeground=nil, resultimageurl=nil, resultmaskurl=nil, requestid=nil)
           @ResultImage = resultimage
           @ResultMask = resultmask
@@ -1551,7 +1551,7 @@ module TencentCloud
         # @type Belongings: Boolean
 
         attr_accessor :Background, :Hair, :LeftEyebrow, :RightEyebrow, :LeftEye, :RightEye, :Nose, :UpperLip, :LowerLip, :Tooth, :Mouth, :LeftEar, :RightEar, :Face, :Head, :Body, :Hat, :Headdress, :Earrings, :Necklace, :Belongings
-        
+
         def initialize(background=nil, hair=nil, lefteyebrow=nil, righteyebrow=nil, lefteye=nil, righteye=nil, nose=nil, upperlip=nil, lowerlip=nil, tooth=nil, mouth=nil, leftear=nil, rightear=nil, face=nil, head=nil, body=nil, hat=nil, headdress=nil, earrings=nil, necklace=nil, belongings=nil)
           @Background = background
           @Hair = hair
@@ -1607,7 +1607,7 @@ module TencentCloud
         # @type TaskID: String
 
         attr_accessor :TaskID
-        
+
         def initialize(taskid=nil)
           @TaskID = taskid
         end
@@ -1623,7 +1623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1655,7 +1655,7 @@ module TencentCloud
         # @type BodyRects: Array
 
         attr_accessor :Images, :Urls, :BodyRects
-        
+
         def initialize(images=nil, urls=nil, bodyrects=nil)
           @Images = images
           @Urls = urls
@@ -1684,7 +1684,7 @@ module TencentCloud
         # @type BodyIds: Array
 
         attr_accessor :TraceId, :BodyIds
-        
+
         def initialize(traceid=nil, bodyids=nil)
           @TraceId = traceid
           @BodyIds = bodyids
@@ -1706,7 +1706,7 @@ module TencentCloud
         # @type Sleeve: :class:`Tencentcloud::Bda.v20200324.models.UpperBodyClothSleeve`
 
         attr_accessor :Texture, :Color, :Sleeve
-        
+
         def initialize(texture=nil, color=nil, sleeve=nil)
           @Texture = texture
           @Color = color
@@ -1737,7 +1737,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1757,7 +1757,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1777,7 +1777,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -1803,7 +1803,7 @@ module TencentCloud
         # @type TotalFrames: Integer
 
         attr_accessor :FrameWidth, :FrameHeight, :FramesPerSecond, :Duration, :TotalFrames
-        
+
         def initialize(framewidth=nil, frameheight=nil, framespersecond=nil, duration=nil, totalframes=nil)
           @FrameWidth = framewidth
           @FrameHeight = frameheight

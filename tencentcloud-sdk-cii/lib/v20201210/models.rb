@@ -33,7 +33,7 @@ module TencentCloud
         # @type LongContentRecall: String
 
         attr_accessor :ShortStructAccuracy, :ShortStructRecall, :LongStructAccuracy, :LongStructRecall, :LongContentAccuracy, :LongContentRecall
-        
+
         def initialize(shortstructaccuracy=nil, shortstructrecall=nil, longstructaccuracy=nil, longstructrecall=nil, longcontentaccuracy=nil, longcontentrecall=nil)
           @ShortStructAccuracy = shortstructaccuracy
           @ShortStructRecall = shortstructrecall
@@ -76,7 +76,7 @@ module TencentCloud
         # @type ImageList: Array
 
         attr_accessor :PolicyId, :CustomerId, :CustomerName, :TaskType, :Year, :FileList, :InsuranceTypes, :ImageList
-        
+
         def initialize(policyid=nil, customerid=nil, customername=nil, tasktype=nil, year=nil, filelist=nil, insurancetypes=nil, imagelist=nil)
           @PolicyId = policyid
           @CustomerId = customerid
@@ -108,7 +108,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -126,7 +126,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -162,7 +162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PolicyId, :TaskId, :CustomerId, :CustomerName, :ReviewTime, :MachineResult, :ManualResult, :Metrics, :NewItems, :ModifyItems, :RequestId
-        
+
         def initialize(policyid=nil, taskid=nil, customerid=nil, customername=nil, reviewtime=nil, machineresult=nil, manualresult=nil, metrics=nil, newitems=nil, modifyitems=nil, requestid=nil)
           @PolicyId = policyid
           @TaskId = taskid
@@ -201,7 +201,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -225,7 +225,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Results, :RequestId
-        
+
         def initialize(status=nil, results=nil, requestid=nil)
           @Status = status
           @Results = results
@@ -254,7 +254,7 @@ module TencentCloud
         # @type StructureResult: String
 
         attr_accessor :Quality, :StructureResult
-        
+
         def initialize(quality=nil, structureresult=nil)
           @Quality = quality
           @StructureResult = structureresult

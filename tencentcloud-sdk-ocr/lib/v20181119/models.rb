@@ -29,7 +29,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -49,7 +49,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :RequestId
-        
+
         def initialize(textdetections=nil, requestid=nil)
           @TextDetections = textdetections
           @RequestId = requestid
@@ -81,7 +81,7 @@ module TencentCloud
         # @type AdvancedInfo: String
 
         attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo
-        
+
         def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
@@ -156,7 +156,7 @@ module TencentCloud
         # @type FlightItems: Array
 
         attr_accessor :Title, :Number, :CheckCode, :SerialNumber, :Date, :AgentCode, :AgentCodeFirst, :AgentCodeSecond, :UserName, :UserID, :Issuer, :Fare, :Tax, :FuelSurcharge, :AirDevelopmentFund, :Insurance, :Total, :Kind, :DomesticInternationalTag, :DateStart, :DateEnd, :Endorsement, :QRCodeMark, :FlightItems
-        
+
         def initialize(title=nil, number=nil, checkcode=nil, serialnumber=nil, date=nil, agentcode=nil, agentcodefirst=nil, agentcodesecond=nil, username=nil, userid=nil, issuer=nil, fare=nil, tax=nil, fuelsurcharge=nil, airdevelopmentfund=nil, insurance=nil, total=nil, kind=nil, domesticinternationaltag=nil, datestart=nil, dateend=nil, endorsement=nil, qrcodemark=nil, flightitems=nil)
           @Title = title
           @Number = number
@@ -246,7 +246,7 @@ module TencentCloud
         # @type PdfPageIndex: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :SupportHorizontalImage, :RejectNonArithmeticPic, :EnableDispRelatedVertical, :EnableDispMidResult, :EnablePdfRecognize, :PdfPageIndex
-        
+
         def initialize(imagebase64=nil, imageurl=nil, supporthorizontalimage=nil, rejectnonarithmeticpic=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -280,7 +280,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angle, :RequestId
-        
+
         def initialize(textdetections=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
           @Angle = angle
@@ -323,7 +323,7 @@ module TencentCloud
         # @type EnableQualityValue: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :RetBorderCutImage, :RetCardNoImage, :EnableCopyCheck, :EnableReshootCheck, :EnableBorderCheck, :EnableQualityValue
-        
+
         def initialize(imagebase64=nil, imageurl=nil, retbordercutimage=nil, retcardnoimage=nil, enablecopycheck=nil, enablereshootcheck=nil, enablebordercheck=nil, enablequalityvalue=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -381,7 +381,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :QualityValue, :RequestId
-        
+
         def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, qualityvalue=nil, requestid=nil)
           @CardNo = cardno
           @BankInfo = bankinfo
@@ -420,7 +420,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -451,7 +451,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -477,7 +477,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BankSlipInfos, :Angle, :RequestId
-        
+
         def initialize(bankslipinfos=nil, angle=nil, requestid=nil)
           @BankSlipInfos = bankslipinfos
           @Angle = angle
@@ -515,7 +515,7 @@ module TencentCloud
         # @type EnableCopyWarn: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn
-        
+
         def initialize(imagebase64=nil, imageurl=nil, enablecopywarn=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -565,7 +565,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :RequestId
-        
+
         def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
@@ -618,7 +618,7 @@ module TencentCloud
         # @type Address: String
 
         attr_accessor :RegNum, :Name, :Address
-        
+
         def initialize(regnum=nil, name=nil, address=nil)
           @RegNum = regnum
           @Name = name
@@ -678,7 +678,7 @@ module TencentCloud
         # @type TrainNumber: String
 
         attr_accessor :Title, :QRCodeMark, :Number, :Code, :Date, :TimeGetOn, :DateGetOn, :StationGetOn, :StationGetOff, :Total, :UserName, :Kind, :UserID, :Province, :City, :PlaceGetOn, :GateNumber, :TicketType, :VehicleType, :SeatNumber, :TrainNumber
-        
+
         def initialize(title=nil, qrcodemark=nil, number=nil, code=nil, date=nil, timegeton=nil, dategeton=nil, stationgeton=nil, stationgetoff=nil, total=nil, username=nil, kind=nil, userid=nil, province=nil, city=nil, placegeton=nil, gatenumber=nil, tickettype=nil, vehicletype=nil, seatnumber=nil, trainnumber=nil)
           @Title = title
           @QRCodeMark = qrcodemark
@@ -739,7 +739,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -775,7 +775,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -801,7 +801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusInvoiceInfos, :Angle, :RequestId
-        
+
         def initialize(businvoiceinfos=nil, angle=nil, requestid=nil)
           @BusInvoiceInfos = businvoiceinfos
           @Angle = angle
@@ -833,7 +833,7 @@ module TencentCloud
         # @type ItemCoord: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
 
         attr_accessor :Name, :Value, :ItemCoord
-        
+
         def initialize(name=nil, value=nil, itemcoord=nil)
           @Name = name
           @Value = value
@@ -875,7 +875,7 @@ module TencentCloud
         # @type Config: String
 
         attr_accessor :ImageBase64, :ImageUrl, :Config
-        
+
         def initialize(imagebase64=nil, imageurl=nil, config=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -901,7 +901,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessCardInfos, :RetImageBase64, :Angle, :RequestId
-        
+
         def initialize(businesscardinfos=nil, retimagebase64=nil, angle=nil, requestid=nil)
           @BusinessCardInfos = businesscardinfos
           @RetImageBase64 = retimagebase64
@@ -930,7 +930,7 @@ module TencentCloud
         # @type CandWords: Array
 
         attr_accessor :CandWords
-        
+
         def initialize(candwords=nil)
           @CandWords = candwords
         end
@@ -962,7 +962,7 @@ module TencentCloud
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
         attr_accessor :Name, :Value, :Rect, :Polygon
-        
+
         def initialize(name=nil, value=nil, rect=nil, polygon=nil)
           @Name = name
           @Value = value
@@ -1003,7 +1003,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1027,7 +1027,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CarInvoiceInfos, :RequestId
-        
+
         def initialize(carinvoiceinfos=nil, requestid=nil)
           @CarInvoiceInfos = carinvoiceinfos
           @RequestId = requestid
@@ -1056,7 +1056,7 @@ module TencentCloud
         # @type WordSize: Integer
 
         attr_accessor :ParagNo, :WordSize
-        
+
         def initialize(paragno=nil, wordsize=nil)
           @ParagNo = paragno
           @WordSize = wordsize
@@ -1079,7 +1079,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Type, :Rect
-        
+
         def initialize(name=nil, type=nil, rect=nil)
           @Name = name
           @Type = type
@@ -1131,7 +1131,7 @@ module TencentCloud
         # @type DiscernType: Array
 
         attr_accessor :ImageBase64, :ImageUrl, :DiscernType
-        
+
         def initialize(imagebase64=nil, imageurl=nil, discerntype=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1153,7 +1153,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClassifyDetectInfos, :RequestId
-        
+
         def initialize(classifydetectinfos=nil, requestid=nil)
           @ClassifyDetectInfos = classifydetectinfos
           @RequestId = requestid
@@ -1180,7 +1180,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :X, :Y
-        
+
         def initialize(x=nil, y=nil)
           @X = x
           @Y = y
@@ -1204,7 +1204,7 @@ module TencentCloud
         # @type FileType: Integer
 
         attr_accessor :FileList, :FirstNotes, :SecondNotes, :FileType
-        
+
         def initialize(filelist=nil, firstnotes=nil, secondnotes=nil, filetype=nil)
           @FileList = filelist
           @FirstNotes = firstnotes
@@ -1239,7 +1239,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :OperateUrl, :RequestId
-        
+
         def initialize(taskid=nil, operateurl=nil, requestid=nil)
           @TaskId = taskid
           @OperateUrl = operateurl
@@ -1261,7 +1261,7 @@ module TencentCloud
         # @type Desc: String
 
         attr_accessor :Result, :Desc
-        
+
         def initialize(result=nil, desc=nil)
           @Result = result
           @Desc = desc
@@ -1279,7 +1279,7 @@ module TencentCloud
         # @type WordCoordinate: Array
 
         attr_accessor :WordCoordinate
-        
+
         def initialize(wordcoordinate=nil)
           @WordCoordinate = wordcoordinate
         end
@@ -1304,7 +1304,7 @@ module TencentCloud
         # @type Character: String
 
         attr_accessor :Confidence, :Character
-        
+
         def initialize(confidence=nil, character=nil)
           @Confidence = confidence
           @Character = character
@@ -1330,7 +1330,7 @@ module TencentCloud
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
-        
+
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1393,7 +1393,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :RequestId
-        
+
         def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, requestid=nil)
           @Name = name
           @Sex = sex
@@ -1448,7 +1448,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -1484,7 +1484,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1510,7 +1510,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DutyPaidProofInfos, :Angle, :RequestId
-        
+
         def initialize(dutypaidproofinfos=nil, angle=nil, requestid=nil)
           @DutyPaidProofInfos = dutypaidproofinfos
           @Angle = angle
@@ -1554,7 +1554,7 @@ module TencentCloud
         # @type Config: String
 
         attr_accessor :ImageBase64, :ImageUrl, :Config
-        
+
         def initialize(imagebase64=nil, imageurl=nil, config=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1580,7 +1580,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EduPaperInfos, :Angle, :QuestionBlockInfos, :RequestId
-        
+
         def initialize(edupaperinfos=nil, angle=nil, questionblockinfos=nil, requestid=nil)
           @EduPaperInfos = edupaperinfos
           @Angle = angle
@@ -1633,7 +1633,7 @@ module TencentCloud
         # @type Preprocess: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :EnableCoordPoint, :EnableCandWord, :Preprocess
-        
+
         def initialize(imagebase64=nil, imageurl=nil, enablecoordpoint=nil, enablecandword=nil, preprocess=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1661,7 +1661,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
-        
+
         def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
@@ -1691,7 +1691,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1718,7 +1718,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1740,7 +1740,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnterpriseLicenseInfos, :Angle, :RequestId
-        
+
         def initialize(enterpriselicenseinfos=nil, angle=nil, requestid=nil)
           @EnterpriseLicenseInfos = enterpriselicenseinfos
           @Angle = angle
@@ -1776,7 +1776,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1818,7 +1818,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Obligee, :Ownership, :Location, :Unit, :Type, :Property, :Usage, :Area, :Term, :Other, :Angle, :Number, :RequestId
-        
+
         def initialize(obligee=nil, ownership=nil, location=nil, unit=nil, type=nil, property=nil, usage=nil, area=nil, term=nil, other=nil, angle=nil, number=nil, requestid=nil)
           @Obligee = obligee
           @Ownership = ownership
@@ -1866,7 +1866,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1893,7 +1893,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1913,7 +1913,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FinanBillInfos, :RequestId
-        
+
         def initialize(finanbillinfos=nil, requestid=nil)
           @FinanBillInfos = finanbillinfos
           @RequestId = requestid
@@ -1941,7 +1941,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -1968,7 +1968,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -1988,7 +1988,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FinanBillSliceInfos, :RequestId
-        
+
         def initialize(finanbillsliceinfos=nil, requestid=nil)
           @FinanBillSliceInfos = finanbillsliceinfos
           @RequestId = requestid
@@ -2018,7 +2018,7 @@ module TencentCloud
         # @type Row: Integer
 
         attr_accessor :Name, :Value, :Row
-        
+
         def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
@@ -2051,7 +2051,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2075,7 +2075,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlightInvoiceInfos, :RequestId
-        
+
         def initialize(flightinvoiceinfos=nil, requestid=nil)
           @FlightInvoiceInfos = flightinvoiceinfos
           @RequestId = requestid
@@ -2120,7 +2120,7 @@ module TencentCloud
         # @type FareBasis: String
 
         attr_accessor :TerminalGetOn, :TerminalGetOff, :Carrier, :FlightNumber, :Seat, :DateGetOn, :TimeGetOn, :StationGetOn, :StationGetOff, :Allow, :FareBasis
-        
+
         def initialize(terminalgeton=nil, terminalgetoff=nil, carrier=nil, flightnumber=nil, seat=nil, dategeton=nil, timegeton=nil, stationgeton=nil, stationgetoff=nil, allow=nil, farebasis=nil)
           @TerminalGetOn = terminalgeton
           @TerminalGetOff = terminalgetoff
@@ -2165,7 +2165,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2187,7 +2187,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Angle, :FormulaInfos, :RequestId
-        
+
         def initialize(angle=nil, formulainfos=nil, requestid=nil)
           @Angle = angle
           @FormulaInfos = formulainfos
@@ -2228,7 +2228,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2258,7 +2258,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
-        
+
         def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
@@ -2326,7 +2326,7 @@ module TencentCloud
         # @type IsWords: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :Scene, :LanguageType, :IsPdf, :PdfPageNumber, :IsWords
-        
+
         def initialize(imagebase64=nil, imageurl=nil, scene=nil, languagetype=nil, ispdf=nil, pdfpagenumber=nil, iswords=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2362,7 +2362,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :RequestId
-        
+
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, requestid=nil)
           @TextDetections = textdetections
           @Language = language
@@ -2399,7 +2399,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2421,7 +2421,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
-        
+
         def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
@@ -2461,7 +2461,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2492,7 +2492,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :RequestId
-        
+
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, requestid=nil)
           @TextDetections = textdetections
           @Language = language
@@ -2540,7 +2540,7 @@ module TencentCloud
         # @type EnableDetectText: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :Scene, :EnableWordPolygon, :EnableDetectText
-        
+
         def initialize(imagebase64=nil, imageurl=nil, scene=nil, enablewordpolygon=nil, enabledetecttext=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2568,7 +2568,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
-        
+
         def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
@@ -2609,7 +2609,7 @@ module TencentCloud
         # @type Tax: String
 
         attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax
-        
+
         def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil)
           @Name = name
           @Specification = specification
@@ -2639,7 +2639,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -2662,7 +2662,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskState, :RequestId
-        
+
         def initialize(taskstate=nil, requestid=nil)
           @TaskState = taskstate
           @RequestId = requestid
@@ -2680,7 +2680,7 @@ module TencentCloud
         # @type Groups: Array
 
         attr_accessor :Groups
-        
+
         def initialize(groups=nil)
           @Groups = groups
         end
@@ -2715,7 +2715,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :DetectFake, :ReturnHeadImage, :ImageBase64, :ImageUrl
-        
+
         def initialize(detectfake=nil, returnheadimage=nil, imagebase64=nil, imageurl=nil)
           @DetectFake = detectfake
           @ReturnHeadImage = returnheadimage
@@ -2774,7 +2774,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :RequestId
-        
+
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, requestid=nil)
           @CnName = cnname
           @EnName = enname
@@ -2829,7 +2829,7 @@ module TencentCloud
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
-        
+
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2870,7 +2870,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :VisaNum, :PassNo, :RequestId
-        
+
         def initialize(name=nil, sex=nil, birth=nil, address=nil, idcardno=nil, cardtype=nil, validdate=nil, authority=nil, visanum=nil, passno=nil, requestid=nil)
           @Name = name
           @Sex = sex
@@ -2932,7 +2932,7 @@ module TencentCloud
         # @type Config: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config
-        
+
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -2987,7 +2987,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :RequestId
-        
+
         def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, advancedinfo=nil, requestid=nil)
           @Name = name
           @Sex = sex
@@ -3049,7 +3049,7 @@ module TencentCloud
         # @type TaskType: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :ReturnImage, :TaskType
-        
+
         def initialize(imagebase64=nil, imageurl=nil, returnimage=nil, tasktype=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3077,7 +3077,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageTag, :Image, :RequestId
-        
+
         def initialize(imagetag=nil, image=nil, requestid=nil)
           @ImageTag = imagetag
           @Image = image
@@ -3106,7 +3106,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3134,7 +3134,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegId, :ValidDate, :Location, :Name, :LegalPerson, :RequestId
-        
+
         def initialize(regid=nil, validdate=nil, location=nil, name=nil, legalperson=nil, requestid=nil)
           @RegId = regid
           @ValidDate = validdate
@@ -3170,7 +3170,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -3197,7 +3197,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3217,7 +3217,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InsuranceBillInfos, :RequestId
-        
+
         def initialize(insurancebillinfos=nil, requestid=nil)
           @InsuranceBillInfos = insurancebillinfos
           @RequestId = requestid
@@ -3265,7 +3265,7 @@ module TencentCloud
         # @type Image: String
 
         attr_accessor :Angle, :Type, :Rect, :Image
-        
+
         def initialize(angle=nil, type=nil, rect=nil, image=nil)
           @Angle = angle
           @Type = type
@@ -3295,7 +3295,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -3331,7 +3331,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3357,7 +3357,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvoiceGeneralInfos, :Angle, :RequestId
-        
+
         def initialize(invoicegeneralinfos=nil, angle=nil, requestid=nil)
           @InvoiceGeneralInfos = invoicegeneralinfos
           @Angle = angle
@@ -3400,6 +3400,7 @@ module TencentCloud
         # 13：过路过桥费发票
         # 15：非税发票
         # 16：全电发票
+        # 17：医疗发票
         # @type Type: Integer
         # @param Polygon: 旋转后的图片四点坐标。
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
@@ -3419,7 +3420,7 @@ module TencentCloud
         # @type SubTypeDescription: String
 
         attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription
-        
+
         def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil)
           @Code = code
           @Type = type
@@ -3465,7 +3466,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -3491,7 +3492,7 @@ module TencentCloud
         # @type Value: :class:`Tencentcloud::Ocr.v20181119.models.Value`
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -3518,7 +3519,7 @@ module TencentCloud
         # @type ConfigName: String
 
         attr_accessor :AutoName, :ConfigName
-        
+
         def initialize(autoname=nil, configname=nil)
           @AutoName = autoname
           @ConfigName = configname
@@ -3542,7 +3543,7 @@ module TencentCloud
         # @type Color: String
 
         attr_accessor :Number, :Confidence, :Rect, :Color
-        
+
         def initialize(number=nil, confidence=nil, rect=nil, color=nil)
           @Number = number
           @Confidence = confidence
@@ -3576,7 +3577,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3604,7 +3605,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateInfos, :RequestId
-        
+
         def initialize(number=nil, confidence=nil, rect=nil, color=nil, licenseplateinfos=nil, requestid=nil)
           @Number = number
           @Confidence = confidence
@@ -3640,7 +3641,7 @@ module TencentCloud
         # @type Lines: Array
 
         attr_accessor :Lines
-        
+
         def initialize(lines=nil)
           @Lines = lines
         end
@@ -3673,7 +3674,7 @@ module TencentCloud
         # @type RetImage: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :RetImage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, retimage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -3728,7 +3729,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :RequestId
-        
+
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, requestid=nil)
           @ID = id
           @Name = name
@@ -3764,7 +3765,7 @@ module TencentCloud
         # @type RetImage: Boolean
 
         attr_accessor :ImageBase64, :RetImage
-        
+
         def initialize(imagebase64=nil, retimage=nil)
           @ImageBase64 = imagebase64
           @RetImage = retimage
@@ -3823,7 +3824,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :RequestId
-        
+
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, requestid=nil)
           @ID = id
           @Name = name
@@ -3937,7 +3938,7 @@ module TencentCloud
         # @type GeneralMachineItems: Array
 
         attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Time, :CheckCode, :Ciphertext, :Category, :PretaxAmount, :Total, :TotalCn, :Tax, :IndustryClass, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerAddrTel, :BuyerBankAccount, :Kind, :Province, :City, :CompanySealMark, :ElectronicMark, :Issuer, :Receiptor, :Reviewer, :Remark, :PaymentInfo, :TicketPickupUser, :MerchantNumber, :OrderNumber, :GeneralMachineItems
-        
+
         def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, time=nil, checkcode=nil, ciphertext=nil, category=nil, pretaxamount=nil, total=nil, totalcn=nil, tax=nil, industryclass=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyeraddrtel=nil, buyerbankaccount=nil, kind=nil, province=nil, city=nil, companysealmark=nil, electronicmark=nil, issuer=nil, receiptor=nil, reviewer=nil, remark=nil, paymentinfo=nil, ticketpickupuser=nil, merchantnumber=nil, ordernumber=nil, generalmachineitems=nil)
           @Title = title
           @QRCodeMark = qrcodemark
@@ -4041,7 +4042,7 @@ module TencentCloud
         # @type RetProfile: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :RetProfile
-        
+
         def initialize(imagebase64=nil, imageurl=nil, retprofile=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -4083,7 +4084,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :RequestId
-        
+
         def initialize(name=nil, englishname=nil, sex=nil, birthday=nil, issueauthority=nil, validdate=nil, number=nil, issueaddress=nil, issuenumber=nil, type=nil, profile=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
@@ -4115,13 +4116,61 @@ module TencentCloud
         end
       end
 
+      # 医疗票据信息
+      class MedicalInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Total: 价税合计（小写）
+        # @type Total: String
+        # @param TotalCn: 价税合计（大写）
+        # @type TotalCn: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param CheckCode: 校验码
+        # @type CheckCode: String
+        # @param Place: 发票属地
+        # @type Place: String
+        # @param Reviewer: 复核人
+        # @type Reviewer: String
+
+        attr_accessor :Title, :Code, :Number, :Total, :TotalCn, :Date, :CheckCode, :Place, :Reviewer
+
+        def initialize(title=nil, code=nil, number=nil, total=nil, totalcn=nil, date=nil, checkcode=nil, place=nil, reviewer=nil)
+          @Title = title
+          @Code = code
+          @Number = number
+          @Total = total
+          @TotalCn = totalcn
+          @Date = date
+          @CheckCode = checkcode
+          @Place = place
+          @Reviewer = reviewer
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Code = params['Code']
+          @Number = params['Number']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @Date = params['Date']
+          @CheckCode = params['CheckCode']
+          @Place = params['Place']
+          @Reviewer = params['Reviewer']
+        end
+      end
+
       # 医疗发票识别结果
       class MedicalInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param MedicalInvoiceItems: 医疗发票识别结果条目
         # @type MedicalInvoiceItems: Array
 
         attr_accessor :MedicalInvoiceItems
-        
+
         def initialize(medicalinvoiceitems=nil)
           @MedicalInvoiceItems = medicalinvoiceitems
         end
@@ -4153,7 +4202,7 @@ module TencentCloud
         # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Content, :Vertex, :Coord
-        
+
         def initialize(name=nil, content=nil, vertex=nil, coord=nil)
           @Name = name
           @Content = content
@@ -4196,7 +4245,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ReturnImage, :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(returnimage=nil, imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ReturnImage = returnimage
           @ImageBase64 = imagebase64
@@ -4222,7 +4271,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvoiceDetectInfos, :RequestId
-        
+
         def initialize(invoicedetectinfos=nil, requestid=nil)
           @InvoiceDetectInfos = invoicedetectinfos
           @RequestId = requestid
@@ -4274,7 +4323,7 @@ module TencentCloud
         # @type Page: Integer
 
         attr_accessor :Code, :Type, :Rect, :Angle, :SingleInvoiceInfos, :Page
-        
+
         def initialize(code=nil, type=nil, rect=nil, angle=nil, singleinvoiceinfos=nil, page=nil)
           @Code = code
           @Type = type
@@ -4346,7 +4395,7 @@ module TencentCloud
         # @type ReturnMultiplePage: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther, :IsPdf, :PdfPageNumber, :ReturnMultiplePage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil, ispdf=nil, pdfpagenumber=nil, returnmultiplepage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -4376,7 +4425,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MixedInvoiceItems, :RequestId
-        
+
         def initialize(mixedinvoiceitems=nil, requestid=nil)
           @MixedInvoiceItems = mixedinvoiceitems
           @RequestId = requestid
@@ -4483,7 +4532,7 @@ module TencentCloud
         # @type QRCodeMark: Integer
 
         attr_accessor :Title, :Code, :Number, :Date, :PretaxAmount, :Total, :TotalCn, :Seller, :SellerTaxID, :SellerTel, :SellerAddress, :SellerBank, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerID, :TaxAuthorities, :TaxAuthoritiesCode, :VIN, :VehicleModel, :VehicleEngineCode, :CertificateNumber, :InspectionNumber, :MachineID, :VehicleType, :Kind, :Province, :City, :Tax, :TaxRate, :CompanySealMark, :Tonnage, :Remark, :FormType, :FormName, :Issuer, :TaxNum, :MaxPeopleNum, :Origin, :MachineCode, :MachineNumber, :QRCodeMark
-        
+
         def initialize(title=nil, code=nil, number=nil, date=nil, pretaxamount=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, sellertel=nil, selleraddress=nil, sellerbank=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyerid=nil, taxauthorities=nil, taxauthoritiescode=nil, vin=nil, vehiclemodel=nil, vehicleenginecode=nil, certificatenumber=nil, inspectionnumber=nil, machineid=nil, vehicletype=nil, kind=nil, province=nil, city=nil, tax=nil, taxrate=nil, companysealmark=nil, tonnage=nil, remark=nil, formtype=nil, formname=nil, issuer=nil, taxnum=nil, maxpeoplenum=nil, origin=nil, machinecode=nil, machinenumber=nil, qrcodemark=nil)
           @Title = title
           @Code = code
@@ -4629,7 +4678,7 @@ module TencentCloud
         # @type NonTaxItems: Array
 
         attr_accessor :Title, :Number, :Code, :CheckCode, :Date, :Total, :TotalCn, :Buyer, :BuyerTaxID, :Seller, :SellerCompany, :Remark, :CurrencyCode, :Reviewer, :QRCodeMark, :OtherInfo, :PaymentCode, :ReceiveUnitCode, :Receiver, :Operator, :PayerAccount, :PayerBank, :ReceiverAccount, :ReceiverBank, :NonTaxItems
-        
+
         def initialize(title=nil, number=nil, code=nil, checkcode=nil, date=nil, total=nil, totalcn=nil, buyer=nil, buyertaxid=nil, seller=nil, sellercompany=nil, remark=nil, currencycode=nil, reviewer=nil, qrcodemark=nil, otherinfo=nil, paymentcode=nil, receiveunitcode=nil, receiver=nil, operator=nil, payeraccount=nil, payerbank=nil, receiveraccount=nil, receiverbank=nil, nontaxitems=nil)
           @Title = title
           @Number = number
@@ -4710,7 +4759,7 @@ module TencentCloud
         # @type Total: String
 
         attr_accessor :ItemID, :Name, :Unit, :Quantity, :Standard, :Total
-        
+
         def initialize(itemid=nil, name=nil, unit=nil, quantity=nil, standard=nil, total=nil)
           @ItemID = itemid
           @Name = name
@@ -4741,7 +4790,7 @@ module TencentCloud
         # @type Row: Integer
 
         attr_accessor :Name, :Value, :Row
-        
+
         def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
@@ -4770,7 +4819,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -4796,7 +4845,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrgCode, :Name, :Address, :ValidDate, :RequestId
-        
+
         def initialize(orgcode=nil, name=nil, address=nil, validdate=nil, requestid=nil)
           @OrgCode = orgcode
           @Name = name
@@ -4826,7 +4875,7 @@ module TencentCloud
         # @type OtherInvoiceTableItems: Array
 
         attr_accessor :Title, :Total, :OtherInvoiceListItems, :OtherInvoiceTableItems
-        
+
         def initialize(title=nil, total=nil, otherinvoicelistitems=nil, otherinvoicetableitems=nil)
           @Title = title
           @Total = total
@@ -4864,7 +4913,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -4882,7 +4931,7 @@ module TencentCloud
         # @type OtherInvoiceItemList: Array
 
         attr_accessor :OtherInvoiceItemList
-        
+
         def initialize(otherinvoiceitemlist=nil)
           @OtherInvoiceItemList = otherinvoiceitemlist
         end
@@ -4913,7 +4962,7 @@ module TencentCloud
         # @type TaxClassifyCode: String
 
         attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode
-        
+
         def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil)
           @NumberPlate = numberplate
           @Type = type
@@ -4944,7 +4993,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :ImageBase64, :ImageUrl, :Type
-        
+
         def initialize(imagebase64=nil, imageurl=nil, type=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -4994,7 +5043,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Country, :PassportNo, :Sex, :Nationality, :BirthDate, :BirthPlace, :IssueDate, :IssuePlace, :ExpiryDate, :Signature, :CodeSet, :CodeCrc, :Name, :FamilyName, :FirstName, :RequestId
-        
+
         def initialize(country=nil, passportno=nil, sex=nil, nationality=nil, birthdate=nil, birthplace=nil, issuedate=nil, issueplace=nil, expirydate=nil, signature=nil, codeset=nil, codecrc=nil, name=nil, familyname=nil, firstname=nil, requestid=nil)
           @Country = country
           @PassportNo = passportno
@@ -5049,7 +5098,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5083,7 +5132,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :RequestId
-        
+
         def initialize(name=nil, englishname=nil, number=nil, sex=nil, validdate=nil, issueauthority=nil, issueaddress=nil, birthday=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
@@ -5122,7 +5171,7 @@ module TencentCloud
         # @type LeftBottom: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
 
         attr_accessor :LeftTop, :RightTop, :RightBottom, :LeftBottom
-        
+
         def initialize(lefttop=nil, righttop=nil, rightbottom=nil, leftbottom=nil)
           @LeftTop = lefttop
           @RightTop = righttop
@@ -5203,7 +5252,7 @@ module TencentCloud
         # @type CategoryCode: String
 
         attr_accessor :ProductName, :EnName, :BrandName, :Type, :Width, :Height, :Depth, :KeyWord, :Description, :ImageLink, :ManufacturerName, :ManufacturerAddress, :FirmCode, :CheckResult, :CategoryCode
-        
+
         def initialize(productname=nil, enname=nil, brandname=nil, type=nil, width=nil, height=nil, depth=nil, keyword=nil, description=nil, imagelink=nil, manufacturername=nil, manufactureraddress=nil, firmcode=nil, checkresult=nil, categorycode=nil)
           @ProductName = productname
           @EnName = enname
@@ -5256,7 +5305,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5286,7 +5335,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Owner, :Possession, :RegisterTime, :Purpose, :Nature, :Location, :RequestId
-        
+
         def initialize(owner=nil, possession=nil, registertime=nil, purpose=nil, nature=nil, location=nil, requestid=nil)
           @Owner = owner
           @Possession = possession
@@ -5316,7 +5365,7 @@ module TencentCloud
         # @type High: Integer
 
         attr_accessor :Wide, :High
-        
+
         def initialize(wide=nil, high=nil)
           @Wide = wide
           @High = high
@@ -5338,7 +5387,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5360,7 +5409,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CodeResults, :ImgSize, :RequestId
-        
+
         def initialize(coderesults=nil, imgsize=nil, requestid=nil)
           @CodeResults = coderesults
           @ImgSize = imgsize
@@ -5396,7 +5445,7 @@ module TencentCloud
         # @type LeftBottom: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
 
         attr_accessor :LeftTop, :RightTop, :RightBottom, :LeftBottom
-        
+
         def initialize(lefttop=nil, righttop=nil, rightbottom=nil, leftbottom=nil)
           @LeftTop = lefttop
           @RightTop = righttop
@@ -5434,7 +5483,7 @@ module TencentCloud
         # @type Position: :class:`Tencentcloud::Ocr.v20181119.models.QrcodePositionObj`
 
         attr_accessor :TypeName, :Url, :Position
-        
+
         def initialize(typename=nil, url=nil, position=nil)
           @TypeName = typename
           @Url = url
@@ -5457,7 +5506,7 @@ module TencentCloud
         # @type BarCode: String
 
         attr_accessor :BarCode
-        
+
         def initialize(barcode=nil)
           @BarCode = barcode
         end
@@ -5477,7 +5526,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BarCode, :ProductDataRecords, :RequestId
-        
+
         def initialize(barcode=nil, productdatarecords=nil, requestid=nil)
           @BarCode = barcode
           @ProductDataRecords = productdatarecords
@@ -5506,7 +5555,7 @@ module TencentCloud
         # @type QuestionBboxCoord: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :QuestionArr, :QuestionBboxCoord
-        
+
         def initialize(questionarr=nil, questionbboxcoord=nil)
           @QuestionArr = questionarr
           @QuestionBboxCoord = questionbboxcoord
@@ -5547,7 +5596,7 @@ module TencentCloud
         # @type QuestionImageCoords: Array
 
         attr_accessor :QuestionTextNo, :QuestionTextType, :QuestionText, :QuestionOptions, :QuestionSubquestion, :QuestionImageCoords
-        
+
         def initialize(questiontextno=nil, questiontexttype=nil, questiontext=nil, questionoptions=nil, questionsubquestion=nil, questionimagecoords=nil)
           @QuestionTextNo = questiontextno
           @QuestionTextType = questiontexttype
@@ -5598,7 +5647,7 @@ module TencentCloud
         # @type CompanySealMark: Integer
 
         attr_accessor :Title, :Code, :Number, :Total, :TotalCn, :Kind, :Province, :City, :QRCodeMark, :CompanySealMark
-        
+
         def initialize(title=nil, code=nil, number=nil, total=nil, totalcn=nil, kind=nil, province=nil, city=nil, qrcodemark=nil, companysealmark=nil)
           @Title = title
           @Code = code
@@ -5645,7 +5694,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5686,7 +5735,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvoiceNum, :InvoiceCode, :Rate, :RateNum, :InvoiceType, :Province, :City, :HasStamp, :RequestId
-        
+
         def initialize(invoicenum=nil, invoicecode=nil, rate=nil, ratenum=nil, invoicetype=nil, province=nil, city=nil, hasstamp=nil, requestid=nil)
           @InvoiceNum = invoicenum
           @InvoiceCode = invoicecode
@@ -5727,7 +5776,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5769,7 +5818,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ContainerId, :ContainerType, :GrossKG, :GrossLB, :PayloadKG, :PayloadLB, :CapacityM3, :CapacityFT3, :Warn, :TareKG, :TareLB, :RequestId
-        
+
         def initialize(containerid=nil, containertype=nil, grosskg=nil, grosslb=nil, payloadkg=nil, payloadlb=nil, capacitym3=nil, capacityft3=nil, warn=nil, tarekg=nil, tarelb=nil, requestid=nil)
           @ContainerId = containerid
           @ContainerType = containertype
@@ -5806,17 +5855,18 @@ module TencentCloud
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 支持的图片像素：需介于20-10000px之间。
+        # 支持的图片像素：单边介于20-10000px之间。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 支持的图片像素：需介于20-10000px之间。
+        # 支持的图片像素：单边介于20-10000px之间。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
-        # @param Types: 需要识别的票据类型列表，为空或不填表示识别全部类型。
+        # @param Types: 需要识别的票据类型列表，为空或不填表示识别全部类型。当传入单个类型时，图片均采用该票类型进行处理。
+        # 暂不支持多个参数进行局部控制。
         # 0：出租车发票
         # 1：定额发票
         # 2：火车票
@@ -5830,11 +5880,8 @@ module TencentCloud
         # 13：过路过桥费发票
         # 15：非税发票
         # 16：全电发票
+        # 17：医疗发票
         # -1：其他发票
-
-        # 默认为空，识别所有类型发票。
-        # 当传入单个类型时，图片均采用该票类型进行处理。
-        # 暂不支持多个参数进行局部控制。
         # @type Types: Array
         # @param EnableOther: 是否开启其他票识别，默认值为true，开启后可支持其他发票的智能识别。
         # @type EnableOther: Boolean
@@ -5848,7 +5895,7 @@ module TencentCloud
         # @type EnableCutImage: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5882,7 +5929,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MixedInvoiceItems, :TotalPDFCount, :RequestId
-        
+
         def initialize(mixedinvoiceitems=nil, totalpdfcount=nil, requestid=nil)
           @MixedInvoiceItems = mixedinvoiceitems
           @TotalPDFCount = totalpdfcount
@@ -5921,7 +5968,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :Type
-        
+
         def initialize(imagebase64=nil, imageurl=nil, type=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -5961,7 +6008,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :Vaccination, :SpotName, :VaccinationTime, :RequestId
-        
+
         def initialize(name=nil, idnumber=nil, time=nil, color=nil, testinginterval=nil, testingresult=nil, testingtime=nil, vaccination=nil, spotname=nil, vaccinationtime=nil, requestid=nil)
           @Name = name
           @IDNumber = idnumber
@@ -6013,7 +6060,7 @@ module TencentCloud
         # @type Scene: String
 
         attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage, :Scene
-        
+
         def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil, scene=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6071,7 +6118,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :Provinsi, :Kota, :RequestId
-        
+
         def initialize(nik=nil, nama=nil, tempattgllahir=nil, jeniskelamin=nil, goldarah=nil, alamat=nil, rtrw=nil, keldesa=nil, kecamatan=nil, agama=nil, statusperkawinan=nil, perkerjaan=nil, kewarganegaraan=nil, berlakuhingga=nil, issueddate=nil, photo=nil, provinsi=nil, kota=nil, requestid=nil)
           @NIK = nik
           @Nama = nama
@@ -6140,7 +6187,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :ReturnVertex, :ReturnCoord, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, returnvertex=nil, returncoord=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6170,7 +6217,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MedicalInvoiceInfos, :Angle, :RequestId
-        
+
         def initialize(medicalinvoiceinfos=nil, angle=nil, requestid=nil)
           @MedicalInvoiceInfos = medicalinvoiceinfos
           @Angle = angle
@@ -6210,7 +6257,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6234,7 +6281,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OnlineTaxiItineraryInfos, :RequestId
-        
+
         def initialize(onlinetaxiitineraryinfos=nil, requestid=nil)
           @OnlineTaxiItineraryInfos = onlinetaxiitineraryinfos
           @RequestId = requestid
@@ -6270,7 +6317,7 @@ module TencentCloud
         # @type ReturnHeadImage: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6314,7 +6361,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :Name, :LastName, :FirstName, :MiddleName, :Nationality, :Sex, :Address, :LicenseNo, :ExpiresDate, :AgencyCode, :Birthday, :RequestId
-        
+
         def initialize(headportrait=nil, name=nil, lastname=nil, firstname=nil, middlename=nil, nationality=nil, sex=nil, address=nil, licenseno=nil, expiresdate=nil, agencycode=nil, birthday=nil, requestid=nil)
           @HeadPortrait = headportrait
           @Name = name
@@ -6401,7 +6448,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
-        
+
         def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
           @ImageBase64 = imagebase64
@@ -6429,7 +6476,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Birthday, :RequestId
-        
+
         def initialize(headportrait=nil, licensenumber=nil, fullname=nil, birthday=nil, requestid=nil)
           @HeadPortrait = headportrait
           @LicenseNumber = licensenumber
@@ -6476,7 +6523,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
-        
+
         def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
           @ImageBase64 = imagebase64
@@ -6508,7 +6555,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Address, :Birthday, :IssueDate, :RequestId
-        
+
         def initialize(headportrait=nil, licensenumber=nil, fullname=nil, address=nil, birthday=nil, issuedate=nil, requestid=nil)
           @HeadPortrait = headportrait
           @LicenseNumber = licensenumber
@@ -6558,7 +6605,7 @@ module TencentCloud
         # @type ReturnHeadImage: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6594,7 +6641,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Surname, :MiddleName, :GivenName, :Address, :Birthday, :CRN, :Sex, :HeadPortrait, :RequestId
-        
+
         def initialize(surname=nil, middlename=nil, givenname=nil, address=nil, birthday=nil, crn=nil, sex=nil, headportrait=nil, requestid=nil)
           @Surname = surname
           @MiddleName = middlename
@@ -6661,7 +6708,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
-        
+
         def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
           @ImageBase64 = imagebase64
@@ -6699,7 +6746,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :VIN, :FirstName, :LastName, :Birthday, :CivilStatus, :Citizenship, :Address, :PrecinctNo, :RequestId
-        
+
         def initialize(headportrait=nil, vin=nil, firstname=nil, lastname=nil, birthday=nil, civilstatus=nil, citizenship=nil, address=nil, precinctno=nil, requestid=nil)
           @HeadPortrait = headportrait
           @VIN = vin
@@ -6771,7 +6818,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6802,7 +6849,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
-        
+
         def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TableDetections = tabledetections
           @Data = data
@@ -6845,7 +6892,7 @@ module TencentCloud
         # @type TableLanguage: String
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber, :TableLanguage
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil, tablelanguage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6877,7 +6924,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
-        
+
         def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TableDetections = tabledetections
           @Data = data
@@ -6915,7 +6962,7 @@ module TencentCloud
         # @type CropPortrait: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :CropPortrait
-        
+
         def initialize(imagebase64=nil, imageurl=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -6953,7 +7000,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :PortraitImage, :RequestId
-        
+
         def initialize(id=nil, thainame=nil, enfirstname=nil, address=nil, birthday=nil, issuedate=nil, expirationdate=nil, enlastname=nil, portraitimage=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
@@ -6996,7 +7043,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7024,7 +7071,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Time, :Color, :ReachedCity, :RiskArea, :Telephone, :RequestId
-        
+
         def initialize(time=nil, color=nil, reachedcity=nil, riskarea=nil, telephone=nil, requestid=nil)
           @Time = time
           @Color = color
@@ -7056,7 +7103,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -7087,7 +7134,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7161,7 +7208,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HouseholdNumber, :Name, :Sex, :BirthPlace, :Nation, :NativePlace, :BirthDate, :IdCardNumber, :EducationDegree, :ServicePlace, :Household, :Address, :Signature, :IssueDate, :HomePageNumber, :HouseholderName, :Relationship, :OtherAddresses, :ReligiousBelief, :Height, :BloodType, :MaritalStatus, :VeteranStatus, :Profession, :MoveToCityInformation, :MoveToSiteInformation, :RegistrationDate, :FormerName, :RequestId
-        
+
         def initialize(householdnumber=nil, name=nil, sex=nil, birthplace=nil, nation=nil, nativeplace=nil, birthdate=nil, idcardnumber=nil, educationdegree=nil, serviceplace=nil, household=nil, address=nil, signature=nil, issuedate=nil, homepagenumber=nil, householdername=nil, relationship=nil, otheraddresses=nil, religiousbelief=nil, height=nil, bloodtype=nil, maritalstatus=nil, veteranstatus=nil, profession=nil, movetocityinformation=nil, movetositeinformation=nil, registrationdate=nil, formername=nil, requestid=nil)
           @HouseholdNumber = householdnumber
           @Name = name
@@ -7237,7 +7284,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7265,7 +7312,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :LicenseNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
-        
+
         def initialize(name=nil, licensenumber=nil, startdate=nil, enddate=nil, releasedate=nil, requestid=nil)
           @Name = name
           @LicenseNumber = licensenumber
@@ -7295,7 +7342,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7325,7 +7372,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OperationLicenseNumber, :VehicleOwner, :VehicleNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
-        
+
         def initialize(operationlicensenumber=nil, vehicleowner=nil, vehiclenumber=nil, startdate=nil, enddate=nil, releasedate=nil, requestid=nil)
           @OperationLicenseNumber = operationlicensenumber
           @VehicleOwner = vehicleowner
@@ -7364,7 +7411,7 @@ module TencentCloud
         # @type SealShape: String
 
         attr_accessor :SealBody, :Location, :OtherTexts, :SealShape
-        
+
         def initialize(sealbody=nil, location=nil, othertexts=nil, sealshape=nil)
           @SealBody = sealbody
           @Location = location
@@ -7393,7 +7440,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7426,7 +7473,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealBody, :Location, :OtherTexts, :SealInfos, :SealShape, :RequestId
-        
+
         def initialize(sealbody=nil, location=nil, othertexts=nil, sealinfos=nil, sealshape=nil, requestid=nil)
           @SealBody = sealbody
           @Location = location
@@ -7467,7 +7514,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -7503,7 +7550,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -7529,7 +7576,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ShipInvoiceInfos, :Angle, :RequestId
-        
+
         def initialize(shipinvoiceinfos=nil, angle=nil, requestid=nil)
           @ShipInvoiceInfos = shipinvoiceinfos
           @Angle = angle
@@ -7582,7 +7629,7 @@ module TencentCloud
         # @type CurrencyCode: String
 
         attr_accessor :Title, :QRCodeMark, :Code, :Number, :UserName, :Date, :Time, :StationGetOn, :StationGetOff, :Total, :Kind, :Province, :City, :CurrencyCode
-        
+
         def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, username=nil, date=nil, time=nil, stationgeton=nil, stationgetoff=nil, total=nil, kind=nil, province=nil, city=nil, currencycode=nil)
           @Title = title
           @QRCodeMark = qrcodemark
@@ -7628,7 +7675,7 @@ module TencentCloud
         # @type Row: Integer
 
         attr_accessor :Name, :Value, :Row
-        
+
         def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
@@ -7710,10 +7757,16 @@ module TencentCloud
         # @param TrainTicket: 火车票
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainTicket: :class:`Tencentcloud::Ocr.v20181119.models.TrainTicket`
+        # @param MedicalOutpatientInvoice: 医疗门诊收费票据（电子）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalOutpatientInvoice: :class:`Tencentcloud::Ocr.v20181119.models.MedicalInvoice`
+        # @param MedicalHospitalizedInvoice: 医疗住院收费票据（电子）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalHospitalizedInvoice: :class:`Tencentcloud::Ocr.v20181119.models.MedicalInvoice`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket
-        
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil)
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice
+
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -7736,6 +7789,8 @@ module TencentCloud
           @NonTaxIncomeGeneralBill = nontaxincomegeneralbill
           @NonTaxIncomeElectronicBill = nontaxincomeelectronicbill
           @TrainTicket = trainticket
+          @MedicalOutpatientInvoice = medicaloutpatientinvoice
+          @MedicalHospitalizedInvoice = medicalhospitalizedinvoice
         end
 
         def deserialize(params)
@@ -7827,6 +7882,14 @@ module TencentCloud
             @TrainTicket = TrainTicket.new
             @TrainTicket.deserialize(params['TrainTicket'])
           end
+          unless params['MedicalOutpatientInvoice'].nil?
+            @MedicalOutpatientInvoice = MedicalInvoice.new
+            @MedicalOutpatientInvoice.deserialize(params['MedicalOutpatientInvoice'])
+          end
+          unless params['MedicalHospitalizedInvoice'].nil?
+            @MedicalHospitalizedInvoice = MedicalInvoice.new
+            @MedicalHospitalizedInvoice.deserialize(params['MedicalHospitalizedInvoice'])
+          end
         end
       end
 
@@ -7838,7 +7901,7 @@ module TencentCloud
         # @type FileOrderNumber: Integer
 
         attr_accessor :FileUrl, :FileOrderNumber
-        
+
         def initialize(fileurl=nil, fileordernumber=nil)
           @FileUrl = fileurl
           @FileOrderNumber = fileordernumber
@@ -7875,7 +7938,7 @@ module TencentCloud
         # @type ReturnFullText: Boolean
 
         attr_accessor :ImageUrl, :ImageBase64, :ItemNames, :IsPdf, :PdfPageNumber, :ReturnFullText
-        
+
         def initialize(imageurl=nil, imagebase64=nil, itemnames=nil, ispdf=nil, pdfpagenumber=nil, returnfulltext=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -7906,7 +7969,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Angle, :StructuralItems, :RequestId
-        
+
         def initialize(angle=nil, structuralitems=nil, requestid=nil)
           @Angle = angle
           @StructuralItems = structuralitems
@@ -7952,7 +8015,7 @@ module TencentCloud
         # @type ReturnFullText: Boolean
 
         attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText
-        
+
         def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -7985,7 +8048,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Angle, :StructuralList, :WordList, :RequestId
-        
+
         def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
           @Angle = angle
           @StructuralList = structurallist
@@ -8030,7 +8093,7 @@ module TencentCloud
         # @type Row: Integer
 
         attr_accessor :Name, :Value, :Confidence, :ItemCoord, :Row
-        
+
         def initialize(name=nil, value=nil, confidence=nil, itemcoord=nil, row=nil)
           @Name = name
           @Value = value
@@ -8076,7 +8139,7 @@ module TencentCloud
         # @type Contents: Array
 
         attr_accessor :ColTl, :RowTl, :ColBr, :RowBr, :Text, :Type, :Confidence, :Polygon, :AdvancedInfo, :Contents
-        
+
         def initialize(coltl=nil, rowtl=nil, colbr=nil, rowbr=nil, text=nil, type=nil, confidence=nil, polygon=nil, advancedinfo=nil, contents=nil)
           @ColTl = coltl
           @RowTl = rowtl
@@ -8138,7 +8201,7 @@ module TencentCloud
         # @type Polygon: Array
 
         attr_accessor :ColTl, :RowTl, :ColBr, :RowBr, :Text, :Type, :Confidence, :Polygon
-        
+
         def initialize(coltl=nil, rowtl=nil, colbr=nil, rowbr=nil, text=nil, type=nil, confidence=nil, polygon=nil)
           @ColTl = coltl
           @RowTl = rowtl
@@ -8188,7 +8251,7 @@ module TencentCloud
         # @type TableCoordPoint: Array
 
         attr_accessor :Cells, :Titles, :Type, :TableCoordPoint
-        
+
         def initialize(cells=nil, titles=nil, type=nil, tablecoordpoint=nil)
           @Cells = cells
           @Titles = titles
@@ -8240,7 +8303,7 @@ module TencentCloud
         # @type TableCoordPoint: Array
 
         attr_accessor :Cells, :Type, :TableCoordPoint
-        
+
         def initialize(cells=nil, type=nil, tablecoordpoint=nil)
           @Cells = cells
           @Type = type
@@ -8283,7 +8346,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -8305,7 +8368,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Data, :RequestId
-        
+
         def initialize(textdetections=nil, data=nil, requestid=nil)
           @TextDetections = textdetections
           @Data = data
@@ -8333,7 +8396,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -8362,7 +8425,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -8410,7 +8473,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InvoiceNum, :InvoiceCode, :Date, :Fare, :GetOnTime, :GetOffTime, :Distance, :Location, :PlateNumber, :InvoiceType, :Province, :City, :RequestId
-        
+
         def initialize(invoicenum=nil, invoicecode=nil, date=nil, fare=nil, getontime=nil, getofftime=nil, distance=nil, location=nil, platenumber=nil, invoicetype=nil, province=nil, city=nil, requestid=nil)
           @InvoiceNum = invoicenum
           @InvoiceCode = invoicecode
@@ -8484,7 +8547,7 @@ module TencentCloud
         # @type CompanySealMark: Integer
 
         attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :TimeGetOn, :TimeGetOff, :Price, :Mileage, :Total, :Place, :Province, :City, :Kind, :LicensePlate, :FuelFee, :BookingCallFee, :CompanySealMark
-        
+
         def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, timegeton=nil, timegetoff=nil, price=nil, mileage=nil, total=nil, place=nil, province=nil, city=nil, kind=nil, licenseplate=nil, fuelfee=nil, bookingcallfee=nil, companysealmark=nil)
           @Title = title
           @QRCodeMark = qrcodemark
@@ -8560,7 +8623,7 @@ module TencentCloud
         # @type Answer: String
 
         attr_accessor :DetectedText, :Result, :Confidence, :Polygon, :AdvancedInfo, :ItemCoord, :ExpressionType, :Answer
-        
+
         def initialize(detectedtext=nil, result=nil, confidence=nil, polygon=nil, advancedinfo=nil, itemcoord=nil, expressiontype=nil, answer=nil)
           @DetectedText = detectedtext
           @Result = result
@@ -8609,7 +8672,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -8629,7 +8692,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HasText, :RequestId
-        
+
         def initialize(hastext=nil, requestid=nil)
           @HasText = hastext
           @RequestId = requestid
@@ -8661,7 +8724,7 @@ module TencentCloud
         # @type WordCoordPoint: Array
 
         attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :ItemPolygon, :Words, :WordCoordPoint
-        
+
         def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, itempolygon=nil, words=nil, wordcoordpoint=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
@@ -8726,7 +8789,7 @@ module TencentCloud
         # @type Words: Array
 
         attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :WordCoordPoint, :CandWord, :Words
-        
+
         def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, wordcoordpoint=nil, candword=nil, words=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
@@ -8784,7 +8847,7 @@ module TencentCloud
         # @type Polygon: Array
 
         attr_accessor :Value, :Polygon
-        
+
         def initialize(value=nil, polygon=nil)
           @Value = value
           @Polygon = polygon
@@ -8813,7 +8876,7 @@ module TencentCloud
         # @type Itemcoord: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
 
         attr_accessor :Item, :DetectedText, :Itemcoord
-        
+
         def initialize(item=nil, detectedtext=nil, itemcoord=nil)
           @Item = item
           @DetectedText = detectedtext
@@ -8836,7 +8899,7 @@ module TencentCloud
         # @type DetectedText: String
 
         attr_accessor :DetectedText
-        
+
         def initialize(detectedtext=nil)
           @DetectedText = detectedtext
         end
@@ -8863,7 +8926,7 @@ module TencentCloud
         # @type WordPolygon: Array
 
         attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :WordPolygon
-        
+
         def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, wordpolygon=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
@@ -8917,7 +8980,7 @@ module TencentCloud
         # @type AdvancedInfo: String
 
         attr_accessor :ColTl, :RowTl, :ColBr, :RowBr, :Text, :Type, :Confidence, :Polygon, :AdvancedInfo
-        
+
         def initialize(coltl=nil, rowtl=nil, colbr=nil, rowbr=nil, text=nil, type=nil, confidence=nil, polygon=nil, advancedinfo=nil)
           @ColTl = coltl
           @RowTl = rowtl
@@ -8963,7 +9026,7 @@ module TencentCloud
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
         attr_accessor :Name, :Value, :Polygon
-        
+
         def initialize(name=nil, value=nil, polygon=nil)
           @Name = name
           @Value = value
@@ -9017,7 +9080,7 @@ module TencentCloud
         # @type SubPageCode: String
 
         attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode
-        
+
         def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil)
           @PlateNo = plateno
           @FileNo = fileno
@@ -9084,7 +9147,7 @@ module TencentCloud
         # @type Seal: String
 
         attr_accessor :PlateNo, :VehicleType, :Owner, :Address, :UseCharacter, :Model, :Vin, :EngineNo, :RegisterDate, :IssueDate, :Seal
-        
+
         def initialize(plateno=nil, vehicletype=nil, owner=nil, address=nil, usecharacter=nil, model=nil, vin=nil, engineno=nil, registerdate=nil, issuedate=nil, seal=nil)
           @PlateNo = plateno
           @VehicleType = vehicletype
@@ -9132,7 +9195,7 @@ module TencentCloud
         # @type WaybillNum: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
 
         attr_accessor :RecName, :RecNum, :RecAddr, :SenderName, :SenderNum, :SenderAddr, :WaybillNum
-        
+
         def initialize(recname=nil, recnum=nil, recaddr=nil, sendername=nil, sendernum=nil, senderaddr=nil, waybillnum=nil)
           @RecName = recname
           @RecNum = recnum
@@ -9201,7 +9264,7 @@ module TencentCloud
         # @type QRCodeMark: Integer
 
         attr_accessor :Title, :Code, :Number, :Total, :Kind, :Date, :Time, :Entrance, :Exit, :HighwayMark, :QRCodeMark
-        
+
         def initialize(title=nil, code=nil, number=nil, total=nil, kind=nil, date=nil, time=nil, entrance=nil, exit=nil, highwaymark=nil, qrcodemark=nil)
           @Title = title
           @Code = code
@@ -9242,7 +9305,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -9278,7 +9341,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -9304,7 +9367,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TollInvoiceInfos, :Angle, :RequestId
-        
+
         def initialize(tollinvoiceinfos=nil, angle=nil, requestid=nil)
           @TollInvoiceInfos = tollinvoiceinfos
           @Angle = angle
@@ -9377,7 +9440,7 @@ module TencentCloud
         # @type ReimburseOnlyMark: Integer
 
         attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark
-        
+
         def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil)
           @Title = title
           @Number = number
@@ -9452,7 +9515,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -9514,7 +9577,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TicketNum, :StartStation, :DestinationStation, :Date, :TrainNum, :Seat, :Name, :Price, :SeatCategory, :ID, :InvoiceType, :SerialNumber, :AdditionalCost, :HandlingFee, :LegalAmount, :TicketStation, :OriginalPrice, :InvoiceStyle, :ReceiptNumber, :IsReceipt, :RequestId
-        
+
         def initialize(ticketnum=nil, startstation=nil, destinationstation=nil, date=nil, trainnum=nil, seat=nil, name=nil, price=nil, seatcategory=nil, id=nil, invoicetype=nil, serialnumber=nil, additionalcost=nil, handlingfee=nil, legalamount=nil, ticketstation=nil, originalprice=nil, invoicestyle=nil, receiptnumber=nil, isreceipt=nil, requestid=nil)
           @TicketNum = ticketnum
           @StartStation = startstation
@@ -9634,7 +9697,7 @@ module TencentCloud
         # @type CompanySealMark: Integer
 
         attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Total, :TotalCn, :Seller, :SellerTel, :SellerTaxID, :SellerAddress, :Buyer, :BuyerID, :BuyerAddress, :BuyerTel, :CompanyName, :CompanyTaxID, :CompanyBankAccount, :CompanyTel, :CompanyAddress, :TransferAdministrationName, :LicensePlate, :RegistrationNumber, :VIN, :VehicleModel, :Kind, :Province, :City, :VehicleType, :Remark, :FormType, :FormName, :CompanySealMark
-        
+
         def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, total=nil, totalcn=nil, seller=nil, sellertel=nil, sellertaxid=nil, selleraddress=nil, buyer=nil, buyerid=nil, buyeraddress=nil, buyertel=nil, companyname=nil, companytaxid=nil, companybankaccount=nil, companytel=nil, companyaddress=nil, transferadministrationname=nil, licenseplate=nil, registrationnumber=nil, vin=nil, vehiclemodel=nil, kind=nil, province=nil, city=nil, vehicletype=nil, remark=nil, formtype=nil, formname=nil, companysealmark=nil)
           @Title = title
           @QRCodeMark = qrcodemark
@@ -9760,7 +9823,7 @@ module TencentCloud
         # @type MarketTel: String
 
         attr_accessor :TaxBureau, :Buyer, :BuyerNo, :BuyerAddress, :BuyerTel, :Seller, :SellerNo, :SellerAddress, :SellerTel, :VehicleLicenseNo, :RegisterNo, :VehicleIdentifyNo, :ManagementOffice, :VehicleTotalPrice, :Auctioneer, :AuctioneerAddress, :AuctioneerTaxpayerNum, :AuctioneerBankAccount, :AuctioneerTel, :Market, :MarketTaxpayerNum, :MarketAddress, :MarketBankAccount, :MarketTel
-        
+
         def initialize(taxbureau=nil, buyer=nil, buyerno=nil, buyeraddress=nil, buyertel=nil, seller=nil, sellerno=nil, selleraddress=nil, sellertel=nil, vehiclelicenseno=nil, registerno=nil, vehicleidentifyno=nil, managementoffice=nil, vehicletotalprice=nil, auctioneer=nil, auctioneeraddress=nil, auctioneertaxpayernum=nil, auctioneerbankaccount=nil, auctioneertel=nil, market=nil, markettaxpayernum=nil, marketaddress=nil, marketbankaccount=nil, markettel=nil)
           @TaxBureau = taxbureau
           @Buyer = buyer
@@ -9825,7 +9888,7 @@ module TencentCloud
         # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
         attr_accessor :AutoContent, :Coord
-        
+
         def initialize(autocontent=nil, coord=nil)
           @AutoContent = autocontent
           @Coord = coord
@@ -9876,7 +9939,7 @@ module TencentCloud
         # @type VatElectronicItems: Array
 
         attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems
-        
+
         def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil)
           @Title = title
           @Number = number
@@ -9961,7 +10024,7 @@ module TencentCloud
         # @type AreaUnit: String
 
         attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit
-        
+
         def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil)
           @Name = name
           @Quantity = quantity
@@ -10071,7 +10134,7 @@ module TencentCloud
         # @type TrafficFreeFlag: String
 
         attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag
-        
+
         def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil)
           @Code = code
           @Number = number
@@ -10156,7 +10219,7 @@ module TencentCloud
         # @type TaxAmount: String
 
         attr_accessor :Item, :Specification, :MeasurementDimension, :Price, :Quantity, :Amount, :TaxScheme, :TaxAmount
-        
+
         def initialize(item=nil, specification=nil, measurementdimension=nil, price=nil, quantity=nil, amount=nil, taxscheme=nil, taxamount=nil)
           @Item = item
           @Specification = specification
@@ -10260,10 +10323,16 @@ module TencentCloud
         # @type CodeConfirm: String
         # @param Receiptor: 收款人
         # @type Receiptor: String
+        # @param ElectronicFullMark: 是否有全电纸质票（0：没有，1：有）
+        # @type ElectronicFullMark: Integer
+        # @param ElectronicFullNumber: 全电号码
+        # @type ElectronicFullNumber: String
+        # @param FormName: 发票联名
+        # @type FormName: String
 
-        attr_accessor :CheckCode, :FormType, :TravelTax, :BuyerAddrTel, :BuyerBankAccount, :CompanySealContent, :TaxSealContent, :ServiceName, :City, :QRCodeMark, :AgentMark, :TransitMark, :OilMark, :Title, :Kind, :Code, :Number, :NumberConfirm, :Date, :Total, :TotalCn, :PretaxAmount, :Tax, :MachineCode, :Ciphertext, :Remark, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :CompanySealMark, :Issuer, :Reviewer, :Province, :VatInvoiceItemInfos, :CodeConfirm, :Receiptor
-        
-        def initialize(checkcode=nil, formtype=nil, traveltax=nil, buyeraddrtel=nil, buyerbankaccount=nil, companysealcontent=nil, taxsealcontent=nil, servicename=nil, city=nil, qrcodemark=nil, agentmark=nil, transitmark=nil, oilmark=nil, title=nil, kind=nil, code=nil, number=nil, numberconfirm=nil, date=nil, total=nil, totalcn=nil, pretaxamount=nil, tax=nil, machinecode=nil, ciphertext=nil, remark=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, companysealmark=nil, issuer=nil, reviewer=nil, province=nil, vatinvoiceiteminfos=nil, codeconfirm=nil, receiptor=nil)
+        attr_accessor :CheckCode, :FormType, :TravelTax, :BuyerAddrTel, :BuyerBankAccount, :CompanySealContent, :TaxSealContent, :ServiceName, :City, :QRCodeMark, :AgentMark, :TransitMark, :OilMark, :Title, :Kind, :Code, :Number, :NumberConfirm, :Date, :Total, :TotalCn, :PretaxAmount, :Tax, :MachineCode, :Ciphertext, :Remark, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :CompanySealMark, :Issuer, :Reviewer, :Province, :VatInvoiceItemInfos, :CodeConfirm, :Receiptor, :ElectronicFullMark, :ElectronicFullNumber, :FormName
+
+        def initialize(checkcode=nil, formtype=nil, traveltax=nil, buyeraddrtel=nil, buyerbankaccount=nil, companysealcontent=nil, taxsealcontent=nil, servicename=nil, city=nil, qrcodemark=nil, agentmark=nil, transitmark=nil, oilmark=nil, title=nil, kind=nil, code=nil, number=nil, numberconfirm=nil, date=nil, total=nil, totalcn=nil, pretaxamount=nil, tax=nil, machinecode=nil, ciphertext=nil, remark=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, companysealmark=nil, issuer=nil, reviewer=nil, province=nil, vatinvoiceiteminfos=nil, codeconfirm=nil, receiptor=nil, electronicfullmark=nil, electronicfullnumber=nil, formname=nil)
           @CheckCode = checkcode
           @FormType = formtype
           @TravelTax = traveltax
@@ -10303,6 +10372,9 @@ module TencentCloud
           @VatInvoiceItemInfos = vatinvoiceiteminfos
           @CodeConfirm = codeconfirm
           @Receiptor = receiptor
+          @ElectronicFullMark = electronicfullmark
+          @ElectronicFullNumber = electronicfullnumber
+          @FormName = formname
         end
 
         def deserialize(params)
@@ -10352,6 +10424,9 @@ module TencentCloud
           end
           @CodeConfirm = params['CodeConfirm']
           @Receiptor = params['Receiptor']
+          @ElectronicFullMark = params['ElectronicFullMark']
+          @ElectronicFullNumber = params['ElectronicFullNumber']
+          @FormName = params['FormName']
         end
       end
 
@@ -10393,7 +10468,7 @@ module TencentCloud
         # @type ConstructionName: String
 
         attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :ConstructionPlace, :ConstructionName
-        
+
         def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, constructionplace=nil, constructionname=nil)
           @LineNo = lineno
           @Name = name
@@ -10463,7 +10538,7 @@ module TencentCloud
         # @type VehicleType: String
 
         attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax, :DateStart, :DateEnd, :LicensePlate, :VehicleType
-        
+
         def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil, datestart=nil, dateend=nil, licenseplate=nil, vehicletype=nil)
           @Name = name
           @Specification = specification
@@ -10516,7 +10591,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -10546,7 +10621,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VatInvoiceInfos, :Items, :PdfPageSize, :Angle, :RequestId
-        
+
         def initialize(vatinvoiceinfos=nil, items=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @VatInvoiceInfos = vatinvoiceinfos
           @Items = items
@@ -10626,7 +10701,7 @@ module TencentCloud
         # @type VatRollItems: Array
 
         attr_accessor :Title, :Code, :Number, :NumberConfirm, :Date, :CheckCode, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Category, :Total, :TotalCn, :Kind, :Province, :City, :CompanySealMark, :QRCodeMark, :ServiceName, :CompanySealContent, :TaxSealContent, :VatRollItems
-        
+
         def initialize(title=nil, code=nil, number=nil, numberconfirm=nil, date=nil, checkcode=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, category=nil, total=nil, totalcn=nil, kind=nil, province=nil, city=nil, companysealmark=nil, qrcodemark=nil, servicename=nil, companysealcontent=nil, taxsealcontent=nil, vatrollitems=nil)
           @Title = title
           @Code = code
@@ -10697,7 +10772,7 @@ module TencentCloud
         # @type FinancialAccount: String
 
         attr_accessor :Name, :TaxId, :AddrTel, :FinancialAccount
-        
+
         def initialize(name=nil, taxid=nil, addrtel=nil, financialaccount=nil)
           @Name = name
           @TaxId = taxid
@@ -10737,7 +10812,7 @@ module TencentCloud
         # @type EnableCommonElectronic: Boolean
 
         attr_accessor :InvoiceNo, :InvoiceDate, :InvoiceCode, :InvoiceKind, :CheckCode, :Amount, :RegionCode, :SellerTaxCode, :EnableCommonElectronic
-        
+
         def initialize(invoiceno=nil, invoicedate=nil, invoicecode=nil, invoicekind=nil, checkcode=nil, amount=nil, regioncode=nil, sellertaxcode=nil, enablecommonelectronic=nil)
           @InvoiceNo = invoiceno
           @InvoiceDate = invoicedate
@@ -10777,7 +10852,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :RequestId
-        
+
         def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, requestid=nil)
           @Invoice = invoice
           @VehicleInvoiceInfo = vehicleinvoiceinfo
@@ -10835,7 +10910,7 @@ module TencentCloud
         # @type Additional: String
 
         attr_accessor :InvoiceCode, :InvoiceNo, :InvoiceDate, :Additional
-        
+
         def initialize(invoicecode=nil, invoiceno=nil, invoicedate=nil, additional=nil)
           @InvoiceCode = invoicecode
           @InvoiceNo = invoiceno
@@ -10863,7 +10938,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :RequestId
-        
+
         def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, requestid=nil)
           @Invoice = invoice
           @VehicleInvoiceInfo = vehicleinvoiceinfo
@@ -10899,7 +10974,7 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
         attr_accessor :Name, :Value, :Rect
-        
+
         def initialize(name=nil, value=nil, rect=nil)
           @Name = name
           @Value = value
@@ -10935,7 +11010,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -10961,7 +11036,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VatRollInvoiceInfos, :Angle, :RequestId
-        
+
         def initialize(vatrollinvoiceinfos=nil, angle=nil, requestid=nil)
           @VatRollInvoiceInfos = vatrollinvoiceinfos
           @Angle = angle
@@ -10994,7 +11069,7 @@ module TencentCloud
         # @type Total: String
 
         attr_accessor :Name, :Quantity, :Price, :Total
-        
+
         def initialize(name=nil, quantity=nil, price=nil, total=nil)
           @Name = name
           @Quantity = quantity
@@ -11052,7 +11127,7 @@ module TencentCloud
         # @type BuyerNo: String
 
         attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount, :SellerAddress, :SellerTel, :BuyerNo
-        
+
         def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil, selleraddress=nil, sellertel=nil, buyerno=nil)
           @CarType = cartype
           @PlateModel = platemodel
@@ -11113,7 +11188,7 @@ module TencentCloud
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
-        
+
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11151,7 +11226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
-        
+
         def initialize(frontinfo=nil, backinfo=nil, recognizewarncode=nil, recognizewarnmsg=nil, requestid=nil)
           @FrontInfo = frontinfo
           @BackInfo = backinfo
@@ -11194,7 +11269,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -11221,7 +11296,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11241,7 +11316,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VehicleRegCertInfos, :RequestId
-        
+
         def initialize(vehicleregcertinfos=nil, requestid=nil)
           @VehicleRegCertInfos = vehicleregcertinfos
           @RequestId = requestid
@@ -11290,7 +11365,7 @@ module TencentCloud
         # @type EstablishTime: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address, :RegCapital, :EstablishTime
-        
+
         def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil, regcapital=nil, establishtime=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11356,7 +11431,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :CreditCode, :Opfrom, :Opto, :Frname, :Entstatus, :Zsopscope, :Reason, :Oriregno, :VerifyRegno, :Regno, :VerifyEntname, :Entname, :VerifyDom, :Dom, :RegNumResult, :RegCapital, :EstablishTime, :RequestId
-        
+
         def initialize(errorcode=nil, creditcode=nil, opfrom=nil, opto=nil, frname=nil, entstatus=nil, zsopscope=nil, reason=nil, oriregno=nil, verifyregno=nil, regno=nil, verifyentname=nil, entname=nil, verifydom=nil, dom=nil, regnumresult=nil, regcapital=nil, establishtime=nil, requestid=nil)
           @ErrorCode = errorcode
           @CreditCode = creditcode
@@ -11431,7 +11506,7 @@ module TencentCloud
         # @type Address: String
 
         attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address
-        
+
         def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11525,7 +11600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :CreditCode, :OrgCode, :OpenFrom, :OpenTo, :FrName, :EnterpriseStatus, :OperateScopeAndForm, :RegCap, :RegCapCur, :RegOrg, :EsDate, :EnterpriseType, :CancelDate, :RevokeDate, :AbuItem, :CbuItem, :ApprDate, :Province, :City, :County, :AreaCode, :IndustryPhyCode, :IndustryPhyName, :IndustryCode, :IndustryName, :OperateScope, :VerifyRegNo, :RegNo, :VerifyEnterpriseName, :EnterpriseName, :VerifyAddress, :Address, :RegNumResult, :RequestId
-        
+
         def initialize(errorcode=nil, creditcode=nil, orgcode=nil, openfrom=nil, opento=nil, frname=nil, enterprisestatus=nil, operatescopeandform=nil, regcap=nil, regcapcur=nil, regorg=nil, esdate=nil, enterprisetype=nil, canceldate=nil, revokedate=nil, abuitem=nil, cbuitem=nil, apprdate=nil, province=nil, city=nil, county=nil, areacode=nil, industryphycode=nil, industryphyname=nil, industrycode=nil, industryname=nil, operatescope=nil, verifyregno=nil, regno=nil, verifyenterprisename=nil, enterprisename=nil, verifyaddress=nil, address=nil, regnumresult=nil, requestid=nil)
           @ErrorCode = errorcode
           @CreditCode = creditcode
@@ -11618,7 +11693,7 @@ module TencentCloud
         # @type EnterpriseMark: String
 
         attr_accessor :RealName, :IdCard, :EnterpriseName, :EnterpriseMark
-        
+
         def initialize(realname=nil, idcard=nil, enterprisename=nil, enterprisemark=nil)
           @RealName = realname
           @IdCard = idcard
@@ -11646,7 +11721,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :State, :Detail, :RequestId
-        
+
         def initialize(state=nil, detail=nil, requestid=nil)
           @State = state
           @Detail = detail
@@ -11672,7 +11747,7 @@ module TencentCloud
         # @type OfdFileBase64: String
 
         attr_accessor :OfdFileUrl, :OfdFileBase64
-        
+
         def initialize(ofdfileurl=nil, ofdfilebase64=nil)
           @OfdFileUrl = ofdfileurl
           @OfdFileBase64 = ofdfilebase64
@@ -11728,7 +11803,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Type, :InvoiceCode, :InvoiceNumber, :IssueDate, :InvoiceCheckCode, :MachineNumber, :TaxControlCode, :Buyer, :Seller, :TaxInclusiveTotalAmount, :InvoiceClerk, :Payee, :Checker, :TaxTotalAmount, :TaxExclusiveTotalAmount, :Note, :GoodsInfos, :RequestId
-        
+
         def initialize(type=nil, invoicecode=nil, invoicenumber=nil, issuedate=nil, invoicecheckcode=nil, machinenumber=nil, taxcontrolcode=nil, buyer=nil, seller=nil, taxinclusivetotalamount=nil, invoiceclerk=nil, payee=nil, checker=nil, taxtotalamount=nil, taxexclusivetotalamount=nil, note=nil, goodsinfos=nil, requestid=nil)
           @Type = type
           @InvoiceCode = invoicecode
@@ -11800,7 +11875,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :ImageUrl
-        
+
         def initialize(imagebase64=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11820,7 +11895,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Vin, :RequestId
-        
+
         def initialize(vin=nil, requestid=nil)
           @Vin = vin
           @RequestId = requestid
@@ -11853,7 +11928,7 @@ module TencentCloud
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :EnablePreDetect, :IsPdf, :PdfPageNumber
-        
+
         def initialize(imagebase64=nil, imageurl=nil, enablepredetect=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -11879,7 +11954,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextDetections, :RequestId
-        
+
         def initialize(textdetections=nil, requestid=nil)
           @TextDetections = textdetections
           @RequestId = requestid
@@ -11900,7 +11975,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -11916,7 +11991,7 @@ module TencentCloud
         # @type WordCoordinate: Array
 
         attr_accessor :WordCoordinate
-        
+
         def initialize(wordcoordinate=nil)
           @WordCoordinate = wordcoordinate
         end
@@ -11941,7 +12016,7 @@ module TencentCloud
         # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
         attr_accessor :DetectedText, :Coord
-        
+
         def initialize(detectedtext=nil, coord=nil)
           @DetectedText = detectedtext
           @Coord = coord
@@ -11964,7 +12039,7 @@ module TencentCloud
         # @type Character: String
 
         attr_accessor :Confidence, :Character
-        
+
         def initialize(confidence=nil, character=nil)
           @Confidence = confidence
           @Character = character

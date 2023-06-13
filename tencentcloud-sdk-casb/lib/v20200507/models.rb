@@ -33,7 +33,7 @@ module TencentCloud
         # @type DstDatabaseName: String
 
         attr_accessor :CasbId, :MetaDataId, :DstCasbId, :DstMetaDataId, :SrcTableFilter, :DstDatabaseName
-        
+
         def initialize(casbid=nil, metadataid=nil, dstcasbid=nil, dstmetadataid=nil, srctablefilter=nil, dstdatabasename=nil)
           @CasbId = casbid
           @MetaDataId = metadataid
@@ -66,7 +66,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -84,7 +84,7 @@ module TencentCloud
         # @type TableNameSet: Array
 
         attr_accessor :DatabaseName, :TableNameSet
-        
+
         def initialize(databasename=nil, tablenameset=nil)
           @DatabaseName = databasename
           @TableNameSet = tablenameset

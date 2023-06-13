@@ -33,7 +33,7 @@ module TencentCloud
         # @type ValueScore: Integer
 
         attr_accessor :PostTime, :Uid, :UserIp, :ValueScore
-        
+
         def initialize(posttime=nil, uid=nil, userip=nil, valuescore=nil)
           @PostTime = posttime
           @Uid = uid
@@ -65,7 +65,7 @@ module TencentCloud
         # @type Referer: String
 
         attr_accessor :AccountType, :Uid, :UserIp, :PostTime, :Imei, :Referer
-        
+
         def initialize(accounttype=nil, uid=nil, userip=nil, posttime=nil, imei=nil, referer=nil)
           @AccountType = accounttype
           @Uid = uid
@@ -93,7 +93,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid

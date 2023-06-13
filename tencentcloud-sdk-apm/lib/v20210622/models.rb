@@ -27,7 +27,7 @@ module TencentCloud
         # @type Value: Float
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -49,7 +49,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -83,7 +83,7 @@ module TencentCloud
         # @type PrivateLinkCollectorURL: String
 
         attr_accessor :AgentDownloadURL, :CollectorURL, :Token, :PublicCollectorURL, :InnerCollectorURL, :PrivateLinkCollectorURL
-        
+
         def initialize(agentdownloadurl=nil, collectorurl=nil, token=nil, publiccollectorurl=nil, innercollectorurl=nil, privatelinkcollectorurl=nil)
           @AgentDownloadURL = agentdownloadurl
           @CollectorURL = collectorurl
@@ -124,7 +124,7 @@ module TencentCloud
         # @type LastPeriodValue: Array
 
         attr_accessor :CompareVal, :CompareVals, :Value, :Unit, :Key, :LastPeriodValue
-        
+
         def initialize(compareval=nil, comparevals=nil, value=nil, unit=nil, key=nil, lastperiodvalue=nil)
           @CompareVal = compareval
           @CompareVals = comparevals
@@ -238,7 +238,7 @@ module TencentCloud
         # @type MetricDuration: Integer
 
         attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration
-        
+
         def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
@@ -313,7 +313,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Fields, :Tags
-        
+
         def initialize(fields=nil, tags=nil)
           @Fields = fields
           @Tags = tags
@@ -347,7 +347,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -373,7 +373,7 @@ module TencentCloud
         # @type SpanDailyCounters: Integer
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters
-        
+
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil)
           @Name = name
           @Description = description
@@ -407,7 +407,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceId, :RequestId
-        
+
         def initialize(instanceid=nil, requestid=nil)
           @InstanceId = instanceid
           @RequestId = requestid
@@ -433,7 +433,7 @@ module TencentCloud
         # @type ReportMethod: String
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
-        
+
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
           @AgentType = agenttype
@@ -460,7 +460,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApmAgent, :RequestId
-        
+
         def initialize(apmagent=nil, requestid=nil)
           @ApmAgent = apmagent
           @RequestId = requestid
@@ -487,7 +487,7 @@ module TencentCloud
         # @type DemoInstanceFlag: Integer
 
         attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag
-        
+
         def initialize(tags=nil, instancename=nil, instanceids=nil, demoinstanceflag=nil)
           @Tags = tags
           @InstanceName = instancename
@@ -519,7 +519,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Instances, :RequestId
-        
+
         def initialize(instances=nil, requestid=nil)
           @Instances = instances
           @RequestId = requestid
@@ -580,7 +580,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :Filters, :Metrics, :InstanceId, :ViewName, :GroupBy, :StartTime, :EndTime, :Period, :OrderBy, :PageSize
-        
+
         def initialize(filters=nil, metrics=nil, instanceid=nil, viewname=nil, groupby=nil, starttime=nil, endtime=nil, period=nil, orderby=nil, pagesize=nil)
           @Filters = filters
           @Metrics = metrics
@@ -627,7 +627,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Records, :RequestId
-        
+
         def initialize(records=nil, requestid=nil)
           @Records = records
           @RequestId = requestid
@@ -674,7 +674,7 @@ module TencentCloud
         # @type PageSize: Integer
 
         attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize
-        
+
         def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil)
           @Filters = filters
           @Metrics = metrics
@@ -735,7 +735,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Records, :TotalCount, :RequestId
-        
+
         def initialize(records=nil, totalcount=nil, requestid=nil)
           @Records = records
           @TotalCount = totalcount
@@ -778,7 +778,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime
-        
+
         def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil)
           @Filters = filters
           @Metrics = metrics
@@ -830,7 +830,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Records, :RequestId
-        
+
         def initialize(records=nil, requestid=nil)
           @Records = records
           @RequestId = requestid
@@ -859,7 +859,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Key, :Value
-        
+
         def initialize(type=nil, key=nil, value=nil)
           @Type = type
           @Key = key
@@ -881,7 +881,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -909,7 +909,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :MetricName, :MetricNameCN, :TimeSerial, :DataSerial, :Tags
-        
+
         def initialize(metricname=nil, metricnamecn=nil, timeserial=nil, dataserial=nil, tags=nil)
           @MetricName = metricname
           @MetricNameCN = metricnamecn
@@ -970,7 +970,7 @@ module TencentCloud
         # @type LogSource: String
 
         attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource
-        
+
         def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil)
           @InstanceId = instanceid
           @Name = name
@@ -1023,7 +1023,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1041,7 +1041,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1063,7 +1063,7 @@ module TencentCloud
         # @type Compares: Array
 
         attr_accessor :MetricName, :Compare, :Compares
-        
+
         def initialize(metricname=nil, compare=nil, compares=nil)
           @MetricName = metricname
           @Compare = compare
@@ -1083,7 +1083,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :InstanceId
-        
+
         def initialize(instanceid=nil)
           @InstanceId = instanceid
         end
@@ -1099,7 +1099,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

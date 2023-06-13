@@ -50,7 +50,7 @@ module TencentCloud
         # @type WechatTag: String
 
         attr_accessor :Service, :QQ, :QQTag, :Url, :CertMd5, :PackageName, :FileMd5, :Scene, :PhoneNumber, :FileSize, :Ip, :Imei, :Wechat, :WechatTag
-        
+
         def initialize(service=nil, qq=nil, qqtag=nil, url=nil, certmd5=nil, packagename=nil, filemd5=nil, scene=nil, phonenumber=nil, filesize=nil, ip=nil, imei=nil, wechat=nil, wechattag=nil)
           @Service = service
           @QQ = qq
@@ -118,7 +118,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Score, :Tags
-        
+
         def initialize(score=nil, tags=nil)
           @Score = score
           @Tags = tags
@@ -138,7 +138,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :RequestData, :ResourceId
-        
+
         def initialize(requestdata=nil, resourceid=nil)
           @RequestData = requestdata
           @ResourceId = resourceid
@@ -161,7 +161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
-        
+
         def initialize(responsedata=nil, requestid=nil)
           @ResponseData = responsedata
           @RequestId = requestid

@@ -35,7 +35,7 @@ module TencentCloud
         # @type EvilContent: String
 
         attr_accessor :ReportedAccount, :ReportedAccountType, :EvilType, :SenderAccount, :SenderAccountType, :SenderIP, :EvilContent
-        
+
         def initialize(reportedaccount=nil, reportedaccounttype=nil, eviltype=nil, senderaccount=nil, senderaccounttype=nil, senderip=nil, evilcontent=nil)
           @ReportedAccount = reportedaccount
           @ReportedAccountType = reportedaccounttype
@@ -66,7 +66,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -87,7 +87,7 @@ module TencentCloud
         # @type StrategyType: Integer
 
         attr_accessor :StrategyType
-        
+
         def initialize(strategytype=nil)
           @StrategyType = strategytype
         end
@@ -105,7 +105,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextLib, :RequestId
-        
+
         def initialize(textlib=nil, requestid=nil)
           @TextLib = textlib
           @RequestId = requestid
@@ -132,7 +132,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :AuditType, :Filters
-        
+
         def initialize(audittype=nil, filters=nil)
           @AuditType = audittype
           @Filters = filters
@@ -164,7 +164,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Overview, :TrendCount, :EvilCount, :RequestId
-        
+
         def initialize(overview=nil, trendcount=nil, evilcount=nil, requestid=nil)
           @Overview = overview
           @TrendCount = trendcount
@@ -223,7 +223,7 @@ module TencentCloud
         # @type LibName: String
 
         attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName
-        
+
         def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil)
           @Label = label
           @Suggestion = suggestion
@@ -263,7 +263,7 @@ module TencentCloud
         # @type IDFV: String
 
         attr_accessor :IP, :Mac, :TokenId, :DeviceId, :IMEI, :IDFA, :IDFV
-        
+
         def initialize(ip=nil, mac=nil, tokenid=nil, deviceid=nil, imei=nil, idfa=nil, idfv=nil)
           @IP = ip
           @Mac = mac
@@ -293,7 +293,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :EvilType, :Count
-        
+
         def initialize(eviltype=nil, count=nil)
           @EvilType = eviltype
           @Count = count
@@ -316,7 +316,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -348,7 +348,7 @@ module TencentCloud
         # @type SuspectHour: Integer
 
         attr_accessor :TotalCount, :TotalHour, :PassCount, :PassHour, :EvilCount, :EvilHour, :SuspectCount, :SuspectHour
-        
+
         def initialize(totalcount=nil, totalhour=nil, passcount=nil, passhour=nil, evilcount=nil, evilhour=nil, suspectcount=nil, suspecthour=nil)
           @TotalCount = totalcount
           @TotalHour = totalhour
@@ -380,7 +380,7 @@ module TencentCloud
         # @type Level: Integer
 
         attr_accessor :Label, :Level
-        
+
         def initialize(label=nil, level=nil)
           @Label = label
           @Level = level
@@ -400,7 +400,7 @@ module TencentCloud
         # @type LibName: String
 
         attr_accessor :LibId, :LibName
-        
+
         def initialize(libid=nil, libname=nil)
           @LibId = libid
           @LibName = libname
@@ -426,7 +426,7 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Tms.v20200713.models.Device`
 
         attr_accessor :Content, :BizType, :DataId, :User, :Device
-        
+
         def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil)
           @Content = content
           @BizType = biztype
@@ -484,7 +484,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BizType, :EvilFlag, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :RequestId
-        
+
         def initialize(biztype=nil, evilflag=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, requestid=nil)
           @BizType = biztype
           @EvilFlag = evilflag
@@ -536,7 +536,7 @@ module TencentCloud
         # @type ResultMsg: String
 
         attr_accessor :ResultCode, :ResultMsg
-        
+
         def initialize(resultcode=nil, resultmsg=nil)
           @ResultCode = resultcode
           @ResultMsg = resultmsg
@@ -579,7 +579,7 @@ module TencentCloud
         # @type Date: String
 
         attr_accessor :TotalCount, :TotalHour, :PassCount, :PassHour, :EvilCount, :EvilHour, :SuspectCount, :SuspectHour, :Date
-        
+
         def initialize(totalcount=nil, totalhour=nil, passcount=nil, passhour=nil, evilcount=nil, evilhour=nil, suspectcount=nil, suspecthour=nil, date=nil)
           @TotalCount = totalcount
           @TotalHour = totalhour
@@ -623,7 +623,7 @@ module TencentCloud
         # @type Phone: String
 
         attr_accessor :UserId, :Nickname, :AccountType, :Gender, :Age, :Level, :Phone
-        
+
         def initialize(userid=nil, nickname=nil, accounttype=nil, gender=nil, age=nil, level=nil, phone=nil)
           @UserId = userid
           @Nickname = nickname

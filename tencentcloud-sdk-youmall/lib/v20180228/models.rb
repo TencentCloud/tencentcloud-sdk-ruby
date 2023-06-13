@@ -33,7 +33,7 @@ module TencentCloud
         # @type TraceId: String
 
         attr_accessor :ArrivedTime, :LeaveTime, :StaySecond, :InCapPic, :OutCapPic, :TraceId
-        
+
         def initialize(arrivedtime=nil, leavetime=nil, staysecond=nil, incappic=nil, outcappic=nil, traceid=nil)
           @ArrivedTime = arrivedtime
           @LeaveTime = leavetime
@@ -69,7 +69,7 @@ module TencentCloud
         # @type PersonInfo: :class:`Tencentcloud::Youmall.v20180228.models.PersonInfo`
 
         attr_accessor :TempId, :FaceId, :IdType, :FacePic, :Time, :PersonInfo
-        
+
         def initialize(tempid=nil, faceid=nil, idtype=nil, facepic=nil, time=nil, personinfo=nil)
           @TempId = tempid
           @FaceId = faceid
@@ -106,7 +106,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :CompanyId, :Name, :Password, :ShopCode, :Remark
-        
+
         def initialize(companyid=nil, name=nil, password=nil, shopcode=nil, remark=nil)
           @CompanyId = companyid
           @Name = name
@@ -130,7 +130,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -156,7 +156,7 @@ module TencentCloud
         # @type IsForceUpload: Boolean
 
         attr_accessor :CompanyId, :PersonType, :Picture, :PictureName, :ShopId, :IsForceUpload
-        
+
         def initialize(companyid=nil, persontype=nil, picture=nil, picturename=nil, shopid=nil, isforceupload=nil)
           @CompanyId = companyid
           @PersonType = persontype
@@ -188,7 +188,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonId, :Status, :PictureUrl, :RequestId
-        
+
         def initialize(personid=nil, status=nil, pictureurl=nil, requestid=nil)
           @PersonId = personid
           @Status = status
@@ -212,7 +212,7 @@ module TencentCloud
         # @type TracePointSet: Array
 
         attr_accessor :TraceDate, :TracePointSet
-        
+
         def initialize(tracedate=nil, tracepointset=nil)
           @TraceDate = tracedate
           @TracePointSet = tracepointset
@@ -241,7 +241,7 @@ module TencentCloud
         # @type PersonId: Integer
 
         attr_accessor :CompanyId, :ShopId, :PersonId
-        
+
         def initialize(companyid=nil, shopid=nil, personid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -261,7 +261,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -291,7 +291,7 @@ module TencentCloud
         # @type IsNeedPic: Integer
 
         attr_accessor :CompanyId, :ShopId, :CameraId, :StartTime, :EndTime, :PosId, :Num, :IsNeedPic
-        
+
         def initialize(companyid=nil, shopid=nil, cameraid=nil, starttime=nil, endtime=nil, posid=nil, num=nil, isneedpic=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -331,7 +331,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :CameraId, :PosId, :Infos, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, cameraid=nil, posid=nil, infos=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -370,7 +370,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :MallId, :PersonId, :StartTime, :EndTime
-        
+
         def initialize(mallid=nil, personid=nil, starttime=nil, endtime=nil)
           @MallId = mallid
           @PersonId = personid
@@ -400,7 +400,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MallId, :MallCode, :PersonId, :ArrivedMallSet, :RequestId
-        
+
         def initialize(mallid=nil, mallcode=nil, personid=nil, arrivedmallset=nil, requestid=nil)
           @MallId = mallid
           @MallCode = mallcode
@@ -437,7 +437,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :MallId, :PersonId, :StartTime, :EndTime
-        
+
         def initialize(mallid=nil, personid=nil, starttime=nil, endtime=nil)
           @MallId = mallid
           @PersonId = personid
@@ -467,7 +467,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MallId, :MallCode, :PersonId, :TracePointSet, :RequestId
-        
+
         def initialize(mallid=nil, mallcode=nil, personid=nil, tracepointset=nil, requestid=nil)
           @MallId = mallid
           @MallCode = mallcode
@@ -508,7 +508,7 @@ module TencentCloud
         # @type PictureExpires: Integer
 
         attr_accessor :CompanyId, :ShopId, :TempId, :CameraId, :PosId, :PictureExpires
-        
+
         def initialize(companyid=nil, shopid=nil, tempid=nil, cameraid=nil, posid=nil, pictureexpires=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -548,7 +548,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :CameraId, :PosId, :TempId, :FaceId, :PersonInfo, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, cameraid=nil, posid=nil, tempid=nil, faceid=nil, personinfo=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -593,7 +593,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Time, :CompanyId, :ShopId, :StartDay, :EndDay, :Limit, :Offset
-        
+
         def initialize(time=nil, companyid=nil, shopid=nil, startday=nil, endday=nil, limit=nil, offset=nil)
           @Time = time
           @CompanyId = companyid
@@ -623,7 +623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceSet, :RequestId
-        
+
         def initialize(instanceset=nil, requestid=nil)
           @InstanceSet = instanceset
           @RequestId = requestid
@@ -648,7 +648,7 @@ module TencentCloud
         # @type ShopId: Integer
 
         attr_accessor :Time, :CompanyId, :ShopId
-        
+
         def initialize(time=nil, companyid=nil, shopid=nil)
           @Time = time
           @CompanyId = companyid
@@ -670,7 +670,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceSet, :RequestId
-        
+
         def initialize(instanceset=nil, requestid=nil)
           @InstanceSet = instanceset
           @RequestId = requestid
@@ -697,7 +697,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :MallId, :PersonId, :StartTime, :EndTime
-        
+
         def initialize(mallid=nil, personid=nil, starttime=nil, endtime=nil)
           @MallId = mallid
           @PersonId = personid
@@ -727,7 +727,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MallId, :MallCode, :PersonId, :ArrivedMallSet, :RequestId
-        
+
         def initialize(mallid=nil, mallcode=nil, personid=nil, arrivedmallset=nil, requestid=nil)
           @MallId = mallid
           @MallCode = mallcode
@@ -762,7 +762,7 @@ module TencentCloud
         # @type Picture: String
 
         attr_accessor :CompanyId, :ShopId, :Picture
-        
+
         def initialize(companyid=nil, shopid=nil, picture=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -796,7 +796,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :PersonId, :PictureUrl, :PersonType, :FirstVisitTime, :VisitTimes, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, personid=nil, pictureurl=nil, persontype=nil, firstvisittime=nil, visittimes=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -838,7 +838,7 @@ module TencentCloud
         # @type PersonType: Integer
 
         attr_accessor :CompanyId, :ShopId, :StartPersonId, :Offset, :Limit, :PictureExpires, :PersonType
-        
+
         def initialize(companyid=nil, shopid=nil, startpersonid=nil, offset=nil, limit=nil, pictureexpires=nil, persontype=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -874,7 +874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalCount, :PersonInfoSet, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalcount=nil, personinfoset=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -909,7 +909,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :MallId, :Offset, :Limit
-        
+
         def initialize(mallid=nil, offset=nil, limit=nil)
           @MallId = mallid
           @Offset = offset
@@ -933,7 +933,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :PersonSet, :RequestId
-        
+
         def initialize(totalcount=nil, personset=nil, requestid=nil)
           @TotalCount = totalcount
           @PersonSet = personset
@@ -964,7 +964,7 @@ module TencentCloud
         # @type TraceId: String
 
         attr_accessor :MallId, :PersonId, :TraceId
-        
+
         def initialize(mallid=nil, personid=nil, traceid=nil)
           @MallId = mallid
           @PersonId = personid
@@ -992,7 +992,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MallId, :PersonId, :TraceId, :CoordinateSet, :RequestId
-        
+
         def initialize(mallid=nil, personid=nil, traceid=nil, coordinateset=nil, requestid=nil)
           @MallId = mallid
           @PersonId = personid
@@ -1029,7 +1029,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :MallId, :PersonId, :StartTime, :EndTime
-        
+
         def initialize(mallid=nil, personid=nil, starttime=nil, endtime=nil)
           @MallId = mallid
           @PersonId = personid
@@ -1059,7 +1059,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MallId, :MallCode, :PersonId, :TraceRouteSet, :RequestId
-        
+
         def initialize(mallid=nil, mallcode=nil, personid=nil, tracerouteset=nil, requestid=nil)
           @MallId = mallid
           @MallCode = mallcode
@@ -1106,7 +1106,7 @@ module TencentCloud
         # @type EndDateTime: String
 
         attr_accessor :CompanyId, :ShopId, :Offset, :Limit, :StartDate, :EndDate, :PictureExpires, :StartDateTime, :EndDateTime
-        
+
         def initialize(companyid=nil, shopid=nil, offset=nil, limit=nil, startdate=nil, enddate=nil, pictureexpires=nil, startdatetime=nil, enddatetime=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1146,7 +1146,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalCount, :PersonVisitInfoSet, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalcount=nil, personvisitinfoset=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1187,7 +1187,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :CompanyId, :ShopId, :StartDate, :EndDate, :Offset, :Limit
-        
+
         def initialize(companyid=nil, shopid=nil, startdate=nil, enddate=nil, offset=nil, limit=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1221,7 +1221,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalCount, :ShopHourTrafficInfoSet, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalcount=nil, shophourtrafficinfoset=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -1276,7 +1276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ShopInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, shopinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @ShopInfoSet = shopinfoset
@@ -1313,7 +1313,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :CompanyId, :ShopId, :StartDate, :EndDate, :Offset, :Limit
-        
+
         def initialize(companyid=nil, shopid=nil, startdate=nil, enddate=nil, offset=nil, limit=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1347,7 +1347,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalCount, :ShopDayTrafficInfoSet, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalcount=nil, shopdaytrafficinfoset=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1388,7 +1388,7 @@ module TencentCloud
         # @type Gender: Integer
 
         attr_accessor :CompanyId, :ShopId, :StartDate, :EndDate, :Limit, :Gender
-        
+
         def initialize(companyid=nil, shopid=nil, startdate=nil, enddate=nil, limit=nil, gender=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1428,7 +1428,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalPerson, :TotalTrajectory, :Person, :Trajectory, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalperson=nil, totaltrajectory=nil, person=nil, trajectory=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1473,7 +1473,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1507,7 +1507,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :ZoneName, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, zonename=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1539,7 +1539,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1567,7 +1567,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1604,7 +1604,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1638,7 +1638,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :ZoneName, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, zonename=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1679,7 +1679,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1713,7 +1713,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :ZoneName, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, zonename=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1754,7 +1754,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1790,7 +1790,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :ZoneName, :MalePercent, :FemalePercent, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, zonename=nil, malepercent=nil, femalepercent=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1826,7 +1826,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :StartDate, :EndDate
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, startdate=nil, enddate=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1860,7 +1860,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :ZoneId, :ZoneName, :Data, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, zoneid=nil, zonename=nil, data=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1903,7 +1903,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :CompanyId, :ShopId, :StartDate, :EndDate, :Offset, :Limit
-        
+
         def initialize(companyid=nil, shopid=nil, startdate=nil, enddate=nil, offset=nil, limit=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1937,7 +1937,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :TotalCount, :ZoneTrafficInfoSet, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, totalcount=nil, zonetrafficinfoset=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -1972,7 +1972,7 @@ module TencentCloud
         # @type TrafficCount: Integer
 
         attr_accessor :Gender, :AgeGap, :TrafficCount
-        
+
         def initialize(gender=nil, agegap=nil, trafficcount=nil)
           @Gender = gender
           @AgeGap = agegap
@@ -1994,7 +1994,7 @@ module TencentCloud
         # @type HourTrafficTotalCount: Integer
 
         attr_accessor :Hour, :HourTrafficTotalCount
-        
+
         def initialize(hour=nil, hourtraffictotalcount=nil)
           @Hour = hour
           @HourTrafficTotalCount = hourtraffictotalcount
@@ -2022,7 +2022,7 @@ module TencentCloud
         # @type ShopId: Integer
 
         attr_accessor :CompanyId, :PersonId, :Picture, :PictureName, :PersonType, :ShopId
-        
+
         def initialize(companyid=nil, personid=nil, picture=nil, picturename=nil, persontype=nil, shopid=nil)
           @CompanyId = companyid
           @PersonId = personid
@@ -2060,7 +2060,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CompanyId, :ShopId, :PersonId, :PersonIdBind, :PersonType, :SimilarPersonIds, :RequestId
-        
+
         def initialize(companyid=nil, shopid=nil, personid=nil, personidbind=nil, persontype=nil, similarpersonids=nil, requestid=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -2092,7 +2092,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :CompanyId, :ShopId, :Tags
-        
+
         def initialize(companyid=nil, shopid=nil, tags=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -2119,7 +2119,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2146,7 +2146,7 @@ module TencentCloud
         # @type PersonSubType: Integer
 
         attr_accessor :CompanyId, :ShopId, :PersonId, :PersonType, :PersonSubType
-        
+
         def initialize(companyid=nil, shopid=nil, personid=nil, persontype=nil, personsubtype=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -2170,7 +2170,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2212,7 +2212,7 @@ module TencentCloud
         # @type Mac: String
 
         attr_accessor :CompanyId, :ShopId, :Province, :City, :ShopName, :Upload, :Download, :MinRtt, :AvgRtt, :MaxRtt, :MdevRtt, :Loss, :UpdateTime, :Mac
-        
+
         def initialize(companyid=nil, shopid=nil, province=nil, city=nil, shopname=nil, upload=nil, download=nil, minrtt=nil, avgrtt=nil, maxrtt=nil, mdevrtt=nil, loss=nil, updatetime=nil, mac=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -2266,7 +2266,7 @@ module TencentCloud
         # @type Infos: Array
 
         attr_accessor :Count, :CompanyId, :ShopId, :Province, :City, :ShopName, :Infos
-        
+
         def initialize(count=nil, companyid=nil, shopid=nil, province=nil, city=nil, shopname=nil, infos=nil)
           @Count = count
           @CompanyId = companyid
@@ -2317,7 +2317,7 @@ module TencentCloud
         # @type Mac: String
 
         attr_accessor :Upload, :Download, :MinRtt, :AvgRtt, :MaxRtt, :MdevRtt, :Loss, :UpdateTime, :Mac
-        
+
         def initialize(upload=nil, download=nil, minrtt=nil, avgrtt=nil, maxrtt=nil, mdevrtt=nil, loss=nil, updatetime=nil, mac=nil)
           @Upload = upload
           @Download = download
@@ -2351,7 +2351,7 @@ module TencentCloud
         # @type Infos: Array
 
         attr_accessor :Count, :Infos
-        
+
         def initialize(count=nil, infos=nil)
           @Count = count
           @Infos = infos
@@ -2390,7 +2390,7 @@ module TencentCloud
         # @type Event: String
 
         attr_accessor :CADX, :CADY, :CapTime, :CapPic, :MallAreaType, :PosId, :ShopId, :Event
-        
+
         def initialize(cadx=nil, cady=nil, captime=nil, cappic=nil, mallareatype=nil, posid=nil, shopid=nil, event=nil)
           @CADX = cadx
           @CADY = cady
@@ -2439,7 +2439,7 @@ module TencentCloud
         # @type VisitDays: Integer
 
         attr_accessor :PersonId, :PersonPicture, :Gender, :Age, :PersonType, :PersonPictureUrl, :PersonSubType, :VisitTimes, :VisitDays
-        
+
         def initialize(personid=nil, personpicture=nil, gender=nil, age=nil, persontype=nil, personpictureurl=nil, personsubtype=nil, visittimes=nil, visitdays=nil)
           @PersonId = personid
           @PersonPicture = personpicture
@@ -2483,7 +2483,7 @@ module TencentCloud
         # @type Similarity: Float
 
         attr_accessor :PersonId, :Gender, :Age, :FirstArrivedTime, :ArrivedCount, :PicUrl, :Similarity
-        
+
         def initialize(personid=nil, gender=nil, age=nil, firstarrivedtime=nil, arrivedcount=nil, picurl=nil, similarity=nil)
           @PersonId = personid
           @Gender = gender
@@ -2515,7 +2515,7 @@ module TencentCloud
         # @type PersonId: Integer
 
         attr_accessor :OldType, :NewType, :PersonId
-        
+
         def initialize(oldtype=nil, newtype=nil, personid=nil)
           @OldType = oldtype
           @NewType = newtype
@@ -2549,7 +2549,7 @@ module TencentCloud
         # @type ShoppingBagCount: Integer
 
         attr_accessor :MallAreaId, :ShopId, :MallAreaType, :TraceEventType, :TraceEventTime, :CapPic, :ShoppingBagType, :ShoppingBagCount
-        
+
         def initialize(mallareaid=nil, shopid=nil, mallareatype=nil, traceeventtype=nil, traceeventtime=nil, cappic=nil, shoppingbagtype=nil, shoppingbagcount=nil)
           @MallAreaId = mallareaid
           @ShopId = shopid
@@ -2581,7 +2581,7 @@ module TencentCloud
         # @type TracePointSet: Array
 
         attr_accessor :TraceId, :TracePointSet
-        
+
         def initialize(traceid=nil, tracepointset=nil)
           @TraceId = traceid
           @TracePointSet = tracepointset
@@ -2622,7 +2622,7 @@ module TencentCloud
         # @type SceneInfo: :class:`Tencentcloud::Youmall.v20180228.models.SceneInfo`
 
         attr_accessor :PersonId, :VisitId, :InTime, :CapturedPicture, :MaskType, :GlassType, :HairType, :CapturedPictureUrl, :SceneInfo
-        
+
         def initialize(personid=nil, visitid=nil, intime=nil, capturedpicture=nil, masktype=nil, glasstype=nil, hairtype=nil, capturedpictureurl=nil, sceneinfo=nil)
           @PersonId = personid
           @VisitId = visitid
@@ -2663,7 +2663,7 @@ module TencentCloud
         # @type NeedFacePic: Integer
 
         attr_accessor :CompanyId, :BackUrl, :Time, :NeedFacePic
-        
+
         def initialize(companyid=nil, backurl=nil, time=nil, needfacepic=nil)
           @CompanyId = companyid
           @BackUrl = backurl
@@ -2685,7 +2685,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2709,7 +2709,7 @@ module TencentCloud
         # @type HeadHeight: Integer
 
         attr_accessor :ScenePictureURL, :HeadX, :HeadY, :HeadWidth, :HeadHeight
-        
+
         def initialize(scenepictureurl=nil, headx=nil, heady=nil, headwidth=nil, headheight=nil)
           @ScenePictureURL = scenepictureurl
           @HeadX = headx
@@ -2737,7 +2737,7 @@ module TencentCloud
         # @type GenderAgeTrafficDetailSet: Array
 
         attr_accessor :Date, :DayTrafficTotalCount, :GenderAgeTrafficDetailSet
-        
+
         def initialize(date=nil, daytraffictotalcount=nil, genderagetrafficdetailset=nil)
           @Date = date
           @DayTrafficTotalCount = daytraffictotalcount
@@ -2766,7 +2766,7 @@ module TencentCloud
         # @type HourTrafficInfoDetailSet: Array
 
         attr_accessor :Date, :HourTrafficInfoDetailSet
-        
+
         def initialize(date=nil, hourtrafficinfodetailset=nil)
           @Date = date
           @HourTrafficInfoDetailSet = hourtrafficinfodetailset
@@ -2803,7 +2803,7 @@ module TencentCloud
         # @type CompanyName: String
 
         attr_accessor :CompanyId, :ShopId, :ShopName, :ShopCode, :Province, :City, :CompanyName
-        
+
         def initialize(companyid=nil, shopid=nil, shopname=nil, shopcode=nil, province=nil, city=nil, companyname=nil)
           @CompanyId = companyid
           @ShopId = shopid
@@ -2835,7 +2835,7 @@ module TencentCloud
         # @type AvgStayTime: Integer
 
         attr_accessor :Zones, :Count, :AvgStayTime
-        
+
         def initialize(zones=nil, count=nil, avgstaytime=nil)
           @Zones = zones
           @Count = count
@@ -2857,7 +2857,7 @@ module TencentCloud
         # @type FemaleAvrStayTime: Float
 
         attr_accessor :MaleAvrStayTime, :FemaleAvrStayTime
-        
+
         def initialize(maleavrstaytime=nil, femaleavrstaytime=nil)
           @MaleAvrStayTime = maleavrstaytime
           @FemaleAvrStayTime = femaleavrstaytime
@@ -2877,7 +2877,7 @@ module TencentCloud
         # @type FlowCount: Integer
 
         attr_accessor :Day, :FlowCount
-        
+
         def initialize(day=nil, flowcount=nil)
           @Day = day
           @FlowCount = flowcount
@@ -2901,7 +2901,7 @@ module TencentCloud
         # @type AvrStayTime: Integer
 
         attr_accessor :ZoneId, :ZoneName, :FlowCount, :AvrStayTime
-        
+
         def initialize(zoneid=nil, zonename=nil, flowcount=nil, avrstaytime=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
@@ -2925,7 +2925,7 @@ module TencentCloud
         # @type FlowCount: Integer
 
         attr_accessor :Hour, :FlowCount
-        
+
         def initialize(hour=nil, flowcount=nil)
           @Hour = hour
           @FlowCount = flowcount
@@ -2945,7 +2945,7 @@ module TencentCloud
         # @type ZoneTrafficInfoDetailSet: Array
 
         attr_accessor :Date, :ZoneTrafficInfoDetailSet
-        
+
         def initialize(date=nil, zonetrafficinfodetailset=nil)
           @Date = date
           @ZoneTrafficInfoDetailSet = zonetrafficinfodetailset
@@ -2976,7 +2976,7 @@ module TencentCloud
         # @type AvgStayTime: Integer
 
         attr_accessor :ZoneId, :ZoneName, :TrafficTotalCount, :AvgStayTime
-        
+
         def initialize(zoneid=nil, zonename=nil, traffictotalcount=nil, avgstaytime=nil)
           @ZoneId = zoneid
           @ZoneName = zonename

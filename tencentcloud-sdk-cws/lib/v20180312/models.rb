@@ -33,7 +33,7 @@ module TencentCloud
         # @type FirstScanStartTime: String
 
         attr_accessor :Urls, :Name, :ScannerType, :Crontab, :RateLimit, :FirstScanStartTime
-        
+
         def initialize(urls=nil, name=nil, scannertype=nil, crontab=nil, ratelimit=nil, firstscanstarttime=nil)
           @Urls = urls
           @Name = name
@@ -59,7 +59,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -77,7 +77,7 @@ module TencentCloud
         # @type UserAgent: String
 
         attr_accessor :Urls, :UserAgent
-        
+
         def initialize(urls=nil, useragent=nil)
           @Urls = urls
           @UserAgent = useragent
@@ -99,7 +99,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Number, :Sites, :RequestId
-        
+
         def initialize(number=nil, sites=nil, requestid=nil)
           @Number = number
           @Sites = sites
@@ -130,7 +130,7 @@ module TencentCloud
         # @type RateLimit: Integer
 
         attr_accessor :SiteIds, :ScannerType, :RateLimit
-        
+
         def initialize(siteids=nil, scannertype=nil, ratelimit=nil)
           @SiteIds = siteids
           @ScannerType = scannertype
@@ -150,7 +150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -166,7 +166,7 @@ module TencentCloud
         # @type VulIds: Array
 
         attr_accessor :VulIds
-        
+
         def initialize(vulids=nil)
           @VulIds = vulids
         end
@@ -182,7 +182,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -200,7 +200,7 @@ module TencentCloud
         # @type MonitorId: Integer
 
         attr_accessor :SiteId, :MonitorId
-        
+
         def initialize(siteid=nil, monitorid=nil)
           @SiteId = siteid
           @MonitorId = monitorid
@@ -220,7 +220,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReportFileUrl, :RequestId
-        
+
         def initialize(reportfileurl=nil, requestid=nil)
           @ReportFileUrl = reportfileurl
           @RequestId = requestid
@@ -238,7 +238,7 @@ module TencentCloud
         # @type MonitorIds: Array
 
         attr_accessor :MonitorIds
-        
+
         def initialize(monitorids=nil)
           @MonitorIds = monitorids
         end
@@ -254,7 +254,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -270,7 +270,7 @@ module TencentCloud
         # @type SiteIds: Array
 
         attr_accessor :SiteIds
-        
+
         def initialize(siteids=nil)
           @SiteIds = siteids
         end
@@ -286,7 +286,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -299,7 +299,7 @@ module TencentCloud
       # DescribeConfig请求参数结构体
       class DescribeConfigRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -325,7 +325,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NoticeLevel, :Id, :CreatedAt, :UpdatedAt, :Appid, :ContentLevel, :RequestId
-        
+
         def initialize(noticelevel=nil, id=nil, createdat=nil, updatedat=nil, appid=nil, contentlevel=nil, requestid=nil)
           @NoticeLevel = noticelevel
           @Id = id
@@ -359,7 +359,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :MonitorIds, :Filters, :Offset, :Limit
-        
+
         def initialize(monitorids=nil, filters=nil, offset=nil, limit=nil)
           @MonitorIds = monitorids
           @Filters = filters
@@ -392,7 +392,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Monitors, :TotalCount, :RequestId
-        
+
         def initialize(monitors=nil, totalcount=nil, requestid=nil)
           @Monitors = monitors
           @TotalCount = totalcount
@@ -416,7 +416,7 @@ module TencentCloud
       # DescribeSiteQuota请求参数结构体
       class DescribeSiteQuotaRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -436,7 +436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Used, :Available, :RequestId
-        
+
         def initialize(total=nil, used=nil, available=nil, requestid=nil)
           @Total = total
           @Used = used
@@ -464,7 +464,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :SiteIds, :Filters, :Offset, :Limit
-        
+
         def initialize(siteids=nil, filters=nil, offset=nil, limit=nil)
           @SiteIds = siteids
           @Filters = filters
@@ -497,7 +497,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Sites, :RequestId
-        
+
         def initialize(totalcount=nil, sites=nil, requestid=nil)
           @TotalCount = totalcount
           @Sites = sites
@@ -524,7 +524,7 @@ module TencentCloud
         # @type Urls: Array
 
         attr_accessor :Urls
-        
+
         def initialize(urls=nil)
           @Urls = urls
         end
@@ -544,7 +544,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SitesVerification, :RequestId
-        
+
         def initialize(totalcount=nil, sitesverification=nil, requestid=nil)
           @TotalCount = totalcount
           @SitesVerification = sitesverification
@@ -568,7 +568,7 @@ module TencentCloud
       # DescribeVulsNumber请求参数结构体
       class DescribeVulsNumberRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -600,7 +600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImpactSiteNumber, :SiteNumber, :VulsHighNumber, :VulsMiddleNumber, :VulsLowNumber, :VulsNoticeNumber, :PageCount, :Sites, :ImpactSites, :RequestId
-        
+
         def initialize(impactsitenumber=nil, sitenumber=nil, vulshighnumber=nil, vulsmiddlenumber=nil, vulslownumber=nil, vulsnoticenumber=nil, pagecount=nil, sites=nil, impactsites=nil, requestid=nil)
           @ImpactSiteNumber = impactsitenumber
           @SiteNumber = sitenumber
@@ -645,7 +645,7 @@ module TencentCloud
       # DescribeVulsNumberTimeline请求参数结构体
       class DescribeVulsNumberTimelineRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -663,7 +663,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VulsTimeline, :RequestId
-        
+
         def initialize(totalcount=nil, vulstimeline=nil, requestid=nil)
           @TotalCount = totalcount
           @VulsTimeline = vulstimeline
@@ -698,7 +698,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :SiteId, :MonitorId, :Filters, :Offset, :Limit
-        
+
         def initialize(siteid=nil, monitorid=nil, filters=nil, offset=nil, limit=nil)
           @SiteId = siteid
           @MonitorId = monitorid
@@ -733,7 +733,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Vuls, :RequestId
-        
+
         def initialize(totalcount=nil, vuls=nil, requestid=nil)
           @TotalCount = totalcount
           @Vuls = vuls
@@ -765,7 +765,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -785,7 +785,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :SiteId, :Url
-        
+
         def initialize(siteid=nil, url=nil)
           @SiteId = siteid
           @Url = url
@@ -803,7 +803,7 @@ module TencentCloud
         # @type NoticeLevel: String
 
         attr_accessor :NoticeLevel
-        
+
         def initialize(noticelevel=nil)
           @NoticeLevel = noticelevel
         end
@@ -819,7 +819,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -849,7 +849,7 @@ module TencentCloud
         # @type MonitorStatus: Integer
 
         attr_accessor :MonitorId, :Urls, :Name, :ScannerType, :Crontab, :RateLimit, :FirstScanStartTime, :MonitorStatus
-        
+
         def initialize(monitorid=nil, urls=nil, name=nil, scannertype=nil, crontab=nil, ratelimit=nil, firstscanstarttime=nil, monitorstatus=nil)
           @MonitorId = monitorid
           @Urls = urls
@@ -879,7 +879,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -907,7 +907,7 @@ module TencentCloud
         # @type ScanDisallow: String
 
         attr_accessor :SiteId, :Name, :NeedLogin, :LoginCookie, :LoginCheckUrl, :LoginCheckKw, :ScanDisallow
-        
+
         def initialize(siteid=nil, name=nil, needlogin=nil, logincookie=nil, logincheckurl=nil, logincheckkw=nil, scandisallow=nil)
           @SiteId = siteid
           @Name = name
@@ -935,7 +935,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -979,7 +979,7 @@ module TencentCloud
         # @type ContentScanStatus: Integer
 
         attr_accessor :Id, :Name, :MonitorStatus, :ScannerType, :Crontab, :IncludedVulsTypes, :RateLimit, :FirstScanStartTime, :ScanStatus, :LastScanFinishTime, :CurrentScanStartTime, :CreatedAt, :UpdatedAt, :Appid, :ContentScanStatus
-        
+
         def initialize(id=nil, name=nil, monitorstatus=nil, scannertype=nil, crontab=nil, includedvulstypes=nil, ratelimit=nil, firstscanstarttime=nil, scanstatus=nil, lastscanfinishtime=nil, currentscanstarttime=nil, createdat=nil, updatedat=nil, appid=nil, contentscanstatus=nil)
           @Id = id
           @Name = name
@@ -1025,7 +1025,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :SiteId, :Url
-        
+
         def initialize(siteid=nil, url=nil)
           @SiteId = siteid
           @Url = url
@@ -1065,7 +1065,7 @@ module TencentCloud
         # @type ContentNumber: Integer
 
         attr_accessor :Basic, :Sites, :SiteNumber, :ImpactSites, :ImpactSiteNumber, :VulsHighNumber, :VulsMiddleNumber, :VulsLowNumber, :VulsNoticeNumber, :Progress, :PageCount, :ContentNumber
-        
+
         def initialize(basic=nil, sites=nil, sitenumber=nil, impactsites=nil, impactsitenumber=nil, vulshighnumber=nil, vulsmiddlenumber=nil, vulslownumber=nil, vulsnoticenumber=nil, progress=nil, pagecount=nil, contentnumber=nil)
           @Basic = basic
           @Sites = sites
@@ -1186,7 +1186,7 @@ module TencentCloud
         # @type LastScanContentNum: Integer
 
         attr_accessor :Id, :MonitorId, :Url, :Name, :VerifyStatus, :MonitorStatus, :ScanStatus, :LastScanTaskId, :LastScanStartTime, :LastScanFinishTime, :LastScanCancelTime, :LastScanPageCount, :LastScanScannerType, :LastScanVulsHighNum, :LastScanVulsMiddleNum, :LastScanVulsLowNum, :LastScanVulsNoticeNum, :CreatedAt, :UpdatedAt, :LastScanRateLimit, :LastScanVulsNum, :LastScanNoticeNum, :Progress, :Appid, :Uin, :NeedLogin, :LoginCookie, :LoginCookieValid, :LoginCheckUrl, :LoginCheckKw, :ScanDisallow, :UserAgent, :ContentStatus, :LastScanContentNum
-        
+
         def initialize(id=nil, monitorid=nil, url=nil, name=nil, verifystatus=nil, monitorstatus=nil, scanstatus=nil, lastscantaskid=nil, lastscanstarttime=nil, lastscanfinishtime=nil, lastscancanceltime=nil, lastscanpagecount=nil, lastscanscannertype=nil, lastscanvulshighnum=nil, lastscanvulsmiddlenum=nil, lastscanvulslownum=nil, lastscanvulsnoticenum=nil, createdat=nil, updatedat=nil, lastscanratelimit=nil, lastscanvulsnum=nil, lastscannoticenum=nil, progress=nil, appid=nil, uin=nil, needlogin=nil, logincookie=nil, logincookievalid=nil, logincheckurl=nil, logincheckkw=nil, scandisallow=nil, useragent=nil, contentstatus=nil, lastscancontentnum=nil)
           @Id = id
           @MonitorId = monitorid
@@ -1288,7 +1288,7 @@ module TencentCloud
         # @type VerifyFileUrl: String
 
         attr_accessor :Domain, :TxtName, :TxtText, :ValidTo, :VerifyStatus, :CreatedAt, :UpdatedAt, :Id, :Appid, :VerifyUrl, :VerifyFileUrl
-        
+
         def initialize(domain=nil, txtname=nil, txttext=nil, validto=nil, verifystatus=nil, createdat=nil, updatedat=nil, id=nil, appid=nil, verifyurl=nil, verifyfileurl=nil)
           @Domain = domain
           @TxtName = txtname
@@ -1324,7 +1324,7 @@ module TencentCloud
         # @type Urls: Array
 
         attr_accessor :Urls
-        
+
         def initialize(urls=nil)
           @Urls = urls
         end
@@ -1344,7 +1344,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessNumber, :FailNumber, :RequestId
-        
+
         def initialize(successnumber=nil, failnumber=nil, requestid=nil)
           @SuccessNumber = successnumber
           @FailNumber = failnumber
@@ -1398,7 +1398,7 @@ module TencentCloud
         # @type Uin: String
 
         attr_accessor :Id, :SiteId, :TaskId, :Level, :Name, :Url, :Html, :Nickname, :Harm, :Describe, :Solution, :From, :Parameter, :CreatedAt, :UpdatedAt, :IsReported, :Appid, :Uin
-        
+
         def initialize(id=nil, siteid=nil, taskid=nil, level=nil, name=nil, url=nil, html=nil, nickname=nil, harm=nil, describe=nil, solution=nil, from=nil, parameter=nil, createdat=nil, updatedat=nil, isreported=nil, appid=nil, uin=nil)
           @Id = id
           @SiteId = siteid
@@ -1470,7 +1470,7 @@ module TencentCloud
         # @type UpdatedAt: String
 
         attr_accessor :Id, :Appid, :Date, :PageCount, :SiteNum, :ImpactSiteNum, :VulsHighNum, :VulsMiddleNum, :VulsLowNum, :VulsNoticeNum, :CreatedAt, :UpdatedAt
-        
+
         def initialize(id=nil, appid=nil, date=nil, pagecount=nil, sitenum=nil, impactsitenum=nil, vulshighnum=nil, vulsmiddlenum=nil, vulslownum=nil, vulsnoticenum=nil, createdat=nil, updatedat=nil)
           @Id = id
           @Appid = appid

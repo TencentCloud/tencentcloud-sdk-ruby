@@ -39,7 +39,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :AliasId, :AliasArn, :Name, :Description, :RoutingStrategy, :CreationTime, :LastUpdatedTime, :Tags
-        
+
         def initialize(aliasid=nil, aliasarn=nil, name=nil, description=nil, routingstrategy=nil, creationtime=nil, lastupdatedtime=nil, tags=nil)
           @AliasId = aliasid
           @AliasArn = aliasarn
@@ -106,7 +106,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :AssetId, :AssetName, :AssetVersion, :OperateSystem, :Stauts, :Size, :CreateTime, :BindFleetNum, :AssetArn, :ImageId, :OsType, :ResourceType, :SharingStatus, :Tags
-        
+
         def initialize(assetid=nil, assetname=nil, assetversion=nil, operatesystem=nil, stauts=nil, size=nil, createtime=nil, bindfleetnum=nil, assetarn=nil, imageid=nil, ostype=nil, resourcetype=nil, sharingstatus=nil, tags=nil)
           @AssetId = assetid
           @AssetName = assetname
@@ -159,7 +159,7 @@ module TencentCloud
         # @type Token: String
 
         attr_accessor :TmpSecretId, :TmpSecretKey, :Token
-        
+
         def initialize(tmpsecretid=nil, tmpsecretkey=nil, token=nil)
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
@@ -185,7 +185,7 @@ module TencentCloud
         # @type OsVersion: String
 
         attr_accessor :ImageId, :OsType, :OsBit, :OsVersion
-        
+
         def initialize(imageid=nil, ostype=nil, osbit=nil, osversion=nil)
           @ImageId = imageid
           @OsType = ostype
@@ -211,7 +211,7 @@ module TencentCloud
         # @type CcnId: String
 
         attr_accessor :FleetId, :AccountId, :CcnId
-        
+
         def initialize(fleetid=nil, accountid=nil, ccnid=nil)
           @FleetId = fleetid
           @AccountId = accountid
@@ -231,7 +231,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -249,7 +249,7 @@ module TencentCloud
         # @type CcnId: String
 
         attr_accessor :AccountId, :CcnId
-        
+
         def initialize(accountid=nil, ccnid=nil)
           @AccountId = accountid
           @CcnId = ccnid
@@ -280,7 +280,7 @@ module TencentCloud
         # @type State: String
 
         attr_accessor :AccountId, :CcnId, :CreateTime, :InstanceName, :State
-        
+
         def initialize(accountid=nil, ccnid=nil, createtime=nil, instancename=nil, state=nil)
           @AccountId = accountid
           @CcnId = ccnid
@@ -342,7 +342,7 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType, :CcnInfos, :InternetMaxBandwidthOut
-        
+
         def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil, ccninfos=nil, internetmaxbandwidthout=nil)
           @FleetId = fleetid
           @CopyNumber = copynumber
@@ -438,7 +438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetAttributes, :TotalCount, :RequestId
-        
+
         def initialize(fleetattributes=nil, totalcount=nil, requestid=nil)
           @FleetAttributes = fleetattributes
           @TotalCount = totalcount
@@ -471,7 +471,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Name, :RoutingStrategy, :Description, :Tags
-        
+
         def initialize(name=nil, routingstrategy=nil, description=nil, tags=nil)
           @Name = name
           @RoutingStrategy = routingstrategy
@@ -505,7 +505,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Alias, :RequestId
-        
+
         def initialize(_alias=nil, requestid=nil)
           @Alias = _alias
           @RequestId = requestid
@@ -538,7 +538,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :BucketKey, :AssetName, :AssetVersion, :AssetRegion, :OperateSystem, :ImageId, :Tags
-        
+
         def initialize(bucketkey=nil, assetname=nil, assetversion=nil, assetregion=nil, operatesystem=nil, imageid=nil, tags=nil)
           @BucketKey = bucketkey
           @AssetName = assetname
@@ -577,7 +577,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AssetId, :AssetArn, :RequestId
-        
+
         def initialize(assetid=nil, assetarn=nil, requestid=nil)
           @AssetId = assetid
           @AssetArn = assetarn
@@ -613,7 +613,7 @@ module TencentCloud
         # @type OsBit: Integer
 
         attr_accessor :AssetName, :AssetVersion, :AssetRegion, :ImageId, :ImageSize, :ImageOs, :OsType, :ImageType, :OsBit
-        
+
         def initialize(assetname=nil, assetversion=nil, assetregion=nil, imageid=nil, imagesize=nil, imageos=nil, ostype=nil, imagetype=nil, osbit=nil)
           @AssetName = assetname
           @AssetVersion = assetversion
@@ -649,7 +649,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AssetId, :AssetArn, :RequestId
-        
+
         def initialize(assetid=nil, assetarn=nil, requestid=nil)
           @AssetId = assetid
           @AssetArn = assetarn
@@ -701,7 +701,7 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo, :CcnInfos, :InternetMaxBandwidthOut
-        
+
         def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, ccninfos=nil, internetmaxbandwidthout=nil)
           @AssetId = assetid
           @Description = description
@@ -789,7 +789,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetAttributes, :RequestId
-        
+
         def initialize(fleetattributes=nil, requestid=nil)
           @FleetAttributes = fleetattributes
           @RequestId = requestid
@@ -818,7 +818,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Name, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds, :Tags
-        
+
         def initialize(name=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil, tags=nil)
           @Name = name
           @Destinations = destinations
@@ -865,7 +865,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionQueue, :RequestId
-        
+
         def initialize(gameserversessionqueue=nil, requestid=nil)
           @GameServerSessionQueue = gameserversessionqueue
           @RequestId = requestid
@@ -902,7 +902,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :MaximumPlayerSessionCount, :AliasId, :CreatorId, :FleetId, :GameProperties, :GameServerSessionData, :GameServerSessionId, :IdempotencyToken, :Name
-        
+
         def initialize(maximumplayersessioncount=nil, aliasid=nil, creatorid=nil, fleetid=nil, gameproperties=nil, gameserversessiondata=nil, gameserversessionid=nil, idempotencytoken=nil, name=nil)
           @MaximumPlayerSessionCount = maximumplayersessioncount
           @AliasId = aliasid
@@ -944,7 +944,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSession, :RequestId
-        
+
         def initialize(gameserversession=nil, requestid=nil)
           @GameServerSession = gameserversession
           @RequestId = requestid
@@ -967,7 +967,7 @@ module TencentCloud
         # @type UserName: String
 
         attr_accessor :Secret, :UserName
-        
+
         def initialize(secret=nil, username=nil)
           @Secret = secret
           @UserName = username
@@ -985,7 +985,7 @@ module TencentCloud
         # @type AliasId: String
 
         attr_accessor :AliasId
-        
+
         def initialize(aliasid=nil)
           @AliasId = aliasid
         end
@@ -1001,7 +1001,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1017,7 +1017,7 @@ module TencentCloud
         # @type AssetId: String
 
         attr_accessor :AssetId
-        
+
         def initialize(assetid=nil)
           @AssetId = assetid
         end
@@ -1033,7 +1033,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1049,7 +1049,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -1065,7 +1065,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1081,7 +1081,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Name
-        
+
         def initialize(name=nil)
           @Name = name
         end
@@ -1097,7 +1097,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1115,7 +1115,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :FleetId, :Name
-        
+
         def initialize(fleetid=nil, name=nil)
           @FleetId = fleetid
           @Name = name
@@ -1133,7 +1133,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1153,7 +1153,7 @@ module TencentCloud
         # @type TimerName: String
 
         attr_accessor :TimerId, :FleetId, :TimerName
-        
+
         def initialize(timerid=nil, fleetid=nil, timername=nil)
           @TimerId = timerid
           @FleetId = fleetid
@@ -1173,7 +1173,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1189,7 +1189,7 @@ module TencentCloud
         # @type AliasId: String
 
         attr_accessor :AliasId
-        
+
         def initialize(aliasid=nil)
           @AliasId = aliasid
         end
@@ -1208,7 +1208,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Alias, :RequestId
-        
+
         def initialize(_alias=nil, requestid=nil)
           @Alias = _alias
           @RequestId = requestid
@@ -1229,7 +1229,7 @@ module TencentCloud
         # @type AssetId: String
 
         attr_accessor :AssetId
-        
+
         def initialize(assetid=nil)
           @AssetId = assetid
         end
@@ -1247,7 +1247,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Asset, :RequestId
-        
+
         def initialize(asset=nil, requestid=nil)
           @Asset = asset
           @RequestId = requestid
@@ -1270,7 +1270,7 @@ module TencentCloud
         # @type OsBit: Integer
 
         attr_accessor :OsType, :OsBit
-        
+
         def initialize(ostype=nil, osbit=nil)
           @OsType = ostype
           @OsBit = osbit
@@ -1290,7 +1290,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AssetSupportSys, :RequestId
-        
+
         def initialize(assetsupportsys=nil, requestid=nil)
           @AssetSupportSys = assetsupportsys
           @RequestId = requestid
@@ -1323,7 +1323,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :AssetRegion, :Offset, :Limit, :Filter, :Filters
-        
+
         def initialize(assetregion=nil, offset=nil, limit=nil, filter=nil, filters=nil)
           @AssetRegion = assetregion
           @Offset = offset
@@ -1358,7 +1358,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Assets, :RequestId
-        
+
         def initialize(totalcount=nil, assets=nil, requestid=nil)
           @TotalCount = totalcount
           @Assets = assets
@@ -1385,7 +1385,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -1406,7 +1406,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CcnInstanceSets, :TotalCount, :RequestId
-        
+
         def initialize(ccninstancesets=nil, totalcount=nil, requestid=nil)
           @CcnInstanceSets = ccninstancesets
           @TotalCount = totalcount
@@ -1437,7 +1437,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :FleetIds, :Limit, :Offset
-        
+
         def initialize(fleetids=nil, limit=nil, offset=nil)
           @FleetIds = fleetids
           @Limit = limit
@@ -1462,7 +1462,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetAttributes, :TotalCount, :RequestId
-        
+
         def initialize(fleetattributes=nil, totalcount=nil, requestid=nil)
           @FleetAttributes = fleetattributes
           @TotalCount = totalcount
@@ -1493,7 +1493,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :FleetIds, :Limit, :Offset
-        
+
         def initialize(fleetids=nil, limit=nil, offset=nil)
           @FleetIds = fleetids
           @Limit = limit
@@ -1519,7 +1519,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetCapacity, :TotalCount, :RequestId
-        
+
         def initialize(fleetcapacity=nil, totalcount=nil, requestid=nil)
           @FleetCapacity = fleetcapacity
           @TotalCount = totalcount
@@ -1556,7 +1556,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :FleetId, :Limit, :Offset, :EventCode, :StartTime, :EndTime
-        
+
         def initialize(fleetid=nil, limit=nil, offset=nil, eventcode=nil, starttime=nil, endtime=nil)
           @FleetId = fleetid
           @Limit = limit
@@ -1586,7 +1586,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Events, :TotalCount, :RequestId
-        
+
         def initialize(events=nil, totalcount=nil, requestid=nil)
           @Events = events
           @TotalCount = totalcount
@@ -1613,7 +1613,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -1632,7 +1632,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InboundPermissions, :RequestId
-        
+
         def initialize(inboundpermissions=nil, requestid=nil)
           @InboundPermissions = inboundpermissions
           @RequestId = requestid
@@ -1657,7 +1657,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -1676,7 +1676,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Resources, :RequestId
-        
+
         def initialize(resources=nil, requestid=nil)
           @Resources = resources
           @RequestId = requestid
@@ -1709,7 +1709,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :FleetId, :BeginTime, :EndTime, :Limit, :Offset
-        
+
         def initialize(fleetid=nil, begintime=nil, endtime=nil, limit=nil, offset=nil)
           @FleetId = fleetid
           @BeginTime = begintime
@@ -1742,7 +1742,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DetailList, :TotalCount, :TimeType, :RequestId
-        
+
         def initialize(detaillist=nil, totalcount=nil, timetype=nil, requestid=nil)
           @DetailList = detaillist
           @TotalCount = totalcount
@@ -1779,7 +1779,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :FleetId, :BeginTime, :EndTime, :Limit, :Offset
-        
+
         def initialize(fleetid=nil, begintime=nil, endtime=nil, limit=nil, offset=nil)
           @FleetId = fleetid
           @BeginTime = begintime
@@ -1815,7 +1815,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsedFlowList, :UsedTimeList, :TotalCount, :TimeType, :RequestId
-        
+
         def initialize(usedflowlist=nil, usedtimelist=nil, totalcount=nil, timetype=nil, requestid=nil)
           @UsedFlowList = usedflowlist
           @UsedTimeList = usedtimelist
@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :FleetId, :BeginTime, :EndTime
-        
+
         def initialize(fleetid=nil, begintime=nil, endtime=nil)
           @FleetId = fleetid
           @BeginTime = begintime
@@ -1883,7 +1883,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalUsedTimeSeconds, :TotalUsedFlowMegaBytes, :RequestId
-        
+
         def initialize(totalusedtimeseconds=nil, totalusedflowmegabytes=nil, requestid=nil)
           @TotalUsedTimeSeconds = totalusedtimeseconds
           @TotalUsedFlowMegaBytes = totalusedflowmegabytes
@@ -1903,7 +1903,7 @@ module TencentCloud
         # @type FleetIds: Array
 
         attr_accessor :FleetIds
-        
+
         def initialize(fleetids=nil)
           @FleetIds = fleetids
         end
@@ -1924,7 +1924,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetUtilization, :TotalCount, :RequestId
-        
+
         def initialize(fleetutilization=nil, totalcount=nil, requestid=nil)
           @FleetUtilization = fleetutilization
           @TotalCount = totalcount
@@ -1961,7 +1961,7 @@ module TencentCloud
         # @type StatusFilter: String
 
         attr_accessor :AliasId, :FleetId, :GameServerSessionId, :Limit, :NextToken, :StatusFilter
-        
+
         def initialize(aliasid=nil, fleetid=nil, gameserversessionid=nil, limit=nil, nexttoken=nil, statusfilter=nil)
           @AliasId = aliasid
           @FleetId = fleetid
@@ -1993,7 +1993,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionDetails, :NextToken, :RequestId
-        
+
         def initialize(gameserversessiondetails=nil, nexttoken=nil, requestid=nil)
           @GameServerSessionDetails = gameserversessiondetails
           @NextToken = nexttoken
@@ -2020,7 +2020,7 @@ module TencentCloud
         # @type PlacementId: String
 
         attr_accessor :PlacementId
-        
+
         def initialize(placementid=nil)
           @PlacementId = placementid
         end
@@ -2038,7 +2038,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionPlacement, :RequestId
-        
+
         def initialize(gameserversessionplacement=nil, requestid=nil)
           @GameServerSessionPlacement = gameserversessionplacement
           @RequestId = requestid
@@ -2065,7 +2065,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Names, :Limit, :Offset, :Filters
-        
+
         def initialize(names=nil, limit=nil, offset=nil, filters=nil)
           @Names = names
           @Limit = limit
@@ -2099,7 +2099,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionQueues, :TotalCount, :RequestId
-        
+
         def initialize(gameserversessionqueues=nil, totalcount=nil, requestid=nil)
           @GameServerSessionQueues = gameserversessionqueues
           @TotalCount = totalcount
@@ -2136,7 +2136,7 @@ module TencentCloud
         # @type StatusFilter: String
 
         attr_accessor :AliasId, :FleetId, :GameServerSessionId, :Limit, :NextToken, :StatusFilter
-        
+
         def initialize(aliasid=nil, fleetid=nil, gameserversessionid=nil, limit=nil, nexttoken=nil, statusfilter=nil)
           @AliasId = aliasid
           @FleetId = fleetid
@@ -2168,7 +2168,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessions, :NextToken, :RequestId
-        
+
         def initialize(gameserversessions=nil, nexttoken=nil, requestid=nil)
           @GameServerSessions = gameserversessions
           @NextToken = nexttoken
@@ -2192,7 +2192,7 @@ module TencentCloud
       # DescribeInstanceLimit请求参数结构体
       class DescribeInstanceLimitRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2210,7 +2210,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Limit, :ExtraInfos, :RequestId
-        
+
         def initialize(limit=nil, extrainfos=nil, requestid=nil)
           @Limit = limit
           @ExtraInfos = extrainfos
@@ -2234,7 +2234,7 @@ module TencentCloud
       # DescribeInstanceTypes请求参数结构体
       class DescribeInstanceTypesRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2250,7 +2250,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceTypeList, :RequestId
-        
+
         def initialize(instancetypelist=nil, requestid=nil)
           @InstanceTypeList = instancetypelist
           @RequestId = requestid
@@ -2281,7 +2281,7 @@ module TencentCloud
         # @type IpAddress: String
 
         attr_accessor :FleetId, :Offset, :Limit, :IpAddress
-        
+
         def initialize(fleetid=nil, offset=nil, limit=nil, ipaddress=nil)
           @FleetId = fleetid
           @Offset = offset
@@ -2309,7 +2309,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Instances, :TotalCount, :RequestId
-        
+
         def initialize(instances=nil, totalcount=nil, requestid=nil)
           @Instances = instances
           @TotalCount = totalcount
@@ -2344,7 +2344,7 @@ module TencentCloud
         # @type IpAddress: String
 
         attr_accessor :FleetId, :InstanceId, :Offset, :Limit, :IpAddress
-        
+
         def initialize(fleetid=nil, instanceid=nil, offset=nil, limit=nil, ipaddress=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -2374,7 +2374,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Instances, :TotalCount, :RequestId
-        
+
         def initialize(instances=nil, totalcount=nil, requestid=nil)
           @Instances = instances
           @TotalCount = totalcount
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type PlayerSessionStatusFilter: String
 
         attr_accessor :GameServerSessionId, :Limit, :NextToken, :PlayerId, :PlayerSessionId, :PlayerSessionStatusFilter
-        
+
         def initialize(gameserversessionid=nil, limit=nil, nexttoken=nil, playerid=nil, playersessionid=nil, playersessionstatusfilter=nil)
           @GameServerSessionId = gameserversessionid
           @Limit = limit
@@ -2443,7 +2443,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PlayerSessions, :NextToken, :RequestId
-        
+
         def initialize(playersessions=nil, nexttoken=nil, requestid=nil)
           @PlayerSessions = playersessions
           @NextToken = nexttoken
@@ -2470,7 +2470,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -2489,7 +2489,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuntimeConfiguration, :RequestId
-        
+
         def initialize(runtimeconfiguration=nil, requestid=nil)
           @RuntimeConfiguration = runtimeconfiguration
           @RequestId = requestid
@@ -2516,7 +2516,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :FleetId, :StatusFilter, :Offset, :Limit
-        
+
         def initialize(fleetid=nil, statusfilter=nil, offset=nil, limit=nil)
           @FleetId = fleetid
           @StatusFilter = statusfilter
@@ -2544,7 +2544,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ScalingPolicies, :TotalCount, :RequestId
-        
+
         def initialize(scalingpolicies=nil, totalcount=nil, requestid=nil)
           @ScalingPolicies = scalingpolicies
           @TotalCount = totalcount
@@ -2581,7 +2581,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :FleetId, :TimerName, :BeginTime, :EndTime, :Offset, :Limit
-        
+
         def initialize(fleetid=nil, timername=nil, begintime=nil, endtime=nil, offset=nil, limit=nil)
           @FleetId = fleetid
           @TimerName = timername
@@ -2613,7 +2613,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TimerScalingPolicies, :TotalCount, :RequestId
-        
+
         def initialize(timerscalingpolicies=nil, totalcount=nil, requestid=nil)
           @TimerScalingPolicies = timerscalingpolicies
           @TotalCount = totalcount
@@ -2640,7 +2640,7 @@ module TencentCloud
         # @type ResourceType: Integer
 
         attr_accessor :ResourceType
-        
+
         def initialize(resourcetype=nil)
           @ResourceType = resourcetype
         end
@@ -2659,7 +2659,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QuotaResource, :RequestId
-        
+
         def initialize(quotaresource=nil, requestid=nil)
           @QuotaResource = quotaresource
           @RequestId = requestid
@@ -2677,7 +2677,7 @@ module TencentCloud
       # DescribeUserQuotas请求参数结构体
       class DescribeUserQuotasRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2696,7 +2696,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QuotaResource, :Total, :RequestId
-        
+
         def initialize(quotaresource=nil, total=nil, requestid=nil)
           @QuotaResource = quotaresource
           @Total = total
@@ -2725,7 +2725,7 @@ module TencentCloud
         # @type PlayerData: String
 
         attr_accessor :PlayerId, :PlayerData
-        
+
         def initialize(playerid=nil, playerdata=nil)
           @PlayerId = playerid
           @PlayerData = playerdata
@@ -2743,7 +2743,7 @@ module TencentCloud
         # @type FleetId: String
 
         attr_accessor :FleetId
-        
+
         def initialize(fleetid=nil)
           @FleetId = fleetid
         end
@@ -2759,7 +2759,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2777,7 +2777,7 @@ module TencentCloud
         # @type DiskSize: Integer
 
         attr_accessor :DiskType, :DiskSize
-        
+
         def initialize(disktype=nil, disksize=nil)
           @DiskType = disktype
           @DiskSize = disksize
@@ -2799,7 +2799,7 @@ module TencentCloud
         # @type Port: Integer
 
         attr_accessor :GameServerSessionId, :IpAddress, :Port
-        
+
         def initialize(gameserversessionid=nil, ipaddress=nil, port=nil)
           @GameServerSessionId = gameserversessionid
           @IpAddress = ipaddress
@@ -2819,7 +2819,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2869,7 +2869,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :EventCode, :EventId, :EventTime, :Message, :PreSignedLogUrl, :ResourceId
-        
+
         def initialize(eventcode=nil, eventid=nil, eventtime=nil, message=nil, presignedlogurl=nil, resourceid=nil)
           @EventCode = eventcode
           @EventId = eventid
@@ -2899,7 +2899,7 @@ module TencentCloud
         # @type TotalInstances: Integer
 
         attr_accessor :InstanceType, :TotalInstances
-        
+
         def initialize(instancetype=nil, totalinstances=nil)
           @InstanceType = instancetype
           @TotalInstances = totalinstances
@@ -2919,7 +2919,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Key, :Values
-        
+
         def initialize(key=nil, values=nil)
           @Key = key
           @Values = values
@@ -2995,7 +2995,7 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo, :RelatedCcnInfos, :InternetMaxBandwidthOut
-        
+
         def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil, relatedccninfos=nil, internetmaxbandwidthout=nil)
           @AssetId = assetid
           @CreationTime = creationtime
@@ -3088,7 +3088,7 @@ module TencentCloud
         # @type ScalingInterval: Integer
 
         attr_accessor :FleetId, :InstanceType, :InstanceCounts, :ScalingInterval
-        
+
         def initialize(fleetid=nil, instancetype=nil, instancecounts=nil, scalinginterval=nil)
           @FleetId = fleetid
           @InstanceType = instancetype
@@ -3122,7 +3122,7 @@ module TencentCloud
         # @type ResourceRegion: String
 
         attr_accessor :Type, :ResourceId, :ResourceRegion
-        
+
         def initialize(type=nil, resourceid=nil, resourceregion=nil)
           @Type = type
           @ResourceId = resourceid
@@ -3161,7 +3161,7 @@ module TencentCloud
         # @type TotalUsedFlowMegaBytes: Float
 
         attr_accessor :FleetId, :InstanceId, :InstanceIP, :BeginTime, :EndTime, :TotalUsedTimeSeconds, :TotalUsedFlowMegaBytes
-        
+
         def initialize(fleetid=nil, instanceid=nil, instanceip=nil, begintime=nil, endtime=nil, totalusedtimeseconds=nil, totalusedflowmegabytes=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -3193,7 +3193,7 @@ module TencentCloud
         # @type BeginTime: String
 
         attr_accessor :TotalUsedFlowMegaBytes, :BeginTime
-        
+
         def initialize(totalusedflowmegabytes=nil, begintime=nil)
           @TotalUsedFlowMegaBytes = totalusedflowmegabytes
           @BeginTime = begintime
@@ -3215,7 +3215,7 @@ module TencentCloud
         # @type TotalUsedTimeSeconds: String
 
         attr_accessor :BeginTime, :TotalUsedTimeSeconds
-        
+
         def initialize(begintime=nil, totalusedtimeseconds=nil)
           @BeginTime = begintime
           @TotalUsedTimeSeconds = totalusedtimeseconds
@@ -3246,7 +3246,7 @@ module TencentCloud
         # @type MaximumPlayerSessionCount: Integer
 
         attr_accessor :ActiveGameServerSessionCount, :ActiveServerProcessCount, :CurrentPlayerSessionCount, :FleetId, :MaximumPlayerSessionCount
-        
+
         def initialize(activegameserversessioncount=nil, activeserverprocesscount=nil, currentplayersessioncount=nil, fleetid=nil, maximumplayersessioncount=nil)
           @ActiveGameServerSessionCount = activegameserversessioncount
           @ActiveServerProcessCount = activeserverprocesscount
@@ -3272,7 +3272,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -3346,7 +3346,7 @@ module TencentCloud
         # @type AvailabilityStatus: String
 
         attr_accessor :CreationTime, :CreatorId, :CurrentPlayerSessionCount, :DnsName, :FleetId, :GameProperties, :GameServerSessionData, :GameServerSessionId, :IpAddress, :MatchmakerData, :MaximumPlayerSessionCount, :Name, :PlayerSessionCreationPolicy, :Port, :Status, :StatusReason, :TerminationTime, :InstanceType, :CurrentCustomCount, :MaxCustomCount, :Weight, :AvailabilityStatus
-        
+
         def initialize(creationtime=nil, creatorid=nil, currentplayersessioncount=nil, dnsname=nil, fleetid=nil, gameproperties=nil, gameserversessiondata=nil, gameserversessionid=nil, ipaddress=nil, matchmakerdata=nil, maximumplayersessioncount=nil, name=nil, playersessioncreationpolicy=nil, port=nil, status=nil, statusreason=nil, terminationtime=nil, instancetype=nil, currentcustomcount=nil, maxcustomcount=nil, weight=nil, availabilitystatus=nil)
           @CreationTime = creationtime
           @CreatorId = creatorid
@@ -3414,7 +3414,7 @@ module TencentCloud
         # @type ProtectionPolicy: String
 
         attr_accessor :GameServerSession, :ProtectionPolicy
-        
+
         def initialize(gameserversession=nil, protectionpolicy=nil)
           @GameServerSession = gameserversession
           @ProtectionPolicy = protectionpolicy
@@ -3479,7 +3479,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :PlacementId, :GameServerSessionQueueName, :PlayerLatencies, :Status, :DnsName, :GameServerSessionId, :GameServerSessionName, :GameServerSessionRegion, :GameProperties, :MaximumPlayerSessionCount, :GameServerSessionData, :IpAddress, :Port, :MatchmakerData, :PlacedPlayerSessions, :StartTime, :EndTime
-        
+
         def initialize(placementid=nil, gameserversessionqueuename=nil, playerlatencies=nil, status=nil, dnsname=nil, gameserversessionid=nil, gameserversessionname=nil, gameserversessionregion=nil, gameproperties=nil, maximumplayersessioncount=nil, gameserversessiondata=nil, ipaddress=nil, port=nil, matchmakerdata=nil, placedplayersessions=nil, starttime=nil, endtime=nil)
           @PlacementId = placementid
           @GameServerSessionQueueName = gameserversessionqueuename
@@ -3561,7 +3561,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Name, :GameServerSessionQueueArn, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds, :Tags
-        
+
         def initialize(name=nil, gameserversessionqueuearn=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil, tags=nil)
           @Name = name
           @GameServerSessionQueueArn = gameserversessionqueuearn
@@ -3612,7 +3612,7 @@ module TencentCloud
         # @type FleetStatus: String
 
         attr_accessor :DestinationArn, :FleetStatus
-        
+
         def initialize(destinationarn=nil, fleetstatus=nil)
           @DestinationArn = destinationarn
           @FleetStatus = fleetstatus
@@ -3638,7 +3638,7 @@ module TencentCloud
         # @type Size: Integer
 
         attr_accessor :FleetId, :InstanceId, :ServerIp, :Offset, :Size
-        
+
         def initialize(fleetid=nil, instanceid=nil, serverip=nil, offset=nil, size=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -3669,7 +3669,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PresignedUrls, :Total, :HasNext, :RequestId
-        
+
         def initialize(presignedurls=nil, total=nil, hasnext=nil, requestid=nil)
           @PresignedUrls = presignedurls
           @Total = total
@@ -3691,7 +3691,7 @@ module TencentCloud
         # @type GameServerSessionId: String
 
         attr_accessor :GameServerSessionId
-        
+
         def initialize(gameserversessionid=nil)
           @GameServerSessionId = gameserversessionid
         end
@@ -3710,7 +3710,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PreSignedUrl, :RequestId
-        
+
         def initialize(presignedurl=nil, requestid=nil)
           @PreSignedUrl = presignedurl
           @RequestId = requestid
@@ -3730,7 +3730,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :FleetId, :InstanceId
-        
+
         def initialize(fleetid=nil, instanceid=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -3750,7 +3750,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceAccess, :RequestId
-        
+
         def initialize(instanceaccess=nil, requestid=nil)
           @InstanceAccess = instanceaccess
           @RequestId = requestid
@@ -3773,7 +3773,7 @@ module TencentCloud
         # @type BucketKey: String
 
         attr_accessor :AssetRegion, :BucketKey
-        
+
         def initialize(assetregion=nil, bucketkey=nil)
           @AssetRegion = assetregion
           @BucketKey = bucketkey
@@ -3797,7 +3797,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BucketAuth, :BucketName, :AssetRegion, :RequestId
-        
+
         def initialize(bucketauth=nil, bucketname=nil, assetregion=nil, requestid=nil)
           @BucketAuth = bucketauth
           @BucketName = bucketname
@@ -3816,7 +3816,7 @@ module TencentCloud
       # GetUploadFederationToken请求参数结构体
       class GetUploadFederationTokenRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -3834,7 +3834,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExpiredTime, :AssetCredentials, :RequestId
-        
+
         def initialize(expiredtime=nil, assetcredentials=nil, requestid=nil)
           @ExpiredTime = expiredtime
           @AssetCredentials = assetcredentials
@@ -3863,7 +3863,7 @@ module TencentCloud
         # @type ToPort: Integer
 
         attr_accessor :FromPort, :IpRange, :Protocol, :ToPort
-        
+
         def initialize(fromport=nil, iprange=nil, protocol=nil, toport=nil)
           @FromPort = fromport
           @IpRange = iprange
@@ -3891,7 +3891,7 @@ module TencentCloud
         # @type ToPort: Integer
 
         attr_accessor :FromPort, :IpRange, :Protocol, :ToPort
-        
+
         def initialize(fromport=nil, iprange=nil, protocol=nil, toport=nil)
           @FromPort = fromport
           @IpRange = iprange
@@ -3919,7 +3919,7 @@ module TencentCloud
         # @type ToPort: Integer
 
         attr_accessor :FromPort, :IpRange, :Protocol, :ToPort
-        
+
         def initialize(fromport=nil, iprange=nil, protocol=nil, toport=nil)
           @FromPort = fromport
           @IpRange = iprange
@@ -3972,7 +3972,7 @@ module TencentCloud
         # @type PrivateIpAddress: String
 
         attr_accessor :FleetId, :InstanceId, :IpAddress, :DnsName, :OperatingSystem, :Status, :Type, :CreateTime, :Weight, :ReserveValue, :PrivateIpAddress
-        
+
         def initialize(fleetid=nil, instanceid=nil, ipaddress=nil, dnsname=nil, operatingsystem=nil, status=nil, type=nil, createtime=nil, weight=nil, reservevalue=nil, privateipaddress=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -4016,7 +4016,7 @@ module TencentCloud
         # @type OperatingSystem: String
 
         attr_accessor :Credentials, :FleetId, :InstanceId, :IpAddress, :OperatingSystem
-        
+
         def initialize(credentials=nil, fleetid=nil, instanceid=nil, ipaddress=nil, operatingsystem=nil)
           @Credentials = credentials
           @FleetId = fleetid
@@ -4062,7 +4062,7 @@ module TencentCloud
         # @type Terminating: Integer
 
         attr_accessor :Active, :Desired, :Idle, :MaxiNum, :MiniNum, :Pending, :Terminating
-        
+
         def initialize(active=nil, desired=nil, idle=nil, maxinum=nil, mininum=nil, pending=nil, terminating=nil)
           @Active = active
           @Desired = desired
@@ -4112,7 +4112,7 @@ module TencentCloud
         # @type MaxPlayerSessionCnt: Integer
 
         attr_accessor :Instance, :State, :HealthyProcessCnt, :ActiveProcessCnt, :GameSessionCnt, :MaxGameSessionCnt, :PlayerSessionCnt, :MaxPlayerSessionCnt
-        
+
         def initialize(instance=nil, state=nil, healthyprocesscnt=nil, activeprocesscnt=nil, gamesessioncnt=nil, maxgamesessioncnt=nil, playersessioncnt=nil, maxplayersessioncnt=nil)
           @Instance = instance
           @State = state
@@ -4153,7 +4153,7 @@ module TencentCloud
         # @type NetworkCard: Integer
 
         attr_accessor :TypeName, :InstanceType, :Cpu, :Memory, :NetworkCard
-        
+
         def initialize(typename=nil, instancetype=nil, cpu=nil, memory=nil, networkcard=nil)
           @TypeName = typename
           @InstanceType = instancetype
@@ -4181,7 +4181,7 @@ module TencentCloud
         # @type PlayerDataMap: :class:`Tencentcloud::Gse.v20191112.models.PlayerDataMap`
 
         attr_accessor :GameServerSessionId, :PlayerIds, :PlayerDataMap
-        
+
         def initialize(gameserversessionid=nil, playerids=nil, playerdatamap=nil)
           @GameServerSessionId = gameserversessionid
           @PlayerIds = playerids
@@ -4207,7 +4207,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PlayerSessions, :RequestId
-        
+
         def initialize(playersessions=nil, requestid=nil)
           @PlayerSessions = playersessions
           @RequestId = requestid
@@ -4236,7 +4236,7 @@ module TencentCloud
         # @type PlayerData: String
 
         attr_accessor :GameServerSessionId, :PlayerId, :PlayerData
-        
+
         def initialize(gameserversessionid=nil, playerid=nil, playerdata=nil)
           @GameServerSessionId = gameserversessionid
           @PlayerId = playerid
@@ -4259,7 +4259,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PlayerSession, :RequestId
-        
+
         def initialize(playersession=nil, requestid=nil)
           @PlayerSession = playersession
           @RequestId = requestid
@@ -4292,7 +4292,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Name, :RoutingStrategyType, :Limit, :Offset, :OrderBy, :OrderWay, :Filters
-        
+
         def initialize(name=nil, routingstrategytype=nil, limit=nil, offset=nil, orderby=nil, orderway=nil, filters=nil)
           @Name = name
           @RoutingStrategyType = routingstrategytype
@@ -4332,7 +4332,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Aliases, :TotalCount, :RequestId
-        
+
         def initialize(aliases=nil, totalcount=nil, requestid=nil)
           @Aliases = aliases
           @TotalCount = totalcount
@@ -4365,7 +4365,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :AssetId, :Limit, :Offset, :Filters
-        
+
         def initialize(assetid=nil, limit=nil, offset=nil, filters=nil)
           @AssetId = assetid
           @Limit = limit
@@ -4399,7 +4399,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetIds, :TotalCount, :RequestId
-        
+
         def initialize(fleetids=nil, totalcount=nil, requestid=nil)
           @FleetIds = fleetids
           @TotalCount = totalcount
@@ -4421,7 +4421,7 @@ module TencentCloud
         # @type PlayerSessionId: String
 
         attr_accessor :PlayerId, :PlayerSessionId
-        
+
         def initialize(playerid=nil, playersessionid=nil)
           @PlayerId = playerid
           @PlayerSessionId = playersessionid
@@ -4441,7 +4441,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -4465,7 +4465,7 @@ module TencentCloud
         # @type LatencyInMilliseconds: Integer
 
         attr_accessor :PlayerId, :RegionIdentifier, :LatencyInMilliseconds
-        
+
         def initialize(playerid=nil, regionidentifier=nil, latencyinmilliseconds=nil)
           @PlayerId = playerid
           @RegionIdentifier = regionidentifier
@@ -4489,7 +4489,7 @@ module TencentCloud
         # @type PolicyDurationSeconds: Integer
 
         attr_accessor :MaximumIndividualPlayerLatencyMilliseconds, :PolicyDurationSeconds
-        
+
         def initialize(maximumindividualplayerlatencymilliseconds=nil, policydurationseconds=nil)
           @MaximumIndividualPlayerLatencyMilliseconds = maximumindividualplayerlatencymilliseconds
           @PolicyDurationSeconds = policydurationseconds
@@ -4531,7 +4531,7 @@ module TencentCloud
         # @type TerminationTime: String
 
         attr_accessor :CreationTime, :DnsName, :FleetId, :GameServerSessionId, :IpAddress, :PlayerData, :PlayerId, :PlayerSessionId, :Port, :Status, :TerminationTime
-        
+
         def initialize(creationtime=nil, dnsname=nil, fleetid=nil, gameserversessionid=nil, ipaddress=nil, playerdata=nil, playerid=nil, playersessionid=nil, port=nil, status=nil, terminationtime=nil)
           @CreationTime = creationtime
           @DnsName = dnsname
@@ -4588,7 +4588,7 @@ module TencentCloud
         # @type TargetConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TargetConfiguration`
 
         attr_accessor :FleetId, :Name, :ScalingAdjustment, :ScalingAdjustmentType, :Threshold, :ComparisonOperator, :EvaluationPeriods, :MetricName, :PolicyType, :TargetConfiguration
-        
+
         def initialize(fleetid=nil, name=nil, scalingadjustment=nil, scalingadjustmenttype=nil, threshold=nil, comparisonoperator=nil, evaluationperiods=nil, metricname=nil, policytype=nil, targetconfiguration=nil)
           @FleetId = fleetid
           @Name = name
@@ -4628,7 +4628,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :RequestId
-        
+
         def initialize(name=nil, requestid=nil)
           @Name = name
           @RequestId = requestid
@@ -4646,7 +4646,7 @@ module TencentCloud
         # @type TimerScalingPolicy: :class:`Tencentcloud::Gse.v20191112.models.TimerScalingPolicy`
 
         attr_accessor :TimerScalingPolicy
-        
+
         def initialize(timerscalingpolicy=nil)
           @TimerScalingPolicy = timerscalingpolicy
         end
@@ -4665,7 +4665,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4691,7 +4691,7 @@ module TencentCloud
         # @type ExtraInfo: String
 
         attr_accessor :ResourceType, :HardLimit, :Remaining, :ExtraInfo
-        
+
         def initialize(resourcetype=nil, hardlimit=nil, remaining=nil, extrainfo=nil)
           @ResourceType = resourcetype
           @HardLimit = hardlimit
@@ -4717,7 +4717,7 @@ module TencentCloud
         # @type AttachType: String
 
         attr_accessor :AccountId, :CcnId, :AttachType
-        
+
         def initialize(accountid=nil, ccnid=nil, attachtype=nil)
           @AccountId = accountid
           @CcnId = ccnid
@@ -4737,7 +4737,7 @@ module TencentCloud
         # @type AliasId: String
 
         attr_accessor :AliasId
-        
+
         def initialize(aliasid=nil)
           @AliasId = aliasid
         end
@@ -4756,7 +4756,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -4776,7 +4776,7 @@ module TencentCloud
         # @type PolicyPeriodInMinutes: Integer
 
         attr_accessor :NewGameServerSessionsPerCreator, :PolicyPeriodInMinutes
-        
+
         def initialize(newgameserversessionspercreator=nil, policyperiodinminutes=nil)
           @NewGameServerSessionsPerCreator = newgameserversessionspercreator
           @PolicyPeriodInMinutes = policyperiodinminutes
@@ -4800,7 +4800,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Type, :FleetId, :Message
-        
+
         def initialize(type=nil, fleetid=nil, message=nil)
           @Type = type
           @FleetId = fleetid
@@ -4824,7 +4824,7 @@ module TencentCloud
         # @type ServerProcesses: Array
 
         attr_accessor :GameServerSessionActivationTimeoutSeconds, :MaxConcurrentGameServerSessionActivations, :ServerProcesses
-        
+
         def initialize(gameserversessionactivationtimeoutseconds=nil, maxconcurrentgameserversessionactivations=nil, serverprocesses=nil)
           @GameServerSessionActivationTimeoutSeconds = gameserversessionactivationtimeoutseconds
           @MaxConcurrentGameServerSessionActivations = maxconcurrentgameserversessionactivations
@@ -4882,7 +4882,7 @@ module TencentCloud
         # @type TargetConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TargetConfiguration`
 
         attr_accessor :FleetId, :Name, :Status, :ScalingAdjustment, :ScalingAdjustmentType, :ComparisonOperator, :Threshold, :EvaluationPeriods, :MetricName, :PolicyType, :TargetConfiguration
-        
+
         def initialize(fleetid=nil, name=nil, status=nil, scalingadjustment=nil, scalingadjustmenttype=nil, comparisonoperator=nil, threshold=nil, evaluationperiods=nil, metricname=nil, policytype=nil, targetconfiguration=nil)
           @FleetId = fleetid
           @Name = name
@@ -4973,7 +4973,7 @@ module TencentCloud
         # @type SortExpression: String
 
         attr_accessor :AliasId, :FleetId, :Limit, :NextToken, :FilterExpression, :SortExpression
-        
+
         def initialize(aliasid=nil, fleetid=nil, limit=nil, nexttoken=nil, filterexpression=nil, sortexpression=nil)
           @AliasId = aliasid
           @FleetId = fleetid
@@ -5005,7 +5005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessions, :NextToken, :RequestId
-        
+
         def initialize(gameserversessions=nil, nexttoken=nil, requestid=nil)
           @GameServerSessions = gameserversessions
           @NextToken = nexttoken
@@ -5036,7 +5036,7 @@ module TencentCloud
         # @type Parameters: String
 
         attr_accessor :ConcurrentExecutions, :LaunchPath, :Parameters
-        
+
         def initialize(concurrentexecutions=nil, launchpath=nil, parameters=nil)
           @ConcurrentExecutions = concurrentexecutions
           @LaunchPath = launchpath
@@ -5060,7 +5060,7 @@ module TencentCloud
         # @type ReserveValue: Integer
 
         attr_accessor :FleetId, :InstanceId, :ReserveValue
-        
+
         def initialize(fleetid=nil, instanceid=nil, reservevalue=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -5080,7 +5080,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5100,7 +5100,7 @@ module TencentCloud
         # @type Weight: Integer
 
         attr_accessor :FleetId, :InstanceId, :Weight
-        
+
         def initialize(fleetid=nil, instanceid=nil, weight=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
@@ -5120,7 +5120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5138,7 +5138,7 @@ module TencentCloud
         # @type Actions: Array
 
         attr_accessor :FleetId, :Actions
-        
+
         def initialize(fleetid=nil, actions=nil)
           @FleetId = fleetid
           @Actions = actions
@@ -5159,7 +5159,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -5191,7 +5191,7 @@ module TencentCloud
         # @type PlayerLatencies: Array
 
         attr_accessor :PlacementId, :GameServerSessionQueueName, :MaximumPlayerSessionCount, :DesiredPlayerSessions, :GameProperties, :GameServerSessionData, :GameServerSessionName, :PlayerLatencies
-        
+
         def initialize(placementid=nil, gameserversessionqueuename=nil, maximumplayersessioncount=nil, desiredplayersessions=nil, gameproperties=nil, gameserversessiondata=nil, gameserversessionname=nil, playerlatencies=nil)
           @PlacementId = placementid
           @GameServerSessionQueueName = gameserversessionqueuename
@@ -5244,7 +5244,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionPlacement, :RequestId
-        
+
         def initialize(gameserversessionplacement=nil, requestid=nil)
           @GameServerSessionPlacement = gameserversessionplacement
           @RequestId = requestid
@@ -5267,7 +5267,7 @@ module TencentCloud
         # @type Actions: Array
 
         attr_accessor :FleetId, :Actions
-        
+
         def initialize(fleetid=nil, actions=nil)
           @FleetId = fleetid
           @Actions = actions
@@ -5288,7 +5288,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -5306,7 +5306,7 @@ module TencentCloud
         # @type PlacementId: String
 
         attr_accessor :PlacementId
-        
+
         def initialize(placementid=nil)
           @PlacementId = placementid
         end
@@ -5324,7 +5324,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionPlacement, :RequestId
-        
+
         def initialize(gameserversessionplacement=nil, requestid=nil)
           @GameServerSessionPlacement = gameserversessionplacement
           @RequestId = requestid
@@ -5347,7 +5347,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -5366,7 +5366,7 @@ module TencentCloud
         # @type TargetValue: Integer
 
         attr_accessor :TargetValue
-        
+
         def initialize(targetvalue=nil)
           @TargetValue = targetvalue
         end
@@ -5392,7 +5392,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :TimerType, :TimerValue, :BeginTime, :EndTime
-        
+
         def initialize(timertype=nil, timervalue=nil, begintime=nil, endtime=nil)
           @TimerType = timertype
           @TimerValue = timervalue
@@ -5436,7 +5436,7 @@ module TencentCloud
         # @type TargetConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TargetConfiguration`
 
         attr_accessor :FleetId, :DesiredInstances, :MinSize, :MaxSize, :ScalingInterval, :ScalingType, :TargetConfiguration
-        
+
         def initialize(fleetid=nil, desiredinstances=nil, minsize=nil, maxsize=nil, scalinginterval=nil, scalingtype=nil, targetconfiguration=nil)
           @FleetId = fleetid
           @DesiredInstances = desiredinstances
@@ -5480,7 +5480,7 @@ module TencentCloud
         # @type TimerConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TimerConfiguration`
 
         attr_accessor :TimerId, :TimerName, :TimerStatus, :TimerFleetCapacity, :TimerConfiguration
-        
+
         def initialize(timerid=nil, timername=nil, timerstatus=nil, timerfleetcapacity=nil, timerconfiguration=nil)
           @TimerId = timerid
           @TimerName = timername
@@ -5520,7 +5520,7 @@ module TencentCloud
         # @type WeekDays: Array
 
         attr_accessor :Day, :FromDay, :ToDay, :WeekDays
-        
+
         def initialize(day=nil, fromday=nil, today=nil, weekdays=nil)
           @Day = day
           @FromDay = fromday
@@ -5548,7 +5548,7 @@ module TencentCloud
         # @type RoutingStrategy: :class:`Tencentcloud::Gse.v20191112.models.RoutingStrategy`
 
         attr_accessor :AliasId, :Name, :Description, :RoutingStrategy
-        
+
         def initialize(aliasid=nil, name=nil, description=nil, routingstrategy=nil)
           @AliasId = aliasid
           @Name = name
@@ -5576,7 +5576,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Alias, :RequestId
-        
+
         def initialize(_alias=nil, requestid=nil)
           @Alias = _alias
           @RequestId = requestid
@@ -5601,7 +5601,7 @@ module TencentCloud
         # @type AssetVersion: String
 
         attr_accessor :AssetId, :AssetName, :AssetVersion
-        
+
         def initialize(assetid=nil, assetname=nil, assetversion=nil)
           @AssetId = assetid
           @AssetName = assetname
@@ -5621,7 +5621,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5637,7 +5637,7 @@ module TencentCloud
         # @type Allowed: Boolean
 
         attr_accessor :Allowed
-        
+
         def initialize(allowed=nil)
           @Allowed = allowed
         end
@@ -5653,7 +5653,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5677,7 +5677,7 @@ module TencentCloud
         # @type ExposeHeaders: Array
 
         attr_accessor :AllowedOrigins, :AllowedMethods, :AllowedHeaders, :MaxAgeSeconds, :ExposeHeaders
-        
+
         def initialize(allowedorigins=nil, allowedmethods=nil, allowedheaders=nil, maxageseconds=nil, exposeheaders=nil)
           @AllowedOrigins = allowedorigins
           @AllowedMethods = allowedmethods
@@ -5701,7 +5701,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5727,7 +5727,7 @@ module TencentCloud
         # @type GameServerSessionProtectionTimeLimit: Integer
 
         attr_accessor :FleetId, :Description, :Name, :NewGameSessionProtectionPolicy, :ResourceCreationLimitPolicy, :GameServerSessionProtectionTimeLimit
-        
+
         def initialize(fleetid=nil, description=nil, name=nil, newgamesessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, gameserversessionprotectiontimelimit=nil)
           @FleetId = fleetid
           @Description = description
@@ -5759,7 +5759,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -5785,7 +5785,7 @@ module TencentCloud
         # @type ScalingInterval: Integer
 
         attr_accessor :FleetId, :DesiredInstances, :MinSize, :MaxSize, :ScalingInterval
-        
+
         def initialize(fleetid=nil, desiredinstances=nil, minsize=nil, maxsize=nil, scalinginterval=nil)
           @FleetId = fleetid
           @DesiredInstances = desiredinstances
@@ -5812,7 +5812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -5832,7 +5832,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :FleetId, :Name
-        
+
         def initialize(fleetid=nil, name=nil)
           @FleetId = fleetid
           @Name = name
@@ -5850,7 +5850,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5870,7 +5870,7 @@ module TencentCloud
         # @type InboundPermissionRevocations: Array
 
         attr_accessor :FleetId, :InboundPermissionAuthorizations, :InboundPermissionRevocations
-        
+
         def initialize(fleetid=nil, inboundpermissionauthorizations=nil, inboundpermissionrevocations=nil)
           @FleetId = fleetid
           @InboundPermissionAuthorizations = inboundpermissionauthorizations
@@ -5907,7 +5907,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FleetId, :RequestId
-        
+
         def initialize(fleetid=nil, requestid=nil)
           @FleetId = fleetid
           @RequestId = requestid
@@ -5931,7 +5931,7 @@ module TencentCloud
         # @type TimeoutInSeconds: Integer
 
         attr_accessor :Name, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds
-        
+
         def initialize(name=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil)
           @Name = name
           @Destinations = destinations
@@ -5969,7 +5969,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSessionQueue, :RequestId
-        
+
         def initialize(gameserversessionqueue=nil, requestid=nil)
           @GameServerSessionQueue = gameserversessionqueue
           @RequestId = requestid
@@ -5998,7 +5998,7 @@ module TencentCloud
         # @type ProtectionPolicy: String
 
         attr_accessor :GameServerSessionId, :MaximumPlayerSessionCount, :Name, :PlayerSessionCreationPolicy, :ProtectionPolicy
-        
+
         def initialize(gameserversessionid=nil, maximumplayersessioncount=nil, name=nil, playersessioncreationpolicy=nil, protectionpolicy=nil)
           @GameServerSessionId = gameserversessionid
           @MaximumPlayerSessionCount = maximumplayersessioncount
@@ -6024,7 +6024,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GameServerSession, :RequestId
-        
+
         def initialize(gameserversession=nil, requestid=nil)
           @GameServerSession = gameserversession
           @RequestId = requestid
@@ -6047,7 +6047,7 @@ module TencentCloud
         # @type RuntimeConfiguration: :class:`Tencentcloud::Gse.v20191112.models.RuntimeConfiguration`
 
         attr_accessor :FleetId, :RuntimeConfiguration
-        
+
         def initialize(fleetid=nil, runtimeconfiguration=nil)
           @FleetId = fleetid
           @RuntimeConfiguration = runtimeconfiguration
@@ -6071,7 +6071,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuntimeConfiguration, :RequestId
-        
+
         def initialize(runtimeconfiguration=nil, requestid=nil)
           @RuntimeConfiguration = runtimeconfiguration
           @RequestId = requestid

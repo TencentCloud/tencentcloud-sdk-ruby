@@ -20,7 +20,7 @@ module TencentCloud
       # Create5GInstance请求参数结构体
       class Create5GInstanceRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -34,7 +34,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -47,7 +47,7 @@ module TencentCloud
       # Delete5GInstance请求参数结构体
       class Delete5GInstanceRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -61,7 +61,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -74,7 +74,7 @@ module TencentCloud
       # Describe5GAPNs请求参数结构体
       class Describe5GAPNsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -88,7 +88,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -101,7 +101,7 @@ module TencentCloud
       # Describe5GInstances请求参数结构体
       class Describe5GInstancesRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -115,7 +115,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -128,7 +128,7 @@ module TencentCloud
       # Modify5GInstanceAttribute请求参数结构体
       class Modify5GInstanceAttributeRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -142,7 +142,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

@@ -25,7 +25,7 @@ module TencentCloud
         # @type ConnectorVersion: String
 
         attr_accessor :ConnectorName, :ConnectorVersion
-        
+
         def initialize(connectorname=nil, connectorversion=nil)
           @ConnectorName = connectorname
           @ConnectorVersion = connectorversion
@@ -219,7 +219,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ConnectorParameter, :RequestId
-        
+
         def initialize(connectorparameter=nil, requestid=nil)
           @ConnectorParameter = connectorparameter
           @RequestId = requestid
@@ -241,7 +241,7 @@ module TencentCloud
         # @type IsTrigger: Boolean
 
         attr_accessor :OperationName, :DisplayName, :IsTrigger
-        
+
         def initialize(operationname=nil, displayname=nil, istrigger=nil)
           @OperationName = operationname
           @DisplayName = displayname
@@ -271,7 +271,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :ConnectorName, :DisplayName, :Company, :Product, :ConnectorVersion, :CreateTime
-        
+
         def initialize(connectorname=nil, displayname=nil, company=nil, product=nil, connectorversion=nil, createtime=nil)
           @ConnectorName = connectorname
           @DisplayName = displayname
@@ -299,7 +299,7 @@ module TencentCloud
         # @type ConnectorVersion: String
 
         attr_accessor :ConnectorName, :ConnectorVersion
-        
+
         def initialize(connectorname=nil, connectorversion=nil)
           @ConnectorName = connectorname
           @ConnectorVersion = connectorversion
@@ -319,7 +319,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Operations, :RequestId
-        
+
         def initialize(operations=nil, requestid=nil)
           @Operations = operations
           @RequestId = requestid
@@ -348,7 +348,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ConnectorName, :Offset, :Limit
-        
+
         def initialize(connectorname=nil, offset=nil, limit=nil)
           @ConnectorName = connectorname
           @Offset = offset
@@ -372,7 +372,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Connectors, :RequestId
-        
+
         def initialize(totalcount=nil, connectors=nil, requestid=nil)
           @TotalCount = totalcount
           @Connectors = connectors

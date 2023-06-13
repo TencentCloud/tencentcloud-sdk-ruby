@@ -36,7 +36,7 @@ module TencentCloud
         # @type IconUrl: String
 
         attr_accessor :Id, :Name, :SourceId, :FollowType, :IconUrl
-        
+
         def initialize(id=nil, name=nil, sourceid=nil, followtype=nil, iconurl=nil)
           @Id = id
           @Name = name
@@ -62,7 +62,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -124,7 +124,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :ItemId, :BehaviorType, :BehaviorValue, :BehaviorTimestamp, :SceneId, :UserIdList, :RecTraceId, :Source, :ItemType, :AppId, :VideoPlayDuration, :ReferrerItemId, :Country, :Province, :City, :District, :IP, :Network, :Platform, :AppVersion, :OsVersion, :DeviceModel, :Extension
-        
+
         def initialize(itemid=nil, behaviortype=nil, behaviorvalue=nil, behaviortimestamp=nil, sceneid=nil, useridlist=nil, rectraceid=nil, source=nil, itemtype=nil, appid=nil, videoplayduration=nil, referreritemid=nil, country=nil, province=nil, city=nil, district=nil, ip=nil, network=nil, platform=nil, appversion=nil, osversion=nil, devicemodel=nil, extension=nil)
           @ItemId = itemid
           @BehaviorType = behaviortype
@@ -255,7 +255,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :ItemId, :ItemType, :Status, :PublishTimestamp, :SourceId, :Title, :Content, :Author, :AuthorId, :Keyword, :Desc, :PicUrlList, :VideoUrlList, :VideoDuration, :CategoryLevel, :CategoryPath, :Country, :Province, :City, :District, :ExpireTimestamp, :Topic, :AuthorFans, :AuthorLevel, :CollectCnt, :PraiseCnt, :CommentCnt, :ShareCnt, :RewardCnt, :Score, :PoolIdList, :TagInfoList, :Extension
-        
+
         def initialize(itemid=nil, itemtype=nil, status=nil, publishtimestamp=nil, sourceid=nil, title=nil, content=nil, author=nil, authorid=nil, keyword=nil, desc=nil, picurllist=nil, videourllist=nil, videoduration=nil, categorylevel=nil, categorypath=nil, country=nil, province=nil, city=nil, district=nil, expiretimestamp=nil, topic=nil, authorfans=nil, authorlevel=nil, collectcnt=nil, praisecnt=nil, commentcnt=nil, sharecnt=nil, rewardcnt=nil, score=nil, poolidlist=nil, taginfolist=nil, extension=nil)
           @ItemId = itemid
           @ItemType = itemtype
@@ -392,7 +392,7 @@ module TencentCloud
         # @type AndroidId: String
 
         attr_accessor :UserIdList, :AppId, :Age, :Gender, :Degree, :School, :Occupation, :Industry, :ResidentCountry, :ResidentProvince, :ResidentCity, :ResidentDistrict, :PhoneMd5, :PhoneImei, :Idfa, :RegisterTimestamp, :MembershipLevel, :LastLoginTimestamp, :LastLoginIp, :LastModifyTimestamp, :TagInfoList, :AuthorInfoList, :DislikeInfoList, :Extension, :Oaid, :AndroidId
-        
+
         def initialize(useridlist=nil, appid=nil, age=nil, gender=nil, degree=nil, school=nil, occupation=nil, industry=nil, residentcountry=nil, residentprovince=nil, residentcity=nil, residentdistrict=nil, phonemd5=nil, phoneimei=nil, idfa=nil, registertimestamp=nil, membershiplevel=nil, lastlogintimestamp=nil, lastloginip=nil, lastmodifytimestamp=nil, taginfolist=nil, authorinfolist=nil, dislikeinfolist=nil, extension=nil, oaid=nil, androidid=nil)
           @UserIdList = useridlist
           @AppId = appid
@@ -498,7 +498,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :ItemId, :ItemType, :Weight, :Score, :Keyword
-        
+
         def initialize(itemid=nil, itemtype=nil, weight=nil, score=nil, keyword=nil)
           @ItemId = itemid
           @ItemType = itemtype
@@ -538,7 +538,7 @@ module TencentCloud
         # @type ItemTypeRatio: String
 
         attr_accessor :Bid, :SceneId, :UserIdList, :RecTraceId, :ItemCnt, :PoolId, :CurrentItemId, :ResponseTimeout, :ItemTypeRatio
-        
+
         def initialize(bid=nil, sceneid=nil, useridlist=nil, rectraceid=nil, itemcnt=nil, poolid=nil, currentitemid=nil, responsetimeout=nil, itemtyperatio=nil)
           @Bid = bid
           @SceneId = sceneid
@@ -581,7 +581,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecTraceId, :DataList, :RequestId
-        
+
         def initialize(rectraceid=nil, datalist=nil, requestid=nil)
           @RecTraceId = rectraceid
           @DataList = datalist
@@ -610,7 +610,7 @@ module TencentCloud
         # @type DocBehaviorList: Array
 
         attr_accessor :Bid, :DocBehaviorList
-        
+
         def initialize(bid=nil, docbehaviorlist=nil)
           @Bid = bid
           @DocBehaviorList = docbehaviorlist
@@ -635,7 +635,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -653,7 +653,7 @@ module TencentCloud
         # @type DocItemList: Array
 
         attr_accessor :Bid, :DocItemList
-        
+
         def initialize(bid=nil, docitemlist=nil)
           @Bid = bid
           @DocItemList = docitemlist
@@ -678,7 +678,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -696,7 +696,7 @@ module TencentCloud
         # @type PortraitList: Array
 
         attr_accessor :Bid, :PortraitList
-        
+
         def initialize(bid=nil, portraitlist=nil)
           @Bid = bid
           @PortraitList = portraitlist
@@ -721,7 +721,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -744,7 +744,7 @@ module TencentCloud
         # @type Weight: Float
 
         attr_accessor :Id, :Name, :Weight
-        
+
         def initialize(id=nil, name=nil, weight=nil)
           @Id = id
           @Name = name
@@ -782,7 +782,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserIdType, :UserId
-        
+
         def initialize(useridtype=nil, userid=nil)
           @UserIdType = useridtype
           @UserId = userid

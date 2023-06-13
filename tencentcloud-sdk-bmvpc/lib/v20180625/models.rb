@@ -23,7 +23,7 @@ module TencentCloud
         # @type VpcPeerConnectionId: String
 
         attr_accessor :VpcPeerConnectionId
-        
+
         def initialize(vpcpeerconnectionid=nil)
           @VpcPeerConnectionId = vpcpeerconnectionid
         end
@@ -41,7 +41,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -63,7 +63,7 @@ module TencentCloud
         # @type Ips: Array
 
         attr_accessor :VpcId, :SubnetId, :Ips
-        
+
         def initialize(vpcid=nil, subnetid=nil, ips=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -85,7 +85,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -109,7 +109,7 @@ module TencentCloud
         # @type AutoAllocEipNum: Integer
 
         attr_accessor :NatId, :VpcId, :AssignedEips, :AutoAllocEipNum
-        
+
         def initialize(natid=nil, vpcid=nil, assignedeips=nil, autoalloceipnum=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -133,7 +133,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -155,7 +155,7 @@ module TencentCloud
         # @type IpInfoSet: Array
 
         attr_accessor :NatId, :VpcId, :IpInfoSet
-        
+
         def initialize(natid=nil, vpcid=nil, ipinfoset=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -184,7 +184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -206,7 +206,7 @@ module TencentCloud
         # @type SubnetIds: Array
 
         attr_accessor :NatId, :VpcId, :SubnetIds
-        
+
         def initialize(natid=nil, vpcid=nil, subnetids=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -228,7 +228,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -250,7 +250,7 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :CustomerGatewayName, :IpAddress, :Zone
-        
+
         def initialize(customergatewayname=nil, ipaddress=nil, zone=nil)
           @CustomerGatewayName = customergatewayname
           @IpAddress = ipaddress
@@ -272,7 +272,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomerGateway, :RequestId
-        
+
         def initialize(customergateway=nil, requestid=nil)
           @CustomerGateway = customergateway
           @RequestId = requestid
@@ -295,7 +295,7 @@ module TencentCloud
         # @type SubnetSet: Array
 
         attr_accessor :VpcId, :SubnetSet
-        
+
         def initialize(vpcid=nil, subnetset=nil)
           @VpcId = vpcid
           @SubnetSet = subnetset
@@ -322,7 +322,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -344,7 +344,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :InstanceIds, :VpcId, :SubnetId
-        
+
         def initialize(instanceids=nil, vpcid=nil, subnetid=nil)
           @InstanceIds = instanceids
           @VpcId = vpcid
@@ -368,7 +368,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :ResourceIds, :RequestId
-        
+
         def initialize(taskid=nil, resourceids=nil, requestid=nil)
           @TaskId = taskid
           @ResourceIds = resourceids
@@ -392,7 +392,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :InstanceIds, :VpcId, :SubnetId
-        
+
         def initialize(instanceids=nil, vpcid=nil, subnetid=nil)
           @InstanceIds = instanceids
           @VpcId = vpcid
@@ -414,7 +414,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -448,7 +448,7 @@ module TencentCloud
         # @type Exclusive: Integer
 
         attr_accessor :ForwardMode, :VpcId, :NatName, :MaxConcurrent, :SubnetIds, :IpInfoSet, :AssignedEips, :AutoAllocEipNum, :Exclusive
-        
+
         def initialize(forwardmode=nil, vpcid=nil, natname=nil, maxconcurrent=nil, subnetids=nil, ipinfoset=nil, assignedeips=nil, autoalloceipnum=nil, exclusive=nil)
           @ForwardMode = forwardmode
           @VpcId = vpcid
@@ -489,7 +489,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -509,7 +509,7 @@ module TencentCloud
         # @type RoutePolicySet: Array
 
         attr_accessor :RouteTableId, :RoutePolicySet
-        
+
         def initialize(routetableid=nil, routepolicyset=nil)
           @RouteTableId = routetableid
           @RoutePolicySet = routepolicyset
@@ -536,7 +536,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -556,7 +556,7 @@ module TencentCloud
         # @type SubnetSet: Array
 
         attr_accessor :VpcId, :SubnetSet
-        
+
         def initialize(vpcid=nil, subnetset=nil)
           @VpcId = vpcid
           @SubnetSet = subnetset
@@ -583,7 +583,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -603,7 +603,7 @@ module TencentCloud
         # @type SubnetSet: Array
 
         attr_accessor :VpcId, :SubnetSet
-        
+
         def initialize(vpcid=nil, subnetset=nil)
           @VpcId = vpcid
           @SubnetSet = subnetset
@@ -630,7 +630,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -658,7 +658,7 @@ module TencentCloud
         # @type Bandwidth: Integer
 
         attr_accessor :VpcId, :PeerVpcId, :PeerRegion, :VpcPeerConnectionName, :PeerUin, :Bandwidth
-        
+
         def initialize(vpcid=nil, peervpcid=nil, peerregion=nil, vpcpeerconnectionname=nil, peeruin=nil, bandwidth=nil)
           @VpcId = vpcid
           @PeerVpcId = peervpcid
@@ -686,7 +686,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -712,7 +712,7 @@ module TencentCloud
         # @type EnableMonitoring: Boolean
 
         attr_accessor :VpcName, :CidrBlock, :Zone, :SubnetSet, :EnableMonitoring
-        
+
         def initialize(vpcname=nil, cidrblock=nil, zone=nil, subnetset=nil, enablemonitoring=nil)
           @VpcName = vpcname
           @CidrBlock = cidrblock
@@ -745,7 +745,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -772,7 +772,7 @@ module TencentCloud
         # @type VpnConnNum: Integer
 
         attr_accessor :CustomerGatewayId, :CustomerGatewayName, :IpAddress, :CreateTime, :VpnConnNum
-        
+
         def initialize(customergatewayid=nil, customergatewayname=nil, ipaddress=nil, createtime=nil, vpnconnnum=nil)
           @CustomerGatewayId = customergatewayid
           @CustomerGatewayName = customergatewayname
@@ -796,7 +796,7 @@ module TencentCloud
         # @type CustomerGatewayId: String
 
         attr_accessor :CustomerGatewayId
-        
+
         def initialize(customergatewayid=nil)
           @CustomerGatewayId = customergatewayid
         end
@@ -812,7 +812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -832,7 +832,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :InstanceIds, :VpcId, :SubnetId
-        
+
         def initialize(instanceids=nil, vpcid=nil, subnetid=nil)
           @InstanceIds = instanceids
           @VpcId = vpcid
@@ -856,7 +856,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :ResourceIds, :RequestId
-        
+
         def initialize(taskid=nil, resourceids=nil, requestid=nil)
           @TaskId = taskid
           @ResourceIds = resourceids
@@ -878,7 +878,7 @@ module TencentCloud
         # @type SubnetIds: Array
 
         attr_accessor :InstanceId, :SubnetIds
-        
+
         def initialize(instanceid=nil, subnetids=nil)
           @InstanceId = instanceid
           @SubnetIds = subnetids
@@ -898,7 +898,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -918,7 +918,7 @@ module TencentCloud
         # @type SubnetIds: Array
 
         attr_accessor :InstanceId, :SubnetIds
-        
+
         def initialize(instanceid=nil, subnetids=nil)
           @InstanceId = instanceid
           @SubnetIds = subnetids
@@ -938,7 +938,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -958,7 +958,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :NatId, :VpcId
-        
+
         def initialize(natid=nil, vpcid=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -978,7 +978,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -998,7 +998,7 @@ module TencentCloud
         # @type RoutePolicyId: String
 
         attr_accessor :RouteTableId, :RoutePolicyId
-        
+
         def initialize(routetableid=nil, routepolicyid=nil)
           @RouteTableId = routetableid
           @RoutePolicyId = routepolicyid
@@ -1018,7 +1018,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1038,7 +1038,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :VpcId, :SubnetId
-        
+
         def initialize(vpcid=nil, subnetid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1058,7 +1058,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1078,7 +1078,7 @@ module TencentCloud
         # @type Ips: Array
 
         attr_accessor :VpcId, :Ips
-        
+
         def initialize(vpcid=nil, ips=nil)
           @VpcId = vpcid
           @Ips = ips
@@ -1098,7 +1098,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1116,7 +1116,7 @@ module TencentCloud
         # @type VpcPeerConnectionId: String
 
         attr_accessor :VpcPeerConnectionId
-        
+
         def initialize(vpcpeerconnectionid=nil)
           @VpcPeerConnectionId = vpcpeerconnectionid
         end
@@ -1134,7 +1134,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1152,7 +1152,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :VpcId
-        
+
         def initialize(vpcid=nil)
           @VpcId = vpcid
         end
@@ -1170,7 +1170,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1188,7 +1188,7 @@ module TencentCloud
         # @type VpnConnectionId: String
 
         attr_accessor :VpnConnectionId
-        
+
         def initialize(vpnconnectionid=nil)
           @VpnConnectionId = vpnconnectionid
         end
@@ -1206,7 +1206,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1224,7 +1224,7 @@ module TencentCloud
         # @type VpnGatewayId: String
 
         attr_accessor :VpnGatewayId
-        
+
         def initialize(vpngatewayid=nil)
           @VpnGatewayId = vpngatewayid
         end
@@ -1242,7 +1242,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1264,7 +1264,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :VpcId, :IpSet, :SubnetId
-        
+
         def initialize(vpcid=nil, ipset=nil, subnetid=nil)
           @VpcId = vpcid
           @IpSet = ipset
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1314,7 +1314,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :CustomerGatewayIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
-        
+
         def initialize(customergatewayids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @CustomerGatewayIds = customergatewayids
           @Filters = filters
@@ -1351,7 +1351,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomerGatewaySet, :TotalCount, :RequestId
-        
+
         def initialize(customergatewayset=nil, totalcount=nil, requestid=nil)
           @CustomerGatewaySet = customergatewayset
           @TotalCount = totalcount
@@ -1394,7 +1394,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :NatId, :NatName, :SearchKey, :VpcId, :Offset, :Limit, :Zone, :OrderField, :OrderDirection
-        
+
         def initialize(natid=nil, natname=nil, searchkey=nil, vpcid=nil, offset=nil, limit=nil, zone=nil, orderfield=nil, orderdirection=nil)
           @NatId = natid
           @NatName = natname
@@ -1430,7 +1430,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NatGatewayInfoSet, :TotalCount, :RequestId
-        
+
         def initialize(natgatewayinfoset=nil, totalcount=nil, requestid=nil)
           @NatGatewayInfoSet = natgatewayinfoset
           @TotalCount = totalcount
@@ -1459,7 +1459,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :NatId, :VpcId
-        
+
         def initialize(natid=nil, vpcid=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -1479,7 +1479,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NatSubnetInfoSet, :RequestId
-        
+
         def initialize(natsubnetinfoset=nil, requestid=nil)
           @NatSubnetInfoSet = natsubnetinfoset
           @RequestId = requestid
@@ -1521,7 +1521,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :RouteTableId, :RoutePolicyIds, :Filters, :Offset, :Limit
-        
+
         def initialize(routetableid=nil, routepolicyids=nil, filters=nil, offset=nil, limit=nil)
           @RouteTableId = routetableid
           @RoutePolicyIds = routepolicyids
@@ -1556,7 +1556,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RoutePolicySet, :RequestId
-        
+
         def initialize(totalcount=nil, routepolicyset=nil, requestid=nil)
           @TotalCount = totalcount
           @RoutePolicySet = routepolicyset
@@ -1599,7 +1599,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :RouteTableIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
-        
+
         def initialize(routetableids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @RouteTableIds = routetableids
           @Filters = filters
@@ -1636,7 +1636,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RouteTableSet, :RequestId
-        
+
         def initialize(totalcount=nil, routetableset=nil, requestid=nil)
           @TotalCount = totalcount
           @RouteTableSet = routetableset
@@ -1665,7 +1665,7 @@ module TencentCloud
         # @type Cidr: String
 
         attr_accessor :SubnetId, :Cidr
-        
+
         def initialize(subnetid=nil, cidr=nil)
           @SubnetId = subnetid
           @Cidr = cidr
@@ -1685,7 +1685,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IpSet, :RequestId
-        
+
         def initialize(ipset=nil, requestid=nil)
           @IpSet = ipset
           @RequestId = requestid
@@ -1709,7 +1709,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Types, :Offset, :Limit
-        
+
         def initialize(instanceid=nil, types=nil, offset=nil, limit=nil)
           @InstanceId = instanceid
           @Types = types
@@ -1735,7 +1735,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1768,7 +1768,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Types, :Offset, :Limit
-        
+
         def initialize(instanceid=nil, types=nil, offset=nil, limit=nil)
           @InstanceId = instanceid
           @Types = types
@@ -1794,7 +1794,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1836,7 +1836,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :SubnetIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
-        
+
         def initialize(subnetids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @SubnetIds = subnetids
           @Filters = filters
@@ -1873,7 +1873,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubnetSet, :TotalCount, :RequestId
-        
+
         def initialize(subnetset=nil, totalcount=nil, requestid=nil)
           @SubnetSet = subnetset
           @TotalCount = totalcount
@@ -1900,7 +1900,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -1918,7 +1918,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
-        
+
         def initialize(status=nil, requestid=nil)
           @Status = status
           @RequestId = requestid
@@ -1946,7 +1946,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :VpcPeerConnectionIds, :Filters, :Offset, :Limit, :VpcId
-        
+
         def initialize(vpcpeerconnectionids=nil, filters=nil, offset=nil, limit=nil, vpcid=nil)
           @VpcPeerConnectionIds = vpcpeerconnectionids
           @Filters = filters
@@ -1981,7 +1981,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpcPeerConnectionSet, :RequestId
-        
+
         def initialize(totalcount=nil, vpcpeerconnectionset=nil, requestid=nil)
           @TotalCount = totalcount
           @VpcPeerConnectionSet = vpcpeerconnectionset
@@ -2008,7 +2008,7 @@ module TencentCloud
         # @type TypeIds: Array
 
         attr_accessor :TypeIds
-        
+
         def initialize(typeids=nil)
           @TypeIds = typeids
         end
@@ -2026,7 +2026,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VpcQuotaSet, :RequestId
-        
+
         def initialize(vpcquotaset=nil, requestid=nil)
           @VpcQuotaSet = vpcquotaset
           @RequestId = requestid
@@ -2065,7 +2065,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :VpcIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
-        
+
         def initialize(vpcids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @VpcIds = vpcids
           @Filters = filters
@@ -2102,7 +2102,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VpcResourceSet, :TotalCount, :RequestId
-        
+
         def initialize(vpcresourceset=nil, totalcount=nil, requestid=nil)
           @VpcResourceSet = vpcresourceset
           @TotalCount = totalcount
@@ -2129,7 +2129,7 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :VpcId
-        
+
         def initialize(vpcid=nil)
           @VpcId = vpcid
         end
@@ -2147,7 +2147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VpcView, :RequestId
-        
+
         def initialize(vpcview=nil, requestid=nil)
           @VpcView = vpcview
           @RequestId = requestid
@@ -2179,7 +2179,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :VpcIds, :Filters, :Offset, :Limit
-        
+
         def initialize(vpcids=nil, filters=nil, offset=nil, limit=nil)
           @VpcIds = vpcids
           @Filters = filters
@@ -2210,7 +2210,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VpcSet, :RequestId
-        
+
         def initialize(vpcset=nil, requestid=nil)
           @VpcSet = vpcset
           @RequestId = requestid
@@ -2252,7 +2252,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :VpnConnectionIds, :Filters, :Offset, :Limit, :VpnGatewayId, :VpnConnectionName, :OrderField, :OrderDirection
-        
+
         def initialize(vpnconnectionids=nil, filters=nil, offset=nil, limit=nil, vpngatewayid=nil, vpnconnectionname=nil, orderfield=nil, orderdirection=nil)
           @VpnConnectionIds = vpnconnectionids
           @Filters = filters
@@ -2293,7 +2293,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpnConnectionSet, :RequestId
-        
+
         def initialize(totalcount=nil, vpnconnectionset=nil, requestid=nil)
           @TotalCount = totalcount
           @VpnConnectionSet = vpnconnectionset
@@ -2334,7 +2334,7 @@ module TencentCloud
         # @type OrderDirection: String
 
         attr_accessor :VpnGatewayIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
-        
+
         def initialize(vpngatewayids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @VpnGatewayIds = vpngatewayids
           @Filters = filters
@@ -2371,7 +2371,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpnGatewaySet, :RequestId
-        
+
         def initialize(totalcount=nil, vpngatewayset=nil, requestid=nil)
           @TotalCount = totalcount
           @VpnGatewaySet = vpngatewayset
@@ -2400,7 +2400,7 @@ module TencentCloud
         # @type VendorName: String
 
         attr_accessor :VpnConnectionId, :VendorName
-        
+
         def initialize(vpnconnectionid=nil, vendorname=nil)
           @VpnConnectionId = vpnconnectionid
           @VendorName = vendorname
@@ -2420,7 +2420,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomerGatewayConfiguration, :RequestId
-        
+
         def initialize(customergatewayconfiguration=nil, requestid=nil)
           @CustomerGatewayConfiguration = customergatewayconfiguration
           @RequestId = requestid
@@ -2440,7 +2440,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -2480,7 +2480,7 @@ module TencentCloud
         # @type IKEVersion: String
 
         attr_accessor :PropoEncryAlgorithm, :PropoAuthenAlgorithm, :ExchangeMode, :LocalIdentity, :RemoteIdentity, :LocalAddress, :RemoteAddress, :LocalFqdnName, :RemoteFqdnName, :DhGroupName, :IKESaLifetimeSeconds, :IKEVersion
-        
+
         def initialize(propoencryalgorithm=nil, propoauthenalgorithm=nil, exchangemode=nil, localidentity=nil, remoteidentity=nil, localaddress=nil, remoteaddress=nil, localfqdnname=nil, remotefqdnname=nil, dhgroupname=nil, ikesalifetimeseconds=nil, ikeversion=nil)
           @PropoEncryAlgorithm = propoencryalgorithm
           @PropoAuthenAlgorithm = propoauthenalgorithm
@@ -2530,7 +2530,7 @@ module TencentCloud
         # @type EncapMode: String
 
         attr_accessor :PfsDhGroup, :IPSECSaLifetimeTraffic, :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :SecurityProto, :EncapMode
-        
+
         def initialize(pfsdhgroup=nil, ipsecsalifetimetraffic=nil, encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, securityproto=nil, encapmode=nil)
           @PfsDhGroup = pfsdhgroup
           @IPSECSaLifetimeTraffic = ipsecsalifetimetraffic
@@ -2560,7 +2560,7 @@ module TencentCloud
         # @type Ips: Array
 
         attr_accessor :SubnetId, :Ips
-        
+
         def initialize(subnetid=nil, ips=nil)
           @SubnetId = subnetid
           @Ips = ips
@@ -2580,7 +2580,7 @@ module TencentCloud
         # @type CustomerGatewayName: String
 
         attr_accessor :CustomerGatewayId, :CustomerGatewayName
-        
+
         def initialize(customergatewayid=nil, customergatewayname=nil)
           @CustomerGatewayId = customergatewayid
           @CustomerGatewayName = customergatewayname
@@ -2598,7 +2598,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2616,7 +2616,7 @@ module TencentCloud
         # @type RoutePolicy: :class:`Tencentcloud::Bmvpc.v20180625.models.RoutePolicy`
 
         attr_accessor :RouteTableId, :RoutePolicy
-        
+
         def initialize(routetableid=nil, routepolicy=nil)
           @RouteTableId = routetableid
           @RoutePolicy = routepolicy
@@ -2639,7 +2639,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2659,7 +2659,7 @@ module TencentCloud
         # @type RouteTableName: String
 
         attr_accessor :RouteTableId, :RouteTableName
-        
+
         def initialize(routetableid=nil, routetablename=nil)
           @RouteTableId = routetableid
           @RouteTableName = routetablename
@@ -2677,7 +2677,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2697,7 +2697,7 @@ module TencentCloud
         # @type SubnetName: String
 
         attr_accessor :VpcId, :SubnetId, :SubnetName
-        
+
         def initialize(vpcid=nil, subnetid=nil, subnetname=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2717,7 +2717,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2741,7 +2741,7 @@ module TencentCloud
         # @type ReservedIpCount: Integer
 
         attr_accessor :VpcId, :SubnetId, :EnableDHCP, :ServerIps, :ReservedIpCount
-        
+
         def initialize(vpcid=nil, subnetid=nil, enabledhcp=nil, serverips=nil, reservedipcount=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2765,7 +2765,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2785,7 +2785,7 @@ module TencentCloud
         # @type EnableMonitor: Boolean
 
         attr_accessor :VpcId, :VpcName, :EnableMonitor
-        
+
         def initialize(vpcid=nil, vpcname=nil, enablemonitor=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -2805,7 +2805,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2825,7 +2825,7 @@ module TencentCloud
         # @type VpcPeerConnectionName: String
 
         attr_accessor :VpcPeerConnectionId, :Bandwidth, :VpcPeerConnectionName
-        
+
         def initialize(vpcpeerconnectionid=nil, bandwidth=nil, vpcpeerconnectionname=nil)
           @VpcPeerConnectionId = vpcpeerconnectionid
           @Bandwidth = bandwidth
@@ -2847,7 +2847,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2877,7 +2877,7 @@ module TencentCloud
         # @type IPSECOptionsSpecification: :class:`Tencentcloud::Bmvpc.v20180625.models.IPSECOptionsSpecification`
 
         attr_accessor :VpnConnectionId, :VpcId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification
-        
+
         def initialize(vpnconnectionid=nil, vpcid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil)
           @VpnConnectionId = vpnconnectionid
           @VpcId = vpcid
@@ -2920,7 +2920,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2940,7 +2940,7 @@ module TencentCloud
         # @type VpnGatewayName: String
 
         attr_accessor :VpnGatewayId, :VpnGatewayName
-        
+
         def initialize(vpngatewayid=nil, vpngatewayname=nil)
           @VpnGatewayId = vpngatewayid
           @VpnGatewayName = vpngatewayname
@@ -2958,7 +2958,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3004,7 +3004,7 @@ module TencentCloud
         # @type NatResourceId: Integer
 
         attr_accessor :NatId, :NatName, :VpcId, :VpcName, :ProductionStatus, :Eips, :MaxConcurrent, :Zone, :Exclusive, :ForwardMode, :VpcCidrBlock, :Type, :CreateTime, :State, :IntVpcId, :NatResourceId
-        
+
         def initialize(natid=nil, natname=nil, vpcid=nil, vpcname=nil, productionstatus=nil, eips=nil, maxconcurrent=nil, zone=nil, exclusive=nil, forwardmode=nil, vpccidrblock=nil, type=nil, createtime=nil, state=nil, intvpcid=nil, natresourceid=nil)
           @NatId = natid
           @NatName = natname
@@ -3056,7 +3056,7 @@ module TencentCloud
         # @type CidrBlock: String
 
         attr_accessor :Name, :SubnetId, :SubnetNatType, :CidrBlock
-        
+
         def initialize(name=nil, subnetid=nil, subnetnattype=nil, cidrblock=nil)
           @Name = name
           @SubnetId = subnetid
@@ -3078,7 +3078,7 @@ module TencentCloud
         # @type VpcPeerConnectionId: String
 
         attr_accessor :VpcPeerConnectionId
-        
+
         def initialize(vpcpeerconnectionid=nil)
           @VpcPeerConnectionId = vpcpeerconnectionid
         end
@@ -3096,7 +3096,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3116,7 +3116,7 @@ module TencentCloud
         # @type VpnConnectionId: String
 
         attr_accessor :VpcId, :VpnConnectionId
-        
+
         def initialize(vpcid=nil, vpnconnectionid=nil)
           @VpcId = vpcid
           @VpnConnectionId = vpnconnectionid
@@ -3134,7 +3134,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3173,7 +3173,7 @@ module TencentCloud
         # @type Enabled: Boolean
 
         attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteDescription, :RoutePolicyId, :RoutePolicyType, :Enabled
-        
+
         def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routedescription=nil, routepolicyid=nil, routepolicytype=nil, enabled=nil)
           @DestinationCidrBlock = destinationcidrblock
           @GatewayType = gatewaytype
@@ -3213,7 +3213,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :VpcId, :VpcName, :VpcCidrBlock, :Zone, :RouteTableId, :RouteTableName, :CreateTime
-        
+
         def initialize(vpcid=nil, vpcname=nil, vpccidrblock=nil, zone=nil, routetableid=nil, routetablename=nil, createtime=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -3243,7 +3243,7 @@ module TencentCloud
         # @type RemoteCidrBlock: Array
 
         attr_accessor :LocalCidrBlock, :RemoteCidrBlock
-        
+
         def initialize(localcidrblock=nil, remotecidrblock=nil)
           @LocalCidrBlock = localcidrblock
           @RemoteCidrBlock = remotecidrblock
@@ -3277,7 +3277,7 @@ module TencentCloud
         # @type IsSmartNic: Integer
 
         attr_accessor :SubnetName, :CidrBlock, :DistributedFlag, :DhcpEnable, :DhcpServerIp, :IpReserve, :VlanId, :Zone, :IsSmartNic
-        
+
         def initialize(subnetname=nil, cidrblock=nil, distributedflag=nil, dhcpenable=nil, dhcpserverip=nil, ipreserve=nil, vlanid=nil, zone=nil, issmartnic=nil)
           @SubnetName = subnetname
           @CidrBlock = cidrblock
@@ -3352,7 +3352,7 @@ module TencentCloud
         # @type BroadcastFlag: Integer
 
         attr_accessor :VpcId, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :Type, :ZoneId, :CpmNum, :VlanId, :DistributedFlag, :DhcpEnable, :DhcpServerIp, :IpReserve, :AvailableIpNum, :TotalIpNum, :SubnetCreateTime, :IsSmartNic, :Zone, :VpcZoneId, :VpcZone, :BroadcastFlag
-        
+
         def initialize(vpcid=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, type=nil, zoneid=nil, cpmnum=nil, vlanid=nil, distributedflag=nil, dhcpenable=nil, dhcpserverip=nil, ipreserve=nil, availableipnum=nil, totalipnum=nil, subnetcreatetime=nil, issmartnic=nil, zone=nil, vpczoneid=nil, vpczone=nil, broadcastflag=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -3414,7 +3414,7 @@ module TencentCloud
         # @type AssignedEips: Array
 
         attr_accessor :NatId, :VpcId, :AssignedEips
-        
+
         def initialize(natid=nil, vpcid=nil, assignedeips=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -3436,7 +3436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3458,7 +3458,7 @@ module TencentCloud
         # @type IpInfoSet: Array
 
         attr_accessor :NatId, :VpcId, :IpInfoSet
-        
+
         def initialize(natid=nil, vpcid=nil, ipinfoset=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -3487,7 +3487,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3509,7 +3509,7 @@ module TencentCloud
         # @type SubnetIds: Array
 
         attr_accessor :NatId, :VpcId, :SubnetIds
-        
+
         def initialize(natid=nil, vpcid=nil, subnetids=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -3531,7 +3531,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3553,7 +3553,7 @@ module TencentCloud
         # @type MaxConcurrent: Integer
 
         attr_accessor :NatId, :VpcId, :MaxConcurrent
-        
+
         def initialize(natid=nil, vpcid=nil, maxconcurrent=nil)
           @NatId = natid
           @VpcId = vpcid
@@ -3575,7 +3575,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3605,7 +3605,7 @@ module TencentCloud
         # @type IntVpcId: Integer
 
         attr_accessor :VpcId, :VpcName, :CidrBlock, :Zone, :State, :CreateTime, :IntVpcId
-        
+
         def initialize(vpcid=nil, vpcname=nil, cidrblock=nil, zone=nil, state=nil, createtime=nil, intvpcid=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -3668,7 +3668,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :VpcId, :PeerVpcId, :AppId, :PeerAppId, :VpcPeerConnectionId, :VpcPeerConnectionName, :State, :VpcZone, :PeerVpcZone, :Uin, :PeerUin, :PeerType, :Bandwidth, :Region, :PeerRegion, :DeleteFlag, :CreateTime
-        
+
         def initialize(vpcid=nil, peervpcid=nil, appid=nil, peerappid=nil, vpcpeerconnectionid=nil, vpcpeerconnectionname=nil, state=nil, vpczone=nil, peervpczone=nil, uin=nil, peeruin=nil, peertype=nil, bandwidth=nil, region=nil, peerregion=nil, deleteflag=nil, createtime=nil)
           @VpcId = vpcid
           @PeerVpcId = peervpcid
@@ -3718,7 +3718,7 @@ module TencentCloud
         # @type Quota: Integer
 
         attr_accessor :TypeId, :Quota
-        
+
         def initialize(typeid=nil, quota=nil)
           @TypeId = typeid
           @Quota = quota
@@ -3785,7 +3785,7 @@ module TencentCloud
         # @type IntVpcId: Integer
 
         attr_accessor :VpcId, :VpcName, :CidrBlock, :SubnetNum, :NatNum, :State, :MonitorFlag, :CpmNum, :LeaveIpNum, :LbNum, :TrafficMirrorNum, :EipNum, :PlgwNum, :PlvpNum, :SslVpnGwNum, :VpcPeerNum, :IpsecVpnGwNum, :Zone, :CreateTime, :IsOld, :CcnServiceNum, :VpcPeerLimitToAllRegion, :VpcPeerLimitToSameRegion, :IntVpcId
-        
+
         def initialize(vpcid=nil, vpcname=nil, cidrblock=nil, subnetnum=nil, natnum=nil, state=nil, monitorflag=nil, cpmnum=nil, leaveipnum=nil, lbnum=nil, trafficmirrornum=nil, eipnum=nil, plgwnum=nil, plvpnum=nil, sslvpngwnum=nil, vpcpeernum=nil, ipsecvpngwnum=nil, zone=nil, createtime=nil, isold=nil, ccnservicenum=nil, vpcpeerlimittoallregion=nil, vpcpeerlimittosameregion=nil, intvpcid=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -3851,7 +3851,7 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :SubnetName, :CidrBlock, :Zone
-        
+
         def initialize(subnetname=nil, cidrblock=nil, zone=nil)
           @SubnetName = subnetname
           @CidrBlock = cidrblock
@@ -3881,7 +3881,7 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :SubnetId, :SubnetName, :CidrBlock, :CpmNum, :LbNum, :Zone
-        
+
         def initialize(subnetid=nil, subnetname=nil, cidrblock=nil, cpmnum=nil, lbnum=nil, zone=nil)
           @SubnetId = subnetid
           @SubnetName = subnetname
@@ -3921,7 +3921,7 @@ module TencentCloud
         # @type SubnetSet: Array
 
         attr_accessor :VpcId, :VpcName, :CidrBlock, :Zone, :LbNum, :EipNum, :NatNum, :SubnetSet
-        
+
         def initialize(vpcid=nil, vpcname=nil, cidrblock=nil, zone=nil, lbnum=nil, eipnum=nil, natnum=nil, subnetset=nil)
           @VpcId = vpcid
           @VpcName = vpcname
@@ -3998,7 +3998,7 @@ module TencentCloud
         # @type SourceCidr: Array
 
         attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :CreateTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Zone, :VpcCidrBlock, :VpcName, :VpnGatewayName, :CustomerGatewayName, :DestinationCidr, :SourceCidr
-        
+
         def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, createtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, zone=nil, vpccidrblock=nil, vpcname=nil, vpngatewayname=nil, customergatewayname=nil, destinationcidr=nil, sourcecidr=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
@@ -4085,7 +4085,7 @@ module TencentCloud
         # @type VpnConnNum: Integer
 
         attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :VpcCidrBlock, :VpcName, :InternetMaxBandwidthOut, :State, :PublicIpAddress, :CreateTime, :Zone, :VpnConnNum
-        
+
         def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, vpccidrblock=nil, vpcname=nil, internetmaxbandwidthout=nil, state=nil, publicipaddress=nil, createtime=nil, zone=nil, vpnconnnum=nil)
           @VpnGatewayId = vpngatewayid
           @VpcId = vpcid

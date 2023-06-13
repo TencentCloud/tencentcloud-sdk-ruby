@@ -57,7 +57,7 @@ module TencentCloud
         # @type RotationFrequency: Integer
 
         attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency
-        
+
         def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil)
           @SecretName = secretname
           @UserNamePrefix = usernameprefix
@@ -120,7 +120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :TagCode, :TagMsg, :FlowID, :RequestId
-        
+
         def initialize(secretname=nil, tagcode=nil, tagmsg=nil, flowid=nil, requestid=nil)
           @SecretName = secretname
           @TagCode = tagcode
@@ -156,7 +156,7 @@ module TencentCloud
         # @type SSHKeyName: String
 
         attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName
-        
+
         def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil)
           @SecretName = secretname
           @ProjectId = projectid
@@ -201,7 +201,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :SSHKeyID, :SSHKeyName, :TagCode, :TagMsg, :RequestId
-        
+
         def initialize(secretname=nil, sshkeyid=nil, sshkeyname=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @SecretName = secretname
           @SSHKeyID = sshkeyid
@@ -243,7 +243,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags
-        
+
         def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -292,7 +292,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :VersionId, :TagCode, :TagMsg, :RequestId
-        
+
         def initialize(secretname=nil, versionid=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -323,7 +323,7 @@ module TencentCloud
         # @type CleanSSHKey: Boolean
 
         attr_accessor :SecretName, :RecoveryWindowInDays, :CleanSSHKey
-        
+
         def initialize(secretname=nil, recoverywindowindays=nil, cleansshkey=nil)
           @SecretName = secretname
           @RecoveryWindowInDays = recoverywindowindays
@@ -347,7 +347,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :DeleteTime, :RequestId
-        
+
         def initialize(secretname=nil, deletetime=nil, requestid=nil)
           @SecretName = secretname
           @DeleteTime = deletetime
@@ -369,7 +369,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :SecretName, :VersionId
-        
+
         def initialize(secretname=nil, versionid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -391,7 +391,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :VersionId, :RequestId
-        
+
         def initialize(secretname=nil, versionid=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -411,7 +411,7 @@ module TencentCloud
         # @type FlowID: Integer
 
         attr_accessor :FlowID
-        
+
         def initialize(flowid=nil)
           @FlowID = flowid
         end
@@ -431,7 +431,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskStatus, :Description, :RequestId
-        
+
         def initialize(taskstatus=nil, description=nil, requestid=nil)
           @TaskStatus = taskstatus
           @Description = description
@@ -451,7 +451,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -478,7 +478,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnableRotation, :Frequency, :LatestRotateTime, :NextRotateBeginTime, :RequestId
-        
+
         def initialize(enablerotation=nil, frequency=nil, latestrotatetime=nil, nextrotatebegintime=nil, requestid=nil)
           @EnableRotation = enablerotation
           @Frequency = frequency
@@ -502,7 +502,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -522,7 +522,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VersionIDs, :TotalCount, :RequestId
-        
+
         def initialize(versionids=nil, totalcount=nil, requestid=nil)
           @VersionIDs = versionids
           @TotalCount = totalcount
@@ -542,7 +542,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -602,7 +602,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :RequestId
-        
+
         def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
@@ -649,7 +649,7 @@ module TencentCloud
       # DescribeSupportedProducts请求参数结构体
       class DescribeSupportedProductsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -667,7 +667,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Products, :TotalCount, :RequestId
-        
+
         def initialize(products=nil, totalcount=nil, requestid=nil)
           @Products = products
           @TotalCount = totalcount
@@ -687,7 +687,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -705,7 +705,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :RequestId
-        
+
         def initialize(secretname=nil, requestid=nil)
           @SecretName = secretname
           @RequestId = requestid
@@ -723,7 +723,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -741,7 +741,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :RequestId
-        
+
         def initialize(secretname=nil, requestid=nil)
           @SecretName = secretname
           @RequestId = requestid
@@ -756,7 +756,7 @@ module TencentCloud
       # GetRegions请求参数结构体
       class GetRegionsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -772,7 +772,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Regions, :RequestId
-        
+
         def initialize(regions=nil, requestid=nil)
           @Regions = regions
           @RequestId = requestid
@@ -792,7 +792,7 @@ module TencentCloud
         # @type SSHKeyId: String
 
         attr_accessor :SecretName, :SSHKeyId
-        
+
         def initialize(secretname=nil, sshkeyid=nil)
           @SecretName = secretname
           @SSHKeyId = sshkeyid
@@ -824,7 +824,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SSHKeyID, :PublicKey, :PrivateKey, :ProjectID, :SSHKeyDescription, :SSHKeyName, :RequestId
-        
+
         def initialize(sshkeyid=nil, publickey=nil, privatekey=nil, projectid=nil, sshkeydescription=nil, sshkeyname=nil, requestid=nil)
           @SSHKeyID = sshkeyid
           @PublicKey = publickey
@@ -855,7 +855,7 @@ module TencentCloud
         # @type VersionId: String
 
         attr_accessor :SecretName, :VersionId
-        
+
         def initialize(secretname=nil, versionid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -883,7 +883,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :VersionId, :SecretBinary, :SecretString, :RequestId
-        
+
         def initialize(secretname=nil, versionid=nil, secretbinary=nil, secretstring=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -904,7 +904,7 @@ module TencentCloud
       # GetServiceStatus请求参数结构体
       class GetServiceStatusRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -925,7 +925,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :RequestId
-        
+
         def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
@@ -947,7 +947,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -968,7 +968,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :Versions, :RequestId
-        
+
         def initialize(secretname=nil, versions=nil, requestid=nil)
           @SecretName = secretname
           @Versions = versions
@@ -1023,7 +1023,7 @@ module TencentCloud
         # @type ProductName: String
 
         attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName
-        
+
         def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil)
           @Offset = offset
           @Limit = limit
@@ -1064,7 +1064,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SecretMetadatas, :RequestId
-        
+
         def initialize(totalcount=nil, secretmetadatas=nil, requestid=nil)
           @TotalCount = totalcount
           @SecretMetadatas = secretmetadatas
@@ -1124,7 +1124,7 @@ module TencentCloud
         # @type ColumnName: String
 
         attr_accessor :PrivilegeName, :Privileges, :Database, :TableName, :ColumnName
-        
+
         def initialize(privilegename=nil, privileges=nil, database=nil, tablename=nil, columnname=nil)
           @PrivilegeName = privilegename
           @Privileges = privileges
@@ -1155,7 +1155,7 @@ module TencentCloud
         # @type SecretString: String
 
         attr_accessor :SecretName, :VersionId, :SecretBinary, :SecretString
-        
+
         def initialize(secretname=nil, versionid=nil, secretbinary=nil, secretstring=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :VersionId, :RequestId
-        
+
         def initialize(secretname=nil, versionid=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -1201,7 +1201,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -1219,7 +1219,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :RequestId
-        
+
         def initialize(secretname=nil, requestid=nil)
           @SecretName = secretname
           @RequestId = requestid
@@ -1237,7 +1237,7 @@ module TencentCloud
         # @type SecretName: String
 
         attr_accessor :SecretName
-        
+
         def initialize(secretname=nil)
           @SecretName = secretname
         end
@@ -1255,7 +1255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowID, :RequestId
-        
+
         def initialize(flowid=nil, requestid=nil)
           @FlowID = flowid
           @RequestId = requestid
@@ -1323,7 +1323,7 @@ module TencentCloud
         # @type RotationBeginTime: String
 
         attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime
-        
+
         def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil)
           @SecretName = secretname
           @Description = description
@@ -1377,7 +1377,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1397,7 +1397,7 @@ module TencentCloud
         # @type TagValue: Array
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -1417,7 +1417,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :SecretName, :Description
-        
+
         def initialize(secretname=nil, description=nil)
           @SecretName = secretname
           @Description = description
@@ -1437,7 +1437,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :RequestId
-        
+
         def initialize(secretname=nil, requestid=nil)
           @SecretName = secretname
           @RequestId = requestid
@@ -1464,7 +1464,7 @@ module TencentCloud
         # @type RotationBeginTime: String
 
         attr_accessor :SecretName, :EnableRotation, :Frequency, :RotationBeginTime
-        
+
         def initialize(secretname=nil, enablerotation=nil, frequency=nil, rotationbegintime=nil)
           @SecretName = secretname
           @EnableRotation = enablerotation
@@ -1486,7 +1486,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1509,7 +1509,7 @@ module TencentCloud
         # @type SecretString: String
 
         attr_accessor :SecretName, :VersionId, :SecretBinary, :SecretString
-        
+
         def initialize(secretname=nil, versionid=nil, secretbinary=nil, secretstring=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -1535,7 +1535,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SecretName, :VersionId, :RequestId
-        
+
         def initialize(secretname=nil, versionid=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
@@ -1557,7 +1557,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :VersionId, :CreateTime
-        
+
         def initialize(versionid=nil, createtime=nil)
           @VersionId = versionid
           @CreateTime = createtime

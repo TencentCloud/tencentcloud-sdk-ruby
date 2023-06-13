@@ -39,7 +39,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :InstanceId, :SceneId, :UserId, :UserIdList, :GoodsCnt, :CurrentGoodsId, :UserPortraitInfo, :BlackGoodsList, :Extension
-        
+
         def initialize(instanceid=nil, sceneid=nil, userid=nil, useridlist=nil, goodscnt=nil, currentgoodsid=nil, userportraitinfo=nil, blackgoodslist=nil, extension=nil)
           @InstanceId = instanceid
           @SceneId = sceneid
@@ -83,7 +83,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataList, :RequestId
-        
+
         def initialize(datalist=nil, requestid=nil)
           @DataList = datalist
           @RequestId = requestid
@@ -110,7 +110,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -182,7 +182,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :ItemId, :ItemType, :Status, :PublishTimestamp, :ExpireTimestamp, :CategoryLevel, :CategoryPath, :Tags, :Author, :SourceId, :Title, :Content, :ContentUrl, :VideoDuration, :Country, :Province, :City, :AuthorFans, :AuthorLevel, :CollectCnt, :PraiseCnt, :CommentCnt, :ShareCnt, :RewardCnt, :Score, :Extension
-        
+
         def initialize(itemid=nil, itemtype=nil, status=nil, publishtimestamp=nil, expiretimestamp=nil, categorylevel=nil, categorypath=nil, tags=nil, author=nil, sourceid=nil, title=nil, content=nil, contenturl=nil, videoduration=nil, country=nil, province=nil, city=nil, authorfans=nil, authorlevel=nil, collectcnt=nil, praisecnt=nil, commentcnt=nil, sharecnt=nil, rewardcnt=nil, score=nil, extension=nil)
           @ItemId = itemid
           @ItemType = itemtype
@@ -289,7 +289,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :UserId, :ItemId, :BehaviorType, :BehaviorValue, :BehaviorTimestamp, :SceneId, :ItemTraceId, :ItemType, :ReferrerItemId, :UserIdList, :Source, :Country, :Province, :City, :IP, :Network, :Platform, :AppVersion, :OsVersion, :DeviceModel, :Extension
-        
+
         def initialize(userid=nil, itemid=nil, behaviortype=nil, behaviorvalue=nil, behaviortimestamp=nil, sceneid=nil, itemtraceid=nil, itemtype=nil, referreritemid=nil, useridlist=nil, source=nil, country=nil, province=nil, city=nil, ip=nil, network=nil, platform=nil, appversion=nil, osversion=nil, devicemodel=nil, extension=nil)
           @UserId = userid
           @ItemId = itemid
@@ -362,7 +362,7 @@ module TencentCloud
         # @type CurrentItemId: String
 
         attr_accessor :InstanceId, :SceneId, :UserId, :UserIdList, :ItemCnt, :CurrentItemId
-        
+
         def initialize(instanceid=nil, sceneid=nil, userid=nil, useridlist=nil, itemcnt=nil, currentitemid=nil)
           @InstanceId = instanceid
           @SceneId = sceneid
@@ -397,7 +397,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataList, :RequestId
-        
+
         def initialize(datalist=nil, requestid=nil)
           @DataList = datalist
           @RequestId = requestid
@@ -458,7 +458,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :UserId, :UserIdList, :Tags, :DislikeInfoList, :Age, :Gender, :Degree, :School, :Occupation, :Industry, :ResidentCountry, :ResidentProvince, :ResidentCity, :RegisterTimestamp, :MembershipLevel, :LastLoginTimestamp, :LastLoginIp, :LastModifyTimestamp, :Extension
-        
+
         def initialize(userid=nil, useridlist=nil, tags=nil, dislikeinfolist=nil, age=nil, gender=nil, degree=nil, school=nil, occupation=nil, industry=nil, residentcountry=nil, residentprovince=nil, residentcity=nil, registertimestamp=nil, membershiplevel=nil, lastlogintimestamp=nil, lastloginip=nil, lastmodifytimestamp=nil, extension=nil)
           @UserId = userid
           @UserIdList = useridlist
@@ -561,7 +561,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :UserId, :GoodsId, :BehaviorType, :BehaviorValue, :BehaviorTimestamp, :SceneId, :Source, :Page, :Module, :GoodsTraceId, :ReferrerGoodsId, :OrderGoodsCnt, :OrderAmount, :UserIdList, :UserPortraitInfo, :Position, :Extension
-        
+
         def initialize(userid=nil, goodsid=nil, behaviortype=nil, behaviorvalue=nil, behaviortimestamp=nil, sceneid=nil, source=nil, page=nil, _module=nil, goodstraceid=nil, referrergoodsid=nil, ordergoodscnt=nil, orderamount=nil, useridlist=nil, userportraitinfo=nil, position=nil, extension=nil)
           @UserId = userid
           @GoodsId = goodsid
@@ -681,7 +681,7 @@ module TencentCloud
         # @type Extension: String
 
         attr_accessor :GoodsId, :GoodsType, :Status, :PublishTimestamp, :ExpireTimestamp, :SpuId, :CategoryLevel, :CategoryPath, :Title, :Tags, :Brand, :ShopId, :OrgPrice, :CurPrice, :SourceId, :Content, :ContentUrl, :PicUrlList, :Country, :Province, :City, :FreeShipping, :ShippingPrice, :PraiseCnt, :CommentCnt, :ShareCnt, :CollectCnt, :OrderCnt, :Score, :Extension
-        
+
         def initialize(goodsid=nil, goodstype=nil, status=nil, publishtimestamp=nil, expiretimestamp=nil, spuid=nil, categorylevel=nil, categorypath=nil, title=nil, tags=nil, brand=nil, shopid=nil, orgprice=nil, curprice=nil, sourceid=nil, content=nil, contenturl=nil, picurllist=nil, country=nil, province=nil, city=nil, freeshipping=nil, shippingprice=nil, praisecnt=nil, commentcnt=nil, sharecnt=nil, collectcnt=nil, ordercnt=nil, score=nil, extension=nil)
           @GoodsId = goodsid
           @GoodsType = goodstype
@@ -764,7 +764,7 @@ module TencentCloud
         # @type Position: Integer
 
         attr_accessor :GoodsId, :Score, :GoodsTraceId, :Position
-        
+
         def initialize(goodsid=nil, score=nil, goodstraceid=nil, position=nil)
           @GoodsId = goodsid
           @Score = score
@@ -795,7 +795,7 @@ module TencentCloud
         # @type Score: Float
 
         attr_accessor :ItemId, :ItemType, :ItemTraceId, :Score
-        
+
         def initialize(itemid=nil, itemtype=nil, itemtraceid=nil, score=nil)
           @ItemId = itemid
           @ItemType = itemtype
@@ -819,7 +819,7 @@ module TencentCloud
         # @type FeedBehaviorList: Array
 
         attr_accessor :InstanceId, :FeedBehaviorList
-        
+
         def initialize(instanceid=nil, feedbehaviorlist=nil)
           @InstanceId = instanceid
           @FeedBehaviorList = feedbehaviorlist
@@ -844,7 +844,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -862,7 +862,7 @@ module TencentCloud
         # @type FeedItemList: Array
 
         attr_accessor :InstanceId, :FeedItemList
-        
+
         def initialize(instanceid=nil, feeditemlist=nil)
           @InstanceId = instanceid
           @FeedItemList = feeditemlist
@@ -887,7 +887,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -905,7 +905,7 @@ module TencentCloud
         # @type FeedUserList: Array
 
         attr_accessor :InstanceId, :FeedUserList
-        
+
         def initialize(instanceid=nil, feeduserlist=nil)
           @InstanceId = instanceid
           @FeedUserList = feeduserlist
@@ -930,7 +930,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -948,7 +948,7 @@ module TencentCloud
         # @type GoodsBehaviorList: Array
 
         attr_accessor :InstanceId, :GoodsBehaviorList
-        
+
         def initialize(instanceid=nil, goodsbehaviorlist=nil)
           @InstanceId = instanceid
           @GoodsBehaviorList = goodsbehaviorlist
@@ -973,7 +973,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -991,7 +991,7 @@ module TencentCloud
         # @type GoodsList: Array
 
         attr_accessor :InstanceId, :GoodsList
-        
+
         def initialize(instanceid=nil, goodslist=nil)
           @InstanceId = instanceid
           @GoodsList = goodslist
@@ -1016,7 +1016,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1029,7 +1029,7 @@ module TencentCloud
       # 用户信息
       class StrUserIdInfo < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1045,7 +1045,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -1060,7 +1060,7 @@ module TencentCloud
       # 用户基础画像
       class UserPortraitInfo < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 

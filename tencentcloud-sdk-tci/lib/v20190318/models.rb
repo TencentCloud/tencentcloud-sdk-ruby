@@ -39,7 +39,7 @@ module TencentCloud
         # @type VoiceFileType: Integer
 
         attr_accessor :FileContent, :FileType, :Lang, :LibrarySet, :MaxVideoDuration, :Template, :VocabLibNameList, :VoiceEncodeType, :VoiceFileType
-        
+
         def initialize(filecontent=nil, filetype=nil, lang=nil, libraryset=nil, maxvideoduration=nil, template=nil, vocablibnamelist=nil, voiceencodetype=nil, voicefiletype=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -75,7 +75,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -118,7 +118,7 @@ module TencentCloud
         # @type WordNum: Integer
 
         attr_accessor :AvgSpeed, :AvgVolume, :MaxVolume, :MinVolume, :MuteDuration, :SoundDuration, :TotalDuration, :VadNum, :WordNum
-        
+
         def initialize(avgspeed=nil, avgvolume=nil, maxvolume=nil, minvolume=nil, muteduration=nil, soundduration=nil, totalduration=nil, vadnum=nil, wordnum=nil)
           @AvgSpeed = avgspeed
           @AvgVolume = avgvolume
@@ -152,7 +152,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :LibraryIds, :PersonId
-        
+
         def initialize(libraryids=nil, personid=nil)
           @LibraryIds = libraryids
           @PersonId = personid
@@ -172,7 +172,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Count, :Name
-        
+
         def initialize(count=nil, name=nil)
           @Count = count
           @Name = name
@@ -192,7 +192,7 @@ module TencentCloud
         # @type Ratio: Float
 
         attr_accessor :Name, :Ratio
-        
+
         def initialize(name=nil, ratio=nil)
           @Name = name
           @Ratio = ratio
@@ -212,7 +212,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Duration, :Name
-        
+
         def initialize(duration=nil, name=nil)
           @Duration = duration
           @Name = name
@@ -244,7 +244,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :BodyPosture, :Handup, :LookHead, :Writing, :Height, :Left, :Top, :Width
-        
+
         def initialize(bodyposture=nil, handup=nil, lookhead=nil, writing=nil, height=nil, left=nil, top=nil, width=nil)
           @BodyPosture = bodyposture
           @Handup = handup
@@ -290,7 +290,7 @@ module TencentCloud
         # @type ActionDurationRatio: Array
 
         attr_accessor :ActionCount, :ActionDuration, :ActionDurationRatio
-        
+
         def initialize(actioncount=nil, actionduration=nil, actiondurationratio=nil)
           @ActionCount = actioncount
           @ActionDuration = actionduration
@@ -333,7 +333,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Confidence, :Type
-        
+
         def initialize(confidence=nil, type=nil)
           @Confidence = confidence
           @Type = type
@@ -355,7 +355,7 @@ module TencentCloud
         # @type TotalMuteDuration: Integer
 
         attr_accessor :MuteSlice, :MuteRatio, :TotalMuteDuration
-        
+
         def initialize(muteslice=nil, muteratio=nil, totalmuteduration=nil)
           @MuteSlice = muteslice
           @MuteRatio = muteratio
@@ -384,7 +384,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :Face, :PersonId
-        
+
         def initialize(face=nil, personid=nil)
           @Face = face
           @PersonId = personid
@@ -419,7 +419,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :Confidence, :Height, :Left, :Movements, :Top, :Width
-        
+
         def initialize(confidence=nil, height=nil, left=nil, movements=nil, top=nil, width=nil)
           @Confidence = confidence
           @Height = height
@@ -445,7 +445,7 @@ module TencentCloud
         # @type JobId: Integer
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -463,7 +463,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -483,7 +483,7 @@ module TencentCloud
         # @type FileType: String
 
         attr_accessor :FileContent, :FileType
-        
+
         def initialize(filecontent=nil, filetype=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -503,7 +503,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CheckResult, :RequestId
-        
+
         def initialize(checkresult=nil, requestid=nil)
           @CheckResult = checkresult
           @RequestId = requestid
@@ -527,7 +527,7 @@ module TencentCloud
         # @type Urls: Array
 
         attr_accessor :PersonId, :Images, :LibraryId, :Urls
-        
+
         def initialize(personid=nil, images=nil, libraryid=nil, urls=nil)
           @PersonId = personid
           @Images = images
@@ -551,7 +551,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceInfoSet, :RequestId
-        
+
         def initialize(faceinfoset=nil, requestid=nil)
           @FaceInfoSet = faceinfoset
           @RequestId = requestid
@@ -578,7 +578,7 @@ module TencentCloud
         # @type LibraryId: String
 
         attr_accessor :LibraryName, :LibraryId
-        
+
         def initialize(libraryname=nil, libraryid=nil)
           @LibraryName = libraryname
           @LibraryId = libraryid
@@ -600,7 +600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibraryId, :LibraryName, :RequestId
-        
+
         def initialize(libraryid=nil, libraryname=nil, requestid=nil)
           @LibraryId = libraryid
           @LibraryName = libraryname
@@ -638,7 +638,7 @@ module TencentCloud
         # @type Urls: Array
 
         attr_accessor :LibraryId, :PersonName, :Images, :JobNumber, :Mail, :Male, :PersonId, :PhoneNumber, :StudentNumber, :Urls
-        
+
         def initialize(libraryid=nil, personname=nil, images=nil, jobnumber=nil, mail=nil, male=nil, personid=nil, phonenumber=nil, studentnumber=nil, urls=nil)
           @LibraryId = libraryid
           @PersonName = personname
@@ -680,7 +680,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceInfoSet, :LibraryId, :PersonId, :PersonName, :RequestId
-        
+
         def initialize(faceinfoset=nil, libraryid=nil, personid=nil, personname=nil, requestid=nil)
           @FaceInfoSet = faceinfoset
           @LibraryId = libraryid
@@ -711,7 +711,7 @@ module TencentCloud
         # @type VocabLibName: String
 
         attr_accessor :VocabLibName
-        
+
         def initialize(vocablibname=nil)
           @VocabLibName = vocablibname
         end
@@ -727,7 +727,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -745,7 +745,7 @@ module TencentCloud
         # @type VocabList: Array
 
         attr_accessor :VocabLibName, :VocabList
-        
+
         def initialize(vocablibname=nil, vocablist=nil)
           @VocabLibName = vocablibname
           @VocabList = vocablist
@@ -763,7 +763,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -783,7 +783,7 @@ module TencentCloud
         # @type LibraryId: String
 
         attr_accessor :FaceIdSet, :PersonId, :LibraryId
-        
+
         def initialize(faceidset=nil, personid=nil, libraryid=nil)
           @FaceIdSet = faceidset
           @PersonId = personid
@@ -805,7 +805,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceInfoSet, :RequestId
-        
+
         def initialize(faceinfoset=nil, requestid=nil)
           @FaceInfoSet = faceinfoset
           @RequestId = requestid
@@ -830,7 +830,7 @@ module TencentCloud
         # @type LibraryId: String
 
         attr_accessor :LibraryId
-        
+
         def initialize(libraryid=nil)
           @LibraryId = libraryid
         end
@@ -850,7 +850,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibraryId, :LibraryName, :RequestId
-        
+
         def initialize(libraryid=nil, libraryname=nil, requestid=nil)
           @LibraryId = libraryid
           @LibraryName = libraryname
@@ -872,7 +872,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :LibraryId, :PersonId
-        
+
         def initialize(libraryid=nil, personid=nil)
           @LibraryId = libraryid
           @PersonId = personid
@@ -898,7 +898,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceInfoSet, :LibraryId, :PersonId, :PersonName, :RequestId
-        
+
         def initialize(faceinfoset=nil, libraryid=nil, personid=nil, personname=nil, requestid=nil)
           @FaceInfoSet = faceinfoset
           @LibraryId = libraryid
@@ -929,7 +929,7 @@ module TencentCloud
         # @type VocabLibName: String
 
         attr_accessor :VocabLibName
-        
+
         def initialize(vocablibname=nil)
           @VocabLibName = vocablibname
         end
@@ -945,7 +945,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -963,7 +963,7 @@ module TencentCloud
         # @type VocabList: Array
 
         attr_accessor :VocabLibName, :VocabList
-        
+
         def initialize(vocablibname=nil, vocablist=nil)
           @VocabLibName = vocablibname
           @VocabList = vocablist
@@ -981,7 +981,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1001,7 +1001,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :TaskId, :Limit, :Offset
-        
+
         def initialize(taskid=nil, limit=nil, offset=nil)
           @TaskId = taskid
           @Limit = limit
@@ -1031,7 +1031,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AudioResult, :ImageResult, :VideoResult, :Status, :TaskId, :RequestId
-        
+
         def initialize(audioresult=nil, imageresult=nil, videoresult=nil, status=nil, taskid=nil, requestid=nil)
           @AudioResult = audioresult
           @ImageResult = imageresult
@@ -1066,7 +1066,7 @@ module TencentCloud
         # @type JobId: Integer
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -1092,7 +1092,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AbsenceSetInLibs, :AttendanceSet, :SuspectedSet, :AbsenceSet, :Progress, :RequestId
-        
+
         def initialize(absencesetinlibs=nil, attendanceset=nil, suspectedset=nil, absenceset=nil, progress=nil, requestid=nil)
           @AbsenceSetInLibs = absencesetinlibs
           @AttendanceSet = attendanceset
@@ -1143,7 +1143,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :JobId, :Limit, :Offset
-        
+
         def initialize(jobid=nil, limit=nil, offset=nil)
           @JobId = jobid
           @Limit = limit
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AllMuteSlice, :AsrStat, :Texts, :VocabAnalysisDetailInfo, :VocabAnalysisStatInfo, :AllTexts, :JobId, :Progress, :TotalCount, :RequestId
-        
+
         def initialize(allmuteslice=nil, asrstat=nil, texts=nil, vocabanalysisdetailinfo=nil, vocabanalysisstatinfo=nil, alltexts=nil, jobid=nil, progress=nil, totalcount=nil, requestid=nil)
           @AllMuteSlice = allmuteslice
           @AsrStat = asrstat
@@ -1248,7 +1248,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :JobId, :Identity, :Limit, :Offset
-        
+
         def initialize(jobid=nil, identity=nil, limit=nil, offset=nil)
           @JobId = jobid
           @Identity = identity
@@ -1286,7 +1286,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsrStat, :Texts, :VocabAnalysisDetailInfo, :VocabAnalysisStatInfo, :AllTexts, :JobId, :Progress, :TotalCount, :RequestId
-        
+
         def initialize(asrstat=nil, texts=nil, vocabanalysisdetailinfo=nil, vocabanalysisstatinfo=nil, alltexts=nil, jobid=nil, progress=nil, totalcount=nil, requestid=nil)
           @AsrStat = asrstat
           @Texts = texts
@@ -1342,7 +1342,7 @@ module TencentCloud
         # @type JobId: Integer
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -1364,7 +1364,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :HighlightsInfo, :JobId, :Progress, :RequestId
-        
+
         def initialize(highlightsinfo=nil, jobid=nil, progress=nil, requestid=nil)
           @HighlightsInfo = highlightsinfo
           @JobId = jobid
@@ -1397,7 +1397,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :JobId, :Limit, :Offset
-        
+
         def initialize(jobid=nil, limit=nil, offset=nil)
           @JobId = jobid
           @Limit = limit
@@ -1425,7 +1425,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultSet, :JobId, :Progress, :TotalCount, :RequestId
-        
+
         def initialize(resultset=nil, jobid=nil, progress=nil, totalcount=nil, requestid=nil)
           @ResultSet = resultset
           @JobId = jobid
@@ -1456,7 +1456,7 @@ module TencentCloud
         # @type JobId: Integer
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -1476,7 +1476,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Statistic, :JobId, :RequestId
-        
+
         def initialize(statistic=nil, jobid=nil, requestid=nil)
           @Statistic = statistic
           @JobId = jobid
@@ -1496,7 +1496,7 @@ module TencentCloud
       # DescribeLibraries请求参数结构体
       class DescribeLibrariesRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1514,7 +1514,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibrarySet, :TotalCount, :RequestId
-        
+
         def initialize(libraryset=nil, totalcount=nil, requestid=nil)
           @LibrarySet = libraryset
           @TotalCount = totalcount
@@ -1543,7 +1543,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :LibraryId, :PersonId
-        
+
         def initialize(libraryid=nil, personid=nil)
           @LibraryId = libraryid
           @PersonId = personid
@@ -1583,7 +1583,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceSet, :CreateTime, :JobNumber, :LibraryId, :Mail, :Male, :PersonId, :PersonName, :PhoneNumber, :StudentNumber, :UpdateTime, :RequestId
-        
+
         def initialize(faceset=nil, createtime=nil, jobnumber=nil, libraryid=nil, mail=nil, male=nil, personid=nil, personname=nil, phonenumber=nil, studentnumber=nil, updatetime=nil, requestid=nil)
           @FaceSet = faceset
           @CreateTime = createtime
@@ -1632,7 +1632,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :LibraryId, :Limit, :Offset
-        
+
         def initialize(libraryid=nil, limit=nil, offset=nil)
           @LibraryId = libraryid
           @Limit = limit
@@ -1656,7 +1656,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonSet, :TotalCount, :RequestId
-        
+
         def initialize(personset=nil, totalcount=nil, requestid=nil)
           @PersonSet = personset
           @TotalCount = totalcount
@@ -1680,7 +1680,7 @@ module TencentCloud
       # DescribeVocabLib请求参数结构体
       class DescribeVocabLibRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1696,7 +1696,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabLibNameSet, :RequestId
-        
+
         def initialize(vocablibnameset=nil, requestid=nil)
           @VocabLibNameSet = vocablibnameset
           @RequestId = requestid
@@ -1714,7 +1714,7 @@ module TencentCloud
         # @type VocabLibName: String
 
         attr_accessor :VocabLibName
-        
+
         def initialize(vocablibname=nil)
           @VocabLibName = vocablibname
         end
@@ -1732,7 +1732,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabNameSet, :RequestId
-        
+
         def initialize(vocabnameset=nil, requestid=nil)
           @VocabNameSet = vocabnameset
           @RequestId = requestid
@@ -1752,7 +1752,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :Value, :Keyword
-        
+
         def initialize(value=nil, keyword=nil)
           @Value = value
           @Keyword = keyword
@@ -1777,7 +1777,7 @@ module TencentCloud
         # @type EnableCoverPictures: Boolean
 
         attr_accessor :EnableCoverPictures
-        
+
         def initialize(enablecoverpictures=nil)
           @EnableCoverPictures = enablecoverpictures
         end
@@ -1799,7 +1799,7 @@ module TencentCloud
         # @type RatioUseDuration: Float
 
         attr_accessor :Count, :Express, :Ratio, :RatioUseDuration
-        
+
         def initialize(count=nil, express=nil, ratio=nil, ratiouseduration=nil)
           @Count = count
           @Express = express
@@ -1825,7 +1825,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :FaceId, :FaceUrl, :PersonId
-        
+
         def initialize(faceid=nil, faceurl=nil, personid=nil)
           @FaceId = faceid
           @FaceUrl = faceurl
@@ -1847,7 +1847,7 @@ module TencentCloud
         # @type Sex: String
 
         attr_accessor :Age, :Sex
-        
+
         def initialize(age=nil, sex=nil)
           @Age = age
           @Sex = sex
@@ -1879,7 +1879,7 @@ module TencentCloud
         # @type SideFaceRealRatio: Float
 
         attr_accessor :FaceSizeRatio, :FrontalFaceCount, :FrontalFaceRatio, :FrontalFaceRealRatio, :PersonId, :SideFaceCount, :SideFaceRatio, :SideFaceRealRatio
-        
+
         def initialize(facesizeratio=nil, frontalfacecount=nil, frontalfaceratio=nil, frontalfacerealratio=nil, personid=nil, sidefacecount=nil, sidefaceratio=nil, sidefacerealratio=nil)
           @FaceSizeRatio = facesizeratio
           @FrontalFaceCount = frontalfacecount
@@ -1911,7 +1911,7 @@ module TencentCloud
         # @type ExpressRatio: Array
 
         attr_accessor :PersonId, :ExpressRatio
-        
+
         def initialize(personid=nil, expressratio=nil)
           @PersonId = personid
           @ExpressRatio = expressratio
@@ -1938,7 +1938,7 @@ module TencentCloud
         # @type Expression: String
 
         attr_accessor :Confidence, :Expression
-        
+
         def initialize(confidence=nil, expression=nil)
           @Confidence = confidence
           @Expression = expression
@@ -1962,7 +1962,7 @@ module TencentCloud
         # @type Similarity: Float
 
         attr_accessor :FaceId, :LibraryId, :PersonId, :Similarity
-        
+
         def initialize(faceid=nil, libraryid=nil, personid=nil, similarity=nil)
           @FaceId = faceid
           @LibraryId = libraryid
@@ -1992,7 +1992,7 @@ module TencentCloud
         # @type StartTs: Integer
 
         attr_accessor :Duration, :EndTs, :PersonId, :Similarity, :StartTs
-        
+
         def initialize(duration=nil, endts=nil, personid=nil, similarity=nil, startts=nil)
           @Duration = duration
           @EndTs = endts
@@ -2024,7 +2024,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :ErrorCode, :ErrorMsg, :FaceId, :FaceUrl, :PersonId
-        
+
         def initialize(errorcode=nil, errormsg=nil, faceid=nil, faceurl=nil, personid=nil)
           @ErrorCode = errorcode
           @ErrorMsg = errormsg
@@ -2060,7 +2060,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :FaceRatio, :FrameHeight, :FrameWidth, :Height, :Left, :Top, :Width
-        
+
         def initialize(faceratio=nil, frameheight=nil, framewidth=nil, height=nil, left=nil, top=nil, width=nil)
           @FaceRatio = faceratio
           @FrameHeight = frameheight
@@ -2094,7 +2094,7 @@ module TencentCloud
         # @type Yaw: Float
 
         attr_accessor :Direction, :Pitch, :Roll, :Yaw
-        
+
         def initialize(direction=nil, pitch=nil, roll=nil, yaw=nil)
           @Direction = direction
           @Pitch = pitch
@@ -2120,7 +2120,7 @@ module TencentCloud
         # @type Ts: Integer
 
         attr_accessor :Similarity, :SnapshotUrl, :Ts
-        
+
         def initialize(similarity=nil, snapshoturl=nil, ts=nil)
           @Similarity = similarity
           @SnapshotUrl = snapshoturl
@@ -2148,7 +2148,7 @@ module TencentCloud
         # @type EnableVolume: Boolean
 
         attr_accessor :EnableAllText, :EnableKeyword, :EnableMuteDetect, :EnableVadInfo, :EnableVolume
-        
+
         def initialize(enablealltext=nil, enablekeyword=nil, enablemutedetect=nil, enablevadinfo=nil, enablevolume=nil)
           @EnableAllText = enablealltext
           @EnableKeyword = enablekeyword
@@ -2182,7 +2182,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :Class, :Confidence, :Height, :Left, :Top, :Width
-        
+
         def initialize(_class=nil, confidence=nil, height=nil, left=nil, top=nil, width=nil)
           @Class = _class
           @Confidence = confidence
@@ -2216,7 +2216,7 @@ module TencentCloud
         # @type EnableSmileWonderfulTime: Boolean
 
         attr_accessor :EnableFaceDetect, :EnableFaceExpression, :EnableFaceIdent, :EnableKeywordWonderfulTime, :EnableSmileWonderfulTime
-        
+
         def initialize(enablefacedetect=nil, enablefaceexpression=nil, enablefaceident=nil, enablekeywordwonderfultime=nil, enablesmilewonderfultime=nil)
           @EnableFaceDetect = enablefacedetect
           @EnableFaceExpression = enablefaceexpression
@@ -2250,7 +2250,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :Class, :Confidence, :Height, :Left, :Top, :Width
-        
+
         def initialize(_class=nil, confidence=nil, height=nil, left=nil, top=nil, width=nil)
           @Class = _class
           @Confidence = confidence
@@ -2282,7 +2282,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :Concentration, :Smile, :HighlightsUrl, :PersonId
-        
+
         def initialize(concentration=nil, smile=nil, highlightsurl=nil, personid=nil)
           @Concentration = concentration
           @Smile = smile
@@ -2336,7 +2336,7 @@ module TencentCloud
         # @type EnableTeacherOutScreen: Boolean
 
         attr_accessor :EnableActionClass, :EnableFaceDetect, :EnableFaceExpression, :EnableFaceIdentify, :EnableGesture, :EnableHandTracking, :EnableLightJudge, :EnableStudentBodyMovements, :EnableTeacherBodyMovements, :EnableTeacherOutScreen
-        
+
         def initialize(enableactionclass=nil, enablefacedetect=nil, enablefaceexpression=nil, enablefaceidentify=nil, enablegesture=nil, enablehandtracking=nil, enablelightjudge=nil, enablestudentbodymovements=nil, enableteacherbodymovements=nil, enableteacheroutscreen=nil)
           @EnableActionClass = enableactionclass
           @EnableFaceDetect = enablefacedetect
@@ -2394,7 +2394,7 @@ module TencentCloud
         # @type TimeInfo: :class:`Tencentcloud::Tci.v20190318.models.TimeInfoResult`
 
         attr_accessor :ActionInfo, :FaceAttr, :FaceExpression, :FaceIdentify, :FaceInfo, :FacePose, :Gesture, :HandTracking, :Light, :StudentBodyMovement, :TeacherBodyMovement, :TeacherOutScreen, :TimeInfo
-        
+
         def initialize(actioninfo=nil, faceattr=nil, faceexpression=nil, faceidentify=nil, faceinfo=nil, facepose=nil, gesture=nil, handtracking=nil, light=nil, studentbodymovement=nil, teacherbodymovement=nil, teacheroutscreen=nil, timeinfo=nil)
           @ActionInfo = actioninfo
           @FaceAttr = faceattr
@@ -2487,7 +2487,7 @@ module TencentCloud
         # @type TeacherMovement: :class:`Tencentcloud::Tci.v20190318.models.ActionStatistic`
 
         attr_accessor :FaceDetect, :FaceExpression, :FaceIdentify, :Gesture, :Handtracking, :Light, :StudentMovement, :TeacherMovement
-        
+
         def initialize(facedetect=nil, faceexpression=nil, faceidentify=nil, gesture=nil, handtracking=nil, light=nil, studentmovement=nil, teachermovement=nil)
           @FaceDetect = facedetect
           @FaceExpression = faceexpression
@@ -2561,7 +2561,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :CreateTime, :LibraryId, :LibraryName, :PersonCount, :UpdateTime
-        
+
         def initialize(createtime=nil, libraryid=nil, libraryname=nil, personcount=nil, updatetime=nil)
           @CreateTime = createtime
           @LibraryId = libraryid
@@ -2587,7 +2587,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -2607,7 +2607,7 @@ module TencentCloud
         # @type Ratio: Float
 
         attr_accessor :Level, :Ratio
-        
+
         def initialize(level=nil, ratio=nil)
           @Level = level
           @Ratio = ratio
@@ -2627,7 +2627,7 @@ module TencentCloud
         # @type LightValue: Float
 
         attr_accessor :LightLevel, :LightValue
-        
+
         def initialize(lightlevel=nil, lightvalue=nil)
           @LightLevel = lightlevel
           @LightValue = lightvalue
@@ -2652,7 +2652,7 @@ module TencentCloud
         # @type Range: Array
 
         attr_accessor :Name, :Range
-        
+
         def initialize(name=nil, range=nil)
           @Name = name
           @Range = range
@@ -2672,7 +2672,7 @@ module TencentCloud
         # @type LightLevelRatio: Array
 
         attr_accessor :LightDistribution, :LightLevelRatio
-        
+
         def initialize(lightdistribution=nil, lightlevelratio=nil)
           @LightDistribution = lightdistribution
           @LightLevelRatio = lightlevelratio
@@ -2706,7 +2706,7 @@ module TencentCloud
         # @type LibraryName: String
 
         attr_accessor :LibraryId, :LibraryName
-        
+
         def initialize(libraryid=nil, libraryname=nil)
           @LibraryId = libraryid
           @LibraryName = libraryname
@@ -2728,7 +2728,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LibraryId, :LibraryName, :RequestId
-        
+
         def initialize(libraryid=nil, libraryname=nil, requestid=nil)
           @LibraryId = libraryid
           @LibraryName = libraryname
@@ -2762,7 +2762,7 @@ module TencentCloud
         # @type StudentNumber: String
 
         attr_accessor :LibraryId, :PersonId, :JobNumber, :Mail, :Male, :PersonName, :PhoneNumber, :StudentNumber
-        
+
         def initialize(libraryid=nil, personid=nil, jobnumber=nil, mail=nil, male=nil, personname=nil, phonenumber=nil, studentnumber=nil)
           @LibraryId = libraryid
           @PersonId = personid
@@ -2800,7 +2800,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceInfoSet, :LibraryId, :PersonId, :PersonName, :RequestId
-        
+
         def initialize(faceinfoset=nil, libraryid=nil, personid=nil, personname=nil, requestid=nil)
           @FaceInfoSet = faceinfoset
           @LibraryId = libraryid
@@ -2833,7 +2833,7 @@ module TencentCloud
         # @type MuteEtm: Integer
 
         attr_accessor :MuteBtm, :MuteEtm
-        
+
         def initialize(mutebtm=nil, muteetm=nil)
           @MuteBtm = mutebtm
           @MuteEtm = muteetm
@@ -2869,7 +2869,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :LibraryId, :PersonId, :PersonName, :CreateTime, :JobNumber, :Mail, :Male, :PhoneNumber, :StudentNumber, :UpdateTime
-        
+
         def initialize(libraryid=nil, personid=nil, personname=nil, createtime=nil, jobnumber=nil, mail=nil, male=nil, phonenumber=nil, studentnumber=nil, updatetime=nil)
           @LibraryId = libraryid
           @PersonId = personid
@@ -2907,7 +2907,7 @@ module TencentCloud
         # @type CoverEndUrl: String
 
         attr_accessor :PersonId, :CoverBeginUrl, :CoverEndUrl
-        
+
         def initialize(personid=nil, coverbeginurl=nil, coverendurl=nil)
           @PersonId = personid
           @CoverBeginUrl = coverbeginurl
@@ -2939,7 +2939,7 @@ module TencentCloud
         # @type TotalCount: Integer
 
         attr_accessor :AsrStat, :Texts, :VocabAnalysisDetailInfo, :VocabAnalysisStatInfo, :Message, :Status, :TotalCount
-        
+
         def initialize(asrstat=nil, texts=nil, vocabanalysisdetailinfo=nil, vocabanalysisstatinfo=nil, message=nil, status=nil, totalcount=nil)
           @AsrStat = asrstat
           @Texts = texts
@@ -2999,7 +2999,7 @@ module TencentCloud
         # @type TotalCount: Integer
 
         attr_accessor :ResultSet, :Statistic, :Message, :Status, :TotalCount
-        
+
         def initialize(resultset=nil, statistic=nil, message=nil, status=nil, totalcount=nil)
           @ResultSet = resultset
           @Statistic = statistic
@@ -3037,7 +3037,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :HighlightsInfo, :Message, :Status
-        
+
         def initialize(highlightsinfo=nil, message=nil, status=nil)
           @HighlightsInfo = highlightsinfo
           @Message = message
@@ -3066,7 +3066,7 @@ module TencentCloud
         # @type Value: Integer
 
         attr_accessor :Keyword, :Value
-        
+
         def initialize(keyword=nil, value=nil)
           @Keyword = keyword
           @Value = value
@@ -3102,7 +3102,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :Confidence, :HandupConfidence, :HandupStatus, :Height, :Left, :Movements, :StandConfidence, :StandStatus, :Top, :Width
-        
+
         def initialize(confidence=nil, handupconfidence=nil, handupstatus=nil, height=nil, left=nil, movements=nil, standconfidence=nil, standstatus=nil, top=nil, width=nil)
           @Confidence = confidence
           @HandupConfidence = handupconfidence
@@ -3150,7 +3150,7 @@ module TencentCloud
         # @type VocabLibNameList: Array
 
         attr_accessor :Lang, :Url, :VoiceEncodeType, :VoiceFileType, :Functions, :FileType, :MuteThreshold, :VocabLibNameList
-        
+
         def initialize(lang=nil, url=nil, voiceencodetype=nil, voicefiletype=nil, functions=nil, filetype=nil, mutethreshold=nil, vocablibnamelist=nil)
           @Lang = lang
           @Url = url
@@ -3185,7 +3185,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -3221,7 +3221,7 @@ module TencentCloud
         # @type Threshold: Float
 
         attr_accessor :FileContent, :FileType, :LibraryIds, :AttendanceThreshold, :EnableStranger, :EndTime, :NoticeUrl, :StartTime, :Threshold
-        
+
         def initialize(filecontent=nil, filetype=nil, libraryids=nil, attendancethreshold=nil, enablestranger=nil, endtime=nil, noticeurl=nil, starttime=nil, threshold=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3257,7 +3257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :NotRegisteredSet, :RequestId
-        
+
         def initialize(jobid=nil, notregisteredset=nil, requestid=nil)
           @JobId = jobid
           @NotRegisteredSet = notregisteredset
@@ -3295,7 +3295,7 @@ module TencentCloud
         # @type Threshold: Float
 
         attr_accessor :FileContent, :FileType, :LibraryIds, :AttendanceThreshold, :EnableStranger, :EndTime, :NoticeUrl, :StartTime, :Threshold
-        
+
         def initialize(filecontent=nil, filetype=nil, libraryids=nil, attendancethreshold=nil, enablestranger=nil, endtime=nil, noticeurl=nil, starttime=nil, threshold=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3331,7 +3331,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :NotRegisteredSet, :RequestId
-        
+
         def initialize(jobid=nil, notregisteredset=nil, requestid=nil)
           @JobId = jobid
           @NotRegisteredSet = notregisteredset
@@ -3363,7 +3363,7 @@ module TencentCloud
         # @type VocabLibNameList: Array
 
         attr_accessor :Lang, :StudentUrl, :TeacherUrl, :VoiceEncodeType, :VoiceFileType, :Functions, :VocabLibNameList
-        
+
         def initialize(lang=nil, studenturl=nil, teacherurl=nil, voiceencodetype=nil, voicefiletype=nil, functions=nil, vocablibnamelist=nil)
           @Lang = lang
           @StudentUrl = studenturl
@@ -3396,7 +3396,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -3428,7 +3428,7 @@ module TencentCloud
         # @type TeacherFileContent: String
 
         attr_accessor :FileContent, :LibIds, :Functions, :PersonInfoList, :FrameInterval, :PersonIds, :SimThreshold, :TeacherFileContent
-        
+
         def initialize(filecontent=nil, libids=nil, functions=nil, personinfolist=nil, frameinterval=nil, personids=nil, simthreshold=nil, teacherfilecontent=nil)
           @FileContent = filecontent
           @LibIds = libids
@@ -3472,7 +3472,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :NotRegistered, :RequestId
-        
+
         def initialize(jobid=nil, notregistered=nil, requestid=nil)
           @JobId = jobid
           @NotRegistered = notregistered
@@ -3506,7 +3506,7 @@ module TencentCloud
         # @type VoiceFileType: Integer
 
         attr_accessor :FileContent, :FileType, :Lang, :LibrarySet, :MaxVideoDuration, :VocabLibNameList, :VoiceEncodeType, :VoiceFileType
-        
+
         def initialize(filecontent=nil, filetype=nil, lang=nil, libraryset=nil, maxvideoduration=nil, vocablibnamelist=nil, voiceencodetype=nil, voicefiletype=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3540,7 +3540,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -3583,7 +3583,7 @@ module TencentCloud
         # @type SimThreshold: Float
 
         attr_accessor :Functions, :FileContent, :FileType, :LibIds, :FrameInterval, :KeywordsLanguage, :KeywordsStrings, :MaxVideoDuration, :SimThreshold
-        
+
         def initialize(functions=nil, filecontent=nil, filetype=nil, libids=nil, frameinterval=nil, keywordslanguage=nil, keywordsstrings=nil, maxvideoduration=nil, simthreshold=nil)
           @Functions = functions
           @FileContent = filecontent
@@ -3620,7 +3620,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -3652,7 +3652,7 @@ module TencentCloud
         # @type SimThreshold: Float
 
         attr_accessor :FileContent, :FileType, :Functions, :LightStandardSet, :FrameInterval, :LibrarySet, :MaxVideoDuration, :SimThreshold
-        
+
         def initialize(filecontent=nil, filetype=nil, functions=nil, lightstandardset=nil, frameinterval=nil, libraryset=nil, maxvideoduration=nil, simthreshold=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3700,7 +3700,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultSet, :JobId, :Progress, :TotalCount, :RequestId
-        
+
         def initialize(resultset=nil, jobid=nil, progress=nil, totalcount=nil, requestid=nil)
           @ResultSet = resultset
           @JobId = jobid
@@ -3747,7 +3747,7 @@ module TencentCloud
         # @type SimThreshold: Float
 
         attr_accessor :FileContent, :FileType, :Functions, :LightStandardSet, :EventsCallBack, :FrameInterval, :LibrarySet, :MaxVideoDuration, :SimThreshold
-        
+
         def initialize(filecontent=nil, filetype=nil, functions=nil, lightstandardset=nil, eventscallback=nil, frameinterval=nil, libraryset=nil, maxvideoduration=nil, simthreshold=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3797,7 +3797,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultSet, :JobId, :Progress, :TotalCount, :RequestId
-        
+
         def initialize(resultset=nil, jobid=nil, progress=nil, totalcount=nil, requestid=nil)
           @ResultSet = resultset
           @JobId = jobid
@@ -3842,7 +3842,7 @@ module TencentCloud
         # @type VoiceFileType: Integer
 
         attr_accessor :FileContent, :FileType, :Lang, :LibrarySet, :MaxVideoDuration, :VocabLibNameList, :VoiceEncodeType, :VoiceFileType
-        
+
         def initialize(filecontent=nil, filetype=nil, lang=nil, libraryset=nil, maxvideoduration=nil, vocablibnamelist=nil, voiceencodetype=nil, voicefiletype=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3876,7 +3876,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -3909,7 +3909,7 @@ module TencentCloud
         # @type MaxVideoDuration: Integer
 
         attr_accessor :FileContent, :FileType, :LibrarySet, :MaxVideoDuration
-        
+
         def initialize(filecontent=nil, filetype=nil, libraryset=nil, maxvideoduration=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -3935,7 +3935,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -3976,7 +3976,7 @@ module TencentCloud
         # @type VoiceFileType: Integer
 
         attr_accessor :FileContent, :FileType, :Lang, :LibrarySet, :MaxVideoDuration, :VocabLibNameList, :VoiceEncodeType, :VoiceFileType
-        
+
         def initialize(filecontent=nil, filetype=nil, lang=nil, libraryset=nil, maxvideoduration=nil, vocablibnamelist=nil, voiceencodetype=nil, voicefiletype=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -4010,7 +4010,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -4043,7 +4043,7 @@ module TencentCloud
         # @type MaxVideoDuration: Integer
 
         attr_accessor :FileContent, :FileType, :LibrarySet, :MaxVideoDuration
-        
+
         def initialize(filecontent=nil, filetype=nil, libraryset=nil, maxvideoduration=nil)
           @FileContent = filecontent
           @FileType = filetype
@@ -4069,7 +4069,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageResults, :TaskId, :RequestId
-        
+
         def initialize(imageresults=nil, taskid=nil, requestid=nil)
           @ImageResults = imageresults
           @TaskId = taskid
@@ -4098,7 +4098,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :FaceSet, :PersonId
-        
+
         def initialize(faceset=nil, personid=nil)
           @FaceSet = faceset
           @PersonId = personid
@@ -4132,7 +4132,7 @@ module TencentCloud
         # @type Width: Integer
 
         attr_accessor :Class, :Height, :Left, :Top, :Width
-        
+
         def initialize(_class=nil, height=nil, left=nil, top=nil, width=nil)
           @Class = _class
           @Height = height
@@ -4168,7 +4168,7 @@ module TencentCloud
         # @type TextSize: Integer
 
         attr_accessor :Words, :Confidence, :Mbtm, :Metm, :Tag, :Text, :TextSize
-        
+
         def initialize(words=nil, confidence=nil, mbtm=nil, metm=nil, tag=nil, text=nil, textsize=nil)
           @Words = words
           @Confidence = confidence
@@ -4207,7 +4207,7 @@ module TencentCloud
         # @type StartTs: Integer
 
         attr_accessor :Duration, :EndTs, :StartTs
-        
+
         def initialize(duration=nil, endts=nil, startts=nil)
           @Duration = duration
           @EndTs = endts
@@ -4229,7 +4229,7 @@ module TencentCloud
         # @type StartTime: Integer
 
         attr_accessor :EndTime, :StartTime
-        
+
         def initialize(endtime=nil, starttime=nil)
           @EndTime = endtime
           @StartTime = starttime
@@ -4265,7 +4265,7 @@ module TencentCloud
         # @type VocabLibNameList: Array
 
         attr_accessor :Functions, :SeqId, :SessionId, :UserVoiceData, :VoiceEncodeType, :VoiceFileType, :IsEnd, :Lang, :StorageMode, :VocabLibNameList
-        
+
         def initialize(functions=nil, seqid=nil, sessionid=nil, uservoicedata=nil, voiceencodetype=nil, voicefiletype=nil, isend=nil, lang=nil, storagemode=nil, vocablibnamelist=nil)
           @Functions = functions
           @SeqId = seqid
@@ -4314,7 +4314,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsrStat, :Texts, :VocabAnalysisDetailInfo, :VocabAnalysisStatInfo, :AllTexts, :AudioUrl, :RequestId
-        
+
         def initialize(asrstat=nil, texts=nil, vocabanalysisdetailinfo=nil, vocabanalysisstatinfo=nil, alltexts=nil, audiourl=nil, requestid=nil)
           @AsrStat = asrstat
           @Texts = texts
@@ -4368,7 +4368,7 @@ module TencentCloud
         # @type VocabLibName: String
 
         attr_accessor :VocabDetailInfo, :VocabLibName
-        
+
         def initialize(vocabdetailinfo=nil, vocablibname=nil)
           @VocabDetailInfo = vocabdetailinfo
           @VocabLibName = vocablibname
@@ -4395,7 +4395,7 @@ module TencentCloud
         # @type VocabLibName: String
 
         attr_accessor :VocabDetailInfo, :VocabLibName
-        
+
         def initialize(vocabdetailinfo=nil, vocablibname=nil)
           @VocabDetailInfo = vocabdetailinfo
           @VocabLibName = vocablibname
@@ -4428,7 +4428,7 @@ module TencentCloud
         # @type Speed: Float
 
         attr_accessor :TextItem, :AvgVolume, :MaxVolume, :MinVolume, :Speed
-        
+
         def initialize(textitem=nil, avgvolume=nil, maxvolume=nil, minvolume=nil, speed=nil)
           @TextItem = textitem
           @AvgVolume = avgvolume
@@ -4463,7 +4463,7 @@ module TencentCloud
         # @type Wsize: Integer
 
         attr_accessor :Confidence, :Mbtm, :Metm, :Text, :Wsize
-        
+
         def initialize(confidence=nil, mbtm=nil, metm=nil, text=nil, wsize=nil)
           @Confidence = confidence
           @Mbtm = mbtm
@@ -4489,7 +4489,7 @@ module TencentCloud
         # @type Metm: Integer
 
         attr_accessor :Mbtm, :Metm
-        
+
         def initialize(mbtm=nil, metm=nil)
           @Mbtm = mbtm
           @Metm = metm

@@ -42,7 +42,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :ActionType, :ActionTypeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
-        
+
         def initialize(actiontype=nil, actiontypename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @ActionType = actiontype
           @ActionTypeName = actiontypename
@@ -78,7 +78,7 @@ module TencentCloud
         # @type PayMode: String
 
         attr_accessor :GoodsName, :PayMode
-        
+
         def initialize(goodsname=nil, paymode=nil)
           @GoodsName = goodsname
           @PayMode = paymode
@@ -150,7 +150,7 @@ module TencentCloud
         # @type PriceInfo: Array
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo
-        
+
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
@@ -291,7 +291,12 @@ module TencentCloud
         # @type BlendedDiscount: String
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
-        
+        extend Gem::Deprecate
+        deprecate :SpecifiedPrice, :none, 2023, 6
+        deprecate :SpecifiedPrice=, :none, 2023, 6
+        deprecate :SPDeduction, :none, 2023, 6
+        deprecate :SPDeduction=, :none, 2023, 6
+
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
@@ -435,7 +440,10 @@ module TencentCloud
         # @type OriginalCostWithSP: String
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
-        
+        extend Gem::Deprecate
+        deprecate :SPDeduction, :none, 2023, 6
+        deprecate :SPDeduction=, :none, 2023, 6
+
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
@@ -534,7 +542,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -572,7 +580,7 @@ module TencentCloud
         # @type DeductMode: String
 
         attr_accessor :ActionType, :Amount, :Balance, :BillId, :OperationInfo, :OperationTime, :Cash, :Incentive, :Freezing, :PayChannel, :DeductMode
-        
+
         def initialize(actiontype=nil, amount=nil, balance=nil, billid=nil, operationinfo=nil, operationtime=nil, cash=nil, incentive=nil, freezing=nil, paychannel=nil, deductmode=nil)
           @ActionType = actiontype
           @Amount = amount
@@ -624,7 +632,7 @@ module TencentCloud
         # @type TransferPayAmount: String
 
         attr_accessor :BusinessCode, :BusinessCodeName, :TotalCost, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
-        
+
         def initialize(businesscode=nil, businesscodename=nil, totalcost=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
@@ -673,7 +681,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
-        
+
         def initialize(businesscode=nil, businesscodename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
@@ -717,7 +725,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :RealTotalCost, :VoucherPayAmount, :IncentivePayAmount, :CashPayAmount, :TransferPayAmount, :TotalCost
-        
+
         def initialize(realtotalcost=nil, voucherpayamount=nil, incentivepayamount=nil, cashpayamount=nil, transferpayamount=nil, totalcost=nil)
           @RealTotalCost = realtotalcost
           @VoucherPayAmount = voucherpayamount
@@ -745,7 +753,7 @@ module TencentCloud
         # @type BusinessCodeName: String
 
         attr_accessor :BusinessCode, :BusinessCodeName
-        
+
         def initialize(businesscode=nil, businesscodename=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
@@ -765,7 +773,7 @@ module TencentCloud
         # @type PayModeName: String
 
         attr_accessor :PayMode, :PayModeName
-        
+
         def initialize(paymode=nil, paymodename=nil)
           @PayMode = paymode
           @PayModeName = paymodename
@@ -785,7 +793,7 @@ module TencentCloud
         # @type ProjectName: String
 
         attr_accessor :ProjectId, :ProjectName
-        
+
         def initialize(projectid=nil, projectname=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -805,7 +813,7 @@ module TencentCloud
         # @type RegionName: String
 
         attr_accessor :RegionId, :RegionName
-        
+
         def initialize(regionid=nil, regionname=nil)
           @RegionId = regionid
           @RegionName = regionname
@@ -859,7 +867,7 @@ module TencentCloud
         # @type Status: Array
 
         attr_accessor :TimeRange, :BusinessCode, :ProjectId, :RegionId, :PayMode, :ResourceKeyword, :BusinessCodes, :ProductCodes, :RegionIds, :ProjectIds, :PayModes, :ActionTypes, :HideFreeCost, :OrderByCost, :BillIds, :ComponentCodes, :FileIds, :FileTypes, :Status
-        
+
         def initialize(timerange=nil, businesscode=nil, projectid=nil, regionid=nil, paymode=nil, resourcekeyword=nil, businesscodes=nil, productcodes=nil, regionids=nil, projectids=nil, paymodes=nil, actiontypes=nil, hidefreecost=nil, orderbycost=nil, billids=nil, componentcodes=nil, fileids=nil, filetypes=nil, status=nil)
           @TimeRange = timerange
           @BusinessCode = businesscode
@@ -929,7 +937,7 @@ module TencentCloud
         # @type TransferPayAmount: String
 
         attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :Trend, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
-        
+
         def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, trend=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
@@ -982,7 +990,7 @@ module TencentCloud
         # @type TransferPayAmount: String
 
         attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
-        
+
         def initialize(projectid=nil, projectname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1032,7 +1040,7 @@ module TencentCloud
         # @type Business: Array
 
         attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business
-        
+
         def initialize(regionid=nil, regionname=nil, realtotalcost=nil, trend=nil, business=nil)
           @RegionId = regionid
           @RegionName = regionname
@@ -1072,7 +1080,7 @@ module TencentCloud
         # @type PayMode: Array
 
         attr_accessor :Business, :Project, :Region, :PayMode
-        
+
         def initialize(business=nil, project=nil, region=nil, paymode=nil)
           @Business = business
           @Project = project
@@ -1173,7 +1181,7 @@ module TencentCloud
         # @type TransferPayAmount: String
 
         attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount
-        
+
         def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
@@ -1231,7 +1239,7 @@ module TencentCloud
         # @type RealTotalCost: String
 
         attr_accessor :RealTotalCost
-        
+
         def initialize(realtotalcost=nil)
           @RealTotalCost = realtotalcost
         end
@@ -1250,7 +1258,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -1280,7 +1288,7 @@ module TencentCloud
         # @type Unit: String
 
         attr_accessor :BucketName, :DosageBeginTime, :DosageEndTime, :SubProductCodeName, :BillingItemCodeName, :DosageValue, :Unit
-        
+
         def initialize(bucketname=nil, dosagebegintime=nil, dosageendtime=nil, subproductcodename=nil, billingitemcodename=nil, dosagevalue=nil, unit=nil)
           @BucketName = bucketname
           @DosageBeginTime = dosagebegintime
@@ -1330,7 +1338,7 @@ module TencentCloud
         # @type IncentivePayAmount: String
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :Cost, :Discount, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount
-        
+
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, cost=nil, discount=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
@@ -1399,7 +1407,7 @@ module TencentCloud
         # @type ProductCode: String
 
         attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode
-        
+
         def initialize(payeruin=nil, businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, feebegintime=nil, feeendtime=nil, componentset=nil, productcode=nil)
           @PayerUin = payeruin
           @BusinessCodeName = businesscodename
@@ -1521,7 +1529,7 @@ module TencentCloud
         # @type ResourceId: Array
 
         attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action, :ProductName, :SubProductName, :ResourceId
-        
+
         def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil, productname=nil, subproductname=nil, resourceid=nil)
           @OrderId = orderid
           @Status = status
@@ -1591,7 +1599,7 @@ module TencentCloud
       # DescribeAccountBalance请求参数结构体
       class DescribeAccountBalanceRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1631,7 +1639,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
-        
+
         def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance
           @Uin = uin
@@ -1727,7 +1735,7 @@ module TencentCloud
         # @type Context: String
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
-        
+
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
           @Limit = limit
@@ -1777,7 +1785,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DetailSet, :Total, :Context, :RequestId
-        
+
         def initialize(detailset=nil, total=nil, context=nil, requestid=nil)
           @DetailSet = detailset
           @Total = total
@@ -1841,7 +1849,7 @@ module TencentCloud
         # @type WithZeroAmount: Integer
 
         attr_accessor :StartTime, :EndTime, :Offset, :Limit, :PayType, :SubPayType, :WithZeroAmount
-        
+
         def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, paytype=nil, subpaytype=nil, withzeroamount=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1893,7 +1901,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TransactionList, :Total, :ReturnAmount, :RechargeAmount, :BlockAmount, :UnblockAmount, :DeductAmount, :AgentInAmount, :AdvanceRechargeAmount, :WithdrawAmount, :AgentOutAmount, :AdvancePayAmount, :RequestId
-        
+
         def initialize(transactionlist=nil, total=nil, returnamount=nil, rechargeamount=nil, blockamount=nil, unblockamount=nil, deductamount=nil, agentinamount=nil, advancerechargeamount=nil, withdrawamount=nil, agentoutamount=nil, advancepayamount=nil, requestid=nil)
           @TransactionList = transactionlist
           @Total = total
@@ -1986,7 +1994,7 @@ module TencentCloud
         # @type BusinessCode: String
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode
-        
+
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil)
           @Offset = offset
           @Limit = limit
@@ -2023,7 +2031,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResourceSummarySet, :Total, :RequestId
-        
+
         def initialize(resourcesummaryset=nil, total=nil, requestid=nil)
           @ResourceSummarySet = resourcesummaryset
           @Total = total
@@ -2054,7 +2062,7 @@ module TencentCloud
         # @type PayerUin: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin
-        
+
         def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2080,7 +2088,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
-        
+
         def initialize(ready=nil, summaryoverview=nil, requestid=nil)
           @Ready = ready
           @SummaryOverview = summaryoverview
@@ -2118,7 +2126,7 @@ module TencentCloud
         # @type PayType: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin, :PayType
-        
+
         def initialize(begintime=nil, endtime=nil, payeruin=nil, paytype=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2149,7 +2157,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryTotal, :SummaryOverview, :RequestId
-        
+
         def initialize(ready=nil, summarytotal=nil, summaryoverview=nil, requestid=nil)
           @Ready = ready
           @SummaryTotal = summarytotal
@@ -2185,7 +2193,7 @@ module TencentCloud
         # @type PayerUin: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin
-        
+
         def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2211,7 +2219,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
-        
+
         def initialize(ready=nil, summaryoverview=nil, requestid=nil)
           @Ready = ready
           @SummaryOverview = summaryoverview
@@ -2242,7 +2250,7 @@ module TencentCloud
         # @type PayerUin: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin
-        
+
         def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2268,7 +2276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
-        
+
         def initialize(ready=nil, summaryoverview=nil, requestid=nil)
           @Ready = ready
           @SummaryOverview = summaryoverview
@@ -2303,7 +2311,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :BeginTime, :EndTime, :TagKey, :PayerUin, :TagValue
-        
+
         def initialize(begintime=nil, endtime=nil, tagkey=nil, payeruin=nil, tagvalue=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2336,7 +2344,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :SummaryTotal, :RequestId
-        
+
         def initialize(ready=nil, summaryoverview=nil, summarytotal=nil, requestid=nil)
           @Ready = ready
           @SummaryOverview = summaryoverview
@@ -2372,7 +2380,7 @@ module TencentCloud
         # @type TagKey: Array
 
         attr_accessor :Month, :GroupType, :TagKey
-        
+
         def initialize(month=nil, grouptype=nil, tagkey=nil)
           @Month = month
           @GroupType = grouptype
@@ -2396,7 +2404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryDetail, :RequestId
-        
+
         def initialize(ready=nil, summarydetail=nil, requestid=nil)
           @Ready = ready
           @SummaryDetail = summarydetail
@@ -2440,7 +2448,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :Limit, :Offset, :BeginTime, :EndTime, :NeedRecordNum, :Month, :ProductCode, :PayMode, :ResourceId
-        
+
         def initialize(limit=nil, offset=nil, begintime=nil, endtime=nil, needrecordnum=nil, month=nil, productcode=nil, paymode=nil, resourceid=nil)
           @Limit = limit
           @Offset = offset
@@ -2478,7 +2486,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DetailSet, :Total, :RequestId
-        
+
         def initialize(detailset=nil, total=nil, requestid=nil)
           @DetailSet = detailset
           @Total = total
@@ -2515,7 +2523,7 @@ module TencentCloud
         # @type NeedRecordNum: Integer
 
         attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
-        
+
         def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2551,7 +2559,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
-        
+
         def initialize(ready=nil, total=nil, data=nil, recordnum=nil, requestid=nil)
           @Ready = ready
           @Total = total
@@ -2595,7 +2603,7 @@ module TencentCloud
         # @type NeedRecordNum: Integer
 
         attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
-        
+
         def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2629,7 +2637,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
-        
+
         def initialize(ready=nil, total=nil, data=nil, recordnum=nil, requestid=nil)
           @Ready = ready
           @Total = total
@@ -2673,7 +2681,7 @@ module TencentCloud
         # @type NeedRecordNum: Integer
 
         attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
-        
+
         def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2708,7 +2716,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
-        
+
         def initialize(ready=nil, total=nil, data=nil, recordnum=nil, requestid=nil)
           @Ready = ready
           @Total = total
@@ -2756,7 +2764,7 @@ module TencentCloud
         # @type Conditions: :class:`Tencentcloud::Billing.v20180709.models.Conditions`
 
         attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum, :NeedConditionValue, :Conditions
-        
+
         def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil, needconditionvalue=nil, conditions=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2803,7 +2811,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :ConditionValue, :RecordNum, :Data, :RequestId
-        
+
         def initialize(ready=nil, total=nil, conditionvalue=nil, recordnum=nil, data=nil, requestid=nil)
           @Ready = ready
           @Total = total
@@ -2868,7 +2876,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :StartTime, :EndTime, :Limit, :Offset, :Status, :OrderId, :BigDealId, :ResourceId
-        
+
         def initialize(starttime=nil, endtime=nil, limit=nil, offset=nil, status=nil, orderid=nil, bigdealid=nil, resourceid=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -2902,7 +2910,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Deals, :TotalCount, :RequestId
-        
+
         def initialize(deals=nil, totalcount=nil, requestid=nil)
           @Deals = deals
           @TotalCount = totalcount
@@ -2933,7 +2941,7 @@ module TencentCloud
         # @type BucketName: String
 
         attr_accessor :StartDate, :EndDate, :BucketName
-        
+
         def initialize(startdate=nil, enddate=nil, bucketname=nil)
           @StartDate = startdate
           @EndDate = enddate
@@ -2955,7 +2963,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DetailSets, :RequestId
-        
+
         def initialize(detailsets=nil, requestid=nil)
           @DetailSets = detailsets
           @RequestId = requestid
@@ -3007,7 +3015,7 @@ module TencentCloud
         # @type InstanceID: String
 
         attr_accessor :StartDate, :EndDate, :ProductCode, :Domain, :InstanceID
-        
+
         def initialize(startdate=nil, enddate=nil, productcode=nil, domain=nil, instanceid=nil)
           @StartDate = startdate
           @EndDate = enddate
@@ -3043,7 +3051,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Unit, :DetailSets, :RetCode, :RetMsg, :RequestId
-        
+
         def initialize(unit=nil, detailsets=nil, retcode=nil, retmsg=nil, requestid=nil)
           @Unit = unit
           @DetailSets = detailsets
@@ -3102,7 +3110,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator
-        
+
         def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil)
           @Limit = limit
           @Offset = offset
@@ -3153,7 +3161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TotalBalance, :VoucherInfos, :RequestId
-        
+
         def initialize(totalcount=nil, totalbalance=nil, voucherinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @TotalBalance = totalbalance
@@ -3188,7 +3196,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Limit, :Offset, :VoucherId, :Operator
-        
+
         def initialize(limit=nil, offset=nil, voucherid=nil, operator=nil)
           @Limit = limit
           @Offset = offset
@@ -3217,7 +3225,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TotalUsedAmount, :UsageRecords, :RequestId
-        
+
         def initialize(totalcount=nil, totalusedamount=nil, usagerecords=nil, requestid=nil)
           @TotalCount = totalcount
           @TotalUsedAmount = totalusedamount
@@ -3248,7 +3256,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Time, :Value
-        
+
         def initialize(time=nil, value=nil)
           @Time = time
           @Value = value
@@ -3271,7 +3279,7 @@ module TencentCloud
         # @type InstanceID: String
 
         attr_accessor :Domain, :DetailPoints, :InstanceID
-        
+
         def initialize(domain=nil, detailpoints=nil, instanceid=nil)
           @Domain = domain
           @DetailPoints = detailpoints
@@ -3300,7 +3308,7 @@ module TencentCloud
         # @type PayMode: String
 
         attr_accessor :GoodsName, :PayMode
-        
+
         def initialize(goodsname=nil, paymode=nil)
           @GoodsName = goodsname
           @PayMode = paymode
@@ -3324,7 +3332,7 @@ module TencentCloud
         # @type BigDealIds: Array
 
         attr_accessor :OrderIds, :AutoVoucher, :VoucherIds, :BigDealIds
-        
+
         def initialize(orderids=nil, autovoucher=nil, voucherids=nil, bigdealids=nil)
           @OrderIds = orderids
           @AutoVoucher = autovoucher
@@ -3352,7 +3360,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderIds, :ResourceIds, :BigDealIds, :RequestId
-        
+
         def initialize(orderids=nil, resourceids=nil, bigdealids=nil, requestid=nil)
           @OrderIds = orderids
           @ResourceIds = resourceids
@@ -3392,7 +3400,7 @@ module TencentCloud
         # @type Detail: Array
 
         attr_accessor :PayMode, :PayModeName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :TotalCost, :Detail
-        
+
         def initialize(paymode=nil, paymodename=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, totalcost=nil, detail=nil)
           @PayMode = paymode
           @PayModeName = paymodename
@@ -3435,7 +3443,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Name, :Value
-        
+
         def initialize(name=nil, value=nil)
           @Name = name
           @Value = value
@@ -3471,7 +3479,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :ProjectId, :ProjectName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
-        
+
         def initialize(projectid=nil, projectname=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @ProjectId = projectid
           @ProjectName = projectname
@@ -3524,7 +3532,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :RegionId, :RegionName, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :BillMonth, :TotalCost
-        
+
         def initialize(regionid=nil, regionname=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, billmonth=nil, totalcost=nil)
           @RegionId = regionid
           @RegionName = regionname
@@ -3578,7 +3586,7 @@ module TencentCloud
         # @type Business: Array
 
         attr_accessor :GroupKey, :GroupValue, :TotalCost, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :Business
-        
+
         def initialize(groupkey=nil, groupvalue=nil, totalcost=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, business=nil)
           @GroupKey = groupkey
           @GroupValue = groupvalue
@@ -3621,7 +3629,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :RealTotalCost, :TotalCost
-        
+
         def initialize(realtotalcost=nil, totalcost=nil)
           @RealTotalCost = realtotalcost
           @TotalCost = totalcost
@@ -3661,7 +3669,7 @@ module TencentCloud
         # @type TotalCost: String
 
         attr_accessor :TagValue, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :TotalCost
-        
+
         def initialize(tagvalue=nil, realtotalcostratio=nil, realtotalcost=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, totalcost=nil)
           @TagValue = tagvalue
           @RealTotalCostRatio = realtotalcostratio
@@ -3695,7 +3703,7 @@ module TencentCloud
         # @type SubProductName: String
 
         attr_accessor :ProductName, :SubProductName
-        
+
         def initialize(productname=nil, subproductname=nil)
           @ProductName = productname
           @SubProductName = subproductname
@@ -3718,7 +3726,7 @@ module TencentCloud
         # @type UsageDetails: Array
 
         attr_accessor :UsedAmount, :UsedTime, :UsageDetails
-        
+
         def initialize(usedamount=nil, usedtime=nil, usagedetails=nil)
           @UsedAmount = usedamount
           @UsedTime = usedtime
@@ -3767,7 +3775,7 @@ module TencentCloud
         # @type ExcludedProducts: Array
 
         attr_accessor :OwnerUin, :Status, :NominalValue, :Balance, :VoucherId, :PayMode, :PayScene, :BeginTime, :EndTime, :ApplicableProducts, :ExcludedProducts
-        
+
         def initialize(owneruin=nil, status=nil, nominalvalue=nil, balance=nil, voucherid=nil, paymode=nil, payscene=nil, begintime=nil, endtime=nil, applicableproducts=nil, excludedproducts=nil)
           @OwnerUin = owneruin
           @Status = status

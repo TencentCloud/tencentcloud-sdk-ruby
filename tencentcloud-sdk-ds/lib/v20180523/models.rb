@@ -31,7 +31,7 @@ module TencentCloud
         # @type VerifyCode: String
 
         attr_accessor :Module, :Operation, :AccountResId, :ContractResId, :VerifyCode
-        
+
         def initialize(_module=nil, operation=nil, accountresid=nil, contractresid=nil, verifycode=nil)
           @Module = _module
           @Operation = operation
@@ -55,7 +55,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -85,7 +85,7 @@ module TencentCloud
         # @type ExpireTime: String
 
         attr_accessor :Module, :Operation, :SignInfos, :ContractFile, :ContractName, :Remarks, :Initiator, :ExpireTime
-        
+
         def initialize(_module=nil, operation=nil, signinfos=nil, contractfile=nil, contractname=nil, remarks=nil, initiator=nil, expiretime=nil)
           @Module = _module
           @Operation = operation
@@ -124,7 +124,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -162,7 +162,7 @@ module TencentCloud
         # @type Email: String
 
         attr_accessor :Module, :Operation, :Name, :IdentType, :IdentNo, :MobilePhone, :TransactorName, :TransactorIdentType, :TransactorIdentNo, :TransactorPhone, :Email
-        
+
         def initialize(_module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil, transactorname=nil, transactoridenttype=nil, transactoridentno=nil, transactorphone=nil, email=nil)
           @Module = _module
           @Operation = operation
@@ -200,7 +200,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccountResId, :RequestId
-        
+
         def initialize(accountresid=nil, requestid=nil)
           @AccountResId = accountresid
           @RequestId = requestid
@@ -228,7 +228,7 @@ module TencentCloud
         # @type MobilePhone: String
 
         attr_accessor :Module, :Operation, :Name, :IdentType, :IdentNo, :MobilePhone
-        
+
         def initialize(_module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil)
           @Module = _module
           @Operation = operation
@@ -256,7 +256,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AccountResId, :RequestId
-        
+
         def initialize(accountresid=nil, requestid=nil)
           @AccountResId = accountresid
           @RequestId = requestid
@@ -282,7 +282,7 @@ module TencentCloud
         # @type ImgData: String
 
         attr_accessor :Module, :Operation, :AccountResId, :ImgUrl, :ImgData
-        
+
         def initialize(_module=nil, operation=nil, accountresid=nil, imgurl=nil, imgdata=nil)
           @Module = _module
           @Operation = operation
@@ -308,7 +308,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealResId, :RequestId
-        
+
         def initialize(sealresid=nil, requestid=nil)
           @SealResId = sealresid
           @RequestId = requestid
@@ -330,7 +330,7 @@ module TencentCloud
         # @type AccountList: Array
 
         attr_accessor :Module, :Operation, :AccountList
-        
+
         def initialize(_module=nil, operation=nil, accountlist=nil)
           @Module = _module
           @Operation = operation
@@ -354,7 +354,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DelSuccessList, :DelFailedList, :RequestId
-        
+
         def initialize(delsuccesslist=nil, delfailedlist=nil, requestid=nil)
           @DelSuccessList = delsuccesslist
           @DelFailedList = delfailedlist
@@ -380,7 +380,7 @@ module TencentCloud
         # @type SealResId: String
 
         attr_accessor :Module, :Operation, :AccountResId, :SealResId
-        
+
         def initialize(_module=nil, operation=nil, accountresid=nil, sealresid=nil)
           @Module = _module
           @Operation = operation
@@ -404,7 +404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealResId, :RequestId
-        
+
         def initialize(sealresid=nil, requestid=nil)
           @SealResId = sealresid
           @RequestId = requestid
@@ -426,7 +426,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :Module, :Operation, :TaskId
-        
+
         def initialize(_module=nil, operation=nil, taskid=nil)
           @Module = _module
           @Operation = operation
@@ -450,7 +450,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskResult, :TaskType, :RequestId
-        
+
         def initialize(taskresult=nil, tasktype=nil, requestid=nil)
           @TaskResult = taskresult
           @TaskType = tasktype
@@ -474,7 +474,7 @@ module TencentCloud
         # @type ContractResId: String
 
         attr_accessor :Module, :Operation, :ContractResId
-        
+
         def initialize(_module=nil, operation=nil, contractresid=nil)
           @Module = _module
           @Operation = operation
@@ -496,7 +496,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -520,7 +520,7 @@ module TencentCloud
         # @type AccountResId: String
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId
-        
+
         def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil)
           @Module = _module
           @Operation = operation
@@ -542,7 +542,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -576,7 +576,7 @@ module TencentCloud
         # @type ImageData: String
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId, :SignLocations, :AuthorizationTime, :Position, :SealResId, :CertType, :ImageData
-        
+
         def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil, signlocations=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
           @Module = _module
           @Operation = operation
@@ -617,7 +617,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -651,7 +651,7 @@ module TencentCloud
         # @type ImageData: String
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId, :SignKeyword, :AuthorizationTime, :Position, :SealResId, :CertType, :ImageData
-        
+
         def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil, signkeyword=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
           @Module = _module
           @Operation = operation
@@ -688,7 +688,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -716,7 +716,7 @@ module TencentCloud
         # @type SignLocation: String
 
         attr_accessor :AccountResId, :AuthorizationTime, :Location, :SealId, :ImageData, :CertType, :SignLocation
-        
+
         def initialize(accountresid=nil, authorizationtime=nil, location=nil, sealid=nil, imagedata=nil, certtype=nil, signlocation=nil)
           @AccountResId = accountresid
           @AuthorizationTime = authorizationtime
@@ -752,7 +752,7 @@ module TencentCloud
         # @type ImageHeight: String
 
         attr_accessor :Keyword, :OffsetCoordX, :OffsetCoordY, :ImageWidth, :ImageHeight
-        
+
         def initialize(keyword=nil, offsetcoordx=nil, offsetcoordy=nil, imagewidth=nil, imageheight=nil)
           @Keyword = keyword
           @OffsetCoordX = offsetcoordx
@@ -784,7 +784,7 @@ module TencentCloud
         # @type SignLocationRUY: String
 
         attr_accessor :SignOnPage, :SignLocationLBX, :SignLocationLBY, :SignLocationRUX, :SignLocationRUY
-        
+
         def initialize(signonpage=nil, signlocationlbx=nil, signlocationlby=nil, signlocationrux=nil, signlocationruy=nil)
           @SignOnPage = signonpage
           @SignLocationLBX = signlocationlbx

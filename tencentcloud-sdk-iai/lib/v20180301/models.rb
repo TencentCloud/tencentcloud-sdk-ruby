@@ -40,7 +40,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :Mode, :Image, :Url, :FaceModelVersion, :NeedRotateDetection
-        
+
         def initialize(mode=nil, image=nil, url=nil, facemodelversion=nil, needrotatedetection=nil)
           @Mode = mode
           @Image = image
@@ -72,7 +72,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :DenseFaceShapeSet, :FaceModelVersion, :RequestId
-        
+
         def initialize(imagewidth=nil, imageheight=nil, densefaceshapeset=nil, facemodelversion=nil, requestid=nil)
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -124,7 +124,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :Mode, :Image, :Url, :FaceModelVersion, :NeedRotateDetection
-        
+
         def initialize(mode=nil, image=nil, url=nil, facemodelversion=nil, needrotatedetection=nil)
           @Mode = mode
           @Image = image
@@ -156,7 +156,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceShapeSet, :FaceModelVersion, :RequestId
-        
+
         def initialize(imagewidth=nil, imageheight=nil, faceshapeset=nil, facemodelversion=nil, requestid=nil)
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -189,7 +189,7 @@ module TencentCloud
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
-        
+
         def initialize(type=nil, probability=nil)
           @Type = type
           @Probability = probability
@@ -226,7 +226,7 @@ module TencentCloud
         # @type PersonGroupInfos: Array
 
         attr_accessor :PersonId, :FaceId, :Score, :PersonName, :Gender, :PersonGroupInfos
-        
+
         def initialize(personid=nil, faceid=nil, score=nil, personname=nil, gender=nil, persongroupinfos=nil)
           @PersonId = personid
           @FaceId = faceid
@@ -300,7 +300,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :ImageA, :ImageB, :UrlA, :UrlB, :FaceModelVersion, :QualityControl, :NeedRotateDetection
-        
+
         def initialize(imagea=nil, imageb=nil, urla=nil, urlb=nil, facemodelversion=nil, qualitycontrol=nil, needrotatedetection=nil)
           @ImageA = imagea
           @ImageB = imageb
@@ -336,7 +336,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :RequestId
-        
+
         def initialize(score=nil, facemodelversion=nil, requestid=nil)
           @Score = score
           @FaceModelVersion = facemodelversion
@@ -358,7 +358,7 @@ module TencentCloud
         # @type GroupIds: Array
 
         attr_accessor :PersonId, :GroupIds
-        
+
         def initialize(personid=nil, groupids=nil)
           @PersonId = personid
           @GroupIds = groupids
@@ -380,7 +380,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SucGroupNum, :SucGroupIds, :RequestId
-        
+
         def initialize(sucgroupnum=nil, sucgroupids=nil, requestid=nil)
           @SucGroupNum = sucgroupnum
           @SucGroupIds = sucgroupids
@@ -427,7 +427,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :PersonId, :Images, :Urls, :FaceMatchThreshold, :QualityControl, :NeedRotateDetection
-        
+
         def initialize(personid=nil, images=nil, urls=nil, facematchthreshold=nil, qualitycontrol=nil, needrotatedetection=nil)
           @PersonId = personid
           @Images = images
@@ -469,7 +469,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SucFaceNum, :SucFaceIds, :RetCode, :SucIndexes, :SucFaceRects, :FaceModelVersion, :RequestId
-        
+
         def initialize(sucfacenum=nil, sucfaceids=nil, retcode=nil, sucindexes=nil, sucfacerects=nil, facemodelversion=nil, requestid=nil)
           @SucFaceNum = sucfacenum
           @SucFaceIds = sucfaceids
@@ -526,7 +526,7 @@ module TencentCloud
         # @type FaceModelVersion: String
 
         attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion
-        
+
         def initialize(groupname=nil, groupid=nil, groupexdescriptions=nil, tag=nil, facemodelversion=nil)
           @GroupName = groupname
           @GroupId = groupid
@@ -552,7 +552,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceModelVersion, :RequestId
-        
+
         def initialize(facemodelversion=nil, requestid=nil)
           @FaceModelVersion = facemodelversion
           @RequestId = requestid
@@ -609,7 +609,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :GroupId, :PersonName, :PersonId, :Gender, :PersonExDescriptionInfos, :Image, :Url, :UniquePersonControl, :QualityControl, :NeedRotateDetection
-        
+
         def initialize(groupid=nil, personname=nil, personid=nil, gender=nil, personexdescriptioninfos=nil, image=nil, url=nil, uniquepersoncontrol=nil, qualitycontrol=nil, needrotatedetection=nil)
           @GroupId = groupid
           @PersonName = personname
@@ -660,7 +660,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceId, :FaceRect, :SimilarPersonId, :FaceModelVersion, :RequestId
-        
+
         def initialize(faceid=nil, facerect=nil, similarpersonid=nil, facemodelversion=nil, requestid=nil)
           @FaceId = faceid
           @FaceRect = facerect
@@ -689,7 +689,7 @@ module TencentCloud
         # @type FaceIds: Array
 
         attr_accessor :PersonId, :FaceIds
-        
+
         def initialize(personid=nil, faceids=nil)
           @PersonId = personid
           @FaceIds = faceids
@@ -711,7 +711,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SucDeletedNum, :SucFaceIds, :RequestId
-        
+
         def initialize(sucdeletednum=nil, sucfaceids=nil, requestid=nil)
           @SucDeletedNum = sucdeletednum
           @SucFaceIds = sucfaceids
@@ -731,7 +731,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :GroupId
-        
+
         def initialize(groupid=nil)
           @GroupId = groupid
         end
@@ -747,7 +747,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -765,7 +765,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :PersonId, :GroupId
-        
+
         def initialize(personid=nil, groupid=nil)
           @PersonId = personid
           @GroupId = groupid
@@ -783,7 +783,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -799,7 +799,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :PersonId
-        
+
         def initialize(personid=nil)
           @PersonId = personid
         end
@@ -815,7 +815,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -865,7 +865,7 @@ module TencentCloud
         # @type Forehead: Array
 
         attr_accessor :X, :Y, :Width, :Height, :LeftEye, :RightEye, :LeftEyeBrow, :RightEyeBrow, :MouthOutside, :MouthInside, :Nose, :LeftPupil, :RightPupil, :CentralAxis, :Chin, :LeftEyeBags, :RightEyeBags, :Forehead
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, lefteye=nil, righteye=nil, lefteyebrow=nil, righteyebrow=nil, mouthoutside=nil, mouthinside=nil, nose=nil, leftpupil=nil, rightpupil=nil, centralaxis=nil, chin=nil, lefteyebags=nil, righteyebags=nil, forehead=nil)
           @X = x
           @Y = y
@@ -1039,7 +1039,7 @@ module TencentCloud
         # @type FaceModelVersion: String
 
         attr_accessor :MaxFaceNum, :Image, :Url, :FaceAttributesType, :NeedRotateDetection, :FaceModelVersion
-        
+
         def initialize(maxfacenum=nil, image=nil, url=nil, faceattributestype=nil, needrotatedetection=nil, facemodelversion=nil)
           @MaxFaceNum = maxfacenum
           @Image = image
@@ -1073,7 +1073,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceDetailInfos, :FaceModelVersion, :RequestId
-        
+
         def initialize(imagewidth=nil, imageheight=nil, facedetailinfos=nil, facemodelversion=nil, requestid=nil)
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -1134,7 +1134,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :MaxFaceNum, :MinFaceSize, :Image, :Url, :NeedFaceAttributes, :NeedQualityDetection, :FaceModelVersion, :NeedRotateDetection
-        
+
         def initialize(maxfacenum=nil, minfacesize=nil, image=nil, url=nil, needfaceattributes=nil, needqualitydetection=nil, facemodelversion=nil, needrotatedetection=nil)
           @MaxFaceNum = maxfacenum
           @MinFaceSize = minfacesize
@@ -1180,7 +1180,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceInfos, :FaceModelVersion, :RequestId
-        
+
         def initialize(imagewidth=nil, imageheight=nil, faceinfos=nil, facemodelversion=nil, requestid=nil)
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -1229,7 +1229,7 @@ module TencentCloud
         # @type FaceModelVersion: String
 
         attr_accessor :Image, :Url, :FaceModelVersion
-        
+
         def initialize(image=nil, url=nil, facemodelversion=nil)
           @Image = image
           @Url = url
@@ -1257,7 +1257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :IsLiveness, :RequestId
-        
+
         def initialize(score=nil, facemodelversion=nil, isliveness=nil, requestid=nil)
           @Score = score
           @FaceModelVersion = facemodelversion
@@ -1289,7 +1289,7 @@ module TencentCloud
         # @type EyeSize: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Glass, :EyeOpen, :EyelidType, :EyeSize
-        
+
         def initialize(glass=nil, eyeopen=nil, eyelidtype=nil, eyesize=nil)
           @Glass = glass
           @EyeOpen = eyeopen
@@ -1330,7 +1330,7 @@ module TencentCloud
         # @type EyebrowLength: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :EyebrowDensity, :EyebrowCurve, :EyebrowLength
-        
+
         def initialize(eyebrowdensity=nil, eyebrowcurve=nil, eyebrowlength=nil)
           @EyebrowDensity = eyebrowdensity
           @EyebrowCurve = eyebrowcurve
@@ -1389,7 +1389,7 @@ module TencentCloud
         # @type EyeOpen: Boolean
 
         attr_accessor :Gender, :Age, :Expression, :Glass, :Pitch, :Yaw, :Roll, :Beauty, :Hat, :Mask, :Hair, :EyeOpen
-        
+
         def initialize(gender=nil, age=nil, expression=nil, glass=nil, pitch=nil, yaw=nil, roll=nil, beauty=nil, hat=nil, mask=nil, hair=nil, eyeopen=nil)
           @Gender = gender
           @Age = age
@@ -1487,7 +1487,7 @@ module TencentCloud
         # @type Smile: Integer
 
         attr_accessor :Age, :Beauty, :Emotion, :Eye, :Eyebrow, :Gender, :Hair, :Hat, :HeadPose, :Mask, :Mouth, :Moustache, :Nose, :Shape, :Skin, :Smile
-        
+
         def initialize(age=nil, beauty=nil, emotion=nil, eye=nil, eyebrow=nil, gender=nil, hair=nil, hat=nil, headpose=nil, mask=nil, mouth=nil, moustache=nil, nose=nil, shape=nil, skin=nil, smile=nil)
           @Age = age
           @Beauty = beauty
@@ -1578,7 +1578,7 @@ module TencentCloud
         # @type FaceDetailAttributesInfo: :class:`Tencentcloud::Iai.v20180301.models.FaceDetailAttributesInfo`
 
         attr_accessor :FaceRect, :FaceDetailAttributesInfo
-        
+
         def initialize(facerect=nil, facedetailattributesinfo=nil)
           @FaceRect = facerect
           @FaceDetailAttributesInfo = facedetailattributesinfo
@@ -1609,7 +1609,7 @@ module TencentCloud
         # @type Color: Integer
 
         attr_accessor :Length, :Bang, :Color
-        
+
         def initialize(length=nil, bang=nil, color=nil)
           @Length = length
           @Bang = bang
@@ -1645,7 +1645,7 @@ module TencentCloud
         # @type FaceQualityInfo: :class:`Tencentcloud::Iai.v20180301.models.FaceQualityInfo`
 
         attr_accessor :X, :Y, :Width, :Height, :FaceAttributesInfo, :FaceQualityInfo
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, faceattributesinfo=nil, facequalityinfo=nil)
           @X = x
           @Y = y
@@ -1699,7 +1699,7 @@ module TencentCloud
         # @type Chin: Integer
 
         attr_accessor :Eyebrow, :Eye, :Nose, :Cheek, :Mouth, :Chin
-        
+
         def initialize(eyebrow=nil, eye=nil, nose=nil, cheek=nil, mouth=nil, chin=nil)
           @Eyebrow = eyebrow
           @Eye = eye
@@ -1742,7 +1742,7 @@ module TencentCloud
         # @type Completeness: :class:`Tencentcloud::Iai.v20180301.models.FaceQualityCompleteness`
 
         attr_accessor :Score, :Sharpness, :Brightness, :Completeness
-        
+
         def initialize(score=nil, sharpness=nil, brightness=nil, completeness=nil)
           @Score = score
           @Sharpness = sharpness
@@ -1777,7 +1777,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil)
           @X = x
           @Y = y
@@ -1815,7 +1815,7 @@ module TencentCloud
         # @type RightPupil: Array
 
         attr_accessor :FaceProfile, :LeftEye, :RightEye, :LeftEyeBrow, :RightEyeBrow, :Mouth, :Nose, :LeftPupil, :RightPupil
-        
+
         def initialize(faceprofile=nil, lefteye=nil, righteye=nil, lefteyebrow=nil, righteyebrow=nil, mouth=nil, nose=nil, leftpupil=nil, rightpupil=nil)
           @FaceProfile = faceprofile
           @LeftEye = lefteye
@@ -1910,7 +1910,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :GroupId
-        
+
         def initialize(groupid=nil)
           @GroupId = groupid
         end
@@ -1938,7 +1938,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp, :RequestId
-        
+
         def initialize(groupname=nil, groupid=nil, groupexdescriptions=nil, tag=nil, facemodelversion=nil, creationtimestamp=nil, requestid=nil)
           @GroupName = groupname
           @GroupId = groupid
@@ -1968,7 +1968,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -1991,7 +1991,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :GroupInfos, :GroupNum, :RequestId
-        
+
         def initialize(groupinfos=nil, groupnum=nil, requestid=nil)
           @GroupInfos = groupinfos
           @GroupNum = groupnum
@@ -2018,7 +2018,7 @@ module TencentCloud
         # @type PersonId: String
 
         attr_accessor :PersonId
-        
+
         def initialize(personid=nil)
           @PersonId = personid
         end
@@ -2040,7 +2040,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonName, :Gender, :FaceIds, :RequestId
-        
+
         def initialize(personname=nil, gender=nil, faceids=nil, requestid=nil)
           @PersonName = personname
           @Gender = gender
@@ -2066,7 +2066,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :PersonId, :Offset, :Limit
-        
+
         def initialize(personid=nil, offset=nil, limit=nil)
           @PersonId = personid
           @Offset = offset
@@ -2094,7 +2094,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonGroupInfos, :GroupNum, :FaceModelVersion, :RequestId
-        
+
         def initialize(persongroupinfos=nil, groupnum=nil, facemodelversion=nil, requestid=nil)
           @PersonGroupInfos = persongroupinfos
           @GroupNum = groupnum
@@ -2123,7 +2123,7 @@ module TencentCloud
         # @type GroupId: String
 
         attr_accessor :GroupId
-        
+
         def initialize(groupid=nil)
           @GroupId = groupid
         end
@@ -2143,7 +2143,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonNum, :FaceNum, :RequestId
-        
+
         def initialize(personnum=nil, facenum=nil, requestid=nil)
           @PersonNum = personnum
           @FaceNum = facenum
@@ -2167,7 +2167,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :GroupId, :Offset, :Limit
-        
+
         def initialize(groupid=nil, offset=nil, limit=nil)
           @GroupId = groupid
           @Offset = offset
@@ -2198,7 +2198,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonInfos, :PersonNum, :FaceNum, :FaceModelVersion, :RequestId
-        
+
         def initialize(personinfos=nil, personnum=nil, facenum=nil, facemodelversion=nil, requestid=nil)
           @PersonInfos = personinfos
           @PersonNum = personnum
@@ -2231,7 +2231,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -2253,7 +2253,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobInfos, :JobNum, :RequestId
-        
+
         def initialize(jobinfos=nil, jobnum=nil, requestid=nil)
           @JobInfos = jobinfos
           @JobNum = jobnum
@@ -2280,7 +2280,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -2317,7 +2317,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EndTimestamp, :Progress, :Status, :StartTime, :FromFaceModelVersion, :ToFaceModelVersion, :GroupId, :FailedFacesUrl, :RequestId
-        
+
         def initialize(endtimestamp=nil, progress=nil, status=nil, starttime=nil, fromfacemodelversion=nil, tofacemodelversion=nil, groupid=nil, failedfacesurl=nil, requestid=nil)
           @EndTimestamp = endtimestamp
           @Progress = progress
@@ -2351,7 +2351,7 @@ module TencentCloud
         # @type Candidates: Array
 
         attr_accessor :GroupId, :Candidates
-        
+
         def initialize(groupid=nil, candidates=nil)
           @GroupId = groupid
           @Candidates = candidates
@@ -2378,7 +2378,7 @@ module TencentCloud
         # @type GroupExDescription: String
 
         attr_accessor :GroupExDescriptionIndex, :GroupExDescription
-        
+
         def initialize(groupexdescriptionindex=nil, groupexdescription=nil)
           @GroupExDescriptionIndex = groupexdescriptionindex
           @GroupExDescription = groupexdescription
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type CreationTimestamp: Integer
 
         attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp
-        
+
         def initialize(groupname=nil, groupid=nil, groupexdescriptions=nil, tag=nil, facemodelversion=nil, creationtimestamp=nil)
           @GroupName = groupname
           @GroupId = groupid
@@ -2444,7 +2444,7 @@ module TencentCloud
         # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Length, :Bang, :Color
-        
+
         def initialize(length=nil, bang=nil, color=nil)
           @Length = length
           @Bang = bang
@@ -2477,7 +2477,7 @@ module TencentCloud
         # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Style, :Color
-        
+
         def initialize(style=nil, color=nil)
           @Style = style
           @Color = color
@@ -2505,7 +2505,7 @@ module TencentCloud
         # @type Roll: Integer
 
         attr_accessor :Pitch, :Yaw, :Roll
-        
+
         def initialize(pitch=nil, yaw=nil, roll=nil)
           @Pitch = pitch
           @Yaw = yaw
@@ -2531,7 +2531,7 @@ module TencentCloud
         # @type Tag: String
 
         attr_accessor :GroupId, :GroupName, :GroupExDescriptionInfos, :Tag
-        
+
         def initialize(groupid=nil, groupname=nil, groupexdescriptioninfos=nil, tag=nil)
           @GroupId = groupid
           @GroupName = groupname
@@ -2560,7 +2560,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2580,7 +2580,7 @@ module TencentCloud
         # @type Gender: Integer
 
         attr_accessor :PersonId, :PersonName, :Gender
-        
+
         def initialize(personid=nil, personname=nil, gender=nil)
           @PersonId = personid
           @PersonName = personname
@@ -2600,7 +2600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2620,7 +2620,7 @@ module TencentCloud
         # @type PersonExDescriptionInfos: Array
 
         attr_accessor :GroupId, :PersonId, :PersonExDescriptionInfos
-        
+
         def initialize(groupid=nil, personid=nil, personexdescriptioninfos=nil)
           @GroupId = groupid
           @PersonId = personid
@@ -2647,7 +2647,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2664,7 +2664,7 @@ module TencentCloud
         # @type MouthOpen: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :MouthOpen
-        
+
         def initialize(mouthopen=nil)
           @MouthOpen = mouthopen
         end
@@ -2685,7 +2685,7 @@ module TencentCloud
         # @type PersonExDescription: String
 
         attr_accessor :PersonExDescriptionIndex, :PersonExDescription
-        
+
         def initialize(personexdescriptionindex=nil, personexdescription=nil)
           @PersonExDescriptionIndex = personexdescriptionindex
           @PersonExDescription = personexdescription
@@ -2705,7 +2705,7 @@ module TencentCloud
         # @type PersonExDescriptions: Array
 
         attr_accessor :GroupId, :PersonExDescriptions
-        
+
         def initialize(groupid=nil, personexdescriptions=nil)
           @GroupId = groupid
           @PersonExDescriptions = personexdescriptions
@@ -2734,7 +2734,7 @@ module TencentCloud
         # @type CreationTimestamp: Integer
 
         attr_accessor :PersonName, :PersonId, :Gender, :PersonExDescriptions, :FaceIds, :CreationTimestamp
-        
+
         def initialize(personname=nil, personid=nil, gender=nil, personexdescriptions=nil, faceids=nil, creationtimestamp=nil)
           @PersonName = personname
           @PersonId = personid
@@ -2762,7 +2762,7 @@ module TencentCloud
         # @type Y: Integer
 
         attr_accessor :X, :Y
-        
+
         def initialize(x=nil, y=nil)
           @X = x
           @Y = y
@@ -2785,7 +2785,7 @@ module TencentCloud
         # @type RetCode: Integer
 
         attr_accessor :Candidates, :FaceRect, :RetCode
-        
+
         def initialize(candidates=nil, facerect=nil, retcode=nil)
           @Candidates = candidates
           @FaceRect = facerect
@@ -2820,7 +2820,7 @@ module TencentCloud
         # @type RetCode: Integer
 
         attr_accessor :FaceRect, :GroupCandidates, :RetCode
-        
+
         def initialize(facerect=nil, groupcandidates=nil, retcode=nil)
           @FaceRect = facerect
           @GroupCandidates = groupcandidates
@@ -2850,7 +2850,7 @@ module TencentCloud
         # @type JobId: String
 
         attr_accessor :JobId
-        
+
         def initialize(jobid=nil)
           @JobId = jobid
         end
@@ -2866,7 +2866,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2916,7 +2916,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :GroupIds, :Image, :Url, :MaxFaceNum, :MinFaceSize, :MaxPersonNum, :NeedPersonInfo, :QualityControl, :FaceMatchThreshold, :NeedRotateDetection
-        
+
         def initialize(groupids=nil, image=nil, url=nil, maxfacenum=nil, minfacesize=nil, maxpersonnum=nil, needpersoninfo=nil, qualitycontrol=nil, facematchthreshold=nil, needrotatedetection=nil)
           @GroupIds = groupids
           @Image = image
@@ -2956,7 +2956,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :FaceNum, :FaceModelVersion, :RequestId
-        
+
         def initialize(results=nil, facenum=nil, facemodelversion=nil, requestid=nil)
           @Results = results
           @FaceNum = facenum
@@ -3020,7 +3020,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :GroupIds, :Image, :Url, :MaxFaceNum, :MinFaceSize, :MaxPersonNumPerGroup, :NeedPersonInfo, :QualityControl, :FaceMatchThreshold, :NeedRotateDetection
-        
+
         def initialize(groupids=nil, image=nil, url=nil, maxfacenum=nil, minfacesize=nil, maxpersonnumpergroup=nil, needpersoninfo=nil, qualitycontrol=nil, facematchthreshold=nil, needrotatedetection=nil)
           @GroupIds = groupids
           @Image = image
@@ -3060,7 +3060,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FaceNum, :ResultsReturnsByGroup, :FaceModelVersion, :RequestId
-        
+
         def initialize(facenum=nil, resultsreturnsbygroup=nil, facemodelversion=nil, requestid=nil)
           @FaceNum = facenum
           @ResultsReturnsByGroup = resultsreturnsbygroup
@@ -3124,7 +3124,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :GroupIds, :Image, :Url, :MaxFaceNum, :MinFaceSize, :MaxPersonNum, :QualityControl, :FaceMatchThreshold, :NeedPersonInfo, :NeedRotateDetection
-        
+
         def initialize(groupids=nil, image=nil, url=nil, maxfacenum=nil, minfacesize=nil, maxpersonnum=nil, qualitycontrol=nil, facematchthreshold=nil, needpersoninfo=nil, needrotatedetection=nil)
           @GroupIds = groupids
           @Image = image
@@ -3165,7 +3165,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :PersonNum, :FaceModelVersion, :RequestId
-        
+
         def initialize(results=nil, personnum=nil, facemodelversion=nil, requestid=nil)
           @Results = results
           @PersonNum = personnum
@@ -3227,7 +3227,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :GroupIds, :Image, :Url, :MaxFaceNum, :MinFaceSize, :MaxPersonNumPerGroup, :QualityControl, :FaceMatchThreshold, :NeedPersonInfo, :NeedRotateDetection
-        
+
         def initialize(groupids=nil, image=nil, url=nil, maxfacenum=nil, minfacesize=nil, maxpersonnumpergroup=nil, qualitycontrol=nil, facematchthreshold=nil, needpersoninfo=nil, needrotatedetection=nil)
           @GroupIds = groupids
           @Image = image
@@ -3267,7 +3267,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PersonNum, :ResultsReturnsByGroup, :FaceModelVersion, :RequestId
-        
+
         def initialize(personnum=nil, resultsreturnsbygroup=nil, facemodelversion=nil, requestid=nil)
           @PersonNum = personnum
           @ResultsReturnsByGroup = resultsreturnsbygroup
@@ -3298,7 +3298,7 @@ module TencentCloud
         # @type FaceModelVersion: String
 
         attr_accessor :GroupId, :FaceModelVersion
-        
+
         def initialize(groupid=nil, facemodelversion=nil)
           @GroupId = groupid
           @FaceModelVersion = facemodelversion
@@ -3318,7 +3318,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
-        
+
         def initialize(jobid=nil, requestid=nil)
           @JobId = jobid
           @RequestId = requestid
@@ -3349,7 +3349,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :JobId, :GroupId, :FromFaceModelVersion, :ToFaceModelVersion, :StartTime, :Status
-        
+
         def initialize(jobid=nil, groupid=nil, fromfacemodelversion=nil, tofacemodelversion=nil, starttime=nil, status=nil)
           @JobId = jobid
           @GroupId = groupid
@@ -3397,7 +3397,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :PersonId, :Image, :Url, :QualityControl, :NeedRotateDetection
-        
+
         def initialize(personid=nil, image=nil, url=nil, qualitycontrol=nil, needrotatedetection=nil)
           @PersonId = personid
           @Image = image
@@ -3431,7 +3431,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Score, :IsMatch, :FaceModelVersion, :RequestId
-        
+
         def initialize(score=nil, ismatch=nil, facemodelversion=nil, requestid=nil)
           @Score = score
           @IsMatch = ismatch
@@ -3474,7 +3474,7 @@ module TencentCloud
         # @type NeedRotateDetection: Integer
 
         attr_accessor :PersonId, :Image, :Url, :QualityControl, :NeedRotateDetection
-        
+
         def initialize(personid=nil, image=nil, url=nil, qualitycontrol=nil, needrotatedetection=nil)
           @PersonId = personid
           @Image = image
@@ -3504,7 +3504,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Score, :IsMatch, :FaceModelVersion, :RequestId
-        
+
         def initialize(score=nil, ismatch=nil, facemodelversion=nil, requestid=nil)
           @Score = score
           @IsMatch = ismatch

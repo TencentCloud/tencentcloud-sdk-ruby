@@ -107,7 +107,7 @@ module TencentCloud
         # @type AuthInfo: :class:`Tencentcloud::Lowcode.v20210108.models.TicketAuthInfo`
 
         attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo
-        
+
         def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil)
           @Id = id
           @Title = title
@@ -195,7 +195,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :Rows, :Count
-        
+
         def initialize(rows=nil, count=nil)
           @Rows = rows
           @Count = count
@@ -232,7 +232,7 @@ module TencentCloud
         # @type OnlineStatusUse: Integer
 
         attr_accessor :Id, :Title, :EditStatusUse, :PreviewStatusUse, :OnlineStatusUse
-        
+
         def initialize(id=nil, title=nil, editstatususe=nil, previewstatususe=nil, onlinestatususe=nil)
           @Id = id
           @Title = title
@@ -258,7 +258,7 @@ module TencentCloud
         # @type LikeTitle: String
 
         attr_accessor :LikeName, :LikeTitle
-        
+
         def initialize(likename=nil, liketitle=nil)
           @LikeName = likename
           @LikeTitle = liketitle
@@ -300,7 +300,7 @@ module TencentCloud
         # @type NotQuerySubTypeList: Array
 
         attr_accessor :PageSize, :PageIndex, :EnvId, :Appids, :DataSourceIds, :DataSourceNames, :DataSourceType, :QueryOption, :ViewIds, :AppLinkStatus, :QueryBindToApp, :QueryConnector, :NotQuerySubTypeList
-        
+
         def initialize(pagesize=nil, pageindex=nil, envid=nil, appids=nil, datasourceids=nil, datasourcenames=nil, datasourcetype=nil, queryoption=nil, viewids=nil, applinkstatus=nil, querybindtoapp=nil, queryconnector=nil, notquerysubtypelist=nil)
           @PageSize = pagesize
           @PageIndex = pageindex
@@ -345,7 +345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -366,7 +366,7 @@ module TencentCloud
         # @type AuthUser: String
 
         attr_accessor :AuthUser
-        
+
         def initialize(authuser=nil)
           @AuthUser = authuser
         end

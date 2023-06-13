@@ -25,7 +25,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :DataId, :Url
-        
+
         def initialize(dataid=nil, url=nil)
           @DataId = dataid
           @Url = url
@@ -49,7 +49,7 @@ module TencentCloud
         # @type Age: Integer
 
         attr_accessor :DataId, :Url, :Status, :Age
-        
+
         def initialize(dataid=nil, url=nil, status=nil, age=nil)
           @DataId = dataid
           @Url = url
@@ -92,7 +92,7 @@ module TencentCloud
         # @type RealtimeTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.RealtimeTextStatisticsItem`
 
         attr_accessor :RealtimeSpeechStatisticsItem, :VoiceMessageStatisticsItem, :VoiceFilterStatisticsItem, :Date, :AudioTextStatisticsItem, :StreamTextStatisticsItem, :OverseaTextStatisticsItem, :RealtimeTextStatisticsItem
-        
+
         def initialize(realtimespeechstatisticsitem=nil, voicemessagestatisticsitem=nil, voicefilterstatisticsitem=nil, date=nil, audiotextstatisticsitem=nil, streamtextstatisticsitem=nil, overseatextstatisticsitem=nil, realtimetextstatisticsitem=nil)
           @RealtimeSpeechStatisticsItem = realtimespeechstatisticsitem
           @VoiceMessageStatisticsItem = voicemessagestatisticsitem
@@ -167,7 +167,7 @@ module TencentCloud
         # @type PcuDataSum: Array
 
         attr_accessor :BizId, :DauDataNum, :DauDataMainland, :DauDataOversea, :DauDataSum, :DurationDataNum, :DurationDataMainland, :DurationDataOversea, :DurationDataSum, :PcuDataNum, :PcuDataMainland, :PcuDataOversea, :PcuDataSum
-        
+
         def initialize(bizid=nil, daudatanum=nil, daudatamainland=nil, daudataoversea=nil, daudatasum=nil, durationdatanum=nil, durationdatamainland=nil, durationdataoversea=nil, durationdatasum=nil, pcudatanum=nil, pcudatamainland=nil, pcudataoversea=nil, pcudatasum=nil)
           @BizId = bizid
           @DauDataNum = daudatanum
@@ -282,7 +282,7 @@ module TencentCloud
         # @type AppType: Integer
 
         attr_accessor :ServiceConf, :BizId, :AppName, :ProjectId, :AppStatus, :CreateTime, :AppType
-        
+
         def initialize(serviceconf=nil, bizid=nil, appname=nil, projectid=nil, appstatus=nil, createtime=nil, apptype=nil)
           @ServiceConf = serviceconf
           @BizId = bizid
@@ -313,7 +313,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Status
-        
+
         def initialize(status=nil)
           @Status = status
         end
@@ -330,7 +330,7 @@ module TencentCloud
         # @type Data: Float
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -352,7 +352,7 @@ module TencentCloud
         # @type Callback: String
 
         attr_accessor :BizId, :Tasks, :Callback
-        
+
         def initialize(bizid=nil, tasks=nil, callback=nil)
           @BizId = bizid
           @Tasks = tasks
@@ -381,7 +381,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -417,7 +417,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :AppName, :ProjectId, :EngineList, :RegionList, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf, :AsrConf, :Tags
-        
+
         def initialize(appname=nil, projectid=nil, enginelist=nil, regionlist=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil, asrconf=nil, tags=nil)
           @AppName = appname
           @ProjectId = projectid
@@ -484,7 +484,7 @@ module TencentCloud
         # @type AsrConf: :class:`Tencentcloud::Gme.v20180711.models.AsrConf`
 
         attr_accessor :BizId, :AppName, :ProjectId, :SecretKey, :CreateTime, :RealtimeSpeechConf, :VoiceMessageConf, :VoiceFilterConf, :AsrConf
-        
+
         def initialize(bizid=nil, appname=nil, projectid=nil, secretkey=nil, createtime=nil, realtimespeechconf=nil, voicemessageconf=nil, voicefilterconf=nil, asrconf=nil)
           @BizId = bizid
           @AppName = appname
@@ -530,7 +530,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -555,7 +555,7 @@ module TencentCloud
         # @type ModelName: String
 
         attr_accessor :BizId, :TextUrl, :ModelName
-        
+
         def initialize(bizid=nil, texturl=nil, modelname=nil)
           @BizId = bizid
           @TextUrl = texturl
@@ -577,7 +577,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
-        
+
         def initialize(modelid=nil, requestid=nil)
           @ModelId = modelid
           @RequestId = requestid
@@ -597,7 +597,7 @@ module TencentCloud
         # @type UserId: Integer
 
         attr_accessor :BizId, :UserId
-        
+
         def initialize(bizid=nil, userid=nil)
           @BizId = bizid
           @UserId = userid
@@ -617,7 +617,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :RequestId
-        
+
         def initialize(errorcode=nil, requestid=nil)
           @ErrorCode = errorcode
           @RequestId = requestid
@@ -645,7 +645,7 @@ module TencentCloud
         # @type UpdateTime: Integer
 
         attr_accessor :BizId, :ModelId, :ModelState, :ModelName, :TextUrl, :UpdateTime
-        
+
         def initialize(bizid=nil, modelid=nil, modelstate=nil, modelname=nil, texturl=nil, updatetime=nil)
           @BizId = bizid
           @ModelId = modelid
@@ -673,7 +673,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :ModelId, :BizId
-        
+
         def initialize(modelid=nil, bizid=nil)
           @ModelId = modelid
           @BizId = bizid
@@ -693,7 +693,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :RequestId
-        
+
         def initialize(errorcode=nil, requestid=nil)
           @ErrorCode = errorcode
           @RequestId = requestid
@@ -713,7 +713,7 @@ module TencentCloud
         # @type ErrorMsg: String
 
         attr_accessor :Code, :ErrorMsg
-        
+
         def initialize(code=nil, errormsg=nil)
           @Code = code
           @ErrorMsg = errormsg
@@ -737,7 +737,7 @@ module TencentCloud
         # @type Uids: Array
 
         attr_accessor :RoomId, :DeleteType, :BizId, :Uids
-        
+
         def initialize(roomid=nil, deletetype=nil, bizid=nil, uids=nil)
           @RoomId = roomid
           @DeleteType = deletetype
@@ -761,7 +761,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeleteResult, :RequestId
-        
+
         def initialize(deleteresult=nil, requestid=nil)
           @DeleteResult = deleteresult
           @RequestId = requestid
@@ -784,7 +784,7 @@ module TencentCloud
         # @type UserId: Integer
 
         attr_accessor :BizId, :UserId
-        
+
         def initialize(bizid=nil, userid=nil)
           @BizId = bizid
           @UserId = userid
@@ -804,7 +804,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :RequestId
-        
+
         def initialize(errorcode=nil, requestid=nil)
           @ErrorCode = errorcode
           @RequestId = requestid
@@ -824,7 +824,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :BizId, :TaskId
-        
+
         def initialize(bizid=nil, taskid=nil)
           @BizId = bizid
           @TaskId = taskid
@@ -850,7 +850,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :Results, :RequestId
-        
+
         def initialize(taskid=nil, results=nil, requestid=nil)
           @TaskId = taskid
           @Results = results
@@ -883,7 +883,7 @@ module TencentCloud
         # @type Services: Array
 
         attr_accessor :BizId, :StartDate, :EndDate, :Services
-        
+
         def initialize(bizid=nil, startdate=nil, enddate=nil, services=nil)
           @BizId = bizid
           @StartDate = startdate
@@ -905,7 +905,7 @@ module TencentCloud
         # @type AppStatistics: Array
 
         attr_accessor :AppStatistics
-        
+
         def initialize(appstatistics=nil)
           @AppStatistics = appstatistics
         end
@@ -930,7 +930,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -955,7 +955,7 @@ module TencentCloud
         # @type EndDate: String
 
         attr_accessor :BizId, :StartDate, :EndDate
-        
+
         def initialize(bizid=nil, startdate=nil, enddate=nil)
           @BizId = bizid
           @StartDate = startdate
@@ -977,7 +977,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1008,7 +1008,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :ProjectId, :PageNo, :PageSize, :SearchText, :TagSet, :Filters
-        
+
         def initialize(projectid=nil, pageno=nil, pagesize=nil, searchtext=nil, tagset=nil, filters=nil)
           @ProjectId = projectid
           @PageNo = pageno
@@ -1052,7 +1052,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationList, :Total, :RequestId
-        
+
         def initialize(applicationlist=nil, total=nil, requestid=nil)
           @ApplicationList = applicationlist
           @Total = total
@@ -1079,7 +1079,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :BizId
-        
+
         def initialize(bizid=nil)
           @BizId = bizid
         end
@@ -1109,7 +1109,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :BizId, :AuditType, :UserIdRegex, :RoomIdRegex, :UserIdString, :RoomIdString, :RequestId
-        
+
         def initialize(errorcode=nil, bizid=nil, audittype=nil, useridregex=nil, roomidregex=nil, useridstring=nil, roomidstring=nil, requestid=nil)
           @ErrorCode = errorcode
           @BizId = bizid
@@ -1141,7 +1141,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :TaskId, :BizId
-        
+
         def initialize(taskid=nil, bizid=nil)
           @TaskId = taskid
           @BizId = bizid
@@ -1166,7 +1166,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecordInfo, :RecordMode, :RoomId, :RequestId
-        
+
         def initialize(recordinfo=nil, recordmode=nil, roomid=nil, requestid=nil)
           @RecordInfo = recordinfo
           @RecordMode = recordmode
@@ -1199,7 +1199,7 @@ module TencentCloud
         # @type StrRoomIds: Array
 
         attr_accessor :SdkAppId, :RoomIds, :StrRoomIds
-        
+
         def initialize(sdkappid=nil, roomids=nil, strroomids=nil)
           @SdkAppId = sdkappid
           @RoomIds = roomids
@@ -1225,7 +1225,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RoomUsers, :RequestId
-        
+
         def initialize(result=nil, roomusers=nil, requestid=nil)
           @Result = result
           @RoomUsers = roomusers
@@ -1281,7 +1281,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :Code, :DataId, :ScanFinishTime, :HitFlag, :Live, :Msg, :ScanPiece, :ScanStartTime, :Scenes, :TaskId, :Url, :Status, :BizId
-        
+
         def initialize(code=nil, dataid=nil, scanfinishtime=nil, hitflag=nil, live=nil, msg=nil, scanpiece=nil, scanstarttime=nil, scenes=nil, taskid=nil, url=nil, status=nil, bizid=nil)
           @Code = code
           @DataId = dataid
@@ -1332,7 +1332,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :BizId, :TaskIdList, :Limit
-        
+
         def initialize(bizid=nil, taskidlist=nil, limit=nil)
           @BizId = bizid
           @TaskIdList = taskidlist
@@ -1355,7 +1355,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1382,7 +1382,7 @@ module TencentCloud
         # @type RoomId: String
 
         attr_accessor :BizId, :RoomId
-        
+
         def initialize(bizid=nil, roomid=nil)
           @BizId = bizid
           @RoomId = roomid
@@ -1409,7 +1409,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RecordMode, :SubscribeRecordUserIds, :RequestId
-        
+
         def initialize(taskid=nil, recordmode=nil, subscriberecorduserids=nil, requestid=nil)
           @TaskId = taskid
           @RecordMode = recordmode
@@ -1442,7 +1442,7 @@ module TencentCloud
         # @type RoomIdStr: String
 
         attr_accessor :BizId, :RoomId, :UserId, :UserIdStr, :RoomIdStr
-        
+
         def initialize(bizid=nil, roomid=nil, userid=nil, useridstr=nil, roomidstr=nil)
           @BizId = bizid
           @RoomId = roomid
@@ -1470,7 +1470,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InOutList, :Duration, :RequestId
-        
+
         def initialize(inoutlist=nil, duration=nil, requestid=nil)
           @InOutList = inoutlist
           @Duration = duration
@@ -1499,7 +1499,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -1517,7 +1517,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :BizId
-        
+
         def initialize(bizid=nil)
           @BizId = bizid
         end
@@ -1536,7 +1536,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CustomizationConfigs, :RequestId
-        
+
         def initialize(customizationconfigs=nil, requestid=nil)
           @CustomizationConfigs = customizationconfigs
           @RequestId = requestid
@@ -1563,7 +1563,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :StartTime, :EndTime
-        
+
         def initialize(starttime=nil, endtime=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -1583,7 +1583,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :BizId, :Status
-        
+
         def initialize(bizid=nil, status=nil)
           @BizId = bizid
           @Status = status
@@ -1603,7 +1603,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :BizId, :Status
-        
+
         def initialize(bizid=nil, status=nil)
           @BizId = bizid
           @Status = status
@@ -1623,7 +1623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1648,7 +1648,7 @@ module TencentCloud
         # @type ModelId: String
 
         attr_accessor :BizId, :TextUrl, :ModelId
-        
+
         def initialize(bizid=nil, texturl=nil, modelid=nil)
           @BizId = bizid
           @TextUrl = texturl
@@ -1672,7 +1672,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :ModelId, :RequestId
-        
+
         def initialize(errorcode=nil, modelid=nil, requestid=nil)
           @ErrorCode = errorcode
           @ModelId = modelid
@@ -1696,7 +1696,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :ModelId, :ToState, :BizId
-        
+
         def initialize(modelid=nil, tostate=nil, bizid=nil)
           @ModelId = modelid
           @ToState = tostate
@@ -1720,7 +1720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModelId, :ErrorCode, :RequestId
-        
+
         def initialize(modelid=nil, errorcode=nil, requestid=nil)
           @ModelId = modelid
           @ErrorCode = errorcode
@@ -1746,7 +1746,7 @@ module TencentCloud
         # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
 
         attr_accessor :TaskId, :RecordMode, :BizId, :SubscribeRecordUserIds
-        
+
         def initialize(taskid=nil, recordmode=nil, bizid=nil, subscriberecorduserids=nil)
           @TaskId = taskid
           @RecordMode = recordmode
@@ -1771,7 +1771,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1791,7 +1791,7 @@ module TencentCloud
         # @type Users: Array
 
         attr_accessor :BizId, :RoomId, :Users
-        
+
         def initialize(bizid=nil, roomid=nil, users=nil)
           @BizId = bizid
           @RoomId = roomid
@@ -1822,7 +1822,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :ErrMsg, :RequestId
-        
+
         def initialize(result=nil, errmsg=nil, requestid=nil)
           @Result = result
           @ErrMsg = errmsg
@@ -1843,7 +1843,7 @@ module TencentCloud
         # @type Data: Float
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -1869,7 +1869,7 @@ module TencentCloud
         # @type OverseaDuration: Integer
 
         attr_accessor :MainLandDau, :MainLandPcu, :MainLandDuration, :OverseaDau, :OverseaPcu, :OverseaDuration
-        
+
         def initialize(mainlanddau=nil, mainlandpcu=nil, mainlandduration=nil, overseadau=nil, overseapcu=nil, overseaduration=nil)
           @MainLandDau = mainlanddau
           @MainLandPcu = mainlandpcu
@@ -1897,7 +1897,7 @@ module TencentCloud
         # @type Quality: String
 
         attr_accessor :Status, :Quality
-        
+
         def initialize(status=nil, quality=nil)
           @Status = status
           @Quality = quality
@@ -1916,7 +1916,7 @@ module TencentCloud
         # @type Data: Float
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -1939,7 +1939,7 @@ module TencentCloud
         # @type RecordStatus: Integer
 
         attr_accessor :UserId, :FileName, :RecordBeginTime, :RecordStatus
-        
+
         def initialize(userid=nil, filename=nil, recordbegintime=nil, recordstatus=nil)
           @UserId = userid
           @FileName = filename
@@ -1970,7 +1970,7 @@ module TencentCloud
         # @type StrUins: Array
 
         attr_accessor :RoomId, :Uins, :StrRoomId, :StrUins
-        
+
         def initialize(roomid=nil, uins=nil, strroomid=nil, struins=nil)
           @RoomId = roomid
           @Uins = uins
@@ -2000,7 +2000,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Label, :Rate, :KeyWord, :StartTime, :EndTime
-        
+
         def initialize(label=nil, rate=nil, keyword=nil, starttime=nil, endtime=nil)
           @Label = label
           @Rate = rate
@@ -2050,7 +2050,7 @@ module TencentCloud
         # @type PieceStartTime: Integer
 
         attr_accessor :DumpUrl, :HitFlag, :MainType, :ScanDetail, :RoomId, :OpenId, :Info, :Offset, :Duration, :PieceStartTime
-        
+
         def initialize(dumpurl=nil, hitflag=nil, maintype=nil, scandetail=nil, roomid=nil, openid=nil, info=nil, offset=nil, duration=nil, piecestarttime=nil)
           @DumpUrl = dumpurl
           @HitFlag = hitflag
@@ -2103,7 +2103,7 @@ module TencentCloud
         # @type Lang: String
 
         attr_accessor :BizId, :Scenes, :Live, :Tasks, :Callback, :Lang
-        
+
         def initialize(bizid=nil, scenes=nil, live=nil, tasks=nil, callback=nil, lang=nil)
           @BizId = bizid
           @Scenes = scenes
@@ -2139,7 +2139,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -2166,7 +2166,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :DataId, :TaskId
-        
+
         def initialize(dataid=nil, taskid=nil)
           @DataId = dataid
           @TaskId = taskid
@@ -2184,7 +2184,7 @@ module TencentCloud
       # 'GMECloudApi':'GME云API接口'
       class SceneInfo < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2211,7 +2211,7 @@ module TencentCloud
         # @type RealTimeAsr: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
 
         attr_accessor :RealTimeSpeech, :VoiceMessage, :Porn, :Live, :RealTimeAsr
-        
+
         def initialize(realtimespeech=nil, voicemessage=nil, porn=nil, live=nil, realtimeasr=nil)
           @RealTimeSpeech = realtimespeech
           @VoiceMessage = voicemessage
@@ -2256,7 +2256,7 @@ module TencentCloud
         # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
 
         attr_accessor :BizId, :RoomId, :RecordMode, :SubscribeRecordUserIds
-        
+
         def initialize(bizid=nil, roomid=nil, recordmode=nil, subscriberecorduserids=nil)
           @BizId = bizid
           @RoomId = roomid
@@ -2283,7 +2283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2303,7 +2303,7 @@ module TencentCloud
         # @type Data: Integer
 
         attr_accessor :StatDate, :Data
-        
+
         def initialize(statdate=nil, data=nil)
           @StatDate = statdate
           @Data = data
@@ -2321,7 +2321,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :Status
-        
+
         def initialize(status=nil)
           @Status = status
         end
@@ -2339,7 +2339,7 @@ module TencentCloud
         # @type BizId: Integer
 
         attr_accessor :TaskId, :BizId
-        
+
         def initialize(taskid=nil, bizid=nil)
           @TaskId = taskid
           @BizId = bizid
@@ -2357,7 +2357,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2374,7 +2374,7 @@ module TencentCloud
         # @type Data: Float
 
         attr_accessor :Data
-        
+
         def initialize(data=nil)
           @Data = data
         end
@@ -2394,7 +2394,7 @@ module TencentCloud
         # @type SubscribeUserIds: Array
 
         attr_accessor :UnSubscribeUserIds, :SubscribeUserIds
-        
+
         def initialize(unsubscribeuserids=nil, subscribeuserids=nil)
           @UnSubscribeUserIds = unsubscribeuserids
           @SubscribeUserIds = subscribeuserids
@@ -2416,7 +2416,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2440,7 +2440,7 @@ module TencentCloud
         # @type OpenId: String
 
         attr_accessor :DataId, :Url, :RoomId, :OpenId
-        
+
         def initialize(dataid=nil, url=nil, roomid=nil, openid=nil)
           @DataId = dataid
           @Url = url
@@ -2466,7 +2466,7 @@ module TencentCloud
         # @type RoomIdRegex: Array
 
         attr_accessor :BizId, :RoomIdString, :RoomIdRegex
-        
+
         def initialize(bizid=nil, roomidstring=nil, roomidregex=nil)
           @BizId = bizid
           @RoomIdString = roomidstring
@@ -2489,7 +2489,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :RequestId
-        
+
         def initialize(errorcode=nil, requestid=nil)
           @ErrorCode = errorcode
           @RequestId = requestid
@@ -2511,7 +2511,7 @@ module TencentCloud
         # @type UserIdRegex: Array
 
         attr_accessor :BizId, :UserIdString, :UserIdRegex
-        
+
         def initialize(bizid=nil, useridstring=nil, useridregex=nil)
           @BizId = bizid
           @UserIdString = useridstring
@@ -2533,7 +2533,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :RequestId
-        
+
         def initialize(errorcode=nil, requestid=nil)
           @ErrorCode = errorcode
           @RequestId = requestid
@@ -2555,7 +2555,7 @@ module TencentCloud
         # @type StrUid: String
 
         attr_accessor :EnableMic, :Uid, :StrUid
-        
+
         def initialize(enablemic=nil, uid=nil, struid=nil)
           @EnableMic = enablemic
           @Uid = uid
@@ -2578,7 +2578,7 @@ module TencentCloud
         # @type SceneInfos: Array
 
         attr_accessor :Status, :SceneInfos
-        
+
         def initialize(status=nil, sceneinfos=nil)
           @Status = status
           @SceneInfos = sceneinfos
@@ -2603,7 +2603,7 @@ module TencentCloud
         # @type Duration: Integer
 
         attr_accessor :Duration
-        
+
         def initialize(duration=nil)
           @Duration = duration
         end
@@ -2621,7 +2621,7 @@ module TencentCloud
         # @type Language: String
 
         attr_accessor :Status, :Language
-        
+
         def initialize(status=nil, language=nil)
           @Status = status
           @Language = language
@@ -2639,7 +2639,7 @@ module TencentCloud
         # @type Dau: Integer
 
         attr_accessor :Dau
-        
+
         def initialize(dau=nil)
           @Dau = dau
         end

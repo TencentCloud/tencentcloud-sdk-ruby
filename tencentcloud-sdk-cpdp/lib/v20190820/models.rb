@@ -42,7 +42,7 @@ module TencentCloud
         # @type MaintenanceDate: String
 
         attr_accessor :SubAcctNo, :SubAcctProperty, :TranNetMemberCode, :SubAcctName, :AcctAvailBal, :CashAmt, :MaintenanceDate
-        
+
         def initialize(subacctno=nil, subacctproperty=nil, trannetmembercode=nil, subacctname=nil, acctavailbal=nil, cashamt=nil, maintenancedate=nil)
           @SubAcctNo = subacctno
           @SubAcctProperty = subacctproperty
@@ -130,7 +130,7 @@ module TencentCloud
         # @type PaymentOptionNine: String
 
         attr_accessor :OpenId, :OpenKey, :OutContractId, :Code, :PaymentId, :PaymentClassificationId, :PaymentClassificationLimit, :MerchantNo, :Fee, :StartDate, :EndDate, :SignMan, :SignName, :SignDate, :AutoSign, :Contact, :ContactTelephone, :PictureOne, :PictureTwo, :ChannelExtJson, :Profile, :PaymentOptionOne, :PaymentOptionTwo, :PaymentOptionThree, :PaymentOptionFour, :PaymentOptionFive, :PaymentOptionSix, :PaymentOptionSeven, :PaymentOptionOther, :PaymentOptionTen, :PaymentOptionNine
-        
+
         def initialize(openid=nil, openkey=nil, outcontractid=nil, code=nil, paymentid=nil, paymentclassificationid=nil, paymentclassificationlimit=nil, merchantno=nil, fee=nil, startdate=nil, enddate=nil, signman=nil, signname=nil, signdate=nil, autosign=nil, contact=nil, contacttelephone=nil, pictureone=nil, picturetwo=nil, channelextjson=nil, profile=nil, paymentoptionone=nil, paymentoptiontwo=nil, paymentoptionthree=nil, paymentoptionfour=nil, paymentoptionfive=nil, paymentoptionsix=nil, paymentoptionseven=nil, paymentoptionother=nil, paymentoptionten=nil, paymentoptionnine=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -214,7 +214,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -240,7 +240,7 @@ module TencentCloud
         # @type ContractId: String
 
         attr_accessor :ContractId
-        
+
         def initialize(contractid=nil)
           @ContractId = contractid
         end
@@ -273,7 +273,7 @@ module TencentCloud
         # @type BankBranchName: String
 
         attr_accessor :FundingAccountType, :FundingAccountName, :FundingAccountNo, :PhoneNo, :PayeeId, :Environment, :BankBranchName
-        
+
         def initialize(fundingaccounttype=nil, fundingaccountname=nil, fundingaccountno=nil, phoneno=nil, payeeid=nil, environment=nil, bankbranchname=nil)
           @FundingAccountType = fundingaccounttype
           @FundingAccountName = fundingaccountname
@@ -308,7 +308,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -347,7 +347,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :IdType, :IdNo, :PayeeId, :Environment, :Name
-        
+
         def initialize(idtype=nil, idno=nil, payeeid=nil, environment=nil, name=nil)
           @IdType = idtype
           @IdNo = idno
@@ -378,7 +378,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -408,7 +408,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PhoneNo, :PayeeId, :Environment
-        
+
         def initialize(phoneno=nil, payeeid=nil, environment=nil)
           @PhoneNo = phoneno
           @PayeeId = payeeid
@@ -435,7 +435,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -571,7 +571,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutMerchantId, :MerchantName, :BusinessLicenseType, :BusinessLicenseNo, :BusinessLicensePicture, :BusinessLicenseStartDate, :BusinessLicenseEndDate, :ClassificationIds, :BrandName, :Telephone, :CityId, :Address, :OpenHours, :AccountType, :BankNo, :BankName, :AccountNo, :AccountName, :BossIdType, :BossIdNo, :BossName, :BossSex, :BossIdCountry, :BossPositive, :BossBack, :BossStartDate, :BossEndDate, :LicencePicture, :Type, :OrganizationNo, :OrganizationStartDate, :OrganizationPicture, :OrganizationEndDate, :Intro, :Logo, :Tag, :FinancialTelephone, :FinancialContact, :TaxRegistrationNo, :TaxRegistrationPicture, :TaxRegistrationStartDate, :TaxRegistrationEndDate, :AccountBoss, :AccountManagerName, :BossTelephone, :BossJob, :BossEmail, :BossAddress, :AccountIdType, :AccountIdNo, :LicencePictureTwo, :OtherPictureOne, :OtherPictureTwo, :OtherPictureThree, :OtherPictureFour, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outmerchantid=nil, merchantname=nil, businesslicensetype=nil, businesslicenseno=nil, businesslicensepicture=nil, businesslicensestartdate=nil, businesslicenseenddate=nil, classificationids=nil, brandname=nil, telephone=nil, cityid=nil, address=nil, openhours=nil, accounttype=nil, bankno=nil, bankname=nil, accountno=nil, accountname=nil, bossidtype=nil, bossidno=nil, bossname=nil, bosssex=nil, bossidcountry=nil, bosspositive=nil, bossback=nil, bossstartdate=nil, bossenddate=nil, licencepicture=nil, type=nil, organizationno=nil, organizationstartdate=nil, organizationpicture=nil, organizationenddate=nil, intro=nil, logo=nil, tag=nil, financialtelephone=nil, financialcontact=nil, taxregistrationno=nil, taxregistrationpicture=nil, taxregistrationstartdate=nil, taxregistrationenddate=nil, accountboss=nil, accountmanagername=nil, bosstelephone=nil, bossjob=nil, bossemail=nil, bossaddress=nil, accountidtype=nil, accountidno=nil, licencepicturetwo=nil, otherpictureone=nil, otherpicturetwo=nil, otherpicturethree=nil, otherpicturefour=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -709,7 +709,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -735,7 +735,7 @@ module TencentCloud
         # @type MerchantNo: String
 
         attr_accessor :MerchantNo
-        
+
         def initialize(merchantno=nil)
           @MerchantNo = merchantno
         end
@@ -791,7 +791,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutShopId, :ShopName, :ShopFullName, :MerchantNo, :Telephone, :OpenHours, :CityId, :Address, :PictureOne, :PictureTwo, :PictureThree, :FinancialTelephone, :Contact, :Latitude, :LatitudeTwo, :Longitude, :LongitudeTwo, :OtherPicture, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outshopid=nil, shopname=nil, shopfullname=nil, merchantno=nil, telephone=nil, openhours=nil, cityid=nil, address=nil, pictureone=nil, picturetwo=nil, picturethree=nil, financialtelephone=nil, contact=nil, latitude=nil, latitudetwo=nil, longitude=nil, longitudetwo=nil, otherpicture=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -855,7 +855,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -881,7 +881,7 @@ module TencentCloud
         # @type ShopNo: String
 
         attr_accessor :ShopNo
-        
+
         def initialize(shopno=nil)
           @ShopNo = shopno
         end
@@ -903,7 +903,7 @@ module TencentCloud
         # @type AgencyClientMobile: String
 
         attr_accessor :AgencyClientName, :AgencyClientGlobalType, :AgencyClientGlobalId, :AgencyClientMobile
-        
+
         def initialize(agencyclientname=nil, agencyclientglobaltype=nil, agencyclientglobalid=nil, agencyclientmobile=nil)
           @AgencyClientName = agencyclientname
           @AgencyClientGlobalType = agencyclientglobaltype
@@ -937,7 +937,7 @@ module TencentCloud
         # @type Tax: Integer
 
         attr_accessor :AnchorId, :AnchorName, :AnchorIDCard, :StartTime, :EndTime, :Amount, :Tax
-        
+
         def initialize(anchorid=nil, anchorname=nil, anchoridcard=nil, starttime=nil, endtime=nil, amount=nil, tax=nil)
           @AnchorId = anchorid
           @AnchorName = anchorname
@@ -981,7 +981,7 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :StatusMsg, :BatchNum, :InfoNum, :RawElectronicCertUrl, :AgentId, :FileName, :StatusCode, :Channel, :Type
-        
+
         def initialize(statusmsg=nil, batchnum=nil, infonum=nil, rawelectroniccerturl=nil, agentid=nil, filename=nil, statuscode=nil, channel=nil, type=nil)
           @StatusMsg = statusmsg
           @BatchNum = batchnum
@@ -1017,7 +1017,7 @@ module TencentCloud
         # @type AmountBeforeTaxWithTwoDigitPrecision: String
 
         attr_accessor :AmountBeforeTax, :AmountBeforeTaxWithTwoDigitPrecision
-        
+
         def initialize(amountbeforetax=nil, amountbeforetaxwithtwodigitprecision=nil)
           @AmountBeforeTax = amountbeforetax
           @AmountBeforeTaxWithTwoDigitPrecision = amountbeforetaxwithtwodigitprecision
@@ -1043,7 +1043,7 @@ module TencentCloud
         # @type IdNo: String
 
         attr_accessor :AnchorId, :AnchorName, :AgentId, :AgentName, :IdNo
-        
+
         def initialize(anchorid=nil, anchorname=nil, agentid=nil, agentname=nil, idno=nil)
           @AnchorId = anchorid
           @AnchorName = anchorname
@@ -1075,7 +1075,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Type, :Value
-        
+
         def initialize(type=nil, value=nil)
           @Type = type
           @Value = value
@@ -1111,7 +1111,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TransactionId, :DeclareId, :PayerId, :SourceCurrency, :TargetCurrency, :TradeCode, :OriginalDeclareId, :SourceAmount, :TargetAmount, :Profile
-        
+
         def initialize(transactionid=nil, declareid=nil, payerid=nil, sourcecurrency=nil, targetcurrency=nil, tradecode=nil, originaldeclareid=nil, sourceamount=nil, targetamount=nil, profile=nil)
           @TransactionId = transactionid
           @DeclareId = declareid
@@ -1147,7 +1147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1179,7 +1179,7 @@ module TencentCloud
         # @type PayerId: String
 
         attr_accessor :MerchantId, :TransactionId, :Status, :DeclareId, :OriginalDeclareId, :PayerId
-        
+
         def initialize(merchantid=nil, transactionid=nil, status=nil, declareid=nil, originaldeclareid=nil, payerid=nil)
           @MerchantId = merchantid
           @TransactionId = transactionid
@@ -1207,7 +1207,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.ApplyDeclareData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -1248,7 +1248,7 @@ module TencentCloud
         # @type NotifyUrl: String
 
         attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark, :Environment, :NotifyUrl
-        
+
         def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil, environment=nil, notifyurl=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
@@ -1288,7 +1288,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1331,7 +1331,7 @@ module TencentCloud
         # @type AdditionalTaxItem: String
 
         attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem
-        
+
         def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil)
           @OrderId = orderid
           @AmountBeforeTax = amountbeforetax
@@ -1377,7 +1377,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :Remark, :Environment
-        
+
         def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, remark=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
@@ -1410,7 +1410,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1441,7 +1441,7 @@ module TencentCloud
         # @type Tax: String
 
         attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax
-        
+
         def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil)
           @OrderId = orderid
           @AmountBeforeTax = amountbeforetax
@@ -1488,7 +1488,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :AuthNo, :OpenId, :ProjectName, :EmployerName, :UserName, :IdNo, :EmploymentType, :AuthType, :Environment
-        
+
         def initialize(authno=nil, openid=nil, projectname=nil, employername=nil, username=nil, idno=nil, employmenttype=nil, authtype=nil, environment=nil)
           @AuthNo = authno
           @OpenId = openid
@@ -1527,7 +1527,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1567,7 +1567,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutApplyId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :ChannelOrderId, :Environment
-        
+
         def initialize(outapplyid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, channelorderid=nil, environment=nil)
           @OutApplyId = outapplyid
           @ChannelMerchantId = channelmerchantid
@@ -1603,7 +1603,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1643,7 +1643,7 @@ module TencentCloud
         # @type ExpireTime: String
 
         attr_accessor :ChannelApplyId, :ReceiptStatus, :ReceiptMessage, :DownloadUrl, :ExpireTime
-        
+
         def initialize(channelapplyid=nil, receiptstatus=nil, receiptmessage=nil, downloadurl=nil, expiretime=nil)
           @ChannelApplyId = channelapplyid
           @ReceiptStatus = receiptstatus
@@ -1685,7 +1685,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutSettleId, :SettleAmount, :ChannelName, :ChannelSubMerchantId, :SettleDetail, :NotifyUrl, :Remark, :ExternalSettleData, :Environment
-        
+
         def initialize(channelmerchantid=nil, outsettleid=nil, settleamount=nil, channelname=nil, channelsubmerchantid=nil, settledetail=nil, notifyurl=nil, remark=nil, externalsettledata=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutSettleId = outsettleid
@@ -1726,7 +1726,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1762,7 +1762,7 @@ module TencentCloud
         # @type SettleStatus: String
 
         attr_accessor :OutSettleId, :ChannelSettleId, :SettleStatus
-        
+
         def initialize(outsettleid=nil, channelsettleid=nil, settlestatus=nil)
           @OutSettleId = outsettleid
           @ChannelSettleId = channelsettleid
@@ -1790,7 +1790,7 @@ module TencentCloud
         # @type NotifyUrl: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :OutSubMerchantId, :ChannelSubMerchantId, :NotifyUrl
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, outsubmerchantid=nil, channelsubmerchantid=nil, notifyurl=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -1821,7 +1821,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -1855,7 +1855,7 @@ module TencentCloud
         # @type ExternalReturnData: String
 
         attr_accessor :SignStatus, :SignMessage, :ExternalReturnData
-        
+
         def initialize(signstatus=nil, signmessage=nil, externalreturndata=nil)
           @SignStatus = signstatus
           @SignMessage = signmessage
@@ -1879,7 +1879,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :MerchantId, :TransactionId, :Status
-        
+
         def initialize(merchantid=nil, transactionid=nil, status=nil)
           @MerchantId = merchantid
           @TransactionId = transactionid
@@ -1939,7 +1939,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TransactionId, :PricingCurrency, :SourceCurrency, :TargetCurrency, :PayeeType, :PayeeAccount, :SourceAmount, :TargetAmount, :PayeeName, :PayeeAddress, :PayeeBankAccountType, :PayeeCountryCode, :PayeeBankName, :PayeeBankAddress, :PayeeBankDistrict, :PayeeBankSwiftCode, :PayeeBankType, :PayeeBankCode, :ReferenceForBeneficiary, :Profile
-        
+
         def initialize(transactionid=nil, pricingcurrency=nil, sourcecurrency=nil, targetcurrency=nil, payeetype=nil, payeeaccount=nil, sourceamount=nil, targetamount=nil, payeename=nil, payeeaddress=nil, payeebankaccounttype=nil, payeecountrycode=nil, payeebankname=nil, payeebankaddress=nil, payeebankdistrict=nil, payeebankswiftcode=nil, payeebanktype=nil, payeebankcode=nil, referenceforbeneficiary=nil, profile=nil)
           @TransactionId = transactionid
           @PricingCurrency = pricingcurrency
@@ -1995,7 +1995,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -2018,7 +2018,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Data, :Code
-        
+
         def initialize(data=nil, code=nil)
           @Data = data
           @Code = code
@@ -2057,7 +2057,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :PayerId, :PayerType, :PayerName, :PayerIdType, :PayerIdNo, :PayerCountryCode, :PayerContactName, :PayerContactNumber, :PayerEmailAddress, :Profile
-        
+
         def initialize(payerid=nil, payertype=nil, payername=nil, payeridtype=nil, payeridno=nil, payercountrycode=nil, payercontactname=nil, payercontactnumber=nil, payeremailaddress=nil, profile=nil)
           @PayerId = payerid
           @PayerType = payertype
@@ -2093,7 +2093,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -2121,7 +2121,7 @@ module TencentCloud
         # @type FailReason: String
 
         attr_accessor :MerchantId, :PayerId, :Status, :FailReason
-        
+
         def initialize(merchantid=nil, payerid=nil, status=nil, failreason=nil)
           @MerchantId = merchantid
           @PayerId = payerid
@@ -2145,7 +2145,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.ApplyPayerinfoData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -2180,7 +2180,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :BusinessType, :MidasSecretId, :MidasSignature, :Body, :MidasAppId, :MidasEnvironment
-        
+
         def initialize(businesstype=nil, midassecretid=nil, midassignature=nil, body=nil, midasappid=nil, midasenvironment=nil)
           @BusinessType = businesstype
           @MidasSecretId = midassecretid
@@ -2211,7 +2211,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WithdrawOrderId, :RequestId
-        
+
         def initialize(withdraworderid=nil, requestid=nil)
           @WithdrawOrderId = withdraworderid
           @RequestId = requestid
@@ -2244,7 +2244,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :ApplyFileType, :ApplyFileDate, :BankAccountNumber, :MidasEnvironment
-        
+
         def initialize(applyfiletype=nil, applyfiledate=nil, bankaccountnumber=nil, midasenvironment=nil)
           @ApplyFileType = applyfiletype
           @ApplyFileDate = applyfiledate
@@ -2275,7 +2275,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -2308,7 +2308,7 @@ module TencentCloud
         # @type ApplyMessage: String
 
         attr_accessor :ApplyFileId, :ApplyStatus, :ApplyMessage
-        
+
         def initialize(applyfileid=nil, applystatus=nil, applymessage=nil)
           @ApplyFileId = applyfileid
           @ApplyStatus = applystatus
@@ -2338,7 +2338,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :MerchantId, :TradeFileId, :TradeCurrency, :TradeAmount, :PayerId, :Status
-        
+
         def initialize(merchantid=nil, tradefileid=nil, tradecurrency=nil, tradeamount=nil, payerid=nil, status=nil)
           @MerchantId = merchantid
           @TradeFileId = tradefileid
@@ -2394,7 +2394,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TradeFileId, :TradeOrderId, :PayerId, :PayeeName, :PayeeCountryCode, :TradeType, :TradeTime, :TradeCurrency, :TradeAmount, :TradeName, :TradeCount, :GoodsCarrier, :ServiceDetail, :ServiceTime, :Profile
-        
+
         def initialize(tradefileid=nil, tradeorderid=nil, payerid=nil, payeename=nil, payeecountrycode=nil, tradetype=nil, tradetime=nil, tradecurrency=nil, tradeamount=nil, tradename=nil, tradecount=nil, goodscarrier=nil, servicedetail=nil, servicetime=nil, profile=nil)
           @TradeFileId = tradefileid
           @TradeOrderId = tradeorderid
@@ -2440,7 +2440,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -2463,7 +2463,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.ApplyTradeData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -2524,7 +2524,7 @@ module TencentCloud
         # @type WithdrawOrderId: String
 
         attr_accessor :MidasAppId, :SubAppId, :SettleAcctNo, :SettleAcctName, :CurrencyType, :CurrencyUnit, :CurrencyAmt, :TranWebName, :IdType, :IdCode, :MidasSecretId, :MidasSignature, :EncryptType, :MidasEnvironment, :CommissionAmount, :WithdrawOrderId
-        
+
         def initialize(midasappid=nil, subappid=nil, settleacctno=nil, settleacctname=nil, currencytype=nil, currencyunit=nil, currencyamt=nil, tranwebname=nil, idtype=nil, idcode=nil, midassecretid=nil, midassignature=nil, encrypttype=nil, midasenvironment=nil, commissionamount=nil, withdraworderid=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -2570,7 +2570,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2592,7 +2592,7 @@ module TencentCloud
         # @type AgentName: String
 
         attr_accessor :AnchorId, :AnchorName, :AgentId, :AgentName
-        
+
         def initialize(anchorid=nil, anchorname=nil, agentid=nil, agentname=nil)
           @AnchorId = anchorid
           @AnchorName = anchorname
@@ -2620,7 +2620,7 @@ module TencentCloud
         # @type BankBranchId: String
 
         attr_accessor :BankName, :BankAbbreviation, :BankBranchName, :BankBranchId
-        
+
         def initialize(bankname=nil, bankabbreviation=nil, bankbranchname=nil, bankbranchid=nil)
           @BankName = bankname
           @BankAbbreviation = bankabbreviation
@@ -2671,7 +2671,7 @@ module TencentCloud
         # @type IdCode: String
 
         attr_accessor :EiconBankBranchId, :CnapsBranchId, :SettleAcctType, :SettleAcctName, :AcctBranchName, :SettleAcctNo, :SubAppId, :BindType, :Mobile, :IdType, :IdCode
-        
+
         def initialize(eiconbankbranchid=nil, cnapsbranchid=nil, settleaccttype=nil, settleacctname=nil, acctbranchname=nil, settleacctno=nil, subappid=nil, bindtype=nil, mobile=nil, idtype=nil, idcode=nil)
           @EiconBankBranchId = eiconbankbranchid
           @CnapsBranchId = cnapsbranchid
@@ -2708,7 +2708,7 @@ module TencentCloud
         # @type DownloadUrl: String
 
         attr_accessor :DownloadUrl
-        
+
         def initialize(downloadurl=nil)
           @DownloadUrl = downloadurl
         end
@@ -2735,7 +2735,7 @@ module TencentCloud
         # @type PhoneNum: String
 
         attr_accessor :AnchorId, :TransferType, :AccountNo, :PhoneNum
-        
+
         def initialize(anchorid=nil, transfertype=nil, accountno=nil, phonenum=nil)
           @AnchorId = anchorid
           @TransferType = transfertype
@@ -2764,7 +2764,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -2837,7 +2837,7 @@ module TencentCloud
         # @type AgencyClientInfo: :class:`Tencentcloud::Cpdp.v20190820.models.AgencyClientInfo`
 
         attr_accessor :MidasAppId, :SubAppId, :BindType, :SettleAcctNo, :SettleAcctName, :SettleAcctType, :IdType, :IdCode, :AcctBranchName, :MidasSecretId, :MidasSignature, :Mobile, :CnapsBranchId, :EiconBankBranchId, :EncryptType, :MidasEnvironment, :AgencyClientInfo
-        
+
         def initialize(midasappid=nil, subappid=nil, bindtype=nil, settleacctno=nil, settleacctname=nil, settleaccttype=nil, idtype=nil, idcode=nil, acctbranchname=nil, midassecretid=nil, midassignature=nil, mobile=nil, cnapsbranchid=nil, eiconbankbranchid=nil, encrypttype=nil, midasenvironment=nil, agencyclientinfo=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -2888,7 +2888,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2926,7 +2926,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :ExternalSubMerchantBindBankAccountData, :OutApplyId, :NotifyUrl, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, externalsubmerchantbindbankaccountdata=nil, outapplyid=nil, notifyurl=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -2965,7 +2965,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -3005,7 +3005,7 @@ module TencentCloud
         # @type BindSerialNo: String
 
         attr_accessor :ChannelApplyId, :BindStatus, :BindMessage, :ExternalSubMerchantBankAccountReturnData, :BindSerialNo
-        
+
         def initialize(channelapplyid=nil, bindstatus=nil, bindmessage=nil, externalsubmerchantbankaccountreturndata=nil, bindserialno=nil)
           @ChannelApplyId = channelapplyid
           @BindStatus = bindstatus
@@ -3044,7 +3044,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :AccountNo, :ChannelName, :ChannelSubMerchantId, :NotifyUrl, :ProfitSharePayeeInfo, :ExternalProfitSharingData, :Environment
-        
+
         def initialize(channelmerchantid=nil, accountno=nil, channelname=nil, channelsubmerchantid=nil, notifyurl=nil, profitsharepayeeinfo=nil, externalprofitsharingdata=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @AccountNo = accountno
@@ -3084,7 +3084,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -3113,7 +3113,7 @@ module TencentCloud
         # @type Currency: String
 
         attr_accessor :AccountId, :AccountNo, :Currency
-        
+
         def initialize(accountid=nil, accountno=nil, currency=nil)
           @AccountId = accountid
           @AccountNo = accountno
@@ -3143,7 +3143,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :TranNetMemberCode, :MemberAcctNo, :MessageCheckCode, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, trannetmembercode=nil, memberacctno=nil, messagecheckcode=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @TranNetMemberCode = trannetmembercode
@@ -3181,7 +3181,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FrontSeqNo, :ReservedMsg, :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :RequestId
-        
+
         def initialize(frontseqno=nil, reservedmsg=nil, txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, requestid=nil)
           @FrontSeqNo = frontseqno
           @ReservedMsg = reservedmsg
@@ -3231,7 +3231,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :TranNetMemberCode, :MemberName, :MemberGlobalType, :MemberGlobalId, :MemberAcctNo, :BankType, :AcctOpenBranchName, :Mobile, :CnapsBranchId, :EiconBankBranchId, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, trannetmembercode=nil, membername=nil, memberglobaltype=nil, memberglobalid=nil, memberacctno=nil, banktype=nil, acctopenbranchname=nil, mobile=nil, cnapsbranchid=nil, eiconbankbranchid=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @TranNetMemberCode = trannetmembercode
@@ -3280,7 +3280,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -3328,7 +3328,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TranNetMemberCode, :MemberName, :MemberGlobalType, :MemberGlobalId, :MemberAcctNo, :BankType, :AcctOpenBranchName, :Mobile, :MrchCode, :CnapsBranchId, :EiconBankBranchId, :ReservedMsg, :Profile
-        
+
         def initialize(trannetmembercode=nil, membername=nil, memberglobaltype=nil, memberglobalid=nil, memberacctno=nil, banktype=nil, acctopenbranchname=nil, mobile=nil, mrchcode=nil, cnapsbranchid=nil, eiconbankbranchid=nil, reservedmsg=nil, profile=nil)
           @TranNetMemberCode = trannetmembercode
           @MemberName = membername
@@ -3377,7 +3377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReservedMsg, :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :RequestId
-        
+
         def initialize(reservedmsg=nil, txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, requestid=nil)
           @ReservedMsg = reservedmsg
           @TxnReturnCode = txnreturncode
@@ -3413,7 +3413,7 @@ module TencentCloud
         # @type BusinessLicenseExpireDate: String
 
         attr_accessor :BusinessLicenseType, :BusinessLicenseNumber, :BusinessLicenseValidityType, :BusinessLicenseEffectiveDate, :BusinessLicenseExpireDate
-        
+
         def initialize(businesslicensetype=nil, businesslicensenumber=nil, businesslicensevaliditytype=nil, businesslicenseeffectivedate=nil, businesslicenseexpiredate=nil)
           @BusinessLicenseType = businesslicensetype
           @BusinessLicenseNumber = businesslicensenumber
@@ -3439,7 +3439,7 @@ module TencentCloud
         # @type ChannelContractCode: String
 
         attr_accessor :OutContractCode, :ChannelContractCode
-        
+
         def initialize(outcontractcode=nil, channelcontractcode=nil)
           @OutContractCode = outcontractcode
           @ChannelContractCode = channelcontractcode
@@ -3463,7 +3463,7 @@ module TencentCloud
         # @type ChannelContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ChannelContractInfo`
 
         attr_accessor :ContractStatus, :ChannelContractInfo
-        
+
         def initialize(contractstatus=nil, channelcontractinfo=nil)
           @ContractStatus = contractstatus
           @ChannelContractInfo = channelcontractinfo
@@ -3521,7 +3521,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :SubAppId, :BindType, :SettleAcctNo, :MidasSecretId, :MidasSignature, :CheckCode, :CurrencyType, :CurrencyUnit, :CurrencyAmt, :EncryptType, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, subappid=nil, bindtype=nil, settleacctno=nil, midassecretid=nil, midassignature=nil, checkcode=nil, currencytype=nil, currencyunit=nil, currencyamt=nil, encrypttype=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -3561,7 +3561,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FrontSeqNo, :RequestId
-        
+
         def initialize(frontseqno=nil, requestid=nil)
           @FrontSeqNo = frontseqno
           @RequestId = requestid
@@ -3591,7 +3591,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :TranNetMemberCode, :TakeCashAcctNo, :AuthAmt, :Ccy, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, trannetmembercode=nil, takecashacctno=nil, authamt=nil, ccy=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @TranNetMemberCode = trannetmembercode
@@ -3629,7 +3629,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -3665,7 +3665,7 @@ module TencentCloud
         # @type City: String
 
         attr_accessor :CityId, :Province, :District, :City
-        
+
         def initialize(cityid=nil, province=nil, district=nil, city=nil)
           @CityId = cityid
           @Province = province
@@ -3706,7 +3706,7 @@ module TencentCloud
         # @type TotalAmt: String
 
         attr_accessor :Date, :SubAcctType, :ReconcileStatus, :ReconcileReturnMsg, :ClearingStatus, :ClearingReturnMsg, :TotalAmt
-        
+
         def initialize(date=nil, subaccttype=nil, reconcilestatus=nil, reconcilereturnmsg=nil, clearingstatus=nil, clearingreturnmsg=nil, totalamt=nil)
           @Date = date
           @SubAcctType = subaccttype
@@ -3743,7 +3743,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :UserId, :OutTradeNo, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, userid=nil, outtradeno=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -3765,7 +3765,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3787,7 +3787,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :Environment
-        
+
         def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
@@ -3816,7 +3816,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -3845,7 +3845,7 @@ module TencentCloud
         # @type OrderStatus: String
 
         attr_accessor :OutOrderId, :ChannelOrderId, :OrderStatus
-        
+
         def initialize(outorderid=nil, channelorderid=nil, orderstatus=nil)
           @OutOrderId = outorderid
           @ChannelOrderId = channelorderid
@@ -3881,7 +3881,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :UserId, :MidasSecretId, :MidasSignature, :OutTradeNo, :TransactionId, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, userid=nil, midassecretid=nil, midassignature=nil, outtradeno=nil, transactionid=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -3909,7 +3909,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3938,7 +3938,7 @@ module TencentCloud
         # @type AttachmentCode: String
 
         attr_accessor :AttachmentAmount, :AttachmentType, :AttachmentName, :AttachmentCode
-        
+
         def initialize(attachmentamount=nil, attachmenttype=nil, attachmentname=nil, attachmentcode=nil)
           @AttachmentAmount = attachmentamount
           @AttachmentType = attachmenttype
@@ -3964,7 +3964,7 @@ module TencentCloud
         # @type ChannelExternalUserId: String
 
         attr_accessor :ChannelExternalUserType, :ChannelExternalUserId
-        
+
         def initialize(channelexternalusertype=nil, channelexternaluserid=nil)
           @ChannelExternalUserType = channelexternalusertype
           @ChannelExternalUserId = channelexternaluserid
@@ -3997,7 +3997,7 @@ module TencentCloud
         # @type PackageName: String
 
         attr_accessor :ClientType, :AppName, :AppUrl, :BundleId, :PackageName
-        
+
         def initialize(clienttype=nil, appname=nil, appurl=nil, bundleid=nil, packagename=nil)
           @ClientType = clienttype
           @AppName = appname
@@ -4023,7 +4023,7 @@ module TencentCloud
         # @type AttachmentData: String
 
         attr_accessor :ChannelName, :AttachmentData
-        
+
         def initialize(channelname=nil, attachmentdata=nil)
           @ChannelName = channelname
           @AttachmentData = attachmentdata
@@ -4049,7 +4049,7 @@ module TencentCloud
         # @type ExternalChannelDataValue: String
 
         attr_accessor :ExternalChannelDataName, :ExternalChannelDataValue
-        
+
         def initialize(externalchanneldataname=nil, externalchanneldatavalue=nil)
           @ExternalChannelDataName = externalchanneldataname
           @ExternalChannelDataValue = externalchanneldatavalue
@@ -4072,7 +4072,7 @@ module TencentCloud
         # @type ExternalPromptInfoList: Array
 
         attr_accessor :ChannelName, :ExternalPromptInfoList
-        
+
         def initialize(channelname=nil, externalpromptinfolist=nil)
           @ChannelName = channelname
           @ExternalPromptInfoList = externalpromptinfolist
@@ -4101,7 +4101,7 @@ module TencentCloud
         # @type ExternalPromptName: String
 
         attr_accessor :ExternalPromptType, :ExternalPromptValue, :ExternalPromptName
-        
+
         def initialize(externalprompttype=nil, externalpromptvalue=nil, externalpromptname=nil)
           @ExternalPromptType = externalprompttype
           @ExternalPromptValue = externalpromptvalue
@@ -4123,7 +4123,7 @@ module TencentCloud
         # @type ExternalUserId: String
 
         attr_accessor :ExternalUserType, :ExternalUserId
-        
+
         def initialize(externalusertype=nil, externaluserid=nil)
           @ExternalUserType = externalusertype
           @ExternalUserId = externaluserid
@@ -4148,7 +4148,7 @@ module TencentCloud
         # @type TimeOffset: Integer
 
         attr_accessor :StartTimestamp, :ExpireTimestamp, :TimeOffset
-        
+
         def initialize(starttimestamp=nil, expiretimestamp=nil, timeoffset=nil)
           @StartTimestamp = starttimestamp
           @ExpireTimestamp = expiretimestamp
@@ -4247,7 +4247,7 @@ module TencentCloud
         # @type TotalMchIncome: Integer
 
         attr_accessor :AppId, :OutTradeNo, :SubOrderList, :TransactionId, :UserId, :Channel, :ProductId, :Metadata, :CurrencyType, :Amt, :OrderState, :OrderTime, :PayTime, :CallBackTime, :ChannelExternalOrderId, :ChannelOrderId, :RefundFlag, :CashAmt, :CouponAmt, :ProductName, :SettleInfo, :AttachmentInfoList, :ChannelExternalUserInfoList, :ExternalReturnPromptGroupList, :SceneInfo, :SubAppId, :PayScene, :PaymentMethod, :TotalPlatformIncome, :TotalMchIncome
-        
+
         def initialize(appid=nil, outtradeno=nil, suborderlist=nil, transactionid=nil, userid=nil, channel=nil, productid=nil, metadata=nil, currencytype=nil, amt=nil, orderstate=nil, ordertime=nil, paytime=nil, callbacktime=nil, channelexternalorderid=nil, channelorderid=nil, refundflag=nil, cashamt=nil, couponamt=nil, productname=nil, settleinfo=nil, attachmentinfolist=nil, channelexternaluserinfolist=nil, externalreturnpromptgrouplist=nil, sceneinfo=nil, subappid=nil, payscene=nil, paymentmethod=nil, totalplatformincome=nil, totalmchincome=nil)
           @AppId = appid
           @OutTradeNo = outtradeno
@@ -4359,7 +4359,7 @@ module TencentCloud
         # @type ProfitSharing: Integer
 
         attr_accessor :NeedToBeConfirmed, :ProfitSharing
-        
+
         def initialize(needtobeconfirmed=nil, profitsharing=nil)
           @NeedToBeConfirmed = needtobeconfirmed
           @ProfitSharing = profitsharing
@@ -4386,7 +4386,7 @@ module TencentCloud
         # @type StoreDeviceId: String
 
         attr_accessor :StoreId, :StoreName, :StoreAddress, :StoreAreaCode, :StoreDeviceId
-        
+
         def initialize(storeid=nil, storename=nil, storeaddress=nil, storeareacode=nil, storedeviceid=nil)
           @StoreId = storeid
           @StoreName = storename
@@ -4446,7 +4446,7 @@ module TencentCloud
         # @type ExternalAttachmentDataList: Array
 
         attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Metadata, :Amt, :OriginalAmt, :WxSubMchId, :SettleInfo, :AttachmentInfoList, :ExternalAttachmentDataList
-        
+
         def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, metadata=nil, amt=nil, originalamt=nil, wxsubmchid=nil, settleinfo=nil, attachmentinfolist=nil, externalattachmentdatalist=nil)
           @SubOutTradeNo = subouttradeno
           @SubAppId = subappid
@@ -4511,7 +4511,7 @@ module TencentCloud
         # @type SubRefundId: String
 
         attr_accessor :RefundAmt, :PlatformRefundAmt, :SubMchRefundAmt, :SubOutTradeNo, :SubRefundId
-        
+
         def initialize(refundamt=nil, platformrefundamt=nil, submchrefundamt=nil, subouttradeno=nil, subrefundid=nil)
           @RefundAmt = refundamt
           @PlatformRefundAmt = platformrefundamt
@@ -4569,7 +4569,7 @@ module TencentCloud
         # @type ProductId: String
 
         attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Amt, :OriginalAmt, :SettleCheck, :SettleInfo, :Metadata, :AttachmentInfoList, :ChannelExternalSubOrderId, :WxSubMchId, :ChannelSubPayOrderId, :ProductId
-        
+
         def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, amt=nil, originalamt=nil, settlecheck=nil, settleinfo=nil, metadata=nil, attachmentinfolist=nil, channelexternalsuborderid=nil, wxsubmchid=nil, channelsubpayorderid=nil, productid=nil)
           @SubOutTradeNo = subouttradeno
           @SubAppId = subappid
@@ -4643,7 +4643,7 @@ module TencentCloud
         # @type ChannelSubRefundId: String
 
         attr_accessor :ChannelExternalRefundId, :ChannelExternalOrderId, :RefundAmt, :SubOutTradeNo, :SubRefundId, :SubAppId, :ChannelSubOrderId, :ChannelSubRefundId
-        
+
         def initialize(channelexternalrefundid=nil, channelexternalorderid=nil, refundamt=nil, subouttradeno=nil, subrefundid=nil, subappid=nil, channelsuborderid=nil, channelsubrefundid=nil)
           @ChannelExternalRefundId = channelexternalrefundid
           @ChannelExternalOrderId = channelexternalorderid
@@ -4689,7 +4689,7 @@ module TencentCloud
         # @type CompanyPhone: String
 
         attr_accessor :CompanyBankAccount, :CompanyAddress, :CompanyTaxpayerNum, :CompanyName, :CompanyBankName, :CompanyPhone
-        
+
         def initialize(companybankaccount=nil, companyaddress=nil, companytaxpayernum=nil, companyname=nil, companybankname=nil, companyphone=nil)
           @CompanyBankAccount = companybankaccount
           @CompanyAddress = companyaddress
@@ -4717,7 +4717,7 @@ module TencentCloud
         # @type OrderNo: String
 
         attr_accessor :MerchantAppId, :OrderNo
-        
+
         def initialize(merchantappid=nil, orderno=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -4746,7 +4746,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :OrderNo, :Status, :Description, :RequestId
-        
+
         def initialize(merchantappid=nil, orderno=nil, status=nil, description=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -4793,7 +4793,7 @@ module TencentCloud
         # @type ExternalContractData: String
 
         attr_accessor :ChannelContractMerchantId, :ChannelContractSubMerchantId, :ChannelContractAppId, :ChannelContractSubAppId, :OutContractCode, :ExternalContractUserInfoList, :ContractMethod, :ContractSceneId, :UserInfo, :ExternalContractData
-        
+
         def initialize(channelcontractmerchantid=nil, channelcontractsubmerchantid=nil, channelcontractappid=nil, channelcontractsubappid=nil, outcontractcode=nil, externalcontractuserinfolist=nil, contractmethod=nil, contractsceneid=nil, userinfo=nil, externalcontractdata=nil)
           @ChannelContractMerchantId = channelcontractmerchantid
           @ChannelContractSubMerchantId = channelcontractsubmerchantid
@@ -4853,7 +4853,7 @@ module TencentCloud
         # @type Metadata: String
 
         attr_accessor :SubMchIncome, :PlatformIncome, :ProductDetail, :ProductName, :SubAppId, :SubOutTradeNo, :Amt, :OriginalAmt, :Metadata
-        
+
         def initialize(submchincome=nil, platformincome=nil, productdetail=nil, productname=nil, subappid=nil, subouttradeno=nil, amt=nil, originalamt=nil, metadata=nil)
           @SubMchIncome = submchincome
           @PlatformIncome = platformincome
@@ -4953,7 +4953,7 @@ module TencentCloud
         # @type ContractDisplayName: String
 
         attr_accessor :CurrencyType, :MidasAppId, :OutTradeNo, :ProductDetail, :ProductId, :ProductName, :TotalAmt, :UserId, :RealChannel, :OriginalAmt, :MidasSecretId, :MidasSignature, :ContractNotifyUrl, :CallbackUrl, :Channel, :Metadata, :Quantity, :SubAppId, :SubOrderList, :TotalMchIncome, :TotalPlatformIncome, :WxOpenId, :WxSubOpenId, :MidasEnvironment, :WxAppId, :WxSubAppId, :PaymentNotifyUrl, :ContractSceneId, :ExternalContractData, :OutContractCode, :AttachData, :ContractDisplayName
-        
+
         def initialize(currencytype=nil, midasappid=nil, outtradeno=nil, productdetail=nil, productid=nil, productname=nil, totalamt=nil, userid=nil, realchannel=nil, originalamt=nil, midassecretid=nil, midassignature=nil, contractnotifyurl=nil, callbackurl=nil, channel=nil, metadata=nil, quantity=nil, subappid=nil, suborderlist=nil, totalmchincome=nil, totalplatformincome=nil, wxopenid=nil, wxsubopenid=nil, midasenvironment=nil, wxappid=nil, wxsubappid=nil, paymentnotifyurl=nil, contractsceneid=nil, externalcontractdata=nil, outcontractcode=nil, attachdata=nil, contractdisplayname=nil)
           @CurrencyType = currencytype
           @MidasAppId = midasappid
@@ -5048,7 +5048,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalAmt, :OutTradeNo, :PayInfo, :TransactionId, :OutContractCode, :RequestId
-        
+
         def initialize(totalamt=nil, outtradeno=nil, payinfo=nil, transactionid=nil, outcontractcode=nil, requestid=nil)
           @TotalAmt = totalamt
           @OutTradeNo = outtradeno
@@ -5120,7 +5120,7 @@ module TencentCloud
         # @type PaymentOptionTen: String
 
         attr_accessor :PaymentId, :PaymentType, :PaymentTag, :PaymentIcon, :PaymentName, :PaymentInternalName, :PaymentOptionOne, :PaymentOptionTwo, :PaymentOptionThree, :PaymentOptionFour, :PaymentOptionFive, :PaymentOptionSix, :PaymentOptionSeven, :PaymentOptionOther, :PaymentOptionNine, :PaymentOptionTen
-        
+
         def initialize(paymentid=nil, paymenttype=nil, paymenttag=nil, paymenticon=nil, paymentname=nil, paymentinternalname=nil, paymentoptionone=nil, paymentoptiontwo=nil, paymentoptionthree=nil, paymentoptionfour=nil, paymentoptionfive=nil, paymentoptionsix=nil, paymentoptionseven=nil, paymentoptionother=nil, paymentoptionnine=nil, paymentoptionten=nil)
           @PaymentId = paymentid
           @PaymentType = paymenttype
@@ -5179,7 +5179,7 @@ module TencentCloud
         # @type ExternalReturnContractData: String
 
         attr_accessor :ExternalReturnContractInfo, :ExternalContractUserInfo, :ContractMethod, :ContractSceneId, :ExternalReturnContractData
-        
+
         def initialize(externalreturncontractinfo=nil, externalcontractuserinfo=nil, contractmethod=nil, contractsceneid=nil, externalreturncontractdata=nil)
           @ExternalReturnContractInfo = externalreturncontractinfo
           @ExternalContractUserInfo = externalcontractuserinfo
@@ -5216,7 +5216,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :UserType, :UserId
-        
+
         def initialize(usertype=nil, userid=nil)
           @UserType = usertype
           @UserId = userid
@@ -5303,7 +5303,7 @@ module TencentCloud
         # @type SubMerchantIdCode: String
 
         attr_accessor :MidasAppId, :SubMchId, :SubMchName, :Address, :Contact, :Mobile, :Email, :MidasSecretId, :MidasSignature, :SubMchType, :ShortName, :SubMerchantMemberType, :SubMerchantKey, :SubMerchantPrivateKey, :EncryptType, :SubAcctNo, :MidasEnvironment, :SubMerchantStoreName, :OrganizationInfo, :SubMerchantIdType, :SubMerchantIdCode
-        
+
         def initialize(midasappid=nil, submchid=nil, submchname=nil, address=nil, contact=nil, mobile=nil, email=nil, midassecretid=nil, midassignature=nil, submchtype=nil, shortname=nil, submerchantmembertype=nil, submerchantkey=nil, submerchantprivatekey=nil, encrypttype=nil, subacctno=nil, midasenvironment=nil, submerchantstorename=nil, organizationinfo=nil, submerchantidtype=nil, submerchantidcode=nil)
           @MidasAppId = midasappid
           @SubMchId = submchid
@@ -5366,7 +5366,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubAppId, :SubAcctNo, :RequestId
-        
+
         def initialize(subappid=nil, subacctno=nil, requestid=nil)
           @SubAppId = subappid
           @SubAcctNo = subacctno
@@ -5398,7 +5398,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :AgentId, :Channel, :Type, :RawElectronicCertUrl, :FileName, :AgentTaxPaymentInfos, :Profile
-        
+
         def initialize(agentid=nil, channel=nil, type=nil, rawelectroniccerturl=nil, filename=nil, agenttaxpaymentinfos=nil, profile=nil)
           @AgentId = agentid
           @Channel = channel
@@ -5435,7 +5435,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentTaxPaymentBatch, :RequestId
-        
+
         def initialize(agenttaxpaymentbatch=nil, requestid=nil)
           @AgentTaxPaymentBatch = agenttaxpaymentbatch
           @RequestId = requestid
@@ -5477,7 +5477,7 @@ module TencentCloud
         # @type AnchorExtendInfo: Array
 
         attr_accessor :AnchorUid, :AnchorName, :AnchorPhone, :AnchorEmail, :AnchorAddress, :AnchorIdNo, :AnchorType, :AnchorExtendInfo
-        
+
         def initialize(anchoruid=nil, anchorname=nil, anchorphone=nil, anchoremail=nil, anchoraddress=nil, anchoridno=nil, anchortype=nil, anchorextendinfo=nil)
           @AnchorUid = anchoruid
           @AnchorName = anchorname
@@ -5516,7 +5516,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AnchorId, :RequestId
-        
+
         def initialize(anchorid=nil, requestid=nil)
           @AnchorId = anchorid
           @RequestId = requestid
@@ -5560,7 +5560,7 @@ module TencentCloud
         # @type AgentName: String
 
         attr_accessor :OrderId, :TradeSerialNo, :Status, :StatusDesc, :AgentId, :AgentName
-        
+
         def initialize(orderid=nil, tradeserialno=nil, status=nil, statusdesc=nil, agentid=nil, agentname=nil)
           @OrderId = orderid
           @TradeSerialNo = tradeserialno
@@ -5589,7 +5589,7 @@ module TencentCloud
         # @type BatchInfoList: Array
 
         attr_accessor :BatchId, :BatchInfoList
-        
+
         def initialize(batchid=nil, batchinfolist=nil)
           @BatchId = batchid
           @BatchInfoList = batchinfolist
@@ -5626,7 +5626,7 @@ module TencentCloud
         # @type ReqReserved: String
 
         attr_accessor :TransferAmount, :OrderId, :AnchorId, :Uid, :AnchorName, :Remark, :ReqReserved
-        
+
         def initialize(transferamount=nil, orderid=nil, anchorid=nil, uid=nil, anchorname=nil, remark=nil, reqreserved=nil)
           @TransferAmount = transferamount
           @OrderId = orderid
@@ -5662,7 +5662,7 @@ module TencentCloud
         # @type NotifyUrl: String
 
         attr_accessor :TransferType, :RecipientList, :ReqReserved, :NotifyUrl
-        
+
         def initialize(transfertype=nil, recipientlist=nil, reqreserved=nil, notifyurl=nil)
           @TransferType = transfertype
           @RecipientList = recipientlist
@@ -5697,7 +5697,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -5739,7 +5739,7 @@ module TencentCloud
         # @type OutSubMerchantId: String
 
         attr_accessor :MidasAppId, :ParentAppId, :SubMchName, :SubMchDescription, :MidasEnvironment, :SubAppId, :SubMchShortName, :OutSubMerchantId
-        
+
         def initialize(midasappid=nil, parentappid=nil, submchname=nil, submchdescription=nil, midasenvironment=nil, subappid=nil, submchshortname=nil, outsubmerchantid=nil)
           @MidasAppId = midasappid
           @ParentAppId = parentappid
@@ -5781,7 +5781,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubAppId, :ChannelSubMerchantId, :Level, :ChannelAppId, :RequestId
-        
+
         def initialize(subappid=nil, channelsubmerchantid=nil, level=nil, channelappid=nil, requestid=nil)
           @SubAppId = subappid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -5833,7 +5833,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :FunctionFlag, :FundSummaryAcctNo, :TranNetMemberCode, :MemberProperty, :Mobile, :MrchCode, :SelfBusiness, :ContactName, :SubAcctName, :SubAcctShortName, :SubAcctType, :UserNickname, :Email, :ReservedMsg, :Profile
-        
+
         def initialize(functionflag=nil, fundsummaryacctno=nil, trannetmembercode=nil, memberproperty=nil, mobile=nil, mrchcode=nil, selfbusiness=nil, contactname=nil, subacctname=nil, subacctshortname=nil, subaccttype=nil, usernickname=nil, email=nil, reservedmsg=nil, profile=nil)
           @FunctionFlag = functionflag
           @FundSummaryAcctNo = fundsummaryacctno
@@ -5889,7 +5889,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubAcctNo, :ReservedMsg, :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :RequestId
-        
+
         def initialize(subacctno=nil, reservedmsg=nil, txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, requestid=nil)
           @SubAcctNo = subacctno
           @ReservedMsg = reservedmsg
@@ -5927,7 +5927,7 @@ module TencentCloud
         # @type CollectMoneyAccountInfo: String
 
         attr_accessor :DealStatus, :DealMessage, :ChannelAccountBookId, :CollectMoneyAccountInfo
-        
+
         def initialize(dealstatus=nil, dealmessage=nil, channelaccountbookid=nil, collectmoneyaccountinfo=nil)
           @DealStatus = dealstatus
           @DealMessage = dealmessage
@@ -5949,7 +5949,7 @@ module TencentCloud
         # @type AnchorId: String
 
         attr_accessor :AnchorId
-        
+
         def initialize(anchorid=nil)
           @AnchorId = anchorid
         end
@@ -5975,7 +5975,7 @@ module TencentCloud
         # @type AgentId: String
 
         attr_accessor :Uid, :Name, :IdNo, :IdCardFront, :IdCardReverse, :AgentId
-        
+
         def initialize(uid=nil, name=nil, idno=nil, idcardfront=nil, idcardreverse=nil, agentid=nil)
           @Uid = uid
           @Name = name
@@ -6008,7 +6008,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -6057,7 +6057,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutUserId, :Name, :IdNo, :AccountName, :ServiceProviderId, :TaxInfo, :IdType, :Remark, :PhoneNo, :Environment
-        
+
         def initialize(outuserid=nil, name=nil, idno=nil, accountname=nil, serviceproviderid=nil, taxinfo=nil, idtype=nil, remark=nil, phoneno=nil, environment=nil)
           @OutUserId = outuserid
           @Name = name
@@ -6101,7 +6101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -6126,7 +6126,7 @@ module TencentCloud
         # @type PayeeId: String
 
         attr_accessor :PayeeId
-        
+
         def initialize(payeeid=nil)
           @PayeeId = payeeid
         end
@@ -6173,7 +6173,7 @@ module TencentCloud
         # @type VatSpecialManagement: String
 
         attr_accessor :Name, :TaxCode, :TotalPrice, :TaxRate, :TaxAmount, :TaxType, :Models, :Unit, :Total, :Price, :Discount, :PreferentialPolicyFlag, :ZeroTaxFlag, :VatSpecialManagement
-        
+
         def initialize(name=nil, taxcode=nil, totalprice=nil, taxrate=nil, taxamount=nil, taxtype=nil, models=nil, unit=nil, total=nil, price=nil, discount=nil, preferentialpolicyflag=nil, zerotaxflag=nil, vatspecialmanagement=nil)
           @Name = name
           @TaxCode = taxcode
@@ -6291,7 +6291,7 @@ module TencentCloud
         # @type InvoiceChannel: Integer
 
         attr_accessor :InvoicePlatformId, :TitleType, :BuyerTitle, :OrderId, :AmountHasTax, :TaxAmount, :AmountWithoutTax, :SellerTaxpayerNum, :SellerName, :SellerAddress, :SellerPhone, :SellerBankName, :SellerBankAccount, :BuyerTaxpayerNum, :BuyerAddress, :BuyerBankName, :BuyerBankAccount, :BuyerPhone, :BuyerEmail, :TakerPhone, :InvoiceType, :CallbackUrl, :Drawer, :Payee, :Checker, :TerminalCode, :LevyMethod, :Deduction, :Remark, :Items, :Profile, :UndoPart, :OrderDate, :Discount, :StoreNo, :InvoiceChannel
-        
+
         def initialize(invoiceplatformid=nil, titletype=nil, buyertitle=nil, orderid=nil, amounthastax=nil, taxamount=nil, amountwithouttax=nil, sellertaxpayernum=nil, sellername=nil, selleraddress=nil, sellerphone=nil, sellerbankname=nil, sellerbankaccount=nil, buyertaxpayernum=nil, buyeraddress=nil, buyerbankname=nil, buyerbankaccount=nil, buyerphone=nil, buyeremail=nil, takerphone=nil, invoicetype=nil, callbackurl=nil, drawer=nil, payee=nil, checker=nil, terminalcode=nil, levymethod=nil, deduction=nil, remark=nil, items=nil, profile=nil, undopart=nil, orderdate=nil, discount=nil, storeno=nil, invoicechannel=nil)
           @InvoicePlatformId = invoiceplatformid
           @TitleType = titletype
@@ -6386,7 +6386,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -6412,7 +6412,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.CreateInvoiceResultData`
 
         attr_accessor :Message, :Code, :Data
-        
+
         def initialize(message=nil, code=nil, data=nil)
           @Message = message
           @Code = code
@@ -6439,7 +6439,7 @@ module TencentCloud
         # @type OrderSn: String
 
         attr_accessor :State, :InvoiceId, :OrderSn
-        
+
         def initialize(state=nil, invoiceid=nil, ordersn=nil)
           @State = state
           @InvoiceId = invoiceid
@@ -6459,7 +6459,7 @@ module TencentCloud
         # @type InvoiceId: String
 
         attr_accessor :InvoiceId
-        
+
         def initialize(invoiceid=nil)
           @InvoiceId = invoiceid
         end
@@ -6551,7 +6551,7 @@ module TencentCloud
         # @type InvoiceChannel: Integer
 
         attr_accessor :InvoicePlatformId, :TitleType, :BuyerTitle, :OrderId, :AmountHasTax, :TaxAmount, :AmountWithoutTax, :SellerTaxpayerNum, :SellerName, :SellerAddress, :SellerPhone, :SellerBankName, :SellerBankAccount, :BuyerTaxpayerNum, :BuyerAddress, :BuyerBankName, :BuyerBankAccount, :BuyerPhone, :BuyerEmail, :TakerPhone, :InvoiceType, :CallbackUrl, :Drawer, :Payee, :Checker, :TerminalCode, :LevyMethod, :Deduction, :Remark, :Items, :Profile, :UndoPart, :OrderDate, :Discount, :StoreNo, :InvoiceChannel
-        
+
         def initialize(invoiceplatformid=nil, titletype=nil, buyertitle=nil, orderid=nil, amounthastax=nil, taxamount=nil, amountwithouttax=nil, sellertaxpayernum=nil, sellername=nil, selleraddress=nil, sellerphone=nil, sellerbankname=nil, sellerbankaccount=nil, buyertaxpayernum=nil, buyeraddress=nil, buyerbankname=nil, buyerbankaccount=nil, buyerphone=nil, buyeremail=nil, takerphone=nil, invoicetype=nil, callbackurl=nil, drawer=nil, payee=nil, checker=nil, terminalcode=nil, levymethod=nil, deduction=nil, remark=nil, items=nil, profile=nil, undopart=nil, orderdate=nil, discount=nil, storeno=nil, invoicechannel=nil)
           @InvoicePlatformId = invoiceplatformid
           @TitleType = titletype
@@ -6651,7 +6651,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
-        
+
         def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
           @Result = result
           @ErrCode = errcode
@@ -6720,7 +6720,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :InvoicePlatformId, :TaxpayerName, :TaxpayerNum, :LegalPersonName, :ContactsName, :Phone, :Address, :RegionCode, :CityName, :Drawer, :TaxRegistrationCertificate, :Email, :BusinessMobile, :BankName, :BankAccount, :Reviewer, :Payee, :RegisterCode, :State, :CallbackUrl, :Profile
-        
+
         def initialize(invoiceplatformid=nil, taxpayername=nil, taxpayernum=nil, legalpersonname=nil, contactsname=nil, phone=nil, address=nil, regioncode=nil, cityname=nil, drawer=nil, taxregistrationcertificate=nil, email=nil, businessmobile=nil, bankname=nil, bankaccount=nil, reviewer=nil, payee=nil, registercode=nil, state=nil, callbackurl=nil, profile=nil)
           @InvoicePlatformId = invoiceplatformid
           @TaxpayerName = taxpayername
@@ -6778,7 +6778,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -6804,7 +6804,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.CreateMerchantResultData`
 
         attr_accessor :Code, :Message, :Data
-        
+
         def initialize(code=nil, message=nil, data=nil)
           @Code = code
           @Message = message
@@ -6831,7 +6831,7 @@ module TencentCloud
         # @type TaxpayerNum: String
 
         attr_accessor :TaxpayerName, :SerialNo, :TaxpayerNum
-        
+
         def initialize(taxpayername=nil, serialno=nil, taxpayernum=nil)
           @TaxpayerName = taxpayername
           @SerialNo = serialno
@@ -6902,7 +6902,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutRegistrationNo, :ChannelMerchantId, :OutSubMerchantId, :ChannelName, :OutSubMerchantType, :OutSubMerchantName, :LegalPersonInfo, :BusinessLicenseInfo, :InterConnectionSubMerchantData, :PaymentMethod, :OutSubMerchantShortName, :OutSubMerchantDescription, :NotifyUrl, :NaturalPersonList, :SettleInfo, :OutSubMerchantExtensionInfo, :Environment
-        
+
         def initialize(outregistrationno=nil, channelmerchantid=nil, outsubmerchantid=nil, channelname=nil, outsubmerchanttype=nil, outsubmerchantname=nil, legalpersoninfo=nil, businesslicenseinfo=nil, interconnectionsubmerchantdata=nil, paymentmethod=nil, outsubmerchantshortname=nil, outsubmerchantdescription=nil, notifyurl=nil, naturalpersonlist=nil, settleinfo=nil, outsubmerchantextensioninfo=nil, environment=nil)
           @OutRegistrationNo = outregistrationno
           @ChannelMerchantId = channelmerchantid
@@ -6979,7 +6979,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7015,7 +7015,7 @@ module TencentCloud
         # @type ChannelSubMerchantId: String
 
         attr_accessor :RegistrationStatus, :RegistrationMessage, :ChannelRegistrationNo, :ChannelSubMerchantId
-        
+
         def initialize(registrationstatus=nil, registrationmessage=nil, channelregistrationno=nil, channelsubmerchantid=nil)
           @RegistrationStatus = registrationstatus
           @RegistrationMessage = registrationmessage
@@ -7056,7 +7056,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutAccountBookId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :Environment
-        
+
         def initialize(outaccountbookid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, environment=nil)
           @OutAccountBookId = outaccountbookid
           @ChannelMerchantId = channelmerchantid
@@ -7091,7 +7091,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7148,7 +7148,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutRegistrationNo, :ChannelMerchantId, :OutSubMerchantId, :ChannelName, :PaymentMethod, :BusinessLicenseNumber, :OutSubMerchantName, :LegalName, :OutSubMerchantShortName, :OutSubMerchantDescription, :ExternalSubMerchantRegistrationData, :NotifyUrl, :Environment
-        
+
         def initialize(outregistrationno=nil, channelmerchantid=nil, outsubmerchantid=nil, channelname=nil, paymentmethod=nil, businesslicensenumber=nil, outsubmerchantname=nil, legalname=nil, outsubmerchantshortname=nil, outsubmerchantdescription=nil, externalsubmerchantregistrationdata=nil, notifyurl=nil, environment=nil)
           @OutRegistrationNo = outregistrationno
           @ChannelMerchantId = channelmerchantid
@@ -7197,7 +7197,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7236,7 +7236,7 @@ module TencentCloud
         # @type ExternalReturnData: String
 
         attr_accessor :RegistrationStatus, :RegistrationMessage, :ChannelRegistrationNo, :ChannelSubMerchantId, :ExternalReturnData
-        
+
         def initialize(registrationstatus=nil, registrationmessage=nil, channelregistrationno=nil, channelsubmerchantid=nil, externalreturndata=nil)
           @RegistrationStatus = registrationstatus
           @RegistrationMessage = registrationmessage
@@ -7293,7 +7293,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :NotifyUrl, :FrontUrl, :FrontLanguage, :Remark, :ExternalPaymentData, :GoodsInfos, :ShippingInfo, :BillingInfo, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, notifyurl=nil, fronturl=nil, frontlanguage=nil, remark=nil, externalpaymentdata=nil, goodsinfos=nil, shippinginfo=nil, billinginfo=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -7360,7 +7360,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7401,7 +7401,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutMerchantId, :ChannelName, :OutMerchantName, :ExternalMerchantInfo, :OutMerchantShortName, :OutMerchantDescription, :Environment
-        
+
         def initialize(outmerchantid=nil, channelname=nil, outmerchantname=nil, externalmerchantinfo=nil, outmerchantshortname=nil, outmerchantdescription=nil, environment=nil)
           @OutMerchantId = outmerchantid
           @ChannelName = channelname
@@ -7438,7 +7438,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7463,7 +7463,7 @@ module TencentCloud
         # @type ChannelMerchantId: String
 
         attr_accessor :ChannelMerchantId
-        
+
         def initialize(channelmerchantid=nil)
           @ChannelMerchantId = channelmerchantid
         end
@@ -7494,7 +7494,7 @@ module TencentCloud
         # @type PayInfoType: String
 
         attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :PayInfo, :PayInfoType
-        
+
         def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, payinfo=nil, payinfotype=nil)
           @ChannelOrderId = channelorderid
           @ThirdPayOrderId = thirdpayorderid
@@ -7540,7 +7540,7 @@ module TencentCloud
         # @type PcWebUrl: String
 
         attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :DealStatus, :DealMessage, :PcWebUrl
-        
+
         def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, dealstatus=nil, dealmessage=nil, pcweburl=nil)
           @ChannelOrderId = channelorderid
           @ThirdPayOrderId = thirdpayorderid
@@ -7631,7 +7631,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :PaymentMode, :OutOrderId, :TotalAmount, :Currency, :PayerInfo, :PayeeInfo, :NotifyUrl, :ExpireTime, :FrontUrl, :RefreshUrl, :SceneInfo, :GoodsInfo, :Attachment, :ProfitShareFlag, :ProfitShareInfoList, :SettlementRulesInfo, :ExternalPaymentData, :Remark, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, paymentmode=nil, outorderid=nil, totalamount=nil, currency=nil, payerinfo=nil, payeeinfo=nil, notifyurl=nil, expiretime=nil, fronturl=nil, refreshurl=nil, sceneinfo=nil, goodsinfo=nil, attachment=nil, profitshareflag=nil, profitshareinfolist=nil, settlementrulesinfo=nil, externalpaymentdata=nil, remark=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -7719,7 +7719,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7775,7 +7775,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutOrderId, :TotalAmount, :Currency, :ExpireTime, :ChannelName, :PaymentMethod, :PayeeInfo, :ChannelSubMerchantId, :NotifyUrl, :Remark, :Environment
-        
+
         def initialize(channelmerchantid=nil, outorderid=nil, totalamount=nil, currency=nil, expiretime=nil, channelname=nil, paymentmethod=nil, payeeinfo=nil, channelsubmerchantid=nil, notifyurl=nil, remark=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
@@ -7824,7 +7824,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7895,7 +7895,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelRegistrationNo, :OutProductFeeNo, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PayType, :PayChannel, :FeeMode, :FeeValue, :PaymentMethod, :MinFee, :MaxFee, :NotifyUrl, :FeeRangeList, :Environment
-        
+
         def initialize(channelregistrationno=nil, outproductfeeno=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paytype=nil, paychannel=nil, feemode=nil, feevalue=nil, paymentmethod=nil, minfee=nil, maxfee=nil, notifyurl=nil, feerangelist=nil, environment=nil)
           @ChannelRegistrationNo = channelregistrationno
           @OutProductFeeNo = outproductfeeno
@@ -7956,7 +7956,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -7990,7 +7990,7 @@ module TencentCloud
         # @type ChannelProductFeeNo: String
 
         attr_accessor :DealStatus, :DealMessage, :ChannelProductFeeNo
-        
+
         def initialize(dealstatus=nil, dealmessage=nil, channelproductfeeno=nil)
           @DealStatus = dealstatus
           @DealMessage = dealmessage
@@ -8025,7 +8025,7 @@ module TencentCloud
         # @type PayInfoType: String
 
         attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :PayInfo, :PayInfoType
-        
+
         def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, payinfo=nil, payinfotype=nil)
           @ChannelOrderId = channelorderid
           @ThirdPayOrderId = thirdpayorderid
@@ -8107,7 +8107,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :PayChannel, :SceneInfo, :ProfitShareInfoList, :OrderSubject, :GoodsDetail, :ExpireTime, :NotifyUrl, :FrontUrl, :Attachment, :ExternalPaymentData, :Remark, :StoreInfo, :PayLimitInfo, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, paychannel=nil, sceneinfo=nil, profitshareinfolist=nil, ordersubject=nil, goodsdetail=nil, expiretime=nil, notifyurl=nil, fronturl=nil, attachment=nil, externalpaymentdata=nil, remark=nil, storeinfo=nil, paylimitinfo=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -8187,7 +8187,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -8231,7 +8231,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutVerificationId, :VerificationAmount, :OutOrderId, :ChannelOrderId, :NotifyUrl, :Remark, :ExternalVerificationData, :Environment
-        
+
         def initialize(channelmerchantid=nil, outverificationid=nil, verificationamount=nil, outorderid=nil, channelorderid=nil, notifyurl=nil, remark=nil, externalverificationdata=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutVerificationId = outverificationid
@@ -8271,7 +8271,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -8309,7 +8309,7 @@ module TencentCloud
         # @type ThirdVerificationReturnInfo: String
 
         attr_accessor :ChannelVerificationId, :ThirdVerificationId, :VerificationStatus, :VerificationAmount, :ThirdVerificationReturnInfo
-        
+
         def initialize(channelverificationid=nil, thirdverificationid=nil, verificationstatus=nil, verificationamount=nil, thirdverificationreturninfo=nil)
           @ChannelVerificationId = channelverificationid
           @ThirdVerificationId = thirdverificationid
@@ -8343,7 +8343,7 @@ module TencentCloud
         # @type ReturnUrl: String
 
         attr_accessor :ChannelCode, :MerchantAppId, :Amount, :TraceNo, :NotifyUrl, :ReturnUrl
-        
+
         def initialize(channelcode=nil, merchantappid=nil, amount=nil, traceno=nil, notifyurl=nil, returnurl=nil)
           @ChannelCode = channelcode
           @MerchantAppId = merchantappid
@@ -8377,7 +8377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :TraceNo, :OrderNo, :PayUrl, :RequestId
-        
+
         def initialize(merchantappid=nil, traceno=nil, orderno=nil, payurl=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @TraceNo = traceno
@@ -8410,7 +8410,7 @@ module TencentCloud
         # @type BusinessPayFlag: String
 
         attr_accessor :PlatformCode, :ChannelMerchantNo, :ChannelCheckFlag, :MerchantName, :BusinessPayFlag
-        
+
         def initialize(platformcode=nil, channelmerchantno=nil, channelcheckflag=nil, merchantname=nil, businesspayflag=nil)
           @PlatformCode = platformcode
           @ChannelMerchantNo = channelmerchantno
@@ -8436,7 +8436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :RequestId
-        
+
         def initialize(merchantappid=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @RequestId = requestid
@@ -8468,7 +8468,7 @@ module TencentCloud
         # @type WechatSubAppId: String
 
         attr_accessor :OpenId, :SubMerchantId, :AuthNumber, :ProjectName, :CompanyName, :WechatAppId, :WechatSubAppId
-        
+
         def initialize(openid=nil, submerchantid=nil, authnumber=nil, projectname=nil, companyname=nil, wechatappid=nil, wechatsubappid=nil)
           @OpenId = openid
           @SubMerchantId = submerchantid
@@ -8508,7 +8508,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthNumber, :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
-        
+
         def initialize(authnumber=nil, expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
           @AuthNumber = authnumber
           @ExpireTime = expiretime
@@ -8559,7 +8559,7 @@ module TencentCloud
         # @type WechatSubAppId: String
 
         attr_accessor :OpenId, :SubMerchantId, :AuthNumber, :ProjectName, :CompanyName, :UserName, :IdNo, :EmploymentType, :WechatAppId, :WechatSubAppId
-        
+
         def initialize(openid=nil, submerchantid=nil, authnumber=nil, projectname=nil, companyname=nil, username=nil, idno=nil, employmenttype=nil, wechatappid=nil, wechatsubappid=nil)
           @OpenId = openid
           @SubMerchantId = submerchantid
@@ -8605,7 +8605,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthNumber, :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
-        
+
         def initialize(authnumber=nil, expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
           @AuthNumber = authnumber
           @ExpireTime = expiretime
@@ -8650,7 +8650,7 @@ module TencentCloud
         # @type WechatSubAppId: String
 
         attr_accessor :OpenId, :SubMerchantId, :UserName, :IdNo, :EmploymentType, :WechatAppId, :WechatSubAppId
-        
+
         def initialize(openid=nil, submerchantid=nil, username=nil, idno=nil, employmenttype=nil, wechatappid=nil, wechatsubappid=nil)
           @OpenId = openid
           @SubMerchantId = submerchantid
@@ -8688,7 +8688,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
-        
+
         def initialize(expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
           @ExpireTime = expiretime
           @MerchantId = merchantid
@@ -8722,7 +8722,7 @@ module TencentCloud
         # @type StoreNo: String
 
         attr_accessor :OrderId, :CallbackUrl, :OrderSn, :RedSerialNo, :StoreNo
-        
+
         def initialize(orderid=nil, callbackurl=nil, ordersn=nil, redserialno=nil, storeno=nil)
           @OrderId = orderid
           @CallbackUrl = callbackurl
@@ -8754,7 +8754,7 @@ module TencentCloud
         # @type InvoiceChannel: Integer
 
         attr_accessor :InvoicePlatformId, :Invoices, :Profile, :InvoiceChannel
-        
+
         def initialize(invoiceplatformid=nil, invoices=nil, profile=nil, invoicechannel=nil)
           @InvoicePlatformId = invoiceplatformid
           @Invoices = invoices
@@ -8785,7 +8785,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -8811,7 +8811,7 @@ module TencentCloud
         # @type Data: Array
 
         attr_accessor :Message, :Code, :Data
-        
+
         def initialize(message=nil, code=nil, data=nil)
           @Message = message
           @Code = code
@@ -8844,7 +8844,7 @@ module TencentCloud
         # @type OrderSn: String
 
         attr_accessor :Code, :Message, :InvoiceId, :OrderSn
-        
+
         def initialize(code=nil, message=nil, invoiceid=nil, ordersn=nil)
           @Code = code
           @Message = message
@@ -8866,7 +8866,7 @@ module TencentCloud
         # @type InvoiceId: String
 
         attr_accessor :InvoiceId
-        
+
         def initialize(invoiceid=nil)
           @InvoiceId = invoiceid
         end
@@ -8890,7 +8890,7 @@ module TencentCloud
         # @type InvoiceChannel: Integer
 
         attr_accessor :InvoicePlatformId, :OrderId, :Profile, :InvoiceChannel
-        
+
         def initialize(invoiceplatformid=nil, orderid=nil, profile=nil, invoicechannel=nil)
           @InvoicePlatformId = invoiceplatformid
           @OrderId = orderid
@@ -8919,7 +8919,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
-        
+
         def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
           @Result = result
           @ErrCode = errcode
@@ -8950,7 +8950,7 @@ module TencentCloud
         # @type AgentName: String
 
         attr_accessor :TradeSerialNo, :AgentId, :AgentName
-        
+
         def initialize(tradeserialno=nil, agentid=nil, agentname=nil)
           @TradeSerialNo = tradeserialno
           @AgentId = agentid
@@ -8989,7 +8989,7 @@ module TencentCloud
         # @type NotifyUrl: String
 
         attr_accessor :TransferType, :OrderId, :TransferAmount, :AnchorId, :ReqReserved, :Remark, :AnchorName, :Uid, :NotifyUrl
-        
+
         def initialize(transfertype=nil, orderid=nil, transferamount=nil, anchorid=nil, reqreserved=nil, remark=nil, anchorname=nil, uid=nil, notifyurl=nil)
           @TransferType = transfertype
           @OrderId = orderid
@@ -9028,7 +9028,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -9087,7 +9087,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MerchantId, :TransferDetails, :MerchantAppId, :MerchantBatchNo, :BatchName, :BatchRemark, :TotalAmount, :TotalNum, :Profile
-        
+
         def initialize(merchantid=nil, transferdetails=nil, merchantappid=nil, merchantbatchno=nil, batchname=nil, batchremark=nil, totalamount=nil, totalnum=nil, profile=nil)
           @MerchantId = merchantid
           @TransferDetails = transferdetails
@@ -9137,7 +9137,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantBatchNo, :BatchId, :CreateTime, :RequestId
-        
+
         def initialize(merchantbatchno=nil, batchid=nil, createtime=nil, requestid=nil)
           @MerchantBatchNo = merchantbatchno
           @BatchId = batchid
@@ -9163,7 +9163,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :AnchorId, :Amount, :OrderId
-        
+
         def initialize(anchorid=nil, amount=nil, orderid=nil)
           @AnchorId = anchorid
           @Amount = amount
@@ -9190,7 +9190,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
@@ -9217,7 +9217,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :BatchNum, :Profile
-        
+
         def initialize(batchnum=nil, profile=nil)
           @BatchNum = batchnum
           @Profile = profile
@@ -9235,7 +9235,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -9251,7 +9251,7 @@ module TencentCloud
         # @type BatchNum: Integer
 
         attr_accessor :BatchNum
-        
+
         def initialize(batchnum=nil)
           @BatchNum = batchnum
         end
@@ -9267,7 +9267,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -9309,7 +9309,7 @@ module TencentCloud
         # @type ReservedMessage: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OrderId, :BankAccountNumber, :AcquiringChannelType, :PlatformShortNumber, :MidasSecretId, :MidasAppId, :MidasSignature, :TransSequenceNumber, :MidasEnvironment, :ReservedMessage
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, orderid=nil, bankaccountnumber=nil, acquiringchanneltype=nil, platformshortnumber=nil, midassecretid=nil, midasappid=nil, midassignature=nil, transsequencenumber=nil, midasenvironment=nil, reservedmessage=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -9377,7 +9377,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderStatus, :OrderAmount, :CommissionAmount, :PayMode, :OrderDate, :OrderTime, :OrderActualInSubAccountName, :OrderActualInSubAccountNumber, :OrderInSubAccountName, :OrderInSubAccountNumber, :FrontSequenceNumber, :FailMessage, :RequestType, :RequestId
-        
+
         def initialize(orderstatus=nil, orderamount=nil, commissionamount=nil, paymode=nil, orderdate=nil, ordertime=nil, orderactualinsubaccountname=nil, orderactualinsubaccountnumber=nil, orderinsubaccountname=nil, orderinsubaccountnumber=nil, frontsequencenumber=nil, failmessage=nil, requesttype=nil, requestid=nil)
           @OrderStatus = orderstatus
           @OrderAmount = orderamount
@@ -9449,7 +9449,7 @@ module TencentCloud
         # @type TransDate: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OrderId, :BankAccountNumber, :PlatformShortNumber, :QueryType, :TransSequenceNumber, :MidasSignature, :MidasAppId, :MidasSecretId, :MidasEnvironment, :ReservedMessage, :BankSubAccountNumber, :TransDate
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, orderid=nil, bankaccountnumber=nil, platformshortnumber=nil, querytype=nil, transsequencenumber=nil, midassignature=nil, midasappid=nil, midassecretid=nil, midasenvironment=nil, reservedmessage=nil, banksubaccountnumber=nil, transdate=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -9513,7 +9513,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderStatus, :OrderAmount, :OrderDate, :OrderTime, :OutSubAccountNumber, :InSubAccountNumber, :BookingFlag, :FailMessage, :RequestType, :RequestId
-        
+
         def initialize(orderstatus=nil, orderamount=nil, orderdate=nil, ordertime=nil, outsubaccountnumber=nil, insubaccountnumber=nil, bookingflag=nil, failmessage=nil, requesttype=nil, requestid=nil)
           @OrderStatus = orderstatus
           @OrderAmount = orderamount
@@ -9551,7 +9551,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -9579,7 +9579,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -9611,7 +9611,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :Status, :ContractUrl, :Remark
-        
+
         def initialize(status=nil, contracturl=nil, remark=nil)
           @Status = status
           @ContractUrl = contracturl
@@ -9635,7 +9635,7 @@ module TencentCloud
         # @type MerchantNo: String
 
         attr_accessor :ContractUrl, :MerchantNo
-        
+
         def initialize(contracturl=nil, merchantno=nil)
           @ContractUrl = contracturl
           @MerchantNo = merchantno
@@ -9663,7 +9663,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :AuthType, :Percent, :FullName, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, authtype=nil, percent=nil, fullname=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -9697,7 +9697,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -9730,7 +9730,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :MerchantNo, :Remark, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, merchantno=nil, remark=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -9762,7 +9762,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -9801,7 +9801,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutDistributeNo, :Details, :DeveloperNo, :OrderNo, :Remark, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outdistributeno=nil, details=nil, developerno=nil, orderno=nil, remark=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -9846,7 +9846,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -9881,7 +9881,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OrderNo, :OutDistributeNo, :DistributeNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, orderno=nil, outdistributeno=nil, distributeno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -9915,7 +9915,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -9950,7 +9950,7 @@ module TencentCloud
         # @type DistributeNo: String
 
         attr_accessor :Status, :OrderNo, :OutDistributeNo, :DistributeNo
-        
+
         def initialize(status=nil, orderno=nil, outdistributeno=nil, distributeno=nil)
           @Status = status
           @OrderNo = orderno
@@ -9988,7 +9988,7 @@ module TencentCloud
         # @type OrderNo: String
 
         attr_accessor :Status, :DistributeNo, :InDate, :Amount, :OutDistributeNo, :OrderNo
-        
+
         def initialize(status=nil, distributeno=nil, indate=nil, amount=nil, outdistributeno=nil, orderno=nil)
           @Status = status
           @DistributeNo = distributeno
@@ -10018,7 +10018,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -10046,7 +10046,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -10083,7 +10083,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Type, :OutDistributeNo, :DistributeNo, :OrderNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, type=nil, outdistributeno=nil, distributeno=nil, orderno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -10119,7 +10119,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -10145,7 +10145,7 @@ module TencentCloud
         # @type Orders: Array
 
         attr_accessor :Orders
-        
+
         def initialize(orders=nil)
           @Orders = orders
         end
@@ -10169,7 +10169,7 @@ module TencentCloud
         # @type MerchantNo: String
 
         attr_accessor :MerchantNo
-        
+
         def initialize(merchantno=nil)
           @MerchantNo = merchantno
         end
@@ -10193,7 +10193,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :MerchantNo, :Remark, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, merchantno=nil, remark=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -10225,7 +10225,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -10262,7 +10262,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :StateDate, :MidasAppId, :MidasSecretId, :MidasSignature, :MidasEnvironment
-        
+
         def initialize(statedate=nil, midasappid=nil, midassecretid=nil, midassignature=nil, midasenvironment=nil)
           @StateDate = statedate
           @MidasAppId = midasappid
@@ -10297,7 +10297,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileName, :FileMD5, :DownloadUrl, :StateType, :RequestId
-        
+
         def initialize(filename=nil, filemd5=nil, downloadurl=nil, statetype=nil, requestid=nil)
           @FileName = filename
           @FileMD5 = filemd5
@@ -10325,7 +10325,7 @@ module TencentCloud
         # @type Storage: String
 
         attr_accessor :Content, :Storage
-        
+
         def initialize(content=nil, storage=nil)
           @Content = content
           @Storage = storage
@@ -10351,7 +10351,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Storage, :FilePath, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, storage=nil, filepath=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -10383,7 +10383,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -10414,7 +10414,7 @@ module TencentCloud
         # @type SubAppId: String
 
         attr_accessor :MainAppId, :AppCode, :BillDate, :SubAppId
-        
+
         def initialize(mainappid=nil, appcode=nil, billdate=nil, subappid=nil)
           @MainAppId = mainappid
           @AppCode = appcode
@@ -10443,7 +10443,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DownloadUrl, :HashType, :HashValue, :RequestId
-        
+
         def initialize(downloadurl=nil, hashtype=nil, hashvalue=nil, requestid=nil)
           @DownloadUrl = downloadurl
           @HashType = hashtype
@@ -10518,7 +10518,7 @@ module TencentCloud
         # @type ReservedMessage: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OutTransNetMemberCode, :OutSubAccountName, :InSubAccountName, :OutSubAccountNumber, :InSubAccountNumber, :BankAccountNumber, :CurrencyUnit, :CurrencyType, :CurrencyAmount, :OrderId, :MidasAppId, :MidasSecretId, :MidasSignature, :TransSequenceNumber, :InTransNetMemberCode, :MidasEnvironment, :PlatformShortNumber, :TransType, :TransFee, :ReservedMessage
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, outtransnetmembercode=nil, outsubaccountname=nil, insubaccountname=nil, outsubaccountnumber=nil, insubaccountnumber=nil, bankaccountnumber=nil, currencyunit=nil, currencytype=nil, currencyamount=nil, orderid=nil, midasappid=nil, midassecretid=nil, midassignature=nil, transsequencenumber=nil, intransnetmembercode=nil, midasenvironment=nil, platformshortnumber=nil, transtype=nil, transfee=nil, reservedmessage=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -10587,7 +10587,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestType, :FrontSequenceNumber, :ReservedMessage, :RequestId
-        
+
         def initialize(requesttype=nil, frontsequencenumber=nil, reservedmessage=nil, requestid=nil)
           @RequestType = requesttype
           @FrontSequenceNumber = frontsequencenumber
@@ -10611,7 +10611,7 @@ module TencentCloud
         # @type ExternalUserId: String
 
         attr_accessor :ExternalUserType, :ExternalUserId
-        
+
         def initialize(externalusertype=nil, externaluserid=nil)
           @ExternalUserType = externalusertype
           @ExternalUserId = externaluserid
@@ -10661,7 +10661,7 @@ module TencentCloud
         # @type ExternalReturnContractTerminationMode: String
 
         attr_accessor :ExternalReturnAgreementId, :ExternalReturnContractEffectiveTimestamp, :ExternalReturnContractTerminationTimestamp, :ExternalReturnContractStatus, :ExternalReturnRequestId, :ExternalReturnContractSignedTimestamp, :ExternalReturnContractExpiredTimestamp, :ExternalReturnContractData, :ExternalReturnContractTerminationRemark, :ExternalReturnContractTerminationMode
-        
+
         def initialize(externalreturnagreementid=nil, externalreturncontracteffectivetimestamp=nil, externalreturncontractterminationtimestamp=nil, externalreturncontractstatus=nil, externalreturnrequestid=nil, externalreturncontractsignedtimestamp=nil, externalreturncontractexpiredtimestamp=nil, externalreturncontractdata=nil, externalreturncontractterminationremark=nil, externalreturncontractterminationmode=nil)
           @ExternalReturnAgreementId = externalreturnagreementid
           @ExternalReturnContractEffectiveTimestamp = externalreturncontracteffectivetimestamp
@@ -10711,7 +10711,7 @@ module TencentCloud
         # @type MaxFee: Integer
 
         attr_accessor :CardType, :RangeStartValue, :RangeEndValue, :RangeFeeMode, :FeeValue, :MinFee, :MaxFee
-        
+
         def initialize(cardtype=nil, rangestartvalue=nil, rangeendvalue=nil, rangefeemode=nil, feevalue=nil, minfee=nil, maxfee=nil)
           @CardType = cardtype
           @RangeStartValue = rangestartvalue
@@ -10749,7 +10749,7 @@ module TencentCloud
         # @type DrawCode: String
 
         attr_accessor :FileName, :RandomPassword, :FilePath, :DrawCode
-        
+
         def initialize(filename=nil, randompassword=nil, filepath=nil, drawcode=nil)
           @FileName = filename
           @RandomPassword = randompassword
@@ -10773,7 +10773,7 @@ module TencentCloud
         # @type ExpireTime: String
 
         attr_accessor :Url, :ExpireTime
-        
+
         def initialize(url=nil, expiretime=nil)
           @Url = url
           @ExpireTime = expiretime
@@ -10797,7 +10797,7 @@ module TencentCloud
         # @type FundingAccountName: String
 
         attr_accessor :FundingAccountNo, :FundingAccountType, :FundingAccountBindSerialNo, :FundingAccountName
-        
+
         def initialize(fundingaccountno=nil, fundingaccounttype=nil, fundingaccountbindserialno=nil, fundingaccountname=nil)
           @FundingAccountNo = fundingaccountno
           @FundingAccountType = fundingaccounttype
@@ -10839,7 +10839,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :AmountBeforeTax, :IncomeType, :OutOrderId, :OperationType, :Remark, :Environment
-        
+
         def initialize(payeeid=nil, amountbeforetax=nil, incometype=nil, outorderid=nil, operationtype=nil, remark=nil, environment=nil)
           @PayeeId = payeeid
           @AmountBeforeTax = amountbeforetax
@@ -10874,7 +10874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -10899,7 +10899,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :OrderId
-        
+
         def initialize(orderid=nil)
           @OrderId = orderid
         end
@@ -10947,7 +10947,7 @@ module TencentCloud
         # @type OutUserId: String
 
         attr_accessor :AmountBeforeTax, :IncomeType, :OutOrderId, :OrderId, :OperationType, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId
-        
+
         def initialize(amountbeforetax=nil, incometype=nil, outorderid=nil, orderid=nil, operationtype=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil)
           @AmountBeforeTax = amountbeforetax
           @IncomeType = incometype
@@ -10989,7 +10989,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :List, :Count
-        
+
         def initialize(list=nil, count=nil)
           @List = list
           @Count = count
@@ -11050,7 +11050,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :TransType, :BankBookingMessage, :TranStatus, :TransNetMemberCode, :SubAccountNumber, :SubAccountName, :TransAmount, :TransFee, :TransDate, :TransTime, :BankSequenceNumber, :Remark
-        
+
         def initialize(transtype=nil, bankbookingmessage=nil, transtatus=nil, transnetmembercode=nil, subaccountnumber=nil, subaccountname=nil, transamount=nil, transfee=nil, transdate=nil, transtime=nil, banksequencenumber=nil, remark=nil)
           @TransType = transtype
           @BankBookingMessage = bankbookingmessage
@@ -11092,7 +11092,7 @@ module TencentCloud
         # @type Day: String
 
         attr_accessor :OpenId, :OpenKey, :Day
-        
+
         def initialize(openid=nil, openkey=nil, day=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -11120,7 +11120,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -11149,7 +11149,7 @@ module TencentCloud
         # @type Day: String
 
         attr_accessor :OpenId, :OpenKey, :Day
-        
+
         def initialize(openid=nil, openkey=nil, day=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -11177,7 +11177,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -11218,7 +11218,7 @@ module TencentCloud
         # @type AuthStatus: String
 
         attr_accessor :OpenId, :SubMerchantId, :AuthDate, :Offset, :Limit, :WechatAppId, :WechatSubAppId, :AuthStatus
-        
+
         def initialize(openid=nil, submerchantid=nil, authdate=nil, offset=nil, limit=nil, wechatappid=nil, wechatsubappid=nil, authstatus=nil)
           @OpenId = openid
           @SubMerchantId = submerchantid
@@ -11257,7 +11257,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :Total, :Offset, :Limit, :RequestId
-        
+
         def initialize(results=nil, total=nil, offset=nil, limit=nil, requestid=nil)
           @Results = results
           @Total = total
@@ -11296,7 +11296,7 @@ module TencentCloud
         # @type WechatSubAppId: String
 
         attr_accessor :OpenId, :SubMerchantId, :WechatAppId, :WechatSubAppId
-        
+
         def initialize(openid=nil, submerchantid=nil, wechatappid=nil, wechatsubappid=nil)
           @OpenId = openid
           @SubMerchantId = submerchantid
@@ -11335,7 +11335,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthStatus, :AuthTime, :CancelAuthTime, :MerchantId, :OpenId, :SubMerchantId, :RequestId
-        
+
         def initialize(authstatus=nil, authtime=nil, cancelauthtime=nil, merchantid=nil, openid=nil, submerchantid=nil, requestid=nil)
           @AuthStatus = authstatus
           @AuthTime = authtime
@@ -11365,7 +11365,7 @@ module TencentCloud
         # @type SubMerchantId: String
 
         attr_accessor :AuthNumber, :SubMerchantId
-        
+
         def initialize(authnumber=nil, submerchantid=nil)
           @AuthNumber = authnumber
           @SubMerchantId = submerchantid
@@ -11385,7 +11385,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -11427,7 +11427,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :IdType, :IdNumber, :PersonName, :IdValidityType, :IdEffectiveDate, :ContactPhone, :IdExpireDate, :ContactAddress, :EmailAddress
-        
+
         def initialize(idtype=nil, idnumber=nil, personname=nil, idvaliditytype=nil, ideffectivedate=nil, contactphone=nil, idexpiredate=nil, contactaddress=nil, emailaddress=nil)
           @IdType = idtype
           @IdNumber = idnumber
@@ -11499,7 +11499,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :TransType, :TranStatus, :TransAmount, :TransDate, :TransTime, :BankSequenceNumber, :BankBookingType, :InSubAccountNumber, :OutSubAccountNumber, :Remark
-        
+
         def initialize(transtype=nil, transtatus=nil, transamount=nil, transdate=nil, transtime=nil, banksequencenumber=nil, bankbookingtype=nil, insubaccountnumber=nil, outsubaccountnumber=nil, remark=nil)
           @TransType = transtype
           @TranStatus = transtatus
@@ -11537,7 +11537,7 @@ module TencentCloud
         # @type Parent: String
 
         attr_accessor :Code, :Name, :Parent
-        
+
         def initialize(code=nil, name=nil, parent=nil)
           @Code = code
           @Name = name
@@ -11563,7 +11563,7 @@ module TencentCloud
         # @type InvoicePlatformId: Integer
 
         attr_accessor :TaxpayerName, :TaxpayerNum, :SerialNo, :InvoicePlatformId
-        
+
         def initialize(taxpayername=nil, taxpayernum=nil, serialno=nil, invoiceplatformid=nil)
           @TaxpayerName = taxpayername
           @TaxpayerNum = taxpayernum
@@ -11587,7 +11587,7 @@ module TencentCloud
         # @type List: Array
 
         attr_accessor :Total, :List
-        
+
         def initialize(total=nil, list=nil)
           @Total = total
           @List = list
@@ -11637,7 +11637,7 @@ module TencentCloud
         # @type TicketName: String
 
         attr_accessor :PayCurrency, :PayIcon, :PayInternalName, :PayName, :PaySplitRefund, :PayTag, :PayTicketIcon, :PayType, :TicketName
-        
+
         def initialize(paycurrency=nil, payicon=nil, payinternalname=nil, payname=nil, paysplitrefund=nil, paytag=nil, payticketicon=nil, paytype=nil, ticketname=nil)
           @PayCurrency = paycurrency
           @PayIcon = payicon
@@ -11673,7 +11673,7 @@ module TencentCloud
         # @type RiskTypes: String
 
         attr_accessor :RiskLevel, :RiskTypes
-        
+
         def initialize(risklevel=nil, risktypes=nil)
           @RiskLevel = risklevel
           @RiskTypes = risktypes
@@ -11699,7 +11699,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MerchantId, :PayChannel, :RefundOrderId, :TradeSerialNo, :Profile
-        
+
         def initialize(merchantid=nil, paychannel=nil, refundorderid=nil, tradeserialno=nil, profile=nil)
           @MerchantId = merchantid
           @PayChannel = paychannel
@@ -11734,7 +11734,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :TradeSerialNo, :TradeMsg, :TradeStatus, :ThirdChannelOrderId, :RequestId
-        
+
         def initialize(issuccess=nil, tradeserialno=nil, trademsg=nil, tradestatus=nil, thirdchannelorderid=nil, requestid=nil)
           @IsSuccess = issuccess
           @TradeSerialNo = tradeserialno
@@ -11776,7 +11776,7 @@ module TencentCloud
         # @type RefundReason: String
 
         attr_accessor :MerchantId, :PayChannel, :PayOrderId, :RefundOrderId, :RefundAmt, :ThirdChannelOrderId, :PayAmt, :Profile, :RefundReason
-        
+
         def initialize(merchantid=nil, paychannel=nil, payorderid=nil, refundorderid=nil, refundamt=nil, thirdchannelorderid=nil, payamt=nil, profile=nil, refundreason=nil)
           @MerchantId = merchantid
           @PayChannel = paychannel
@@ -11814,7 +11814,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :TradeSerialNo, :TradeMsg, :RequestId
-        
+
         def initialize(issuccess=nil, tradeserialno=nil, trademsg=nil, requestid=nil)
           @IsSuccess = issuccess
           @TradeSerialNo = tradeserialno
@@ -11842,7 +11842,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :BatchNum, :RawElectronicCertUrl, :FileName, :Profile
-        
+
         def initialize(batchnum=nil, rawelectroniccerturl=nil, filename=nil, profile=nil)
           @BatchNum = batchnum
           @RawElectronicCertUrl = rawelectroniccerturl
@@ -11866,7 +11866,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentTaxPaymentBatch, :RequestId
-        
+
         def initialize(agenttaxpaymentbatch=nil, requestid=nil)
           @AgentTaxPaymentBatch = agenttaxpaymentbatch
           @RequestId = requestid
@@ -11898,7 +11898,7 @@ module TencentCloud
         # @type PhoneNum: String
 
         attr_accessor :AnchorId, :TransferType, :AccountNo, :PhoneNum
-        
+
         def initialize(anchorid=nil, transfertype=nil, accountno=nil, phonenum=nil)
           @AnchorId = anchorid
           @TransferType = transfertype
@@ -11927,7 +11927,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -11968,7 +11968,7 @@ module TencentCloud
         # @type BankBranchName: String
 
         attr_accessor :PayeeId, :FundingAccountBindSerialNo, :FundingAccountType, :PhoneNo, :FundingAccountName, :FundingAccountNo, :Environment, :BankBranchName
-        
+
         def initialize(payeeid=nil, fundingaccountbindserialno=nil, fundingaccounttype=nil, phoneno=nil, fundingaccountname=nil, fundingaccountno=nil, environment=nil, bankbranchname=nil)
           @PayeeId = payeeid
           @FundingAccountBindSerialNo = fundingaccountbindserialno
@@ -12005,7 +12005,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -12041,7 +12041,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :AccountRightType, :AccountRightStatus, :Environment
-        
+
         def initialize(payeeid=nil, accountrighttype=nil, accountrightstatus=nil, environment=nil)
           @PayeeId = payeeid
           @AccountRightType = accountrighttype
@@ -12070,7 +12070,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -12096,7 +12096,7 @@ module TencentCloud
         # @type BusinessPayFlag: String
 
         attr_accessor :MerchantAppId, :MerchantName, :BusinessPayFlag
-        
+
         def initialize(merchantappid=nil, merchantname=nil, businesspayflag=nil)
           @MerchantAppId = merchantappid
           @MerchantName = merchantname
@@ -12116,7 +12116,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -12146,7 +12146,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :SubAcctNo, :MemberBindAcctNo, :AcctOpenBranchName, :CnapsBranchId, :EiconBankBranchId, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, subacctno=nil, memberbindacctno=nil, acctopenbranchname=nil, cnapsbranchid=nil, eiconbankbranchid=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @SubAcctNo = subacctno
@@ -12185,7 +12185,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -12213,7 +12213,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :MerchantNo, :Amount, :Remark
-        
+
         def initialize(merchantno=nil, amount=nil, remark=nil)
           @MerchantNo = merchantno
           @Amount = amount
@@ -12252,7 +12252,7 @@ module TencentCloud
         # @type Details: Array
 
         attr_accessor :OutDistributeNo, :DistributeNo, :OrderNo, :Status, :InDate, :Remark, :Details
-        
+
         def initialize(outdistributeno=nil, distributeno=nil, orderno=nil, status=nil, indate=nil, remark=nil, details=nil)
           @OutDistributeNo = outdistributeno
           @DistributeNo = distributeno
@@ -12317,7 +12317,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :PersonType, :IdType, :IdNumber, :PersonName, :IdValidityType, :IdEffectiveDate, :IdExpireDate, :ContactPhone, :ContactAddress, :EmailAddress
-        
+
         def initialize(persontype=nil, idtype=nil, idnumber=nil, personname=nil, idvaliditytype=nil, ideffectivedate=nil, idexpiredate=nil, contactphone=nil, contactaddress=nil, emailaddress=nil)
           @PersonType = persontype
           @IdType = idtype
@@ -12361,7 +12361,7 @@ module TencentCloud
         # @type AttachmentCode: String
 
         attr_accessor :AttachmentAmount, :AttachmentType, :AttachmentName, :AttachmentCode
-        
+
         def initialize(attachmentamount=nil, attachmenttype=nil, attachmentname=nil, attachmentcode=nil)
           @AttachmentAmount = attachmentamount
           @AttachmentType = attachmenttype
@@ -12387,7 +12387,7 @@ module TencentCloud
         # @type ChannelExternalUserId: String
 
         attr_accessor :ChannelExternalUserType, :ChannelExternalUserId
-        
+
         def initialize(channelexternalusertype=nil, channelexternaluserid=nil)
           @ChannelExternalUserType = channelexternalusertype
           @ChannelExternalUserId = channelexternaluserid
@@ -12418,7 +12418,7 @@ module TencentCloud
         # @type RefundAmt: String
 
         attr_accessor :ChannelExternalRefundId, :ChannelExternalOrderId, :ChannelRefundId, :SubOutTradeNo, :RefundAmt
-        
+
         def initialize(channelexternalrefundid=nil, channelexternalorderid=nil, channelrefundid=nil, subouttradeno=nil, refundamt=nil)
           @ChannelExternalRefundId = channelexternalrefundid
           @ChannelExternalOrderId = channelexternalorderid
@@ -12445,7 +12445,7 @@ module TencentCloud
         # @type MobileGuideUrl: String
 
         attr_accessor :PcGuideUrl, :MobileGuideUrl
-        
+
         def initialize(pcguideurl=nil, mobileguideurl=nil)
           @PcGuideUrl = pcguideurl
           @MobileGuideUrl = mobileguideurl
@@ -12479,7 +12479,7 @@ module TencentCloud
         # @type Phone: String
 
         attr_accessor :FirstName, :LastName, :AddressOne, :AddressTwo, :City, :State, :Country, :ZipCode, :Phone
-        
+
         def initialize(firstname=nil, lastname=nil, addressone=nil, addresstwo=nil, city=nil, state=nil, country=nil, zipcode=nil, phone=nil)
           @FirstName = firstname
           @LastName = lastname
@@ -12515,7 +12515,7 @@ module TencentCloud
         # @type FormEncoding: String
 
         attr_accessor :FormHtml, :FormEncoding
-        
+
         def initialize(formhtml=nil, formencoding=nil)
           @FormHtml = formhtml
           @FormEncoding = formencoding
@@ -12549,7 +12549,7 @@ module TencentCloud
         # @type ProductUrl: String
 
         attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription, :GoodsBizType, :Sku, :Price, :Quantity, :ProductImage, :ProductUrl
-        
+
         def initialize(goodsname=nil, goodsdetail=nil, goodsdescription=nil, goodsbiztype=nil, sku=nil, price=nil, quantity=nil, productimage=nil, producturl=nil)
           @GoodsName = goodsname
           @GoodsDetail = goodsdetail
@@ -12603,7 +12603,7 @@ module TencentCloud
         # @type FormInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankFormInfo`
 
         attr_accessor :QRCodeUrl, :QRCodeKey, :Url, :ExpireTime, :MpAppId, :MpPath, :MpUserName, :FormInfo
-        
+
         def initialize(qrcodeurl=nil, qrcodekey=nil, url=nil, expiretime=nil, mpappid=nil, mppath=nil, mpusername=nil, forminfo=nil)
           @QRCodeUrl = qrcodeurl
           @QRCodeKey = qrcodekey
@@ -12638,7 +12638,7 @@ module TencentCloud
         # @type PayLimitValue: String
 
         attr_accessor :PayLimitType, :PayLimitValue
-        
+
         def initialize(paylimittype=nil, paylimitvalue=nil)
           @PayLimitType = paylimittype
           @PayLimitValue = paylimitvalue
@@ -12681,7 +12681,7 @@ module TencentCloud
         # @type AccountType: String
 
         attr_accessor :PayeeId, :BankBranchName, :BankAccountNumber, :PayeeName, :BankBranchId, :BindSerialNo, :AccountType
-        
+
         def initialize(payeeid=nil, bankbranchname=nil, bankaccountnumber=nil, payeename=nil, bankbranchid=nil, bindserialno=nil, accounttype=nil)
           @PayeeId = payeeid
           @BankBranchName = bankbranchname
@@ -12724,7 +12724,7 @@ module TencentCloud
         # @type BankCardType: String
 
         attr_accessor :PayerId, :PayerName, :BindSerialNo, :AccountType, :BankCardType
-        
+
         def initialize(payerid=nil, payername=nil, bindserialno=nil, accounttype=nil, bankcardtype=nil)
           @PayerId = payerid
           @PayerName = payername
@@ -12750,7 +12750,7 @@ module TencentCloud
         # @type ProfitShareFee: Integer
 
         attr_accessor :RecvId, :ProfitShareFee
-        
+
         def initialize(recvid=nil, profitsharefee=nil)
           @RecvId = recvid
           @ProfitShareFee = profitsharefee
@@ -12826,7 +12826,7 @@ module TencentCloud
         # @type Fid: String
 
         attr_accessor :AccountName, :BankName, :Currency, :Nature, :Country, :DepositCountry, :ExpireDate, :Flag, :BankAddress, :Address, :IsOSA, :Province, :City, :LegalIdNo, :Telephone, :BicCode, :SwiftCode, :Cnaps, :TransferBankNo, :Fid
-        
+
         def initialize(accountname=nil, bankname=nil, currency=nil, nature=nil, country=nil, depositcountry=nil, expiredate=nil, flag=nil, bankaddress=nil, address=nil, isosa=nil, province=nil, city=nil, legalidno=nil, telephone=nil, biccode=nil, swiftcode=nil, cnaps=nil, transferbankno=nil, fid=nil)
           @AccountName = accountname
           @BankName = bankname
@@ -12890,7 +12890,7 @@ module TencentCloud
         # @type ProfitShareType: Integer
 
         attr_accessor :RecvId, :ProfitShareFee, :RealProfitShareFee, :ProfitShareStatus, :ProfitFinishTime, :ProfitShareType
-        
+
         def initialize(recvid=nil, profitsharefee=nil, realprofitsharefee=nil, profitsharestatus=nil, profitfinishtime=nil, profitsharetype=nil)
           @RecvId = recvid
           @ProfitShareFee = profitsharefee
@@ -12950,7 +12950,7 @@ module TencentCloud
         # @type ProfitShareRespInfoList: Array
 
         attr_accessor :OutRefundId, :ChannelRefundId, :RefundReason, :RefundAmount, :RealRefundAmount, :TotalAmount, :TimeFinish, :RefundStatus, :RefundInfo, :FeeAmount, :RefundMessage, :ProfitShareRespInfoList
-        
+
         def initialize(outrefundid=nil, channelrefundid=nil, refundreason=nil, refundamount=nil, realrefundamount=nil, totalamount=nil, timefinish=nil, refundstatus=nil, refundinfo=nil, feeamount=nil, refundmessage=nil, profitsharerespinfolist=nil)
           @OutRefundId = outrefundid
           @ChannelRefundId = channelrefundid
@@ -13001,7 +13001,7 @@ module TencentCloud
         # @type PayeeName: String
 
         attr_accessor :PayeeId, :PayeeIdType, :PayeeName
-        
+
         def initialize(payeeid=nil, payeeidtype=nil, payeename=nil)
           @PayeeId = payeeid
           @PayeeIdType = payeeidtype
@@ -13022,7 +13022,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :Url
-        
+
         def initialize(url=nil)
           @Url = url
         end
@@ -13054,7 +13054,7 @@ module TencentCloud
         # @type FormInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankFormInfo`
 
         attr_accessor :QRCodeUrl, :QRCodeKey, :Url, :ExpireTime, :MpAppId, :MpPath, :MpUserName, :FormInfo
-        
+
         def initialize(qrcodeurl=nil, qrcodekey=nil, url=nil, expiretime=nil, mpappid=nil, mppath=nil, mpusername=nil, forminfo=nil)
           @QRCodeUrl = qrcodeurl
           @QRCodeKey = qrcodekey
@@ -13109,7 +13109,7 @@ module TencentCloud
         # @type RefundStatus: String
 
         attr_accessor :ChannelOrderId, :ChannelRefundId, :OutRefundId, :OutOrderId, :RefundMessage, :RefundAmount, :FeeAmount, :RefundStatus
-        
+
         def initialize(channelorderid=nil, channelrefundid=nil, outrefundid=nil, outorderid=nil, refundmessage=nil, refundamount=nil, feeamount=nil, refundstatus=nil)
           @ChannelOrderId = channelorderid
           @ChannelRefundId = channelrefundid
@@ -13148,7 +13148,7 @@ module TencentCloud
         # @type DeviceType: String
 
         attr_accessor :PayerClientIp, :PayerUa, :OrderTime, :DeviceId, :DeviceType
-        
+
         def initialize(payerclientip=nil, payerua=nil, ordertime=nil, deviceid=nil, devicetype=nil)
           @PayerClientIp = payerclientip
           @PayerUa = payerua
@@ -13176,7 +13176,7 @@ module TencentCloud
         # @type RefundRule: String
 
         attr_accessor :UnfreezeRule, :RefundRule
-        
+
         def initialize(unfreezerule=nil, refundrule=nil)
           @UnfreezeRule = unfreezerule
           @RefundRule = refundrule
@@ -13211,7 +13211,7 @@ module TencentCloud
         # @type Phone: String
 
         attr_accessor :FirstName, :LastName, :AddressOne, :AddressTwo, :City, :State, :Country, :ZipCode, :Phone
-        
+
         def initialize(firstname=nil, lastname=nil, addressone=nil, addresstwo=nil, city=nil, state=nil, country=nil, zipcode=nil, phone=nil)
           @FirstName = firstname
           @LastName = lastname
@@ -13249,7 +13249,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Name, :AreaCode, :Address, :Id
-        
+
         def initialize(name=nil, areacode=nil, address=nil, id=nil)
           @Name = name
           @AreaCode = areacode
@@ -13299,7 +13299,7 @@ module TencentCloud
         # @type Items: Array
 
         attr_accessor :AmountHasTax, :Discount, :SellerName, :InvoiceType, :Name, :Amount, :OrderDate, :OrderId, :StoreNo, :Items
-        
+
         def initialize(amounthastax=nil, discount=nil, sellername=nil, invoicetype=nil, name=nil, amount=nil, orderdate=nil, orderid=nil, storeno=nil, items=nil)
           @AmountHasTax = amounthastax
           @Discount = discount
@@ -13365,7 +13365,7 @@ module TencentCloud
         # @type TaxCode: String
 
         attr_accessor :AmountHasTax, :Discount, :Name, :Models, :Total, :Unit, :Status, :Price, :TaxCode
-        
+
         def initialize(amounthastax=nil, discount=nil, name=nil, models=nil, total=nil, unit=nil, status=nil, price=nil, taxcode=nil)
           @AmountHasTax = amounthastax
           @Discount = discount
@@ -13399,7 +13399,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :List, :Count
-        
+
         def initialize(list=nil, count=nil)
           @List = list
           @Count = count
@@ -13438,7 +13438,7 @@ module TencentCloud
         # @type OutUserId: String
 
         attr_accessor :SummaryId, :PayeeId, :Name, :IncomeType, :SummaryAmount, :SummaryTime, :SummaryCount, :OutUserId
-        
+
         def initialize(summaryid=nil, payeeid=nil, name=nil, incometype=nil, summaryamount=nil, summarytime=nil, summarycount=nil, outuserid=nil)
           @SummaryId = summaryid
           @PayeeId = payeeid
@@ -13480,7 +13480,7 @@ module TencentCloud
         # @type LegalPersonIdCode: String
 
         attr_accessor :OrganizationName, :OrganizationType, :OrganizationCode, :LegalPersonName, :LegalPersonIdType, :LegalPersonIdCode
-        
+
         def initialize(organizationname=nil, organizationtype=nil, organizationcode=nil, legalpersonname=nil, legalpersonidtype=nil, legalpersonidcode=nil)
           @OrganizationName = organizationname
           @OrganizationType = organizationtype
@@ -13520,7 +13520,7 @@ module TencentCloud
         # @type EmailAddress: String
 
         attr_accessor :RegionCode, :RegisterAddress, :MailingAddress, :BusinessAddress, :ServicePhone, :WebSiteUrl, :EmailAddress
-        
+
         def initialize(regioncode=nil, registeraddress=nil, mailingaddress=nil, businessaddress=nil, servicephone=nil, websiteurl=nil, emailaddress=nil)
           @RegionCode = regioncode
           @RegisterAddress = registeraddress
@@ -13550,7 +13550,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :Index, :Count
-        
+
         def initialize(index=nil, count=nil)
           @Index = index
           @Count = count
@@ -13602,7 +13602,7 @@ module TencentCloud
         # @type PaymentOptionTen: String
 
         attr_accessor :PaymentTag, :PaymentOptionHide, :PaymentIcon, :PaymentOptionSix, :PaymentName, :PaymentOptionSeven, :PaymentOptionOther, :PaymentOptionTwo, :PaymentOptionOne, :PaymentDiscountFee, :PaymentType, :PaymentOptionFive, :PaymentOptionNine, :PaymentId, :PaymentOptionThree, :PaymentInternalName, :PaymentOptionFour, :PaymentOptionTen
-        
+
         def initialize(paymenttag=nil, paymentoptionhide=nil, paymenticon=nil, paymentoptionsix=nil, paymentname=nil, paymentoptionseven=nil, paymentoptionother=nil, paymentoptiontwo=nil, paymentoptionone=nil, paymentdiscountfee=nil, paymenttype=nil, paymentoptionfive=nil, paymentoptionnine=nil, paymentid=nil, paymentoptionthree=nil, paymentinternalname=nil, paymentoptionfour=nil, paymentoptionten=nil)
           @PaymentTag = paymenttag
           @PaymentOptionHide = paymentoptionhide
@@ -13664,7 +13664,7 @@ module TencentCloud
         # @type PaymentClassificationName: String
 
         attr_accessor :OrganizationFee, :PaymentClassificationLimit, :OrganizationFeeType, :PaymentClassificationMaxFee, :PaymentClassificationMinFee, :PaymentClassificationId, :PaymentClassificationName
-        
+
         def initialize(organizationfee=nil, paymentclassificationlimit=nil, organizationfeetype=nil, paymentclassificationmaxfee=nil, paymentclassificationminfee=nil, paymentclassificationid=nil, paymentclassificationname=nil)
           @OrganizationFee = organizationfee
           @PaymentClassificationLimit = paymentclassificationlimit
@@ -13750,7 +13750,7 @@ module TencentCloud
         # @type WechatPaySign: String
 
         attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode, :WechatAppId, :WechatTimeStamp, :WechatNonceStr, :WechatSignType, :WechatPackage, :WechatPaySign
-        
+
         def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil, wechatappid=nil, wechattimestamp=nil, wechatnoncestr=nil, wechatsigntype=nil, wechatpackage=nil, wechatpaysign=nil)
           @OrderNo = orderno
           @DeveloperNo = developerno
@@ -13830,7 +13830,7 @@ module TencentCloud
         # @type SubMerchantId: String
 
         attr_accessor :AuthFailedReason, :AuthNumber, :AuthScene, :AuthSource, :AuthStatus, :AuthTime, :CompanyName, :MerchantId, :OpenId, :ProjectName, :SubMerchantId
-        
+
         def initialize(authfailedreason=nil, authnumber=nil, authscene=nil, authsource=nil, authstatus=nil, authtime=nil, companyname=nil, merchantid=nil, openid=nil, projectname=nil, submerchantid=nil)
           @AuthFailedReason = authfailedreason
           @AuthNumber = authnumber
@@ -13893,7 +13893,7 @@ module TencentCloud
         # @type SumSettlementAmount: String
 
         attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance, :SumSettlementAmount
-        
+
         def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil, sumsettlementamount=nil)
           @AccountId = accountid
           @IncomeType = incometype
@@ -13941,7 +13941,7 @@ module TencentCloud
         # @type PropertyInfo: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountPropertyInfo`
 
         attr_accessor :AccountId, :AccountName, :Remark, :CreateTime, :UserInfo, :PropertyInfo
-        
+
         def initialize(accountid=nil, accountname=nil, remark=nil, createtime=nil, userinfo=nil, propertyinfo=nil)
           @AccountId = accountid
           @AccountName = accountname
@@ -13977,7 +13977,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :List, :Count
-        
+
         def initialize(list=nil, count=nil)
           @List = list
           @Count = count
@@ -14010,7 +14010,7 @@ module TencentCloud
         # @type PaymentRightStatus: String
 
         attr_accessor :SettleRightStatus, :PaymentRightStatus
-        
+
         def initialize(settlerightstatus=nil, paymentrightstatus=nil)
           @SettleRightStatus = settlerightstatus
           @PaymentRightStatus = paymentrightstatus
@@ -14045,7 +14045,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :OutUserId, :UserType, :IdType, :IdNo, :Name
-        
+
         def initialize(outuserid=nil, usertype=nil, idtype=nil, idno=nil, name=nil)
           @OutUserId = outuserid
           @UserType = usertype
@@ -14069,7 +14069,7 @@ module TencentCloud
         # @type FundingAccountBindSerialNo: String
 
         attr_accessor :FundingAccountBindSerialNo
-        
+
         def initialize(fundingaccountbindserialno=nil)
           @FundingAccountBindSerialNo = fundingaccountbindserialno
         end
@@ -14101,7 +14101,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :PayeeId, :OutUserId, :Name, :IdType, :IdNo, :ServiceProviderId, :Remark
-        
+
         def initialize(payeeid=nil, outuserid=nil, name=nil, idtype=nil, idno=nil, serviceproviderid=nil, remark=nil)
           @PayeeId = payeeid
           @OutUserId = outuserid
@@ -14137,7 +14137,7 @@ module TencentCloud
         # @type TaxServiceProviderId: String
 
         attr_accessor :TaxTemplateInfoList, :TaxpayerIdNo, :TaxEntityType, :TaxServiceProviderId
-        
+
         def initialize(taxtemplateinfolist=nil, taxpayeridno=nil, taxentitytype=nil, taxserviceproviderid=nil)
           @TaxTemplateInfoList = taxtemplateinfolist
           @TaxpayerIdNo = taxpayeridno
@@ -14170,7 +14170,7 @@ module TencentCloud
         # @type TaxTemplateId: String
 
         attr_accessor :IncomeType, :TaxTemplateId
-        
+
         def initialize(incometype=nil, taxtemplateid=nil)
           @IncomeType = incometype
           @TaxTemplateId = taxtemplateid
@@ -14243,7 +14243,7 @@ module TencentCloud
         # @type FundingAccountSubType: String
 
         attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId, :Vat, :IndividualIncomeTax, :AdditionalTaxSum, :AdditionalTaxItem, :FailReason, :FundingAccountSubType
-        
+
         def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil, vat=nil, individualincometax=nil, additionaltaxsum=nil, additionaltaxitem=nil, failreason=nil, fundingaccountsubtype=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
@@ -14308,7 +14308,7 @@ module TencentCloud
         # @type FailReason: String
 
         attr_accessor :Status, :StatusDesc, :FailReason
-        
+
         def initialize(status=nil, statusdesc=nil, failreason=nil)
           @Status = status
           @StatusDesc = statusdesc
@@ -14330,7 +14330,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :List, :Count
-        
+
         def initialize(list=nil, count=nil)
           @List = list
           @Count = count
@@ -14373,7 +14373,7 @@ module TencentCloud
         # @type InPayBalance: String
 
         attr_accessor :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :InPayBalance
-        
+
         def initialize(incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, inpaybalance=nil)
           @IncomeType = incometype
           @Balance = balance
@@ -14416,7 +14416,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :SubAppId, :MidasSecretId, :MidasSignature, :EncryptType, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, subappid=nil, midassecretid=nil, midassignature=nil, encrypttype=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -14446,7 +14446,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :BankCardItems, :RequestId
-        
+
         def initialize(totalcount=nil, bankcarditems=nil, requestid=nil)
           @TotalCount = totalcount
           @BankCardItems = bankcarditems
@@ -14494,7 +14494,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :QueryAcctBeginTime, :QueryAcctEndTime, :PageOffset, :MidasSecretId, :MidasSignature, :EncryptType, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, queryacctbegintime=nil, queryacctendtime=nil, pageoffset=nil, midassecretid=nil, midassignature=nil, encrypttype=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @QueryAcctBeginTime = queryacctbegintime
@@ -14530,7 +14530,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultCount, :TotalCount, :QueryAcctItems, :RequestId
-        
+
         def initialize(resultcount=nil, totalcount=nil, queryacctitems=nil, requestid=nil)
           @ResultCount = resultcount
           @TotalCount = totalcount
@@ -14576,7 +14576,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :SubMchId, :MidasSecretId, :MidasSignature, :EncryptType, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, submchid=nil, midassecretid=nil, midassignature=nil, encrypttype=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @SubMchId = submchid
@@ -14634,7 +14634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SubAppId, :SubMchName, :SubMchType, :ShortName, :Address, :Contact, :Mobile, :Email, :SubMchId, :SubAcctNo, :SubMerchantMemberType, :RequestId
-        
+
         def initialize(subappid=nil, submchname=nil, submchtype=nil, shortname=nil, address=nil, contact=nil, mobile=nil, email=nil, submchid=nil, subacctno=nil, submerchantmembertype=nil, requestid=nil)
           @SubAppId = subappid
           @SubMchName = submchname
@@ -14702,7 +14702,7 @@ module TencentCloud
         # @type SubMerchantMemberType: String
 
         attr_accessor :SubMchType, :SubMchName, :SubAcctNo, :ShortName, :SubMchId, :SubAppId, :Contact, :Address, :Mobile, :Email, :SubMerchantMemberType
-        
+
         def initialize(submchtype=nil, submchname=nil, subacctno=nil, shortname=nil, submchid=nil, subappid=nil, contact=nil, address=nil, mobile=nil, email=nil, submerchantmembertype=nil)
           @SubMchType = submchtype
           @SubMchName = submchname
@@ -14741,7 +14741,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Date, :Type
-        
+
         def initialize(date=nil, type=nil)
           @Date = date
           @Type = type
@@ -14762,7 +14762,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileUrl, :RequestId
-        
+
         def initialize(fileurl=nil, requestid=nil)
           @FileUrl = fileurl
           @RequestId = requestid
@@ -14782,7 +14782,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :BatchNum, :Profile
-        
+
         def initialize(batchnum=nil, profile=nil)
           @BatchNum = batchnum
           @Profile = profile
@@ -14802,7 +14802,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AgentTaxPaymentBatch, :RequestId
-        
+
         def initialize(agenttaxpaymentbatch=nil, requestid=nil)
           @AgentTaxPaymentBatch = agenttaxpaymentbatch
           @RequestId = requestid
@@ -14825,7 +14825,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :BeginTime, :EndTime
-        
+
         def initialize(begintime=nil, endtime=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -14845,7 +14845,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AnchorContractInfoList, :RequestId
-        
+
         def initialize(anchorcontractinfolist=nil, requestid=nil)
           @AnchorContractInfoList = anchorcontractinfolist
           @RequestId = requestid
@@ -14872,7 +14872,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :DeclareId, :Profile
-        
+
         def initialize(declareid=nil, profile=nil)
           @DeclareId = declareid
           @Profile = profile
@@ -14892,7 +14892,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -14913,7 +14913,7 @@ module TencentCloud
         # @type AnchorId: String
 
         attr_accessor :AnchorId
-        
+
         def initialize(anchorid=nil)
           @AnchorId = anchorid
         end
@@ -14936,7 +14936,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
@@ -14978,7 +14978,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :SubAppId, :QueryFlag, :PageOffset, :MidasSecretId, :MidasSignature, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, subappid=nil, queryflag=nil, pageoffset=nil, midassecretid=nil, midassignature=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -15016,7 +15016,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultCount, :StartRecordOffset, :EndFlag, :TotalCount, :QueryItems, :RequestId
-        
+
         def initialize(resultcount=nil, startrecordoffset=nil, endflag=nil, totalcount=nil, queryitems=nil, requestid=nil)
           @ResultCount = resultcount
           @StartRecordOffset = startrecordoffset
@@ -15061,7 +15061,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :PageNum, :StartDate, :EndDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, pagenum=nil, startdate=nil, enddate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -15113,7 +15113,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :TranItemArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, tranitemarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -15170,7 +15170,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :SubAcctNo, :QueryFlag, :PageNum, :StartDate, :EndDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, subacctno=nil, queryflag=nil, pagenum=nil, startdate=nil, enddate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -15226,7 +15226,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :TranItemArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, tranitemarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -15283,7 +15283,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :SubAcctNo, :QueryFlag, :PageNum, :BeginDate, :EndDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, subacctno=nil, queryflag=nil, pagenum=nil, begindate=nil, enddate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -15339,7 +15339,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :TranItemArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, tranitemarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -15399,7 +15399,7 @@ module TencentCloud
         # @type TransferInfoList: Array
 
         attr_accessor :BatchId, :TotalAmount, :TotalCount, :ReqReserved, :Remark, :TransferType, :TransferInfoList
-        
+
         def initialize(batchid=nil, totalamount=nil, totalcount=nil, reqreserved=nil, remark=nil, transfertype=nil, transferinfolist=nil)
           @BatchId = batchid
           @TotalAmount = totalamount
@@ -15460,7 +15460,7 @@ module TencentCloud
         # @type TransferAmount: Integer
 
         attr_accessor :OrderId, :AgentId, :AgentName, :Status, :StatusDesc, :TransferAmount
-        
+
         def initialize(orderid=nil, agentid=nil, agentname=nil, status=nil, statusdesc=nil, transferamount=nil)
           @OrderId = orderid
           @AgentId = agentid
@@ -15486,7 +15486,7 @@ module TencentCloud
         # @type BatchId: String
 
         attr_accessor :BatchId
-        
+
         def initialize(batchid=nil)
           @BatchId = batchid
         end
@@ -15508,7 +15508,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -15537,7 +15537,7 @@ module TencentCloud
         # @type OriginalBillDownloadURL: String
 
         attr_accessor :BillDownloadURL, :OriginalBillDownloadURL
-        
+
         def initialize(billdownloadurl=nil, originalbilldownloadurl=nil)
           @BillDownloadURL = billdownloadurl
           @OriginalBillDownloadURL = originalbilldownloadurl
@@ -15562,7 +15562,7 @@ module TencentCloud
         # @type BillDate: String
 
         attr_accessor :MerchantId, :TransferType, :BillDate
-        
+
         def initialize(merchantid=nil, transfertype=nil, billdate=nil)
           @MerchantId = merchantid
           @TransferType = transfertype
@@ -15589,7 +15589,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -15618,7 +15618,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -15646,7 +15646,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -15692,7 +15692,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :MidasAppId, :OutOrderNo, :ExternalChannelDataType, :MidasEnvironment, :SubAppId, :ChannelOrderId, :Channel
-        
+
         def initialize(midasappid=nil, outorderno=nil, externalchanneldatatype=nil, midasenvironment=nil, subappid=nil, channelorderid=nil, channel=nil)
           @MidasAppId = midasappid
           @OutOrderNo = outorderno
@@ -15741,7 +15741,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OutOrderNo, :ChannelOrderId, :ExternalChannelDataType, :Channel, :ExternalChannelDataList, :SubAppId, :AppId, :RequestId
-        
+
         def initialize(outorderno=nil, channelorderid=nil, externalchanneldatatype=nil, channel=nil, externalchanneldatalist=nil, subappid=nil, appid=nil, requestid=nil)
           @OutOrderNo = outorderno
           @ChannelOrderId = channelorderid
@@ -15790,7 +15790,7 @@ module TencentCloud
         # @type OutTradeNo: String
 
         attr_accessor :MidasAppId, :UserId, :Type, :MidasEnvironment, :OutTradeNo
-        
+
         def initialize(midasappid=nil, userid=nil, type=nil, midasenvironment=nil, outtradeno=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -15819,7 +15819,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalNum, :OrderList, :RequestId
-        
+
         def initialize(totalnum=nil, orderlist=nil, requestid=nil)
           @TotalNum = totalnum
           @OrderList = orderlist
@@ -15855,7 +15855,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :UserId, :RefundId, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, userid=nil, refundid=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -15908,7 +15908,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OutTradeNo, :ChannelExternalOrderId, :ChannelExternalRefundId, :ChannelOrderId, :RefundId, :UsedRefundId, :TotalRefundAmt, :CurrencyType, :State, :SubRefundList, :Metadata, :AppId, :ChannelRefundId, :RequestId
-        
+
         def initialize(outtradeno=nil, channelexternalorderid=nil, channelexternalrefundid=nil, channelorderid=nil, refundid=nil, usedrefundid=nil, totalrefundamt=nil, currencytype=nil, state=nil, subrefundlist=nil, metadata=nil, appid=nil, channelrefundid=nil, requestid=nil)
           @OutTradeNo = outtradeno
           @ChannelExternalOrderId = channelexternalorderid
@@ -15969,7 +15969,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :StartDate, :EndDate, :PageNum, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, startdate=nil, enddate=nil, pagenum=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -16021,7 +16021,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :TranItemArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, tranitemarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -16068,7 +16068,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :CompanyTitleKeyword, :InvoicePlatformId, :SellerTaxpayerNum, :Profile
-        
+
         def initialize(companytitlekeyword=nil, invoiceplatformid=nil, sellertaxpayernum=nil, profile=nil)
           @CompanyTitleKeyword = companytitlekeyword
           @InvoicePlatformId = invoiceplatformid
@@ -16097,7 +16097,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -16132,7 +16132,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :PaymentId, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, paymentid=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -16162,7 +16162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -16193,7 +16193,7 @@ module TencentCloud
         # @type PayFee: Array
 
         attr_accessor :Pay, :ExtraInput, :PayFee
-        
+
         def initialize(pay=nil, extrainput=nil, payfee=nil)
           @Pay = pay
           @ExtraInput = extrainput
@@ -16227,7 +16227,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -16255,7 +16255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -16290,7 +16290,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :ContractId, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, contractid=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -16320,7 +16320,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -16386,7 +16386,7 @@ module TencentCloud
         # @type AliPayDesc: String
 
         attr_accessor :Province, :CityId, :ShopName, :TerminalCount, :City, :ShopStatus, :AliPayOnline, :ShopNo, :Country, :AliPayStatus, :IsChecked, :Address, :AliPayDesc
-        
+
         def initialize(province=nil, cityid=nil, shopname=nil, terminalcount=nil, city=nil, shopstatus=nil, alipayonline=nil, shopno=nil, country=nil, alipaystatus=nil, ischecked=nil, address=nil, alipaydesc=nil)
           @Province = province
           @CityId = cityid
@@ -16463,7 +16463,7 @@ module TencentCloud
         # @type ContractMethod: String
 
         attr_accessor :MidasAppId, :UserId, :Channel, :ContractQueryMode, :MidasSignature, :MidasSecretId, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :MidasEnvironment, :UserType, :MigrateMode, :ContractMethod
-        
+
         def initialize(midasappid=nil, userid=nil, channel=nil, contractquerymode=nil, midassignature=nil, midassecretid=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, midasenvironment=nil, usertype=nil, migratemode=nil, contractmethod=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -16511,7 +16511,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ContractData, :Msg, :RequestId
-        
+
         def initialize(contractdata=nil, msg=nil, requestid=nil)
           @ContractData = contractdata
           @Msg = msg
@@ -16544,7 +16544,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :QueryFlag, :PageNum, :SubAcctNo, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, queryflag=nil, pagenum=nil, subacctno=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @QueryFlag = queryflag
@@ -16594,7 +16594,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :AcctArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, acctarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -16659,7 +16659,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :MerchantId, :TransactionId, :DeclareId, :OriginalDeclareId, :PayerId, :SourceCurrency, :SourceAmount, :TargetCurrency, :TargetAmount, :TradeCode, :Status
-        
+
         def initialize(merchantid=nil, transactionid=nil, declareid=nil, originaldeclareid=nil, payerid=nil, sourcecurrency=nil, sourceamount=nil, targetcurrency=nil, targetamount=nil, tradecode=nil, status=nil)
           @MerchantId = merchantid
           @TransactionId = transactionid
@@ -16697,7 +16697,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Data, :Code
-        
+
         def initialize(data=nil, code=nil)
           @Data = data
           @Code = code
@@ -16722,7 +16722,7 @@ module TencentCloud
         # @type BillDate: String
 
         attr_accessor :MerchantAppId, :ChannelCode, :BillDate
-        
+
         def initialize(merchantappid=nil, channelcode=nil, billdate=nil)
           @MerchantAppId = merchantappid
           @ChannelCode = channelcode
@@ -16746,7 +16746,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :DownloadUrl, :RequestId
-        
+
         def initialize(merchantappid=nil, downloadurl=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @DownloadUrl = downloadurl
@@ -16779,7 +16779,7 @@ module TencentCloud
         # @type ExceedingType: String
 
         attr_accessor :AgentId, :AgentName, :AnchorId, :AnchorName, :OrderId, :ExceedingType
-        
+
         def initialize(agentid=nil, agentname=nil, anchorid=nil, anchorname=nil, orderid=nil, exceedingtype=nil)
           @AgentId = agentid
           @AgentName = agentname
@@ -16809,7 +16809,7 @@ module TencentCloud
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
 
         attr_accessor :TimeStr, :Dimension, :PageNumber
-        
+
         def initialize(timestr=nil, dimension=nil, pagenumber=nil)
           @TimeStr = timestr
           @Dimension = dimension
@@ -16839,7 +16839,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -16867,7 +16867,7 @@ module TencentCloud
         # @type Data: Array
 
         attr_accessor :Count, :Data
-        
+
         def initialize(count=nil, data=nil)
           @Count = count
           @Data = data
@@ -16896,7 +16896,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :SourceCurrency, :TargetCurrency, :Profile
-        
+
         def initialize(sourcecurrency=nil, targetcurrency=nil, profile=nil)
           @SourceCurrency = sourcecurrency
           @TargetCurrency = targetcurrency
@@ -16918,7 +16918,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -16947,7 +16947,7 @@ module TencentCloud
         # @type BaseCurrency: String
 
         attr_accessor :Rate, :SourceCurrency, :TargetCurrency, :RateTime, :BaseCurrency
-        
+
         def initialize(rate=nil, sourcecurrency=nil, targetcurrency=nil, ratetime=nil, basecurrency=nil)
           @Rate = rate
           @SourceCurrency = sourcecurrency
@@ -16973,7 +16973,7 @@ module TencentCloud
         # @type Data: Array
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -17004,7 +17004,7 @@ module TencentCloud
         # @type CollectMoneyAccountInfo: String
 
         attr_accessor :ChannelAccountBookId, :AvailableBalance, :CollectMoneyAccountInfo
-        
+
         def initialize(channelaccountbookid=nil, availablebalance=nil, collectmoneyaccountinfo=nil)
           @ChannelAccountBookId = channelaccountbookid
           @AvailableBalance = availablebalance
@@ -17030,7 +17030,7 @@ module TencentCloud
         # @type DataType: String
 
         attr_accessor :EndTime, :StartTime, :DataType
-        
+
         def initialize(endtime=nil, starttime=nil, datatype=nil)
           @EndTime = endtime
           @StartTime = starttime
@@ -17056,7 +17056,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CosUrl, :ExpireTime, :RequestId
-        
+
         def initialize(cosurl=nil, expiretime=nil, requestid=nil)
           @CosUrl = cosurl
           @ExpireTime = expiretime
@@ -17088,7 +17088,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :IncomeType, :AmountAfterTax, :Environment
-        
+
         def initialize(payeeid=nil, incometype=nil, amountaftertax=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
@@ -17117,7 +17117,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17152,7 +17152,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :BillDate, :BillType, :ServiceProviderId, :Environment
-        
+
         def initialize(billdate=nil, billtype=nil, serviceproviderid=nil, environment=nil)
           @BillDate = billdate
           @BillType = billtype
@@ -17181,7 +17181,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17222,7 +17222,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :OperationType, :StartTime, :EndTime, :PageNumber, :Environment
-        
+
         def initialize(payeeid=nil, operationtype=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
           @PayeeId = payeeid
           @OperationType = operationtype
@@ -17258,7 +17258,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17295,7 +17295,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :SummaryDate, :PageNumber, :OrderType, :PayeeId, :Environment
-        
+
         def initialize(summarydate=nil, pagenumber=nil, ordertype=nil, payeeid=nil, environment=nil)
           @SummaryDate = summarydate
           @PageNumber = pagenumber
@@ -17329,7 +17329,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17366,7 +17366,7 @@ module TencentCloud
         # @type SnapshotDate: String
 
         attr_accessor :PayeeId, :IncomeType, :Environment, :SnapshotDate
-        
+
         def initialize(payeeid=nil, incometype=nil, environment=nil, snapshotdate=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
@@ -17395,7 +17395,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17428,7 +17428,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :OutUserId, :Environment
-        
+
         def initialize(payeeid=nil, outuserid=nil, environment=nil)
           @PayeeId = payeeid
           @OutUserId = outuserid
@@ -17455,7 +17455,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17492,7 +17492,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PropertyInfo, :StartTime, :EndTime, :PageNumber, :Environment
-        
+
         def initialize(propertyinfo=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
           @PropertyInfo = propertyinfo
           @StartTime = starttime
@@ -17529,7 +17529,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17562,7 +17562,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :OutUserId, :Environment
-        
+
         def initialize(payeeid=nil, outuserid=nil, environment=nil)
           @PayeeId = payeeid
           @OutUserId = outuserid
@@ -17589,7 +17589,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17626,7 +17626,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :StartTime, :EndTime, :PageNumber, :PayeeId, :Environment
-        
+
         def initialize(starttime=nil, endtime=nil, pagenumber=nil, payeeid=nil, environment=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -17660,7 +17660,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17693,7 +17693,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :OutOrderId, :OrderId, :Environment
-        
+
         def initialize(outorderid=nil, orderid=nil, environment=nil)
           @OutOrderId = outorderid
           @OrderId = orderid
@@ -17720,7 +17720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17755,7 +17755,7 @@ module TencentCloud
         # @type SnapshotDate: String
 
         attr_accessor :IncomeType, :Environment, :SnapshotDate
-        
+
         def initialize(incometype=nil, environment=nil, snapshotdate=nil)
           @IncomeType = incometype
           @Environment = environment
@@ -17782,7 +17782,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17813,7 +17813,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ServiceProviderId, :Environment
-        
+
         def initialize(serviceproviderid=nil, environment=nil)
           @ServiceProviderId = serviceproviderid
           @Environment = environment
@@ -17838,7 +17838,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17881,7 +17881,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber, :OperationType, :Environment
-        
+
         def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil, operationtype=nil, environment=nil)
           @PayeeId = payeeid
           @StartTime = starttime
@@ -17917,7 +17917,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -17947,7 +17947,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :AuthNo, :Environment
-        
+
         def initialize(authno=nil, environment=nil)
           @AuthNo = authno
           @Environment = environment
@@ -17972,7 +17972,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -18023,7 +18023,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :QueryDateType, :QueryTranType, :BankAccountNumber, :SubAccountNumber, :PageOffSet, :QueryStartDate, :QueryEndDate, :MidasEnvironment
-        
+
         def initialize(querydatetype=nil, querytrantype=nil, bankaccountnumber=nil, subaccountnumber=nil, pageoffset=nil, querystartdate=nil, queryenddate=nil, midasenvironment=nil)
           @QueryDateType = querydatetype
           @QueryTranType = querytrantype
@@ -18062,7 +18062,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -18098,7 +18098,7 @@ module TencentCloud
         # @type TranItemArray: Array
 
         attr_accessor :ResultCount, :TotalCount, :EndFlag, :TranItemArray
-        
+
         def initialize(resultcount=nil, totalcount=nil, endflag=nil, tranitemarray=nil)
           @ResultCount = resultcount
           @TotalCount = totalcount
@@ -18143,7 +18143,7 @@ module TencentCloud
         # @type SellerTaxpayerNum: String
 
         attr_accessor :InvoicePlatformId, :OrderId, :OrderSn, :IsRed, :Profile, :InvoiceChannel, :SellerTaxpayerNum
-        
+
         def initialize(invoiceplatformid=nil, orderid=nil, ordersn=nil, isred=nil, profile=nil, invoicechannel=nil, sellertaxpayernum=nil)
           @InvoicePlatformId = invoiceplatformid
           @OrderId = orderid
@@ -18173,7 +18173,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -18202,7 +18202,7 @@ module TencentCloud
         # @type Order: :class:`Tencentcloud::Cpdp.v20190820.models.Order`
 
         attr_accessor :Message, :Code, :Data, :Order
-        
+
         def initialize(message=nil, code=nil, data=nil, order=nil)
           @Message = message
           @Code = code
@@ -18257,7 +18257,7 @@ module TencentCloud
         # @type ImageUrl: String
 
         attr_accessor :OrderId, :OrderSn, :Status, :Message, :TicketDate, :TicketSn, :TicketCode, :CheckCode, :AmountWithTax, :AmountWithoutTax, :TaxAmount, :IsRedWashed, :PdfUrl, :ImageUrl
-        
+
         def initialize(orderid=nil, ordersn=nil, status=nil, message=nil, ticketdate=nil, ticketsn=nil, ticketcode=nil, checkcode=nil, amountwithtax=nil, amountwithouttax=nil, taxamount=nil, isredwashed=nil, pdfurl=nil, imageurl=nil)
           @OrderId = orderid
           @OrderSn = ordersn
@@ -18313,7 +18313,7 @@ module TencentCloud
         # @type SellerTaxpayerNum: String
 
         attr_accessor :InvoicePlatformId, :OrderId, :IsRed, :Profile, :InvoiceChannel, :SellerTaxpayerNum
-        
+
         def initialize(invoiceplatformid=nil, orderid=nil, isred=nil, profile=nil, invoicechannel=nil, sellertaxpayernum=nil)
           @InvoicePlatformId = invoiceplatformid
           @OrderId = orderid
@@ -18346,7 +18346,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
-        
+
         def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
           @Result = result
           @ErrCode = errcode
@@ -18388,7 +18388,7 @@ module TencentCloud
         # @type MaintenanceDate: String
 
         attr_accessor :SubAcctNo, :SubAcctProperty, :SubMchId, :SubAcctName, :AcctAvailBal, :CashAmt, :MaintenanceDate
-        
+
         def initialize(subacctno=nil, subacctproperty=nil, submchid=nil, subacctname=nil, acctavailbal=nil, cashamt=nil, maintenancedate=nil)
           @SubAcctNo = subacctno
           @SubAcctProperty = subacctproperty
@@ -18438,7 +18438,7 @@ module TencentCloud
         # @type Channel: String
 
         attr_accessor :MerchantId, :MerchantName, :CompanyName, :RegAddress, :RegTime, :USCI, :RegNumber, :EncryptedPhoneNumber, :EncryptedEmailAddress, :EncryptedPersonId, :Ip, :Channel
-        
+
         def initialize(merchantid=nil, merchantname=nil, companyname=nil, regaddress=nil, regtime=nil, usci=nil, regnumber=nil, encryptedphonenumber=nil, encryptedemailaddress=nil, encryptedpersonid=nil, ip=nil, channel=nil)
           @MerchantId = merchantid
           @MerchantName = merchantname
@@ -18483,7 +18483,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
@@ -18518,7 +18518,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :QueryFlag, :PageNum, :SubAcctNo, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, queryflag=nil, pagenum=nil, subacctno=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @QueryFlag = queryflag
@@ -18568,7 +18568,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultNum, :StartRecordNo, :EndFlag, :TotalNum, :TranItemArray, :ReservedMsg, :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :RequestId
-        
+
         def initialize(resultnum=nil, startrecordno=nil, endflag=nil, totalnum=nil, tranitemarray=nil, reservedmsg=nil, txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, requestid=nil)
           @ResultNum = resultnum
           @StartRecordNo = startrecordno
@@ -18636,7 +18636,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :QueryDateType, :QueryTranType, :BankAccountNumber, :SubAccountNumber, :PageOffSet, :QueryStartDate, :QueryEndDate, :MidasEnvironment
-        
+
         def initialize(querydatetype=nil, querytrantype=nil, bankaccountnumber=nil, subaccountnumber=nil, pageoffset=nil, querystartdate=nil, queryenddate=nil, midasenvironment=nil)
           @QueryDateType = querydatetype
           @QueryTranType = querytrantype
@@ -18675,7 +18675,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -18711,7 +18711,7 @@ module TencentCloud
         # @type TranItemArray: Array
 
         attr_accessor :ResultCount, :TotalCount, :EndFlag, :TranItemArray
-        
+
         def initialize(resultcount=nil, totalcount=nil, endflag=nil, tranitemarray=nil)
           @ResultCount = resultcount
           @TotalCount = totalcount
@@ -18774,7 +18774,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :OutSubAcctNo, :OutMemberCode, :OutSubAcctName, :InSubAcctNo, :InMemberCode, :InSubAcctName, :TranAmt, :TranFee, :TranType, :Ccy, :OrderNo, :OrderContent, :Remark, :ReservedMsg, :WebSign, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, outsubacctno=nil, outmembercode=nil, outsubacctname=nil, insubacctno=nil, inmembercode=nil, insubacctname=nil, tranamt=nil, tranfee=nil, trantype=nil, ccy=nil, orderno=nil, ordercontent=nil, remark=nil, reservedmsg=nil, websign=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -18836,7 +18836,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -18866,7 +18866,7 @@ module TencentCloud
         # @type MerchantId: String
 
         attr_accessor :Currency, :Balance, :MerchantId
-        
+
         def initialize(currency=nil, balance=nil, merchantid=nil)
           @Currency = currency
           @Balance = balance
@@ -18888,7 +18888,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :Currency, :Profile
-        
+
         def initialize(currency=nil, profile=nil)
           @Currency = currency
           @Profile = profile
@@ -18908,7 +18908,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -18931,7 +18931,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.QueryMerchantBalanceData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -18956,7 +18956,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -18984,7 +18984,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -19019,7 +19019,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :InvoicePlatformId, :Offset, :Limit, :Profile
-        
+
         def initialize(invoiceplatformid=nil, offset=nil, limit=nil, profile=nil)
           @InvoicePlatformId = invoiceplatformid
           @Offset = offset
@@ -19044,7 +19044,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -19067,7 +19067,7 @@ module TencentCloud
         # @type OrderNo: String
 
         attr_accessor :MerchantAppId, :OrderNo
-        
+
         def initialize(merchantappid=nil, orderno=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -19091,7 +19091,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :OrderNo, :Status, :RequestId
-        
+
         def initialize(merchantappid=nil, orderno=nil, status=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -19119,7 +19119,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :PayType, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, paytype=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -19149,7 +19149,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19178,7 +19178,7 @@ module TencentCloud
         # @type MerchantAppId: String
 
         attr_accessor :MerchantAppId
-        
+
         def initialize(merchantappid=nil)
           @MerchantAppId = merchantappid
         end
@@ -19200,7 +19200,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :MerchantName, :BusinessPayFlag, :RequestId
-        
+
         def initialize(merchantappid=nil, merchantname=nil, businesspayflag=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @MerchantName = merchantname
@@ -19240,7 +19240,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :BindSerialNo, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, bindserialno=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -19274,7 +19274,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19301,7 +19301,7 @@ module TencentCloud
         # @type YesterdayBalance: String
 
         attr_accessor :TotalBalance, :YesterdayBalance
-        
+
         def initialize(totalbalance=nil, yesterdaybalance=nil)
           @TotalBalance = totalbalance
           @YesterdayBalance = yesterdaybalance
@@ -19339,7 +19339,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :BankBranchName, :BankAbbreviation, :PageNumber, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, bankbranchname=nil, bankabbreviation=nil, pagenumber=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -19380,7 +19380,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19407,7 +19407,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :BankBranchList, :Count
-        
+
         def initialize(bankbranchlist=nil, count=nil)
           @BankBranchList = bankbranchlist
           @Count = count
@@ -19494,7 +19494,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :BillDate, :Channel, :SubChannel, :ParentMerchantId, :OutMerchantId, :MerchantId, :EndMerchantId, :OutTradeNo, :TradeNo, :EndTradeNo, :PaymentType, :BusinessType, :TradeTime, :FinishTime, :TradeStatus, :CheckStatus, :CheckFailReason, :OrderAmount, :ServiceFee, :PayeeAccount, :PayeeName, :PayerAccount, :PayerName, :Description
-        
+
         def initialize(billdate=nil, channel=nil, subchannel=nil, parentmerchantid=nil, outmerchantid=nil, merchantid=nil, endmerchantid=nil, outtradeno=nil, tradeno=nil, endtradeno=nil, paymenttype=nil, businesstype=nil, tradetime=nil, finishtime=nil, tradestatus=nil, checkstatus=nil, checkfailreason=nil, orderamount=nil, servicefee=nil, payeeaccount=nil, payeename=nil, payeraccount=nil, payername=nil, description=nil)
           @BillDate = billdate
           @Channel = channel
@@ -19580,7 +19580,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :BillDate, :ChannelName, :PageNo, :PageSize, :BillType, :PaymentMethod, :Environment
-        
+
         def initialize(channelmerchantid=nil, billdate=nil, channelname=nil, pageno=nil, pagesize=nil, billtype=nil, paymentmethod=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @BillDate = billdate
@@ -19619,7 +19619,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19651,7 +19651,7 @@ module TencentCloud
         # @type DataList: Array
 
         attr_accessor :PageNo, :PageSize, :Count, :DataList
-        
+
         def initialize(pageno=nil, pagesize=nil, count=nil, datalist=nil)
           @PageNo = pageno
           @PageSize = pagesize
@@ -19691,7 +19691,7 @@ module TencentCloud
         # @type OutApplyId: String
 
         attr_accessor :ChannelSubMerchantId, :ChannelMerchantId, :ChannelApplyId, :Environment, :OutApplyId
-        
+
         def initialize(channelsubmerchantid=nil, channelmerchantid=nil, channelapplyid=nil, environment=nil, outapplyid=nil)
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelMerchantId = channelmerchantid
@@ -19724,7 +19724,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19763,7 +19763,7 @@ module TencentCloud
         # @type BindSerialNo: String
 
         attr_accessor :ExternalSubMerchantBankAccountReturnData, :ChannelApplyId, :BindStatus, :BindMessage, :BindSerialNo
-        
+
         def initialize(externalsubmerchantbankaccountreturndata=nil, channelapplyid=nil, bindstatus=nil, bindmessage=nil, bindserialno=nil)
           @ExternalSubMerchantBankAccountReturnData = externalsubmerchantbankaccountreturndata
           @ChannelApplyId = channelapplyid
@@ -19807,7 +19807,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :BindSerialNo, :QueryDate, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, bindserialno=nil, querydate=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -19843,7 +19843,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19874,7 +19874,7 @@ module TencentCloud
         # @type ReceiptStatus: String
 
         attr_accessor :DownloadUrl, :ExpireTime, :ReceiptStatus
-        
+
         def initialize(downloadurl=nil, expiretime=nil, receiptstatus=nil)
           @DownloadUrl = downloadurl
           @ExpireTime = expiretime
@@ -19912,7 +19912,7 @@ module TencentCloud
         # @type PaymentMethod: String
 
         attr_accessor :ChannelMerchantId, :BillDate, :BillType, :Environment, :ChannelName, :PaymentMethod
-        
+
         def initialize(channelmerchantid=nil, billdate=nil, billtype=nil, environment=nil, channelname=nil, paymentmethod=nil)
           @ChannelMerchantId = channelmerchantid
           @BillDate = billdate
@@ -19945,7 +19945,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -19974,7 +19974,7 @@ module TencentCloud
         # @type HashType: String
 
         attr_accessor :DownloadUrl, :HashValue, :HashType
-        
+
         def initialize(downloadurl=nil, hashvalue=nil, hashtype=nil)
           @DownloadUrl = downloadurl
           @HashValue = hashvalue
@@ -20015,7 +20015,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutAccountBookId, :ChannelAccountBookId, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outaccountbookid=nil, channelaccountbookid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -20052,7 +20052,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20089,7 +20089,7 @@ module TencentCloud
         # @type AccountNumberLastFour: String
 
         attr_accessor :AccountBank, :BindSerialNo, :AccountType, :BankBranchId, :AccountNumberLastFour
-        
+
         def initialize(accountbank=nil, bindserialno=nil, accounttype=nil, bankbranchid=nil, accountnumberlastfour=nil)
           @AccountBank = accountbank
           @BindSerialNo = bindserialno
@@ -20129,7 +20129,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -20162,7 +20162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20187,7 +20187,7 @@ module TencentCloud
         # @type AccountList: Array
 
         attr_accessor :AccountList
-        
+
         def initialize(accountlist=nil)
           @AccountList = accountlist
         end
@@ -20219,7 +20219,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelRegistrationNo, :OutRegistrationNo, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelregistrationno=nil, outregistrationno=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelRegistrationNo = channelregistrationno
@@ -20250,7 +20250,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20309,7 +20309,7 @@ module TencentCloud
         # @type ExternalReturnData: String
 
         attr_accessor :RegistrationStatus, :RegistrationMessage, :ChannelRegistrationNo, :ChannelSubMerchantId, :OutSubMerchantName, :ChannelName, :PaymentMethod, :BusinessLicenseNumber, :LegalName, :ExternalReturnData
-        
+
         def initialize(registrationstatus=nil, registrationmessage=nil, channelregistrationno=nil, channelsubmerchantid=nil, outsubmerchantname=nil, channelname=nil, paymentmethod=nil, businesslicensenumber=nil, legalname=nil, externalreturndata=nil)
           @RegistrationStatus = registrationstatus
           @RegistrationMessage = registrationmessage
@@ -20358,7 +20358,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutApplyId, :ChannelApplyId, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outapplyid=nil, channelapplyid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -20394,7 +20394,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20434,7 +20434,7 @@ module TencentCloud
         # @type ExpireTime: String
 
         attr_accessor :ChannelApplyId, :ReceiptStatus, :ReceiptMessage, :DownloadUrl, :ExpireTime
-        
+
         def initialize(channelapplyid=nil, receiptstatus=nil, receiptmessage=nil, downloadurl=nil, expiretime=nil)
           @ChannelApplyId = channelapplyid
           @ReceiptStatus = receiptstatus
@@ -20464,7 +20464,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :Environment
-        
+
         def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
@@ -20493,7 +20493,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20572,7 +20572,7 @@ module TencentCloud
         # @type TimeFinish: String
 
         attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo, :FeeAmount, :FeeRate, :ProfitShareRespInfoList, :TimeFinish
-        
+
         def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil, feeamount=nil, feerate=nil, profitsharerespinfolist=nil, timefinish=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
@@ -20645,7 +20645,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :AccountId, :AccountNo, :Currency, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, accountid=nil, accountno=nil, currency=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -20678,7 +20678,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20726,7 +20726,7 @@ module TencentCloud
         # @type StateExplain: String
 
         attr_accessor :AccountId, :AccountNo, :Currency, :AccountName, :BankName, :Nature, :BindState, :StateExplain
-        
+
         def initialize(accountid=nil, accountno=nil, currency=nil, accountname=nil, bankname=nil, nature=nil, bindstate=nil, stateexplain=nil)
           @AccountId = accountid
           @AccountNo = accountno
@@ -20765,7 +20765,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :OutRefundId, :ChannelRefundId, :Environment
-        
+
         def initialize(channelmerchantid=nil, outrefundid=nil, channelrefundid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutRefundId = outrefundid
@@ -20795,7 +20795,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20828,7 +20828,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :OutSettleId, :ChannelSettleId, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, outsettleid=nil, channelsettleid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -20859,7 +20859,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -20915,7 +20915,7 @@ module TencentCloud
         # @type Currency: String
 
         attr_accessor :OutSettleId, :ChannelSettleId, :SettleStatus, :SettleAmount, :SettleDate, :SettleType, :FailReason, :TimeFinish, :SettleFee, :Currency
-        
+
         def initialize(outsettleid=nil, channelsettleid=nil, settlestatus=nil, settleamount=nil, settledate=nil, settletype=nil, failreason=nil, timefinish=nil, settlefee=nil, currency=nil)
           @OutSettleId = outsettleid
           @ChannelSettleId = channelsettleid
@@ -20967,7 +20967,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutApplyId, :ChannelApplyId, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outapplyid=nil, channelapplyid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -21002,7 +21002,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21030,7 +21030,7 @@ module TencentCloud
         # @type UploadMessage: String
 
         attr_accessor :UploadStatus, :UploadMessage
-        
+
         def initialize(uploadstatus=nil, uploadmessage=nil)
           @UploadStatus = uploadstatus
           @UploadMessage = uploadmessage
@@ -21067,7 +21067,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelRegistrationNo, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :ChannelProductFeeNo, :OutProductFeeNo, :Environment
-        
+
         def initialize(channelregistrationno=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, channelproductfeeno=nil, outproductfeeno=nil, environment=nil)
           @ChannelRegistrationNo = channelregistrationno
           @ChannelMerchantId = channelmerchantid
@@ -21105,7 +21105,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21136,7 +21136,7 @@ module TencentCloud
         # @type DealMessage: String
 
         attr_accessor :DealStatus, :DealMessage
-        
+
         def initialize(dealstatus=nil, dealmessage=nil)
           @DealStatus = dealstatus
           @DealMessage = dealmessage
@@ -21160,7 +21160,7 @@ module TencentCloud
         # @type ChannelSubMerchantId: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :OutSubMerchantId, :ChannelSubMerchantId
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, outsubmerchantid=nil, channelsubmerchantid=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -21189,7 +21189,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21220,7 +21220,7 @@ module TencentCloud
         # @type SignMessage: String
 
         attr_accessor :SignStatus, :SignMessage
-        
+
         def initialize(signstatus=nil, signmessage=nil)
           @SignStatus = signstatus
           @SignMessage = signmessage
@@ -21252,7 +21252,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -21284,7 +21284,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21309,7 +21309,7 @@ module TencentCloud
         # @type SupportBankList: Array
 
         attr_accessor :SupportBankList
-        
+
         def initialize(supportbanklist=nil)
           @SupportBankList = supportbanklist
         end
@@ -21343,7 +21343,7 @@ module TencentCloud
         # @type OutApplyId: String
 
         attr_accessor :ChannelSubMerchantId, :ChannelMerchantId, :ChannelApplyId, :Environment, :OutApplyId
-        
+
         def initialize(channelsubmerchantid=nil, channelmerchantid=nil, channelapplyid=nil, environment=nil, outapplyid=nil)
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelMerchantId = channelmerchantid
@@ -21376,7 +21376,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21409,7 +21409,7 @@ module TencentCloud
         # @type UnbindMessage: String
 
         attr_accessor :ChannelApplyId, :UnbindStatus, :UnbindMessage
-        
+
         def initialize(channelapplyid=nil, unbindstatus=nil, unbindmessage=nil)
           @ChannelApplyId = channelapplyid
           @UnbindStatus = unbindstatus
@@ -21438,7 +21438,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelVerificationId, :OutVerificationId, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelverificationid=nil, outverificationid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelVerificationId = channelverificationid
@@ -21468,7 +21468,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21509,7 +21509,7 @@ module TencentCloud
         # @type ThirdVerificationReturnData: String
 
         attr_accessor :ChannelVerificationId, :ThirdVerificationId, :VerificationAmount, :VerificationStatus, :FailReason, :ThirdVerificationReturnData
-        
+
         def initialize(channelverificationid=nil, thirdverificationid=nil, verificationamount=nil, verificationstatus=nil, failreason=nil, thirdverificationreturndata=nil)
           @ChannelVerificationId = channelverificationid
           @ThirdVerificationId = thirdverificationid
@@ -21595,7 +21595,7 @@ module TencentCloud
         # @type AttachmentInfoList: Array
 
         attr_accessor :MidasAppId, :Amt, :UserId, :CashAmt, :Metadata, :PayTime, :CouponAmt, :OrderTime, :ProductId, :SceneInfo, :OrderState, :Channel, :RefundFlag, :OutTradeNo, :ProductName, :CallBackTime, :CurrencyType, :AcctSubAppId, :TransactionId, :ChannelOrderId, :SubOrderList, :ChannelExternalOrderId, :SettleCheck, :ChannelExternalUserInfoList, :AttachmentInfoList
-        
+
         def initialize(midasappid=nil, amt=nil, userid=nil, cashamt=nil, metadata=nil, paytime=nil, couponamt=nil, ordertime=nil, productid=nil, sceneinfo=nil, orderstate=nil, channel=nil, refundflag=nil, outtradeno=nil, productname=nil, callbacktime=nil, currencytype=nil, acctsubappid=nil, transactionid=nil, channelorderid=nil, suborderlist=nil, channelexternalorderid=nil, settlecheck=nil, channelexternaluserinfolist=nil, attachmentinfolist=nil)
           @MidasAppId = midasappid
           @Amt = amt
@@ -21698,7 +21698,7 @@ module TencentCloud
         # @type SubOutTradeNo: String
 
         attr_accessor :Amt, :SubMchIncome, :Metadata, :OriginalAmt, :PlatformIncome, :ProductDetail, :ProductName, :SettleCheck, :SubAppId, :SubOutTradeNo
-        
+
         def initialize(amt=nil, submchincome=nil, metadata=nil, originalamt=nil, platformincome=nil, productdetail=nil, productname=nil, settlecheck=nil, subappid=nil, subouttradeno=nil)
           @Amt = amt
           @SubMchIncome = submchincome
@@ -21759,7 +21759,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :UserId, :Type, :MidasSecretId, :MidasSignature, :Count, :Offset, :StartTime, :EndTime, :OutTradeNo, :TransactionId, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, userid=nil, type=nil, midassecretid=nil, midassignature=nil, count=nil, offset=nil, starttime=nil, endtime=nil, outtradeno=nil, transactionid=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -21801,7 +21801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalNum, :OrderList, :RequestId
-        
+
         def initialize(totalnum=nil, orderlist=nil, requestid=nil)
           @TotalNum = totalnum
           @OrderList = orderlist
@@ -21836,7 +21836,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :DeveloperNo, :OrderNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, developerno=nil, orderno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -21868,7 +21868,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -21987,7 +21987,7 @@ module TencentCloud
         # @type ShopName: String
 
         attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode, :TradeTime, :DiscountAmount, :MerchantNo, :Remark, :OrderName, :OriginalAmount, :ShopNo, :TradeResult, :OrderId, :OrderType, :TradeNo, :OriginalOrderNo, :Tag, :AddTime, :CashierId, :CashierRealName, :ShopFullName, :ShopName
-        
+
         def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil, tradetime=nil, discountamount=nil, merchantno=nil, remark=nil, ordername=nil, originalamount=nil, shopno=nil, traderesult=nil, orderid=nil, ordertype=nil, tradeno=nil, originalorderno=nil, tag=nil, addtime=nil, cashierid=nil, cashierrealname=nil, shopfullname=nil, shopname=nil)
           @OrderNo = orderno
           @DeveloperNo = developerno
@@ -22099,7 +22099,7 @@ module TencentCloud
         # @type RefundCurrency: String
 
         attr_accessor :MerchantId, :TransactionId, :AcctDate, :PricingCurrency, :SourceCurrency, :SourceAmount, :TargetCurrency, :TargetAmount, :FxRate, :Status, :FailReason, :RefundAmount, :RefundCurrency
-        
+
         def initialize(merchantid=nil, transactionid=nil, acctdate=nil, pricingcurrency=nil, sourcecurrency=nil, sourceamount=nil, targetcurrency=nil, targetamount=nil, fxrate=nil, status=nil, failreason=nil, refundamount=nil, refundcurrency=nil)
           @MerchantId = merchantid
           @TransactionId = transactionid
@@ -22141,7 +22141,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TransactionId, :Profile
-        
+
         def initialize(transactionid=nil, profile=nil)
           @TransactionId = transactionid
           @Profile = profile
@@ -22161,7 +22161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -22184,7 +22184,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOutwardOrderData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -22207,7 +22207,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :PayerId, :Profile
-        
+
         def initialize(payerid=nil, profile=nil)
           @PayerId = payerid
           @Profile = profile
@@ -22227,7 +22227,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -22274,7 +22274,7 @@ module TencentCloud
         # @type PayerContactName: String
 
         attr_accessor :MerchantId, :PayerId, :Status, :FailReason, :PayerType, :PayerName, :PayerIdType, :PayerIdNo, :PayerContactNumber, :PayerEmailAddress, :PayerCountryCode, :PayerContactName
-        
+
         def initialize(merchantid=nil, payerid=nil, status=nil, failreason=nil, payertype=nil, payername=nil, payeridtype=nil, payeridno=nil, payercontactnumber=nil, payeremailaddress=nil, payercountrycode=nil, payercontactname=nil)
           @MerchantId = merchantid
           @PayerId = payerid
@@ -22314,7 +22314,7 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.QueryPayerinfoData`
 
         attr_accessor :Code, :Data
-        
+
         def initialize(code=nil, data=nil)
           @Code = code
           @Data = data
@@ -22343,7 +22343,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FileType, :FileDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, filetype=nil, filedate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FileType = filetype
@@ -22382,7 +22382,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ResultNum, :TranItemArray, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, resultnum=nil, tranitemarray=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -22423,7 +22423,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :ApplyFileId, :MidasEnvironment
-        
+
         def initialize(applyfileid=nil, midasenvironment=nil)
           @ApplyFileId = applyfileid
           @MidasEnvironment = midasenvironment
@@ -22450,7 +22450,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -22486,7 +22486,7 @@ module TencentCloud
         # @type FileUrlArray: Array
 
         attr_accessor :ApplyFileId, :ApplyStatus, :ApplyMessage, :FileUrlArray
-        
+
         def initialize(applyfileid=nil, applystatus=nil, applymessage=nil, fileurlarray=nil)
           @ApplyFileId = applyfileid
           @ApplyStatus = applystatus
@@ -22522,7 +22522,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :UserId, :RefundId, :MidasAppId, :MidasSecretId, :MidasSignature, :MidasEnvironment
-        
+
         def initialize(userid=nil, refundid=nil, midasappid=nil, midassecretid=nil, midassignature=nil, midasenvironment=nil)
           @UserId = userid
           @RefundId = refundid
@@ -22579,7 +22579,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :State, :ChannelExternalOrderId, :ChannelExternalRefundId, :ChannelOrderId, :TotalRefundAmt, :CurrencyType, :OutTradeNo, :RefundId, :MidasAppId, :UsedRefundId, :SubRefundList, :RequestId
-        
+
         def initialize(state=nil, channelexternalorderid=nil, channelexternalrefundid=nil, channelorderid=nil, totalrefundamt=nil, currencytype=nil, outtradeno=nil, refundid=nil, midasappid=nil, usedrefundid=nil, subrefundlist=nil, requestid=nil)
           @State = state
           @ChannelExternalOrderId = channelexternalorderid
@@ -22630,7 +22630,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :ShopNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, shopno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -22660,7 +22660,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -22725,7 +22725,7 @@ module TencentCloud
         # @type MerchantName: String
 
         attr_accessor :Province, :City, :ShopName, :MerchantNo, :CityId, :OpenId, :Telephone, :ShopNo, :County, :ShopFullName, :BrandName, :Address, :OpenKey, :MerchantName
-        
+
         def initialize(province=nil, city=nil, shopname=nil, merchantno=nil, cityid=nil, openid=nil, telephone=nil, shopno=nil, county=nil, shopfullname=nil, brandname=nil, address=nil, openkey=nil, merchantname=nil)
           @Province = province
           @City = city
@@ -22796,7 +22796,7 @@ module TencentCloud
         # @type TradeStatusDesc: String
 
         attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark, :AgentId, :AgentName, :TradeStatusDesc
-        
+
         def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil, agentid=nil, agentname=nil, tradestatusdesc=nil)
           @TradeSerialNo = tradeserialno
           @OrderId = orderid
@@ -22828,7 +22828,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :TransferType, :TradeSerialNo, :OrderId
-        
+
         def initialize(transfertype=nil, tradeserialno=nil, orderid=nil)
           @TransferType = transfertype
           @TradeSerialNo = tradeserialno
@@ -22855,7 +22855,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -22892,7 +22892,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :TranNetSeqNo, :SubAcctNo, :TranDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, trannetseqno=nil, subacctno=nil, trandate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -22953,7 +22953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :BookingFlag, :TranStatus, :TranAmt, :TranDate, :TranTime, :InSubAcctNo, :OutSubAcctNo, :FailMsg, :OldTranFrontSeqNo, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, bookingflag=nil, transtatus=nil, tranamt=nil, trandate=nil, trantime=nil, insubacctno=nil, outsubacctno=nil, failmsg=nil, oldtranfrontseqno=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -23001,7 +23001,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :OldTranSeqNo, :TranDate, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, oldtranseqno=nil, trandate=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @OldTranSeqNo = oldtranseqno
@@ -23040,7 +23040,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ReturnStatus, :ReturnMsg, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, returnstatus=nil, returnmsg=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -23104,7 +23104,7 @@ module TencentCloud
         # @type ServiceTime: String
 
         attr_accessor :MerchantId, :TradeFileId, :TradeOrderId, :Status, :FailReason, :PayerId, :PayeeName, :PayeeCountryCode, :TradeType, :TradeTime, :TradeCurrency, :TradeAmount, :TradeName, :TradeCount, :GoodsCarrier, :ServiceDetail, :ServiceTime
-        
+
         def initialize(merchantid=nil, tradefileid=nil, tradeorderid=nil, status=nil, failreason=nil, payerid=nil, payeename=nil, payeecountrycode=nil, tradetype=nil, tradetime=nil, tradecurrency=nil, tradeamount=nil, tradename=nil, tradecount=nil, goodscarrier=nil, servicedetail=nil, servicetime=nil)
           @MerchantId = merchantid
           @TradeFileId = tradefileid
@@ -23154,7 +23154,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TradeFileId, :Profile
-        
+
         def initialize(tradefileid=nil, profile=nil)
           @TradeFileId = tradefileid
           @Profile = profile
@@ -23174,7 +23174,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -23197,7 +23197,7 @@ module TencentCloud
         # @type Code: String
 
         attr_accessor :Data, :Code
-        
+
         def initialize(data=nil, code=nil)
           @Data = data
           @Code = code
@@ -23253,7 +23253,7 @@ module TencentCloud
         # @type DetailStatus: String
 
         attr_accessor :MerchantId, :NeedQueryDetail, :MerchantBatchNo, :BatchId, :Profile, :Offset, :Limit, :DetailStatus
-        
+
         def initialize(merchantid=nil, needquerydetail=nil, merchantbatchno=nil, batchid=nil, profile=nil, offset=nil, limit=nil, detailstatus=nil)
           @MerchantId = merchantid
           @NeedQueryDetail = needquerydetail
@@ -23361,7 +23361,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantId, :MerchantBatchNo, :BatchId, :MerchantAppId, :BatchStatus, :CloseReason, :TotalAmount, :TotalNum, :CreateTime, :UpdateTime, :SuccessAmount, :SuccessNum, :FailAmount, :FailNum, :TransferDetails, :BatchType, :BatchName, :BatchRemark, :RequestId
-        
+
         def initialize(merchantid=nil, merchantbatchno=nil, batchid=nil, merchantappid=nil, batchstatus=nil, closereason=nil, totalamount=nil, totalnum=nil, createtime=nil, updatetime=nil, successamount=nil, successnum=nil, failamount=nil, failnum=nil, transferdetails=nil, batchtype=nil, batchname=nil, batchremark=nil, requestid=nil)
           @MerchantId = merchantid
           @MerchantBatchNo = merchantbatchno
@@ -23444,7 +23444,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MerchantId, :MerchantBatchNo, :MerchantDetailNo, :BatchId, :DetailId, :Profile
-        
+
         def initialize(merchantid=nil, merchantbatchno=nil, merchantdetailno=nil, batchid=nil, detailid=nil, profile=nil)
           @MerchantId = merchantid
           @MerchantBatchNo = merchantbatchno
@@ -23542,7 +23542,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantId, :MerchantBatchNo, :BatchId, :MerchantDetailNo, :DetailId, :DetailStatus, :TransferAmount, :FailReason, :InitiateTime, :UpdateTime, :UserName, :TransferRemark, :MerchantAppId, :OpenId, :RequestId
-        
+
         def initialize(merchantid=nil, merchantbatchno=nil, batchid=nil, merchantdetailno=nil, detailid=nil, detailstatus=nil, transferamount=nil, failreason=nil, initiatetime=nil, updatetime=nil, username=nil, transferremark=nil, merchantappid=nil, openid=nil, requestid=nil)
           @MerchantId = merchantid
           @MerchantBatchNo = merchantbatchno
@@ -23599,7 +23599,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark
-        
+
         def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil)
           @TradeSerialNo = tradeserialno
           @OrderId = orderid
@@ -23633,7 +23633,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MerchantId, :MerchantAppId, :TransferType, :TradeSerialNo, :OrderId, :Profile
-        
+
         def initialize(merchantid=nil, merchantappid=nil, transfertype=nil, tradeserialno=nil, orderid=nil, profile=nil)
           @MerchantId = merchantid
           @MerchantAppId = merchantappid
@@ -23666,7 +23666,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -23729,7 +23729,7 @@ module TencentCloud
         # @type AuthFailReason: String
 
         attr_accessor :AuthNo, :OpenId, :MchId, :SubMchId, :AuthScene, :AuthSource, :ProjectName, :EmployerName, :AuthTime, :AuthType, :AuthState, :AuthFailReason
-        
+
         def initialize(authno=nil, openid=nil, mchid=nil, submchid=nil, authscene=nil, authsource=nil, projectname=nil, employername=nil, authtime=nil, authtype=nil, authstate=nil, authfailreason=nil)
           @AuthNo = authno
           @OpenId = openid
@@ -23811,7 +23811,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OrderId, :BankAccountNumber, :PlatformShortNumber, :MidasSecretId, :MidasAppId, :MidasSignature, :TransSequenceNumber, :BankSubAccountNumber, :TransFee, :ThirdPayChannel, :ThirdPayChannelMerchantCode, :ThirdPayChannelOrderId, :CurrencyAmount, :CurrencyUnit, :CurrencyType, :TransNetMemberCode, :MidasEnvironment, :ReservedMessage, :Remark
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, orderid=nil, bankaccountnumber=nil, platformshortnumber=nil, midassecretid=nil, midasappid=nil, midassignature=nil, transsequencenumber=nil, banksubaccountnumber=nil, transfee=nil, thirdpaychannel=nil, thirdpaychannelmerchantcode=nil, thirdpaychannelorderid=nil, currencyamount=nil, currencyunit=nil, currencytype=nil, transnetmembercode=nil, midasenvironment=nil, reservedmessage=nil, remark=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -23879,7 +23879,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReservedMessage, :FrontSequenceNumber, :RequestType, :RequestId
-        
+
         def initialize(reservedmessage=nil, frontsequencenumber=nil, requesttype=nil, requestid=nil)
           @ReservedMessage = reservedmessage
           @FrontSequenceNumber = frontsequencenumber
@@ -23932,7 +23932,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TranNetMemberCode, :MemberFillAmt, :Commission, :Ccy, :PayChannelType, :PayChannelAssignMerNo, :PayChannelTranSeqNo, :EjzbOrderNo, :MrchCode, :EjzbOrderContent, :Remark, :ReservedMsgOne, :ReservedMsgTwo, :ReservedMsgThree, :Profile
-        
+
         def initialize(trannetmembercode=nil, memberfillamt=nil, commission=nil, ccy=nil, paychanneltype=nil, paychannelassignmerno=nil, paychanneltranseqno=nil, ejzborderno=nil, mrchcode=nil, ejzbordercontent=nil, remark=nil, reservedmsgone=nil, reservedmsgtwo=nil, reservedmsgthree=nil, profile=nil)
           @TranNetMemberCode = trannetmembercode
           @MemberFillAmt = memberfillamt
@@ -23994,7 +23994,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :MemberSubAcctPreAvailBal, :ReservedMsgOne, :ReservedMsgTwo, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, membersubacctpreavailbal=nil, reservedmsgone=nil, reservedmsgtwo=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -24054,7 +24054,7 @@ module TencentCloud
         # @type ExternalRefundPromptGroupList: String
 
         attr_accessor :MidasAppId, :UserId, :RefundId, :TotalRefundAmt, :OutTradeNo, :MidasEnvironment, :PlatformRefundAmt, :MchRefundAmt, :SubOrderRefundList, :ChannelOrderId, :RefundNotifyUrl, :Metadata, :ExternalRefundPromptGroupList
-        
+
         def initialize(midasappid=nil, userid=nil, refundid=nil, totalrefundamt=nil, outtradeno=nil, midasenvironment=nil, platformrefundamt=nil, mchrefundamt=nil, suborderrefundlist=nil, channelorderid=nil, refundnotifyurl=nil, metadata=nil, externalrefundpromptgrouplist=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -24101,7 +24101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -24164,7 +24164,7 @@ module TencentCloud
         # @type TransFee: String
 
         attr_accessor :OutSubAccountName, :InSubAccountName, :PayChannelSubId, :OutSubAccountNumber, :MidasSignature, :InSubAccountNumber, :MidasSecretId, :BankAccountNumber, :OldTransSequenceNumber, :MerchantCode, :RequestType, :CurrencyAmount, :TransSequenceNumber, :PayChannel, :OldOrderId, :MidasAppId, :OrderId, :MidasEnvironment, :OutTransNetMemberCode, :InTransNetMemberCode, :ReservedMessage, :PlatformShortNumber, :TransType, :TransFee
-        
+
         def initialize(outsubaccountname=nil, insubaccountname=nil, paychannelsubid=nil, outsubaccountnumber=nil, midassignature=nil, insubaccountnumber=nil, midassecretid=nil, bankaccountnumber=nil, oldtranssequencenumber=nil, merchantcode=nil, requesttype=nil, currencyamount=nil, transsequencenumber=nil, paychannel=nil, oldorderid=nil, midasappid=nil, orderid=nil, midasenvironment=nil, outtransnetmembercode=nil, intransnetmembercode=nil, reservedmessage=nil, platformshortnumber=nil, transtype=nil, transfee=nil)
           @OutSubAccountName = outsubaccountname
           @InSubAccountName = insubaccountname
@@ -24232,7 +24232,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestType, :FrontSequenceNumber, :ReservedMessage, :RequestId
-        
+
         def initialize(requesttype=nil, frontsequencenumber=nil, reservedmessage=nil, requestid=nil)
           @RequestType = requesttype
           @FrontSequenceNumber = frontsequencenumber
@@ -24279,7 +24279,7 @@ module TencentCloud
         # @type ProfitShareInfoList: Array
 
         attr_accessor :OutRefundId, :RefundAmount, :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :NotifyUrl, :RefundReason, :ExternalRefundData, :Remark, :Environment, :ProfitShareInfoList
-        
+
         def initialize(outrefundid=nil, refundamount=nil, channelmerchantid=nil, outorderid=nil, channelorderid=nil, notifyurl=nil, refundreason=nil, externalrefunddata=nil, remark=nil, environment=nil, profitshareinfolist=nil)
           @OutRefundId = outrefundid
           @RefundAmount = refundamount
@@ -24330,7 +24330,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -24357,7 +24357,7 @@ module TencentCloud
         # @type OrderNo: String
 
         attr_accessor :MerchantAppId, :OrderNo
-        
+
         def initialize(merchantappid=nil, orderno=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -24386,7 +24386,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MerchantAppId, :OrderNo, :Status, :Description, :RequestId
-        
+
         def initialize(merchantappid=nil, orderno=nil, status=nil, description=nil, requestid=nil)
           @MerchantAppId = merchantappid
           @OrderNo = orderno
@@ -24453,7 +24453,7 @@ module TencentCloud
         # @type OriginalOrderNo: String
 
         attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeTime, :DiscountAmount, :OriginalOrderNo
-        
+
         def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradetime=nil, discountamount=nil, originalorderno=nil)
           @OrderNo = orderno
           @DeveloperNo = developerno
@@ -24505,7 +24505,7 @@ module TencentCloud
         # @type SubRefundId: String
 
         attr_accessor :PlatformRefundAmt, :RefundAmt, :SubMchRefundAmt, :SubOutTradeNo, :SubRefundId
-        
+
         def initialize(platformrefundamt=nil, refundamt=nil, submchrefundamt=nil, subouttradeno=nil, subrefundid=nil)
           @PlatformRefundAmt = platformrefundamt
           @RefundAmt = refundamt
@@ -24555,7 +24555,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :UserId, :RefundId, :MidasAppId, :TotalRefundAmt, :MidasSecretId, :MidasSignature, :OutTradeNo, :MchRefundAmt, :TransactionId, :PlatformRefundAmt, :SubOrderRefundList, :MidasEnvironment
-        
+
         def initialize(userid=nil, refundid=nil, midasappid=nil, totalrefundamt=nil, midassecretid=nil, midassignature=nil, outtradeno=nil, mchrefundamt=nil, transactionid=nil, platformrefundamt=nil, suborderrefundlist=nil, midasenvironment=nil)
           @UserId = userid
           @RefundId = refundid
@@ -24600,7 +24600,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -24632,7 +24632,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :DeveloperNo, :RefundOutNo, :RefundOrderName, :RefundAmount, :ShopPassword, :Remark, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, developerno=nil, refundoutno=nil, refundordername=nil, refundamount=nil, shoppassword=nil, remark=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -24672,7 +24672,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -24730,7 +24730,7 @@ module TencentCloud
         # @type SignChannel: Integer
 
         attr_accessor :MidasAppId, :SubAppId, :MidasSecretId, :MidasSignature, :FunctionFlag, :MidasEnvironment, :OperationClickTime, :IpAddress, :MacAddress, :SignChannel
-        
+
         def initialize(midasappid=nil, subappid=nil, midassecretid=nil, midassignature=nil, functionflag=nil, midasenvironment=nil, operationclicktime=nil, ipaddress=nil, macaddress=nil, signchannel=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -24773,7 +24773,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReplenishSuccessFlag, :RegisterInfo, :RequestId
-        
+
         def initialize(replenishsuccessflag=nil, registerinfo=nil, requestid=nil)
           @ReplenishSuccessFlag = replenishsuccessflag
           @RegisterInfo = registerinfo
@@ -24832,7 +24832,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OrderId, :BankAccountNo, :PlatformShortNo, :MidasSecretId, :MidasAppId, :MidasSignature, :TransSeqNo, :TranFee, :OrderAmt, :BankSubAccountNo, :TranNetMemberCode, :TranType, :ReservedMessage, :Remark, :MidasEnvironment
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, orderid=nil, bankaccountno=nil, platformshortno=nil, midassecretid=nil, midasappid=nil, midassignature=nil, transseqno=nil, tranfee=nil, orderamt=nil, banksubaccountno=nil, trannetmembercode=nil, trantype=nil, reservedmessage=nil, remark=nil, midasenvironment=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -24890,7 +24890,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FrontSeqNo, :ReservedMessage, :RequestType, :RequestId
-        
+
         def initialize(frontseqno=nil, reservedmessage=nil, requesttype=nil, requestid=nil)
           @FrontSeqNo = frontseqno
           @ReservedMessage = reservedmessage
@@ -24930,7 +24930,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :TranNetMemberCode, :OrderNo, :SuspendAmt, :TranFee, :MrchCode, :Remark, :ReservedMsgOne, :ReservedMsgTwo, :ReservedMsgThree, :Profile
-        
+
         def initialize(trannetmembercode=nil, orderno=nil, suspendamt=nil, tranfee=nil, mrchcode=nil, remark=nil, reservedmsgone=nil, reservedmsgtwo=nil, reservedmsgthree=nil, profile=nil)
           @TranNetMemberCode = trannetmembercode
           @OrderNo = orderno
@@ -24977,7 +24977,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :FrontSeqNo, :CnsmrSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, frontseqno=nil, cnsmrseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -25019,7 +25019,7 @@ module TencentCloud
         # @type OrganizationType: String
 
         attr_accessor :LegalPersonIdCode, :LegalPersonIdType, :LegalPersonName, :OrganizationCode, :OrganizationName, :OrganizationType
-        
+
         def initialize(legalpersonidcode=nil, legalpersonidtype=nil, legalpersonname=nil, organizationcode=nil, organizationname=nil, organizationtype=nil)
           @LegalPersonIdCode = legalpersonidcode
           @LegalPersonIdType = legalpersonidtype
@@ -25070,7 +25070,7 @@ module TencentCloud
         # @type NotifyUrl: String
 
         attr_accessor :ExternalReturnCode, :ExternalReturnMessage, :ExternalReturnData, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelAppId, :ChannelSubAppId, :ChannelName, :ReturnContractInfo, :NotifyUrl
-        
+
         def initialize(externalreturncode=nil, externalreturnmessage=nil, externalreturndata=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelappid=nil, channelsubappid=nil, channelname=nil, returncontractinfo=nil, notifyurl=nil)
           @ExternalReturnCode = externalreturncode
           @ExternalReturnMessage = externalreturnmessage
@@ -25114,7 +25114,7 @@ module TencentCloud
         # @type ExternalReturnData: String
 
         attr_accessor :ExternalReturnCode, :ExternalReturnMessage, :ExternalReturnData
-        
+
         def initialize(externalreturncode=nil, externalreturnmessage=nil, externalreturndata=nil)
           @ExternalReturnCode = externalreturncode
           @ExternalReturnMessage = externalreturnmessage
@@ -25138,7 +25138,7 @@ module TencentCloud
         # @type ExternalReturnContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ExternalReturnContractInfo`
 
         attr_accessor :ContractInfo, :ChannelReturnContractInfo, :ExternalReturnContractInfo
-        
+
         def initialize(contractinfo=nil, channelreturncontractinfo=nil, externalreturncontractinfo=nil)
           @ContractInfo = contractinfo
           @ChannelReturnContractInfo = channelreturncontractinfo
@@ -25185,7 +25185,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :TranNetMemberCode, :OldOrderNo, :CancelAmt, :TranFee, :Remark, :ReservedMsgOne, :ReservedMsgTwo, :ReservedMsgThree, :Profile
-        
+
         def initialize(mrchcode=nil, trannetmembercode=nil, oldorderno=nil, cancelamt=nil, tranfee=nil, remark=nil, reservedmsgone=nil, reservedmsgtwo=nil, reservedmsgthree=nil, profile=nil)
           @MrchCode = mrchcode
           @TranNetMemberCode = trannetmembercode
@@ -25231,7 +25231,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -25265,7 +25265,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :SubAcctNo, :MemberProperty, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, subacctno=nil, memberproperty=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @SubAcctNo = subacctno
@@ -25298,7 +25298,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -25344,7 +25344,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OldFillFrontSeqNo, :OldFillPayChannelType, :OldPayChannelTranSeqNo, :OldFillEjzbOrderNo, :ApplyCancelMemberAmt, :ApplyCancelCommission, :MrchCode, :Remark, :ReservedMsgOne, :ReservedMsgTwo, :ReservedMsgThree, :Profile
-        
+
         def initialize(oldfillfrontseqno=nil, oldfillpaychanneltype=nil, oldpaychanneltranseqno=nil, oldfillejzborderno=nil, applycancelmemberamt=nil, applycancelcommission=nil, mrchcode=nil, remark=nil, reservedmsgone=nil, reservedmsgtwo=nil, reservedmsgthree=nil, profile=nil)
           @OldFillFrontSeqNo = oldfillfrontseqno
           @OldFillPayChannelType = oldfillpaychanneltype
@@ -25397,7 +25397,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :ReservedMsgOne, :ReservedMsgTwo, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, reservedmsgone=nil, reservedmsgtwo=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -25465,7 +25465,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :RequestType, :MerchantCode, :PayChannel, :PayChannelSubId, :OrderId, :BankAccountNumber, :PlatformShortNumber, :MidasSecretId, :MidasAppId, :MidasSignature, :TransSequenceNumber, :TransFee, :ThirdPayChannel, :ThirdPayChannelOrderId, :OldFrontSequenceNumber, :CurrencyAmount, :CurrencyUnit, :CurrencyType, :MidasEnvironment, :ReservedMessage, :Remark
-        
+
         def initialize(requesttype=nil, merchantcode=nil, paychannel=nil, paychannelsubid=nil, orderid=nil, bankaccountnumber=nil, platformshortnumber=nil, midassecretid=nil, midasappid=nil, midassignature=nil, transsequencenumber=nil, transfee=nil, thirdpaychannel=nil, thirdpaychannelorderid=nil, oldfrontsequencenumber=nil, currencyamount=nil, currencyunit=nil, currencytype=nil, midasenvironment=nil, reservedmessage=nil, remark=nil)
           @RequestType = requesttype
           @MerchantCode = merchantcode
@@ -25528,7 +25528,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestType, :ReservedMessage, :FrontSequenceNumber, :RequestId
-        
+
         def initialize(requesttype=nil, reservedmessage=nil, frontsequencenumber=nil, requestid=nil)
           @RequestType = requesttype
           @ReservedMessage = reservedmessage
@@ -25557,7 +25557,7 @@ module TencentCloud
         # @type UserClientIp: String
 
         attr_accessor :LocaleCode, :RegionCode, :UserClientIp
-        
+
         def initialize(localecode=nil, regioncode=nil, userclientip=nil)
           @LocaleCode = localecode
           @RegionCode = regioncode
@@ -25577,7 +25577,7 @@ module TencentCloud
         # @type Balance: String
 
         attr_accessor :Balance
-        
+
         def initialize(balance=nil)
           @Balance = balance
         end
@@ -25618,7 +25618,7 @@ module TencentCloud
         # @type SettlePeriod: String
 
         attr_accessor :SettleAccountType, :SettleAccountNumber, :SettleAccountName, :BankBranchId, :BankBranchName, :SettleMode, :SettlePeriod
-        
+
         def initialize(settleaccounttype=nil, settleaccountnumber=nil, settleaccountname=nil, bankbranchid=nil, bankbranchname=nil, settlemode=nil, settleperiod=nil)
           @SettleAccountType = settleaccounttype
           @SettleAccountNumber = settleaccountnumber
@@ -25682,7 +25682,7 @@ module TencentCloud
         # @type OperationType: String
 
         attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :OperationType
-        
+
         def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, operationtype=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
@@ -25728,7 +25728,7 @@ module TencentCloud
         # @type Count: Integer
 
         attr_accessor :List, :Count
-        
+
         def initialize(list=nil, count=nil)
           @List = list
           @Count = count
@@ -25770,7 +25770,7 @@ module TencentCloud
         # @type CardType: String
 
         attr_accessor :BankCode, :BankName, :MaintainStatus, :BankNotice, :BankId, :CardType
-        
+
         def initialize(bankcode=nil, bankname=nil, maintainstatus=nil, banknotice=nil, bankid=nil, cardtype=nil)
           @BankCode = bankcode
           @BankName = bankname
@@ -25829,7 +25829,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :UserId, :Channel, :OutContractCode, :ContractStatus, :ContractSyncInfo, :MidasSignature, :MidasSecretId, :SubAppId, :UserType, :SceneInfo, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, userid=nil, channel=nil, outcontractcode=nil, contractstatus=nil, contractsyncinfo=nil, midassignature=nil, midassecretid=nil, subappid=nil, usertype=nil, sceneinfo=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -25875,7 +25875,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Msg, :RequestId
-        
+
         def initialize(msg=nil, requestid=nil)
           @Msg = msg
           @RequestId = requestid
@@ -25932,7 +25932,7 @@ module TencentCloud
         # @type MigrateMode: String
 
         attr_accessor :MidasAppId, :UserId, :Channel, :TerminateMode, :MidasSecretId, :MidasSignature, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :TerminationReason, :MidasEnvironment, :UserType, :ContractMethod, :MigrateMode
-        
+
         def initialize(midasappid=nil, userid=nil, channel=nil, terminatemode=nil, midassecretid=nil, midassignature=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, terminationreason=nil, midasenvironment=nil, usertype=nil, contractmethod=nil, migratemode=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -25983,7 +25983,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ContractTerminateData, :Msg, :RequestId
-        
+
         def initialize(contractterminatedata=nil, msg=nil, requestid=nil)
           @ContractTerminateData = contractterminatedata
           @Msg = msg
@@ -26040,7 +26040,7 @@ module TencentCloud
         # @type Mobile: String
 
         attr_accessor :FundSummaryAcctNo, :SubAcctNo, :TranNetMemberCode, :MemberName, :MemberGlobalType, :MemberGlobalId, :MemberAcctNo, :BankType, :AcctOpenBranchName, :CnapsBranchId, :EiconBankBranchId, :Mobile
-        
+
         def initialize(fundsummaryacctno=nil, subacctno=nil, trannetmembercode=nil, membername=nil, memberglobaltype=nil, memberglobalid=nil, memberacctno=nil, banktype=nil, acctopenbranchname=nil, cnapsbranchid=nil, eiconbankbranchid=nil, mobile=nil)
           @FundSummaryAcctNo = fundsummaryacctno
           @SubAcctNo = subacctno
@@ -26106,7 +26106,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :BookingFlag, :TranStatus, :TranAmt, :TranDate, :TranTime, :FrontSeqNo, :BookingType, :InSubAcctNo, :OutSubAcctNo, :Remark
-        
+
         def initialize(bookingflag=nil, transtatus=nil, tranamt=nil, trandate=nil, trantime=nil, frontseqno=nil, bookingtype=nil, insubacctno=nil, outsubacctno=nil, remark=nil)
           @BookingFlag = bookingflag
           @TranStatus = transtatus
@@ -26157,7 +26157,7 @@ module TencentCloud
         # @type UserName: String
 
         attr_accessor :MerchantDetailNo, :TransferAmount, :TransferRemark, :OpenId, :UserName
-        
+
         def initialize(merchantdetailno=nil, transferamount=nil, transferremark=nil, openid=nil, username=nil)
           @MerchantDetailNo = merchantdetailno
           @TransferAmount = transferamount
@@ -26193,7 +26193,7 @@ module TencentCloud
         # @type DetailStatus: String
 
         attr_accessor :MerchantDetailNo, :DetailId, :DetailStatus
-        
+
         def initialize(merchantdetailno=nil, detailid=nil, detailstatus=nil)
           @MerchantDetailNo = merchantdetailno
           @DetailId = detailid
@@ -26244,7 +26244,7 @@ module TencentCloud
         # @type FrontSeqNo: String
 
         attr_accessor :InAcctType, :TranNetMemberCode, :SubAcctNo, :TranAmt, :InAcctNo, :InAcctName, :Ccy, :AccountingDate, :BankName, :Remark, :FrontSeqNo
-        
+
         def initialize(inaccttype=nil, trannetmembercode=nil, subacctno=nil, tranamt=nil, inacctno=nil, inacctname=nil, ccy=nil, accountingdate=nil, bankname=nil, remark=nil, frontseqno=nil)
           @InAcctType = inaccttype
           @TranNetMemberCode = trannetmembercode
@@ -26280,7 +26280,7 @@ module TencentCloud
         # @type TradeSerialNo: String
 
         attr_accessor :TradeSerialNo
-        
+
         def initialize(tradeserialno=nil)
           @TradeSerialNo = tradeserialno
         end
@@ -26327,7 +26327,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MerchantId, :MerchantAppId, :TransferType, :OrderId, :TransferAmount, :PayeeId, :PayeeName, :PayeeExtends, :ReqReserved, :Remark, :NotifyUrl, :Profile
-        
+
         def initialize(merchantid=nil, merchantappid=nil, transfertype=nil, orderid=nil, transferamount=nil, payeeid=nil, payeename=nil, payeeextends=nil, reqreserved=nil, remark=nil, notifyurl=nil, profile=nil)
           @MerchantId = merchantid
           @MerchantAppId = merchantappid
@@ -26372,7 +26372,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -26417,7 +26417,7 @@ module TencentCloud
         # @type MidasEnvironment: String
 
         attr_accessor :MidasAppId, :SubAppId, :SettleAcctNo, :MidasSecretId, :MidasSignature, :EncryptType, :MidasEnvironment
-        
+
         def initialize(midasappid=nil, subappid=nil, settleacctno=nil, midassecretid=nil, midassignature=nil, encrypttype=nil, midasenvironment=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
@@ -26445,7 +26445,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -26483,7 +26483,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :BindSerialNo, :OutApplyId, :NotifyUrl, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, bindserialno=nil, outapplyid=nil, notifyurl=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -26522,7 +26522,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -26556,7 +26556,7 @@ module TencentCloud
         # @type UnbindMessage: String
 
         attr_accessor :ChannelApplyId, :UnbindStatus, :UnbindMessage
-        
+
         def initialize(channelapplyid=nil, unbindstatus=nil, unbindmessage=nil)
           @ChannelApplyId = channelapplyid
           @UnbindStatus = unbindstatus
@@ -26586,7 +26586,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :FunctionFlag, :TranNetMemberCode, :MemberAcctNo, :ReservedMsg, :Profile
-        
+
         def initialize(mrchcode=nil, functionflag=nil, trannetmembercode=nil, memberacctno=nil, reservedmsg=nil, profile=nil)
           @MrchCode = mrchcode
           @FunctionFlag = functionflag
@@ -26624,7 +26624,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -26793,7 +26793,7 @@ module TencentCloud
         # @type ExternalAttachmentDataList: Array
 
         attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode, :ExternalUserInfoList, :ExternalAttachmentDataList
-        
+
         def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil, externaluserinfolist=nil, externalattachmentdatalist=nil)
           @MidasAppId = midasappid
           @UserId = userid
@@ -26951,7 +26951,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TransactionId, :OutTradeNo, :PayInfo, :TotalAmt, :ChannelInfo, :RequestId
-        
+
         def initialize(transactionid=nil, outtradeno=nil, payinfo=nil, totalamt=nil, channelinfo=nil, requestid=nil)
           @TransactionId = transactionid
           @OutTradeNo = outtradeno
@@ -26993,7 +26993,7 @@ module TencentCloud
         # @type OriginalAmt: Integer
 
         attr_accessor :SubMchIncome, :PlatformIncome, :ProductDetail, :ProductName, :SubAppId, :SubOutTradeNo, :Amt, :Metadata, :OriginalAmt
-        
+
         def initialize(submchincome=nil, platformincome=nil, productdetail=nil, productname=nil, subappid=nil, subouttradeno=nil, amt=nil, metadata=nil, originalamt=nil)
           @SubMchIncome = submchincome
           @PlatformIncome = platformincome
@@ -27081,7 +27081,7 @@ module TencentCloud
         # @type PaymentNotifyUrl: String
 
         attr_accessor :CurrencyType, :MidasAppId, :OutTradeNo, :ProductDetail, :ProductId, :ProductName, :TotalAmt, :UserId, :RealChannel, :OriginalAmt, :MidasSecretId, :MidasSignature, :CallbackUrl, :Channel, :Metadata, :Quantity, :SubAppId, :SubOrderList, :TotalMchIncome, :TotalPlatformIncome, :WxOpenId, :WxSubOpenId, :MidasEnvironment, :WxAppId, :WxSubAppId, :PaymentNotifyUrl
-        
+
         def initialize(currencytype=nil, midasappid=nil, outtradeno=nil, productdetail=nil, productid=nil, productname=nil, totalamt=nil, userid=nil, realchannel=nil, originalamt=nil, midassecretid=nil, midassignature=nil, callbackurl=nil, channel=nil, metadata=nil, quantity=nil, subappid=nil, suborderlist=nil, totalmchincome=nil, totalplatformincome=nil, wxopenid=nil, wxsubopenid=nil, midasenvironment=nil, wxappid=nil, wxsubappid=nil, paymentnotifyurl=nil)
           @CurrencyType = currencytype
           @MidasAppId = midasappid
@@ -27162,7 +27162,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalAmt, :OutTradeNo, :PayInfo, :TransactionId, :RequestId
-        
+
         def initialize(totalamt=nil, outtradeno=nil, payinfo=nil, transactionid=nil, requestid=nil)
           @TotalAmt = totalamt
           @OutTradeNo = outtradeno
@@ -27232,7 +27232,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :DeveloperNo, :PayTag, :TradeAmount, :NotifyUrl, :PayName, :JumpUrl, :OrderName, :OriginalAmount, :IgnoreAmount, :DiscountAmount, :TradeAccount, :TradeNo, :AuthCode, :Tag, :Remark, :TradeResult, :Royalty, :Jsapi, :SubAppId, :SubOpenId, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, developerno=nil, paytag=nil, tradeamount=nil, notifyurl=nil, payname=nil, jumpurl=nil, ordername=nil, originalamount=nil, ignoreamount=nil, discountamount=nil, tradeaccount=nil, tradeno=nil, authcode=nil, tag=nil, remark=nil, traderesult=nil, royalty=nil, jsapi=nil, subappid=nil, subopenid=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -27300,7 +27300,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -27329,7 +27329,7 @@ module TencentCloud
         # @type IdCardReverse: String
 
         attr_accessor :AnchorId, :IdCardFront, :IdCardReverse
-        
+
         def initialize(anchorid=nil, idcardfront=nil, idcardreverse=nil)
           @AnchorId = anchorid
           @IdCardFront = idcardfront
@@ -27356,7 +27356,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -27390,7 +27390,7 @@ module TencentCloud
         # @type FileExtendInfo: Array
 
         attr_accessor :FileName, :FileType, :FileUrl, :FileContent, :FileExtendInfo
-        
+
         def initialize(filename=nil, filetype=nil, fileurl=nil, filecontent=nil, fileextendinfo=nil)
           @FileName = filename
           @FileType = filetype
@@ -27423,7 +27423,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileId, :RequestId
-        
+
         def initialize(fileid=nil, requestid=nil)
           @FileId = fileid
           @RequestId = requestid
@@ -27445,7 +27445,7 @@ module TencentCloud
         # @type FilePath: String
 
         attr_accessor :Storage, :FilePath
-        
+
         def initialize(storage=nil, filepath=nil)
           @Storage = storage
           @FilePath = filepath
@@ -27488,7 +27488,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :OutApplyId, :CredentialType, :FileType, :PaymentMethod, :CredentialContent, :CredentialUrl, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, outapplyid=nil, credentialtype=nil, filetype=nil, paymentmethod=nil, credentialcontent=nil, credentialurl=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
@@ -27529,7 +27529,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -27562,7 +27562,7 @@ module TencentCloud
         # @type ChannelApplyId: String
 
         attr_accessor :UploadStatus, :UploadMessage, :ChannelApplyId
-        
+
         def initialize(uploadstatus=nil, uploadmessage=nil, channelapplyid=nil)
           @UploadStatus = uploadstatus
           @UploadMessage = uploadmessage
@@ -27594,7 +27594,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :Storage, :FileMd5, :FileContent, :FileExtension, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, storage=nil, filemd5=nil, filecontent=nil, fileextension=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -27630,7 +27630,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -27661,7 +27661,7 @@ module TencentCloud
         # @type FileUrl: String
 
         attr_accessor :Channel, :BeginMonth, :EndMonth, :FileUrl
-        
+
         def initialize(channel=nil, beginmonth=nil, endmonth=nil, fileurl=nil)
           @Channel = channel
           @BeginMonth = beginmonth
@@ -27685,7 +27685,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaxId, :RequestId
-        
+
         def initialize(taxid=nil, requestid=nil)
           @TaxId = taxid
           @RequestId = requestid
@@ -27707,7 +27707,7 @@ module TencentCloud
         # @type FileUrl: String
 
         attr_accessor :Channel, :TaxId, :FileUrl
-        
+
         def initialize(channel=nil, taxid=nil, fileurl=nil)
           @Channel = channel
           @TaxId = taxid
@@ -27727,7 +27727,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -27755,7 +27755,7 @@ module TencentCloud
         # @type Environment: String
 
         attr_accessor :ChannelMerchantId, :ChannelName, :PayeeInfo, :NotifyUrl, :Environment
-        
+
         def initialize(channelmerchantid=nil, channelname=nil, payeeinfo=nil, notifyurl=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
@@ -27790,7 +27790,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
-        
+
         def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
           @ErrCode = errcode
           @ErrMessage = errmessage
@@ -27822,7 +27822,7 @@ module TencentCloud
         # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRedirectInfo`
 
         attr_accessor :VerifyState, :RedirectInfo
-        
+
         def initialize(verifystate=nil, redirectinfo=nil)
           @VerifyState = verifystate
           @RedirectInfo = redirectinfo
@@ -27851,7 +27851,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutContractId, :ContractId, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outcontractid=nil, contractid=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -27883,7 +27883,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -28080,7 +28080,7 @@ module TencentCloud
         # @type ContractId: String
 
         attr_accessor :PaymentTag, :City, :AgentNo, :ContractOptionFour, :ContractOptionTwo, :Status, :PaymentId, :Fee, :PaymentOptionFive, :OutContractId, :ChannelExtJson, :ContractOptionFive, :Province, :StartDate, :Address, :EndDate, :ContractOptionSix, :PaymentOptionSeven, :PictureTwo, :MerchantNo, :AgentName, :ContractOptionOther, :ContractOptionThree, :Country, :ShopCount, :PaymentOptionThree, :PaymentClassificationName, :ContractOptionSeven, :PaymentOptionFour, :PaymentClassificationLimit, :Remark, :PaymentOptionSix, :MerchantName, :ContractOptionOne, :PaymentOptionOther, :PaymentOptionTwo, :PaymentOptionOne, :UpdateTime, :ContactTelephone, :Contact, :SignDate, :PaymentOptionNine, :PaymentName, :PaymentInternalName, :ContractOptionTen, :Code, :PictureOne, :SignMan, :ChannelNo, :AddTime, :AutoSign, :ContractOptionNine, :CityId, :PaymentType, :PaymentClassificationId, :BrandName, :PaymentOptionTen, :ContractId
-        
+
         def initialize(paymenttag=nil, city=nil, agentno=nil, contractoptionfour=nil, contractoptiontwo=nil, status=nil, paymentid=nil, fee=nil, paymentoptionfive=nil, outcontractid=nil, channelextjson=nil, contractoptionfive=nil, province=nil, startdate=nil, address=nil, enddate=nil, contractoptionsix=nil, paymentoptionseven=nil, picturetwo=nil, merchantno=nil, agentname=nil, contractoptionother=nil, contractoptionthree=nil, country=nil, shopcount=nil, paymentoptionthree=nil, paymentclassificationname=nil, contractoptionseven=nil, paymentoptionfour=nil, paymentclassificationlimit=nil, remark=nil, paymentoptionsix=nil, merchantname=nil, contractoptionone=nil, paymentoptionother=nil, paymentoptiontwo=nil, paymentoptionone=nil, updatetime=nil, contacttelephone=nil, contact=nil, signdate=nil, paymentoptionnine=nil, paymentname=nil, paymentinternalname=nil, contractoptionten=nil, code=nil, pictureone=nil, signman=nil, channelno=nil, addtime=nil, autosign=nil, contractoptionnine=nil, cityid=nil, paymenttype=nil, paymentclassificationid=nil, brandname=nil, paymentoptionten=nil, contractid=nil)
           @PaymentTag = paymenttag
           @City = city
@@ -28218,7 +28218,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutMerchantId, :MerchantNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outmerchantid=nil, merchantno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -28250,7 +28250,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -28483,7 +28483,7 @@ module TencentCloud
         # @type TaxCollectionNo: String
 
         attr_accessor :City, :TaxCollectionPicture, :BossIdNo, :AccountIdNo, :OtherPictureThree, :AccountIdType, :Status, :BusinessLicensePicture, :BrandName, :BossPositive, :AppCount, :BossBack, :OrganizationCodePicture, :BusinessLicenseEndDate, :OrganizationCodeNo, :AgentNo, :Province, :BossStartDate, :UpdateTime, :BankNo, :TaxCollectionStartDate, :BusinessLicenseStartDate, :AccountManagerId, :ClassificationIds, :BusinessLicenseType, :BossEndDate, :BusinessLicenseNo, :AgentName, :Intro, :BossIdType, :AddTime, :ShopCount, :AccountBoss, :ClassificationNames, :BossTelephone, :AccountManagerName, :TerminalCount, :Remark, :FinancialContact, :MerchantName, :BossSex, :MerchantNo, :BossAddress, :Country, :Address, :BossJob, :LicencePicture, :OrganizationCodeEndDate, :OpenHours, :OtherPictureTwo, :OtherPictureOne, :AccountName, :ContractCount, :LicencePictureTwo, :AccountNo, :BossEmail, :AccountType, :TaxCollectionEndDate, :BankName, :Telephone, :OutMerchantId, :CityId, :BossIdCount, :Tag, :FinancialTelephone, :BossName, :OrganizationCodeStartDate, :Logo, :OtherPictureFour, :TaxCollectionNo
-        
+
         def initialize(city=nil, taxcollectionpicture=nil, bossidno=nil, accountidno=nil, otherpicturethree=nil, accountidtype=nil, status=nil, businesslicensepicture=nil, brandname=nil, bosspositive=nil, appcount=nil, bossback=nil, organizationcodepicture=nil, businesslicenseenddate=nil, organizationcodeno=nil, agentno=nil, province=nil, bossstartdate=nil, updatetime=nil, bankno=nil, taxcollectionstartdate=nil, businesslicensestartdate=nil, accountmanagerid=nil, classificationids=nil, businesslicensetype=nil, bossenddate=nil, businesslicenseno=nil, agentname=nil, intro=nil, bossidtype=nil, addtime=nil, shopcount=nil, accountboss=nil, classificationnames=nil, bosstelephone=nil, accountmanagername=nil, terminalcount=nil, remark=nil, financialcontact=nil, merchantname=nil, bosssex=nil, merchantno=nil, bossaddress=nil, country=nil, address=nil, bossjob=nil, licencepicture=nil, organizationcodeenddate=nil, openhours=nil, otherpicturetwo=nil, otherpictureone=nil, accountname=nil, contractcount=nil, licencepicturetwo=nil, accountno=nil, bossemail=nil, accounttype=nil, taxcollectionenddate=nil, bankname=nil, telephone=nil, outmerchantid=nil, cityid=nil, bossidcount=nil, tag=nil, financialtelephone=nil, bossname=nil, organizationcodestartdate=nil, logo=nil, otherpicturefour=nil, taxcollectionno=nil)
           @City = city
           @TaxCollectionPicture = taxcollectionpicture
@@ -28645,7 +28645,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :OpenId, :OpenKey, :OutShopId, :ShopNo, :Profile
-        
+
         def initialize(openid=nil, openkey=nil, outshopid=nil, shopno=nil, profile=nil)
           @OpenId = openid
           @OpenKey = openkey
@@ -28677,7 +28677,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
-        
+
         def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
           @ErrCode = errcode
@@ -28793,7 +28793,7 @@ module TencentCloud
         # @type CityId: String
 
         attr_accessor :City, :ShopName, :Latitude, :BrandName, :AppCount, :ContactTelephone, :MerchantName, :Province, :County, :UpdateTime, :TerminalCount, :PictureTwo, :LatitudeTwo, :AgentName, :PictureFour, :LongitudeTwo, :Status, :Remark, :AgentNo, :MerchantNo, :AddTime, :Address, :Longitude, :ShopNo, :ShopFullName, :Contact, :PictureThree, :PictureOne, :Telephone, :OutShopId, :CityId
-        
+
         def initialize(city=nil, shopname=nil, latitude=nil, brandname=nil, appcount=nil, contacttelephone=nil, merchantname=nil, province=nil, county=nil, updatetime=nil, terminalcount=nil, picturetwo=nil, latitudetwo=nil, agentname=nil, picturefour=nil, longitudetwo=nil, status=nil, remark=nil, agentno=nil, merchantno=nil, addtime=nil, address=nil, longitude=nil, shopno=nil, shopfullname=nil, contact=nil, picturethree=nil, pictureone=nil, telephone=nil, outshopid=nil, cityid=nil)
           @City = city
           @ShopName = shopname
@@ -28879,7 +28879,7 @@ module TencentCloud
         # @type Expire: Integer
 
         attr_accessor :AuthNo, :OpenId, :MchId, :SubMchId, :Token, :Expire
-        
+
         def initialize(authno=nil, openid=nil, mchid=nil, submchid=nil, token=nil, expire=nil)
           @AuthNo = authno
           @OpenId = openid
@@ -28919,7 +28919,7 @@ module TencentCloud
         # @type ExtendFieldData: String
 
         attr_accessor :WithdrawOrderId, :Date, :PayAmt, :InSubAppId, :OutSubAppId, :CurrencyType, :MetaData, :ExtendFieldData
-        
+
         def initialize(withdraworderid=nil, date=nil, payamt=nil, insubappid=nil, outsubappid=nil, currencytype=nil, metadata=nil, extendfielddata=nil)
           @WithdrawOrderId = withdraworderid
           @Date = date
@@ -28975,7 +28975,7 @@ module TencentCloud
         # @type Profile: String
 
         attr_accessor :MrchCode, :TranWebName, :MemberGlobalType, :MemberGlobalId, :TranNetMemberCode, :MemberName, :TakeCashAcctNo, :OutAmtAcctName, :Ccy, :CashAmt, :Remark, :ReservedMsg, :WebSign, :Profile
-        
+
         def initialize(mrchcode=nil, tranwebname=nil, memberglobaltype=nil, memberglobalid=nil, trannetmembercode=nil, membername=nil, takecashacctno=nil, outamtacctname=nil, ccy=nil, cashamt=nil, remark=nil, reservedmsg=nil, websign=nil, profile=nil)
           @MrchCode = mrchcode
           @TranWebName = tranwebname
@@ -29032,7 +29032,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TxnReturnCode, :TxnReturnMsg, :CnsmrSeqNo, :FrontSeqNo, :TransferFee, :ReservedMsg, :RequestId
-        
+
         def initialize(txnreturncode=nil, txnreturnmsg=nil, cnsmrseqno=nil, frontseqno=nil, transferfee=nil, reservedmsg=nil, requestid=nil)
           @TxnReturnCode = txnreturncode
           @TxnReturnMsg = txnreturnmsg
@@ -29094,7 +29094,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :BookingFlag, :TranStatus, :BookingMsg, :TranNetMemberCode, :SubAcctNo, :SubAcctName, :TranAmt, :Commission, :TranDate, :TranTime, :FrontSeqNo, :Remark
-        
+
         def initialize(bookingflag=nil, transtatus=nil, bookingmsg=nil, trannetmembercode=nil, subacctno=nil, subacctname=nil, tranamt=nil, commission=nil, trandate=nil, trantime=nil, frontseqno=nil, remark=nil)
           @BookingFlag = bookingflag
           @TranStatus = transtatus

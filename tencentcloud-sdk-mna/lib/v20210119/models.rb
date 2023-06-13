@@ -29,7 +29,7 @@ module TencentCloud
         # @type Encrypted: Boolean
 
         attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted
-        
+
         def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil)
           @DeviceName = devicename
           @Remark = remark
@@ -58,7 +58,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataKey, :DeviceId, :Signature, :RequestId
-        
+
         def initialize(datakey=nil, deviceid=nil, signature=nil, requestid=nil)
           @DataKey = datakey
           @DeviceId = deviceid
@@ -82,7 +82,7 @@ module TencentCloud
         # @type Province: String
 
         attr_accessor :CTCCToken, :Province
-        
+
         def initialize(ctcctoken=nil, province=nil)
           @CTCCToken = ctcctoken
           @Province = province
@@ -104,7 +104,7 @@ module TencentCloud
         # @type ExpectedHighThreshold: :class:`Tencentcloud::Mna.v20210119.models.ExpectedThreshold`
 
         attr_accessor :NetworkData, :ExpectedLowThreshold, :ExpectedHighThreshold
-        
+
         def initialize(networkdata=nil, expectedlowthreshold=nil, expectedhighthreshold=nil)
           @NetworkData = networkdata
           @ExpectedLowThreshold = expectedlowthreshold
@@ -130,7 +130,7 @@ module TencentCloud
       # CreateEncryptedKey请求参数结构体
       class CreateEncryptedKeyRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -146,7 +146,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EncryptedKey, :RequestId
-        
+
         def initialize(encryptedkey=nil, requestid=nil)
           @EncryptedKey = encryptedkey
           @RequestId = requestid
@@ -194,7 +194,7 @@ module TencentCloud
         # @type Extern: String
 
         attr_accessor :SrcAddressInfo, :DestAddressInfo, :QosMenu, :DeviceInfo, :Duration, :Capacity, :TemplateId, :Protocol, :Context, :Extern
-        
+
         def initialize(srcaddressinfo=nil, destaddressinfo=nil, qosmenu=nil, deviceinfo=nil, duration=nil, capacity=nil, templateid=nil, protocol=nil, context=nil, extern=nil)
           @SrcAddressInfo = srcaddressinfo
           @DestAddressInfo = destaddressinfo
@@ -247,7 +247,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :Duration, :RequestId
-        
+
         def initialize(sessionid=nil, duration=nil, requestid=nil)
           @SessionId = sessionid
           @Duration = duration
@@ -267,7 +267,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :DeviceId
-        
+
         def initialize(deviceid=nil)
           @DeviceId = deviceid
         end
@@ -283,7 +283,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -299,7 +299,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :SessionId
-        
+
         def initialize(sessionid=nil)
           @SessionId = sessionid
         end
@@ -319,7 +319,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :Duration, :RequestId
-        
+
         def initialize(sessionid=nil, duration=nil, requestid=nil)
           @SessionId = sessionid
           @Duration = duration
@@ -339,7 +339,7 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :SessionId
-        
+
         def initialize(sessionid=nil)
           @SessionId = sessionid
         end
@@ -370,7 +370,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :SrcPublicIpv4, :DestIpv4, :Duration, :QosMenu, :RequestId
-        
+
         def initialize(status=nil, srcpublicipv4=nil, destipv4=nil, duration=nil, qosmenu=nil, requestid=nil)
           @Status = status
           @SrcPublicIpv4 = srcpublicipv4
@@ -396,7 +396,7 @@ module TencentCloud
         # @type DestIp: Array
 
         attr_accessor :DestIp
-        
+
         def initialize(destip=nil)
           @DestIp = destip
         end
@@ -420,7 +420,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark
-        
+
         def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
@@ -456,7 +456,7 @@ module TencentCloud
         # @type BusinessUpRate: Float
 
         attr_accessor :DeviceBaseInfo, :DeviceNetInfo, :GatewaySite, :BusinessDownRate, :BusinessUpRate
-        
+
         def initialize(devicebaseinfo=nil, devicenetinfo=nil, gatewaysite=nil, businessdownrate=nil, businessuprate=nil)
           @DeviceBaseInfo = devicebaseinfo
           @DeviceNetInfo = devicenetinfo
@@ -512,7 +512,7 @@ module TencentCloud
         # @type Wireless: Integer
 
         attr_accessor :Vendor, :OS, :DeviceId, :PhoneNum, :Wireless
-        
+
         def initialize(vendor=nil, os=nil, deviceid=nil, phonenum=nil, wireless=nil)
           @Vendor = vendor
           @OS = os
@@ -590,7 +590,7 @@ module TencentCloud
         # @type UpRate: Float
 
         attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :DataRx, :DataTx, :Vendor, :State, :PublicIp, :SignalStrength, :Rat, :NetInfoName, :DownRate, :UpRate
-        
+
         def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, datarx=nil, datatx=nil, vendor=nil, state=nil, publicip=nil, signalstrength=nil, rat=nil, netinfoname=nil, downrate=nil, uprate=nil)
           @Type = type
           @DataEnable = dataenable
@@ -636,7 +636,7 @@ module TencentCloud
         # @type Jitter: Float
 
         attr_accessor :RTT, :Loss, :Jitter
-        
+
         def initialize(rtt=nil, loss=nil, jitter=nil)
           @RTT = rtt
           @Loss = loss
@@ -669,7 +669,7 @@ module TencentCloud
         # @type TotalValue: Float
 
         attr_accessor :NetDetails, :DeviceId, :MaxValue, :AvgValue, :TotalValue
-        
+
         def initialize(netdetails=nil, deviceid=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil)
           @NetDetails = netdetails
           @DeviceId = deviceid
@@ -700,7 +700,7 @@ module TencentCloud
         # @type DeviceId: String
 
         attr_accessor :DeviceId
-        
+
         def initialize(deviceid=nil)
           @DeviceId = deviceid
         end
@@ -718,7 +718,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceDetails, :RequestId
-        
+
         def initialize(devicedetails=nil, requestid=nil)
           @DeviceDetails = devicedetails
           @RequestId = requestid
@@ -743,7 +743,7 @@ module TencentCloud
         # @type Keyword: String
 
         attr_accessor :PageSize, :PageNumber, :Keyword
-        
+
         def initialize(pagesize=nil, pagenumber=nil, keyword=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -769,7 +769,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceInfos, :Length, :TotalPage, :RequestId
-        
+
         def initialize(deviceinfos=nil, length=nil, totalpage=nil, requestid=nil)
           @DeviceInfos = deviceinfos
           @Length = length
@@ -806,7 +806,7 @@ module TencentCloud
         # @type TimeGranularity: Integer
 
         attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity
-        
+
         def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
@@ -838,7 +838,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NetDetails, :MaxValue, :AvgValue, :TotalValue, :RequestId
-        
+
         def initialize(netdetails=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil, requestid=nil)
           @NetDetails = netdetails
           @MaxValue = maxvalue
@@ -877,7 +877,7 @@ module TencentCloud
         # @type TimeGranularity: Integer
 
         attr_accessor :DeviceIds, :BeginTime, :EndTime, :Type, :TimeGranularity
-        
+
         def initialize(deviceids=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
           @DeviceIds = deviceids
           @BeginTime = begintime
@@ -903,7 +903,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowDetails, :RequestId
-        
+
         def initialize(flowdetails=nil, requestid=nil)
           @FlowDetails = flowdetails
           @RequestId = requestid
@@ -925,7 +925,7 @@ module TencentCloud
       # GetPublicKey请求参数结构体
       class GetPublicKeyRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -941,7 +941,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PublicKey, :RequestId
-        
+
         def initialize(publickey=nil, requestid=nil)
           @PublicKey = publickey
           @RequestId = requestid
@@ -967,7 +967,7 @@ module TencentCloud
         # @type TimeGranularity: Integer
 
         attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity
-        
+
         def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
@@ -991,7 +991,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FilePath, :RequestId
-        
+
         def initialize(filepath=nil, requestid=nil)
           @FilePath = filepath
           @RequestId = requestid
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @type Time: String
 
         attr_accessor :Current, :Time
-        
+
         def initialize(current=nil, time=nil)
           @Current = current
           @Time = time
@@ -1035,7 +1035,7 @@ module TencentCloud
         # @type Timestamp: Integer
 
         attr_accessor :RTT, :Loss, :Jitter, :Timestamp
-        
+
         def initialize(rtt=nil, loss=nil, jitter=nil, timestamp=nil)
           @RTT = rtt
           @Loss = loss
@@ -1061,7 +1061,7 @@ module TencentCloud
         # @type SrcIpv6: String
 
         attr_accessor :SrcIpv4, :SrcPublicIpv4, :SrcIpv6
-        
+
         def initialize(srcipv4=nil, srcpublicipv4=nil, srcipv6=nil)
           @SrcIpv4 = srcipv4
           @SrcPublicIpv4 = srcpublicipv4
@@ -1087,7 +1087,7 @@ module TencentCloud
         # @type UpdateNetInfo: Array
 
         attr_accessor :DeviceId, :DeviceName, :Remark, :UpdateNetInfo
-        
+
         def initialize(deviceid=nil, devicename=nil, remark=nil, updatenetinfo=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
@@ -1116,7 +1116,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1142,7 +1142,7 @@ module TencentCloud
         # @type NetInfoName: String
 
         attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :NetInfoName
-        
+
         def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, netinfoname=nil)
           @Type = type
           @DataEnable = dataenable

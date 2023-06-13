@@ -29,7 +29,7 @@ module TencentCloud
         # @type UploadFilename: String
 
         attr_accessor :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename
-        
+
         def initialize(baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil)
           @BaseImage = baseimage
           @EntryPoint = entrypoint
@@ -57,7 +57,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ClsRegion, :ClsLogsetId, :ClsTopicId, :CreateTime
-        
+
         def initialize(clsregion=nil, clslogsetid=nil, clstopicid=nil, createtime=nil)
           @ClsRegion = clsregion
           @ClsLogsetId = clslogsetid
@@ -99,7 +99,7 @@ module TencentCloud
         # @type EnvId: String
 
         attr_accessor :PackageType, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :ReqKey, :Source, :Channel, :EnvId
-        
+
         def initialize(packagetype=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, reqkey=nil, source=nil, channel=nil, envid=nil)
           @PackageType = packagetype
           @Alias = _alias
@@ -137,7 +137,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnvId, :TranId, :RequestId
-        
+
         def initialize(envid=nil, tranid=nil, requestid=nil)
           @EnvId = envid
           @TranId = tranid
@@ -163,7 +163,7 @@ module TencentCloud
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
 
         attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig
-        
+
         def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil)
           @EnvId = envid
           @ServerName = servername
@@ -193,7 +193,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -220,7 +220,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :InstanceId, :Status, :Region
-        
+
         def initialize(instanceid=nil, status=nil, region=nil)
           @InstanceId = instanceid
           @Status = status
@@ -254,7 +254,7 @@ module TencentCloud
         # @type ReleaseType: String
 
         attr_accessor :DeployType, :ImageUrl, :PackageName, :PackageVersion, :DeployRemark, :RepoInfo, :BuildPacks, :ReleaseType
-        
+
         def initialize(deploytype=nil, imageurl=nil, packagename=nil, packageversion=nil, deployremark=nil, repoinfo=nil, buildpacks=nil, releasetype=nil)
           @DeployType = deploytype
           @ImageUrl = imageurl
@@ -295,7 +295,7 @@ module TencentCloud
         # @type Channels: Array
 
         attr_accessor :EnvId, :IsVisible, :Channels
-        
+
         def initialize(envid=nil, isvisible=nil, channels=nil)
           @EnvId = envid
           @IsVisible = isvisible
@@ -317,7 +317,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnvList, :RequestId
-        
+
         def initialize(envlist=nil, requestid=nil)
           @EnvList = envlist
           @RequestId = requestid
@@ -344,7 +344,7 @@ module TencentCloud
         # @type ServerName: String
 
         attr_accessor :EnvId, :ServerName
-        
+
         def initialize(envid=nil, servername=nil)
           @EnvId = envid
           @ServerName = servername
@@ -371,7 +371,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BaseInfo, :ServerConfig, :OnlineVersionInfos, :RequestId
-        
+
         def initialize(baseinfo=nil, serverconfig=nil, onlineversioninfos=nil, requestid=nil)
           @BaseInfo = baseinfo
           @ServerConfig = serverconfig
@@ -412,7 +412,7 @@ module TencentCloud
         # @type PageNum: Integer
 
         attr_accessor :EnvId, :PageSize, :PageNum
-        
+
         def initialize(envid=nil, pagesize=nil, pagenum=nil)
           @EnvId = envid
           @PageSize = pagesize
@@ -436,7 +436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServerList, :Total, :RequestId
-        
+
         def initialize(serverlist=nil, total=nil, requestid=nil)
           @ServerList = serverlist
           @Total = total
@@ -463,7 +463,7 @@ module TencentCloud
         # @type EnvId: String
 
         attr_accessor :EnvId
-        
+
         def initialize(envid=nil)
           @EnvId = envid
         end
@@ -481,7 +481,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnvBaseInfo, :RequestId
-        
+
         def initialize(envbaseinfo=nil, requestid=nil)
           @EnvBaseInfo = envbaseinfo
           @RequestId = requestid
@@ -508,7 +508,7 @@ module TencentCloud
         # @type OperatorRemark: String
 
         attr_accessor :EnvId, :ServerName, :TaskId, :OperatorRemark
-        
+
         def initialize(envid=nil, servername=nil, taskid=nil, operatorremark=nil)
           @EnvId = envid
           @ServerName = servername
@@ -534,7 +534,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IsExist, :Task, :RequestId
-        
+
         def initialize(isexist=nil, task=nil, requestid=nil)
           @IsExist = isexist
           @Task = task
@@ -573,7 +573,7 @@ module TencentCloud
         # @type SubnetIds: String
 
         attr_accessor :EnvId, :PackageType, :VpcId, :CreateTime, :Alias, :Status, :Region, :EnvType, :SubnetIds
-        
+
         def initialize(envid=nil, packagetype=nil, vpcid=nil, createtime=nil, _alias=nil, status=nil, region=nil, envtype=nil, subnetids=nil)
           @EnvId = envid
           @PackageType = packagetype
@@ -663,7 +663,7 @@ module TencentCloud
         # @type PackageName: String
 
         attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :EnvType, :Databases, :Storages, :Functions, :LogServices, :StaticStorages, :Tags, :CustomLogServices, :PackageId, :PackageName
-        
+
         def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, envtype=nil, databases=nil, storages=nil, functions=nil, logservices=nil, staticstorages=nil, tags=nil, customlogservices=nil, packageid=nil, packagename=nil)
           @EnvId = envid
           @Source = source
@@ -771,7 +771,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Namespace, :Region
-        
+
         def initialize(namespace=nil, region=nil)
           @Namespace = namespace
           @Region = region
@@ -791,7 +791,7 @@ module TencentCloud
         # @type PolicyThreshold: Integer
 
         attr_accessor :PolicyType, :PolicyThreshold
-        
+
         def initialize(policytype=nil, policythreshold=nil)
           @PolicyType = policytype
           @PolicyThreshold = policythreshold
@@ -817,7 +817,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :LogsetName, :LogsetId, :TopicName, :TopicId, :Region
-        
+
         def initialize(logsetname=nil, logsetid=nil, topicname=nil, topicid=nil, region=nil)
           @LogsetName = logsetname
           @LogsetId = logsetid
@@ -843,7 +843,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -868,7 +868,7 @@ module TencentCloud
         # @type FlowRatio: String
 
         attr_accessor :VersionName, :ImageUrl, :FlowRatio
-        
+
         def initialize(versionname=nil, imageurl=nil, flowratio=nil)
           @VersionName = versionname
           @ImageUrl = imageurl
@@ -896,7 +896,7 @@ module TencentCloud
         # @type OperatorRemark: String
 
         attr_accessor :EnvId, :ServerName, :TaskId, :OperateType, :OperatorRemark
-        
+
         def initialize(envid=nil, servername=nil, taskid=nil, operatetype=nil, operatorremark=nil)
           @EnvId = envid
           @ServerName = servername
@@ -920,7 +920,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -948,7 +948,7 @@ module TencentCloud
         # @type GrayFlowRatio: Integer
 
         attr_accessor :EnvId, :ServerName, :GrayType, :TrafficType, :VersionFlowItems, :OperatorRemark, :GrayFlowRatio
-        
+
         def initialize(envid=nil, servername=nil, graytype=nil, traffictype=nil, versionflowitems=nil, operatorremark=nil, grayflowratio=nil)
           @EnvId = envid
           @ServerName = servername
@@ -983,7 +983,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1003,7 +1003,7 @@ module TencentCloud
         # @type Branch: String
 
         attr_accessor :Source, :Repo, :Branch
-        
+
         def initialize(source=nil, repo=nil, branch=nil)
           @Source = source
           @Repo = repo
@@ -1061,7 +1061,7 @@ module TencentCloud
         # @type LogParseType: String
 
         attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType
-        
+
         def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil)
           @EnvId = envid
           @ServerName = servername
@@ -1134,7 +1134,7 @@ module TencentCloud
         # @type CustomDomainNames: Array
 
         attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames
-        
+
         def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil)
           @ServerName = servername
           @DefaultDomainName = defaultdomainname
@@ -1192,7 +1192,7 @@ module TencentCloud
         # @type OperatorRemark: String
 
         attr_accessor :Id, :EnvId, :ServerName, :CreateTime, :ChangeType, :ReleaseType, :DeployType, :PreVersionName, :VersionName, :PipelineId, :PipelineTaskId, :ReleaseId, :Status, :Steps, :FailReason, :OperatorRemark
-        
+
         def initialize(id=nil, envid=nil, servername=nil, createtime=nil, changetype=nil, releasetype=nil, deploytype=nil, preversionname=nil, versionname=nil, pipelineid=nil, pipelinetaskid=nil, releaseid=nil, status=nil, steps=nil, failreason=nil, operatorremark=nil)
           @Id = id
           @EnvId = envid
@@ -1253,7 +1253,7 @@ module TencentCloud
         # @type Bucket: String
 
         attr_accessor :StaticDomain, :DefaultDirName, :Status, :Region, :Bucket
-        
+
         def initialize(staticdomain=nil, defaultdirname=nil, status=nil, region=nil, bucket=nil)
           @StaticDomain = staticdomain
           @DefaultDirName = defaultdirname
@@ -1284,7 +1284,7 @@ module TencentCloud
         # @type AppId: String
 
         attr_accessor :Region, :Bucket, :CdnDomain, :AppId
-        
+
         def initialize(region=nil, bucket=nil, cdndomain=nil, appid=nil)
           @Region = region
           @Bucket = bucket
@@ -1308,7 +1308,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -1339,7 +1339,7 @@ module TencentCloud
         # @type FailReason: String
 
         attr_accessor :Name, :Status, :StartTime, :EndTime, :CostTime, :FailReason
-        
+
         def initialize(name=nil, status=nil, starttime=nil, endtime=nil, costtime=nil, failreason=nil)
           @Name = name
           @Status = status
@@ -1371,7 +1371,7 @@ module TencentCloud
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
 
         attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig
-        
+
         def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil)
           @EnvId = envid
           @ServerName = servername
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EnvId, :TaskId, :RequestId
-        
+
         def initialize(envid=nil, taskid=nil, requestid=nil)
           @EnvId = envid
           @TaskId = taskid
@@ -1431,7 +1431,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :VersionName, :IsDefaultPriority, :FlowRatio, :UrlParam, :Priority
-        
+
         def initialize(versionname=nil, isdefaultpriority=nil, flowratio=nil, urlparam=nil, priority=nil)
           @VersionName = versionname
           @IsDefaultPriority = isdefaultpriority

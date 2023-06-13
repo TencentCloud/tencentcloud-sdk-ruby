@@ -31,7 +31,10 @@ module TencentCloud
         # @type ProxyOrganizationId: String
 
         attr_accessor :AppId, :ProxyOrganizationOpenId, :ProxyOperator, :ProxyAppId, :ProxyOrganizationId
-        
+        extend Gem::Deprecate
+        deprecate :ProxyOrganizationId, :none, 2023, 6
+        deprecate :ProxyOrganizationId=, :none, 2023, 6
+
         def initialize(appid=nil, proxyorganizationopenid=nil, proxyoperator=nil, proxyappid=nil, proxyorganizationid=nil)
           @AppId = appid
           @ProxyOrganizationOpenId = proxyorganizationopenid
@@ -58,7 +61,7 @@ module TencentCloud
         # @type HideOneKeySign: Boolean
 
         attr_accessor :HideOneKeySign
-        
+
         def initialize(hideonekeysign=nil)
           @HideOneKeySign = hideonekeysign
         end
@@ -80,7 +83,7 @@ module TencentCloud
         # @type IdCardNumber: String
 
         attr_accessor :Name, :Mobile, :IdCardType, :IdCardNumber
-        
+
         def initialize(name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil)
           @Name = name
           @Mobile = mobile
@@ -104,7 +107,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :ProxyOrganizationOpenId, :Message
-        
+
         def initialize(proxyorganizationopenid=nil, message=nil)
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @Message = message
@@ -122,7 +125,7 @@ module TencentCloud
         # @type OpenId: String
 
         attr_accessor :OpenId
-        
+
         def initialize(openid=nil)
           @OpenId = openid
         end
@@ -158,7 +161,7 @@ module TencentCloud
         # @type NeedCreateReview: Boolean
 
         attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview
-        
+
         def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil)
           @FlowName = flowname
           @FlowType = flowtype
@@ -217,7 +220,7 @@ module TencentCloud
         # @type CcPermission: Integer
 
         attr_accessor :Mobile, :Name, :CcType, :CcPermission
-        
+
         def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil)
           @Mobile = mobile
           @Name = name
@@ -251,7 +254,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :CancelMessage, :CancelMessageFormat, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, cancelmessage=nil, cancelmessageformat=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -283,7 +289,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailMessages, :RequestId
-        
+
         def initialize(failmessages=nil, requestid=nil)
           @FailMessages = failmessages
           @RequestId = requestid
@@ -313,7 +319,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :FlowId, :Agent, :CancelMessage, :CancelMessageFormat, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(flowid=nil, agent=nil, cancelmessage=nil, cancelmessageformat=nil, operator=nil)
           @FlowId = flowid
           @Agent = agent
@@ -343,7 +352,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -363,7 +372,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :QrCodeId, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, qrcodeid=nil, operator=nil)
           @Agent = agent
           @QrCodeId = qrcodeid
@@ -389,7 +401,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -409,7 +421,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -441,7 +456,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BatchCancelFlowUrl, :FailMessages, :UrlExpireOn, :RequestId
-        
+
         def initialize(batchcancelflowurl=nil, failmessages=nil, urlexpireon=nil, requestid=nil)
           @BatchCancelFlowUrl = batchcancelflowurl
           @FailMessages = failmessages
@@ -468,7 +483,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -494,7 +512,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -520,7 +538,12 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
         attr_accessor :Agent, :ResourceType, :ResourceName, :ResourceId, :Operator, :Organization
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+
         def initialize(agent=nil, resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, organization=nil)
           @Agent = agent
           @ResourceType = resourcetype
@@ -557,7 +580,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -583,7 +606,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :EmbedType, :BusinessId, :HiddenComponents, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, embedtype=nil, businessid=nil, hiddencomponents=nil, operator=nil)
           @Agent = agent
           @EmbedType = embedtype
@@ -615,7 +641,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :WebUrl, :RequestId
-        
+
         def initialize(weburl=nil, requestid=nil)
           @WebUrl = weburl
           @RequestId = requestid
@@ -672,7 +698,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil)
           @Agent = agent
           @FlowName = flowname
@@ -754,7 +783,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
-        
+
         def initialize(flowid=nil, requestid=nil)
           @FlowId = flowid
           @RequestId = requestid
@@ -783,7 +812,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :ApproverVerifyType, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(flowfileinfos=nil, flowgroupname=nil, agent=nil, approververifytype=nil, operator=nil)
           @FlowFileInfos = flowfileinfos
           @FlowGroupName = flowgroupname
@@ -826,7 +858,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowGroupId, :FlowIds, :RequestId
-        
+
         def initialize(flowgroupid=nil, flowids=nil, requestid=nil)
           @FlowGroupId = flowgroupid
           @FlowIds = flowids
@@ -848,7 +880,7 @@ module TencentCloud
         # @type FlowIds: Array
 
         attr_accessor :Agent, :FlowIds
-        
+
         def initialize(agent=nil, flowids=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -871,7 +903,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RemindFlowRecords, :RequestId
-        
+
         def initialize(remindflowrecords=nil, requestid=nil)
           @RemindFlowRecords = remindflowrecords
           @RequestId = requestid
@@ -913,7 +945,7 @@ module TencentCloud
         # @type OperateType: String
 
         attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage, :RecipientId, :OperateType
-        
+
         def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, recipientid=nil, operatetype=nil)
           @Agent = agent
           @FlowId = flowid
@@ -942,7 +974,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -966,7 +998,12 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
         attr_accessor :Agent, :FlowId, :FlowApproverInfos, :Operator, :Organization
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+
         def initialize(agent=nil, flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil)
           @Agent = agent
           @FlowId = flowid
@@ -1008,7 +1045,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowApproverUrlInfos, :RequestId
-        
+
         def initialize(flowapproverurlinfos=nil, requestid=nil)
           @FlowApproverUrlInfos = flowapproverurlinfos
           @RequestId = requestid
@@ -1054,7 +1091,12 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :ApproverRestrictions, :none, 2023, 6
+        deprecate :ApproverRestrictions=, :none, 2023, 6
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, approverrestrictions=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
@@ -1108,7 +1150,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :QrCode, :SignUrls, :RequestId
-        
+
         def initialize(qrcode=nil, signurls=nil, requestid=nil)
           @QrCode = qrcode
           @SignUrls = signurls
@@ -1152,7 +1194,12 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :ResourceId, :ResourceType, :FlowInfo, :FlowApproverList, :Agent, :FlowOption, :FlowId, :NeedPreview, :Organization, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(resourceid=nil, resourcetype=nil, flowinfo=nil, flowapproverlist=nil, agent=nil, flowoption=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
@@ -1212,7 +1259,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PrepareFlowUrl, :PreviewFlowUrl, :RequestId
-        
+
         def initialize(prepareflowurl=nil, previewflowurl=nil, requestid=nil)
           @PrepareFlowUrl = prepareflowurl
           @PreviewFlowUrl = previewflowurl
@@ -1244,7 +1291,12 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :CallbackUrl, :Organization, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil, callbackurl=nil, organization=nil, operator=nil)
           @Agent = agent
           @NeedRelievedFlowId = needrelievedflowid
@@ -1293,7 +1345,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
-        
+
         def initialize(flowid=nil, requestid=nil)
           @FlowId = flowid
           @RequestId = requestid
@@ -1320,7 +1372,12 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
         attr_accessor :Agent, :SealId, :UserIds, :Operator, :Organization
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+
         def initialize(agent=nil, sealid=nil, userids=nil, operator=nil, organization=nil)
           @Agent = agent
           @SealId = sealid
@@ -1356,7 +1413,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UserIds, :RequestId
-        
+
         def initialize(userids=nil, requestid=nil)
           @UserIds = userids
           @RequestId = requestid
@@ -1382,7 +1439,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :RoleIds, :UserIds, :OpenIds, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, roleids=nil, userids=nil, openids=nil, operator=nil)
           @Agent = agent
           @RoleIds = roleids
@@ -1414,7 +1474,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FailedCreateRoleData, :RequestId
-        
+
         def initialize(failedcreateroledata=nil, requestid=nil)
           @FailedCreateRoleData = failedcreateroledata
           @RequestId = requestid
@@ -1447,7 +1507,10 @@ module TencentCloud
         # @type OpenIds: Array
 
         attr_accessor :Agent, :RoleId, :UserIds, :Operator, :OpenIds
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, roleid=nil, userids=nil, operator=nil, openids=nil)
           @Agent = agent
           @RoleId = roleid
@@ -1479,7 +1542,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RoleId, :RequestId
-        
+
         def initialize(roleid=nil, requestid=nil)
           @RoleId = roleid
           @RequestId = requestid
@@ -1506,7 +1569,12 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :SealId, :UserIds, :Organization, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, sealid=nil, userids=nil, organization=nil, operator=nil)
           @Agent = agent
           @SealId = sealid
@@ -1539,7 +1607,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1565,7 +1633,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Limit, :Agent, :Filters, :Offset, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(limit=nil, agent=nil, filters=nil, offset=nil, operator=nil)
           @Limit = limit
           @Agent = agent
@@ -1612,7 +1683,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Employees, :Offset, :Limit, :TotalCount, :RequestId
-        
+
         def initialize(employees=nil, offset=nil, limit=nil, totalcount=nil, requestid=nil)
           @Employees = employees
           @Offset = offset
@@ -1659,7 +1730,7 @@ module TencentCloud
         # @type SealTypes: Array
 
         attr_accessor :Agent, :Limit, :Offset, :InfoType, :SealId, :SealTypes
-        
+
         def initialize(agent=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil)
           @Agent = agent
           @Limit = limit
@@ -1692,7 +1763,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Seals, :RequestId
-        
+
         def initialize(totalcount=nil, seals=nil, requestid=nil)
           @TotalCount = totalcount
           @Seals = seals
@@ -1729,7 +1800,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :Offset, :Limit, :Filters, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, offset=nil, limit=nil, filters=nil, operator=nil)
           @Agent = agent
           @Offset = offset
@@ -1775,7 +1849,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Offset, :Limit, :TotalCount, :ChannelRoles, :RequestId
-        
+
         def initialize(offset=nil, limit=nil, totalcount=nil, channelroles=nil, requestid=nil)
           @Offset = offset
           @Limit = limit
@@ -1812,7 +1886,12 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
         attr_accessor :Agent, :TaskId, :Operator, :Organization
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+        deprecate :Organization, :none, 2023, 6
+        deprecate :Organization=, :none, 2023, 6
+
         def initialize(agent=nil, taskid=nil, operator=nil, organization=nil)
           @Agent = agent
           @TaskId = taskid
@@ -1867,7 +1946,10 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :PreviewUrl, :RequestId
-        
+        extend Gem::Deprecate
+        deprecate :PreviewUrl, :none, 2023, 6
+        deprecate :PreviewUrl=, :none, 2023, 6
+
         def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, previewurl=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
@@ -1900,7 +1982,7 @@ module TencentCloud
         # @type RoleStatus: Integer
 
         attr_accessor :RoleId, :RoleName, :RoleStatus
-        
+
         def initialize(roleid=nil, rolename=nil, rolestatus=nil)
           @RoleId = roleid
           @RoleName = rolename
@@ -1928,7 +2010,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :Status, :SealId, :Reason, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, status=nil, sealid=nil, reason=nil, operator=nil)
           @Agent = agent
           @Status = status
@@ -1958,7 +2043,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1978,7 +2063,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :FlowId, :Agent, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(flowid=nil, agent=nil, operator=nil)
           @FlowId = flowid
           @Agent = agent
@@ -2008,7 +2096,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VerifyResult, :PdfVerifyResults, :RequestId
-        
+
         def initialize(verifyresult=nil, pdfverifyresults=nil, requestid=nil)
           @VerifyResult = verifyresult
           @PdfVerifyResults = pdfverifyresults
@@ -2035,7 +2123,7 @@ module TencentCloud
         # @type CanEditApprover: Boolean
 
         attr_accessor :CanEditApprover
-        
+
         def initialize(caneditapprover=nil)
           @CanEditApprover = caneditapprover
         end
@@ -2078,7 +2166,7 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
 
         attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption
-        
+
         def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil)
           @NotChannelOrganization = notchannelorganization
           @ApproverType = approvertype
@@ -2326,7 +2414,7 @@ module TencentCloud
         # @type Placeholder: String
 
         attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :Placeholder
-        
+
         def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, placeholder=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
@@ -2394,7 +2482,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowId, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowid=nil, operator=nil)
           @Agent = agent
           @FlowId = flowid
@@ -2430,7 +2521,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
-        
+
         def initialize(reportid=nil, status=nil, reporturl=nil, requestid=nil)
           @ReportId = reportid
           @Status = status
@@ -2473,7 +2564,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
@@ -2526,7 +2620,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ConsoleUrl, :IsActivated, :ProxyOperatorIsVerified, :RequestId
-        
+
         def initialize(consoleurl=nil, isactivated=nil, proxyoperatorisverified=nil, requestid=nil)
           @ConsoleUrl = consoleurl
           @IsActivated = isactivated
@@ -2548,7 +2642,7 @@ module TencentCloud
         # @type CanEditFlow: Boolean
 
         attr_accessor :CanEditFlow
-        
+
         def initialize(caneditflow=nil)
           @CanEditFlow = caneditflow
         end
@@ -2574,7 +2668,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowInfos, :NeedPreview, :PreviewType, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowinfos=nil, needpreview=nil, previewtype=nil, operator=nil)
           @Agent = agent
           @FlowInfos = flowinfos
@@ -2623,7 +2720,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :TaskInfos, :RequestId
-        
+
         def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, taskinfos=nil, requestid=nil)
           @FlowIds = flowids
           @CustomerData = customerdata
@@ -2662,7 +2759,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :SealName, :SealImage, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil)
           @Agent = agent
           @SealName = sealname
@@ -2692,7 +2792,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
-        
+
         def initialize(sealid=nil, requestid=nil)
           @SealId = sealid
           @RequestId = requestid
@@ -2740,7 +2840,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -2790,7 +2893,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SignUrlInfos, :ErrorMessages, :RequestId
-        
+
         def initialize(signurlinfos=nil, errormessages=nil, requestid=nil)
           @SignUrlInfos = signurlinfos
           @ErrorMessages = errormessages
@@ -2821,7 +2924,7 @@ module TencentCloud
         # @type DepartmentName: String
 
         attr_accessor :DepartmentId, :DepartmentName
-        
+
         def initialize(departmentid=nil, departmentname=nil)
           @DepartmentId = departmentid
           @DepartmentName = departmentname
@@ -2843,7 +2946,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :ReportId, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, reportid=nil, operator=nil)
           @Agent = agent
           @ReportId = reportid
@@ -2876,7 +2982,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ReportUrl, :Status, :RequestId
-        
+
         def initialize(reporturl=nil, status=nil, requestid=nil)
           @ReportUrl = reporturl
           @Status = status
@@ -2898,7 +3004,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
 
         attr_accessor :Agent
-        
+
         def initialize(agent=nil)
           @Agent = agent
         end
@@ -2920,7 +3026,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AuthInfo, :RequestId
-        
+
         def initialize(authinfo=nil, requestid=nil)
           @AuthInfo = authinfo
           @RequestId = requestid
@@ -2952,7 +3058,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :FlowGroupId, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, flowgroupid=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -2993,7 +3102,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplicationId, :ProxyOrganizationOpenId, :FlowInfo, :FlowGroupId, :FlowGroupName, :RequestId
-        
+
         def initialize(applicationid=nil, proxyorganizationopenid=nil, flowinfo=nil, flowgroupid=nil, flowgroupname=nil, requestid=nil)
           @ApplicationId = applicationid
           @ProxyOrganizationOpenId = proxyorganizationopenid
@@ -3031,7 +3140,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowIds, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowids=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
@@ -3062,7 +3174,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowResourceUrlInfos, :ErrorMessages, :RequestId
-        
+
         def initialize(flowresourceurlinfos=nil, errormessages=nil, requestid=nil)
           @FlowResourceUrlInfos = flowresourceurlinfos
           @ErrorMessages = errormessages
@@ -3109,7 +3221,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :WithPreviewUrl, :WithPdfUrl, :ChannelTemplateId, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, withpreviewurl=nil, withpdfurl=nil, channeltemplateid=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
@@ -3159,7 +3274,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Templates, :TotalCount, :Limit, :Offset, :RequestId
-        
+
         def initialize(templates=nil, totalcount=nil, limit=nil, offset=nil, requestid=nil)
           @Templates = templates
           @TotalCount = totalcount
@@ -3205,7 +3320,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :StartDate, :EndDate, :NeedAggregate, :Limit, :Offset, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, startdate=nil, enddate=nil, needaggregate=nil, limit=nil, offset=nil, operator=nil)
           @Agent = agent
           @StartDate = startdate
@@ -3244,7 +3362,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Details, :RequestId
-        
+
         def initialize(total=nil, details=nil, requestid=nil)
           @Total = total
           @Details = details
@@ -3273,7 +3391,7 @@ module TencentCloud
         # @type FlowIdList: Array
 
         attr_accessor :FileName, :FlowIdList
-        
+
         def initialize(filename=nil, flowidlist=nil)
           @FileName = filename
           @FlowIdList = flowidlist
@@ -3308,7 +3426,7 @@ module TencentCloud
         # @type OperateOn: Integer
 
         attr_accessor :Type, :Name, :Status, :OperatorOpenId, :OperateOn
-        
+
         def initialize(type=nil, name=nil, status=nil, operatoropenid=nil, operateon=nil)
           @Type = type
           @Name = name
@@ -3336,7 +3454,7 @@ module TencentCloud
         # @type RoleIds: Array
 
         attr_accessor :UserId, :RoleIds
-        
+
         def initialize(userid=nil, roleids=nil)
           @UserId = userid
           @RoleIds = roleids
@@ -3356,7 +3474,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Key, :Values
-        
+
         def initialize(key=nil, values=nil)
           @Key = key
           @Values = values
@@ -3413,7 +3531,7 @@ module TencentCloud
         # @type ApproveType: String
 
         attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType
-        
+
         def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil)
           @ReceiptId = receiptid
           @ProxyOrganizationOpenId = proxyorganizationopenid
@@ -3513,7 +3631,10 @@ module TencentCloud
         # @type SignId: String
 
         attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId
-        
+        extend Gem::Deprecate
+        deprecate :CallbackUrl, :none, 2023, 6
+        deprecate :CallbackUrl=, :none, 2023, 6
+
         def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil)
           @Name = name
           @IdCardType = idcardtype
@@ -3575,7 +3696,7 @@ module TencentCloud
 
       # 签署人签署链接信息
       class FlowApproverUrlInfo < TencentCloud::Common::AbstractModel
-        # @param SignUrl: 签署链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # @param SignUrl: 签署短链接，不支持小程序嵌入，只支持移动端浏览器打开。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
         # @type SignUrl: String
         # @param ApproverType: 签署人类型 PERSON-个人
         # @type ApproverType: String
@@ -3583,12 +3704,12 @@ module TencentCloud
         # @type Name: String
         # @param Mobile: 签署人手机号
         # @type Mobile: String
-        # @param LongUrl: 签署长链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        # @param LongUrl: 签署长链接，支持小程序嵌入。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LongUrl: String
 
         attr_accessor :SignUrl, :ApproverType, :Name, :Mobile, :LongUrl
-        
+
         def initialize(signurl=nil, approvertype=nil, name=nil, mobile=nil, longurl=nil)
           @SignUrl = signurl
           @ApproverType = approvertype
@@ -3641,7 +3762,7 @@ module TencentCloud
         # @type NeedCreateReview: Boolean
 
         attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos, :NeedCreateReview
-        
+
         def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil, needcreatereview=nil)
           @FlowId = flowid
           @FlowName = flowname
@@ -3711,7 +3832,7 @@ module TencentCloud
         # @type NeedSignReview: Boolean
 
         attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :CustomShowMap, :NeedSignReview
-        
+
         def initialize(fileids=nil, flowname=nil, flowapprovers=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, customerdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil)
           @FileIds = fileids
           @FlowName = flowname
@@ -3896,7 +4017,7 @@ module TencentCloud
         # @type AutoSignScene: String
 
         attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType, :AutoSignScene
-        
+
         def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil, autosignscene=nil)
           @FlowName = flowname
           @Deadline = deadline
@@ -3963,7 +4084,7 @@ module TencentCloud
         # @type ResourceUrlInfos: Array
 
         attr_accessor :FlowId, :ResourceUrlInfos
-        
+
         def initialize(flowid=nil, resourceurlinfos=nil)
           @FlowId = flowid
           @ResourceUrlInfos = resourceurlinfos
@@ -4001,7 +4122,7 @@ module TencentCloud
         # @type ComponentName: String
 
         attr_accessor :ComponentValue, :ComponentId, :ComponentName
-        
+
         def initialize(componentvalue=nil, componentid=nil, componentname=nil)
           @ComponentValue = componentvalue
           @ComponentId = componentid
@@ -4025,7 +4146,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :DownLoadFlows, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, downloadflows=nil, operator=nil)
           @Agent = agent
           @DownLoadFlows = downloadflows
@@ -4060,7 +4184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DownLoadUrl, :RequestId
-        
+
         def initialize(downloadurl=nil, requestid=nil)
           @DownLoadUrl = downloadurl
           @RequestId = requestid
@@ -4091,7 +4215,7 @@ module TencentCloud
         # @type Operate: String
 
         attr_accessor :Agent, :ServiceType, :Operate
-        
+
         def initialize(agent=nil, servicetype=nil, operate=nil)
           @Agent = agent
           @ServiceType = servicetype
@@ -4120,7 +4244,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OperateUrl, :RequestId
-        
+
         def initialize(operateurl=nil, requestid=nil)
           @OperateUrl = operateurl
           @RequestId = requestid
@@ -4159,7 +4283,7 @@ module TencentCloud
         # @type AuthorizedUsers: Array
 
         attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers
-        
+
         def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil)
           @SealId = sealid
           @SealName = sealname
@@ -4212,7 +4336,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :OperateType, :TemplateId, :ProxyOrganizationOpenIds, :AuthTag, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, operatetype=nil, templateid=nil, proxyorganizationopenids=nil, authtag=nil, operator=nil)
           @Agent = agent
           @OperateType = operatetype
@@ -4262,7 +4389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppId, :TemplateId, :OperateResult, :AuthTag, :ProxyOrganizationOpenIds, :FailMessageList, :RequestId
-        
+
         def initialize(appid=nil, templateid=nil, operateresult=nil, authtag=nil, proxyorganizationopenids=nil, failmessagelist=nil, requestid=nil)
           @AppId = appid
           @TemplateId = templateid
@@ -4305,7 +4432,12 @@ module TencentCloud
         # @type ProxyIp: String
 
         attr_accessor :OrganizationOpenId, :OrganizationId, :Channel, :ClientIp, :ProxyIp
-        
+        extend Gem::Deprecate
+        deprecate :ClientIp, :none, 2023, 6
+        deprecate :ClientIp=, :none, 2023, 6
+        deprecate :ProxyIp, :none, 2023, 6
+        deprecate :ProxyIp=, :none, 2023, 6
+
         def initialize(organizationopenid=nil, organizationid=nil, channel=nil, clientip=nil, proxyip=nil)
           @OrganizationOpenId = organizationopenid
           @OrganizationId = organizationid
@@ -4355,7 +4487,7 @@ module TencentCloud
         # @type ComponentPage: Integer
 
         attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :SignType, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
-        
+
         def initialize(verifyresult=nil, signplatform=nil, signername=nil, signtime=nil, signalgorithm=nil, certsn=nil, certnotbefore=nil, certnotafter=nil, signtype=nil, componentposx=nil, componentposy=nil, componentwidth=nil, componentheight=nil, componentpage=nil)
           @VerifyResult = verifyresult
           @SignPlatform = signplatform
@@ -4403,7 +4535,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :FlowInfos, :JumpUrl, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, flowinfos=nil, jumpurl=nil, operator=nil)
           @Agent = agent
           @FlowInfos = flowinfos
@@ -4440,7 +4575,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ConfirmUrl, :RequestId
-        
+
         def initialize(confirmurl=nil, requestid=nil)
           @ConfirmUrl = confirmurl
           @RequestId = requestid
@@ -4474,7 +4609,7 @@ module TencentCloud
         # @type DefaultRole: String
 
         attr_accessor :Id, :Name, :IdCardType, :IdCardNumber, :Mobile, :DefaultRole
-        
+
         def initialize(id=nil, name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, defaultrole=nil)
           @Id = id
           @Name = name
@@ -4516,7 +4651,7 @@ module TencentCloud
         # @type IsPromoter: Boolean
 
         attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter
-        
+
         def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil)
           @RecipientId = recipientid
           @RecipientType = recipienttype
@@ -4577,7 +4712,7 @@ module TencentCloud
         # @type OpenId: String
 
         attr_accessor :OrganizationName, :ApproverNumber, :ApproverType, :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationOpenId, :OpenId
-        
+
         def initialize(organizationname=nil, approvernumber=nil, approvertype=nil, name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationopenid=nil, openid=nil)
           @OrganizationName = organizationname
           @ApproverNumber = approvernumber
@@ -4617,7 +4752,7 @@ module TencentCloud
         # @type OtherDeals: String
 
         attr_accessor :Reason, :RemainInForceItem, :OriginalExpenseSettlement, :OriginalOtherSettlement, :OtherDeals
-        
+
         def initialize(reason=nil, remaininforceitem=nil, originalexpensesettlement=nil, originalothersettlement=nil, otherdeals=nil)
           @Reason = reason
           @RemainInForceItem = remaininforceitem
@@ -4645,7 +4780,7 @@ module TencentCloud
         # @type RemindMessage: String
 
         attr_accessor :CanRemind, :FlowId, :RemindMessage
-        
+
         def initialize(canremind=nil, flowid=nil, remindmessage=nil)
           @CanRemind = canremind
           @FlowId = flowid
@@ -4672,7 +4807,7 @@ module TencentCloud
         # @type Type: String
 
         attr_accessor :Url, :Name, :Type
-        
+
         def initialize(url=nil, name=nil, type=nil)
           @Url = url
           @Name = name
@@ -4696,7 +4831,7 @@ module TencentCloud
         # @type ExpiredTime: Integer
 
         attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
-        
+
         def initialize(qrcodeid=nil, qrcodeurl=nil, expiredtime=nil)
           @QrCodeId = qrcodeid
           @QrCodeUrl = qrcodeurl
@@ -4720,7 +4855,7 @@ module TencentCloud
         # @type HttpSignUrl: String
 
         attr_accessor :AppSignUrl, :EffectiveTime, :HttpSignUrl
-        
+
         def initialize(appsignurl=nil, effectivetime=nil, httpsignurl=nil)
           @AppSignUrl = appsignurl
           @EffectiveTime = effectivetime
@@ -4779,7 +4914,10 @@ module TencentCloud
         # @type FlowGroupId: String
 
         attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId, :OpenId, :FlowGroupId
-        
+        extend Gem::Deprecate
+        deprecate :CustomUserId, :none, 2023, 6
+        deprecate :CustomUserId=, :none, 2023, 6
+
         def initialize(signurl=nil, deadline=nil, signorder=nil, signid=nil, customuserid=nil, name=nil, mobile=nil, organizationname=nil, approvertype=nil, idcardnumber=nil, flowid=nil, openid=nil, flowgroupid=nil)
           @SignUrl = signurl
           @Deadline = deadline
@@ -4843,7 +4981,7 @@ module TencentCloud
         # @type QuiteJob: Integer
 
         attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob
-        
+
         def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil)
           @UserId = userid
           @DisplayName = displayname
@@ -4893,7 +5031,7 @@ module TencentCloud
         # @type RoleName: String
 
         attr_accessor :RoleId, :RoleName
-        
+
         def initialize(roleid=nil, rolename=nil)
           @RoleId = roleid
           @RoleName = rolename
@@ -4915,7 +5053,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Id, :Message
-        
+
         def initialize(id=nil, message=nil)
           @Id = id
           @Message = message
@@ -4939,7 +5077,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :OperatorType, :ProxyOrganizationOperators, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, operatortype=nil, proxyorganizationoperators=nil, operator=nil)
           @Agent = agent
           @OperatorType = operatortype
@@ -4982,7 +5123,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :FailedList, :RequestId
-        
+
         def initialize(status=nil, failedlist=nil, requestid=nil)
           @Status = status
           @FailedList = failedlist
@@ -5020,7 +5161,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :ProxyLegalName, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, proxyorganizationname=nil, businesslicense=nil, uniformsocialcreditcode=nil, proxylegalname=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
@@ -5052,7 +5196,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5072,7 +5216,7 @@ module TencentCloud
         # @type TaskStatus: String
 
         attr_accessor :TaskId, :TaskStatus
-        
+
         def initialize(taskid=nil, taskstatus=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
@@ -5128,7 +5272,10 @@ module TencentCloud
         # @type Available: Integer
 
         attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion, :Available
-        
+        extend Gem::Deprecate
+        deprecate :IsPromoter, :none, 2023, 6
+        deprecate :IsPromoter=, :none, 2023, 6
+
         def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil, available=nil)
           @TemplateId = templateid
           @TemplateName = templatename
@@ -5199,7 +5346,7 @@ module TencentCloud
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName
-        
+
         def initialize(filebody=nil, filename=nil)
           @FileBody = filebody
           @FileName = filename
@@ -5225,7 +5372,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
         attr_accessor :Agent, :BusinessType, :FileInfos, :Operator
-        
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2023, 6
+        deprecate :Operator=, :none, 2023, 6
+
         def initialize(agent=nil, businesstype=nil, fileinfos=nil, operator=nil)
           @Agent = agent
           @BusinessType = businesstype
@@ -5266,7 +5416,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileIds, :TotalCount, :FileUrls, :RequestId
-        
+
         def initialize(fileids=nil, totalcount=nil, fileurls=nil, requestid=nil)
           @FileIds = fileids
           @TotalCount = totalcount
@@ -5302,7 +5452,7 @@ module TencentCloud
         # @type FlowChannel: String
 
         attr_accessor :ProxyOrganizationOpenId, :ProxyOrganizationName, :Date, :Usage, :Cancel, :FlowChannel
-        
+
         def initialize(proxyorganizationopenid=nil, proxyorganizationname=nil, date=nil, usage=nil, cancel=nil, flowchannel=nil)
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOrganizationName = proxyorganizationname
@@ -5336,7 +5486,16 @@ module TencentCloud
         # @type ProxyIp: String
 
         attr_accessor :OpenId, :Channel, :CustomUserId, :ClientIp, :ProxyIp
-        
+        extend Gem::Deprecate
+        deprecate :Channel, :none, 2023, 6
+        deprecate :Channel=, :none, 2023, 6
+        deprecate :CustomUserId, :none, 2023, 6
+        deprecate :CustomUserId=, :none, 2023, 6
+        deprecate :ClientIp, :none, 2023, 6
+        deprecate :ClientIp=, :none, 2023, 6
+        deprecate :ProxyIp, :none, 2023, 6
+        deprecate :ProxyIp=, :none, 2023, 6
+
         def initialize(openid=nil, channel=nil, customuserid=nil, clientip=nil, proxyip=nil)
           @OpenId = openid
           @Channel = channel

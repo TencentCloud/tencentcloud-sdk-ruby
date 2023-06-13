@@ -39,7 +39,7 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Ims.v20201229.models.Device`
 
         attr_accessor :CallbackUrl, :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device
-        
+
         def initialize(callbackurl=nil, biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil)
           @CallbackUrl = callbackurl
           @BizType = biztype
@@ -79,7 +79,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataId, :RequestId
-        
+
         def initialize(dataid=nil, requestid=nil)
           @DataId = dataid
           @RequestId = requestid
@@ -112,7 +112,7 @@ module TencentCloud
         # @type IpType: Integer
 
         attr_accessor :Ip, :Mac, :TokenId, :DeviceId, :IMEI, :IDFA, :IDFV, :IpType
-        
+
         def initialize(ip=nil, mac=nil, tokenid=nil, deviceid=nil, imei=nil, idfa=nil, idfv=nil, iptype=nil)
           @Ip = ip
           @Mac = mac
@@ -156,7 +156,7 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Ims.v20201229.models.Device`
 
         attr_accessor :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device
-        
+
         def initialize(biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil)
           @BizType = biztype
           @DataId = dataid
@@ -224,7 +224,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RecognitionResults, :RequestId
-        
+
         def initialize(suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, filemd5=nil, recognitionresults=nil, requestid=nil)
           @Suggestion = suggestion
           @Label = label
@@ -308,7 +308,7 @@ module TencentCloud
         # @type Score: Integer
 
         attr_accessor :Id, :Name, :Score
-        
+
         def initialize(id=nil, name=nil, score=nil)
           @Id = id
           @Name = name
@@ -339,7 +339,7 @@ module TencentCloud
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details
-        
+
         def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, details=nil)
           @Scene = scene
           @Suggestion = suggestion
@@ -386,7 +386,7 @@ module TencentCloud
         # @type Score: Integer
 
         attr_accessor :Id, :LibId, :LibName, :ImageId, :Label, :Tag, :Score
-        
+
         def initialize(id=nil, libid=nil, libname=nil, imageid=nil, label=nil, tag=nil, score=nil)
           @Id = id
           @LibId = libid
@@ -426,7 +426,7 @@ module TencentCloud
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details
-        
+
         def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, details=nil)
           @Scene = scene
           @Suggestion = suggestion
@@ -467,7 +467,7 @@ module TencentCloud
         # @type Rotate: Float
 
         attr_accessor :X, :Y, :Width, :Height, :Rotate
-        
+
         def initialize(x=nil, y=nil, width=nil, height=nil, rotate=nil)
           @X = x
           @Y = y
@@ -504,7 +504,7 @@ module TencentCloud
         # @type ObjectId: String
 
         attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel, :ObjectId
-        
+
         def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil, objectid=nil)
           @Id = id
           @Name = name
@@ -550,7 +550,7 @@ module TencentCloud
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Names, :Details
-        
+
         def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, names=nil, details=nil)
           @Scene = scene
           @Suggestion = suggestion
@@ -598,7 +598,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details, :Text
-        
+
         def initialize(scene=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, details=nil, text=nil)
           @Scene = scene
           @Suggestion = suggestion
@@ -649,7 +649,7 @@ module TencentCloud
         # @type SubLabel: String
 
         attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate, :SubLabel
-        
+
         def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil, sublabel=nil)
           @Text = text
           @Label = label
@@ -688,7 +688,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Label, :Tags
-        
+
         def initialize(label=nil, tags=nil)
           @Label = label
           @Tags = tags
@@ -720,7 +720,7 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
 
         attr_accessor :Name, :Score, :Location
-        
+
         def initialize(name=nil, score=nil, location=nil)
           @Name = name
           @Score = score
@@ -765,7 +765,7 @@ module TencentCloud
         # @type HeadUrl: String
 
         attr_accessor :UserId, :Nickname, :AccountType, :Gender, :Age, :Level, :Phone, :Desc, :HeadUrl
-        
+
         def initialize(userid=nil, nickname=nil, accounttype=nil, gender=nil, age=nil, level=nil, phone=nil, desc=nil, headurl=nil)
           @UserId = userid
           @Nickname = nickname

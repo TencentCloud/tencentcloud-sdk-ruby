@@ -99,7 +99,7 @@ module TencentCloud
         # @type CheckDevice: String
 
         attr_accessor :AccountType, :Uid, :UserIp, :PostTime, :AppIdU, :NickName, :PhoneNumber, :EmailAddress, :RegisterTime, :RegisterIp, :CookieHash, :Address, :LoginSource, :LoginType, :LoginSpend, :RootId, :Referer, :JumpUrl, :UserAgent, :XForwardedFor, :MouseClickCount, :KeyboardClickCount, :MacAddress, :VendorId, :Imei, :AppVersion, :BusinessId, :WxSubType, :RandNum, :WxToken, :CheckDevice
-        
+
         def initialize(accounttype=nil, uid=nil, userip=nil, posttime=nil, appidu=nil, nickname=nil, phonenumber=nil, emailaddress=nil, registertime=nil, registerip=nil, cookiehash=nil, address=nil, loginsource=nil, logintype=nil, loginspend=nil, rootid=nil, referer=nil, jumpurl=nil, useragent=nil, xforwardedfor=nil, mouseclickcount=nil, keyboardclickcount=nil, macaddress=nil, vendorid=nil, imei=nil, appversion=nil, businessid=nil, wxsubtype=nil, randnum=nil, wxtoken=nil, checkdevice=nil)
           @AccountType = accounttype
           @Uid = uid
@@ -217,7 +217,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PostTime, :UserIp, :Level, :RiskType, :AssociateAccount, :Uid, :RootId, :CodeDesc, :RequestId
-        
+
         def initialize(posttime=nil, userip=nil, level=nil, risktype=nil, associateaccount=nil, uid=nil, rootid=nil, codedesc=nil, requestid=nil)
           @PostTime = posttime
           @UserIp = userip

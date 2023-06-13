@@ -31,7 +31,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :UserId, :Phone, :Nick, :Status
-        
+
         def initialize(userid=nil, phone=nil, nick=nil, status=nil)
           @UserId = userid
           @Phone = phone
@@ -59,7 +59,7 @@ module TencentCloud
         # @type Role: String
 
         attr_accessor :MemberId, :Remark, :Role
-        
+
         def initialize(memberid=nil, remark=nil, role=nil)
           @MemberId = memberid
           @Remark = remark
@@ -85,7 +85,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :TeamMembers, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, teammembers=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -114,7 +114,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -141,7 +141,7 @@ module TencentCloud
         # @type VodFileId: String
 
         attr_accessor :MetaData, :MaterialUrl, :CoverUrl, :MaterialStatus, :OriginalUrl, :VodFileId
-        
+
         def initialize(metadata=nil, materialurl=nil, coverurl=nil, materialstatus=nil, originalurl=nil, vodfileid=nil)
           @MetaData = metadata
           @MaterialUrl = materialurl
@@ -177,7 +177,7 @@ module TencentCloud
         # @type Codec: String
 
         attr_accessor :Bitrate, :SamplingRate, :Codec
-        
+
         def initialize(bitrate=nil, samplingrate=nil, codec=nil)
           @Bitrate = bitrate
           @SamplingRate = samplingrate
@@ -217,7 +217,7 @@ module TencentCloud
         # @type Duration: Float
 
         attr_accessor :SourceType, :SourceMedia, :SourceMediaStartTime, :Duration
-        
+
         def initialize(sourcetype=nil, sourcemedia=nil, sourcemediastarttime=nil, duration=nil)
           @SourceType = sourcetype
           @SourceMedia = sourcemedia
@@ -245,7 +245,7 @@ module TencentCloud
         # @type PermissionSet: Array
 
         attr_accessor :Authorizee, :PermissionSet
-        
+
         def initialize(authorizee=nil, permissionset=nil)
           @Authorizee = authorizee
           @PermissionSet = permissionset
@@ -270,7 +270,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Type, :Id
-        
+
         def initialize(type=nil, id=nil)
           @Type = type
           @Id = id
@@ -298,7 +298,7 @@ module TencentCloud
         # @type ThirdPartyPublishInfos: Array
 
         attr_accessor :Owner, :Name, :Description, :ClassPath, :TagSet, :ThirdPartyPublishInfos
-        
+
         def initialize(owner=nil, name=nil, description=nil, classpath=nil, tagset=nil, thirdpartypublishinfos=nil)
           @Owner = owner
           @Name = name
@@ -336,7 +336,7 @@ module TencentCloud
         # @type ClassPath: String
 
         attr_accessor :Owner, :ClassPath
-        
+
         def initialize(owner=nil, classpath=nil)
           @Owner = owner
           @ClassPath = classpath
@@ -359,7 +359,7 @@ module TencentCloud
         # @type ClassPathSet: Array
 
         attr_accessor :Owner, :ClassPathSet
-        
+
         def initialize(owner=nil, classpathset=nil)
           @Owner = owner
           @ClassPathSet = classpathset
@@ -382,7 +382,7 @@ module TencentCloud
         # @type ClassPath: String
 
         attr_accessor :Owner, :ClassPath
-        
+
         def initialize(owner=nil, classpath=nil)
           @Owner = owner
           @ClassPath = classpath
@@ -409,7 +409,7 @@ module TencentCloud
         # @type DestinationClassPath: String
 
         attr_accessor :SourceOwner, :SourceClassPathSet, :DestinationOwner, :DestinationClassPath
-        
+
         def initialize(sourceowner=nil, sourceclasspathset=nil, destinationowner=nil, destinationclasspath=nil)
           @SourceOwner = sourceowner
           @SourceClassPathSet = sourceclasspathset
@@ -445,7 +445,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Name, :Owner, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, name=nil, owner=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -474,7 +474,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProjectId, :RequestId
-        
+
         def initialize(projectid=nil, requestid=nil)
           @ProjectId = projectid
           @RequestId = requestid
@@ -498,7 +498,7 @@ module TencentCloud
         # @type CoverKey: String
 
         attr_accessor :Bucket, :Region, :VideoKey, :CoverKey
-        
+
         def initialize(bucket=nil, region=nil, videokey=nil, coverkey=nil)
           @Bucket = bucket
           @Region = region
@@ -526,7 +526,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :ClassPath, :Operator
-        
+
         def initialize(platform=nil, owner=nil, classpath=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -551,7 +551,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -585,7 +585,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Type, :Name, :Owner, :DestinationId, :DestinationOwner, :ClassPath, :Operator
-        
+
         def initialize(platform=nil, type=nil, name=nil, owner=nil, destinationid=nil, destinationowner=nil, classpath=nil, operator=nil)
           @Platform = platform
           @Type = type
@@ -623,7 +623,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialId, :RequestId
-        
+
         def initialize(materialid=nil, requestid=nil)
           @MaterialId = materialid
           @RequestId = requestid
@@ -681,7 +681,7 @@ module TencentCloud
         # @type MediaCastProjectInput: :class:`Tencentcloud::Cme.v20191029.models.MediaCastProjectInput`
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
-        
+
         def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil, mediacastprojectinput=nil)
           @Platform = platform
           @Name = name
@@ -751,7 +751,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProjectId, :RtmpPushInputInfoSet, :RequestId
-        
+
         def initialize(projectid=nil, rtmppushinputinfoset=nil, requestid=nil)
           @ProjectId = projectid
           @RtmpPushInputInfoSet = rtmppushinputinfoset
@@ -786,7 +786,7 @@ module TencentCloud
         # @type TeamId: String
 
         attr_accessor :Platform, :Name, :OwnerId, :OwnerRemark, :TeamId
-        
+
         def initialize(platform=nil, name=nil, ownerid=nil, ownerremark=nil, teamid=nil)
           @Platform = platform
           @Name = name
@@ -812,7 +812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TeamId, :RequestId
-        
+
         def initialize(teamid=nil, requestid=nil)
           @TeamId = teamid
           @RequestId = requestid
@@ -851,7 +851,7 @@ module TencentCloud
         # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSetting`
 
         attr_accessor :Platform, :Name, :Container, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
-        
+
         def initialize(platform=nil, name=nil, container=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
           @Platform = platform
           @Name = name
@@ -887,7 +887,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Id, :RequestId
-        
+
         def initialize(id=nil, requestid=nil)
           @Id = id
           @RequestId = requestid
@@ -911,7 +911,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :ClassPath, :Operator
-        
+
         def initialize(platform=nil, owner=nil, classpath=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -936,7 +936,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -954,7 +954,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :Platform, :UserIds
-        
+
         def initialize(platform=nil, userids=nil)
           @Platform = platform
           @UserIds = userids
@@ -972,7 +972,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -992,7 +992,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :MaterialId, :Operator
-        
+
         def initialize(platform=nil, materialid=nil, operator=nil)
           @Platform = platform
           @MaterialId = materialid
@@ -1012,7 +1012,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1032,7 +1032,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -1052,7 +1052,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1074,7 +1074,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :MemberIds, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, memberids=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -1096,7 +1096,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1116,7 +1116,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -1136,7 +1136,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1154,7 +1154,7 @@ module TencentCloud
         # @type Id: Integer
 
         attr_accessor :Platform, :Id
-        
+
         def initialize(platform=nil, id=nil)
           @Platform = platform
           @Id = id
@@ -1172,7 +1172,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1194,7 +1194,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Platform, :Phone, :Offset, :Limit
-        
+
         def initialize(platform=nil, phone=nil, offset=nil, limit=nil)
           @Platform = platform
           @Phone = phone
@@ -1220,7 +1220,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AccountInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, accountinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @AccountInfoSet = accountinfoset
@@ -1251,7 +1251,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :Operator
-        
+
         def initialize(platform=nil, owner=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -1276,7 +1276,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClassInfoSet, :RequestId
-        
+
         def initialize(classinfoset=nil, requestid=nil)
           @ClassInfoSet = classinfoset
           @RequestId = requestid
@@ -1307,7 +1307,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Platform, :MemberId, :Offset, :Limit
-        
+
         def initialize(platform=nil, memberid=nil, offset=nil, limit=nil)
           @Platform = platform
           @MemberId = memberid
@@ -1333,7 +1333,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TeamSet, :RequestId
-        
+
         def initialize(totalcount=nil, teamset=nil, requestid=nil)
           @TotalCount = totalcount
           @TeamSet = teamset
@@ -1362,7 +1362,7 @@ module TencentCloud
         # @type UserIds: Array
 
         attr_accessor :Platform, :UserIds
-        
+
         def initialize(platform=nil, userids=nil)
           @Platform = platform
           @UserIds = userids
@@ -1382,7 +1382,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LoginStatusInfoSet, :RequestId
-        
+
         def initialize(loginstatusinfoset=nil, requestid=nil)
           @LoginStatusInfoSet = loginstatusinfoset
           @RequestId = requestid
@@ -1415,7 +1415,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :MaterialIds, :Sort, :Operator
-        
+
         def initialize(platform=nil, materialids=nil, sort=nil, operator=nil)
           @Platform = platform
           @MaterialIds = materialids
@@ -1442,7 +1442,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialInfoSet, :RequestId
-        
+
         def initialize(materialinfoset=nil, requestid=nil)
           @MaterialInfoSet = materialinfoset
           @RequestId = requestid
@@ -1473,7 +1473,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Platforms, :LicenseIds, :Offset, :Limit
-        
+
         def initialize(platforms=nil, licenseids=nil, offset=nil, limit=nil)
           @Platforms = platforms
           @LicenseIds = licenseids
@@ -1499,7 +1499,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :PlatformInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, platforminfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @PlatformInfoSet = platforminfoset
@@ -1561,7 +1561,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectIds, :AspectRatioSet, :CategorySet, :Modes, :Sort, :Owner, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, projectids=nil, aspectratioset=nil, categoryset=nil, modes=nil, sort=nil, owner=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ProjectIds = projectids
@@ -1605,7 +1605,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ProjectInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, projectinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @ProjectInfoSet = projectinfoset
@@ -1638,7 +1638,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :Resource, :Operator
-        
+
         def initialize(platform=nil, owner=nil, resource=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -1671,7 +1671,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AuthorizationInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, authorizationinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @AuthorizationInfoSet = authorizationinfoset
@@ -1702,7 +1702,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Authorizee, :Operator
-        
+
         def initialize(platform=nil, authorizee=nil, operator=nil)
           @Platform = platform
           @Authorizee = authorizee
@@ -1729,7 +1729,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AuthorizerSet, :RequestId
-        
+
         def initialize(totalcount=nil, authorizerset=nil, requestid=nil)
           @TotalCount = totalcount
           @AuthorizerSet = authorizerset
@@ -1760,7 +1760,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TaskId, :Operator
-        
+
         def initialize(platform=nil, taskid=nil, operator=nil)
           @Platform = platform
           @TaskId = taskid
@@ -1801,7 +1801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :Progress, :ErrCode, :ErrMsg, :TaskType, :VideoEditProjectOutput, :CreateTime, :RequestId
-        
+
         def initialize(status=nil, progress=nil, errcode=nil, errmsg=nil, tasktype=nil, videoeditprojectoutput=nil, createtime=nil, requestid=nil)
           @Status = status
           @Progress = progress
@@ -1854,7 +1854,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :TaskTypeSet, :StatusSet, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, tasktypeset=nil, statusset=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -1886,7 +1886,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TaskBaseInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, taskbaseinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @TaskBaseInfoSet = taskbaseinfoset
@@ -1923,7 +1923,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :MemberIds, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, memberids=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -1953,7 +1953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :MemberSet, :RequestId
-        
+
         def initialize(totalcount=nil, memberset=nil, requestid=nil)
           @TotalCount = totalcount
           @MemberSet = memberset
@@ -1986,7 +1986,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Platform, :TeamIds, :Offset, :Limit
-        
+
         def initialize(platform=nil, teamids=nil, offset=nil, limit=nil)
           @Platform = platform
           @TeamIds = teamids
@@ -2012,7 +2012,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TeamSet, :RequestId
-        
+
         def initialize(totalcount=nil, teamset=nil, requestid=nil)
           @TotalCount = totalcount
           @TeamSet = teamset
@@ -2045,7 +2045,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Platform, :Ids, :Limit, :Offset
-        
+
         def initialize(platform=nil, ids=nil, limit=nil, offset=nil)
           @Platform = platform
           @Ids = ids
@@ -2071,7 +2071,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VideoEncodingPresetSet, :RequestId
-        
+
         def initialize(totalcount=nil, videoencodingpresetset=nil, requestid=nil)
           @TotalCount = totalcount
           @VideoEncodingPresetSet = videoencodingpresetset
@@ -2098,7 +2098,7 @@ module TencentCloud
         # @type Duration: Float
 
         attr_accessor :Duration
-        
+
         def initialize(duration=nil)
           @Duration = duration
         end
@@ -2118,7 +2118,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Type, :Id
-        
+
         def initialize(type=nil, id=nil)
           @Type = type
           @Id = id
@@ -2188,7 +2188,7 @@ module TencentCloud
         # @type ProjectMediaCastStatusChangedEvent: :class:`Tencentcloud::Cme.v20191029.models.ProjectMediaCastStatusChangedEvent`
 
         attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent, :VideoExportCompletedEvent, :ProjectMediaCastStatusChangedEvent
-        
+
         def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil, videoexportcompletedevent=nil, projectmediacaststatuschangedevent=nil)
           @EventType = eventtype
           @Operator = operator
@@ -2294,7 +2294,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Definition, :ExportDestination, :TrackData, :AspectRatio, :CoverData, :CMEExportInfo, :VODExportInfo, :Operator
-        
+
         def initialize(platform=nil, definition=nil, exportdestination=nil, trackdata=nil, aspectratio=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
           @Platform = platform
           @Definition = definition
@@ -2334,7 +2334,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2371,7 +2371,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TemplateId, :Definition, :ExportDestination, :SlotReplacements, :CMEExportInfo, :VODExportInfo, :Operator
-        
+
         def initialize(platform=nil, templateid=nil, definition=nil, exportdestination=nil, slotreplacements=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
           @Platform = platform
           @TemplateId = templateid
@@ -2416,7 +2416,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2455,7 +2455,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :SegmentGroupId, :SegmentIds, :Definition, :ExportDestination, :CMEExportInfo, :VODExportInfo, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, segmentgroupid=nil, segmentids=nil, definition=nil, exportdestination=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -2495,7 +2495,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2534,7 +2534,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Definition, :ExportDestination, :CoverData, :CMEExportInfo, :VODExportInfo, :ExportExtensionArgs, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, definition=nil, exportdestination=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, exportextensionargs=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -2577,7 +2577,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2599,7 +2599,7 @@ module TencentCloud
         # @type StorageId: String
 
         attr_accessor :MediaKey, :Definition, :StorageId
-        
+
         def initialize(mediakey=nil, definition=nil, storageid=nil)
           @MediaKey = mediakey
           @Definition = definition
@@ -2629,7 +2629,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ClassPath, :Owner, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, classpath=nil, owner=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ClassPath = classpath
@@ -2662,7 +2662,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :MaterialInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, materialinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @MaterialInfoSet = materialinfoset
@@ -2693,7 +2693,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -2715,7 +2715,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2747,7 +2747,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :Resources, :Authorizees, :Permissions, :Operator
-        
+
         def initialize(platform=nil, owner=nil, resources=nil, authorizees=nil, permissions=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -2790,7 +2790,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2827,7 +2827,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Operation, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :Position, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, operation=nil, sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil, position=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -2888,7 +2888,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PlayInfo, :SourceInfoSet, :DestinationInfoSet, :RequestId
-        
+
         def initialize(playinfo=nil, sourceinfoset=nil, destinationinfoset=nil, requestid=nil)
           @PlayInfo = playinfo
           @SourceInfoSet = sourceinfoset
@@ -2943,7 +2943,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Operation, :InputInfo, :InputEndpoint, :OutputInfo, :CurrentStopTime, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, operation=nil, inputinfo=nil, inputendpoint=nil, outputinfo=nil, currentstoptime=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -2984,7 +2984,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StreamInputRtmpPushUrl, :VodPullInputPlayInfo, :RequestId
-        
+
         def initialize(streaminputrtmppushurl=nil, vodpullinputplayinfo=nil, requestid=nil)
           @StreamInputRtmpPushUrl = streaminputrtmppushurl
           @VodPullInputPlayInfo = vodpullinputplayinfo
@@ -3017,7 +3017,7 @@ module TencentCloud
         # @type VodFileId: String
 
         attr_accessor :Height, :Width, :MaterialUrl, :Size, :OriginalUrl, :VodFileId
-        
+
         def initialize(height=nil, width=nil, materialurl=nil, size=nil, originalurl=nil, vodfileid=nil)
           @Height = height
           @Width = width
@@ -3064,7 +3064,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :Name, :SourceType, :VodFileId, :ExternalMediaInfo, :ClassPath, :PreProcessDefinition, :Operator
-        
+
         def initialize(platform=nil, owner=nil, name=nil, sourcetype=nil, vodfileid=nil, externalmediainfo=nil, classpath=nil, preprocessdefinition=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -3106,7 +3106,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialId, :PreProcessTaskId, :RequestId
-        
+
         def initialize(materialid=nil, preprocesstaskid=nil, requestid=nil)
           @MaterialId = materialid
           @PreProcessTaskId = preprocesstaskid
@@ -3128,7 +3128,7 @@ module TencentCloud
         # @type MaterialId: String
 
         attr_accessor :FileId, :MaterialId
-        
+
         def initialize(fileid=nil, materialid=nil)
           @FileId = fileid
           @MaterialId = materialid
@@ -3167,7 +3167,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :SourceType, :VodFileId, :ExternalMediaInfo, :Name, :PreProcessDefinition, :Operator
-        
+
         def initialize(platform=nil, projectid=nil, sourcetype=nil, vodfileid=nil, externalmediainfo=nil, name=nil, preprocessdefinition=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -3204,7 +3204,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialId, :TaskId, :RequestId
-        
+
         def initialize(materialid=nil, taskid=nil, requestid=nil)
           @MaterialId = materialid
           @TaskId = taskid
@@ -3226,7 +3226,7 @@ module TencentCloud
         # @type UpperBound: Integer
 
         attr_accessor :LowerBound, :UpperBound
-        
+
         def initialize(lowerbound=nil, upperbound=nil)
           @LowerBound = lowerbound
           @UpperBound = upperbound
@@ -3253,7 +3253,7 @@ module TencentCloud
         # @type Role: String
 
         attr_accessor :TeamId, :Name, :MemberCount, :Role
-        
+
         def initialize(teamid=nil, name=nil, membercount=nil, role=nil)
           @TeamId = teamid
           @Name = name
@@ -3275,7 +3275,7 @@ module TencentCloud
         # @type Title: String
 
         attr_accessor :Title
-        
+
         def initialize(title=nil)
           @Title = title
         end
@@ -3303,7 +3303,7 @@ module TencentCloud
         # @type LinkClassInfo: :class:`Tencentcloud::Cme.v20191029.models.ClassInfo`
 
         attr_accessor :LinkType, :LinkStatus, :LinkMaterialInfo, :LinkClassInfo
-        
+
         def initialize(linktype=nil, linkstatus=nil, linkmaterialinfo=nil, linkclassinfo=nil)
           @LinkType = linktype
           @LinkStatus = linkstatus
@@ -3340,7 +3340,7 @@ module TencentCloud
         # @type ImageMaterial: :class:`Tencentcloud::Cme.v20191029.models.ImageMaterial`
 
         attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial
-        
+
         def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil)
           @BasicInfo = basicinfo
           @VideoMaterial = videomaterial
@@ -3384,7 +3384,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :ClassPath, :Owner, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, classpath=nil, owner=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ClassPath = classpath
@@ -3419,7 +3419,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MaterialTotalCount, :MaterialInfoSet, :ClassInfoSet, :RequestId
-        
+
         def initialize(materialtotalcount=nil, materialinfoset=nil, classinfoset=nil, requestid=nil)
           @MaterialTotalCount = materialtotalcount
           @MaterialInfoSet = materialinfoset
@@ -3455,7 +3455,7 @@ module TencentCloud
         # @type InputUrl: String
 
         attr_accessor :InputUrl
-        
+
         def initialize(inputurl=nil)
           @InputUrl = inputurl
         end
@@ -3473,7 +3473,7 @@ module TencentCloud
         # @type StreamRecordDuration: Integer
 
         attr_accessor :Url, :StreamRecordDuration
-        
+
         def initialize(url=nil, streamrecordduration=nil)
           @Url = url
           @StreamRecordDuration = streamrecordduration
@@ -3495,7 +3495,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :UserId, :Status
-        
+
         def initialize(userid=nil, status=nil)
           @UserId = userid
           @Status = status
@@ -3517,7 +3517,7 @@ module TencentCloud
         # @type ClassPath: String
 
         attr_accessor :MaterialIdSet, :Owner, :ClassPath
-        
+
         def initialize(materialidset=nil, owner=nil, classpath=nil)
           @MaterialIdSet = materialidset
           @Owner = owner
@@ -3567,7 +3567,7 @@ module TencentCloud
         # @type TagInfoSet: Array
 
         attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
-        
+
         def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
           @MaterialType = materialtype
@@ -3620,7 +3620,7 @@ module TencentCloud
         # @type MaterialIdSet: Array
 
         attr_accessor :MaterialIdSet
-        
+
         def initialize(materialidset=nil)
           @MaterialIdSet = materialidset
         end
@@ -3640,7 +3640,7 @@ module TencentCloud
         # @type ClassPath: String
 
         attr_accessor :MediaInfoSet, :Owner, :ClassPath
-        
+
         def initialize(mediainfoset=nil, owner=nil, classpath=nil)
           @MediaInfoSet = mediainfoset
           @Owner = owner
@@ -3688,7 +3688,7 @@ module TencentCloud
         # @type OtherMaterial: :class:`Tencentcloud::Cme.v20191029.models.OtherMaterial`
 
         attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial, :LinkMaterial, :VideoEditTemplateMaterial, :OtherMaterial
-        
+
         def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil, linkmaterial=nil, videoedittemplatematerial=nil, othermaterial=nil)
           @BasicInfo = basicinfo
           @VideoMaterial = videomaterial
@@ -3743,7 +3743,7 @@ module TencentCloud
         # @type TagSet: Array
 
         attr_accessor :MaterialId, :Name, :PresetTagIdSet, :TagSet
-        
+
         def initialize(materialid=nil, name=nil, presettagidset=nil, tagset=nil)
           @MaterialId = materialid
           @Name = name
@@ -3773,7 +3773,7 @@ module TencentCloud
         # @type DestinationClassPath: String
 
         attr_accessor :MaterialIdSet, :SourceOwner, :SourceClassPath, :DestinationOwner, :DestinationClassPath
-        
+
         def initialize(materialidset=nil, sourceowner=nil, sourceclasspath=nil, destinationowner=nil, destinationclasspath=nil)
           @MaterialIdSet = materialidset
           @SourceOwner = sourceowner
@@ -3806,7 +3806,7 @@ module TencentCloud
         # @type EditorUsableStatus: String
 
         attr_accessor :EditorUsableStatus
-        
+
         def initialize(editorusablestatus=nil)
           @EditorUsableStatus = editorusablestatus
         end
@@ -3827,7 +3827,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Type, :Id, :Name
-        
+
         def initialize(type=nil, id=nil, name=nil)
           @Type = type
           @Id = id
@@ -3851,7 +3851,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Id, :PushUrl, :Name
-        
+
         def initialize(id=nil, pushurl=nil, name=nil)
           @Id = id
           @PushUrl = pushurl
@@ -3875,7 +3875,7 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :DestinationInfo, :Reason
-        
+
         def initialize(destinationinfo=nil, reason=nil)
           @DestinationInfo = destinationinfo
           @Reason = reason
@@ -3903,7 +3903,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :Id, :PushUrl, :Status
-        
+
         def initialize(id=nil, pushurl=nil, status=nil)
           @Id = id
           @PushUrl = pushurl
@@ -3923,7 +3923,7 @@ module TencentCloud
         # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastVideoSetting`
 
         attr_accessor :VideoSetting
-        
+
         def initialize(videosetting=nil)
           @VideoSetting = videosetting
         end
@@ -3954,7 +3954,7 @@ module TencentCloud
         # @type LoopCount: Integer
 
         attr_accessor :Status, :CurrentSourceId, :CurrentSourcePosition, :CurrentSourceDuration, :DestinationStatusSet, :LoopCount
-        
+
         def initialize(status=nil, currentsourceid=nil, currentsourceposition=nil, currentsourceduration=nil, destinationstatusset=nil, loopcount=nil)
           @Status = status
           @CurrentSourceId = currentsourceid
@@ -3989,7 +3989,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :LoopCount, :EndTime
-        
+
         def initialize(loopcount=nil, endtime=nil)
           @LoopCount = loopcount
           @EndTime = endtime
@@ -4021,7 +4021,7 @@ module TencentCloud
         # @type StopTime: String
 
         attr_accessor :Status, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :StartTime, :StopTime
-        
+
         def initialize(status=nil, sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil, starttime=nil, stoptime=nil)
           @Status = status
           @SourceInfos = sourceinfos
@@ -4075,7 +4075,7 @@ module TencentCloud
         # @type PlaySetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastPlaySetting`
 
         attr_accessor :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting
-        
+
         def initialize(sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil)
           @SourceInfos = sourceinfos
           @DestinationInfos = destinationinfos
@@ -4126,7 +4126,7 @@ module TencentCloud
         # @type MaterialId: String
 
         attr_accessor :Id, :Type, :FileId, :MaterialId
-        
+
         def initialize(id=nil, type=nil, fileid=nil, materialid=nil)
           @Id = id
           @Type = type
@@ -4152,7 +4152,7 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :SourceInfo, :Reason
-        
+
         def initialize(sourceinfo=nil, reason=nil)
           @SourceInfo = sourceinfo
           @Reason = reason
@@ -4179,7 +4179,7 @@ module TencentCloud
         # @type FrameRate: Float
 
         attr_accessor :Width, :Height, :Bitrate, :FrameRate
-        
+
         def initialize(width=nil, height=nil, bitrate=nil, framerate=nil)
           @Width = width
           @Height = height
@@ -4209,7 +4209,7 @@ module TencentCloud
         # @type WebVttUrl: String
 
         attr_accessor :Height, :Width, :TotalCount, :ImageUrlSet, :WebVttUrl
-        
+
         def initialize(height=nil, width=nil, totalcount=nil, imageurlset=nil, webvtturl=nil)
           @Height = height
           @Width = width
@@ -4249,7 +4249,7 @@ module TencentCloud
         # @type AudioStreamInfoSet: Array
 
         attr_accessor :Size, :Container, :Bitrate, :Height, :Width, :Duration, :Rotate, :VideoStreamInfoSet, :AudioStreamInfoSet
-        
+
         def initialize(size=nil, container=nil, bitrate=nil, height=nil, width=nil, duration=nil, rotate=nil, videostreaminfoset=nil, audiostreaminfoset=nil)
           @Size = size
           @Container = container
@@ -4299,7 +4299,7 @@ module TencentCloud
         # @type Args: Array
 
         attr_accessor :Type, :Args
-        
+
         def initialize(type=nil, args=nil)
           @Type = type
           @Args = args
@@ -4333,7 +4333,7 @@ module TencentCloud
         # @type PreprocessOperation: :class:`Tencentcloud::Cme.v20191029.models.MediaPreprocessOperation`
 
         attr_accessor :MediaType, :MaterialId, :MediaUrl, :StartTimeOffset, :PreprocessOperation
-        
+
         def initialize(mediatype=nil, materialid=nil, mediaurl=nil, starttimeoffset=nil, preprocessoperation=nil)
           @MediaType = mediatype
           @MaterialId = materialid
@@ -4366,7 +4366,7 @@ module TencentCloud
         # @type TrackItems: Array
 
         attr_accessor :Type, :TrackItems
-        
+
         def initialize(type=nil, trackitems=nil)
           @Type = type
           @TrackItems = trackitems
@@ -4404,7 +4404,7 @@ module TencentCloud
         # @type TransitionItem: :class:`Tencentcloud::Cme.v20191029.models.MediaTransitionItem`
 
         attr_accessor :Type, :VideoItem, :AudioItem, :EmptyItem, :TransitionItem
-        
+
         def initialize(type=nil, videoitem=nil, audioitem=nil, emptyitem=nil, transitionitem=nil)
           @Type = type
           @VideoItem = videoitem
@@ -4442,7 +4442,7 @@ module TencentCloud
         # @type Duration: Float
 
         attr_accessor :TransitionId, :Duration
-        
+
         def initialize(transitionid=nil, duration=nil)
           @TransitionId = transitionid
           @Duration = duration
@@ -4470,7 +4470,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :MaterialId, :Owner, :Name, :ClassPath, :Operator
-        
+
         def initialize(platform=nil, materialid=nil, owner=nil, name=nil, classpath=nil, operator=nil)
           @Platform = platform
           @MaterialId = materialid
@@ -4499,7 +4499,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4528,7 +4528,7 @@ module TencentCloud
         # @type Mode: String
 
         attr_accessor :Platform, :ProjectId, :Name, :AspectRatio, :Owner, :Mode
-        
+
         def initialize(platform=nil, projectid=nil, name=nil, aspectratio=nil, owner=nil, mode=nil)
           @Platform = platform
           @ProjectId = projectid
@@ -4557,7 +4557,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4585,7 +4585,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :MemberId, :Remark, :Role, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, memberid=nil, remark=nil, role=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -4611,7 +4611,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4633,7 +4633,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :TeamId, :Name, :Operator
-        
+
         def initialize(platform=nil, teamid=nil, name=nil, operator=nil)
           @Platform = platform
           @TeamId = teamid
@@ -4655,7 +4655,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4689,7 +4689,7 @@ module TencentCloud
         # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSettingForUpdate`
 
         attr_accessor :Platform, :Id, :Name, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
-        
+
         def initialize(platform=nil, id=nil, name=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
           @Platform = platform
           @Id = id
@@ -4723,7 +4723,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4747,7 +4747,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :SourceClassPath, :DestinationClassPath, :Operator
-        
+
         def initialize(platform=nil, owner=nil, sourceclasspath=nil, destinationclasspath=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -4774,7 +4774,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4796,7 +4796,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :SourceResource, :DestinationResource, :Operator
-        
+
         def initialize(platform=nil, sourceresource=nil, destinationresource=nil, operator=nil)
           @Platform = platform
           @SourceResource = sourceresource
@@ -4824,7 +4824,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4842,7 +4842,7 @@ module TencentCloud
         # @type VodFileId: String
 
         attr_accessor :MaterialUrl, :VodFileId
-        
+
         def initialize(materialurl=nil, vodfileid=nil)
           @MaterialUrl = materialurl
           @VodFileId = vodfileid
@@ -4862,7 +4862,7 @@ module TencentCloud
         # @type EventContent: String
 
         attr_accessor :Platform, :EventContent
-        
+
         def initialize(platform=nil, eventcontent=nil)
           @Platform = platform
           @EventContent = eventcontent
@@ -4882,7 +4882,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :EventContent, :RequestId
-        
+
         def initialize(eventcontent=nil, requestid=nil)
           @EventContent = eventcontent
           @RequestId = requestid
@@ -4909,7 +4909,7 @@ module TencentCloud
         # @type Category: Integer
 
         attr_accessor :Title, :Description, :Tags, :Category
-        
+
         def initialize(title=nil, description=nil, tags=nil, category=nil)
           @Title = title
           @Description = description
@@ -4946,7 +4946,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :Platform, :Description, :VodSubAppId, :LicenseId, :Status, :CreateTime, :UpdateTime
-        
+
         def initialize(platform=nil, description=nil, vodsubappid=nil, licenseid=nil, status=nil, createtime=nil, updatetime=nil)
           @Platform = platform
           @Description = description
@@ -4978,7 +4978,7 @@ module TencentCloud
         # @type ParentTagId: String
 
         attr_accessor :Id, :Name, :ParentTagId
-        
+
         def initialize(id=nil, name=nil, parenttagid=nil)
           @Id = id
           @Name = name
@@ -5023,7 +5023,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ProjectId, :Name, :AspectRatio, :Category, :Owner, :CoverUrl, :StreamConnectProjectInfo, :MediaCastProjectInfo, :UpdateTime, :CreateTime
-        
+
         def initialize(projectid=nil, name=nil, aspectratio=nil, category=nil, owner=nil, coverurl=nil, streamconnectprojectinfo=nil, mediacastprojectinfo=nil, updatetime=nil, createtime=nil)
           @ProjectId = projectid
           @Name = name
@@ -5076,7 +5076,7 @@ module TencentCloud
         # @type DestinationInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastDestinationInterruptInfo`
 
         attr_accessor :ProjectId, :Status, :SourceInterruptInfo, :DestinationInterruptInfo
-        
+
         def initialize(projectid=nil, status=nil, sourceinterruptinfo=nil, destinationinterruptinfo=nil)
           @ProjectId = projectid
           @Status = status
@@ -5116,7 +5116,7 @@ module TencentCloud
         # @type OutputInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectOutputInterruptInfo`
 
         attr_accessor :ProjectId, :Status, :InputInterruptInfo, :OutputInterruptInfo
-        
+
         def initialize(projectid=nil, status=nil, inputinterruptinfo=nil, outputinterruptinfo=nil)
           @ProjectId = projectid
           @Status = status
@@ -5152,7 +5152,7 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :ProjectId, :Status
-        
+
         def initialize(projectid=nil, status=nil)
           @ProjectId = projectid
           @Status = status
@@ -5176,7 +5176,7 @@ module TencentCloud
         # @type PushStreamUrl: String
 
         attr_accessor :PullStreamUrl, :MaterialOwner, :MaterialClassPath, :PushStreamUrl
-        
+
         def initialize(pullstreamurl=nil, materialowner=nil, materialclasspath=nil, pushstreamurl=nil)
           @PullStreamUrl = pullstreamurl
           @MaterialOwner = materialowner
@@ -5205,7 +5205,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Type, :Id
-        
+
         def initialize(type=nil, id=nil)
           @Type = type
           @Id = id
@@ -5225,7 +5225,7 @@ module TencentCloud
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
 
         attr_accessor :Resource, :Owner
-        
+
         def initialize(resource=nil, owner=nil)
           @Resource = resource
           @Owner = owner
@@ -5263,7 +5263,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :Resources, :Authorizees, :Permissions, :Operator
-        
+
         def initialize(platform=nil, owner=nil, resources=nil, authorizees=nil, permissions=nil, operator=nil)
           @Platform = platform
           @Owner = owner
@@ -5306,7 +5306,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -5324,7 +5324,7 @@ module TencentCloud
         # @type PushUrl: String
 
         attr_accessor :ExpiredSecond, :PushUrl
-        
+
         def initialize(expiredsecond=nil, pushurl=nil)
           @ExpiredSecond = expiredsecond
           @PushUrl = pushurl
@@ -5368,7 +5368,7 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Platform, :SearchScopes, :MaterialTypes, :Text, :Resolution, :DurationRange, :CreateTimeRange, :Tags, :Sort, :Offset, :Limit, :Operator
-        
+
         def initialize(platform=nil, searchscopes=nil, materialtypes=nil, text=nil, resolution=nil, durationrange=nil, createtimerange=nil, tags=nil, sort=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @SearchScopes = searchscopes
@@ -5426,7 +5426,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :MaterialInfoSet, :RequestId
-        
+
         def initialize(totalcount=nil, materialinfoset=nil, requestid=nil)
           @TotalCount = totalcount
           @MaterialInfoSet = materialinfoset
@@ -5455,7 +5455,7 @@ module TencentCloud
         # @type ClassPath: String
 
         attr_accessor :Owner, :ClassPath
-        
+
         def initialize(owner=nil, classpath=nil)
           @Owner = owner
           @ClassPath = classpath
@@ -5489,7 +5489,7 @@ module TencentCloud
         # @type Duration: Float
 
         attr_accessor :Id, :Type, :DefaultMaterialId, :DefaultTextSlotInfo, :Duration
-        
+
         def initialize(id=nil, type=nil, defaultmaterialid=nil, defaulttextslotinfo=nil, duration=nil)
           @Id = id
           @Type = type
@@ -5527,7 +5527,7 @@ module TencentCloud
         # @type TextReplacementInfo: :class:`Tencentcloud::Cme.v20191029.models.TextReplacementInfo`
 
         attr_accessor :Id, :ReplacementType, :MediaReplacementInfo, :TextReplacementInfo
-        
+
         def initialize(id=nil, replacementtype=nil, mediareplacementinfo=nil, textreplacementinfo=nil)
           @Id = id
           @ReplacementType = replacementtype
@@ -5557,7 +5557,7 @@ module TencentCloud
         # @type Order: String
 
         attr_accessor :Field, :Order
-        
+
         def initialize(field=nil, order=nil)
           @Field = field
           @Order = order
@@ -5594,7 +5594,7 @@ module TencentCloud
         # @type SourceContext: String
 
         attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
-        
+
         def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid
           @MaterialId = materialid
@@ -5629,7 +5629,7 @@ module TencentCloud
         # @type EndPoint: String
 
         attr_accessor :EndPoint
-        
+
         def initialize(endpoint=nil)
           @EndPoint = endpoint
         end
@@ -5653,7 +5653,7 @@ module TencentCloud
         # @type PushUrl: String
 
         attr_accessor :Id, :Name, :Type, :PushUrl
-        
+
         def initialize(id=nil, name=nil, type=nil, pushurl=nil)
           @Id = id
           @Name = name
@@ -5680,7 +5680,7 @@ module TencentCloud
         # @type PushSwitch: String
 
         attr_accessor :StreamConnectOutput, :PushSwitch
-        
+
         def initialize(streamconnectoutput=nil, pushswitch=nil)
           @StreamConnectOutput = streamconnectoutput
           @PushSwitch = pushswitch
@@ -5705,7 +5705,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :Id, :Name, :Url
-        
+
         def initialize(id=nil, name=nil, url=nil)
           @Id = id
           @Name = name
@@ -5745,7 +5745,7 @@ module TencentCloud
         # @type OutputSet: Array
 
         attr_accessor :Status, :CurrentInputEndpoint, :CurrentStartTime, :CurrentStopTime, :LastStopTime, :MainInput, :BackupInput, :OutputSet
-        
+
         def initialize(status=nil, currentinputendpoint=nil, currentstarttime=nil, currentstoptime=nil, laststoptime=nil, maininput=nil, backupinput=nil, outputset=nil)
           @Status = status
           @CurrentInputEndpoint = currentinputendpoint
@@ -5792,7 +5792,7 @@ module TencentCloud
         # @type Outputs: Array
 
         attr_accessor :MainInput, :BackupInput, :Outputs
-        
+
         def initialize(maininput=nil, backupinput=nil, outputs=nil)
           @MainInput = maininput
           @BackupInput = backupinput
@@ -5837,7 +5837,7 @@ module TencentCloud
         # @type RtmpPushInputInfo: :class:`Tencentcloud::Cme.v20191029.models.RtmpPushInputInfo`
 
         attr_accessor :InputType, :VodPullInputInfo, :LivePullInputInfo, :RtmpPushInputInfo
-        
+
         def initialize(inputtype=nil, vodpullinputinfo=nil, livepullinputinfo=nil, rtmppushinputinfo=nil)
           @InputType = inputtype
           @VodPullInputInfo = vodpullinputinfo
@@ -5879,7 +5879,7 @@ module TencentCloud
         # @type BitRate: Integer
 
         attr_accessor :TemplateId, :Width, :Height, :Fps, :BitRate
-        
+
         def initialize(templateid=nil, width=nil, height=nil, fps=nil, bitrate=nil)
           @TemplateId = templateid
           @Width = width
@@ -5905,7 +5905,7 @@ module TencentCloud
         # @type PgmOutputConfig: :class:`Tencentcloud::Cme.v20191029.models.SwitcherPgmOutputConfig`
 
         attr_accessor :StopTime, :PgmOutputConfig
-        
+
         def initialize(stoptime=nil, pgmoutputconfig=nil)
           @StopTime = stoptime
           @PgmOutputConfig = pgmoutputconfig
@@ -5944,7 +5944,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :TaskId, :TaskType, :Status, :Progress, :ErrCode, :ErrMsg, :CreateTime
-        
+
         def initialize(taskid=nil, tasktype=nil, status=nil, progress=nil, errcode=nil, errmsg=nil, createtime=nil)
           @TaskId = taskid
           @TaskType = tasktype
@@ -5980,7 +5980,7 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :TeamId, :Name, :MemberCount, :CreateTime, :UpdateTime
-        
+
         def initialize(teamid=nil, name=nil, membercount=nil, createtime=nil, updatetime=nil)
           @TeamId = teamid
           @Name = name
@@ -6011,7 +6011,7 @@ module TencentCloud
         # @type Role: String
 
         attr_accessor :MemberId, :Remark, :Role
-        
+
         def initialize(memberid=nil, remark=nil, role=nil)
           @MemberId = memberid
           @Remark = remark
@@ -6031,7 +6031,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -6047,7 +6047,7 @@ module TencentCloud
         # @type Text: String
 
         attr_accessor :Text
-        
+
         def initialize(text=nil)
           @Text = text
         end
@@ -6071,7 +6071,7 @@ module TencentCloud
         # @type CosPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.CosPublishInputInfo`
 
         attr_accessor :ChannelMaterialId, :PenguinMediaPlatformPublishInfo, :WeiboPublishInfo, :KuaishouPublishInfo, :CosPublishInfo
-        
+
         def initialize(channelmaterialid=nil, penguinmediaplatformpublishinfo=nil, weibopublishinfo=nil, kuaishoupublishinfo=nil, cospublishinfo=nil)
           @ChannelMaterialId = channelmaterialid
           @PenguinMediaPlatformPublishInfo = penguinmediaplatformpublishinfo
@@ -6109,7 +6109,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :StartTime, :EndTime
-        
+
         def initialize(starttime=nil, endtime=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -6131,7 +6131,7 @@ module TencentCloud
         # @type ThirdPartyPublishInfos: Array
 
         attr_accessor :Name, :ClassId, :ThirdPartyPublishInfos
-        
+
         def initialize(name=nil, classid=nil, thirdpartypublishinfos=nil)
           @Name = name
           @ClassId = classid
@@ -6167,7 +6167,7 @@ module TencentCloud
         # @type InitTracks: Array
 
         attr_accessor :AspectRatio, :VideoEditTemplateId, :InitTracks
-        
+
         def initialize(aspectratio=nil, videoedittemplateid=nil, inittracks=nil)
           @AspectRatio = aspectratio
           @VideoEditTemplateId = videoedittemplateid
@@ -6203,7 +6203,7 @@ module TencentCloud
         # @type CoverURL: String
 
         attr_accessor :MaterialId, :VodFileId, :URL, :MetaData, :CoverURL
-        
+
         def initialize(materialid=nil, vodfileid=nil, url=nil, metadata=nil, coverurl=nil)
           @MaterialId = materialid
           @VodFileId = vodfileid
@@ -6234,7 +6234,7 @@ module TencentCloud
         # @type PreviewVideoUrl: String
 
         attr_accessor :AspectRatio, :SlotSet, :PreviewVideoUrl
-        
+
         def initialize(aspectratio=nil, slotset=nil, previewvideourl=nil)
           @AspectRatio = aspectratio
           @SlotSet = slotset
@@ -6281,7 +6281,7 @@ module TencentCloud
         # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSetting`
 
         attr_accessor :Id, :Name, :Container, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
-        
+
         def initialize(id=nil, name=nil, container=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
           @Id = id
           @Name = name
@@ -6329,7 +6329,7 @@ module TencentCloud
         # @type SampleRate: Integer
 
         attr_accessor :Codec, :Bitrate, :Channels, :SampleRate
-        
+
         def initialize(codec=nil, bitrate=nil, channels=nil, samplerate=nil)
           @Codec = codec
           @Bitrate = bitrate
@@ -6360,7 +6360,7 @@ module TencentCloud
         # @type SampleRate: Integer
 
         attr_accessor :Bitrate, :Channels, :SampleRate
-        
+
         def initialize(bitrate=nil, channels=nil, samplerate=nil)
           @Bitrate = bitrate
           @Channels = channels
@@ -6394,7 +6394,7 @@ module TencentCloud
         # @type Bitrate: Integer
 
         attr_accessor :Codec, :ShortEdge, :Bitrate
-        
+
         def initialize(codec=nil, shortedge=nil, bitrate=nil)
           @Codec = codec
           @ShortEdge = shortedge
@@ -6428,7 +6428,7 @@ module TencentCloud
         # @type FrameRate: Float
 
         attr_accessor :ShortEdge, :Bitrate, :FrameRate
-        
+
         def initialize(shortedge=nil, bitrate=nil, framerate=nil)
           @ShortEdge = shortedge
           @Bitrate = bitrate
@@ -6461,7 +6461,7 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Cme.v20191029.models.VideoEditProjectOutput`
 
         attr_accessor :TaskId, :Status, :ErrCode, :ErrMsg, :Output
-        
+
         def initialize(taskid=nil, status=nil, errcode=nil, errmsg=nil, output=nil)
           @TaskId = taskid
           @Status = status
@@ -6517,7 +6517,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Container, :ShortEdge, :VideoBitrate, :FrameRate, :RemoveVideo, :RemoveAudio, :StartTime, :EndTime
-        
+
         def initialize(container=nil, shortedge=nil, videobitrate=nil, framerate=nil, removevideo=nil, removeaudio=nil, starttime=nil, endtime=nil)
           @Container = container
           @ShortEdge = shortedge
@@ -6562,7 +6562,7 @@ module TencentCloud
         # @type VodFileId: String
 
         attr_accessor :MetaData, :ImageSpriteInfo, :MaterialUrl, :CoverUrl, :Resolution, :MaterialStatus, :OriginalUrl, :VodFileId
-        
+
         def initialize(metadata=nil, imagespriteinfo=nil, materialurl=nil, coverurl=nil, resolution=nil, materialstatus=nil, originalurl=nil, vodfileid=nil)
           @MetaData = metadata
           @ImageSpriteInfo = imagespriteinfo
@@ -6613,7 +6613,7 @@ module TencentCloud
         # @type ProcessModel: String
 
         attr_accessor :AspectRatio, :ProcessModel
-        
+
         def initialize(aspectratio=nil, processmodel=nil)
           @AspectRatio = aspectratio
           @ProcessModel = processmodel
@@ -6639,7 +6639,7 @@ module TencentCloud
         # @type Fps: Integer
 
         attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps
-        
+
         def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil)
           @Bitrate = bitrate
           @Height = height
@@ -6711,7 +6711,7 @@ module TencentCloud
         # @type Width: String
 
         attr_accessor :SourceType, :SourceMedia, :SourceMediaStartTime, :Duration, :XPos, :YPos, :CoordinateOrigin, :Height, :Width
-        
+
         def initialize(sourcetype=nil, sourcemedia=nil, sourcemediastarttime=nil, duration=nil, xpos=nil, ypos=nil, coordinateorigin=nil, height=nil, width=nil)
           @SourceType = sourcetype
           @SourceMedia = sourcemedia
@@ -6749,7 +6749,7 @@ module TencentCloud
         # @type LoopTimes: Integer
 
         attr_accessor :InputUrls, :LoopTimes
-        
+
         def initialize(inputurls=nil, looptimes=nil)
           @InputUrls = inputurls
           @LoopTimes = looptimes
@@ -6769,7 +6769,7 @@ module TencentCloud
         # @type TimeOffset: Float
 
         attr_accessor :Url, :TimeOffset
-        
+
         def initialize(url=nil, timeoffset=nil)
           @Url = url
           @TimeOffset = timeoffset
@@ -6795,7 +6795,7 @@ module TencentCloud
         # @type Visible: String
 
         attr_accessor :Title, :Description, :Visible
-        
+
         def initialize(title=nil, description=nil, visible=nil)
           @Title = title
           @Description = description

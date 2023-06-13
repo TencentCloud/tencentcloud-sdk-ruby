@@ -39,7 +39,7 @@ module TencentCloud
         # @type Input: String
 
         attr_accessor :Definition, :FlowServiceName, :IsNewRole, :Type, :FlowServiceChineseName, :RoleResource, :Description, :EnableCLS, :Input
-        
+
         def initialize(definition=nil, flowservicename=nil, isnewrole=nil, type=nil, flowservicechinesename=nil, roleresource=nil, description=nil, enablecls=nil, input=nil)
           @Definition = definition
           @FlowServiceName = flowservicename
@@ -75,7 +75,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowServiceResource, :CreateDate, :RequestId
-        
+
         def initialize(flowserviceresource=nil, createdate=nil, requestid=nil)
           @FlowServiceResource = flowserviceresource
           @CreateDate = createdate
@@ -95,7 +95,7 @@ module TencentCloud
         # @type ExecutionResourceName: String
 
         attr_accessor :ExecutionResourceName
-        
+
         def initialize(executionresourcename=nil)
           @ExecutionResourceName = executionresourcename
         end
@@ -113,7 +113,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Events, :RequestId
-        
+
         def initialize(events=nil, requestid=nil)
           @Events = events
           @RequestId = requestid
@@ -138,7 +138,7 @@ module TencentCloud
         # @type ExecutionResourceName: String
 
         attr_accessor :ExecutionResourceName
-        
+
         def initialize(executionresourcename=nil)
           @ExecutionResourceName = executionresourcename
         end
@@ -174,7 +174,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExecutionResourceName, :Name, :StartDate, :StopDate, :StateMachineResourceName, :Status, :Input, :Output, :ExecutionDefinition, :RequestId
-        
+
         def initialize(executionresourcename=nil, name=nil, startdate=nil, stopdate=nil, statemachineresourcename=nil, status=nil, input=nil, output=nil, executiondefinition=nil, requestid=nil)
           @ExecutionResourceName = executionresourcename
           @Name = name
@@ -216,7 +216,7 @@ module TencentCloud
         # @type FilterExecutionResourceName: String
 
         attr_accessor :StateMachineResourceName, :PageSize, :PageIndex, :FilterExecutionStatus, :FilterExecutionResourceName
-        
+
         def initialize(statemachineresourcename=nil, pagesize=nil, pageindex=nil, filterexecutionstatus=nil, filterexecutionresourcename=nil)
           @StateMachineResourceName = statemachineresourcename
           @PageSize = pagesize
@@ -240,7 +240,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -256,7 +256,7 @@ module TencentCloud
         # @type FlowServiceResource: String
 
         attr_accessor :FlowServiceResource
-        
+
         def initialize(flowserviceresource=nil)
           @FlowServiceResource = flowserviceresource
         end
@@ -301,7 +301,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowServiceName, :Status, :Definition, :RoleResource, :Type, :CreateDate, :Description, :FlowServiceChineseName, :EnableCLS, :CLSUrl, :FlowInput, :RequestId
-        
+
         def initialize(flowservicename=nil, status=nil, definition=nil, roleresource=nil, type=nil, createdate=nil, description=nil, flowservicechinesename=nil, enablecls=nil, clsurl=nil, flowinput=nil, requestid=nil)
           @FlowServiceName = flowservicename
           @Status = status
@@ -343,7 +343,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
-        
+
         def initialize(offset=nil, limit=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -374,7 +374,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowServiceSet, :TotalCount, :RequestId
-        
+
         def initialize(flowserviceset=nil, totalcount=nil, requestid=nil)
           @FlowServiceSet = flowserviceset
           @TotalCount = totalcount
@@ -416,7 +416,7 @@ module TencentCloud
         # @type Exception: String
 
         attr_accessor :ExecutionResourceName, :EventId, :EventCategory, :StepName, :ResourceName, :Timestamp, :Content, :Exception
-        
+
         def initialize(executionresourcename=nil, eventid=nil, eventcategory=nil, stepname=nil, resourcename=nil, timestamp=nil, content=nil, exception=nil)
           @ExecutionResourceName = executionresourcename
           @EventId = eventid
@@ -448,7 +448,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Values
-        
+
         def initialize(name=nil, values=nil)
           @Name = name
           @Values = values
@@ -482,7 +482,7 @@ module TencentCloud
         # @type EnableCLS: Boolean
 
         attr_accessor :FlowServiceResource, :Definition, :FlowServiceName, :FlowServiceChineseName, :IsNewRole, :Type, :RoleResource, :Description, :EnableCLS
-        
+
         def initialize(flowserviceresource=nil, definition=nil, flowservicename=nil, flowservicechinesename=nil, isnewrole=nil, type=nil, roleresource=nil, description=nil, enablecls=nil)
           @FlowServiceResource = flowserviceresource
           @Definition = definition
@@ -518,7 +518,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FlowServiceResource, :UpdateDate, :RequestId
-        
+
         def initialize(flowserviceresource=nil, updatedate=nil, requestid=nil)
           @FlowServiceResource = flowserviceresource
           @UpdateDate = updatedate
@@ -542,7 +542,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :StateMachineResourceName, :Input, :Name
-        
+
         def initialize(statemachineresourcename=nil, input=nil, name=nil)
           @StateMachineResourceName = statemachineresourcename
           @Input = input
@@ -566,7 +566,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExecutionResourceName, :StartDate, :RequestId
-        
+
         def initialize(executionresourcename=nil, startdate=nil, requestid=nil)
           @ExecutionResourceName = executionresourcename
           @StartDate = startdate
@@ -610,7 +610,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :FlowServiceResource, :Type, :FlowServiceName, :FlowServiceChineseName, :CreateDate, :ModifyDate, :Status, :Creator, :Modifier, :FlowServiceId, :TemplateId, :Description
-        
+
         def initialize(flowserviceresource=nil, type=nil, flowservicename=nil, flowservicechinesename=nil, createdate=nil, modifydate=nil, status=nil, creator=nil, modifier=nil, flowserviceid=nil, templateid=nil, description=nil)
           @FlowServiceResource = flowserviceresource
           @Type = type
@@ -648,7 +648,7 @@ module TencentCloud
         # @type ExecutionQrn: String
 
         attr_accessor :ExecutionQrn
-        
+
         def initialize(executionqrn=nil)
           @ExecutionQrn = executionqrn
         end
@@ -664,7 +664,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

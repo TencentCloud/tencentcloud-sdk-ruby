@@ -27,7 +27,7 @@ module TencentCloud
         # @type BlackList: Array
 
         attr_accessor :Module, :Operation, :BlackList
-        
+
         def initialize(_module=nil, operation=nil, blacklist=nil)
           @Module = _module
           @Operation = operation
@@ -54,7 +54,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -76,7 +76,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :BlackList, :InstId
-        
+
         def initialize(_module=nil, operation=nil, blacklist=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -105,7 +105,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -133,7 +133,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Module, :Operation, :InstId, :ProductId, :CaseId, :CallbackUrl, :Data
-        
+
         def initialize(_module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, callbackurl=nil, data=nil)
           @Module = _module
           @Operation = operation
@@ -163,7 +163,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestDate, :RequestId
-        
+
         def initialize(requestdate=nil, requestid=nil)
           @RequestDate = requestdate
           @RequestId = requestid
@@ -197,7 +197,7 @@ module TencentCloud
         # @type BlackStatus: String
 
         attr_accessor :BlackType, :OperType, :BlackValue, :BlackDescription, :BlackValidDate, :BlackAddDate, :BlackStatus
-        
+
         def initialize(blacktype=nil, opertype=nil, blackvalue=nil, blackdescription=nil, blackvaliddate=nil, blackadddate=nil, blackstatus=nil)
           @BlackType = blacktype
           @OperType = opertype
@@ -227,7 +227,7 @@ module TencentCloud
         # @type CosUrl: String
 
         attr_accessor :FileType, :CosUrl
-        
+
         def initialize(filetype=nil, cosurl=nil)
           @FileType = filetype
           @CosUrl = cosurl
@@ -249,7 +249,7 @@ module TencentCloud
         # @type PhonePoolList: Array
 
         attr_accessor :BotFlowId, :BotFlowName, :PhonePoolList
-        
+
         def initialize(botflowid=nil, botflowname=nil, phonepoollist=nil)
           @BotFlowId = botflowid
           @BotFlowName = botflowname
@@ -280,7 +280,7 @@ module TencentCloud
         # @type BotStatus: String
 
         attr_accessor :BotId, :BotName, :BotStatus
-        
+
         def initialize(botid=nil, botname=nil, botstatus=nil)
           @BotId = botid
           @BotName = botname
@@ -311,7 +311,7 @@ module TencentCloud
         # @type CallId: String
 
         attr_accessor :BizDate, :Status, :TotalCount, :FileName, :FileType, :CallId
-        
+
         def initialize(bizdate=nil, status=nil, totalcount=nil, filename=nil, filetype=nil, callid=nil)
           @BizDate = bizdate
           @Status = status
@@ -349,7 +349,7 @@ module TencentCloud
         # @type Sunday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
 
         attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
-        
+
         def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil)
           @Monday = monday
           @Tuesday = tuesday
@@ -400,7 +400,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :StartTime, :EndTime
-        
+
         def initialize(starttime=nil, endtime=nil)
           @StartTime = starttime
           @EndTime = endtime
@@ -431,7 +431,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :Status, :CallId, :BizDate, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, status=nil, callid=nil, bizdate=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -459,7 +459,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -484,7 +484,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :Status, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, status=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -508,7 +508,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -558,7 +558,7 @@ module TencentCloud
         # @type CallEndDate: String
 
         attr_accessor :Module, :Operation, :BotName, :FlowId, :BanCall, :PhoneCollection, :CallTimeCollection, :StartTimeBan, :EndTimeBan, :CodeType, :CodeCollection, :CallCount, :CallInterval, :SmsSignId, :SmsTemplateId, :CallType, :CallStartDate, :CallEndDate
-        
+
         def initialize(_module=nil, operation=nil, botname=nil, flowid=nil, bancall=nil, phonecollection=nil, calltimecollection=nil, starttimeban=nil, endtimeban=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil, calltype=nil, callstartdate=nil, callenddate=nil)
           @Module = _module
           @Operation = operation
@@ -613,7 +613,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BotId, :RequestId
-        
+
         def initialize(botid=nil, requestid=nil)
           @BotId = botid
           @RequestId = requestid
@@ -633,7 +633,7 @@ module TencentCloud
         # @type Operation: String
 
         attr_accessor :Module, :Operation
-        
+
         def initialize(_module=nil, operation=nil)
           @Module = _module
           @Operation = operation
@@ -660,7 +660,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BotFlowList, :SmsSignList, :SmsTemplateList, :RequestId
-        
+
         def initialize(botflowlist=nil, smssignlist=nil, smstemplatelist=nil, requestid=nil)
           @BotFlowList = botflowlist
           @SmsSignList = smssignlist
@@ -713,7 +713,7 @@ module TencentCloud
         # @type RequestDate: String
 
         attr_accessor :Module, :Operation, :InstId, :ProductId, :CaseId, :RequestDate
-        
+
         def initialize(_module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, requestdate=nil)
           @Module = _module
           @Operation = operation
@@ -754,7 +754,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ResultCode, :ClientCode, :RingStartTime, :RingDuration, :AnswerDuration, :ContextValue, :RequestId
-        
+
         def initialize(resultcode=nil, clientcode=nil, ringstarttime=nil, ringduration=nil, answerduration=nil, contextvalue=nil, requestid=nil)
           @ResultCode = resultcode
           @ClientCode = clientcode
@@ -790,7 +790,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :FileType, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, filetype=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -816,7 +816,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CosUrl, :RequestId
-        
+
         def initialize(cosurl=nil, requestid=nil)
           @CosUrl = cosurl
           @RequestId = requestid
@@ -852,7 +852,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :ProductId, :AccountNum, :CalledPhone, :StartBizDate, :EndBizDate, :Offset, :Limit, :InstId
-        
+
         def initialize(_module=nil, operation=nil, productid=nil, accountnum=nil, calledphone=nil, startbizdate=nil, endbizdate=nil, offset=nil, limit=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -891,7 +891,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecordList, :TotalCount, :RequestId
-        
+
         def initialize(recordlist=nil, totalcount=nil, requestid=nil)
           @RecordList = recordlist
           @TotalCount = totalcount
@@ -924,7 +924,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :TaskId, :InstId
-        
+
         def initialize(_module=nil, operation=nil, taskid=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -953,7 +953,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskResult, :TaskType, :TaskFileUrl, :RequestId
-        
+
         def initialize(taskresult=nil, tasktype=nil, taskfileurl=nil, requestid=nil)
           @TaskResult = taskresult
           @TaskType = tasktype
@@ -979,7 +979,7 @@ module TencentCloud
         # @type BizDate: String
 
         attr_accessor :Module, :Operation, :BizDate
-        
+
         def initialize(_module=nil, operation=nil, bizdate=nil)
           @Module = _module
           @Operation = operation
@@ -1003,7 +1003,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecordCosUrl, :TextCosUrl, :RequestId
-        
+
         def initialize(recordcosurl=nil, textcosurl=nil, requestid=nil)
           @RecordCosUrl = recordcosurl
           @TextCosUrl = textcosurl
@@ -1029,7 +1029,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :ReportDate, :InstId
-        
+
         def initialize(_module=nil, operation=nil, reportdate=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -1053,7 +1053,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TextReportUrl, :RequestId
-        
+
         def initialize(textreporturl=nil, requestid=nil)
           @TextReportUrl = textreporturl
           @RequestId = requestid
@@ -1077,7 +1077,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :BizDate, :InstId
-        
+
         def initialize(_module=nil, operation=nil, bizdate=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -1101,7 +1101,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecordListUrl, :RequestId
-        
+
         def initialize(recordlisturl=nil, requestid=nil)
           @RecordListUrl = recordlisturl
           @RequestId = requestid
@@ -1125,7 +1125,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :ReportDate, :InstId
-        
+
         def initialize(_module=nil, operation=nil, reportdate=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -1165,7 +1165,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DailyReportUrl, :ResultReportUrl, :DetailReportUrl, :CallbackDailyReportUrl, :CallbackResultReportUrl, :CallbackDetailReportUrl, :RequestId
-        
+
         def initialize(dailyreporturl=nil, resultreporturl=nil, detailreporturl=nil, callbackdailyreporturl=nil, callbackresultreporturl=nil, callbackdetailreporturl=nil, requestid=nil)
           @DailyReportUrl = dailyreporturl
           @ResultReportUrl = resultreporturl
@@ -1201,7 +1201,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :BizDate, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -1227,7 +1227,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type PoolName: String
 
         attr_accessor :PoolId, :PoolName
-        
+
         def initialize(poolid=nil, poolname=nil)
           @PoolId = poolid
           @PoolName = poolname
@@ -1283,7 +1283,7 @@ module TencentCloud
         # @type SceneType: String
 
         attr_accessor :ProductId, :ProductName, :ProductCode, :ProductStatus, :SceneType
-        
+
         def initialize(productid=nil, productname=nil, productcode=nil, productstatus=nil, scenetype=nil)
           @ProductId = productid
           @ProductName = productname
@@ -1319,7 +1319,7 @@ module TencentCloud
         # @type BlackValue: String
 
         attr_accessor :Module, :Operation, :Offset, :Limit, :StartBizDate, :EndBizDate, :BlackValue
-        
+
         def initialize(_module=nil, operation=nil, offset=nil, limit=nil, startbizdate=nil, endbizdate=nil, blackvalue=nil)
           @Module = _module
           @Operation = operation
@@ -1352,7 +1352,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1381,7 +1381,7 @@ module TencentCloud
         # @type Operation: String
 
         attr_accessor :Module, :Operation
-        
+
         def initialize(_module=nil, operation=nil)
           @Module = _module
           @Operation = operation
@@ -1401,7 +1401,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BotList, :RequestId
-        
+
         def initialize(botlist=nil, requestid=nil)
           @BotList = botlist
           @RequestId = requestid
@@ -1436,7 +1436,7 @@ module TencentCloud
         # @type FileName: String
 
         attr_accessor :Module, :Operation, :BizDate, :BotId, :BotName, :FileName
-        
+
         def initialize(_module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil, filename=nil)
           @Module = _module
           @Operation = operation
@@ -1465,7 +1465,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CallList, :RequestId
-        
+
         def initialize(calllist=nil, requestid=nil)
           @CallList = calllist
           @RequestId = requestid
@@ -1500,7 +1500,7 @@ module TencentCloud
         # @type Data: String
 
         attr_accessor :Module, :Operation, :ProductId, :InstanceId, :QueryModel, :Data
-        
+
         def initialize(_module=nil, operation=nil, productid=nil, instanceid=nil, querymodel=nil, data=nil)
           @Module = _module
           @Operation = operation
@@ -1532,7 +1532,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
-        
+
         def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
@@ -1556,7 +1556,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Module, :Operation, :InstanceId
-        
+
         def initialize(_module=nil, operation=nil, instanceid=nil)
           @Module = _module
           @Operation = operation
@@ -1578,7 +1578,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductList, :RequestId
-        
+
         def initialize(productlist=nil, requestid=nil)
           @ProductList = productlist
           @RequestId = requestid
@@ -1619,7 +1619,7 @@ module TencentCloud
         # @type EndBizDate: String
 
         attr_accessor :Module, :Operation, :Offset, :Limit, :BotId, :BotName, :CalledPhone, :StartBizDate, :EndBizDate
-        
+
         def initialize(_module=nil, operation=nil, offset=nil, limit=nil, botid=nil, botname=nil, calledphone=nil, startbizdate=nil, endbizdate=nil)
           @Module = _module
           @Operation = operation
@@ -1655,7 +1655,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RecordList, :TotalCount, :RequestId
-        
+
         def initialize(recordlist=nil, totalcount=nil, requestid=nil)
           @RecordList = recordlist
           @TotalCount = totalcount
@@ -1698,7 +1698,7 @@ module TencentCloud
         # @type CosFileName: String
 
         attr_accessor :BotId, :BotName, :BizDate, :CalledPhone, :CallStartTime, :Duration, :CosUrl, :DialogueLog, :CosFileName
-        
+
         def initialize(botid=nil, botname=nil, bizdate=nil, calledphone=nil, callstarttime=nil, duration=nil, cosurl=nil, dialoguelog=nil, cosfilename=nil)
           @BotId = botid
           @BotName = botname
@@ -1738,7 +1738,7 @@ module TencentCloud
         # @type BlackValidDate: String
 
         attr_accessor :BlackType, :OperationType, :BlackValue, :BlackDescription, :BlackValidDate
-        
+
         def initialize(blacktype=nil, operationtype=nil, blackvalue=nil, blackdescription=nil, blackvaliddate=nil)
           @BlackType = blacktype
           @OperationType = operationtype
@@ -1778,7 +1778,7 @@ module TencentCloud
         # @type RecordCosUrl: String
 
         attr_accessor :AccountNum, :BizDate, :CallStartTime, :CallerPhone, :Direction, :Duration, :ProductId, :RecordCosUrl
-        
+
         def initialize(accountnum=nil, bizdate=nil, callstarttime=nil, callerphone=nil, direction=nil, duration=nil, productid=nil, recordcosurl=nil)
           @AccountNum = accountnum
           @BizDate = bizdate
@@ -1810,7 +1810,7 @@ module TencentCloud
         # @type SignName: String
 
         attr_accessor :SignId, :SignName
-        
+
         def initialize(signid=nil, signname=nil)
           @SignId = signid
           @SignName = signname
@@ -1830,7 +1830,7 @@ module TencentCloud
         # @type TemplateName: String
 
         attr_accessor :TemplateId, :TemplateName
-        
+
         def initialize(templateid=nil, templatename=nil)
           @TemplateId = templateid
           @TemplateName = templatename
@@ -1876,7 +1876,7 @@ module TencentCloud
         # @type SmsTemplateId: String
 
         attr_accessor :Module, :Operation, :BotName, :BotId, :CallTimeCollection, :BanCall, :StartTimeBan, :EndTimeBan, :PhoneCollection, :CodeType, :CodeCollection, :CallCount, :CallInterval, :SmsSignId, :SmsTemplateId
-        
+
         def initialize(_module=nil, operation=nil, botname=nil, botid=nil, calltimecollection=nil, bancall=nil, starttimeban=nil, endtimeban=nil, phonecollection=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil)
           @Module = _module
           @Operation = operation
@@ -1923,7 +1923,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1947,7 +1947,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :Data, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, data=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -1971,7 +1971,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1999,7 +1999,7 @@ module TencentCloud
         # @type BotName: String
 
         attr_accessor :Module, :Operation, :FileType, :FileUrl, :FileName, :BotId, :BotName
-        
+
         def initialize(_module=nil, operation=nil, filetype=nil, fileurl=nil, filename=nil, botid=nil, botname=nil)
           @Module = _module
           @Operation = operation
@@ -2027,7 +2027,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2055,7 +2055,7 @@ module TencentCloud
         # @type InstId: String
 
         attr_accessor :Module, :Operation, :FileName, :UploadModel, :File, :FileUrl, :InstId
-        
+
         def initialize(_module=nil, operation=nil, filename=nil, uploadmodel=nil, file=nil, fileurl=nil, instid=nil)
           @Module = _module
           @Operation = operation
@@ -2085,7 +2085,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DataResId, :RequestId
-        
+
         def initialize(dataresid=nil, requestid=nil)
           @DataResId = dataresid
           @RequestId = requestid
@@ -2111,7 +2111,7 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Module, :Operation, :Data, :UploadModel, :InstanceId
-        
+
         def initialize(_module=nil, operation=nil, data=nil, uploadmodel=nil, instanceid=nil)
           @Module = _module
           @Operation = operation
@@ -2138,7 +2138,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -2164,7 +2164,7 @@ module TencentCloud
         # @type FileDate: String
 
         attr_accessor :Module, :Operation, :FileUrl, :FileName, :FileDate
-        
+
         def initialize(_module=nil, operation=nil, fileurl=nil, filename=nil, filedate=nil)
           @Module = _module
           @Operation = operation
@@ -2190,7 +2190,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid

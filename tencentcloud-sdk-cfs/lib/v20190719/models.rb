@@ -53,7 +53,7 @@ module TencentCloud
         # @type IntervalDays: Integer
 
         attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays
-        
+
         def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
@@ -106,7 +106,7 @@ module TencentCloud
         # @type Protocol: String
 
         attr_accessor :SaleStatus, :Protocol
-        
+
         def initialize(salestatus=nil, protocol=nil)
           @SaleStatus = salestatus
           @Protocol = protocol
@@ -132,7 +132,7 @@ module TencentCloud
         # @type RegionCnName: String
 
         attr_accessor :Region, :RegionName, :RegionStatus, :Zones, :RegionCnName
-        
+
         def initialize(region=nil, regionname=nil, regionstatus=nil, zones=nil, regioncnname=nil)
           @Region = region
           @RegionName = regionname
@@ -167,7 +167,7 @@ module TencentCloud
         # @type Prepayment: Boolean
 
         attr_accessor :Protocols, :Type, :Prepayment
-        
+
         def initialize(protocols=nil, type=nil, prepayment=nil)
           @Protocols = protocols
           @Type = type
@@ -202,7 +202,7 @@ module TencentCloud
         # @type ZoneName: String
 
         attr_accessor :Zone, :ZoneId, :ZoneCnName, :Types, :ZoneName
-        
+
         def initialize(zone=nil, zoneid=nil, zonecnname=nil, types=nil, zonename=nil)
           @Zone = zone
           @ZoneId = zoneid
@@ -235,7 +235,7 @@ module TencentCloud
         # @type FileSystemIds: String
 
         attr_accessor :AutoSnapshotPolicyId, :FileSystemIds
-        
+
         def initialize(autosnapshotpolicyid=nil, filesystemids=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @FileSystemIds = filesystemids
@@ -255,7 +255,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoSnapshotPolicyId, :RequestId
-        
+
         def initialize(autosnapshotpolicyid=nil, requestid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @RequestId = requestid
@@ -276,7 +276,7 @@ module TencentCloud
         # @type Region: String
 
         attr_accessor :Name, :Region
-        
+
         def initialize(name=nil, region=nil)
           @Name = name
           @Region = region
@@ -304,7 +304,7 @@ module TencentCloud
         # @type IntervalDays: Integer
 
         attr_accessor :Hour, :PolicyName, :DayOfWeek, :AliveDays, :DayOfMonth, :IntervalDays
-        
+
         def initialize(hour=nil, policyname=nil, dayofweek=nil, alivedays=nil, dayofmonth=nil, intervaldays=nil)
           @Hour = hour
           @PolicyName = policyname
@@ -332,7 +332,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoSnapshotPolicyId, :RequestId
-        
+
         def initialize(autosnapshotpolicyid=nil, requestid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @RequestId = requestid
@@ -376,7 +376,7 @@ module TencentCloud
         # @type Capacity: Integer
 
         attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity
-        
+
         def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil)
           @Zone = zone
           @NetInterface = netinterface
@@ -441,7 +441,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :ZoneId, :FsName, :Encrypted, :RequestId
-        
+
         def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, zoneid=nil, fsname=nil, encrypted=nil, requestid=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
@@ -475,7 +475,7 @@ module TencentCloud
         # @type DescInfo: String
 
         attr_accessor :Name, :DescInfo
-        
+
         def initialize(name=nil, descinfo=nil)
           @Name = name
           @DescInfo = descinfo
@@ -503,7 +503,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupId, :Name, :DescInfo, :BindCfsNum, :CDate, :RequestId
-        
+
         def initialize(pgroupid=nil, name=nil, descinfo=nil, bindcfsnum=nil, cdate=nil, requestid=nil)
           @PGroupId = pgroupid
           @Name = name
@@ -537,7 +537,7 @@ module TencentCloud
         # @type UserPermission: String
 
         attr_accessor :PGroupId, :AuthClientIp, :Priority, :RWPermission, :UserPermission
-        
+
         def initialize(pgroupid=nil, authclientip=nil, priority=nil, rwpermission=nil, userpermission=nil)
           @PGroupId = pgroupid
           @AuthClientIp = authclientip
@@ -573,7 +573,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleId, :PGroupId, :AuthClientIp, :RWPermission, :UserPermission, :Priority, :RequestId
-        
+
         def initialize(ruleid=nil, pgroupid=nil, authclientip=nil, rwpermission=nil, userpermission=nil, priority=nil, requestid=nil)
           @RuleId = ruleid
           @PGroupId = pgroupid
@@ -605,7 +605,7 @@ module TencentCloud
         # @type ResourceTags: Array
 
         attr_accessor :FileSystemId, :SnapshotName, :ResourceTags
-        
+
         def initialize(filesystemid=nil, snapshotname=nil, resourcetags=nil)
           @FileSystemId = filesystemid
           @SnapshotName = snapshotname
@@ -634,7 +634,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SnapshotId, :RequestId
-        
+
         def initialize(snapshotid=nil, requestid=nil)
           @SnapshotId = snapshotid
           @RequestId = requestid
@@ -680,7 +680,7 @@ module TencentCloud
         # @type BucketPath: String
 
         attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath
-        
+
         def initialize(taskname=nil, migrationtype=nil, migrationmode=nil, srcsecretid=nil, srcsecretkey=nil, filesystemid=nil, fspath=nil, covertype=nil, srcservice=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, bucketpath=nil)
           @TaskName = taskname
           @MigrationType = migrationtype
@@ -726,7 +726,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -744,7 +744,7 @@ module TencentCloud
         # @type AutoSnapshotPolicyId: String
 
         attr_accessor :AutoSnapshotPolicyId
-        
+
         def initialize(autosnapshotpolicyid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
         end
@@ -762,7 +762,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoSnapshotPolicyId, :RequestId
-        
+
         def initialize(autosnapshotpolicyid=nil, requestid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @RequestId = requestid
@@ -780,7 +780,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -796,7 +796,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -812,7 +812,7 @@ module TencentCloud
         # @type PGroupId: String
 
         attr_accessor :PGroupId
-        
+
         def initialize(pgroupid=nil)
           @PGroupId = pgroupid
         end
@@ -832,7 +832,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupId, :AppId, :RequestId
-        
+
         def initialize(pgroupid=nil, appid=nil, requestid=nil)
           @PGroupId = pgroupid
           @AppId = appid
@@ -854,7 +854,7 @@ module TencentCloud
         # @type RuleId: String
 
         attr_accessor :PGroupId, :RuleId
-        
+
         def initialize(pgroupid=nil, ruleid=nil)
           @PGroupId = pgroupid
           @RuleId = ruleid
@@ -876,7 +876,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleId, :PGroupId, :RequestId
-        
+
         def initialize(ruleid=nil, pgroupid=nil, requestid=nil)
           @RuleId = ruleid
           @PGroupId = pgroupid
@@ -898,7 +898,7 @@ module TencentCloud
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotId, :SnapshotIds
-        
+
         def initialize(snapshotid=nil, snapshotids=nil)
           @SnapshotId = snapshotid
           @SnapshotIds = snapshotids
@@ -918,7 +918,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SnapshotId, :RequestId
-        
+
         def initialize(snapshotid=nil, requestid=nil)
           @SnapshotId = snapshotid
           @RequestId = requestid
@@ -936,7 +936,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -952,7 +952,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -970,7 +970,7 @@ module TencentCloud
         # @type MountTargetId: String
 
         attr_accessor :FileSystemId, :MountTargetId
-        
+
         def initialize(filesystemid=nil, mounttargetid=nil)
           @FileSystemId = filesystemid
           @MountTargetId = mounttargetid
@@ -988,7 +988,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1008,7 +1008,7 @@ module TencentCloud
         # @type UserId: String
 
         attr_accessor :FileSystemId, :UserType, :UserId
-        
+
         def initialize(filesystemid=nil, usertype=nil, userid=nil)
           @FileSystemId = filesystemid
           @UserType = usertype
@@ -1028,7 +1028,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1054,7 +1054,7 @@ module TencentCloud
         # @type OrderField: String
 
         attr_accessor :AutoSnapshotPolicyId, :Offset, :Limit, :Filters, :Order, :OrderField
-        
+
         def initialize(autosnapshotpolicyid=nil, offset=nil, limit=nil, filters=nil, order=nil, orderfield=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @Offset = offset
@@ -1091,7 +1091,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :AutoSnapshotPolicies, :RequestId
-        
+
         def initialize(totalcount=nil, autosnapshotpolicies=nil, requestid=nil)
           @TotalCount = totalcount
           @AutoSnapshotPolicies = autosnapshotpolicies
@@ -1115,7 +1115,7 @@ module TencentCloud
       # DescribeAvailableZoneInfo请求参数结构体
       class DescribeAvailableZoneInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1131,7 +1131,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegionZones, :RequestId
-        
+
         def initialize(regionzones=nil, requestid=nil)
           @RegionZones = regionzones
           @RequestId = requestid
@@ -1160,7 +1160,7 @@ module TencentCloud
         # @type SrcSecretKey: String
 
         attr_accessor :SrcService, :SrcSecretId, :SrcSecretKey
-        
+
         def initialize(srcservice=nil, srcsecretid=nil, srcsecretkey=nil)
           @SrcService = srcservice
           @SrcSecretId = srcsecretid
@@ -1184,7 +1184,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :BucketList, :RequestId
-        
+
         def initialize(totalcount=nil, bucketlist=nil, requestid=nil)
           @TotalCount = totalcount
           @BucketList = bucketlist
@@ -1211,7 +1211,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -1229,7 +1229,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClientList, :RequestId
-        
+
         def initialize(clientlist=nil, requestid=nil)
           @ClientList = clientlist
           @RequestId = requestid
@@ -1258,7 +1258,7 @@ module TencentCloud
         # @type SubnetId: String
 
         attr_accessor :FileSystemId, :VpcId, :SubnetId
-        
+
         def initialize(filesystemid=nil, vpcid=nil, subnetid=nil)
           @FileSystemId = filesystemid
           @VpcId = vpcid
@@ -1282,7 +1282,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystems, :TotalCount, :RequestId
-        
+
         def initialize(filesystems=nil, totalcount=nil, requestid=nil)
           @FileSystems = filesystems
           @TotalCount = totalcount
@@ -1306,7 +1306,7 @@ module TencentCloud
       # DescribeCfsPGroups请求参数结构体
       class DescribeCfsPGroupsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1322,7 +1322,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupList, :RequestId
-        
+
         def initialize(pgrouplist=nil, requestid=nil)
           @PGroupList = pgrouplist
           @RequestId = requestid
@@ -1347,7 +1347,7 @@ module TencentCloud
         # @type PGroupId: String
 
         attr_accessor :PGroupId
-        
+
         def initialize(pgroupid=nil)
           @PGroupId = pgroupid
         end
@@ -1365,7 +1365,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RuleList, :RequestId
-        
+
         def initialize(rulelist=nil, requestid=nil)
           @RuleList = rulelist
           @RequestId = requestid
@@ -1387,7 +1387,7 @@ module TencentCloud
       # DescribeCfsServiceStatus请求参数结构体
       class DescribeCfsServiceStatusRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CfsServiceStatus, :RequestId
-        
+
         def initialize(cfsservicestatus=nil, requestid=nil)
           @CfsServiceStatus = cfsservicestatus
           @RequestId = requestid
@@ -1418,7 +1418,7 @@ module TencentCloud
       # DescribeCfsSnapshotOverview请求参数结构体
       class DescribeCfsSnapshotOverviewRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1434,7 +1434,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StatisticsList, :RequestId
-        
+
         def initialize(statisticslist=nil, requestid=nil)
           @StatisticsList = statisticslist
           @RequestId = requestid
@@ -1471,7 +1471,7 @@ module TencentCloud
         # @type Order: String
 
         attr_accessor :FileSystemId, :SnapshotId, :Offset, :Limit, :Filters, :OrderField, :Order
-        
+
         def initialize(filesystemid=nil, snapshotid=nil, offset=nil, limit=nil, filters=nil, orderfield=nil, order=nil)
           @FileSystemId = filesystemid
           @SnapshotId = snapshotid
@@ -1512,7 +1512,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Snapshots, :TotalSize, :RequestId
-        
+
         def initialize(totalcount=nil, snapshots=nil, totalsize=nil, requestid=nil)
           @TotalCount = totalcount
           @Snapshots = snapshots
@@ -1559,7 +1559,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
-        
+
         def initialize(offset=nil, limit=nil, filters=nil)
           @Offset = offset
           @Limit = limit
@@ -1590,7 +1590,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :MigrationTasks, :RequestId
-        
+
         def initialize(totalcount=nil, migrationtasks=nil, requestid=nil)
           @TotalCount = totalcount
           @MigrationTasks = migrationtasks
@@ -1617,7 +1617,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
-        
+
         def initialize(filesystemid=nil)
           @FileSystemId = filesystemid
         end
@@ -1637,7 +1637,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MountTargets, :NumberOfMountTargets, :RequestId
-        
+
         def initialize(mounttargets=nil, numberofmounttargets=nil, requestid=nil)
           @MountTargets = mounttargets
           @NumberOfMountTargets = numberofmounttargets
@@ -1668,7 +1668,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :SnapshotId, :StartTime, :EndTime
-        
+
         def initialize(snapshotid=nil, starttime=nil, endtime=nil)
           @SnapshotId = snapshotid
           @StartTime = starttime
@@ -1692,7 +1692,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SnapshotId, :SnapshotOperates, :RequestId
-        
+
         def initialize(snapshotid=nil, snapshotoperates=nil, requestid=nil)
           @SnapshotId = snapshotid
           @SnapshotOperates = snapshotoperates
@@ -1727,7 +1727,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :FileSystemId, :Filters, :Offset, :Limit
-        
+
         def initialize(filesystemid=nil, filters=nil, offset=nil, limit=nil)
           @FileSystemId = filesystemid
           @Filters = filters
@@ -1760,7 +1760,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :UserQuotaInfo, :RequestId
-        
+
         def initialize(totalcount=nil, userquotainfo=nil, requestid=nil)
           @TotalCount = totalcount
           @UserQuotaInfo = userquotainfo
@@ -1799,7 +1799,7 @@ module TencentCloud
         # @type ZoneId: Integer
 
         attr_accessor :CreationToken, :FileSystemId, :SizeByte, :StorageType, :TotalSnapshotSize, :CreationTime, :ZoneId
-        
+
         def initialize(creationtoken=nil, filesystemid=nil, sizebyte=nil, storagetype=nil, totalsnapshotsize=nil, creationtime=nil, zoneid=nil)
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -1837,7 +1837,7 @@ module TencentCloud
         # @type MountDirectory: String
 
         attr_accessor :CfsVip, :ClientIp, :VpcId, :Zone, :ZoneName, :MountDirectory
-        
+
         def initialize(cfsvip=nil, clientip=nil, vpcid=nil, zone=nil, zonename=nil, mountdirectory=nil)
           @CfsVip = cfsvip
           @ClientIp = clientip
@@ -1912,7 +1912,7 @@ module TencentCloud
         # @type TieringDetail: :class:`Tencentcloud::Cfs.v20190719.models.TieringDetailInfo`
 
         attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity, :Tags, :TieringState, :TieringDetail
-        
+
         def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
@@ -1985,7 +1985,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Values, :Name
-        
+
         def initialize(values=nil, name=nil)
           @Values = values
           @Name = name
@@ -2067,7 +2067,7 @@ module TencentCloud
         # @type BucketPath: String
 
         attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath
-        
+
         def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil)
           @TaskName = taskname
           @TaskId = taskid
@@ -2137,7 +2137,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :FileSystemId, :ScaleUpThreshold, :TargetThreshold, :Status
-        
+
         def initialize(filesystemid=nil, scaleupthreshold=nil, targetthreshold=nil, status=nil)
           @FileSystemId = filesystemid
           @ScaleUpThreshold = scaleupthreshold
@@ -2167,7 +2167,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystemId, :Status, :ScaleUpThreshold, :TargetThreshold, :RequestId
-        
+
         def initialize(filesystemid=nil, status=nil, scaleupthreshold=nil, targetthreshold=nil, requestid=nil)
           @FileSystemId = filesystemid
           @Status = status
@@ -2213,7 +2213,7 @@ module TencentCloud
         # @type CidrBlock: String
 
         attr_accessor :FileSystemId, :MountTargetId, :IpAddress, :FSID, :LifeCycleState, :NetworkInterface, :VpcId, :VpcName, :SubnetId, :SubnetName, :CcnID, :CidrBlock
-        
+
         def initialize(filesystemid=nil, mounttargetid=nil, ipaddress=nil, fsid=nil, lifecyclestate=nil, networkinterface=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, ccnid=nil, cidrblock=nil)
           @FileSystemId = filesystemid
           @MountTargetId = mounttargetid
@@ -2253,7 +2253,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :PGroupId, :Name
-        
+
         def initialize(pgroupid=nil, name=nil)
           @PGroupId = pgroupid
           @Name = name
@@ -2279,7 +2279,7 @@ module TencentCloud
         # @type BindCfsNum: Integer
 
         attr_accessor :PGroupId, :Name, :DescInfo, :CDate, :BindCfsNum
-        
+
         def initialize(pgroupid=nil, name=nil, descinfo=nil, cdate=nil, bindcfsnum=nil)
           @PGroupId = pgroupid
           @Name = name
@@ -2311,7 +2311,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :RuleId, :AuthClientIp, :RWPermission, :UserPermission, :Priority
-        
+
         def initialize(ruleid=nil, authclientip=nil, rwpermission=nil, userpermission=nil, priority=nil)
           @RuleId = ruleid
           @AuthClientIp = authclientip
@@ -2337,7 +2337,7 @@ module TencentCloud
         # @type TargetCapacity: Integer
 
         attr_accessor :FileSystemId, :TargetCapacity
-        
+
         def initialize(filesystemid=nil, targetcapacity=nil)
           @FileSystemId = filesystemid
           @TargetCapacity = targetcapacity
@@ -2359,7 +2359,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :FileSystemId, :TargetCapacity, :RequestId
-        
+
         def initialize(filesystemid=nil, targetcapacity=nil, requestid=nil)
           @FileSystemId = filesystemid
           @TargetCapacity = targetcapacity
@@ -2387,7 +2387,7 @@ module TencentCloud
         # @type FileHardLimit: Integer
 
         attr_accessor :FileSystemId, :UserType, :UserId, :CapacityHardLimit, :FileHardLimit
-        
+
         def initialize(filesystemid=nil, usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil)
           @FileSystemId = filesystemid
           @UserType = usertype
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2424,7 +2424,7 @@ module TencentCloud
       # SignUpCfsService请求参数结构体
       class SignUpCfsServiceRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2440,7 +2440,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CfsServiceStatus, :RequestId
-        
+
         def initialize(cfsservicestatus=nil, requestid=nil)
           @CfsServiceStatus = cfsservicestatus
           @RequestId = requestid
@@ -2485,7 +2485,7 @@ module TencentCloud
         # @type SnapshotType: String
 
         attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType
-        
+
         def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil)
           @CreationTime = creationtime
           @SnapshotName = snapshotname
@@ -2542,7 +2542,7 @@ module TencentCloud
         # @type Result: Integer
 
         attr_accessor :Action, :ActionTime, :ActionName, :Operator, :Result
-        
+
         def initialize(action=nil, actiontime=nil, actionname=nil, operator=nil, result=nil)
           @Action = action
           @ActionTime = actiontime
@@ -2570,7 +2570,7 @@ module TencentCloud
         # @type SnapshotSize: Integer
 
         attr_accessor :Region, :SnapshotNumber, :SnapshotSize
-        
+
         def initialize(region=nil, snapshotnumber=nil, snapshotsize=nil)
           @Region = region
           @SnapshotNumber = snapshotnumber
@@ -2590,7 +2590,7 @@ module TencentCloud
         # @type TaskId: String
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -2610,7 +2610,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :Status, :RequestId
-        
+
         def initialize(taskid=nil, status=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
@@ -2632,7 +2632,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -2651,7 +2651,7 @@ module TencentCloud
         # @type TieringSizeInBytes: Integer
 
         attr_accessor :TieringSizeInBytes
-        
+
         def initialize(tieringsizeinbytes=nil)
           @TieringSizeInBytes = tieringsizeinbytes
         end
@@ -2669,7 +2669,7 @@ module TencentCloud
         # @type AutoSnapshotPolicyId: String
 
         attr_accessor :FileSystemIds, :AutoSnapshotPolicyId
-        
+
         def initialize(filesystemids=nil, autosnapshotpolicyid=nil)
           @FileSystemIds = filesystemids
           @AutoSnapshotPolicyId = autosnapshotpolicyid
@@ -2689,7 +2689,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoSnapshotPolicyId, :RequestId
-        
+
         def initialize(autosnapshotpolicyid=nil, requestid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @RequestId = requestid
@@ -2721,7 +2721,7 @@ module TencentCloud
         # @type IntervalDays: Integer
 
         attr_accessor :AutoSnapshotPolicyId, :PolicyName, :DayOfWeek, :Hour, :AliveDays, :IsActivated, :DayOfMonth, :IntervalDays
-        
+
         def initialize(autosnapshotpolicyid=nil, policyname=nil, dayofweek=nil, hour=nil, alivedays=nil, isactivated=nil, dayofmonth=nil, intervaldays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
@@ -2753,7 +2753,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AutoSnapshotPolicyId, :RequestId
-        
+
         def initialize(autosnapshotpolicyid=nil, requestid=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @RequestId = requestid
@@ -2773,7 +2773,7 @@ module TencentCloud
         # @type FsName: String
 
         attr_accessor :FileSystemId, :FsName
-        
+
         def initialize(filesystemid=nil, fsname=nil)
           @FileSystemId = filesystemid
           @FsName = fsname
@@ -2797,7 +2797,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CreationToken, :FileSystemId, :FsName, :RequestId
-        
+
         def initialize(creationtoken=nil, filesystemid=nil, fsname=nil, requestid=nil)
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -2821,7 +2821,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :PGroupId, :FileSystemId
-        
+
         def initialize(pgroupid=nil, filesystemid=nil)
           @PGroupId = pgroupid
           @FileSystemId = filesystemid
@@ -2843,7 +2843,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupId, :FileSystemId, :RequestId
-        
+
         def initialize(pgroupid=nil, filesystemid=nil, requestid=nil)
           @PGroupId = pgroupid
           @FileSystemId = filesystemid
@@ -2865,7 +2865,7 @@ module TencentCloud
         # @type FileSystemId: String
 
         attr_accessor :FsLimit, :FileSystemId
-        
+
         def initialize(fslimit=nil, filesystemid=nil)
           @FsLimit = fslimit
           @FileSystemId = filesystemid
@@ -2883,7 +2883,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2903,7 +2903,7 @@ module TencentCloud
         # @type DescInfo: String
 
         attr_accessor :PGroupId, :Name, :DescInfo
-        
+
         def initialize(pgroupid=nil, name=nil, descinfo=nil)
           @PGroupId = pgroupid
           @Name = name
@@ -2929,7 +2929,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupId, :Name, :DescInfo, :RequestId
-        
+
         def initialize(pgroupid=nil, name=nil, descinfo=nil, requestid=nil)
           @PGroupId = pgroupid
           @Name = name
@@ -2961,7 +2961,7 @@ module TencentCloud
         # @type Priority: Integer
 
         attr_accessor :PGroupId, :RuleId, :AuthClientIp, :RWPermission, :UserPermission, :Priority
-        
+
         def initialize(pgroupid=nil, ruleid=nil, authclientip=nil, rwpermission=nil, userpermission=nil, priority=nil)
           @PGroupId = pgroupid
           @RuleId = ruleid
@@ -2999,7 +2999,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PGroupId, :RuleId, :AuthClientIp, :RWPermission, :UserPermission, :Priority, :RequestId
-        
+
         def initialize(pgroupid=nil, ruleid=nil, authclientip=nil, rwpermission=nil, userpermission=nil, priority=nil, requestid=nil)
           @PGroupId = pgroupid
           @RuleId = ruleid
@@ -3031,7 +3031,7 @@ module TencentCloud
         # @type AliveDays: Integer
 
         attr_accessor :SnapshotId, :SnapshotName, :AliveDays
-        
+
         def initialize(snapshotid=nil, snapshotname=nil, alivedays=nil)
           @SnapshotId = snapshotid
           @SnapshotName = snapshotname
@@ -3053,7 +3053,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SnapshotId, :RequestId
-        
+
         def initialize(snapshotid=nil, requestid=nil)
           @SnapshotId = snapshotid
           @RequestId = requestid
@@ -3085,7 +3085,7 @@ module TencentCloud
         # @type FileUsed: Integer
 
         attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed
-        
+
         def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil, capacityused=nil, fileused=nil)
           @UserType = usertype
           @UserId = userid

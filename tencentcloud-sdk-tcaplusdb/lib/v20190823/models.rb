@@ -62,7 +62,7 @@ module TencentCloud
         # @type CanWithdrawal: Boolean
 
         attr_accessor :ApplicationId, :ApplicationType, :ClusterId, :ClusterName, :TableGroupName, :TableName, :Applicant, :CreatedTime, :ApplicationStatus, :TableGroupId, :TaskId, :TableInstanceId, :UpdateTime, :ExecuteUser, :ExecuteStatus, :CanCensor, :CanWithdrawal
-        
+
         def initialize(applicationid=nil, applicationtype=nil, clusterid=nil, clustername=nil, tablegroupname=nil, tablename=nil, applicant=nil, createdtime=nil, applicationstatus=nil, tablegroupid=nil, taskid=nil, tableinstanceid=nil, updatetime=nil, executeuser=nil, executestatus=nil, cancensor=nil, canwithdrawal=nil)
           @ApplicationId = applicationid
           @ApplicationType = applicationtype
@@ -121,7 +121,7 @@ module TencentCloud
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ApplicationId, :ApplicationType, :ApplicationStatus, :TaskId, :Error
-        
+
         def initialize(applicationid=nil, applicationtype=nil, applicationstatus=nil, taskid=nil, error=nil)
           @ApplicationId = applicationid
           @ApplicationType = applicationtype
@@ -154,7 +154,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ApplicationId, :ApplicationStatus, :ApplicationType, :ClusterId
-        
+
         def initialize(applicationid=nil, applicationstatus=nil, applicationtype=nil, clusterid=nil)
           @ApplicationId = applicationid
           @ApplicationStatus = applicationstatus
@@ -191,7 +191,7 @@ module TencentCloud
         # @type OperType: Integer
 
         attr_accessor :TableGroupId, :TableName, :FileTag, :ExpireDay, :OperType
-        
+
         def initialize(tablegroupid=nil, tablename=nil, filetag=nil, expireday=nil, opertype=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -235,7 +235,7 @@ module TencentCloud
         # @type AppId: Integer
 
         attr_accessor :ZoneId, :TableName, :BackupType, :FileTag, :ShardCount, :BackupBatchTime, :BackupFileSize, :BackupSuccRate, :BackupExpireTime, :AppId
-        
+
         def initialize(zoneid=nil, tablename=nil, backuptype=nil, filetag=nil, shardcount=nil, backupbatchtime=nil, backupfilesize=nil, backupsuccrate=nil, backupexpiretime=nil, appid=nil)
           @ZoneId = zoneid
           @TableName = tablename
@@ -271,7 +271,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -300,7 +300,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -401,7 +401,7 @@ module TencentCloud
         # @type RestProxyStatus: Integer
 
         attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay, :RestProxyStatus
-        
+
         def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil, restproxystatus=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
@@ -498,7 +498,7 @@ module TencentCloud
         # @type NewIdlFiles: Array
 
         attr_accessor :ClusterId, :SelectedTables, :ExistingIdlFiles, :NewIdlFiles
-        
+
         def initialize(clusterid=nil, selectedtables=nil, existingidlfiles=nil, newidlfiles=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -547,7 +547,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdlFiles, :TotalCount, :TableInfos, :RequestId
-        
+
         def initialize(idlfiles=nil, totalcount=nil, tableinfos=nil, requestid=nil)
           @IdlFiles = idlfiles
           @TotalCount = totalcount
@@ -597,7 +597,7 @@ module TencentCloud
         # @type DstTableInstanceId: String
 
         attr_accessor :SrcTableClusterId, :SrcTableGroupId, :SrcTableName, :DstTableClusterId, :DstTableGroupId, :DstTableName, :SrcTableInstanceId, :DstTableInstanceId
-        
+
         def initialize(srctableclusterid=nil, srctablegroupid=nil, srctablename=nil, dsttableclusterid=nil, dsttablegroupid=nil, dsttablename=nil, srctableinstanceid=nil, dsttableinstanceid=nil)
           @SrcTableClusterId = srctableclusterid
           @SrcTableGroupId = srctablegroupid
@@ -631,7 +631,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :ClusterId, :SelectedTables, :Remark
-        
+
         def initialize(clusterid=nil, selectedtables=nil, remark=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -664,7 +664,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskIds, :ApplicationIds, :RequestId
-        
+
         def initialize(taskids=nil, applicationids=nil, requestid=nil)
           @TaskIds = taskids
           @ApplicationIds = applicationids
@@ -704,7 +704,7 @@ module TencentCloud
         # @type AuthType: Integer
 
         attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable, :ServerList, :ProxyList, :ClusterType, :AuthType
-        
+
         def initialize(idltype=nil, clustername=nil, vpcid=nil, subnetid=nil, password=nil, resourcetags=nil, ipv6enable=nil, serverlist=nil, proxylist=nil, clustertype=nil, authtype=nil)
           @IdlType = idltype
           @ClusterName = clustername
@@ -763,7 +763,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
-        
+
         def initialize(clusterid=nil, requestid=nil)
           @ClusterId = clusterid
           @RequestId = requestid
@@ -783,7 +783,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -812,7 +812,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -845,7 +845,7 @@ module TencentCloud
         # @type ResourceTags: Array
 
         attr_accessor :ClusterId, :TableGroupName, :TableGroupId, :ResourceTags
-        
+
         def initialize(clusterid=nil, tablegroupname=nil, tablegroupid=nil, resourcetags=nil)
           @ClusterId = clusterid
           @TableGroupName = tablegroupname
@@ -876,7 +876,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TableGroupId, :RequestId
-        
+
         def initialize(tablegroupid=nil, requestid=nil)
           @TableGroupId = tablegroupid
           @RequestId = requestid
@@ -900,7 +900,7 @@ module TencentCloud
         # @type ResourceTags: Array
 
         attr_accessor :ClusterId, :IdlFiles, :SelectedTables, :ResourceTags
-        
+
         def initialize(clusterid=nil, idlfiles=nil, selectedtables=nil, resourcetags=nil)
           @ClusterId = clusterid
           @IdlFiles = idlfiles
@@ -947,7 +947,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -976,7 +976,7 @@ module TencentCloud
         # @type BackupRecords: Array
 
         attr_accessor :ClusterId, :BackupRecords
-        
+
         def initialize(clusterid=nil, backuprecords=nil)
           @ClusterId = clusterid
           @BackupRecords = backuprecords
@@ -1004,7 +1004,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1022,7 +1022,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -1040,7 +1040,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1060,7 +1060,7 @@ module TencentCloud
         # @type IdlFiles: Array
 
         attr_accessor :ClusterId, :IdlFiles
-        
+
         def initialize(clusterid=nil, idlfiles=nil)
           @ClusterId = clusterid
           @IdlFiles = idlfiles
@@ -1089,7 +1089,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :IdlFileInfos, :RequestId
-        
+
         def initialize(totalcount=nil, idlfileinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @IdlFileInfos = idlfileinfos
@@ -1118,7 +1118,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -1147,7 +1147,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -1176,7 +1176,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -1205,7 +1205,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -1234,7 +1234,7 @@ module TencentCloud
         # @type TableGroupId: String
 
         attr_accessor :ClusterId, :TableGroupId
-        
+
         def initialize(clusterid=nil, tablegroupid=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -1254,7 +1254,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -1274,7 +1274,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -1303,7 +1303,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -1332,7 +1332,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -1361,7 +1361,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -1402,7 +1402,7 @@ module TencentCloud
         # @type ApplyType: Integer
 
         attr_accessor :ClusterId, :Limit, :Offset, :CensorStatus, :TableGroupId, :TableName, :Applicant, :ApplyType
-        
+
         def initialize(clusterid=nil, limit=nil, offset=nil, censorstatus=nil, tablegroupid=nil, tablename=nil, applicant=nil, applytype=nil)
           @ClusterId = clusterid
           @Limit = limit
@@ -1436,7 +1436,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Applications, :TotalCount, :RequestId
-        
+
         def initialize(applications=nil, totalcount=nil, requestid=nil)
           @Applications = applications
           @TotalCount = totalcount
@@ -1471,7 +1471,7 @@ module TencentCloud
         # @type TableName: String
 
         attr_accessor :ClusterId, :Limit, :Offset, :TableGroupId, :TableName
-        
+
         def initialize(clusterid=nil, limit=nil, offset=nil, tablegroupid=nil, tablename=nil)
           @ClusterId = clusterid
           @Limit = limit
@@ -1499,7 +1499,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BackupRecords, :TotalCount, :RequestId
-        
+
         def initialize(backuprecords=nil, totalcount=nil, requestid=nil)
           @BackupRecords = backuprecords
           @TotalCount = totalcount
@@ -1526,7 +1526,7 @@ module TencentCloud
         # @type ClusterIds: Array
 
         attr_accessor :ClusterIds
-        
+
         def initialize(clusterids=nil)
           @ClusterIds = clusterids
         end
@@ -1548,7 +1548,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Rows, :TotalCount, :RequestId
-        
+
         def initialize(rows=nil, totalcount=nil, requestid=nil)
           @Rows = rows
           @TotalCount = totalcount
@@ -1583,7 +1583,7 @@ module TencentCloud
         # @type Ipv6Enable: Integer
 
         attr_accessor :ClusterIds, :Filters, :Offset, :Limit, :Ipv6Enable
-        
+
         def initialize(clusterids=nil, filters=nil, offset=nil, limit=nil, ipv6enable=nil)
           @ClusterIds = clusterids
           @Filters = filters
@@ -1618,7 +1618,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Clusters, :RequestId
-        
+
         def initialize(totalcount=nil, clusters=nil, requestid=nil)
           @TotalCount = totalcount
           @Clusters = clusters
@@ -1653,7 +1653,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :TableGroupIds, :IdlFileIds, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, tablegroupids=nil, idlfileids=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @TableGroupIds = tablegroupids
@@ -1681,7 +1681,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :IdlFileInfos, :RequestId
-        
+
         def initialize(totalcount=nil, idlfileinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @IdlFileInfos = idlfileinfos
@@ -1708,7 +1708,7 @@ module TencentCloud
         # @type Ipv6Enable: Integer
 
         attr_accessor :Ipv6Enable
-        
+
         def initialize(ipv6enable=nil)
           @Ipv6Enable = ipv6enable
         end
@@ -1726,7 +1726,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PoolList, :RequestId
-        
+
         def initialize(poollist=nil, requestid=nil)
           @PoolList = poollist
           @RequestId = requestid
@@ -1748,7 +1748,7 @@ module TencentCloud
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -1766,7 +1766,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RegionInfos, :RequestId
-        
+
         def initialize(totalcount=nil, regioninfos=nil, requestid=nil)
           @TotalCount = totalcount
           @RegionInfos = regioninfos
@@ -1801,7 +1801,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :TableGroupId, :TableName, :SnapshotName, :SelectedTables
-        
+
         def initialize(clusterid=nil, tablegroupid=nil, tablename=nil, snapshotname=nil, selectedtables=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -1836,7 +1836,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -1865,7 +1865,7 @@ module TencentCloud
         # @type TableGroupIds: Array
 
         attr_accessor :ClusterId, :TableGroupIds
-        
+
         def initialize(clusterid=nil, tablegroupids=nil)
           @ClusterId = clusterid
           @TableGroupIds = tablegroupids
@@ -1889,7 +1889,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Rows, :TotalCount, :RequestId
-        
+
         def initialize(rows=nil, totalcount=nil, requestid=nil)
           @Rows = rows
           @TotalCount = totalcount
@@ -1924,7 +1924,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :TableGroupIds, :Filters, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, tablegroupids=nil, filters=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @TableGroupIds = tablegroupids
@@ -1959,7 +1959,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableGroups, :RequestId
-        
+
         def initialize(totalcount=nil, tablegroups=nil, requestid=nil)
           @TotalCount = totalcount
           @TableGroups = tablegroups
@@ -1988,7 +1988,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -2017,7 +2017,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Rows, :RequestId
-        
+
         def initialize(totalcount=nil, rows=nil, requestid=nil)
           @TotalCount = totalcount
           @Rows = rows
@@ -2052,7 +2052,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :TableGroupIds, :Filters, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, tablegroupids=nil, filters=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @TableGroupIds = tablegroupids
@@ -2087,7 +2087,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableInfos, :RequestId
-        
+
         def initialize(totalcount=nil, tableinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @TableInfos = tableinfos
@@ -2124,7 +2124,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :TableGroupIds, :SelectedTables, :Filters, :Offset, :Limit
-        
+
         def initialize(clusterid=nil, tablegroupids=nil, selectedtables=nil, filters=nil, offset=nil, limit=nil)
           @ClusterId = clusterid
           @TableGroupIds = tablegroupids
@@ -2168,7 +2168,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableInfos, :RequestId
-        
+
         def initialize(totalcount=nil, tableinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @TableInfos = tableinfos
@@ -2203,7 +2203,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ClusterIds, :TaskIds, :Filters, :Offset, :Limit
-        
+
         def initialize(clusterids=nil, taskids=nil, filters=nil, offset=nil, limit=nil)
           @ClusterIds = clusterids
           @TaskIds = taskids
@@ -2238,7 +2238,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TaskInfos, :RequestId
-        
+
         def initialize(totalcount=nil, taskinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @TaskInfos = taskinfos
@@ -2262,7 +2262,7 @@ module TencentCloud
       # DescribeUinInWhitelist请求参数结构体
       class DescribeUinInWhitelistRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -2278,7 +2278,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -2296,7 +2296,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -2316,7 +2316,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RestProxyStatus, :TaskId, :RequestId
-        
+
         def initialize(restproxystatus=nil, taskid=nil, requestid=nil)
           @RestProxyStatus = restproxystatus
           @TaskId = taskid
@@ -2336,7 +2336,7 @@ module TencentCloud
         # @type ClusterId: String
 
         attr_accessor :ClusterId
-        
+
         def initialize(clusterid=nil)
           @ClusterId = clusterid
         end
@@ -2356,7 +2356,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RestProxyStatus, :TaskId, :RequestId
-        
+
         def initialize(restproxystatus=nil, taskid=nil, requestid=nil)
           @RestProxyStatus = restproxystatus
           @TaskId = taskid
@@ -2378,7 +2378,7 @@ module TencentCloud
         # @type Message: String
 
         attr_accessor :Code, :Message
-        
+
         def initialize(code=nil, message=nil)
           @Code = code
           @Message = message
@@ -2402,7 +2402,7 @@ module TencentCloud
         # @type FieldSize: Integer
 
         attr_accessor :FieldName, :IsPrimaryKey, :FieldType, :FieldSize
-        
+
         def initialize(fieldname=nil, isprimarykey=nil, fieldtype=nil, fieldsize=nil)
           @FieldName = fieldname
           @IsPrimaryKey = isprimarykey
@@ -2428,7 +2428,7 @@ module TencentCloud
         # @type Values: Array
 
         attr_accessor :Name, :Value, :Values
-        
+
         def initialize(name=nil, value=nil, values=nil)
           @Name = name
           @Value = value
@@ -2460,7 +2460,7 @@ module TencentCloud
         # @type FileContent: String
 
         attr_accessor :FileName, :FileType, :FileExtType, :FileSize, :FileId, :FileContent
-        
+
         def initialize(filename=nil, filetype=nil, fileexttype=nil, filesize=nil, fileid=nil, filecontent=nil)
           @FileName = filename
           @FileType = filetype
@@ -2502,7 +2502,7 @@ module TencentCloud
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :FileName, :FileType, :FileExtType, :FileSize, :FileId, :Error
-        
+
         def initialize(filename=nil, filetype=nil, fileexttype=nil, filesize=nil, fileid=nil, error=nil)
           @FileName = filename
           @FileType = filetype
@@ -2543,7 +2543,7 @@ module TencentCloud
         # @type NewTableName: String
 
         attr_accessor :ClusterId, :Snapshots, :ImportSpecialKey, :ImportOriginTable, :KeyFile, :NewTableGroupId, :NewTableName
-        
+
         def initialize(clusterid=nil, snapshots=nil, importspecialkey=nil, importorigintable=nil, keyfile=nil, newtablegroupid=nil, newtablename=nil)
           @ClusterId = clusterid
           @Snapshots = snapshots
@@ -2580,7 +2580,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -2608,7 +2608,7 @@ module TencentCloud
         # @type IsVpc: Integer
 
         attr_accessor :Address, :Topic, :User, :Password, :Instance, :IsVpc
-        
+
         def initialize(address=nil, topic=nil, user=nil, password=nil, instance=nil, isvpc=nil)
           @Address = address
           @Topic = topic
@@ -2640,7 +2640,7 @@ module TencentCloud
         # @type FileSize: Integer
 
         attr_accessor :FileName, :FileExtType, :FileContent, :FileSize
-        
+
         def initialize(filename=nil, fileexttype=nil, filecontent=nil, filesize=nil)
           @FileName = filename
           @FileExtType = fileexttype
@@ -2664,7 +2664,7 @@ module TencentCloud
         # @type MachineNum: Integer
 
         attr_accessor :MachineType, :MachineNum
-        
+
         def initialize(machinetype=nil, machinenum=nil)
           @MachineType = machinetype
           @MachineNum = machinenum
@@ -2691,7 +2691,7 @@ module TencentCloud
         # @type ApplicationId: String
 
         attr_accessor :TaskId, :Error, :Table, :ApplicationId
-        
+
         def initialize(taskid=nil, error=nil, table=nil, applicationid=nil)
           @TaskId = taskid
           @Error = error
@@ -2721,7 +2721,7 @@ module TencentCloud
         # @type IsOnlyCompare: Boolean
 
         attr_accessor :SelectedTables, :IsOnlyCompare
-        
+
         def initialize(selectedtables=nil, isonlycompare=nil)
           @SelectedTables = selectedtables
           @IsOnlyCompare = isonlycompare
@@ -2748,7 +2748,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Results, :RequestId
-        
+
         def initialize(results=nil, requestid=nil)
           @Results = results
           @RequestId = requestid
@@ -2775,7 +2775,7 @@ module TencentCloud
         # @type CheckIndex: Boolean
 
         attr_accessor :MergeTables, :CheckIndex
-        
+
         def initialize(mergetables=nil, checkindex=nil)
           @MergeTables = mergetables
           @CheckIndex = checkindex
@@ -2800,7 +2800,7 @@ module TencentCloud
         # @type Uins: Array
 
         attr_accessor :ClusterId, :Censorship, :Uins
-        
+
         def initialize(clusterid=nil, censorship=nil, uins=nil)
           @ClusterId = clusterid
           @Censorship = censorship
@@ -2827,7 +2827,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterId, :Uins, :Censorship, :RequestId
-        
+
         def initialize(clusterid=nil, uins=nil, censorship=nil, requestid=nil)
           @ClusterId = clusterid
           @Uins = uins
@@ -2855,7 +2855,7 @@ module TencentCloud
         # @type ClusterType: Integer
 
         attr_accessor :ClusterId, :ServerList, :ProxyList, :ClusterType
-        
+
         def initialize(clusterid=nil, serverlist=nil, proxylist=nil, clustertype=nil)
           @ClusterId = clusterid
           @ServerList = serverlist
@@ -2893,7 +2893,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
-        
+
         def initialize(clusterid=nil, requestid=nil)
           @ClusterId = clusterid
           @RequestId = requestid
@@ -2913,7 +2913,7 @@ module TencentCloud
         # @type ClusterName: String
 
         attr_accessor :ClusterId, :ClusterName
-        
+
         def initialize(clusterid=nil, clustername=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
@@ -2931,7 +2931,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2955,7 +2955,7 @@ module TencentCloud
         # @type Mode: String
 
         attr_accessor :ClusterId, :OldPassword, :OldPasswordExpireTime, :NewPassword, :Mode
-        
+
         def initialize(clusterid=nil, oldpassword=nil, oldpasswordexpiretime=nil, newpassword=nil, mode=nil)
           @ClusterId = clusterid
           @OldPassword = oldpassword
@@ -2979,7 +2979,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2999,7 +2999,7 @@ module TencentCloud
         # @type DeleteTags: Array
 
         attr_accessor :ClusterId, :ReplaceTags, :DeleteTags
-        
+
         def initialize(clusterid=nil, replacetags=nil, deletetags=nil)
           @ClusterId = clusterid
           @ReplaceTags = replacetags
@@ -3036,7 +3036,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3056,7 +3056,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -3085,7 +3085,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3116,7 +3116,7 @@ module TencentCloud
         # @type TableGroupName: String
 
         attr_accessor :ClusterId, :TableGroupId, :TableGroupName
-        
+
         def initialize(clusterid=nil, tablegroupid=nil, tablegroupname=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -3136,7 +3136,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3158,7 +3158,7 @@ module TencentCloud
         # @type DeleteTags: Array
 
         attr_accessor :ClusterId, :TableGroupId, :ReplaceTags, :DeleteTags
-        
+
         def initialize(clusterid=nil, tablegroupid=nil, replacetags=nil, deletetags=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -3197,7 +3197,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3217,7 +3217,7 @@ module TencentCloud
         # @type TableMemos: Array
 
         attr_accessor :ClusterId, :TableMemos
-        
+
         def initialize(clusterid=nil, tablememos=nil)
           @ClusterId = clusterid
           @TableMemos = tablememos
@@ -3246,7 +3246,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3275,7 +3275,7 @@ module TencentCloud
         # @type TableQuotas: Array
 
         attr_accessor :ClusterId, :TableQuotas
-        
+
         def initialize(clusterid=nil, tablequotas=nil)
           @ClusterId = clusterid
           @TableQuotas = tablequotas
@@ -3304,7 +3304,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3337,7 +3337,7 @@ module TencentCloud
         # @type DeleteTags: Array
 
         attr_accessor :ClusterId, :SelectedTables, :ReplaceTags, :DeleteTags
-        
+
         def initialize(clusterid=nil, selectedtables=nil, replacetags=nil, deletetags=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -3384,7 +3384,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3415,7 +3415,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :IdlFiles, :SelectedTables
-        
+
         def initialize(clusterid=nil, idlfiles=nil, selectedtables=nil)
           @ClusterId = clusterid
           @IdlFiles = idlfiles
@@ -3453,7 +3453,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3532,7 +3532,7 @@ module TencentCloud
         # @type SortRule: Integer
 
         attr_accessor :TableIdlType, :TableInstanceId, :TableName, :TableType, :KeyFields, :OldKeyFields, :ValueFields, :OldValueFields, :TableGroupId, :SumKeyFieldSize, :SumValueFieldSize, :IndexKeySet, :ShardingKeySet, :TdrVersion, :Error, :ListElementNum, :SortFieldNum, :SortRule
-        
+
         def initialize(tableidltype=nil, tableinstanceid=nil, tablename=nil, tabletype=nil, keyfields=nil, oldkeyfields=nil, valuefields=nil, oldvaluefields=nil, tablegroupid=nil, sumkeyfieldsize=nil, sumvaluefieldsize=nil, indexkeyset=nil, shardingkeyset=nil, tdrversion=nil, error=nil, listelementnum=nil, sortfieldnum=nil, sortrule=nil)
           @TableIdlType = tableidltype
           @TableInstanceId = tableinstanceid
@@ -3593,7 +3593,7 @@ module TencentCloud
         # @type ProxyList: Array
 
         attr_accessor :PoolUid, :Ipv6Enable, :AvailableAppCount, :ServerList, :ProxyList
-        
+
         def initialize(pooluid=nil, ipv6enable=nil, availableappcount=nil, serverlist=nil, proxylist=nil)
           @PoolUid = pooluid
           @Ipv6Enable = ipv6enable
@@ -3642,7 +3642,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :ProxyUid, :MachineType, :ProcessSpeed, :AverageProcessDelay, :SlowProcessSpeed, :Version
-        
+
         def initialize(proxyuid=nil, machinetype=nil, processspeed=nil, averageprocessdelay=nil, slowprocessspeed=nil, version=nil)
           @ProxyUid = proxyuid
           @MachineType = machinetype
@@ -3672,7 +3672,7 @@ module TencentCloud
         # @type AvailableCount: Integer
 
         attr_accessor :ProxyUid, :MachineType, :AvailableCount
-        
+
         def initialize(proxyuid=nil, machinetype=nil, availablecount=nil)
           @ProxyUid = proxyuid
           @MachineType = machinetype
@@ -3694,7 +3694,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -3723,7 +3723,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3756,7 +3756,7 @@ module TencentCloud
         # @type Ipv6Enable: Integer
 
         attr_accessor :RegionName, :RegionAbbr, :RegionId, :Ipv6Enable
-        
+
         def initialize(regionname=nil, regionabbr=nil, regionid=nil, ipv6enable=nil)
           @RegionName = regionname
           @RegionAbbr = regionabbr
@@ -3784,7 +3784,7 @@ module TencentCloud
         # @type Mode: String
 
         attr_accessor :ClusterId, :SelectedTables, :RollbackTime, :Mode
-        
+
         def initialize(clusterid=nil, selectedtables=nil, rollbacktime=nil, mode=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -3817,7 +3817,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -3870,7 +3870,7 @@ module TencentCloud
         # @type FileContent: String
 
         attr_accessor :TableGroupId, :TableName, :TableInstanceId, :TableIdlType, :TableType, :ListElementNum, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :Memo, :FileName, :FileExtType, :FileSize, :FileContent
-        
+
         def initialize(tablegroupid=nil, tablename=nil, tableinstanceid=nil, tableidltype=nil, tabletype=nil, listelementnum=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, memo=nil, filename=nil, fileexttype=nil, filesize=nil, filecontent=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -3926,7 +3926,7 @@ module TencentCloud
         # @type KafkaInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KafkaInfo`
 
         attr_accessor :TableGroupId, :TableName, :TableInstanceId, :TableIdlType, :TableType, :SelectedFields, :ShardNum, :KafkaInfo
-        
+
         def initialize(tablegroupid=nil, tablename=nil, tableinstanceid=nil, tableidltype=nil, tabletype=nil, selectedfields=nil, shardnum=nil, kafkainfo=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -3979,7 +3979,7 @@ module TencentCloud
         # @type Version: String
 
         attr_accessor :ServerUid, :MachineType, :MemoryRate, :DiskRate, :ReadNum, :WriteNum, :Version
-        
+
         def initialize(serveruid=nil, machinetype=nil, memoryrate=nil, diskrate=nil, readnum=nil, writenum=nil, version=nil)
           @ServerUid = serveruid
           @MachineType = machinetype
@@ -4009,7 +4009,7 @@ module TencentCloud
         # @type MachineType: String
 
         attr_accessor :ServerUid, :MachineType
-        
+
         def initialize(serveruid=nil, machinetype=nil)
           @ServerUid = serveruid
           @MachineType = machinetype
@@ -4029,7 +4029,7 @@ module TencentCloud
         # @type BackupExpireRules: Array
 
         attr_accessor :ClusterId, :BackupExpireRules
-        
+
         def initialize(clusterid=nil, backupexpirerules=nil)
           @ClusterId = clusterid
           @BackupExpireRules = backupexpirerules
@@ -4057,7 +4057,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -4077,7 +4077,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -4106,7 +4106,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -4135,7 +4135,7 @@ module TencentCloud
         # @type SelectedTables: Array
 
         attr_accessor :ClusterId, :SelectedTables
-        
+
         def initialize(clusterid=nil, selectedtables=nil)
           @ClusterId = clusterid
           @SelectedTables = selectedtables
@@ -4164,7 +4164,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TableResults, :RequestId
-        
+
         def initialize(totalcount=nil, tableresults=nil, requestid=nil)
           @TotalCount = totalcount
           @TableResults = tableresults
@@ -4199,7 +4199,7 @@ module TencentCloud
         # @type SnapshotDeadTime: String
 
         attr_accessor :TableGroupId, :TableName, :SnapshotName, :SnapshotTime, :SnapshotDeadTime
-        
+
         def initialize(tablegroupid=nil, tablename=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -4229,7 +4229,7 @@ module TencentCloud
         # @type SnapshotDeadTime: String
 
         attr_accessor :TableGroupId, :TableName, :SnapshotName, :SnapshotDeadTime
-        
+
         def initialize(tablegroupid=nil, tablename=nil, snapshotname=nil, snapshotdeadtime=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -4279,7 +4279,7 @@ module TencentCloud
         # @type SnapshotStatus: Integer
 
         attr_accessor :TableGroupId, :TableName, :TaskId, :Error, :SnapshotName, :SnapshotTime, :SnapshotDeadTime, :SnapshotCreateTime, :SnapshotSize, :SnapshotStatus
-        
+
         def initialize(tablegroupid=nil, tablename=nil, taskid=nil, error=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil, snapshotcreatetime=nil, snapshotsize=nil, snapshotstatus=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
@@ -4318,7 +4318,7 @@ module TencentCloud
         # @type TargetName: String
 
         attr_accessor :SourceName, :TargetName
-        
+
         def initialize(sourcename=nil, targetname=nil)
           @SourceName = sourcename
           @TargetName = targetname
@@ -4356,7 +4356,7 @@ module TencentCloud
         # @type ValueFieldMapping: Array
 
         attr_accessor :TargetTableSplitNum, :TargetTableNamePrefix, :TargetSyncDBInstanceId, :TargetDatabaseName, :Status, :ClusterId, :TableGroupId, :TableName, :TableId, :KeyFieldMapping, :ValueFieldMapping
-        
+
         def initialize(targettablesplitnum=nil, targettablenameprefix=nil, targetsyncdbinstanceid=nil, targetdatabasename=nil, status=nil, clusterid=nil, tablegroupid=nil, tablename=nil, tableid=nil, keyfieldmapping=nil, valuefieldmapping=nil)
           @TargetTableSplitNum = targettablesplitnum
           @TargetTableNamePrefix = targettablenameprefix
@@ -4425,7 +4425,7 @@ module TencentCloud
         # @type MysqlConnPort: Integer
 
         attr_accessor :TableGroupId, :TableGroupName, :CreatedTime, :TableCount, :TotalSize, :TxhBackupExpireDay, :EnableMysql, :MysqlConnIp, :MysqlConnPort
-        
+
         def initialize(tablegroupid=nil, tablegroupname=nil, createdtime=nil, tablecount=nil, totalsize=nil, txhbackupexpireday=nil, enablemysql=nil, mysqlconnip=nil, mysqlconnport=nil)
           @TableGroupId = tablegroupid
           @TableGroupName = tablegroupname
@@ -4542,7 +4542,7 @@ module TencentCloud
         # @type SyncTableInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.SyncTableInfo`
 
         attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay, :SyncTableInfo
-        
+
         def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil, synctableinfo=nil)
           @TableName = tablename
           @TableInstanceId = tableinstanceid
@@ -4652,7 +4652,7 @@ module TencentCloud
         # @type ApplicationId: String
 
         attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :ApplicationId
-        
+
         def initialize(tableinstanceid=nil, taskid=nil, tablename=nil, tabletype=nil, tableidltype=nil, tablegroupid=nil, error=nil, taskids=nil, applicationid=nil)
           @TableInstanceId = tableinstanceid
           @TaskId = taskid
@@ -4718,7 +4718,7 @@ module TencentCloud
         # @type TotalKeyNum: Integer
 
         attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :FileId, :SuccKeyNum, :TotalKeyNum
-        
+
         def initialize(tableinstanceid=nil, taskid=nil, tablename=nil, tabletype=nil, tableidltype=nil, tablegroupid=nil, error=nil, taskids=nil, fileid=nil, succkeynum=nil, totalkeynum=nil)
           @TableInstanceId = tableinstanceid
           @TaskId = taskid
@@ -4760,7 +4760,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
@@ -4785,7 +4785,7 @@ module TencentCloud
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ClusterId, :Tags, :Error
-        
+
         def initialize(clusterid=nil, tags=nil, error=nil)
           @ClusterId = clusterid
           @Tags = tags
@@ -4828,7 +4828,7 @@ module TencentCloud
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :TableInstanceId, :TableName, :TableGroupId, :Tags, :Error
-        
+
         def initialize(tableinstanceid=nil, tablename=nil, tablegroupid=nil, tags=nil, error=nil)
           @TableInstanceId = tableinstanceid
           @TableName = tablename
@@ -4872,7 +4872,7 @@ module TencentCloud
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ClusterId, :TableGroupId, :Tags, :Error
-        
+
         def initialize(clusterid=nil, tablegroupid=nil, tags=nil, error=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -4922,7 +4922,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :TaskId, :TaskType, :TransId, :ClusterId, :ClusterName, :Progress, :StartTime, :UpdateTime, :Operator, :Content
-        
+
         def initialize(taskid=nil, tasktype=nil, transid=nil, clusterid=nil, clustername=nil, progress=nil, starttime=nil, updatetime=nil, operator=nil, content=nil)
           @TaskId = taskid
           @TaskType = tasktype
@@ -4956,7 +4956,7 @@ module TencentCloud
         # @type ApplyStatus: Array
 
         attr_accessor :ApplyStatus
-        
+
         def initialize(applystatus=nil)
           @ApplyStatus = applystatus
         end
@@ -4984,7 +4984,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplyResults, :TotalCount, :RequestId
-        
+
         def initialize(applyresults=nil, totalcount=nil, requestid=nil)
           @ApplyResults = applyresults
           @TotalCount = totalcount
@@ -5017,7 +5017,7 @@ module TencentCloud
         # @type NewIdlFiles: Array
 
         attr_accessor :ClusterId, :TableGroupId, :ExistingIdlFiles, :NewIdlFiles
-        
+
         def initialize(clusterid=nil, tablegroupid=nil, existingidlfiles=nil, newidlfiles=nil)
           @ClusterId = clusterid
           @TableGroupId = tablegroupid
@@ -5059,7 +5059,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :IdlFiles, :TotalCount, :TableInfos, :RequestId
-        
+
         def initialize(idlfiles=nil, totalcount=nil, tableinfos=nil, requestid=nil)
           @IdlFiles = idlfiles
           @TotalCount = totalcount

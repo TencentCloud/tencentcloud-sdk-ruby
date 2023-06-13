@@ -30,7 +30,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Key, :Value, :Name
-        
+
         def initialize(key=nil, value=nil, name=nil)
           @Key = key
           @Value = value
@@ -53,7 +53,7 @@ module TencentCloud
         # @type Content: Array
 
         attr_accessor :Type, :Content
-        
+
         def initialize(type=nil, content=nil)
           @Type = type
           @Content = content
@@ -82,7 +82,7 @@ module TencentCloud
         # @type Scf: :class:`Tencentcloud::Bpaas.v20181217.models.Scf`
 
         attr_accessor :Uin, :Type, :Desc, :Nick, :Scf
-        
+
         def initialize(uin=nil, type=nil, desc=nil, nick=nil, scf=nil)
           @Uin = uin
           @Type = type
@@ -109,7 +109,7 @@ module TencentCloud
         # @type ApproveId: Integer
 
         attr_accessor :ApproveId
-        
+
         def initialize(approveid=nil)
           @ApproveId = approveid
         end
@@ -154,7 +154,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ApplyUin, :ApplyOwnUin, :ApplyUinNick, :BpaasId, :BpaasName, :ApplicationParams, :Reason, :CreateTime, :Status, :Nodes, :ApprovingNodeId, :RequestId
-        
+
         def initialize(applyuin=nil, applyownuin=nil, applyuinnick=nil, bpaasid=nil, bpaasname=nil, applicationparams=nil, reason=nil, createtime=nil, status=nil, nodes=nil, approvingnodeid=nil, requestid=nil)
           @ApplyUin = applyuin
           @ApplyOwnUin = applyownuin
@@ -210,7 +210,7 @@ module TencentCloud
         # @type Msg: String
 
         attr_accessor :Status, :ApproveId, :Msg
-        
+
         def initialize(status=nil, approveid=nil, msg=nil)
           @Status = status
           @ApproveId = approveid
@@ -230,7 +230,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -254,7 +254,7 @@ module TencentCloud
         # @type Params: Array
 
         attr_accessor :ScfRegion, :ScfRegionName, :ScfName, :Params
-        
+
         def initialize(scfregion=nil, scfregionname=nil, scfname=nil, params=nil)
           @ScfRegion = scfregion
           @ScfRegionName = scfregionname
@@ -290,7 +290,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Key, :Type, :Values, :Name
-        
+
         def initialize(key=nil, type=nil, values=nil, name=nil)
           @Key = key
           @Type = type
@@ -369,7 +369,7 @@ module TencentCloud
         # @type ParallelNodes: String
 
         attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl, :ParallelNodes
-        
+
         def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil, parallelnodes=nil)
           @NodeId = nodeid
           @NodeName = nodename

@@ -25,7 +25,7 @@ module TencentCloud
         # @type DeviceType: Integer
 
         attr_accessor :DeviceId, :DeviceType
-        
+
         def initialize(deviceid=nil, devicetype=nil)
           @DeviceId = deviceid
           @DeviceType = devicetype
@@ -40,7 +40,7 @@ module TencentCloud
       # 业务入参
       class InputBusinessEncryptData < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -132,7 +132,7 @@ module TencentCloud
         # @type DeviceList: Array
 
         attr_accessor :ModelIdList, :Uid, :AccountType, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized, :DeviceList
-        
+
         def initialize(modelidlist=nil, uid=nil, accounttype=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil, devicelist=nil)
           @ModelIdList = modelidlist
           @Uid = uid
@@ -239,7 +239,7 @@ module TencentCloud
         # @type Value: Array
 
         attr_accessor :Code, :Message, :Value
-        
+
         def initialize(code=nil, message=nil, value=nil)
           @Code = code
           @Message = message
@@ -279,7 +279,7 @@ module TencentCloud
         # @type Uid: String
 
         attr_accessor :ModelId, :IsFound, :Score, :ModelType, :Uid
-        
+
         def initialize(modelid=nil, isfound=nil, score=nil, modeltype=nil, uid=nil)
           @ModelId = modelid
           @IsFound = isfound
@@ -303,7 +303,7 @@ module TencentCloud
         # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputRecognizeTargetAudience`
 
         attr_accessor :BspData
-        
+
         def initialize(bspdata=nil)
           @BspData = bspdata
         end
@@ -325,7 +325,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -346,7 +346,7 @@ module TencentCloud
         # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputRecognizeTargetAudience`
 
         attr_accessor :BspData
-        
+
         def initialize(bspdata=nil)
           @BspData = bspdata
         end
@@ -368,7 +368,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -391,7 +391,7 @@ module TencentCloud
         # @type BusinessEncryptData: :class:`Tencentcloud::Taf.v20200210.models.InputBusinessEncryptData`
 
         attr_accessor :BspData, :BusinessEncryptData
-        
+
         def initialize(bspdata=nil, businessencryptdata=nil)
           @BspData = bspdata
           @BusinessEncryptData = businessencryptdata
@@ -418,7 +418,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid

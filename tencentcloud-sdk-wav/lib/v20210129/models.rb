@@ -51,7 +51,7 @@ module TencentCloud
         # @type ActivityDataList: String
 
         attr_accessor :ActivityId, :ActivityName, :ActivityState, :ActivityType, :StartTime, :EndTime, :MainPhoto, :PrivacyAgreementId, :UpdateTime, :ActivityDataList
-        
+
         def initialize(activityid=nil, activityname=nil, activitystate=nil, activitytype=nil, starttime=nil, endtime=nil, mainphoto=nil, privacyagreementid=nil, updatetime=nil, activitydatalist=nil)
           @ActivityId = activityid
           @ActivityName = activityname
@@ -131,7 +131,7 @@ module TencentCloud
         # @type UpdateTime: Integer
 
         attr_accessor :ActivityId, :ActivityName, :SalesName, :SalesPhone, :JoinId, :LiveCodeId, :UserPhone, :UserName, :ActivityData, :LeadId, :JoinTime, :Duplicate, :DuplicateLeadId, :JoinState, :CreateTime, :UpdateTime
-        
+
         def initialize(activityid=nil, activityname=nil, salesname=nil, salesphone=nil, joinid=nil, livecodeid=nil, userphone=nil, username=nil, activitydata=nil, leadid=nil, jointime=nil, duplicate=nil, duplicateleadid=nil, joinstate=nil, createtime=nil, updatetime=nil)
           @ActivityId = activityid
           @ActivityName = activityname
@@ -207,7 +207,7 @@ module TencentCloud
         # @type AppId: String
 
         attr_accessor :Id, :Type, :Source, :SourceName, :Name, :UseUserIdList, :UseUserOpenIdList, :TagList, :SkipVerify, :Friends, :Remark, :MsgId, :ConfigId, :QrCodeUrl, :RecStatus, :AppId
-        
+
         def initialize(id=nil, type=nil, source=nil, sourcename=nil, name=nil, useuseridlist=nil, useuseropenidlist=nil, taglist=nil, skipverify=nil, friends=nil, remark=nil, msgid=nil, configid=nil, qrcodeurl=nil, recstatus=nil, appid=nil)
           @Id = id
           @Type = type
@@ -264,7 +264,7 @@ module TencentCloud
         # @type TagId: String
 
         attr_accessor :TagName, :TagId
-        
+
         def initialize(tagname=nil, tagid=nil)
           @TagName = tagname
           @TagId = tagid
@@ -306,7 +306,7 @@ module TencentCloud
         # @type BodyJson: String
 
         attr_accessor :MsgId, :Action, :MsgType, :From, :ToList, :RoomId, :MsgTime, :Video, :BodyJson
-        
+
         def initialize(msgid=nil, action=nil, msgtype=nil, from=nil, tolist=nil, roomid=nil, msgtime=nil, video=nil, bodyjson=nil)
           @MsgId = msgid
           @Action = action
@@ -347,7 +347,7 @@ module TencentCloud
         # @type CosKey: String
 
         attr_accessor :PlayLength, :FileSize, :CosKey
-        
+
         def initialize(playlength=nil, filesize=nil, coskey=nil)
           @PlayLength = playlength
           @FileSize = filesize
@@ -423,7 +423,7 @@ module TencentCloud
         # @type CreateAtTime: Integer
 
         attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime
-        
+
         def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil)
           @ClueId = clueid
           @DealerId = dealerid
@@ -517,7 +517,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :UserId, :UserName, :UserOpenId, :DealerId, :ShopId, :Phone, :OrgIds, :MainDepartment, :IsLeaderInDept, :Status
-        
+
         def initialize(userid=nil, username=nil, useropenid=nil, dealerid=nil, shopid=nil, phone=nil, orgids=nil, maindepartment=nil, isleaderindept=nil, status=nil)
           @UserId = userid
           @UserName = username
@@ -573,7 +573,7 @@ module TencentCloud
         # @type SourceType: Integer
 
         attr_accessor :Type, :UseUserId, :UseUserOpenId, :AppIds, :Source, :SourceName, :Name, :Tag, :SkipVerify, :MsgId, :Remark, :SourceType
-        
+
         def initialize(type=nil, useuserid=nil, useuseropenid=nil, appids=nil, source=nil, sourcename=nil, name=nil, tag=nil, skipverify=nil, msgid=nil, remark=nil, sourcetype=nil)
           @Type = type
           @UseUserId = useuserid
@@ -618,7 +618,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -638,7 +638,7 @@ module TencentCloud
         # @type Sort: Integer
 
         attr_accessor :GroupName, :Tags, :Sort
-        
+
         def initialize(groupname=nil, tags=nil, sort=nil)
           @GroupName = groupname
           @Tags = tags
@@ -667,7 +667,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TagGroup, :RequestId
-        
+
         def initialize(taggroup=nil, requestid=nil)
           @TagGroup = taggroup
           @RequestId = requestid
@@ -716,7 +716,7 @@ module TencentCloud
         # @type Remark: String
 
         attr_accessor :ChannelId, :ChannelName, :CreateTime, :SourceType, :DealerId, :BrandId, :SeriesId, :CustomerName, :CustomerPhone, :ModelId, :CustomerSex, :SalesName, :SalesPhone, :CcName, :Remark
-        
+
         def initialize(channelid=nil, channelname=nil, createtime=nil, sourcetype=nil, dealerid=nil, brandid=nil, seriesid=nil, customername=nil, customerphone=nil, modelid=nil, customersex=nil, salesname=nil, salesphone=nil, ccname=nil, remark=nil)
           @ChannelId = channelid
           @ChannelName = channelname
@@ -764,7 +764,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :BusinessCode, :BusinessMsg, :RequestId
-        
+
         def initialize(businesscode=nil, businessmsg=nil, requestid=nil)
           @BusinessCode = businesscode
           @BusinessMsg = businessmsg
@@ -798,7 +798,7 @@ module TencentCloud
         # @type StatisticalTime: String
 
         attr_accessor :LeadCnt, :BuildCnt, :InvitedCnt, :OrderedCnt, :DeliveredCnt, :DefeatCnt, :NewContactCnt, :StatisticalTime
-        
+
         def initialize(leadcnt=nil, buildcnt=nil, invitedcnt=nil, orderedcnt=nil, deliveredcnt=nil, defeatcnt=nil, newcontactcnt=nil, statisticaltime=nil)
           @LeadCnt = leadcnt
           @BuildCnt = buildcnt
@@ -842,7 +842,7 @@ module TencentCloud
         # @type EventTime: Integer
 
         attr_accessor :EventCode, :EventType, :EventSource, :ExternalUserId, :SalesId, :MaterialType, :MaterialId, :EventTime
-        
+
         def initialize(eventcode=nil, eventtype=nil, eventsource=nil, externaluserid=nil, salesid=nil, materialtype=nil, materialid=nil, eventtime=nil)
           @EventCode = eventcode
           @EventType = eventtype
@@ -961,7 +961,7 @@ module TencentCloud
         # @type ChannelTags: Array
 
         attr_accessor :CustomerId, :DealerCode, :UnionId, :CreateTime, :UserName, :Gender, :Phone, :AgeRangeName, :JobTypeName, :Address, :LeadsProcessStatus, :LeadType, :SourceName, :LeadsLevelCode, :VehicleBrandCode, :VehicleSeriesCode, :VehicleTypeCode, :VehiclePurpose, :PurchaseConcern, :SalesName, :SalesPhone, :RealArrivalTime, :CompleteTestDriveTime, :OrderTime, :DeliveryTime, :InvoiceTime, :LoseTime, :CreatedAtTime, :ImportAtTime, :DistributeTime, :LeadCreateTime, :Nickname, :OrgIdList, :Introducer, :IntroducerPhone, :FollowTime, :NextFollowTime, :EnterpriseTags, :ChannelTags
-        
+
         def initialize(customerid=nil, dealercode=nil, unionid=nil, createtime=nil, username=nil, gender=nil, phone=nil, agerangename=nil, jobtypename=nil, address=nil, leadsprocessstatus=nil, leadtype=nil, sourcename=nil, leadslevelcode=nil, vehiclebrandcode=nil, vehicleseriescode=nil, vehicletypecode=nil, vehiclepurpose=nil, purchaseconcern=nil, salesname=nil, salesphone=nil, realarrivaltime=nil, completetestdrivetime=nil, ordertime=nil, deliverytime=nil, invoicetime=nil, losetime=nil, createdattime=nil, importattime=nil, distributetime=nil, leadcreatetime=nil, nickname=nil, orgidlist=nil, introducer=nil, introducerphone=nil, followtime=nil, nextfollowtime=nil, enterprisetags=nil, channeltags=nil)
           @CustomerId = customerid
           @DealerCode = dealercode
@@ -1088,7 +1088,7 @@ module TencentCloud
         # @type BrandIdList: Array
 
         attr_accessor :DealerId, :DealerName, :ProvinceCode, :CityCodeList, :BrandIdList
-        
+
         def initialize(dealerid=nil, dealername=nil, provincecode=nil, citycodelist=nil, brandidlist=nil)
           @DealerId = dealerid
           @DealerName = dealername
@@ -1119,7 +1119,7 @@ module TencentCloud
         # @type TagId: String
 
         attr_accessor :GroupName, :TagName, :TagId
-        
+
         def initialize(groupname=nil, tagname=nil, tagid=nil)
           @GroupName = groupname
           @TagName = tagname
@@ -1151,7 +1151,7 @@ module TencentCloud
         # @type Phone: String
 
         attr_accessor :ExternalUserId, :Gender, :Name, :Type, :UnionId, :Phone
-        
+
         def initialize(externaluserid=nil, gender=nil, name=nil, type=nil, unionid=nil, phone=nil)
           @ExternalUserId = externaluserid
           @Gender = gender
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type FollowUser: Array
 
         attr_accessor :Customer, :FollowUser
-        
+
         def initialize(customer=nil, followuser=nil)
           @Customer = customer
           @FollowUser = followuser
@@ -1216,7 +1216,7 @@ module TencentCloud
         # @type DepartmentIdList: Array
 
         attr_accessor :ExternalUserId, :UserId, :SalesName, :DepartmentIdList
-        
+
         def initialize(externaluserid=nil, userid=nil, salesname=nil, departmentidlist=nil)
           @ExternalUserId = externaluserid
           @UserId = userid
@@ -1248,7 +1248,7 @@ module TencentCloud
         # @type TagId: String
 
         attr_accessor :GroupName, :TagName, :Type, :TagId
-        
+
         def initialize(groupname=nil, tagname=nil, type=nil, tagid=nil)
           @GroupName = groupname
           @TagName = tagname
@@ -1276,7 +1276,7 @@ module TencentCloud
         # @type EventTime: Integer
 
         attr_accessor :EventCode, :ExternalUserId, :SalesId, :EventTime
-        
+
         def initialize(eventcode=nil, externaluserid=nil, salesid=nil, eventtime=nil)
           @EventCode = eventcode
           @ExternalUserId = externaluserid
@@ -1301,7 +1301,7 @@ module TencentCloud
         # @type ExternalUserId: String
 
         attr_accessor :CorpExternalUserId, :ExternalUserId
-        
+
         def initialize(corpexternaluserid=nil, externaluserid=nil)
           @CorpExternalUserId = corpexternaluserid
           @ExternalUserId = externaluserid
@@ -1334,7 +1334,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :UserId, :Remark, :Description, :CreateTime, :AddWay, :OperUserId, :Tags
-        
+
         def initialize(userid=nil, remark=nil, description=nil, createtime=nil, addway=nil, operuserid=nil, tags=nil)
           @UserId = userid
           @Remark = remark
@@ -1389,7 +1389,7 @@ module TencentCloud
         # @type DepartmentIdList: Array
 
         attr_accessor :UserId, :Remark, :Description, :CreateTime, :AddWay, :OperUserId, :Tags, :SalesName, :DepartmentIdList
-        
+
         def initialize(userid=nil, remark=nil, description=nil, createtime=nil, addway=nil, operuserid=nil, tags=nil, salesname=nil, departmentidlist=nil)
           @UserId = userid
           @Remark = remark
@@ -1445,7 +1445,7 @@ module TencentCloud
         # @type Extra: String
 
         attr_accessor :License, :LicenseEdition, :ResourceStartTime, :ResourceEndTime, :IsolationDeadline, :DestroyTime, :Status, :Extra
-        
+
         def initialize(license=nil, licenseedition=nil, resourcestarttime=nil, resourceendtime=nil, isolationdeadline=nil, destroytime=nil, status=nil, extra=nil)
           @License = license
           @LicenseEdition = licenseedition
@@ -1496,7 +1496,7 @@ module TencentCloud
         # @type UpdateTime: Integer
 
         attr_accessor :LiveCodeId, :LiveCodeName, :ShortChainAddress, :LiveCodePreview, :ActivityId, :ActivityName, :LiveCodeState, :LiveCodeData, :CreateTime, :UpdateTime
-        
+
         def initialize(livecodeid=nil, livecodename=nil, shortchainaddress=nil, livecodepreview=nil, activityid=nil, activityname=nil, livecodestate=nil, livecodedata=nil, createtime=nil, updatetime=nil)
           @LiveCodeId = livecodeid
           @LiveCodeName = livecodename
@@ -1535,7 +1535,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :MaterialId, :MaterialName, :Status
-        
+
         def initialize(materialid=nil, materialname=nil, status=nil)
           @MaterialId = materialid
           @MaterialName = materialname
@@ -1567,7 +1567,7 @@ module TencentCloud
         # @type UpdateTime: Integer
 
         attr_accessor :Id, :MiniAppName, :MiniAppLogo, :MiniAdminUrl, :State, :CreateTime, :UpdateTime
-        
+
         def initialize(id=nil, miniappname=nil, miniapplogo=nil, miniadminurl=nil, state=nil, createtime=nil, updatetime=nil)
           @Id = id
           @MiniAppName = miniappname
@@ -1597,7 +1597,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :Code, :Description
-        
+
         def initialize(code=nil, description=nil)
           @Code = code
           @Description = description
@@ -1619,7 +1619,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ActivityId, :Cursor, :Limit
-        
+
         def initialize(activityid=nil, cursor=nil, limit=nil)
           @ActivityId = activityid
           @Cursor = cursor
@@ -1645,7 +1645,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -1674,7 +1674,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -1698,7 +1698,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -1727,7 +1727,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -1751,7 +1751,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -1780,7 +1780,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -1804,7 +1804,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -1833,7 +1833,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -1890,7 +1890,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Cursor, :Limit, :BeginTime, :EndTime
-        
+
         def initialize(cursor=nil, limit=nil, begintime=nil, endtime=nil)
           @Cursor = cursor
           @Limit = limit
@@ -1921,7 +1921,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
-        
+
         def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
           @PageData = pagedata
           @NextCursor = nextcursor
@@ -1960,7 +1960,7 @@ module TencentCloud
         # @type OrgId: Integer
 
         attr_accessor :BeginTime, :EndTime, :Cursor, :Limit, :SalesId, :OrgId
-        
+
         def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil, salesid=nil, orgid=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -1992,7 +1992,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2025,7 +2025,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
-        
+
         def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2053,7 +2053,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2086,7 +2086,7 @@ module TencentCloud
         # @type Cursor: String
 
         attr_accessor :Limit, :BeginTime, :EndTime, :Cursor
-        
+
         def initialize(limit=nil, begintime=nil, endtime=nil, cursor=nil)
           @Limit = limit
           @BeginTime = begintime
@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2143,7 +2143,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -2170,7 +2170,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
-        
+
         def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
           @PageData = pagedata
           @NextCursor = nextcursor
@@ -2205,7 +2205,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
-        
+
         def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2232,7 +2232,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2263,7 +2263,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ExternalUserId, :Cursor, :Limit
-        
+
         def initialize(externaluserid=nil, cursor=nil, limit=nil)
           @ExternalUserId = externaluserid
           @Cursor = cursor
@@ -2292,7 +2292,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :Customer, :FollowUser, :RequestId
-        
+
         def initialize(nextcursor=nil, customer=nil, followuser=nil, requestid=nil)
           @NextCursor = nextcursor
           @Customer = customer
@@ -2326,7 +2326,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -2350,7 +2350,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :RequestId
-        
+
         def initialize(pagedata=nil, nextcursor=nil, requestid=nil)
           @PageData = pagedata
           @NextCursor = nextcursor
@@ -2383,7 +2383,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
-        
+
         def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2411,7 +2411,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2438,7 +2438,7 @@ module TencentCloud
         # @type CorpExternalUserIdList: Array
 
         attr_accessor :CorpExternalUserIdList
-        
+
         def initialize(corpexternaluseridlist=nil)
           @CorpExternalUserIdList = corpexternaluseridlist
         end
@@ -2457,7 +2457,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ExternalUserIdMapping, :RequestId
-        
+
         def initialize(externaluseridmapping=nil, requestid=nil)
           @ExternalUserIdMapping = externaluseridmapping
           @RequestId = requestid
@@ -2482,7 +2482,7 @@ module TencentCloud
         # @type License: String
 
         attr_accessor :License
-        
+
         def initialize(license=nil)
           @License = license
         end
@@ -2501,7 +2501,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :LicenseInfo, :RequestId
-        
+
         def initialize(licenseinfo=nil, requestid=nil)
           @LicenseInfo = licenseinfo
           @RequestId = requestid
@@ -2526,7 +2526,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :MaterialType, :Cursor, :Limit
-        
+
         def initialize(materialtype=nil, cursor=nil, limit=nil)
           @MaterialType = materialtype
           @Cursor = cursor
@@ -2552,7 +2552,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2581,7 +2581,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -2605,7 +2605,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2638,7 +2638,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
-        
+
         def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
           @BeginTime = begintime
           @EndTime = endtime
@@ -2666,7 +2666,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2695,7 +2695,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -2719,7 +2719,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
-        
+
         def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
           @NextCursor = nextcursor
           @PageData = pagedata
@@ -2748,7 +2748,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Cursor, :Limit
-        
+
         def initialize(cursor=nil, limit=nil)
           @Cursor = cursor
           @Limit = limit
@@ -2775,7 +2775,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
-        
+
         def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
           @PageData = pagedata
           @NextCursor = nextcursor
@@ -2816,7 +2816,7 @@ module TencentCloud
         # @type EventTime: Integer
 
         attr_accessor :EventCode, :EventType, :EventSource, :SalesId, :MaterialType, :MaterialId, :EventTime
-        
+
         def initialize(eventcode=nil, eventtype=nil, eventsource=nil, salesid=nil, materialtype=nil, materialid=nil, eventtime=nil)
           @EventCode = eventcode
           @EventType = eventtype
@@ -2852,7 +2852,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :TagName, :BizTagId, :TagId, :Sort, :CreateTime
-        
+
         def initialize(tagname=nil, biztagid=nil, tagid=nil, sort=nil, createtime=nil)
           @TagName = tagname
           @BizTagId = biztagid
@@ -2886,7 +2886,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :GroupId, :BizGroupId, :GroupName, :Sort, :CreateTime, :Tags
-        
+
         def initialize(groupid=nil, bizgroupid=nil, groupname=nil, sort=nil, createtime=nil, tags=nil)
           @GroupId = groupid
           @BizGroupId = bizgroupid
@@ -2921,7 +2921,7 @@ module TencentCloud
         # @type Sort: Integer
 
         attr_accessor :TagName, :Sort
-        
+
         def initialize(tagname=nil, sort=nil)
           @TagName = tagname
           @Sort = sort
@@ -2949,7 +2949,7 @@ module TencentCloud
         # @type ModelName: String
 
         attr_accessor :BrandId, :BrandName, :SeriesId, :SeriesName, :ModelId, :ModelName
-        
+
         def initialize(brandid=nil, brandname=nil, seriesid=nil, seriesname=nil, modelid=nil, modelname=nil)
           @BrandId = brandid
           @BrandName = brandname
@@ -2977,7 +2977,7 @@ module TencentCloud
         # @type VehiclePurposeName: String
 
         attr_accessor :VehiclePurposeCode, :VehiclePurposeName
-        
+
         def initialize(vehiclepurposecode=nil, vehiclepurposename=nil)
           @VehiclePurposeCode = vehiclepurposecode
           @VehiclePurposeName = vehiclepurposename
@@ -3014,7 +3014,7 @@ module TencentCloud
         # @type BizTagIdStr: String
 
         attr_accessor :GroupName, :BizGroupId, :TagName, :TagId, :BizTagId, :Type, :BizTagIdStr
-        
+
         def initialize(groupname=nil, bizgroupid=nil, tagname=nil, tagid=nil, biztagid=nil, type=nil, biztagidstr=nil)
           @GroupName = groupname
           @BizGroupId = bizgroupid

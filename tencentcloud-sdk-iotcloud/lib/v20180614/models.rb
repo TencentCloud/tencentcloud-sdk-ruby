@@ -23,7 +23,7 @@ module TencentCloud
         # @type Tags: Array
 
         attr_accessor :Tags
-        
+
         def initialize(tags=nil)
           @Tags = tags
         end
@@ -48,7 +48,7 @@ module TencentCloud
         # @type Payload: String
 
         attr_accessor :Topic, :Payload
-        
+
         def initialize(topic=nil, payload=nil)
           @Topic = topic
           @Payload = payload
@@ -82,7 +82,7 @@ module TencentCloud
         # @type TimeoutInterval: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval
-        
+
         def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -116,7 +116,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -134,7 +134,7 @@ module TencentCloud
         # @type Desired: String
 
         attr_accessor :Desired
-        
+
         def initialize(desired=nil)
           @Desired = desired
         end
@@ -158,7 +158,7 @@ module TencentCloud
         # @type Skey: String
 
         attr_accessor :GatewayProductId, :GatewayDeviceName, :ProductId, :DeviceNames, :Skey
-        
+
         def initialize(gatewayproductid=nil, gatewaydevicename=nil, productid=nil, devicenames=nil, skey=nil)
           @GatewayProductId = gatewayproductid
           @GatewayDeviceName = gatewaydevicename
@@ -182,7 +182,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -200,7 +200,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductId, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -232,7 +232,7 @@ module TencentCloud
         # @type Userid: String
 
         attr_accessor :Content, :Devicename, :Productid, :Requestid, :Result, :Scene, :Time, :Userid
-        
+
         def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil)
           @Content = content
           @Devicename = devicename
@@ -268,7 +268,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :ProductID, :DeviceName, :FirmwareVersion, :TaskId
-        
+
         def initialize(productid=nil, devicename=nil, firmwareversion=nil, taskid=nil)
           @ProductID = productid
           @DeviceName = devicename
@@ -290,7 +290,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -306,7 +306,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Id
-        
+
         def initialize(id=nil)
           @Id = id
         end
@@ -322,7 +322,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -356,7 +356,7 @@ module TencentCloud
         # @type LoraAppKey: String
 
         attr_accessor :ProductId, :DeviceName, :Attribute, :DefinedPsk, :Isp, :Imei, :LoraDevEui, :LoraMoteType, :Skey, :LoraAppKey
-        
+
         def initialize(productid=nil, devicename=nil, attribute=nil, definedpsk=nil, isp=nil, imei=nil, loradeveui=nil, loramotetype=nil, skey=nil, loraappkey=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -409,7 +409,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceName, :DevicePsk, :DeviceCert, :DevicePrivateKey, :LoraDevEui, :LoraMoteType, :LoraAppKey, :LoraNwkKey, :RequestId
-        
+
         def initialize(devicename=nil, devicepsk=nil, devicecert=nil, deviceprivatekey=nil, loradeveui=nil, loramotetype=nil, loraappkey=nil, loranwkkey=nil, requestid=nil)
           @DeviceName = devicename
           @DevicePsk = devicepsk
@@ -455,7 +455,7 @@ module TencentCloud
         # @type Memo: String
 
         attr_accessor :ProductId, :DeviceName, :DeviceType, :AppEui, :DeviceEui, :AppKey, :AuthKey, :Memo
-        
+
         def initialize(productid=nil, devicename=nil, devicetype=nil, appeui=nil, deviceeui=nil, appkey=nil, authkey=nil, memo=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -493,7 +493,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppEui, :DeviceEui, :ClassType, :DeviceName, :RequestId
-        
+
         def initialize(appeui=nil, deviceeui=nil, classtype=nil, devicename=nil, requestid=nil)
           @AppEui = appeui
           @DeviceEui = deviceeui
@@ -519,7 +519,7 @@ module TencentCloud
         # @type DeviceNames: Array
 
         attr_accessor :ProductId, :DeviceNames
-        
+
         def initialize(productid=nil, devicenames=nil)
           @ProductId = productid
           @DeviceNames = devicenames
@@ -539,7 +539,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -567,7 +567,7 @@ module TencentCloud
         # @type Hash: String
 
         attr_accessor :ProductId, :ParametersType, :FileName, :FileSize, :BatchCount, :Hash
-        
+
         def initialize(productid=nil, parameterstype=nil, filename=nil, filesize=nil, batchcount=nil, hash=nil)
           @ProductId = productid
           @ParametersType = parameterstype
@@ -595,7 +595,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Id, :RequestId
-        
+
         def initialize(id=nil, requestid=nil)
           @Id = id
           @RequestId = requestid
@@ -617,7 +617,7 @@ module TencentCloud
         # @type Skey: String
 
         attr_accessor :ProductName, :ProductProperties, :Skey
-        
+
         def initialize(productname=nil, productproperties=nil, skey=nil)
           @ProductName = productname
           @ProductProperties = productproperties
@@ -646,7 +646,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductName, :ProductId, :ProductProperties, :RequestId
-        
+
         def initialize(productname=nil, productid=nil, productproperties=nil, requestid=nil)
           @ProductName = productname
           @ProductId = productid
@@ -671,7 +671,7 @@ module TencentCloud
         # @type ProductId: String
 
         attr_accessor :ProductId
-        
+
         def initialize(productid=nil)
           @ProductId = productid
         end
@@ -691,7 +691,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :FileName, :RequestId
-        
+
         def initialize(url=nil, filename=nil, requestid=nil)
           @Url = url
           @FileName = filename
@@ -721,7 +721,7 @@ module TencentCloud
         # @type MaxExecutionTimeInSeconds: Integer
 
         attr_accessor :TaskType, :ProductId, :DeviceNameFilter, :ScheduleTimeInSeconds, :Tasks, :MaxExecutionTimeInSeconds
-        
+
         def initialize(tasktype=nil, productid=nil, devicenamefilter=nil, scheduletimeinseconds=nil, tasks=nil, maxexecutiontimeinseconds=nil)
           @TaskType = tasktype
           @ProductId = productid
@@ -752,7 +752,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -776,7 +776,7 @@ module TencentCloud
         # @type BrokerSubscribe: :class:`Tencentcloud::Iotcloud.v20180614.models.BrokerSubscribe`
 
         attr_accessor :ProductID, :TopicName, :Privilege, :BrokerSubscribe
-        
+
         def initialize(productid=nil, topicname=nil, privilege=nil, brokersubscribe=nil)
           @ProductID = productid
           @TopicName = topicname
@@ -801,7 +801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -819,7 +819,7 @@ module TencentCloud
         # @type TopicRulePayload: :class:`Tencentcloud::Iotcloud.v20180614.models.TopicRulePayload`
 
         attr_accessor :RuleName, :TopicRulePayload
-        
+
         def initialize(rulename=nil, topicrulepayload=nil)
           @RuleName = rulename
           @TopicRulePayload = topicrulepayload
@@ -840,7 +840,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -860,7 +860,7 @@ module TencentCloud
         # @type Skey: String
 
         attr_accessor :ProductId, :DeviceName, :Skey
-        
+
         def initialize(productid=nil, devicename=nil, skey=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -884,7 +884,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductID, :Name, :DeviceName
-        
+
         def initialize(productid=nil, name=nil, devicename=nil)
           @ProductID = productid
           @Name = name
@@ -904,7 +904,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -920,7 +920,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -938,7 +938,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductId, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -956,7 +956,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -974,7 +974,7 @@ module TencentCloud
         # @type Skey: String
 
         attr_accessor :ProductId, :Skey
-        
+
         def initialize(productid=nil, skey=nil)
           @ProductId = productid
           @Skey = skey
@@ -992,7 +992,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1008,7 +1008,7 @@ module TencentCloud
         # @type RuleName: String
 
         attr_accessor :RuleName
-        
+
         def initialize(rulename=nil)
           @RuleName = rulename
         end
@@ -1024,7 +1024,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -1042,7 +1042,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -1064,7 +1064,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Devices, :RequestId
-        
+
         def initialize(totalcount=nil, devices=nil, requestid=nil)
           @TotalCount = totalcount
           @Devices = devices
@@ -1093,7 +1093,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductId, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -1113,7 +1113,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ClientKey, :RequestId
-        
+
         def initialize(clientkey=nil, requestid=nil)
           @ClientKey = clientkey
           @RequestId = requestid
@@ -1133,7 +1133,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductID, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductID = productid
           @DeviceName = devicename
@@ -1155,7 +1155,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :DeviceName, :ProductID, :Name
-        
+
         def initialize(devicename=nil, productid=nil, name=nil)
           @DeviceName = devicename
           @ProductID = productid
@@ -1177,7 +1177,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -1208,7 +1208,7 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :Offset, :Limit, :ProductID, :DeviceName, :StartTime, :EndTime
-        
+
         def initialize(offset=nil, limit=nil, productid=nil, devicename=nil, starttime=nil, endtime=nil)
           @Offset = offset
           @Limit = limit
@@ -1239,7 +1239,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Result, :RequestId
-        
+
         def initialize(totalcount=nil, result=nil, requestid=nil)
           @TotalCount = totalcount
           @Result = result
@@ -1323,7 +1323,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :RequestId
-        
+
         def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, requestid=nil)
           @DeviceName = devicename
           @Online = online
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductId, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -1423,7 +1423,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -1451,7 +1451,7 @@ module TencentCloud
         # @type EnableState: Integer
 
         attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName, :EnableState
-        
+
         def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil, enablestate=nil)
           @ProductId = productid
           @Offset = offset
@@ -1481,7 +1481,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Devices, :RequestId
-        
+
         def initialize(totalcount=nil, devices=nil, requestid=nil)
           @TotalCount = totalcount
           @Devices = devices
@@ -1510,7 +1510,7 @@ module TencentCloud
         # @type FirmwareVersion: String
 
         attr_accessor :ProductID, :FirmwareVersion
-        
+
         def initialize(productid=nil, firmwareversion=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1548,7 +1548,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Version, :ProductId, :Name, :Description, :Md5sum, :Createtime, :ProductName, :FwType, :RequestId
-        
+
         def initialize(version=nil, productid=nil, name=nil, description=nil, md5sum=nil, createtime=nil, productname=nil, fwtype=nil, requestid=nil)
           @Version = version
           @ProductId = productid
@@ -1588,7 +1588,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :Filters, :Offset, :Limit
-        
+
         def initialize(productid=nil, firmwareversion=nil, filters=nil, offset=nil, limit=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1625,7 +1625,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Total, :Devices, :RequestId
-        
+
         def initialize(total=nil, devices=nil, requestid=nil)
           @Total = total
           @Devices = devices
@@ -1656,7 +1656,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :TaskId
-        
+
         def initialize(productid=nil, firmwareversion=nil, taskid=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1678,7 +1678,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StatusInfos, :RequestId
-        
+
         def initialize(statusinfos=nil, requestid=nil)
           @StatusInfos = statusinfos
           @RequestId = requestid
@@ -1707,7 +1707,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :TaskId
-        
+
         def initialize(productid=nil, firmwareversion=nil, taskid=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1748,7 +1748,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :RequestId
-        
+
         def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
@@ -1780,7 +1780,7 @@ module TencentCloud
         # @type FirmwareVersion: String
 
         attr_accessor :ProductID, :FirmwareVersion
-        
+
         def initialize(productid=nil, firmwareversion=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1807,7 +1807,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessTotal, :FailureTotal, :UpgradingTotal, :RequestId
-        
+
         def initialize(successtotal=nil, failuretotal=nil, upgradingtotal=nil, requestid=nil)
           @SuccessTotal = successtotal
           @FailureTotal = failuretotal
@@ -1837,7 +1837,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :ProductID, :FirmwareVersion, :Offset, :Limit, :Filters
-        
+
         def initialize(productid=nil, firmwareversion=nil, offset=nil, limit=nil, filters=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -1874,7 +1874,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskInfos, :Total, :RequestId
-        
+
         def initialize(taskinfos=nil, total=nil, requestid=nil)
           @TaskInfos = taskinfos
           @Total = total
@@ -1903,7 +1903,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductId, :DeviceName
-        
+
         def initialize(productid=nil, devicename=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -1933,7 +1933,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DeviceName, :AppEui, :DeviceEui, :AppKey, :ClassType, :ProductId, :RequestId
-        
+
         def initialize(devicename=nil, appeui=nil, deviceeui=nil, appkey=nil, classtype=nil, productid=nil, requestid=nil)
           @DeviceName = devicename
           @AppEui = appeui
@@ -1963,7 +1963,7 @@ module TencentCloud
         # @type ProductId: String
 
         attr_accessor :TaskId, :ProductId
-        
+
         def initialize(taskid=nil, productid=nil)
           @TaskId = taskid
           @ProductId = productid
@@ -1985,7 +1985,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :TaskStatus, :RequestId
-        
+
         def initialize(taskid=nil, taskstatus=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
@@ -2011,7 +2011,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ProductId, :TaskId, :Offset, :Limit
-        
+
         def initialize(productid=nil, taskid=nil, offset=nil, limit=nil)
           @ProductId = productid
           @TaskId = taskid
@@ -2039,7 +2039,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :DevicesInfo, :TotalDevNum, :RequestId
-        
+
         def initialize(taskid=nil, devicesinfo=nil, totaldevnum=nil, requestid=nil)
           @TaskId = taskid
           @DevicesInfo = devicesinfo
@@ -2068,7 +2068,7 @@ module TencentCloud
         # @type ProductId: String
 
         attr_accessor :ProductId
-        
+
         def initialize(productid=nil)
           @ProductId = productid
         end
@@ -2086,7 +2086,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :ProductID, :Name
-        
+
         def initialize(productid=nil, name=nil)
           @ProductID = productid
           @Name = name
@@ -2107,7 +2107,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
-        
+
         def initialize(result=nil, requestid=nil)
           @Result = result
           @RequestId = requestid
@@ -2134,7 +2134,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Offset, :Limit, :ProductID, :Name
-        
+
         def initialize(offset=nil, limit=nil, productid=nil, name=nil)
           @Offset = offset
           @Limit = limit
@@ -2161,7 +2161,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Result, :RequestId
-        
+
         def initialize(totalcount=nil, result=nil, requestid=nil)
           @TotalCount = totalcount
           @Result = result
@@ -2196,7 +2196,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ProductId, :ProductName, :ProductMetadata, :ProductProperties, :RequestId
-        
+
         def initialize(productid=nil, productname=nil, productmetadata=nil, productproperties=nil, requestid=nil)
           @ProductId = productid
           @ProductName = productname
@@ -2228,7 +2228,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :ProductId, :TaskId
-        
+
         def initialize(productid=nil, taskid=nil)
           @ProductId = productid
           @TaskId = taskid
@@ -2248,7 +2248,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskInfo, :RequestId
-        
+
         def initialize(taskinfo=nil, requestid=nil)
           @TaskInfo = taskinfo
           @RequestId = requestid
@@ -2273,7 +2273,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :ProductId, :Offset, :Limit
-        
+
         def initialize(productid=nil, offset=nil, limit=nil)
           @ProductId = productid
           @Offset = offset
@@ -2297,7 +2297,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TaskInfos, :RequestId
-        
+
         def initialize(totalcount=nil, taskinfos=nil, requestid=nil)
           @TotalCount = totalcount
           @TaskInfos = taskinfos
@@ -2326,7 +2326,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -2348,7 +2348,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Products, :RequestId
-        
+
         def initialize(totalcount=nil, products=nil, requestid=nil)
           @TotalCount = totalcount
           @Products = products
@@ -2377,7 +2377,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :ProductID, :Name
-        
+
         def initialize(productid=nil, name=nil)
           @ProductID = productid
           @Name = name
@@ -2404,7 +2404,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessTotal, :FailureTotal, :UpgradingTotal, :RequestId
-        
+
         def initialize(successtotal=nil, failuretotal=nil, upgradingtotal=nil, requestid=nil)
           @SuccessTotal = successtotal
           @FailureTotal = failuretotal
@@ -2434,7 +2434,7 @@ module TencentCloud
         # @type Filters: Array
 
         attr_accessor :ProductID, :Name, :Offset, :Limit, :Filters
-        
+
         def initialize(productid=nil, name=nil, offset=nil, limit=nil, filters=nil)
           @ProductID = productid
           @Name = name
@@ -2471,7 +2471,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskInfos, :Total, :RequestId
-        
+
         def initialize(taskinfos=nil, total=nil, requestid=nil)
           @TaskInfos = taskinfos
           @Total = total
@@ -2498,7 +2498,7 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Id
-        
+
         def initialize(id=nil)
           @Id = id
         end
@@ -2540,7 +2540,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Type, :Id, :ProductId, :Status, :CreateTime, :UpdateTime, :DoneTime, :ScheduleTime, :RetCode, :ErrMsg, :Percent, :AllDeviceCnt, :DoneDeviceCnt, :RequestId
-        
+
         def initialize(type=nil, id=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, donetime=nil, scheduletime=nil, retcode=nil, errmsg=nil, percent=nil, alldevicecnt=nil, donedevicecnt=nil, requestid=nil)
           @Type = type
           @Id = id
@@ -2584,7 +2584,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :Offset, :Limit
-        
+
         def initialize(offset=nil, limit=nil)
           @Offset = offset
           @Limit = limit
@@ -2606,7 +2606,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
-        
+
         def initialize(totalcount=nil, tasks=nil, requestid=nil)
           @TotalCount = totalcount
           @Tasks = tasks
@@ -2688,7 +2688,7 @@ module TencentCloud
         # @type FirmwareUpdateTime: Integer
 
         attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime
-        
+
         def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil)
           @DeviceName = devicename
           @Online = online
@@ -2766,7 +2766,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -2794,7 +2794,7 @@ module TencentCloud
         # @type ResourceId: String
 
         attr_accessor :ProductId, :ProductName, :DeviceName, :ResourceId
-        
+
         def initialize(productid=nil, productname=nil, devicename=nil, resourceid=nil)
           @ProductId = productid
           @ProductName = productname
@@ -2832,7 +2832,7 @@ module TencentCloud
         # @type Percent: Integer
 
         attr_accessor :ProductID, :ProductName, :Name, :Md5, :Size, :UpdateTime, :DeviceName, :Status, :Percent
-        
+
         def initialize(productid=nil, productname=nil, name=nil, md5=nil, size=nil, updatetime=nil, devicename=nil, status=nil, percent=nil)
           @ProductID = productid
           @ProductName = productname
@@ -2871,7 +2871,7 @@ module TencentCloud
         # @type Name: String
 
         attr_accessor :Tag, :Type, :Value, :Name
-        
+
         def initialize(tag=nil, type=nil, value=nil, name=nil)
           @Tag = tag
           @Type = type
@@ -2912,7 +2912,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :DeviceName, :LastProcessTime, :Status, :ErrMsg, :Retcode, :DstVersion, :Percent, :OriVersion, :TaskId
-        
+
         def initialize(devicename=nil, lastprocesstime=nil, status=nil, errmsg=nil, retcode=nil, dstversion=nil, percent=nil, oriversion=nil, taskid=nil)
           @DeviceName = devicename
           @LastProcessTime = lastprocesstime
@@ -2944,7 +2944,7 @@ module TencentCloud
         # @type RuleName: String
 
         attr_accessor :RuleName
-        
+
         def initialize(rulename=nil)
           @RuleName = rulename
         end
@@ -2960,7 +2960,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -2980,7 +2980,7 @@ module TencentCloud
         # @type DeviceName: String
 
         attr_accessor :ProductID, :Name, :DeviceName
-        
+
         def initialize(productid=nil, name=nil, devicename=nil)
           @ProductID = productid
           @Name = name
@@ -3002,7 +3002,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :RequestId
-        
+
         def initialize(url=nil, requestid=nil)
           @Url = url
           @RequestId = requestid
@@ -3028,7 +3028,7 @@ module TencentCloud
         # @type FwType: String
 
         attr_accessor :ProductID, :FirmwareVersion, :FirmwareName, :FirmwareDescription, :FwType
-        
+
         def initialize(productid=nil, firmwareversion=nil, firmwarename=nil, firmwaredescription=nil, fwtype=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -3052,7 +3052,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3068,7 +3068,7 @@ module TencentCloud
         # @type RuleName: String
 
         attr_accessor :RuleName
-        
+
         def initialize(rulename=nil)
           @RuleName = rulename
         end
@@ -3084,7 +3084,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3110,7 +3110,7 @@ module TencentCloud
         # @type CreateTime: Integer
 
         attr_accessor :TaskId, :Status, :Type, :CreateTime
-        
+
         def initialize(taskid=nil, status=nil, type=nil, createtime=nil)
           @TaskId = taskid
           @Status = status
@@ -3134,7 +3134,7 @@ module TencentCloud
         # @type FirmwareVersion: String
 
         attr_accessor :ProductID, :FirmwareVersion
-        
+
         def initialize(productid=nil, firmwareversion=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -3154,7 +3154,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Url, :RequestId
-        
+
         def initialize(url=nil, requestid=nil)
           @Url = url
           @RequestId = requestid
@@ -3169,7 +3169,7 @@ module TencentCloud
       # GetUserResourceInfo请求参数结构体
       class GetUserResourceInfoRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -3187,7 +3187,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UsedSize, :Limit, :RequestId
-        
+
         def initialize(usedsize=nil, limit=nil, requestid=nil)
           @UsedSize = usedsize
           @Limit = limit
@@ -3216,7 +3216,7 @@ module TencentCloud
         # @type MaxNum: Integer
 
         attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
-        
+
         def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
           @MinTime = mintime
           @MaxTime = maxtime
@@ -3246,7 +3246,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Context, :Listover, :Results, :RequestId
-        
+
         def initialize(context=nil, listover=nil, results=nil, requestid=nil)
           @Context = context
           @Listover = listover
@@ -3284,7 +3284,7 @@ module TencentCloud
         # @type MaxNum: Integer
 
         attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
-        
+
         def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
           @MinTime = mintime
           @MaxTime = maxtime
@@ -3316,7 +3316,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Context, :Listover, :Results, :TotalCount, :RequestId
-        
+
         def initialize(context=nil, listover=nil, results=nil, totalcount=nil, requestid=nil)
           @Context = context
           @Listover = listover
@@ -3359,7 +3359,7 @@ module TencentCloud
         # @type MaxNum: Integer
 
         attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
-        
+
         def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
           @MinTime = mintime
           @MaxTime = maxtime
@@ -3389,7 +3389,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Context, :Listover, :Results, :RequestId
-        
+
         def initialize(context=nil, listover=nil, results=nil, requestid=nil)
           @Context = context
           @Listover = listover
@@ -3428,7 +3428,7 @@ module TencentCloud
         # @type ErrMsg: String
 
         attr_accessor :DeviceName, :DevicePsk, :DeviceCert, :DevicePrivateKey, :Result, :ErrMsg
-        
+
         def initialize(devicename=nil, devicepsk=nil, devicecert=nil, deviceprivatekey=nil, result=nil, errmsg=nil)
           @DeviceName = devicename
           @DevicePsk = devicepsk
@@ -3472,7 +3472,7 @@ module TencentCloud
         # @type DateTime: String
 
         attr_accessor :Uin, :ProductID, :DeviceName, :SrcType, :SrcName, :Topic, :PayloadFmtType, :Payload, :RequestID, :DateTime
-        
+
         def initialize(uin=nil, productid=nil, devicename=nil, srctype=nil, srcname=nil, topic=nil, payloadfmttype=nil, payload=nil, requestid=nil, datetime=nil)
           @Uin = uin
           @ProductID = productid
@@ -3512,7 +3512,7 @@ module TencentCloud
         # @type ProductProperties: :class:`Tencentcloud::Iotcloud.v20180614.models.ProductProperties`
 
         attr_accessor :ProductId, :ProductName, :ProductMetadata, :ProductProperties
-        
+
         def initialize(productid=nil, productname=nil, productmetadata=nil, productproperties=nil)
           @ProductId = productid
           @ProductName = productname
@@ -3540,7 +3540,7 @@ module TencentCloud
         # @type CreationDate: Integer
 
         attr_accessor :CreationDate
-        
+
         def initialize(creationdate=nil)
           @CreationDate = creationdate
         end
@@ -3581,7 +3581,7 @@ module TencentCloud
         # @type RegisterLimit: Integer
 
         attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit
-        
+
         def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil)
           @ProductDescription = productdescription
           @EncryptionType = encryptiontype
@@ -3634,7 +3634,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :ProductID, :ProductName, :Name, :Md5, :Size, :Description, :CreateTime
-        
+
         def initialize(productid=nil, productname=nil, name=nil, md5=nil, size=nil, description=nil, createtime=nil)
           @ProductID = productid
           @ProductName = productname
@@ -3689,7 +3689,7 @@ module TencentCloud
         # @type CompleteTime: Integer
 
         attr_accessor :Id, :Type, :State, :ParametersType, :Parameters, :ResultType, :Result, :BatchCount, :BatchOffset, :CreateTime, :UpdateTime, :CompleteTime
-        
+
         def initialize(id=nil, type=nil, state=nil, parameterstype=nil, parameters=nil, resulttype=nil, result=nil, batchcount=nil, batchoffset=nil, createtime=nil, updatetime=nil, completetime=nil)
           @Id = id
           @Type = type
@@ -3733,7 +3733,7 @@ module TencentCloud
         # @type Payload: String
 
         attr_accessor :ProductId, :DeviceName, :Port, :Payload
-        
+
         def initialize(productid=nil, devicename=nil, port=nil, payload=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -3755,7 +3755,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3777,7 +3777,7 @@ module TencentCloud
         # @type PayloadEncoding: String
 
         attr_accessor :ProductId, :Payload, :Qos, :PayloadEncoding
-        
+
         def initialize(productid=nil, payload=nil, qos=nil, payloadencoding=nil)
           @ProductId = productid
           @Payload = payload
@@ -3801,7 +3801,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
-        
+
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
           @RequestId = requestid
@@ -3829,7 +3829,7 @@ module TencentCloud
         # @type PayloadEncoding: String
 
         attr_accessor :Topic, :Payload, :ProductId, :DeviceName, :Qos, :PayloadEncoding
-        
+
         def initialize(topic=nil, payload=nil, productid=nil, devicename=nil, qos=nil, payloadencoding=nil)
           @Topic = topic
           @Payload = payload
@@ -3855,7 +3855,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3875,7 +3875,7 @@ module TencentCloud
         # @type Payload: String
 
         attr_accessor :ProductId, :DeviceName, :Payload
-        
+
         def initialize(productid=nil, devicename=nil, payload=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -3899,7 +3899,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :MessageId, :PayloadBase64, :RequestId
-        
+
         def initialize(messageid=nil, payloadbase64=nil, requestid=nil)
           @MessageId = messageid
           @PayloadBase64 = payloadbase64
@@ -3925,7 +3925,7 @@ module TencentCloud
         # @type Payload: String
 
         attr_accessor :ProductId, :DeviceName, :Port, :Payload
-        
+
         def initialize(productid=nil, devicename=nil, port=nil, payload=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -3947,7 +3947,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -3969,7 +3969,7 @@ module TencentCloud
         # @type ActionIndex: Integer
 
         attr_accessor :RuleName, :TopicRulePayload, :ModifyType, :ActionIndex
-        
+
         def initialize(rulename=nil, topicrulepayload=nil, modifytype=nil, actionindex=nil)
           @RuleName = rulename
           @TopicRulePayload = topicrulepayload
@@ -3994,7 +3994,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4015,7 +4015,7 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :DeviceName, :Success, :Reason
-        
+
         def initialize(devicename=nil, success=nil, reason=nil)
           @DeviceName = devicename
           @Success = success
@@ -4037,7 +4037,7 @@ module TencentCloud
         # @type DeviceNames: Array
 
         attr_accessor :ProductId, :DeviceNames
-        
+
         def initialize(productid=nil, devicenames=nil)
           @ProductId = productid
           @DeviceNames = devicenames
@@ -4059,7 +4059,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SuccessCount, :ResetDeviceResults, :RequestId
-        
+
         def initialize(successcount=nil, resetdeviceresults=nil, requestid=nil)
           @SuccessCount = successcount
           @ResetDeviceResults = resetdeviceresults
@@ -4092,7 +4092,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :ProductID, :DeviceName, :FirmwareVersion, :TaskId
-        
+
         def initialize(productid=nil, devicename=nil, firmwareversion=nil, taskid=nil)
           @ProductID = productid
           @DeviceName = devicename
@@ -4114,7 +4114,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4138,7 +4138,7 @@ module TencentCloud
         # @type Content: String
 
         attr_accessor :ProductID, :DeviceName, :Level, :DateTime, :Content
-        
+
         def initialize(productid=nil, devicename=nil, level=nil, datetime=nil, content=nil)
           @ProductID = productid
           @DeviceName = devicename
@@ -4164,7 +4164,7 @@ module TencentCloud
         # @type Value: String
 
         attr_accessor :Key, :Value
-        
+
         def initialize(key=nil, value=nil)
           @Key = key
           @Value = value
@@ -4184,7 +4184,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :ProductID, :Status
-        
+
         def initialize(productid=nil, status=nil)
           @ProductID = productid
           @Status = status
@@ -4202,7 +4202,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4222,7 +4222,7 @@ module TencentCloud
         # @type Total: Integer
 
         attr_accessor :Status, :Total
-        
+
         def initialize(status=nil, total=nil)
           @Status = status
           @Total = total
@@ -4242,7 +4242,7 @@ module TencentCloud
         # @type PublishMessageTask: :class:`Tencentcloud::Iotcloud.v20180614.models.BatchPublishMessage`
 
         attr_accessor :UpdateShadowTask, :PublishMessageTask
-        
+
         def initialize(updateshadowtask=nil, publishmessagetask=nil)
           @UpdateShadowTask = updateshadowtask
           @PublishMessageTask = publishmessagetask
@@ -4280,7 +4280,7 @@ module TencentCloud
         # @type ErrMsg: String
 
         attr_accessor :Type, :Id, :ProductId, :Status, :CreateTime, :UpdateTime, :RetCode, :ErrMsg
-        
+
         def initialize(type=nil, id=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, retcode=nil, errmsg=nil)
           @Type = type
           @Id = id
@@ -4365,7 +4365,7 @@ module TencentCloud
         # @type RuleDisabled: Boolean
 
         attr_accessor :Sql, :Actions, :Description, :RuleDisabled
-        
+
         def initialize(sql=nil, actions=nil, description=nil, ruledisabled=nil)
           @Sql = sql
           @Actions = actions
@@ -4395,7 +4395,7 @@ module TencentCloud
         # @type Skey: String
 
         attr_accessor :GatewayProductId, :GatewayDeviceName, :ProductId, :DeviceNames, :Skey
-        
+
         def initialize(gatewayproductid=nil, gatewaydevicename=nil, productid=nil, devicenames=nil, skey=nil)
           @GatewayProductId = gatewayproductid
           @GatewayDeviceName = gatewaydevicename
@@ -4419,7 +4419,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4439,7 +4439,7 @@ module TencentCloud
         # @type EnableState: Integer
 
         attr_accessor :ProductId, :DeviceName, :EnableState
-        
+
         def initialize(productid=nil, devicename=nil, enablestate=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -4459,7 +4459,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4483,7 +4483,7 @@ module TencentCloud
         # @type Prefix: String
 
         attr_accessor :ProductId, :DeviceName, :State, :ShadowVersion, :Prefix
-        
+
         def initialize(productid=nil, devicename=nil, state=nil, shadowversion=nil, prefix=nil)
           @ProductId = productid
           @DeviceName = devicename
@@ -4509,7 +4509,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -4531,7 +4531,7 @@ module TencentCloud
         # @type Status: Integer
 
         attr_accessor :ProductID, :DeviceNames, :Status
-        
+
         def initialize(productid=nil, devicenames=nil, status=nil)
           @ProductID = productid
           @DeviceNames = devicenames
@@ -4551,7 +4551,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4571,7 +4571,7 @@ module TencentCloud
         # @type RegisterLimit: Integer
 
         attr_accessor :ProductId, :RegisterType, :RegisterLimit
-        
+
         def initialize(productid=nil, registertype=nil, registerlimit=nil)
           @ProductId = productid
           @RegisterType = registertype
@@ -4597,7 +4597,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RegisterType, :ProductSecret, :RegisterLimit, :RequestId
-        
+
         def initialize(registertype=nil, productsecret=nil, registerlimit=nil, requestid=nil)
           @RegisterType = registertype
           @ProductSecret = productsecret
@@ -4627,7 +4627,7 @@ module TencentCloud
         # @type BrokerSubscribe: :class:`Tencentcloud::Iotcloud.v20180614.models.BrokerSubscribe`
 
         attr_accessor :ProductID, :TopicName, :NewTopicName, :Privilege, :BrokerSubscribe
-        
+
         def initialize(productid=nil, topicname=nil, newtopicname=nil, privilege=nil, brokersubscribe=nil)
           @ProductID = productid
           @TopicName = topicname
@@ -4654,7 +4654,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -4682,7 +4682,7 @@ module TencentCloud
         # @type FwType: String
 
         attr_accessor :ProductID, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription, :FwType
-        
+
         def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil, fwtype=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
@@ -4710,7 +4710,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end

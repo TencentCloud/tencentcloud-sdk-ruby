@@ -25,7 +25,7 @@ module TencentCloud
         # @type Url: String
 
         attr_accessor :TaskId, :Url
-        
+
         def initialize(taskid=nil, url=nil)
           @TaskId = taskid
           @Url = url
@@ -44,7 +44,7 @@ module TencentCloud
         # @type Tasks: Array
 
         attr_accessor :Tasks
-        
+
         def initialize(tasks=nil)
           @Tasks = tasks
         end
@@ -67,7 +67,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -83,7 +83,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -106,7 +106,7 @@ module TencentCloud
         # @type WordWeightStr: String
 
         attr_accessor :Name, :Description, :WordWeights, :WordWeightStr
-        
+
         def initialize(name=nil, description=nil, wordweights=nil, wordweightstr=nil)
           @Name = name
           @Description = description
@@ -137,7 +137,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
-        
+
         def initialize(vocabid=nil, requestid=nil)
           @VocabId = vocabid
           @RequestId = requestid
@@ -183,7 +183,7 @@ module TencentCloud
         # @type AudioData: Boolean
 
         attr_accessor :EngineType, :Url, :CallbackUrl, :SignToken, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :WordInfo, :HotwordId, :AudioData
-        
+
         def initialize(enginetype=nil, url=nil, callbackurl=nil, signtoken=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, wordinfo=nil, hotwordid=nil, audiodata=nil)
           @EngineType = enginetype
           @Url = url
@@ -221,7 +221,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -248,7 +248,7 @@ module TencentCloud
         # @type TagInfos: Array
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
-        
+
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
           @TextUrl = texturl
@@ -272,7 +272,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
-        
+
         def initialize(modelid=nil, requestid=nil)
           @ModelId = modelid
           @RequestId = requestid
@@ -353,7 +353,7 @@ module TencentCloud
         # @type EmotionRecognition: Integer
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal, :EmotionalEnergy, :ReinforceHotword, :SentenceMaxLength, :EmotionRecognition
-        
+
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil, emotionalenergy=nil, reinforcehotword=nil, sentencemaxlength=nil, emotionrecognition=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
@@ -411,7 +411,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -432,7 +432,7 @@ module TencentCloud
         # @type VocabId: String
 
         attr_accessor :VocabId
-        
+
         def initialize(vocabid=nil)
           @VocabId = vocabid
         end
@@ -448,7 +448,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -464,7 +464,7 @@ module TencentCloud
         # @type ModelId: String
 
         attr_accessor :ModelId
-        
+
         def initialize(modelid=nil)
           @ModelId = modelid
         end
@@ -480,7 +480,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -493,7 +493,7 @@ module TencentCloud
       # DescribeAsyncRecognitionTasks请求参数结构体
       class DescribeAsyncRecognitionTasksRequest < TencentCloud::Common::AbstractModel
 
-        
+
         def initialize()
         end
 
@@ -510,7 +510,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -531,7 +531,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -549,7 +549,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -570,7 +570,7 @@ module TencentCloud
         # @type VocabId: String
 
         attr_accessor :VocabId
-        
+
         def initialize(vocabid=nil)
           @VocabId = vocabid
         end
@@ -590,7 +590,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabId, :WordWeightStr, :RequestId
-        
+
         def initialize(vocabid=nil, wordweightstr=nil, requestid=nil)
           @VocabId = vocabid
           @WordWeightStr = wordweightstr
@@ -610,7 +610,7 @@ module TencentCloud
         # @type ModelId: String
 
         attr_accessor :ModelId
-        
+
         def initialize(modelid=nil)
           @ModelId = modelid
         end
@@ -628,7 +628,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DownloadUrl, :RequestId
-        
+
         def initialize(downloadurl=nil, requestid=nil)
           @DownloadUrl = downloadurl
           @RequestId = requestid
@@ -650,7 +650,7 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :TagInfos, :Offset, :Limit
-        
+
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
           @Offset = offset
@@ -674,7 +674,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabList, :TotalCount, :RequestId
-        
+
         def initialize(vocablist=nil, totalcount=nil, requestid=nil)
           @VocabList = vocablist
           @TotalCount = totalcount
@@ -701,7 +701,7 @@ module TencentCloud
         # @type VocabId: String
 
         attr_accessor :VocabId
-        
+
         def initialize(vocabid=nil)
           @VocabId = vocabid
         end
@@ -731,7 +731,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State, :RequestId
-        
+
         def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil, requestid=nil)
           @Name = name
           @Description = description
@@ -772,7 +772,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :TagInfos, :Limit, :Offset
-        
+
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
           @Limit = limit
@@ -798,7 +798,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :TotalCount, :RequestId
-        
+
         def initialize(data=nil, totalcount=nil, requestid=nil)
           @Data = data
           @TotalCount = totalcount
@@ -825,7 +825,7 @@ module TencentCloud
         # @type ModelId: String
 
         attr_accessor :ModelId
-        
+
         def initialize(modelid=nil)
           @ModelId = modelid
         end
@@ -843,7 +843,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
-        
+
         def initialize(data=nil, requestid=nil)
           @Data = data
           @RequestId = requestid
@@ -866,7 +866,7 @@ module TencentCloud
         # @type Weight: Integer
 
         attr_accessor :Word, :Weight
-        
+
         def initialize(word=nil, weight=nil)
           @Word = word
           @Weight = weight
@@ -905,7 +905,7 @@ module TencentCloud
         # @type TagInfos: Array
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
-        
+
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
           @DictName = dictname
@@ -941,7 +941,7 @@ module TencentCloud
         # @type TextUrl: String
 
         attr_accessor :ModelId, :ModelName, :ModelType, :TextUrl
-        
+
         def initialize(modelid=nil, modelname=nil, modeltype=nil, texturl=nil)
           @ModelId = modelid
           @ModelName = modelname
@@ -963,7 +963,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :RequestId
-        
+
         def initialize(requestid=nil)
           @RequestId = requestid
         end
@@ -981,7 +981,7 @@ module TencentCloud
         # @type ToState: Integer
 
         attr_accessor :ModelId, :ToState
-        
+
         def initialize(modelid=nil, tostate=nil)
           @ModelId = modelid
           @ToState = tostate
@@ -1001,7 +1001,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
-        
+
         def initialize(modelid=nil, requestid=nil)
           @ModelId = modelid
           @RequestId = requestid
@@ -1050,7 +1050,7 @@ module TencentCloud
         # @type EmotionType: Array
 
         attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType
-        
+
         def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
@@ -1148,7 +1148,14 @@ module TencentCloud
         # @type HotwordList: String
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList
-        
+        extend Gem::Deprecate
+        deprecate :ProjectId, :none, 2023, 5
+        deprecate :ProjectId=, :none, 2023, 5
+        deprecate :SubServiceType, :none, 2023, 5
+        deprecate :SubServiceType=, :none, 2023, 5
+        deprecate :UsrAudioKey, :none, 2023, 5
+        deprecate :UsrAudioKey=, :none, 2023, 5
+
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil)
           @EngSerViceType = engservicetype
           @SourceType = sourcetype
@@ -1208,7 +1215,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Result, :AudioDuration, :WordSize, :WordList, :RequestId
-        
+
         def initialize(result=nil, audioduration=nil, wordsize=nil, wordlist=nil, requestid=nil)
           @Result = result
           @AudioDuration = audioduration
@@ -1243,7 +1250,7 @@ module TencentCloud
         # @type EndTime: Integer
 
         attr_accessor :Word, :StartTime, :EndTime
-        
+
         def initialize(word=nil, starttime=nil, endtime=nil)
           @Word = word
           @StartTime = starttime
@@ -1270,7 +1277,7 @@ module TencentCloud
         # @type OffsetEndMs: Integer
 
         attr_accessor :Word, :OffsetStartMs, :OffsetEndMs
-        
+
         def initialize(word=nil, offsetstartms=nil, offsetendms=nil)
           @Word = word
           @OffsetStartMs = offsetstartms
@@ -1292,7 +1299,7 @@ module TencentCloud
         # @type State: Integer
 
         attr_accessor :VocabId, :State
-        
+
         def initialize(vocabid=nil, state=nil)
           @VocabId = vocabid
           @State = state
@@ -1312,7 +1319,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
-        
+
         def initialize(vocabid=nil, requestid=nil)
           @VocabId = vocabid
           @RequestId = requestid
@@ -1330,7 +1337,7 @@ module TencentCloud
         # @type TaskId: Integer
 
         attr_accessor :TaskId
-        
+
         def initialize(taskid=nil)
           @TaskId = taskid
         end
@@ -1360,7 +1367,7 @@ module TencentCloud
         # @type AudioDuration: Float
 
         attr_accessor :TaskId, :Status, :StatusStr, :Result, :ErrorMsg, :ResultDetail, :AudioDuration
-        
+
         def initialize(taskid=nil, status=nil, statusstr=nil, result=nil, errormsg=nil, resultdetail=nil, audioduration=nil)
           @TaskId = taskid
           @Status = status
@@ -1404,7 +1411,7 @@ module TencentCloud
         # @type Description: String
 
         attr_accessor :VocabId, :Name, :WordWeights, :WordWeightStr, :Description
-        
+
         def initialize(vocabid=nil, name=nil, wordweights=nil, wordweightstr=nil, description=nil)
           @VocabId = vocabid
           @Name = name
@@ -1437,7 +1444,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
-        
+
         def initialize(vocabid=nil, requestid=nil)
           @VocabId = vocabid
           @RequestId = requestid
@@ -1470,7 +1477,7 @@ module TencentCloud
         # @type TagInfos: Array
 
         attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State, :TagInfos
-        
+
         def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil, taginfos=nil)
           @Name = name
           @Description = description

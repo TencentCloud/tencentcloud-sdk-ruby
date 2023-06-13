@@ -31,7 +31,7 @@ module TencentCloud
         # @type CreateTime: String
 
         attr_accessor :Id, :Name, :Code, :Type, :CreateTime
-        
+
         def initialize(id=nil, name=nil, code=nil, type=nil, createtime=nil)
           @Id = id
           @Name = name
@@ -55,7 +55,7 @@ module TencentCloud
         # @type OrderIds: Array
 
         attr_accessor :OrderIds
-        
+
         def initialize(orderids=nil)
           @OrderIds = orderids
         end
@@ -73,7 +73,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CertificateUrls, :RequestId
-        
+
         def initialize(certificateurls=nil, requestid=nil)
           @CertificateUrls = certificateurls
           @RequestId = requestid
@@ -91,7 +91,7 @@ module TencentCloud
         # @type OrderIds: Array
 
         attr_accessor :OrderIds
-        
+
         def initialize(orderids=nil)
           @OrderIds = orderids
         end
@@ -109,7 +109,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageUrls, :RequestId
-        
+
         def initialize(imageurls=nil, requestid=nil)
           @ImageUrls = imageurls
           @RequestId = requestid
@@ -127,7 +127,7 @@ module TencentCloud
         # @type ImageInfos: Array
 
         attr_accessor :ImageInfos
-        
+
         def initialize(imageinfos=nil)
           @ImageInfos = imageinfos
         end
@@ -155,7 +155,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DownloadInfos, :TotalCount, :RequestId
-        
+
         def initialize(downloadinfos=nil, totalcount=nil, requestid=nil)
           @DownloadInfos = downloadinfos
           @TotalCount = totalcount
@@ -186,7 +186,7 @@ module TencentCloud
         # @type MarshalId: Integer
 
         attr_accessor :ImageId, :AuthUserId, :MarshalId
-        
+
         def initialize(imageid=nil, authuserid=nil, marshalid=nil)
           @ImageId = imageid
           @AuthUserId = authuserid
@@ -208,7 +208,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :OrderId, :RequestId
-        
+
         def initialize(orderid=nil, requestid=nil)
           @OrderId = orderid
           @RequestId = requestid
@@ -228,7 +228,7 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
-        
+
         def initialize(limit=nil, offset=nil)
           @Limit = limit
           @Offset = offset
@@ -253,7 +253,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Users, :TotalCount, :OldUser, :RequestId
-        
+
         def initialize(users=nil, totalcount=nil, olduser=nil, requestid=nil)
           @Users = users
           @TotalCount = totalcount
@@ -290,7 +290,7 @@ module TencentCloud
         # @type ImageIds: Array
 
         attr_accessor :Limit, :Offset, :BeginTime, :EndTime, :ImageIds
-        
+
         def initialize(limit=nil, offset=nil, begintime=nil, endtime=nil, imageids=nil)
           @Limit = limit
           @Offset = offset
@@ -319,7 +319,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :DownloadInfos, :TotalCount, :RequestId
-        
+
         def initialize(downloadinfos=nil, totalcount=nil, requestid=nil)
           @DownloadInfos = downloadinfos
           @TotalCount = totalcount
@@ -346,7 +346,7 @@ module TencentCloud
         # @type ImageId: Integer
 
         attr_accessor :ImageId
-        
+
         def initialize(imageid=nil)
           @ImageId = imageid
         end
@@ -390,7 +390,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Marshals, :Width, :Height, :ImageFormat, :ImageSenseType, :Keywords, :LayeredGalleryId, :Orientation, :RequestId
-        
+
         def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, marshals=nil, width=nil, height=nil, imageformat=nil, imagesensetype=nil, keywords=nil, layeredgalleryid=nil, orientation=nil, requestid=nil)
           @ImageId = imageid
           @Title = title
@@ -451,7 +451,7 @@ module TencentCloud
         # @type LayeredGalleryIds: Array
 
         attr_accessor :Offset, :Limit, :Keyword, :Orientation, :ImageSenseType, :LayeredGalleryIds
-        
+
         def initialize(offset=nil, limit=nil, keyword=nil, orientation=nil, imagesensetype=nil, layeredgalleryids=nil)
           @Offset = offset
           @Limit = limit
@@ -487,7 +487,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Offset, :Limit, :Total, :HaveMore, :Items, :RequestId
-        
+
         def initialize(offset=nil, limit=nil, total=nil, havemore=nil, items=nil, requestid=nil)
           @Offset = offset
           @Limit = limit
@@ -536,7 +536,7 @@ module TencentCloud
         # @type FirstDownload: Boolean
 
         attr_accessor :ImageInfo, :ImageUrl, :ImageThumbUrl, :OrderId, :OrderCreateTime, :DownloadId, :DownloadTime, :ConsumeType, :FirstDownload
-        
+
         def initialize(imageinfo=nil, imageurl=nil, imagethumburl=nil, orderid=nil, ordercreatetime=nil, downloadid=nil, downloadtime=nil, consumetype=nil, firstdownload=nil)
           @ImageInfo = imageinfo
           @ImageUrl = imageurl
@@ -585,7 +585,7 @@ module TencentCloud
         # @type DownloadType: String
 
         attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId, :UserId, :DownloadPrice, :DownloadType
-        
+
         def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil, userid=nil, downloadprice=nil, downloadtype=nil)
           @ImageId = imageid
           @LicenseScopeId = licensescopeid
@@ -627,7 +627,7 @@ module TencentCloud
         # @type Height: Integer
 
         attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Keywords, :Width, :Height
-        
+
         def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, keywords=nil, width=nil, height=nil)
           @ImageId = imageid
           @Title = title
@@ -679,7 +679,7 @@ module TencentCloud
         # @type DimensionsNameId: Integer
 
         attr_accessor :MarshalId, :Height, :Width, :Size, :Format, :Price, :LicenseScope, :IsVip, :LicenseScopeId, :DimensionsName, :DimensionsNameId
-        
+
         def initialize(marshalid=nil, height=nil, width=nil, size=nil, format=nil, price=nil, licensescope=nil, isvip=nil, licensescopeid=nil, dimensionsname=nil, dimensionsnameid=nil)
           @MarshalId = marshalid
           @Height = height

@@ -56,7 +56,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :CallId, :Src, :Dst, :StartSrcCallTime, :StartSrcRingTime, :SrcAcceptTime, :StartDstCallTime, :StartDstRingTime, :DstAcceptTime, :EndCallTime, :CallEndStatus, :Duration, :RecordUrl, :CallType, :BizId, :OrderId
-        
+
         def initialize(callid=nil, src=nil, dst=nil, startsrccalltime=nil, startsrcringtime=nil, srcaccepttime=nil, startdstcalltime=nil, startdstringtime=nil, dstaccepttime=nil, endcalltime=nil, callendstatus=nil, duration=nil, recordurl=nil, calltype=nil, bizid=nil, orderid=nil)
           @CallId = callid
           @Src = src
@@ -104,7 +104,7 @@ module TencentCloud
         # @type Phone: String
 
         attr_accessor :Nation, :Phone
-        
+
         def initialize(nation=nil, phone=nil)
           @Nation = nation
           @Phone = phone
@@ -151,7 +151,7 @@ module TencentCloud
         # @type OrderId: String
 
         attr_accessor :BizAppId, :Src, :Dst, :SrcDisplayNum, :DstDisplayNum, :Record, :MaxAllowTime, :StatusFlag, :StatusUrl, :HangupUrl, :RecordUrl, :BizId, :LastCallId, :PreCallerHandle, :OrderId
-        
+
         def initialize(bizappid=nil, src=nil, dst=nil, srcdisplaynum=nil, dstdisplaynum=nil, record=nil, maxallowtime=nil, statusflag=nil, statusurl=nil, hangupurl=nil, recordurl=nil, bizid=nil, lastcallid=nil, precallerhandle=nil, orderid=nil)
           @BizAppId = bizappid
           @Src = src
@@ -212,7 +212,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :CallId, :SrcDisplayNum, :DstDisplayNum, :ErrorCode, :Msg, :RequestId
-        
+
         def initialize(callid=nil, srcdisplaynum=nil, dstdisplaynum=nil, errorcode=nil, msg=nil, requestid=nil)
           @CallId = callid
           @SrcDisplayNum = srcdisplaynum
@@ -242,7 +242,7 @@ module TencentCloud
         # @type BizId: String
 
         attr_accessor :BizAppId, :BindId, :BizId
-        
+
         def initialize(bizappid=nil, bindid=nil, bizid=nil)
           @BizAppId = bizappid
           @BindId = bindid
@@ -273,7 +273,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :Msg, :BindId, :RefLeftNum, :RequestId
-        
+
         def initialize(errorcode=nil, msg=nil, bindid=nil, refleftnum=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
@@ -301,7 +301,7 @@ module TencentCloud
         # @type CancelFlag: String
 
         attr_accessor :BizAppId, :CallId, :CancelFlag
-        
+
         def initialize(bizappid=nil, callid=nil, cancelflag=nil)
           @BizAppId = bizappid
           @CallId = callid
@@ -329,7 +329,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :Msg, :CallId, :RequestId
-        
+
         def initialize(errorcode=nil, msg=nil, callid=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
@@ -359,7 +359,7 @@ module TencentCloud
         # @type EndTimeStamp: String
 
         attr_accessor :BizAppId, :CallId, :Src, :StartTimeStamp, :EndTimeStamp
-        
+
         def initialize(bizappid=nil, callid=nil, src=nil, starttimestamp=nil, endtimestamp=nil)
           @BizAppId = bizappid
           @CallId = callid
@@ -395,7 +395,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Cdr, :Offset, :ErrorCode, :Msg, :RequestId
-        
+
         def initialize(cdr=nil, offset=nil, errorcode=nil, msg=nil, requestid=nil)
           @Cdr = cdr
           @Offset = offset
@@ -434,7 +434,7 @@ module TencentCloud
         # @type CallStatus: String
 
         attr_accessor :BizAppId, :CallId, :Src, :Dst, :CallStatus
-        
+
         def initialize(bizappid=nil, callid=nil, src=nil, dst=nil, callstatus=nil)
           @BizAppId = bizappid
           @CallId = callid
@@ -472,7 +472,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :Msg, :AppId, :CallId, :Src, :Dst, :CallStatus, :RequestId
-        
+
         def initialize(errorcode=nil, msg=nil, appid=nil, callid=nil, src=nil, dst=nil, callstatus=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
@@ -502,7 +502,7 @@ module TencentCloud
         # @type BizAppId: String
 
         attr_accessor :BizAppId
-        
+
         def initialize(bizappid=nil)
           @BizAppId = bizappid
         end
@@ -529,7 +529,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AppId, :CodeList, :ErrorCode, :Msg, :RequestId
-        
+
         def initialize(appid=nil, codelist=nil, errorcode=nil, msg=nil, requestid=nil)
           @AppId = appid
           @CodeList = codelist
@@ -568,7 +568,7 @@ module TencentCloud
         # @type EndTimeStamp: String
 
         attr_accessor :BizAppId, :CallId, :Src, :StartTimeStamp, :EndTimeStamp
-        
+
         def initialize(bizappid=nil, callid=nil, src=nil, starttimestamp=nil, endtimestamp=nil)
           @BizAppId = bizappid
           @CallId = callid
@@ -603,7 +603,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :Msg, :Offset, :Cdr, :RequestId
-        
+
         def initialize(errorcode=nil, msg=nil, offset=nil, cdr=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
@@ -674,7 +674,7 @@ module TencentCloud
         # @type RecordUrl: String
 
         attr_accessor :BizAppId, :Dst, :Src, :AccreditList, :AssignVirtualNum, :Record, :CityId, :BizId, :MaxAssignTime, :StatusFlag, :StatusUrl, :HangupUrl, :RecordUrl
-        
+
         def initialize(bizappid=nil, dst=nil, src=nil, accreditlist=nil, assignvirtualnum=nil, record=nil, cityid=nil, bizid=nil, maxassigntime=nil, statusflag=nil, statusurl=nil, hangupurl=nil, recordurl=nil)
           @BizAppId = bizappid
           @Dst = dst
@@ -728,7 +728,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ErrorCode, :BindId, :RefNum, :VirtualNum, :Msg, :RequestId
-        
+
         def initialize(errorcode=nil, bindid=nil, refnum=nil, virtualnum=nil, msg=nil, requestid=nil)
           @ErrorCode = errorcode
           @BindId = bindid
@@ -756,7 +756,7 @@ module TencentCloud
         # @type Operate: String
 
         attr_accessor :Key, :Operate
-        
+
         def initialize(key=nil, operate=nil)
           @Key = key
           @Operate = operate
@@ -784,7 +784,7 @@ module TencentCloud
         # @type PromptGender: String
 
         attr_accessor :ReadPrompt, :InterruptPrompt, :KeyList, :RepeatTimes, :KeyPressUrl, :PromptGender
-        
+
         def initialize(readprompt=nil, interruptprompt=nil, keylist=nil, repeattimes=nil, keypressurl=nil, promptgender=nil)
           @ReadPrompt = readprompt
           @InterruptPrompt = interruptprompt
@@ -843,7 +843,7 @@ module TencentCloud
         # @type RecordUrl: String
 
         attr_accessor :CallId, :BindId, :Src, :Dst, :DstVirtualNum, :CallCenterAcceptTime, :StartDstCallTime, :StartDstRingTime, :DstAcceptTime, :EndCallTime, :CallEndStatus, :SrcDuration, :DstDuration, :RecordUrl
-        
+
         def initialize(callid=nil, bindid=nil, src=nil, dst=nil, dstvirtualnum=nil, callcenteraccepttime=nil, startdstcalltime=nil, startdstringtime=nil, dstaccepttime=nil, endcalltime=nil, callendstatus=nil, srcduration=nil, dstduration=nil, recordurl=nil)
           @CallId = callid
           @BindId = bindid

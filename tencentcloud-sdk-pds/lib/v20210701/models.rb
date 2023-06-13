@@ -23,7 +23,7 @@ module TencentCloud
         # @type ServiceParams: :class:`Tencentcloud::Pds.v20210701.models.UserInfos`
 
         attr_accessor :ServiceParams
-        
+
         def initialize(serviceparams=nil)
           @ServiceParams = serviceparams
         end
@@ -44,7 +44,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServiceRsp, :RequestId
-        
+
         def initialize(servicersp=nil, requestid=nil)
           @ServiceRsp = servicersp
           @RequestId = requestid
@@ -65,7 +65,7 @@ module TencentCloud
         # @type ServiceParams: :class:`Tencentcloud::Pds.v20210701.models.UserInfos`
 
         attr_accessor :ServiceParams
-        
+
         def initialize(serviceparams=nil)
           @ServiceParams = serviceparams
         end
@@ -86,7 +86,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ServiceRsp, :RequestId
-        
+
         def initialize(servicersp=nil, requestid=nil)
           @ServiceRsp = servicersp
           @RequestId = requestid
@@ -107,7 +107,7 @@ module TencentCloud
         # @type Star: Integer
 
         attr_accessor :Star
-        
+
         def initialize(star=nil)
           @Star = star
         end
@@ -135,7 +135,7 @@ module TencentCloud
         # @type IDFA: String
 
         attr_accessor :PhoneNum, :Openid, :IP, :WiFiBssid, :IMEI, :OAID, :IDFA
-        
+
         def initialize(phonenum=nil, openid=nil, ip=nil, wifibssid=nil, imei=nil, oaid=nil, idfa=nil)
           @PhoneNum = phonenum
           @Openid = openid

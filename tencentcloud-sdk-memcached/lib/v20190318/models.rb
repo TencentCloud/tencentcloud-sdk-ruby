@@ -43,7 +43,7 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :OrderBy, :SearchKeys, :UniqSubnetIds, :Vips, :OrderType, :InstanceNames, :UniqVpcIds, :ProjectIds, :Offset, :Limit, :InstanceIds
-        
+
         def initialize(orderby=nil, searchkeys=nil, uniqsubnetids=nil, vips=nil, ordertype=nil, instancenames=nil, uniqvpcids=nil, projectids=nil, offset=nil, limit=nil, instanceids=nil)
           @OrderBy = orderby
           @SearchKeys = searchkeys
@@ -83,7 +83,7 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :InstanceList, :TotalNum, :RequestId
-        
+
         def initialize(instancelist=nil, totalnum=nil, requestid=nil)
           @InstanceList = instancelist
           @TotalNum = totalnum
@@ -157,7 +157,7 @@ module TencentCloud
         # @type Vport: Integer
 
         attr_accessor :ModTimeStamp, :IsolateTimeStamp, :AutoRenewFlag, :SetId, :Status, :CmemId, :Tags, :InstanceId, :RegionId, :InstanceDesc, :Expire, :SubnetId, :ProjectId, :AddTimeStamp, :ZoneId, :PayMode, :VpcId, :InstanceName, :DeadlineTimeStamp, :UniqVpcId, :Vip, :UniqSubnetId, :AppId, :Vport
-        
+
         def initialize(modtimestamp=nil, isolatetimestamp=nil, autorenewflag=nil, setid=nil, status=nil, cmemid=nil, tags=nil, instanceid=nil, regionid=nil, instancedesc=nil, expire=nil, subnetid=nil, projectid=nil, addtimestamp=nil, zoneid=nil, paymode=nil, vpcid=nil, instancename=nil, deadlinetimestamp=nil, uniqvpcid=nil, vip=nil, uniqsubnetid=nil, appid=nil, vport=nil)
           @ModTimeStamp = modtimestamp
           @IsolateTimeStamp = isolatetimestamp
@@ -228,7 +228,7 @@ module TencentCloud
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
-        
+
         def initialize(tagkey=nil, tagvalue=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
